@@ -1,0 +1,100 @@
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Home, ChevronRight } from "lucide-react";
+import { base44 } from "@/api/base44Client";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import StreamTab from "@/components/dashboard/teacher/tabs/StreamTab";
+import ClassworkTab from "@/components/dashboard/teacher/tabs/ClassworkTab";
+import PeopleTab from "@/components/dashboard/teacher/tabs/PeopleTab";
+import InsightsTab from "@/components/dashboard/teacher/tabs/InsightsTab";
+
+const TABS = [
+  { id: "stream", label: "Stream" },
+  { id: "classwork", label: "Classwork" },
+  { id: "people", label: "People" },
+  { id: "insights", label: "Insights" },
+];
+
+export default function ClassDetail() {
+  const { classId } = useParams();
+  const themeColor = useThemeColor();
+  const accent = themeColor.accent;
+  const [classroom, setClassroom] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState("stream");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const c = await base44.entities.Classroom.get(classId);
+        setClassroom(c);
+      } catch {}
+      setLoading(false);
+    })();
+  }, [classId]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+      </div>
+    );
+  }
+
+  if (!classroom) {
+    return (
+      <div className="flex flex-col items-center gap-4 py-20 text-center">
+        <p className="text-sm text-[#5f6368]">Class not found.</p>
+        <Link to="/dashboard/home" className="text-sm font-medium hover:underline" style={{ color: accent }}>
+          Back to classes
+        </Link>
+      </div>
+    );
+  }
+
+  const color = classroom.color || accent;
+
+  return (
+    <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
+      <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
+        <Link to="/dashboard/home" className="flex items-center hover:text-[#202124] transition-colors">
+          <Home className="w-4 h-4" />
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5 text-[#9aa0a6]" />
+        <span className="font-medium text-[#202124]">{classroom.name}</span>
+      </nav>
+
+      <div className="rounded-3xl overflow-hidden">
+        <div className="p-8 lg:p-10" style={{ backgroundColor: color }}>
+          <h1 className="text-[28px] lg:text-[32px] font-medium text-white tracking-tight leading-tight">
+            {classroom.name}
+          </h1>
+          {classroom.section && <p className="text-white/85 text-base mt-1">{classroom.section}</p>}
+          {classroom.room && <p className="text-white/70 text-sm mt-1">Room {classroom.room}</p>}
+        </div>
+      </div>
+
+      <div className="flex items-center gap-1 border-b border-[#dadce0]/60 overflow-x-auto">
+        {TABS.map((t) => {
+          const active = tab === t.id;
+          return (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap"
+              style={{ color: active ? accent : "#5f6368" }}
+            >
+              {t.label}
+              {active && <span className="absolute left-3 right-3 bottom-0 h-[3px] rounded-full" style={{ backgroundColor: accent }} />}
+            </button>
+          );
+        })}
+      </div>
+
+      {tab === "stream" && <StreamTab classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "classwork" && <ClassworkTab classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "people" && <PeopleTab classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "insights" && <InsightsTab classId={classId} classroom={classroom} accent={accent} />}
+    </div>
+  );
+}
