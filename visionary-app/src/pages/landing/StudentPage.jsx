@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { GraduationCap, History, Eye, RefreshCw, Check, ArrowRight } from "lucide-react";
+import PersonaHero from "@/components/landing/PersonaHero";
 
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
@@ -131,7 +133,7 @@ function UseStageIndex(total) {
 
 /* ═══════════════════════ MODELS (sanitized data) ═══════════════════════ */
 
-const HERO_WORDS = ["mastery.", "practise."];
+const HERO_WORDS = ["Learning,", "to master.", "to build."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
@@ -251,27 +253,20 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 
 /* ═══════════════════════ 01 · HERO ═══════════════════════ */
 
-const StudentHeroSection = React.memo(function StudentHeroSection() {
-  const { index } = UseCycleIndex(HERO_WORDS.length, HERO_WORD_MS);
-  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[#121317] text-[clamp(40px,9.57vw,168px)]";
 
-  return (
-    <section data-section="01-hero" className="relative overflow-hidden">
-      <div className="relative mx-auto flex min-h-[calc(100vh-75px)] w-full max-w-[1756px] flex-col justify-center px-6 py-24 lg:block lg:px-0 lg:py-0">
-        <h1 className="sr-only">Learning, to mastery.</h1>
-        <span aria-hidden="true" className={`hero-fade-up ${display} lg:absolute lg:left-[6.5%] lg:top-[23%]`}>Learning,</span>
-        <span aria-hidden="true" className={`mt-4 ${display} lg:mt-0 lg:absolute lg:left-[45%] lg:top-[49.5%]`}>
-          to{" "}
-          <span key={index} className="hero-fade-up inline-block">{HERO_WORDS[index]}</span>
-        </span>
-        <p className="hero-fade-up mt-10 max-w-[320px] font-normal tracking-[0] leading-[1.6] text-[#121317] text-[clamp(15px,0.97vw,17px)] lg:absolute lg:left-[7%] lg:top-[53%] lg:mt-0 xl:max-w-[410px]">
-          Every concept you understand becomes the foundation for the next one — in the language you think in, for as long as you keep learning.
-        </p>
-      </div>
-    </section>
-  );
-});
-
+/* ═══════════════════════ 01 · HERO — final Google-grade composition ═══════════════════════ */
+/* one animated heading tells the whole story */
+/* ═══════════════════════ 01 · HERO ═══════════════════════ */
+const StudentHeroSection = React.memo(() => (
+  <PersonaHero
+    words={HERO_WORDS}
+    srSentence="Learning, to mastery."
+    sub="Every concept you understand becomes the foundation for the next one — in the language you think in."
+    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    alt="A student smiling while carrying a new laptop"
+    ctaLabel="Start learning free"
+  />
+));
 /* ═══════════════════════ 02 · STRUGGLE ═══════════════════════ */
 
 const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {

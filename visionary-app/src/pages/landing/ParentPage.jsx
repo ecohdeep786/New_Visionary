@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import PersonaHero from "@/components/landing/PersonaHero";
 
 /* ═══ DESIGN TOKENS (clean) ═══ */
 const COLORS = {
@@ -109,7 +110,7 @@ function useStageIndex(total) {
 }
 
 /* ═══ PARENT MODELS (clean strings) ═══ */
-const PARENT_HERO_WORDS = ["clarity.", "progress.", "trust."];
+const PARENT_HERO_WORDS = ["Parenting.", "to see.", "to help."];
 const HERO_WORD_MS = 2800;
 
 const PARENT_SLIDES = [
@@ -217,25 +218,16 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 /* ═══ 01 · HERO (self-contained) ═══ */
-const ParentHeroSection = React.memo(function ParentHeroSection() {
-  const { index } = useCycleIndex(PARENT_HERO_WORDS.length, HERO_WORD_MS);
-  const display = "hero-fade-up block whitespace-nowrap font-medium leading-[1] tracking-[-0.01em] text-[clamp(56px,9.5vw,168px)]";
-  return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
-      <div className="relative mx-auto flex min-h-[calc(100vh-64px)] w-full max-w-[1756px] flex-col justify-center px-6 py-24 lg:block lg:px-0 lg:py-0">
-        <h1 className="sr-only">Supporting, to clarity.</h1>
-        <span aria-hidden="true" className={`${display} lg:absolute lg:left-[6.5%] lg:top-[23%]`} style={{ color: COLORS.ink }}>Supporting,</span>
-        <span aria-hidden="true" className={`${display} mt-4 lg:mt-0 lg:absolute lg:left-[45%] lg:top-[49.5%]`} style={{ color: COLORS.ink }}>
-          to{" "}
-          <span key={index} className="hero-fade-up inline-block">{PARENT_HERO_WORDS[index]}</span>
-        </span>
-        <p className="hero-fade-up mt-10 max-w-[320px] font-normal tracking-[0] leading-[1.6] text-[16px] lg:absolute lg:left-[7%] lg:top-[53%] lg:mt-0 xl:max-w-[410px]" style={{ color: COLORS.grey }}>
-          Every question you ask, every worry you carry, every win you celebrate — Visionary helps you understand your child's learning, for as long as they keep growing.
-        </p>
-      </div>
-    </section>
-  );
-});
+const ParentHeroSection = React.memo(() => (
+  <PersonaHero
+    words={PARENT_HERO_WORDS}
+    srSentence="Parenting, to see what is happening."
+    sub="Know what your child is learning, where they need support, and how they are growing — before the report card arrives."
+    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    alt="A parent helping a child with homework"
+    ctaLabel="Start as a parent"
+  />
+));
 
 /* ═══ 02 · STRUGGLE ═══ */
 const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {

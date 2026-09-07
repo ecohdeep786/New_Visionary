@@ -1,4 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
+import studentImage from "@/assets/student-face-main.png";
+import teacherImage from "@/assets/teacher-face-main.png";
+import parentImage from "@/assets/parent-face-main.png";
+import professionalImage from "@/assets/professional-face-main.png";
+import organizationImage from "@/assets/organization-face-main.png";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -233,25 +238,371 @@ const FAQ_ITEMS = [
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
 
 /* 01 · HERO */
+const LANDING_HERO_PEOPLE = [
+  {
+    role: "Student",
+    src: studentImage,
+    alt: "Student",
+  },
+  {
+    role: "Teacher",
+    src: teacherImage,
+    alt: "Teacher",
+  },
+  {
+    role: "Parent",
+    src: parentImage,
+    alt: "Parent",
+  },
+  {
+    role: "Professional",
+    src: professionalImage,
+    alt: "Professional",
+  },
+  {
+    role: "Organization",
+    src: organizationImage,
+    alt: "Organization leader",
+  },
+];
+
+const LANDING_HERO_MS = 4200;
+
 const LandingHeroSection = React.memo(function LandingHeroSection() {
-  const { index } = useCycleIndex(HERO_WORDS.length, HERO_WORD_MS);
+  const { index } = useCycleIndex(
+    LANDING_HERO_PEOPLE.length,
+    LANDING_HERO_MS
+  );
+
+  const activePerson = LANDING_HERO_PEOPLE[index];
+
+  // Same display treatment as category pages for consistency
+  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[#121317] text-[clamp(40px,9.57vw,168px)]";
+
   return (
-    <section data-section="01-hero" className="relative overflow-hidden" style={{ backgroundColor: COLORS.white, fontFamily: FONT_FAMILY }}>
-      <div className="mx-auto flex min-h-[calc(100vh-64px)] w-full max-w-[1400px] flex-col items-center justify-center px-6 pb-24 pt-40 text-center lg:pt-48">
-        <h1 className="font-medium tracking-[-0.01em] leading-[1] text-[clamp(40px,9.5vw,168px)]" style={{ color: COLORS.ink }}>
-          <span className="block">One Intelligence.</span>
-          <span className="block">Built around</span>
-          <span key={index} className="hero-fade-up block" style={{ color: COLORS.blue }}>{HERO_WORDS[index]}</span>
+    <section
+      data-section="01-hero"
+      className="
+        relative
+        overflow-hidden
+        bg-white
+      "
+      style={{
+        fontFamily: FONT_FAMILY,
+      }}
+    >
+      <div
+        className="
+          relative
+          mx-auto
+          flex
+          min-h-[calc(100svh-64px)]
+          w-full
+          max-w-[1400px]
+          flex-col
+          items-center
+          px-6
+          pb-24
+          pt-28
+          text-center
+          sm:px-8
+          sm:pt-32
+          lg:pt-36
+        "
+      >
+
+        {/* =========================================================
+            HUMAN VISUAL
+            The changing face is the visual meaning of "you"
+        ========================================================= */}
+
+        <div
+          className="
+            relative
+            mt-12
+            flex
+            h-[230px]
+            w-[230px]
+            items-center
+            justify-center
+            sm:mt-14
+            sm:h-[260px]
+            sm:w-[260px]
+            lg:mt-16
+            lg:h-[300px]
+            lg:w-[300px]
+          "
+        >
+          {/* Main circular face */}
+          <div
+            className="
+              relative
+              z-10
+              h-full
+              w-full
+              overflow-hidden
+              rounded-full
+              border
+              border-[#dadce0]
+              bg-[#F8F9FA]
+            "
+          >
+            <img
+              key={activePerson.src}
+              src={activePerson.src}
+              alt={activePerson.alt}
+              loading="eager"
+              decoding="async"
+              className="
+                hero-fade-up
+                block
+                h-full
+                w-full
+                object-cover
+              "
+              style={{
+                animationDuration: "0.9s",
+                animationTimingFunction:
+                  "cubic-bezier(0.22,1,0.36,1)",
+              }}
+            />
+          </div>
+
+          {/* Small surrounding visual circles */}
+          <span
+            aria-hidden="true"
+            className="
+              absolute
+              -left-6
+              top-[24%]
+              h-10
+              w-10
+              rounded-full
+              border
+              border-[#dadce0]
+              bg-white
+            "
+          />
+
+          <span
+            aria-hidden="true"
+            className="
+              absolute
+              -right-8
+              top-[18%]
+              h-14
+              w-14
+              rounded-full
+              border
+              border-[#dadce0]
+              bg-white
+            "
+          />
+
+          <span
+            aria-hidden="true"
+            className="
+              absolute
+              -right-5
+              bottom-[18%]
+              h-8
+              w-8
+              rounded-full
+            "
+            style={{
+              backgroundColor: COLORS.blue,
+            }}
+          />
+
+          <span
+            aria-hidden="true"
+            className="
+              absolute
+              -left-2
+              bottom-[8%]
+              h-5
+              w-5
+              rounded-full
+            "
+            style={{
+              backgroundColor: "#FBBC04",
+            }}
+          />
+
+          {/* Quiet pointer */}
+          <svg
+            viewBox="0 0 170 90"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            className="
+              pointer-events-none
+              absolute
+              -right-[74px]
+              -top-[38px]
+              h-[54px]
+              w-[108px]
+            "
+            style={{
+              color: COLORS.ink,
+            }}
+          >
+            <path d="M160 8 C126 12, 80 28, 36 66" />
+            <path d="M36 66 l5 -13" />
+            <path d="M36 66 l13 -4" />
+          </svg>
+        </div>
+
+        {/* =========================================================
+            UNIVERSAL HEADLINE
+            Same treatment as category pages for consistency
+        ========================================================= */}
+
+        <h1
+          className="
+            hero-fade-up
+            mt-14
+          "
+          style={{
+            animationDelay: "80ms",
+          }}
+        >
+          <span aria-hidden="true" className={display}>
+            One Intelligence.
+          </span>
+          
+          <span className="sr-only">One Intelligence. Built around you.</span>
         </h1>
-        <p className="mt-10 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Visionary understands what you're trying to do, adapts to how you work, and carries useful context forward — across learning, teaching, supporting, building and leading.
+
+        {/* =========================================================
+            SUPPORTING COPY
+        ========================================================= */}
+
+        <p
+          className="
+            hero-fade-up
+            mx-auto
+            mt-10
+            max-w-[760px]
+            font-normal
+            tracking-[0]
+            leading-[25px]
+            text-[17.5px]
+          "
+          style={{
+            color: COLORS.slate,
+            animationDelay: "200ms",
+          }}
+        >
+          Visionary understands what you're trying to do, adapts to how you
+          work, and carries useful context forward — across learning,
+          teaching, supporting, building and leading.
         </p>
-        <div className="mt-10">
-          <Link to="/register" className="inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98]" style={{ backgroundColor: COLORS.blue }}>
-            Start now free
+
+        {/* =========================================================
+            CTA
+        ========================================================= */}
+
+        <div
+          className="
+            hero-fade-up
+            mt-10
+            flex
+            flex-wrap
+            items-center
+            justify-center
+            gap-4
+          "
+          style={{
+            animationDelay: "280ms",
+          }}
+        >
+          <Link
+            to="/register"
+            className="
+              inline-flex
+              h-12
+              items-center
+              justify-center
+              gap-2
+              rounded-full
+              bg-[#121317]
+              px-8
+              text-[15px]
+              font-medium
+              tracking-[0]
+              text-white
+              transition-transform
+              duration-200
+              hover:scale-[1.01]
+              active:scale-[0.98]
+              focus:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-[#4285F4]
+              focus-visible:ring-offset-2
+            "
+          >
+            Start free
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </Link>
+
+          <Link
+            to="/how-it-works"
+            className="
+              inline-flex
+              h-12
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-[#dadce0]
+              bg-white
+              px-8
+              text-[15px]
+              font-normal
+              tracking-[0]
+              text-[#4285F4]
+              transition-colors
+              duration-200
+              hover:bg-[#F8F9FA]
+              focus:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-[#4285F4]
+              focus-visible:ring-offset-2
+            "
+          >
+            See how it works
           </Link>
         </div>
       </div>
+
+      {/* Quiet transition into the next story */}
+      <div
+        aria-hidden="true"
+        className="
+          mx-auto
+          h-px
+          w-[88%]
+          max-w-[1420px]
+          bg-[#121317]/[0.08]
+        "
+      />
     </section>
   );
 });

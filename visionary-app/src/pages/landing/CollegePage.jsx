@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import PersonaHero from "@/components/landing/PersonaHero";
 
 /* ═══ DESIGN TOKENS ═══ */
 const COLORS = {
@@ -109,7 +110,7 @@ function useStageIndex(total) {
 }
 
 /* ═══ PROFESSIONAL MODELS ═══ */
-const PRO_HERO_WORDS = ["impact.", "compound.", "ship"];
+const PRO_HERO_WORDS = ["Building.", "to apply.", "to grow."];
 const HERO_WORD_MS = 2800;
 
 const PRO_SLIDES = [
@@ -217,25 +218,16 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 /* ═══ 01 · HERO ═══ */
-const ProHeroSection = React.memo(function ProHeroSection() {
-  const { index } = useCycleIndex(PRO_HERO_WORDS.length, HERO_WORD_MS);
-  const display = "hero-fade-up block whitespace-nowrap font-medium leading-[1] tracking-[-0.01em] text-[clamp(56px,9.5vw,168px)]";
-  return (
-    <section className="relative overflow-hidden" style={{fontFamily: FONT_FAMILY }}>
-      <div className="relative mx-auto flex min-h-[calc(100vh-64px)] w-full max-w-[1756px] flex-col justify-center px-6 py-24 lg:block lg:px-0 lg:py-0">
-        <h1 className="sr-only">Building, to impact.</h1>
-        <span aria-hidden="true" className={`${display} lg:absolute lg:left-[6.5%] lg:top-[23%]`} style={{ color: COLORS.ink }}>Building,</span>
-        <span aria-hidden="true" className={`${display} mt-4 lg:mt-0 lg:absolute lg:left-[45%] lg:top-[49.5%]`} style={{ color: COLORS.ink }}>
-          to{" "}
-          <span key={index} className="hero-fade-up inline-block">{PRO_HERO_WORDS[index]}</span>
-        </span>
-        <p className="hero-fade-up mt-10 max-w-[320px] font-normal tracking-[0] leading-[1.6] text-[16px] lg:absolute lg:left-[7%] lg:top-[53%] lg:mt-0 xl:max-w-[410px]" style={{ color: COLORS.grey }}>
-          Every project you ship, every problem you solve, every skill you grow — Visionary keeps your work connected to what comes next, for as long as you keep building.
-        </p>
-      </div>
-    </section>
-  );
-});
+const ProHeroSection = React.memo(() => (
+  <PersonaHero
+    words={PRO_HERO_WORDS}
+    srSentence="Learning, to apply what you learn."
+    sub="Turn what you learn into work that ships — skills, solutions, and projects that compound with your career."
+    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    alt="A professional writing notes beside a laptop"
+    ctaLabel="Start building free"
+  />
+));
 
 /* ═══ 02 · STRUGGLE ═══ */
 const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {

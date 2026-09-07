@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import PersonaHero from "@/components/landing/PersonaHero";
 
 /* ═══ DESIGN TOKENS (clean) ═══ */
 const COLORS = {
@@ -109,7 +110,7 @@ function useStageIndex(total) {
 }
 
 /* ═══ ORGANIZATION MODELS (clean strings) ═══ */
-const ORG_HERO_WORDS = ["insight.", "scale."];
+const ORG_HERO_WORDS = ["Leading.", "to scale."];
 const HERO_WORD_MS = 2800;
 
 const ORG_SLIDES = [
@@ -215,25 +216,17 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 /* ═══ 01 · HERO (self-contained) ═══ */
-const OrgHeroSection = React.memo(function OrgHeroSection() {
-  const { index } = useCycleIndex(ORG_HERO_WORDS.length, HERO_WORD_MS);
-  const display = "hero-fade-up block font-medium leading-[1] tracking-[-0.01em] text-[clamp(44px,9.5vw,168px)]";
-  return (
-    <section className="relative overflow-hidden" style={{  fontFamily: FONT_FAMILY }}>
-      <div className="relative mx-auto flex min-h-[calc(100vh-64px)] w-full max-w-[1756px] flex-col justify-center px-6 py-24 lg:block lg:px-0 lg:py-0">
-        <h1 className="sr-only">Leading, to insight.</h1>
-        <span aria-hidden="true" className={`${display} lg:absolute lg:left-[6.5%] lg:top-[23%]`} style={{ color: COLORS.ink }}>Leading,</span>
-        <span aria-hidden="true" className={`${display} mt-4 lg:mt-0 lg:absolute lg:left-[45%] lg:top-[49.5%]`} style={{ color: COLORS.ink }}>
-          to{" "}
-          <span key={index} className="hero-fade-up inline-block">{ORG_HERO_WORDS[index]}</span>
-        </span>
-        <p className="hero-fade-up mt-10 max-w-[320px] font-normal tracking-[0] leading-[1.6] text-[16px] lg:absolute lg:left-[7%] lg:top-[53%] lg:mt-0 xl:max-w-[410px]" style={{ color: COLORS.grey }}>
-          Every learner, teacher, parent, and professional creates a signal. Visionary helps your organization understand those signals, support people earlier, and move learning forward together.
-        </p>
-      </div>
-    </section>
-  );
-});
+const OrgHeroSection = React.memo(() => (
+  <PersonaHero
+    words={ORG_HERO_WORDS}
+    srSentence="One intelligence, to scale understanding."
+    sub="One intelligence across every classroom, team, and program — understanding that stays inside your institution."
+    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    alt="A leader reviewing team progress on a tablet"
+    ctaTo="/contact"
+    ctaLabel="Talk to us"
+  />
+));
 
 /* ═══ 02 · STRUGGLE ═══ */
 const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {
