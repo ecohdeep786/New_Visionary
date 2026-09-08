@@ -7,6 +7,12 @@ import organizationImage from "@/assets/organization-face-main.png";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import studentmeet from "@/assets/student-hero-main.png";
+import teachermeet from "@/assets/teacher-hero-main.png";
+import parentmeet from "@/assets/parent-hero-main.png";
+import orgmeet from "@/assets/org-face-main.png";
+import promeet from "@/assets/pro-face-main.png";
+
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
 const COLORS = {
@@ -168,7 +174,7 @@ const PROBLEM_MS = 4200;
 
 const MEET_WORDS = ["understands.", "remembers.", "grows with you.", "starts with where you are."];
 const MEET_WORD_MS = 3000;
-const MEET_IMG = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
+const MEET_IMG = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
 const MEET_SECTIONS = [
   { id: "student", tab: "Student", leadBlack: "Understand", blues: ["what you're learning.", "why it matters.", "where you're stuck.", "it for life."], copy: "Every lesson becomes easier to understand through visual learning, natural conversation, guided practice, and real-world application. One chapter leads naturally to the next, so your understanding keeps growing—not just your completed syllabus.", link: "See how students learn", to: "/student", alt: "Student studying with books" },
@@ -733,8 +739,8 @@ function LandingMeetSection() {
           {MEET_SECTIONS.map((s, i) => (
             <div key={s.id}>
               <figure ref={setStepRef(i)} data-step={i} className="m-0">
-                <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[50px] lg:mx-0 lg:max-w-none">
-                  <img src={MEET_IMG} alt={s.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]" />
+                <div className="mx-auto w-full max-w-[440px] overflow-hidden border border-[#121317]/30 rounded-[50px] lg:mx-0 lg:max-w-none">
+                  <img src={MEET_IMG[i]} alt={s.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]" />
                 </div>
               </figure>
               <div className="mt-10 lg:hidden"><MeetCopy section={s} /></div>
@@ -1018,10 +1024,10 @@ function LandingCTASection() {
 }
 
 /* 10 · EXPLORE */
-const LXExploreCard = React.memo(function LXExploreCard({ category }) {
+const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
   return (
     <Link to={`/${category.slug}`} data-card className="block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white" style={{ borderColor: `${COLORS.ink}1A`, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
-      <img src={LX_IMG} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+      <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>{category.chip}</p>
         <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{category.copy}</p>
@@ -1053,7 +1059,7 @@ function LandingExploreSection() {
           </div>
         </div>
         <div ref={trackRef} onScroll={update} className="mt-16 flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mt-20 lg:gap-12 lg:pl-[6.5%] lg:pr-6">
-          {LX_EXPLORE_CATEGORIES.map((c) => <LXExploreCard key={c.slug} category={c} />)}
+          {LX_EXPLORE_CATEGORIES.map((c, i) => <LXExploreCard key={c.slug} category={c} image={MEET_IMG[i % MEET_IMG.length]} />)}
         </div>
       </FadeReveal>
     </section>

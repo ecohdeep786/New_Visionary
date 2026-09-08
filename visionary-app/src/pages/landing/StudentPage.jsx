@@ -258,6 +258,14 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 /* ═══════════════════════ 01 · HERO — final Google-grade composition ═══════════════════════ */
 /* one animated heading tells the whole story */
 /* ═══════════════════════ 01 · HERO ═══════════════════════ */
+
+/* Circle-cluster geometry — same composition as the persona hero */
+const STRUGGLE_CROPS = [
+  { cls: "left-0 top-[2%] w-[48.4%]", pos: "center 30%" },
+  { cls: "left-[59.2%] top-[26.7%] w-[22%]", pos: "center 45%" },
+  { cls: "left-[86%] top-[16.7%] w-[12.2%]", pos: "center 20%" },
+  { cls: "left-[55.7%] top-[64%] w-[27.8%]", pos: "center 60%" },
+];
 const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
@@ -284,13 +292,52 @@ const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) 
   );
 });
 
-const StruggleMedia = React.memo(function StruggleMedia({ slide, slideKey }) {
+
+const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey }) {
   return (
     <figure className="m-0">
-      <div key={slideKey} className="hero-fade-up [animation-delay:120ms] [animation-fill-mode:both]">
-        <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[16/9] w-full max-w-[640px] mx-auto rounded-[50px] object-cover" />
+      <div className="relative mx-auto aspect-[5/4] w-full max-w-[640px]">
+        {/* hand-drawn arrow — same stroke language as the persona hero, mirrored toward the cluster */}
+        <svg
+          viewBox="0 0 220 120" fill="none" stroke="currentColor" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+          className="pointer-events-none absolute -left-[26%] top-[36%] hidden h-20 w-40 -scale-x-100 lg:block"
+          style={{ color: COLORS.ink }}
+        >
+          <path d="M212 10 C150 14, 84 40, 24 96" />
+          <path d="M24 96 l5 -15" />
+          <path d="M24 96 l15 -4" />
+        </svg>
+
+        {/* circles — remount on every slide change, staggered 0 → 140 → 280 → 420ms */}
+        {STRUGGLE_CROPS.map((c, i) => (
+          <div
+            key={`${slideKey}-${i}`}
+            className={`absolute aspect-square overflow-hidden rounded-full ${c.cls}`}
+            style={{
+              animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+              animationDelay: `${i * 140}ms`,
+            }}
+          >
+            <img
+              src={slide.image}
+              alt={i === 0 ? slide.alt : ""}
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+              className="h-full w-full object-cover"
+              style={{ objectPosition: c.pos }}
+            />
+          </div>
+        ))}
       </div>
-      <figcaption key={`q-${slideKey}`} aria-live="polite" className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center font-normal tracking-[0] leading-[1.27] text-[clamp(16px,1.39vw,20px)] [animation-delay:200ms] [animation-fill-mode:both]" style={{ color: COLORS.ink }}>
+
+      {/* quote — lands after the ripple reaches the last circle */}
+      <figcaption
+        key={`q-${slideKey}`}
+        aria-live="polite"
+        className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center font-normal tracking-[0] leading-[1.27] text-[clamp(16px,1.39vw,20px)] [animation-delay:420ms] [animation-fill-mode:both]"
+        style={{ color: COLORS.ink }}
+      >
         {slide.quote}
       </figcaption>
     </figure>
@@ -318,10 +365,16 @@ function StudentStruggleSection() {
     <section ref={ref} data-section="02-struggle" className="relative overflow-hidden bg-white py-24">
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
-          <div className="lg:col-span-4 lg:pl-[6.5%]"><StruggleHeading word={slide.word} slideKey={index} /></div>
-          <div className="lg:col-span-8 lg:pr-[6%]"><StruggleMedia slide={slide} slideKey={index} /></div>
+          <div className="lg:col-span-4 lg:pl-[6.5%]">
+            <StruggleHeading word={slide.word} slideKey={index} />
+          </div>
+          <div className="lg:col-span-8 lg:pr-[6%]">
+            <StruggleCluster slide={slide} slideKey={index} />
+          </div>
         </div>
-        <div className="mt-14 flex justify-center"><CarouselDots total={SLIDES.length} active={index} onSelect={goTo} /></div>
+        <div className="mt-14 flex justify-center">
+          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} />
+        </div>
       </FadeReveal>
     </section>
   );
