@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { GraduationCap, History, Eye, RefreshCw, Check, ArrowRight } from "lucide-react";
-import PersonaHero from "@/components/landing/PersonaHero";
+import PersonaHero from "@/components/landing/NewPersona";
+import studentHero from "@/assets/student-hero-main.png";
 
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
@@ -262,7 +263,7 @@ const StudentHeroSection = React.memo(() => (
     words={HERO_WORDS}
     srSentence="Learning, to mastery."
     sub="Every concept you understand becomes the foundation for the next one — in the language you think in."
-    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    img={studentHero}
     alt="A student smiling while carrying a new laptop"
     ctaLabel="Start learning free"
   />

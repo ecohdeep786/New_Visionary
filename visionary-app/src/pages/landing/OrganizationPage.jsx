@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PersonaHero from "@/components/landing/PersonaHero";
+import PersonaHero from "@/components/landing/NewPersona";
+import orgHero from "@/assets/org-face-main.png";
 
 /* ═══ DESIGN TOKENS (clean) ═══ */
 const COLORS = {
@@ -221,7 +222,7 @@ const OrgHeroSection = React.memo(() => (
     words={ORG_HERO_WORDS}
     srSentence="One intelligence, to scale understanding."
     sub="One intelligence across every classroom, team, and program — understanding that stays inside your institution."
-    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    img={orgHero}
     alt="A leader reviewing team progress on a tablet"
     ctaTo="/contact"
     ctaLabel="Talk to us"

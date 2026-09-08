@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PersonaHero from "@/components/landing/PersonaHero";
+import PersonaHero from "@/components/landing/NewPersona";
+import teacherHero from "@/assets/teacher-hero-main.png";
+
 
 /* ═══ DESIGN TOKENS (clean) ═══ */
 const COLORS = {
@@ -228,11 +230,12 @@ const TeacherHeroSection = React.memo(() => (
     words={TEACHER_HERO_WORDS}
     srSentence="Teaching, to reach every learner."
     sub="One class, many minds. See who understood, who needs another way, and who is ready to move on — before the next bell."
-    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    img={teacherHero}
     alt="A teacher presenting at a whiteboard"
     ctaLabel="Start teaching free"
   />
 ));
+
 
 /* ═══ 02 · STRUGGLE ═══ */
 const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {

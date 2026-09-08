@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PersonaHero from "@/components/landing/PersonaHero";
+import PersonaHero from "@/components/landing/NewPersona";
+import proHero from "@/assets/pro-face-main.png";
 
 /* ═══ DESIGN TOKENS ═══ */
 const COLORS = {
@@ -223,7 +224,7 @@ const ProHeroSection = React.memo(() => (
     words={PRO_HERO_WORDS}
     srSentence="Learning, to apply what you learn."
     sub="Turn what you learn into work that ships — skills, solutions, and projects that compound with your career."
-    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    img={proHero}
     alt="A professional writing notes beside a laptop"
     ctaLabel="Start building free"
   />

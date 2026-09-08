@@ -1,9 +1,0 @@
-{
-  "name": "Figma: Company Pitch Deck   All design",
-  "site": {
-    "installCommand": "npm install",
-    "buildCommand": "npm run build",
-    "serveCommand": "npm run dev",
-    "outputDirectory": "./dist"
-  }
-}

@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PersonaHero from "@/components/landing/PersonaHero";
+import PersonaHero from "@/components/landing/NewPersona";
+import parentHero from "@/assets/parent-hero-main.png";
 
 /* ═══ DESIGN TOKENS (clean) ═══ */
 const COLORS = {
@@ -223,7 +224,7 @@ const ParentHeroSection = React.memo(() => (
     words={PARENT_HERO_WORDS}
     srSentence="Parenting, to see what is happening."
     sub="Know what your child is learning, where they need support, and how they are growing — before the report card arrives."
-    img="https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg"
+    img={parentHero}
     alt="A parent helping a child with homework"
     ctaLabel="Start as a parent"
   />

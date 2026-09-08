@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Sparkles, RefreshCw } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+// import { base44 } from "@/api/base44Client";
 
 /**
  * Visionary's teacher moat: an AI teaching companion that reads the teacher's
