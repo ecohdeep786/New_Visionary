@@ -1,0 +1,10 @@
+{
+  "name": "Visionary",
+  "short_name": "Visionary",
+  "description": "Learn, ask, practice, and build with Visionary.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#121317",
+  "icons": []
+}

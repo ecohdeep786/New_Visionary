@@ -57,41 +57,7 @@ function IconTile({ Icon, size = 56 }) {
   );
 }
 
-function TrustPillNav() {
-  return (
-    <nav
-      aria-label="Privacy and trust pages"
-      className="mx-auto w-fit max-w-full overflow-x-auto rounded-[999px] border bg-white p-1"
-      style={{ borderColor: COLORS.mist }}
-    >
-      <div className="flex min-w-max items-center gap-1">
-        {TRUST_PAGES.map((item) => (
-          <Link
-            key={item.label}
-            to={item.to}
-            aria-current={item.active ? "page" : undefined}
-            className={[
-              "rounded-[999px] px-4 py-2.5 text-[13px]",
-              "tracking-[0.1px] transition-colors",
-              "focus-visible:outline-none focus-visible:ring-2",
-              "focus-visible:ring-[#4285F4]",
-              item.active
-                ? "font-medium text-white"
-                : "font-normal hover:bg-[#F5F6F8]",
-            ].join(" ")}
-            style={{
-              backgroundColor: item.active
-                ? COLORS.ink
-                : "transparent",
-            }}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </nav>
-  );
-}
+
 
 const FAQ = [
   {
@@ -237,7 +203,7 @@ export default function PrivacyPage() {
       <main id="main">
         {/* 01 — HERO */}
         <section className="relative overflow-hidden bg-white px-6 pb-24 pt-32 lg:pb-28 lg:pt-40">
-          <TrustPillNav />
+         
 
           <div className="mx-auto mt-16 max-w-[1050px] text-center">
             <p

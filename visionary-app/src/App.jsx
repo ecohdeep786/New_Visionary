@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Toaster } from '@/components/ui/toaster'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -6,48 +7,54 @@ import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
 import { AuthProvider } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
-import Landing from '@/pages/Landing'
-import Login from '@/pages/Login'
-import Register from '@/pages/Register'
-import ForgotPassword from '@/pages/ForgotPassword'
-import ForgotUserId from '@/pages/ForgotUserId'
-import ResetPassword from '@/pages/ResetPassword'
-import Onboarding from '@/pages/Onboarding'
-import DashboardLayout from '@/components/dashboard/DashboardLayout'
-import DashboardHome from '@/pages/dashboard/DashboardHome'
-import Learn from '@/pages/dashboard/Learn'
-import StudentClasses from '@/pages/dashboard/StudentClasses'
-import TopicDetail from '@/pages/dashboard/TopicDetail'
-import Ask from '@/pages/dashboard/Ask'
-import Practice from '@/pages/dashboard/Practice'
-import Build from '@/pages/dashboard/Build'
-import Subscription from '@/pages/dashboard/Subscription'
-import Profile from '@/pages/dashboard/Profile'
-import ClassDetail from '@/pages/dashboard/ClassDetail'
-import StudentPage from '@/pages/landing/StudentPage'
-import TeacherPage from '@/pages/landing/TeacherPage'
-import ParentPage from '@/pages/landing/ParentPage'
-import SchoolPage from '@/pages/landing/SchoolPage'
-import CollegePage from '@/pages/landing/CollegePage'
-import CoachingPage from '@/pages/landing/CoachingPage'
-import OrganizationPage from '@/pages/landing/OrganizationPage'
-import CompetitiveExamsPage from '@/pages/landing/CompetitiveExamsPage'
-import AILearningPage from '@/pages/landing/AILearningPage'
-import DownloadPage from '@/pages/landing/ResearchPage'
-import CareerPage from '@/pages/landing/CareerPage'
-import CareersPage from '@/pages/landing/CareersPage'
-import ResearchNewsPage from '@/pages/landing/ResearchNewsPage'
-import CommunityPage from '@/pages/landing/CommunityPage'
-import ContactPage from '@/pages/landing/ContactPage'
-import PartnersPage from '@/pages/landing/PartnersPage'
-import UpdatesPage from '@/pages/landing/UpdatesPage'
-import ReferralPage from '@/pages/landing/ReferralPage'
-import SafetyPage from '@/pages/landing/SafetyPage'
-import PrivacyPage from '@/pages/landing/PrivacyPage'
-import TermsPage from '@/pages/landing/TermsPage'
-import SecurityPage from '@/pages/landing/SecurityPage'
-import AccessibilityPage from '@/pages/landing/AccessibilityPage'
-import CookiesPage from '@/pages/landing/CookiesPage'
+const Landing = lazy(() => import('@/pages/Landing'))
+const Login = lazy(() => import('@/pages/Login'))
+const Register = lazy(() => import('@/pages/Register'))
+const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'))
+const ForgotUserId = lazy(() => import('@/pages/ForgotUserId'))
+const ResetPassword = lazy(() => import('@/pages/ResetPassword'))
+const Onboarding = lazy(() => import('@/pages/Onboarding'))
+const DashboardLayout = lazy(() => import('@/components/dashboard/DashboardLayout'))
+const DashboardHome = lazy(() => import('@/pages/dashboard/DashboardHome'))
+const Learn = lazy(() => import('@/pages/dashboard/Learn'))
+const StudentClasses = lazy(() => import('@/pages/dashboard/StudentClasses'))
+const TopicDetail = lazy(() => import('@/pages/dashboard/TopicDetail'))
+const Ask = lazy(() => import('@/pages/dashboard/Ask'))
+const Practice = lazy(() => import('@/pages/dashboard/Practice'))
+const Build = lazy(() => import('@/pages/dashboard/Build'))
+const Subscription = lazy(() => import('@/pages/dashboard/Subscription'))
+const Profile = lazy(() => import('@/pages/dashboard/Profile'))
+const ClassDetail = lazy(() => import('@/pages/dashboard/ClassDetail'))
+const StudentPage = lazy(() => import('@/pages/landing/StudentPage'))
+const TeacherPage = lazy(() => import('@/pages/landing/TeacherPage'))
+const ParentPage = lazy(() => import('@/pages/landing/ParentPage'))
+const SchoolPage = lazy(() => import('@/pages/landing/SchoolPage'))
+const CollegePage = lazy(() => import('@/pages/landing/CollegePage'))
+const CoachingPage = lazy(() => import('@/pages/landing/CoachingPage'))
+const OrganizationPage = lazy(() => import('@/pages/landing/OrganizationPage'))
+const CompetitiveExamsPage = lazy(() => import('@/pages/landing/CompetitiveExamsPage'))
+const AILearningPage = lazy(() => import('@/pages/landing/AILearningPage'))
+const DownloadPage = lazy(() => import('@/pages/landing/ResearchPage'))
+const CareerPage = lazy(() => import('@/pages/landing/CareerPage'))
+const CareersPage = lazy(() => import('@/pages/landing/CareersPage'))
+const ResearchNewsPage = lazy(() => import('@/pages/landing/ResearchNewsPage'))
+const CommunityPage = lazy(() => import('@/pages/landing/CommunityPage'))
+const ContactPage = lazy(() => import('@/pages/landing/ContactPage'))
+const PartnersPage = lazy(() => import('@/pages/landing/PartnersPage'))
+const UpdatesPage = lazy(() => import('@/pages/landing/UpdatesPage'))
+const ReferralPage = lazy(() => import('@/pages/landing/ReferralPage'))
+const SafetyPage = lazy(() => import('@/pages/landing/SafetyPage'))
+const PrivacyPage = lazy(() => import('@/pages/landing/PrivacyPage'))
+const TermsPage = lazy(() => import('@/pages/landing/TermsPage'))
+const SecurityPage = lazy(() => import('@/pages/landing/SecurityPage'))
+const AccessibilityPage = lazy(() => import('@/pages/landing/AccessibilityPage'))
+const CookiesPage = lazy(() => import('@/pages/landing/CookiesPage'))
+
+const RouteFallback = () => (
+  <main className="flex min-h-screen items-center justify-center bg-white" aria-busy="true">
+    <span className="text-sm text-[#5f6368]">Loading...</span>
+  </main>
+)
 
 const PublicApp = () => (
   <Routes>
@@ -113,7 +120,9 @@ function App() {
             Skip to content
           </a>
           <ScrollToTop />
-          <PublicApp />
+          <Suspense fallback={<RouteFallback />}>
+            <PublicApp />
+          </Suspense>
         </Router>
         <Toaster />
       </QueryClientProvider>

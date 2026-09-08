@@ -8,6 +8,11 @@ import {
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import studentmeet from "@/assets/student-hero-main.png";
+import teachermeet from "@/assets/teacher-hero-main.png";
+import parentmeet from "@/assets/parent-hero-main.png";
+import orgmeet from "@/assets/org-face-main.png";
+import promeet from "@/assets/pro-face-main.png";
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
@@ -173,11 +178,11 @@ const APPROACH_ROWS = [
 ];
 
 const SERVE_CARDS = [
-  { id: "student", label: "Student", big: true, span: "sm:col-span-2 lg:col-span-4", img: IMG_BENEFITS, title: "Understand what you're learning.", line: "From the first question to what you build from it — and it stays with you for life." },
-  { id: "teacher", label: "Teacher", span: "lg:col-span-2", img: IMG_BENEFITS, title: "See who understood.", line: "Reach the ones who didn't — before the next bell." },
-  { id: "parent", label: "Parent", span: "lg:col-span-2", img: IMG_BENEFITS, title: "Know the week, not the report card.", line: "Follow your child's journey with confidence." },
-  { id: "professional", label: "Professional", span: "lg:col-span-2", img: IMG_BENEFITS, title: "Turn learning into work.", line: "Skills that ship — not just certificates." },
-  { id: "organization", label: "Organization", span: "sm:col-span-2 lg:col-span-2", img: IMG_BENEFITS, title: "Build understanding that stays.", line: "Across your entire institution — every classroom, every team."  },
+  { id: "student", label: "Student", big: true, span: "sm:col-span-2 lg:col-span-4", img: studentmeet, title: "Understand what you're learning.", line: "From the first question to what you build from it — and it stays with you for life." },
+  { id: "teacher", label: "Teacher", span: "lg:col-span-2", img: teachermeet, title: "See who understood.", line: "Reach the ones who didn't — before the next bell." },
+  { id: "parent", label: "Parent", span: "lg:col-span-2", img: parentmeet, title: "Know the week, not the report card.", line: "Follow your child's journey with confidence." },
+  { id: "professional", label: "Professional", span: "lg:col-span-2", img: promeet, title: "Turn learning into work.", line: "Skills that ship — not just certificates." },
+  { id: "organization", label: "Organization", span: "sm:col-span-2 lg:col-span-2", img: orgmeet, title: "Build understanding that stays.", line: "Across your entire institution — every classroom, every team."  },
 ];
 
 const SAFETY_PILLARS = [
@@ -222,24 +227,24 @@ function AboutHeroSection() {
   );
 }
 
-/* ═══ STICKY SECTION TABS ═══ */
-function AboutSectionTabs() {
-  const active = useScrollSpy(PILL_IDS);
-  const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  return (
-    <div className="sticky top-16 z-30 bg-white/90 px-6 py-6 backdrop-blur-md">
-      <div className="mx-auto flex h-[52px] w-full max-w-[1080px] items-stretch overflow-hidden rounded-[90px] border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="About page sections">
-        {PILL_SECTIONS.map((s) => (
-          <button key={s.id} type="button" role="tab" aria-selected={active === s.id} onClick={() => goTo(s.id)}
-            className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === s.id ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
-            style={{ backgroundColor: active === s.id ? COLORS.ink : "transparent", color: active === s.id ? "#ffffff" : COLORS.grey }}>
-            {s.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
+// /* ═══ STICKY SECTION TABS ═══ */
+// function AboutSectionTabs() {
+//   const active = useScrollSpy(PILL_IDS);
+//   const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+//   return (
+//     <div className="sticky top-16 z-30 bg-white/90 px-6 py-6 backdrop-blur-md">
+//       <div className="mx-auto flex h-[52px] w-full max-w-[1080px] items-stretch overflow-hidden rounded-[90px] border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="About page sections">
+//         {PILL_SECTIONS.map((s) => (
+//           <button key={s.id} type="button" role="tab" aria-selected={active === s.id} onClick={() => goTo(s.id)}
+//             className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === s.id ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
+//             style={{ backgroundColor: active === s.id ? COLORS.ink : "transparent", color: active === s.id ? "#ffffff" : COLORS.grey }}>
+//             {s.label}
+//           </button>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
 /* ═══ A1 · OUR MISSION ═══ */
 function AboutMissionSection() {
@@ -923,7 +928,7 @@ export default function CompetitiveExamsPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <main>
-        <AboutSectionTabs />
+        {/* <AboutSectionTabs /> */}
         <AboutMissionSection />
         <AboutWhySection />
         <AboutBeliefsSection />

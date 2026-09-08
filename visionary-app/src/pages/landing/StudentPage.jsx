@@ -260,12 +260,6 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 /* ═══════════════════════ 01 · HERO ═══════════════════════ */
 
 /* Circle-cluster geometry — same composition as the persona hero */
-const STRUGGLE_CROPS = [
-  { cls: "left-0 top-[2%] w-[48.4%]", pos: "center 30%" },
-  { cls: "left-[59.2%] top-[26.7%] w-[22%]", pos: "center 45%" },
-  { cls: "left-[86%] top-[16.7%] w-[12.2%]", pos: "center 20%" },
-  { cls: "left-[55.7%] top-[64%] w-[27.8%]", pos: "center 60%" },
-];
 const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
@@ -278,79 +272,276 @@ const StudentHeroSection = React.memo(() => (
 ));
 /* ═══════════════════════ 02 · STRUGGLE ═══════════════════════ */
 
+/* ═══ 02 · STRUGGLE — per-struggle product visuals (no placeholder photos) ═══ */
+/* ═══ 02 · STRUGGLE — final product composition ═══ */
+const STRUGGLE_WORD_STYLE = `
+@keyframes struggleWordIn {
+  from {
+    opacity: 0;
+    transform: translate3d(-18px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+`;
+
+const STRUGGLE_IMAGE_STYLE = `
+@keyframes struggleImageIn {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+`;
+
 const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {
   return (
-    <h2 className="font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+    <h2
+      className="font-medium tracking-[0] leading-[1.15] text-[clamp(28px,2.78vw,40px)] lg:leading-[1.08]"
+      style={{ color: COLORS.ink }}
+    >
       <span className="block">Every</span>
       <span className="block">Student</span>
       <span className="block">Struggles</span>
       <span className="block">With</span>
-      <span className="block whitespace-nowrap">
-        <span key={slideKey} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{word}</span>
+      <span className="block overflow-hidden whitespace-nowrap">
+        <span
+          key={slideKey}
+          className="inline-block animate-[struggleWordIn_0.65s_cubic-bezier(0.22,1,0.36,1)_both]"
+          style={{ color: COLORS.blue }}
+        >
+          {word}
+        </span>
       </span>
     </h2>
   );
 });
 
+const STRUGGLE_MAIN_POSITIONS = [
+  "center 30%",
+  "center 45%",
+  "left 40%",
+  "center 35%",
+  "right 35%",
+];
+
+const STRUGGLE_SATELLITES = [
+  "center 15%",
+  "center 40%",
+  "center 65%",
+];
 
 const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey }) {
   return (
-    <figure className="m-0">
-      <div className="relative mx-auto aspect-[5/4] w-full max-w-[640px]">
-        {/* hand-drawn arrow — same stroke language as the persona hero, mirrored toward the cluster */}
-        <svg
-          viewBox="0 0 220 120" fill="none" stroke="currentColor" strokeWidth="2.2"
-          strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
-          className="pointer-events-none absolute -left-[26%] top-[36%] hidden h-20 w-40 -scale-x-100 lg:block"
-          style={{ color: COLORS.ink }}
-        >
-          <path d="M212 10 C150 14, 84 40, 24 96" />
-          <path d="M24 96 l5 -15" />
-          <path d="M24 96 l15 -4" />
-        </svg>
+    <figure className="m-0 w-full">
+      <style>
+        {STRUGGLE_WORD_STYLE}
+        {STRUGGLE_IMAGE_STYLE}
+      </style>
 
-        {/* circles — remount on every slide change, staggered 0 → 140 → 280 → 420ms */}
-        {STRUGGLE_CROPS.map((c, i) => (
-          <div
-            key={`${slideKey}-${i}`}
-            className={`absolute aspect-square overflow-hidden rounded-full ${c.cls}`}
-            style={{
-              animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
-              animationDelay: `${i * 140}ms`,
-            }}
-          >
-            <img
-              src={slide.image}
-              alt={i === 0 ? slide.alt : ""}
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
-              className="h-full w-full object-cover"
-              style={{ objectPosition: c.pos }}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* quote — lands after the ripple reaches the last circle */}
-      <figcaption
-        key={`q-${slideKey}`}
-        aria-live="polite"
-        className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center font-normal tracking-[0] leading-[1.27] text-[clamp(16px,1.39vw,20px)] [animation-delay:420ms] [animation-fill-mode:both]"
-        style={{ color: COLORS.ink }}
+      <div
+        className="
+          relative
+          w-full
+          max-w-[620px]
+        "
       >
-        {slide.quote}
-      </figcaption>
+        {/* =========================================================
+            VISUAL ROW
+        ========================================================= */}
+
+        <div
+          className="
+            grid
+            grid-cols-[minmax(0,1fr)_76px]
+            items-start
+            gap-7
+            sm:grid-cols-[minmax(0,1fr)_82px]
+            sm:gap-9
+            lg:grid-cols-[minmax(0,1fr)_84px]
+            lg:gap-8
+          "
+        >
+          {/* =======================================================
+              MAIN VISUAL
+          ======================================================= */}
+
+          <div className="relative min-w-0">
+            {/* Arrow is anchored to this column, not the whole cluster. */}
+            <svg
+              viewBox="0 0 220 120"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="
+                pointer-events-none
+                absolute
+                -left-[20%]
+                top-[28%]
+                z-20
+                hidden
+                h-[82px]
+                w-[165px]
+                lg:block
+              "
+              style={{ color: COLORS.ink }}
+            >
+              <path d="M8 104 C54 66, 112 34, 184 16" />
+              <path d="M184 16 l-15 2" />
+              <path d="M184 16 l-5 14" />
+            </svg>
+
+            {/* Large circle */}
+            <div
+              className="
+                relative
+                mx-auto
+                aspect-square
+                w-[92%]
+                max-w-[390px]
+                overflow-hidden
+                rounded-full
+              "
+            >
+              <img
+                key={`main-${slideKey}`}
+                src={slide.image}
+                alt={slide.alt}
+                loading="eager"
+                decoding="async"
+                className="
+                  block
+                  h-full
+                  w-full
+                  object-cover
+                  animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]
+                "
+                style={{
+                  objectPosition:
+                    STRUGGLE_MAIN_POSITIONS[
+                      slideKey % STRUGGLE_MAIN_POSITIONS.length
+                    ],
+                }}
+              />
+            </div>
+
+            {/* =====================================================
+                QUOTE
+                Deliberate breathing room after the circle.
+            ===================================================== */}
+
+            <figcaption
+              key={`quote-${slideKey}`}
+              aria-live="polite"
+              className="
+                hero-fade-up
+                mx-auto
+                mt-7
+                max-w-[520px]
+                px-4
+                text-center
+                font-normal
+                tracking-[0]
+                leading-[1.4]
+                text-[clamp(16px,1.39vw,20px)]
+                [animation-delay:120ms]
+                [animation-fill-mode:both]
+                sm:px-0
+                lg:mt-8
+              "
+              style={{ color: COLORS.ink }}
+            >
+              {slide.quote}
+            </figcaption>
+          </div>
+
+          {/* =======================================================
+              SMALL CIRCLE COLUMN
+          ======================================================= */}
+
+          <div
+            className="
+              flex
+              flex-col
+              items-center
+              gap-5
+              pt-[7%]
+              sm:gap-5
+              lg:gap-5
+              lg:pt-[8%]
+            "
+          >
+            {STRUGGLE_SATELLITES.map((position, i) => (
+              <div
+                key={`satellite-slot-${i}`}
+                className="
+                  aspect-square
+                  w-[70px]
+                  overflow-hidden
+                  rounded-full
+                  sm:w-[76px]
+                  lg:w-[80px]
+                "
+              >
+                <img
+                  key={`satellite-${slideKey}-${i}`}
+                  src={slide.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="
+                    block
+                    h-full
+                    w-full
+                    object-cover
+                    animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]
+                  "
+                  style={{
+                    objectPosition: position,
+                    animationDelay: `${i * 50}ms`,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </figure>
   );
 });
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Carousel slides">
+    <div
+      className="flex items-center gap-2"
+      role="tablist"
+      aria-label="Student learning challenges"
+    >
       {Array.from({ length: total }, (_, i) => (
-        <button key={i} type="button" role="tab" aria-label={`Go to slide ${i + 1}`} aria-selected={i === active} onClick={() => onSelect(i)}
-          className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }} />
+        <button
+          key={i}
+          type="button"
+          role="tab"
+          aria-label={`Go to challenge ${i + 1}`}
+          aria-selected={i === active}
+          onClick={() => onSelect(i)}
+          className={`h-2 rounded-full transition-all duration-300 ${
+            i === active ? "w-10" : "w-2 hover:opacity-70"
+          }`}
+          style={{
+            backgroundColor:
+              i === active ? COLORS.ink : `${COLORS.ink}33`,
+          }}
+        />
       ))}
     </div>
   );
@@ -362,24 +553,118 @@ function StudentStruggleSection() {
   const slide = SLIDES[index];
 
   return (
-    <section ref={ref} data-section="02-struggle" className="relative overflow-hidden bg-white py-24">
+    <section
+      ref={ref}
+      data-section="02-struggle"
+      className="
+        relative
+        overflow-x-clip
+        bg-white
+        py-24
+        lg:py-32
+      "
+    >
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
-          <div className="lg:col-span-4 lg:pl-[6.5%]">
-            <StruggleHeading word={slide.word} slideKey={index} />
+        <div
+          className="
+            mx-auto
+            grid
+            w-full
+            max-w-[1400px]
+            grid-cols-1
+            gap-16
+            px-6
+            sm:px-8
+            lg:grid-cols-12
+            lg:items-start
+            lg:gap-10
+            lg:px-10
+          "
+        >
+          {/* =======================================================
+              LEFT
+          ======================================================= */}
+
+          <div
+            className="
+              mx-auto
+              w-full
+              max-w-[420px]
+              lg:col-span-5
+              lg:mx-0
+              lg:max-w-none
+              lg:pl-[4%]
+              xl:pl-[6.5%]
+            "
+          >
+            <p
+              className="
+                font-normal
+                uppercase
+                tracking-[0]
+                leading-[14px]
+                text-[10px]
+              "
+              style={{ color: COLORS.grey }}
+            >
+              The problem
+            </p>
+
+            <div className="mt-6">
+              <StruggleHeading
+                word={slide.word}
+                slideKey={index}
+              />
+            </div>
           </div>
-          <div className="lg:col-span-8 lg:pr-[6%]">
-            <StruggleCluster slide={slide} slideKey={index} />
+
+          {/* =======================================================
+              RIGHT
+
+              38px top offset = label height + heading gap,
+              so the main circle aligns with "Every".
+          ======================================================= */}
+
+          <div
+            className="
+              relative
+              w-full
+              lg:col-span-7
+              lg:pt-[38px]
+              lg:pr-[2%]
+              xl:pr-[4%]
+            "
+          >
+            <StruggleCluster
+              slide={slide}
+              slideKey={index}
+            />
           </div>
         </div>
-        <div className="mt-14 flex justify-center">
-          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} />
+
+        {/* =========================================================
+            DOTS
+        ========================================================= */}
+
+        <div
+          className="
+            mt-12
+            flex
+            justify-center
+            px-6
+            lg:mt-14
+          "
+        >
+          <CarouselDots
+            total={SLIDES.length}
+            active={index}
+            onSelect={goTo}
+          />
         </div>
       </FadeReveal>
     </section>
   );
 }
-
 /* ═══════════════════════ 03 · PROMISE ═══════════════════════ */
 
 const StudentPromiseSection = React.memo(function StudentPromiseSection() {
@@ -718,7 +1003,7 @@ function StudentAchievementSection() {
           <AchievementAccordion tabs={ACHIEVEMENT_TABS} open={open} onToggle={toggle} />
           <div className="relative">
             <div key={active} className="hero-fade-up">
-              <img src="https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png" alt={`${ACHIEVEMENT_TABS[active].black} ${ACHIEVEMENT_TABS[active].blue}`} loading="lazy" decoding="async" className="h-[320px] w-full object-cover lg:h-[780px]" />
+              <img src={studentHero} alt={`${ACHIEVEMENT_TABS[active].black} ${ACHIEVEMENT_TABS[active].blue}`} loading="lazy" decoding="async" className="h-[320px] w-full object-cover lg:h-[780px]" />
             </div>
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="absolute bottom-4 right-4 h-6 w-6 text-white/80">
               <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
@@ -895,7 +1180,7 @@ export default function StudentPage() {
       <main id="main">
         <StudentHeroSection />
         <StudentStruggleSection />
-        <StudentPromiseSection />
+        {/* <StudentPromiseSection /> */}
         <StudentJourneySection />
         <StudentIntelligenceSection />
         <StudentClosingSection />
