@@ -1,4 +1,4 @@
-import { Briefcase, TrendingUp, Target, BarChart3, Brain, Users } from "lucide-react";
+import { Briefcase, TrendingUp, Target, Brain, Users } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { getCategory } from "@/data/landingCategories";

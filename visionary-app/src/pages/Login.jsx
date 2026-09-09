@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
+import { safeReturnTo } from "@/lib/authReturnTo";
 import { Mail, Phone, AlertCircle, RefreshCw, UserRound } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
@@ -11,7 +12,8 @@ import {
 import { useAuth } from "@/lib/AuthContext";
 
 export default function Login() {
-  const { isAuthenticated, isLoadingAuth } = useAuth();
+  const { isAuthenticated, isLoadingAuth, checkUserAuth } = useAuth();
+  const navigate = useNavigate();
   const [view, setView] = useState("methods");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,7 +68,8 @@ export default function Login() {
     setLoading(true);
     try {
       await base44.auth.loginViaEmailPassword(email, password);
-      window.location.href = "/";
+      await checkUserAuth();
+      navigate(safeReturnTo(), { replace: true });
     } catch (err) {
       setError(err.message || "Incorrect password");
       setView("wrongPassword");

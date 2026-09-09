@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Users, BarChart3, BookOpen, Shield, ArrowRight, Building2, UserPlus } from "lucide-react";
+import { Users, BarChart3, BookOpen, Shield, Building2, UserPlus } from "lucide-react";
 import RoleGreeting from "@/components/dashboard/RoleGreeting";
 import EmptyState from "@/components/dashboard/EmptyState";
 import { useAuth } from "@/lib/AuthContext";

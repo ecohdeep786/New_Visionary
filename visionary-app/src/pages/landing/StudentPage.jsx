@@ -2,10 +2,8 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import { GraduationCap, History, Eye, RefreshCw, Check, ArrowRight } from "lucide-react";
-import PersonaHero from "@/components/landing/NewPersona";
 import studentHero from "@/assets/student-hero-main.png";
-
+import PersonaHero from "@/components/landing/NewPersona";
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
  * 01 hero · 02 struggle · 03 promise · 04 journey · 05 intelligence ·
@@ -246,7 +244,7 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9" }) {
 
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -671,7 +669,7 @@ const StudentPromiseSection = React.memo(function StudentPromiseSection() {
   const { ref, visible } = UseRevealOnce();
   return (
     <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-28 lg:py-36">
-      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         What if it never forgot <span style={{ color: COLORS.blue }}>where you left off?</span>
       </h2>
     </section>
@@ -802,7 +800,7 @@ const StudentClosingSection = React.memo(function StudentClosingSection() {
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
     <section ref={ref} data-section="06-closing" className="relative px-6 py-24 pt-10 lg:py-32 lg:pt-14">
-      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         Visionary keeps{" "}
         <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{KEEPS_WORDS[index]}</span>{" "}
         until understanding becomes confidence.
@@ -969,7 +967,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
               <path d="M6 15l6-6 6 6" />
             </svg>
           </button>
-          <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+          <div className={`grid transition-all duration-500 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
             <div className="overflow-hidden">
               <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{tab.copy}</p>
             </div>
@@ -1117,7 +1115,7 @@ const StudentCTASection = React.memo(function StudentCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
     <section ref={ref} data-section="12-cta" className="relative px-6 py-28 lg:py-36">
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Start where you are</p>
         <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your learning starts with where you are.</h2>
         <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>

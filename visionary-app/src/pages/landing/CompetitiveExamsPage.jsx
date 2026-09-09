@@ -8,11 +8,12 @@ import {
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentmeet from "@/assets/student-hero-main.png";
-import teachermeet from "@/assets/teacher-hero-main.png";
-import parentmeet from "@/assets/parent-hero-main.png";
-import orgmeet from "@/assets/org-face-main.png";
-import promeet from "@/assets/pro-face-main.png";
+import PersonaHero from "@/components/landing/NewPersona";
+import studentmeet from "@/assets/student-hero-main.png"
+import teachermeet from "@/assets/teacher-hero-main.png"
+import parentmeet from "@/assets/parent-hero-main.png"
+import promeet from "@/assets/pro-face-main.png"
+import orgmeet from "@/assets/org-face-main.png"
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
@@ -87,7 +88,7 @@ function useCycleIndex(total, intervalMs) {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -392,7 +393,7 @@ function AboutBenefitsSection() {
                   alt={`${c.label} — ${c.title}`}
                   loading="lazy"
                   decoding="async"
-                  className={`w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03] ${c.big ? "aspect-[16/7]" : "aspect-[16/9]"}`}
+                  className={`w-full object-cover transition-transform duration-700 ease-google group-hover:scale-[1.03] ${c.big ? "aspect-[16/7]" : "aspect-[16/9]"}`}
                 />
               </div>
 
@@ -901,7 +902,7 @@ function AboutCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative bg-white px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Start here</GreyTag>
         <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Start using Visionary. <br />Or see how it works first.

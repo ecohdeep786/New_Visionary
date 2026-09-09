@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { AlertTriangle, ArrowLeft } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
-import { primaryBtnAutoClass, Spinner, InputField, GooglePasswordField, BackButton, ActionRow } from "@/components/auth/AuthUI";
+import { primaryBtnAutoClass, Spinner, InputField, GooglePasswordField, BackButton } from "@/components/auth/AuthUI";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();

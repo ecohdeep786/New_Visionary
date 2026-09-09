@@ -11,7 +11,6 @@ import {
   Smartphone,
   Monitor,
   UsersRound,
-  Mail,
   ArrowUpRight,
 } from "lucide-react";
 

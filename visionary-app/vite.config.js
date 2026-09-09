@@ -7,13 +7,15 @@ const securityHeaders = {
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Resource-Policy': 'same-origin',
 }
 
 const productionSecurityHeaders = {
   ...securityHeaders,
   'Content-Security-Policy': [
     "default-src 'self'",
-    "base-uri 'none'",
+    "base-uri 'self'",
     "object-src 'none'",
     "frame-ancestors 'none'",
     "form-action 'self'",
@@ -30,10 +32,30 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-  headers: securityHeaders,
+    headers: securityHeaders,
   },
   preview: {
     headers: productionSecurityHeaders,
+  },
+  build: {
+    target: 'esnext',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('recharts')) {
+              return 'vendor-charts';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-motion';
+            }
+            return 'vendor';
+          }
+        },
+      },
+    },
   },
   resolve: {
     alias: {

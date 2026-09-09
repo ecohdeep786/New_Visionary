@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import ScrollReveal from "@/components/landing/ScrollReveal";
 
 // Light blue parallelogram shapes — same as main landing hero
 function LightParallelograms({ small = false }) {

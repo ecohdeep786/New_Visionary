@@ -32,7 +32,7 @@ export function AuthDivider() {
   );
 }
 
-export function BackButton({ onClick, to, label = "Back" }) {
+export function BackButton({ onClick = undefined, to = undefined, label = "Back" }) {
   const className = "flex items-center gap-1.5 text-sm text-[#1a73e8] font-medium hover:underline self-start mb-6";
   if (to) {
     return (
@@ -42,7 +42,7 @@ export function BackButton({ onClick, to, label = "Back" }) {
     );
   }
   return (
-    <button onClick={onClick} className={className}>
+    <button type="button" onClick={onClick} className={className}>
       <ArrowLeft className="w-4 h-4" /> {label}
     </button>
   );
@@ -50,7 +50,7 @@ export function BackButton({ onClick, to, label = "Back" }) {
 
 /* ── Action row: secondary link left, primary button right ── */
 
-export function ActionRow({ left, children }) {
+export function ActionRow({ left = null, children = null }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <div>{left}</div>
@@ -78,7 +78,7 @@ const countryCodes = [
   { code: "+27", flag: "🇿🇦" },
 ];
 
-export function PhoneInput({ label = "Phone number", value, onChange, autoFocus, required }) {
+export function PhoneInput({ label = "Phone number", value = "", onChange = () => {}, autoFocus = false, required = false }) {
   const [countryCode, setCountryCode] = useState("+1");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [focused, setFocused] = useState(false);
@@ -138,7 +138,15 @@ export function PhoneInput({ label = "Phone number", value, onChange, autoFocus,
 
 /* ── Floating-label password field + Show password checkbox ── */
 
-export function GooglePasswordField({ label, placeholder, value, onChange, autoFocus, autoComplete, required }) {
+export function GooglePasswordField({
+  label = "",
+  placeholder = "",
+  value = "",
+  onChange = () => {},
+  autoFocus = false,
+  autoComplete = "current-password",
+  required = false,
+}) {
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState(false);
   const displayLabel = label || placeholder || "Password";
@@ -184,7 +192,16 @@ export function GooglePasswordField({ label, placeholder, value, onChange, autoF
 
 /* ── Floating-label input (Google style) ── */
 
-export function InputField({ label, placeholder, type = "text", value, onChange, autoFocus, autoComplete, required }) {
+export function InputField({
+  label = "",
+  placeholder = "",
+  type = "text",
+  value = "",
+  onChange = () => {},
+  autoFocus = false,
+  autoComplete = "off",
+  required = false,
+}) {
   const [focused, setFocused] = useState(false);
   const displayLabel = label || placeholder;
   const floated = focused || (value && value.length > 0);

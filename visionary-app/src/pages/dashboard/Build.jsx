@@ -1,4 +1,4 @@
-import { Boxes, ArrowRight, Rocket, CheckCircle2, Lock, Clock } from "lucide-react";
+import { ArrowRight, Rocket, CheckCircle2, Lock, Clock } from "lucide-react";
 import { useStudentData } from "@/hooks/useStudentData";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { useAuth } from "@/lib/AuthContext";

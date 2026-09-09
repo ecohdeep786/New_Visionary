@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PersonaHero from "@/components/landing/NewPersona";
 import parentHero from "@/assets/parent-hero-main.png";
+import PersonaHero from "@/components/landing/NewPersona";
+
 
 /* ═══ DESIGN TOKENS (clean) ═══ */
 const COLORS = {
@@ -212,7 +213,7 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9" }) {
 });
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -289,7 +290,7 @@ const ParentPromiseSection = React.memo(function ParentPromiseSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative overflow-hidden px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
-      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         What if you could see who understood — <span style={{ color: COLORS.blue }}>and who didn't?</span>
       </h2>
     </section>
@@ -355,7 +356,7 @@ const ParentClosingSection = React.memo(function ParentClosingSection() {
   const { index } = useCycleIndex(PARENT_KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
     <section ref={ref} className="relative px-6 py-24 pt-10 lg:py-32 lg:pt-14" style={{ fontFamily: FONT_FAMILY }}>
-      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         Visionary keeps{" "}
         <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{PARENT_KEEPS_WORDS[index]}</span>{" "}
         with you until understanding becomes confidence.
@@ -432,7 +433,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
               <path d="M6 15l6-6 6 6" />
             </svg>
           </button>
-          <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+          <div className={`grid transition-all duration-500 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
             <div className="overflow-hidden">
               <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{tab.copy}</p>
             </div>
@@ -570,7 +571,7 @@ const ParentCTASection = React.memo(function ParentCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Start where they are</p>
         <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your child's journey is already happening.</h2>
         <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>

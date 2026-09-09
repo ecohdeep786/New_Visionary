@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Sparkles, TrendingUp } from "lucide-react";
-import { base44 } from "@/api/base44Client";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import SubjectIllustration from "@/components/dashboard/SubjectIllustration";
 

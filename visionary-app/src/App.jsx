@@ -9,19 +9,60 @@ import { AuthProvider } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 
 class AppErrorBoundary extends React.Component {
-  state = { error: null }
+  state = { error: null, errorInfo: null }
 
   static getDerivedStateFromError(error) {
     return { error }
   }
 
+  componentDidCatch(error, errorInfo) {
+    this.setState({ errorInfo })
+    console.error('[Visionary Resilience Diagnostic]:', error, errorInfo)
+  }
+
+  handleReset = () => {
+    this.setState({ error: null, errorInfo: null })
+    window.location.href = '/'
+  }
+
   render() {
     if (this.state.error) {
       return (
-        <main className="flex min-h-screen items-center justify-center bg-white px-6 text-center text-[#121317]">
-          <div>
-            <h1 className="text-2xl font-semibold">Visionary could not load</h1>
-            <p className="mt-3 text-sm text-[#5f6368]">{this.state.error.message}</p>
+        <main className="flex min-h-screen items-center justify-center bg-[#f8f9fa] px-6 py-12 text-center text-[#202124]">
+          <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-600">
+              <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
+            </div>
+            <h1 className="mt-5 text-xl font-medium tracking-tight">Something went wrong</h1>
+            <p className="mt-2 text-sm text-[#5f6368] leading-relaxed">
+              Visionary encountered an unexpected state. Your session and data remain safe.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <button
+                type="button"
+                onClick={() => this.setState({ error: null })}
+                className="flex-1 rounded-full bg-[#1a73e8] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1557b0]"
+              >
+                Try again
+              </button>
+              <button
+                type="button"
+                onClick={this.handleReset}
+                className="flex-1 rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm font-medium text-[#1a73e8] transition-colors hover:bg-[#f8f9fa]"
+              >
+                Go to home
+              </button>
+            </div>
+            {process.env.NODE_ENV !== 'production' && this.state.error && (
+              <details className="mt-6 text-left">
+                <summary className="text-xs text-[#5f6368] cursor-pointer hover:underline">Diagnostic details</summary>
+                <pre className="mt-2 max-h-40 overflow-auto rounded bg-slate-50 p-2 text-[11px] text-slate-700">
+                  {this.state.error.toString()}
+                </pre>
+              </details>
+            )}
           </div>
         </main>
       )

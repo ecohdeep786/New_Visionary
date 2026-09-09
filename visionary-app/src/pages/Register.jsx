@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
+import { safeReturnTo } from "@/lib/authReturnTo";
 import { Mail, Phone, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
@@ -13,7 +14,8 @@ import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
 
 export default function Register() {
-  const { isAuthenticated, isLoadingAuth } = useAuth();
+  const { isAuthenticated, isLoadingAuth, checkUserAuth } = useAuth();
+  const navigate = useNavigate();
   const [view, setView] = useState("methods");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -95,7 +97,8 @@ export default function Register() {
       if (result?.access_token) {
         base44.auth.setToken(result.access_token);
       }
-      window.location.href = "/";
+      await checkUserAuth();
+      navigate(safeReturnTo(), { replace: true });
     } catch (err) {
       setError(err.message || "Invalid verification code");
     } finally {

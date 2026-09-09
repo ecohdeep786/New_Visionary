@@ -7,11 +7,11 @@ import organizationImage from "@/assets/organization-face-main.png";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentmeet from "@/assets/student-hero-main.png";
-import teachermeet from "@/assets/teacher-hero-main.png";
-import parentmeet from "@/assets/parent-hero-main.png";
-import orgmeet from "@/assets/org-face-main.png";
-import promeet from "@/assets/pro-face-main.png";
+import studentmeet from "@/assets/student-hero-main.png"
+import teachermeet from "@/assets/teacher-hero-main.png"
+import parentmeet from "@/assets/parent-hero-main.png"
+import promeet from "@/assets/pro-face-main.png"
+import orgmeet from "@/assets/org-face-main.png"
 
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
@@ -107,7 +107,7 @@ function useActiveStep(total) {
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -651,7 +651,7 @@ const LandingPromiseSection = React.memo(function LandingPromiseSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
-      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         What if your intelligence never forgot <span style={{ color: COLORS.blue }}>where you were?</span>
       </h2>
     </section>
@@ -765,7 +765,7 @@ function LandingOneIntelligenceSection() {
   return (
     <section ref={ref} data-section="05-one-intelligence" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
-      <div className={`px-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every tomorrow</p>
         <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           What you <span style={{ color: COLORS.blue }}>understand</span> today
@@ -837,7 +837,7 @@ function LandingCommitmentSection() {
   return (
     <section ref={ref} data-section="06-commitment" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes cmFill{from{transform:scaleY(0)}to{transform:scaleY(1)}}"}</style>
-      <div className={`px-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our commitment</p>
         <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>You won't stay the same.<br />Neither should your intelligence.</h2>
         <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]" style={{ color: COLORS.slate }}>
@@ -849,12 +849,12 @@ function LandingCommitmentSection() {
               const isActive = i === active;
               return (
                 <button key={s.title} type="button" onClick={() => select(i)} aria-expanded={isActive} className="flex items-start gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                  <span className={`relative w-[4px] shrink-0 overflow-hidden rounded-full transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? "h-[96px]" : "mt-1 h-[28px]"}`} style={{ backgroundColor: COLORS.track }}>
+                  <span className={`relative w-[4px] shrink-0 overflow-hidden rounded-full transition-all duration-700 ease-google ${isActive ? "h-[96px]" : "mt-1 h-[28px]"}`} style={{ backgroundColor: COLORS.track }}>
                     {isActive && <span key={`fill-${active}-${runId}`} className="absolute inset-0 origin-top rounded-full" style={{ backgroundColor: COLORS.blue, transform: "scaleY(0)", animation: `cmFill ${CM_FILL_MS}ms linear forwards` }} onAnimationEnd={next} />}
                   </span>
                   <span className="flex-1">
                     <span className="block tracking-[0] leading-[1.15] text-[clamp(24px,2.4vw,32px)]" style={{ color: COLORS.ink, fontWeight: isActive ? 500 : 400 }}>{i + 1}. {s.title}</span>
-                    <span className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                    <span className={`grid transition-all duration-500 ease-google ${isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                       <span className="block overflow-hidden">
                         <span className="mt-3 block max-w-[420px] text-[14px] leading-[1.6] tracking-[0.24px]" style={{ color: COLORS.slate }}>{s.copy}</span>
                       </span>
@@ -903,7 +903,7 @@ function LandingLanguageSection() {
   const question = LG_QUESTIONS[qIndex][lang];
   return (
     <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
         <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
         <p className="mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
@@ -1007,7 +1007,7 @@ function LandingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start when you are</p>
         <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
         <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
@@ -1093,7 +1093,7 @@ function LandingFAQSection() {
                   <FQChevron open={open === i} />
                 </span>
               </button>
-              <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className={`grid transition-all duration-500 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                 <div className="overflow-hidden">
                   <p className="max-w-[1240px] pt-8 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.ink }}>{item.a}</p>
                 </div>

@@ -38,7 +38,7 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -130,7 +130,7 @@ function AnswerItem({ a }) {
         <span className="font-normal tracking-[0] leading-[1.3] text-[17.5px]" style={{ color: COLORS.ink }}>{a.q}</span>
         <ArrowRight className={`h-4 w-4 shrink-0 transition-transform duration-300 ${open ? "rotate-90" : ""}`} strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />
       </button>
-      <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+      <div className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
           <p className="pt-4 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{a.a}</p>
           {a.to && (

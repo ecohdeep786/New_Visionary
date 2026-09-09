@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
-  UserPlus, Target, Compass, RefreshCw,
-  Globe, Monitor, Laptop, Smartphone, Lock, ArrowRight,
+  UserPlus, Target, Compass, RefreshCw, Monitor, Laptop, Smartphone, Lock, ArrowRight,
   GraduationCap, Users, HeartHandshake, Briefcase, Building2,
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
@@ -84,7 +83,7 @@ function useActiveStep(total) {
 }
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -503,7 +502,7 @@ function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Get started</GreyTag>
         <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>See it with your own question.</h2>
         <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>

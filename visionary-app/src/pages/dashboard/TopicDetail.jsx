@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Home, ChevronRight, FileText, PanelRightOpen, Loader2 } from "lucide-react";
+import { Home, ChevronRight, FileText, PanelRightOpen } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useStudentData } from "@/hooks/useStudentData";
 import { useThemeColor } from "@/hooks/useThemeColor";

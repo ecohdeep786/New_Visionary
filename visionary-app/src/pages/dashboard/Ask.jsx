@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Sparkles, Send, Lightbulb, GraduationCap, BookOpen, Brain, ArrowRight, HelpCircle } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useStudentData, buildStudentContext } from "@/hooks/useStudentData";

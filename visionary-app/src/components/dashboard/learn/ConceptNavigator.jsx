@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { BookOpen, CheckCircle2, Circle, Loader2, PanelRightClose } from "lucide-react";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
