@@ -29,7 +29,8 @@ const productionSecurityHeaders = {
 export default defineConfig({
   plugins: [react()],
   server: {
-    headers: securityHeaders,
+    host: '0.0.0.0',
+  headers: securityHeaders,
   },
   preview: {
     headers: productionSecurityHeaders,
