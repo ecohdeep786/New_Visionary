@@ -4,6 +4,16 @@ import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main.png";
 import PersonaHero from "@/components/landing/NewPersona";
+
+/**
+ * Our Journey Section 
+ */
+import primaryStudent from "@/assets/student-primary.png";
+import secondaryStudent from "@/assets/student-secondary.png";
+import competitiveStudent from "@/assets/student-competitive.png";
+import higherStudent from "@/assets/student-higher.png";
+import vocationStudent from "@/assets/student-vocational.png";
+
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
  * 01 hero · 02 struggle · 03 promise · 04 journey · 05 intelligence ·
@@ -147,12 +157,12 @@ const CYCLE_MS = 4000;
 const JOURNEY_WORDS = ["moves with you?", "meets your questions", "changes with your goals", "grows with your understanding", "opens what comes next"];
 const JOURNEY_WORD_MS = 3000;
 
-const JOURNEY_STAGES = [
-  { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Young student drawing on a tablet" },
-  { title: "Secondary", copy: "When a lesson gets difficult, you can keep going until the idea finally makes sense.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Teenager working on a laptop in a library" },
-  { title: "Higher Secondary", copy: "Connect difficult ideas, go deeper into the subject, and build the understanding that carries forward.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Student writing notes from an open textbook" },
-  { title: "Competitive Exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Aspirant solving a mock test beside prep books" },
-  { title: "Vocational & Skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Student practising hands-on in a workshop" },
+const JOURNEY_STAGES1 = [
+  { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Secondary", copy: "When a lesson gets difficult, you can keep going until the idea finally makes sense.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Higher Secondary", copy: "Connect difficult ideas, go deeper into the subject, and build the understanding that carries forward.", image: higherStudent, alt: "Student writing notes from an open textbook" },
+  { title: "Competitive Exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational & Skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
   { title: "Higher Education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "University student reviewing research papers" },
   { title: "Learning on Your Own", copy: "Start with what you want to understand, build, or become better at—and let your learning take shape from there.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Adult learning independently at home" },
 ];
@@ -203,7 +213,7 @@ const ACHIEVEMENT_TABS = [
   { black: "Build something from", blue: "what you know.", copy: "Turn what you've learned into real projects, real skills, and real work that grows with you." },
 ];
 
-const JOURNEY_CATEGORIES = ["Primary", "Secondary", "Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Independent Learning"];
+const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Independent Learning"];
 const CATEGORY_MS = 4200;
 
 const TRUST_WORDS = ["learning", "intelligence.", "control."];
@@ -677,8 +687,88 @@ const StudentPromiseSection = React.memo(function StudentPromiseSection() {
 });
 
 /* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
+/* Per-stage modal content — Apple-style: headline + intro + primary link + 4 blocks */
+const JOURNEY_STAGES = [
+  { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Secondary & Higher Secondary", copy: "When lessons get difficult, understanding keeps up — from class 6 to class 12, every chapter and exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Competitive Exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational & Skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Student practising hands-on in a workshop" },
+  { title: "Higher Education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "University student reviewing research papers" },
+  { title: "Learning on Your Own", copy: "Start with what you want to understand, build, or become better at — and let your learning take shape from there.", image: "https://www.apple.com/v/education/k12/overview/a/images/overview/learning/modals/support__dvu93fbijf6u_large.jpg", alt: "Adult learning independently at home" },
+];
+const JOURNEY_CATEGORIES = ["Primary", "Secondary & Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Learning on Your Own"];
+/* Google writes benefit-led headlines, not noun labels.
+   Stage name = eyebrow; headline = the outcome; blocks = product proof. */
+const JOURNEY_MODALS = {
+  "Primary": {
+    top: "Build the basics.", accent: "Build them right.",
+    intro: "Primary learning sets the pattern for everything after. Visionary makes first understanding visual, gentle, and connected.",
+    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    blocks: [
+      { t: "See it first.", c: "Numbers and words begin as pictures, stories, and voice — understanding before memorising.", l: "How it works", to: "/how-it-works" },
+      { t: "Practise gently.", c: "Short, encouraging practice that rewards effort, not speed.", l: "Start practising free", to: "/register" },
+      { t: "In your language.", c: "First learning happens best in the language a child thinks in.", l: "Language support", to: "/how-it-works" },
+      { t: "Parents stay close.", c: "Share progress in ways that help at home, not only at report time.", l: "For parents", to: "/parent" },
+    ],
+  },
+  "Secondary & Higher Secondary": {
+    top: "One place for", accent: "every subject.",
+    intro: "From class 6 to class 12, lessons get deeper and exams get closer. Visionary keeps understanding connected across every chapter, board, and subject.",
+    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    blocks: [
+      { t: "When it gets difficult.", c: "Explanations adapt until the idea finally makes sense — without starting over.", l: "See how it works", to: "/how-it-works" },
+      { t: "Practise what matters.", c: "Practice tied to your syllabus and the way your exams actually ask.", l: "Start practising free", to: "/register" },
+      { t: "Remember it later.", c: "Continuity keeps yesterday's understanding available for today's lesson.", l: "Your continuity", to: "/how-it-works" },
+      { t: "Boards and beyond.", c: "The same understanding carries into higher-secondary depth and competitive preparation.", l: "Talk to us", to: "/contact" },
+    ],
+  },
+  "Competitive Exams": {
+    top: "Prepare for the exam.", accent: "Not just the syllabus.",
+    intro: "Competitive preparation is reasoning under pressure. Visionary strengthens the thinking that holds when the question changes shape.",
+    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    blocks: [
+      { t: "Reasoning over memorising.", c: "Understand why a method works, so unfamiliar questions still feel familiar.", l: "See how it works", to: "/how-it-works" },
+      { t: "Practise under real conditions.", c: "Accuracy, speed, and confidence built together through structured practice.", l: "Start practising free", to: "/register" },
+      { t: "Learn from every attempt.", c: "Each mock becomes context: what to revise, what to skip, what to strengthen.", l: "Your continuity", to: "/how-it-works" },
+      { t: "Stay steady.", c: "Clear explanations for the days when pressure is high and time is short.", l: "Get support", to: "/help" },
+    ],
+  },
+  "Vocational & Skills": {
+    top: "Learn by doing.", accent: "Skills that work.",
+    intro: "Vocational learning is meant to be used. Visionary connects practice, projects, and real work into one continuing journey.",
+    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    blocks: [
+      { t: "Practise the real thing.", c: "Skills build through doing — with guidance that never gives the answer away.", l: "See how it works", to: "/how-it-works" },
+      { t: "Build a portfolio.", c: "Turn what you learn into projects and work you can actually show.", l: "Start building free", to: "/register" },
+      { t: "Skills that carry forward.", c: "What you practise now connects to the next skill and the next job.", l: "Your continuity", to: "/how-it-works" },
+      { t: "Learn with others.", c: "Communities and partners help you practise in real contexts.", l: "Find a partner", to: "/partners" },
+    ],
+  },
+  "Higher Education": {
+    top: "Go deeper.", accent: "Build further.",
+    intro: "University work asks for depth: research, analysis, and original thinking. Visionary keeps the threads connected across semesters.",
+    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    blocks: [
+      { t: "Understand at depth.", c: "Explanations and questions that support serious subject work, not summaries.", l: "See how it works", to: "/how-it-works" },
+      { t: "Research with context.", c: "Keep threads of understanding across papers, projects, and semesters.", l: "Your continuity", to: "/how-it-works" },
+      { t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Start building free", to: "/register" },
+      { t: "Work with your institution.", c: "Visionary can support classrooms, labs, and departments.", l: "For organizations", to: "/organization" },
+    ],
+  },
+  "Learning on Your Own": {
+    top: "Your pace.", accent: "Your path.",
+    intro: "No syllabus required. Start with what you want to understand, build, or become better at — and let the learning take shape from there.",
+    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    blocks: [
+      { t: "Start where you are.", c: "Visionary begins from your question, not from a curriculum.", l: "See how it works", to: "/how-it-works" },
+      { t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Start learning free", to: "/register" },
+      { t: "Keep your place.", c: "Return after weeks away and continue from where you stopped.", l: "Your continuity", to: "/how-it-works" },
+      { t: "Find your people.", c: "Communities and updates keep independent learners connected.", l: "Join the community", to: "/community" },
+    ],
+  },
+};
 
-const JourneyCarousel = React.memo(function JourneyCarousel({ stages }) {
+const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen }) {
   const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
   const ALIGN = "max(1.5rem, calc(50% - 40rem))";
 
@@ -688,7 +778,20 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages }) {
         className="flex snap-x snap-mandatory gap-12 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {stages.map((stage) => (
           <article key={stage.title} data-card className="w-[85%] shrink-0 snap-start sm:w-[440px] lg:w-[700px] xl:w-[780px]">
-            <img src={stage.image} alt={stage.alt} loading="lazy" decoding="async" className="aspect-[16/9] w-full rounded-[50px] object-cover" />
+            <button
+              type="button"
+              onClick={() => onOpen(stage)}
+              aria-label={`Open details for ${stage.title}`}
+              className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+            >
+              <img src={stage.image} alt={stage.alt} loading="lazy" decoding="async"
+                className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]" />
+              <span className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </span>
+            </button>
             <h3 className="mt-12 text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
             <p className="mx-auto mt-5 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
           </article>
@@ -708,9 +811,76 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages }) {
   );
 });
 
+const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
+  const closeRef = useRef(null);
+  useEffect(() => {
+    const previouslyFocused = document.activeElement;
+    closeRef.current?.focus();
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+      previouslyFocused?.focus?.();
+    };
+  }, [onClose]);
+
+  const content = JOURNEY_MODALS[stage.title];
+  if (!content) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8 sm:px-6" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
+      <button type="button" tabIndex={-1} aria-label="Close dialog" onClick={onClose} className="absolute inset-0 h-full w-full cursor-default bg-[#121317]/60" />
+
+      <div className="relative max-h-[85vh] w-full max-w-[1080px] overflow-y-auto rounded-[28px] bg-white p-8 sm:p-12 lg:p-16" style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}>
+        <button ref={closeRef} type="button" onClick={onClose} aria-label="Close"
+          className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+
+        {/* eyebrow = the stage; headline = the outcome (Google grammar) */}
+        <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{stage.title}</p>
+        <h3 id="journey-modal-title" className="mt-4 max-w-[820px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(32px,4.5vw,64px)]" style={{ color: COLORS.ink }}>
+          {content.top}
+          <br />
+          <span style={{ color: COLORS.blue }}>{content.accent}</span>
+        </h3>
+        <p className="mt-6 max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[16px] sm:text-[17.5px]" style={{ color: COLORS.grey }}>
+          {content.intro}
+        </p>
+        <Link to={content.primary.to} className="mt-6 inline-flex items-center gap-1.5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:text-[16px]" style={{ color: COLORS.blue }}>
+          {content.primary.label}
+          <ChevronIcon className="h-4 w-4" />
+        </Link>
+
+        {/* 2×2 proof blocks — Apple anatomy, Visionary tokens */}
+        <div className="mt-12 grid gap-x-12 gap-y-12 sm:grid-cols-2">
+          {content.blocks.map((b) => (
+            <div key={b.t} className="border-t pt-6" style={{ borderColor: "#e5e7eb" }}>
+              <p className="font-normal tracking-[0] leading-[1.65] text-[15px] sm:text-[16px]" style={{ color: COLORS.grey }}>
+                <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
+              </p>
+              <Link to={b.to} className="mt-4 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:text-[15px]" style={{ color: COLORS.blue }}>
+                {b.l}
+                <ChevronIcon className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+});
+
+ 
+
 function StudentJourneySection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
+  const [openStage, setOpenStage] = useState(null);
 
   return (
     <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
@@ -732,7 +902,8 @@ function StudentJourneySection() {
           </div>
         </div>
       </FadeReveal>
-      <JourneyCarousel stages={JOURNEY_STAGES} />
+      <JourneyCarousel stages={JOURNEY_STAGES} onOpen={setOpenStage} />
+      {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} />}
     </section>
   );
 }
