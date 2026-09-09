@@ -30,7 +30,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    headers: securityHeaders,
+  headers: securityHeaders,
   },
   preview: {
     headers: productionSecurityHeaders,
