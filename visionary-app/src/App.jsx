@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Toaster } from '@/components/ui/toaster'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -7,6 +7,30 @@ import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
 import { AuthProvider } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
+
+class AppErrorBoundary extends React.Component {
+  state = { error: null }
+
+  static getDerivedStateFromError(error) {
+    return { error }
+  }
+
+  render() {
+    if (this.state.error) {
+      return (
+        <main className="flex min-h-screen items-center justify-center bg-white px-6 text-center text-[#121317]">
+          <div>
+            <h1 className="text-2xl font-semibold">Visionary could not load</h1>
+            <p className="mt-3 text-sm text-[#5f6368]">{this.state.error.message}</p>
+          </div>
+        </main>
+      )
+    }
+
+    return this.props.children
+  }
+}
+
 const Landing = lazy(() => import('@/pages/Landing'))
 const Login = lazy(() => import('@/pages/Login'))
 const Register = lazy(() => import('@/pages/Register'))
@@ -120,9 +144,11 @@ function App() {
             Skip to content
           </a>
           <ScrollToTop />
-          <Suspense fallback={<RouteFallback />}>
-            <PublicApp />
-          </Suspense>
+          <AppErrorBoundary>
+            <Suspense fallback={<RouteFallback />}>
+              <PublicApp />
+            </Suspense>
+          </AppErrorBoundary>
         </Router>
         <Toaster />
       </QueryClientProvider>
