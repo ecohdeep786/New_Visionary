@@ -359,66 +359,48 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
         {STRUGGLE_IMAGE_STYLE}
       </style>
 
-      <div className="relative w-full max-w-[620px]">
-        <div className="grid grid-cols-[minmax(0,1fr)_76px] items-start gap-7 sm:grid-cols-[minmax(0,1fr)_82px] sm:gap-9 lg:grid-cols-[minmax(0,1fr)_84px] lg:gap-8">
-          <div className="relative min-w-0">
-            <svg
-              viewBox="0 0 220 120"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-[10%] top-[28%] z-20 hidden h-[82px] w-[165px] lg:block"
-              style={{ color: COLORS.ink }}
-            >
-              <path d="M8 104 C54 66, 112 34, 184 16" />
-              <path d="M184 16 l-15 2" />
-              <path d="M184 16 l-5 14" />
-            </svg>
+      <div className="relative mx-auto w-full max-w-[520px]">
+        {/* circle wrapper — exactly circle-sized, centered in the column */}
+        <div className="relative mx-auto w-[86%] max-w-[400px]">
+          {/* hand-drawn arrow — lives in the gap BETWEEN heading and circle */}
+          <svg
+            viewBox="0 0 220 120"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-[136px] top-1/2 z-10 hidden h-[72px] w-[120px] -translate-y-1/2 lg:block"
+            style={{ color: COLORS.ink }}
+          >
+            <path d="M6 66 C 60 86, 140 84, 198 52" />
+            <path d="M198 52 l-16 2" />
+            <path d="M198 52 l-6 14" />
+          </svg>
 
-            <div className="relative mx-auto aspect-square w-[92%] max-w-[390px] overflow-hidden rounded-full">
-              <img
-                key={`main-${slideKey}`}
-                src={slide.image}
-                alt={slide.alt}
-                loading="eager"
-                decoding="async"
-                className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
-                style={{ objectPosition: STRUGGLE_MAIN_POSITIONS[slideKey % STRUGGLE_MAIN_POSITIONS.length] }}
-              />
-            </div>
-
-            <figcaption
-              key={`quote-${slideKey}`}
-              aria-live="polite"
-              className="hero-fade-up mx-auto mt-7 max-w-[520px] px-4 text-center font-normal tracking-[0] leading-[1.4] text-[clamp(16px,1.39vw,20px)] [animation-delay:120ms] [animation-fill-mode:both] sm:px-0 lg:mt-8"
-              style={{ color: COLORS.ink }}
-            >
-              {slide.quote}
-            </figcaption>
-          </div>
-
-          <div className="flex flex-col items-center gap-5 pt-[7%] sm:gap-5 lg:gap-5 lg:pt-[8%]">
-            {STRUGGLE_SATELLITES.map((position, i) => (
-              <div
-                key={`satellite-slot-${i}`}
-                className="aspect-square w-[70px] overflow-hidden rounded-full sm:w-[76px] lg:w-[80px]"
-              >
-                <img
-                  key={`satellite-${slideKey}-${i}`}
-                  src={slide.image}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
-                  style={{ objectPosition: position, animationDelay: `${i * 50}ms` }}
-                />
-              </div>
-            ))}
+          <div className="aspect-square w-full overflow-hidden rounded-full">
+            <img
+              key={`main-${slideKey}`}
+              src={slide.image}
+              alt={slide.alt}
+              loading="eager"
+              decoding="async"
+              className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
+              style={{ objectPosition: STRUGGLE_MAIN_POSITIONS[slideKey % STRUGGLE_MAIN_POSITIONS.length] }}
+            />
           </div>
         </div>
+
+        {/* quote — centered under the circle */}
+        <figcaption
+          key={`quote-${slideKey}`}
+          aria-live="polite"
+          className="hero-fade-up mx-auto mt-8 max-w-[520px] px-4 text-center font-normal tracking-[0] leading-[1.4] text-[clamp(16px,1.39vw,20px)] [animation-delay:120ms] [animation-fill-mode:both] sm:px-0"
+          style={{ color: COLORS.ink }}
+        >
+          {slide.quote}
+        </figcaption>
       </div>
     </figure>
   );
@@ -451,7 +433,7 @@ function StudentStruggleSection() {
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-24 lg:py-32">
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-start lg:gap-10 lg:px-10">
+        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
           <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
             <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
               The problem
@@ -461,7 +443,7 @@ function StudentStruggleSection() {
             </div>
           </div>
 
-          <div className="relative w-full lg:col-span-7 lg:pt-[38px] lg:pr-[2%] xl:pr-[4%]">
+          <div className="relative w-full lg:col-span-7 lg:pr-[2%] xl:pr-[4%]">
             <StruggleCluster slide={slide} slideKey={index} />
           </div>
         </div>
