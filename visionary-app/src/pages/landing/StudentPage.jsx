@@ -5,6 +5,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main.png";
 import PersonaHero from "@/components/landing/NewPersona";
+import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
  * Problem Section
@@ -246,14 +247,14 @@ const ACHIEVEMENT_TABS = [
 const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Independent Learning"];
 const CATEGORY_MS = 4200;
 
-const TRUST_WORDS = ["learning", "intelligence.", "control."];
-const TRUST_WORD_MS = 3000;
+// const TRUST_WORDS = ["learning", "intelligence.", "control."];
+// const TRUST_WORD_MS = 3000;
 
-const TRUST_CARDS = [
-  { title: "Private by Design", copy: "Your personal information is treated with care." },
-  { title: "Safe to grow with", copy: "Built from the first question to what's next." },
-  { title: "Built responsibly.", copy: "Intelligence should help people without compromising matters to them." },
-];
+// const TRUST_CARDS = [
+//   { title: "Private by Design", copy: "Your personal information is treated with care." },
+//   { title: "Safe to grow with", copy: "Built from the first question to what's next." },
+//   { title: "Built responsibly.", copy: "Intelligence should help people without compromising matters to them." },
+// ];
 
 const EXPLORE_CATEGORIES = [
   { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
@@ -1287,7 +1288,9 @@ function StudentAchievementSection() {
 
 /* ═══════════════════════ 10 · JOURNEY FLOW ═══════════════════════ */
 
+
 const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "" }) {
+  const Icon = JOURNEY_STAGE_ICONS[text] || Sparkles;
   return (
     <div className={`relative overflow-hidden rounded-[48px] ${className}`}>
       <img
@@ -1297,11 +1300,14 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
         decoding="async"
         className="aspect-[20/19] w-full object-cover"
       />
+      {/* scrim — guarantees white type contrast on any photo */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
+      {/* stage icon pill — consistency with journey cards */}
+      <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
+        <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
+      </span>
       <div className="absolute inset-0 flex items-center justify-center px-4">
-        <span
-          key={text}
-          className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]"
-        >
+        <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
           {text}
         </span>
       </div>
@@ -1318,41 +1324,52 @@ function StudentJourneyFlowSection() {
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Your journey
-        </p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          Your journey changes.
-          <br />
-          Your learning stays with you.
+          Your journey changes.<br />Your learning stays with you.
         </h2>
         <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           As your subjects, skills, interests, and goals change, Visionary keeps giving you a place to continue learning, creating, and moving forward.
         </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1900px] grid-cols-1 items-center gap-20 px-6 lg:mt-32 lg:grid-cols-[7fr_5fr] lg:gap-24 lg:pl-[10%] lg:pr-12">
+
+        {/* Breath 2 — cascade + closing column */}
+        <div className="mx-auto mt-14 grid w-full max-w-[1900px] grid-cols-1 items-center gap-16 px-6 lg:mt-28 lg:grid-cols-[7fr_5fr] lg:gap-24 lg:pl-[10%] lg:pr-12">
+          {/* cascade: card → connector → card (in-flow, never overlapping) */}
           <div className="relative">
-            <div className="relative max-w-[430px]">
-              <JourneyCategoryCard index={index} text={first} />
+            <JourneyCategoryCard index={index} text={first} className="mx-auto max-w-[430px] lg:mx-0" />
+            <div className="flex justify-start py-2 pl-[16%] lg:py-3 lg:pl-[20%]">
               <svg
-                viewBox="0 0 220 260"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-                className="absolute left-[8%] -bottom-[200px] hidden h-[220px] w-[200px] lg:block"
-                style={{ color: COLORS.ink }}
-              >
-                <path d="M12 4 C 4 120, 44 196, 188 232" />
-                <path d="M188 232 l-16 -6 M188 232 l-10 13" />
-              </svg>
+  viewBox="0 0 220 260"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="3.5"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+  className="h-[64px] w-[110px] lg:h-[88px] lg:w-[150px]"
+  style={{ color: COLORS.ink }}
+>
+  <path d="M12 4 C 4 120, 44 196, 188 232" />
+  <path d="M188 232 l-19 6 M188 232 l-14 -14" />
+</svg>
             </div>
-            <JourneyCategoryCard index={index + 1} text={second} className="ml-[28%] mt-24 max-w-[430px] lg:mt-32" />
+            <JourneyCategoryCard index={index + 1} text={second} className="ml-[10%] max-w-[430px] lg:ml-[28%]" />
           </div>
-          <p className="max-w-[500px] font-normal tracking-[0] leading-[1.2] text-[clamp(28px,2.78vw,40px)] lg:pr-12" style={{ color: COLORS.ink }}>
-            Wherever your journey goes, your learning can continue with you.
-          </p>
+
+          {/* closing column — statement + action, balanced against the cascade */}
+          <div className="max-w-[500px]">
+            <p className="font-normal tracking-[0] leading-[1.2] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+              Wherever your journey goes, your learning can continue with you.
+            </p>
+            <Link
+              to="/how-it-works"
+              className="mt-8 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              style={{ color: COLORS.blue }}
+            >
+              See how Visionary keeps it connected
+              <ChevronIcon className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </FadeReveal>
     </section>
@@ -1360,69 +1377,78 @@ function StudentJourneyFlowSection() {
 }
 
 /* ═══════════════════════ 11 · TRUST ═══════════════════════ */
+/* words now map 1:1 to cards — heading narrates the visible card */
+const TRUST_WORDS = ["control.", "learning.", "intelligence."];
+const TRUST_WORD_MS = 6000;
+
+const TRUST_CARDS = [
+  { title: "Private by design.", copy: "Your personal information is treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
+  { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See security practices" },
+  { title: "Built responsibly.", copy: "Intelligence should help people without compromising what matters to them.", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+];
 
 const TrustCard = React.memo(function TrustCard({ card }) {
   return (
     <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
-      <img
-        src="https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png"
-        alt={card.title}
-        loading="lazy"
-        decoding="async"
-        className="aspect-[8/5] w-full object-cover"
-      />
-      <p className="absolute left-8 top-8 max-w-[220px] font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>
-        {card.copy}
-      </p>
+      <img src="https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png" alt={card.title} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
+      {/* white chip guarantees copy contrast on any image */}
+      <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
+        <div className="rounded-[20px] bg-white/95 p-5">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
+            <card.Icon className="h-5 w-5" strokeWidth={1.8} />
+          </span>
+          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
+          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+            {card.link}
+            <ChevronIcon className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 });
 
 function StudentTrustSection() {
   const { ref, visible } = UseRevealOnce();
-  const { index: wordIndex } = UseCycleIndex(TRUST_WORDS.length, TRUST_WORD_MS);
-  const [cardIndex, setCardIndex] = useState(0);
-  const stepCards = useCallback((d) => setCardIndex((i) => (i + d + TRUST_CARDS.length) % TRUST_CARDS.length), []);
-  const active = TRUST_CARDS[cardIndex];
-  const next = TRUST_CARDS[(cardIndex + 1) % TRUST_CARDS.length];
+  const { index, goTo } = UseCycleIndex(TRUST_CARDS.length, TRUST_WORD_MS);
+  const active = TRUST_CARDS[index];
+  const next = TRUST_CARDS[(index + 1) % TRUST_CARDS.length];
+  const stepCards = useCallback((d) => goTo(index + d), [goTo, index]);
 
   return (
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Our trust
-        </p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
         <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your{" "}
-          <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-            {TRUST_WORDS[wordIndex]}
-          </span>
+          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your questions, conversations, ideas, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
         </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
+
+        {/* Breath 2 — narrative column + preview cards */}
+        <div className="mx-auto mt-14 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-20 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
           <div className="lg:pl-2">
             <h3 key={active.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {active.title}
             </h3>
-            <button
-              type="button"
-              aria-label="Next trust card"
-              onClick={() => stepCards(1)}
-              className="mt-12 flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5 lg:ml-24"
-              style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
-            >
-              <ChevronIcon direction="right" />
-            </button>
+            <div className="mt-10 flex items-center gap-4 lg:ml-24">
+              <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+                <ChevronIcon direction="left" />
+              </button>
+              <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+                <ChevronIcon direction="right" />
+              </button>
+              <span className="ml-2 font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+                0{index + 1} / 0{TRUST_CARDS.length}
+              </span>
+            </div>
           </div>
+
           <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-            <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px] shrink-0">
-              <TrustCard card={active} />
-            </div>
-            <div key={`b-${cardIndex}`} className="hero-fade-up w-full max-w-[780px] shrink-0 [animation-delay:80ms] [animation-fill-mode:both]">
-              <TrustCard card={next} />
-            </div>
+            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px] shrink-0"><TrustCard card={active} /></div>
+            <div key={`b-${index}`} className="hero-fade-up w-full max-w-[780px] shrink-0 [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
       </FadeReveal>
