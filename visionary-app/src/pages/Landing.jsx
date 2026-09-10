@@ -12,6 +12,8 @@ import teachermeet from "@/assets/teacher-hero-main.png"
 import parentmeet from "@/assets/parent-hero-main.png"
 import promeet from "@/assets/pro-face-main.png"
 import orgmeet from "@/assets/org-face-main.png"
+import problemunderstanding from "@/assets/problem-understanding.png";
+
 
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
@@ -167,7 +169,7 @@ const HERO_WORD_MS = 2800;
 const PROBLEM_SLIDES = [
   { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A Teacher", quote: "I taught the whole class. Half of them still left lost.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Teacher addressing a full classroom" },
   { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A Parent", quote: "The report card says fine. I still don't know how to help at home.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Parent reviewing a child's progress" },
-  { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A Student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Student studying alone with a tablet" },
+  { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A Student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
   { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A Professional", quote: "I have all the articles. I still can't turn them into the work.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Professional applying knowledge at work" },
 ];
 const PROBLEM_MS = 4200;
