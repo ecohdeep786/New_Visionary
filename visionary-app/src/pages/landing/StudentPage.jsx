@@ -178,7 +178,13 @@ const SLIDES = [
 ];
 const CYCLE_MS = 4000;
 
-const JOURNEY_WORDS = ["moves with you?", "meets your questions", "changes with your goals", "grows with your understanding", "opens what comes next"];
+const JOURNEY_WORDS = [
+  "moves with you.",
+  "meets your questions.",
+  "changes with your goals.",
+  "grows with your understanding.",
+  "opens what comes next.",
+];
 const JOURNEY_WORD_MS = 3000;
 
 const JOURNEY_STAGES1 = [
@@ -475,6 +481,19 @@ const StudentPromiseSection = React.memo(function StudentPromiseSection() {
 
 /* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
 
+/* Icons per journey stage — reuses icons already imported in this file */
+const JOURNEY_STAGE_ICONS = {
+  "Primary": Sparkles,
+  "Secondary": BookOpen,
+  "Secondary & Higher Secondary": BookOpen,
+  "Higher Secondary": Layers3,
+  "Competitive Exams": Target,
+  "Vocational & Skills": RefreshCw,
+  "Higher Education": Brain,
+  "Learning on Your Own": Clock,
+  "Independent Learning": Clock,
+};
+
 const JOURNEY_STAGES = [
   { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
   { title: "Secondary & Higher Secondary", copy: "When lessons get difficult, understanding keeps up — from class 6 to class 12, every chapter and exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
@@ -564,71 +583,56 @@ const JOURNEY_MODALS = {
   },
 };
 
-const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen }) {
-  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
+const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, trackRef, onScroll, canPrev, canNext, scrollByCard }) {
   const ALIGN = "max(1.5rem, calc(50% - 40rem))";
 
   return (
-    <div className="mt-28 lg:mt-32">
+    <div className="mt-16 lg:mt-20">
       <div
         ref={trackRef}
-        onScroll={update}
+        onScroll={onScroll}
         style={{ paddingLeft: ALIGN, paddingRight: "max(1.5rem, 6%)", scrollPaddingLeft: ALIGN }}
         className="flex snap-x snap-mandatory gap-12 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {stages.map((stage) => (
-          <article key={stage.title} data-card className="w-[85%] shrink-0 snap-start sm:w-[440px] lg:w-[700px] xl:w-[780px]">
-            <button
-              type="button"
-              onClick={() => onOpen(stage)}
-              aria-label={`Open details for ${stage.title}`}
-              className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
-            >
-              <img
-                src={stage.image}
-                alt={stage.alt}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-              />
-              <span
-                className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110"
-                style={{ color: COLORS.ink }}
+        {stages.map((stage) => {
+          const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
+          return (
+            <article key={stage.title} data-card className="w-[85%] shrink-0 snap-start sm:w-[440px] lg:w-[700px] xl:w-[780px]">
+              <button
+                type="button"
+                onClick={() => onOpen(stage)}
+                aria-label={`Open details for ${stage.title}`}
+                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </span>
-            </button>
-            <h3 className="mt-12 text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>
-              {stage.title}
-            </h3>
-            <p className="mx-auto mt-5 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
-              {stage.copy}
-            </p>
-          </article>
-        ))}
+                <img
+                  src={stage.image}
+                  alt={stage.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                />
+                {/* stage icon pill — the missing icon layer */}
+                <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
+                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
+                </span>
+                <span className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </span>
+              </button>
+              <h3 className="mt-12 text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
+              <p className="mx-auto mt-5 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
+            </article>
+          );
+        })}
       </div>
-      <div className="mt-10 flex justify-end px-6 lg:pr-[9%]">
+      <div className="mt-12 flex justify-end px-6 lg:mt-16 lg:pr-[9%]">
         <div className="inline-flex items-center gap-10 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.cardSurface }}>
-          <button
-            type="button"
-            aria-label="Previous stages"
-            disabled={!canPrev}
-            onClick={() => scrollByCard(-1)}
-            className={`transition-colors ${canPrev ? "hover:opacity-70" : "cursor-default"}`}
-            style={{ color: canPrev ? COLORS.ink : `${COLORS.ink}40` }}
-          >
+          <button type="button" aria-label="Previous stages" disabled={!canPrev} onClick={() => scrollByCard(-1)} className={`transition-colors ${canPrev ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canPrev ? COLORS.ink : `${COLORS.ink}40` }}>
             <ChevronIcon direction="left" />
           </button>
-          <button
-            type="button"
-            aria-label="Next stages"
-            disabled={!canNext}
-            onClick={() => scrollByCard(1)}
-            className={`transition-colors ${canNext ? "hover:opacity-70" : "cursor-default"}`}
-            style={{ color: canNext ? COLORS.ink : `${COLORS.ink}40` }}
-          >
+          <button type="button" aria-label="Next stages" disabled={!canNext} onClick={() => scrollByCard(1)} className={`transition-colors ${canNext ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canNext ? COLORS.ink : `${COLORS.ink}40` }}>
             <ChevronIcon direction="right" />
           </button>
         </div>
@@ -765,40 +769,94 @@ function StudentJourneySection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
+  const [activeStage, setActiveStage] = useState(0);
+  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
+
+  /* scroll → active chip */
+  const handleScroll = useCallback(() => {
+    update();
+    const t = trackRef.current;
+    if (!t) return;
+    const cards = Array.from(t.querySelectorAll("[data-card]"));
+    if (!cards.length) return;
+    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
+    const tLeft = t.getBoundingClientRect().left;
+    let best = 0;
+    let bestDist = Infinity;
+    cards.forEach((card, i) => {
+      const d = Math.abs(card.getBoundingClientRect().left - tLeft - align);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    setActiveStage(best);
+  }, [update, trackRef]);
+
+  /* chip → scroll track */
+  const goToStage = useCallback((i) => {
+    const t = trackRef.current;
+    if (!t) return;
+    const card = t.querySelectorAll("[data-card]")[i];
+    if (!card) return;
+    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
+    const tLeft = t.getBoundingClientRect().left;
+    t.scrollTo({ left: t.scrollLeft + (card.getBoundingClientRect().left - tLeft) - align, behavior: "smooth" });
+    setActiveStage(i);
+  }, [trackRef]);
 
   return (
     <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
       <FadeReveal visible={visible}>
+        {/* header — eyebrow / heading / one-line sub */}
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
           Your learning, your journey
         </p>
         <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          What happens when learning
+          Learning that
           <br className="hidden md:block" />{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-            {JOURNEY_WORDS[index]}
-          </span>
+          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[640px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p
+          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px] lg:whitespace-nowrap lg:px-0"
+          style={{ color: COLORS.grey }}
+        >
           Wherever you begin, Visionary helps your learning move forward from there.
         </p>
-        <div className="mt-20 flex justify-center px-6 lg:mt-24">
-          <div
-            className="flex h-[200px] w-full max-w-[800px] items-center justify-center rounded-[32px] p-6 sm:h-[240px] sm:p-10"
-            style={{ backgroundColor: COLORS.cardSurfaceAlt }}
-          >
-            <svg className="h-24 w-24" style={{ color: `${COLORS.blue}66` }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              />
-            </svg>
+
+        {/* stage rail — even beat under the header */}
+        <div className="mt-14 px-6 lg:mt-20">
+          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="tablist" aria-label="Learning stages">
+            {JOURNEY_STAGES.map((stage, i) => {
+              const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
+              const active = i === activeStage;
+              return (
+                <button
+                  key={stage.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => goToStage(i)}
+                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  style={active
+                    ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
+                    : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.8} />
+                  {stage.title}
+                </button>
+              );
+            })}
           </div>
         </div>
       </FadeReveal>
-      <JourneyCarousel stages={JOURNEY_STAGES} onOpen={setOpenStage} />
+
+      <JourneyCarousel
+        stages={JOURNEY_STAGES}
+        onOpen={setOpenStage}
+        trackRef={trackRef}
+        onScroll={handleScroll}
+        canPrev={canPrev}
+        canNext={canNext}
+        scrollByCard={scrollByCard}
+      />
       {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} />}
     </section>
   );
@@ -900,7 +958,7 @@ const StudentClosingSection = React.memo(function StudentClosingSection() {
 });
 
 /* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
-
+/* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
 const LanguageChips = React.memo(function LanguageChips({ active, onSelect }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Language selection">
@@ -910,7 +968,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect }) {
           type="button"
           aria-pressed={active === lang.code}
           onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[10px] transition-colors ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 uppercase tracking-[0] leading-[14px] text-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
           style={{
             backgroundColor: active === lang.code ? COLORS.chipBg : "transparent",
             color: COLORS.ink,
@@ -920,7 +978,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect }) {
           {lang.label}
         </button>
       ))}
-      <span className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
+      <span className="ml-1 font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
         +20 languages
       </span>
     </div>
@@ -932,48 +990,65 @@ function StudentLanguageSection() {
   const [lang, setLang] = useState("hi");
   const { index } = UseCycleIndex(LANGUAGE_QUESTIONS.length, QUESTION_MS);
   const question = LANGUAGE_QUESTIONS[index][lang];
+  const activeLabel = LANGUAGE_CHIPS.find((c) => c.code === lang)?.label || lang;
 
   return (
     <section ref={ref} data-section="07-language" className="relative px-6 py-24 lg:py-32">
+      <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Our language
-        </p>
+        {/* header unit — tight */}
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
         <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          The words can change.
-          <br />
-          Understanding shouldn't.
+          The words can change.<br />Understanding shouldn't.
         </h2>
         <p className="mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Ask, learn, and practice in the language that feels natural to you. Visionary keeps the meaning, context, and learning journey connected as your language changes.
         </p>
-        <div className="mx-auto mt-24 max-w-[760px] lg:mt-32">
-          <p className="text-left font-normal tracking-[0] leading-[16px] text-[12px]" style={{ color: COLORS.lightGrey }}>
-            Listening........
-          </p>
-          <p className="mt-4 text-center font-normal tracking-[0] leading-[1.15] text-[clamp(30px,3.75vw,54px)]" style={{ color: COLORS.blue }}>
-            <span key={`${lang}-${index}`} className="hero-fade-up inline decoration-[2px]">
-              {question}
-            </span>
-          </p>
-        </div>
-        <div className="mt-14 flex justify-center" style={{ color: COLORS.ink }}>
-          <VoiceIcon />
-        </div>
-        <div className="mt-16">
+
+        {/* Breath 1 — control first */}
+        <div className="mt-14 lg:mt-20">
           <LanguageChips active={lang} onSelect={setLang} />
         </div>
-        <div className="mt-16 flex justify-center">
-          <div className="flex items-center gap-5 rounded-[70px] px-10 py-6" style={{ backgroundColor: `${COLORS.ink}05` }}>
-            <VoiceIcon className="h-8 w-8 shrink-0" />
-            <div>
-              <p className="font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>
-                Think your way
-              </p>
-              <p className="mt-1 font-normal tracking-[0] leading-[19px] text-[13px]" style={{ color: COLORS.grey }}>
-                Use voice or text in the way you're comfortable.
-              </p>
-            </div>
+
+        {/* Breath 2 — FLAT Google voice surface: no card, no border, type on the page */}
+        <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
+          {/* Assistant-signature four-color voice indicator */}
+          <div className="flex items-end justify-center gap-2" aria-hidden="true">
+            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
+              <span
+                key={c}
+                className="h-8 w-1.5 rounded-full"
+                style={{
+                  backgroundColor: c,
+                  transformOrigin: "center",
+                  animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* the utterance — plain ink type, keyed fade on change */}
+          <p
+            aria-live="polite"
+            className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]"
+            style={{ color: COLORS.blue }}
+          >
+            <span key={`${lang}-${index}`} className="hero-fade-up inline">{question}</span>
+          </p>
+
+          {/* state line — the only chrome */}
+          <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+            Listening in {activeLabel} · understood in every language
+          </p>
+        </div>
+
+        {/* Breath 3 — helper chip, Google-style surface pill */}
+        <div className="mt-14 flex justify-center lg:mt-20">
+          <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
+            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
+            <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
+              Think your way — voice or text, in the language you're comfortable with.
+            </p>
           </div>
         </div>
       </FadeReveal>
@@ -1055,7 +1130,9 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
           decoding="async"
           className={`h-[320px] w-full object-cover sm:h-[420px] ${imgClass}`}
         />
-        <div className="absolute inset-0 flex items-center justify-center px-4">
+  
+   <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
+            <div className="absolute inset-0 flex items-center justify-center px-4">
           <span key={text} className="hero-fade-up text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)]">
             {text}
           </span>
@@ -1085,15 +1162,15 @@ function StudentContinuitySection() {
         <p className="mx-auto mt-6 max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           What you understand, practise, and build becomes part of what comes next. You don't have to start over.
         </p>
-        <div className="mt-16 flex justify-center">
+        <div className="mt-14 flex justify-center lg:mt-20">
           <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
         </div>
-        <div className="mt-20 grid grid-cols-1 gap-16 px-6 lg:mt-24 lg:grid-cols-3 lg:gap-12 lg:px-0">
+        <div className="mt-14 grid grid-cols-1 gap-16 px-6 lg:mt-20 lg:grid-cols-3 lg:gap-12 lg:px-0">
           <ContinuityCard index={index} label="Previous" caption="What you learned" text={stage.previous} imgClass="lg:h-[400px]" className="lg:-ml-[6vw]" />
-          <ContinuityCard index={index} label="Now" caption="What you're working on" text={stage.now} imgClass="lg:h-[600px]" className="lg:mt-[120px]" />
-          <ContinuityCard index={index} label="Next" caption="Where you can go" text={stage.next} imgClass="lg:h-[370px]" className="lg:-mr-[6vw] lg:mt-[330px]" />
+          <ContinuityCard index={index} label="Now" caption="What you're working on" text={stage.now} imgClass="lg:h-[600px]" className="lg:mt-[100px]" />
+          <ContinuityCard index={index} label="Next" caption="Where you can go" text={stage.next} imgClass="lg:h-[370px]" className="lg:-mr-[6vw] lg:mt-[20px]" />
         </div>
-        <div className="mt-16 flex justify-center gap-4 lg:mt-24">
+        <div className="mt-14 flex justify-center gap-4 lg:mt-20">
           <button
             type="button"
             aria-label="Previous stage"
@@ -1113,7 +1190,7 @@ function StudentContinuitySection() {
             <ChevronIcon direction="right" />
           </button>
         </div>
-        <p className="mt-20 px-6 text-center font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)]" style={{ color: COLORS.ink }}>
+        <p className="mt-14 px-6 text-center font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
           You keep your place.
         </p>
       </FadeReveal>
@@ -1122,44 +1199,52 @@ function StudentContinuitySection() {
 }
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
+const ACHIEVEMENT_IMAGE = [studentHero, studentachivenment, studentbuild];
+
+/* icon per achievement tab — reuses icons already imported in this file */
+const ACHIEVEMENT_META = [
+  { Icon: Eye },      /* Understand */
+  { Icon: Target },   /* Achieve */
+  { Icon: Layers3 },  /* Build */
+];
 
 const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, open, onToggle }) {
   return (
     <div>
-      {tabs.map((tab, i) => (
-        <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
-          <button type="button" aria-expanded={open === i} onClick={() => onToggle(i)} className="flex w-full items-start justify-between gap-6 text-left">
-            <h3 className="max-w-[460px] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-              {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
-            </h3>
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-              className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}
-              style={{ color: COLORS.grey }}
-            >
-              <path d="M6 15l6-6 6 6" />
-            </svg>
-          </button>
-          <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-            <div className="overflow-hidden">
-              <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>
-                {tab.copy}
-              </p>
+      {tabs.map((tab, i) => {
+        const Meta = ACHIEVEMENT_META[i] || ACHIEVEMENT_META[0];
+        const isOpen = open === i;
+        return (
+          <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
+            
+            <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start gap-7 text-left">
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-white transition-colors"
+                style={{ borderColor: isOpen ? COLORS.blue : `${COLORS.ink}26`, color: isOpen ? COLORS.blue : COLORS.grey }}
+              >
+                <Meta.Icon className="h-4 w-4" strokeWidth={1.8} />
+              </span>
+              <h3 className="max-w-[460px] flex-1 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+                {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
+              </h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: COLORS.grey }}>
+                <path d="M6 15l6-6 6 6" />
+              </svg>
+            </button>
+            <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className="overflow-hidden">
+                <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
+                  {tab.copy}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 });
 
-const ACHIEVEMENT_IMAGE = [studentHero, studentachivenment, studentbuild];
 
 function StudentAchievementSection() {
   const { ref, visible } = UseRevealOnce();
@@ -1175,27 +1260,24 @@ function StudentAchievementSection() {
   return (
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Your achievement
-        </p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          See what you can achieve with intelligence.
-        </h2>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
+        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>See what you can achieve with intelligence.</h2>
         <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Turn what you understand into stronger results, useful skills, meaningful work, and progress you can see.
         </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 lg:mt-32 lg:grid-cols-2 lg:gap-24 lg:px-0">
+
+        {/* Breath 2 — accordion + image, balanced columns */}
+        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 lg:mt-28 lg:grid-cols-2 lg:items-center lg:gap-24 lg:px-0">
           <AchievementAccordion tabs={ACHIEVEMENT_TABS} open={open} onToggle={toggle} />
-          <div className="relative">
-            <div key={active} className="hero-fade-up">
-              <img
-                src={ACHIEVEMENT_IMAGE[active]}
-                alt={`${ACHIEVEMENT_TABS[active].black} ${ACHIEVEMENT_TABS[active].blue}`}
-                loading="lazy"
-                decoding="async"
-                className="h-[320px] w-full object-cover lg:h-[780px]"
-              />
-            </div>
+          <div key={active} className="hero-fade-up overflow-hidden rounded-[48px]">
+            <img
+              src={ACHIEVEMENT_IMAGE[active]}
+              alt={`${ACHIEVEMENT_TABS[active].black} ${ACHIEVEMENT_TABS[active].blue}`}
+              loading="lazy"
+              decoding="async"
+              className="h-[320px] w-full rounded-[14px] object-contain sm:h-[440px] lg:h-[620px]"
+              style={{ objectPosition: "center center" }}
+            />
           </div>
         </div>
       </FadeReveal>
