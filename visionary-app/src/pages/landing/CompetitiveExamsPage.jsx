@@ -13,6 +13,15 @@ import teachermeet from "@/assets/teacher-hero-main.png"
 import parentmeet from "@/assets/parent-hero-main.png"
 import promeet from "@/assets/pro-face-main.png"
 import orgmeet from "@/assets/org-face-main.png"
+import imgStudentCompetitive from "@/assets/student-competitive.png"
+import imgStudentSecondary from "@/assets/student-secondary.png"
+import imgStudentPrimary from "@/assets/student-primary.png"
+import imgStudentHigher from "@/assets/student-higher.png"
+import imgProblemUnderstanding from "@/assets/problem-understanding.png"
+import imgProblemPractice from "@/assets/problem-practice.png"
+import imgTeacherFace from "@/assets/teacher-face-main.png"
+import imgParentFace from "@/assets/parent-face-main.png"
+import imgProfessionalFace from "@/assets/professional-face-main.png"
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
@@ -28,15 +37,15 @@ const COLORS = {
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 /* Observational photography — replace with real commissioned imagery before launch */
-const IMG_STORY = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-const IMG_APPROACH = "https://storage.googleapis.com/gweb-research2023-media/images/Gemini.width-800.png";
-const IMG_BENEFITS = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-const IMG_IMPACT_1 = "https://storage.googleapis.com/gweb-research2023-media/images/Gemini.width-800.png";
-const IMG_IMPACT_2 = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-const IMG_FUTURE = "https://storage.googleapis.com/gweb-research2023-media/images/Gemini.width-800.png";
-const IMG_SAFETY = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-const IMG_ACCESS = "https://storage.googleapis.com/gweb-research2023-media/images/Gemini.width-800.png";
-const IMG_WHY = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
+const IMG_STORY = imgStudentSecondary;
+const IMG_APPROACH = imgProblemUnderstanding;
+const IMG_BENEFITS = imgStudentPrimary;
+const IMG_IMPACT_1 = imgStudentCompetitive;
+const IMG_IMPACT_2 = imgTeacherFace;
+const IMG_FUTURE = imgStudentHigher;
+const IMG_SAFETY = imgParentFace;
+const IMG_ACCESS = imgProblemPractice;
+const IMG_WHY = imgStudentCompetitive;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -251,7 +260,7 @@ function AboutMissionSection() {
   const { ref, visible } = useRevealOnce();
   const { index: wordIndex } = useCycleIndex(MISSION_WORDS.length, 2400);
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="mission" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our mission</GreyTag>
         <h2 className="mx-auto mt-6 max-w-[1200px] text-center font-medium tracking-[0] leading-[1.15] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
@@ -792,13 +801,13 @@ function AboutCompanySection() {
     </section>
   );
 }
-const IMG_FOUNDER = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
+const IMG_FOUNDER = imgProfessionalFace;
 
 /* ═══ THE PEOPLE — founder with real bio ═══ */
 function AboutPeopleSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="team" className="relative scroll-mt-24 px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The people</GreyTag>
         <h2 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
@@ -910,7 +919,7 @@ function AboutCTASection() {
           Free to start. No account needed to ask your first question.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98]" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
           <Link to="/how-it-works" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
@@ -927,7 +936,7 @@ export default function CompetitiveExamsPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <main>
+      <main id="main">
         {/* <AboutSectionTabs /> */}
         <AboutMissionSection />
         <AboutWhySection />

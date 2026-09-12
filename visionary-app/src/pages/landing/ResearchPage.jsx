@@ -298,7 +298,7 @@ function DownloadCTASection() {
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98]"
+            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             Continue on web
@@ -334,8 +334,8 @@ export default function ResearchPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <main>
-      
+      <main id="main">
+
         <DownloadHeroSection />
         <DownloadPlatformsSection />
         <DownloadSyncSection />

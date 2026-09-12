@@ -13,6 +13,14 @@ import parentmeet from "@/assets/parent-hero-main.png"
 import promeet from "@/assets/pro-face-main.png"
 import orgmeet from "@/assets/org-face-main.png"
 import problemunderstanding from "@/assets/problem-understanding.png";
+import teacherSlide from "@/assets/teacher-hero-main.png";
+import parentSlide from "@/assets/parent-hero-main.png";
+import proSlide from "@/assets/pro-face-main.png";
+import cmAdapt from "@/assets/student-primary.png";
+import cmGrow from "@/assets/student-secondary.png";
+import cmCreate from "@/assets/student-vocational.png";
+import cmContinue from "@/assets/student-higher.png";
+import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 
 
@@ -126,7 +134,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect 
           aria-label={`Go to slide ${i + 1}`}
           aria-selected={i === active}
           onClick={() => onSelect(i)}
-          className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -142,9 +150,9 @@ function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
   );
 }
 
-function VoiceIcon({ className = "h-9 w-9" }) {
+function VoiceIcon({ className = "h-9 w-9", style }) {
   return (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>
       <path d="M25 7l-5 9 6 4-5 9 3 3-2 7" />
       <path d="M31 19c2.5 2.5 2.5 7.5 0 10" />
       <path d="M35.5 15.5c4.5 4.5 4.5 12 0 16.5" />
@@ -167,10 +175,10 @@ const HERO_WORDS = ["your classroom.", "their journey.", "your work.", "your peo
 const HERO_WORD_MS = 2800;
 
 const PROBLEM_SLIDES = [
-  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A Teacher", quote: "I taught the whole class. Half of them still left lost.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Teacher addressing a full classroom" },
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A Parent", quote: "The report card says fine. I still don't know how to help at home.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Parent reviewing a child's progress" },
+  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A Teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
+  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A Parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
   { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A Student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A Professional", quote: "I have all the articles. I still can't turn them into the work.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Professional applying knowledge at work" },
+  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A Professional", quote: "I have all the articles. I still can't turn them into the work.", image: proSlide, alt: "Professional applying knowledge at work" },
 ];
 const PROBLEM_MS = 4200;
 
@@ -212,19 +220,20 @@ const LG_QUESTIONS = [
 const LG_QUESTION_MS = 3200;
 
 const COMMITMENT_STEPS = [
-  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Child learning with a tablet outdoors" },
-  { title: "Grow", copy: "When you know more, you should be able to go further.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Student growing their skills" },
-  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Person building a real project" },
-  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png", alt: "Learner continuing their journey" },
+  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: cmAdapt, alt: "Child learning with a tablet outdoors" },
+  { title: "Grow", copy: "When you know more, you should be able to go further.", image: cmGrow, alt: "Student growing their skills" },
+  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: cmCreate, alt: "Person building a real project" },
+  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: cmContinue, alt: "Learner continuing their journey" },
 ];
 const CM_FILL_MS = 4000;
 
 const LX_TRUST_WORDS = ["information", "privacy", "progress."];
 const LX_TRUST_CARDS = [
-  { title: "Private by Design", copy: "Your personal information is treated with care.", alt: "Person working privately on a laptop" },
-  { title: "Safe to grow with", copy: "Built from the first question to what's next.", alt: "Shield protecting a learner's journey" },
-  { title: "Built responsibly.", copy: "Intelligence should help people without compromising matters to them.", alt: "Responsibly built intelligence illustration" },
+  { title: "Private by Design", copy: "Your personal information is treated with care.", alt: "Person working privately on a laptop", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
+  { title: "Safe to grow with", copy: "Built from the first question to what's next.", alt: "Shield protecting a learner's journey", Icon: HeartHandshake, to: "/security", link: "See security practices" },
+  { title: "Built responsibly.", copy: "Intelligence should help people without compromising matters to them.", alt: "Responsibly built intelligence illustration", Icon: Scale, to: "/terms", link: "Terms & commitments" },
 ];
+const LX_TRUST_IMG = [cmContinue, teacherSlide, parentSlide];
 const LX_EXPLORE_CATEGORIES = [
   { slug: "student", chip: "Student", copy: "Know how Visionary fits into your learning.", alt: "Student learning with a laptop" },
   { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
@@ -232,7 +241,6 @@ const LX_EXPLORE_CATEGORIES = [
   { slug: "professional", chip: "Professional", copy: "Know how Visionary fits into the work you do.", alt: "Professional discussing work with a tablet" },
   { slug: "organization", chip: "Organization", copy: "Know how Visionary fits across your organization.", alt: "Leader talking at an organization table" },
 ];
-const LX_IMG = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
 
 const FAQ_ITEMS = [
   { q: "What is Visionary?", a: "Visionary is an all-in-one learning platform that offers visual explanations, AI mentor support, practice tools, and no-code project creation for students, teachers, parents, professionals, and institutions." },
@@ -285,7 +293,7 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   const activePerson = LANDING_HERO_PEOPLE[index];
 
   // Same display treatment as category pages for consistency
-  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[#121317] text-[clamp(40px,9.57vw,168px)]";
+  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[#121317] text-[clamp(34px,9.57vw,168px)] sm:text-[clamp(40px,9.57vw,168px)]";
 
   return (
     <section
@@ -701,7 +709,7 @@ const MeetCopy = React.memo(function MeetCopy({ section }) {
     <div className="max-w-[460px]">
       <MeetHeading section={section} index={index} />
       <p className="mt-8 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
-      <Link to={section.to} className="mt-10 inline-flex h-10 items-center justify-center rounded-full border border-[#dadce0] px-6 text-[14px] font-normal tracking-[0.24px] text-[#4285F4] transition-colors hover:border-[#4285F4] hover:bg-[#4285F4] hover:font-medium hover:text-white">
+      <Link to={section.to} className="mt-10 inline-flex h-10 items-center justify-center rounded-full border border-[#dadce0] px-6 text-[14px] font-normal tracking-[0.24px] text-[#4285F4] transition-colors hover:border-[#4285F4] hover:bg-[#4285F4] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
         {section.link}
       </Link>
     </div>
@@ -905,23 +913,30 @@ function LandingLanguageSection() {
   const question = LG_QUESTIONS[qIndex][lang];
   return (
     <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
         <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
         <p className="mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Learning, teaching, asking, practicing, and building feel different when they happen in the language that comes naturally to you. Visionary understands what you mean — not just the words you use.
         </p>
-        <div className="mx-auto mt-24 max-w-[760px] lg:mt-32">
-          <p className="text-left font-normal tracking-[0] leading-[16px] text-[12px]" style={{ color: COLORS.lightGrey }}>Listening........</p>
-          <p className="mt-4 text-center font-normal tracking-[0] leading-[1.15] text-[clamp(30px,3.75vw,54px)]" style={{ color: COLORS.blue }}>
+        <div className="mt-14 lg:mt-20"><LGLanguageChips active={lang} onSelect={setLang} /></div>
+        <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
+          <div className="flex items-end justify-center gap-2" aria-hidden="true">
+            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
+              <span key={c} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+            ))}
+          </div>
+          <p aria-live="polite" className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
             <span key={`${lang}-${qIndex}`} className="hero-fade-up inline">{question}</span>
           </p>
+          <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+            Listening in {LG_CHIPS.find((c) => c.code === lang)?.label || lang} · understood in every language
+          </p>
         </div>
-        <div className="mt-14 flex justify-center" style={{ color: COLORS.ink }}><VoiceIcon /></div>
-        <div className="mt-16"><LGLanguageChips active={lang} onSelect={setLang} /></div>
-        <div className="mt-16 flex justify-center">
-          <div className="flex items-center gap-5 rounded-[70px] px-10 py-6" style={{ backgroundColor: `${COLORS.ink}05` }}>
-            <VoiceIcon className="h-8 w-8 shrink-0" />
+        <div className="mt-14 flex justify-center lg:mt-20">
+          <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
+            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
             <div>
               <p className="font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>Speak your way</p>
               <p className="mt-1 font-normal tracking-[0] leading-[19px] text-[13px]" style={{ color: COLORS.slate }}>Use voice or text in the way you're comfortable.</p>
@@ -934,11 +949,23 @@ function LandingLanguageSection() {
 }
 
 /* 08 · TRUST */
-const LXTrustCard = React.memo(function LXTrustCard({ card }) {
+const LXTrustCard = React.memo(function LXTrustCard({ card, cardIndex }) {
+  const img = LX_TRUST_IMG[cardIndex % LX_TRUST_IMG.length];
   return (
-    <div className="relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A`, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
-      <img src={LX_IMG} alt={card.alt} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
-      <p className="absolute left-8 top-8 max-w-[220px] font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
+    <div className="elevation-1 relative w-full max-w-[780px] overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
+      <img src={img} alt={card.alt} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
+      <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
+        <div className="rounded-[20px] bg-white/95 p-5">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
+            <card.Icon className="h-5 w-5" strokeWidth={1.8} />
+          </span>
+          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
+          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+            {card.link}
+            <ChevronIcon className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 });
@@ -994,9 +1021,9 @@ function LandingTrustSection() {
               <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="right" /></button>
             </div>
           </div>
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-10 lg:pr-[6%]">
-            <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px] shrink-0"><LXTrustCard card={activeCard} /></div>
-            <div key={`b-${cardIndex}`} className="hero-fade-up w-full max-w-[780px] shrink-0 [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={nextCard} /></div>
+          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10 lg:pr-[6%]">
+            <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px]"><LXTrustCard card={activeCard} cardIndex={cardIndex} /></div>
+            <div key={`b-${cardIndex}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={nextCard} cardIndex={(cardIndex + 1) % LX_TRUST_CARDS.length} /></div>
           </div>
         </div>
       </FadeReveal>
@@ -1016,7 +1043,7 @@ function LandingCTASection() {
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
         </p>
         <div className="mt-12 flex justify-center">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98]" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
         </div>
@@ -1028,7 +1055,7 @@ function LandingCTASection() {
 /* 10 · EXPLORE */
 const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
   return (
-    <Link to={`/${category.slug}`} data-card className="block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white" style={{ borderColor: `${COLORS.ink}1A`, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
+    <Link to={`/${category.slug}`} data-card className="elevation-1 block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
       <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>{category.chip}</p>
@@ -1113,7 +1140,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <main>
+      <main id="main">
         <LandingHeroSection />
         <LandingProblemSection />
         <LandingPromiseSection />

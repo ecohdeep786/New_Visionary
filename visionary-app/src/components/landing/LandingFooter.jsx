@@ -16,10 +16,8 @@ const FOOTER_SECTIONS = [
       { label: "Our mission", to: "/about#mission" },
       { label: "Team", to: "/about#team" },
       { label: "Careers", to: "/careers" },
-      { label: "Press", to: "/press" },
       { label: "Research", to: "/research" },
-      { label: "Stories", to: "/stories" },
-      { label: "Brand resources", to: "/brand" },
+      { label: "Community", to: "/community" },
     ],
   },
   {
@@ -38,9 +36,9 @@ const FOOTER_SECTIONS = [
     title: "Support",
     links: [
       { label: "Help Center", to: "/help" },
-      { label: "Documentation", to: "/docs" },
-      { label: "Status", to: "/status" },
-      { label: "Contact", to: "/contact" },
+      { label: "Contact & Sales", to: "/contact" },
+      { label: "Find a Partner", to: "/partners" },
+      { label: "Sign up for updates", to: "/updates" },
     ],
   },
   {
@@ -67,7 +65,7 @@ const LEGAL_LINKS = [
   { label: "Privacy policy", to: "/privacy" },
   { label: "Terms of service", to: "/terms" },
   { label: "Cookie policy", to: "/cookies" },
-  { label: "Sitemap" },
+  { label: "Accessibility", to: "/accessibility" },
 ];
 
 export default function LandingFooter({ variant = "brand" }) {

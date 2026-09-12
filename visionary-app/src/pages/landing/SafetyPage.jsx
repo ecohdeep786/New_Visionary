@@ -9,7 +9,7 @@ export default function SafetyPage() {
       intro="Every answer, every interaction is built to protect the person learning — especially the youngest. Safeguards are on from the first question."
       sections={[
         {
-          id: "pillars",
+          id: "security",
           eyebrow: "How we protect you",
           heading: "Protection is the default,",
           headingAccent: "not a setting.",
@@ -21,7 +21,7 @@ export default function SafetyPage() {
           ],
         },
         {
-          id: "tools",
+          id: "accessibility",
           bg: "surface",
           eyebrow: "Safety tools",
           heading: "Built into every",
