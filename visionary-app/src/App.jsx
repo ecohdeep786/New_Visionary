@@ -7,6 +7,7 @@ import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
 import { AuthProvider } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
+import OnboardingGate from '@/components/OnboardingGate'
 
 class AppErrorBoundary extends React.Component {
   state = { error: null, errorInfo: null }
@@ -89,7 +90,9 @@ const Practice = lazy(() => import('@/pages/dashboard/Practice'))
 const Build = lazy(() => import('@/pages/dashboard/Build'))
 const Subscription = lazy(() => import('@/pages/dashboard/Subscription'))
 const Profile = lazy(() => import('@/pages/dashboard/Profile'))
+const Settings = lazy(() => import('@/pages/dashboard/Settings'))
 const ClassDetail = lazy(() => import('@/pages/dashboard/ClassDetail'))
+const RoleWorkspace = lazy(() => import('@/pages/dashboard/RoleWorkspace'))
 const StudentPage = lazy(() => import('@/pages/landing/StudentPage'))
 const TeacherPage = lazy(() => import('@/pages/landing/TeacherPage'))
 const ParentPage = lazy(() => import('@/pages/landing/ParentPage'))
@@ -129,7 +132,6 @@ const PublicApp = () => (
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/forgot-user-id" element={<ForgotUserId />} />
     <Route path="/reset-password" element={<ResetPassword />} />
-    <Route path="/onboarding" element={<Onboarding />} />
     <Route path="/student" element={<StudentPage />} />
     <Route path="/teacher" element={<TeacherPage />} />
     <Route path="/parent" element={<ParentPage />} />
@@ -155,18 +157,27 @@ const PublicApp = () => (
     <Route path="/accessibility" element={<AccessibilityPage />} />
     <Route path="/cookies" element={<CookiesPage />} />
     <Route element={<ProtectedRoute unauthenticatedElement={<Login />} />}>
-      <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route index element={<DashboardHome />} />
-        <Route path="home" element={<DashboardHome />} />
-        <Route path="classes" element={<StudentClasses />} />
-        <Route path="learn" element={<Learn />} />
-        <Route path="learn/:topicId" element={<TopicDetail />} />
-        <Route path="ask" element={<Ask />} />
-        <Route path="practice" element={<Practice />} />
-        <Route path="build" element={<Build />} />
-        <Route path="subscription" element={<Subscription />} />
-        <Route path="class/:classId" element={<ClassDetail />} />
-        <Route path="profile" element={<Profile />} />
+      <Route path="/onboarding" element={<Onboarding />} />
+      <Route element={<OnboardingGate />}>
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardHome />} />
+          <Route path="home" element={<DashboardHome />} />
+          <Route path="classes" element={<StudentClasses />} />
+          <Route path="learn" element={<Learn />} />
+          <Route path="learn/:topicId" element={<TopicDetail />} />
+          <Route path="ask" element={<Ask />} />
+          <Route path="practice" element={<Practice />} />
+          <Route path="build" element={<Build />} />
+          <Route path="subscription" element={<Subscription />} />
+          <Route path="class/:classId" element={<ClassDetail />} />
+          <Route path="child" element={<RoleWorkspace area="child" />} />
+          <Route path="people" element={<RoleWorkspace area="people" />} />
+          <Route path="curriculum" element={<RoleWorkspace area="curriculum" />} />
+          <Route path="analytics" element={<RoleWorkspace area="analytics" />} />
+          <Route path="insights" element={<RoleWorkspace area="insights" />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
       </Route>
     </Route>
     <Route path="*" element={<PageNotFound />} />

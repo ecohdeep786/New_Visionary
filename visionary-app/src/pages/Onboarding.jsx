@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
+import { initializeLearningWorkspace } from "@/lib/learningProfile";
 import OnboardingLayout from "@/components/onboarding/OnboardingLayout";
 import ChoiceGrid from "@/components/onboarding/ChoiceGrid";
 import ChipMultiSelect from "@/components/onboarding/ChipMultiSelect";
@@ -18,11 +19,12 @@ import {
 } from "@/components/onboarding/stepConfigs";
 
 export default function Onboarding() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [phase, setPhase] = useState("identity");
   const [data, setData] = useState({});
   const [currentStepId, setCurrentStepId] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
 
   const updateData = (field, value) => setData((prev) => ({ ...prev, [field]: value }));
 
@@ -62,6 +64,7 @@ export default function Onboarding() {
   }, [currentStep, data]);
 
   const handleIdentitySelect = (identity) => {
+    setSubmissionError("");
     setData((prev) => ({ ...prev, identity }));
     setPhase("flow");
     setCurrentStepId(null);
@@ -95,14 +98,17 @@ export default function Onboarding() {
 
   const handleComplete = async () => {
     setSubmitting(true);
+    setSubmissionError("");
     try {
-      await base44.auth.updateMe({
+      const updatedUser = await updateUser({
         ...data,
         onboarding_complete: true,
         full_name: data.full_name || user?.full_name || user?.email?.split("@")[0],
       });
+      await initializeLearningWorkspace(base44, updatedUser, data);
       setPhase("agi-intro");
-    } catch (err) {
+    } catch {
+      setSubmissionError("We couldn’t finish setting up your workspace. Please try again.");
       setSubmitting(false);
     }
   };
@@ -181,6 +187,7 @@ export default function Onboarding() {
       isSubmitting={submitting}
       continueLabel={currentStep.continueLabel}
     >
+      {submissionError && <p className="mb-4 rounded-lg bg-[#fce8e6] px-4 py-3 text-sm text-[#b3261e]" role="alert">{submissionError}</p>}
       {renderContent()}
     </OnboardingLayout>
   );

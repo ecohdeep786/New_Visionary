@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList } from "lucide-react";
+import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, X } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
@@ -25,6 +25,10 @@ export default function StudentClasses() {
   const [openClassId, setOpenClassId] = useState(null);
   const [drafts, setDrafts] = useState({});
   const [busy, setBusy] = useState(false);
+  const [showJoin, setShowJoin] = useState(false);
+  const [joinCode, setJoinCode] = useState("");
+  const [joinStatus, setJoinStatus] = useState("");
+  const [joining, setJoining] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -73,14 +77,55 @@ export default function StudentClasses() {
     setBusy(false);
   };
 
+  const joinClass = async (event) => {
+    event.preventDefault();
+    const normalizedCode = joinCode.trim().toUpperCase();
+    if (!normalizedCode || joining || !email) return;
+    setJoining(true);
+    setJoinStatus("");
+    try {
+      const allClasses = await base44.entities.Classroom.list();
+      const classroom = (allClasses || []).find((item) => item.join_code?.toUpperCase() === normalizedCode);
+      if (!classroom) {
+        setJoinStatus("We couldn’t find a class with that code. Check the code with your teacher and try again.");
+        return;
+      }
+      const existing = await base44.entities.Enrollment.filter({ student_email: email, class_id: classroom.id });
+      if (existing.length === 0) {
+        await base44.entities.Enrollment.create({
+          class_id: classroom.id,
+          student_email: email,
+          student_name: studentName,
+          status: "active",
+        });
+        await base44.entities.Classroom.update(classroom.id, { student_count: (classroom.student_count || 0) + 1 });
+      }
+      const classAssignments = await base44.entities.Assignment.filter({ class_id: classroom.id });
+      setClasses((current) => current.some((item) => item.id === classroom.id) ? current : [...current, classroom]);
+      setAssignments((current) => [...current, ...(classAssignments || []).filter((item) => !current.some((existingAssignment) => existingAssignment.id === item.id))]);
+      setShowJoin(false);
+      setJoinCode("");
+      setOpenClassId(classroom.id);
+    } catch {
+      setJoinStatus("We couldn’t join this class right now. Please try again.");
+    } finally {
+      setJoining(false);
+    }
+  };
+
   const openClass = classes.find((c) => c.id === openClassId);
   const classAssignments = (assignments || []).filter((a) => a.class_id === openClassId).sort((x, y) => (y.created_date || "").localeCompare(x.created_date || ""));
 
   return (
     <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
-      <div>
-        <h1 className="text-[28px] font-medium text-[#202124] tracking-tight">Your classes</h1>
-        <p className="text-sm text-[#5f6368] mt-1">Work your teachers have assigned you, all in one place</p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-[28px] font-medium text-[#202124] tracking-tight">Your classes</h1>
+          <p className="text-sm text-[#5f6368] mt-1">Assignments, feedback, and class updates in one place</p>
+        </div>
+        <button onClick={() => { setJoinStatus(""); setShowJoin(true); }} className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-full border border-[#dadce0] bg-white px-5 text-sm font-medium text-[#1a73e8] transition-colors hover:bg-[#f8fafd] sm:self-auto">
+          <Link2 className="h-4 w-4" /> Join class
+        </button>
       </div>
 
       {loading ? (
@@ -95,9 +140,10 @@ export default function StudentClasses() {
           <div>
             <h3 className="text-[18px] font-medium text-[#202124] mb-2">No classes yet</h3>
             <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed">
-              When a teacher invites you to a class, it'll show up here. Ask your teacher for an invite using {email}.
+              Join with a class code from your teacher. When you connect, assignments and feedback will appear here.
             </p>
           </div>
+          <button onClick={() => { setJoinStatus(""); setShowJoin(true); }} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white" style={{ backgroundColor: accent }}><KeyRound className="h-4 w-4" /> Join with a code</button>
         </div>
       ) : openClass ? (
         <div className="flex flex-col gap-6">
@@ -222,6 +268,16 @@ export default function StudentClasses() {
               </button>
             );
           })}
+        </div>
+      )}
+      {showJoin && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4" onClick={() => !joining && setShowJoin(false)}>
+          <form onSubmit={joinClass} onClick={(event) => event.stopPropagation()} className="w-full max-w-md rounded-3xl bg-white p-7 shadow-xl">
+            <div className="flex items-start justify-between gap-5"><div><div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: `${accent}15` }}><KeyRound className="h-5 w-5" style={{ color: accent }} /></div><h2 className="mt-4 text-xl font-medium text-[#202124]">Join a class</h2><p className="mt-2 text-sm leading-relaxed text-[#5f6368]">Ask your teacher for their class code, then enter it below.</p></div><button type="button" onClick={() => setShowJoin(false)} className="flex h-9 w-9 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#f1f3f4]" aria-label="Close join class dialog"><X className="h-5 w-5" /></button></div>
+            <label className="mt-6 block text-sm font-medium text-[#202124]">Class code<input value={joinCode} onChange={(event) => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#747775] px-3 font-mono text-sm tracking-wide outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]" /></label>
+            {joinStatus && <p className="mt-3 text-sm text-[#b3261e]" role="alert">{joinStatus}</p>}
+            <div className="mt-7 flex justify-end gap-3"><button type="button" onClick={() => setShowJoin(false)} className="h-10 rounded-full px-4 text-sm font-medium text-[#1a73e8] hover:bg-[#f8fafd]">Cancel</button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{ backgroundColor: accent }}><Link2 className="h-4 w-4" />{joining ? "Joining" : "Join class"}</button></div>
+          </form>
         </div>
       )}
     </div>

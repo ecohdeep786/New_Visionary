@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import LanguageSelector from "@/components/auth/LanguageSelector";
 
@@ -73,9 +74,9 @@ export default function AuthLayout({
       <div className="shrink-0 w-full max-w-[960px] mx-auto flex items-center justify-between px-4 py-2">
         <LanguageSelector />
         <div className="flex items-center gap-6 text-sm text-[#5f6368]">
-          <button className="hover:text-[#202124] transition-colors">Help</button>
-          <button className="hover:text-[#202124] transition-colors">Privacy</button>
-          <button className="hover:text-[#202124] transition-colors">Terms</button>
+          <Link to="/contact" className="hover:text-[#202124] transition-colors">Help</Link>
+          <Link to="/privacy" className="hover:text-[#202124] transition-colors">Privacy</Link>
+          <Link to="/terms" className="hover:text-[#202124] transition-colors">Terms</Link>
         </div>
       </div>
     </div>

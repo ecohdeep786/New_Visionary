@@ -42,7 +42,13 @@ export default function TeacherHome() {
 
   const handleCreate = async (data) => {
     try {
-      const created = await base44.entities.Classroom.create(data);
+      const codeSuffix = crypto.randomUUID().replaceAll("-", "").slice(0, 4).toUpperCase();
+      const created = await base44.entities.Classroom.create({
+        ...data,
+        teacher_email: user?.email,
+        teacher_name: userName,
+        join_code: `VISION-${codeSuffix}`,
+      });
       setClasses((prev) => [created, ...prev]);
       setShowCreate(false);
     } catch {}

@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import PersonaHero from "@/components/landing/NewPersona";
 import studentmeet from "@/assets/student-hero-main.png"
 import teachermeet from "@/assets/teacher-hero-main.png"
 import parentmeet from "@/assets/parent-hero-main.png"

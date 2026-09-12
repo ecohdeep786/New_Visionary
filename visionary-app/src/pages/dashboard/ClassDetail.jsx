@@ -65,12 +65,15 @@ export default function ClassDetail() {
       </nav>
 
       <div className="rounded-3xl overflow-hidden">
-        <div className="p-8 lg:p-10" style={{ backgroundColor: color }}>
-          <h1 className="text-[28px] lg:text-[32px] font-medium text-white tracking-tight leading-tight">
-            {classroom.name}
-          </h1>
-          {classroom.section && <p className="text-white/85 text-base mt-1">{classroom.section}</p>}
-          {classroom.room && <p className="text-white/70 text-sm mt-1">Room {classroom.room}</p>}
+        <div className="flex items-start justify-between gap-6 p-8 lg:p-10" style={{ backgroundColor: color }}>
+          <div>
+            <h1 className="text-[28px] lg:text-[32px] font-medium text-white tracking-tight leading-tight">
+              {classroom.name}
+            </h1>
+            {classroom.section && <p className="text-white/85 text-base mt-1">{classroom.section}</p>}
+            {classroom.room && <p className="text-white/70 text-sm mt-1">Room {classroom.room}</p>}
+          </div>
+          {classroom.join_code && <div className="rounded-xl border border-white/30 bg-white/10 px-4 py-3 text-right"><p className="text-[11px] font-medium uppercase tracking-wide text-white/70">Class code</p><p className="mt-1 font-mono text-sm font-medium tracking-wide text-white">{classroom.join_code}</p></div>}
         </div>
       </div>
 

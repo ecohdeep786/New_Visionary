@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { Sparkles, Send, Lightbulb, GraduationCap, BookOpen, Brain, ArrowRight, HelpCircle } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useStudentData, buildStudentContext } from "@/hooks/useStudentData";
@@ -12,13 +12,14 @@ export default function Ask() {
   const { user } = useAuth();
   const themeColor = useThemeColor();
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const contextSubject = searchParams.get("subject");
   const contextTopic = searchParams.get("topic");
 
   const userName = user?.full_name?.split(" ")[0] || user?.email?.split("@")[0] || "Learner";
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(() => location.state?.initialQuestion || "");
   const [loading, setLoading] = useState(false);
   const [savedQuestions, setSavedQuestions] = useState([]);
   const messagesEndRef = useRef(null);

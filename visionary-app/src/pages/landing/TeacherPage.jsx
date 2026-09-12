@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain, TrendingUp, Award, Zap } from "lucide-react";
+import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -55,7 +55,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   chipBg: "#D2E3FC",
-  mist: "#dadce0",
   white: "#ffffff",
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
+import { useAuth } from "@/lib/AuthContext";
 
 export function useStudentData() {
+  const { user } = useAuth();
   const [data, setData] = useState({
     subjects: [],
     topics: [],
@@ -19,9 +21,29 @@ export function useStudentData() {
   });
 
   useEffect(() => {
+    if (user?.identity && user.identity !== "student") {
+      setData((prev) => ({
+        ...prev,
+        subjects: [],
+        topics: [],
+        exams: [],
+        studyLogs: [],
+        laggingTopics: [],
+        todayPlan: [],
+        activeTopics: [],
+        resumeTopic: null,
+        upNext: null,
+        upNextList: [],
+        dailyStats: { topicsToday: 0, minutesToday: 0, avgConfidenceToday: 0, streak: 0 },
+        loading: false,
+        error: null,
+      }));
+      return;
+    }
+
     const loadData = async () => {
       try {
-        const [subjects, topics, exams, studyLogs, submissions, allAssignments] = await Promise.all([
+        const [allSubjects, allTopics, allExams, allStudyLogs, allSubmissions, allAssignments] = await Promise.all([
           base44.entities.Subject.list(),
           base44.entities.Topic.list(),
           base44.entities.Exam.list("days_left"),
@@ -30,23 +52,28 @@ export function useStudentData() {
           base44.entities.Assignment.list().catch(() => []),
         ]);
 
-        const topicList = topics || [];
-        const examList = exams || [];
-        const logList = studyLogs || [];
-        const submissionList = submissions || [];
+        // Records created by onboarding are owner-scoped. Legacy development
+        // records remain visible until the backend migration assigns ownership.
+        const belongsToCurrentUser = (record) => !record.owner_email || record.owner_email === user?.email;
+        const subjects = (allSubjects || []).filter(belongsToCurrentUser);
+        const topicList = (allTopics || []).filter(belongsToCurrentUser);
+        const examList = (allExams || []).filter(belongsToCurrentUser);
+        const logList = (allStudyLogs || []).filter(belongsToCurrentUser);
+        const submissionList = (allSubmissions || []).filter(belongsToCurrentUser);
 
         // Daily check-in — create a StudyLog for today if none exists, so streak increments on each daily visit
         const todayStr = new Date().toISOString().split("T")[0];
         if (!logList.some((l) => l.date === todayStr && !l.submission_id)) {
           try {
             await base44.entities.StudyLog.create({
+              owner_email: user?.email,
               date: todayStr,
               subject: "Daily",
               topic: "Dashboard check-in",
               duration_minutes: 0,
               confidence: 0,
             });
-            logList.unshift({ date: todayStr, subject: "Daily", topic: "Dashboard check-in", duration_minutes: 0, confidence: 0 });
+            logList.unshift({ owner_email: user?.email, date: todayStr, subject: "Daily", topic: "Dashboard check-in", duration_minutes: 0, confidence: 0 });
           } catch {}
         }
 
@@ -65,7 +92,7 @@ export function useStudentData() {
             const topicLabel = concepts[0] || (a && a.title) || "Classwork";
             const subject = (a && a.subject) || "Classwork";
             const grade = s.grade || 0;
-            newLogs.push({ date: todayStr, subject, topic: topicLabel, duration_minutes: 0, confidence: grade, submission_id: s.id });
+            newLogs.push({ owner_email: user?.email, date: todayStr, subject, topic: topicLabel, duration_minutes: 0, confidence: grade, submission_id: s.id });
             for (const c of concepts) {
               const t = topicList.find((x) => x.name === c && (!x.subject || x.subject === subject));
               if (t) {
@@ -166,7 +193,7 @@ export function useStudentData() {
       }
     };
     loadData();
-  }, []);
+  }, [user?.email]);
 
   return data;
 }

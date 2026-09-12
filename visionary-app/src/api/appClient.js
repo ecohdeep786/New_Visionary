@@ -339,6 +339,12 @@ const entityStore = new Proxy({}, {
       writeJson(`visionary_entity_${entityName}`, [...records, created]);
       return created;
     },
+    async bulkCreate(newRecords) {
+      const records = readJson(`visionary_entity_${entityName}`, []);
+      const created = newRecords.map((record) => ({ id: crypto.randomUUID(), createdAt: Date.now(), ...record }));
+      writeJson(`visionary_entity_${entityName}`, [...records, ...created]);
+      return created;
+    },
     async update(id, updates) {
       const records = readJson(`visionary_entity_${entityName}`, []);
       const updated = records.map((record) => (record.id === id ? { ...record, ...updates } : record));

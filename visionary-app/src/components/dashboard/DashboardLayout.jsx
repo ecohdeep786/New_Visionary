@@ -15,15 +15,17 @@ export default function DashboardLayout() {
 
   return (
     <ThemeColorProvider>
-      <div className="flex flex-col h-screen bg-[#f8f9fa] overflow-hidden">
+      <div className="flex flex-col h-screen bg-[#f8fafd] overflow-hidden">
         <DashboardTopbar
           userName={userName}
           onToggleSidebar={() => setSidebarExpanded((prev) => !prev)}
         />
         <div className="flex-1 flex min-w-0 overflow-hidden">
           <DashboardSidebar expanded={sidebarExpanded} />
-          <main className="flex-1 overflow-y-auto bg-[#f8f9fa]">
-            <Outlet />
+          <main id="main" className="flex-1 overflow-y-auto bg-[#f8fafd] p-2 sm:p-3 lg:p-4">
+            <div className="min-h-full rounded-[20px] border border-[#e1e3e1] bg-white shadow-[0_1px_2px_rgba(60,64,67,0.08)]">
+              <Outlet />
+            </div>
           </main>
         </div>
         {showFloatingAsk && <FloatingAskButton />}
