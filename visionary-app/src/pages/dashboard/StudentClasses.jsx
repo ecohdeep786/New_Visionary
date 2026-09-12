@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
-import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, X } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
+import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 /**
  * Student-facing Classes page — the other half of the teacher–student connection.
@@ -29,41 +31,59 @@ export default function StudentClasses() {
   const [joinCode, setJoinCode] = useState("");
   const [joinStatus, setJoinStatus] = useState("");
   const [joining, setJoining] = useState(false);
+  const [announcements, setAnnouncements] = useState([]);
+  const [error, setError] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [classTab, setClassTab] = useState("classwork");
 
   useEffect(() => {
-    (async () => {
+    if (searchParams.get("join") === "1") setShowJoin(true);
+  }, [searchParams]);
+
+  const load = useCallback(async () => {
       if (!email) {
         setLoading(false);
         return;
       }
+      setError("");
       try {
-        const [enr, allClasses, allAssignments, mySubs] = await Promise.all([
+        const [enr, allClasses, allAssignments, mySubs, allAnnouncements] = await Promise.all([
           base44.entities.Enrollment.filter({ student_email: email }),
           base44.entities.Classroom.list(),
           base44.entities.Assignment.list(),
-          base44.entities.Submission.list(),
+          base44.entities.Submission.filter({ student_email: email }),
+          base44.entities.Announcement.list(),
         ]);
         const classIds = new Set((enr || []).map((e) => e.class_id));
         setEnrollments(enr || []);
         setClasses((allClasses || []).filter((c) => classIds.has(c.id)));
         setAssignments((allAssignments || []).filter((a) => classIds.has(a.class_id)));
         setSubmissions(mySubs || []);
-      } catch {}
+        setAnnouncements((allAnnouncements || []).filter((a) => classIds.has(a.class_id)).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
+      } catch { setError("We couldn’t load your classes. Please try again."); }
       setLoading(false);
-    })();
   }, [email]);
+  useEffect(() => {
+    load();
+    window.addEventListener("visionary:workspace-change", load);
+    return () => window.removeEventListener("visionary:workspace-change", load);
+  }, [load]);
 
   const mySubFor = (assignmentId) => (submissions || []).find((s) => s.assignment_id === assignmentId);
 
   const submit = async (a) => {
     const text = (drafts[a.id] || "").trim();
-    if (!text) return;
+    if (!text || busy) return;
     setBusy(true);
+    setError("");
     try {
+      const previous = await base44.entities.Submission.filter({ assignment_id: a.id, student_email: email });
+      if (previous.length) { await load(); return; }
       const created = await base44.entities.Submission.create({
         assignment_id: a.id,
         class_id: a.class_id,
-        teacher_id: a.created_by_id,
+        teacher_id: a.teacher_id || a.created_by_id,
+        teacher_email: a.teacher_email,
         student_id: user.id,
         student_name: studentName,
         student_email: email,
@@ -73,8 +93,38 @@ export default function StudentClasses() {
       });
       setSubmissions((p) => [created, ...p]);
       setDrafts((p) => ({ ...p, [a.id]: "" }));
-    } catch {}
-    setBusy(false);
+      window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
+    } catch { setError("Your response wasn’t submitted. Your draft is still here; please try again."); }
+    finally { setBusy(false); }
+  };
+
+  const closeJoin = () => {
+    if (joining) return;
+    setShowJoin(false);
+    if (searchParams.has("join")) { const next = new URLSearchParams(searchParams); next.delete("join"); setSearchParams(next, { replace: true }); }
+  };
+
+  const connectClass = async (classroom) => {
+    const existing = await base44.entities.Enrollment.filter({ student_email: email, class_id: classroom.id });
+    const active = existing.find((e) => e.status === "active");
+    if (!active) {
+      const details = { student_name: studentName, student_id: user.id, status: "active" };
+      if (existing.length) await base44.entities.Enrollment.update(existing[0].id, details);
+      else await base44.entities.Enrollment.create({ class_id: classroom.id, student_email: email, ...details });
+      const enrolled = await base44.entities.Enrollment.filter({ class_id: classroom.id });
+      await base44.entities.Classroom.update(classroom.id, { student_count: new Set(enrolled.filter((e) => e.status === "active").map((e) => e.student_email)).size });
+    }
+    await load();
+    setOpenClassId(classroom.id);
+    window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
+  };
+
+  const acceptInvitation = async (classroom) => {
+    if (joining) return;
+    setJoining(true);
+    try { await connectClass(classroom); }
+    catch { setError("We couldn’t accept this invitation. Please try again."); }
+    finally { setJoining(false); }
   };
 
   const joinClass = async (event) => {
@@ -90,20 +140,9 @@ export default function StudentClasses() {
         setJoinStatus("We couldn’t find a class with that code. Check the code with your teacher and try again.");
         return;
       }
-      const existing = await base44.entities.Enrollment.filter({ student_email: email, class_id: classroom.id });
-      if (existing.length === 0) {
-        await base44.entities.Enrollment.create({
-          class_id: classroom.id,
-          student_email: email,
-          student_name: studentName,
-          status: "active",
-        });
-        await base44.entities.Classroom.update(classroom.id, { student_count: (classroom.student_count || 0) + 1 });
-      }
-      const classAssignments = await base44.entities.Assignment.filter({ class_id: classroom.id });
-      setClasses((current) => current.some((item) => item.id === classroom.id) ? current : [...current, classroom]);
-      setAssignments((current) => [...current, ...(classAssignments || []).filter((item) => !current.some((existingAssignment) => existingAssignment.id === item.id))]);
+      await connectClass(classroom);
       setShowJoin(false);
+      if (searchParams.has("join")) { const next = new URLSearchParams(searchParams); next.delete("join"); setSearchParams(next, { replace: true }); }
       setJoinCode("");
       setOpenClassId(classroom.id);
     } catch {
@@ -114,6 +153,9 @@ export default function StudentClasses() {
   };
 
   const openClass = classes.find((c) => c.id === openClassId);
+  const activeClassIds = new Set(enrollments.filter((e) => e.status === "active").map((e) => e.class_id));
+  const connectedClasses = classes.filter((c) => activeClassIds.has(c.id));
+  const invitations = classes.filter((c) => !activeClassIds.has(c.id) && enrollments.some((e) => e.class_id === c.id && e.status === "invited"));
   const classAssignments = (assignments || []).filter((a) => a.class_id === openClassId).sort((x, y) => (y.created_date || "").localeCompare(x.created_date || ""));
 
   return (
@@ -128,11 +170,14 @@ export default function StudentClasses() {
         </button>
       </div>
 
+      {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error} <button onClick={load} className="ml-2 font-medium underline">Retry</button></p>}
+      {invitations.length > 0 && <section aria-label="Class invitations" className="rounded-2xl border border-[#d3e3fd] bg-[#f8fafd] p-5"><h2 className="font-medium text-[#202124]">Class invitations</h2><div className="mt-3 space-y-3">{invitations.map((c) => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#202124]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} invited you to join</p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#1a73e8] px-5 text-sm font-medium text-white disabled:opacity-50">Accept class</button></div>)}</div></section>}
+
       {loading ? (
         <div className="flex justify-center py-16">
           <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
         </div>
-      ) : classes.length === 0 ? (
+      ) : connectedClasses.length === 0 ? (
         <div className="flex flex-col items-center gap-5 py-16 text-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accent}15` }}>
             <GraduationCap className="w-8 h-8" style={{ color: accent }} />
@@ -145,7 +190,7 @@ export default function StudentClasses() {
           </div>
           <button onClick={() => { setJoinStatus(""); setShowJoin(true); }} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white" style={{ backgroundColor: accent }}><KeyRound className="h-4 w-4" /> Join with a code</button>
         </div>
-      ) : openClass ? (
+      ) : openClass && activeClassIds.has(openClass.id) ? (
         <div className="flex flex-col gap-6">
           <button onClick={() => setOpenClassId(null)} className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#202124] self-start">
             <ChevronRight className="w-4 h-4 rotate-180" /> All classes
@@ -159,7 +204,10 @@ export default function StudentClasses() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["stream", "Updates"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#1a73e8] text-[#1a73e8]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
+          {classTab === "stream" && <div className="space-y-4">{announcements.filter((a) => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#9aa0a6]" /><p className="text-sm text-[#5f6368]">Class updates from your teacher will appear here.</p></div> : announcements.filter((a) => a.class_id === openClassId).map((a) => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#202124]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : "Class update"}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#3c4043]">{a.text}</p></article>)}</div>}
+
+          {classTab === "classwork" && <div className="flex flex-col gap-4">
             {classAssignments.length === 0 ? (
               <div className="flex flex-col items-center gap-3 py-12 text-center">
                 <ClipboardList className="w-10 h-10 text-[#dadce0]" />
@@ -212,7 +260,7 @@ export default function StudentClasses() {
                             <p className="text-sm text-[#3c4043] leading-relaxed">{sub.feedback}</p>
                           </div>
                         )}
-                        <p className="text-xs text-[#5f6368]">This work has been added to your mastery map.</p>
+                        <p className="text-xs text-[#5f6368]">Returned by your teacher.</p>
                       </div>
                     ) : submitted ? (
                       <div className="pl-14">
@@ -225,6 +273,7 @@ export default function StudentClasses() {
                           value={drafts[a.id] || ""}
                           onChange={(e) => setDrafts((p) => ({ ...p, [a.id]: e.target.value }))}
                           placeholder="Write your response…"
+                          aria-label={`Your response to ${a.title}`}
                           rows={3}
                           className="w-full p-4 rounded-2xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8] resize-none leading-relaxed"
                         />
@@ -244,17 +293,17 @@ export default function StudentClasses() {
                 );
               })
             )}
-          </div>
+          </div>}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {classes.map((c) => {
+          {connectedClasses.map((c) => {
             const count = (assignments || []).filter((a) => a.class_id === c.id).length;
             return (
               <button
                 key={c.id}
                 onClick={() => setOpenClassId(c.id)}
-                className="text-left flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-md transition-all"
+                className="text-left flex flex-col bg-white rounded-2xl border border-[#dadce0] overflow-hidden hover:shadow-md transition-all"
               >
                 <div className="p-6" style={{ backgroundColor: c.color || accent }}>
                   <h3 className="text-[18px] font-medium text-white tracking-tight">{c.name}</h3>
@@ -270,16 +319,18 @@ export default function StudentClasses() {
           })}
         </div>
       )}
-      {showJoin && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4" onClick={() => !joining && setShowJoin(false)}>
-          <form onSubmit={joinClass} onClick={(event) => event.stopPropagation()} className="w-full max-w-md rounded-3xl bg-white p-7 shadow-xl">
-            <div className="flex items-start justify-between gap-5"><div><div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: `${accent}15` }}><KeyRound className="h-5 w-5" style={{ color: accent }} /></div><h2 className="mt-4 text-xl font-medium text-[#202124]">Join a class</h2><p className="mt-2 text-sm leading-relaxed text-[#5f6368]">Ask your teacher for their class code, then enter it below.</p></div><button type="button" onClick={() => setShowJoin(false)} className="flex h-9 w-9 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#f1f3f4]" aria-label="Close join class dialog"><X className="h-5 w-5" /></button></div>
+      <Dialog open={showJoin} onOpenChange={(open) => { if (!open) closeJoin(); }}>
+        <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-3xl bg-white p-7 sm:rounded-3xl">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: `${accent}15` }}><KeyRound className="h-5 w-5" style={{ color: accent }} /></div>
+          <DialogTitle className="text-xl font-medium text-[#202124]">Join a class</DialogTitle>
+          <DialogDescription>Ask your teacher for their class code, then enter it below.</DialogDescription>
+          <form onSubmit={joinClass}>
             <label className="mt-6 block text-sm font-medium text-[#202124]">Class code<input value={joinCode} onChange={(event) => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#747775] px-3 font-mono text-sm tracking-wide outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]" /></label>
             {joinStatus && <p className="mt-3 text-sm text-[#b3261e]" role="alert">{joinStatus}</p>}
-            <div className="mt-7 flex justify-end gap-3"><button type="button" onClick={() => setShowJoin(false)} className="h-10 rounded-full px-4 text-sm font-medium text-[#1a73e8] hover:bg-[#f8fafd]">Cancel</button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{ backgroundColor: accent }}><Link2 className="h-4 w-4" />{joining ? "Joining" : "Join class"}</button></div>
+            <div className="mt-7 flex justify-end gap-3"><button type="button" disabled={joining} onClick={closeJoin} className="h-10 rounded-full px-4 text-sm font-medium text-[#1a73e8] hover:bg-[#f8fafd]">Cancel</button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{ backgroundColor: accent }}><Link2 className="h-4 w-4" />{joining ? "Joining…" : "Join class"}</button></div>
           </form>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

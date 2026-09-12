@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Plus, GraduationCap, Users, ClipboardList, BookOpen } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
@@ -23,35 +23,48 @@ export default function TeacherHome() {
   const [assignmentCount, setAssignmentCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
+  const [pendingReviews, setPendingReviews] = useState(0);
+  const [error, setError] = useState("");
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
+    setError("");
     try {
-      const [classList, allAssignments] = await Promise.all([
+      const [classList, allAssignments, enrollments, submissions] = await Promise.all([
         base44.entities.Classroom.list("-created_date"),
-        base44.entities.Assignment.list().catch(() => []),
+        base44.entities.Assignment.list(),
+        base44.entities.Enrollment.list(),
+        base44.entities.Submission.list(),
       ]);
-      setClasses(classList || []);
-      setAssignmentCount((allAssignments || []).length);
-    } catch {}
+      const ownClasses = (classList || []).filter((c) => c.teacher_email === user?.email || c.teacher_id === user?.id || c.created_by_id === user?.id || c.created_by === user?.email);
+      const ids = new Set(ownClasses.map((c) => c.id));
+      setClasses(ownClasses.map((c) => ({ ...c, student_count: new Set(enrollments.filter((e) => e.class_id === c.id && e.status === "active").map((e) => e.student_email)).size })).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
+      setAssignmentCount((allAssignments || []).filter((a) => ids.has(a.class_id)).length);
+      setPendingReviews(submissions.filter((s) => ids.has(s.class_id) && s.status === "submitted").length);
+    } catch { setError("We couldn’t load your classes. Please try again."); }
     setLoading(false);
-  };
+  }, [user?.email, user?.id]);
   useEffect(() => {
     load();
-  }, []);
+    window.addEventListener("visionary:workspace-change", load);
+    return () => window.removeEventListener("visionary:workspace-change", load);
+  }, [load]);
 
   const handleCreate = async (data) => {
-    try {
-      const codeSuffix = crypto.randomUUID().replaceAll("-", "").slice(0, 4).toUpperCase();
+      const allClasses = await base44.entities.Classroom.list();
+      let joinCode;
+      do { joinCode = `VISION-${crypto.randomUUID().replaceAll("-", "").slice(0, 6).toUpperCase()}`; } while (allClasses.some((c) => c.join_code === joinCode));
       const created = await base44.entities.Classroom.create({
         ...data,
         teacher_email: user?.email,
+        teacher_id: user?.id,
         teacher_name: userName,
-        join_code: `VISION-${codeSuffix}`,
+        join_code: joinCode,
+        student_count: 0,
       });
       setClasses((prev) => [created, ...prev]);
       setShowCreate(false);
-    } catch {}
+      window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
   };
 
   const studentCount = (classes || []).reduce((sum, c) => sum + (c.student_count || 0), 0);
@@ -63,18 +76,18 @@ export default function TeacherHome() {
   ];
 
   return (
-    <div className="flex flex-col gap-12 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
-      <RoleGreeting userName={userName} role="teacher" accent={accent} subtitle="Your teaching command center" />
+    <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
+      <RoleGreeting userName={userName} role="teacher" accent={accent} subtitle="Your classes and teaching, together" />
 
-      <TeacherInsightCard accent={accent} />
-      <TeacherUpskillCard accent={accent} />
+      {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error} <button onClick={load} className="ml-2 font-medium underline">Retry</button></div>}
+      {!loading && <TeacherInsightCard accent={accent} classes={classes} assignmentCount={assignmentCount} pendingReviews={pendingReviews} />}
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
         {stats.map((s) => {
           const Icon = s.icon;
           return (
-            <div key={s.label} className="rounded-2xl bg-white border border-[#dadce0]/60 p-6 flex flex-col gap-2">
+            <div key={s.label} className="rounded-2xl bg-white border border-[#dadce0]/60 p-4 sm:p-6 flex flex-col gap-2">
               <Icon className="w-5 h-5 text-[#5f6368]" />
               <p className="text-[28px] font-medium text-[#202124] leading-none">{loading ? "—" : s.value}</p>
               <p className="text-sm text-[#5f6368]">{s.label}</p>
@@ -83,7 +96,7 @@ export default function TeacherHome() {
         })}
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-[22px] font-medium text-[#202124]">Your classes</h2>
           <p className="text-sm text-[#5f6368] mt-1">Create a class, add students, and start teaching</p>
@@ -131,6 +144,7 @@ export default function TeacherHome() {
       {showCreate && (
         <CreateClassModal onClose={() => setShowCreate(false)} onCreate={handleCreate} accent={accent} />
       )}
+      <TeacherUpskillCard accent={accent} />
     </div>
   );
 }

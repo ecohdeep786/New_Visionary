@@ -1,11 +1,7 @@
 /**
- * Hardened Application Client & Authentication Service
- * Designed to Google production engineering standards:
- * - Zero-trust credential security (Web Crypto API SHA-256 with unique salts)
- * - Cryptographic session token authorization with TTL & expiration
- * - Single-use expiring password reset tokens
- * - Automated transparent credential migration from legacy plaintext
- * - Full redaction of credentials and salts from returned user objects
+ * Local preview repository, not a production authentication boundary.
+ * Replace with server-verified identity, database rules, and services before
+ * deploying to real learners. Browser storage is local to this device.
  */
 
 const USERS_KEY = 'visionary_users';
@@ -31,7 +27,7 @@ const writeJson = (key, value) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (err) {
-    console.error(`Storage write failed for key "${key}":`, err);
+    throw new Error('Your changes could not be saved on this device. Check available browser storage and try again.', { cause: err });
   }
 };
 
@@ -244,19 +240,7 @@ const auth = {
     const now = Date.now();
     const tokenRecord = tokens.find((t) => t.token === resetToken && !t.used && t.expiresAt > now);
 
-    let targetEmail = tokenRecord ? tokenRecord.email : null;
-
-    // Fallback support for legacy URL-encoded email reset tokens
-    if (!targetEmail) {
-      try {
-        const decoded = decodeURIComponent(resetToken).toLowerCase();
-        if (getUsers().some((u) => u.email?.toLowerCase() === decoded)) {
-          targetEmail = decoded;
-        }
-      } catch {
-        // Ignore decode error
-      }
-    }
+    const targetEmail = tokenRecord ? tokenRecord.email : null;
 
     if (!targetEmail) {
       throw new Error('Reset link is invalid or has expired. Please request a new one.');
@@ -295,7 +279,7 @@ const auth = {
     if (userIndex < 0) throw new Error('User not found');
 
     // Prevent overwriting sensitive credential fields via updateMe
-    const { password, passwordHash, salt, ...safeUpdates } = updates;
+    const { password, passwordHash, salt, id, email, createdAt, ...safeUpdates } = updates;
 
     users[userIndex] = { ...users[userIndex], ...safeUpdates };
     writeJson(USERS_KEY, users);
@@ -317,39 +301,75 @@ const auth = {
   },
 };
 
-/* ── Scalable Entity Store ── */
-
+/* Personal account separation in the preview; production needs database rules. */
+const personalEntities = new Set(['Subject', 'Topic', 'Exam', 'StudyLog', 'Question', 'Bookmark', 'Project', 'PracticeSession']);
+const readEntities = (name) => readJson(`visionary_entity_${name}`, []);
+const notifyChange = () => window.dispatchEvent(new CustomEvent('visionary:workspace-change'));
+const visibleRecords = (name, ownerEmail) => {
+  const currentUser = getCurrentUser();
+  if (name === 'User') return getUsers().map(({ id, email }) => ({ id, email }));
+  if (!currentUser) return [];
+  if (!personalEntities.has(name)) return readEntities(name);
+  const owner = ownerEmail || currentUser.email;
+  if (owner !== currentUser.email) {
+    const shared = ['Subject', 'Topic', 'StudyLog'].includes(name) && currentUser.identity === 'parent' &&
+      readEntities('FamilyLink').some((link) => link.parent_email === currentUser.email && link.child_email === owner && link.status === 'active');
+    if (!shared) return [];
+  }
+  return readEntities(name).filter((record) => (record.owner_email || record.student_email) === owner);
+};
+const sortedRecords = (records, sort, limit) => {
+  const result = [...records];
+  if (sort) {
+    const field = sort.replace(/^-/, '');
+    const direction = sort.startsWith('-') ? -1 : 1;
+    result.sort((a, b) => {
+      const left = a[field] ?? (field === 'created_date' ? a.createdAt : '') ?? '';
+      const right = b[field] ?? (field === 'created_date' ? b.createdAt : '') ?? '';
+      return (typeof left === 'number' && typeof right === 'number' ? left - right : String(left).localeCompare(String(right), undefined, { numeric: true })) * direction;
+    });
+  }
+  return Number.isFinite(limit) ? result.slice(0, Math.max(0, limit)) : result;
+};
+const prepareRecord = (name, record) => {
+  const currentUser = getCurrentUser();
+  if (!currentUser) throw new Error('Please sign in to save changes.');
+  if (name === 'User') throw new Error('Use account settings to change your profile.');
+  return { ...record, id: crypto.randomUUID(), createdAt: Date.now(), created_date: new Date().toISOString(),
+    ...(personalEntities.has(name) ? { owner_email: currentUser.email } : {}) };
+};
 const entityStore = new Proxy({}, {
-  get: (_target, entityName) => ({
-    async list() {
-      return readJson(`visionary_entity_${entityName}`, []);
+  get: (_target, name) => ({
+    async list(sort, limit) { return sortedRecords(visibleRecords(name), sort, limit); },
+    async filter(filters = {}, sort, limit) {
+      return sortedRecords(visibleRecords(name, filters.owner_email).filter((record) =>
+        Object.entries(filters).every(([key, value]) => record[key] === value)), sort, limit);
     },
-    async filter(filters = {}) {
-      const records = readJson(`visionary_entity_${entityName}`, []);
-      return records.filter((record) =>
-        Object.entries(filters).every(([key, value]) => record[key] === value)
-      );
-    },
-    async get(id) {
-      return readJson(`visionary_entity_${entityName}`, []).find((record) => record.id === id) || null;
-    },
+    async get(id) { return visibleRecords(name).find((record) => record.id === id) || null; },
     async create(record) {
-      const records = readJson(`visionary_entity_${entityName}`, []);
-      const created = { id: crypto.randomUUID(), createdAt: Date.now(), ...record };
-      writeJson(`visionary_entity_${entityName}`, [...records, created]);
+      const created = prepareRecord(name, record);
+      writeJson(`visionary_entity_${name}`, [...readEntities(name), created]);
+      notifyChange();
       return created;
     },
     async bulkCreate(newRecords) {
-      const records = readJson(`visionary_entity_${entityName}`, []);
-      const created = newRecords.map((record) => ({ id: crypto.randomUUID(), createdAt: Date.now(), ...record }));
-      writeJson(`visionary_entity_${entityName}`, [...records, ...created]);
+      const created = newRecords.map((record) => prepareRecord(name, record));
+      writeJson(`visionary_entity_${name}`, [...readEntities(name), ...created]);
+      notifyChange();
       return created;
     },
     async update(id, updates) {
-      const records = readJson(`visionary_entity_${entityName}`, []);
-      const updated = records.map((record) => (record.id === id ? { ...record, ...updates } : record));
-      writeJson(`visionary_entity_${entityName}`, updated);
-      return updated.find((record) => record.id === id) || null;
+      if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      const { id: ignoredId, owner_email: ignoredOwner, ...fields } = updates;
+      const updated = readEntities(name).map((record) => record.id === id ? { ...record, ...fields } : record);
+      writeJson(`visionary_entity_${name}`, updated);
+      notifyChange();
+      return updated.find((record) => record.id === id);
+    },
+    async delete(id) {
+      if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      writeJson(`visionary_entity_${name}`, readEntities(name).filter((record) => record.id !== id));
+      notifyChange();
     },
   }),
 });
@@ -360,7 +380,7 @@ export const appClient = {
   integrations: {
     Core: {
       async InvokeLLM() {
-        return { answer: 'Visionary AI features are initialized and active.' };
+        throw new Error('AI responses are not available yet. Your workspace and saved questions are still available.');
       },
     },
   },

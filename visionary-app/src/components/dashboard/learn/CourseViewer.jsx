@@ -1,275 +1,71 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
+import { Bookmark, BookOpen, Check, Headphones, Loader2, Maximize2, Minimize2, Send, Sparkles, Square } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import {
-  Box, FileText, Image as ImageIcon, Headphones, Bookmark, Maximize2, Minimize2,
-  Play, Pause, Volume2, Captions, RefreshCw, ArrowRight, Paperclip, Mic, Check, Loader2,
-} from "lucide-react";
+import { base44 } from "@/api/base44Client";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import SubjectIllustration from "@/components/dashboard/SubjectIllustration";
 
-const MEDIA_TABS = [
-  { key: "text", label: "Text", icon: FileText },
-  { key: "video", label: "3D / Video", icon: Box },
-  { key: "photo", label: "Photo", icon: ImageIcon },
-  { key: "audio", label: "Audio", icon: Headphones },
-];
-
-export default function CourseViewer({ topic, nextTopic, isBookmarked, onToggleBookmark, onToggleFullscreen, isFullscreen }) {
-  const themeColor = useThemeColor();
-  const [activeTab, setActiveTab] = useState("text");
-  const [lesson, setLesson] = useState("");
+export default function CourseViewer({ topic, nextTopic, isBookmarked, bookmarkBusy, onToggleBookmark, onToggleFullscreen, isFullscreen }) {
+  const theme = useThemeColor();
+  const initialContent = topic.lesson_content || topic.content || "";
+  const [lesson, setLesson] = useState(typeof initialContent === "string" ? initialContent : "");
   const [loading, setLoading] = useState(false);
-  const [simplified, setSimplified] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [doubt, setDoubt] = useState("");
-  const [doubtSaved, setDoubtSaved] = useState(false);
+  const [error, setError] = useState("");
+  const [playing, setPlaying] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const audioSupported = typeof window !== "undefined" && "speechSynthesis" in window;
+  const context = new URLSearchParams({ subject: topic.subject, topic: topic.name });
 
-  useEffect(() => {
-    if (topic && !lesson && !loading) generateLesson();
-  }, [topic?.id]);
-
-  useEffect(() => {
-    return () => window.speechSynthesis?.cancel();
-  }, []);
-
-  const generateLesson = async (simplify = false) => {
-    setLoading(true);
-    setSimplified(simplify);
-    setLesson("");
+  useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
+  async function generateLesson() {
+    if (loading) return;
+    setLoading(true); setError(""); window.speechSynthesis?.cancel(); setPlaying(false);
     try {
-      const prompt = simplify
-        ? `Explain "${topic.name}" from ${topic.subject} in very simple terms for a young student. Use short sentences, simple analogies, and clear examples. Use markdown with ## headers and bullet points. Keep it brief and easy.`
-        : `You are a PhD-level expert teacher. Teach "${topic.name}" from ${topic.subject} to a K-12 student. Break it down step by step — start with the core concept, explain why it matters with a real-world example, use a simple analogy, and include 2 worked examples. Make it clear, engaging, and easy to understand. Use markdown with ## headers, bullet points, and numbered lists.`;
-
-      const res = await base44.integrations.Core.InvokeLLM({
-        prompt,
-        add_context_from_internet: true,
-        model: "gemini_3_flash",
-      });
-      setLesson(typeof res === "string" ? res : res.answer || "");
-    } catch {
-      setLesson("Unable to load this lesson right now. Please try again in a moment.");
-    }
-    setLoading(false);
-  };
-
-  const toggleAudio = () => {
-    if (isPlaying) {
-      window.speechSynthesis?.cancel();
-      setIsPlaying(false);
-      return;
-    }
-    if (window.speechSynthesis && lesson) {
-      const plainText = lesson.replace(/[#*`>_~-]/g, "");
-      const utterance = new SpeechSynthesisUtterance(plainText);
-      utterance.onend = () => setIsPlaying(false);
-      window.speechSynthesis.speak(utterance);
-      setIsPlaying(true);
-    }
-  };
-
-  const handleDoubt = async (e) => {
-    e.preventDefault();
-    const q = doubt.trim();
-    if (!q) return;
-    try {
-      await base44.entities.Question.create({
-        subject: topic.subject || "",
-        topic: topic.name || "",
-        question: q,
-      });
-      setDoubt("");
-      setDoubtSaved(true);
-      setTimeout(() => setDoubtSaved(false), 3000);
-    } catch {
-      // silent
-    }
-  };
-
-  const practiceLink = `/dashboard/practice?subject=${encodeURIComponent(topic.subject)}&topic=${encodeURIComponent(topic.name)}`;
-  const nextLink = nextTopic ? `/dashboard/learn/${nextTopic.id}` : null;
-  const showMediaControls = activeTab === "video" || activeTab === "audio";
+      const result = await base44.integrations.Core.InvokeLLM({ prompt: `Explain ${topic.name} in ${topic.subject} clearly, step by step. Start with the core concept, provide a worked example, and finish with a short recap. Use markdown. State any assumptions and uncertainties.` });
+      const text = typeof result === "string" ? result : result?.answer;
+      if (!text?.trim()) throw new Error("No lesson was returned. Please try again.");
+      setLesson(text);
+    } catch (err) { setError(err.message || "The explanation is unavailable right now. Please try again."); }
+    finally { setLoading(false); }
+  }
+  function toggleAudio() {
+    if (playing) { window.speechSynthesis.cancel(); setPlaying(false); return; }
+    if (!audioSupported || !lesson) return;
+    const utterance = new SpeechSynthesisUtterance(lesson.replace(/[#*>_~]/g, ""));
+    utterance.onend = () => setPlaying(false);
+    utterance.onerror = () => { setPlaying(false); setError("This browser could not read the lesson aloud."); };
+    window.speechSynthesis.cancel(); window.speechSynthesis.speak(utterance); setPlaying(true);
+  }
+  async function saveQuestion(event) {
+    event.preventDefault();
+    if (!question.trim() || saving) return;
+    setSaving(true); setError(""); setSaved(false);
+    try { await base44.entities.Question.create({ subject: topic.subject, topic: topic.name, question: question.trim() }); setQuestion(""); setSaved(true); }
+    catch (err) { setError(err.message || "Your question could not be saved. Please try again."); }
+    finally { setSaving(false); }
+  }
 
   return (
-    <div className="flex flex-col bg-white rounded-3xl border border-[#dadce0]/50 overflow-hidden">
-      {/* Top: centered tabs + right icons */}
-      <div className="relative flex items-center justify-center px-6 py-4 border-b border-[#dadce0]/40">
-        <div className="flex items-center gap-1 bg-[#f1f3f4] rounded-full p-1">
-          {MEDIA_TABS.map((tab) => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.key;
-            return (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full text-xs font-medium transition-all"
-                style={isActive
-                  ? { backgroundColor: "#fff", color: "#202124", boxShadow: "0 1px 2px rgba(0,0,0,0.1)" }
-                  : { color: "#5f6368" }
-                }
-              >
-                <Icon className="w-3.5 h-3.5" /> {tab.label}
-              </button>
-            );
-          })}
+    <section className="min-w-0 overflow-hidden rounded-xl border border-[#dadce0] bg-white">
+      <header className="flex flex-wrap items-center justify-between gap-3 border-b border-[#dadce0] px-4 py-3">
+        <h2 className="flex min-w-0 items-center gap-2 text-sm font-medium text-[#202124]"><BookOpen className="h-4 w-4 shrink-0" /><span className="truncate">{isFullscreen ? topic.name : "Lesson"}</span></h2>
+        <div className="flex items-center gap-1">
+          {audioSupported && lesson && <button aria-label={playing ? "Stop reading" : "Read lesson aloud"} title={playing ? "Stop reading" : "Read aloud"} onClick={toggleAudio} className="rounded-full p-2 text-[#5f6368] hover:bg-gray-100">{playing ? <Square className="h-4 w-4" /> : <Headphones className="h-4 w-4" />}</button>}
+          <button disabled={bookmarkBusy} aria-label={isBookmarked ? "Remove bookmark" : "Bookmark lesson"} aria-pressed={isBookmarked} title={isBookmarked ? "Remove bookmark" : "Bookmark lesson"} onClick={onToggleBookmark} className="rounded-full p-2 text-[#5f6368] hover:bg-gray-100 disabled:opacity-40"><Bookmark className="h-4 w-4" fill={isBookmarked ? "currentColor" : "none"} /></button>
+          <button aria-label={isFullscreen ? "Exit focus mode" : "Enter focus mode"} title={isFullscreen ? "Exit focus mode (Esc)" : "Focus mode"} onClick={onToggleFullscreen} className="rounded-full p-2 text-[#5f6368] hover:bg-gray-100">{isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
         </div>
-
-        {/* Right: bookmark + fullscreen */}
-        <div className="absolute right-4 flex items-center gap-1">
-          <button
-            onClick={onToggleBookmark}
-            className="w-9 h-9 flex items-center justify-center rounded-full transition-colors"
-            style={isBookmarked
-              ? { backgroundColor: themeColor.light, color: themeColor.accent }
-              : { color: "#5f6368" }
-            }
-            title={isBookmarked ? "Remove bookmark" : "Save bookmark"}
-          >
-            <Bookmark className="w-[18px] h-[18px]" fill={isBookmarked ? "currentColor" : "none"} />
-          </button>
-          <button
-            onClick={onToggleFullscreen}
-            className="w-9 h-9 flex items-center justify-center rounded-full text-[#5f6368] hover:bg-gray-100 transition-colors"
-            title={isFullscreen ? "Exit focus mode (Esc)" : "Focus mode"}
-          >
-            {isFullscreen ? <Minimize2 className="w-[16px] h-[16px]" /> : <Maximize2 className="w-[16px] h-[16px]" />}
-          </button>
-        </div>
+      </header>
+      <div className="min-h-[280px] p-5 sm:p-8">
+        {loading ? <p role="status" className="flex items-center justify-center gap-3 py-16 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> Preparing an explanation</p> : lesson ? <ReactMarkdown className="prose prose-sm max-w-none break-words text-[#3c4043] [&_pre]:overflow-x-auto">{lesson}</ReactMarkdown> : <div className="flex flex-col items-center gap-3 py-10 text-center"><BookOpen className="h-8 w-8 text-[#5f6368]" /><h3 className="text-base font-medium">Your topic is ready to explore</h3><p className="max-w-md text-sm leading-6 text-[#5f6368]">Published lesson content will appear here when available. Keep a question, connect with your class, or request an explanation.</p><button onClick={generateLesson} className="mt-2 inline-flex items-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm font-medium" style={{ color: theme.accent }}><Sparkles className="h-4 w-4" /> Request explanation</button></div>}
+        {error && <p role="alert" className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">{error}</p>}
       </div>
-
-      {/* Content area */}
-      <div className="px-8 lg:px-12 py-10 min-h-[400px]">
-        {loading ? (
-          <div className="flex flex-col items-center gap-3 py-16">
-            <Loader2 className="w-7 h-7 animate-spin" style={{ color: themeColor.accent }} />
-            <p className="text-sm text-[#5f6368]">Preparing your lesson...</p>
-          </div>
-        ) : activeTab === "text" ? (
-          <ReactMarkdown
-            className="prose prose-sm max-w-none
-              prose-headings:text-[#202124] prose-headings:font-medium
-              prose-p:text-[#3c4043] prose-p:leading-relaxed
-              prose-li:text-[#3c4043] prose-strong:text-[#202124]
-              prose-a:text-[#1a73e8]"
-          >
-            {lesson}
-          </ReactMarkdown>
-        ) : activeTab === "video" ? (
-          <div className="flex flex-col items-center justify-center gap-4 py-12">
-            <div className="w-full max-w-md h-56 rounded-2xl overflow-hidden bg-[#f8f9fa] flex items-center justify-center">
-              <SubjectIllustration subject={topic.subject} className="w-full h-full" />
-            </div>
-            <p className="text-sm font-medium text-[#202124]">{topic.name}</p>
-            <p className="text-xs text-[#5f6368] text-center max-w-xs">
-              {topic.has_3d
-                ? "Interactive 3D model — drag to explore."
-                : "Video content will be available here soon."}
-            </p>
-          </div>
-        ) : activeTab === "photo" ? (
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-full max-w-md h-56 rounded-2xl overflow-hidden">
-              <SubjectIllustration subject={topic.subject} className="w-full h-full" />
-            </div>
-            <p className="text-sm text-[#5f6368] text-center">Visual reference for {topic.name}</p>
-          </div>
-        ) : activeTab === "audio" ? (
-          <div className="flex flex-col items-center gap-6 py-8">
-            <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ backgroundColor: themeColor.light }}>
-              <Headphones className="w-8 h-8" style={{ color: themeColor.accent }} />
-            </div>
-            <p className="text-sm text-[#5f6368]">Listen to the lesson narrated step by step</p>
-          </div>
-        ) : null}
+      <div className="flex flex-wrap items-center gap-3 border-t border-[#dadce0] p-4">
+        <Link to={`/dashboard/practice?${context}`} className="rounded-full border border-[#dadce0] px-4 py-2 text-sm font-medium text-blue-700">Practice this topic</Link>
+        <Link to={nextTopic ? `/dashboard/learn/${nextTopic.id}` : `/dashboard/learn?subject=${encodeURIComponent(topic.subject)}`} className="ml-auto rounded-full px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-50">{nextTopic ? "Next topic →" : "All lessons →"}</Link>
       </div>
-
-      {/* Media controls */}
-      {showMediaControls && (
-        <div className="flex items-center justify-center gap-8 py-4 border-t border-[#dadce0]/40">
-          <button className="w-9 h-9 flex items-center justify-center rounded-full text-[#3c4043] hover:bg-gray-100 transition-colors" title="Captions">
-            <Captions className="w-5 h-5" />
-          </button>
-          <button
-            onClick={toggleAudio}
-            className="w-12 h-12 rounded-full flex items-center justify-center text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: themeColor.accent }}
-          >
-            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
-          </button>
-          <button className="w-9 h-9 flex items-center justify-center rounded-full text-[#3c4043] hover:bg-gray-100 transition-colors" title="Volume">
-            <Volume2 className="w-5 h-5" />
-          </button>
-        </div>
-      )}
-
-      {/* Bottom action bar */}
-      <div className="flex items-center gap-3 px-6 py-4 border-t border-[#dadce0]/40 flex-wrap">
-        {/* Left: Re-Explain + Practice */}
-        <button
-          onClick={() => generateLesson(!simplified)}
-          className="inline-flex items-center gap-1.5 h-10 px-5 rounded-full text-sm font-medium border border-[#dadce0] transition-colors hover:bg-gray-50"
-          style={{ color: themeColor.accent }}
-        >
-          <RefreshCw className="w-4 h-4" /> Re-Explain
-        </button>
-        <Link
-          to={practiceLink}
-          className="inline-flex items-center gap-1.5 h-10 px-5 rounded-full text-sm font-medium border border-[#dadce0] transition-colors hover:bg-gray-50"
-          style={{ color: themeColor.accent }}
-        >
-          Practice
-        </Link>
-
-        <div className="flex-1" />
-
-        {/* Right: Next + doubt input */}
-        <Link
-          to={nextLink || "/dashboard/learn"}
-          className="inline-flex items-center gap-1.5 h-10 px-6 rounded-full text-sm font-medium text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: themeColor.accent }}
-        >
-          {nextTopic ? (
-            <>Next: {nextTopic.name} <ArrowRight className="w-4 h-4" /></>
-          ) : (
-            <>Back to Learn <ArrowRight className="w-4 h-4" /></>
-          )}
-        </Link>
-
-        {/* Doubt input */}
-        <form onSubmit={handleDoubt} className="flex items-center gap-2 h-10 px-4 rounded-full border border-[#dadce0] bg-white">
-          <Paperclip className="w-4 h-4 text-[#5f6368] shrink-0" />
-          <input
-            type="text"
-            value={doubt}
-            onChange={(e) => setDoubt(e.target.value)}
-            placeholder="I have a doubt"
-            className="w-32 lg:w-48 bg-transparent text-sm text-[#202124] placeholder:text-[#5f6368] outline-none"
-          />
-          <button
-            type="submit"
-            disabled={!doubt.trim()}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-white disabled:opacity-40 transition-opacity shrink-0"
-            style={{ backgroundColor: themeColor.accent }}
-          >
-            {doubtSaved ? <Check className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-          </button>
-        </form>
-      </div>
-
-      {/* Doubt saved confirmation */}
-      {doubtSaved && (
-        <div className="px-6 pb-4">
-          <Link
-            to="/dashboard/ask"
-            className="inline-flex items-center gap-2 text-sm font-medium hover:underline"
-            style={{ color: themeColor.accent }}
-          >
-            <Check className="w-4 h-4" /> Question saved — View in AGI →
-          </Link>
-        </div>
-      )}
-    </div>
+      <form onSubmit={saveQuestion} className="border-t border-[#dadce0] p-5"><label htmlFor="lesson-question" className="mb-3 block text-sm font-medium">Keep a question for later</label><div className="flex items-center gap-2 rounded-lg border border-[#dadce0] p-2"><input id="lesson-question" maxLength={6000} value={question} onChange={(e) => { setQuestion(e.target.value); setSaved(false); }} placeholder="What would you like to understand?" className="min-w-0 flex-1 bg-transparent px-2 text-sm outline-none" /><button disabled={saving || !question.trim()} title="Save question" aria-label="Save question" className="rounded-full p-2 text-white disabled:opacity-40" style={{ backgroundColor: theme.accent }}><Send className="h-4 w-4" /></button></div>{saved && <p role="status" className="mt-3 flex items-center gap-2 text-sm text-green-800"><Check className="h-4 w-4" /> Question saved. <Link to="/dashboard/ask" className="underline">View in Ask</Link></p>}</form>
+    </section>
   );
 }

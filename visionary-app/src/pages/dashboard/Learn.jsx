@@ -1,219 +1,84 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { LayoutGrid, List, MessageSquare, Boxes, ArrowRight, BookOpen, Bookmark } from "lucide-react";
+import { BookOpen, Bookmark, LayoutGrid, List, Loader2, Plus, Search } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useStudentData } from "@/hooks/useStudentData";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import SubjectPills from "@/components/dashboard/learn/SubjectPills";
-import SubjectHeroBanner from "@/components/dashboard/learn/SubjectHeroBanner";
-import ContentsDropdown from "@/components/dashboard/learn/ContentsDropdown";
 import TopicCard from "@/components/dashboard/learn/TopicCard";
 
-function sortByChapter(topics) {
-  return [...topics].sort((a, b) => {
-    const getNum = (chapter) => {
-      if (!chapter) return 999;
-      const match = chapter.match(/\d+/);
-      return match ? parseInt(match[0]) : 999;
-    };
-    return getNum(a.chapter) - getNum(b.chapter);
-  });
-}
-
-const STATUS_FILTERS = [
-  { key: "all", label: "All" },
-  { key: "not-started", label: "Not started" },
-  { key: "in-progress", label: "In progress" },
-  { key: "completed", label: "Completed" },
-];
-
-function matchesFilter(topic, filter) {
-  if (filter === "all") return true;
-  if (filter === "completed") return topic.status === "mastered";
-  if (filter === "in-progress") return topic.status === "in-progress" || topic.status === "needs-review";
-  if (filter === "not-started") return topic.status === "not-started" || !topic.status;
-  return true;
-}
+const filters = [{ value: "all", label: "All topics" }, { value: "not-started", label: "Not started" }, { value: "in-progress", label: "In progress" }, { value: "mastered", label: "Mastered" }, { value: "saved", label: "Saved" }];
 
 export default function Learn() {
-  const studentData = useStudentData();
-  const themeColor = useThemeColor();
-  const [searchParams] = useSearchParams();
-  const subjectFromUrl = searchParams.get("subject");
-  const [selectedSubject, setSelectedSubject] = useState(null);
-  const [viewMode, setViewMode] = useState("grid");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const data = useStudentData();
+  const theme = useThemeColor();
+  const [params, setParams] = useSearchParams();
+  const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState("all");
+  const [view, setView] = useState("grid");
   const [bookmarks, setBookmarks] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const subject = data.subjects.find((s) => s.name === params.get("subject"))?.name || data.subjects[0]?.name || "";
 
   useEffect(() => {
-    base44.entities.Bookmark.list("-created_date", 20).then(setBookmarks).catch(() => {});
+    let current = true;
+    base44.entities.Bookmark.list().then((items) => { if (current) setBookmarks(items); }).catch(() => { if (current) setError("Saved topics could not be loaded. Please refresh to try again."); });
+    return () => { current = false; };
   }, []);
 
-  const subjects = studentData.subjects;
-  const activeSubject = useMemo(
-    () => selectedSubject || subjectFromUrl || subjects[0]?.name || null,
-    [selectedSubject, subjectFromUrl, subjects]
-  );
+  const topics = useMemo(() => data.topics.filter((topic) => {
+    if (topic.subject !== subject || !topic.name.toLowerCase().includes(query.toLowerCase().trim())) return false;
+    if (filter === "saved") return bookmarks.some((b) => b.topic_id === topic.id);
+    if (filter === "in-progress") return ["in-progress", "needs-review"].includes(topic.status);
+    return filter === "all" || (topic.status || "not-started") === filter;
+  }).sort((a, b) => (a.chapter || a.name).localeCompare(b.chapter || b.name, undefined, { numeric: true })), [data.topics, subject, query, filter, bookmarks]);
 
-  const subjectObj = subjects.find((s) => s.name === activeSubject) || null;
-
-  const allSortedTopics = useMemo(
-    () => (activeSubject ? sortByChapter(studentData.topics.filter((t) => t.subject === activeSubject)) : []),
-    [activeSubject, studentData.topics]
-  );
-
-  const topics = useMemo(
-    () => allSortedTopics.filter((t) => matchesFilter(t, statusFilter)),
-    [allSortedTopics, statusFilter]
-  );
-
-  const continueTopic = allSortedTopics.find((t) => t.status !== "mastered") || allSortedTopics[0] || null;
-
-  if (studentData.loading) {
-    return (
-      <div className="flex items-center justify-center h-full min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: themeColor.accent }} />
-      </div>
-    );
+  async function addTopic(event) {
+    event.preventDefault();
+    if (!title.trim() || !subject || saving) return;
+    setSaving(true); setError("");
+    try {
+      if (data.topics.some((topic) => topic.subject === subject && topic.name.toLowerCase() === title.trim().toLowerCase())) throw new Error("This topic is already in your lessons.");
+      await base44.entities.Topic.create({ name: title.trim(), subject, status: "not-started", practice_count: 0, mastery: 0 });
+      await data.refresh?.();
+      setTitle(""); setDialogOpen(false);
+    } catch (err) { setError(err.message || "The topic could not be saved. Please try again."); }
+    finally { setSaving(false); }
   }
 
   return (
-    <div className="flex flex-col gap-20 p-8 lg:p-12 max-w-[1280px] mx-auto w-full">
-      <SubjectPills subjects={subjects} activeSubject={activeSubject} onSelect={setSelectedSubject} />
-
-      <SubjectHeroBanner subject={subjectObj} topics={allSortedTopics} continueTopic={continueTopic} />
-
-      {/* Bookmarked topics */}
-      {bookmarks.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2">
-            <Bookmark className="w-5 h-5" style={{ color: themeColor.accent }} fill="currentColor" />
-            <h2 className="text-[22px] font-medium text-[#202124]">Bookmarked</h2>
+    <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 p-5 sm:p-8">
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div><h1 className="text-2xl font-medium tracking-tight text-[#202124]">Learn</h1><p className="mt-2 text-sm text-[#5f6368]">Your subjects, lessons, and saved topics in one place.</p></div>
+        <button onClick={() => { setError(""); setDialogOpen(true); }} disabled={!subject || data.loading} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-40" style={{ backgroundColor: theme.accent }}><Plus className="h-4 w-4" /> Add topic</button>
+      </header>
+      {data.loading ? <div role="status" className="flex items-center justify-center gap-3 py-24 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> Loading your lessons</div> : data.error ? <div role="alert" className="rounded-xl border p-6 text-sm">Your lessons could not be loaded. <button className="text-blue-700 underline" onClick={() => data.refresh?.()}>Try again</button></div> : <>
+        <SubjectPills subjects={data.subjects} activeSubject={subject} onSelect={(name) => { setParams({ subject: name }); setFilter("all"); setQuery(""); }} />
+        <section className="rounded-xl border border-[#dadce0] bg-white">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#dadce0] p-4">
+            <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-xs"><Search className="h-4 w-4 shrink-0 text-[#5f6368]" /><span className="sr-only">Search topics</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search topics" className="w-full min-w-0 bg-transparent py-1 text-sm outline-none" /></label>
+            <div className="flex items-center gap-2">
+              <label className="sr-only" htmlFor="lesson-status">Topic status</label><select id="lesson-status" value={filter} onChange={(e) => setFilter(e.target.value)} className="rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm">{filters.map((f) => <option key={f.value} value={f.value}>{f.label}</option>)}</select>
+              <div className="flex rounded-lg border border-[#dadce0] p-1">{[{ id: "grid", icon: LayoutGrid }, { id: "list", icon: List }].map(({ id, icon: Icon }) => <button key={id} onClick={() => setView(id)} aria-label={`${id} view`} aria-pressed={view === id} className={`rounded-md p-2 ${view === id ? "bg-blue-50 text-blue-700" : "text-[#5f6368] hover:bg-gray-50"}`}><Icon className="h-4 w-4" /></button>)}</div>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {bookmarks.map((b) => (
-              <Link
-                key={b.id}
-                to={`/dashboard/learn/${b.topic_id}`}
-                className="flex items-center gap-3 p-5 bg-white rounded-2xl border border-[#dadce0]/50 hover:bg-gray-50 transition-colors"
-              >
-                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: themeColor.light }}>
-                  <Bookmark className="w-4 h-4" style={{ color: themeColor.accent }} fill="currentColor" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[#202124] truncate">{b.topic_name}</p>
-                  <p className="text-xs text-[#5f6368] truncate mt-0.5">{b.subject}{b.chapter ? ` · ${b.chapter}` : ""}</p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-[#5f6368] shrink-0" />
-              </Link>
-            ))}
+          <div className="p-4 sm:p-5">
+            <div className="mb-5 flex items-center justify-between"><h2 className="text-base font-medium text-[#202124]">{subject || "Your lessons"}</h2><span className="text-xs text-[#5f6368]">{topics.length} {topics.length === 1 ? "topic" : "topics"}</span></div>
+            {topics.length ? <div className={view === "grid" ? "grid gap-4 md:grid-cols-2 xl:grid-cols-3" : "space-y-3"}>{topics.map((topic) => <TopicCard key={topic.id} topic={topic} variant={view} />)}</div> : <div className="flex flex-col items-center gap-3 px-4 py-14 text-center">
+              <div className="rounded-2xl bg-[#f1f3f4] p-4">{filter === "saved" ? <Bookmark className="h-7 w-7 text-[#5f6368]" /> : <BookOpen className="h-7 w-7 text-[#5f6368]" />}</div>
+              <h3 className="text-base font-medium text-[#202124]">{query || filter !== "all" ? "No matching topics" : "Make room for your next discovery"}</h3>
+              <p className="max-w-md text-sm leading-6 text-[#5f6368]">{query || filter !== "all" ? "Try a different search or filter. Save a topic from its lesson to find it here." : subject ? "Add a topic you want to study. Lessons from your connected classes will also appear as they become available." : "Choose your subjects in your learning profile to get started."}</p>
+              {query || filter !== "all" ? <button className="text-sm font-medium text-blue-700" onClick={() => { setQuery(""); setFilter("all"); }}>Clear filters</button> : <Link to={subject ? "/dashboard/classes" : "/dashboard/profile"} className="text-sm font-medium text-blue-700">{subject ? "Go to classes" : "Open profile"}</Link>}
+            </div>}
           </div>
-        </div>
-      )}
-
-      {/* Toolbar */}
-      <div className="flex items-center justify-between gap-4 flex-wrap">
-        <ContentsDropdown topics={allSortedTopics} activeTopicId={continueTopic?.id} />
-
-        <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 h-10 px-4 rounded-full border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-gray-50 transition-colors">
-            <MessageSquare className="w-[18px] h-[18px]" /> Send feedback
-          </button>
-
-          <div className="inline-flex items-center rounded-full bg-[#f1f3f4] p-1">
-            <button
-              onClick={() => setViewMode("grid")}
-              className="inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full text-xs font-medium transition-all"
-              style={viewMode === "grid" ? { backgroundColor: themeColor.accent, color: "#fff" } : { color: "#5f6368" }}
-            >
-              <LayoutGrid className="w-[14px] h-[14px]" /> Grid
-            </button>
-            <button
-              onClick={() => setViewMode("list")}
-              className="inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full text-xs font-medium transition-all"
-              style={viewMode === "list" ? { backgroundColor: themeColor.accent, color: "#fff" } : { color: "#5f6368" }}
-            >
-              <List className="w-[14px] h-[14px]" /> List
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Status filters */}
-      <div className="flex items-center gap-2 flex-wrap">
-        {STATUS_FILTERS.map((f) => {
-          const isActive = statusFilter === f.key;
-          const count = f.key === "all" ? allSortedTopics.length : allSortedTopics.filter((t) => matchesFilter(t, f.key)).length;
-          return (
-            <button
-              key={f.key}
-              onClick={() => setStatusFilter(f.key)}
-              className="inline-flex items-center gap-2 h-9 px-4 rounded-full text-xs font-medium transition-all border"
-              style={isActive
-                ? { backgroundColor: themeColor.accent, color: "#fff", borderColor: themeColor.accent }
-                : { backgroundColor: "#fff", color: "#5f6368", borderColor: "#dadce0" }
-              }
-            >
-              {f.label}
-              <span className={`px-1.5 py-0.5 rounded-full text-[10px] ${isActive ? "bg-white/20" : "bg-[#f1f3f4]"}`}>{count}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Lessons heading */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-[22px] font-medium text-[#202124]">Lessons</h2>
-          <p className="text-sm font-normal text-[#5f6368] mt-1">Follow chapter by chapter</p>
-        </div>
-      </div>
-
-      {/* Topics */}
-      {topics.length > 0 ? (
-        viewMode === "grid" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topics.map((topic) => (
-              <TopicCard key={topic.id} topic={topic} variant="grid" />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4">
-            {topics.map((topic) => (
-              <TopicCard key={topic.id} topic={topic} variant="list" />
-            ))}
-          </div>
-        )
-      ) : (
-        <div className="flex flex-col items-center gap-4 py-20 text-center">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: themeColor.light }}>
-            <BookOpen className="w-7 h-7" style={{ color: themeColor.accent }} />
-          </div>
-          <p className="text-sm text-[#5f6368]">No topics found for this filter.</p>
-          <button
-            onClick={() => setStatusFilter("all")}
-            className="text-sm font-medium hover:underline"
-            style={{ color: themeColor.accent }}
-          >
-            View all topics
-          </button>
-        </div>
-      )}
-
-      {/* Build section */}
-      <Link
-        to="/dashboard/build"
-        className="flex items-center gap-4 p-6 bg-[#111827] rounded-3xl hover:bg-[#1f2937] transition-all"
-      >
-        <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-          <Boxes className="w-[18px] h-[18px] text-[#F9FAFB]" />
-        </div>
-        <div className="flex-1">
-          <p className="text-[17px] font-medium text-[#F9FAFB]">Build</p>
-          <p className="text-sm font-normal text-[#9aa0a6] mt-1">Apply mastered concepts in real projects</p>
-        </div>
-        <ArrowRight className="w-[18px] h-[18px] text-[#9aa0a6] shrink-0" />
-      </Link>
+        </section>
+      </>}
+      {error && !dialogOpen && <p role="alert" className="text-sm text-red-700">{error}</p>}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}><DialogContent className="max-w-[calc(100vw-2rem)] rounded-2xl sm:max-w-md"><DialogTitle>Add a topic</DialogTitle><DialogDescription>Keep track of a concept you want to learn in {subject}.</DialogDescription><form onSubmit={addTopic} className="space-y-4"><label className="block text-sm font-medium">Topic name<input required maxLength={140} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="For example, quadratic equations" className="mt-2 w-full rounded-lg border border-[#dadce0] p-3 font-normal" /></label>{error && <p role="alert" className="text-sm text-red-700">{error}</p>}<div className="flex justify-end gap-3"><button type="button" onClick={() => setDialogOpen(false)} className="rounded-full px-4 py-2 text-sm">Cancel</button><button disabled={saving || !title.trim()} className="rounded-full bg-blue-600 px-5 py-2 text-sm font-medium text-white disabled:opacity-40">{saving ? "Saving…" : "Add topic"}</button></div></form></DialogContent></Dialog>
     </div>
   );
 }

@@ -9,12 +9,11 @@ const competitiveSubjects = {
 
 function subjectsForProfile(profile) {
   if (profile.education_stage === "competitive") {
-    return competitiveSubjects[profile.target_exam] || ["Core preparation", "Practice", "Revision"];
+    return competitiveSubjects[profile.target_exam] || profile.subjects || [];
   }
 
   if (profile.education_stage === "higher_ed") {
-    const degree = profile.degree_program || "degree";
-    return ["Core curriculum", `${degree} foundations`, "Applied learning"];
+    return profile.subjects || [];
   }
 
   return profile.subjects || [];
@@ -29,17 +28,17 @@ export async function initializeLearningWorkspace(client, user, profile) {
   if (profile.identity !== "student" || !user?.email) return;
 
   const existingSubjects = await client.entities.Subject.filter({ owner_email: user.email });
-  if (existingSubjects.length > 0) return;
 
   const subjects = subjectsForProfile(profile);
   await Promise.all(
-    subjects.map((name) => {
+    subjects.filter(name => !existingSubjects.some(subject => subject.name === name)).map((name) => {
       const confidence = profile.subject_confidence?.[name];
       return client.entities.Subject.create({
         owner_email: user.email,
         name,
         board: profile.board || profile.target_exam || profile.degree_program || "Personal learning plan",
-        overall_mastery: confidence ? confidence * 20 : 0,
+        overall_mastery: 0,
+        self_confidence: confidence || null,
         topics_mastered: 0,
         topics_total: 0,
       });

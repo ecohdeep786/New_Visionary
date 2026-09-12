@@ -1,160 +1,28 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Box, Clock, MessageSquare, PencilRuler, CheckCircle2 } from "lucide-react";
-import SubjectIllustration from "@/components/dashboard/SubjectIllustration";
+import { ArrowRight, BookOpen, MessageCircle, Target } from "lucide-react";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
-const STATUS_BADGE = {
-  "not-started": { label: "Not started", cls: "bg-gray-100 text-gray-500" },
-  "in-progress": { label: "In progress", cls: "bg-blue-50 text-blue-600" },
-  "needs-review": { label: "In progress", cls: "bg-blue-50 text-blue-600" },
-  mastered: { label: "Completed", cls: "bg-green-50 text-green-600" },
-};
-
-function StatusBadge({ status }) {
-  const badge = STATUS_BADGE[status] || STATUS_BADGE["not-started"];
-  return (
-    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium ${badge.cls}`}>
-      {status === "mastered" && <CheckCircle2 className="w-3 h-3" />}
-      {badge.label}
-    </span>
-  );
-}
+const statuses = { "not-started": "Not started", "in-progress": "In progress", "needs-review": "Needs review", mastered: "Mastered" };
 
 export default function TopicCard({ topic, variant = "grid" }) {
-  const themeColor = useThemeColor();
-  const estDuration = topic.has_3d ? 20 : 15;
-  const mastery = topic.mastery || 0;
-  const subheading = topic.chapter || `${topic.subject} topic`;
-
-  const askLink = `/dashboard/ask?subject=${encodeURIComponent(topic.subject)}&topic=${encodeURIComponent(topic.name)}`;
-  const practiceLink = `/dashboard/practice?subject=${encodeURIComponent(topic.subject)}&topic=${encodeURIComponent(topic.name)}`;
-  const learnLink = `/dashboard/learn/${topic.id}`;
-
-  /* ── GRID variant ── */
-  if (variant === "grid") {
-    return (
-      <div className="flex flex-col bg-white rounded-3xl border border-[#dadce0]/50 hover:shadow-md transition-all overflow-hidden">
-        <Link to={learnLink} className="w-full h-28 lg:h-32 shrink-0 block">
-          <SubjectIllustration subject={topic.subject} className="w-full h-full" />
-        </Link>
-
-        <div className="flex flex-col gap-3 p-6 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            <StatusBadge status={topic.status} />
-            {topic.has_3d && (
-              <span className="flex items-center gap-1 text-xs font-medium" style={{ color: themeColor.accent }}>
-                <Box className="w-3.5 h-3.5" /> 3D
-              </span>
-            )}
-          </div>
-
-          <Link to={learnLink} className="flex flex-col gap-1.5">
-            <h3 className="text-[17px] font-medium text-[#202124] leading-snug line-clamp-2 break-words">
-              {topic.name}
-            </h3>
-          </Link>
-
-          {/* One line: chapter · duration · 3D */}
-          <div className="flex items-center gap-2 text-sm font-normal text-[#5f6368]">
-            <span className="truncate">{subheading}</span>
-            <span className="text-[#dadce0]">·</span>
-            <span className="flex items-center gap-1 shrink-0">
-              <Clock className="w-3.5 h-3.5" /> {estDuration} min
-            </span>
-            {topic.has_3d && (
-              <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium shrink-0" style={{ backgroundColor: themeColor.light, color: themeColor.accent }}>
-                <Box className="w-3 h-3" /> 3D
-              </span>
-            )}
-          </div>
-
-          {/* Progress bar */}
-          <div className="flex items-center gap-2.5 mt-1">
-            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-              <div className="h-full rounded-full" style={{ width: `${mastery}%`, backgroundColor: themeColor.accent }} />
-            </div>
-            <span className="text-xs font-medium text-[#5f6368] w-8 text-right">{mastery}%</span>
-          </div>
-        </div>
-
-        {/* Bottom: Ask + Practice */}
-        <div className="flex items-center gap-2 px-6 py-4 border-t border-[#dadce0]/40">
-          <Link
-            to={askLink}
-            className="flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium bg-[#f1f3f4] text-[#3c4043] hover:bg-[#e8eaed] transition-colors"
-          >
-            <MessageSquare className="w-3.5 h-3.5" /> Ask
-          </Link>
-          <Link
-            to={practiceLink}
-            className="flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#1a73e8" }}
-          >
-            <PencilRuler className="w-3.5 h-3.5" /> Practice
-          </Link>
-          <div className="flex-1" />
-          <Link
-            to={learnLink}
-            className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors"
-            style={{ backgroundColor: themeColor.light }}
-          >
-            <ArrowRight className="w-[16px] h-[16px]" style={{ color: themeColor.accent }} />
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  /* ── LIST variant ── */
+  const theme = useThemeColor();
+  const context = new URLSearchParams({ subject: topic.subject || "", topic: topic.name || "" });
   return (
-    <div className="flex items-center gap-4 p-6 bg-white rounded-3xl border border-[#dadce0]/50 hover:shadow-md transition-all">
-      <Link to={learnLink} className="flex-1 min-w-0">
-        <div className="flex items-center gap-3 mb-2">
-          <StatusBadge status={topic.status} />
-          {topic.has_3d && (
-            <span className="flex items-center gap-1 text-xs font-medium shrink-0" style={{ color: themeColor.accent }}>
-              <Box className="w-3.5 h-3.5" /> 3D
-            </span>
-          )}
-        </div>
-        <h3 className="text-[17px] font-medium text-[#202124] truncate">{topic.name}</h3>
-        {/* One line: chapter · duration */}
-        <div className="flex items-center gap-2 mt-2">
-          <span className="text-sm font-normal text-[#5f6368] truncate">{subheading}</span>
-          <span className="text-[#dadce0] text-sm">·</span>
-          <span className="flex items-center gap-1 text-sm font-normal text-[#5f6368] shrink-0">
-            <Clock className="w-3.5 h-3.5" /> {estDuration} min
-          </span>
-        </div>
-        <div className="flex items-center gap-2 mt-2">
-          <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden max-w-[200px]">
-            <div className="h-full rounded-full" style={{ width: `${mastery}%`, backgroundColor: themeColor.accent }} />
-          </div>
-          <span className="text-xs font-medium text-[#5f6368]">{mastery}%</span>
-        </div>
-      </Link>
-      <div className="flex items-center gap-2 shrink-0">
-        <Link
-          to={askLink}
-          className="hidden sm:flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium bg-[#f1f3f4] text-[#3c4043] hover:bg-[#e8eaed] transition-colors"
-        >
-          <MessageSquare className="w-3.5 h-3.5" /> Ask
-        </Link>
-        <Link
-          to={practiceLink}
-          className="hidden sm:flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#1a73e8" }}
-        >
-          <PencilRuler className="w-3.5 h-3.5" /> Practice
-        </Link>
-        <Link
-          to={learnLink}
-          className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors"
-          style={{ backgroundColor: themeColor.light }}
-        >
-          <ArrowRight className="w-[16px] h-[16px]" style={{ color: themeColor.accent }} />
-        </Link>
+    <article className={`rounded-xl border border-[#dadce0] bg-white p-5 ${variant === "list" ? "sm:flex sm:items-center sm:gap-5" : "flex flex-col"}`}>
+      <div className="mb-4 flex items-center justify-between gap-3 sm:shrink-0">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ backgroundColor: theme.light, color: theme.accent }}><BookOpen className="h-5 w-5" /></div>
+        {variant !== "list" && <span className="rounded-md bg-[#f1f3f4] px-2 py-1 text-xs text-[#5f6368]">{statuses[topic.status] || "Not started"}</span>}
       </div>
-    </div>
+      <div className="min-w-0 flex-1">
+        <p className="mb-1 text-xs text-[#5f6368]">{topic.chapter || topic.subject}</p>
+        <h3 className="text-base font-medium leading-6 text-[#202124]"><Link className="hover:underline" to={`/dashboard/learn/${topic.id}`}>{topic.name}</Link></h3>
+        <p className="mt-2 text-xs text-[#5f6368]">{topic.practice_count || 0} practice sessions{variant === "list" ? ` · ${statuses[topic.status] || "Not started"}` : ""}</p>
+      </div>
+      <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-[#eef0f2] pt-4 sm:shrink-0">
+        <Link to={`/dashboard/learn/${topic.id}`} className="mr-auto inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: theme.accent }}>Open lesson <ArrowRight className="h-4 w-4" /></Link>
+        <Link to={`/dashboard/ask?${context}`} className="rounded-lg p-2 text-[#5f6368] hover:bg-gray-100" aria-label={`Ask about ${topic.name}`} title="Ask"><MessageCircle className="h-4 w-4" /></Link>
+        <Link to={`/dashboard/practice?${context}`} className="rounded-lg p-2 text-[#5f6368] hover:bg-gray-100" aria-label={`Practice ${topic.name}`} title="Practice"><Target className="h-4 w-4" /></Link>
+      </div>
+    </article>
   );
 }

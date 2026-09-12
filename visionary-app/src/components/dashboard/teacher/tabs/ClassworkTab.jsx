@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Plus, ClipboardList, X, Inbox } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import AssignmentGrader from "@/components/dashboard/teacher/AssignmentGrader";
+import { useAuth } from "@/lib/AuthContext";
 
 export default function ClassworkTab({ classId, classroom, accent }) {
+  const { user } = useAuth();
   const [assignments, setAssignments] = useState([]);
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,21 +14,25 @@ export default function ClassworkTab({ classId, classroom, accent }) {
   const [topics, setTopics] = useState([]);
   const [topicInput, setTopicInput] = useState("");
   const [grading, setGrading] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
-  const load = async () => {
+  const load = useCallback(async () => {
     try {
       const [list, subs] = await Promise.all([
         base44.entities.Assignment.filter({ class_id: classId }),
         base44.entities.Submission.filter({ class_id: classId }),
       ]);
-      setAssignments(list || []);
+      setAssignments((list || []).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
       setSubmissions(subs || []);
-    } catch {}
+    } catch { setError("We couldn’t load classwork. Please try again."); }
     setLoading(false);
-  };
+  }, [classId]);
   useEffect(() => {
     load();
-  }, [classId]);
+    window.addEventListener("visionary:workspace-change", load);
+    return () => window.removeEventListener("visionary:workspace-change", load);
+  }, [load]);
 
   const subsFor = (assignmentId) => (submissions || []).filter((s) => s.assignment_id === assignmentId);
   const ungradedFor = (assignmentId) => subsFor(assignmentId).filter((s) => s.status !== "graded").length;
@@ -38,47 +44,64 @@ export default function ClassworkTab({ classId, classroom, accent }) {
   };
   const removeTopic = (t) => setTopics((p) => p.filter((x) => x !== t));
 
-  const create = async () => {
-    if (!form.title.trim()) return;
+  const create = async (event) => {
+    event.preventDefault();
+    if (!form.title.trim() || busy) return;
+    const points = Number(form.points);
+    if (!Number.isFinite(points) || points <= 0 || points > 10000) { setError("Choose a point total between 1 and 10,000."); return; }
+    setBusy(true);
+    setError("");
     try {
       const created = await base44.entities.Assignment.create({
         class_id: classId,
+        teacher_id: user?.id,
+        teacher_email: user?.email,
         title: form.title.trim(),
         description: form.description,
         due_date: form.due_date || undefined,
-        points: Number(form.points) || 100,
+        points,
         subject: classroom?.subject || "",
-        topics,
+        topics: topicInput.trim() && !topics.includes(topicInput.trim()) ? [...topics, topicInput.trim()] : topics,
       });
       setAssignments((p) => [created, ...p]);
       setForm({ title: "", description: "", due_date: "", points: 100 });
       setTopics([]);
+      setTopicInput("");
       setShowForm(false);
-    } catch {}
+      window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
+    } catch { setError("Your assignment wasn’t saved. Please try again."); }
+    finally { setBusy(false); }
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-[680px]">
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-[#5f6368]">Tag concepts on each assignment to feed your students' mastery map.</p>
+    <div className="flex flex-col gap-6 max-w-[800px]">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-[#5f6368]">Create assignments and return feedback to your students.</p>
         <button
           onClick={() => setShowForm((s) => !s)}
           className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium text-white"
           style={{ backgroundColor: accent }}
         >
-          <Plus className="w-4 h-4" /> Create
+          <Plus className="w-4 h-4" /> Create assignment
         </button>
       </div>
+      {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
 
       {showForm && (
-        <div className="flex flex-col gap-4 p-6 bg-white rounded-3xl border border-[#dadce0]/60">
+        <form onSubmit={create} className="flex flex-col gap-4 p-6 bg-white rounded-2xl border border-[#dadce0]">
+          <h3 className="text-base font-medium text-[#202124]">New assignment</h3>
+          <label htmlFor="assignment-title" className="text-sm font-medium text-[#202124]">Title</label>
           <input
+            id="assignment-title"
+            required
+            maxLength={160}
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
             placeholder="Assignment title"
             className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
           />
           <textarea
+            aria-label="Assignment instructions"
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Instructions (optional)"
@@ -87,8 +110,9 @@ export default function ClassworkTab({ classId, classroom, accent }) {
           />
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-[#5f6368] mb-1.5">Due date</label>
+              <label htmlFor="assignment-due" className="block text-xs text-[#5f6368] mb-1.5">Due date (optional)</label>
               <input
+                id="assignment-due"
                 type="date"
                 value={form.due_date}
                 onChange={(e) => setForm({ ...form, due_date: e.target.value })}
@@ -96,9 +120,13 @@ export default function ClassworkTab({ classId, classroom, accent }) {
               />
             </div>
             <div>
-              <label className="block text-xs text-[#5f6368] mb-1.5">Points</label>
+              <label htmlFor="assignment-points" className="block text-xs text-[#5f6368] mb-1.5">Points</label>
               <input
+                id="assignment-points"
                 type="number"
+                min="1"
+                max="10000"
+                required
                 value={form.points}
                 onChange={(e) => setForm({ ...form, points: e.target.value })}
                 className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
@@ -107,9 +135,10 @@ export default function ClassworkTab({ classId, classroom, accent }) {
           </div>
 
           <div>
-            <label className="block text-xs text-[#5f6368] mb-1.5">Tag concepts (powers the mastery map)</label>
+            <label htmlFor="assignment-concept" className="block text-xs text-[#5f6368] mb-1.5">Concepts (optional)</label>
             <div className="flex gap-2">
               <input
+                id="assignment-concept"
                 value={topicInput}
                 onChange={(e) => setTopicInput(e.target.value)}
                 onKeyDown={(e) => {
@@ -121,7 +150,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                 placeholder="e.g. Quadratic equations"
                 className="flex-1 h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
               />
-              <button onClick={addTopic} className="h-11 px-4 rounded-xl border border-[#dadce0] text-sm font-medium text-[#3c4043] hover:bg-gray-50">
+              <button type="button" onClick={addTopic} disabled={!topicInput.trim()} className="h-11 px-4 rounded-xl border border-[#dadce0] text-sm font-medium text-[#3c4043] hover:bg-gray-50 disabled:opacity-40">
                 Add
               </button>
             </div>
@@ -134,7 +163,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                     style={{ backgroundColor: `${accent}15`, color: accent }}
                   >
                     {t}
-                    <button onClick={() => removeTopic(t)} className="w-5 h-5 rounded-full hover:bg-white/60 flex items-center justify-center">
+                    <button type="button" aria-label={`Remove ${t}`} onClick={() => removeTopic(t)} className="w-5 h-5 rounded-full hover:bg-white/60 flex items-center justify-center">
                       <X className="w-3 h-3" />
                     </button>
                   </span>
@@ -144,19 +173,19 @@ export default function ClassworkTab({ classId, classroom, accent }) {
           </div>
 
           <div className="flex justify-end gap-3">
-            <button onClick={() => setShowForm(false)} className="h-10 px-5 rounded-full text-sm font-medium text-[#5f6368] hover:bg-gray-100">
+            <button type="button" disabled={busy} onClick={() => setShowForm(false)} className="h-10 px-5 rounded-full text-sm font-medium text-[#5f6368] hover:bg-gray-100">
               Cancel
             </button>
             <button
-              onClick={create}
-              disabled={!form.title.trim()}
+              type="submit"
+              disabled={busy || !form.title.trim()}
               className="h-10 px-5 rounded-full text-sm font-medium text-white disabled:opacity-50"
               style={{ backgroundColor: accent }}
             >
-              Assign
+              {busy ? "Assigning…" : "Assign"}
             </button>
           </div>
-        </div>
+        </form>
       )}
 
       {loading ? (
@@ -174,7 +203,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
           const ungraded = ungradedFor(a.id);
           return (
             <div key={a.id} className="p-5 bg-white rounded-3xl border border-[#dadce0]/60">
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
                   <ClipboardList className="w-5 h-5" style={{ color: accent }} />
                 </div>
@@ -192,6 +221,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                   {subs.length > 0 ? `Review (${subs.length}${ungraded ? ` · ${ungraded} new` : ""})` : "Review"}
                 </button>
               </div>
+              {a.description && <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.description}</p>}
               {a.topics && a.topics.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4 pl-14">
                   {a.topics.map((t) => (

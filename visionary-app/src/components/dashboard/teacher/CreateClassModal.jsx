@@ -1,68 +1,51 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-const COLORS = ["#1a73e8", "#34a853", "#ea4335", "#fbbc05", "#9333ea", "#f97316", "#0ea5e9", "#64748b"];
+const COLORS = [
+  ["Blue", "#1967d2"], ["Green", "#137333"], ["Red", "#b3261e"],
+  ["Purple", "#7627bb"], ["Teal", "#007b83"], ["Slate", "#4f647a"],
+];
+const FIELDS = [
+  ["name", "Class name", "e.g. Algebra II"],
+  ["section", "Section (optional)", "e.g. Period 2"],
+  ["subject", "Subject (optional)", "e.g. Mathematics"],
+  ["room", "Room (optional)", "e.g. 204"],
+];
 
 export default function CreateClassModal({ onClose, onCreate, accent = "#1a73e8" }) {
-  const [form, setForm] = useState({ name: "", section: "", subject: "", room: "", color: COLORS[0] });
-  const set = (k, v) => setForm((p) => ({ ...p, [k]: v }));
-  const canCreate = form.name.trim().length > 0;
-
-  const Field = ({ label, keyName, placeholder }) => (
-    <div>
-      <label className="block text-sm font-medium text-[#202124] mb-2">{label}</label>
-      <input
-        value={form[keyName]}
-        onChange={(e) => set(keyName, e.target.value)}
-        placeholder={placeholder}
-        className="w-full h-11 px-4 rounded-xl border border-[#dadce0] bg-white text-sm text-[#202124] placeholder:text-[#5f6368] outline-none focus:border-[#1a73e8] transition-colors"
-      />
-    </div>
-  );
+  const [form, setForm] = useState({ name: "", section: "", subject: "", room: "", color: COLORS[0][1] });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const create = async (event) => {
+    event.preventDefault();
+    if (!form.name.trim() || busy) return;
+    setBusy(true);
+    setError("");
+    try { await onCreate(Object.fromEntries(Object.entries(form).map(([key, value]) => [key, value.trim()]))); }
+    catch { setError("Your class couldn’t be created. Please try again."); }
+    finally { setBusy(false); }
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30" onClick={onClose}>
-      <div className="w-full max-w-md bg-white rounded-3xl p-8 flex flex-col gap-5" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between">
-          <h2 className="text-[22px] font-medium text-[#202124]">Create class</h2>
-          <button onClick={onClose} className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center">
-            <X className="w-5 h-5 text-[#5f6368]" />
-          </button>
-        </div>
-
-        <Field label="Class name" keyName="name" placeholder="e.g. Algebra II" />
-        <Field label="Section" keyName="section" placeholder="e.g. Period 2" />
-        <Field label="Subject" keyName="subject" placeholder="e.g. Mathematics" />
-        <Field label="Room" keyName="room" placeholder="e.g. 204" />
-
-        <div>
-          <label className="block text-sm font-medium text-[#202124] mb-2">Class color</label>
-          <div className="flex flex-wrap gap-2.5">
-            {COLORS.map((c) => (
-              <button
-                key={c}
-                onClick={() => set("color", c)}
-                className="w-9 h-9 rounded-full transition-transform"
-                style={{
-                  backgroundColor: c,
-                  transform: form.color === c ? "scale(1.12)" : "none",
-                  boxShadow: form.color === c ? `0 0 0 2px #fff, 0 0 0 4px ${c}` : "none",
-                }}
-                aria-label="Select color"
-              />
-            ))}
-          </div>
-        </div>
-
-        <button
-          onClick={() => canCreate && onCreate({ ...form, name: form.name.trim() })}
-          disabled={!canCreate}
-          className="h-11 rounded-full text-sm font-medium text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          style={{ backgroundColor: accent }}
-        >
-          Create
-        </button>
-      </div>
-    </div>
+    <Dialog open onOpenChange={(open) => { if (!open && !busy) onClose(); }}>
+      <DialogContent className="max-h-[90dvh] w-[calc(100%-2rem)] max-w-md overflow-y-auto rounded-3xl bg-white p-6 sm:rounded-3xl sm:p-8">
+        <DialogTitle className="text-[22px] font-medium text-[#202124]">Create class</DialogTitle>
+        <DialogDescription>Give your class a name. You’ll get a code to share with your students.</DialogDescription>
+        <form onSubmit={create} className="flex flex-col gap-4">
+          {FIELDS.map(([key, label, placeholder]) => (
+            <label key={key} className="block text-sm font-medium text-[#202124]">
+              {label}
+              <input required={key === "name"} maxLength={100} value={form[key]} onChange={(e) => setForm((current) => ({ ...current, [key]: e.target.value }))} placeholder={placeholder} className="mt-2 h-11 w-full rounded-lg border border-[#747775] px-3 font-normal outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]" />
+            </label>
+          ))}
+          <fieldset><legend className="mb-3 text-sm font-medium text-[#202124]">Class color</legend><div className="flex flex-wrap gap-3">
+            {COLORS.map(([label, color]) => <button key={color} type="button" onClick={() => setForm((current) => ({ ...current, color }))} aria-label={label} aria-pressed={form.color === color} className="flex h-9 w-9 items-center justify-center rounded-full text-white outline-offset-4" style={{ backgroundColor: color }}>{form.color === color && <Check className="h-5 w-5" />}</button>)}
+          </div></fieldset>
+          {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
+          <div className="mt-3 flex justify-end gap-2"><button type="button" disabled={busy} onClick={onClose} className="h-10 rounded-full px-5 text-sm font-medium text-[#1a73e8] hover:bg-[#f8fafd]">Cancel</button><button type="submit" disabled={busy || !form.name.trim()} className="inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-50" style={{ backgroundColor: accent }}>{busy && <Loader2 className="h-4 w-4 animate-spin" />}{busy ? "Creating…" : "Create class"}</button></div>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }
