@@ -87,6 +87,7 @@ const TopicDetail = lazy(() => import('@/pages/dashboard/TopicDetail'))
 const Ask = lazy(() => import('@/pages/dashboard/Ask'))
 const Practice = lazy(() => import('@/pages/dashboard/Practice'))
 const Build = lazy(() => import('@/pages/dashboard/Build'))
+const Plan = lazy(() => import('@/pages/dashboard/Plan'))
 const Subscription = lazy(() => import('@/pages/dashboard/Subscription'))
 const Profile = lazy(() => import('@/pages/dashboard/Profile'))
 const ClassDetail = lazy(() => import('@/pages/dashboard/ClassDetail'))
@@ -164,6 +165,7 @@ const PublicApp = () => (
         <Route path="ask" element={<Ask />} />
         <Route path="practice" element={<Practice />} />
         <Route path="build" element={<Build />} />
+        <Route path="plan" element={<Plan />} />
         <Route path="subscription" element={<Subscription />} />
         <Route path="class/:classId" element={<ClassDetail />} />
         <Route path="profile" element={<Profile />} />
