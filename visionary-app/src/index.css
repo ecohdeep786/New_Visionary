@@ -304,7 +304,9 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
   /* Apple-style smooth scrolling */
   html {
     scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%; 
+    /* anchor targets (e.g. /organization#schools) never hide under the fixed 64px nav */
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   }
 

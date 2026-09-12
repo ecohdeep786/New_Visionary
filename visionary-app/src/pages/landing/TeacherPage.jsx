@@ -55,6 +55,8 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   chipBg: "#D2E3FC",
+  mist: "#dadce0",
+  white: "#ffffff",
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",
   mist: "#E8EAED",
@@ -410,7 +412,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect 
           aria-label={`Go to challenge ${i + 1}`}
           aria-selected={i === active}
           onClick={() => onSelect(i)}
-          className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -805,7 +807,7 @@ function TeacherJourneySection() {
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
         </h2>
         <p
-          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px] lg:whitespace-nowrap lg:px-0"
+          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
           style={{ color: COLORS.grey }}
         >
           Wherever your class begins, Visionary helps your teaching move forward from there.
@@ -1470,9 +1472,9 @@ function TeacherTrustSection() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px] shrink-0"><TrustCard card={active} /></div>
-            <div key={`b-${index}`} className="hero-fade-up w-full max-w-[780px] shrink-0 [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
+          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
+            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} /></div>
+            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
       </FadeReveal>
@@ -1501,7 +1503,7 @@ const TeacherCTASection = React.memo(function TeacherCTASection() {
         <div className="mt-12 flex justify-center">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98]"
+            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             Get started

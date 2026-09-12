@@ -55,6 +55,8 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   chipBg: "#D2E3FC",
+  mist: "#dadce0",
+  white: "#ffffff",
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",
 };
@@ -262,9 +264,9 @@ const ChevronIcon = React.memo(function ChevronIcon({ direction = "right", class
   );
 });
 
-const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9" }) {
+const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }) {
   return (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>
       <path d="M25 7l-5 9 6 4-5 9 3 3-2 7" />
       <path d="M31 19c2.5 2.5 2.5 7.5 0 10" />
       <path d="M35.5 15.5c4.5 4.5 4.5 12 0 16.5" />
@@ -413,7 +415,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect 
           aria-label={`Go to challenge ${i + 1}`}
           aria-selected={i === active}
           onClick={() => onSelect(i)}
-          className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -792,7 +794,7 @@ function ProJourneySection() {
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
         </h2>
         <p
-          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px] lg:whitespace-nowrap lg:px-0"
+          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
           style={{ color: COLORS.grey }}
         >
           Wherever your career begins, Visionary helps your work move forward from there.
@@ -1423,9 +1425,9 @@ function ProTrustSection() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px] shrink-0"><TrustCard card={active} /></div>
-            <div key={`b-${index}`} className="hero-fade-up w-full max-w-[780px] shrink-0 [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
+          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
+            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} /></div>
+            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
       </FadeReveal>
@@ -1454,7 +1456,7 @@ const ProCTASection = React.memo(function ProCTASection() {
         <div className="mt-12 flex justify-center">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98]"
+            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             Get started

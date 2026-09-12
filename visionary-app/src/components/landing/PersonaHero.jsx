@@ -40,16 +40,16 @@ export default function PersonaHero({
   const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[clamp(40px,9.57vw,168px)]";
   return (
     <section data-section="01-hero" className="relative overflow-hidden bg-white">
-      <div className="relative mx-auto min-h-[calc(100svh-70px)] w-full max-w-[1756px] px-6 pt-16 pb-24 sm:px-8 sm:pt-20 lg:px-0 lg:py-0">
-        {/* ONE animated heading */}
+      <div className="relative mx-auto min-h-[calc(100svh-64px)] w-full max-w-[1756px] px-6 pt-16 pb-24 sm:px-8 sm:pt-20 lg:px-0 lg:py-0">
+        {/* ONE animated heading — sr-only sentence lives inside so AT reads the h1 */}
         <h1 className="m-0">
           <span aria-hidden="true" className={`hero-fade-up ${display} lg:absolute lg:left-[6.5%] lg:top-[20%]`} style={rise(0)}>
             <span key={index} className="inline-block" style={{ color: "#121317", animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both" }}>
               {words[index]}
             </span>
           </span>
+          <span className="sr-only">{srSentence}</span>
         </h1>
-        <span className="sr-only">{srSentence}</span>
 
         {/* supporting sentence */}
         <p

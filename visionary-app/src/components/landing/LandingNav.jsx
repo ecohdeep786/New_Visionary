@@ -190,6 +190,13 @@ export default function LandingNav() {
       }`}
       style={{ fontFamily: FONT, borderColor: scrolled ? C.mist : "transparent" }}
     >
+      {/* Skip link — first focusable element, Google/US-WAG convention */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#121317] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
+      >
+        Skip to main content
+      </a>
       <div className="flex h-full w-full items-center justify-between px-6 lg:px-10">
         {/* LEFT: logo + primary nav */}
         <div className="flex min-w-0 items-center gap-4 lg:gap-6">
