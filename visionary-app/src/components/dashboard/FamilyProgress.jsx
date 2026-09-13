@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { BookOpen, Sparkles } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
 /* Shared-progress view for parents — mirrors the RoleWorkspace design system.
@@ -138,8 +138,6 @@ export default function FamilyProgress({ links = [], accent = "#1a73e8" }) {
   if (activeLinks.length === 0) return null;
 
   const window = lastNDays(7);
-  const attributed = new Set(activeLinks.map((link) => String(link.child_email).toLowerCase()));
-  const unattributed = (logs || []).filter((log) => !log.student_email || !attributed.has(String(log.student_email).toLowerCase()));
   const singleChild = activeLinks.length === 1;
 
   return (
@@ -159,12 +157,6 @@ export default function FamilyProgress({ links = [], accent = "#1a73e8" }) {
 
       {!error && logs !== null && (
         <>
-          {!singleChild && unattributed.length > 0 && (
-            <div className="mb-4 flex items-center gap-3 rounded-2xl border border-[#dadce0] bg-[#f8fafd] px-5 py-4">
-              <Sparkles className="h-5 w-5 shrink-0" style={{ color: accent }} />
-              <p className="text-sm text-[#5f6368]">{unattributed.length} study {unattributed.length === 1 ? "session" : "sessions"} logged this week across your family’s Visionary accounts.</p>
-            </div>
-          )}
           <div className="grid gap-4 lg:grid-cols-2">
             {activeLinks.map((link) => (
               <ProgressCard

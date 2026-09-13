@@ -236,7 +236,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
         })
       )}
 
-      {grading && <AssignmentGrader assignment={grading} accent={accent} onClose={() => setGrading(null)} />}
+      {grading && <AssignmentGrader assignment={grading} accent={accent} onClose={() => { setGrading(null); load(); }} />}
     </div>
   );
 }

@@ -30,7 +30,8 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
       if (!studentMap[key]) studentMap[key] = { name, concepts: {} };
       (aMap[s.assignment_id] || []).forEach((c) => {
         if (!studentMap[key].concepts[c]) studentMap[key].concepts[c] = [];
-        studentMap[key].concepts[c].push(s.grade || 0);
+        const points = Number(assignments.find(a => a.id === s.assignment_id)?.points) || 100;
+        studentMap[key].concepts[c].push(Math.max(0, Math.min(100, Number(s.grade || 0) / points * 100)));
       });
     });
   const students = Object.values(studentMap);
@@ -54,7 +55,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
         <h3 className="text-sm font-medium text-[#202124]">Knowledge heatmap</h3>
       </div>
       <p className="text-xs text-[#5f6368] mb-6">
-        Each student's mastery per concept — spot exactly who needs help on what.
+        Recorded assignment scores by concept. Use these alongside conversations and practice to decide what support helps.
       </p>
 
       {concepts.length === 0 || students.length === 0 ? (
@@ -118,7 +119,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
             {[
               { label: "Mastered 70%+", color: "#34a853" },
               { label: "Developing 40–69%", color: accent },
-              { label: "At risk <40%", color: "#ea4335" },
+              { label: "Needs review <40%", color: "#ea4335" },
               { label: "Not yet graded", color: "#f1f3f4" },
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">

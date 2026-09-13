@@ -16,6 +16,7 @@ export default function InsightsTab({ classId, classroom, accent }) {
   const [loading, setLoading] = useState(true);
   const [insight, setInsight] = useState("");
   const [insightLoading, setInsightLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const load = async () => {
     try {
@@ -25,7 +26,7 @@ export default function InsightsTab({ classId, classroom, accent }) {
       ]);
       setAssignments(list || []);
       setSubmissions(subs || []);
-    } catch {}
+    } catch { setError("Class insights could not be loaded. Please try again."); }
     setLoading(false);
   };
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function InsightsTab({ classId, classroom, accent }) {
       const a = assignmentMap[s.assignment_id];
       (a?.topics || []).forEach((c) => {
         if (!conceptGrades[c]) conceptGrades[c] = [];
-        conceptGrades[c].push(s.grade || 0);
+        conceptGrades[c].push(Math.max(0, Math.min(100, Number(s.grade || 0) / (Number(a.points) || 100) * 100)));
       });
     });
   const masteryRows = Object.entries(conceptGrades)
@@ -74,7 +75,7 @@ export default function InsightsTab({ classId, classroom, accent }) {
       });
       setInsight(typeof res === "string" ? res : JSON.stringify(res));
     } catch {
-      setInsight("Tag concepts on your assignments to unlock a live coverage map and mastery insights here.");
+      setInsight("AI analysis is not connected yet. The coverage and assessment summaries below use your recorded classwork.");
     }
     setInsightLoading(false);
   };
@@ -84,6 +85,7 @@ export default function InsightsTab({ classId, classroom, accent }) {
 
   return (
     <div className="flex flex-col gap-6 max-w-[680px]">
+      {error && <p role="alert" className="rounded-xl bg-red-50 p-4 text-sm text-red-700">{error} <button onClick={() => { setError(""); load(); }} className="underline">Retry</button></p>}
       {/* AI analysis */}
       <div className="rounded-3xl p-6 bg-white border border-[#dadce0]/60 flex items-start gap-4">
         <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
@@ -113,9 +115,9 @@ export default function InsightsTab({ classId, classroom, accent }) {
       <div className="bg-white rounded-3xl border border-[#dadce0]/60 p-6">
         <div className="flex items-center gap-2 mb-1">
           <BarChart3 className="w-5 h-5" style={{ color: accent }} />
-          <h3 className="text-sm font-medium text-[#202124]">Class mastery</h3>
+          <h3 className="text-sm font-medium text-[#202124]">Concept assessment</h3>
         </div>
-        <p className="text-xs text-[#5f6368] mb-6">Average understanding per concept, live from graded work — the heatmap Google Classroom can't show you.</p>
+        <p className="text-xs text-[#5f6368] mb-6">Average scores from graded assignments, normalized to a percentage. A useful signal—not a complete measure of understanding.</p>
         {loading ? (
           <div className="flex justify-center py-8">
             <div className="w-7 h-7 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { X, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 /**
  * AssignmentGrader — the teacher's review surface.
@@ -12,12 +13,13 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState(null);
+  const [error, setError] = useState("");
 
   const load = async () => {
     try {
       const list = await base44.entities.Submission.filter({ assignment_id: assignment.id });
       setSubmissions(list || []);
-    } catch {}
+    } catch { setError("Submissions could not be loaded. Close this dialog and try again."); }
     setLoading(false);
   };
   useEffect(() => {
@@ -28,32 +30,38 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
     setSubmissions((p) => p.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
 
   const returnSub = async (s) => {
+    const grade = Number(s.grade);
+    if (s.grade === "" || s.grade == null || !Number.isFinite(grade) || grade < 0 || grade > (assignment.points || 100)) {
+      setError("Enter a grade between 0 and " + (assignment.points || 100) + "."); return;
+    }
+    if (busyId) return;
+    setError("");
     setBusyId(s.id);
     try {
       await base44.entities.Submission.update(s.id, {
         status: "graded",
-        grade: Number(s.grade) || 0,
+        grade,
         feedback: s.feedback || "",
+        graded_date: new Date().toISOString(),
       });
       setSubmissions((p) => p.map((x) => (x.id === s.id ? { ...x, status: "graded" } : x)));
-    } catch {}
+      window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
+    } catch { setError("The grade was not returned. Your edits are still here; please retry."); }
     setBusyId(null);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40" onClick={onClose}>
-      <div className="bg-white rounded-3xl w-full max-w-[640px] max-h-[85vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+    <Dialog open onOpenChange={open => { if (!open && !busyId) onClose(); }}>
+      <DialogContent className="max-h-[85dvh] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-white p-0 sm:max-w-[640px]">
         <div className="flex items-center justify-between p-6 border-b border-[#dadce0]/60">
           <div className="min-w-0">
-            <p className="text-sm font-medium text-[#202124] truncate">{assignment.title}</p>
-            <p className="text-xs text-[#5f6368] mt-0.5">Review & return submissions</p>
+            <DialogTitle className="pr-8 text-sm font-medium text-[#202124]">{assignment.title}</DialogTitle>
+            <DialogDescription className="text-xs text-[#5f6368] mt-0.5">Review and return submissions. Grades must be within the assignment’s point range.</DialogDescription>
           </div>
-          <button onClick={onClose} className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0">
-            <X className="w-5 h-5 text-[#5f6368]" />
-          </button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+          {error && <p role="alert" className="rounded-xl bg-red-50 p-4 text-sm text-red-700">{error}</p>}
           {loading ? (
             <div className="flex justify-center py-10">
               <div className="w-7 h-7 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
@@ -84,6 +92,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                   <div className="flex items-center gap-2">
                     <input
                       type="number"
+                      aria-label={"Grade for " + (s.student_name || s.student_email)}
                       min="0"
                       max={assignment.points || 100}
                       value={s.grade ?? ""}
@@ -94,6 +103,8 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                     <span className="text-xs text-[#5f6368]">/ {assignment.points || 100}</span>
                   </div>
                   <input
+                    aria-label={"Feedback for " + (s.student_name || s.student_email)}
+                    maxLength={5000}
                     value={s.feedback || ""}
                     onChange={(e) => updateField(s.id, "feedback", e.target.value)}
                     placeholder="Private feedback (optional)"
@@ -101,7 +112,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                   />
                   <button
                     onClick={() => returnSub(s)}
-                    disabled={busyId === s.id}
+                    disabled={!!busyId}
                     className="inline-flex items-center justify-center gap-1.5 h-10 px-4 rounded-full text-sm font-medium text-white disabled:opacity-50 shrink-0"
                     style={{ backgroundColor: accent }}
                   >
@@ -112,7 +123,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
             ))
           )}
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
