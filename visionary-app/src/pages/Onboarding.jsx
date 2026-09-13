@@ -100,12 +100,12 @@ export default function Onboarding() {
     setSubmitting(true);
     setSubmissionError("");
     try {
-      const updatedUser = await updateUser({
+      await initializeLearningWorkspace(base44, user, data);
+      await updateUser({
         ...data,
         onboarding_complete: true,
         full_name: data.full_name || user?.full_name || user?.email?.split("@")[0],
       });
-      await initializeLearningWorkspace(base44, updatedUser, data);
       setPhase("agi-intro");
     } catch {
       setSubmissionError("We couldn’t finish setting up your workspace. Please try again.");

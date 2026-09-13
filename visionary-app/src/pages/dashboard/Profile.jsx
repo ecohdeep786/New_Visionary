@@ -1,188 +1,44 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Flame, BookOpen, Target, Clock, Calendar, Crown, LogOut, ChevronRight, Bell, Globe, Shield, Palette, Pencil, Check, X } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Plus, Users, Settings, BookOpen } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import { useStudentData } from "@/hooks/useStudentData";
+import { appClient } from "@/api/appClient";
+import { learningLanguage } from "@/lib/productAccess";
 
 export default function Profile() {
-  const { user, updateUser, logout } = useAuth();
-  const navigate = useNavigate();
-  const studentData = useStudentData();
-  const [editing, setEditing] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [status, setStatus] = useState("idle");
-
-  const userName = user?.full_name || user?.email?.split("@")[0] || "Learner";
-  const initial = userName?.charAt(0)?.toUpperCase() || "U";
-  const accountCreatedAt = user?.createdAt || user?.created_date;
-  const joinDate = accountCreatedAt
-    ? new Date(accountCreatedAt).toLocaleDateString("en-US", { year: "numeric", month: "long" })
-    : null;
-
-  useEffect(() => {
-    setFullName(user?.full_name || user?.email?.split("@")[0] || "");
-  }, [user?.full_name, user?.email]);
-
-  const saveProfile = async () => {
-    const trimmedName = fullName.trim();
-    if (!trimmedName) return;
-    setStatus("saving");
-    try {
-      await updateUser({ full_name: trimmedName });
-      setEditing(false);
-      setStatus("saved");
-      window.setTimeout(() => setStatus("idle"), 2500);
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  const cancelEditing = () => {
-    setFullName(user?.full_name || user?.email?.split("@")[0] || "");
-    setEditing(false);
-    setStatus("idle");
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login", { replace: true });
-  };
-
-  const streak = studentData.dailyStats?.streak || 0;
-  const subjectCount = studentData.subjects?.length || 0;
-  const masteredCount = studentData.topics?.filter((t) => t.status === "mastered").length || 0;
-  const totalMinutes = studentData.studyLogs?.reduce((sum, l) => sum + (l.duration_minutes || 0), 0) || 0;
-  const totalHours = Math.round(totalMinutes / 60);
-
-  const stats = [
-    { icon: Flame, label: "Day streak", value: streak, color: "#ea4335" },
-    { icon: BookOpen, label: "Subjects", value: subjectCount, color: "#1a73e8" },
-    { icon: Target, label: "Mastered", value: masteredCount, color: "#34a853" },
-    { icon: Clock, label: "Study hours", value: totalHours, color: "#fbbc05" },
-  ];
-
-  const settings = [
-    { icon: Bell, label: "Notifications", desc: "Manage your alerts" },
-    { icon: Globe, label: "Language", desc: "English (United States)" },
-    { icon: Shield, label: "Privacy & security", desc: "Account protection" },
-    { icon: Palette, label: "Appearance", desc: "Theme and display" },
-  ];
-
-  if (studentData.loading) {
-    return (
-      <div className="flex items-center justify-center h-full min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin border-t-[#1a73e8]" />
-      </div>
-    );
+  const { user, updateUser } = useAuth();
+  const data = useStudentData();
+  const [name, setName] = useState(user?.full_name || "");
+  const [subject, setSubject] = useState("");
+  const [status, setStatus] = useState("");
+  const [busy, setBusy] = useState(false);
+  async function saveName(event) {
+    event.preventDefault(); setBusy(true); setStatus("");
+    try { await updateUser({ full_name: name.trim() }); setStatus("Profile saved."); }
+    catch (err) { setStatus(err.message || "Could not save your profile."); }
+    finally { setBusy(false); }
   }
-
-  return (
-    <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[800px] mx-auto w-full">
-      {/* Profile header */}
-      <div className="relative flex flex-col items-center gap-4 py-8">
-        <button
-          type="button"
-          onClick={() => setEditing((value) => !value)}
-          className="relative self-end sm:absolute sm:right-0 sm:top-8 inline-flex h-10 items-center gap-2 rounded-full border border-[#dadce0] px-4 text-sm font-medium text-[#1a73e8] transition-colors hover:bg-[#f8fafd]"
-        >
-          <Pencil className="h-4 w-4" /> Edit profile
-        </button>
-        <div className="w-24 h-24 rounded-full bg-[#1a73e8] flex items-center justify-center text-4xl font-medium text-white">
-          {initial}
-        </div>
-        <div className="text-center">
-          {editing ? (
-            <div className="flex flex-col items-center gap-3">
-              <label className="sr-only" htmlFor="profile-name">Display name</label>
-              <input id="profile-name" value={fullName} onChange={(event) => setFullName(event.target.value)} className="h-11 w-full max-w-xs rounded-lg border border-[#747775] bg-white px-3 text-center text-lg text-[#202124] outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]" autoFocus />
-              <div className="flex items-center justify-center gap-2">
-                <button type="button" onClick={saveProfile} disabled={!fullName.trim() || status === "saving"} className="inline-flex h-9 items-center gap-1.5 rounded-full bg-[#1a73e8] px-4 text-sm font-medium text-white hover:bg-[#1557b0] disabled:opacity-60"><Check className="h-4 w-4" />{status === "saving" ? "Saving" : "Save"}</button>
-                <button type="button" onClick={cancelEditing} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#dadce0] px-4 text-sm font-medium text-[#3c4043] hover:bg-[#f8fafd]"><X className="h-4 w-4" />Cancel</button>
-              </div>
-            </div>
-          ) : (
-            <h1 className="text-[28px] font-normal text-[#202124]">{userName}</h1>
-          )}
-          <p className="text-sm text-[#5f6368] mt-1">{user?.email}</p>
-          <div className="flex items-center gap-2 justify-center mt-2">
-            {joinDate && (
-              <span className="text-xs text-[#5f6368] flex items-center gap-1">
-                <Calendar className="w-3 h-3" /> Joined {joinDate}
-              </span>
-            )}
-            <span className="px-2 py-0.5 bg-[#e8f0fe] text-[#1a73e8] rounded-full text-xs font-medium capitalize">
-              {user?.identity || user?.role || "Member"}
-            </span>
-          </div>
-          {status === "saved" && <p className="mt-2 text-xs text-[#137333]" role="status">Profile saved.</p>}
-          {status === "error" && <p className="mt-2 text-xs text-[#b3261e]" role="alert">We couldn’t save your profile. Try again.</p>}
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <div key={i} className="flex flex-col items-center gap-2 p-6 bg-white rounded-2xl border border-[#dadce0]/50">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: `${s.color}15` }}>
-                <Icon className="w-5 h-5" style={{ color: s.color }} />
-              </div>
-              <span className="text-2xl font-medium text-[#202124]">{s.value}</span>
-              <span className="text-xs text-[#5f6368]">{s.label}</span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Subscription */}
-      <Link
-        to="/dashboard/subscription"
-        className="flex items-center gap-4 p-6 bg-white rounded-2xl border border-[#dadce0]/50 hover:shadow-md transition-all"
-      >
-        <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center">
-          <Crown className="w-5 h-5 text-amber-600" />
-        </div>
-        <div className="flex-1">
-          <p className="text-sm font-medium text-[#202124]">Subscription</p>
-          <p className="text-xs text-[#5f6368] mt-0.5">Manage your plan</p>
-        </div>
-        <ChevronRight className="w-5 h-5 text-[#5f6368]" />
-      </Link>
-
-      {/* Settings */}
-      <div className="flex flex-col gap-2">
-        <h2 className="text-[18px] font-medium text-[#202124] px-2">Settings</h2>
-        <div className="bg-white rounded-2xl border border-[#dadce0]/50 overflow-hidden">
-          {settings.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <Link
-                key={i}
-                to="/dashboard/settings"
-                className={`w-full flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors ${
-                  i < settings.length - 1 ? "border-b border-[#dadce0]/40" : ""
-                }`}
-              >
-                <Icon className="w-5 h-5 text-[#5f6368]" />
-                <div className="flex-1 text-left">
-                  <p className="text-sm font-medium text-[#202124]">{s.label}</p>
-                  <p className="text-xs text-[#5f6368] mt-0.5">{s.desc}</p>
-                </div>
-                <ChevronRight className="w-4 h-4 text-[#5f6368]" />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Sign out */}
-      <button
-        onClick={handleLogout}
-        className="flex items-center justify-center gap-2 h-12 rounded-full border border-[#dadce0] text-sm font-medium text-[#ea4335] hover:bg-red-50 transition-colors"
-      >
-        <LogOut className="w-4 h-4" /> Sign out
-      </button>
-    </div>
-  );
+  async function addSubject(event) {
+    event.preventDefault();
+    if (!subject.trim() || busy) return;
+    setBusy(true); setStatus("");
+    try {
+      const title = subject.trim();
+      if (data.subjects.some(s => s.name.toLowerCase() === title.toLowerCase())) throw new Error("This learning area is already in your workspace.");
+      await appClient.entities.Subject.create({ name: title, overall_mastery: 0, topics_mastered: 0, topics_total: 0 });
+      setSubject(""); await data.refresh(); setStatus("Learning area added. Open it in Learn to add your first topic.");
+    } catch (err) { setStatus(err.message || "Could not add this learning area."); }
+    finally { setBusy(false); }
+  }
+  return <div className="mx-auto max-w-[900px] space-y-6 p-5 sm:p-8">
+    <header><h1 className="text-2xl font-medium">Your profile</h1><p className="mt-2 text-sm text-[#5f6368]">One identity, wherever your learning takes you.</p></header>
+    <section className="rounded-2xl border border-[#dadce0] p-6"><div className="flex items-center gap-4"><div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#1967d2] text-2xl text-white">{(user?.full_name || user?.email || "V").charAt(0).toUpperCase()}</div><div className="min-w-0"><h2 className="truncate text-lg font-medium">{user?.full_name || "Your account"}</h2><p className="mt-1 break-all text-sm text-[#5f6368]">{user?.email}</p><p className="mt-2 text-xs capitalize text-[#1967d2]">{user?.identity === "student" && user?.education_stage === "professional" ? "Professional learner" : user?.identity} · {learningLanguage(user)}</p></div></div>
+      <form onSubmit={saveName} className="mt-6 flex flex-wrap items-end gap-3"><label className="min-w-0 flex-1 text-sm font-medium">Display name<input required maxLength={80} value={name} onChange={e => setName(e.target.value)} className="mt-2 block w-full rounded-xl border border-[#747775] p-3 font-normal" /></label><button disabled={busy || !name.trim() || name.trim() === user?.full_name} className="h-11 rounded-full bg-[#1967d2] px-5 text-sm font-medium text-white disabled:opacity-40">Save profile</button></form>
+    </section>
+    <section className="rounded-2xl border border-[#dadce0] p-6"><h2 className="flex items-center gap-2 text-base font-medium"><BookOpen className="h-5 w-5 text-[#1967d2]" />Learning areas</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Subjects, skills, or interests—not courses to purchase. Add anything you want to understand or build with.</p><div className="mt-4 flex flex-wrap gap-2">{data.subjects.map(s => <Link key={s.id} to={"/dashboard/learn?subject=" + encodeURIComponent(s.name)} className="rounded-full bg-[#e8f0fe] px-4 py-2 text-sm text-[#1967d2]">{s.name}</Link>)}</div><form onSubmit={addSubject} className="mt-5 flex flex-wrap gap-3"><label className="sr-only" htmlFor="new-learning-area">New learning area</label><input id="new-learning-area" required maxLength={100} value={subject} onChange={e => setSubject(e.target.value)} placeholder="For example, robotics or storytelling" className="min-w-0 flex-1 rounded-xl border border-[#747775] p-3 text-sm" /><button disabled={busy || data.loading || !!data.error || !subject.trim()} className="inline-flex items-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm text-[#1967d2] disabled:opacity-40"><Plus className="h-4 w-4" />Add area</button></form></section>
+    {status && <p role="status" className="rounded-xl bg-[#f8fafd] p-4 text-sm">{status}</p>}
+    <div className="grid gap-4 sm:grid-cols-2"><Link to="/dashboard/connections" className="rounded-2xl border border-[#dadce0] p-6"><Users className="mb-3 h-5 w-5 text-[#1967d2]" /><h2 className="text-base font-medium">Family & other connections</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Review requests and choose who can see shared progress.</p></Link><Link to="/dashboard/settings" className="rounded-2xl border border-[#dadce0] p-6"><Settings className="mb-3 h-5 w-5 text-[#1967d2]" /><h2 className="text-base font-medium">Language & appearance</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Set your learning language and workspace accent.</p></Link></div>
+  </div>;
 }
+

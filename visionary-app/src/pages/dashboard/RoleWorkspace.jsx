@@ -5,6 +5,7 @@ import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import FamilyProgress from "@/components/dashboard/FamilyProgress";
+import Connections from "./Connections";
 
 const inputClass = "mt-2 h-11 w-full rounded-lg border border-[#747775] bg-white px-3 text-sm font-normal text-[#202124] outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]";
 const primaryClass = "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-60";
@@ -232,7 +233,7 @@ export default function RoleWorkspace({ area }) {
   const themeColor = useThemeColor();
   const role = user?.identity;
   if (area === "child" && role === "parent") return <ParentChildWorkspace user={user} accent={themeColor.accent} />;
-  if (area === "people" && role === "organization") return <OrganizationPeopleWorkspace user={user} accent={themeColor.accent} />;
+  if (area === "people" && role === "organization") return <Connections />;
   if (area === "curriculum" && role === "organization") return <CurriculumWorkspace user={user} updateUser={updateUser} accent={themeColor.accent} />;
   if (area === "analytics" && role === "organization") return <MetricsWorkspace user={user} area={area} accent={themeColor.accent} />;
   if (area === "insights" && role === "teacher") return <MetricsWorkspace user={user} area={area} accent={themeColor.accent} />;

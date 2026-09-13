@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { Home, ChevronRight, Copy, Check } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useThemeColor } from "@/hooks/useThemeColor";
@@ -45,6 +45,7 @@ export default function ClassDetail() {
     catch { setError("Copy is unavailable. Select the class code and copy it manually."); }
   };
 
+  if (user?.identity === "student") return <Navigate to={"/dashboard/classes?class=" + classId} replace />;
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">

@@ -52,7 +52,7 @@ function summarize(logs, window) {
 }
 
 function ProgressCard({ link, logs, window, accent }) {
-  const attributed = logs.filter((log) => log.student_email && log.student_email.toLowerCase() === String(link.child_email).toLowerCase());
+  const attributed = logs.filter((log) => (log.owner_email || log.student_email || "").toLowerCase() === String(link.child_email).toLowerCase());
   const stats = summarize(attributed, window);
   const peak = Math.max(10, ...stats.perDay.map((day) => day.minutes));
   const activeToday = stats.lastActive === dayKey(new Date());
@@ -120,18 +120,18 @@ export default function FamilyProgress({ links = [], accent = "#1a73e8" }) {
 
   const load = useCallback(async () => {
     setError(false);
-    try { setLogs(await base44.entities.StudyLog.list("-date")); }
+    try { setLogs((await Promise.all(activeLinks.map(link => base44.entities.StudyLog.filter({ owner_email: link.child_email }, "-date")))).flat().filter(log => log.topic !== "Dashboard check-in")); }
     catch { setError(true); }
-  }, []);
+  }, [activeLinks]);
 
   useEffect(() => {
     if (activeLinks.length === 0) return undefined;
     load();
-    window.addEventListener("visionary:workspace-change", load);
-    window.addEventListener("storage", load);
+    globalThis.window.addEventListener("visionary:workspace-change", load);
+    globalThis.window.addEventListener("storage", load);
     return () => {
-      window.removeEventListener("visionary:workspace-change", load);
-      window.removeEventListener("storage", load);
+      globalThis.window.removeEventListener("visionary:workspace-change", load);
+      globalThis.window.removeEventListener("storage", load);
     };
   }, [activeLinks.length, load]);
 
@@ -173,7 +173,7 @@ export default function FamilyProgress({ links = [], accent = "#1a73e8" }) {
                 accent={accent}
                 window={window}
                 logs={logs.filter((log) => {
-                  const owner = String(log.student_email || "").toLowerCase();
+                  const owner = String(log.owner_email || log.student_email || "").toLowerCase();
                   if (owner) return owner === String(link.child_email).toLowerCase();
                   return singleChild;
                 })}

@@ -6,7 +6,7 @@ import { deriveLearningData } from "@/lib/learningMetrics";
 const empty = deriveLearningData({});
 export function useStudentData() {
   const { user } = useAuth();
-  const enabled = Boolean(user?.email && user?.identity === "student");
+  const enabled = Boolean(user?.email);
   const query = useQuery({
     queryKey: ["workspace", "learning", user?.email],
     enabled,
@@ -30,4 +30,3 @@ Subjects: ${(data?.subjects || []).map(s => s.name).join(", ") || "None selected
 Topics needing review: ${(data?.laggingTopics || []).map(t => t.name).join(", ") || "None recorded"}
 Recent activity: ${(data?.studyLogs || []).slice(0, 7).map(l => l.topic).join(", ") || "None yet"}`;
 }
-

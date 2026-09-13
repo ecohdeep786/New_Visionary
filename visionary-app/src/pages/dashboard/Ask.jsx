@@ -6,6 +6,7 @@ import { base44 } from "@/api/base44Client";
 import { useStudentData, buildStudentContext } from "@/hooks/useStudentData";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { learningLanguage } from "@/lib/productAccess";
 
 export default function Ask() {
   const data = useStudentData();
@@ -44,7 +45,7 @@ export default function Ask() {
     const nextMessages = [...messages, { role: "user", content: question }];
     setMessages(nextMessages); setInput("");
     try {
-      const context = buildStudentContext(data, user?.full_name || "Student");
+      const context = buildStudentContext(data, user?.full_name || "Learner") + ". Preferred learning language: " + learningLanguage(user) + ". Role: " + user?.identity;
       const result = await base44.integrations.Core.InvokeLLM({
         prompt: `You are a supportive learning assistant. Explain ideas clearly with steps and examples appropriate to the learner. Do not claim to know information outside the supplied context. If uncertain, say so. Learning context: ${context}. Current subject: ${subject}. Current topic: ${topic}. Conversation: ${JSON.stringify(nextMessages.slice(-12))}`,
       });

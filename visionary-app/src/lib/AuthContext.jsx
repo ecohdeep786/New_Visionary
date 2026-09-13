@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { appClient } from '@/api/appClient';
+import { queryClientInstance } from '@/lib/query-client';
 
 const AuthContext = createContext(null);
 
@@ -23,10 +24,19 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkUserAuth();
+    const syncSession = (event) => {
+      if (event.key === 'visionary_session_token' || event.key === 'visionary_users' || event.key === null) {
+        queryClientInstance.clear();
+        checkUserAuth();
+      }
+    };
+    window.addEventListener('storage', syncSession);
+    return () => window.removeEventListener('storage', syncSession);
   }, [checkUserAuth]);
 
   const logout = useCallback(() => {
     appClient.auth.logout();
+    queryClientInstance.clear();
     setUser(null);
   }, []);
 

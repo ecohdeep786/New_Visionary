@@ -2,10 +2,10 @@ import React, { lazy, Suspense } from 'react'
 import { Toaster } from '@/components/ui/toaster'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
-import { AuthProvider } from '@/lib/AuthContext'
+import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
 
@@ -23,7 +23,7 @@ class AppErrorBoundary extends React.Component {
 
   handleReset = () => {
     this.setState({ error: null, errorInfo: null })
-    window.location.href = '/'
+    window.location.href = '/dashboard/home'
   }
 
   render() {
@@ -93,6 +93,9 @@ const Profile = lazy(() => import('@/pages/dashboard/Profile'))
 const Settings = lazy(() => import('@/pages/dashboard/Settings'))
 const ClassDetail = lazy(() => import('@/pages/dashboard/ClassDetail'))
 const RoleWorkspace = lazy(() => import('@/pages/dashboard/RoleWorkspace'))
+const Connections = lazy(() => import('@/pages/dashboard/Connections'))
+const Explore = lazy(() => import('@/pages/dashboard/Explore'))
+const Support = lazy(() => import('@/pages/dashboard/Support'))
 const StudentPage = lazy(() => import('@/pages/landing/StudentPage'))
 const TeacherPage = lazy(() => import('@/pages/landing/TeacherPage'))
 const ParentPage = lazy(() => import('@/pages/landing/ParentPage'))
@@ -124,9 +127,14 @@ const RouteFallback = () => (
   </main>
 )
 
+function LandingEntry() {
+  const { isAuthenticated, isLoadingAuth, user } = useAuth();
+  if (isLoadingAuth) return <RouteFallback />;
+  return isAuthenticated ? <Navigate to={user?.onboarding_complete ? "/dashboard/home" : "/onboarding"} replace /> : <Landing />;
+}
 const PublicApp = () => (
   <Routes>
-    <Route path="/" element={<Landing />} />
+    <Route path="/" element={<LandingEntry />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -177,6 +185,9 @@ const PublicApp = () => (
           <Route path="insights" element={<RoleWorkspace area="insights" />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="connections" element={<Connections />} />
+          <Route path="explore" element={<Explore />} />
+          <Route path="support" element={<Support />} />
         </Route>
       </Route>
     </Route>

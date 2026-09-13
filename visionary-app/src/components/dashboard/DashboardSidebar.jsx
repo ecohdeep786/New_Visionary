@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { Settings, UserCircle } from "lucide-react";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { useAuth } from "@/lib/AuthContext";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +10,7 @@ export default function DashboardSidebar({ expanded, onNavigate }) {
   const { user } = useAuth();
   const { data: enrollments = [] } = useQuery({
     queryKey: ["workspace", "enrollments", user?.email],
-    queryFn: () => appClient.entities.ClassEnrollment.filter({ student_email: user.email }),
+    queryFn: () => appClient.entities.Enrollment.filter({ student_email: user.email }),
     enabled: user?.identity === "student",
   });
   const connected = enrollments.some(e => e.status === "active");
@@ -26,10 +25,6 @@ export default function DashboardSidebar({ expanded, onNavigate }) {
     </NavLink>;
   };
   return <aside id="dashboard-navigation" className={`${expanded ? "w-64 px-3" : "w-[80px] px-2"} flex h-full shrink-0 flex-col bg-[#f8fafd] py-3`}>
-    <nav aria-label="Primary navigation" className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">{items.map(renderItem)}</nav>
-    <nav aria-label="Account navigation" className="mt-3 flex shrink-0 flex-col gap-1 border-t border-[#dadce0] pt-3">
-      {[{ to: "/dashboard/profile", label: "Profile", icon: UserCircle }, { to: "/dashboard/settings", label: "Settings", icon: Settings }].map(renderItem)}
-    </nav>
+    <nav aria-label="Primary navigation" className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-3">{items.map(renderItem)}</nav>
   </aside>;
 }
-

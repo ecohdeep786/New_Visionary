@@ -38,6 +38,7 @@ export default function StudentClasses() {
 
   useEffect(() => {
     if (searchParams.get("join") === "1") setShowJoin(true);
+    if (searchParams.get("class")) setOpenClassId(searchParams.get("class"));
   }, [searchParams]);
 
   const load = useCallback(async () => {

@@ -225,6 +225,7 @@ export const STAGE_STEP = {
     { id: "school", label: "School Education", desc: "Class 1 to Class 12" },
     { id: "higher_ed", label: "Higher Education", desc: "College / University / Diploma" },
     { id: "competitive", label: "Competitive Examination", desc: "JEE / NEET / UPSC / CAT" },
+    { id: "professional", label: "Career & independent learning", desc: "Professional skills, interests, and personal projects" },
   ],
 };
 
@@ -470,6 +471,10 @@ export const COMPETITIVE_FLOW_STEPS = [
 ];
 
 export function getStudentStageSteps(stage) {
+  if (stage === "professional") return [
+    { id: "learning_language", title: "Which language feels natural to you?", subtitle: "Saved for your learning context. The preview interface is in English.", type: "choice", field: "preferred_language", options: LANGUAGES },
+    { id: "career_goal", title: "What would you like to work towards?", subtitle: "A skill, a project, or simply something you are curious about.", type: "input", field: "career_goal", placeholder: "For example, build my first app" },
+  ];
   if (stage === "higher_ed") return HIGHER_ED_FLOW_STEPS;
   if (stage === "competitive") return COMPETITIVE_FLOW_STEPS;
   return SCHOOL_FLOW_STEPS;

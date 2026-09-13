@@ -1,313 +1,44 @@
-import { useState, useEffect, useCallback } from "react";
-import { useSearchParams, Link } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
-import {
-  Target, ArrowRight, Clock, TrendingUp,
-  RotateCw, ArrowLeft, PencilRuler, Brain,
-} from "lucide-react";
+import { useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { CheckCircle2, Target, ArrowRight, RotateCcw } from "lucide-react";
+import { appClient } from "@/api/appClient";
 import { useStudentData } from "@/hooks/useStudentData";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import SubjectPills from "@/components/dashboard/learn/SubjectPills";
-import SubjectIllustration from "@/components/dashboard/SubjectIllustration";
-import QuizView from "@/components/dashboard/practice/QuizView";
-
-function getAdaptLevel(mastery) {
-  if (mastery >= 70) return "Advanced";
-  if (mastery >= 40) return "Intermediate";
-  return "Foundational";
-}
-
-const levelColors = {
-  Foundational: "bg-green-50 text-green-700",
-  Intermediate: "bg-amber-50 text-amber-700",
-  Advanced: "bg-rose-50 text-rose-700",
-};
+import { cubeExercises, scoreExercises } from "@/lib/practiceExercises";
+import { localDate } from "@/lib/learningMetrics";
 
 export default function Practice() {
-  const studentData = useStudentData();
-  const themeColor = useThemeColor();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const contextSubject = searchParams.get("subject");
-  const contextTopic = searchParams.get("topic");
-
-  const [selectedSubject, setSelectedSubject] = useState(null);
-  const [activeChallenge, setActiveChallenge] = useState(null);
-  const [quiz, setQuiz] = useState(null);
-  const [loadingQuiz, setLoadingQuiz] = useState(false);
-
-  const subjects = studentData.subjects;
-  const activeSubject = selectedSubject || contextSubject || subjects[0]?.name || null;
-
-  // Auto-start quiz from URL params
-  useEffect(() => {
-    if (contextSubject && contextTopic && !studentData.loading && !activeChallenge && !loadingQuiz) {
-      const topic = studentData.topics.find(
-        (t) => t.name === contextTopic && t.subject === contextSubject
-      );
-      if (topic) startQuiz(topic);
-    }
-  }, [contextSubject, contextTopic, studentData.loading, activeChallenge, loadingQuiz]);
-
-  const startQuiz = useCallback(async (topic) => {
-    setActiveChallenge(topic);
-    setLoadingQuiz(true);
-    setQuiz(null);
-    setSearchParams({ subject: topic.subject, topic: topic.name }, { replace: true });
-
+  const data = useStudentData();
+  const [params] = useSearchParams();
+  const [active, setActive] = useState(false);
+  const [answers, setAnswers] = useState({});
+  const [result, setResult] = useState(null);
+  const [notice, setNotice] = useState("");
+  const [busy, setBusy] = useState(false);
+  const session = useRef(null);
+  const start = () => { session.current = { id: crypto.randomUUID(), started: Date.now() }; setAnswers({}); setResult(null); setNotice(""); setActive(true); };
+  async function saveResult() {
+    if (busy || Object.keys(answers).length !== cubeExercises.length) return;
+    const score = scoreExercises(cubeExercises, answers);
+    const minutes = Math.floor((Date.now() - session.current.started) / 60000);
+    setBusy(true); setNotice("");
     try {
-      const res = await base44.integrations.Core.InvokeLLM({
-        prompt: `You are an expert quiz generator for K-12 students. Create a quiz for the topic "${topic.name}" in ${topic.subject}.
-
-The student's current mastery is ${topic.mastery || 0}%. ${
-  (topic.mastery || 0) < 40
-    ? "Start with foundational questions."
-    : (topic.mastery || 0) < 70
-    ? "Use intermediate level questions."
-    : "Use advanced level questions."
-}
-
-Generate exactly 10 multiple-choice questions. Mix regular MCQ (4 options) with True/False (2 options). Each question should have exactly one correct answer, a hint that guides without revealing the answer, a clear explanation, and a recommended lesson title for further study.
-
-Return ONLY a JSON object:
-{
-  "questions": [
-    {
-      "question": "The question text",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "correct_answer": 0,
-      "hint": "A helpful hint without revealing the answer",
-      "explanation": "Why the correct answer is correct",
-      "recommended_lesson": "A topic name for further study"
-    }
-  ]
-}`,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            questions: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  question: { type: "string" },
-                  options: { type: "array", items: { type: "string" } },
-                  correct_answer: { type: "number" },
-                  hint: { type: "string" },
-                  explanation: { type: "string" },
-                  recommended_lesson: { type: "string" },
-                },
-              },
-            },
-          },
-        },
-        model: "gemini_3_flash",
-      });
-      setQuiz(typeof res === "string" ? JSON.parse(res) : res);
-    } catch {
-      setQuiz({
-        questions: [
-          {
-            question: `What is the main concept of ${topic.name}?`,
-            options: ["Option A", "Option B", "Option C", "Option D"],
-            correct_answer: 0,
-            hint: "Think about the fundamental definition.",
-            explanation: "Unable to generate quiz. Please try again.",
-            recommended_lesson: topic.name,
-          },
-        ],
-      });
-    }
-    setLoadingQuiz(false);
-  }, []);
-
-  const handleQuizComplete = async (finalScore) => {
-    if (!activeChallenge || !quiz) return;
-    const total = quiz.questions.length;
-    const pct = Math.round((finalScore / total) * 100);
-    const newMastery = Math.round(((activeChallenge.mastery || 0) + pct) / 2);
-
-    try {
-      await base44.entities.Topic.update(activeChallenge.id, {
-        practice_count: (activeChallenge.practice_count || 0) + 1,
-        mastery: newMastery,
-        last_studied: new Date().toISOString().split("T")[0],
-        status: newMastery >= 70 ? "mastered" : "in-progress",
-      });
-      await base44.entities.StudyLog.create({
-        date: new Date().toISOString().split("T")[0],
-        subject: activeChallenge.subject,
-        topic: activeChallenge.name,
-        duration_minutes: total * 2,
-        confidence: pct,
-      });
-    } catch {
-      // silent
-    }
-  };
-
-  const exitQuiz = () => {
-    setActiveChallenge(null);
-    setQuiz(null);
-    setSearchParams({}, { replace: true });
-  };
-
-  // ── Quiz active ──
-  if (activeChallenge) {
-    return (
-      <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1000px] mx-auto w-full">
-        <button
-          onClick={exitQuiz}
-          className="flex items-center gap-2 text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors self-start"
-        >
-          <ArrowLeft className="w-[18px] h-[18px]" /> Exit quiz
-        </button>
-        <QuizView
-          topic={activeChallenge}
-          questions={quiz?.questions}
-          loading={loadingQuiz}
-          onExit={exitQuiz}
-          onComplete={handleQuizComplete}
-        />
-      </div>
-    );
+      const existing = await appClient.entities.PracticeSession.filter({ session_key: session.current.id });
+      if (!existing.length) await appClient.entities.PracticeSession.create({ session_key: session.current.id, subject: "Geometry", topic: "Understanding cube volume", score, total: cubeExercises.length, duration_minutes: minutes, date: localDate() });
+      if (minutes > 0 && !(await appClient.entities.StudyLog.filter({ session_key: session.current.id })).length) {
+        await appClient.entities.StudyLog.create({ session_key: session.current.id, subject: "Geometry", topic: "Understanding cube volume", duration_minutes: minutes, confidence: Math.round(score / cubeExercises.length * 100), date: localDate(), activity_type: "practice" });
+      }
+      setResult(score); await data.refresh(); setNotice("Practice result saved. This short check does not establish overall mastery.");
+    } catch (error) { setNotice(error.message || "Could not save. Your answers are still here; please retry."); }
+    finally { setBusy(false); }
   }
-
-  if (studentData.loading) {
-    return (
-      <div className="flex items-center justify-center h-full min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: themeColor.accent }} />
-      </div>
-    );
-  }
-
-  // ── Topics for selected subject ──
-  const subjectTopics = studentData.topics
-    .filter((t) => t.subject === activeSubject)
-    .sort((a, b) => {
-      const getNum = (ch) => {
-        if (!ch) return 999;
-        const match = ch.match(/\d+/);
-        return match ? parseInt(match[0]) : 999;
-      };
-      return getNum(a.chapter) - getNum(b.chapter);
-    })
-    .map((t) => ({
-      ...t,
-      adaptLevel: getAdaptLevel(t.mastery || 0),
-      questions: 10,
-      isMastered: t.status === "mastered",
-    }));
-
-  const overallMastery = subjects.length > 0
-    ? Math.round(subjects.reduce((sum, s) => sum + (s.overall_mastery || 0), 0) / subjects.length)
-    : 0;
-  const masteredCount = studentData.topics.filter((t) => t.status === "mastered").length;
-  const totalPractice = studentData.topics.reduce((sum, t) => sum + (t.practice_count || 0), 0);
-
-  return (
-    <div className="flex flex-col gap-12 p-8 lg:p-12 max-w-[1200px] mx-auto w-full">
-      <SubjectPills subjects={subjects} activeSubject={activeSubject} onSelect={setSelectedSubject} />
-
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-5 lg:gap-6">
-        <div className="flex items-center gap-4 p-6 bg-white rounded-2xl border border-[#dadce0]/50">
-          <div className="w-11 h-11 rounded-full flex items-center justify-center" style={{ backgroundColor: themeColor.light }}>
-            <TrendingUp className="w-5 h-5" style={{ color: themeColor.accent }} />
-          </div>
-          <div>
-            <p className="text-xl lg:text-2xl font-medium text-[#202124] leading-none">{overallMastery}%</p>
-            <p className="text-xs text-[#5f6368] mt-1.5">Overall confidence</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-6 bg-white rounded-2xl border border-[#dadce0]/50">
-          <div className="w-11 h-11 rounded-full bg-green-50 flex items-center justify-center">
-            <Target className="w-5 h-5 text-green-600" />
-          </div>
-          <div>
-            <p className="text-xl lg:text-2xl font-medium text-[#202124] leading-none">{masteredCount}</p>
-            <p className="text-xs text-[#5f6368] mt-1.5">Topics mastered</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 p-6 bg-amber-50 rounded-2xl border border-amber-100">
-          <div className="w-11 h-11 rounded-full bg-amber-100 flex items-center justify-center">
-            <Brain className="w-5 h-5 text-amber-600" />
-          </div>
-          <div>
-            <p className="text-xl lg:text-2xl font-medium text-amber-800 leading-none">{totalPractice}</p>
-            <p className="text-xs text-amber-600 mt-1.5">Practice sessions</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Topics heading */}
-      <div>
-        <h2 className="text-[22px] font-medium text-[#202124]">{activeSubject} — Practice questions</h2>
-        <p className="text-sm font-normal text-[#5f6368] mt-1">Pick any topic to start a 10-question adaptive quiz</p>
-      </div>
-
-      {/* Topic cards */}
-      {subjectTopics.length === 0 ? (
-        <div className="flex flex-col items-center gap-3 py-16 text-center">
-          <Target className="w-10 h-10 text-[#dadce0]" />
-          <p className="text-sm text-[#5f6368]">No topics available for this subject yet.</p>
-          <Link to="/dashboard/learn" className="text-sm font-medium hover:underline" style={{ color: themeColor.accent }}>
-            Browse lessons →
-          </Link>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {subjectTopics.map((t) => {
-            const lc = levelColors[t.adaptLevel] || levelColors.Intermediate;
-            return (
-              <button
-                key={t.id}
-                onClick={() => startQuiz(t)}
-                className="flex flex-col text-left bg-white rounded-3xl border border-[#dadce0]/50 hover:shadow-md transition-all overflow-hidden"
-              >
-                <div className="w-full h-20 shrink-0">
-                  <SubjectIllustration subject={t.subject} className="w-full h-full" />
-                </div>
-                <div className="flex flex-col gap-3 p-6 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${lc}`}>{t.adaptLevel}</span>
-                    {t.isMastered && (
-                      <span className="px-2 py-1 rounded-full bg-green-50 text-green-700 text-xs font-medium">Mastered</span>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-xs text-[#5f6368] mb-1">{t.chapter || t.subject}</p>
-                    <h3 className="text-[17px] font-medium text-[#202124] line-clamp-2">{t.name}</h3>
-                  </div>
-                  <div className="flex items-center gap-3 text-xs text-[#5f6368]">
-                    <span>{t.questions} questions</span>
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{t.questions * 2} min</span>
-                    {t.practice_count > 0 && (
-                      <span className="flex items-center gap-1"><RotateCw className="w-3 h-3" />{t.practice_count}×</span>
-                    )}
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-xs text-[#5f6368]">{t.mastery || 0}%</span>
-                    <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                      <div className="h-full rounded-full" style={{ width: `${t.mastery || 0}%`, backgroundColor: themeColor.accent }} />
-                    </div>
-                  </div>
-                  <div
-                    className="flex items-center justify-center gap-1.5 h-10 text-white rounded-full text-xs font-medium mt-1"
-                    style={{ backgroundColor: themeColor.accent }}
-                  >
-                    {t.isMastered ? (
-                      <><RotateCw className="w-3.5 h-3.5" /> Re-practice</>
-                    ) : (
-                      <><PencilRuler className="w-3.5 h-3.5" /> Start practice <ArrowRight className="w-3.5 h-3.5" /></>
-                    )}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
+  return <div className="mx-auto max-w-[1000px] space-y-6 p-5 sm:p-8">
+    <header><h1 className="text-2xl font-medium">Practice</h1><p className="mt-2 text-sm text-[#5f6368]">Try an idea for yourself. Understand the why—not just the answer.</p></header>
+    {params.get("topic") && <section className="rounded-xl bg-[#f8fafd] p-4"><p className="text-sm font-medium">{params.get("subject")} · {params.get("topic")}</p><p className="mt-2 text-sm leading-6 text-[#5f6368]">Personalized practice for this topic becomes available when the AI model is connected. The geometry example below is ready to try now.</p><Link to={"/dashboard/ask?" + params.toString()} className="mt-3 inline-block text-sm text-[#1967d2]">Keep a question about this topic</Link></section>}
+    {!active ? <section className="rounded-2xl border border-[#dce6f5] bg-[#f6f9ff] p-6 sm:p-8"><Target className="mb-4 h-8 w-8 text-[#1967d2]" /><p className="text-xs font-medium text-[#1967d2]">Ready-to-try example · 3 questions</p><h2 className="mt-3 text-2xl font-medium">Think in three dimensions</h2><p className="mt-3 max-w-xl text-sm leading-6 text-[#5f6368]">Use what you discover in the cube lab to check your understanding of volume. Review an explanation for every answer.</p><div className="mt-6 flex flex-wrap gap-3"><button onClick={start} className="inline-flex items-center gap-2 rounded-full bg-[#1967d2] px-5 py-2.5 text-sm text-white">Start practice<ArrowRight className="h-4 w-4" /></button><Link to="/dashboard/explore" className="rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm text-[#1967d2]">Explore the lab first</Link></div></section> : <section className="space-y-5">
+      {cubeExercises.map((q,index) => <fieldset key={q.question} disabled={result !== null || busy} className="rounded-2xl border border-[#dadce0] p-6"><legend className="sr-only">Question {index + 1}</legend><h2 className="text-base font-medium"><span className="mr-2 text-[#5f6368]">{index + 1}.</span>{q.question}</h2><div className="mt-5 grid gap-3">{q.options.map((option,answer) => <label key={option} className={"flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm " + (answers[index] === answer ? "border-[#1967d2] bg-[#e8f0fe]" : "border-[#dadce0]")}><input type="radio" name={"question-" + index} checked={answers[index] === answer} onChange={() => setAnswers(current => ({ ...current, [index]: answer }))} className="accent-[#1967d2]" />{option}</label>)}</div>{result !== null && <div className="mt-4 rounded-xl bg-[#f8fafd] p-4 text-sm leading-6"><p className="font-medium">{answers[index] === q.correct_answer ? "Correct" : "Let’s look at the reasoning"}</p><p className="mt-1 text-[#5f6368]">{q.explanation}</p></div>}</fieldset>)}
+      {result === null ? <button onClick={saveResult} disabled={busy || Object.keys(answers).length < cubeExercises.length} className="rounded-full bg-[#1967d2] px-6 py-3 text-sm text-white disabled:opacity-40">{busy ? "Saving…" : "Check my understanding"}</button> : <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-[#dadce0] p-6"><CheckCircle2 className="h-6 w-6 text-[#137333]" /><p className="text-lg font-medium">{result} of {cubeExercises.length} correct</p><button onClick={start} className="ml-auto inline-flex items-center gap-2 text-sm text-[#1967d2]"><RotateCcw className="h-4 w-4" />Try again</button><Link to="/dashboard/build?subject=Geometry&topic=Understanding%20cube%20volume" className="rounded-full border border-[#dadce0] px-4 py-2 text-sm text-[#1967d2]">Apply it in a project</Link></div>}
+    </section>}
+    {notice && <p role="status" className="rounded-xl bg-[#f8fafd] p-4 text-sm leading-6 text-[#5f6368]">{notice}</p>}
+    <section><h2 className="mb-4 text-lg font-medium">From your learning</h2>{data.loading ? <p role="status" className="text-sm">Loading topics…</p> : data.error ? <p role="alert" className="text-sm">Could not load topics. <button onClick={() => data.refresh()} className="underline">Retry</button></p> : data.topics.length ? <div className="grid gap-3 sm:grid-cols-2">{data.topics.slice(0,8).map(t => <Link key={t.id} to={"/dashboard/learn/" + t.id} className="rounded-xl border border-[#dadce0] p-4"><h3 className="text-sm font-medium">{t.name}</h3><p className="mt-1 text-xs text-[#5f6368]">{t.subject} · Review the idea</p></Link>)}</div> : <p className="rounded-xl border border-dashed border-[#bdc1c6] p-6 text-sm text-[#5f6368]">Add a topic in <Link to="/dashboard/learn" className="text-[#1967d2] underline">Learn</Link> to keep your practice and learning together.</p>}</section>
+  </div>;
 }

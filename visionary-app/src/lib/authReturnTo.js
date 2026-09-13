@@ -25,6 +25,7 @@ export function safeReturnTo() {
       url.searchParams.delete(p);
     }
     const path = url.pathname + url.search;
+    if (!url.pathname.startsWith("/dashboard/")) return "/dashboard/home";
     if (!path.startsWith("/") || path.startsWith("//") || path.includes("\\")) return "/dashboard/home";
     return path;
   } catch {

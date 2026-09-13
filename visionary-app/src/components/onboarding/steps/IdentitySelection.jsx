@@ -6,8 +6,8 @@ import LanguageSelector from "@/components/auth/LanguageSelector";
 const roles = [
   {
     id: "student",
-    label: "I am a Student",
-    desc: "School · College · Competitive Exam",
+    label: "I am a Learner",
+    desc: "Student · Professional · Independent",
     icon: GraduationCap,
   },
   {

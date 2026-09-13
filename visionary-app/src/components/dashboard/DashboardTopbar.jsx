@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Search, Menu, Plus, HelpCircle, Settings, LogOut, UserCircle } from "lucide-react";
+import { Search, Menu, Plus, HelpCircle, Settings, LogOut, UserCircle, Users, Crown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
 import { useStudentData } from "@/hooks/useStudentData";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import { navigationFor } from "@/lib/dashboardNavigation";
+import { PRODUCT_ACCESS } from "@/lib/productAccess";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -32,12 +33,15 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
       </button>
     </div>
     <Link to={connect.to} aria-label={connect.label} title={connect.label} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#1a73e8] hover:bg-[#e8f0fe]"><Plus className="h-6 w-6" /></Link>
-    <Link to="/contact" aria-label="Help and support" className="hidden h-10 w-10 items-center justify-center rounded-full text-[#5f6368] hover:bg-slate-200/60 sm:flex"><HelpCircle className="h-5 w-5" /></Link>
+    <Link to="/dashboard/connections" aria-label="Connections and requests" title="Connections and requests" className="flex h-10 w-10 items-center justify-center rounded-full text-[#5f6368] hover:bg-slate-200/60"><Users className="h-5 w-5" /></Link>
+    <Link to="/dashboard/support" aria-label="Help and support" className="hidden h-10 w-10 items-center justify-center rounded-full text-[#5f6368] hover:bg-slate-200/60 sm:flex"><HelpCircle className="h-5 w-5" /></Link>
     <DropdownMenu>
       <DropdownMenuTrigger asChild><button aria-label="Open account menu" className="ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1a73e8] font-medium text-white ring-offset-2 focus-visible:ring-2">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-72 rounded-2xl p-2">
         <DropdownMenuLabel className="px-3 py-3"><p className="truncate text-sm">{userName}</p><p className="mt-1 truncate text-xs font-normal text-[#5f6368]">{user?.email}</p><p className="mt-2 text-xs font-normal capitalize text-[#1a73e8]">{role} workspace · Local preview</p></DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuItem onSelect={() => navigate("/dashboard/subscription")} className="gap-3 rounded-lg py-3"><Crown className="h-4 w-4" /><span>{PRODUCT_ACCESS.plan} plan · Plans & usage</span></DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => navigate("/dashboard/connections")} className="gap-3 rounded-lg py-3"><Users className="h-4 w-4" />Connections and requests</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate("/dashboard/profile")} className="gap-3 rounded-lg py-3"><UserCircle className="h-4 w-4" />Manage profile</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate("/dashboard/settings")} className="gap-3 rounded-lg py-3"><Settings className="h-4 w-4" />Settings</DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -53,4 +57,3 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     </Dialog>
   </header>;
 }
-

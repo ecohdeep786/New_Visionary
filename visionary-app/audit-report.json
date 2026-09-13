@@ -1,0 +1,1645 @@
+[
+ {
+  "viewport": "phone",
+  "route": "/",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "svg.[object.SVGAnimatedString] right=428",
+   "circle.[object.SVGAnimatedString] right=424",
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to slide 1\" h=8",
+   "button:\"Go to slide 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/login",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Forgot email or user ID?\" h=18",
+   "button:\"English\" h=20",
+   "a:\"Help\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/register",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "button:\"English\" h=20",
+   "a:\"Help\" h=20",
+   "a:\"Privacy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/forgot-password",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Back\" h=20",
+   "button:\"English\" h=20",
+   "a:\"Help\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/forgot-user-id",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Back\" h=20",
+   "a:\"Remember your email?\" h=18",
+   "button:\"English\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/student",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/teacher",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/parent",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [
+   "ReferenceError: Award is not defined\n    at http://localhost:4173/assets/ParentPage-F_RWagZD.js:23:31280",
+   "[Visionary Resilience Diagnostic]: ReferenceError: Award is not defined\n    at http://localhost:4173/assets/ParentPage-F_RWagZD.js:23:31280 {componentStack: \n  "
+  ],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/professional",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/organization",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/help",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/how-it-works",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"See the student page\" h=23",
+   "a:\"Privacy policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/about",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Read the privacy policy\" h=23",
+   "a:\"See download options\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/pricing",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/download",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/research",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Get research updates\" h=23",
+   "a:\"Talk about research\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/career",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [
+   "TypeError: Cannot read properties of undefined (reading 'color')\n    at H (http://localhost:4173/assets/CareerPage-BP6Ov7TE.js:1:12439)\n    at Hf (http://localh",
+   "[Visionary Resilience Diagnostic]: TypeError: Cannot read properties of undefined (reading 'color')\n    at H (http://localhost:4173/assets/CareerPage-BP6Ov7TE.j"
+  ],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/careers",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Learn about Visionary\" h=23",
+   "a:\"Make a general applicati\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/community",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/contact",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"hello@visionary.org.in\" h=21",
+   "a:\"partnerships@visionary.o\" h=21"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/partners",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Other ways to contact us\" h=23",
+   "a:\"Privacy policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/updates",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Explore Research\" h=23",
+   "a:\"Read the Privacy Policy\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/referral",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/safety",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/privacy",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/terms",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"legal@visionary.org.in\" h=21",
+   "a:\"Read the Privacy Policy\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/security",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Read Privacy\" h=21",
+   "a:\"Visit Help\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/accessibility",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"accessibility@visionary.\" h=21",
+   "a:\"Visit Help\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/cookies",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "label.flex.w-fit.cursor-pointer right=439",
+   "select.cursor-pointer.bg-transparent.py-1.5 right=430",
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "phone",
+  "route": "/definitely-not-a-page",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.fixed.top-0.z-[100] right=406"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to slide 1\" h=8",
+   "button:\"Go to slide 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/login",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Create account\" h=18",
+   "a:\"Forgot email or user ID?\" h=18",
+   "button:\"English\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/register",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Sign in\" h=18",
+   "button:\"English\" h=20",
+   "a:\"Help\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/forgot-password",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Back to sign in\" h=20",
+   "a:\"Back\" h=20",
+   "button:\"English\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/forgot-user-id",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Back to sign in\" h=20",
+   "a:\"Back\" h=20",
+   "a:\"Remember your email?\" h=18"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/student",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/teacher",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/parent",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [
+   "ReferenceError: Award is not defined\n    at http://localhost:4173/assets/ParentPage-F_RWagZD.js:23:31280",
+   "[Visionary Resilience Diagnostic]: ReferenceError: Award is not defined\n    at http://localhost:4173/assets/ParentPage-F_RWagZD.js:23:31280 {componentStack: \n  "
+  ],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/professional",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/organization",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/help",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/how-it-works",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"See the student page\" h=23",
+   "a:\"Privacy policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/about",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Read the privacy policy\" h=23",
+   "a:\"See download options\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/pricing",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/download",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/research",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Get research updates\" h=23",
+   "a:\"Talk about research\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/career",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [
+   "TypeError: Cannot read properties of undefined (reading 'color')\n    at H (http://localhost:4173/assets/CareerPage-BP6Ov7TE.js:1:12439)\n    at Hf (http://localh",
+   "[Visionary Resilience Diagnostic]: TypeError: Cannot read properties of undefined (reading 'color')\n    at H (http://localhost:4173/assets/CareerPage-BP6Ov7TE.j"
+  ],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/careers",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Learn about Visionary\" h=23",
+   "a:\"Make a general applicati\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/community",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/contact",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"hello@visionary.org.in\" h=21",
+   "a:\"partnerships@visionary.o\" h=21"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/partners",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Other ways to contact us\" h=23",
+   "a:\"Privacy policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/updates",
+  "mounted": false,
+  "title": "",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/referral",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/safety",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/privacy",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/terms",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"legal@visionary.org.in\" h=21",
+   "a:\"Read the Privacy Policy\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/security",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Read Privacy\" h=21",
+   "a:\"Visit Help\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/accessibility",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"accessibility@visionary.\" h=21",
+   "a:\"Visit Help\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/cookies",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "tablet",
+  "route": "/definitely-not-a-page",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to slide 1\" h=8",
+   "button:\"Go to slide 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/login",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Create account\" h=18",
+   "a:\"Forgot email or user ID?\" h=18",
+   "button:\"English\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/register",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Sign in\" h=18",
+   "button:\"English\" h=20",
+   "a:\"Help\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/forgot-password",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Back to sign in\" h=20",
+   "a:\"Back\" h=20",
+   "a:\"Don't have an account?\" h=18"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/forgot-user-id",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Back to sign in\" h=20",
+   "a:\"Back\" h=20",
+   "a:\"Remember your email?\" h=18"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/student",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.lg:-mr-[6vw].lg:mt-[20px] right=1526",
+   "p.mb-6.text-center.font-normal right=1526",
+   "div.relative.overflow-hidden.rounded-[48px] right=1526",
+   "img.h-[320px].w-full.object-cover right=1526"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/teacher",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.lg:-mr-[6vw].lg:mt-[20px] right=1526",
+   "p.mb-6.text-center.font-normal right=1526",
+   "div.relative.overflow-hidden.rounded-[48px] right=1526",
+   "img.h-[320px].w-full.object-cover right=1526"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/parent",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [
+   "ReferenceError: Award is not defined\n    at http://localhost:4173/assets/ParentPage-F_RWagZD.js:23:31280",
+   "[Visionary Resilience Diagnostic]: ReferenceError: Award is not defined\n    at http://localhost:4173/assets/ParentPage-F_RWagZD.js:23:31280 {componentStack: \n  "
+  ],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/professional",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.lg:-mr-[6vw].lg:mt-[20px] right=1526",
+   "p.mb-6.text-center.font-normal right=1526",
+   "div.relative.overflow-hidden.rounded-[48px] right=1526",
+   "img.h-[320px].w-full.object-cover right=1526"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/organization",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [
+   "div.lg:-mr-[6vw].lg:mt-[20px] right=1526",
+   "p.mb-6.text-center.font-normal right=1526",
+   "div.relative.overflow-hidden.rounded-[48px] right=1526",
+   "img.h-[320px].w-full.object-cover right=1526"
+  ],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "button:\"Go to challenge 1\" h=8",
+   "button:\"Go to challenge 2\" h=8"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/help",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/how-it-works",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"See the student page\" h=23",
+   "a:\"Privacy policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/about",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Read the privacy policy\" h=23",
+   "a:\"See download options\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/pricing",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/download",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/research",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Get research updates\" h=23",
+   "a:\"Talk about research\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/career",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [
+   "TypeError: Cannot read properties of undefined (reading 'color')\n    at H (http://localhost:4173/assets/CareerPage-BP6Ov7TE.js:1:12439)\n    at Hf (http://localh",
+   "[Visionary Resilience Diagnostic]: TypeError: Cannot read properties of undefined (reading 'color')\n    at H (http://localhost:4173/assets/CareerPage-BP6Ov7TE.j"
+  ],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/careers",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Learn about Visionary\" h=23",
+   "a:\"Make a general applicati\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/community",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/contact",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"hello@visionary.org.in\" h=21",
+   "a:\"partnerships@visionary.o\" h=21"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/partners",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Other ways to contact us\" h=23",
+   "a:\"Privacy policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/updates",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Explore Research\" h=23",
+   "a:\"Read the Privacy Policy\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/referral",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/safety",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/privacy",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/terms",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"legal@visionary.org.in\" h=21",
+   "a:\"Read the Privacy Policy\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/security",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Read Privacy\" h=21",
+   "a:\"Privacy Policy\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/accessibility",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"accessibility@visionary.\" h=21",
+   "a:\"Visit Help\" h=23"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/cookies",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1",
+   "a:\"Skip to main content\" h=1",
+   "a:\"Privacy policy\" h=20",
+   "a:\"Terms of service\" h=20"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ },
+ {
+  "viewport": "desktop",
+  "route": "/definitely-not-a-page",
+  "mounted": true,
+  "title": "Visionary — Learn, Ask, Build",
+  "docOverflow": 0,
+  "offenders": [],
+  "brokenImgs": [],
+  "tinyTargets": [
+   "a:\"Skip to content\" h=1"
+  ],
+  "consoleErrors": [],
+  "badResponses": []
+ }
+]

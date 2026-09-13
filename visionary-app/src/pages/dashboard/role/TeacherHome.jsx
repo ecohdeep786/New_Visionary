@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Plus, GraduationCap, Users, ClipboardList, BookOpen } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
@@ -25,6 +26,10 @@ export default function TeacherHome() {
   const [showCreate, setShowCreate] = useState(false);
   const [pendingReviews, setPendingReviews] = useState(0);
   const [error, setError] = useState("");
+  const [params, setParams] = useSearchParams();
+  useEffect(() => {
+    if (params.get("create") === "1") { setShowCreate(true); setParams({}, { replace: true }); }
+  }, [params, setParams]);
 
   const load = useCallback(async () => {
     setLoading(true);

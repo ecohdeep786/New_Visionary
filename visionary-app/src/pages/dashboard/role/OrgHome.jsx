@@ -1,82 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Users, BarChart3, BookOpen, Shield, Building2, UserPlus } from "lucide-react";
-import RoleGreeting from "@/components/dashboard/RoleGreeting";
-import EmptyState from "@/components/dashboard/EmptyState";
+import { Users, BookOpen, BarChart3, ArrowRight } from "lucide-react";
+import { appClient } from "@/api/appClient";
 import { useAuth } from "@/lib/AuthContext";
-import { useThemeColor } from "@/hooks/useThemeColor";
-
 export default function OrgHome() {
   const { user } = useAuth();
-  const userName = user?.org_name || user?.full_name?.split(" ")[0] || "Institution";
-  const themeColor = useThemeColor();
-  const accent = themeColor.accent;
-
-  const orgTypeLabel = {
-    school: "School", college: "College", university: "University",
-    coaching: "Coaching Institute", training: "Training Institute",
-  }[user?.org_type] || "Institution";
-
-  return (
-    <div className="flex flex-col gap-12 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
-      <RoleGreeting userName={userName} role="organization" accent={accent}
-        subtitle={`${orgTypeLabel} dashboard · oversee learning across your institution`} />
-
-      {/* Quick actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[
-          { icon: UserPlus, label: "Invite teachers", desc: "Onboard your faculty", to: "/dashboard/subscription" },
-          { icon: Users, label: "Manage students", desc: "Add students & cohorts", to: "/dashboard/subscription" },
-          { icon: BookOpen, label: "Set curriculum", desc: "Align syllabus & content", to: "/dashboard/subscription" },
-          { icon: BarChart3, label: "View analytics", desc: "Institution-wide outcomes", to: "/dashboard/subscription" },
-        ].map((a) => {
-          const Icon = a.icon;
-          return (
-            <Link key={a.label} to={a.to} className="bg-white rounded-3xl border border-[#dadce0]/60 p-6 hover:shadow-md transition-all group">
-              <div className="w-11 h-11 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: `${accent}15` }}>
-                <Icon className="w-5 h-5" style={{ color: accent }} />
-              </div>
-              <h3 className="text-base font-medium text-[#202124] mb-1">{a.label}</h3>
-              <p className="text-sm text-[#5f6368]">{a.desc}</p>
-            </Link>
-          );
-        })}
-      </div>
-
-      {/* Institutional overview — guided empty state */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-[22px] font-medium text-[#202124]">Institutional overview</h2>
-        <EmptyState
-          icon={Building2}
-          title="Your institution isn't populated yet"
-          description="Invite teachers and add students to unlock institution-wide analytics. Visionary will show you how curriculum choices correlate with real student mastery growth over time — your strategic moat."
-          actionLabel="Invite your first teachers"
-          actionTo="/dashboard/subscription"
-          accent={accent}
-        />
-      </div>
-
-      {/* Ecosystem governance */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-[22px] font-medium text-[#202124]">Ecosystem governance</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { icon: BookOpen, title: "Curriculum alignment", desc: "Define your board syllabus once and roll it out to every classroom automatically." },
-            { icon: Users, title: "People management", desc: "Manage teachers, students, and cohorts with role-based access controls." },
-            { icon: Shield, title: "Compliance & data", desc: "FERPA and DPDP-ready. Full control over how student data is stored and exported." },
-          ].map((c) => {
-            const Icon = c.icon;
-            return (
-              <div key={c.title} className="bg-white rounded-3xl border border-[#dadce0]/60 p-8">
-                <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: `${accent}15` }}>
-                  <Icon className="w-5 h-5" style={{ color: accent }} />
-                </div>
-                <h3 className="text-base font-medium text-[#202124] mb-2">{c.title}</h3>
-                <p className="text-sm text-[#5f6368] leading-relaxed">{c.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
+  const { data, isPending, error, refetch } = useQuery({ queryKey: ["workspace","organization",user.email], queryFn: async () => {
+    const [people,classes,curriculum] = await Promise.all([appClient.entities.OrganizationInvite.filter({organization_email:user.email}),appClient.entities.Classroom.filter({organization_email:user.email}),appClient.entities.OrganizationCurriculum.filter({organization_email:user.email})]);
+    return { people: people.filter(p => p.status === "active"), pending: people.filter(p => p.status === "pending"), classes, curriculum: curriculum.filter(c => c.status !== "archived") };
+  }});
+  return <div className="mx-auto max-w-[1100px] space-y-6 p-5 sm:p-8"><header><p className="text-sm text-[#5f6368]">Organization workspace</p><h1 className="mt-2 text-2xl font-medium">{user.org_name || "Your organization"}</h1><p className="mt-2 text-sm leading-6 text-[#5f6368]">Connect people and support learning—without replacing their individual space.</p></header><section className="rounded-2xl border border-[#dce6f5] bg-[#f6f9ff] p-6"><h2 className="text-xl font-medium">A shared place to grow</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-[#5f6368]">Invite your teachers, learners, and parents. Membership begins when each person accepts. Connected teachers can attach classes to this organization.</p><Link to="/dashboard/people" className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#1967d2] px-5 py-2.5 text-sm text-white">Manage people<ArrowRight className="h-4 w-4" /></Link></section>{isPending ? <p role="status">Loading organization…</p> : error ? <p role="alert">Could not load organization. <button onClick={() => refetch()} className="underline">Retry</button></p> : <dl className="grid grid-cols-2 gap-4 lg:grid-cols-4">{[[data.people.length,"Connected people"],[data.pending.length,"Pending requests"],[data.classes.length,"Linked classes"],[data.curriculum.length,"Curriculum drafts"]].map(([value,label]) => <div key={label} className="rounded-2xl border border-[#dadce0] p-5"><dd className="text-2xl font-medium">{value}</dd><dt className="mt-2 text-sm text-[#5f6368]">{label}</dt></div>)}</dl>}<div className="grid gap-4 sm:grid-cols-3">{[["people","People",Users,"Memberships and connection requests"],["curriculum","Curriculum",BookOpen,"Learning goals and shared framework drafts"],["analytics","Analytics",BarChart3,"Activity from explicitly linked classes"]].map(([path,label,Icon,desc]) => <Link key={path} to={"/dashboard/" + path} className="rounded-2xl border border-[#dadce0] p-6 hover:bg-[#f8fafd]"><Icon className="mb-4 h-6 w-6 text-[#1967d2]" /><h2 className="font-medium">{label}</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">{desc}</p></Link>)}</div></div>;
 }
+

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/lib/AuthContext";
+import { appClient } from "@/api/appClient";
 import { Check, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -14,6 +17,8 @@ const FIELDS = [
 ];
 
 export default function CreateClassModal({ onClose, onCreate, accent = "#1a73e8" }) {
+  const { user } = useAuth();
+  const { data: memberships = [] } = useQuery({ queryKey: ["workspace", "teacher-memberships", user.email], queryFn: () => appClient.entities.OrganizationInvite.filter({ email: user.email, role: "teacher", status: "active" }) });
   const [form, setForm] = useState({ name: "", section: "", subject: "", room: "", color: COLORS[0][1] });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -33,6 +38,7 @@ export default function CreateClassModal({ onClose, onCreate, accent = "#1a73e8"
         <DialogTitle className="text-[22px] font-medium text-[#202124]">Create class</DialogTitle>
         <DialogDescription>Give your class a name. You’ll get a code to share with your students.</DialogDescription>
         <form onSubmit={create} className="flex flex-col gap-4">
+          {memberships.length > 0 && <label className="block text-sm font-medium">Learning space<select value={form.organization_email || ""} onChange={e => { const membership = memberships.find(m => m.organization_email === e.target.value); setForm(current => ({ ...current, organization_email: e.target.value, organization_name: membership?.organization_name || "" })); }} className="mt-2 h-11 w-full rounded-lg border border-[#747775] bg-white px-3 font-normal"><option value="">Independent teaching</option>{memberships.map(m => <option key={m.id} value={m.organization_email}>{m.organization_name || m.organization_email}</option>)}</select></label>}
           {FIELDS.map(([key, label, placeholder]) => (
             <label key={key} className="block text-sm font-medium text-[#202124]">
               {label}

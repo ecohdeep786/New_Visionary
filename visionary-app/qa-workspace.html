@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Visionary local QA</title></head><body><h1>Local test fixtures</h1><p>Only fictional accounts on this browser. No email or payment.</p><button data-role="student">Open student preview</button><button data-role="teacher">Open teacher preview</button><button data-role="parent">Open parent preview</button><button data-role="organization">Open organization preview</button><p id="status" role="status"></p><script type="module">
+import { appClient } from "/src/api/appClient.js";
+if (!import.meta.env.DEV) throw new Error("Development only");
+for (const button of document.querySelectorAll("button")) button.onclick = async () => {
+  const role = button.dataset.role;
+  const email = "qa-" + role + "@visionary.test";
+  const password = "Local-preview-only-2026!";
+  document.querySelector("#status").textContent = "Preparing fictional workspace…";
+  try {
+    if (!(await appClient.entities.User.filter({email})).length) {
+      await appClient.auth.register({email,password});
+      await appClient.auth.verifyOtp({email});
+      await appClient.auth.updateMe({identity:role,full_name:"QA " + role,org_name:role === "organization" ? "Discovery Lab" : undefined,onboarding_complete:true,preferences:{learning_language:"Hindi"}});
+    } else await appClient.auth.loginViaEmailPassword(email,password);
+    window.location.href="/dashboard/home";
+  } catch (error) { document.querySelector("#status").textContent=error.message; }
+};
+</script></body></html>

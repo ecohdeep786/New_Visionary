@@ -1,77 +1,12 @@
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Baby, BarChart3, Bell, Shield, ArrowRight, Heart } from "lucide-react";
-import RoleGreeting from "@/components/dashboard/RoleGreeting";
-import EmptyState from "@/components/dashboard/EmptyState";
+import { HeartHandshake, ArrowRight } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
-import { useThemeColor } from "@/hooks/useThemeColor";
-
+import { appClient } from "@/api/appClient";
+import FamilyProgress from "@/components/dashboard/FamilyProgress";
 export default function ParentHome() {
   const { user } = useAuth();
-  const userName = user?.full_name?.split(" ")[0] || "Parent";
-  const themeColor = useThemeColor();
-  const accent = themeColor.accent;
-  const childName = user?.child_name || "your child";
-
-  return (
-    <div className="flex flex-col gap-12 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
-      <RoleGreeting userName={userName} role="parent" accent={accent}
-        subtitle={`Here's how ${childName} is learning today.`} />
-
-      {/* Connect child — guided empty state */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-[22px] font-medium text-[#202124]">Your child's progress</h2>
-        <EmptyState
-          icon={Baby}
-          title="Connect your child's account"
-          description={`Link ${childName}'s Visionary profile to see real-time mastery, daily study activity, and AI insights on how to support their learning at home — no more waiting for report cards.`}
-          actionLabel="Connect your child"
-          actionTo="/dashboard/subscription"
-          accent={accent}
-        />
-      </div>
-
-      {/* What you'll see */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-[22px] font-medium text-[#202124]">What you'll get</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { icon: BarChart3, title: "Concept-level visibility", desc: "Know exactly which topics your child has mastered and which still need work — before the exam." },
-            { icon: Bell, title: "Smart notifications", desc: "Get gently notified when your child needs help or completes a milestone. Never spammy." },
-            { icon: Shield, title: "A safe environment", desc: "No ads, no social media, no distractions. Just focused, private learning built for kids." },
-          ].map((c) => {
-            const Icon = c.icon;
-            return (
-              <div key={c.title} className="bg-white rounded-3xl border border-[#dadce0]/60 p-8">
-                <div className="w-11 h-11 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: `${accent}15` }}>
-                  <Icon className="w-5 h-5" style={{ color: accent }} />
-                </div>
-                <h3 className="text-base font-medium text-[#202124] mb-2">{c.title}</h3>
-                <p className="text-sm text-[#5f6368] leading-relaxed">{c.desc}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Ask about your child */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-[22px] font-medium text-[#202124]">Ask about your child</h2>
-        <div className="bg-white rounded-3xl border border-[#dadce0]/60 p-8">
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
-              <Heart className="w-5 h-5" style={{ color: accent }} />
-            </div>
-            <div className="flex-1">
-              <p className="text-base text-[#202124] leading-relaxed">
-                Wondering how to help with a tough subject or whether your child is on track? Ask Visionary's AI for gentle, evidence-based guidance tailored to your child's learning history.
-              </p>
-              <Link to="/dashboard/ask" className="mt-5 inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium text-white transition-colors" style={{ backgroundColor: accent }}>
-                Ask a question <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const { data: links = [], isPending, error, refetch } = useQuery({ queryKey: ["workspace","family",user.email], queryFn: () => appClient.entities.FamilyLink.filter({ parent_email: user.email }) });
+  return <div className="mx-auto max-w-[1100px] space-y-6 p-5 sm:p-8"><header><h1 className="text-2xl font-medium">Hello, {user.full_name?.split(" ")[0] || "there"}</h1><p className="mt-2 text-sm text-[#5f6368]">Support their curiosity. Give them room to grow.</p></header><section className="flex flex-wrap items-center gap-5 rounded-2xl border border-[#dce6f5] bg-[#f6f9ff] p-6"><HeartHandshake className="h-9 w-9 text-[#1967d2]" /><div className="flex-1"><h2 className="text-xl font-medium">Learning is better with support</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Follow the progress your child shares, without accessing private questions or project notes.</p></div><Link to="/dashboard/child" className="rounded-full bg-[#1967d2] px-5 py-2.5 text-sm text-white">Manage children</Link></section>{isPending ? <p role="status">Loading shared progress…</p> : error ? <p role="alert">Could not load connections. <button onClick={() => refetch()} className="underline">Retry</button></p> : links.some(l => l.status === "active") ? <FamilyProgress links={links} /> : <section className="rounded-2xl border border-dashed border-[#bdc1c6] p-8"><h2 className="text-lg font-medium">{links.some(l => l.status === "pending") ? "Waiting for your child to accept" : "Connect your child to see shared progress"}</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Your child reviews your request in Connections. Learning activity appears here after acceptance.</p><Link to="/dashboard/child" className="mt-4 inline-flex items-center gap-2 text-sm text-[#1967d2]">View family connections<ArrowRight className="h-4 w-4" /></Link></section>}<div className="grid gap-4 sm:grid-cols-2">{[["/dashboard/connections","Connect with a teacher","Manage your learning relationships."],["/dashboard/learn","Your own learning matters too","Explore your interests in a personal learning space."]].map(([to,title,desc]) => <Link key={to} to={to} className="rounded-2xl border border-[#dadce0] p-6"><h2 className="font-medium">{title}</h2><p className="mt-2 text-sm text-[#5f6368]">{desc}</p></Link>)}</div></div>;
 }
+
