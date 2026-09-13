@@ -50,22 +50,38 @@ export default function NewPersona({
         marginTop: 64,
       }}
     >
-      {/* full-bleed photo — anchored TOP so the head is never cropped */}
-      <div className="absolute inset-0" aria-hidden="true">
-        <img
-          src={img}
-          alt={alt}
-          loading="eager"
-          decoding="async"
-          className="h-full w-full object-cover lg:object-contain"
-          style={{ objectPosition: "50% 0%" }}
-        />
-        <div className="absolute inset-0" style={scrim(heroBg)} />
-      </div>
-
       {/* content pinned to the bottom edge — nothing below it */}
       <div className="relative mx-auto flex h-full w-full max-w-[1756px] flex-col justify-end px-6 pb-[7vh] sm:px-8 lg:px-10">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+        {/* MOBILE-FIRST: Image zone appears first in DOM for mobile, reordered on desktop */}
+        <div className="order-1 lg:order-2 lg:absolute lg:inset-0 lg:right-0 lg:w-1/2">
+          {/* Mobile: Full-width image at top */}
+          <div className="relative block h-[45vh] w-full overflow-hidden lg:hidden">
+            <img
+              src={img}
+              alt={alt}
+              loading="eager"
+              decoding="async"
+              className="h-full w-full object-cover"
+              style={{ objectPosition: "50% 0%" }}
+            />
+            <div className="absolute inset-0" style={scrim(heroBg)} />
+          </div>
+          {/* Desktop: Background image with scrim */}
+          <div className="hidden lg:block">
+            <img
+              src={img}
+              alt={alt}
+              loading="eager"
+              decoding="async"
+              className="h-full w-full object-contain"
+              style={{ objectPosition: "50% 0%" }}
+            />
+            <div className="absolute inset-0" style={scrim(heroBg)} />
+          </div>
+        </div>
+
+        {/* Text and CTA content - appears after image on mobile, left side on desktop */}
+        <div className="order-2 lg:order-1 flex flex-col-reverse gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           {/* left: heading + sub — system type */}
           <div className="max-w-[980px]">
             <h1 className="m-0">
