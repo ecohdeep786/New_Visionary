@@ -109,11 +109,9 @@ export default function StudentClasses() {
     const existing = await base44.entities.Enrollment.filter({ student_email: email, class_id: classroom.id });
     const active = existing.find((e) => e.status === "active");
     if (!active) {
-      const details = { student_name: studentName, student_id: user.id, status: "active" };
+      const details = { student_name: studentName, student_id: user.id, status: "active", join_code: classroom.join_code };
       if (existing.length) await base44.entities.Enrollment.update(existing[0].id, details);
       else await base44.entities.Enrollment.create({ class_id: classroom.id, student_email: email, ...details });
-      const enrolled = await base44.entities.Enrollment.filter({ class_id: classroom.id });
-      await base44.entities.Classroom.update(classroom.id, { student_count: new Set(enrolled.filter((e) => e.status === "active").map((e) => e.student_email)).size });
     }
     await load();
     setOpenClassId(classroom.id);
@@ -135,8 +133,7 @@ export default function StudentClasses() {
     setJoining(true);
     setJoinStatus("");
     try {
-      const allClasses = await base44.entities.Classroom.list();
-      const classroom = (allClasses || []).find((item) => item.join_code?.toUpperCase() === normalizedCode);
+      const classroom = await base44.entities.Classroom.findByJoinCode(normalizedCode);
       if (!classroom) {
         setJoinStatus("We couldn’t find a class with that code. Check the code with your teacher and try again.");
         return;

@@ -1,0 +1,141 @@
+import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, MasteryStage, Person, Plan, RequestContext, Resource, Role, Session, Stage, Workspace, WorkspaceData } from '../domain/workspace.ts';
+import { getJourney, listJourneys, matchJourney } from './journeys.ts';
+
+const KEY = 'visionary_workspace_v2';
+export const roleNames: Record<Role, string> = {student:'Learner',teacher:'Teacher',parent:'Parent',professional:'Professional',organization:'Organization admin'};
+export const plans: Plan[] = [{id:'Free',price:0,profiles:1,provisional:false},{id:'Premium',price:299,profiles:1,provisional:false},{id:'Family',price:499,profiles:6,provisional:true}];
+export const scenarioPersonas = [
+ ['minor-cbse','Aarav · CBSE learner','student','minor'],['bengali','Maya · West Bengal learner','student','minor'],['exam','Riya · Exam preparation','student','adult'],['college','Kabir · Higher education','student','adult'],['adult','Asha · Independent learner','student','adult'],['teacher','Dev · Independent teacher','teacher','adult'],['school-teacher','Nila · Organization teacher','teacher','adult'],['parent','Anika · Parent of two','parent','adult'],['professional','Sam · Job-seeking professional','professional','adult'],['employee','Ira · Employer-sponsored','professional','adult'],['school-admin','School administrator','organization','adult'],['company-admin','Company learning administrator','organization','adult'],
+] as const;
+let clock = () => new Date();
+let latency = 180;
+let fault: 'none' | 'offline' | 'error' = 'none';
+export function configureMock(options: { now?: () => Date; latency?: number; fault?: typeof fault }) { if(options.now) clock=options.now; if(options.latency!==undefined) latency=options.latency; if(options.fault) fault=options.fault; }
+const now = () => clock().toISOString();
+const id = () => crypto.randomUUID();
+function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }
+function read(): Database { const raw=localStorage.getItem(KEY); if(!raw) return {version:2,people:[],workspaces:[],active:{},data:{},relationships:[]}; try { const result=JSON.parse(raw); if(result.version!==2) throw new Error(); return result; } catch { throw new Error('Workspace data could not be read. Your previous records have not been deleted.'); } }
+function write(db: Database) { try { localStorage.setItem(KEY,JSON.stringify(db)); } catch { throw new Error('Your changes could not be saved on this device. Free browser storage and try again.'); } if(typeof window!=='undefined') window.dispatchEvent(new CustomEvent('visionary:v2-change')); }
+function record(data: WorkspaceData, action: string, target: string) { data.audit.unshift({id:id(),action,target,at:now()}); }
+function access(db: Database, ctx: RequestContext) { const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId && w.personId===ctx.personId && w.role===ctx.role); if(!workspace) throw new Error('You do not have access to this workspace.'); return db.data[workspace.id]!; }
+async function wait(ctx?: RequestContext) { if(ctx?.signal?.aborted) throw new DOMException('Cancelled','AbortError'); await new Promise<void>((resolve,reject)=>{ const abort=()=>{clearTimeout(timer);reject(new DOMException('Cancelled','AbortError'));}; const timer=setTimeout(()=>{ctx?.signal?.removeEventListener('abort',abort);resolve();},latency);ctx?.signal?.addEventListener('abort',abort,{once:true}); }); if(fault==='offline') throw new Error('Offline demo: saved work is still available. Change the demo condition to retry.'); if(fault==='error') throw new Error('The demo service could not complete this request. Your saved work is unchanged.'); }
+
+function addWorkspace(db: Database, person: Person, role: Role): Workspace { const existing=db.workspaces.find(w=>w.personId===person.id&&w.role===role&&!w.organizationId); if(existing)return existing; const workspace={id:`${person.id}:${role}`,personId:person.id,role,name:role==='organization'?'My organization':`${roleNames[role]} space`,lastPath:'/dashboard/home'};db.workspaces.push(workspace);db.data[workspace.id]=emptyData();return workspace; }
+export function bootstrapPerson(user: {id:string;email:string;full_name?:string;identity?:string;education_stage?:string;preferred_language?:string;age_band?:Person['ageBand'];preferences?:{learning_language?:string}}) {
+ const db=read();let person=db.people.find(p=>p.id===user.id);const rawRole=user.education_stage==='professional'?'professional':user.identity;const role:Role=rawRole && rawRole in roleNames?rawRole as Role:'student';
+ if(!person){person={id:user.id,email:user.email,name:user.full_name||user.email.split('@')[0]||'Learner',ageBand:user.age_band||'unknown',roles:[role]};db.people.push(person);const workspace=addWorkspace(db,person,role);db.active[person.id]=workspace.id;const data=db.data[workspace.id]!;const lang=user.preferences?.learning_language||user.preferred_language;data.preferences.locale=lang==='Hindi'?'hi':lang==='Bengali'?'bn':'en';
+ // Import only owned records. Original stores are intentionally untouched.
+ for(const name of ['Project','Question']) {let rows:Record<string,unknown>[]=[];try{rows=JSON.parse(localStorage.getItem(`visionary_entity_${name}`)||'[]');}catch{continue;}for(const row of rows.filter(r=>(r.owner_email||r.student_email)===user.email)){if(name==='Project')data.artifacts.push({id:`legacy-${String(row.id)}`,title:String(row.title||'Saved project'),body:String(row.notes||''),milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'in-progress',updatedAt:now()});else data.conversations.push({id:`legacy-${String(row.id)}`,title:String(row.question||'Saved question').slice(0,70),messages:[],draft:String(row.question||''),updatedAt:now(),useForPersonalization:false});}}data.legacyImported=true;write(db);
+ } return {person,workspaces:db.workspaces.filter(w=>w.personId===person.id),active:db.active[person.id]};
+}
+export function addRole(personId:string,role:Role) {const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Sign in first.');if(person.ageBand!=='adult'&&role!=='student')throw new Error('An adult age confirmation is required before adding this role.');if(!person.roles.includes(role))person.roles.push(role);const workspace=addWorkspace(db,person,role);write(db);return workspace;}
+export function setAgeBand(personId:string,ageBand:Person['ageBand']){const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Account not found.');person.ageBand=ageBand;write(db);}
+export function selectWorkspace(personId:string,workspaceId:string) {const db=read();if(!db.workspaces.some(w=>w.id===workspaceId&&w.personId===personId))throw new Error('Workspace not available.');db.active[personId]=workspaceId;write(db);}
+export function saveLastPath(ctx:RequestContext,path:string){if(!path.startsWith('/dashboard/'))return;const db=read();access(db,ctx);const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId)!;if(workspace.lastPath===path)return;workspace.lastPath=path;write(db);}
+export function snapshot(ctx:RequestContext):WorkspaceData {const db=read();const data=structuredClone(access(db,ctx));data.subscription=effectiveSubscription(db,ctx);return data;}
+function effectiveSubscription(db:Database,ctx:RequestContext){
+ const own=access(db,ctx);const sub=structuredClone(own.subscription);const day=now().slice(0,10);
+ sub.usage=db.workspaces.filter(w=>w.personId===ctx.personId).reduce((n,w)=>n+(db.data[w.id]?.subscription.usageDay===day?db.data[w.id]!.subscription.usage:0),0);sub.usageDay=day;
+ if(sub.state==='cancelled'&&sub.renewsAt&&new Date(sub.renewsAt)<=clock()){sub.plan='Free';sub.state='active';delete sub.renewsAt;}
+ if(sub.plan==='Free'&&db.familyInvitations?.some(i=>i.member===ctx.personId&&i.status==='active'&&hasFamilyPlan(db,i.owner)))sub.plan='Family';
+ return sub;
+}
+function hasFamilyPlan(db:Database,personId:string){return db.workspaces.some(w=>{if(w.personId!==personId)return false;const sub=db.data[w.id]?.subscription;return sub?.plan==='Family'&&!(sub.state==='cancelled'&&sub.renewsAt&&new Date(sub.renewsAt)<=clock());});}
+export function familyInvitations(ctx:RequestContext){const db=read();access(db,ctx);return (db.familyInvitations||[]).filter(i=>i.owner===ctx.personId||i.member===ctx.personId).map(i=>({...i,name:db.people.find(p=>p.id===(i.owner===ctx.personId?i.member:i.owner))?.name||'Family member',expired:i.status==='pending'&&new Date(i.expiresAt)<=clock()}));}
+export function inviteFamily(ctx:RequestContext,email:string){
+ const db=read();const data=access(db,ctx);if(!hasFamilyPlan(db,ctx.personId))throw new Error('An owned Family plan is required to invite members.');
+ if(db.people.find(p=>p.id===ctx.personId)?.ageBand!=='adult')throw new Error('An adult account is required to manage billing.');
+ const member=db.people.find(p=>p.email.toLowerCase()===email.trim().toLowerCase());if(!member||member.id===ctx.personId)throw new Error('Choose another local demo account.');
+ const invitations=db.familyInvitations||=[];const current=invitations.filter(i=>i.owner===ctx.personId&&(i.status==='active'||i.status==='pending'&&new Date(i.expiresAt)>clock()));
+ if(current.some(i=>i.member===member.id))throw new Error('This account already has an invitation or membership.');if(current.length>=5)throw new Error('This demo Family plan supports five invited members plus its owner.');
+ invitations.push({id:id(),owner:ctx.personId,member:member.id,status:'pending',expiresAt:new Date(clock().getTime()+7*86400000).toISOString()});record(data,'Family billing invitation created',member.id);write(db);
+}
+export function changeFamilyInvitation(ctx:RequestContext,invitationId:string,status:'active'|'declined'|'revoked'){
+ const db=read();const data=access(db,ctx);const i=db.familyInvitations?.find(i=>i.id===invitationId&&(i.owner===ctx.personId||i.member===ctx.personId));if(!i)throw new Error('Invitation not found.');
+ if(status!=='revoked'&&(i.member!==ctx.personId||i.status!=='pending'))throw new Error('Only the invited member can answer a pending request.');
+ if(status==='active'&&(new Date(i.expiresAt)<=clock()||!hasFamilyPlan(db,i.owner)))throw new Error('This invitation is expired or its Family plan is unavailable.');
+ if(status==='active'&&db.familyInvitations?.some(other=>other.id!==i.id&&other.member===ctx.personId&&other.status==='active'))throw new Error('Leave your existing billing family before joining another.');
+ i.status=status;record(data,`Family billing ${status}`,i.id);write(db);
+}
+export async function getWorkspace(ctx:RequestContext){await wait(ctx);return snapshot(ctx);}
+export function updatePreferences(ctx:RequestContext,patch:Partial<WorkspaceData['preferences']>){const db=read();const data=access(db,ctx);data.preferences={...data.preferences,...patch};record(data,'Preferences updated',ctx.workspaceId);write(db);}
+export function newConversation(ctx:RequestContext,title='A new discovery') {const db=read();const data=access(db,ctx);const conversation:Conversation={id:id(),title,messages:[],draft:'',updatedAt:now(),useForPersonalization:false};data.conversations.unshift(conversation);data.activeConversationId=conversation.id;write(db);return conversation;}
+export function updateConversation(ctx:RequestContext,conversationId:string,patch:Partial<Pick<Conversation,'title'|'draft'|'useForPersonalization'|'canvasPath'>>) {const db=read();const c=access(db,ctx).conversations.find(c=>c.id===conversationId);if(!c)throw new Error('Conversation not found.');Object.assign(c,patch);write(db);}
+export function removeConversation(ctx:RequestContext,conversationId:string){const db=read();const data=access(db,ctx);if(data.activeConversationId===conversationId)delete data.activeConversationId;data.conversations=data.conversations.filter(c=>c.id!==conversationId);data.sessions=data.sessions.filter(s=>s.conversationId!==conversationId);write(db);}
+export const roleActions: Record<Role,{label:string;path:string}[]>={student:[{label:'Explore a learning journey',path:'/dashboard/learn'},{label:'Review my progress',path:'/dashboard/progress'}],professional:[{label:'Plan my next career step',path:'/dashboard/career'},{label:'Open my portfolio',path:'/dashboard/build'}],teacher:[{label:'Prepare a lesson',path:'/dashboard/prepare'},{label:'Review classwork',path:'/dashboard/classes'},{label:'Explore learner evidence',path:'/dashboard/learners'}],parent:[{label:'Understand my child’s week',path:'/dashboard/reports'},{label:'Manage family connections',path:'/dashboard/child'}],organization:[{label:'Continue organization setup',path:'/dashboard/cohorts'},{label:'Manage people',path:'/dashboard/people'},{label:'Review organization insights',path:'/dashboard/analytics'}]};
+export async function sendMessage(ctx:RequestContext,conversationId:string,text:string){
+ if(!text.trim())return;await wait(ctx);const db=read();const data=access(db,ctx);const conversation=data.conversations.find(c=>c.id===conversationId);if(!conversation)throw new Error('Conversation not found.');
+ const entitlement=effectiveSubscription(db,ctx);const day=now().slice(0,10);if(data.subscription.usageDay!==day){data.subscription.usageDay=day;data.subscription.usage=0;}if(entitlement.plan==='Free'&&entitlement.usage>=10)throw new Error('You’ve used the 10 guided turns in this daily demo. Saved lessons, practice and assignments remain available.');
+ const active=data.sessions.find(s=>s.id===conversation.sessionId);const journeyId=matchJourney(text)||active?.journeyId;const selectedAction=roleActions[ctx.role].find(a=>text.toLowerCase().includes(a.label.toLowerCase()));let blocks:GuideBlock[];
+ if(selectedAction)blocks=[{type:'text',text:'Let’s work through this together. Open the workspace to review and make changes—you remain in control.'},{type:'action',...selectedAction}];
+ else if(journeyId){const journey=getJourney(journeyId,ctx.locale);blocks=[{type:'text',text:journey.explanation},{type:'activity',journeyId,label:journey.title}];if(active)active.interrupted=true;}
+ else blocks=[{type:'text',text:'This is a curated demonstration, not a live intelligence service. I can guide you through cube volume, fractions, or interpreting data. Your question will stay in this conversation.'},...listJourneys(ctx.locale).map(j=>({type:'activity' as const,journeyId:j.id,label:j.title}))];
+ conversation.messages.push({id:id(),role:'user',blocks:[{type:'text',text:text.trim()}],at:now()},{id:id(),role:'guide',blocks,at:now()});conversation.draft='';conversation.title=conversation.messages.length===2?text.slice(0,64):conversation.title;conversation.updatedAt=now();data.subscription.usage++;write(db);
+}
+export function startJourney(ctx:RequestContext,conversationId:string,journeyId:string){getJourney(journeyId);const db=read();const data=access(db,ctx);const conversation=data.conversations.find(c=>c.id===conversationId);if(!conversation)throw new Error('Conversation not found.');let session=data.sessions.find(s=>s.conversationId===conversationId&&s.journeyId===journeyId);if(!session){session={id:id(),journeyId,conversationId,stage:'diagnosing',position:0,locale:ctx.locale,representation:'interactive',answers:{},canvas:{size:3,rotation:25},notes:'',evidence:[],updatedAt:now(),interrupted:false};data.sessions.push(session);}session.interrupted=false;conversation.sessionId=session.id;delete conversation.canvasPath;if(!conversation.messages.length)conversation.title=getJourney(journeyId,ctx.locale).title;write(db);return session;}
+export function updateSession(ctx:RequestContext,sessionId:string,patch:Partial<Pick<Session,'stage'|'position'|'locale'|'representation'|'canvas'|'notes'|'confidence'|'interrupted'>>) {const db=read();const s=access(db,ctx).sessions.find(s=>s.id===sessionId);if(!s)throw new Error('Session not found.');Object.assign(s,patch,{updatedAt:now()});write(db);}
+export function answerQuestion(ctx:RequestContext,sessionId:string,answer:string){
+ const db=read();const data=access(db,ctx);const s=data.sessions.find(s=>s.id===sessionId);if(!s)throw new Error('Session not found.');
+ if(!['checking','practicing'].includes(s.stage))throw new Error('Open a check or practice question first.');
+ const j=getJourney(s.journeyId,s.locale);const q=j.questions[s.position];if(!q)throw new Error('Question not found.');
+ if(!/^[0-9]+$/.test(answer)||!q.options[Number(answer)])throw new Error('Choose one of the available answers.');
+ const round=s.reviewRound||0;const answerKey=`${s.stage}:${s.position}:${round}`;s.answers[answerKey]=answer;
+ const correct=Number(answer)===q.answer;
+ const first=s.evidence.find(e=>e.kind==='check'||e.kind==='practice');
+ const delayed=Boolean(round&&first&&clock().getTime()-new Date(first.at).getTime()>=86400000);
+ const kind=s.stage==='practicing'?(delayed?'retrieval':'practice'):'check';
+ const key=`${s.id}:${kind}:${s.position}:${round}`;
+ if(!s.evidence.some(e=>e.id===key))s.evidence.push({id:key,objectiveId:s.journeyId,kind,correct:correct?1:0,total:1,at:now(),delayed});
+ s.updatedAt=now();write(db);return {correct,explanation:q.explanation};
+}
+export function beginReview(ctx:RequestContext,sessionId:string){
+ const db=read();const s=access(db,ctx).sessions.find(s=>s.id===sessionId);if(!s)throw new Error('Session not found.');
+ s.reviewRound=(s.reviewRound||0)+1;s.reviewStartedAt=now();s.stage='practicing';s.position=0;s.updatedAt=now();write(db);
+}
+export function mastery(evidence:Evidence[],started=false,at=new Date()):MasteryStage {if(!evidence.length)return started?'Exploring':'Not started';const ordered=[...evidence].sort((a,b)=>b.at.localeCompare(a.at));const recent=ordered[0]!;if(at.getTime()-new Date(recent.at).getTime()>7*86400000)return 'Needs review';const passed=evidence.filter(e=>e.total>0&&e.correct/e.total>=0.7);if(recent.correct/recent.total<0.7)return 'Needs review';const kinds=new Set(passed.map(e=>e.kind));if(kinds.has('application')&&passed.some(e=>e.delayed&&e.kind==='retrieval')&&kinds.size>=3)return 'Mastered';if(kinds.has('check')&&kinds.has('practice'))return 'Secure';return 'Practicing';}
+export function saveArtifact(ctx:RequestContext,patch:Partial<Artifact>&{title:string;body:string}){const db=read();const data=access(db,ctx);let a=data.artifacts.find(a=>a.id===patch.id);if(!patch.title.trim())throw new Error('Give your project a title.');if(!a){a={id:id(),title:patch.title,body:'',journeyId:patch.journeyId,milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'draft',updatedAt:now()};data.artifacts.unshift(a);}if(a.body!==patch.body&&a.body)a.versions.unshift({body:a.body,at:a.updatedAt});a.title=patch.title;a.body=patch.body;a.milestones=patch.milestones||a.milestones;a.status=patch.status||a.status;a.updatedAt=now();record(data,'Artifact saved',a.id);write(db);return a;}
+function canShare(db:Database,from:string,to:string){return db.relationships.some(r=>r.status==='active'&&r.scope.includes('shared-resources')&&(!r.expiresAt||new Date(r.expiresAt)>clock())&&((r.from===from&&r.to===to)||(r.to===from&&r.from===to)));}
+export function shareArtifact(ctx:RequestContext,artifactId:string,recipient:string){const db=read();const data=access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId)!;if(person.ageBand!=='adult')throw new Error('Sharing requires an approved adult or guardian workflow. This demo does not verify guardians.');if(!canShare(db,ctx.personId,recipient))throw new Error('Choose an accepted connection with shared-resource permission.');const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='shared';if(!a.sharedWith.includes(recipient))a.sharedWith.push(recipient);record(data,'Artifact shared',artifactId);write(db);}
+export function sharedArtifacts(ctx:RequestContext){const db=read();access(db,ctx);return db.workspaces.filter(w=>w.personId!==ctx.personId&&canShare(db,w.personId,ctx.personId)).flatMap(w=>(db.data[w.id]?.artifacts||[]).filter(a=>a.visibility==='shared'&&a.sharedWith.includes(ctx.personId)).map(a=>({id:a.id,title:a.title,body:a.body,updatedAt:a.updatedAt,from:db.people.find(p=>p.id===w.personId)?.name||'Connection'})));}
+export function stopSharingArtifact(ctx:RequestContext,artifactId:string){const db=read();const data=access(db,ctx);const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='private';a.sharedWith=[];record(data,'Artifact sharing stopped',a.id);write(db);}
+export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']}){const db=read();const data=access(db,ctx);if(!patch.title.trim())throw new Error('A title is required.');let resource=data.resources.find(r=>r.id===patch.id);if(!resource){resource={id:id(),title:patch.title,body:patch.body,kind:patch.kind,status:'draft',audience:'Personal',updatedAt:now()};data.resources.unshift(resource);}Object.assign(resource,patch,{id:resource.id,updatedAt:now()});record(data,`${resource.kind} saved`,resource.id);write(db);return resource;}
+export function archiveResource(ctx:RequestContext,resourceId:string){const db=read();const data=access(db,ctx);const resource=data.resources.find(r=>r.id===resourceId);if(!resource)throw new Error('Item not found.');resource.status=resource.status==='archived'?'draft':'archived';record(data,resource.status,resourceId);write(db);}
+export function markNotification(ctx:RequestContext,notificationId:string){const db=read();const data=access(db,ctx);const n=data.notifications.find(n=>n.id===notificationId);if(n)n.read=true;write(db);}
+export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'active'|'pending'|'failed'|'cancelled'){
+ const db=read();const data=access(db,ctx);const selected=plans.find(p=>p.id===plan);if(!selected)throw new Error('Unknown plan.');
+ const resume=outcome==='active'&&data.subscription.state==='cancelled'&&data.subscription.plan===plan&&new Date(data.subscription.renewsAt||0)>clock();
+ if(outcome==='cancelled'&&data.subscription.plan==='Free')throw new Error('There is no paid renewal to cancel.');
+ if(outcome==='active'&&!resume){data.subscription.plan=plan;data.subscription.renewsAt=plan==='Free'?undefined:new Date(clock().getTime()+30*86400000).toISOString();if(plan!=='Free')data.subscription.invoices.unshift({id:id(),plan,amount:selected.price,at:now()});}
+ data.subscription.state=outcome;
+ for(const w of db.workspaces.filter(w=>w.personId===ctx.personId)){const target=db.data[w.id]!;target.subscription={...structuredClone(data.subscription),usage:target.subscription.usage,usageDay:target.subscription.usageDay};}
+ record(data,`Demo subscription ${outcome}`,plan);write(db);
+}
+export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return db.relationships.filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
+export function requestRelationship(ctx:RequestContext,email:string,type:'guardian'|'teacher'|'organization'){const db=read();access(db,ctx);const person=db.people.find(p=>p.email.toLowerCase()===email.trim().toLowerCase());if(!person||person.id===ctx.personId)throw new Error('Choose another account available in this local demo.');if(db.relationships.some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&['active','pending'].includes(r.status)))throw new Error('This connection already exists.');db.relationships.push({id:id(),from:ctx.personId,to:person.id,type,status:'pending',scope:type==='guardian'?['progress-summary']:['shared-resources'],expiresAt:new Date(clock().getTime()+7*86400000).toISOString()});write(db);}
+export function changeRelationship(ctx:RequestContext,relationshipId:string,status:'active'|'declined'|'revoked'){
+ const db=read();const data=access(db,ctx);const r=db.relationships.find(r=>r.id===relationshipId&&(r.from===ctx.personId||r.to===ctx.personId));
+ if(!r)throw new Error('Connection not found.');
+ if(status!=='revoked'&&r.to!==ctx.personId)throw new Error('Only the recipient can answer a request.');
+ if(status!=='revoked'&&r.status!=='pending')throw new Error('This request is no longer pending.');
+ if(r.expiresAt&&new Date(r.expiresAt)<=clock()&&status==='active')throw new Error('This invitation expired. Request a new invitation.');
+ if(status==='revoked'&&!['active','pending'].includes(r.status))throw new Error('This connection is already closed.');
+ r.status=status;if(status==='active')delete r.expiresAt;
+ record(data,`Connection ${status}`,r.id);write(db);
+}
+export function familyReports(ctx:RequestContext){
+ if(ctx.role!=='parent')throw new Error('Parent workspace required.');
+ const db=read();access(db,ctx);const cutoff=clock().getTime()-7*86400000;
+ return db.relationships.filter(r=>r.type==='guardian'&&r.from===ctx.personId&&r.status==='active'&&r.scope.includes('progress-summary')&&(!r.expiresAt||new Date(r.expiresAt).getTime()>clock().getTime())).flatMap(r=>{
+  const child=db.people.find(p=>p.id===r.to);if(!child)return [];
+  const sessions=db.workspaces.filter(w=>w.personId===child.id&&w.role==='student').flatMap(w=>db.data[w.id]?.sessions||[]);
+  const recent=sessions.filter(s=>new Date(s.updatedAt).getTime()>=cutoff);
+  return [{id:child.id,name:child.name,period:'Last 7 days',scope:r.scope,completed:recent.filter(s=>s.stage==='completed').length,objectives:recent.map(s=>({title:getJourney(s.journeyId,ctx.locale).title,stage:mastery(s.evidence.filter(e=>new Date(e.at).getTime()>=cutoff),true,clock())})),summary:recent.length?'Ask which explanation helped most. Offer time for a short review together.':'No shared learning evidence in this period. Ask what they would like to explore next.'}];
+ });
+}
+export function seedDemo(personaId:string){const persona=scenarioPersonas.find(p=>p[0]===personaId);if(!persona)throw new Error('Unknown demo scenario.');const db=read();for(const p of scenarioPersonas){const personId=`demo-${p[0]}`;let person=db.people.find(x=>x.id===personId);if(!person){person={id:personId,email:`${p[0]}@visionary.test`,name:p[1].split(' · ')[0]!,ageBand:p[3],roles:[p[2]]};db.people.push(person);const ws=addWorkspace(db,person,p[2]);db.active[personId]=ws.id;const data=db.data[ws.id]!;data.preferences.locale=p[0]==='bengali'?'bn':'en';data.notifications.push({id:`welcome-${personId}`,text:'Your demo workspace is ready. Start with one useful next step.',read:false,path:'/dashboard/home'});}}
+ const parent='demo-parent';for(const child of ['demo-minor-cbse','demo-bengali'])if(!db.relationships.some(r=>r.id===`${parent}:${child}`))db.relationships.push({id:`${parent}:${child}`,from:parent,to:child,type:'guardian',scope:['progress-summary'],status:'active'});
+ const person=db.people.find(p=>p.id===`demo-${personaId}`)!;if(person.ageBand==='adult')for(const role of Object.keys(roleNames) as Role[]){if(!person.roles.includes(role))person.roles.push(role);addWorkspace(db,person,role);}write(db);return person;
+}
+export function exportWorkspace(ctx:RequestContext){return JSON.stringify(snapshot(ctx),null,2);}
+export function selectConversation(ctx:RequestContext,conversationId:string|null){const db=read();const data=access(db,ctx);if(conversationId&&!data.conversations.some(c=>c.id===conversationId))throw new Error('Conversation not found.');data.activeConversationId=conversationId||undefined;write(db);}
+export function setDemoUsage(ctx:RequestContext,usage:number){const db=read();const data=access(db,ctx);data.subscription.usage=Math.max(0,usage);data.subscription.usageDay=now().slice(0,10);write(db);}

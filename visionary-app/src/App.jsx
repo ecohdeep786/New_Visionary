@@ -85,10 +85,14 @@ const DashboardHome = lazy(() => import('@/pages/dashboard/DashboardHome'))
 const Learn = lazy(() => import('@/pages/dashboard/Learn'))
 const StudentClasses = lazy(() => import('@/pages/dashboard/StudentClasses'))
 const TopicDetail = lazy(() => import('@/pages/dashboard/TopicDetail'))
-const Ask = lazy(() => import('@/pages/dashboard/Ask'))
+const TeacherClasses = lazy(() => import('@/pages/dashboard/role/TeacherHome'))
+const DemoPreview = import.meta.env.DEV ? lazy(() => import('@/pages/DemoPreview')) : null
 const Practice = lazy(() => import('@/pages/dashboard/Practice'))
-const Build = lazy(() => import('@/pages/dashboard/Build'))
-const Subscription = lazy(() => import('@/pages/dashboard/Subscription'))
+const Build = lazy(() => import('@/pages/dashboard/ArtifactStudio'))
+const Subscription = lazy(() => import('@/pages/dashboard/Plans'))
+const Cohorts = lazy(() => import('@/pages/dashboard/Cohorts'))
+const Learners = lazy(() => import('@/pages/dashboard/Learners'))
+const WorkspaceTools = lazy(() => import('@/pages/dashboard/WorkspaceTools'))
 const Profile = lazy(() => import('@/pages/dashboard/Profile'))
 const Settings = lazy(() => import('@/pages/dashboard/Settings'))
 const ClassDetail = lazy(() => import('@/pages/dashboard/ClassDetail'))
@@ -132,8 +136,10 @@ function LandingEntry() {
   if (isLoadingAuth) return <RouteFallback />;
   return isAuthenticated ? <Navigate to={user?.onboarding_complete ? "/dashboard/home" : "/onboarding"} replace /> : <Landing />;
 }
+function ClassesEntry() { const { user } = useAuth(); return user?.identity === 'teacher' ? <TeacherClasses /> : <StudentClasses />; }
 const PublicApp = () => (
   <Routes>
+    {DemoPreview && <Route path="/dev/scenarios" element={<DemoPreview />} />}
     <Route path="/" element={<LandingEntry />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
@@ -170,10 +176,10 @@ const PublicApp = () => (
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="home" element={<DashboardHome />} />
-          <Route path="classes" element={<StudentClasses />} />
+          <Route path="classes" element={<ClassesEntry />} />
           <Route path="learn" element={<Learn />} />
           <Route path="learn/:topicId" element={<TopicDetail />} />
-          <Route path="ask" element={<Ask />} />
+          <Route path="ask" element={<DashboardHome />} />
           <Route path="practice" element={<Practice />} />
           <Route path="build" element={<Build />} />
           <Route path="subscription" element={<Subscription />} />
@@ -188,6 +194,9 @@ const PublicApp = () => (
           <Route path="connections" element={<Connections />} />
           <Route path="explore" element={<Explore />} />
           <Route path="support" element={<Support />} />
+          {['prepare','library','career','growth','progress','reports','notifications','personalization','privacy','audit'].map(area => <Route key={area} path={area} element={<WorkspaceTools area={area} />} />)}
+          <Route path="cohorts" element={<Cohorts />} />
+          <Route path="learners" element={<Learners />} />
         </Route>
       </Route>
     </Route>

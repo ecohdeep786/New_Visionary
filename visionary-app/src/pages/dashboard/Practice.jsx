@@ -4,6 +4,7 @@ import { CheckCircle2, Target, ArrowRight, RotateCcw } from "lucide-react";
 import { appClient } from "@/api/appClient";
 import { useStudentData } from "@/hooks/useStudentData";
 import { cubeExercises, scoreExercises } from "@/lib/practiceExercises";
+import JourneyCatalogue from "@/components/dashboard/JourneyCatalogue";
 import { localDate } from "@/lib/learningMetrics";
 
 export default function Practice() {
@@ -25,7 +26,7 @@ export default function Practice() {
       const existing = await appClient.entities.PracticeSession.filter({ session_key: session.current.id });
       if (!existing.length) await appClient.entities.PracticeSession.create({ session_key: session.current.id, subject: "Geometry", topic: "Understanding cube volume", score, total: cubeExercises.length, duration_minutes: minutes, date: localDate() });
       if (minutes > 0 && !(await appClient.entities.StudyLog.filter({ session_key: session.current.id })).length) {
-        await appClient.entities.StudyLog.create({ session_key: session.current.id, subject: "Geometry", topic: "Understanding cube volume", duration_minutes: minutes, confidence: Math.round(score / cubeExercises.length * 100), date: localDate(), activity_type: "practice" });
+        await appClient.entities.StudyLog.create({ session_key: session.current.id, subject: "Geometry", topic: "Understanding cube volume", duration_minutes: minutes, assessment_accuracy: Math.round(score / cubeExercises.length * 100), date: localDate(), activity_type: "practice" });
       }
       setResult(score); await data.refresh(); setNotice("Practice result saved. This short check does not establish overall mastery.");
     } catch (error) { setNotice(error.message || "Could not save. Your answers are still here; please retry."); }
@@ -33,6 +34,7 @@ export default function Practice() {
   }
   return <div className="mx-auto max-w-[1000px] space-y-6 p-5 sm:p-8">
     <header><h1 className="text-2xl font-medium">Practice</h1><p className="mt-2 text-sm text-[#5f6368]">Try an idea for yourself. Understand the why—not just the answer.</p></header>
+    <JourneyCatalogue practice/>
     {params.get("topic") && <section className="rounded-xl bg-[#f8fafd] p-4"><p className="text-sm font-medium">{params.get("subject")} · {params.get("topic")}</p><p className="mt-2 text-sm leading-6 text-[#5f6368]">Personalized practice for this topic becomes available when the AI model is connected. The geometry example below is ready to try now.</p><Link to={"/dashboard/ask?" + params.toString()} className="mt-3 inline-block text-sm text-[#1967d2]">Keep a question about this topic</Link></section>}
     {!active ? <section className="rounded-2xl border border-[#dce6f5] bg-[#f6f9ff] p-6 sm:p-8"><Target className="mb-4 h-8 w-8 text-[#1967d2]" /><p className="text-xs font-medium text-[#1967d2]">Ready-to-try example · 3 questions</p><h2 className="mt-3 text-2xl font-medium">Think in three dimensions</h2><p className="mt-3 max-w-xl text-sm leading-6 text-[#5f6368]">Use what you discover in the cube lab to check your understanding of volume. Review an explanation for every answer.</p><div className="mt-6 flex flex-wrap gap-3"><button onClick={start} className="inline-flex items-center gap-2 rounded-full bg-[#1967d2] px-5 py-2.5 text-sm text-white">Start practice<ArrowRight className="h-4 w-4" /></button><Link to="/dashboard/explore" className="rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm text-[#1967d2]">Explore the lab first</Link></div></section> : <section className="space-y-5">
       {cubeExercises.map((q,index) => <fieldset key={q.question} disabled={result !== null || busy} className="rounded-2xl border border-[#dadce0] p-6"><legend className="sr-only">Question {index + 1}</legend><h2 className="text-base font-medium"><span className="mr-2 text-[#5f6368]">{index + 1}.</span>{q.question}</h2><div className="mt-5 grid gap-3">{q.options.map((option,answer) => <label key={option} className={"flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm " + (answers[index] === answer ? "border-[#1967d2] bg-[#e8f0fe]" : "border-[#dadce0]")}><input type="radio" name={"question-" + index} checked={answers[index] === answer} onChange={() => setAnswers(current => ({ ...current, [index]: answer }))} className="accent-[#1967d2]" />{option}</label>)}</div>{result !== null && <div className="mt-4 rounded-xl bg-[#f8fafd] p-4 text-sm leading-6"><p className="font-medium">{answers[index] === q.correct_answer ? "Correct" : "Let’s look at the reasoning"}</p><p className="mt-1 text-[#5f6368]">{q.explanation}</p></div>}</fieldset>)}

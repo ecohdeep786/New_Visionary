@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronRight, GraduationCap, BookOpen, Building2, Baby } from "lucide-react";
+import { ChevronRight, GraduationCap, BookOpen, Building2, Baby, Briefcase } from "lucide-react";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import LanguageSelector from "@/components/auth/LanguageSelector";
 
@@ -7,9 +7,10 @@ const roles = [
   {
     id: "student",
     label: "I am a Learner",
-    desc: "Student · Professional · Independent",
+    desc: "Student · Independent learning",
     icon: GraduationCap,
   },
+  {id:'professional',label:'I am a Professional',desc:'Career · Skills · Portfolio',icon:Briefcase},
   {
     id: "teacher",
     label: "I am a Teacher",

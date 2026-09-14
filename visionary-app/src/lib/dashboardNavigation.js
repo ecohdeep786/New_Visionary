@@ -1,17 +1,10 @@
-import { Home, BookOpen, MessageCircleQuestion, PencilRuler, Boxes, Crown, GraduationCap, BarChart3, Users, HeartHandshake, LibraryBig } from "lucide-react";
-const item = (key, label, icon) => ({ key, label, icon, to: "/dashboard/" + key });
-const shared = [item("ask", "Ask", MessageCircleQuestion), item("subscription", "Plans", Crown)];
-export function navigationFor(role) {
-  switch (role) {
-    case "teacher": return [item("home", "Classes", GraduationCap), item("insights", "Insights", BarChart3), item("learn", "Learn", BookOpen), shared[0], item("build", "Build", Boxes), shared[1]];
-    case "parent": return [item("home", "Home", Home), item("child", "My child", HeartHandshake), item("learn", "Learn", BookOpen), shared[0], item("build", "Build", Boxes), shared[1]];
-    case "organization": return [item("home", "Overview", Home), item("people", "People", Users), item("curriculum", "Curriculum", LibraryBig), item("analytics", "Analytics", BarChart3), ...shared];
-    default: return [item("home", "Home", Home), item("classes", "Classes", GraduationCap), item("learn", "Learn", BookOpen), shared[0], item("practice", "Practice", PencilRuler), item("build", "Build", Boxes), shared[1]];
-  }
-}
-export function canAccessDashboardPath(role, path) {
-  const section = path.split("/")[2] || "home";
-  if (["profile", "settings", "connections", "support", "learn", "practice", "build", "explore"].includes(section)) return true;
-  if (section === "class") return ["student", "teacher"].includes(role);
-  return navigationFor(role).some(item => item.key === section);
-}
+import { Home,BookOpen,PencilRuler,Boxes,Crown,GraduationCap,BarChart3,Users,HeartHandshake,LibraryBig,NotebookPen,Briefcase,FolderClock,Shield,Bell,SlidersHorizontal } from 'lucide-react';
+const item=(key,label,icon)=>({key,label,icon,to:'/dashboard/'+key});
+export function navigationFor(role){switch(role){
+ case 'teacher':return [item('home','Home',Home),item('prepare','Prepare',NotebookPen),item('classes','Classes',GraduationCap),item('learners','Learners',Users),item('insights','Insights',BarChart3)];
+ case 'parent':return [item('home','Home',Home),item('child','Children',HeartHandshake),item('reports','Reports',BarChart3),item('connections','Connections',Users)];
+ case 'organization':return [item('home','Home',Home),item('people','People',Users),item('cohorts','Cohorts',GraduationCap),item('curriculum','Curriculum',LibraryBig),item('analytics','Insights',BarChart3)];
+ case 'professional':return [item('home','Home',Home),item('learn','Learn',BookOpen),item('practice','Practice',PencilRuler),item('build','Build',Boxes),item('career','Career',Briefcase)];
+ default:return [item('home','Home',Home),item('learn','Learn',BookOpen),item('practice','Practice',PencilRuler),item('build','Build',Boxes)];}}
+export function secondaryNavigation(role){const common=[item('progress','Progress',BarChart3),item('notifications','Notifications',Bell),item('personalization','Personalization',SlidersHorizontal),item('privacy','Privacy',Shield),item('subscription','Plans & usage',Crown)];if(role==='teacher')return [item('growth','Teacher Growth',BookOpen),item('library','Library',LibraryBig),item('build','Build',Boxes),...common];if(role==='organization')return [item('library','Content',LibraryBig),item('audit','Audit',FolderClock),...common.filter(i=>i.key!=='progress')];if(role==='student'||role==='professional')return [item('classes','Classes',GraduationCap),item('connections','Connections',Users),...common];return common;}
+export function canAccessDashboardPath(role,path){const section=path.split('/')[2]||'home';if(['profile','settings','support','ask','guide','connections','learn','practice','build','explore','privacy','personalization','notifications','progress','subscription'].includes(section))return true;if(section==='class')return ['student','professional','teacher'].includes(role);return [...navigationFor(role),...secondaryNavigation(role)].some(i=>i.key===section);}

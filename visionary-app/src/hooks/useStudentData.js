@@ -5,10 +5,10 @@ import { deriveLearningData } from "@/lib/learningMetrics";
 
 const empty = deriveLearningData({});
 export function useStudentData() {
-  const { user } = useAuth();
+  const { user,activeWorkspace } = useAuth();
   const enabled = Boolean(user?.email);
   const query = useQuery({
-    queryKey: ["workspace", "learning", user?.email],
+    queryKey: ["workspace", "learning", user?.id,activeWorkspace?.id],
     enabled,
     staleTime: 15000,
     queryFn: async () => {

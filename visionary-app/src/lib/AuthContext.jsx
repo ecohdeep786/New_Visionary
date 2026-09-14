@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { appClient } from '@/api/appClient';
 import { queryClientInstance } from '@/lib/query-client';
+import { bootstrapPerson, selectWorkspace as selectStoredWorkspace, addRole as addStoredRole, setAgeBand as setStoredAgeBand } from '@/services/workspaceService';
 
 const AuthContext = createContext(null);
 
@@ -8,6 +9,19 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
   const [authError, setAuthError] = useState(null);
+  const [workspaceState, setWorkspaceState] = useState(null);
+  const [workspaceError, setWorkspaceError] = useState('');
+
+  useEffect(() => {
+    if (!user || !user.onboarding_complete) { setWorkspaceState(null); return; }
+    const refresh = () => { try { setWorkspaceState(bootstrapPerson(user)); setWorkspaceError(''); } catch (error) { setWorkspaceError(error.message); } };
+    refresh();
+    window.addEventListener('visionary:v2-change', refresh);
+    return () => window.removeEventListener('visionary:v2-change', refresh);
+  }, [user]);
+  const activeWorkspace = workspaceState?.workspaces.find(w => w.id === workspaceState.active);
+  const switchWorkspace = (workspaceId) => { queryClientInstance.cancelQueries(); queryClientInstance.clear(); selectStoredWorkspace(user.id, workspaceId); };
+  const addRole = (role) => { const workspace = addStoredRole(user.id, role); switchWorkspace(workspace.id); };
 
   const checkUserAuth = useCallback(async () => {
     setIsLoadingAuth(true);
@@ -52,7 +66,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{
-      user,
+      user: user ? { ...user, identity: activeWorkspace?.role || user.identity } : null,
+      account: user,
+      person: workspaceState?.person,
+      workspaces: workspaceState?.workspaces || [],
+      activeWorkspace,
+      workspaceError,
+      switchWorkspace,
+      addRole,
+      setAgeBand: (ageBand) => setStoredAgeBand(user.id, ageBand),
       isAuthenticated: Boolean(user),
       isLoadingAuth,
       isLoadingPublicSettings: false,

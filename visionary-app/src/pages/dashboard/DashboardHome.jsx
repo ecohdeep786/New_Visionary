@@ -1,10 +1,7 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { useAuth } from "@/lib/AuthContext";
 
-const StudentHome = lazy(() => import("./role/StudentHome"));
-const TeacherHome = lazy(() => import("./role/TeacherHome"));
-const OrgHome = lazy(() => import("./role/OrgHome"));
-const ParentHome = lazy(() => import("./role/ParentHome"));
+const Guide = lazy(() => import('./Guide'));
 
 function DashboardSkeleton() {
   return (
@@ -26,17 +23,11 @@ function DashboardSkeleton() {
  * Uses lazy chunking so students do not download teacher/parent/org bundles.
  */
 export default function DashboardHome() {
-  const { user } = useAuth();
-  const identity = user?.identity || "student";
-
-  let Component = StudentHome;
-  if (identity === "teacher") Component = TeacherHome;
-  else if (identity === "organization") Component = OrgHome;
-  else if (identity === "parent") Component = ParentHome;
+  const { activeWorkspace } = useAuth();
 
   return (
     <Suspense fallback={<DashboardSkeleton />}>
-      <Component />
+      <Guide key={activeWorkspace?.id} />
     </Suspense>
   );
-}
+}

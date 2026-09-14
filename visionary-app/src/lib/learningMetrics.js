@@ -15,7 +15,7 @@ export function deriveLearningData({ subjects = [], topics = [], exams = [], stu
       const assignment = assignmentMap.get(s.assignment_id);
       return assignment?.subject === topic.subject && assignment.topics?.includes(topic.name);
     });
-    return submission ? { ...topic, mastery: Math.round(score(submission)), status: score(submission) >= 70 ? "mastered" : "needs-review" } : { ...topic, mastery: clamp(topic.mastery) };
+    return submission ? { ...topic, last_assessment_accuracy: Math.round(score(submission)), mastery: 0, status: score(submission) >= 70 ? "in-progress" : "needs-review" } : { ...topic, mastery: clamp(topic.mastery) };
   });
   const subjectList = subjects.map(subject => {
     const ownTopics = topicList.filter(t => t.subject === subject.name);
@@ -28,7 +28,7 @@ export function deriveLearningData({ subjects = [], topics = [], exams = [], stu
     const assignment = assignmentMap.get(submission.assignment_id);
     logList.push({ id: "grade-" + submission.id, submission_id: submission.id,
       date: (submission.graded_date || submission.submitted_date || submission.created_date || "").slice(0, 10),
-      subject: assignment?.subject || "Classwork", topic: assignment?.title || "Graded classwork", duration_minutes: 0, confidence: score(submission) });
+      subject: assignment?.subject || "Classwork", topic: assignment?.title || "Graded classwork", duration_minutes: 0, assessment_accuracy: score(submission) });
   }
   logList.sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const meaningfulLogs = logList.filter(l => Number(l.duration_minutes) > 0 || l.submission_id);
@@ -51,5 +51,5 @@ export function deriveLearningData({ subjects = [], topics = [], exams = [], stu
     todayPlan, activeTopics: topicList.filter(t => t.status === "in-progress").slice(0, 5),
     resumeTopic, upNext: upNextList.find(t => t.subject === resumeTopic?.subject) || upNextList[0] || null, upNextList,
     dailyStats: { topicsToday: new Set(todayLogs.map(l => l.topic)).size, minutesToday: todayLogs.reduce((sum, l) => sum + (Number(l.duration_minutes) || 0), 0),
-      avgConfidenceToday: todayLogs.length ? Math.round(todayLogs.reduce((sum, l) => sum + clamp(l.confidence), 0) / todayLogs.length) : 0, streak } };
+      avgConfidenceToday: todayLogs.some(l=>l.confidence!=null) ? Math.round(todayLogs.filter(l=>l.confidence!=null).reduce((sum, l) => sum + clamp(l.confidence), 0) / todayLogs.filter(l=>l.confidence!=null).length) : null, streak } };
 }

@@ -1,20 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { useAuth } from "@/lib/AuthContext";
-import { useQuery } from "@tanstack/react-query";
-import { appClient } from "@/api/appClient";
-import { navigationFor } from "@/lib/dashboardNavigation";
+import { navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
 
 export default function DashboardSidebar({ expanded, onNavigate }) {
   const theme = useThemeColor();
   const { user } = useAuth();
-  const { data: enrollments = [] } = useQuery({
-    queryKey: ["workspace", "enrollments", user?.email],
-    queryFn: () => appClient.entities.Enrollment.filter({ student_email: user.email }),
-    enabled: user?.identity === "student",
-  });
-  const connected = enrollments.some(e => e.status === "active");
-  const items = navigationFor(user?.identity).filter(item => item.key !== "classes" || connected);
+  const items = navigationFor(user?.identity);
   const renderItem = (item) => {
     const Icon = item.icon;
     return <NavLink key={item.to} to={item.to} onClick={onNavigate}
@@ -25,6 +17,6 @@ export default function DashboardSidebar({ expanded, onNavigate }) {
     </NavLink>;
   };
   return <aside id="dashboard-navigation" className={`${expanded ? "w-64 px-3" : "w-[80px] px-2"} flex h-full shrink-0 flex-col bg-[#f8fafd] py-3`}>
-    <nav aria-label="Primary navigation" className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-3">{items.map(renderItem)}</nav>
+    <nav aria-label="Primary navigation" className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-3">{items.map(renderItem)}{expanded&&<><div className="my-3 border-t border-[#dadce0]"/>{secondaryNavigation(user?.identity).map(renderItem)}</>}</nav>
   </aside>;
 }

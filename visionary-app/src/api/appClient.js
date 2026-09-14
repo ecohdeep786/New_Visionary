@@ -4,6 +4,7 @@
  * deploying to real learners. Browser storage is local to this device.
  */
 
+import { previewPolicy } from './previewPermissions.js';
 const USERS_KEY = 'visionary_users';
 const SESSION_TOKEN_KEY = 'visionary_session_token';
 const SESSIONS_KEY = 'visionary_sessions';
@@ -143,6 +144,14 @@ const verifyPassword = async (user, candidatePassword) => {
 /* ── Auth API ── */
 
 const auth = {
+  async enterDemo(person) {
+    if (!import.meta.env?.DEV) throw new Error('Demo account selection is available only in development.');
+    if (!person.id.startsWith('demo-') || !person.email.endsWith('@visionary.test')) throw new Error('Only fictional preview accounts are allowed.');
+    let user = getUsers().find(u => u.id === person.id);
+    if (!user) { user = { id: person.id, email: person.email, full_name: person.name, identity: person.roles[0], onboarding_complete: true, demo: true, createdAt: Date.now() }; writeJson(USERS_KEY, [...getUsers(), user]); }
+    createSession(user);
+    return sanitizeUser(user);
+  },
   async me() {
     const user = getCurrentUser();
     if (!user) throw new Error('Not signed in');
@@ -304,19 +313,26 @@ const auth = {
 /* Personal account separation in the preview; production needs database rules. */
 const personalEntities = new Set(['Subject', 'Topic', 'Exam', 'StudyLog', 'Question', 'Bookmark', 'Project', 'PracticeSession']);
 const readEntities = (name) => readJson(`visionary_entity_${name}`, []);
+const entityUser = () => {
+  const user=getCurrentUser();if(!user)return null;
+  const db=readJson('visionary_workspace_v2',null);
+  const workspace=db?.workspaces?.find(w=>w.id===db.active?.[user.id]&&w.personId===user.id);
+  return {...user,identity:workspace?.role||user.identity,workspace_id:workspace?.id};
+};
 const notifyChange = () => window.dispatchEvent(new CustomEvent('visionary:workspace-change'));
 const visibleRecords = (name, ownerEmail) => {
-  const currentUser = getCurrentUser();
-  if (name === 'User') return getUsers().map(({ id, email }) => ({ id, email }));
+  const currentUser = entityUser();
+  if (name === 'User') return currentUser?[{id:currentUser.id,email:currentUser.email}]:[];
   if (!currentUser) return [];
-  if (!personalEntities.has(name)) return readEntities(name);
+  if (!personalEntities.has(name)) return readEntities(name).filter(r=>previewPolicy(currentUser,readEntities).canRead(name,r));
   const owner = ownerEmail || currentUser.email;
   if (owner !== currentUser.email) {
     const shared = ['Subject', 'Topic', 'StudyLog'].includes(name) && currentUser.identity === 'parent' &&
       readEntities('FamilyLink').some((link) => link.parent_email === currentUser.email && link.child_email === owner && link.status === 'active');
     if (!shared) return [];
   }
-  return readEntities(name).filter((record) => (record.owner_email || record.student_email) === owner);
+  return readEntities(name).filter((record) => (record.owner_email || record.student_email) === owner&&
+    (owner!==currentUser.email||!currentUser.workspace_id||record.workspace_id===currentUser.workspace_id||!record.workspace_id&&currentUser.identity===(getCurrentUser().education_stage==='professional'?'professional':getCurrentUser().identity)));
 };
 const sortedRecords = (records, sort, limit) => {
   const result = [...records];
@@ -332,14 +348,21 @@ const sortedRecords = (records, sort, limit) => {
   return Number.isFinite(limit) ? result.slice(0, Math.max(0, limit)) : result;
 };
 const prepareRecord = (name, record) => {
-  const currentUser = getCurrentUser();
+  const currentUser = entityUser();
   if (!currentUser) throw new Error('Please sign in to save changes.');
   if (name === 'User') throw new Error('Use account settings to change your profile.');
+  if(!personalEntities.has(name))previewPolicy(currentUser,readEntities).assertWrite(name,record,'create',record);
   return { ...record, id: crypto.randomUUID(), createdAt: Date.now(), created_date: new Date().toISOString(),
-    ...(personalEntities.has(name) ? { owner_email: currentUser.email } : {}) };
+    ...(personalEntities.has(name) ? { owner_email: currentUser.email,workspace_id:currentUser.workspace_id } : {}) };
 };
 const entityStore = new Proxy({}, {
   get: (_target, name) => ({
+    async findByJoinCode(code) {
+      if(name!=='Classroom'||!['student','professional'].includes(entityUser()?.identity))throw new Error('Use a learner workspace to join a class.');
+      const normalized=String(code||'').trim().toUpperCase();if(!normalized)return null;
+      const c=readEntities('Classroom').find(c=>c.join_code===normalized);
+      return c?{id:c.id,name:c.name,teacher_name:c.teacher_name,join_code:c.join_code}:null;
+    },
     async list(sort, limit) { return sortedRecords(visibleRecords(name), sort, limit); },
     async filter(filters = {}, sort, limit) {
       return sortedRecords(visibleRecords(name, filters.owner_email).filter((record) =>
@@ -360,7 +383,8 @@ const entityStore = new Proxy({}, {
     },
     async update(id, updates) {
       if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
-      const { id: ignoredId, owner_email: ignoredOwner, ...fields } = updates;
+      if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'update',updates);
+      const { id: ignoredId, owner_email: ignoredOwner, workspace_id: ignoredWorkspace, ...fields } = updates;
       const updated = readEntities(name).map((record) => record.id === id ? { ...record, ...fields } : record);
       writeJson(`visionary_entity_${name}`, updated);
       notifyChange();
@@ -368,6 +392,7 @@ const entityStore = new Proxy({}, {
     },
     async delete(id) {
       if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'delete');
       writeJson(`visionary_entity_${name}`, readEntities(name).filter((record) => record.id !== id));
       notifyChange();
     },

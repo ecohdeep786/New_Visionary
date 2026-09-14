@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { initializeLearningWorkspace } from "@/lib/learningProfile";
@@ -20,11 +20,14 @@ import {
 
 export default function Onboarding() {
   const { user, updateUser } = useAuth();
-  const [phase, setPhase] = useState("identity");
-  const [data, setData] = useState({});
-  const [currentStepId, setCurrentStepId] = useState(null);
+  const draftKey=`visionary_onboarding_${user?.id}`;
+  const [saved] = useState(()=>{try{return JSON.parse(localStorage.getItem(draftKey)||'null');}catch{return null;}});
+  const [phase, setPhase] = useState(saved?.phase || "identity");
+  const [data, setData] = useState(saved?.data || {});
+  const [currentStepId, setCurrentStepId] = useState(saved?.currentStepId || null);
   const [submitting, setSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
+  useEffect(()=>{if(phase==='agi-intro')return;try{localStorage.setItem(draftKey,JSON.stringify({phase,data,currentStepId}));}catch{setSubmissionError('Your setup draft could not be saved on this device. Keep this page open and try again.');}},[draftKey,phase,data,currentStepId]);
 
   const updateData = (field, value) => setData((prev) => ({ ...prev, [field]: value }));
 
@@ -33,6 +36,7 @@ export default function Onboarding() {
     if (data.identity === "student") {
       return [NAME_STEP, STAGE_STEP, ...getStudentStageSteps(data.education_stage)];
     }
+    if (data.identity === "professional") return [NAME_STEP,...getStudentStageSteps('professional')];
     if (data.identity === "teacher") return [NAME_STEP, ...TEACHER_FLOW_STEPS];
     if (data.identity === "parent") return PARENT_FLOW_STEPS;
     if (data.identity === "organization") return ORG_FLOW_STEPS;
@@ -65,7 +69,7 @@ export default function Onboarding() {
 
   const handleIdentitySelect = (identity) => {
     setSubmissionError("");
-    setData((prev) => ({ ...prev, identity }));
+    setData((prev) => ({ ...prev, identity, ...(identity==='professional'?{education_stage:'professional'}:{}) }));
     setPhase("flow");
     setCurrentStepId(null);
   };
@@ -81,7 +85,7 @@ export default function Onboarding() {
     if (next) {
       setCurrentStepId(next.id);
     } else {
-      handleComplete();
+      setPhase('review');
     }
   };
 
@@ -100,15 +104,18 @@ export default function Onboarding() {
     setSubmitting(true);
     setSubmissionError("");
     try {
-      await initializeLearningWorkspace(base44, user, data);
+      if(!data.age_band)throw new Error('Choose your age range.');
+      if(data.identity!=='student'&&data.age_band!=='adult')throw new Error('This role requires an adult account in the preview. Choose the learner role instead.');
+      await initializeLearningWorkspace(base44, user, {...data,identity:data.identity==='professional'?'student':data.identity});
       await updateUser({
         ...data,
         onboarding_complete: true,
         full_name: data.full_name || user?.full_name || user?.email?.split("@")[0],
       });
       setPhase("agi-intro");
-    } catch {
-      setSubmissionError("We couldn’t finish setting up your workspace. Please try again.");
+      localStorage.removeItem(draftKey);
+    } catch (error) {
+      setSubmissionError(error.message || "We couldn’t finish setting up your workspace. Please try again.");
       setSubmitting(false);
     }
   };
@@ -132,6 +139,14 @@ export default function Onboarding() {
       />
     );
   }
+
+  if(phase==='review')return <OnboardingLayout title="Review your workspace" subtitle="You can change these preferences later. Use fictional information in this preview." onBack={()=>setPhase('flow')} onContinue={handleComplete} canContinue={!!data.age_band} isSubmitting={submitting} continueLabel="Create my workspace">
+    <dl className="space-y-4 text-sm">{[['Role',data.identity],['Name',data.full_name||user?.full_name],['Learning language',data.preferred_language||data.learning_language||'English']].map(([label,value])=><div key={label}><dt className="text-[#5f6368]">{label}</dt><dd className="mt-1 font-medium">{value||'Not provided'}</dd></div>)}</dl>
+    <label className="mt-6 block text-sm">Age range<select className="mt-2 w-full rounded-xl border p-3" value={data.age_band||''} onChange={e=>updateData('age_band',e.target.value)}><option value="">Choose an age range</option><option value="minor">Under 18</option><option value="adult">18 or older</option></select></label>
+    <p className="mt-3 text-xs leading-6 text-[#5f6368]">Self-reported, not verified. Guardian consent and identity verification require future services. Private learning is never automatically shared.</p>
+    <label className="mt-5 block text-sm">Your curriculum or goal (optional)<textarea className="mt-2 w-full rounded-xl border p-3" rows={3} value={data.curriculum_notes||''} onChange={e=>updateData('curriculum_notes',e.target.value)} placeholder="Add a board, syllabus, language, skill or goal in your own words."/></label>
+    {submissionError&&<p role="alert" className="mt-4 text-sm text-red-700">{submissionError}</p>}
+  </OnboardingLayout>;
 
   if (!currentStep) return null;
 

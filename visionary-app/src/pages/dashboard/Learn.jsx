@@ -7,6 +7,7 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import SubjectPills from "@/components/dashboard/learn/SubjectPills";
 import TopicCard from "@/components/dashboard/learn/TopicCard";
+import JourneyCatalogue from '@/components/dashboard/JourneyCatalogue';
 
 const filters = [{ value: "all", label: "All topics" }, { value: "not-started", label: "Not started" }, { value: "in-progress", label: "In progress" }, { value: "mastered", label: "Mastered" }, { value: "saved", label: "Saved" }];
 
@@ -56,6 +57,7 @@ export default function Learn() {
         <div><h1 className="text-2xl font-medium tracking-tight text-[#202124]">Learn</h1><p className="mt-2 text-sm text-[#5f6368]">Follow your curiosity. Understand an idea, then put it to work.</p></div>
         <button onClick={() => { setError(""); setDialogOpen(true); }} disabled={!subject || data.loading} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-40" style={{ backgroundColor: theme.accent }}><Plus className="h-4 w-4" /> Add topic</button>
       </header>
+      <JourneyCatalogue />
       {data.loading ? <div role="status" className="flex items-center justify-center gap-3 py-24 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> Loading your lessons</div> : data.error ? <div role="alert" className="rounded-xl border p-6 text-sm">Your lessons could not be loaded. <button className="text-blue-700 underline" onClick={() => data.refresh?.()}>Try again</button></div> : <>
         <div className="flex flex-wrap items-center gap-3"><SubjectPills subjects={data.subjects} activeSubject={subject} onSelect={(name) => { setParams({ subject: name }); setFilter("all"); setQuery(""); }} /><Link to="/dashboard/profile" className="inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-[#bdc1c6] px-4 py-2 text-sm text-blue-700"><Plus className="h-4 w-4" />Learning area</Link></div>
         <Link to="/dashboard/explore" className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#dce6f5] bg-[#f6f9ff] p-5"><div><p className="text-xs font-medium text-[#1967d2]">Explore in 3D · Interactive example</p><h2 className="mt-2 text-lg font-medium">See how a small change grows.</h2><p className="mt-1 text-sm text-[#5f6368]">Rotate a cube, change its size, and discover volume.</p></div><span className="rounded-full bg-white px-4 py-2 text-sm text-[#1967d2]">Open lab →</span></Link>
