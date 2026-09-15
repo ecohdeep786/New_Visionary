@@ -147,6 +147,7 @@ const auth = {
   async enterDemo(person) {
     if (!import.meta.env?.DEV) throw new Error('Demo account selection is available only in development.');
     if (!person.id.startsWith('demo-') || !person.email.endsWith('@visionary.test')) throw new Error('Only fictional preview accounts are allowed.');
+    const {seedConnectedFixtures}=await import('./demoFixtures.js');seedConnectedFixtures();
     let user = getUsers().find(u => u.id === person.id);
     if (!user) { user = { id: person.id, email: person.email, full_name: person.name, identity: person.roles[0], onboarding_complete: true, demo: true, createdAt: Date.now() }; writeJson(USERS_KEY, [...getUsers(), user]); }
     createSession(user);
@@ -317,7 +318,7 @@ const entityUser = () => {
   const user=getCurrentUser();if(!user)return null;
   const db=readJson('visionary_workspace_v2',null);
   const workspace=db?.workspaces?.find(w=>w.id===db.active?.[user.id]&&w.personId===user.id);
-  return {...user,identity:workspace?.role||user.identity,workspace_id:workspace?.id};
+  return {...user,identity:workspace?.role||user.identity,workspace_id:workspace?.id,organization_id:workspace?.organizationId};
 };
 const notifyChange = () => window.dispatchEvent(new CustomEvent('visionary:workspace-change'));
 const visibleRecords = (name, ownerEmail) => {
@@ -332,7 +333,7 @@ const visibleRecords = (name, ownerEmail) => {
     if (!shared) return [];
   }
   return readEntities(name).filter((record) => (record.owner_email || record.student_email) === owner&&
-    (owner!==currentUser.email||!currentUser.workspace_id||record.workspace_id===currentUser.workspace_id||!record.workspace_id&&currentUser.identity===(getCurrentUser().education_stage==='professional'?'professional':getCurrentUser().identity)));
+    (owner!==currentUser.email||!currentUser.workspace_id||record.workspace_id===currentUser.workspace_id||!record.workspace_id&&!currentUser.organization_id&&currentUser.identity===(getCurrentUser().education_stage==='professional'?'professional':getCurrentUser().identity)));
 };
 const sortedRecords = (records, sort, limit) => {
   const result = [...records];

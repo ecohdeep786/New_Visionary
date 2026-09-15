@@ -90,6 +90,7 @@ const DemoPreview = import.meta.env.DEV ? lazy(() => import('@/pages/DemoPreview
 const Practice = lazy(() => import('@/pages/dashboard/Practice'))
 const Build = lazy(() => import('@/pages/dashboard/ArtifactStudio'))
 const Subscription = lazy(() => import('@/pages/dashboard/Plans'))
+const Children = lazy(() => import('@/pages/dashboard/Children'))
 const Cohorts = lazy(() => import('@/pages/dashboard/Cohorts'))
 const Learners = lazy(() => import('@/pages/dashboard/Learners'))
 const WorkspaceTools = lazy(() => import('@/pages/dashboard/WorkspaceTools'))
@@ -184,7 +185,7 @@ const PublicApp = () => (
           <Route path="build" element={<Build />} />
           <Route path="subscription" element={<Subscription />} />
           <Route path="class/:classId" element={<ClassDetail />} />
-          <Route path="child" element={<RoleWorkspace area="child" />} />
+          <Route path="child" element={<Children />} />
           <Route path="people" element={<RoleWorkspace area="people" />} />
           <Route path="curriculum" element={<RoleWorkspace area="curriculum" />} />
           <Route path="analytics" element={<RoleWorkspace area="analytics" />} />

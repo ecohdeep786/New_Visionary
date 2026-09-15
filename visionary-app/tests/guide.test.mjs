@@ -92,6 +92,25 @@ test('family billing grants entitlement only after acceptance and never creates 
  service.changeFamilyInvitation(member,invitation.id,'active');assert.equal(service.snapshot(member).subscription.plan,'Family');assert.equal(service.visibleRelationships(member).length,0);
  service.changeFamilyInvitation(ctx(),invitation.id,'revoked');assert.equal(service.snapshot(member).subscription.plan,'Free');
 });
+test('organization workspaces isolate drafts and lose access on removal without deleting personal work',()=>{
+ const membership={id:'org',email:'adult@visionary.test',role:'professional',organization_email:'company-admin@visionary.test',organization_name:'Demo Company',status:'active'};
+ localStorage.setItem('visionary_entity_OrganizationInvite',JSON.stringify([membership]));
+ const user={id:'demo-adult',email:'adult@visionary.test',identity:'student'};const profile=service.bootstrapPerson(user);
+ const workspace=profile.workspaces.find(w=>w.organizationId);assert.ok(workspace);
+ const personal=ctx('adult','professional');const work={...personal,workspaceId:workspace.id};
+ service.saveArtifact(personal,{title:'Portable personal report',body:'Personal'});service.newConversation(work,'Work-only draft');
+ assert.equal(service.snapshot(personal).conversations.length,0);assert.equal(service.snapshot(work).artifacts.length,0);
+ service.selectWorkspace('demo-adult',workspace.id);localStorage.setItem('visionary_entity_OrganizationInvite',JSON.stringify([{...membership,status:'revoked'}]));
+ assert.throws(()=>service.snapshot(work),/no longer active/);assert.throws(()=>service.selectWorkspace('demo-adult',workspace.id),/no longer active/);
+ assert.ok(!service.bootstrapPerson(user).workspaces.some(w=>w.id===workspace.id));assert.equal(service.snapshot(personal).artifacts[0].title,'Portable personal report');
+});
+test('legacy accepted guardians use the same report permission boundary and revocation path',()=>{
+ localStorage.setItem('visionary_entity_FamilyLink',JSON.stringify([{id:'legacy-guardian',parent_email:'adult@visionary.test',child_email:'minor-cbse@visionary.test',status:'active'}]));
+ const parent=ctx('adult','parent');assert.equal(service.familyReports(parent).length,1);
+ const relationship=service.visibleRelationships(parent).find(r=>r.id.startsWith('legacy:'));assert.ok(relationship);
+ service.changeRelationship(parent,relationship.id,'revoked');assert.equal(service.familyReports(parent).length,0);
+ assert.equal(JSON.parse(localStorage.getItem('visionary_entity_FamilyLink'))[0].status,'revoked');
+});
 test('sharing exposes only the confirmed artifact; revocation removes the received view',()=>{
  const recipient=ctx('professional','professional');service.requestRelationship(ctx(),'professional@visionary.test','teacher');
  service.changeRelationship(recipient,service.visibleRelationships(recipient)[0].id,'active');

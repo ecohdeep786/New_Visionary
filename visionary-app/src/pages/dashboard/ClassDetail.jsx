@@ -58,7 +58,7 @@ export default function ClassDetail() {
     return (
       <div className="flex flex-col items-center gap-4 py-20 text-center">
         <p className="text-sm text-[#5f6368]">{error || "This class isn’t available in your teaching workspace."}</p>
-        <Link to="/dashboard/home" className="text-sm font-medium hover:underline" style={{ color: accent }}>
+        <Link to="/dashboard/classes" className="text-sm font-medium hover:underline" style={{ color: accent }}>
           Back to classes
         </Link>
       </div>
@@ -70,7 +70,7 @@ export default function ClassDetail() {
   return (
     <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
       <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
-        <Link to="/dashboard/home" aria-label="Back to your classes" className="flex items-center hover:text-[#202124] transition-colors">
+        <Link to="/dashboard/classes" aria-label="Back to your classes" className="flex items-center hover:text-[#202124] transition-colors">
           <Home className="w-4 h-4" />
         </Link>
         <ChevronRight className="w-3.5 h-3.5 text-[#9aa0a6]" />

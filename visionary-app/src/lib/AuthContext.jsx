@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }) => {
     const refresh = () => { try { setWorkspaceState(bootstrapPerson(user)); setWorkspaceError(''); } catch (error) { setWorkspaceError(error.message); } };
     refresh();
     window.addEventListener('visionary:v2-change', refresh);
-    return () => window.removeEventListener('visionary:v2-change', refresh);
+    window.addEventListener('visionary:workspace-change', refresh);
+    return () => { window.removeEventListener('visionary:v2-change', refresh); window.removeEventListener('visionary:workspace-change', refresh); };
   }, [user]);
   const activeWorkspace = workspaceState?.workspaces.find(w => w.id === workspaceState.active);
   const switchWorkspace = (workspaceId) => { queryClientInstance.cancelQueries(); queryClientInstance.clear(); selectStoredWorkspace(user.id, workspaceId); };

@@ -2,12 +2,13 @@
 export function previewPolicy(user, read) {
   const email=user?.email;
   const role=user?.identity;
-  const ownsClass=c=>Boolean(c&&(c.teacher_email===email||c.teacher_id===user?.id||c.created_by_id===user?.id||c.created_by===email));
+  const inScope=c=>Boolean(c&&(!user?.organization_id||c.organization_email===user.organization_id));
+  const ownsClass=c=>Boolean(inScope(c)&&(c.teacher_email===email||c.teacher_id===user?.id||c.created_by_id===user?.id||c.created_by===email));
   const classroom=id=>read('Classroom').find(c=>c.id===id);
   const teacher=id=>role==='teacher'&&ownsClass(classroom(id));
   const learner=['student','professional'].includes(role);
-  const enrolled=id=>learner&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='active');
-  const invited=id=>learner&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='invited');
+  const enrolled=id=>learner&&inScope(classroom(id))&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='active');
+  const invited=id=>learner&&inScope(classroom(id))&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='invited');
   const organization=id=>role==='organization'&&classroom(id)?.organization_email===email;
   const endpoints={FamilyLink:['parent_email','child_email'],OrganizationInvite:['organization_email','email'],Connection:['requester_email','recipient_email']};
   function canRead(name,r){
