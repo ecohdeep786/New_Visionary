@@ -111,7 +111,7 @@ const OrganizationPage = lazy(() => import('@/pages/landing/OrganizationPage'))
 const CompetitiveExamsPage = lazy(() => import('@/pages/landing/CompetitiveExamsPage'))
 const AILearningPage = lazy(() => import('@/pages/landing/AILearningPage'))
 const DownloadPage = lazy(() => import('@/pages/landing/ResearchPage'))
-const CareerPage = lazy(() => import('@/pages/landing/CareerPage'))
+
 const CareersPage = lazy(() => import('@/pages/landing/CareersPage'))
 const ResearchNewsPage = lazy(() => import('@/pages/landing/ResearchNewsPage'))
 const CommunityPage = lazy(() => import('@/pages/landing/CommunityPage'))
@@ -157,7 +157,7 @@ const PublicApp = () => (
     <Route path="/download" element={<DownloadPage />} />
     <Route path="/about" element={<CompetitiveExamsPage />} />
     <Route path="/pricing" element={<AILearningPage />} />
-    <Route path="/career" element={<CareerPage />} />
+    <Route path="/career" element={<Navigate to="/careers" replace />} />
     <Route path="/careers" element={<CareersPage />} />
     <Route path="/research" element={<ResearchNewsPage />} />
     <Route path="/community" element={<CommunityPage />} />

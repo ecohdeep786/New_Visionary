@@ -74,7 +74,7 @@ export default function LandingFooter({ variant = "brand" }) {
     <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: C.white, borderColor: C.mist }}>
       <div className="w-full px-6 pt-12 lg:px-10">
         {/* TOP ROW: social + language */}
-        <div className="flex items-start justify-between gap-6 pb-12">
+        <div className="flex flex-wrap items-start justify-between gap-6 pb-12">
           <div className="flex items-center gap-3">
             {SOCIAL_LINKS.map(({ label, Icon }) => (
               <a key={label} href="#" aria-label={label}
@@ -84,9 +84,9 @@ export default function LandingFooter({ variant = "brand" }) {
               </a>
             ))}
           </div>
-          <label className="flex w-fit cursor-pointer items-center gap-2 rounded-full border bg-white py-1 pl-4 pr-2 focus-within:ring-2 focus-within:ring-[#4285F4]" style={{ borderColor: C.mist }}>
-            <Globe className="h-4 w-4" style={{ color: C.slate }} />
-            <select defaultValue="en" aria-label="Select language" className="cursor-pointer bg-transparent py-1.5 pr-1 text-[13px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
+          <label className="flex w-fit max-w-full cursor-pointer items-center gap-2 rounded-full border bg-white py-1 pl-4 pr-2 focus-within:ring-2 focus-within:ring-[#4285F4]" style={{ borderColor: C.mist }}>
+            <Globe className="h-4 w-4 shrink-0" style={{ color: C.slate }} />
+            <select defaultValue="en" aria-label="Select language" className="min-w-0 max-w-full cursor-pointer bg-transparent py-1.5 pr-1 text-[13px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
               <option value="en">English (United States)</option>
               <option value="hi">हिन्दी</option>
               <option value="bn">বাংলা</option>
