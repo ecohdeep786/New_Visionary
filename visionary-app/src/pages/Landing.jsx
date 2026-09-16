@@ -7,19 +7,19 @@ import organizationImage from "@/assets/organization-face-main.png";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentmeet from "@/assets/student-hero-main.png"
-import teachermeet from "@/assets/teacher-hero-main.png"
-import parentmeet from "@/assets/parent-hero-main.png"
-import promeet from "@/assets/pro-face-main.png"
-import orgmeet from "@/assets/org-face-main.png"
-import problemunderstanding from "@/assets/problem-understanding.png";
-import teacherSlide from "@/assets/teacher-hero-main.png";
-import parentSlide from "@/assets/parent-hero-main.png";
-import proSlide from "@/assets/pro-face-main.png";
-import cmAdapt from "@/assets/student-primary.png";
-import cmGrow from "@/assets/student-secondary.png";
-import cmCreate from "@/assets/student-vocational.png";
-import cmContinue from "@/assets/student-higher.png";
+import studentmeet from "@/assets/student-hero-main.webp"
+import teachermeet from "@/assets/teacher-hero-main.webp"
+import parentmeet from "@/assets/parent-hero-main.webp"
+import promeet from "@/assets/pro-face-main.webp"
+import orgmeet from "@/assets/org-face-main.webp"
+import problemunderstanding from "@/assets/problem-understanding.webp";
+import teacherSlide from "@/assets/teacher-hero-main.webp";
+import parentSlide from "@/assets/parent-hero-main.webp";
+import proSlide from "@/assets/pro-face-main.webp";
+import cmAdapt from "@/assets/student-primary.webp";
+import cmGrow from "@/assets/student-secondary.webp";
+import cmCreate from "@/assets/student-vocational.webp";
+import cmContinue from "@/assets/student-higher.webp";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 

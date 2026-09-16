@@ -429,7 +429,7 @@ export default function UpdatesPage() {
                                 return (
                                   <button key={option.id} type="button" onClick={() => toggleOption(option.id)} aria-pressed={active}
                                     className="flex items-start gap-3 rounded-[16px] border p-4 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                                    style={{ borderColor: active ? COLORS.blue : COLORS.mist, backgroundColor: active ? "#F8FAFF" : COLORS.white }}>
+                                    style={{ borderColor: active ? COLORS.blue : COLORS.mist, backgroundColor: active ? "#F8F9FA" : COLORS.white }}>
                                     <Icon className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                                     <span className="min-w-0">
                                       <span className="block text-[14px]" style={{ color: COLORS.ink }}>{option.title}</span>

@@ -28,7 +28,9 @@ export default function NewPersona({
   sub,
   img,
   alt,
-  heroBg = "#fafafc",
+  /* Matches the photo's own background (#ffffff, sampled from image edges) so
+     the contained photo blends seamlessly into the hero — Apple-style. */
+  heroBg = "#ffffff",
   ctaTo = "/register",
   ctaLabel = "Start learning free",
   secondaryTo = "/how-it-works",

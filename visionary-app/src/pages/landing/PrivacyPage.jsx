@@ -242,7 +242,7 @@ export default function PrivacyPage() {
                 backgroundColor: COLORS.surface,
               }}
             >
-              <div className="absolute h-[330px] w-[330px] rounded-full bg-[#EAF2FF]" />
+              <div className="absolute h-[330px] w-[330px] rounded-full bg-surface-info-soft" />
 
               <div className="relative z-10 flex flex-col items-center">
                 <div

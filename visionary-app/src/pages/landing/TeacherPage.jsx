@@ -3,40 +3,40 @@ import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, 
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import teacherHero from "@/assets/teacher-hero-main.png";
+import teacherHero from "@/assets/teacher-hero-main.webp";
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
  * Problem Section
  */
-import problemexam from "@/assets/problem-exam.png";
-import problempractice from "@/assets/problem-practice.png";
-import problemrevision from "@/assets/problem-revision.png";
-import problemunderstanding from "@/assets/problem-understanding.png";
+import problemexam from "@/assets/problem-exam.webp";
+import problempractice from "@/assets/problem-practice.webp";
+import problemrevision from "@/assets/problem-revision.webp";
+import problemunderstanding from "@/assets/problem-understanding.webp";
 
 /**
  * Our Journey Section
  */
-import primaryStudent from "@/assets/student-primary.png";
-import secondaryStudent from "@/assets/student-secondary.png";
-import competitiveStudent from "@/assets/student-competitive.png";
-import higherStudent from "@/assets/student-higher.png";
-import vocationStudent from "@/assets/student-vocational.png";
+import primaryStudent from "@/assets/student-primary.webp";
+import secondaryStudent from "@/assets/student-secondary.webp";
+import competitiveStudent from "@/assets/student-competitive.webp";
+import higherStudent from "@/assets/student-higher.webp";
+import vocationStudent from "@/assets/student-vocational.webp";
 
 /**
  * Achievement Section
  */
-import teacherachivenment from "@/assets/achievenment-achieve.png";
-import teacherbuild from "@/assets/achivenment-build.png";
+import teacherachivenment from "@/assets/achievenment-achieve.webp";
+import teacherbuild from "@/assets/achivenment-build.webp";
 
 /**
  * Explore Category
  */
 import studentmeet from "@/assets/student-face-main.png";
 import parentmeet from "@/assets/parent-face-main.png";
-import promeet from "@/assets/pro-face-main.png";
-import orgmeet from "@/assets/org-face-main.png";
+import promeet from "@/assets/pro-face-main.webp";
+import orgmeet from "@/assets/org-face-main.webp";
 
 const EXPLORE_CAT_IMG = [studentmeet, parentmeet, promeet, orgmeet];
 
@@ -58,7 +58,7 @@ const COLORS = {
   white: "#ffffff",
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",
-  mist: "#E8EAED",
+  mist: "#E5E7EB", /* border.subtle (MASTER_SPEC §3.1) */
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
@@ -361,7 +361,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
             viewBox="0 0 220 120"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.1"
+            strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"

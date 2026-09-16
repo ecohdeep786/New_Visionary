@@ -8,17 +8,17 @@ import {
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentmeet from "@/assets/student-hero-main.png"
-import teachermeet from "@/assets/teacher-hero-main.png"
-import parentmeet from "@/assets/parent-hero-main.png"
-import promeet from "@/assets/pro-face-main.png"
-import orgmeet from "@/assets/org-face-main.png"
-import imgStudentCompetitive from "@/assets/student-competitive.png"
-import imgStudentSecondary from "@/assets/student-secondary.png"
-import imgStudentPrimary from "@/assets/student-primary.png"
-import imgStudentHigher from "@/assets/student-higher.png"
-import imgProblemUnderstanding from "@/assets/problem-understanding.png"
-import imgProblemPractice from "@/assets/problem-practice.png"
+import studentmeet from "@/assets/student-hero-main.webp"
+import teachermeet from "@/assets/teacher-hero-main.webp"
+import parentmeet from "@/assets/parent-hero-main.webp"
+import promeet from "@/assets/pro-face-main.webp"
+import orgmeet from "@/assets/org-face-main.webp"
+import imgStudentCompetitive from "@/assets/student-competitive.webp"
+import imgStudentSecondary from "@/assets/student-secondary.webp"
+import imgStudentPrimary from "@/assets/student-primary.webp"
+import imgStudentHigher from "@/assets/student-higher.webp"
+import imgProblemUnderstanding from "@/assets/problem-understanding.webp"
+import imgProblemPractice from "@/assets/problem-practice.webp"
 import imgTeacherFace from "@/assets/teacher-face-main.png"
 import imgParentFace from "@/assets/parent-face-main.png"
 import imgProfessionalFace from "@/assets/professional-face-main.png"
@@ -263,11 +263,11 @@ function AboutMissionSection() {
     <section ref={ref} id="mission" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our mission</GreyTag>
-        <h2 className="mx-auto mt-6 max-w-[1200px] text-center font-medium tracking-[0] leading-[1.15] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto mt-6 max-w-[1200px] text-center font-medium tracking-[0] leading-[1.15] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Our mission is to make <span style={{ color: COLORS.ink }}>understanding</span> last for{" "}
           <span style={{ color: COLORS.blue }}>anyone</span>, <span style={{ color: COLORS.blue }}>anywhere</span>,{" "}
           <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MISSION_WORDS[wordIndex]}</span>
-        </h2>
+        </h1>
         <p className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           We build one intelligence that remembers what you understood, where you struggled, and what you built — and carries it forward, from a student's first question to an organization's whole journey.
         </p>

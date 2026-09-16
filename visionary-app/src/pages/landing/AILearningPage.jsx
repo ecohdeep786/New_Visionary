@@ -78,7 +78,7 @@ const PLANS = [
     highlight: true,
     badge: "Most popular",
     features: [
-      "Unlimited Ask & explore",
+      "Ask & explore with no daily cap",
       "Full visual & 3D explanations",
       "Practise mode & no-code Build",
       "All 20+ languages, voice & text",
@@ -131,14 +131,14 @@ const PERSONA_PLANS = [
 ];
 
 const COMPARISON = [
-  { feature: "Ask & explore", start: "20/day", personal: "Unlimited", family: "Unlimited", institution: "Unlimited" },
+  { feature: "Ask & explore", start: "20/day", personal: "No daily cap", family: "No daily cap", institution: "No daily cap" },
   { feature: "Visual & 3D explanations", start: "Core", personal: "Full", family: "Full", institution: "Full" },
   { feature: "Practise & Build", start: false, personal: true, family: true, institution: true },
   { feature: "Languages", start: "1", personal: "20+", family: "20+", institution: "20+" },
   { feature: "Voice input", start: false, personal: true, family: true, institution: true },
   { feature: "Continuity (memory)", start: "7 days", personal: "Forever", family: "Forever, per member", institution: "Forever, org-wide" },
   { feature: "Progress insights", start: "Snapshot", personal: "Full", family: "Full + digest", institution: "Full + analytics" },
-  { feature: "Members", start: "1", personal: "1", family: "Up to 6", institution: "Unlimited" },
+  { feature: "Members", start: "1", personal: "1", family: "Up to 6", institution: "Contact Visionary" },
   { feature: "Admin & SSO", start: false, personal: false, family: false, institution: true },
   { feature: "Support", start: "Community", personal: "Priority", family: "Priority", institution: "Dedicated" },
 ];

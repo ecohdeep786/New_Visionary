@@ -5,6 +5,8 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
+import { MetaManager } from '@/lib/PageMeta'
+import { RoutePrefetcher } from '@/lib/RoutePrefetcher'
 import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
@@ -142,6 +144,7 @@ const PublicApp = () => (
   <Routes>
     {DemoPreview && <Route path="/dev/scenarios" element={<DemoPreview />} />}
     <Route path="/" element={<LandingEntry />} />
+    <Route path="/signin" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -217,6 +220,8 @@ function App() {
             Skip to content
           </a>
           <ScrollToTop />
+          <MetaManager />
+          <RoutePrefetcher />
           <AppErrorBoundary>
             <Suspense fallback={<RouteFallback />}>
               <PublicApp />

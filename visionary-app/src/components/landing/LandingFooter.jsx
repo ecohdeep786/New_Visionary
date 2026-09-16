@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Youtube, Twitter, Linkedin, Instagram, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#4285F4" };
@@ -54,12 +54,7 @@ const FOOTER_SECTIONS = [
   },
 ];
 
-const SOCIAL_LINKS = [
-  { label: "YouTube", Icon: Youtube },
-  { label: "Twitter", Icon: Twitter },
-  { label: "LinkedIn", Icon: Linkedin },
-  { label: "Instagram", Icon: Instagram },
-];
+/* Social profiles ship only with real URLs (01-PM, Wave L1): no href="#" placeholders. */
 
 const LEGAL_LINKS = [
   { label: "Privacy policy", to: "/privacy" },
@@ -73,17 +68,8 @@ export default function LandingFooter({ variant = "brand" }) {
   return (
     <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: C.white, borderColor: C.mist }}>
       <div className="w-full px-6 pt-12 lg:px-10">
-        {/* TOP ROW: social + language */}
+        {/* TOP ROW: language (social row returns with real profile URLs) */}
         <div className="flex flex-wrap items-start justify-between gap-6 pb-12">
-          <div className="flex items-center gap-3">
-            {SOCIAL_LINKS.map(({ label, Icon }) => (
-              <a key={label} href="#" aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-[#4285F4] hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{ borderColor: C.mist, color: C.slate }}>
-                <Icon className="h-4 w-4" strokeWidth={1.8} />
-              </a>
-            ))}
-          </div>
           <label className="flex w-fit max-w-full cursor-pointer items-center gap-2 rounded-full border bg-white py-1 pl-4 pr-2 focus-within:ring-2 focus-within:ring-[#4285F4]" style={{ borderColor: C.mist }}>
             <Globe className="h-4 w-4 shrink-0" style={{ color: C.slate }} />
             <select defaultValue="en" aria-label="Select language" className="min-w-0 max-w-full cursor-pointer bg-transparent py-1.5 pr-1 text-[13px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
