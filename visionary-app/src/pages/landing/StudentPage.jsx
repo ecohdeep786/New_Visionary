@@ -3,7 +3,8 @@ import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, 
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentHero from "@/assets/student-hero-main.webp";
+import studentHero from "@/assets/student-hero-main-2400w.webp";
+import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
@@ -33,10 +34,10 @@ import studentbuild from "@/assets/achivenment-build.webp";
 /**
  * Explore Category
  */
-import teachermeet from "@/assets/teacher-hero-main.webp";
-import parentmeet from "@/assets/parent-hero-main.webp";
-import promeet from "@/assets/pro-face-main.webp";
-import orgmeet from "@/assets/org-face-main.webp";
+import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
+import parentmeet from "@/assets/parent-hero-main-2400w.webp";
+import promeet from "@/assets/pro-face-main-2400w.webp";
+import orgmeet from "@/assets/org-face-main-2400w.webp";
 
 const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
 
@@ -417,14 +418,13 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Student learning challenges">
+    <div className="flex items-center gap-2" role="group" aria-label="Student learning challenges">
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
           aria-label={`Go to challenge ${i + 1}`}
-          aria-selected={i === active}
+          aria-pressed={i === active}
           onClick={() => onSelect(i)}
           className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
@@ -649,7 +649,18 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        const onKey = (e) => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key !== "Tab") return;
+      const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
+      if (!dialog) return;
+      const focusables = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -826,7 +837,7 @@ function StudentJourneySection() {
 
         {/* stage rail — even beat under the header */}
         <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="tablist" aria-label="Learning stages">
+          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Learning stages">
             {JOURNEY_STAGES.map((stage, i) => {
               const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
               const active = i === activeStage;
@@ -834,8 +845,7 @@ function StudentJourneySection() {
                 <button
                   key={stage.title}
                   type="button"
-                  role="tab"
-                  aria-selected={active}
+                  aria-pressed={active}
                   onClick={() => goToStage(i)}
                   className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   style={active
@@ -1017,7 +1027,7 @@ function StudentLanguageSection() {
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
           {/* Assistant-signature four-color voice indicator */}
           <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
+            {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
               <span
                 key={c}
                 className="h-8 w-1.5 rounded-full"
@@ -1202,7 +1212,7 @@ function StudentContinuitySection() {
 }
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
-const ACHIEVEMENT_IMAGE = [studentHero, studentachivenment, studentbuild];
+const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild];
 
 /* icon per achievement tab — reuses icons already imported in this file */
 const ACHIEVEMENT_META = [

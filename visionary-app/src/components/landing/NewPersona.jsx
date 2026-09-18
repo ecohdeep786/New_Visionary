@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
 
 const rise = (delay = 0) => ({
   animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
@@ -56,6 +57,8 @@ export default function NewPersona({
       <div className="absolute inset-0" aria-hidden="true">
         <img
           src={img}
+          srcSet={HERO_SRCSETS[img]}
+          sizes={HERO_SIZES}
           alt={alt}
           loading="eager"
           decoding="async"

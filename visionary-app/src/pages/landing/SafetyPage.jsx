@@ -1,5 +1,6 @@
 import { ShieldCheck, BadgeCheck, Eye, Users, Flag } from "lucide-react";
 import { LegalPage } from "@/components/landing/AboutPageShared";
+import { LEGAL_META } from "@/data/legalMeta";
 
 export default function SafetyPage() {
   return (
@@ -34,6 +35,7 @@ export default function SafetyPage() {
           ],
         },
       ]}
+      lastUpdated={LEGAL_META.safety.lastUpdated}
       cta={{
         title: "Have a safety concern?",
         titleAccent: "We respond fast.",

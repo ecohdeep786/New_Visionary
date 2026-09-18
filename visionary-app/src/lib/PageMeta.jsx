@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { ROUTE_META, ROUTE_EXACT } from "@/lib/routeMeta";
+import { ROUTE_META, ROUTE_EXACT, PERSONA_OG } from "@/lib/routeMeta";
 
 /* Production origin for canonical/OG URLs. Override per environment with VITE_SITE_URL. */
 export const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://visionary.app").replace(/\/+$/, "");
@@ -37,7 +37,8 @@ function upsertLink(rel, href) {
   el.setAttribute("href", href);
 }
 
-function upsertPreload(href) {
+function upsertPreload(preload) {
+  if (!preload) return;
   let el = document.head.querySelector('link[rel="preload"][data-page-lcp]');
   if (!el) {
     el = document.createElement("link");
@@ -45,13 +46,35 @@ function upsertPreload(href) {
     el.setAttribute("data-page-lcp", "");
     document.head.appendChild(el);
   }
+  const { src, srcSet, sizes } = typeof preload === "string" ? { src: preload } : preload;
   el.setAttribute("as", "image");
-  el.setAttribute("href", href);
+  /* href and imagesrcset are mutually exclusive — setting both makes this
+     Chromium build fetch the href (4096w) instead of the viewport-matched
+     candidate, so src is only set for plain single-URL preloads. */
+  if (src && !srcSet) el.setAttribute("href", src);
+  if (srcSet) {
+    /* imagesrcset keeps the preload byte-matched to the srcSet candidate the
+       browser actually selects for this viewport/DPR. */
+    el.setAttribute("imagesrcset", srcSet);
+    el.setAttribute("imagesizes", sizes || "100vw");
+  }
   el.setAttribute("fetchpriority", "high");
 }
 
 function clearPreload() {
   document.head.querySelector('link[rel="preload"][data-page-lcp]')?.remove();
+}
+
+/* JSON-LD: one managed script per entry; removed on route change. */
+function injectJsonLd(entries) {
+  document.head.querySelectorAll('script[data-page-jsonld]').forEach((el) => el.remove());
+  for (const obj of entries || []) {
+    const el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.setAttribute("data-page-jsonld", "");
+    el.textContent = JSON.stringify(obj);
+    document.head.appendChild(el);
+  }
 }
 
 /* Restore the head to exactly the shipped index.html state — used on routes the
@@ -75,10 +98,11 @@ const absolute = (url) => (url && !/^https?:\/\//.test(url) ? SITE_URL + url : u
  * Pass null/undefined to reset the head to the original document defaults.
  */
 export function usePageMeta(meta) {
-  const { title, description, image, canonicalPath, preloadImage } = meta || {};
+  const { title, description, image, canonicalPath, preloadImage, jsonLd } = meta || {};
   useEffect(() => {
     if (!meta) {
       resetHead();
+      injectJsonLd([]);
       return clearPreload;
     }
 
@@ -106,8 +130,15 @@ export function usePageMeta(meta) {
 
     /* Preload must byte-match the <img> src (relative hashed asset) — CSP img-src 'self'. */
     if (preloadImage) upsertPreload(preloadImage);
-    return clearPreload;
-  }, [meta, title, description, image, canonicalPath, preloadImage]);
+
+    /* JSON-LD: per-route payloads + BreadcrumbList on every landing page (L6). */
+    const crumbs = [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+      ...(path !== "/" ? [{ "@type": "ListItem", position: 2, name: (title || "").replace(" | Visionary", ""), item: SITE_URL + path }] : []),
+    ];
+    injectJsonLd([...(jsonLd || []), { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: crumbs }]);
+    return () => { clearPreload(); };
+  }, [meta, title, description, image, canonicalPath, preloadImage, jsonLd]);
 }
 
 /** Declarative variant for use inside page JSX. Renders nothing. */
@@ -131,6 +162,6 @@ const NOT_FOUND_META = {
 export function MetaManager() {
   const { pathname } = useLocation();
   const meta = ROUTE_META[pathname] || (ROUTE_EXACT(pathname) ? NOT_FOUND_META : null);
-  usePageMeta(meta ? { ...meta, canonicalPath: pathname } : null);
+  usePageMeta(meta ? { ...meta, image: PERSONA_OG[pathname] || meta.image, canonicalPath: pathname } : null);
   return null;
 }

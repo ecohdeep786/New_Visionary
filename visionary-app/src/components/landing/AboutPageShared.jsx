@@ -175,12 +175,17 @@ export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started
 }
 
 /* ═══ LEGAL PAGE — full wrapper for trust/legal pages ═══ */
-export function LegalPage({ eyebrow, titleParts, intro, sections, cta }) {
+export function LegalPage({ eyebrow, titleParts, intro, sections, cta, lastUpdated }) {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <main>
         <AboutHero eyebrow={eyebrow} titleParts={titleParts} intro={intro} />
+        {lastUpdated && (
+          <p className="-mt-6 pb-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
+            Last updated: <strong style={{ color: "#121317" }}>{lastUpdated}</strong>
+          </p>
+        )}
         {sections.map((s, i) => (
           <AboutContentSection key={s.id || i} {...s} />
         ))}

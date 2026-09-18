@@ -1,5 +1,6 @@
 import { Cookie, Check } from "lucide-react";
 import { LegalPage } from "@/components/landing/AboutPageShared";
+import { LEGAL_META } from "@/data/legalMeta";
 
 export default function CookiesPage() {
   return (
@@ -34,6 +35,7 @@ export default function CookiesPage() {
           ],
         },
       ]}
+      lastUpdated={LEGAL_META.cookies.lastUpdated}
       cta={{
         title: "Questions about",
         titleAccent: "cookies?",

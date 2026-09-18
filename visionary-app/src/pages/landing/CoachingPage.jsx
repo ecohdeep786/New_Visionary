@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   UserPlus, Target, Compass, RefreshCw, Monitor, Laptop, Smartphone, Lock, ArrowRight,
-  GraduationCap, Users, HeartHandshake, Briefcase, Building2,
+  GraduationCap, Users, HeartHandshake, Briefcase, Building2, MessageCircle, CircleCheck, Hammer, Sparkles,
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -439,6 +439,100 @@ function HowJourneySection() {
   );
 }
 
+
+/* ═══ 05b · THE LEARNING LOOP — demonstrates the pedagogical invariant ═══ */
+const LOOP_STAGES = [
+  { id: "goal", label: "Goal", copy: "You set the goal — a subject, a skill, or a question you need answered.", Icon: Target },
+  { id: "check", label: "Check", copy: "Visionary checks what you already know, so it starts from where you actually are.", Icon: Compass },
+  { id: "teach", label: "Teach", copy: "It teaches the missing piece — in your language, at your pace, the way that clicks.", Icon: GraduationCap },
+  { id: "ask", label: "Ask", copy: "You ask anything, any time. Confusion is a feature of learning, not a failure.", Icon: MessageCircle },
+  { id: "check-2", label: "Check again", copy: "A quick check confirms the idea landed before you move on.", Icon: CircleCheck },
+  { id: "practise", label: "Practise", copy: "Practice is drawn from what you just learned — short, focused, and adaptive.", Icon: RefreshCw },
+  { id: "build", label: "Build", copy: "You build something real with it — a project, a solution, an artifact of your own.", Icon: Hammer },
+  { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal — and the loop begins again.", Icon: Sparkles },
+];
+const LOOP_MS = 2600;
+
+function HowLoopSection() {
+  const { ref, visible } = useRevealOnce();
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return undefined;
+    /* Reduced motion: the loop must not auto-advance — user drives it. */
+    if (typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = setInterval(() => setActive((i) => (i + 1) % LOOP_STAGES.length), LOOP_MS);
+    return () => clearInterval(id);
+  }, [paused]);
+  const stage = LOOP_STAGES[active];
+
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">The learning loop</GreyTag>
+        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+          One loop,
+          <br className="hidden sm:block" />{" "}
+          <span key={stage.id} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{stage.label.toLowerCase()}.</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          Every subject in Visionary moves through the same loop — from your goal to what you can build with it.
+        </p>
+
+        <div
+          className="mx-auto mt-14 flex max-w-[1080px] flex-wrap items-center justify-center gap-3"
+          role="group"
+          aria-label="Learning loop stages"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+        >
+          {LOOP_STAGES.map((st, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={st.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActive(i)}
+                className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                style={isActive
+                  ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
+                  : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
+              >
+                <st.Icon className="h-4 w-4" strokeWidth={1.8} />
+                {st.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* keyed reveal per stage — approved motion (heroFadeUp), same grammar as the journey mocks */}
+        <div key={stage.id} className="hero-fade-up mx-auto mt-12 max-w-[760px] rounded-[24px] border bg-white p-8 text-center" style={{ borderColor: COLORS.mist }}>
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+            <stage.Icon className="h-5 w-5" strokeWidth={1.8} />
+          </span>
+          <p className="mt-5 font-medium tracking-[0] leading-[1.2] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>
+            {stage.label}
+          </p>
+          <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{stage.copy}</p>
+          <p className="mt-5 text-[12px] tracking-[0.43px] uppercase" style={{ color: COLORS.lightGrey }}>
+            {stage.id === "check-2" ? "Step 5 of 8 · the loop keeps you moving" : `Step ${active + 1} of 8 · ${stage.id === "reflect" ? "then it begins again" : "then " + LOOP_STAGES[(active + 1) % 8].label.toLowerCase()}`}
+          </p>
+        </div>
+
+        {/* sequential a11y: the loop's full content, in order, for screen readers */}
+        <ol className="sr-only">
+          {LOOP_STAGES.map((st) => (
+            <li key={st.id}>{st.label}: {st.copy}</li>
+          ))}
+        </ol>
+      </FadeReveal>
+    </section>
+  );
+}
+
 /* ═══ 06 · DIFFERENT PEOPLE — GREY tag (matches hero) ═══ */
 function HowDifferentPeopleSection() {
   const { ref, visible } = useRevealOnce();
@@ -529,6 +623,7 @@ export default function CoachingPage() {
       <main id="main">
         <HowHeroSection />
         <HowJourneySection />
+        <HowLoopSection />
         <HowDifferentPeopleSection />
         <HowCTASection />
       </main>

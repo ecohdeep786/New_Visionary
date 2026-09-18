@@ -102,6 +102,63 @@ function ValueRow({ icon: Icon, title, children }) {
   );
 }
 
+
+function CareersNotify() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus("error"); return; }
+    setStatus("submitting");
+    setTimeout(() => setStatus("success"), 900); // deterministic mock
+  }
+
+  if (status === "success") {
+    return (
+      <p role="status" className="mt-6 rounded-[14px] px-5 py-4 text-[14px] leading-[1.6]" style={{ backgroundColor: "#E6F4EA", color: "#137333" }}>
+        You're on the list. We'll email <strong>{email}</strong> when a role opens.
+      </p>
+    );
+  }
+  return (
+    <form onSubmit={handleSubmit} noValidate className="mt-6">
+      <label htmlFor="careers-notify-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>
+        Get told when a role opens
+      </label>
+      <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+        <input
+          id="careers-notify-email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+          aria-invalid={status === "error"}
+          aria-describedby={status === "error" ? "careers-notify-error" : undefined}
+          placeholder="you@example.com"
+          className="h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+          style={{ borderColor: status === "error" ? "#EA4335" : COLORS.mist, color: COLORS.ink }}
+        />
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:opacity-70"
+          style={{ backgroundColor: COLORS.blue }}
+        >
+          {status === "submitting" ? "Adding you…" : "Notify me"}
+        </button>
+      </div>
+      {status === "error" && (
+        <p id="careers-notify-error" role="alert" className="mt-2 text-[13px]" style={{ color: "#EA4335" }}>
+          Please enter a valid email so we can tell you when a role opens.
+        </p>
+      )}
+    </form>
+  );
+}
+
 export default function CareersPage() {
   const [activeId, setActiveId] = useState("why");
   const [showMobileContents, setShowMobileContents] = useState(false);
@@ -348,6 +405,7 @@ export default function CareersPage() {
                         Make a general application
                         <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
                       </a>
+                      <CareersNotify />
                     </div>
                     <Note>This section should automatically become a live role directory when Visionary has an applicant-tracked hiring process. Until then, do not create artificial vacancies simply to make the page look full.</Note>
                   </section>

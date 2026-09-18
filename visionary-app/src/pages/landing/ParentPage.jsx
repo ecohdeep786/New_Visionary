@@ -3,8 +3,9 @@ import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, 
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import parentHero from "@/assets/parent-hero-main.webp";
-import parentFace from "@/assets/parent-face-main.png";
+import parentHero from "@/assets/parent-hero-main-2400w.webp";
+import parentHeroContent from "@/assets/parent-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
+import parentFace from "@/assets/parent-face-main.webp";
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
@@ -34,10 +35,10 @@ import parentbuild from "@/assets/achivenment-build.webp";
 /**
  * Explore Category
  */
-import studentmeet from "@/assets/student-hero-main.webp";
-import teachermeet from "@/assets/teacher-face-main.png";
-import promeet from "@/assets/pro-face-main.webp";
-import orgmeet from "@/assets/org-face-main.webp";
+import studentmeet from "@/assets/student-hero-main-2400w.webp";
+import teachermeet from "@/assets/teacher-face-main.webp";
+import promeet from "@/assets/pro-face-main-2400w.webp";
+import orgmeet from "@/assets/org-face-main-2400w.webp";
 
 const EXPLORE_CAT_IMG = [studentmeet, teachermeet, promeet, orgmeet];
 
@@ -179,7 +180,7 @@ const SLIDES = [
   { word: "Homework", quote: "We fight over homework every night. I don't know the right way to explain.", image: problemunderstanding, alt: "Parent helping with homework at night" },
   { word: "Understanding", quote: "She says she understood. The test says something else.", image: problempractice, alt: "Parent talking with a child about a test" },
   { word: "Confidence", quote: "He used to love learning. Now he hides his books.", image: problemexam, alt: "Parent encouraging a discouraged child" },
-  { word: "Reports", quote: "I meet the teacher once a year. I want to know every week.", image: parentHero, alt: "Parent at a parent-teacher meeting" },
+  { word: "Reports", quote: "I meet the teacher once a year. I want to know every week.", image: parentHeroContent, alt: "Parent at a parent-teacher meeting" },
 ];
 const CYCLE_MS = 4000;
 
@@ -198,7 +199,7 @@ const INTELLIGENCE_WORD_MS = 3000;
 const INTELLIGENCE_STEPS = [
   { title: "What your child understood this week.", copy: "Not just what was covered in class — what actually made sense. Visionary turns the week into a picture you can understand in minutes.", image: problemunderstanding },
   { title: "Know where your child is stuck.", copy: "See the exact idea that stopped them, before it becomes a gap, and before the gap becomes a grade.", image: problemrevision },
-  { title: "See which way learning is moving.", copy: "Understand whether confidence is building or slipping — and what changed along the way.", image: parentHero },
+  { title: "See which way learning is moving.", copy: "Understand whether confidence is building or slipping — and what changed along the way.", image: parentHeroContent },
   { title: "You see more when everyone sees the same picture.", copy: "When you, your child, and the teacher share the same view, support becomes simple — at home and in class.", image: parentFace },
 ];
 
@@ -398,14 +399,13 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Parent concerns">
+    <div className="flex items-center gap-2" role="group" aria-label="Parent concerns">
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
           aria-label={`Go to concern ${i + 1}`}
-          aria-selected={i === active}
+          aria-pressed={i === active}
           onClick={() => onSelect(i)}
           className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
@@ -629,7 +629,18 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        const onKey = (e) => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key !== "Tab") return;
+      const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
+      if (!dialog) return;
+      const focusables = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -806,7 +817,7 @@ function ParentJourneySection() {
 
         {/* stage rail — even beat under the header */}
         <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="tablist" aria-label="Learning stages">
+          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Learning stages">
             {JOURNEY_STAGES.map((stage, i) => {
               const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
               const active = i === activeStage;
@@ -814,8 +825,7 @@ function ParentJourneySection() {
                 <button
                   key={stage.title}
                   type="button"
-                  role="tab"
-                  aria-selected={active}
+                  aria-pressed={active}
                   onClick={() => goToStage(i)}
                   className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   style={active
@@ -997,7 +1007,7 @@ function ParentLanguageSection() {
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
           {/* Assistant-signature four-color voice indicator */}
           <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
+            {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
               <span
                 key={c}
                 className="h-8 w-1.5 rounded-full"
@@ -1182,7 +1192,7 @@ function ParentContinuitySection() {
 }
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
-const ACHIEVEMENT_IMAGE = [parentHero, parentachivenment, parentbuild];
+const ACHIEVEMENT_IMAGE = [parentHeroContent, parentachivenment, parentbuild];
 
 /* icon per achievement tab — reuses icons already imported in this file */
 const ACHIEVEMENT_META = [
@@ -1363,7 +1373,7 @@ function ParentJourneyFlowSection() {
 const TRUST_WORDS = ["child's", "progress.", "trust."];
 const TRUST_WORD_MS = 6000;
 
-const TRUST_CARD_IMG = [parentFace, parentHero, parentbuild];
+const TRUST_CARD_IMG = [parentFace, parentHeroContent, parentbuild];
 
 const TRUST_CARDS = [
   { title: "Private by Design", copy: "Your child's information. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },

@@ -65,6 +65,13 @@ const LEGAL_LINKS = [
 
 export default function LandingFooter({ variant = "brand" }) {
   const quiet = variant === "quiet";
+  /* Deliberate language control (R1): persists the choice and updates the
+     document's declared language. Full i18n content ships at L6. */
+  const onLanguageChange = (event) => {
+    const code = event.target.value;
+    try { localStorage.setItem("visionary_lang", code); } catch { /* storage unavailable */ }
+    document.documentElement.lang = code;
+  };
   return (
     <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: C.white, borderColor: C.mist }}>
       <div className="w-full px-6 pt-12 lg:px-10">
@@ -72,7 +79,7 @@ export default function LandingFooter({ variant = "brand" }) {
         <div className="flex flex-wrap items-start justify-between gap-6 pb-12">
           <label className="flex w-fit max-w-full cursor-pointer items-center gap-2 rounded-full border bg-white py-1 pl-4 pr-2 focus-within:ring-2 focus-within:ring-[#4285F4]" style={{ borderColor: C.mist }}>
             <Globe className="h-4 w-4 shrink-0" style={{ color: C.slate }} />
-            <select defaultValue="en" aria-label="Select language" className="min-w-0 max-w-full cursor-pointer bg-transparent py-1.5 pr-1 text-[13px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
+            <select defaultValue={typeof document !== "undefined" ? localStorage.getItem("visionary_lang") || "en" : "en"} onChange={onLanguageChange} aria-label="Select language" className="min-w-0 max-w-full cursor-pointer bg-transparent py-1.5 pr-1 text-[13px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
               <option value="en">English (United States)</option>
               <option value="hi">हिन्दी</option>
               <option value="bn">বাংলা</option>

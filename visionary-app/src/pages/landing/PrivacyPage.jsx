@@ -12,9 +12,11 @@ import {
   Settings2,
   Mail,
   ChevronDown,
+  ArrowRight,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import { LEGAL_META, GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const COLORS = {
@@ -231,6 +233,9 @@ export default function PrivacyPage() {
               Your learning is personal. This page explains what Visionary
               handles, why we use it, and the choices you have.
             </p>
+        <p className="mt-4 text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
+          Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.privacy.lastUpdated}</strong>
+        </p>
           </div>
 
           {/* Minimal privacy illustration */}
@@ -277,7 +282,7 @@ export default function PrivacyPage() {
                 AT A GLANCE
               </p>
 
-              <h2
+              <h2 id="what-we-collect"
                 className="mt-4 text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
@@ -335,7 +340,7 @@ export default function PrivacyPage() {
                 WHY WE USE IT
               </p>
 
-              <h2
+              <h2 id="purpose"
                 className="mx-auto mt-4 max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
@@ -393,7 +398,7 @@ export default function PrivacyPage() {
                 SHARING
               </p>
 
-              <h2
+              <h2 id="sharing"
                 className="mt-4 max-w-[620px] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
@@ -477,7 +482,7 @@ export default function PrivacyPage() {
                 YOUR CONTROLS
               </p>
 
-              <h2
+              <h2 id="your-controls"
                 className="mt-4 text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
@@ -533,7 +538,7 @@ export default function PrivacyPage() {
               SECURITY
             </p>
 
-            <h2
+            <h2 id="security"
               className="mt-4 text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
               style={{ color: COLORS.ink }}
             >
@@ -580,7 +585,7 @@ export default function PrivacyPage() {
                 RETENTION
               </p>
 
-              <h2
+              <h2 id="retention"
                 className="mt-4 text-[clamp(34px,4.5vw,60px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
@@ -678,7 +683,7 @@ export default function PrivacyPage() {
                     STUDENTS & YOUNGER LEARNERS
                   </p>
 
-                  <h2
+                  <h2 id="younger-learners"
                     className="mt-3 text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.08]"
                     style={{ color: COLORS.ink }}
                   >
@@ -728,7 +733,7 @@ export default function PrivacyPage() {
                 QUESTIONS
               </p>
 
-              <h2
+              <h2 id="explainers"
                 className="mt-4 text-[clamp(34px,4.3vw,58px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
@@ -851,6 +856,58 @@ export default function PrivacyPage() {
               >
                 See security
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* DPDP Act 2023 grievance signal + related policies (L4) */}
+        <section id="grievance-officer" className="scroll-mt-24 px-6 py-20" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+          <div className="mx-auto grid w-full max-w-[1240px] gap-6 lg:grid-cols-2">
+            <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+              <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Under the DPDP Act, 2023</p>
+              <h2 className="mt-3 text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
+                Your grievance has a <span style={{ color: COLORS.blue }}>named person.</span>
+              </h2>
+              <div className="mt-6 space-y-2 text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>
+                <p>{GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong></p>
+                <p>
+                  Write to{" "}
+                  <a href={`mailto:${GRIEVANCE_OFFICER.email}`} className="font-medium underline decoration-[#4285F4]/40 underline-offset-2 hover:decoration-[#4285F4]" style={{ color: COLORS.blue }}>
+                    {GRIEVANCE_OFFICER.email}
+                  </a>
+                </p>
+                <p>{GRIEVANCE_OFFICER.response}</p>
+              </div>
+              <p className="mt-6 rounded-[14px] px-5 py-4 text-[13px] leading-[1.6]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
+                Consent states: essential processing runs without consent; optional analytics runs only while your consent is on, and you can withdraw it at any time without losing your account. See{" "}
+                <Link to="/cookies" className="font-medium underline decoration-[#4285F4]/40 underline-offset-2 hover:decoration-[#4285F4]" style={{ color: COLORS.blue }}>Cookie policy</Link>.
+              </p>
+              <p className="mt-4 rounded-[14px] px-5 py-4 text-[13px] leading-[1.6]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
+                What you can expect elsewhere: {RESPONSE_TIMES.general} For safety reports, {RESPONSE_TIMES.safety}
+              </p>
+            </div>
+            <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+              <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Related policies</p>
+              <h2 className="mt-3 text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
+                Read them <span style={{ color: COLORS.blue }}>together.</span>
+              </h2>
+              <ul className="mt-6 space-y-3 text-[15px]">
+                {[
+                  { to: "/terms", label: "Terms of service", desc: "The agreement behind your use of Visionary." },
+                  { to: "/security", label: "Security", desc: "How your information is protected in transit and at rest." },
+                  { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only — no advertising, no tracking." },
+                  { to: "/safety", label: "Safety", desc: "Protections, reporting, and family controls." },
+                  { to: "/accessibility", label: "Accessibility", desc: "Our commitment to an accessible product." },
+                ].map((l) => (
+                  <li key={l.to}>
+                    <Link to={l.to} className="inline-flex items-baseline gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                      {l.label}
+                      <ArrowRight className="h-3.5 w-3.5 self-center" strokeWidth={1.8} />
+                    </Link>
+                    <span className="ml-2 text-[13px]" style={{ color: COLORS.grey }}>{l.desc}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>

@@ -116,6 +116,32 @@
    "ink=EXPLORE THE PROFESSIONAL JOURNEY": 1,
    "ink=EXPLORE THE ORGANIZATION JOURNEY": 1
   },
-  "adhocHexOutsidePalette": []
+  "adhocHexOutsidePalette": [
+   "CareersPage.jsx: #EA4335",
+   "CollegePage.jsx: #EA4335",
+   "CollegePage.jsx: #FBBC05",
+   "CollegePage.jsx: #34A853",
+   "ContactPage.jsx: #EA4335",
+   "OrganizationPage.jsx: #EA4335",
+   "OrganizationPage.jsx: #FBBC05",
+   "OrganizationPage.jsx: #34A853",
+   "ParentPage.jsx: #EA4335",
+   "ParentPage.jsx: #FBBC05",
+   "ParentPage.jsx: #34A853",
+   "PartnersPage.jsx: #EA4335",
+   "ReferralPage.jsx: #EA4335",
+   "ResearchPage.jsx: #EA4335",
+   "StudentPage.jsx: #EA4335",
+   "StudentPage.jsx: #FBBC05",
+   "StudentPage.jsx: #34A853",
+   "TeacherPage.jsx: #EA4335",
+   "TeacherPage.jsx: #FBBC05",
+   "TeacherPage.jsx: #34A853",
+   "Login.jsx: #F0F2F5",
+   "Login.jsx: #EA4335",
+   "Register.jsx: #F0F2F5",
+   "Register.jsx: #EA4335",
+   "ResetPassword.jsx: #EA4335"
+  ]
  }
 }

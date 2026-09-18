@@ -32,6 +32,8 @@ for (const w of WIDTHS) {
     page.on("pageerror", (e) => errors.push("PAGEERROR " + String(e).slice(0, 140)));
     page.on("response", (r) => { if (r.status() >= 400) errors.push("HTTP " + r.status() + " " + r.url().slice(-70)); });
     try { await page.goto(BASE + route, { waitUntil: "load", timeout: 25000 }); } catch { errors.push("GOTO-TIMEOUT"); }
+    /* mount-aware wait — permanent (L2 09-qa): h1 present before sampling */
+    await page.waitForSelector("h1", { timeout: 15000 }).catch(() => {});
     await page.waitForTimeout(500);
     // scroll through the page to trigger lazy images, then back to top
     await page.evaluate(async () => {

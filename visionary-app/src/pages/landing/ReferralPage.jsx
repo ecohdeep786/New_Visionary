@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   BookOpen,
   CheckCircle2,
+  AlertCircle,
   ChevronRight,
   Gift,
   GraduationCap,
@@ -124,7 +125,8 @@ export default function ReferralPage() {
   const [showMobileContents, setShowMobileContents] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+    const [status, setStatus] = useState("idle"); // idle | submitting | success | error (deterministic mock)
+  const [showError, setShowError] = useState(false);
 
   const activeSection = useMemo(
     () => SECTIONS.find((section) => section.id === activeId),
@@ -159,9 +161,15 @@ export default function ReferralPage() {
     });
   }, []);
 
-  function handleSubmit(event) {
+    function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    if (!name.trim() || !email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("error");
+      setShowError(true);
+      return;
+    }
+    setStatus("submitting");
+    setTimeout(() => setStatus("success"), 900); // deterministic mock — no backend yet
   }
 
   return (
@@ -393,7 +401,23 @@ export default function ReferralPage() {
                     <SectionHeading number="10" title="Start referring" />
                     <Paragraph>Tell us where to send your referral access information.</Paragraph>
                     <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
-                      {submitted ? (
+                      {status === "error" ? (
+                        <div className="py-8" role="alert">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: "#FCE8E6" }}>
+                            <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
+                          </div>
+                          <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
+                          <p className="mt-3 max-w-[650px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                            A name and a valid email are required so the referrals team can reply to you. Check them and try again.
+                          </p>
+                          <button type="button" onClick={() => setStatus("idle")}
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            style={{ color: COLORS.blue }}>
+                            Back to the form
+                            <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
+                          </button>
+                        </div>
+                      ) : status === "success" ? (
                         <div className="py-8">
                           <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: COLORS.blueSoft }}>
                             <CheckCircle2 className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
@@ -402,7 +426,7 @@ export default function ReferralPage() {
                           <p className="mt-3 max-w-[660px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
                             The referral access flow is represented here, but the production referral backend has not yet been connected.
                           </p>
-                          <button type="button" onClick={() => setSubmitted(false)}
+                          <button type="button" onClick={() => setStatus("idle")}
                             className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ color: COLORS.blue }}>
                             Try again
@@ -410,7 +434,7 @@ export default function ReferralPage() {
                           </button>
                         </div>
                       ) : (
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} noValidate>
                           <div className="grid gap-6 sm:grid-cols-2">
                             <div>
                               <label htmlFor="referral-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Name</label>
@@ -431,10 +455,10 @@ export default function ReferralPage() {
                             <p className="max-w-[560px] text-[12px] leading-[1.6]" style={{ color: COLORS.grey }}>
                               Referral availability, eligibility, and reward terms should be shown before someone joins the program.
                             </p>
-                            <button type="submit"
+                            <button type="submit" disabled={status === "submitting"}
                               className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                               style={{ backgroundColor: COLORS.blue }}>
-                              Continue
+                              {status === "submitting" ? "Sending…" : "Continue"}
                               <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
                             </button>
                           </div>

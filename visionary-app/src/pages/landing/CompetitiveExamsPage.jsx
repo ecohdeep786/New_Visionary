@@ -8,20 +8,20 @@ import {
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentmeet from "@/assets/student-hero-main.webp"
-import teachermeet from "@/assets/teacher-hero-main.webp"
-import parentmeet from "@/assets/parent-hero-main.webp"
-import promeet from "@/assets/pro-face-main.webp"
-import orgmeet from "@/assets/org-face-main.webp"
+import studentmeet from "@/assets/student-hero-main-1600w.webp"
+import teachermeet from "@/assets/teacher-hero-main-1600w.webp"
+import parentmeet from "@/assets/parent-hero-main-1600w.webp"
+import promeet from "@/assets/pro-face-main-1600w.webp"
+import orgmeet from "@/assets/org-face-main-1600w.webp"
 import imgStudentCompetitive from "@/assets/student-competitive.webp"
 import imgStudentSecondary from "@/assets/student-secondary.webp"
 import imgStudentPrimary from "@/assets/student-primary.webp"
 import imgStudentHigher from "@/assets/student-higher.webp"
 import imgProblemUnderstanding from "@/assets/problem-understanding.webp"
 import imgProblemPractice from "@/assets/problem-practice.webp"
-import imgTeacherFace from "@/assets/teacher-face-main.png"
-import imgParentFace from "@/assets/parent-face-main.png"
-import imgProfessionalFace from "@/assets/professional-face-main.png"
+import imgTeacherFace from "@/assets/teacher-face-main.webp"
+import imgParentFace from "@/assets/parent-face-main.webp"
+import imgProfessionalFace from "@/assets/professional-face-main.webp"
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {

@@ -13,9 +13,11 @@ import {
   UsersRound,
   Lightbulb,
   FlaskConical,
+  AlertCircle,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import { RESPONSE_TIMES } from "@/data/legalMeta";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -121,7 +123,7 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [type, setType] = useState("General question");
   const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+    const [status, setStatus] = useState("idle"); // idle | submitting | success | error (deterministic mock)
 
   const activeSection = useMemo(
     () => NAV_SECTIONS.find((section) => section.id === activeId),
@@ -156,9 +158,16 @@ export default function ContactPage() {
     });
   }, []);
 
-  function handleSubmit(event) {
+    function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    const email = document.getElementById("contact-email")?.value || "";
+    const name = document.getElementById("contact-name")?.value || "";
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("error");
+      return;
+    }
+    setStatus("submitting");
+    setTimeout(() => setStatus("success"), 900); // deterministic mock — no backend yet
   }
 
   return (
@@ -275,6 +284,13 @@ export default function ContactPage() {
                         <ContactCard key={route.id} icon={route.icon} title={route.title} description={route.description} email={route.email} />
                       ))}
                     </div>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-[18px] border px-6 py-4 text-[13px] leading-[1.6]" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.soft }}>
+                      <span className="font-medium" style={{ color: COLORS.ink }}>What to expect</span>
+                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.general}</span>
+                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.safety}</span>
+                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.grievance}</span>
+                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.partners}</span>
+                    </div>
                   </section>
 
                   {/* 02 */}
@@ -282,7 +298,23 @@ export default function ContactPage() {
                     <SectionHeading number="02" title="Send a message" />
                     <Paragraph>Tell us what is happening, what you are trying to do, or what you need help understanding.</Paragraph>
                     <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
-                      {submitted ? (
+                      {status === "error" ? (
+                        <div className="py-8" role="alert">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: "#FCE8E6" }}>
+                            <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
+                          </div>
+                          <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
+                          <p className="mt-3 max-w-[620px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                            A name and a valid email are required so we can reply. Check them and try again.
+                          </p>
+                          <button type="button" onClick={() => setStatus("idle")}
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            style={{ color: COLORS.blue }}>
+                            Back to the form
+                            <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
+                          </button>
+                        </div>
+                      ) : status === "success" ? (
                         <div className="py-8">
                           <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: COLORS.blueSoft }}>
                             <Mail className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
@@ -291,7 +323,7 @@ export default function ContactPage() {
                           <p className="mt-3 max-w-[620px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
                             The form is connected to the page experience, but the production submission endpoint still needs to be connected before launch.
                           </p>
-                          <button type="button" onClick={() => setSubmitted(false)}
+                          <button type="button" onClick={() => setStatus("idle")}
                             className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ color: COLORS.blue }}>
                             Send another message
@@ -299,7 +331,7 @@ export default function ContactPage() {
                           </button>
                         </div>
                       ) : (
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} noValidate>
                           <div className="grid gap-6 sm:grid-cols-2">
                             <div>
                               <label htmlFor="contact-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Name</label>
@@ -339,10 +371,10 @@ export default function ContactPage() {
                             <p className="max-w-[530px] text-[12px] leading-[1.6]" style={{ color: COLORS.grey }}>
                               Please do not include passwords, payment card numbers, or other sensitive information that is not needed to answer your question.
                             </p>
-                            <button type="submit"
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+                            <button type="submit" disabled={status === "submitting"}
+                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-70"
                               style={{ backgroundColor: COLORS.blue }}>
-                              Send message
+                              {status === "submitting" ? "Sending…" : "Send message"}
                               <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
                             </button>
                           </div>

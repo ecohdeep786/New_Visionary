@@ -296,12 +296,25 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    /* Delays must die too — a 120–240ms entrance delay leaves keyed content
+       invisible at opacity 0 after every remount (L5 05-motion defect). */
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }
 
-  /* Apple-style smooth scrolling */
+  @media (prefers-reduced-motion: reduce) {
+  /* Keyed remounts (cycling words, reveals) must never sit at opacity 0 */
+  .hero-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Apple-style smooth scrolling */
   html {
     scroll-behavior: smooth;
     /* anchor targets (e.g. /organization#schools) never hide under the fixed 64px nav */
@@ -374,3 +387,42 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
 }
 
 .hero-fade-up { animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;}
+/* ═══ Wave L4 — anchor navigation + print (03-design-system) ═══ */
+/* Anchored sections must never hide behind the sticky nav */
+section[id],
+h1[id],
+h2[id],
+h3[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Print: strip chrome, keep content legible — legal pages print cleanly */
+@media print {
+  header,
+  nav,
+  footer,
+  button,
+  video {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  main,
+  main * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  section,
+  [id] {
+    scroll-margin-top: 0 !important;
+    break-inside: avoid-page;
+  }
+  a[href^="/"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #555;
+  }
+}

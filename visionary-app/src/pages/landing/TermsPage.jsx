@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import { LEGAL_META } from "@/data/legalMeta";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -142,7 +143,7 @@ export default function TermsPage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
                 <span style={{ color: C.slate }}>
-                  Last updated: <strong style={{ color: C.ink }}>September 2025</strong>
+                  Last updated: <strong style={{ color: C.ink }}>{LEGAL_META.terms.lastUpdated}</strong>
                 </span>
                 <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
                 <a href="mailto:legal@visionary.org.in"

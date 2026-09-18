@@ -170,7 +170,6 @@ function DownloadPlatformsSection() {
         <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PLATFORMS.map((p) => {
             const isRecommended = detected === p.id;
-            const ButtonTag = p.kind === "web" ? Link : "a";
             return (
               <div
                 key={p.id}
@@ -194,29 +193,93 @@ function DownloadPlatformsSection() {
                 {p.kind === "web" ? (
                   <Link
                     to={p.href}
-                      aria-disabled="true"
-                   title="Available at launch"
-                  onClick={(e) => e.preventDefault()} 
                     className="mt-6 inline-flex h-11 items-center justify-center rounded-full px-6 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
                     style={{ backgroundColor: COLORS.blue }}
                   >
                     {p.action}
                   </Link>
                 ) : (
-                  <a
-                    href={p.href}
-                      aria-disabled="true"
-                   title="Available at launch"
-                  onClick={(e) => e.preventDefault()} 
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full border px-6 font-medium tracking-[0.24px] text-[14px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  /* Store links are not live yet — a disabled button, never a fabricated badge (L3 01-PM). */
+                  <button
+                    type="button"
+                    aria-disabled="true"
+                    title="Available at launch"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full border px-6 font-medium tracking-[0.24px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] opacity-60"
                     style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
                   >
                     {p.action}
-                  </a>
+                  </button>
                 )}
               </div>
             );
           })}
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}
+
+
+/* ═══ 02b · NOTIFY — placeholder form until store links are ready (L3) ═══ */
+function DownloadNotifySection() {
+  const { ref, visible } = useRevealOnce();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const emailId = "notify-email";
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus("error"); return; }
+    setStatus("submitting");
+    setTimeout(() => setStatus("success"), 900); // deterministic mock — no backend
+  }
+
+  return (
+    <section ref={ref} className="relative bg-white px-6 pb-24" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[24px] border p-8 text-center" style={{ borderColor: COLORS.mist }}>
+          <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
+          <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
+            Native apps are in final testing. We'll email you the moment your platform is ready.
+          </p>
+          {status === "success" ? (
+            <p role="status" className="mt-6 w-full rounded-[14px] px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ backgroundColor: "#E6F4EA", color: "#137333" }}>
+              You're on the list. We'll write to <span className="font-medium">{email}</span> at launch.
+            </p>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate className="mt-6 w-full">
+              <label htmlFor={emailId} className="sr-only">Email address</label>
+              <div className="flex flex-col items-center gap-3 sm:flex-row">
+                <input
+                  id={emailId}
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+                  aria-invalid={status === "error"}
+                  aria-describedby={status === "error" ? "notify-error" : undefined}
+                  placeholder="you@example.com"
+                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                  style={{ borderColor: status === "error" ? "#EA4335" : COLORS.mist, color: COLORS.ink }}
+                />
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317] disabled:opacity-70"
+                  style={{ backgroundColor: COLORS.blue }}
+                >
+                  {status === "submitting" ? "Adding you…" : "Notify me"}
+                </button>
+              </div>
+              {status === "error" && (
+                <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#EA4335" }}>
+                  Please enter a valid email address — we can't notify you without one.
+                </p>
+              )}
+            </form>
+          )}
         </div>
       </FadeReveal>
     </section>
@@ -338,6 +401,7 @@ export default function ResearchPage() {
 
         <DownloadHeroSection />
         <DownloadPlatformsSection />
+        <DownloadNotifySection />
         <DownloadSyncSection />
         <DownloadRequirementsSection />
         <DownloadTrustBand />

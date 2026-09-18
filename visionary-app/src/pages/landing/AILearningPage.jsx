@@ -48,120 +48,19 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
-/* ═══ MODELS ═══ */
-const PLANS = [
-  {
-    id: "start",
-    name: "Start",
-    tagline: "Begin with one question.",
-    monthly: 0,
-    annual: 0,
-    cta: "Start for free",
-    to: "/register",
-    highlight: false,
-    features: [
-      "Ask & explore — 20 questions a day",
-      "Visual explanations for core subjects",
-      "1 language",
-      "7-day memory of your journey",
-      "Basic progress snapshot",
-    ],
-  },
-  {
-    id: "personal",
-    name: "Personal",
-    tagline: "One person. Full intelligence.",
-    monthly: 9,
-    annual: 7,
-    cta: "Get Personal",
-    to: "/register",
-    highlight: true,
-    badge: "Most popular",
-    features: [
-      "Ask & explore with no daily cap",
-      "Full visual & 3D explanations",
-      "Practise mode & no-code Build",
-      "All 20+ languages, voice & text",
-      "Continuity that never resets",
-      "Full progress insights",
-    ],
-  },
-  {
-    id: "family",
-    name: "Family",
-    tagline: "A household that learns together.",
-    monthly: 16,
-    annual: 13,
-    cta: "Get Family",
-    to: "/register",
-    highlight: false,
-    features: [
-      "Everything in Personal",
-      "Up to 6 members",
-      "Parent view across children",
-      "Private memory per member",
-      "Weekly family digest",
-    ],
-  },
-  {
-    id: "institution",
-    name: "Institution",
-    tagline: "Schools, colleges, coaching, workplaces.",
-    monthly: null,
-    annual: null,
-    cta: "Contact sales",
-    to: "/contact",
-    highlight: false,
-    features: [
-      "Everything for every role",
-      "Admin & learning analytics",
-      "SSO & privacy controls",
-      "Rollout support & training",
-      "Dedicated success manager",
-    ],
-  },
-];
+/* ═══ MODELS — single plan-config fixture (01-PM, Wave L3): src/data/pricingConfig.js ═══ */
+import { PLANS, COMPARISON, PERSONA_PLANS, PRICING_FAQ, formatPrice } from "@/data/pricingConfig";
 
-const PERSONA_PLANS = [
-  { persona: "Student", plan: "Start or Personal", note: "Begin free. Upgrade when you're ready.", to: "/student" },
-  { persona: "Teacher", plan: "Personal", note: "One classroom, one intelligence.", to: "/teacher" },
-  { persona: "Parent", plan: "Family", note: "Every child, one plan.", to: "/parent" },
-  { persona: "Professional", plan: "Personal", note: "Skills that compound.", to: "/professional" },
-  { persona: "Organization", plan: "Institution", note: "Roll out across your people.", to: "/organization" },
-];
-
-const COMPARISON = [
-  { feature: "Ask & explore", start: "20/day", personal: "No daily cap", family: "No daily cap", institution: "No daily cap" },
-  { feature: "Visual & 3D explanations", start: "Core", personal: "Full", family: "Full", institution: "Full" },
-  { feature: "Practise & Build", start: false, personal: true, family: true, institution: true },
-  { feature: "Languages", start: "1", personal: "20+", family: "20+", institution: "20+" },
-  { feature: "Voice input", start: false, personal: true, family: true, institution: true },
-  { feature: "Continuity (memory)", start: "7 days", personal: "Forever", family: "Forever, per member", institution: "Forever, org-wide" },
-  { feature: "Progress insights", start: "Snapshot", personal: "Full", family: "Full + digest", institution: "Full + analytics" },
-  { feature: "Members", start: "1", personal: "1", family: "Up to 6", institution: "Contact Visionary" },
-  { feature: "Admin & SSO", start: false, personal: false, family: false, institution: true },
-  { feature: "Support", start: "Community", personal: "Priority", family: "Priority", institution: "Dedicated" },
-];
-
-const PRICING_FAQ = [
-  { q: "Can I start free?", a: "Yes. Start is free forever — 20 questions a day, core visual explanations, and a 7-day memory of your journey. No card required." },
-  { q: "Can I switch plans later?", a: "Any time. Upgrades apply immediately; downgrades at the next cycle. Your continuity travels with you — nothing resets when you change plans." },
-  { q: "What happens to my memory if I downgrade?", a: "Nothing is deleted. Your journey is kept privately and rejoins you the moment you upgrade again." },
-  { q: "Do you offer education discounts?", a: "Yes. Students and teachers with a valid institutional email get Personal at a discount, and Start stays free for everyone." },
-  { q: "How does Family privacy work?", a: "Each member's memory is completely private. Parents see progress and support signals — never private conversations." },
-  { q: "How does Institution billing work?", a: "Per active learner, annual invoicing, with pilot options for a single class, cohort, or campus before you roll out wider." },
-];
 
 /* ═══ Billing toggle — same pill language as site tabs ═══ */
 const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
   return (
-    <div className="mx-auto flex h-11 w-fit items-stretch overflow-hidden rounded-full border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="Billing period">
+    <div className="mx-auto flex h-11 w-fit items-stretch overflow-hidden rounded-full border bg-white p-0" style={{ borderColor: COLORS.mist }} role="group" aria-label="Billing period">
       {["monthly", "annual"].map((b) => (
         <button
           key={b}
           type="button"
-          role="tab"
-          aria-selected={billing === b}
+          aria-pressed={billing === b}
           onClick={() => onChange(b)}
           className={`flex h-full items-center justify-center gap-2 rounded-full px-6 text-[14px] tracking-[0.24px] transition-colors ${billing === b ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
           style={{ backgroundColor: billing === b ? COLORS.ink : "transparent", color: billing === b ? "#ffffff" : COLORS.slate }}
@@ -198,17 +97,26 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
       <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
 
       <div className="mt-6 flex items-baseline gap-2">
-        {price === null ? (
-          <span className="font-medium tracking-[0] leading-[1] text-[clamp(32px,3vw,44px)]" style={{ color: COLORS.ink }}>Custom</span>
-        ) : (
-          <>
-            <span className="font-medium tracking-[0] leading-[1] text-[clamp(32px,3vw,44px)]" style={{ color: COLORS.ink }}>${price}</span>
-            <span className="font-normal tracking-[0] text-[14px]" style={{ color: COLORS.grey }}>/ month</span>
-          </>
-        )}
+        {(() => {
+          const fp = formatPrice(plan, billing);
+          return fp.kind === "contact" ? (
+            <span className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2vw,28px)]" style={{ color: COLORS.ink }}>{fp.text}</span>
+          ) : (
+            <>
+              <span className="font-medium tracking-[0] leading-[1] text-[clamp(32px,3vw,44px)]" style={{ color: COLORS.ink }}>{fp.text}</span>
+              <span className="font-normal tracking-[0] text-[14px]" style={{ color: COLORS.grey }}>/ month</span>
+            </>
+          );
+        })()}
       </div>
       <p className="mt-1 font-normal tracking-[0] leading-[16px] text-[12px]" style={{ color: COLORS.lightGrey }}>
-        {price === null ? "Annual invoicing · pilots available" : price === 0 ? "Free forever · no card required" : billing === "annual" ? "Per person, billed annually" : "Per person, billed monthly"}
+        {price === null
+          ? "Pricing shaped with you · pilots available"
+          : price === 0
+            ? "Free forever · no card required"
+            : billing === "annual"
+              ? `Billed yearly (₹${plan.annualTotal}) · 2 months free`
+              : "Billed monthly"}
       </p>
 
       <Link
@@ -308,16 +216,16 @@ function PricingComparisonSection() {
           <table className="w-full min-w-[760px] border-collapse text-center">
             <thead>
               <tr className="border-b" style={{ borderColor: COLORS.mist }}>
-                <th className="px-6 py-6 text-left font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Features</th>
+                <th scope="col" className="px-6 py-6 text-left font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Features</th>
                 {["Start", "Personal", "Family", "Institution"].map((h) => (
-                  <th key={h} className="px-6 py-6 font-medium tracking-[0] text-[16px]" style={{ color: h === "Personal" ? COLORS.blue : COLORS.ink }}>{h}</th>
+                  <th key={h} scope="col" className="px-6 py-6 font-medium tracking-[0] text-[16px]" style={{ color: h === "Personal" ? COLORS.blue : COLORS.ink }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {COMPARISON.map((row, i) => (
                 <tr key={row.feature} className={i < COMPARISON.length - 1 ? "border-b" : ""} style={{ borderColor: `${COLORS.ink}14` }}>
-                  <td className="px-6 py-5 text-left font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>{row.feature}</td>
+                  <th scope="row" className="px-6 py-5 text-left font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>{row.feature}</th>
                   <td className="px-6 py-5"><CellValue value={row.start} /></td>
                   <td className="px-6 py-5"><CellValue value={row.personal} /></td>
                   <td className="px-6 py-5"><CellValue value={row.family} /></td>

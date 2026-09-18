@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import { LEGAL_META } from "@/data/legalMeta";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -145,6 +146,9 @@ export default function SecurityPage() {
               <p className="mt-8 max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
                 Your learning, conversations, ideas, and progress can become part of your journey. Security is what helps keep that information protected as you use Visionary.
               </p>
+        <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
+          Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.security.lastUpdated}</strong>
+        </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
                 <span style={{ color: C.slate }}>Security information</span>
                 <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
