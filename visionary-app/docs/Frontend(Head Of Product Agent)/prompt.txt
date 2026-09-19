@@ -1,0 +1,110 @@
+**Daily Agent work**
+
+Open docs/Frontend(Head Of Product)/council/DIRECTOR.md and execute its STATE MACHINE as the
+sole contract. Obey THE LAW L1–L8 absolutely: L1 spacing RATIO-LOCKED to fluid type + L2 one
+continuous breath token (cures "heading→sub gap differs per device" — measured by 06 as
+std-dev≤0.06em, not eyeballed); L3 measured-not-felt; L4 frozen DNA = top-level
+LANDING_MASTER_SPEC/LANDING_GATE/LINK_MAP/CHARTER (refine within, look-change=PROPOSAL);
+L5 one dimension per agent; L6 never below green; L7 MULTIMODAL COMPOSITION FLOOR — no section
+exceeds 3 consecutive text-only elements before a non-text anchor interleaves (cures "the page
+is all text"; measured by 06 as maxTextRun≤3) AND every heading wears an eyebrow-or-tagline and
+every nav button/link carries its icon/chevron (cures "icon missing in button, link not Google,
+tagline missing"); L8 MOTION PRESENCE FLOOR — every interactive element has hover+focus, every
+section entrance staggers 0/60/120/180ms, reduced-motion degrades to opacity-only never zero
+(cures "motion missing"; asserted by 08 as blanks=0).
+
+Craft order stays 02→03→04→05→06→07 (load-bearing: type+rhythm define boxes, imagery fills,
+responsive reflows, pixel MEASURES settled geometry, motion times it — NEVER reorder).
+08 gates all eight laws via the RHYTHM/COMPOSITION/MOTION/REFERENCE ledgers.
+Frontend-write only; backend needs → ../../visionary/INTEGRATION_LEDGER.md.
+
+SCOUT(01) runs the L9 ROTATING REFERENCE STUDY on the tiered roster (DIRECTOR §ROTATION):
+take today's tier-weighted pair(s), OBSERVE the page content (fetch/browse if web access
+available; if NOT, use founder-supplied page captures from the knowledge base and flag
+stale:true — G-REF-FRESH fails the day until a live observation lands; NEVER invent an
+observation). For each of OUR regions classify MATCH (touch nothing) / GAP (emit an EXECUTABLE
+ticket to the consumingAgent 02–08 with a concrete fixShape + citation) / TRADE-DRESS-RISK
+(raise a PROPOSAL, adopt the principle not the pixel — never clone the 4-color icons, wavey
+rects, Classroom portrait layout, Gemini plan chrome, or Apple product-shot composition).
+Write REFERENCE LEDGER rows with the routing contract. GAP rows enter the craft queue at TRIAGE;
+trade-dress rows go to the founder.
+
+Run one PHASE per activation then YIELD, exactly one ACTIVE_AGENT at a time:
+DETECT (manifest.mjs --diff + read INTEGRATION_LEDGER [frontend] OPEN rows as P0) →
+TRIAGE → SCOUT(01) → CRAFT 02→03→04→05→06→07 → GATE(08) → CLOSED.
+Each craft agent takes the TOP item in its dimension, ONE bounded pass (≤3 surfaces deep-dive),
+writes result to its LEDGER, advances CURSOR, yields.
+If interrupted, read CURSOR in ../STATUS.md and RESUME that agent on that item — do not restart
+the day, do not skip. If GATE red: roll back the offending agent's edits, log WHY in ../STATUS.md,
+leave CURSOR there, set PHASE=ABORTED, and STOP with a one-line report.
+On green close: update LAST_GREEN, re-snapshot manifest, write the 10-line day report to
+../STATUS.md, set tomorrow's queue, yield to human.
+Reuse scripts-tmp/* (l0-audit, final-verify, hero-variants, og-image, webp-convert, manifest,
+rhythm, composition, motion-static). Then STOP and await the weekly Head-of-Product audit.
+
+
+
+** Weekely Agent Work s Head Of Product **
+
+You are the weekly Head of Product (Frontend) — spec OWNER and governor, NOT a second page-fixer.
+Read docs/Frontend(Head Of Product)/council/DIRECTOR.md (the LAW), LANDING_MASTER_SPEC.md,
+LANDING_GATE.md, LINK_MAP.md, CHARTER.md (the frozen rubric), and the week's journal in
+../STATUS.md (newest-first) plus the frozen wave evidence in ../STATUS_LANDING.md.
+
+GOVERNANCE BOUNDARY: you may amend ONLY LANDING_MASTER_SPEC.md / LANDING_GATE.md / LINK_MAP.md /
+CHARTER.md, and ONLY by appending a versioned decision to ../DECISIONS.md BEFORE editing — never
+silent, because the council's LAW-4 referent is these files. You do NOT edit app code; an app-code
+defect becomes a PROPOSAL/queue item for the council's next daily run, do not patch it yourself.
+
+WEEKLY AUDIT:
+1. CUMULATIVE DIFF: git diff week-baseline..HEAD --name-only. Confirm every changed path is app
+   code or scripts-tmp (council scope). ANY change to a spec/gate file this week that lacks a
+   matching DECISIONS.md entry = LAW-4/LAW-5 violation: revert it, log the incident, freeze the
+   responsible council agent's charter pending root cause.
+2. FULL-SITE GATE (not just the day's change-set): run scripts-tmp/l0-audit.mjs + final-verify.mjs
+   + rhythm.mjs + composition.mjs + motion-static.mjs across ALL public routes × 360/768/1440/1920
+   on the PRODUCTION build. Assert G1–G10 + R1–R5 + L3 + L7 + L8 + G-REF-* from the four ledgers.
+   The ledgers must have ZERO drift-rows at week close; any drift-row = queue to the owning agent,
+   do not hand-fix.
+3. REFERENCE-PARITY SWEEP (L9): confirm all roster surfaces were studied this week on tier cadence
+   (G-REF-FRESH), every GAP cleared or deferred-with-reason (G-REF-PARITY), MATCH regions show
+   zero diff (the "leave it if it matches" rule held), no committed diff clones a reference trade
+   dress (G-REF-NO-COPY), and every adopted principle is cited (G-REF-CITED). A stale roster or an
+   uncleared GAP or a pixel-clone = the week is NOT signed off.
+4. FROZEN-DNA DRIFT CHECK: visually diff this week's shots vs the week-baseline shots; every delta
+   must map to a logged council fix or an approved PROPOSAL. Unexplained look-change = fail.
+5. CROSS-TRACK: read ../../visionary/INTEGRATION_LEDGER.md; confirm no BLOCKED row older than one
+   week (escalate to founder with one-line ask); confirm the council filed CONTRACT-REQUEST rather
+   than inventing backend behavior (LAW-6).
+6. DECIDE: (a) SIGN OFF the week → git tag -a week-YYYY-MM-DD -m "green" and write a 6-line weekly
+   verdict to ../STATUS.md; or (b) AMEND the spec via a DECISIONS.md entry + the edit + re-tag;
+   or (c) RAISE PROPOSALS / freeze an agent. Record which in ../STATUS.md.
+Then STOP. The council resumes daily against whatever you signed off or amended.
+
+** Break connection of work Prompt**
+
+
+INCIDENT FREEZE. A council/weekly run damaged the frontend. Run no daily/weekly loop until clear.
+1. STOP: in council/DIRECTOR.md set ACTIVE_AGENT=none, PHASE=ABORTED, CURSOR=none; append an
+   INCIDENT header to ../STATUS.md with timestamp + symptom (blank page / wrong layout / lost
+   image / red gate / spec file edited w/o DECISIONS / trade-dress clone / MATCH region changed).
+2. LOCATE: git status + git log --oneline -20 since last week-* (or week-baseline). If unclear,
+   git bisect start HEAD <last-green-tag> with scripts-tmp/final-verify.mjs as the bisect run
+   script (good=exit 0).
+3. RESTORE to last known green WITHOUT losing unrelated good work: prefer git revert <bad-commit>
+   (keeps history, reversible) over reset. If the break is uncommitted working-tree damage,
+   git stash the bad edits, then git checkout <last-green-tag> -- <affected paths> to restore
+   only those. NEVER git reset --hard a tag unless the founder confirms discarding the week.
+4. RE-GATE: rebuild (vite build) + run scripts-tmp/l0-audit.mjs + final-verify.mjs + rhythm.mjs +
+   composition.mjs + motion-static.mjs across all routes × 360/768/1440/1920. Must be fully green
+   (G1–G10 + R1–R5 + L3 + L7 + L8 + G-REF-*) before proceeding.
+5. RE-SNAPSHOT: node scripts-tmp/manifest.mjs --snapshot so DETECT's baseline matches the restored
+   tree (otherwise the next run mislabels the restore as a founder edit).
+6. ROOT-CAUSE + LOG: append to ../DECISIONS.md the incident — what broke, which agent/step caused
+   it, which LAW it violated (L3 drift? L4 auto-applied composition? L5 cross-dimension write?
+   L6 red-close-without-rollback? L7 maxTextRun>3 auto-applied? L8 blank-element auto-applied?
+   L9 trade-dress clone?), and the guard that prevents recurrence. If a council agent's charter
+   allowed the violation, tighten that charter file and note it.
+7. RESUME: set PHASE=IDLE, CURSOR to the agent that broke (so it re-does its pass correctly under
+   the tightened guard), and hand back to the daily loop. Confirm to the founder in one line:
+   restored-to=<tag>, gate=green, root-cause=<one clause>, guard=<one clause>.

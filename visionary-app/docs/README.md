@@ -1,13 +1,7 @@
-# Visionary Agent Pack — Google-style chained teams
-Protocol: agents run in wave order. Each agent READS master spec + STATUS.md + prior handoffs, DOES its scope, WRITES code/docs, then APPENDS a handoff block to STATUS.md and updates DECISIONS.md/QA.md as relevant. The next agent starts from STATUS.md, never from assumption. Chief Product Engineer (agent 00) owns master spec, resolves conflicts, and merges.
+# Product documentation
 
-STATUS.md handoff template (append, never rewrite history):
-```
-## [Wave N] [Agent ID] — [date]
-Done: …
-Files/routes touched: …
-Decisions: …
-Open for next agent: …
-QA notes: …
-```
-Rules: no agent edits another wave's shipped code without a STATUS entry; design-system changes require agent 03 approval; any landing-page diff blocks merge; every wave ends runnable + logged.
+The internal product's operative documentation and append-only logs live in [visionary](visionary/README.md).
+
+`Frontend(Head Of Product Agent)/` belongs to the separate public/landing team. Do not open or modify it for internal-product work.
+
+The superseded internal pack is preserved, unchanged, in `visionary/archive/legacy-pack/`. It is evidence, not a second active contract.
