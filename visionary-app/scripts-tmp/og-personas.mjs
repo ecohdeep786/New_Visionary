@@ -3,12 +3,12 @@ import { writeFileSync } from "fs";
 
 /* Wave L6 — per-persona OG share cards (1200×630). Taglines by 02-copy, ≤60 chars. */
 const CARDS = [
-  { file: "og-image.png", badge: "Visionary", title: "Learn, ask, practice, and build.", sub: "One intelligence that helps anyone learn, teach, support, and build." },
-  { file: "og-student.png", badge: "Visionary for students", title: "Understand deeply. Build real things.", sub: "Every concept you understand becomes the foundation for the next one." },
-  { file: "og-teacher.png", badge: "Visionary for teachers", title: "Visionary assists. You stay in control.", sub: "Prepare lessons, assign practice, and see evidence-backed insights." },
-  { file: "og-parent.png", badge: "Visionary for parents", title: "Know how to help, each week.", sub: "Plain-language summaries of your child's learning — and how to support it." },
-  { file: "og-professional.png", badge: "Visionary for professionals", title: "Turn what you learn into work that ships.", sub: "Skills, projects, and evidence that compound across your career." },
-  { file: "og-organization.png", badge: "Visionary for organizations", title: "One workspace for every learner.", sub: "Classes, cohorts, insights, and safety controls your people can trust." },
+  { file: "og-image.jpg", badge: "Visionary", title: "Learn, ask, practice, and build.", sub: "One intelligence that helps anyone learn, teach, support, and build." },
+  { file: "og-student.jpg", badge: "Visionary for students", title: "Understand deeply. Build real things.", sub: "Every concept you understand becomes the foundation for the next one." },
+  { file: "og-teacher.jpg", badge: "Visionary for teachers", title: "Visionary assists. You stay in control.", sub: "Prepare lessons, assign practice, and see evidence-backed insights." },
+  { file: "og-parent.jpg", badge: "Visionary for parents", title: "Know how to help, each week.", sub: "Plain-language summaries of your child's learning — and how to support it." },
+  { file: "og-professional.jpg", badge: "Visionary for professionals", title: "Turn what you learn into work that ships.", sub: "Skills, projects, and evidence that compound across your career." },
+  { file: "og-organization.jpg", badge: "Visionary for organizations", title: "One workspace for every learner.", sub: "Classes, cohorts, insights, and safety controls your people can trust." },
 ];
 
 const html = (c) => `<!doctype html><html><head><style>
@@ -39,7 +39,7 @@ const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 for (const c of CARDS) {
   await page.setContent(html(c), { waitUntil: "load" });
   await page.waitForTimeout(200);
-  await page.screenshot({ path: "public/" + c.file });
+  await page.screenshot({ path: "public/" + c.file.replace(/.png$/, ".jpg"), type: "jpeg", quality: 90 });
   console.log(c.file, "written");
 }
 await browser.close();

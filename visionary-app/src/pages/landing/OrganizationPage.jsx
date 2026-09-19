@@ -5,16 +5,17 @@ import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import orgHero from "@/assets/org-face-main-2400w.webp";
 import orgHeroContent from "@/assets/org-face-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
+import orgProblem1 from "@/assets/organization-problem-1-1600w.webp";
+import orgProblem2 from "@/assets/organization-problem-2-1600w.webp";
+import orgProblem3 from "@/assets/organization-problem-3-1600w.webp";
+import orgProblem4 from "@/assets/organization-problem-4-1600w.webp";
+import orgProblem5 from "@/assets/organization-problem-5-1600w.webp";
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
  * Problem Section
  */
-import problemexam from "@/assets/problem-exam.webp";
-import problempractice from "@/assets/problem-practice.webp";
-import problemrevision from "@/assets/problem-revision.webp";
-import problemunderstanding from "@/assets/problem-understanding.webp";
 
 /**
  * Journey Section images (local)
@@ -176,11 +177,11 @@ const ORG_HERO_WORDS = ["Leading.", "to scale."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: problemunderstanding, alt: "Organization rolling out learning tools" },
-  { word: "Progress", quote: "Every department reports green. The outcomes still surprise us.", image: problempractice, alt: "Leaders reviewing organizational progress" },
-  { word: "Gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: problemrevision, alt: "Team discovering learning gaps late" },
-  { word: "Support", quote: "Our best mentors can only be in one classroom at a time.", image: secondaryStudent, alt: "Mentor supporting many learners" },
-  { word: "Outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: problemexam, alt: "Organization measuring outcomes" },
+  { word: "Adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: orgProblem1, alt: "Leader facing low tool adoption" },
+  { word: "Progress", quote: "Every department reports green. The outcomes still surprise us.", image: orgProblem2, alt: "Leaders reviewing conflicting progress reports" },
+  { word: "Gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: orgProblem3, alt: "Team discovering skill gaps too late" },
+  { word: "Support", quote: "Our best mentors can only be in one classroom at a time.", image: orgProblem4, alt: "Mentor stretched across many learners" },
+  { word: "Outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
 ];
 const CYCLE_MS = 4000;
 

@@ -12,48 +12,48 @@ export const ROUTE_META = {
   "/": {
     title: "Visionary — Learn, ask, practice, and build",
     description: "One intelligence that helps anyone learn, teach, support, and build. Start free with Visionary.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
     preloadImage: landingHeroImg,
   },
   "/student": {
     title: "Visionary for students | Learn at your pace",
     description: "Understand every concept deeply, practice with feedback, and build real projects — in the language you think in.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
     preloadImage: { src: HEROES.studentHero, srcSet: HERO_SRCSETS[HEROES.studentHero] },
   },
   "/teacher": {
     title: "Visionary for teachers | Prepare and teach",
     description: "Prepare lessons, assign practice, and see evidence-backed insights — Visionary assists, you stay in control.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
     preloadImage: { src: HEROES.teacherHero, srcSet: HERO_SRCSETS[HEROES.teacherHero] },
   },
   "/parent": {
     title: "Visionary for parents | Follow their progress",
     description: "Get plain-language summaries of your child's learning, connect with teachers, and know how to help each week.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
     preloadImage: { src: HEROES.parentHero, srcSet: HERO_SRCSETS[HEROES.parentHero] },
   },
   "/professional": {
     title: "Visionary for professionals | Grow your skills",
     description: "Learn from real work problems, practice interviews, and build a portfolio of evidence-backed skills at your pace.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
     preloadImage: { src: HEROES.proHero, srcSet: HERO_SRCSETS[HEROES.proHero] },
   },
   "/organization": {
     title: "Visionary for organizations | Teach at scale",
     description: "Give your institution one workspace for classes, cohorts, insights, and safety controls your people can trust.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
     preloadImage: { src: HEROES.orgHero, srcSet: HERO_SRCSETS[HEROES.orgHero] },
   },
   "/how-it-works": {
     title: "How Visionary works",
     description: "See how one intelligence teaches, explains, and adapts — from your first question to demonstrated mastery.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/help": {
     title: "Help Center | Visionary",
     description: "Find answers about accounts, classes, safety, and using Visionary — or contact our team.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/pricing": {
     jsonLd: [
@@ -81,12 +81,12 @@ export const ROUTE_META = {
     ],
     title: "Pricing | Visionary",
     description: "Simple plans for learners and organizations. Start free and upgrade when you need more.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/download": {
     title: "Download Visionary",
     description: "Get Visionary on your devices and start learning, asking, and building wherever you are.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/about": {
     jsonLd: [{
@@ -99,85 +99,85 @@ export const ROUTE_META = {
     }],
     title: "About Visionary",
     description: "Why we're building one intelligence for learning — our mission, team, and principles.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/research": {
     title: "Research | Visionary",
     description: "Read how we study learning, measure understanding, and publish what works.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/community": {
     title: "Community | Visionary",
     description: "Join learners, teachers, and parents sharing what works in real classrooms and homes.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/updates": {
     title: "Updates | Visionary",
     description: "Product news, releases, and improvements from the Visionary team.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/partners": {
     title: "Partners | Visionary",
     description: "Work with schools, boards, and organizations bringing Visionary to their learners.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/referral": {
     title: "Refer a friend | Visionary",
     description: "Invite friends to Visionary and grow a community of learners together.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/privacy": {
     title: "Privacy policy | Visionary",
     description: "How Visionary collects, uses, and protects your data — explained in plain language.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/terms": {
     title: "Terms of service | Visionary",
     description: "The terms that govern your use of Visionary.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/cookies": {
     title: "Cookie policy | Visionary",
     description: "How Visionary uses cookies and the controls you have.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/safety": {
     title: "Safety | Visionary",
     description: "How we keep learners safe: protections, moderation, and controls for schools and families.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/security": {
     title: "Security | Visionary",
     description: "How Visionary protects your account and data with layered security practices.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/accessibility": {
     title: "Accessibility | Visionary",
     description: "Our commitment to an accessible product for every learner, teacher, and parent.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/careers": {
     title: "Careers | Visionary",
     description: "Help build one intelligence for learning. See open roles across teams.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   "/contact": {
     title: "Contact | Visionary",
     description: "Questions about Visionary or bringing it to your organization? Talk to us.",
-    image: "/og-image.png",
+    image: "/og-image.jpg",
   },
   /* Auth surfaces (login/register/recovery) are owned by the auth pack — the
      head system leaves them untouched, per Head-of-Product scope decision. */
 };
 
-/* Per-persona OG share cards (L6). Other routes share og-image.png. */
+/* Per-persona OG share cards (L6). Other routes share og-image.jpg (JPEG q90 — crawler-friendly, 6x lighter than PNG). */
 export const PERSONA_OG = {
-  "/": "/og-image.png",
-  "/student": "/og-student.png",
-  "/teacher": "/og-teacher.png",
-  "/parent": "/og-parent.png",
-  "/professional": "/og-professional.png",
-  "/organization": "/og-organization.png",
+  "/": "/og-image.jpg",
+  "/student": "/og-student.jpg",
+  "/teacher": "/og-teacher.jpg",
+  "/parent": "/og-parent.jpg",
+  "/professional": "/og-professional.jpg",
+  "/organization": "/og-organization.jpg",
 };
 
 /* 404 fallback applies to any path that is not an internal or auth surface. */

@@ -5,6 +5,10 @@ import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import proHero from "@/assets/pro-face-main-2400w.webp";
 import proHeroContent from "@/assets/pro-face-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
+import proProblem1 from "@/assets/professional-problem-1-1600w.webp";
+import proProblem2 from "@/assets/professional-problem-2-1600w.webp";
+import proProblem3 from "@/assets/professional-problem-3-1600w.webp";
+import proProblem4 from "@/assets/professional-problem-4-1600w.webp";
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
@@ -175,11 +179,11 @@ const HERO_WORDS = ["Building.", "to apply.", "to grow."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Application", quote: "I took three courses. I still don't know how to use them at work.", image: problempractice, alt: "Professional trying to apply learning at work" },
-  { word: "Relevance", quote: "I read every article. The next project still feels like the first.", image: problemrevision, alt: "Professional surrounded by resources" },
-  { word: "Growth", quote: "Five years in, and I can't show what I've actually learned.", image: higherStudent, alt: "Professional reflecting on career growth" },
-  { word: "Focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: problemexam, alt: "Professional balancing work and learning" },
-  { word: "Results", quote: "My team ships. I still don't know if we're building it right.", image: competitiveStudent, alt: "Professional reviewing team work" },
+  { word: "Application", quote: "I took three courses. I still don't know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
+  { word: "Relevance", quote: "I read every article. The next project still feels like the first.", image: proProblem2, alt: "Professional overwhelmed by learning resources" },
+  { word: "Growth", quote: "Five years in, and I can't show what I've actually learned.", image: proProblem3, alt: "Professional reflecting on career growth" },
+  { word: "Focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
+  { word: "Results", quote: "My team ships. I still don't know if we're building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
 ];
 const CYCLE_MS = 4000;
 

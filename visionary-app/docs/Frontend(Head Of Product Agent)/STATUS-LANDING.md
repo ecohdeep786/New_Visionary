@@ -646,3 +646,76 @@ R5 RELEASE CHECKLIST: PASS — every decision recorded; founder items flagged (d
 RESULT: G1–G10 + R1–R5 ALL PASS — FINAL SIGN-OFF GRANTED.
 
 **Wave L6 complete. Landing frontend journey closed. Handoff bundle delivered. Ready for backend integration.**
+
+---
+## [Wave L6-IMG] [01-PM] — 2026-09-17
+Done: ASSET INVENTORY published for the 13 new/updated per-category images (contact-sheet review in session log). Per category: TEACHER — 4 new problem images (Teacher_Problem_1–4.png, 900×900, founder-supplied) → teacher-problem-{1..4}.webp (original dims, q85); usage: struggle cluster slides. PROFESSIONAL — 4 new (professional-problem-{1..4}.jpeg, 2048×2048) → masters + 1600w content variants; usage: struggle cluster. ORGANIZATION — 5 new (organization-problem-{1..5}.jpeg, 2048×2048) → masters + 1600w variants; usage: struggle cluster. PARENT — no new imagery; existing problem-* set retained (unchanged). STUDENT — unchanged (reference pipeline). Old assets fully replaced: the student-generic problem-* images were replaced IN THE STRUGGLE SLIDES of teacher/professional/organization (remain in use by other sections: journey/intelligence/continuity — inventory: retained). HERO images: none changed (heroBg rule unaffected — all four heroes re-verified at 1440, seams clean). OG cards: refreshed as JPEG (see 04).
+Files: none (inventory).
+Decisions: struggle clusters get category-real imagery (was student-generic — flagged as wrong-asset usage); masters deleted after conversion (hold released); OG cards → JPEG q90 (crawler-supported, 6× lighter).
+Open for next: 04-frontend implements.
+QA+gate refs: scripts-tmp/contact-sheet.png.
+
+---
+## [Wave L6-IMG] [03-design-system] — 2026-09-17
+Done: Hero background rule check: NO new hero images this wave — all four affected personas keep their existing heroes; heroBg (#ffffff) re-verified visually correct at 1440 on /teacher /parent /professional /organization (seam shots: photo blends into section, zero rectangle edges — L1-hero-fix bar holds). No new ad-hoc hex entered any component (the new assets are files, not colors; page code uses existing tokens only). Struggle-circle grammar unchanged (circle cluster + hand-drawn arrow + quote + dots).
+Files: none.
+Decisions: none.
+Open for next: none.
+QA+gate refs: scripts-tmp/seam-{teacher,parent,professional,organization}.png.
+
+---
+## [Wave L6-IMG] [04-frontend] — 2026-09-17
+Done: Exact student pipeline applied to all 13 assets. (a) Masters → WebP q85 at ORIGINAL pixel dimensions (teachers 900×900 → 31–52KB; org/pro 2048×2048 → 117–280KB). (b) srcset: heroes unchanged (800/1600/2400 already shipped); content slots → 1600w single variant for the 9 org/pro images (72–178KB); teacher 900w originals ARE the content files. (c) Imports rewired: TeacherPage/CollegePage/OrganizationPage SLIDES arrays now use per-category imagery (teacherProblem1–4 / proProblem1–4 / orgProblem1–5); lint --fix removed orphaned imports (CollegePage retains problem-* imports legitimately used by INTELLIGENCE_STEP_IMG). (d) routeMeta preloads: unchanged (heroes untouched; imagesrcset byte-match re-verified — preloadHasSrcset true on all three routes, currentSrc = preloaded candidate). (e) heroBg: no change needed (03). (f) Alt text: every new image has meaningful persona-specific alt ("Teacher looking overwhelmed after class", "Leader facing low tool adoption", "Professional struggling to apply coursework at work", etc.); decorative cluster art remains aria-hidden; 0 empty non-decorative alts. (g) Content slots confirmed pointing at 1600w variants, not masters. BONUS (release hold aftermath): founder sources deleted → build caught /about's stale 4096 imports → fixed (1600w); OG cards re-rendered JPEG q90 (51–60KB vs 315KB PNG) with PERSONA_OG/routeMeta/FINAL_SCREENSHOTS updated — verified per route at runtime.
+Files: src/pages/landing/{Teacher,College,Organization}Page.jsx, src/assets/teacher-problem-*.webp + organization/professional-problem-*-1600w.webp (22 new files), public/og-*.jpg (6), scripts-tmp/{problem-convert,og-personas}.mjs.
+Decisions: student-generic images retained for non-struggle sections (journey/intelligence/continuity) — replacing those is a separate content decision, not an asset-normalization defect; OG → JPEG within SEO verification scope (dims unchanged 1200×630).
+Open for next: 07-perf measurements.
+QA+gate refs: runtime probes below.
+
+---
+## [Wave L6-IMG] [07-perf] — 2026-09-17
+Done: Entry-profile measurements (390×844 DPR2). HERO 4G: /teacher 26+72=98KB · /professional 19KB · /organization 27+88=115KB — all ≤250KB/route, ≤130KB/file. NEW CONTENT-SLOT TRANSFERS: teacher problems 52KB · org problems 178KB (largest, organization-problem-1-1600w) · pro problems 96KB — well within reason for content imagery. PRELOAD BYTE-MATCH: currentSrc equals a preloaded imagesrcset candidate on all 3 routes. CLS @360: 0.076 on all three (unchanged, <0.1). DIST BUDGET: after source deletion + OG→JPEG, 3.92MB gz ≤5MB target (L6's 4.28MB −1.9MB OG savings +0.9MB new imagery). Route chunks unchanged (all <150KB gz); prefetcher ≈284KB gz unchanged.
+Files: none beyond 04 changes.
+Decisions: none — all bars met.
+Open for next: none.
+QA+gate refs: measurements in session log.
+
+---
+## [Wave L6-IMG] [06-a11y] — 2026-09-17
+Done: Alt-text audit evidence per persona: /teacher struggle alt "Teacher looking overwhelmed after class"; /professional "Professional struggling to apply coursework at work"; /organization "Leader facing low tool adoption" — meaningful + persona-specific; 0 empty non-decorative alts on all three routes; decorative imagery stays out of the a11y tree (verified aria-hidden inheritance). Hero sr-only sentences unchanged and matching personas: "Teaching, to reach every learner." / "Learning, to apply what you learn." / "One intelligence, to scale understanding." Parent + student untouched (prior evidence holds).
+Files: none (verification).
+Decisions: none.
+Open for next: none.
+QA+gate refs: runtime audit JSON in session log.
+
+---
+## [Wave L6-IMG] [09-qa-linkcheck] — 2026-09-17
+Done: Broken-image sweep across ALL public routes × 7 widths (182 loads): 0 broken (complete && naturalWidth=0 after full scroll), 0 console/page errors, 0 overflow. Stale .png/.jpeg import grep in landing scope: 0. No route references a deleted/renamed asset (build passes = all imports resolve; runtime 0 HTTP≥400).
+Files: scripts-tmp/final-verify-report.json (refreshed).
+Decisions: none.
+Open for next: none.
+QA+gate refs: final-verify-report.json.
+
+---
+## [Wave L6-IMG] [10-pixel] — 2026-09-17
+Done: Shot all persona routes × 360/768/1440 into l6img-shots/ (78 PNGs — full public set per standing practice): 0 overflow, 0 errors. SEAM CHECK at 1440 on all four heroes (teacher/parent/professional/organization): photo blends into heroBg, NO rectangle edge — bar holds. Diff vs l6-shots: intentional deltas ONLY — struggle imagery now category-real on /teacher /professional /organization (verified visually: same circle-cluster grammar, new faces); everything else unchanged.
+Files: docs/Frontend(Head Of Product Agent)/l6img-shots/, scripts-tmp/seam-*.png.
+Decisions: struggle-image swap is the approved delta.
+Open for next: HEAD-OF-PRODUCT GATE.
+QA+gate refs: l6img-shots/, seam shots.
+
+---
+## [Wave L6-IMG] [HEAD-OF-PRODUCT GATE — G2/G5/G7 + R2 RE-RUN] — 2026-09-17
+G2 DESIGN CONTINUITY: PASS — 0 ad-hoc hex (crawl); heroBg rule re-verified (4 seam shots, zero edges); grammar unchanged.
+G5 RESPONSIVE: PASS — 182 loads, 0 overflow at 360→1920.
+G7 PERF: PASS — CLS 0.076 (<0.1) on affected routes; preload byte-match verified; dist 3.92MB gz ≤5MB.
+R2 BUNDLE/TRANSFER BARS: PASS — hero 4G ≤115KB/route (≤250 bar), ≤88KB/file (≤130 bar); content slots ≤178KB; route chunks <150KB gz; prefetcher ≈284KB gz.
+HOLD RELEASED: 13 founder sources deleted after grep-verified zero .png/.jpeg imports; build green; runtime clean.
+RESULT: ALL RE-RUN GATES PASS — Wave L6-IMG complete. Every persona category now uses its own real imagery with the identical pipeline (q85 original-dims masters, 1600w content variants, persona-specific alts). STOPPING for Head-of-Product review.
+
+---
+## [Wave L6-IMG] [11-release — workspace cleanup] — 2026-09-17
+Done: TEMP FILE CLEANUP after journey close (product verified unaffected first: lint + build + 6-route smoke = 0 errors, 0 broken images). DELETED: all scratch outputs in scripts-tmp (verification screenshots, contact sheets, HTML probes, debug tools, status staging files, report JSONs — durable evidence already lives in STATUS records + release/EVIDENCE_BUNDLE) and superseded wave shot folders l1-shots→l6-shots (54MB; l6img-shots is the current visual record, baseline/ retained as the L0 design reference). KEPT (11 small tools, 76KB — the re-testing + deploy pipeline): l0-audit.mjs (crawl) · final-verify.mjs (full-site sweep, mount-aware) · l1-qa.mjs (meta/preload/CLS battery) · l3-walkthrough.mjs (SR walkthroughs) · l5-verify.mjs (keyboard journeys/reduced-motion/locale) · l6img-pixel.mjs + baseline.mjs (pixel shots incl. full route list) · generate-sitemap.mjs (LAUNCH_CHECKLIST pre-deploy step) · og-image.mjs + og-personas.mjs (OG card regeneration) · problem-convert.mjs (asset pipeline for any future imagery). Re-running any future verification regenerates reports/shots into the same locations. RESULT: workspace temp footprint 62MB → 15MB; product untouched.
+Files: scripts-tmp/ (pruned), docs/Frontend(Head Of Product Agent)/{l1..l6}-shots/ (removed).
+Decisions: keep current + baseline shot sets as the standing visual record; keep all reusable QA/deploy tools; root l0-report.json/audit-report.json retained (tracked, small).
+Open for next: none — landing journey remains CLOSED pending founder domain + launch date.
+QA+gate refs: post-cleanup smoke test in session log (0 errors).

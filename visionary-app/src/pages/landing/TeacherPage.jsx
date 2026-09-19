@@ -5,16 +5,16 @@ import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import teacherHero from "@/assets/teacher-hero-main-2400w.webp";
 import teacherHeroContent from "@/assets/teacher-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
+import teacherProblem1 from "@/assets/teacher-problem-1.webp";
+import teacherProblem2 from "@/assets/teacher-problem-2.webp";
+import teacherProblem3 from "@/assets/teacher-problem-3.webp";
+import teacherProblem4 from "@/assets/teacher-problem-4.webp";
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
  * Problem Section
  */
-import problemexam from "@/assets/problem-exam.webp";
-import problempractice from "@/assets/problem-practice.webp";
-import problemrevision from "@/assets/problem-revision.webp";
-import problemunderstanding from "@/assets/problem-understanding.webp";
 
 /**
  * Our Journey Section
@@ -175,11 +175,11 @@ const TEACHER_HERO_WORDS = ["Teaching.", "to grow.", "to reach."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Understanding", quote: "I taught the whole class. Half of them still left lost.", image: problemunderstanding, alt: "Teacher addressing a full classroom" },
-  { word: "Engagement", quote: "I can see the eyes glaze over. I just don't know whose.", image: problemrevision, alt: "Teacher watching a quiet classroom" },
-  { word: "Pace", quote: "I finish the syllabus. I never finish the learning.", image: problempractice, alt: "Teacher pacing a lesson plan" },
-  { word: "Practice", quote: "They copy the steps. They can't start the problem alone.", image: problempractice, alt: "Teacher guiding a student through practice" },
-  { word: "Results", quote: "The exam shows the gap I never saw coming.", image: problemexam, alt: "Teacher reviewing exam results" },
+  { word: "Understanding", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem1, alt: "Teacher looking overwhelmed after class" },
+  { word: "Engagement", quote: "I can see the eyes glaze over. I just don't know whose.", image: teacherProblem2, alt: "Teacher puzzled by disengaged students" },
+  { word: "Pace", quote: "I finish the syllabus. I never finish the learning.", image: teacherProblem3, alt: "Teacher stressed about lesson pacing" },
+  { word: "Practice", quote: "They copy the steps. They can't start the problem alone.", image: teacherProblem4, alt: "Teacher reviewing student practice work" },
+  { word: "Results", quote: "The exam shows the gap I never saw coming.", image: teacherProblem2, alt: "Teacher searching for the gap in exam results" },
 ];
 const CYCLE_MS = 4000;
 

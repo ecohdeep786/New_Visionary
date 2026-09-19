@@ -150,7 +150,7 @@ export function PageMeta(props) {
 const NOT_FOUND_META = {
   title: "Page not found | Visionary",
   description: "The page you're looking for doesn't exist. Head back to Visionary to keep going.",
-  image: "/og-image.png",
+  image: "/og-image.jpg",
 };
 
 /**
