@@ -143,7 +143,7 @@ export default function SecurityPage() {
                 <br />
                 <span style={{ color: C.blue }}>we work to protect.</span>
               </h1>
-              <p className="mt-[calc(48px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
+              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
                 Your learning, conversations, ideas, and progress can become part of your journey. Security is what helps keep that information protected as you use Visionary.
               </p>
         <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
@@ -403,7 +403,7 @@ export default function SecurityPage() {
                       <br />
                       <span style={{ color: C.blue }}>Your trust should, too.</span>
                     </h2>
-                    <p className="mt-[calc(36px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
+                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
                       Security is part of how Visionary earns the right to carry your learning journey forward.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">

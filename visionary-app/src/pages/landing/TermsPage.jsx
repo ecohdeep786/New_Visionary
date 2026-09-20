@@ -138,7 +138,7 @@ export default function TermsPage() {
                 <br />
                 <span style={{ color: C.blue }}>Here is what you are agreeing to.</span>
               </h1>
-              <p className="mt-[calc(48px*0.421)] max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
+              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
                 These Terms explain the rules that apply when you use Visionary, our website, applications, products, and services.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
@@ -394,7 +394,7 @@ export default function TermsPage() {
                       <br />
                       <span style={{ color: C.blue }}>Better understanding.</span>
                     </h2>
-                    <p className="mt-[calc(36px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
+                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
                       Visionary is built to help people learn, create, and move forward. These Terms explain the responsibilities that make that possible.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">

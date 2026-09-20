@@ -407,10 +407,8 @@ function AboutBenefitsSection() {
 
               <div className={`flex flex-1 flex-col ${c.big ? "p-8 lg:p-10" : "p-7"}`}>
                 <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{c.label}</p>
-                <h3 className={`mt-3 font-medium tracking-[0] ${c.big ? "leading-[1.15] text-[clamp(22px,2.4vw,32px)]" : "leading-[1.25] text-[20px]"}`} style={{ color: COLORS.ink }}>
-                  {c.title}
-                </h3>
-                <p className={`mt-3 font-normal tracking-[0] transition-all duration-300 group-hover:font-medium ${c.big ? "leading-[25px] text-[17.5px]" : "leading-[1.6] text-[15px]"}`} style={{ color: COLORS.grey }}>
+                <h3 className={`${c.big ? "mt-[calc(clamp(22px,2.4vw,32px)*0.375)]" : "mt-[12px]"} font-medium tracking-[0] ${c.big ? "leading-[1.15] text-[clamp(22px,2.4vw,32px)]" : "leading-[1.25] text-[20px]"}`} style={{ color: COLORS.ink }}>{c.title}</h3>
+                <p className={`${c.big ? "mt-[calc(clamp(22px,2.4vw,32px)*0.375)]" : "mt-[12px]"} font-normal tracking-[0] transition-all duration-300 group-hover:font-medium ${c.big ? "leading-[25px] text-[17.5px]" : "leading-[1.6] text-[15px]"}`} style={{ color: COLORS.grey }}>
                   {c.line}
                 </p>
                 <span className="mt-auto pt-8">

@@ -86,7 +86,7 @@ export default function NewPersona({
               <span className="sr-only">{srSentence}</span>
             </h1>
             <p
-              className="mt-6 max-w-[410px] font-normal tracking-[0] leading-[1.6] text-[clamp(15px,0.97vw,17px)]"
+              className="mt-[calc(clamp(40px,9.57vw,168px)*0.167)] max-w-[410px] font-normal tracking-[0] leading-[1.6] text-[clamp(15px,0.97vw,17px)]"
               style={{ color: "#121317", ...rise(140) }}
             >
               {sub}

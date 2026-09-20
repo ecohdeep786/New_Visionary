@@ -20,6 +20,7 @@ const C = {
   mist: "#dadce0",
   canvas: "#f8f9fa",
   blue: "#4285F4",
+  darkblue:"#0b57d2",
 };
 
 /* Persona metadata */
@@ -499,7 +500,7 @@ export default function LandingNav() {
           <Link
             to="/register"
             className="flex h-11 items-center rounded-full px-5 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
-            style={{ backgroundColor: C.blue }}
+            style={{ backgroundColor: C.darkblue }}
           >
             Get Started
           </Link>
@@ -705,7 +706,7 @@ export default function LandingNav() {
               to="/register"
               onClick={() => setMobileOpen(false)}
               className="flex h-11 items-center justify-center rounded-full text-[15px] font-medium tracking-[0.24px] text-white"
-              style={{ backgroundColor: C.blue }}
+              style={{ backgroundColor: C.darkblue }}
             >
               Get Started
             </Link>

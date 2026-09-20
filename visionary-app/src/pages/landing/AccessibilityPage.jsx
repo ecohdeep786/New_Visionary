@@ -146,7 +146,7 @@ export default function AccessibilityPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>Use Visionary your way.</span>
               </h1>
-              <p className="mt-[calc(48px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 People do not all read, hear, speak, move, or interact with technology in the same way. Visionary should make room for those differences so more people can understand, practise, create, and continue.
               </p>
         <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
@@ -373,7 +373,7 @@ export default function AccessibilityPage() {
                       <br />
                       <span style={{ color: COLORS.blue }}>more than one way in.</span>
                     </h2>
-                    <p className="mt-[calc(36px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       Visionary is built around the idea that people learn differently. Accessibility is part of making that idea real.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">

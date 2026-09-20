@@ -32,11 +32,15 @@ const measure = (page) => page.evaluate(() => {
     // (1) TRUE sub: the immediate next sibling, only if it is a <p> (or a wrapper whose FIRST content is a <p> with no heading/grid between)
     let node = h.nextElementSibling;
     let hops = 0;
+    const hSec = h.closest("section");
     while (node && hops < 3) {
+      // the pair must stay inside the heading's own section — never cross a boundary
+      if (node.tagName === "SECTION" || (node.closest("section") && node.closest("section") !== hSec)) break;
       if (node.tagName === "P") { pair = node; kind = "h→sub"; break; }
-      const firstP = node.querySelector?.("p");
-      // accept a wrapper only if it opens with a paragraph and has no grid of cards
-      if (firstP && !node.querySelector("img, svg, h1, h2, h3, ul, table")) { pair = firstP; kind = "h→sub"; break; }
+      const ps = node.querySelectorAll?.("p");
+      const firstP = ps && ps.length ? ps[0] : null;
+      // accept a wrapper only if it opens with exactly ONE paragraph, no cards/grid
+      if (firstP && ps.length === 1 && !node.querySelector("img, svg, h1, h2, h3, ul, table") && getComputedStyle(node).display !== "grid") { pair = firstP; kind = "h→sub"; break; }
       if (node.tagName === "UL" || node.tagName === "TABLE" || node.querySelector("img, svg, h2, h3")) break;
       node = node.nextElementSibling; hops++;
     }

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-19T20:32:01.120Z",
+ "generated": "2026-09-20T05:13:50.138Z",
  "ledger": [
   {
    "route": "/",
@@ -1302,11 +1302,10 @@
    "ratios": {
     "360": 0.333,
     "768": 0.333,
-    "1440": 0.333,
     "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "spread 0em (360:0.333 768:0.333 1920:0.333)"
   },
   {
    "route": "/how-it-works",
@@ -1335,6 +1334,15 @@
   {
    "route": "/how-it-works",
    "unit": "How you use Visionary,your way.",
+   "ratios": {
+    "1440": 0.333
+   },
+   "ok": true,
+   "drift": "insufficient widths"
+  },
+  {
+   "route": "/how-it-works",
+   "unit": "One loop, check.",
    "ratios": {
     "1440": 0.333
    },
@@ -1631,13 +1639,15 @@
   },
   {
    "route": "/pricing",
-   "unit": "One intelligence. Priced for your classr",
+   "unit": "One intelligence. Priced for your journe",
    "ratios": {
     "360": 0.333,
-    "768": 0.333
+    "768": 0.333,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/pricing",
@@ -1689,18 +1699,6 @@
   },
   {
    "route": "/pricing",
-   "unit": "Every journey has a plan.",
-   "ratios": {
-    "360": 2.833,
-    "768": 2.767,
-    "1440": 1.518,
-    "1920": 1.518
-   },
-   "ok": false,
-   "drift": "spread 1.315em (360:2.833 768:2.767 1440:1.518 1920:1.518)"
-  },
-  {
-   "route": "/pricing",
    "unit": "Questions about pricing, answered. [eyeb",
    "ratios": {
     "360": 0.333,
@@ -1722,16 +1720,6 @@
    },
    "ok": true,
    "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
-  },
-  {
-   "route": "/pricing",
-   "unit": "One intelligence. Priced for your journe",
-   "ratios": {
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (1440:0.333 1920:0.333)"
   },
   {
    "route": "/download",
@@ -3323,11 +3311,11 @@
    "ratios": {
     "360": 0.588,
     "768": 0.588,
-    "1440": 0.588,
-    "1920": 0.588
+    "1440": 0.57,
+    "1920": 0.57
    },
    "ok": true,
-   "drift": "spread 0em (360:0.588 768:0.588 1440:0.588 1920:0.588)"
+   "drift": "spread 0.018em (360:0.588 768:0.588 1440:0.57 1920:0.57)"
   },
   {
    "route": "/privacy",
@@ -3383,11 +3371,11 @@
    "ratios": {
     "360": 0.471,
     "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "1440": 0.456,
+    "1920": 0.456
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0.015em (360:0.471 768:0.471 1440:0.456 1920:0.456)"
   },
   {
    "route": "/privacy",
@@ -3598,36 +3586,36 @@
    "unit": "Using Visionary.Here is what you are agr",
    "ratios": {
     "360": 0.421,
-    "768": 0.316,
-    "1440": 0.266,
-    "1920": 0.266
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
-   "ok": false,
-   "drift": "spread 0.155em (360:0.421 768:0.316 1440:0.266 1920:0.266)"
+   "ok": true,
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/terms",
    "unit": "Clear rules.Better understanding.",
    "ratios": {
     "360": 0.499,
-    "768": 0.374,
-    "1440": 0.374,
-    "1920": 0.374
+    "768": 0.499,
+    "1440": 0.499,
+    "1920": 0.499
    },
-   "ok": false,
-   "drift": "spread 0.125em (360:0.499 768:0.374 1440:0.374 1920:0.374)"
+   "ok": true,
+   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
   },
   {
    "route": "/security",
    "unit": "What you trust Visionary with,we work to",
    "ratios": {
     "360": 0.421,
-    "768": 0.316,
-    "1440": 0.266,
-    "1920": 0.266
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
-   "ok": false,
-   "drift": "spread 0.155em (360:0.421 768:0.316 1440:0.266 1920:0.266)"
+   "ok": true,
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/security",
@@ -3766,24 +3754,24 @@
    "unit": "Your knowledge should move forward.Your ",
    "ratios": {
     "360": 0.499,
-    "768": 0.374,
-    "1440": 0.374,
-    "1920": 0.374
+    "768": 0.499,
+    "1440": 0.499,
+    "1920": 0.499
    },
-   "ok": false,
-   "drift": "spread 0.125em (360:0.499 768:0.374 1440:0.374 1920:0.374)"
+   "ok": true,
+   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
   },
   {
    "route": "/accessibility",
    "unit": "Learn your way.Use Visionary your way.",
    "ratios": {
     "360": 0.421,
-    "768": 0.316,
-    "1440": 0.266,
-    "1920": 0.266
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
-   "ok": false,
-   "drift": "spread 0.155em (360:0.421 768:0.316 1440:0.266 1920:0.266)"
+   "ok": true,
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/accessibility",
@@ -3934,12 +3922,12 @@
    "unit": "Understanding should havemore than one w",
    "ratios": {
     "360": 0.499,
-    "768": 0.374,
-    "1440": 0.374,
-    "1920": 0.374
+    "768": 0.499,
+    "1440": 0.499,
+    "1920": 0.499
    },
-   "ok": false,
-   "drift": "spread 0.125em (360:0.499 768:0.374 1440:0.374 1920:0.374)"
+   "ok": true,
+   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
   },
   {
    "route": "/cookies",

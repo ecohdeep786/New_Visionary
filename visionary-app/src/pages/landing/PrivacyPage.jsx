@@ -283,7 +283,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="what-we-collect"
-                className="mt-[calc(clamp(34px,4.5vw,64px)*0.471)] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 We collect what we need
@@ -294,7 +294,7 @@ export default function PrivacyPage() {
               </h2>
 
               <p
-                className="mt-[calc(clamp(34px,4.5vw,64px)*0.588)] max-w-[720px] text-[16px] leading-[1.7]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] max-w-[720px] text-[16px] leading-[1.7]"
                 style={{ color: COLORS.grey }}
               >
                 The information Visionary handles depends on what you do with
@@ -341,7 +341,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="purpose"
-                className="mx-auto mt-[calc(clamp(34px,4.5vw,64px)*0.471)] max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
+                className="mx-auto mt-[calc(clamp(34px,4.5vw,62px)*0.471)] max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Information should have
