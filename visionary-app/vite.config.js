@@ -4,11 +4,8 @@ import { fileURLToPath, URL } from 'node:url'
 
 const securityHeaders = {
   'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
-  'Cross-Origin-Opener-Policy': 'same-origin',
-  'Cross-Origin-Resource-Policy': 'same-origin',
 }
 
 const productionSecurityHeaders = {
