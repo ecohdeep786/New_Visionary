@@ -283,7 +283,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="what-we-collect"
-                className="mt-4 text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,64px)*0.471)] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 We collect what we need
@@ -294,7 +294,7 @@ export default function PrivacyPage() {
               </h2>
 
               <p
-                className="mt-5 max-w-[720px] text-[16px] leading-[1.7]"
+                className="mt-[calc(clamp(34px,4.5vw,64px)*0.588)] max-w-[720px] text-[16px] leading-[1.7]"
                 style={{ color: COLORS.grey }}
               >
                 The information Visionary handles depends on what you do with
@@ -341,7 +341,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="purpose"
-                className="mx-auto mt-4 max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
+                className="mx-auto mt-[calc(clamp(34px,4.5vw,64px)*0.471)] max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Information should have
@@ -399,7 +399,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="sharing"
-                className="mt-4 max-w-[620px] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] max-w-[620px] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Your information
@@ -483,7 +483,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="your-controls"
-                className="mt-4 text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Know what you can do
@@ -539,7 +539,7 @@ export default function PrivacyPage() {
             </p>
 
             <h2 id="security"
-              className="mt-4 text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
+              className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
               style={{ color: COLORS.ink }}
             >
               Privacy needs
@@ -586,7 +586,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="retention"
-                className="mt-4 text-[clamp(34px,4.5vw,60px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,60px)*0.471)] text-[clamp(34px,4.5vw,60px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Keep what you need.
@@ -684,7 +684,7 @@ export default function PrivacyPage() {
                   </p>
 
                   <h2 id="younger-learners"
-                    className="mt-3 text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.08]"
+                    className="mt-[calc(clamp(28px,3.5vw,44px)*0.429)] text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.08]"
                     style={{ color: COLORS.ink }}
                   >
                     Extra care for
@@ -734,7 +734,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="explainers"
-                className="mt-4 text-[clamp(34px,4.3vw,58px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.3vw,58px)*0.471)] text-[clamp(34px,4.3vw,58px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Privacy,
@@ -763,7 +763,7 @@ export default function PrivacyPage() {
                         openFaq === index ? null : index
                       )
                     }
-                    className="flex w-full items-center justify-between gap-8 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="flex w-full items-center justify-between gap-8 py-6 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     <span
                       className="text-[17px] leading-[1.45]"
@@ -865,7 +865,7 @@ export default function PrivacyPage() {
           <div className="mx-auto grid w-full max-w-[1240px] gap-6 lg:grid-cols-2">
             <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
               <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Under the DPDP Act, 2023</p>
-              <h2 className="mt-3 text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
+              <h2 className="mt-[calc(clamp(24px,2.4vw,32px)*0.5)] text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
                 Your grievance has a <span style={{ color: COLORS.blue }}>named person.</span>
               </h2>
               <div className="mt-6 space-y-2 text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>
@@ -888,7 +888,7 @@ export default function PrivacyPage() {
             </div>
             <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
               <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Related policies</p>
-              <h2 className="mt-3 text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
+              <h2 className="mt-[calc(clamp(24px,2.4vw,32px)*0.5)] text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
                 Read them <span style={{ color: COLORS.blue }}>together.</span>
               </h2>
               <ul className="mt-6 space-y-3 text-[15px]">

@@ -155,13 +155,13 @@ function PricingPlansSection() {
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Pricing</p>
         
-  <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+  <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
 
    One intelligence.
    <br className="hidden md:block" /> Priced for{" "}
    <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{PRICING_HERO_WORDS[wordIndex]}</span>
  </h1>
-         <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
 Start free. Upgrade only when it has earned it. The same Visionary for every learner, teacher, parent, professional, and organization.</p>
         <div className="mt-12"><BillingToggle billing={billing} onChange={setBilling} /></div>
 
@@ -183,7 +183,7 @@ function PricingPersonaSection() {
   return (
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink }}>Every journey has a plan.</h2>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
         <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
             <Link key={p.persona} to={p.to} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
@@ -211,7 +211,7 @@ function PricingComparisonSection() {
     
     <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink }}>See exactly what you get.</h2>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
         <div className="mx-auto mt-14 w-full max-w-[1240px] overflow-x-auto rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist }}>
           <table className="w-full min-w-[760px] border-collapse text-center">
             <thead>
@@ -266,7 +266,7 @@ function PricingFAQSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>FAQ</p>
-        <h2 className="mx-auto mt-4 max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
           Questions about pricing, answered.
         </h2>
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
@@ -301,7 +301,7 @@ function PricingCTASection() {
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your journey is already happening. Start free.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Begin with a question today. Upgrade only when Visionary has earned it.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">

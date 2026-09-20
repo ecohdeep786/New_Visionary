@@ -76,7 +76,7 @@ export function AboutHero({ eyebrow, titleParts, intro }) {
     <section ref={ref} className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
-        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           {titleParts.map((p, i) => (
             <React.Fragment key={i}>
               {p.accent ? <span style={{ color: COLORS.blue }}>{p.text}</span> : p.text}
@@ -101,12 +101,12 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
         {heading && (
-          <h2 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+          <h2 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
             {heading} {headingAccent && <span style={{ color: COLORS.blue }}>{headingAccent}</span>}
           </h2>
         )}
         {body && (
-          <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
             {body}
           </p>
         )}
@@ -132,7 +132,7 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
                 <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
                 <div>
                   <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                  <p className="mt-3 max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
+                  <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
                 </div>
               </div>
             ))}
@@ -155,7 +155,7 @@ export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started
           {title} {titleAccent && <span style={{ color: COLORS.blue }}>{titleAccent}</span>}
         </h2>
         {desc && (
-          <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             {desc}
           </p>
         )}

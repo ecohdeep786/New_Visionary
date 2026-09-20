@@ -187,7 +187,7 @@ export default function ContactPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>Start with what you need.</span>
               </h1>
-              <p className="mt-8 max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 Whether you have a question about Visionary, want to bring it to an institution, have found something that needs attention, or simply want to talk about the work—we want to know what you are trying to solve.
               </p>
             </div>

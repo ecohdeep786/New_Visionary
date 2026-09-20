@@ -189,7 +189,7 @@ export default function ReferralPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>Help someone start.</span>
               </h1>
-              <p className="mt-8 max-w-[800px] text-[18px] leading-[1.6] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 Visionary grows through people who find it useful enough to share. The referral program gives people a simple way to introduce Visionary to others.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">

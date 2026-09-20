@@ -146,7 +146,7 @@ export default function AccessibilityPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>Use Visionary your way.</span>
               </h1>
-              <p className="mt-8 max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[calc(48px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 People do not all read, hear, speak, move, or interact with technology in the same way. Visionary should make room for those differences so more people can understand, practise, create, and continue.
               </p>
         <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
@@ -156,7 +156,7 @@ export default function AccessibilityPage() {
                 <span style={{ color: COLORS.grey }}>Designed for different ways of learning and interacting</span>
                 <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: COLORS.mist }} />
                 <a href="mailto:accessibility@visionary.org.in"
-                  className="inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="inline-flex items-center gap-1.5 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                   style={{ color: COLORS.blue }}>
                   accessibility@visionary.org.in
                   <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
@@ -186,7 +186,7 @@ export default function AccessibilityPage() {
         <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
@@ -228,7 +228,7 @@ export default function AccessibilityPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 hover:bg-[#121317]/5.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -334,7 +334,7 @@ export default function AccessibilityPage() {
                     <div className="mt-5"><Paragraph>Tell us when a page, control, explanation, interaction, or device experience creates a barrier. Specific details help us understand what happened and where it happened.</Paragraph></div>
                     <div className="mt-6">
                       <a href="mailto:accessibility@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         style={{ color: COLORS.blue }}>
                         accessibility@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
@@ -349,14 +349,14 @@ export default function AccessibilityPage() {
                     <Paragraph>For accessibility questions, accessibility feedback, or barriers using Visionary, contact:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:accessibility@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         style={{ color: COLORS.blue }}>
                         accessibility@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     </div>
                     <div className="mt-6">
-                      <Link to="/help" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                      <Link to="/help" className="inline-flex items-center gap-2 text-[15px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
                         Visit Help
                         <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
@@ -373,19 +373,19 @@ export default function AccessibilityPage() {
                       <br />
                       <span style={{ color: COLORS.blue }}>more than one way in.</span>
                     </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                    <p className="mt-[calc(36px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       Visionary is built around the idea that people learn differently. Accessibility is part of making that idea real.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/download" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/download" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         See devices
                       </Link>
-                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Privacy
                       </Link>
-                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Security
                       </Link>

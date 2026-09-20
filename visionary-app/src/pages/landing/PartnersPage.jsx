@@ -192,7 +192,7 @@ export default function PartnersPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>closer to where learning happens.</span>
               </h1>
-              <p className="mt-8 max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[20px] sm:mt-[27px] lg:mt-[32px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 The right partner can make a product more useful in a particular school, institution, region, or learning environment. Visionary is building partnerships around that idea.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">

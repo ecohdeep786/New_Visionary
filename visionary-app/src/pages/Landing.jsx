@@ -489,7 +489,7 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
           <span aria-hidden="true" className={display}>
             One Intelligence.
           </span>
-          
+
           <span className="sr-only">One Intelligence. Built around you.</span>
         </h1>
 
@@ -634,7 +634,7 @@ function LandingProblemSection() {
         <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
           <div className="lg:col-span-5 lg:pl-[6.5%]">
             <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Why it needs to exist</p>
-            <h2 key={`h-${index}`} className="hero-fade-up mt-6 max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+            <h2 key={`h-${index}`} className="hero-fade-up mt-[calc(clamp(28px,2.78vw,40px)*0.857)] max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
             </h2>
           </div>
@@ -730,10 +730,10 @@ function LandingMeetSection() {
       <div ref={headRef} className="px-6">
         <FadeReveal visible={visible}>
           <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Meet Visionary</p>
-          <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+          <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
             It <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
             Visionary continues your journey instead of restarting it. Whether you're learning, teaching, supporting, building, or leading, every interaction grows from what you already know and where you're going next.
           </p>
         </FadeReveal>
@@ -777,16 +777,16 @@ function LandingOneIntelligenceSection() {
       <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every tomorrow</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           What you <span style={{ color: COLORS.blue }}>understand</span> today
           <br className="hidden md:block" /> make tomorrow easier.
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Every lesson, conversation, project, and breakthrough becomes part of what comes next.
         </p>
- <div className="relative mx-auto mt-32 h-[min(440px,88vw)] w-[min(440px,88vw)] sm:h-[540px] sm:w-[540px] lg:h-[640px] lg:w-[640px]">          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
-            <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.35" strokeDasharray="4 5" />
-          </svg>
+        <div className="relative mx-auto mt-32 h-[min(440px,88vw)] w-[min(440px,88vw)] sm:h-[540px] sm:w-[540px] lg:h-[640px] lg:w-[640px]">          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
+          <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.35" strokeDasharray="4 5" />
+        </svg>
           <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
             <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.4" strokeDasharray="4 5" />
           </svg>
@@ -795,13 +795,13 @@ function LandingOneIntelligenceSection() {
               {finale ? (
                 <>
                   <VMark className="h-10 w-auto" />
-                  <h3 className="mt-5 font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One Intelligence, Always stay with you.</h3>
+                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One Intelligence, Always stay with you.</h3>
                 </>
               ) : (
                 <>
                   <span className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>{state.label}</span>
-                  <h3 className="mt-5 font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)]" style={{ color: COLORS.ink }}>{state.heading}</h3>
-                  <p className="mt-4 font-normal tracking-[0.24px] leading-[1.5] text-[14px]" style={{ color: COLORS.slate }}>{state.body}</p>
+                  <h3 className="mt-[calc(clamp(22px,2.6vw,34px)*0.909)] font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)]" style={{ color: COLORS.ink }}>{state.heading}</h3>
+                  <p className="mt-[calc(clamp(22px,2.6vw,34px)*0.727)] font-normal tracking-[0.24px] leading-[1.5] text-[14px]" style={{ color: COLORS.slate }}>{state.body}</p>
                   <div className="mt-6 h-[2px] w-[240px] overflow-hidden rounded-full" style={{ backgroundColor: COLORS.mist }}>
                     <div className="h-full transition-all duration-700" style={{ width: `${((Math.min(phase, 3) + 1) / 4) * 100}%`, backgroundColor: COLORS.blue }} />
                   </div>
@@ -849,8 +849,8 @@ function LandingCommitmentSection() {
       <style>{"@keyframes cmFill{from{transform:scaleY(0)}to{transform:scaleY(1)}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our commitment</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>You won't stay the same.<br />Neither should your intelligence.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]" style={{ color: COLORS.slate }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>You won't stay the same.<br />Neither should your intelligence.</h2>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]" style={{ color: COLORS.slate }}>
           New questions. New goals. New challenges. New possibilities. What you need today shouldn't limit what you can become tomorrow.
         </p>
         <div className="mx-auto mt-24 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
@@ -916,8 +916,8 @@ function LandingLanguageSection() {
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
-        <p className="mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Learning, teaching, asking, practicing, and building feel different when they happen in the language that comes naturally to you. Visionary understands what you mean — not just the words you use.
         </p>
         <div className="mt-14 lg:mt-20"><LGLanguageChips active={lang} onSelect={setLang} /></div>
@@ -1007,10 +1007,10 @@ function LandingTrustSection() {
     <section ref={ref} data-section="08-trust" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our trust</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[wordIndex]}</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Your learning, conversations, ideas, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
         </p>
         <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
@@ -1038,8 +1038,8 @@ function LandingCTASection() {
     <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start when you are</p>
-        <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
         </p>
         <div className="mt-12 flex justify-center">
@@ -1112,7 +1112,7 @@ function LandingFAQSection() {
     <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
-        <h2 className="mx-auto mt-4 max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Find answers to common questions about Visionary</h2>
+        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Find answers to common questions about Visionary</h2>
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
           {FAQ_ITEMS.map((item, i) => (
             <div key={item.q} className="border-b py-10 lg:py-12" style={{ borderColor: COLORS.line }}>

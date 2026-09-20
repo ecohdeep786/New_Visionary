@@ -100,10 +100,10 @@ function DownloadHeroSection() {
     <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
-        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           One intelligence. <span style={{ color: COLORS.blue }}>Every device.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Use Visionary in your browser with nothing to install — or take it with you on the devices you already use. Your account keeps everything connected.
         </p>
 
@@ -113,8 +113,8 @@ function DownloadHeroSection() {
             <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
               <Globe className="h-5 w-5" strokeWidth={1.8} />
             </span>
-            <h2 className="mt-6 font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Continue on web</h2>
-            <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
+            <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Continue on web</h2>
+            <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
             <Link
@@ -130,8 +130,8 @@ function DownloadHeroSection() {
             <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
               <Download className="h-5 w-5" strokeWidth={1.8} />
             </span>
-            <h2 className="mt-6 font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
-            <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
+            <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
+            <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Native apps for desktop and mobile — faster, offline-friendly, and synced to your account.
             </p>
             <button
@@ -157,8 +157,8 @@ function DownloadPlatformsSection() {
     <section ref={ref} id="platforms" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink }}>Choose your platform.</h2>
-        <p className="mx-auto mt-4 max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
+        <p className="mx-auto mt-[calc(clamp(30px,4vw,56px)*0.533)] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
           Version {APP_VERSION} · Updated this week ·{" "}
           {detected ? (
             <>Recommended for your device: <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span></>
@@ -301,7 +301,7 @@ function DownloadSyncSection() {
         <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
         on every other.
       </p>
-      <p className={`mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
+      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
         Conversations, progress, and context sync across web, desktop, and mobile — automatically, and privately.
       </p>
     </section>
@@ -315,7 +315,7 @@ function DownloadRequirementsSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink }}>What you need to run Visionary.</h2>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
         <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {REQUIREMENTS.map((r) => (
             <div key={r.platform} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
@@ -355,7 +355,7 @@ function DownloadCTASection() {
         <h2 className="font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           No install, no waiting. Open Visionary in your browser and pick up the app whenever you're ready.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">

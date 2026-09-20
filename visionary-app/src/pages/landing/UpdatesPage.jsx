@@ -182,7 +182,7 @@ export default function UpdatesPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>what comes next.</span>
               </h1>
-              <p className="mt-8 max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 Visionary is changing as we build it. New product capabilities, languages, research, and conversations will shape what comes next. Sign up to hear about the things that matter to you.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">

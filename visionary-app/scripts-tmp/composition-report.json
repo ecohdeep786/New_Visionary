@@ -1,0 +1,2438 @@
+{
+ "sections": [
+  {
+   "route": "/",
+   "sec": "01-hero",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "02-problem",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "03-promise",
+   "maxTextRun": 0,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/",
+   "sec": "04-meet",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "05-one-intelligence",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "06-commitment",
+   "maxTextRun": 17,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "07-language",
+   "maxTextRun": 6,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "08-trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "09-cta",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/",
+   "sec": "10-explore",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/",
+   "sec": "11-faq",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "01-hero",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "02-struggle",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/student",
+   "sec": "03-promise",
+   "maxTextRun": 0,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/student",
+   "sec": "04-journey",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "One intelligence. Every step c",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "06-closing",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "07-language",
+   "maxTextRun": 4,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "08-continuity",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "09-achievement",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "10-journey-flow",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "11-trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "12-cta",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/student",
+   "sec": "13-explore",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/teacher",
+   "sec": "01-hero",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "02-struggle",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/teacher",
+   "sec": "03-promise",
+   "maxTextRun": 0,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/teacher",
+   "sec": "04-journey",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "05-intelligence",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "06-closing",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "07-language",
+   "maxTextRun": 6,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "08-continuity",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "09-achievement",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "10-journey-flow",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "11-trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "12-cta",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/teacher",
+   "sec": "13-explore",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/parent",
+   "sec": "01-hero",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "02-struggle",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/parent",
+   "sec": "03-promise",
+   "maxTextRun": 0,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/parent",
+   "sec": "04-journey",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "05-intelligence",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "06-closing",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "07-language",
+   "maxTextRun": 6,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "08-continuity",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "09-achievement",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "10-journey-flow",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "11-trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "12-cta",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/parent",
+   "sec": "13-explore",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/professional",
+   "sec": "01-hero",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "02-struggle",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/professional",
+   "sec": "03-promise",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/professional",
+   "sec": "04-journey",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "05-intelligence",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "06-closing",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "07-language",
+   "maxTextRun": 6,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "08-continuity",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "09-achievement",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "10-journey-flow",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "11-trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "12-cta",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/professional",
+   "sec": "13-explore",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/organization",
+   "sec": "01-hero",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "02-struggle",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/organization",
+   "sec": "03-promise",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/organization",
+   "sec": "04-journey",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "05-intelligence",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "06-closing",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "07-language",
+   "maxTextRun": 6,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "08-continuity",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "09-achievement",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "10-journey-flow",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "11-trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "12-cta",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/organization",
+   "sec": "13-explore",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/help",
+   "sec": "How can we help you?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/help",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/help",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/how-it-works",
+   "sec": "How you use Visionary,step by ",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/how-it-works",
+   "sec": "Create your account.",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/how-it-works",
+   "sec": "One loop, goal.",
+   "maxTextRun": 10,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/how-it-works",
+   "sec": "One intelligence. Different wa",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/how-it-works",
+   "sec": "See it with your own question.",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "mission",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "Understand more. Forget less.",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "Five things we build by.",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "Whoever you are, it's built fo",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "A student whose understanding ",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "Visionary is grounded in how p",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "Built in India. Built for Indi",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "team",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "safety",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "privacy",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "accessibility",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "image",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "Start using Visionary. Or see ",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/about",
+   "sec": "We would like to hear from you",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/pricing",
+   "sec": "One intelligence. Priced for y",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/pricing",
+   "sec": "Every journey has a plan.",
+   "maxTextRun": 5,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/pricing",
+   "sec": "See exactly what you get.",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/pricing",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/pricing",
+   "sec": "Questions about pricing, answe",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/pricing",
+   "sec": "Your journey is already happen",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/download",
+   "sec": "One intelligence. Every device",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/download",
+   "sec": "platforms",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/download",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/download",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/download",
+   "sec": "What you need to run Visionary",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/download",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/download",
+   "sec": "Still deciding? The web is one",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "We are building Visionaryone q",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/research",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/research",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/research",
+   "sec": "Why we research",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "why",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "questions",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "learning",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "intelligence",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "language",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "continuity",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "responsible",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "work",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "publications",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "collaboration",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/research",
+   "sec": "Ask better questions.Build fro",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "Help us buildwhat understandin",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/careers",
+   "sec": "?",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/careers",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/careers",
+   "sec": "Why this work",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "why",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "what-building",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "how-work",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "where-contribute",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "who-we-need",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "open-roles",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "students",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "application",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/careers",
+   "sec": "What you learn hereshould stay",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/community",
+   "sec": "Learners, teachers, and parent",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/community",
+   "sec": "One journey, many voices.",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/community",
+   "sec": "Come as you are, stay as you g",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/community",
+   "sec": "Ready to join the community?",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "Get in touch.Start with what y",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/contact",
+   "sec": "?",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/contact",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/contact",
+   "sec": "Contact routes",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "contact-routes",
+   "maxTextRun": 5,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "form",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "before-writing",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "trust",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "company",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/contact",
+   "sec": "Start with the question.We wil",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "Bring Visionarycloser to where",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/partners",
+   "sec": "?",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/partners",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/partners",
+   "sec": "Why work with a partner",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "why-partner",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "what-partners-do",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "education",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "implementation",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "technology",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "regional",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "who-partner",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "what-we-look",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "directory",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "become",
+   "maxTextRun": 4,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/partners",
+   "sec": "The right partnershipmakes the",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "Stay close towhat comes next.",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/updates",
+   "sec": "?",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/updates",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/updates",
+   "sec": "Why stay connected",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "why",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "what-you-get",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "choose",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "product",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "language",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "research",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "events",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "signup",
+   "maxTextRun": 4,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "privacy",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/updates",
+   "sec": "The next version of Visionarys",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "Share something useful.Help so",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/referral",
+   "sec": "?",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/referral",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/referral",
+   "sec": "Why referrals exist",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "why",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "how",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "students",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "teachers",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "creators",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "sharing",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "tracking",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "rewards",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "rules",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "start",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/referral",
+   "sec": "One useful recommendationcan b",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/safety",
+   "sec": "Safe to grow with.",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/safety",
+   "sec": "security",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/safety",
+   "sec": "accessibility",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/safety",
+   "sec": "Have a safety concern? We resp",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/privacy",
+   "sec": "Your information.Your control.",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "We collect what we needto prov",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Information should havea clear",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Your informationshouldn't trav",
+   "maxTextRun": 10,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Know what you can dowith your ",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Privacy needssecurity behind i",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Keep what you need.Remove what",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Extra care for younger learner",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Privacy,clearly explained.",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "Your informationstays yours to",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/privacy",
+   "sec": "grievance-officer",
+   "maxTextRun": 5,
+   "anchorTypes": [
+    "icon",
+    "stat"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/terms",
+   "sec": "Using Visionary.Here is what y",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/terms",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/terms",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/terms",
+   "sec": "Who can use Visionary",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "who-can-use",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "what-you-can-do",
+   "maxTextRun": 10,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "what-you-cannot-do",
+   "maxTextRun": 17,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "what-we-provide",
+   "maxTextRun": 5,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "your-content",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "your-account",
+   "maxTextRun": 11,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "plans-payments",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "changes",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "restriction",
+   "maxTextRun": 10,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "responsibility",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "disputes",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/terms",
+   "sec": "Clear rules.Better understandi",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "What you trust Visionary with,",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/security",
+   "sec": "Protect",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "?",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/security",
+   "sec": "Your information",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "your-information",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "protected-in-transit",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "protected-when-stored",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "access-controlled",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "your-control",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "security-over-time",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "report-security",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "commitments",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/security",
+   "sec": "Your knowledge should move for",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "Learn your way.Use Visionary y",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/accessibility",
+   "sec": "?",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/accessibility",
+   "sec": "?",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/accessibility",
+   "sec": "Why accessibility matters",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "why-accessibility",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "different-ways",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "vision",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "voice",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "navigation",
+   "maxTextRun": 4,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "across-devices",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "building",
+   "maxTextRun": 3,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "feedback",
+   "maxTextRun": 2,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "contact",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/accessibility",
+   "sec": "Understanding should havemore ",
+   "maxTextRun": 3,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  },
+  {
+   "route": "/cookies",
+   "sec": "Only what's needed.",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/cookies",
+   "sec": "principles",
+   "maxTextRun": 1,
+   "anchorTypes": [
+    "icon"
+   ],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/cookies",
+   "sec": "types",
+   "maxTextRun": 1,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": true
+  },
+  {
+   "route": "/cookies",
+   "sec": "Questions about cookies?",
+   "maxTextRun": 2,
+   "anchorTypes": [],
+   "headingHasEyebrowOrTagline": false
+  }
+ ],
+ "iconlessNavButtons": [],
+ "chevronLinksMissing": [
+  {
+   "route": "/",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/",
+   "link": "See how students learn → /student"
+  },
+  {
+   "route": "/",
+   "link": "See how students learn → /student"
+  },
+  {
+   "route": "/",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/student",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/student",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/teacher",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/teacher",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/parent",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/parent",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/professional",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/professional",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/organization",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/organization",
+   "link": "Contact sales → /contact"
+  },
+  {
+   "route": "/organization",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/how-it-works",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/about",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/about",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/pricing",
+   "link": "Contact Visionary → /contact"
+  },
+  {
+   "route": "/pricing",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/download",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/research",
+   "link": "Contact → /contact"
+  },
+  {
+   "route": "/community",
+   "link": "Get started → /register"
+  },
+  {
+   "route": "/community",
+   "link": "See how it works → /how-it-works"
+  },
+  {
+   "route": "/partners",
+   "link": "Contact → /contact"
+  },
+  {
+   "route": "/safety",
+   "link": "Contact safety → /contact"
+  },
+  {
+   "route": "/cookies",
+   "link": "Contact us → /contact"
+  }
+ ]
+}

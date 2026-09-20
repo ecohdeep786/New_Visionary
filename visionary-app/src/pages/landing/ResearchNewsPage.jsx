@@ -163,7 +163,7 @@ export default function ResearchNewsPage() {
                 <br />
                 <span style={{ color: COLORS.blue }}>one question at a time.</span>
               </h1>
-              <p className="mt-8 max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
+              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
                 Research at Visionary starts with a simple question: what would make understanding work better for a real person?
               </p>
               <p className="mt-5 max-w-[760px] text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>

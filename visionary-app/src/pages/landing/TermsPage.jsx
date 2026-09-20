@@ -138,7 +138,7 @@ export default function TermsPage() {
                 <br />
                 <span style={{ color: C.blue }}>Here is what you are agreeing to.</span>
               </h1>
-              <p className="mt-8 max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
+              <p className="mt-[calc(48px*0.421)] max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
                 These Terms explain the rules that apply when you use Visionary, our website, applications, products, and services.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
@@ -170,7 +170,7 @@ export default function TermsPage() {
                 By accessing or using Visionary, you agree to these Terms. Please read them together with our Privacy Policy and any additional terms or policies that apply to particular Visionary products or services.
               </p>
               <div className="mt-6">
-                <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
+                <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
                   Read the Privacy Policy
                   <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                 </Link>
@@ -183,7 +183,7 @@ export default function TermsPage() {
         <section className="border-b lg:hidden" style={{ borderColor: C.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: C.slate }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: C.ink }}>{activeSection?.title}</span>
@@ -225,7 +225,7 @@ export default function TermsPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 hover:bg-[#121317]/5.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ backgroundColor: active ? C.canvas : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? C.blue : C.slate }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? C.ink : C.graphite }}>{section.title}</span>
@@ -373,7 +373,7 @@ export default function TermsPage() {
                     <Paragraph>Questions about these Terms? Contact Visionary at:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:legal@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         style={{ color: C.blue }}>
                         legal@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
@@ -394,19 +394,19 @@ export default function TermsPage() {
                       <br />
                       <span style={{ color: C.blue }}>Better understanding.</span>
                     </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
+                    <p className="mt-[calc(36px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
                       Visionary is built to help people learn, create, and move forward. These Terms explain the responsibilities that make that possible.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Privacy
                       </Link>
-                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Safety
                       </Link>
-                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Security
                       </Link>
