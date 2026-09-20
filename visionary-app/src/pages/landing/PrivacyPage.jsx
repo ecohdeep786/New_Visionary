@@ -283,7 +283,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="what-we-collect"
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 We collect what we need
@@ -341,7 +341,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="purpose"
-                className="mx-auto mt-[calc(clamp(34px,4.5vw,62px)*0.471)] max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
+                className="mx-auto mt-[calc(clamp(34px,4.5vw,62px)*0.588)] max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Information should have
@@ -399,7 +399,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="sharing"
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] max-w-[620px] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] max-w-[620px] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Your information
@@ -483,7 +483,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="your-controls"
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
+                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
                 style={{ color: COLORS.ink }}
               >
                 Know what you can do
@@ -539,7 +539,7 @@ export default function PrivacyPage() {
             </p>
 
             <h2 id="security"
-              className="mt-[calc(clamp(34px,4.5vw,62px)*0.471)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
+              className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
               style={{ color: COLORS.ink }}
             >
               Privacy needs
@@ -684,7 +684,7 @@ export default function PrivacyPage() {
                   </p>
 
                   <h2 id="younger-learners"
-                    className="mt-[calc(clamp(28px,3.5vw,44px)*0.429)] text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.08]"
+                    className="mt-[calc(clamp(28px,3.5vw,44px)*0.571)] text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.08]"
                     style={{ color: COLORS.ink }}
                   >
                     Extra care for

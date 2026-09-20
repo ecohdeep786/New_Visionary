@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-20T05:13:50.138Z",
+ "generated": "2026-09-20T09:34:15.170Z",
  "ledger": [
   {
    "route": "/",
@@ -185,13 +185,13 @@
    "route": "/student",
    "unit": "Learning,Learning, to mastery.",
    "ratios": {
-    "360": 0.3,
-    "768": 0.174,
-    "1440": 0.174,
-    "1920": 0.143
+    "360": 0.167,
+    "768": 0.167,
+    "1440": 0.167,
+    "1920": 0.167
    },
-   "ok": false,
-   "drift": "spread 0.157em (360:0.3 768:0.174 1440:0.174 1920:0.143)"
+   "ok": true,
+   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
   },
   {
    "route": "/student",
@@ -401,13 +401,13 @@
    "route": "/teacher",
    "unit": "Teaching.Teaching, to reach every learne",
    "ratios": {
-    "360": 0.3,
-    "768": 0.174,
-    "1440": 0.174,
-    "1920": 0.143
+    "360": 0.167,
+    "768": 0.167,
+    "1440": 0.167,
+    "1920": 0.167
    },
-   "ok": false,
-   "drift": "spread 0.157em (360:0.3 768:0.174 1440:0.174 1920:0.143)"
+   "ok": true,
+   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
   },
   {
    "route": "/teacher",
@@ -605,13 +605,13 @@
    "route": "/parent",
    "unit": "Parenting.Parenting, to see what is happ",
    "ratios": {
-    "360": 0.3,
-    "768": 0.174,
-    "1440": 0.174,
-    "1920": 0.143
+    "360": 0.167,
+    "768": 0.167,
+    "1440": 0.167,
+    "1920": 0.167
    },
-   "ok": false,
-   "drift": "spread 0.157em (360:0.3 768:0.174 1440:0.174 1920:0.143)"
+   "ok": true,
+   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
   },
   {
    "route": "/parent",
@@ -821,13 +821,13 @@
    "route": "/professional",
    "unit": "Building.Learning, to apply what you lea",
    "ratios": {
-    "360": 0.3,
-    "768": 0.174,
-    "1440": 0.174,
-    "1920": 0.143
+    "360": 0.167,
+    "768": 0.167,
+    "1440": 0.167,
+    "1920": 0.167
    },
-   "ok": false,
-   "drift": "spread 0.157em (360:0.3 768:0.174 1440:0.174 1920:0.143)"
+   "ok": true,
+   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
   },
   {
    "route": "/professional",
@@ -1037,13 +1037,13 @@
    "route": "/organization",
    "unit": "Leading.One intelligence, to scale under",
    "ratios": {
-    "360": 0.3,
-    "768": 0.174,
-    "1440": 0.174,
-    "1920": 0.143
+    "360": 0.167,
+    "768": 0.167,
+    "1440": 0.167,
+    "1920": 0.167
    },
-   "ok": false,
-   "drift": "spread 0.157em (360:0.3 768:0.174 1440:0.174 1920:0.143)"
+   "ok": true,
+   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
   },
   {
    "route": "/organization",
@@ -1243,10 +1243,11 @@
    "ratios": {
     "360": 0.333,
     "768": 0.333,
+    "1440": 0.333,
     "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1920:0.333)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/how-it-works",
@@ -1302,10 +1303,11 @@
    "ratios": {
     "360": 0.333,
     "768": 0.333,
+    "1440": 0.333,
     "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1920:0.333)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/how-it-works",
@@ -1330,24 +1332,6 @@
    },
    "ok": true,
    "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
-  },
-  {
-   "route": "/how-it-works",
-   "unit": "How you use Visionary,your way.",
-   "ratios": {
-    "1440": 0.333
-   },
-   "ok": true,
-   "drift": "insufficient widths"
-  },
-  {
-   "route": "/how-it-works",
-   "unit": "One loop, check.",
-   "ratios": {
-    "1440": 0.333
-   },
-   "ok": true,
-   "drift": "insufficient widths"
   },
   {
    "route": "/about",
@@ -1461,13 +1445,13 @@
    "route": "/about",
    "unit": "Understand what you're learning.",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
+    "360": 0.375,
+    "768": 0.375,
     "1440": 0.375,
     "1920": 0.375
    },
-   "ok": false,
-   "drift": "spread 0.17em (360:0.545 768:0.545 1440:0.375 1920:0.375)"
+   "ok": true,
+   "drift": "spread 0em (360:0.375 768:0.375 1440:0.375 1920:0.375)"
   },
   {
    "route": "/about",
@@ -1521,13 +1505,13 @@
    "route": "/about",
    "unit": "A student whose understanding follows th",
    "ratios": {
-    "360": 2.333,
-    "768": 2.333,
+    "360": 1.4,
+    "768": 1.4,
     "1440": 1.4,
     "1920": 1.4
    },
-   "ok": false,
-   "drift": "spread 0.933em (360:2.333 768:2.333 1440:1.4 1920:1.4)"
+   "ok": true,
+   "drift": "spread 0em (360:1.4 768:1.4 1440:1.4 1920:1.4)"
   },
   {
    "route": "/about",
@@ -2589,13 +2573,13 @@
    "route": "/contact",
    "unit": "Start with the question.We will find the",
    "ratios": {
-    "360": 0.333,
-    "768": 0.266,
+    "360": 0.499,
+    "768": 0.499,
     "1440": 0.499,
     "1920": 0.499
    },
-   "ok": false,
-   "drift": "spread 0.233em (360:0.333 768:0.266 1440:0.499 1920:0.499)"
+   "ok": true,
+   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
   },
   {
    "route": "/partners",
@@ -3369,13 +3353,13 @@
    "route": "/privacy",
    "unit": "Information should havea clear purpose. ",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.456,
-    "1920": 0.456
+    "360": 0.588,
+    "768": 0.588,
+    "1440": 0.57,
+    "1920": 0.57
    },
    "ok": true,
-   "drift": "spread 0.015em (360:0.471 768:0.471 1440:0.456 1920:0.456)"
+   "drift": "spread 0.018em (360:0.588 768:0.588 1440:0.57 1920:0.57)"
   },
   {
    "route": "/privacy",

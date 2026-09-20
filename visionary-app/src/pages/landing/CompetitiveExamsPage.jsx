@@ -750,7 +750,7 @@ function AboutVisionSection() {
           <br />
           A team that learns faster than it forgets.
         </h2>
-        <p className="mx-auto mt-14 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.blue }}>
+        <p className="mx-auto mt-[calc(clamp(24px,2.78vw,40px)*1.4)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.blue }}>
           That is the world we are building — one connected mind at a time.
         </p>
       </FadeReveal>

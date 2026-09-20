@@ -461,7 +461,7 @@ export default function ContactPage() {
                       <br />
                       <span style={{ color: COLORS.blue }}>We will find the conversation.</span>
                     </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       Visionary is being built through questions too. Some come from learners. Some come from teachers, parents, institutions, researchers, and people building the company.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
