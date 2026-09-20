@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Check, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const PRICING_HERO_WORDS = ["your journey.", "your classroom.", "your family.", "your work.", "your institution."];
@@ -14,7 +15,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -67,7 +67,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
         >
           {b === "monthly" ? "Monthly" : "Annual"}
           {b === "annual" && (
-            <span className="rounded-full px-2 py-0.5 text-[10px] font-normal uppercase tracking-[0.43px]" style={{ backgroundColor: billing === "annual" ? COLORS.chipBg : COLORS.surface, color: COLORS.ink }}>
+            <span className="rounded-full px-2 py-0.5 text-[10px] font-normal uppercase tracking-[0.43px]" style={{ backgroundColor: billing === "annual" ? "#ffffff" : COLORS.surface, color: COLORS.ink }}>
               2 months free
             </span>
           )}
@@ -89,12 +89,12 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
       }}
     >
       {plan.badge && (
-        <span className="absolute -top-3 left-8 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>
+        <span className="absolute -top-3 left-8 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
           {plan.badge}
         </span>
       )}
       <h3 className="font-medium tracking-[0] leading-[1.15] text-[22px]" style={{ color: COLORS.ink }}>{plan.name}</h3>
-      <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
+      <p className="mt-3 font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
 
       <div className="mt-6 flex items-baseline gap-2">
         {(() => {
@@ -155,14 +155,14 @@ function PricingPlansSection() {
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Pricing</p>
         
-  <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+  <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
 
    One intelligence.
    <br className="hidden md:block" /> Priced for{" "}
    <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{PRICING_HERO_WORDS[wordIndex]}</span>
  </h1>
          <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-Start free. Upgrade only when it has earned it. The same Visionary for every learner, teacher, parent, professional, and organization.</p>
+Start free. Upgrade only when it has earned it.</p>
         <div className="mt-12"><BillingToggle billing={billing} onChange={setBilling} /></div>
 
         <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -183,7 +183,7 @@ function PricingPersonaSection() {
   return (
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
+        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
         <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
             <Link key={p.persona} to={p.to} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
@@ -211,7 +211,7 @@ function PricingComparisonSection() {
     
     <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
+        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
         <div className="mx-auto mt-14 w-full max-w-[1240px] overflow-x-auto rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist }}>
           <table className="w-full min-w-[760px] border-collapse text-center">
             <thead>
@@ -266,7 +266,7 @@ function PricingFAQSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>FAQ</p>
-        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
+        <h2 className="mx-auto max-w-[1100px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
           Questions about pricing, answered.
         </h2>
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
@@ -300,7 +300,7 @@ function PricingCTASection() {
   return (
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your journey is already happening. Start free.</h2>
+        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>Your journey is already happening. Start free.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Begin with a question today. Upgrade only when Visionary has earned it.
         </p>
@@ -322,6 +322,7 @@ export default function AILearningPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Pricing" />
       <main id="main">
         <PricingPlansSection />
         <PricingPersonaSection />

@@ -16,6 +16,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import { LEGAL_META } from "@/data/legalMeta";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -30,7 +31,6 @@ const COLORS = {
   border: "#e5e7eb",
   soft: "#f8f9fa",
   blue: "#4285F4",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -56,7 +56,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
@@ -132,6 +132,7 @@ export default function AccessibilityPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Accessibility" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
@@ -144,10 +145,10 @@ export default function AccessibilityPage() {
               <h1 className="max-w-[940px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                 Learn your way.
                 <br />
-                <span style={{ color: COLORS.blue }}>Use Visionary your way.</span>
+                <span style={{ color: COLORS.ink }}>Use Visionary your way.</span>
               </h1>
               <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                People do not all read, hear, speak, move, or interact with technology in the same way. Visionary should make room for those differences so more people can understand, practise, create, and continue.
+                Visionary should make room for the many ways people read, hear, speak, and interact.
               </p>
         <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
           Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.accessibility.lastUpdated}</strong>
@@ -173,7 +174,7 @@ export default function AccessibilityPage() {
               <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
                 The goal is not to make everyone use Visionary the same way.
                 <br className="hidden lg:block" />
-                <span style={{ color: COLORS.blue }}>It is to give more people a way in.</span>
+                <span style={{ color: COLORS.ink }}>It is to give more people a way in.</span>
               </p>
               <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
                 Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
@@ -367,7 +368,7 @@ export default function AccessibilityPage() {
                 {/* CLOSING */}
                 <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Accessibility</div>
+                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Accessibility</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
                       Understanding should have
                       <br />

@@ -4,7 +4,7 @@ import { LEGAL_META } from "@/data/legalMeta";
 
 export default function CookiesPage() {
   return (
-    <LegalPage
+    <LegalPage breadcrumb="Cookies"
       eyebrow="Cookies"
       titleParts={[{ text: "Only what's " }, { text: "needed.", accent: true }]}
       intro="Cookies should help you, not track you. We use the minimum necessary to keep you signed in and make Visionary work — nothing more."

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 
@@ -11,7 +12,6 @@ export const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 export const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -76,10 +76,10 @@ export function AboutHero({ eyebrow, titleParts, intro }) {
     <section ref={ref} className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
-        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
           {titleParts.map((p, i) => (
             <React.Fragment key={i}>
-              {p.accent ? <span style={{ color: COLORS.blue }}>{p.text}</span> : p.text}
+              {p.accent ? <span style={{ color: COLORS.ink }}>{p.text}</span> : p.text}
             </React.Fragment>
           ))}
         </h1>
@@ -101,8 +101,8 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
         {heading && (
-          <h2 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-            {heading} {headingAccent && <span style={{ color: COLORS.blue }}>{headingAccent}</span>}
+          <h2 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+            {heading} {headingAccent && <span style={{ color: COLORS.ink }}>{headingAccent}</span>}
           </h2>
         )}
         {body && (
@@ -129,7 +129,7 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
           <div className="mx-auto mt-16 w-full max-w-[1080px]">
             {rows.map((r, i) => (
               <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < rows.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
+                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
                 <div>
                   <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
                   <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
@@ -151,8 +151,8 @@ export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started
   return (
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          {title} {titleAccent && <span style={{ color: COLORS.blue }}>{titleAccent}</span>}
+        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
+          {title} {titleAccent && <span style={{ color: COLORS.ink }}>{titleAccent}</span>}
         </h2>
         {desc && (
           <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -175,10 +175,11 @@ export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started
 }
 
 /* ═══ LEGAL PAGE — full wrapper for trust/legal pages ═══ */
-export function LegalPage({ eyebrow, titleParts, intro, sections, cta, lastUpdated }) {
+export function LegalPage({ eyebrow, titleParts, intro, sections, cta, lastUpdated, breadcrumb }) {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      {breadcrumb && <Breadcrumb page={breadcrumb} />}
       <main>
         <AboutHero eyebrow={eyebrow} titleParts={titleParts} intro={intro} />
         {lastUpdated && (
@@ -197,10 +198,11 @@ export function LegalPage({ eyebrow, titleParts, intro, sections, cta, lastUpdat
 }
 
 /* ═══ SIMPLE PAGE — wrapper for company/support pages ═══ */
-export function SimplePage({ children, footerVariant = "quiet" }) {
+export function SimplePage({ children, footerVariant = "quiet", breadcrumb }) {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      {breadcrumb && <Breadcrumb page={breadcrumb} />}
       <main>{children}</main>
       <LandingFooter variant={footerVariant} />
     </div>

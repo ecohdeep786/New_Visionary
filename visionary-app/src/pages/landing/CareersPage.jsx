@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -29,7 +30,6 @@ const COLORS = {
   border: "#e5e7eb",
   soft: "#f8f9fa",
   blue: "#4285F4",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -63,7 +63,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
@@ -116,7 +116,7 @@ function CareersNotify() {
 
   if (status === "success") {
     return (
-      <p role="status" className="mt-6 rounded-[14px] px-5 py-4 text-[14px] leading-[1.6]" style={{ backgroundColor: "#E6F4EA", color: "#137333" }}>
+      <p role="status" className="mt-6 rounded-[14px] border px-5 py-4 text-[14px] leading-[1.6]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
         You're on the list. We'll email <strong>{email}</strong> when a role opens.
       </p>
     );
@@ -199,6 +199,7 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Careers" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
@@ -211,13 +212,10 @@ export default function CareersPage() {
               <h1 className="max-w-[950px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                 Help us build
                 <br />
-                <span style={{ color: COLORS.blue }}>what understanding can become.</span>
+                <span style={{ color: COLORS.ink }}>what understanding can become.</span>
               </h1>
               <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Visionary is being built around a simple idea: intelligence should understand where a person is, help them move forward, and carry what matters into what comes next.
-              </p>
-              <p className="mt-5 max-w-[760px] text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                That takes more than one discipline. It takes people who care about the problem deeply enough to work through the hard parts together.
+                Intelligence that understands where a person is, and helps them move forward.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#open-roles" onClick={(event) => { event.preventDefault(); scrollToSection("open-roles"); }}
@@ -469,11 +467,11 @@ export default function CareersPage() {
                 {/* CLOSING */}
                 <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Careers</div>
+                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Careers</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
                       What you learn here
                       <br />
-                      <span style={{ color: COLORS.blue }}>should stay with you.</span>
+                      <span style={{ color: COLORS.ink }}>should stay with you.</span>
                     </h2>
                     <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       We are building Visionary around the same principle we want the product to embody: understand deeply, build from what you know, and carry the learning forward.

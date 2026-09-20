@@ -27,3 +27,12 @@ Read full v2.2, handoff/inventory and role acceptance; inspected DashboardHome/G
 ## 2026-09-20 — 03 design-system / Home and Ask
 
 Additive scoped stylesheet parsed with installed PostCSS (72 top-level nodes); `git diff --check` on owned stylesheet/handoff returned success. Existing selectors were not edited. New classes await04 consumers, so no rendered equivalence or accessibility certification inferred. No public or protected Frontend files touched. Scoped component co-sign and class API live in DESIGN_HOME_HANDOFF.md; full responsive/state tests and before/after capture remain04/06/07 work.
+
+## 2026-09-20 — 04 implementation smoke evidence
+
+- Six added Home/entry regressions; all30 Node tests pass. Lint, both type checks and production build pass. Existing ambiguous easing utility warning remains outside this slice.
+- Five role Home states rendered under the School administrator demo account's separate role workspaces. `after-*-home-1440.png` captures these new/empty states; identities differ from four earlier persona baselines, so this is design-inheritance evidence, not a same-data pixel comparison.
+- `after-ask-organization-1440.png`: intent-first entry. Plan/material/question survive browser refresh. Text material is explicitly not analyzed by a live model.
+- Cube activity → explaining → Hindi → private note → Home → Continue restores stage, language and note. `after-resume-hi-390.png` shows compact activity-first resume; Ask switches to Hindi draft and focuses composer. Automated tests cover exact position/model state and cross-workspace rejection.
+- Browser preview initially retained stale import-resolution errors after unrelated repository changes. Restarting the owned Vite process restored the running app; production build already passed. A separate hidden testing tab avoided navigation conflict with the user's open tab.
+- Full07 matrix, actual screen-reader review, reduced-motion/zoom and public pixel comparison remain pending. No production capability, complete wave or twelve-gate pass claimed.

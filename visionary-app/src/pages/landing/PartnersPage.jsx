@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -35,7 +36,6 @@ const COLORS = {
   border: "#e5e7eb",
   soft: "#f8f9fa",
   blue: "#4285F4",
-  blueSoft: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -63,7 +63,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
@@ -178,6 +178,7 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Partners" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
@@ -190,10 +191,10 @@ export default function PartnersPage() {
               <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                 Bring Visionary
                 <br />
-                <span style={{ color: COLORS.blue }}>closer to where learning happens.</span>
+                <span style={{ color: COLORS.ink }}>closer to where learning happens.</span>
               </h1>
               <p className="mt-[20px] sm:mt-[27px] lg:mt-[32px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                The right partner can make a product more useful in a particular school, institution, region, or learning environment. Visionary is building partnerships around that idea.
+                The right partner makes Visionary more useful in a specific place.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#directory" onClick={(event) => { event.preventDefault(); scrollToSection("directory"); }}
@@ -220,7 +221,7 @@ export default function PartnersPage() {
               <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
                 The product is one thing.
                 <br />
-                <span style={{ color: COLORS.blue }}>Knowing where it belongs is another.</span>
+                <span style={{ color: COLORS.ink }}>Knowing where it belongs is another.</span>
               </p>
               <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
                 A school has its own rhythm. A college has different needs. A coaching center works differently from a workplace. Local context matters. Good partners help Visionary understand that context and make the product work within it.
@@ -360,7 +361,7 @@ export default function PartnersPage() {
                           <h3 className="text-[20px] font-normal" style={{ color: COLORS.ink }}>
                             Start local.
                             <br />
-                            <span style={{ color: COLORS.blue }}>Build for more places.</span>
+                            <span style={{ color: COLORS.ink }}>Build for more places.</span>
                           </h3>
                           <p className="mt-3 max-w-[700px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
                             The goal is not to make every region work the same way. It is to understand local context well enough to make the product genuinely useful there.
@@ -429,7 +430,7 @@ export default function PartnersPage() {
                     <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
                       {status === "error" ? (
                         <div className="py-8" role="alert">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: "#FCE8E6" }}>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
                             <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
                           </div>
                           <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
@@ -445,7 +446,7 @@ export default function PartnersPage() {
                         </div>
                       ) : status === "success" ? (
                         <div className="py-8">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: COLORS.blueSoft }}>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
                             <CheckCircle2 className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                           </div>
                           <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>Your introduction is ready.</h3>
@@ -553,7 +554,7 @@ export default function PartnersPage() {
                 {/* CLOSING */}
                 <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[920px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Find a Partner</div>
+                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Find a Partner</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
                       The right partnership
                       <br />

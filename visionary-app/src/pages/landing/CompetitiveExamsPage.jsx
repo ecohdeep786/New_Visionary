@@ -6,6 +6,7 @@ import {
   Monitor, Smartphone, Laptop, Globe, Mic,
   FileText, Cookie, RefreshCw, Flag, Check,
 } from "lucide-react";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import studentmeet from "@/assets/student-hero-main-1600w.webp"
@@ -31,7 +32,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -225,8 +225,8 @@ function AboutHeroSection() {
   return (
     <section ref={ref} id="about" className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          Make <span className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>understanding</span> last.
+        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+          Make <span className="hero-fade-up inline-block" style={{ color: COLORS.ink }}>understanding</span> last.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           One intelligence that helps anyone learn, teach, support, build, and lead — anywhere, anytime, in any language.
@@ -260,12 +260,12 @@ function AboutMissionSection() {
   const { ref, visible } = useRevealOnce();
   const { index: wordIndex } = useCycleIndex(MISSION_WORDS.length, 2400);
   return (
-    <section ref={ref} id="mission" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="mission" className="relative scroll-mt-24 bg-white px-6 pb-24 pt-16 lg:pb-32 lg:pt-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our mission</GreyTag>
-        <h1 className="mx-auto max-w-[1200px] text-center font-medium tracking-[0] leading-[1.15] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
+        <h1 className="mx-auto max-w-[1200px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
           Our mission is to make <span style={{ color: COLORS.ink }}>understanding</span> last for{" "}
-          <span style={{ color: COLORS.blue }}>anyone</span>, <span style={{ color: COLORS.blue }}>anywhere</span>,{" "}
+          <span style={{ color: COLORS.ink }}>anyone</span>, <span style={{ color: COLORS.ink }}>anywhere</span>,{" "}
           <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MISSION_WORDS[wordIndex]}</span>
         </h1>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -284,7 +284,7 @@ function AboutMissionSection() {
         </div>
 
         <p className="mx-auto mt-20 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-          One intelligence. <span style={{ color: COLORS.blue }}>One long-term journey.</span>
+          One intelligence. <span style={{ color: COLORS.ink }}>One long-term journey.</span>
         </p>
       </FadeReveal>
     </section>
@@ -300,8 +300,8 @@ function AboutWhySection() {
     <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Why we exist</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Understand more. <span className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>Forget less.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Understand more. <span className="hero-fade-up inline-block" style={{ color: COLORS.ink }}>Forget less.</span>
         </h2>
 
         <div className="relative mx-auto mt-16 max-w-[1400px]">
@@ -339,8 +339,8 @@ function AboutApproachSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our approach</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          We don't teach people. <span style={{ color: COLORS.blue }}>We remember them.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          We don't teach people. <span style={{ color: COLORS.ink }}>We remember them.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Every person on Visionary builds a private, growing record of what they understood, where they struggled, and what they made. That record — not the content — is what changes everything.
@@ -363,7 +363,7 @@ function AboutApproachSection() {
         <div className="mx-auto mt-16 w-full max-w-[1080px]">
           {APPROACH_ROWS.map((r, i) => (
             <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < APPROACH_ROWS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
+              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
               <div>
                 <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
                 <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
@@ -383,8 +383,8 @@ function AboutBenefitsSection() {
     <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Who we serve</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Whoever you are, <span style={{ color: COLORS.blue }}>it's built for you.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Whoever you are, <span style={{ color: COLORS.ink }}>it's built for you.</span>
         </h2>
 
         <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6">
@@ -432,8 +432,8 @@ function AboutSafetySection() {
     <section ref={ref} id="safety" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Safety</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Safe to <span style={{ color: COLORS.blue }}>grow with.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Safe to <span style={{ color: COLORS.ink }}>grow with.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Every answer, every interaction is built to protect the person learning — especially the youngest.
@@ -473,8 +473,8 @@ function AboutPrivacySection() {
     <section ref={ref} id="privacy" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Privacy</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Your memory is yours. <span style={{ color: COLORS.blue }}>Private by design.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Your memory is yours. <span style={{ color: COLORS.ink }}>Private by design.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Privacy here isn't a setting. It's the default — and you hold the controls.
@@ -524,15 +524,15 @@ function AboutSecuritySection() {
     <section ref={ref} id="security" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Security</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Protected <span style={{ color: COLORS.blue }}>end to end.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Protected <span style={{ color: COLORS.ink }}>end to end.</span>
         </h2>
 
         <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <div>
             {SECURITY_ROWS.map((r, i) => (
               <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < SECURITY_ROWS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
+                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
                 <div>
                   <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
                   <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
@@ -573,7 +573,7 @@ function AboutAccessibilitySection() {
     <section ref={ref} id="accessibility" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Accessibility</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Everywhere you learn.
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
@@ -617,7 +617,7 @@ function AboutTermsSection() {
           <IconTile Icon={FileText} />
           <div>
             <GreyTag>Terms</GreyTag>
-            <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.075] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+            <h2 className="mt-6 font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
               Fair rules, in plain language.
             </h2>
             <div className="mt-6 max-w-[760px] space-y-3">
@@ -645,7 +645,7 @@ function AboutCookiesSection() {
           <IconTile Icon={Cookie} />
           <div>
             <GreyTag>Cookies</GreyTag>
-            <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.075] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+            <h2 className="mt-6 font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
               Only what's needed.
             </h2>
             <div className="mt-6 max-w-[760px] space-y-3">
@@ -667,90 +667,165 @@ const BELIEFS = [
   {
     n: "01",
     title: "Understanding over scores.",
+    short: "Measure what people can do, not what they watched.",
     copy: "We measure what people can do with what they know — not how long they watched or how many boxes they ticked. A score tells you what happened after learning was complete. We focus on what is happening while learning is in progress."
   },
   {
     n: "02",
     title: "Continuity over restarts.",
+    short: "Understanding travels — across days, devices, and years.",
     copy: "Your understanding travels with you. Across days, devices, classes, and years — you never start over. When you move from one grade to the next, from one school to the next, from one career to the next, everything you built is still there."
   },
   {
     n: "03",
     title: "One intelligence, every role.",
+    short: "One system serving every role, not five tools.",
     copy: "The same underlying intelligence serves the student, the teacher, the parent, the professional, and the organization. Not five different tools. One system that understands what each person needs and responds accordingly."
   },
   {
     n: "04",
     title: "Language is access.",
+    short: "22 Indian languages, natively — not translated.",
     copy: "If you can only learn in English, you can only reach the people who think in English. Visionary works in 22 Indian languages — natively, not translated. Because the language you think in is the language you understand in."
   },
   {
     n: "05",
     title: "Private by design.",
+    short: "Your learning belongs to you. We never sell data.",
     copy: "Trust is not a feature we added. It is the foundation we built on. Your learning, your questions, your gaps, and your progress belong to you — not to the platform. We do not sell your data. What you build with Visionary is yours."
   },
 ];
 /* ═══ A3 · WHAT WE BELIEVE — loop diagram + 5 expanded beliefs ═══ */
-function AboutBeliefsSection() {
+/* ═══ THE PRODUCT — four apps (A-grid: label + arrow + corner tile, updates pattern) ═══ */
+const ABOUT_APPS = [
+  { label: "Learn", subject: "learn" },
+  { label: "Ask", subject: "ask" },
+  { label: "Practice", subject: "practice" },
+  { label: "Build", subject: "build" },
+];
+
+function AboutAppsSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <GreyTag className="text-center">What we believe</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Five things <span style={{ color: COLORS.blue }}>we build by.</span>
+        <GreyTag className="text-center">The product</GreyTag>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Four ways to use it.
         </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          These are not values we display. They are constraints on how we work.
+        <p className="mx-auto max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          One intelligence, four apps. See how each one works.
         </p>
-
-        {/* Loop diagram — still shows HOW the beliefs are delivered */}
-        <div className={`mx-auto mt-16 flex w-full max-w-[1080px] flex-wrap items-center justify-center gap-3 ${visible ? "hero-fade-right" : "opacity-0"}`}>
-          {LOOP_STEPS.map((s, i) => (
-            <React.Fragment key={s}>
-              <span className="rounded-full border bg-white px-6 py-3 font-normal tracking-[0.24px] text-[14px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.ink }}>
-                {s}
-              </span>
-              {i < LOOP_STEPS.length - 1 && <ArrowRight className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />}
-            </React.Fragment>
+        <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {ABOUT_APPS.map(({ label, subject }) => (
+            <Link key={label} to="/how-it-works"
+              className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              style={{ borderColor: COLORS.mist }}>
+              <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>{label}</span>
+              <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#4285F4]" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
+              <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
+            </Link>
           ))}
-          <span className="flex items-center gap-2 px-2 font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            <RefreshCw className="h-4 w-4" strokeWidth={1.8} /> back to Understand
-          </span>
+          <div aria-hidden="true" className="hidden min-h-[176px] lg:block" />
+          <div aria-hidden="true" className="hidden min-h-[176px] lg:block" />
         </div>
+      </FadeReveal>
+    </section>
+  );
+}
 
-        {/* 5 expanded beliefs */}
-        <div className="mx-auto mt-16 w-full max-w-[1080px]">
-          {BELIEFS.map((r, i) => (
-            <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < BELIEFS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
-              <div>
-                <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
-              </div>
+/* ═══ STAT BAND — big light numbers + grey labels, type + white only (E-pattern) ═══ */
+const ABOUT_STATS = [
+  { n: "22", label: "Indian languages" },
+  { n: "4", label: "Ways to use it" },
+  { n: "1", label: "Memory per person" },
+  { n: "100%", label: "Data stored in India" },
+];
+
+function AboutStatBand() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-y-14 lg:grid-cols-4">
+          {ABOUT_STATS.map((s) => (
+            <div key={s.label} className="text-center">
+              <p className="font-normal tracking-[-0.02em] leading-[1] text-[clamp(48px,5vw,72px)]" style={{ color: COLORS.ink }}>{s.n}</p>
+              <p className="mt-4 font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>{s.label}</p>
             </div>
           ))}
         </div>
       </FadeReveal>
     </section>
   );
-}/* ═══ OUR VISION — direct statements, stated as fact ═══ */
-function AboutVisionSection() {
+}
+
+/* ═══ WHAT WE BELIEVE — the capture's story-block concept:
+   featured illustrated panel left + hairline label rows right ═══ */
+function AboutBeliefsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <div className="mx-auto grid w-full max-w-[1280px] gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+          <div>
+            <div className="overflow-hidden rounded-[24px] border" style={{ borderColor: COLORS.mist }}>
+              <SpotIllustration subject="loop" className="aspect-[4/3] w-full" />
+            </div>
+            <p className="mt-8 text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>What we believe</p>
+            <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+              Five things we build by.
+            </h2>
+            <p className="mt-4 max-w-[460px] text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>
+              Not values we display — constraints on how we work.
+            </p>
+          </div>
+          <div className="border-t" style={{ borderColor: COLORS.mist }}>
+            {BELIEFS.map((r) => (
+              <div key={r.n} className="border-b py-6" style={{ borderColor: COLORS.mist }}>
+                <div className="flex items-baseline gap-4">
+                  <span className="shrink-0 text-[12px] font-medium" style={{ color: COLORS.lightGrey }}>{r.n}</span>
+                  <div>
+                    <h3 className="text-[17px] font-medium leading-[1.4]" style={{ color: COLORS.ink }}>{r.title}</h3>
+                    <p className="mt-1 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{r.short}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}/* ═══ OUR VISION — the capture's Technology-section concept:
+   a strip of four illustrated persona panels with caps labels + captions ═══ */
+function AboutVisionSection() {
+  const { ref, visible } = useRevealOnce();
+  const PANELS = [
+    { subject: "student", label: "Students", line: "Understanding follows them from classroom to career." },
+    { subject: "teacher", label: "Teachers", line: "Every learner, seen." },
+    { subject: "parent", label: "Parents", line: "Help before the test, not after." },
+    { subject: "team", label: "Teams", line: "Learning faster than it forgets." },
+  ];
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our vision</GreyTag>
-        <h2 className="mx-auto max-w-[1400px] text-center font-medium tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          A student whose understanding follows them from classroom to career.
-          <br />
-          A teacher who sees every learner.
-          <br />
-          A parent who helps before the test.
-          <br />
-          A team that learns faster than it forgets.
+        <h2 className="mx-auto mt-4 max-w-[1080px] text-center text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+          The world we are building.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(24px,2.78vw,40px)*1.4)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.blue }}>
+        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {PANELS.map((p) => (
+            <div key={p.subject}>
+              <div className="overflow-hidden rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
+                <SpotIllustration subject={p.subject} className="aspect-[3/4] w-full" />
+              </div>
+              <p className="mt-5 text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>{p.label}</p>
+              <p className="mt-1.5 text-[15px] font-normal leading-[1.5]" style={{ color: COLORS.ink }}>{p.line}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mx-auto mt-16 max-w-[720px] text-center text-[19px] font-normal leading-[1.5] sm:text-[22px]" style={{ color: COLORS.grey }}>
           That is the world we are building — one connected mind at a time.
         </p>
       </FadeReveal>
@@ -763,8 +838,8 @@ function AboutCompanySection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The company</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Built in India. <span style={{ color: COLORS.blue }}>Built for India.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Built in India. <span style={{ color: COLORS.ink }}>Built for India.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Visionary is built by Ecoh Solution Private Limited, incorporated in India and committed to operating within Indian law — including the Digital Personal Data Protection Act 2023.
@@ -808,8 +883,8 @@ function AboutPeopleSection() {
     <section ref={ref} id="team" className="relative scroll-mt-24 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The people</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          The people <span style={{ color: COLORS.blue }}>building Visionary.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          The people <span style={{ color: COLORS.ink }}>building Visionary.</span>
         </h2>
 
         <div className="mx-auto mt-16 flex w-full max-w-[900px] flex-col items-center gap-10 rounded-[24px] border bg-white p-8 lg:flex-row lg:items-start lg:p-12" style={{ borderColor: COLORS.mist }}>
@@ -844,8 +919,8 @@ function AboutResearchSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">How we think</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Visionary is grounded in how <span style={{ color: COLORS.blue }}>people actually learn.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Visionary is grounded in how <span style={{ color: COLORS.ink }}>people actually learn.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           The way Visionary teaches is not arbitrary. It is based on decades of research in cognitive science, pedagogy, and language acquisition.
@@ -853,7 +928,7 @@ function AboutResearchSection() {
         <div className="mx-auto mt-16 w-full max-w-[1080px]">
           {RESEARCH_PRINCIPLES.map((r, i) => (
             <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < RESEARCH_PRINCIPLES.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
+              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
               <div>
                 <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
                 <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
@@ -879,8 +954,8 @@ function AboutContactSection() {
     <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Get in touch</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          We would like to <span style={{ color: COLORS.blue }}>hear from you.</span>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          We would like to <span style={{ color: COLORS.ink }}>hear from you.</span>
         </h2>
 
         <div className="mx-auto mt-16 grid w-full max-w-[1080px] grid-cols-1 gap-6 sm:grid-cols-2">
@@ -904,13 +979,65 @@ function AboutContactSection() {
 }
 /* ═══ H · FINAL CTA ═══ */
 /* ═══ CTA — specific action, not "be part of the story" ═══ */
+
+/* ── THE ABOUT HUB — 'Explore everything' (founder wayfinding contract) ──
+   A-pattern per the Google blog capture: flat bordered cards, ONE label
+   top-left, thin arrow top-right, hover-only shadow, trailing empty cell. */
+const HUB_LINKS = [
+  { to: '/privacy', label: 'Privacy policy', subject: 'lock' },
+  { to: '/terms', label: 'Terms', subject: 'document' },
+  { to: '/security', label: 'Security', subject: 'shield' },
+  { to: '/safety', label: 'Safety', subject: 'safety' },
+  { to: '/cookies', label: 'Cookies', subject: 'cookie' },
+  { to: '/accessibility', label: 'Accessibility', subject: 'accessibility' },
+  { to: '/how-it-works', label: 'How it works', subject: 'compass' },
+  { to: '/pricing', label: 'Pricing', subject: 'tag' },
+  { to: '/download', label: 'Download', subject: 'download' },
+  { to: '/help', label: 'Help', subject: 'help' },
+  { to: '/careers', label: 'Careers', subject: 'briefcase' },
+  { to: '/career', label: 'Career growth', subject: 'growth' },
+  { to: '/research', label: 'Research', subject: 'research' },
+  { to: '/community', label: 'Community', subject: 'community' },
+  { to: '/contact', label: 'Contact', subject: 'mail' },
+  { to: '/partners', label: 'Partners', subject: 'handshake' },
+  { to: '/updates', label: 'Updates', subject: 'updates' },
+  { to: '/referral', label: 'Referral', subject: 'gift' },
+];
+
+function AboutHubSection() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} data-section="hub" className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">Explore</GreyTag>
+        <h2 className="mt-4 text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+          Explore everything.
+        </h2>
+        <p className="mx-auto mt-5 max-w-[560px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          Every page of Visionary, one grid. Start anywhere.
+        </p>
+        <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {HUB_LINKS.map(({ to, label, subject }) => (
+            <Link key={to} to={to} className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+              <span className="text-[16px] font-medium leading-[1.4] tracking-[0] text-[#121317]">{label}</span>
+              <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
+              <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
+            </Link>
+          ))}
+          <div aria-hidden="true" className="hidden min-h-[168px] lg:block" />
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}
+
 function AboutCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative bg-white px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Start here</GreyTag>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mt-6 font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           Start using Visionary. <br />Or see how it works first.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -935,20 +1062,15 @@ export default function CompetitiveExamsPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <main id="main">
-        {/* <AboutSectionTabs /> */}
         <AboutMissionSection />
         <AboutWhySection />
+        <AboutAppsSection />
+        <AboutStatBand />
         <AboutBeliefsSection />
-        <AboutBenefitsSection />
         <AboutVisionSection/>
-        <AboutResearchSection/>
         <AboutCompanySection />
         <AboutPeopleSection/>
-        <AboutSafetySection />
-        <AboutPrivacySection />
-        
-        <AboutAccessibilitySection />
-        
+        <AboutHubSection />
         <AboutCTASection />
         <AboutContactSection/>
       </main>

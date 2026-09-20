@@ -1,5 +1,6 @@
 import { Briefcase, TrendingUp, Target, Brain, Users } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { getCategory } from "@/data/landingCategories";
 import CategoryHero from "@/components/landing/sections/CategoryHero";
@@ -16,6 +17,7 @@ export default function CareerPage() {
   return (
     <div className="min-h-screen bg-white">
       <LandingNav />
+      <Breadcrumb page="Career" />
       <CategoryHero
         category={category}
         eyebrow="Career development"

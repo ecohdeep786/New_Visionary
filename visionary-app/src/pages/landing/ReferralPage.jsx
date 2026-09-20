@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -31,7 +32,6 @@ const COLORS = {
   border: "#e5e7eb",
   soft: "#f8f9fa",
   blue: "#4285F4",
-  blueSoft: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -59,7 +59,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
         {number}
       </div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
@@ -175,6 +175,7 @@ export default function ReferralPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Referral" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
@@ -187,10 +188,10 @@ export default function ReferralPage() {
               <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                 Share something useful.
                 <br />
-                <span style={{ color: COLORS.blue }}>Help someone start.</span>
+                <span style={{ color: COLORS.ink }}>Help someone start.</span>
               </h1>
               <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Visionary grows through people who find it useful enough to share. The referral program gives people a simple way to introduce Visionary to others.
+                A simple way to introduce Visionary to someone who needs it.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#start" onClick={(event) => { event.preventDefault(); scrollToSection("start"); }}
@@ -217,7 +218,7 @@ export default function ReferralPage() {
               <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
                 A good recommendation
                 <br />
-                <span style={{ color: COLORS.blue }}>can change where someone starts.</span>
+                <span style={{ color: COLORS.ink }}>can change where someone starts.</span>
               </p>
               <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
                 A classmate can introduce a better way to practise. A teacher can share a useful learning resource. A colleague can show someone how Visionary fits into their work. The referral program is built around those moments.
@@ -403,7 +404,7 @@ export default function ReferralPage() {
                     <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
                       {status === "error" ? (
                         <div className="py-8" role="alert">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: "#FCE8E6" }}>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
                             <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
                           </div>
                           <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
@@ -419,7 +420,7 @@ export default function ReferralPage() {
                         </div>
                       ) : status === "success" ? (
                         <div className="py-8">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: COLORS.blueSoft }}>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
                             <CheckCircle2 className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                           </div>
                           <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>Your request is ready.</h3>
@@ -485,11 +486,11 @@ export default function ReferralPage() {
                 {/* CLOSING */}
                 <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Referral Program</div>
+                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Referral Program</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
                       One useful recommendation
                       <br />
-                      <span style={{ color: COLORS.blue }}>can become someone's beginning.</span>
+                      <span style={{ color: COLORS.ink }}>can become someone's beginning.</span>
                     </h2>
                     <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       Share Visionary when you believe it can help someone understand more, practise better, or build what comes next.

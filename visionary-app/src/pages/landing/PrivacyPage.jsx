@@ -11,12 +11,14 @@ import {
   Share2,
   Settings2,
   Mail,
+  Target,
   ChevronDown,
   ArrowRight,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
 import { LEGAL_META, GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const COLORS = {
@@ -26,7 +28,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -201,6 +202,7 @@ export default function PrivacyPage() {
       style={{ fontFamily: FONT_FAMILY }}
     >
       <LandingNav />
+      <Breadcrumb page="Privacy policy" />
 
       <main id="main">
         {/* 01 — HERO */}
@@ -221,7 +223,7 @@ export default function PrivacyPage() {
             >
               Your information.
               <br />
-              <span style={{ color: COLORS.blue }}>
+              <span style={{ color: COLORS.ink }}>
                 Your control.
               </span>
             </h1>
@@ -237,6 +239,36 @@ export default function PrivacyPage() {
           Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.privacy.lastUpdated}</strong>
         </p>
           </div>
+
+          {/* At a glance — 4 tiles (C-pattern: ~90% never read prose) */}
+          <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { to: "#what-we-collect", label: "What we collect", Icon: Database },
+              { to: "#purpose", label: "Why we use it", Icon: Target },
+              { to: "#sharing", label: "What we share", Icon: Share2 },
+              { to: "#your-controls", label: "Your controls", Icon: Settings2 },
+            ].map(({ to, label, Icon }) => (
+              <a key={to} href={to} className="group relative flex min-h-[132px] flex-col rounded-[16px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <span className="text-[15px] font-medium leading-[1.4] tracking-[0] text-[#121317]">{label}</span>
+                <ArrowRight className="absolute right-5 top-6 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
+                <span className="mt-auto flex h-10 w-10 items-center justify-center rounded-[12px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                  <Icon className="h-4 w-4" strokeWidth={1.7} />
+                </span>
+              </a>
+            ))}
+          </div>
+
+          {/* On this page — anchor chips (C-pattern wayfinding) */}
+          <nav aria-label="On this page" className="mx-auto mt-10 flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-2">
+            {[
+              ["#retention", "Data retention"], ["#younger-learners", "Younger learners"],
+              ["#security", "Security"], ["#explainers", "Explainers"], ["#grievance-officer", "Grievance officer"],
+            ].map(([to, label]) => (
+              <a key={to} href={to} className="rounded-full border bg-white px-4 py-2 text-[13px] tracking-[0.1px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist, color: COLORS.grey }}>
+                {label}
+              </a>
+            ))}
+          </nav>
 
           {/* Minimal privacy illustration */}
           <div className="mx-auto mt-16 max-w-[760px]">
@@ -288,7 +320,7 @@ export default function PrivacyPage() {
               >
                 We collect what we need
                 <br />
-                <span style={{ color: COLORS.blue }}>
+                <span style={{ color: COLORS.ink }}>
                   to provide Visionary.
                 </span>
               </h2>
@@ -346,7 +378,7 @@ export default function PrivacyPage() {
               >
                 Information should have
                 <br />
-                <span style={{ color: COLORS.blue }}>
+                <span style={{ color: COLORS.ink }}>
                   a clear purpose.
                 </span>
               </h2>
@@ -406,7 +438,7 @@ export default function PrivacyPage() {
                 <br />
                 shouldn't travel
                 <br />
-                <span style={{ color: COLORS.blue }}>
+                <span style={{ color: COLORS.ink }}>
                   without a reason.
                 </span>
               </h2>
@@ -488,7 +520,7 @@ export default function PrivacyPage() {
               >
                 Know what you can do
                 <br />
-                <span style={{ color: COLORS.blue }}>
+                <span style={{ color: COLORS.ink }}>
                   with your information.
                 </span>
               </h2>
@@ -544,7 +576,7 @@ export default function PrivacyPage() {
             >
               Privacy needs
               <br />
-              <span style={{ color: COLORS.blue }}>
+              <span style={{ color: COLORS.ink }}>
                 security behind it.
               </span>
             </h2>
@@ -591,7 +623,7 @@ export default function PrivacyPage() {
               >
                 Keep what you need.
                 <br />
-                <span style={{ color: COLORS.blue }}>
+                <span style={{ color: COLORS.ink }}>
                   Remove what you don't.
                 </span>
               </h2>
@@ -688,7 +720,7 @@ export default function PrivacyPage() {
                     style={{ color: COLORS.ink }}
                   >
                     Extra care for
-                    <span style={{ color: COLORS.blue }}>
+                    <span style={{ color: COLORS.ink }}>
                       {" "}younger learners.
                     </span>
                   </h2>
@@ -739,7 +771,7 @@ export default function PrivacyPage() {
               >
                 Privacy,
                 <br />
-                <span style={{ color: COLORS.blue }}>
+                <span style={{ color: COLORS.ink }}>
                   clearly explained.
                 </span>
               </h2>
@@ -821,7 +853,7 @@ export default function PrivacyPage() {
             >
               Your information
               <br />
-              <span style={{ color: COLORS.blue }}>
+              <span style={{ color: COLORS.ink }}>
                 stays yours to manage.
               </span>
             </h2>
@@ -866,7 +898,7 @@ export default function PrivacyPage() {
             <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
               <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Under the DPDP Act, 2023</p>
               <h2 className="mt-[calc(clamp(24px,2.4vw,32px)*0.5)] text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
-                Your grievance has a <span style={{ color: COLORS.blue }}>named person.</span>
+                Your grievance has a <span style={{ color: COLORS.ink }}>named person.</span>
               </h2>
               <div className="mt-6 space-y-2 text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>
                 <p>{GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong></p>
@@ -889,7 +921,7 @@ export default function PrivacyPage() {
             <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
               <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Related policies</p>
               <h2 className="mt-[calc(clamp(24px,2.4vw,32px)*0.5)] text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
-                Read them <span style={{ color: COLORS.blue }}>together.</span>
+                Read them <span style={{ color: COLORS.ink }}>together.</span>
               </h2>
               <ul className="mt-6 space-y-3 text-[15px]">
                 {[

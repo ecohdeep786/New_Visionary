@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -34,7 +35,6 @@ const COLORS = {
   border: "#e5e7eb",
   soft: "#f8f9fa",
   blue: "#4285F4",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -62,7 +62,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
@@ -149,6 +149,7 @@ export default function ResearchNewsPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Research" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
@@ -161,13 +162,13 @@ export default function ResearchNewsPage() {
               <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                 We are building Visionary
                 <br />
-                <span style={{ color: COLORS.blue }}>one question at a time.</span>
+                <span style={{ color: COLORS.ink }}>one question at a time.</span>
               </h1>
               <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Research at Visionary starts with a simple question: what would make understanding work better for a real person?
+                What would make understanding work better for a real person?
               </p>
               <p className="mt-5 max-w-[760px] text-[16px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                We study learning, AI, language, memory, interaction, and the systems around them. The goal is not research for its own sake. The goal is to learn something true enough to build from.
+                Not research for its own sake: learning something true enough to build from.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#questions" onClick={(event) => { event.preventDefault(); scrollToSection("questions"); }}
@@ -429,7 +430,7 @@ export default function ResearchNewsPage() {
                 {/* CLOSING */}
                 <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Research</div>
+                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Research</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
                       Ask better questions.
                       <br />

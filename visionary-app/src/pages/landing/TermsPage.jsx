@@ -9,6 +9,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import { LEGAL_META } from "@/data/legalMeta";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -124,6 +125,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
+      <Breadcrumb page="Terms" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: C.border }}>

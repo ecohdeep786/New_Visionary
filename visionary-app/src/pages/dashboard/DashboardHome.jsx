@@ -1,5 +1,6 @@
-import { lazy, Suspense } from "react";
-import { useAuth } from "@/lib/AuthContext";
+import { lazy, Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
+import DecisionHome from './DecisionHome';
 
 const Guide = lazy(() => import('./Guide'));
 
@@ -23,11 +24,13 @@ function DashboardSkeleton() {
  * Uses lazy chunking so students do not download teacher/parent/org bundles.
  */
 export default function DashboardHome() {
-  const { activeWorkspace } = useAuth();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const activityEntry = location.pathname.endsWith('/ask') || ['journey','session','topic'].some(key => params.has(key)) || location.state?.initialQuestion;
 
   return (
     <Suspense fallback={<DashboardSkeleton />}>
-      <Guide key={activeWorkspace?.id} />
+      {activityEntry ? <Guide /> : <DecisionHome />}
     </Suspense>
   );
 }

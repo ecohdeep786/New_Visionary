@@ -5,6 +5,7 @@ import {
   Download, ShieldCheck,
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
@@ -15,7 +16,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -100,11 +100,11 @@ function DownloadHeroSection() {
     <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
-        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          One intelligence. <span style={{ color: COLORS.blue }}>Every device.</span>
+        <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+          One intelligence. <span style={{ color: COLORS.ink }}>Every device.</span>
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Use Visionary in your browser with nothing to install — or take it with you on the devices you already use. Your account keeps everything connected.
+          Use Visionary in your browser or on the devices you already use.
         </p>
 
         {/* The choice — Web or App */}
@@ -157,8 +157,8 @@ function DownloadPlatformsSection() {
     <section ref={ref} id="platforms" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
-        <p className="mx-auto mt-[calc(clamp(30px,4vw,56px)*0.533)] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
+        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
+        <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
           Version {APP_VERSION} · Updated this week ·{" "}
           {detected ? (
             <>Recommended for your device: <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span></>
@@ -181,7 +181,7 @@ function DownloadPlatformsSection() {
                 }}
               >
                 {isRecommended && (
-                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>
+                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
                     Recommended
                   </span>
                 )}
@@ -243,7 +243,7 @@ function DownloadNotifySection() {
             Native apps are in final testing. We'll email you the moment your platform is ready.
           </p>
           {status === "success" ? (
-            <p role="status" className="mt-6 w-full rounded-[14px] px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ backgroundColor: "#E6F4EA", color: "#137333" }}>
+            <p role="status" className="mt-6 w-full rounded-[14px] border px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
               You're on the list. We'll write to <span className="font-medium">{email}</span> at launch.
             </p>
           ) : (
@@ -315,7 +315,7 @@ function DownloadRequirementsSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
+        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
         <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {REQUIREMENTS.map((r) => (
             <div key={r.platform} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
@@ -352,7 +352,7 @@ function DownloadCTASection() {
   return (
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -397,6 +397,7 @@ export default function ResearchPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Download" />
       <main id="main">
 
         <DownloadHeroSection />

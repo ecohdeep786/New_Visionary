@@ -18,6 +18,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import { RESPONSE_TIMES } from "@/data/legalMeta";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -31,9 +32,8 @@ const COLORS = {
   mist: "#dadce0",
   border: "#e5e7eb",
   soft: "#f8f9fa",
-  blue: "#1a73e8",
+  blue: "#4285F4",
   darkblue: "#0b57d2",
-  blueSoft: "#D2E3FC",
   white: "#ffffff",
 };
 
@@ -73,7 +73,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
@@ -93,7 +93,7 @@ function ContactCard({ icon: Icon, title, description, email }) {
       </div>
       <h3 className="mt-5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
       <p className="mt-3 flex-1 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{description}</p>
-      <a href={`mailto:${email}`} className="mt-6 inline-flex items-center gap-1.5 text-[14px] break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
+      <a href={`mailto:${email}`} className="mt-6 inline-flex items-center gap-1.5 text-[14px] break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
         {email}
         <ArrowUpRight className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
       </a>
@@ -174,6 +174,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Contact" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
@@ -186,10 +187,10 @@ export default function ContactPage() {
               <h1 className="max-w-[950px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                 Get in touch.
                 <br />
-                <span style={{ color: COLORS.blue }}>Start with what you need.</span>
+                <span style={{ color: COLORS.ink }}>Start with what you need.</span>
               </h1>
               <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Whether you have a question about Visionary, want to bring it to an institution, have found something that needs attention, or simply want to talk about the work—we want to know what you are trying to solve.
+                Questions, institutions, safety concerns, or just want to talk about the work.
               </p>
             </div>
           </div>
@@ -202,10 +203,10 @@ export default function ContactPage() {
               <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
                 You do not need to know
                 <br className="hidden sm:block" />
-                <span style={{ color: COLORS.blue }}>who at Visionary to contact.</span>
+                <span style={{ color: COLORS.ink }}>who at Visionary to contact.</span>
               </p>
               <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Start with the thing you are trying to understand, fix, build, or discuss. We route the conversation from there.
+                Start with what you need. We route it from there.
               </p>
             </div>
           </div>
@@ -215,7 +216,7 @@ export default function ContactPage() {
         <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
@@ -230,7 +231,7 @@ export default function ContactPage() {
                     return (
                       <button key={section.id} type="button"
                         onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
+                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
                         style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
                         <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                         <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -257,7 +258,7 @@ export default function ContactPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -301,7 +302,7 @@ export default function ContactPage() {
                     <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
                       {status === "error" ? (
                         <div className="py-8" role="alert">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: "#FCE8E6" }}>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
                             <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
                           </div>
                           <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
@@ -309,7 +310,7 @@ export default function ContactPage() {
                             A name and a valid email are required so we can reply. Check them and try again.
                           </p>
                           <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ color: COLORS.blue }}>
                             Back to the form
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -317,7 +318,7 @@ export default function ContactPage() {
                         </div>
                       ) : status === "success" ? (
                         <div className="py-8">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: COLORS.blueSoft }}>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
                             <Mail className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                           </div>
                           <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>Your message is ready.</h3>
@@ -325,7 +326,7 @@ export default function ContactPage() {
                             The form is connected to the page experience, but the production submission endpoint still needs to be connected before launch.
                           </p>
                           <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ color: COLORS.blue }}>
                             Send another message
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -338,14 +339,14 @@ export default function ContactPage() {
                               <label htmlFor="contact-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Name</label>
                               <input id="contact-name" name="name" type="text" autoComplete="name" required value={name}
                                 onChange={(event) => setName(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                             <div>
                               <label htmlFor="contact-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Email</label>
                               <input id="contact-email" name="email" type="email" autoComplete="email" required value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                           </div>
@@ -353,7 +354,7 @@ export default function ContactPage() {
                             <label htmlFor="contact-type" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>What is this about?</label>
                             <select id="contact-type" name="type" value={type}
                               onChange={(event) => setType(event.target.value)}
-                              className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                              className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
                               style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                               {FORM_TYPES.map((item) => (
                                 <option key={item} value={item}>{item}</option>
@@ -365,7 +366,7 @@ export default function ContactPage() {
                             <textarea id="contact-message" name="message" required value={message}
                               onChange={(event) => setMessage(event.target.value)} rows={7}
                               placeholder="Tell us what you are trying to understand, solve, or build."
-                              className="mt-2 w-full resize-y rounded-[14px] border bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                              className="mt-2 w-full resize-y rounded-[14px] border bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
                               style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                           </div>
                           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -373,8 +374,8 @@ export default function ContactPage() {
                               Please do not include passwords, payment card numbers, or other sensitive information that is not needed to answer your question.
                             </p>
                             <button type="submit" disabled={status === "submitting"}
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-70"
-                              style={{ backgroundColor: COLORS.darkblue }}>
+                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-70"
+                              style={{ backgroundColor: COLORS.blue }}>
                               {status === "submitting" ? "Sending…" : "Send message"}
                               <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
                             </button>
@@ -404,13 +405,13 @@ export default function ContactPage() {
                       <Callout icon={Lock} title="Privacy concern">Contact us when you believe personal information has been handled incorrectly or your privacy rights need attention.</Callout>
                     </div>
                     <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
-                      <Link to="/safety" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
+                      <Link to="/safety" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
                         Safety <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
-                      <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
+                      <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
                         Privacy <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
-                      <Link to="/security" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
+                      <Link to="/security" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
                         Security <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
                     </div>
@@ -421,7 +422,7 @@ export default function ContactPage() {
                     <SectionHeading number="05" title="Other ways to reach us" />
                     <Paragraph>Some conversations already have a home elsewhere in Visionary.</Paragraph>
                     <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                      <Link to="/careers" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ borderColor: COLORS.border }}>
+                      <Link to="/careers" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.border }}>
                         <Briefcase className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                         <h3 className="mt-5 text-[18px] font-normal" style={{ color: COLORS.ink }}>Careers</h3>
                         <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Ask about joining the team or introducing your work.</p>
@@ -430,7 +431,7 @@ export default function ContactPage() {
                           <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={1.8} />
                         </span>
                       </Link>
-                      <Link to="/research" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ borderColor: COLORS.border }}>
+                      <Link to="/research" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.border }}>
                         <FlaskConical className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                         <h3 className="mt-5 text-[18px] font-normal" style={{ color: COLORS.ink }}>Research</h3>
                         <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Explore research questions or discuss collaboration.</p>
@@ -455,19 +456,19 @@ export default function ContactPage() {
                 {/* CLOSING */}
                 <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Contact</div>
+                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contact</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
                       Start with the question.
                       <br />
-                      <span style={{ color: COLORS.blue }}>We will find the conversation.</span>
+                      <span style={{ color: COLORS.ink }}>We will find the conversation.</span>
                     </h2>
                     <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary is being built through questions too. Some come from learners. Some come from teachers, parents, institutions, researchers, and people building the company.
+                      The best product decisions here started as questions.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
                       <a href="mailto:hello@visionary.org.in"
                         className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                        style={{ backgroundColor: COLORS.darkblue }}>
+                        style={{ backgroundColor: COLORS.blue }}>
                         hello@visionary.org.in
                         <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
                       </a>

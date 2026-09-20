@@ -26,3 +26,7 @@ Open for 00 before implementation: confirm transaction semantics for Postpone af
 D-011: The user's latest instruction authorizes continued building without another review pause between each handoff. Preserve the strict role order and per-agent stop/log rule; the coordinator may dispatch the next stage after reading the handoff. No gate or release requirement is waived. Start with the approved Home/Ask enhancement slice while the rest of the product remains explicitly incomplete.
 
 D-012: Adopt PM's safe transition edge interpretation for later Part W implementation: Postpone reverses the active mapping and schedules reevaluation in seven days; Undo restores the prior active snapshot while retaining later work in an accessible history branch. Newer authoritative events and boundary confirmations take precedence. This decision does not imply an implemented transition engine.
+
+## 2026-09-20 — 04 implementation record
+
+D-013: Apply D-007/UX_HOME_FLOW with additive03 classes: Home selects a scoped next action; Ask retains conversations/canvases and adds persisted intent/context. Existing Home journey/topic/question links still enter Guide. Exact session-ID links avoid resuming another conversation about the same topic. No public source or existing CSS changed by04. Before/after evidence is in baseline/wave-0.5; remaining stage/transition and full QA gaps are explicit in STATUS.

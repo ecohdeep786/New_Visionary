@@ -53,8 +53,8 @@ Resume = read STATE; never restart the day, never skip.
 
 ### STATE (Director rewrites each step; append-only history to ../STATUS.md)
 ACTIVE_AGENT : none
-PHASE        : CLOSED            # day 4 complete; steady state — 3 accepted residual rows of 337
-CURSOR       : agent=none (steady state) — next activation = DETECT verify-only; PROPOSALS 1–3 await founder YES
+PHASE        : CLOSED            # Google-IA wave day 1: spine + /privacy exemplar; 18 pages queued at CURSOR
+CURSOR       : agent=04 anchors+imagery — page conversion per brief order (/security next); spine done; tokens = shipped set (founder-locked)
 CHANGE_SET   : []                # manifest.json snapshot 2026-09-19 (313 files)
 QUEUE        : [R5 mt6-sub-gaps(~100u,03), R5 eyebrow-mt4(~40u,03), R4 stagger-legal(07), R4 hover-residual(3,07), R3 clamp-literals(~200,02), R3 legal-text-walls(04,PROPOSAL), R2 nav-i18n-clip(02/05), R3 indic-leading(02)]
 LEDGER       : {RHYTHM:{rows:337,drift:3(accepted)}, COMPOSITION:{rows:265}, MOTION:{rows:25,hover:281,focus:5}}

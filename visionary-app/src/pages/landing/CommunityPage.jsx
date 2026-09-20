@@ -10,7 +10,7 @@ const PILLARS = [
 
 export default function CommunityPage() {
   return (
-    <SimplePage>
+    <SimplePage breadcrumb="Community">
       <AboutHero
         eyebrow="Community"
         titleParts={[{ text: "Learners, teachers, and parents " }, { text: "growing together.", accent: true }]}
