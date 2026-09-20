@@ -20,3 +20,9 @@ The original two entries above are preserved. D-001's older v2 wording is supers
 | D-010 | 0.5 | 01-PM | Stop at PM handoff for review; next agent is 02-UX; no wave/gate completion inferred | Strict chain and user's review instruction | User may authorize continuation |
 
 Open for 00 before implementation: confirm transaction semantics for Postpone after commit and retention of post-transition work during Undo (SHARED_ACCEPTANCE). PM proposal is documented, not silently adopted as contract. No pattern replacement or source edit occurred; before/after decision records will be required when 04 changes screens.
+
+## 2026-09-20 — 00 sequencing decision
+
+D-011: The user's latest instruction authorizes continued building without another review pause between each handoff. Preserve the strict role order and per-agent stop/log rule; the coordinator may dispatch the next stage after reading the handoff. No gate or release requirement is waived. Start with the approved Home/Ask enhancement slice while the rest of the product remains explicitly incomplete.
+
+D-012: Adopt PM's safe transition edge interpretation for later Part W implementation: Postpone reverses the active mapping and schedules reevaluation in seven days; Undo restores the prior active snapshot while retaining later work in an accessible history branch. Newer authoritative events and boundary confirmations take precedence. This decision does not imply an implemented transition engine.
