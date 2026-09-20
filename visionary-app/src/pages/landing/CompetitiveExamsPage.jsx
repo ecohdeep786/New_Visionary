@@ -470,7 +470,7 @@ function AboutSafetySection() {
 function AboutPrivacySection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="privacy" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="privacy" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Privacy</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -805,7 +805,7 @@ const IMG_FOUNDER = imgProfessionalFace;
 function AboutPeopleSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="team" className="relative scroll-mt-24 px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="team" className="relative scroll-mt-24 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The people</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -876,7 +876,7 @@ const CONTACT_ROUTES = [
 function AboutContactSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Get in touch</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>

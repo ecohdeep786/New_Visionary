@@ -214,7 +214,7 @@ export default function PartnersPage() {
         </section>
 
         {/* STORY BAND */}
-        <section className="border-b" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+        <section className="border-b" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
             <div className="max-w-[940px]">
               <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>

@@ -272,7 +272,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 02 — THE SIMPLE IDEA */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-32">
+        <section className="px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-[1100px]">
             <div className="max-w-[780px]">
               <p
@@ -529,7 +529,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 06 — SECURITY */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-32">
+        <section className=" px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-[1000px] text-center">
             <p
               className="text-[12px] uppercase tracking-[0.43px]"
@@ -664,7 +664,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 08 — STUDENT / CHILD DATA NOTE */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-32">
+        <section className=" px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-[1000px]">
             <div className="rounded-[30px] border bg-white p-8 lg:p-10"
               style={{ borderColor: COLORS.mist }}

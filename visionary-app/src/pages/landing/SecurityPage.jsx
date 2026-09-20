@@ -162,7 +162,7 @@ export default function SecurityPage() {
         </section>
 
         {/* INTRO / THREE PRINCIPLES */}
-        <section className="border-b" style={{ borderColor: C.border, backgroundColor: C.canvas }}>
+        <section className="border-b" style={{ borderColor: C.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-14 sm:px-8 sm:py-18 lg:px-10 lg:py-20">
             <div className="grid gap-6 md:grid-cols-3">
               <SecurityCard icon={Lock} eyebrow="01" title="Protect">
