@@ -1,486 +1,238 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowUpRight,
-  Briefcase,
-  Building2,
-  ChevronRight,
-  Lock,
-  Mail,
-  MessageCircle,
-  Newspaper,
-  ShieldCheck,
-  UsersRound,
-  Lightbulb,
-  FlaskConical,
-  AlertCircle,
+  ArrowUpRight, Briefcase, Building2, ChevronRight, Mail, MessageCircle,
+  Newspaper, ShieldCheck, UsersRound, Lightbulb, FlaskConical, AlertCircle,
 } from "lucide-react";
-
 import LandingNav from "@/components/landing/LandingNav";
 import { RESPONSE_TIMES } from "@/data/legalMeta";
 import LandingFooter from "@/components/landing/LandingFooter";
+import GoogleIllustration from "@/components/landing/sections/GoogleIllustration";
+import HighlightCard from "@/components/landing/sections/HighlightCard";
 
-const FONT_FAMILY =
-  "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-
-const COLORS = {
-  ink: "#121317",
-  surface: "#ffffff",
-  grey: "#5f6368",
-  lightGrey: "#9aa0a6",
-  mist: "#dadce0",
-  border: "#e5e7eb",
-  soft: "#f8f9fa",
-  blue: "#1a73e8",
-  blueSoft: "#D2E3FC",
-  white: "#ffffff",
+const C = {
+  ink: "#202124", surface: "#f8f9fa", blue: "#1a73e8",
+  grey: "#5f6368", lightGrey: "#9aa0a6", mist: "#dadce0", white: "#ffffff",
 };
+const FONT = "'Google Sans Flex', 'Google Sans', system-ui, -apple-system, sans-serif";
 
 const ROUTES = [
-  { id: "general", icon: MessageCircle, title: "General questions", description: "Questions about Visionary, the product, how it works, or getting started.", email: "hello@visionary.org.in" },
-  { id: "institutions", icon: Building2, title: "Schools and institutions", description: "Talk with us about bringing Visionary to a school, college, coaching organization, or workplace.", email: "partnerships@visionary.org.in" },
-  { id: "press", icon: Newspaper, title: "Press and media", description: "For journalists, writers, researchers, and people covering Visionary.", email: "press@visionary.org.in" },
-  { id: "safety", icon: ShieldCheck, title: "Safety and privacy", description: "Report a safety concern, privacy issue, or something that should not be happening.", email: "safety@visionary.org.in" },
+  { icon: MessageCircle, title: "General questions", desc: "Questions about Visionary, the product, how it works, or getting started.", email: "hello@visionary.org.in" },
+  { icon: Building2, title: "Schools and institutions", desc: "Talk with us about bringing Visionary to a school, college, coaching organization, or workplace.", email: "partnerships@visionary.org.in" },
+  { icon: Newspaper, title: "Press and media", desc: "For journalists, writers, researchers, and people covering Visionary.", email: "press@visionary.org.in" },
+  { icon: ShieldCheck, title: "Safety and privacy", desc: "Report a safety concern, privacy issue, or something that should not be happening.", email: "safety@visionary.org.in" },
 ];
 
-const FORM_TYPES = [
-  "General question",
-  "School or institution",
-  "Partnership",
-  "Press or media",
-  "Safety or privacy",
-  "Research",
-  "Careers",
-  "Other",
-];
+const FORM_TYPES = ["General question", "School or institution", "Partnership", "Press or media", "Safety or privacy", "Research", "Careers", "Other"];
 
-const NAV_SECTIONS = [
-  { id: "contact-routes", number: "01", title: "Contact routes", summary: "Choose the conversation that fits your question." },
-  { id: "form", number: "02", title: "Send a message", summary: "Tell us what you are trying to solve." },
-  { id: "before-writing", number: "03", title: "Before you write", summary: "A little context helps the right person understand your message." },
-  { id: "trust", number: "04", title: "Privacy and safety", summary: "What to do with information that needs more care." },
-  { id: "company", number: "05", title: "Other ways to reach us", summary: "Careers, research, and other company conversations." },
-];
-
-function scrollToSection(id) {
-  const target = document.getElementById(id);
-  if (!target) return;
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
-  window.history.replaceState(null, "", `#${id}`);
-}
-
-function SectionHeading({ number, title }) {
+function HeroBlobs() {
   return (
-    <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div className="absolute rounded-full blur-3xl" style={{ width: 500, height: 500, right: -100, top: -140, background: "radial-gradient(circle, rgba(26,115,232,0.16) 0%, transparent 70%)" }} />
+      <div className="absolute rounded-full blur-3xl" style={{ width: 280, height: 280, right: 180, top: 100, background: "radial-gradient(circle, rgba(52,168,83,0.09) 0%, transparent 70%)" }} />
     </div>
   );
 }
 
-function Paragraph({ children }) {
+function Section({ id, children, bg = "white" }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
+    <section id={id} className={`scroll-mt-24 px-6 py-28 lg:py-36 ${bg === "surface" ? "bg-[#f8f9fa]" : "bg-white"}`}>
+      <div className="max-w-[1200px] mx-auto">{children}</div>
+    </section>
   );
 }
 
-function ContactCard({ icon: Icon, title, description, email }) {
+function SectionTitle({ eyebrow, id, children }) {
   return (
-    <div className="flex h-full flex-col rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-        <Icon className="h-[19px] w-[19px]" strokeWidth={1.7} />
-      </div>
-      <h3 className="mt-5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
-      <p className="mt-3 flex-1 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{description}</p>
-      <a href={`mailto:${email}`} className="mt-6 inline-flex items-center gap-1.5 text-[14px] break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
-        {email}
-        <ArrowUpRight className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
-      </a>
-    </div>
-  );
-}
-
-function Callout({ icon: Icon, title, children }) {
-  return (
-    <div className="rounded-[22px] border p-6 sm:p-7" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
-      <div className="flex items-start gap-4">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.white }}>
-          <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-        </div>
-        <div>
-          <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>{title}</h3>
-          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-        </div>
-      </div>
+    <div className="mb-12 lg:mb-16">
+      {eyebrow && <p className="text-[11px] font-medium uppercase tracking-[0.4px] mb-4" style={{ color: C.grey }}>{eyebrow}</p>}
+      <h2 id={id} className="text-[clamp(30px,4vw,48px)] font-medium leading-[1.08] tracking-[-0.025em]" style={{ color: C.ink }}>{children}</h2>
     </div>
   );
 }
 
 export default function ContactPage() {
-  const [activeId, setActiveId] = useState("contact-routes");
-  const [showMobileContents, setShowMobileContents] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("General question");
   const [message, setMessage] = useState("");
-    const [status, setStatus] = useState("idle"); // idle | submitting | success | error (deterministic mock)
+  const [status, setStatus] = useState("idle");
 
-  const activeSection = useMemo(
-    () => NAV_SECTIONS.find((section) => section.id === activeId),
-    [activeId]
-  );
-
-  useEffect(() => {
-    const observers = [];
-    NAV_SECTIONS.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (!element) return;
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActiveId(section.id);
-          });
-        },
-        { rootMargin: "-18% 0px -65% 0px", threshold: 0.01 }
-      );
-      observer.observe(element);
-      observers.push(observer);
-    });
-    return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
-
-  useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (!hash || !NAV_SECTIONS.some((section) => section.id === hash)) return;
-    requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: "auto", block: "start" });
-      setActiveId(hash);
-    });
-  }, []);
-
-    function handleSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById("contact-email")?.value || "";
-    const name = document.getElementById("contact-name")?.value || "";
-    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus("error");
-      return;
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus("error"); return; }
     setStatus("submitting");
-    setTimeout(() => setStatus("success"), 900); // deterministic mock — no backend yet
+    setTimeout(() => setStatus("success"), 900);
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
       <main id="main">
+
         {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[980px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-                <Mail className="h-4 w-4" strokeWidth={1.7} />
-                Contact
-              </div>
-              <h1 className="max-w-[950px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Get in touch.
+        <section className="relative overflow-hidden px-6 pb-20 pt-36 lg:pt-44 lg:pb-28">
+          <HeroBlobs />
+          <div className="relative z-10 max-w-[1200px] mx-auto">
+            <div className="flex items-center gap-2 mb-5">
+              <Mail className="w-5 h-5" strokeWidth={1.7} style={{ color: C.grey }} />
+              <p className="text-[11px] font-medium uppercase tracking-[0.4px]" style={{ color: C.grey }}>Contact</p>
+            </div>
+            <h1 className="max-w-[800px] text-[clamp(44px,6vw,76px)] font-medium leading-[1.02] tracking-[-0.03em]" style={{ color: C.ink }}>
+              Get in touch.<br /><span style={{ color: C.blue }}>Start with what you need.</span>
+            </h1>
+            <p className="mt-6 text-[17.5px] text-[#5f6368] leading-[1.65] max-w-[700px]">
+              Whether you have a question about Visionary, want to bring it to an institution, or simply want to talk about the work — we want to know what you are trying to solve.
+            </p>
+          </div>
+        </section>
+
+        {/* CONTACT ROUTES — icon grid */}
+        <Section bg="surface">
+          <SectionTitle eyebrow="Contact routes">Choose the conversation<br /><span style={{ color: C.blue }}>that fits your question.</span></SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {ROUTES.map((route) => (
+              <HighlightCard key={route.email} Icon={route.icon} title={route.title}>
+                {route.desc}
                 <br />
-                <span style={{ color: COLORS.blue }}>Start with what you need.</span>
-              </h1>
-              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Whether you have a question about Visionary, want to bring it to an institution, have found something that needs attention, or simply want to talk about the work—we want to know what you are trying to solve.
-              </p>
-            </div>
+                <a href={`mailto:${route.email}`} className="inline-flex items-center gap-1.5 mt-3 text-[14px] font-medium hover:underline" style={{ color: C.blue }}>
+                  {route.email} <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.8} />
+                </a>
+              </HighlightCard>
+            ))}
           </div>
-        </section>
-
-        {/* STORY BAND */}
-        <section className="border-b" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
-          <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[940px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                You do not need to know
-                <br className="hidden sm:block" />
-                <span style={{ color: COLORS.blue }}>who at Visionary to contact.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Start with the thing you are trying to understand, fix, build, or discuss. We route the conversation from there.
-              </p>
-            </div>
+          <div className="mt-8 flex flex-wrap items-center gap-4 text-[13px] text-[#5f6368]">
+            <span className="font-medium text-[#202124]">What to expect:</span>
+            <span>{RESPONSE_TIMES.general}</span>
+            <span>{RESPONSE_TIMES.safety}</span>
           </div>
-        </section>
+        </Section>
 
-        {/* MOBILE CONTENTS */}
-        <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
-            <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-              <span>
-                <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
-                <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
-              </span>
-              <ChevronRight className={`h-5 w-5 transition-transform duration-200 ${showMobileContents ? "rotate-90" : ""}`} strokeWidth={1.7} style={{ color: COLORS.grey }} />
-            </button>
-            {showMobileContents && (
-              <div className="pb-5">
-                <div className="overflow-hidden rounded-[18px] border" style={{ borderColor: COLORS.border }}>
-                  {NAV_SECTIONS.map((section) => {
-                    const active = activeId === section.id;
-                    return (
-                      <button key={section.id} type="button"
-                        onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
-                        style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
-                        <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
-                        <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* CONTENT */}
-        <section>
-          <div className="mx-auto max-w-[1240px] px-6 py-12 sm:px-8 lg:px-10 lg:py-20">
-            <div className="grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-20">
-              {/* DESKTOP CONTENTS */}
-              <aside className="hidden lg:block">
-                <div className="sticky top-24">
-                  <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</div>
-                  <nav aria-label="Contact sections">
-                    <div className="space-y-1">
-                      {NAV_SECTIONS.map((section) => {
-                        const active = activeId === section.id;
-                        return (
-                          <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
-                            style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
-                            <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
-                            <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </nav>
-                  <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.border }}>
-                    <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
-                      One conversation at a time. Start with the thing that brought you here.
-                    </p>
+        {/* SEND A MESSAGE — form card */}
+        <Section id="form">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div>
+              <SectionTitle eyebrow="Send a message">Tell us what you are<br /><span style={{ color: C.blue }}>trying to solve.</span></SectionTitle>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${C.blue}12` }}>
+                    <MessageCircle className="w-5 h-5" strokeWidth={1.7} style={{ color: C.blue }} />
+                  </div>
+                  <div>
+                    <h4 className="text-[15px] font-medium text-[#202124]">What happened?</h4>
+                    <p className="text-[14px] text-[#5f6368] leading-[1.6]">Describe the question, problem, or situation that brought you here.</p>
                   </div>
                 </div>
-              </aside>
-
-              <div className="min-w-0">
-                <article className="divide-y divide-[#e5e7eb]">
-                  {/* 01 */}
-                  <section id="contact-routes" className="scroll-mt-24 pb-14 sm:pb-16">
-                    <SectionHeading number="01" title="Contact routes" />
-                    <Paragraph>Different questions need different conversations. Choose the closest one below. You do not need to get the category exactly right.</Paragraph>
-                    <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                      {ROUTES.map((route) => (
-                        <ContactCard key={route.id} icon={route.icon} title={route.title} description={route.description} email={route.email} />
-                      ))}
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${C.blue}12` }}>
+                    <Lightbulb className="w-5 h-5" strokeWidth={1.7} style={{ color: C.blue }} />
+                  </div>
+                  <div>
+                    <h4 className="text-[15px] font-medium text-[#202124]">What are you trying to do?</h4>
+                    <p className="text-[14px] text-[#5f6368] leading-[1.6]">Tell us the outcome you are looking for.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${C.blue}12` }}>
+                    <UsersRound className="w-5 h-5" strokeWidth={1.7} style={{ color: C.blue }} />
+                  </div>
+                  <div>
+                    <h4 className="text-[15px] font-medium text-[#202124]">Who is it for?</h4>
+                    <p className="text-[14px] text-[#5f6368] leading-[1.6]">A student, teacher, parent, professional, institution, or something else?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-[28px] border border-[#e8eaed] bg-white p-8">
+              {status === "error" ? (
+                <div className="py-8 text-center">
+                  <div className="w-12 h-12 rounded-[16px] mx-auto flex items-center justify-center" style={{ backgroundColor: "#FCE8E6" }}>
+                    <AlertCircle className="w-5 h-5" style={{ color: "#EA4335" }} />
+                  </div>
+                  <h3 className="mt-6 text-[24px] font-medium" style={{ color: C.ink }}>We couldn't send that.</h3>
+                  <p className="mt-3 text-[14px] text-[#5f6368]">A name and a valid email are required.</p>
+                  <button onClick={() => setStatus("idle")} className="mt-4 text-[14px] font-medium" style={{ color: C.blue }}>Back to form <ChevronRight className="inline w-4 h-4" /></button>
+                </div>
+              ) : status === "success" ? (
+                <div className="py-8 text-center">
+                  <div className="w-12 h-12 rounded-[16px] mx-auto flex items-center justify-center" style={{ backgroundColor: "#D2E3FC" }}>
+                    <Mail className="w-5 h-5" style={{ color: C.blue }} />
+                  </div>
+                  <h3 className="mt-6 text-[24px] font-medium" style={{ color: C.ink }}>Your message is ready.</h3>
+                  <p className="mt-3 text-[14px] text-[#5f6368]">The production endpoint still needs to be connected before launch.</p>
+                  <button onClick={() => setStatus("idle")} className="mt-4 text-[14px] font-medium" style={{ color: C.blue }}>Send another <ChevronRight className="inline w-4 h-4" /></button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="contact-name" className="block text-[13px] font-medium text-[#202124] mb-2">Name</label>
+                      <input id="contact-name" type="text" required value={name} onChange={(e) => setName(e.target.value)}
+                        className="h-12 w-full rounded-[14px] border border-[#dadce0] bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20 text-[#202124]" />
                     </div>
-                    <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-[18px] border px-6 py-4 text-[13px] leading-[1.6]" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.soft }}>
-                      <span className="font-medium" style={{ color: COLORS.ink }}>What to expect</span>
-                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.general}</span>
-                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.safety}</span>
-                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.grievance}</span>
-                      <span style={{ color: COLORS.grey }}>{RESPONSE_TIMES.partners}</span>
-                    </div>
-                  </section>
-
-                  {/* 02 */}
-                  <section id="form" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="02" title="Send a message" />
-                    <Paragraph>Tell us what is happening, what you are trying to do, or what you need help understanding.</Paragraph>
-                    <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
-                      {status === "error" ? (
-                        <div className="py-8" role="alert">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: "#FCE8E6" }}>
-                            <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
-                          </div>
-                          <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
-                          <p className="mt-3 max-w-[620px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                            A name and a valid email are required so we can reply. Check them and try again.
-                          </p>
-                          <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
-                            style={{ color: COLORS.blue }}>
-                            Back to the form
-                            <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                          </button>
-                        </div>
-                      ) : status === "success" ? (
-                        <div className="py-8">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px]" style={{ backgroundColor: COLORS.blueSoft }}>
-                            <Mail className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-                          </div>
-                          <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>Your message is ready.</h3>
-                          <p className="mt-3 max-w-[620px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                            The form is connected to the page experience, but the production submission endpoint still needs to be connected before launch.
-                          </p>
-                          <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
-                            style={{ color: COLORS.blue }}>
-                            Send another message
-                            <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                          </button>
-                        </div>
-                      ) : (
-                        <form onSubmit={handleSubmit} noValidate>
-                          <div className="grid gap-6 sm:grid-cols-2">
-                            <div>
-                              <label htmlFor="contact-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Name</label>
-                              <input id="contact-name" name="name" type="text" autoComplete="name" required value={name}
-                                onChange={(event) => setName(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
-                                style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                            </div>
-                            <div>
-                              <label htmlFor="contact-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Email</label>
-                              <input id="contact-email" name="email" type="email" autoComplete="email" required value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
-                                style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                            </div>
-                          </div>
-                          <div className="mt-6">
-                            <label htmlFor="contact-type" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>What is this about?</label>
-                            <select id="contact-type" name="type" value={type}
-                              onChange={(event) => setType(event.target.value)}
-                              className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
-                              style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                              {FORM_TYPES.map((item) => (
-                                <option key={item} value={item}>{item}</option>
-                              ))}
-                            </select>
-                          </div>
-                          <div className="mt-6">
-                            <label htmlFor="contact-message" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Message</label>
-                            <textarea id="contact-message" name="message" required value={message}
-                              onChange={(event) => setMessage(event.target.value)} rows={7}
-                              placeholder="Tell us what you are trying to understand, solve, or build."
-                              className="mt-2 w-full resize-y rounded-[14px] border bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
-                              style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                          </div>
-                          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                            <p className="max-w-[530px] text-[12px] leading-[1.6]" style={{ color: COLORS.grey }}>
-                              Please do not include passwords, payment card numbers, or other sensitive information that is not needed to answer your question.
-                            </p>
-                            <button type="submit" disabled={status === "submitting"}
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-70"
-                              style={{ backgroundColor: COLORS.blue }}>
-                              {status === "submitting" ? "Sending…" : "Send message"}
-                              <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
-                            </button>
-                          </div>
-                        </form>
-                      )}
-                    </div>
-                  </section>
-
-                  {/* 03 */}
-                  <section id="before-writing" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="03" title="Before you write" />
-                    <Paragraph>The best contact messages are not necessarily long. They simply give enough context for someone to understand what happened and what you need.</Paragraph>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                      <Callout icon={MessageCircle} title="What happened?">Describe the question, problem, or situation that brought you here.</Callout>
-                      <Callout icon={Lightbulb} title="What are you trying to do?">Tell us the outcome you are looking for.</Callout>
-                      <Callout icon={UsersRound} title="Who is it for?">A student, teacher, parent, professional, institution, or something else?</Callout>
-                    </div>
-                  </section>
-
-                  {/* 04 */}
-                  <section id="trust" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="04" title="Privacy and safety" />
-                    <Paragraph>Some conversations need more care than a normal product question.</Paragraph>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <Callout icon={ShieldCheck} title="Safety concern">Use the safety route when you see harmful, unsafe, abusive, or otherwise concerning behavior involving Visionary.</Callout>
-                      <Callout icon={Lock} title="Privacy concern">Contact us when you believe personal information has been handled incorrectly or your privacy rights need attention.</Callout>
-                    </div>
-                    <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
-                      <Link to="/safety" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
-                        Safety <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                      </Link>
-                      <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
-                        Privacy <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                      </Link>
-                      <Link to="/security" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
-                        Security <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                      </Link>
-                    </div>
-                  </section>
-
-                  {/* 05 */}
-                  <section id="company" className="scroll-mt-24 pt-14 sm:pt-16">
-                    <SectionHeading number="05" title="Other ways to reach us" />
-                    <Paragraph>Some conversations already have a home elsewhere in Visionary.</Paragraph>
-                    <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                      <Link to="/careers" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ borderColor: COLORS.border }}>
-                        <Briefcase className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-                        <h3 className="mt-5 text-[18px] font-normal" style={{ color: COLORS.ink }}>Careers</h3>
-                        <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Ask about joining the team or introducing your work.</p>
-                        <span className="mt-5 inline-flex items-center gap-1 text-[14px]" style={{ color: COLORS.blue }}>
-                          Visit Careers
-                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={1.8} />
-                        </span>
-                      </Link>
-                      <Link to="/research" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ borderColor: COLORS.border }}>
-                        <FlaskConical className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-                        <h3 className="mt-5 text-[18px] font-normal" style={{ color: COLORS.ink }}>Research</h3>
-                        <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Explore research questions or discuss collaboration.</p>
-                        <span className="mt-5 inline-flex items-center gap-1 text-[14px]" style={{ color: COLORS.blue }}>
-                          Explore Research
-                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={1.8} />
-                        </span>
-                      </Link>
-                      <a href="mailto:hello@visionary.org.in" className="group rounded-[22px] border p-6 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ borderColor: COLORS.border }}>
-                        <Mail className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-                        <h3 className="mt-5 text-[18px] font-normal" style={{ color: COLORS.ink }}>Everything else</h3>
-                        <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Start with our general address and we will route it.</p>
-                        <span className="mt-5 inline-flex items-center gap-1 text-[14px]" style={{ color: COLORS.blue }}>
-                          hello@visionary.org.in
-                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={1.8} />
-                        </span>
-                      </a>
-                    </div>
-                  </section>
-                </article>
-
-                {/* CLOSING */}
-                <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
-                  <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>Contact</div>
-                    <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
-                      Start with the question.
-                      <br />
-                      <span style={{ color: COLORS.blue }}>We will find the conversation.</span>
-                    </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary is being built through questions too. Some come from learners. Some come from teachers, parents, institutions, researchers, and people building the company.
-                    </p>
-                    <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <a href="mailto:hello@visionary.org.in"
-                        className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
-                        style={{ backgroundColor: COLORS.blue }}>
-                        hello@visionary.org.in
-                        <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
-                      </a>
-                      <Link to="/help" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        Visit Help
-                      </Link>
+                    <div>
+                      <label htmlFor="contact-email" className="block text-[13px] font-medium text-[#202124] mb-2">Email</label>
+                      <input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                        className="h-12 w-full rounded-[14px] border border-[#dadce0] bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20 text-[#202124]" />
                     </div>
                   </div>
-                </section>
-              </div>
+                  <div>
+                    <label htmlFor="contact-type" className="block text-[13px] font-medium text-[#202124] mb-2">What is this about?</label>
+                    <select id="contact-type" value={type} onChange={(e) => setType(e.target.value)}
+                      className="h-12 w-full rounded-[14px] border border-[#dadce0] bg-white px-4 text-[15px] outline-none focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20 text-[#202124]">
+                      {FORM_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="contact-message" className="block text-[13px] font-medium text-[#202124] mb-2">Message</label>
+                    <textarea id="contact-message" required rows={6} value={message} onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Tell us what you are trying to understand, solve, or build."
+                      className="w-full resize-y rounded-[14px] border border-[#dadce0] bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none placeholder:text-[#9aa0a6] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20 text-[#202124]" />
+                  </div>
+                  <p className="text-[12px] text-[#5f6368]">Please do not include passwords, payment card numbers, or other sensitive information.</p>
+                  <button type="submit" disabled={status === "submitting"}
+                    className="inline-flex h-12 items-center justify-center rounded-full px-8 text-[14px] font-medium text-white transition-all hover:bg-[#1557b0] hover:shadow-[0_4px_12px_rgba(26,115,232,0.3)] active:scale-[0.98] disabled:opacity-70"
+                    style={{ backgroundColor: C.blue }}>
+                    {status === "submitting" ? "Sending…" : "Send message"} <ArrowUpRight className="ml-2 w-4 h-4" strokeWidth={1.8} />
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </Section>
+
+        {/* SAFETY & PRIVACY */}
+        <Section bg="surface" id="trust">
+          <SectionTitle eyebrow="Privacy and safety">Some conversations need<br /><span style={{ color: C.blue }}>more care.</span></SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <HighlightCard Icon={ShieldCheck} title="Safety concern">Use the safety route when you see harmful, unsafe, abusive, or otherwise concerning behavior involving Visionary.</HighlightCard>
+            <HighlightCard Icon={Lock} title="Privacy concern">Contact us when you believe personal information has been handled incorrectly or your privacy rights need attention.</HighlightCard>
+          </div>
+          <div className="mt-8 flex flex-wrap gap-5">
+            <Link to="/safety" className="inline-flex items-center gap-2 text-[14px] font-medium hover:underline" style={{ color: C.blue }}>Safety <ChevronRight className="w-4 h-4" /></Link>
+            <Link to="/privacy" className="inline-flex items-center gap-2 text-[14px] font-medium hover:underline" style={{ color: C.blue }}>Privacy <ChevronRight className="w-4 h-4" /></Link>
+            <Link to="/security" className="inline-flex items-center gap-2 text-[14px] font-medium hover:underline" style={{ color: C.blue }}>Security <ChevronRight className="w-4 h-4" /></Link>
+          </div>
+        </Section>
+
+        {/* CTA */}
+        <section className="relative overflow-hidden px-6 py-32 lg:py-36 bg-[#f8f9fa]">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute rounded-full blur-3xl" style={{ width: 400, height: 400, left: "-6%", top: "-25%", background: "radial-gradient(circle, rgba(26,115,232,0.12) 0%, transparent 70%)" }} />
+          </div>
+          <div className="relative z-10 max-w-[800px] mx-auto text-center">
+            <h2 className="text-[clamp(32px,5vw,56px)] font-medium leading-[1.05] tracking-[-0.03em]" style={{ color: C.ink }}>
+              Start with the question.<br /><span style={{ color: C.blue }}>We will find the conversation.</span>
+            </h2>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <a href="mailto:hello@visionary.org.in" className="inline-flex h-12 items-center gap-2 rounded-full px-8 text-[14px] font-medium text-white hover:bg-[#1557b0] transition-colors" style={{ backgroundColor: C.blue }}>
+                <Mail className="w-4 h-4" /> hello@visionary.org.in
+              </a>
+              <Link to="/help" className="inline-flex h-12 items-center rounded-full border border-[#dadce0] bg-white px-7 text-[14px] font-medium text-[#202124] hover:bg-[#f8f9fa] transition-colors">Visit Help</Link>
             </div>
           </div>
         </section>
+
       </main>
       <LandingFooter variant="quiet" />
     </div>
