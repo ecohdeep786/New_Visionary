@@ -10,7 +10,7 @@ export default function StatsBar({ stats, color = "#1a73e8" }) {
               <div className="text-center lg:text-left">
                 <div
                   className="text-[44px] sm:text-[52px] mb-2 leading-none tracking-[-0.03em]"
-                  style={{ fontWeight: 500, color }}
+                  style={{ fontWeight: 400, color }}
                 >
                   {stat.value}
                 </div>

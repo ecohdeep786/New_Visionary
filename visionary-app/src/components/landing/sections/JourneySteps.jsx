@@ -70,7 +70,7 @@ export default function JourneySteps({
                 <div className="group relative rounded-[28px] p-8 border border-[#e8eaed] bg-white h-full hover:shadow-[0_8px_24px_rgba(60,64,67,0.08)] hover:-translate-y-0.5 transition-all">
                   <div
                     className="text-[40px] mb-5 leading-none tracking-[-0.02em]"
-                    style={{ fontWeight: 500, color, opacity: 0.3 }}
+                    style={{ fontWeight: 400, color, opacity: 0.3 }}
                   >
                     {String(idx + 1).padStart(2, "0")}
                   </div>

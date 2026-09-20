@@ -11,41 +11,16 @@ export default function CTASection({
   secondaryTo = "/",
 }) {
   return (
-    <section className="relative py-32 px-6 overflow-hidden bg-[#f8f9fa]">
-      {/* Subtle Google-style decorative blobs */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: 420, height: 420, left: "-8%", top: "-30%",
-            background: "radial-gradient(circle, rgba(66,133,244,0.12) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: 320, height: 320, right: "-6%", bottom: "-40%",
-            background: "radial-gradient(circle, rgba(52,168,83,0.08) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute rounded-full blur-3xl"
-          style={{
-            width: 220, height: 220, right: "30%", top: "-20%",
-            background: "radial-gradient(circle, rgba(251,188,4,0.08) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-[760px] mx-auto text-center">
+    <section className="py-28 lg:py-36 px-6 bg-[#f8f9fa]">
+      <div className="max-w-[760px] mx-auto text-center">
         <ScrollReveal>
           <h2
-            className="text-[36px] sm:text-[48px] lg:text-[56px] text-[#202124] mb-6 leading-[1.05] tracking-[-0.03em]"
-            style={{ fontWeight: 500 }}
+            className="text-[32px] sm:text-[44px] lg:text-[52px] text-[#202124] mb-5 leading-[1.06] tracking-[-0.025em]"
+            style={{ fontWeight: 400 }}
           >
             {title}
           </h2>
-          <p className="text-[17px] text-[#5f6368] mb-10 max-w-[620px] mx-auto leading-[1.65]">
+          <p className="text-[16.5px] text-[#5f6368] mb-10 max-w-[600px] mx-auto leading-[1.65]">
             {description}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

@@ -8,7 +8,7 @@ export default function TestimonialBlock({ quote, author, role, initials, color 
           <div className="rounded-[32px] bg-white border border-[#e8eaed] p-10 sm:p-14">
             <div
               className="text-6xl mb-5 leading-none"
-              style={{ color: color, fontWeight: 500, opacity: 0.4 }}
+              style={{ color: color, fontWeight: 400, opacity: 0.4 }}
             >
               "
             </div>
