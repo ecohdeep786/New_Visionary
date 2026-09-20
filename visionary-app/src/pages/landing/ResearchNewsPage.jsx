@@ -33,7 +33,7 @@ const COLORS = {
   mist: "#dadce0",
   border: "#e5e7eb",
   soft: "#f8f9fa",
-  blue: "#4285F4",
+  blue: "#1a73e8",
   chipBg: "#D2E3FC",
   white: "#ffffff",
 };
@@ -171,13 +171,13 @@ export default function ResearchNewsPage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#questions" onClick={(event) => { event.preventDefault(); scrollToSection("questions"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]"
                   style={{ backgroundColor: COLORS.blue }}>
                   What we are exploring
                   <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                 </a>
                 <a href="#publications" onClick={(event) => { event.preventDefault(); scrollToSection("publications"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                   style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                   Research library
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
@@ -209,7 +209,7 @@ export default function ResearchNewsPage() {
         <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
@@ -224,7 +224,7 @@ export default function ResearchNewsPage() {
                     return (
                       <button key={section.id} type="button"
                         onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
                         style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
                         <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                         <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -251,7 +251,7 @@ export default function ResearchNewsPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -386,11 +386,11 @@ export default function ResearchNewsPage() {
                         There are no published Visionary research papers or formal findings listed here yet. We would rather leave this space honest than fill it with claims that have not been established.
                       </p>
                       <div className="mt-6 flex flex-wrap gap-4">
-                        <Link to="/updates" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                        <Link to="/updates" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
                           Get research updates
                           <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
                         </Link>
-                        <Link to="/contact" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                        <Link to="/contact" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
                           Talk about research
                           <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                         </Link>
@@ -416,7 +416,7 @@ export default function ResearchNewsPage() {
                     <Paragraph>For research questions, collaboration ideas, or opportunities to contribute to Visionary's research:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:research@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                         style={{ color: COLORS.blue }}>
                         research@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
@@ -439,15 +439,15 @@ export default function ResearchNewsPage() {
                       That is how research becomes part of Visionary—not as a claim on a page, but as something that changes the product.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/about" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/about" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         About Visionary
                       </Link>
-                      <Link to="/careers" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/careers" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Work with us
                       </Link>
-                      <Link to="/contact" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/contact" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Contact
                       </Link>

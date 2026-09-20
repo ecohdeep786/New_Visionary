@@ -10,11 +10,11 @@ export default function ParallelogramBackdrop({ variant = "light", className = "
         { color: "#091122", opacity: 0.62 },
       ]
     : [
-        { color: "#4285F4", opacity: 0.13 },
-        { color: "#4285F4", opacity: 0.10 },
-        { color: "#4285F4", opacity: 0.08 },
-        { color: "#4285F4", opacity: 0.06 },
-        { color: "#4285F4", opacity: 0.04 },
+        { color: "#1a73e8", opacity: 0.13 },
+        { color: "#1a73e8", opacity: 0.10 },
+        { color: "#1a73e8", opacity: 0.08 },
+        { color: "#1a73e8", opacity: 0.06 },
+        { color: "#1a73e8", opacity: 0.04 },
       ];
 
   return (

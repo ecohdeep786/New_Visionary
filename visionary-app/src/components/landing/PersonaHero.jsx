@@ -78,13 +78,13 @@ export default function PersonaHero({
 
         {/* CTA pair */}
         <div className="hero-fade-up mt-10 flex flex-wrap items-center gap-4 [animation-delay:240ms] [animation-fill-mode:both] lg:absolute lg:left-[7%] lg:top-[70%] lg:mt-0">
-          <Link to={ctaTo} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+          <Link to={ctaTo} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2">
             {ctaLabel}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
               <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
             </svg>
           </Link>
-          <Link to={secondaryTo} className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#4285F4] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+          <Link to={secondaryTo} className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#1a73e8] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2">
             {secondaryLabel}
           </Link>
         </div>

@@ -21,8 +21,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
+  surface: "#f8f9fa",
+  blue: "#1a73e8",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
@@ -272,7 +272,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 02 — THE SIMPLE IDEA */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-32">
+        <section className="bg-[#f8f9fa] px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-[1100px]">
             <div className="max-w-[780px]">
               <p
@@ -388,7 +388,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 04 — SHARING */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-36">
+        <section className="bg-[#f8f9fa] px-6 py-24 lg:py-36">
           <div className="mx-auto grid max-w-[1120px] items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p
@@ -529,7 +529,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 06 — SECURITY */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-32">
+        <section className="bg-[#f8f9fa] px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-[1000px] text-center">
             <p
               className="text-[12px] uppercase tracking-[0.43px]"
@@ -562,7 +562,7 @@ export default function PrivacyPage() {
             <div className="mt-10">
               <Link
                 to="/security"
-                className="inline-flex items-center rounded-full border bg-white px-6 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="inline-flex items-center rounded-full border bg-white px-6 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                 style={{
                   borderColor: COLORS.mist,
                   color: COLORS.ink,
@@ -664,7 +664,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 08 — STUDENT / CHILD DATA NOTE */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-32">
+        <section className="bg-[#f8f9fa] px-6 py-24 lg:py-32">
           <div className="mx-auto max-w-[1000px]">
             <div className="rounded-[30px] border bg-white p-8 lg:p-10"
               style={{ borderColor: COLORS.mist }}
@@ -707,7 +707,7 @@ export default function PrivacyPage() {
                   <div className="mt-7">
                     <Link
                       to="/safety"
-                      className="inline-flex items-center rounded-full border px-5 py-3 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      className="inline-flex items-center rounded-full border px-5 py-3 text-[14px] font-medium transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                       style={{
                         borderColor: COLORS.mist,
                         color: COLORS.ink,
@@ -763,7 +763,7 @@ export default function PrivacyPage() {
                         openFaq === index ? null : index
                       )
                     }
-                    className="flex w-full items-center justify-between gap-8 py-6 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="flex w-full items-center justify-between gap-8 py-6 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                   >
                     <span
                       className="text-[17px] leading-[1.45]"
@@ -806,7 +806,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 10 — FINAL CTA */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-36">
+        <section className="bg-[#f8f9fa] px-6 py-24 lg:py-36">
           <div className="mx-auto max-w-[900px] text-center">
             <p
               className="text-[12px] uppercase tracking-[0.43px]"
@@ -837,7 +837,7 @@ export default function PrivacyPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 to="/safety"
-                className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                 style={{
                   borderColor: COLORS.mist,
                   color: COLORS.ink,
@@ -848,7 +848,7 @@ export default function PrivacyPage() {
 
               <Link
                 to="/security"
-                className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                 style={{
                   borderColor: COLORS.mist,
                   color: COLORS.ink,
@@ -872,7 +872,7 @@ export default function PrivacyPage() {
                 <p>{GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong></p>
                 <p>
                   Write to{" "}
-                  <a href={`mailto:${GRIEVANCE_OFFICER.email}`} className="font-medium underline decoration-[#4285F4]/40 underline-offset-2 hover:decoration-[#4285F4]" style={{ color: COLORS.blue }}>
+                  <a href={`mailto:${GRIEVANCE_OFFICER.email}`} className="font-medium underline decoration-[#1a73e8]/40 underline-offset-2 hover:decoration-[#1a73e8]" style={{ color: COLORS.blue }}>
                     {GRIEVANCE_OFFICER.email}
                   </a>
                 </p>
@@ -880,7 +880,7 @@ export default function PrivacyPage() {
               </div>
               <p className="mt-6 rounded-[14px] px-5 py-4 text-[13px] leading-[1.6]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
                 Consent states: essential processing runs without consent; optional analytics runs only while your consent is on, and you can withdraw it at any time without losing your account. See{" "}
-                <Link to="/cookies" className="font-medium underline decoration-[#4285F4]/40 underline-offset-2 hover:decoration-[#4285F4]" style={{ color: COLORS.blue }}>Cookie policy</Link>.
+                <Link to="/cookies" className="font-medium underline decoration-[#1a73e8]/40 underline-offset-2 hover:decoration-[#1a73e8]" style={{ color: COLORS.blue }}>Cookie policy</Link>.
               </p>
               <p className="mt-4 rounded-[14px] px-5 py-4 text-[13px] leading-[1.6]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
                 What you can expect elsewhere: {RESPONSE_TIMES.general} For safety reports, {RESPONSE_TIMES.safety}
@@ -900,7 +900,7 @@ export default function PrivacyPage() {
                   { to: "/accessibility", label: "Accessibility", desc: "Our commitment to an accessible product." },
                 ].map((l) => (
                   <li key={l.to}>
-                    <Link to={l.to} className="inline-flex items-baseline gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                    <Link to={l.to} className="inline-flex items-baseline gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
                       {l.label}
                       <ArrowRight className="h-3.5 w-3.5 self-center" strokeWidth={1.8} />
                     </Link>

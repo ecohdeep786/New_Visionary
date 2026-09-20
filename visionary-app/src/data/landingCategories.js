@@ -4,7 +4,7 @@ import {
 } from "lucide-react";
 
 export const CATEGORIES = [
-  { slug: "student", label: "Student", tagline: "Master every subject and exam", icon: GraduationCap, color: "#4285F4", path: "/student" },
+  { slug: "student", label: "Student", tagline: "Master every subject and exam", icon: GraduationCap, color: "#1a73e8", path: "/student" },
   { slug: "teacher", label: "Teacher", tagline: "Teach smarter, not harder", icon: BookOpen, color: "#34A853", path: "/teacher" },
   { slug: "parent", label: "Parent", tagline: "Stay connected to your child's learning", icon: Baby, color: "#EA4335", path: "/parent" },
   { slug: "professional", label: "Professional", tagline: "Modernize your college's education", icon: Building2, color: "#9334E9", path: "/professional" },
@@ -18,7 +18,7 @@ export function getCategory(slug) {
 
 
 /**
- * { slug: "school", label: "School", tagline: "Transform your school's learning", icon: School, color: "#4285F4", path: "/school" },
+ * { slug: "school", label: "School", tagline: "Transform your school's learning", icon: School, color: "#1a73e8", path: "/school" },
   { slug: "college", label: "College", tagline: "Modernize your college's education", icon: Building2, color: "#9334E9", path: "/college" },
   { slug: "coaching", label: "Coaching Institute", tagline: "Exam preparation, reimagined", icon: FlaskConical, color: "#FBBC04", path: "/coaching" },
  * { slug: "competitive-exams", label: "Competitive Exams", tagline: "Crack any competitive exam", icon: Target, color: "#EA4335", path: "/competitive-exams" },

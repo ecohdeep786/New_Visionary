@@ -97,7 +97,7 @@ export default function NewPersona({
           <div className="flex flex-wrap items-center gap-3 lg:shrink-0 lg:pb-2" style={rise(260)}>
             <Link
               to={ctaTo}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
             >
               {ctaLabel}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
@@ -107,7 +107,7 @@ export default function NewPersona({
             </Link>
             <Link
               to={secondaryTo}
-              className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
             >
               {secondaryLabel}
             </Link>

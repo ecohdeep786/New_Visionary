@@ -10,8 +10,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
+  surface: "#f8f9fa",
+  blue: "#1a73e8",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
@@ -496,7 +496,7 @@ function HowLoopSection() {
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActive(i)}
-                className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                 style={isActive
                   ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
                   : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
@@ -603,7 +603,7 @@ function HowCTASection() {
           Ask a question. Try an idea. See where it takes you.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
           <Link to="/pricing" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>

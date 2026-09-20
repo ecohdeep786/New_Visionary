@@ -19,7 +19,7 @@ const C = {
   slate: "#5f6368",
   mist: "#dadce0",
   canvas: "#f8f9fa",
-  blue: "#4285F4",
+  blue: "#1a73e8",
 };
 
 /* Persona metadata */
@@ -91,13 +91,13 @@ const ABOUT_GROUPS = [
 
 /* Shared pill style */
 const pillLink = (active) =>
-  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[15px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[15px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
     active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
   }`;
 
 /* Icon-only button */
 const iconBtn = (active = false) =>
-  `flex h-11 w-11 items-center justify-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+  `flex h-11 w-11 items-center justify-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
     active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
   }`;
 
@@ -203,7 +203,7 @@ export default function LandingNav() {
           <Link
             to="/"
             aria-label="Visionary home"
-            className="shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+            className="shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
           >
             <VisionaryLogo />
           </Link>
@@ -245,7 +245,7 @@ export default function LandingNav() {
                             key={cat.path}
                             to={cat.path}
                             onClick={() => setOpenMega(null)}
-                            className={`flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                            className={`flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
                               isActive ? "bg-[#f8f9fa]" : ""
                             }`}
                           >
@@ -313,7 +313,7 @@ export default function LandingNav() {
                           key={ctx.id}
                           to={`/organization#${ctx.id}`}
                           onClick={() => setOpenMega(null)}
-                          className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         >
                           <span
                             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] border bg-white"
@@ -378,7 +378,7 @@ export default function LandingNav() {
                           key={p.id}
                           to={`/download#${p.id}`}
                           onClick={() => setOpenMega(null)}
-                          className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         >
                           <span
                             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] border bg-white"
@@ -448,7 +448,7 @@ export default function LandingNav() {
                                   key={item.id}
                                   to={item.to}
                                   onClick={() => setOpenMega(null)}
-                                  className={`flex items-start gap-3 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                                  className={`flex items-start gap-3 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
                                     active ? "bg-[#f8f9fa]" : ""
                                   }`}
                                 >

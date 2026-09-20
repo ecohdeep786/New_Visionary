@@ -9,8 +9,8 @@ const PRICING_HERO_WORDS = ["your journey.", "your classroom.", "your family.", 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
+  surface: "#f8f9fa",
+  blue: "#1a73e8",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
@@ -122,7 +122,7 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
       <Link
         to={plan.to}
         className={`mt-8 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 ${
-          plan.highlight ? "text-white hover:opacity-90 active:scale-[0.98] focus-visible:ring-[#121317]" : "transition-colors hover:bg-[#121317]/5 focus-visible:ring-[#4285F4]"
+          plan.highlight ? "text-white hover:opacity-90 active:scale-[0.98] focus-visible:ring-[#121317]" : "transition-colors hover:bg-[#121317]/5 focus-visible:ring-[#1a73e8]"
         }`}
         style={plan.highlight ? { backgroundColor: COLORS.blue } : { border: `1px solid ${COLORS.ink}4D`, color: COLORS.ink }}
       >
@@ -186,7 +186,7 @@ function PricingPersonaSection() {
         <h2 className="text-center font-medium tracking-[0] leading-[1.05] text-[clamp(30px,4vw,56px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
         <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
-            <Link key={p.persona} to={p.to} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+            <Link key={p.persona} to={p.to} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#1a73e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ borderColor: COLORS.mist }}>
               <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
@@ -272,7 +272,7 @@ function PricingFAQSection() {
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
           {PRICING_FAQ.map((item, i) => (
             <div key={item.q} className="border-b py-10 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
-              <button type="button" aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              <button type="button" aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                 <span className="font-normal tracking-[0] leading-[1.15] text-[clamp(20px,2.2vw,30px)]" style={{ color: COLORS.ink }}>{item.q}</span>
                 <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full sm:h-16 sm:w-16" style={{ backgroundColor: `${COLORS.ink}0A`, color: COLORS.ink }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`h-6 w-6 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}>
@@ -305,7 +305,7 @@ function PricingCTASection() {
           Begin with a question today. Upgrade only when Visionary has earned it.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
           <Link to="/about" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>

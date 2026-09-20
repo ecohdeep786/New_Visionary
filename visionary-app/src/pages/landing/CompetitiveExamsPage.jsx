@@ -26,8 +26,8 @@ import imgProfessionalFace from "@/assets/professional-face-main.webp"
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
+  surface: "#f8f9fa",
+  blue: "#1a73e8",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
@@ -392,7 +392,7 @@ function AboutBenefitsSection() {
             <Link
               key={c.id}
               to={`/${c.id}`}
-              className={`group flex flex-col overflow-hidden rounded-[28px] border bg-white transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${c.span}`}
+              className={`group flex flex-col overflow-hidden rounded-[28px] border bg-white transition-all hover:border-[#1a73e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${c.span}`}
               style={{ borderColor: COLORS.mist }}
             >
               <div className="overflow-hidden">
@@ -414,7 +414,7 @@ function AboutBenefitsSection() {
                   {c.line}
                 </p>
                 <span className="mt-auto pt-8">
-                  <span className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-[#121317]/30 px-6 font-medium tracking-[0.24px] text-[14px] text-[#121317] transition-all duration-300 group-hover:border-[#4285F4] group-hover:bg-[#4285F4] group-hover:text-white">
+                  <span className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-[#121317]/30 px-6 font-medium tracking-[0.24px] text-[14px] text-[#121317] transition-all duration-300 group-hover:border-[#1a73e8] group-hover:bg-[#1a73e8] group-hover:text-white">
                     See the page <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
                   </span>
                 </span>
@@ -887,7 +887,7 @@ function AboutContactSection() {
 
         <div className="mx-auto mt-16 grid w-full max-w-[1080px] grid-cols-1 gap-6 sm:grid-cols-2">
           {CONTACT_ROUTES.map((c) => (
-            <a key={c.email} href={`mailto:${c.email}`} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+            <a key={c.email} href={`mailto:${c.email}`} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#1a73e8]" style={{ borderColor: COLORS.mist }}>
               <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{c.label}</p>
               <p className="mt-3 font-medium tracking-[0] text-[17.5px]" style={{ color: COLORS.ink }}>{c.email}</p>
               <span className="mt-4 inline-flex items-center gap-1 font-normal tracking-[0] text-[14px] group-hover:underline" style={{ color: COLORS.blue }}>
@@ -919,7 +919,7 @@ function AboutCTASection() {
           Free to start. No account needed to ask your first question.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
           <Link to="/how-it-works" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>

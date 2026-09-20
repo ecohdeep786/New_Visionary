@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Globe } from "lucide-react";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#4285F4" };
+const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#1a73e8" };
 
 const FOOTER_LINK =
-  "-mx-3 inline-block rounded-full px-3 py-1.5 text-[14px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]";
+  "-mx-3 inline-block rounded-full px-3 py-1.5 text-[14px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]";
 
 /* 4-column directory per final IA */
 const FOOTER_SECTIONS = [
@@ -77,7 +77,7 @@ export default function LandingFooter({ variant = "brand" }) {
       <div className="w-full px-6 pt-12 lg:px-10">
         {/* TOP ROW: language (social row returns with real profile URLs) */}
         <div className="flex flex-wrap items-start justify-between gap-6 pb-12">
-          <label className="flex w-fit max-w-full cursor-pointer items-center gap-2 rounded-full border bg-white py-1 pl-4 pr-2 focus-within:ring-2 focus-within:ring-[#4285F4]" style={{ borderColor: C.mist }}>
+          <label className="flex w-fit max-w-full cursor-pointer items-center gap-2 rounded-full border bg-white py-1 pl-4 pr-2 focus-within:ring-2 focus-within:ring-[#1a73e8]" style={{ borderColor: C.mist }}>
             <Globe className="h-4 w-4 shrink-0" style={{ color: C.slate }} />
             <select defaultValue={typeof document !== "undefined" ? localStorage.getItem("visionary_lang") || "en" : "en"} onChange={onLanguageChange} aria-label="Select language" className="min-w-0 max-w-full cursor-pointer bg-transparent py-1.5 pr-1 text-[13px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
               <option value="en">English (United States)</option>

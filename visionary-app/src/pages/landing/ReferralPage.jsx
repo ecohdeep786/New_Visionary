@@ -30,7 +30,7 @@ const COLORS = {
   mist: "#dadce0",
   border: "#e5e7eb",
   soft: "#f8f9fa",
-  blue: "#4285F4",
+  blue: "#1a73e8",
   blueSoft: "#D2E3FC",
   white: "#ffffff",
 };
@@ -194,13 +194,13 @@ export default function ReferralPage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#start" onClick={(event) => { event.preventDefault(); scrollToSection("start"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                   style={{ backgroundColor: COLORS.blue }}>
                   Start referring
                   <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                 </a>
                 <a href="#how" onClick={(event) => { event.preventDefault(); scrollToSection("how"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                   style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                   See how it works
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
@@ -230,7 +230,7 @@ export default function ReferralPage() {
         <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
@@ -245,7 +245,7 @@ export default function ReferralPage() {
                     return (
                       <button key={section.id} type="button"
                         onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
                         style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
                         <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                         <span className="text-[14px]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -272,7 +272,7 @@ export default function ReferralPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                             <span className="text-[13px]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -411,7 +411,7 @@ export default function ReferralPage() {
                             A name and a valid email are required so the referrals team can reply to you. Check them and try again.
                           </p>
                           <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ color: COLORS.blue }}>
                             Back to the form
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -427,7 +427,7 @@ export default function ReferralPage() {
                             The referral access flow is represented here, but the production referral backend has not yet been connected.
                           </p>
                           <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ color: COLORS.blue }}>
                             Try again
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -440,14 +440,14 @@ export default function ReferralPage() {
                               <label htmlFor="referral-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Name</label>
                               <input id="referral-name" type="text" autoComplete="name" required value={name}
                                 onChange={(event) => setName(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                             <div>
                               <label htmlFor="referral-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Email</label>
                               <input id="referral-email" type="email" autoComplete="email" required value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                           </div>
@@ -456,7 +456,7 @@ export default function ReferralPage() {
                               Referral availability, eligibility, and reward terms should be shown before someone joins the program.
                             </p>
                             <button type="submit" disabled={status === "submitting"}
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                               style={{ backgroundColor: COLORS.blue }}>
                               {status === "submitting" ? "Sending…" : "Continue"}
                               <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
@@ -473,7 +473,7 @@ export default function ReferralPage() {
                     <Paragraph>Questions about referrals, eligibility, attribution, or rewards:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:hello@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ color: COLORS.blue }}>
                         hello@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
@@ -496,15 +496,15 @@ export default function ReferralPage() {
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
                       <a href="#start" onClick={(event) => { event.preventDefault(); scrollToSection("start"); }}
-                        className="inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                         style={{ backgroundColor: COLORS.blue }}>
                         Start referring
                       </a>
-                      <Link to="/community" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/community" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Community
                       </Link>
-                      <Link to="/updates" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/updates" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Stay updated
                       </Link>

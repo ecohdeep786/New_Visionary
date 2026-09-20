@@ -34,7 +34,7 @@ const COLORS = {
   mist: "#dadce0",
   border: "#e5e7eb",
   soft: "#f8f9fa",
-  blue: "#4285F4",
+  blue: "#1a73e8",
   blueSoft: "#D2E3FC",
   white: "#ffffff",
 };
@@ -197,13 +197,13 @@ export default function PartnersPage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#directory" onClick={(event) => { event.preventDefault(); scrollToSection("directory"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]"
                   style={{ backgroundColor: COLORS.blue }}>
                   Find a partner
                   <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                 </a>
                 <a href="#become" onClick={(event) => { event.preventDefault(); scrollToSection("become"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                   style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                   Become a partner
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
@@ -233,7 +233,7 @@ export default function PartnersPage() {
         <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
@@ -248,7 +248,7 @@ export default function PartnersPage() {
                     return (
                       <button key={section.id} type="button"
                         onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
                         style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
                         <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                         <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -275,7 +275,7 @@ export default function PartnersPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -413,7 +413,7 @@ export default function PartnersPage() {
                       </p>
                       <div className="mt-6">
                         <a href="mailto:partnerships@visionary.org.in"
-                          className="inline-flex items-center gap-2 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="inline-flex items-center gap-2 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                           style={{ color: COLORS.blue }}>
                           partnerships@visionary.org.in
                           <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
@@ -437,7 +437,7 @@ export default function PartnersPage() {
                             A name and a valid email are required so the partnerships team can reply to you. Check them and try again.
                           </p>
                           <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ color: COLORS.blue }}>
                             Back to the form
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -453,7 +453,7 @@ export default function PartnersPage() {
                             The application flow is connected to this page, but the production partnership endpoint still needs to be connected before launch.
                           </p>
                           <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ color: COLORS.blue }}>
                             Send another introduction
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -466,14 +466,14 @@ export default function PartnersPage() {
                               <label htmlFor="partner-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Your name</label>
                               <input id="partner-name" name="name" type="text" autoComplete="name" required value={name}
                                 onChange={(event) => setName(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                             <div>
                               <label htmlFor="partner-organization" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Organization</label>
                               <input id="partner-organization" name="organization" type="text" autoComplete="organization" required value={organization}
                                 onChange={(event) => setOrganization(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                           </div>
@@ -482,14 +482,14 @@ export default function PartnersPage() {
                               <label htmlFor="partner-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Work email</label>
                               <input id="partner-email" name="email" type="email" autoComplete="email" required value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                             <div>
                               <label htmlFor="partner-type" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Partnership type</label>
                               <select id="partner-type" name="type" value={type}
                                 onChange={(event) => setType(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                                 {APPLICATION_TYPES.map((item) => (
                                   <option key={item} value={item}>{item}</option>
@@ -501,7 +501,7 @@ export default function PartnersPage() {
                             <label htmlFor="partner-website" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Organization website</label>
                             <input id="partner-website" name="website" type="url" autoComplete="url" placeholder="https://" value={website}
                               onChange={(event) => setWebsite(event.target.value)}
-                              className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                              className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                               style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                           </div>
                           <div className="mt-6">
@@ -509,7 +509,7 @@ export default function PartnersPage() {
                             <textarea id="partner-message" name="message" required rows={7} value={message}
                               onChange={(event) => setMessage(event.target.value)}
                               placeholder="Who do you work with, what do you do, and what could we build together?"
-                              className="mt-2 w-full resize-y rounded-[14px] border bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                              className="mt-2 w-full resize-y rounded-[14px] border bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                               style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                           </div>
                           <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -517,7 +517,7 @@ export default function PartnersPage() {
                               Please share only information needed to help us understand the partnership.
                             </p>
                             <button type="submit" disabled={status === "submitting"}
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]"
                               style={{ backgroundColor: COLORS.blue }}>
                               {status === "submitting" ? "Sending…" : "Send introduction"}
                               <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
@@ -535,14 +535,14 @@ export default function PartnersPage() {
                     <Paragraph>For institutional partnerships, implementation, technology relationships, regional opportunities, or partner questions:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:partnerships@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                         style={{ color: COLORS.blue }}>
                         partnerships@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     </div>
                     <div className="mt-6">
-                      <Link to="/contact" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                      <Link to="/contact" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
                         Other ways to contact us
                         <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
@@ -564,16 +564,16 @@ export default function PartnersPage() {
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
                       <a href="#become" onClick={(event) => { event.preventDefault(); scrollToSection("become"); }}
-                        className="inline-flex h-11 items-center justify-center gap-2 rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                        className="inline-flex h-11 items-center justify-center gap-2 rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Become a partner
                         <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
                       </a>
-                      <Link to="/organization" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/organization" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         For organizations
                       </Link>
-                      <Link to="/contact" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/contact" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Contact
                       </Link>

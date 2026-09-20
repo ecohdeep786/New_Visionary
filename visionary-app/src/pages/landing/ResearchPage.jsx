@@ -10,8 +10,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#ffffffff",
-  blue: "#4285F4",
+  surface: "#ffffff",
+  blue: "#1a73e8",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
@@ -137,7 +137,7 @@ function DownloadHeroSection() {
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              className="mt-8 inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
               style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
             >
               See platforms
@@ -204,7 +204,7 @@ function DownloadPlatformsSection() {
                     type="button"
                     aria-disabled="true"
                     title="Available at launch"
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full border px-6 font-medium tracking-[0.24px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] opacity-60"
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full border px-6 font-medium tracking-[0.24px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] opacity-60"
                     style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
                   >
                     {p.action}
@@ -261,7 +261,7 @@ function DownloadNotifySection() {
                   aria-invalid={status === "error"}
                   aria-describedby={status === "error" ? "notify-error" : undefined}
                   placeholder="you@example.com"
-                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                  className="h-12 w-full rounded-full border px-5 text-[14px] tracking-[0.24px] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                   style={{ borderColor: status === "error" ? "#EA4335" : COLORS.mist, color: COLORS.ink }}
                 />
                 <button
@@ -361,7 +361,7 @@ function DownloadCTASection() {
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             Continue on web

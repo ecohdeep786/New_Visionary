@@ -52,8 +52,8 @@ const EXPLORE_CAT_IMG = [studentmeet, teachermeet, promeet, orgmeet];
 /* ── DESIGN TOKENS ── */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
+  surface: "#f8f9fa",
+  blue: "#1a73e8",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   chipBg: "#D2E3FC",
@@ -585,7 +585,7 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                 type="button"
                 onClick={() => onOpen(stage)}
                 aria-label={`Open details for ${stage.title}`}
-                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4"
               >
                 <img
                   src={stage.image}
@@ -676,7 +676,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+          className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
             <path d="M6 6l12 12M18 6L6 18" />
@@ -712,7 +712,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <Link
             to={content.primary.to}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             {content.primary.label}
@@ -720,7 +720,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
           </Link>
           <Link
             to={secondary.to}
-            className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+            className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
             style={{ borderColor: COLORS.mist, color: COLORS.ink }}
           >
             {secondary.label}
@@ -743,7 +743,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
                   </p>
                   <Link
                     to={b.to}
-                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                     style={{ color: COLORS.blue }}
                   >
                     {b.l}
@@ -827,7 +827,7 @@ function ParentJourneySection() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => goToStage(i)}
-                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                   style={active
                     ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
                     : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
@@ -961,7 +961,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect }) {
           type="button"
           aria-pressed={active === lang.code}
           onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 uppercase tracking-[0] leading-[14px] text-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 uppercase tracking-[0] leading-[14px] text-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
           style={{
             backgroundColor: active === lang.code ? COLORS.chipBg : "transparent",
             color: COLORS.ink,
@@ -1007,7 +1007,7 @@ function ParentLanguageSection() {
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
           {/* Assistant-signature four-color voice indicator */}
           <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
+            {["#1a73e8", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
               <span
                 key={c}
                 className="h-8 w-1.5 rounded-full"
@@ -1355,7 +1355,7 @@ function ParentJourneyFlowSection() {
             </p>
             <Link
               to="/how-it-works"
-              className="mt-8 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              className="mt-8 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
               style={{ color: COLORS.blue }}
             >
               See how Visionary keeps it connected
@@ -1392,7 +1392,7 @@ const TrustCard = React.memo(function TrustCard({ card, cardIndex }) {
             <card.Icon className="h-5 w-5" strokeWidth={1.8} />
           </span>
           <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
-          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
             {card.link}
             <ChevronIcon className="h-3.5 w-3.5" />
           </Link>
@@ -1471,7 +1471,7 @@ const ParentCTASection = React.memo(function ParentCTASection() {
         <div className="mt-12 flex justify-center">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             Get started

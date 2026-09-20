@@ -29,7 +29,7 @@ const COLORS = {
   mist: "#dadce0",
   border: "#e5e7eb",
   soft: "#f8f9fa",
-  blue: "#4285F4",
+  blue: "#1a73e8",
   blueSoft: "#D2E3FC",
   white: "#ffffff",
 };
@@ -187,13 +187,13 @@ export default function UpdatesPage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a href="#signup" onClick={(event) => { event.preventDefault(); scrollToSection("signup"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]"
                   style={{ backgroundColor: COLORS.blue }}>
                   Get updates
                   <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                 </a>
                 <a href="#what-you-get" onClick={(event) => { event.preventDefault(); scrollToSection("what-you-get"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                   style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                   See what you will receive
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
@@ -223,7 +223,7 @@ export default function UpdatesPage() {
         <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
@@ -238,7 +238,7 @@ export default function UpdatesPage() {
                     return (
                       <button key={section.id} type="button"
                         onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
                         style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
                         <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                         <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -265,7 +265,7 @@ export default function UpdatesPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
@@ -311,7 +311,7 @@ export default function UpdatesPage() {
                           const Icon = option.icon;
                           return (
                             <button key={option.id} type="button" onClick={() => toggleOption(option.id)} aria-pressed={active}
-                              className="flex w-full items-start gap-4 border-b p-5 text-left last:border-b-0 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+                              className="flex w-full items-start gap-4 border-b p-5 text-left last:border-b-0 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
                               style={{ borderColor: COLORS.border }}>
                               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: active ? COLORS.blueSoft : COLORS.soft }}>
                                 <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
@@ -362,7 +362,7 @@ export default function UpdatesPage() {
                     <Paragraph>Some of the most valuable updates may not be product announcements at all.</Paragraph>
                     <div className="mt-5"><Paragraph>Visionary is exploring questions around learning, AI, language, memory, adaptation, and how understanding becomes something a person can use. When there is research worth sharing, this is one way to stay close to it.</Paragraph></div>
                     <div className="mt-6">
-                      <Link to="/research" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                      <Link to="/research" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
                         Explore Research
                         <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
@@ -396,7 +396,7 @@ export default function UpdatesPage() {
                             Your preferences are ready to be sent to Visionary's updates service. The production subscription endpoint still needs to be connected before this form goes live.
                           </p>
                           <button type="button" onClick={() => setSubmitted(false)}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                             style={{ color: COLORS.blue }}>
                             Change your preferences
                             <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
@@ -409,14 +409,14 @@ export default function UpdatesPage() {
                               <label htmlFor="updates-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Name</label>
                               <input id="updates-name" name="name" type="text" autoComplete="name" required value={name}
                                 onChange={(event) => setName(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                             <div>
                               <label htmlFor="updates-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Email</label>
                               <input id="updates-email" name="email" type="email" autoComplete="email" required value={email}
                                 onChange={(event) => setEmail(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
+                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                                 style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
                             </div>
                           </div>
@@ -428,7 +428,7 @@ export default function UpdatesPage() {
                                 const Icon = option.icon;
                                 return (
                                   <button key={option.id} type="button" onClick={() => toggleOption(option.id)} aria-pressed={active}
-                                    className="flex items-start gap-3 rounded-[16px] border p-4 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                                    className="flex items-start gap-3 rounded-[16px] border p-4 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                                     style={{ borderColor: active ? COLORS.blue : COLORS.mist, backgroundColor: active ? "#F8F9FA" : COLORS.white }}>
                                     <Icon className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.blue }} />
                                     <span className="min-w-0">
@@ -442,7 +442,7 @@ export default function UpdatesPage() {
                           </div>
                           <div className="mt-7 rounded-[16px] border p-4" style={{ borderColor: COLORS.border }}>
                             <label className="flex items-start gap-3">
-                              <input type="checkbox" required checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-1 h-4 w-4 accent-[#4285F4]" />
+                              <input type="checkbox" required checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-1 h-4 w-4 accent-[#1a73e8]" />
                               <span className="text-[13px] leading-[1.65]" style={{ color: COLORS.grey }}>
                                 I agree to receive the Visionary updates I selected. I understand that I can unsubscribe later.
                               </span>
@@ -453,7 +453,7 @@ export default function UpdatesPage() {
                               We will use your information according to the Visionary Privacy Policy.
                             </p>
                             <button type="submit"
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]"
                               style={{ backgroundColor: COLORS.blue }}>
                               Keep me updated
                               <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
@@ -476,7 +476,7 @@ export default function UpdatesPage() {
                       </div>
                     </div>
                     <div className="mt-6">
-                      <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                      <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" style={{ color: COLORS.blue }}>
                         Read the Privacy Policy
                         <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
@@ -489,7 +489,7 @@ export default function UpdatesPage() {
                     <Paragraph>For questions about Visionary updates, subscriptions, or communication preferences:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:hello@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                         style={{ color: COLORS.blue }}>
                         hello@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
@@ -512,15 +512,15 @@ export default function UpdatesPage() {
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
                       <a href="#signup" onClick={(event) => { event.preventDefault(); scrollToSection("signup"); }}
-                        className="inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                         style={{ backgroundColor: COLORS.blue }}>
                         Get updates
                       </a>
-                      <Link to="/research" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/research" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Research
                       </Link>
-                      <Link to="/community" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/community" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                         style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
                         Community
                       </Link>
