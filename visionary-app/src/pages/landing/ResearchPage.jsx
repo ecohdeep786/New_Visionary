@@ -100,11 +100,11 @@ function DownloadHeroSection() {
     <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
-        <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-          One intelligence. <span style={{ color: COLORS.ink }}>Every device.</span>
+        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+          Get <span style={{ color: COLORS.blue }}>Visionary</span> on every device.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Use Visionary in your browser or on the devices you already use.
+          On the phone, tablet or laptop you already own.
         </p>
 
         {/* The choice — Web or App */}

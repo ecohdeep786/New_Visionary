@@ -13,8 +13,8 @@ export default function CommunityPage() {
     <SimplePage breadcrumb="Community">
       <AboutHero
         eyebrow="Community"
-        titleParts={[{ text: "Learners, teachers, and parents " }, { text: "growing together.", accent: true }]}
-        intro="Visionary isn't just a platform — it's people helping each other understand. Ask, share, and grow with others on the same journey."
+        titleParts={[{ text: "Build with " }, { text: "others.", accent: true }]}
+        intro="Learners, teachers and builders, together."
       />
       <AboutContentSection
         eyebrow="What the community is"

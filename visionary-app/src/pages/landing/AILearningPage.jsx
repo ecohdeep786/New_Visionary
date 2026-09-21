@@ -5,7 +5,6 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
-const PRICING_HERO_WORDS = ["your journey.", "your classroom.", "your family.", "your work.", "your institution."];
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
@@ -145,24 +144,16 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
 function PricingPlansSection() {
   const { ref, visible } = useRevealOnce();
   const [billing, setBilling] = useState("annual");
- const [wordIndex, setWordIndex] = useState(0);
- useEffect(() => {
-   const id = setInterval(() => setWordIndex((i) => (i + 1) % PRICING_HERO_WORDS.length), 2600);
-   return () => clearInterval(id);
- }, []);
   return (
     <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Pricing</p>
         
-  <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-
-   One intelligence.
-   <br className="hidden md:block" /> Priced for{" "}
-   <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{PRICING_HERO_WORDS[wordIndex]}</span>
- </h1>
+  <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+          Plans for <span style={{ color: COLORS.blue }}>every learner</span>.
+        </h1>
          <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-Start free. Upgrade only when it has earned it.</p>
+Start free. Upgrade when it’s working for you.</p>
         <div className="mt-12"><BillingToggle billing={billing} onChange={setBilling} /></div>
 
         <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">

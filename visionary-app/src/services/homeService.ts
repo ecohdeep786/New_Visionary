@@ -1,9 +1,9 @@
-import type { RequestContext } from '../domain/workspace.ts';
+import type { Locale, RequestContext } from '../domain/workspace.ts';
 import { familyReports, getWorkspace, workspaceIdentity } from './workspaceService.ts';
 import { getJourney } from './journeys.ts';
 
 export interface HomeAction { label: string; path: string }
-export interface HomeRow { id: string; title: string; detail: string; action: HomeAction }
+export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction }
 export interface HomeModel {
   name: string; workspace: string; boundary: string; setupNote?: string;
   priority: HomeRow & { reason: string; source: string; updatedAt?: string; alternative: HomeAction };
@@ -28,7 +28,7 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
     if (session) {
       try {
         const journey = getJourney(session.journeyId, session.locale);
-        model.priority = {id:session.id,title:journey.title,detail:`Continue from ${session.stage}. Your answers, notes and activity controls are saved.`,action:action('Continue activity',`ask?session=${encodeURIComponent(session.id)}`),alternative:action('Choose another journey','learn'),reason:'This is your most recently updated unfinished activity in this workspace.',source:'Saved activity on this device',updatedAt:session.updatedAt};
+        model.priority = {id:session.id,title:journey.title,titleLocale:session.locale,detail:`Continue from ${session.stage}. Your answers, notes and activity controls are saved.`,action:action('Continue activity',`ask?session=${encodeURIComponent(session.id)}`),alternative:action('Choose another journey','learn'),reason:'This is your most recently updated unfinished activity in this workspace.',source:'Saved activity on this device',updatedAt:session.updatedAt};
       } catch { model.setupNote = 'A saved activity is unavailable in this preview. Its record has been preserved.'; }
     }
     const artifact = [...data.artifacts].filter(a => a.status !== 'completed').sort((a,b) => b.updatedAt.localeCompare(a.updatedAt))[0];

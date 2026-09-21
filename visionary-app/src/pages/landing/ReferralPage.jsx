@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
+import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -175,41 +175,11 @@ export default function ReferralPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <Breadcrumb page="Referral" />
-      <main id="main">
-        {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[1000px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-                <Gift className="h-4 w-4" strokeWidth={1.7} />
-                Referral Program
-              </div>
-              <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Share something useful.
-                <br />
-                <span style={{ color: COLORS.ink }}>Help someone start.</span>
-              </h1>
-              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                A simple way to introduce Visionary to someone who needs it.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a href="#start" onClick={(event) => { event.preventDefault(); scrollToSection("start"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                  style={{ backgroundColor: COLORS.blue }}>
-                  Start referring
-                  <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                </a>
-                <a href="#how" onClick={(event) => { event.preventDefault(); scrollToSection("how"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                  style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                  See how it works
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+            <main id="main">
+        <PageHeading page="Referral" eyebrow="Referral"
+          h1={<>Invite and <Accent>grow</Accent>.</>}
+          dek="Share Visionary. Both of you move forward.">
+        </PageHeading>
 
         {/* STORY BAND */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>

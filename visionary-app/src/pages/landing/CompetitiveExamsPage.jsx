@@ -258,18 +258,15 @@ function AboutHeroSection() {
 /* ═══ A1 · OUR MISSION ═══ */
 function AboutMissionSection() {
   const { ref, visible } = useRevealOnce();
-  const { index: wordIndex } = useCycleIndex(MISSION_WORDS.length, 2400);
   return (
     <section ref={ref} id="mission" className="relative scroll-mt-24 bg-white px-6 pb-24 pt-16 lg:pb-32 lg:pt-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Our mission</GreyTag>
+        <GreyTag className="text-center">About Visionary</GreyTag>
         <h1 className="mx-auto max-w-[1200px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
-          Our mission is to make <span style={{ color: COLORS.ink }}>understanding</span> last for{" "}
-          <span style={{ color: COLORS.ink }}>anyone</span>, <span style={{ color: COLORS.ink }}>anywhere</span>,{" "}
-          <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MISSION_WORDS[wordIndex]}</span>
+          Built for <span style={{ color: COLORS.blue }}>every Indian mind</span>.
         </h1>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          We build one intelligence that remembers what you understood, where you struggled, and what you built — and carries it forward, from a student's first question to an organization's whole journey.
+          One intelligence. Every language. A teacher for everyone.
         </p>
 
         <div className="mx-auto mt-32 grid w-full max-w-[1500px] grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">

@@ -339,18 +339,15 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
 /* ═══ 01 · HERO — grey eyebrow, cycling word always on line 2 ═══ */
 function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
-  const { index } = useCycleIndex(HERO_WORDS.length, 2400);
   return (
     <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">How Visionary works</GreyTag>
-        <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-          How you use Visionary,
-          <br />
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{HERO_WORDS[index]}</span>
+        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+          How <span style={{ color: COLORS.blue }}>Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Four simple steps from sign-up to connected learning.
+          Understand, ask, practise, then build.
         </p>
       </FadeReveal>
     </section>

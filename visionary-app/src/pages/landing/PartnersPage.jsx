@@ -9,7 +9,6 @@ import {
   ChevronRight,
   Globe2,
   GraduationCap,
-  Handshake,
   Laptop,
   Lightbulb,
   MapPin,
@@ -21,7 +20,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
+import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -178,41 +177,11 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <Breadcrumb page="Partners" />
-      <main id="main">
-        {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[1000px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-                <Handshake className="h-4 w-4" strokeWidth={1.7} />
-                Find a Partner
-              </div>
-              <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Bring Visionary
-                <br />
-                <span style={{ color: COLORS.ink }}>closer to where learning happens.</span>
-              </h1>
-              <p className="mt-[20px] sm:mt-[27px] lg:mt-[32px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                The right partner makes Visionary more useful in a specific place.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a href="#directory" onClick={(event) => { event.preventDefault(); scrollToSection("directory"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
-                  style={{ backgroundColor: COLORS.blue }}>
-                  Find a partner
-                  <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                </a>
-                <a href="#become" onClick={(event) => { event.preventDefault(); scrollToSection("become"); }}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                  style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                  Become a partner
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+            <main id="main">
+        <PageHeading page="Partners" eyebrow="Partners"
+          h1={<>Partner with <Accent>us</Accent>.</>}
+          dek="Schools, platforms and governments, on board.">
+        </PageHeading>
 
         {/* STORY BAND */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>

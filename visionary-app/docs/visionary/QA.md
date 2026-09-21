@@ -36,3 +36,16 @@ Additive scoped stylesheet parsed with installed PostCSS (72 top-level nodes); `
 - Cube activity → explaining → Hindi → private note → Home → Continue restores stage, language and note. `after-resume-hi-390.png` shows compact activity-first resume; Ask switches to Hindi draft and focuses composer. Automated tests cover exact position/model state and cross-workspace rejection.
 - Browser preview initially retained stale import-resolution errors after unrelated repository changes. Restarting the owned Vite process restored the running app; production build already passed. A separate hidden testing tab avoided navigation conflict with the user's open tab.
 - Full07 matrix, actual screen-reader review, reduced-motion/zoom and public pixel comparison remain pending. No production capability, complete wave or twelve-gate pass claimed.
+
+## 2026-09-21 — 05 motion / Home and Ask
+
+- Static review of DecisionHome, GuideEntry, Guide, GuideActivity, workspace.css and shared dialog motion: no new decorative animation, automatic cube rotation, shimmer or timed stage animation. Immediate pane/stage changes preserve equivalent content under reduced motion. Guide's requestAnimationFrame schedules focus only.
+- workspace.css disables dashboard animations/transitions under prefers-reduced-motion. Portalled dialogs sit outside that scope but inherit the global 0.01ms duration, zero delay and single-iteration reduction. Runtime computed-style/interaction parity remains unverified by05.
+- **M-01, existing shared-style defect / G9 pending:** src/index.css later html scroll-behavior:smooth overrides the earlier reduced-motion html scroll-behavior:auto at equal specificity. Route the fix through the shared-style owner/chief with public-preservation checks. No public/shared source edited by05.
+- No code change required in the newly added Home/Ask motion; no tests or browser checks claimed. Initial GuideEntry read used the wrong directory and was corrected to components/dashboard without changing files. Logs only;06 and07 retain their verification responsibilities.
+
+## 2026-09-21 — 06 accessibility / Home and Ask
+
+- Scoped semantic/focus patches: tabs support arrows/Home/End and roving tab stops; named panels; history closes to its trigger or compact Activity tab; delete cancellation returns to its row, deletion to history title; helper text is a description rather than the material field's name; complete history is no longer a live region. Localized Home title uses the saved session locale, tested independently of the current English preference.
+- Full30 Node tests, lint and typecheck passed during implementation; focused7 Home tests including the added locale regression and final typecheck/scoped lint passed. Whitespace check passed. Final material-label and1200px heading refinements are source-reviewed, pending07 browser/build confirmation.
+- No runtime screen-reader/zoom/reduced-motion result asserted. Main owns browser review. M-01 unchanged.04 follow-ups: historical messages lack locale provenance; editable material count currently says saved even if persistence fails. No public or protected Frontend changes; no G9 or wave completion claim.

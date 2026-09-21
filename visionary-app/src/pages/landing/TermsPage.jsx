@@ -136,12 +136,10 @@ export default function TermsPage() {
                 Terms
               </div>
               <h1 className="max-w-[900px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: C.ink }}>
-                Using Visionary.
-                <br />
-                <span style={{ color: C.blue }}>Here is what you are agreeing to.</span>
+                Terms of service.
               </h1>
               <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                These Terms explain the rules that apply when you use Visionary, our website, applications, products, and services.
+                What you can expect, and what we expect.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
                 <span style={{ color: C.slate }}>

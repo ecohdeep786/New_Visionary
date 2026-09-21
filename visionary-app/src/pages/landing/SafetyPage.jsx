@@ -6,8 +6,8 @@ export default function SafetyPage() {
   return (
     <LegalPage breadcrumb="Safety"
       eyebrow="Safety"
-      titleParts={[{ text: "Safe to " }, { text: "grow with.", accent: true }]}
-      intro="Every answer, every interaction is built to protect the person learning — especially the youngest. Safeguards are on from the first question."
+      titleParts={[{ text: "Safe by " }, { text: "design.", accent: true }]}
+      intro="Guardrails for every learner, by age."
       sections={[
         {
           id: "security",

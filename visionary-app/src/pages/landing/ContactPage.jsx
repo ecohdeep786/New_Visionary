@@ -18,7 +18,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import { RESPONSE_TIMES } from "@/data/legalMeta";
-import Breadcrumb from "@/components/landing/Breadcrumb";
+import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -174,27 +174,11 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <Breadcrumb page="Contact" />
-      <main id="main">
-        {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[980px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-                <Mail className="h-4 w-4" strokeWidth={1.7} />
-                Contact
-              </div>
-              <h1 className="max-w-[950px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Get in touch.
-                <br />
-                <span style={{ color: COLORS.ink }}>Start with what you need.</span>
-              </h1>
-              <p className="mt-[24px] sm:mt-[32px] lg:mt-[38px] max-w-[800px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Questions, institutions, safety concerns, or just want to talk about the work.
-              </p>
-            </div>
-          </div>
-        </section>
+            <main id="main">
+        <PageHeading page="Contact" eyebrow="Contact"
+          h1={<>Talk to <Accent>us</Accent>.</>}
+          dek="Pick the route that fits your question.">
+        </PageHeading>
 
         {/* STORY BAND */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>

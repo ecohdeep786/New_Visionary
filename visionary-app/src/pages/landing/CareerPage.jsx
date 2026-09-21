@@ -3,7 +3,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { getCategory } from "@/data/landingCategories";
-import CategoryHero from "@/components/landing/sections/CategoryHero";
+import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import StatsBar from "@/components/landing/sections/StatsBar";
 import FeatureShowcase from "@/components/landing/sections/FeatureShowcase";
 import JourneySteps from "@/components/landing/sections/JourneySteps";
@@ -18,13 +18,12 @@ export default function CareerPage() {
     <div className="min-h-screen bg-white">
       <LandingNav />
       <Breadcrumb page="Career" />
-      <CategoryHero
-        category={category}
-        eyebrow="Career development"
-        accentWord="Go"
-        headline="Go from learning to earning — with intelligence."
-        description="Visionary bridges the gap between education and employment. Build job-ready skills, create a real portfolio, and get career guidance powered by AI that understands both your learning history and the job market."
-      />
+      <PageHeading
+        page="Career growth"
+        eyebrow="Career growth"
+        h1={<>Grow your <Accent>capability</Accent>.</>}
+        dek="The gap, the path, and the proof you build.">
+      </PageHeading>
       <StatsBar color={category.color} stats={[
         { value: "85%", label: "Placement rate" },
         { value: "500+", label: "Partner companies" },

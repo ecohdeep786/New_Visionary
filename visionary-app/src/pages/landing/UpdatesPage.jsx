@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
+import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 
@@ -154,28 +154,18 @@ export default function UpdatesPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <Breadcrumb page="Updates" />
-      <main id="main">
-        {/* HERO — breadcrumb already sits above; huge light H1, one line, one CTA.
-            Same 1240px container as the sections: H1, breadcrumb and content share
-            one left edge (the blog.google alignment). */}
-        <section className="px-6 pb-20 pt-6 sm:px-8 sm:pb-24 lg:px-10 lg:pb-28 lg:pt-10">
-          <div className="mx-auto max-w-[1240px]">
-            <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-              Stay connected
-            </h1>
-            <p className="mt-6 max-w-[680px] text-[18px] leading-[1.6] sm:text-[20px]" style={{ color: COLORS.grey }}>
-              Hear about product changes, new languages, research, and events.
-            </p>
-            <div className="mt-8">
-              <button type="button" onClick={scrollToSignup}
-                className="inline-flex h-12 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
-                style={{ backgroundColor: COLORS.blue }}>
-                Get updates
-              </button>
-            </div>
+            <main id="main">
+        <PageHeading page="Updates" eyebrow="Updates"
+          h1={<>What’s <Accent>new</Accent>.</>}
+          dek="The changes, by category, as they land.">
+          <div className="mt-8">
+            <button type="button" onClick={scrollToSignup}
+              className="inline-flex h-12 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
+              style={{ backgroundColor: COLORS.blue }}>
+              Get updates
+            </button>
           </div>
-        </section>
+        </PageHeading>
 
         {/* WHAT YOU WILL RECEIVE — flat card grid, trailing empty cells */}
         <section aria-labelledby="updates-categories" className="px-6 pb-24 sm:px-8 lg:px-10 lg:pb-32">

@@ -217,23 +217,15 @@ export default function PrivacyPage() {
               PRIVACY
             </p>
 
-            <h1
-              className="mx-auto mt-5 max-w-[980px] text-[clamp(42px,6vw,82px)] font-medium leading-[1.03] tracking-[-0.015em]"
-              style={{ color: COLORS.ink }}
-            >
-              Your information.
-              <br />
-              <span style={{ color: COLORS.ink }}>
-                Your control.
-              </span>
+            <h1 className="mx-auto mt-5 max-w-[980px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+              Your data, your control.
             </h1>
 
             <p
               className="mx-auto mt-6 max-w-[700px] text-[17.5px] leading-[25px]"
               style={{ color: COLORS.grey }}
             >
-              Your learning is personal. This page explains what Visionary
-              handles, why we use it, and the choices you have.
+              See what we keep. Change or remove it anytime.
             </p>
         <p className="mt-4 text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
           Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.privacy.lastUpdated}</strong>

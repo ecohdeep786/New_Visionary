@@ -6,8 +6,8 @@ export default function CookiesPage() {
   return (
     <LegalPage breadcrumb="Cookies"
       eyebrow="Cookies"
-      titleParts={[{ text: "Only what's " }, { text: "needed.", accent: true }]}
-      intro="Cookies should help you, not track you. We use the minimum necessary to keep you signed in and make Visionary work — nothing more."
+      titleParts={[{ text: "How we use " }, { text: "cookies.", accent: true }]}
+      intro="The short version, then the full list."
       sections={[
         {
           id: "principles",

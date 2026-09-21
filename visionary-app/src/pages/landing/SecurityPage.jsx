@@ -141,12 +141,10 @@ export default function SecurityPage() {
                 Security
               </div>
               <h1 className="max-w-[930px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: C.ink }}>
-                What you trust Visionary with,
-                <br />
-                <span style={{ color: C.blue }}>we work to protect.</span>
+                Secure by design.
               </h1>
               <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                Your learning, conversations, ideas, and progress can become part of your journey. Security is what helps keep that information protected as you use Visionary.
+                Encryption, residency and access built in.
               </p>
         <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
           Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.security.lastUpdated}</strong>

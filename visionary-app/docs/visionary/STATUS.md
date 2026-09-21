@@ -71,3 +71,27 @@ Decisions: D-007 enhancement implemented; no layout-DNA replacement. Homes never
 Open for next: 05-Motion review of touched Home/Ask controls, then06 accessibility and07 formal QA. Keyboard tabs, focus return, full seven-width/200% zoom/long Indic sweep, parent connected-state browser run and public pixel comparison still need formal verification. Complete role workflow/transition gaps remain in TRACEABILITY. No gate pass or merge/release authorization.
 
 QA notes: 30 Node tests pass (six added); lint/typecheck pass; production build passes with pre-existing ambiguous Tailwind easing warning. Runtime smoke: five roles on School demo account, Ask context/intent/question survive refresh, Home exact resume retains explaining stage, notes and Hindi, mobile390 activity-first and Hindi doubt composer focus. Before/after screenshots captured. Stale dev server import error resolved by restarting owned preview; no config/source workaround. These are04 smoke checks, not07 certification.04 stops.
+
+## [Wave 0.5] [05-motion-engineer — Home/Ask review] — 2026-09-21
+
+Done: Re-read master entry, full v2.2 and Part V05 charter, protocol, last04 handoff, decisions and QA after interruption. Reviewed DecisionHome, GuideEntry, Guide, inherited GuideActivity, scoped workspace CSS and shared dialog motion. New Home/Ask surfaces introduce no autoplay, shimmer, tween or decorative entrance animation. Stage and pane changes remain immediate; cube manipulation remains user-driven with a text alternative. No motion was added merely for polish.
+
+Files: Append-only STATUS.md and QA.md. No application source, other agent deliverable, public source or protected Frontend folder modified.
+
+Decisions: Preserve inherited restrained behavior. Scoped reduced-motion rules disable animation and transitions in the workspace; global near-zero-duration rules cover portal dialog animation. These are source findings, not runtime certification.
+
+Open for next: 06-A11y verifies keyboard/focus, zoom and reduced-motion behavior;07 verifies the full runtime matrix. Existing shared-style issue M-01 requires chief routing to the shared-style owner: later html scroll-behavior:smooth overrides the earlier reduced-motion html auto declaration in src/index.css. This public/shared file is outside05's slice authority and was not changed. Do not claim G9 passed until resolved or bounded by verified runtime evidence.05 stops here.
+
+QA notes: Static review only; current files rechecked on September21. The one requestAnimationFrame in Guide schedules composer focus, not visual animation. No browser reduced-motion emulation or fresh automated suite performed by05. Full wave and twelve-gate acceptance remain open.
+
+## [Wave 0.5] [06-accessibility-engineer — Home/Ask semantics] — 2026-09-21
+
+Done: Read the full operative contract, protocol, last05 handoff, decisions/QA and UX/design handoffs. Added roving keyboard tabs with panel relationships, dialog focus restoration (including deleted-row fallback), contextual delete names and inherited practical targets, separate material label/helper description, composer description, narrow response status announcements, teaching-draft language and localized saved-activity heading provenance. Mobile activity retains a route heading. No design rebuild.
+
+Files: Guide.jsx, GuideEntry.jsx, DecisionHome.jsx, homeService.ts, tests/home.test.mjs; STATUS and QA. Chief explicitly authorized these semantic/focus edits to04 JSX and the optional titleLocale contract field. No03 CSS, shared/public source or protected Frontend folder touched.
+
+Decisions: Preserve historical messages without guessing their language from the current preference; their domain lacks per-message locale. Current interface remains English, while known localized teaching text gets its language. Keep inherited dialog behavior and visual classes.
+
+Open for next:07 runtime keyboard/focus, actual screen-reader and zoom/reduced-motion checks. Chief owns browser verification. M-01 shared smooth-scroll defect remains unchanged.04 owns material count wording: local editable characters must not be called saved after a storage failure. Historical message locale provenance remains an04 domain gap. Full waves and gates remain incomplete.06 stops here.
+
+QA notes: Full30 Node tests, lint and both typechecks passed during patching; added language-provenance regression then all7 focused Home tests and final typecheck/scoped lint passed. Diff whitespace check passed. Final label/breakpoint-only refinements require07 final runtime/build check. No actual screen-reader,200% zoom, reduced-motion runtime or browser focus result claimed by06.

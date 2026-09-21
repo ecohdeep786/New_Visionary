@@ -38,6 +38,13 @@ test('invalid and cross-workspace activity links create no blank conversation',(
  assert.equal(service.snapshot(ctx('professional')).conversations.length,0);
  assert.equal(service.snapshot(ctx()).conversations.length,1);
 });
+test('localized Home activity title declares the saved teaching language, not the current preference',async()=>{
+ const c=service.newConversation(ctx());const s=service.startJourney(ctx(),c.id,'cube');
+ service.updateSession(ctx(),s.id,{locale:'bn'});
+ const home=await getHome(ctx());
+ assert.equal(home.priority.titleLocale,'bn');
+ assert.match(home.priority.title,/[\u0980-\u09ff]/);
+});
 test('saved Ask intent/material/draft remain workspace scoped and storage failures keep prior values',()=>{
  const c=service.newConversation(ctx());const ask={intent:'check',source:'material',material:'My worked example'};
  saveAskContext(ctx(),c.id,ask);service.updateConversation(ctx(),c.id,{draft:'Where did I go wrong?'});

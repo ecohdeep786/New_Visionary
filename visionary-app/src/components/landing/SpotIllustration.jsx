@@ -400,6 +400,128 @@ S.team = { vb: "0 0 120 160", el: (
   </>
 ) };
 
+/* ── TIER 1 · SUBJECT-IDENTITY SET ──
+   One unique scene per KG subject — same construction language (tinted panel,
+   bold color-blocked subject, ink details, ground shadow), reused identically
+   at 24px (rows), 48px (card corners), 96px (splits) via className sizing.
+   Math≠Physics≠Chemistry≠… each unmistakable. Alt text via the `title` prop. */
+S.math = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.blueT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M30 58l14-16 12 9 12-15" fill="none" stroke={C.blue} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+    <rect x="52" y="24" width="20" height="6" rx="2" transform="rotate(45 62 27)" fill={C.yellow} stroke={C.ink} strokeWidth="1.8" />
+    <circle cx="30" cy="30" r="7" fill="none" stroke={C.red} strokeWidth="3" />
+    <path d="M27 30h6M30 27v6" stroke={C.red} strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="66" cy="66" r="3" fill={C.green} />
+  </>
+) };
+S.physics = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.greenT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <circle cx="48" cy="46" r="6" fill={C.red} />
+    <ellipse cx="48" cy="46" rx="20" ry="8" fill="none" stroke={C.blue} strokeWidth="3" />
+    <ellipse cx="48" cy="46" rx="20" ry="8" fill="none" stroke={C.blue} strokeWidth="3" transform="rotate(60 48 46)" />
+    <ellipse cx="48" cy="46" rx="20" ry="8" fill="none" stroke={C.blue} strokeWidth="3" transform="rotate(-60 48 46)" />
+    <circle cx="66" cy="38" r="3" fill={C.yellow} />
+    <circle cx="30" cy="56" r="3" fill={C.green} />
+  </>
+) };
+S.chemistry = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.redT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M38 30v12l-9 20a5.5 5.5 0 005 8h28a5.5 5.5 0 005-8l-9-20V30" fill={C.white} stroke={C.blue} strokeWidth="3.4" strokeLinejoin="round" />
+    <path d="M34 30h28M35 56h26" stroke={C.blue} strokeWidth="3" strokeLinecap="round" />
+    <path d="M33 56l6 8h18l6-8" fill={C.greenT} />
+    <circle cx="42" cy="63" r="2.6" fill={C.red} />
+    <circle cx="54" cy="61" r="2.2" fill={C.yellow} />
+    <circle cx="70" cy="28" r="5" fill="none" stroke={C.green} strokeWidth="2.6" />
+    <circle cx="77" cy="36" r="3.4" fill="none" stroke={C.green} strokeWidth="2.2" />
+    <path d="M72.5 31.5l2.5 2.5" stroke={C.green} strokeWidth="2.2" strokeLinecap="round" />
+  </>
+) };
+S.biology = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.greenT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <circle cx="48" cy="47" r="19" fill={C.white} stroke={C.green} strokeWidth="3.4" />
+    <path d="M48 28c-8 8-8 30 0 38M48 28c8 8 8 30 0 38M29 47h38" fill="none" stroke={C.green} strokeWidth="2.6" />
+    <circle cx="44" cy="41" r="4.5" fill={C.blue} />
+    <circle cx="55" cy="53" r="3.2" fill={C.yellow} />
+    <circle cx="41" cy="55" r="2.2" fill={C.red} />
+  </>
+) };
+S.english = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.yellowT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M30 40c6-4 12-4 18-1v22c-6-3-12-3-18 1V40z" fill={C.white} stroke={C.ink} strokeWidth="2.2" strokeLinejoin="round" />
+    <path d="M66 40c-6-4-12-4-18-1v22c6-3 12-3 18 1V40z" fill={C.blue} stroke={C.blueD} strokeWidth="2.2" strokeLinejoin="round" />
+    <path d="M35 46h8M35 52h8M55 46h6M55 52h6" stroke={C.white} strokeWidth="2" strokeLinecap="round" opacity="0" />
+    <path d="M35 46h8M35 52h8" stroke={C.ink} strokeWidth="2" strokeLinecap="round" />
+    <path d="M55 46h6M55 52h6" stroke={C.white} strokeWidth="2" strokeLinecap="round" />
+    <path d="M26 28c4-3 8-3 11 0" fill="none" stroke={C.red} strokeWidth="2.6" strokeLinecap="round" />
+    <path d="M74 64c3 2 4 5 2 8" fill="none" stroke={C.green} strokeWidth="2.6" strokeLinecap="round" />
+  </>
+) };
+S.hindi = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.blueT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <rect x="30" y="30" width="36" height="36" rx="8" fill={C.white} stroke={C.blue} strokeWidth="3" />
+    <text x="48" y="57" textAnchor="middle" fontSize="26" fontWeight="500" fill={C.ink} fontFamily="'Google Sans', 'Noto Sans Devanagari', sans-serif">अ</text>
+    <path d="M72 30l2 4.5 4.5 2-4.5 2-2 4.5-2-4.5-4.5-2 4.5-2 2-4.5z" fill={C.yellow} />
+    <circle cx="26" cy="66" r="2.8" fill={C.red} />
+  </>
+) };
+S.history = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.redT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M32 66V38c0-2 1.6-4 4-4h24c2.4 0 4 2 4 4v28" fill={C.white} stroke={C.ink} strokeWidth="2.4" strokeLinejoin="round" />
+    <path d="M32 38c0-2 1.6-4 4-4h24c2.4 0 4 2 4 4" fill={C.yellow} stroke={C.ink} strokeWidth="2.4" strokeLinejoin="round" />
+    <path d="M38 44h20M38 51h20M38 58h14" stroke={C.blue} strokeWidth="2.6" strokeLinecap="round" />
+    <circle cx="68" cy="30" r="4" fill={C.red} />
+    <path d="M24 30l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4z" fill={C.green} />
+  </>
+) };
+S.geography = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.greenT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M28 62l12-18 8 10 8-14 12 22" fill={C.white} stroke={C.blue} strokeWidth="3" strokeLinejoin="round" />
+    <path d="M40 44l4 5-5 3" fill="none" stroke={C.blue} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="64" cy="34" r="7" fill="none" stroke={C.red} strokeWidth="3.4" />
+    <path d="M64 41v9" stroke={C.red} strokeWidth="3.4" strokeLinecap="round" />
+    <circle cx="64" cy="34" r="2.2" fill={C.ink} />
+  </>
+) };
+S.computerScience = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.blueT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <rect x="28" y="30" width="40" height="34" rx="6" fill={C.ink} />
+    <path d="M36 40l7 6-7 6" fill="none" stroke={C.green} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M48 52h12" stroke={C.yellow} strokeWidth="3" strokeLinecap="round" />
+    <circle cx="62" cy="36" r="2.2" fill={C.red} />
+    <circle cx="56" cy="36" r="2.2" fill={C.yellow} />
+    <circle cx="50" cy="36" r="2.2" fill={C.green} />
+  </>
+) };
+S.economics = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.yellowT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <circle cx="38" cy="54" r="9" fill={C.yellow} stroke={C.ink} strokeWidth="2.2" />
+    <circle cx="52" cy="54" r="9" fill={C.yellowT} stroke={C.ink} strokeWidth="2.2" />
+    <circle cx="52" cy="54" r="4.5" fill="none" stroke={C.ink} strokeWidth="1.8" />
+    <path d="M34 38l8 7 7-9 9 8" fill="none" stroke={C.blue} strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M58 36h6v6" fill="none" stroke={C.blue} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+  </>
+) };
+
 export default function SpotIllustration({ subject, className = "", title }) {
   const scene = S[subject] ?? S.compass;
   return (

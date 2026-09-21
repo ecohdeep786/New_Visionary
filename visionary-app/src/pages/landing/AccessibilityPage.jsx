@@ -15,8 +15,7 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import { LEGAL_META } from "@/data/legalMeta";
-import Breadcrumb from "@/components/landing/Breadcrumb";
+import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -132,40 +131,11 @@ export default function AccessibilityPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-      <Breadcrumb page="Accessibility" />
-      <main id="main">
-        {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[980px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-                <AccessibilityIcon className="h-4 w-4" strokeWidth={1.7} />
-                Accessibility
-              </div>
-              <h1 className="max-w-[940px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Learn your way.
-                <br />
-                <span style={{ color: COLORS.ink }}>Use Visionary your way.</span>
-              </h1>
-              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: COLORS.grey }}>
-                Visionary should make room for the many ways people read, hear, speak, and interact.
-              </p>
-        <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
-          Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.accessibility.lastUpdated}</strong>
-        </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
-                <span style={{ color: COLORS.grey }}>Designed for different ways of learning and interacting</span>
-                <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: COLORS.mist }} />
-                <a href="mailto:accessibility@visionary.org.in"
-                  className="inline-flex items-center gap-1.5 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                  style={{ color: COLORS.blue }}>
-                  accessibility@visionary.org.in
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+            <main id="main">
+        <PageHeading page="Accessibility" eyebrow="Accessibility"
+          h1={<>Accessible by <Accent>design</Accent>.</>}
+          dek="WCAG 2.1 AA, native scripts, screen-reader tested.">
+        </PageHeading>
 
         {/* STORY BAND */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>
