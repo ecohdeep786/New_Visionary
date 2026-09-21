@@ -9,7 +9,7 @@ export type Stage = 'diagnosing' | 'explaining' | 'exploring' | 'checking' | 're
 export interface Evidence { id: string; objectiveId: string; kind: 'check' | 'practice' | 'application' | 'retrieval'; correct: number; total: number; at: string; delayed: boolean }
 export type MasteryStage = 'Not started' | 'Exploring' | 'Practicing' | 'Secure' | 'Mastered' | 'Needs review';
 export interface Session { id: string; journeyId: string; conversationId: string; stage: Stage; position: number; locale: Locale; representation: 'interactive' | 'text'; answers: Record<string, string>; canvas: { size: number; rotation: number }; notes: string; confidence?: number; evidence: Evidence[]; updatedAt: string; interrupted: boolean; reviewRound?: number; reviewStartedAt?: string }
-export type GuideBlock = { type: 'text'; text: string } | { type: 'activity'; journeyId: string; label: string } | { type: 'action'; label: string; path: string };
+export type GuideBlock = ({ type: 'text'; text: string } | { type: 'activity'; journeyId: string; label: string } | { type: 'action'; label: string; path: string }) & { locale?: Locale };
 export interface Message { id: string; role: 'user' | 'guide'; blocks: GuideBlock[]; at: string }
 export interface AskContext { intent: 'understand' | 'solve' | 'check' | 'plan' | 'build'; source: 'topic' | 'material' | 'outside'; material: string }
 export interface Conversation { id: string; title: string; messages: Message[]; sessionId?: string; canvasPath?: string; draft: string; updatedAt: string; useForPersonalization: boolean; ask?: AskContext }

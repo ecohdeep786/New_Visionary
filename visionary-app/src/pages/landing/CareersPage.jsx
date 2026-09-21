@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -33,14 +33,6 @@ const COLORS = {
   white: "#ffffff",
 };
 
-function Note({ children }) {
-  return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
-      <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-    </div>
-  );
-}
-
 const SECTIONS = [
   { id: "why", number: "01", title: "Why this work", summary: "The problem Visionary is trying to solve." },
   { id: "what-building", number: "02", title: "What we are building", summary: "The product and system we are working toward." },
@@ -60,21 +52,6 @@ function scrollToSection(id) {
   window.history.replaceState(null, "", `#${id}`);
 }
 
-function SectionHeading({ number, title }) {
-  return (
-    <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
-    </div>
-  );
-}
-
-function Paragraph({ children }) {
-  return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
-  );
-}
-
 function RoleCard({ icon: Icon, eyebrow, title, description }) {
   return (
     <div className="rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.border }}>
@@ -84,20 +61,6 @@ function RoleCard({ icon: Icon, eyebrow, title, description }) {
       <div className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.lightGrey }}>{eyebrow}</div>
       <h3 className="mt-1.5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
       <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{description}</p>
-    </div>
-  );
-}
-
-function ValueRow({ icon: Icon, title, children }) {
-  return (
-    <div className="flex gap-4 border-b py-6 last:border-b-0" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.soft }}>
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-      </div>
-      <div>
-        <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>{title}</h3>
-        <p className="mt-2 max-w-[680px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-      </div>
     </div>
   );
 }
@@ -161,10 +124,6 @@ function CareersNotify() {
 
 export default function CareersPage() {
 
-  const activeSection = useMemo(
-    () => SECTIONS.find((section) => section.id === activeId),
-    [activeId]
-  );
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>

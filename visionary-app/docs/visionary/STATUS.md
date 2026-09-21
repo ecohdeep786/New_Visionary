@@ -95,3 +95,27 @@ Decisions: Preserve historical messages without guessing their language from the
 Open for next:07 runtime keyboard/focus, actual screen-reader and zoom/reduced-motion checks. Chief owns browser verification. M-01 shared smooth-scroll defect remains unchanged.04 owns material count wording: local editable characters must not be called saved after a storage failure. Historical message locale provenance remains an04 domain gap. Full waves and gates remain incomplete.06 stops here.
 
 QA notes: Full30 Node tests, lint and both typechecks passed during patching; added language-provenance regression then all7 focused Home tests and final typecheck/scoped lint passed. Diff whitespace check passed. Final label/breakpoint-only refinements require07 final runtime/build check. No actual screen-reader,200% zoom, reduced-motion runtime or browser focus result claimed by06.
+
+## [Wave 0.5] [07-qa-engineer — Home/Ask verification] — 2026-09-21
+
+Done: Read master, full operative v2.2, protocol/PartV07, last06 handoff, decisions/QA, product gate and scoped UX/design contracts. Ran fresh31 tests, lint, both typechecks, production build and scoped whitespace check; inspected Home/Ask service/UI boundaries. Additional isolated service probes verified in-flight cancellation, permission recheck during pending parent Home load and stored conversation selection preservation after failed writes. Incorporated explicitly attributed coordinator browser checks.
+
+Files: QA_HOME_RESULTS.md; append-only QA.md and STATUS.md. No application source, another agent deliverable, public source or protected Frontend folder touched. Unrelated scripts-tmp/shots work preserved.
+
+Decisions: No new product decision. Passing automation is not full state or wave acceptance. Four04-owned failures need fixes and recheck: QA-H01 material count falsely says saved after failure; QA-H02 unsupported Ask fallback bypasses minor eligibility; QA-H03 historical message locale is missing; QA-H04 failed conversation-selection writes are not handled atomically in UI. M-01 remains owned by chief/shared-style team.
+
+Open for next: Chief runs PartAA gate, routes named failures to04/shared-style owners, then07 reruns and chief rechecks. Finish pending browser focus/console/long-label checks and retain explicit unverified SR,200% zoom,reduced-motion/public pixel evidence. Broader stageProfile/PartW/role/connection gaps remain open. Merge/release must remain blocked;07 stops here.
+
+QA notes:31/31 tests, lint,typecheck,build pass; pre-existing Tailwind easing warning retained. Coordinator reports no horizontal DOM overflow for Home/Ask at seven widths, parent Maya report routing, compact keyboard tab selection/focus and named history dialog. These are attributed limited checks, not a full browser/accessibility certification. No wave completion or G1–G12 pass claimed.
+
+## [Wave 0.5] [00-head-of-product — first Home/Ask gate] — 2026-09-21
+
+Done: Ran all twelve Part AA checks after07's handoff. App runs; bounded G1/G2/G10/G11 evidence passes. The gate as a whole is BLOCKED, not a full-wave completion.
+
+Files: PRODUCT_GATE.md gate table; this handoff. No public/source changes.
+
+Decisions: G3/G6 fail QA-H02 eligibility / owner04; G5 fails QA-H01 saved wording / owner04; G8 fails QA-H04 failed selection UI / owner04; G9 fails QA-H03 language provenance / owner04 then06 and M-01 / shared-style owner. G4 full lifecycle, G7 same-data visual regression and G12 Part W evidence are not passed. StageProfile and full role completion remain separate approved-slice work, not silently waived.
+
+Open for next:04 corrects QA-H01–H04 with regression coverage and investigates composer hydration on exact session entry. Preserve06 semantics and03 styling; no redesign/public edits. Then06 language/focus recheck and07 rerun before chief re-gates. Chief independently completes live keyboard/focus evidence while04 works. Do not start another wave or release.
+
+QA notes: Additional main browser check at360px: Escape from history restores Conversation history focus; cancelling the delete confirmation returns focus to the contextual Delete row, without deleting data. Browser recovery used the same local preview after restarting the owned dev server, with no security/settings workaround. Actual SR/zoom/reduced-motion/public pixel checks remain unverified.

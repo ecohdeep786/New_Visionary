@@ -1,5 +1,6 @@
 import type { AskContext, RequestContext, Role } from '../domain/workspace.ts';
-import { getJourney, listJourneys } from './journeys.ts';
+import { getJourney } from './journeys.ts';
+import { eligibleJourneys } from './journeyEligibility.ts';
 import { newConversation, selectConversation, snapshot, startJourney, updateConversation, updateSession, workspaceIdentity } from './workspaceService.ts';
 
 export const defaultAskContext: AskContext = {intent:'understand',source:'topic',material:''};
@@ -19,10 +20,15 @@ export function saveAskContext(ctx: RequestContext, conversationId: string, valu
 }
 export function suggestedJourneys(ctx: RequestContext) {
   const {person}=workspaceIdentity(ctx);
-  const journeys=listJourneys(ctx.locale);
-  if(ctx.role==='professional')return journeys.filter(j=>j.id==='data');
-  if(ctx.role!=='student')return [];
-  return person.ageBand==='adult'?journeys:journeys.filter(j=>j.id!=='data');
+  return eligibleJourneys(ctx.role,person.ageBand,ctx.locale);
+}
+
+/** Persist first: callers apply this complete UI snapshot only after a successful write. */
+export function selectGuideConversation(ctx: RequestContext, conversationId: string|null) {
+  const conversation=conversationId?snapshot(ctx).conversations.find(c=>c.id===conversationId):undefined;
+  if(conversationId&&!conversation)throw new Error('Conversation not found.');
+  selectConversation(ctx,conversationId);
+  return {selected:conversationId,input:conversation?.draft||'',canvasPath:conversation?.canvasPath||'',pane:conversation?.sessionId||conversation?.canvasPath?'activity':'conversation'};
 }
 /** Validate before mutating, and target the exact session rather than the first matching topic. */
 export function openGuideEntry(ctx: RequestContext, entry: {sessionId?:string|null;journeyId?:string|null;practice?:boolean}) {

@@ -1,26 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   BookOpen,
-  Brain,
   ChevronRight,
-  FlaskConical,
-  Layers3,
-  Lightbulb,
-  MessageCircle,
-  Network,
-  Search,
-  Sparkles,
-  UsersRound,
-  Wrench,
-  Lock,
-  Code2,
-  GraduationCap,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
+import StorySection from "@/components/landing/StorySection";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -110,41 +97,7 @@ function Note({ children }) {
 }
 
 export default function ResearchNewsPage() {
-  const [activeId, setActiveId] = useState("why");
-  const [showMobileContents, setShowMobileContents] = useState(false);
 
-  const activeSection = useMemo(
-    () => SECTIONS.find((section) => section.id === activeId),
-    [activeId]
-  );
-
-  useEffect(() => {
-    const observers = [];
-    SECTIONS.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (!element) return;
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActiveId(section.id);
-          });
-        },
-        { rootMargin: "-18% 0px -65% 0px", threshold: 0.01 }
-      );
-      observer.observe(element);
-      observers.push(observer);
-    });
-    return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
-
-  useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (!hash || !SECTIONS.some((section) => section.id === hash)) return;
-    requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: "auto", block: "start" });
-      setActiveId(hash);
-    });
-  }, []);
 
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
@@ -181,176 +134,63 @@ export default function ResearchNewsPage() {
           </div>
         </section>
 
-        {/* MOBILE CONTENTS */}
-        <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
-            <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-              <span>
-                <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
-                <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
-              </span>
-              <ChevronRight className={`h-5 w-5 transition-transform duration-200 ${showMobileContents ? "rotate-90" : ""}`} strokeWidth={1.7} style={{ color: COLORS.grey }} />
-            </button>
-            {showMobileContents && (
-              <div className="pb-5">
-                <div className="overflow-hidden rounded-[18px] border" style={{ borderColor: COLORS.border }}>
-                  {SECTIONS.map((section) => {
-                    const active = activeId === section.id;
-                    return (
-                      <button key={section.id} type="button"
-                        onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
-                        style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
-                        <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
-                        <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+        {/* 01 · WHY WE RESEARCH */},
+        <StorySection
+          id="why"
+          title="Why we research"
+          featured={{
+            subject: "research",
+            label: "The point",
+            title: "True enough to build from.",
+            dek: "Not research for its own sake — learning something a person can use.",
+          }}
+          rows={[
+            { label: "Learning", title: "How people actually learn." },
+            { label: "Intelligence", title: "How it should adapt." },
+            { label: "Language", title: "Understanding across scripts." },
+            { label: "Continuity", title: "Learning that lasts." },
+          ]}
+        />
 
-        {/* RESEARCH CONTENT */}
-        <section>
-          <div className="mx-auto max-w-[1240px] px-6 py-12 sm:px-8 lg:px-10 lg:py-20">
-            <div className="grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-20">
-              {/* DESKTOP CONTENTS */}
-              <aside className="hidden lg:block">
-                <div className="sticky top-24">
-                  <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</div>
-                  <nav aria-label="Research sections">
-                    <div className="space-y-1">
-                      {SECTIONS.map((section) => {
-                        const active = activeId === section.id;
-                        return (
-                          <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                            style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
-                            <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
-                            <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </nav>
-                </div>
-              </aside>
+        {/* 02 · QUESTIONS WE ARE EXPLORING */}
+        <StorySection
+          id="questions"
+          title="Questions we explore"
+          flip
+          featured={{
+            subject: "loop",
+            label: "Open questions",
+            title: "What we are chasing.",
+            dek: "Each question connects to something a learner experiences.",
+          }}
+          rows={[
+            { label: "01", title: "What makes understanding stick?" },
+            { label: "02", title: "When should help arrive?" },
+            { label: "03", title: "How does language shape it?" },
+            { label: "04", title: "What carries across years?" },
+          ]}
+        />
 
-              <div className="min-w-0">
-                <article className="divide-y divide-[#e5e7eb]">
-                  {/* 01 */}
-                  <section id="why" className="scroll-mt-24 pb-14 sm:pb-16">
-                    <SectionHeading number="01" title="Why we research" />
-                    <Paragraph>Visionary is trying to solve a problem that cannot be understood from product metrics alone.</Paragraph>
-                    <div className="mt-5"><Paragraph>We need to understand what helps someone move from seeing information to understanding it, from understanding to practice, and from practice to something they can actually do.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Research gives us a disciplined way to ask those questions, test ideas, learn from evidence, and change the product when the evidence says we should.</Paragraph></div>
-                  </section>
+        {/* 03 · RESEARCH TO PRODUCT */}
+        <StorySection
+          id="work"
+          title="Research to product"
+          featured={{
+            subject: "build",
+            label: "The path",
+            title: "From question to capability.",
+            dek: "Numbered steps from a finding to something a learner can use.",
+          }}
+          rows={[
+            { label: "01 · Ask", title: "A question from a real learner." },
+            { label: "02 · Study", title: "Evidence over assumption." },
+            { label: "03 · Build", title: "A capability in the product." },
+            { label: "04 · Learn", title: "Measure, then improve." },
+          ]}
+        />
 
-                  {/* 02 */}
-                  <section id="questions" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="02" title="Questions we are exploring" />
-                    <Paragraph>The important questions are still open questions.</Paragraph>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <ResearchCard icon={Brain} eyebrow="Learning" title="What makes understanding stick?">Which combinations of explanation, questioning, practice, feedback, and repetition help people build durable understanding?</ResearchCard>
-                      <ResearchCard icon={MessageCircle} eyebrow="Interaction" title="What should an AI teacher do?">When should an intelligent system explain, ask, demonstrate, challenge, suggest, or step back?</ResearchCard>
-                      <ResearchCard icon={Network} eyebrow="Continuity" title="What should carry forward?">Which parts of previous learning are useful context for the next question, lesson, task, or project?</ResearchCard>
-                      <ResearchCard icon={Sparkles} eyebrow="Adaptation" title="What should change for each person?">How should depth, pace, examples, practice, and interaction adapt to the person and their goal?</ResearchCard>
-                      <ResearchCard icon={Layers3} eyebrow="Creation" title="How does learning become doing?">What helps people turn an understood idea into a project, explanation, decision, or useful piece of work?</ResearchCard>
-                      <ResearchCard icon={Search} eyebrow="Measurement" title="How do we know it worked?">How can we distinguish completion from genuine understanding and meaningful progress?</ResearchCard>
-                    </div>
-                  </section>
-
-                  {/* 03 */}
-                  <section id="learning" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="03" title="How people learn" />
-                    <Paragraph>We are interested in the full learning journey, not just the moment someone receives an answer.</Paragraph>
-                    <div className="mt-6 overflow-hidden rounded-[22px] border bg-white" style={{ borderColor: COLORS.border }}>
-                      <PrincipleRow icon={Lightbulb} title="Understand">What changes when an explanation matches what a person already knows?</PrincipleRow>
-                      <PrincipleRow icon={MessageCircle} title="Ask">How can a system use questions to uncover confusion instead of simply delivering more information?</PrincipleRow>
-                      <PrincipleRow icon={Wrench} title="Practise">Which practice helps people strengthen the concepts they have not yet mastered?</PrincipleRow>
-                      <PrincipleRow icon={Layers3} title="Build">What happens when people use their understanding to create something meaningful?</PrincipleRow>
-                      <PrincipleRow icon={Network} title="Continue">How can previous learning make the next learning step easier?</PrincipleRow>
-                    </div>
-                  </section>
-
-                  {/* 04 */}
-                  <section id="intelligence" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="04" title="How intelligence should adapt" />
-                    <Paragraph>A system can answer the same question differently without becoming inconsistent. It can respond to the person's context.</Paragraph>
-                    <div className="mt-5"><Paragraph>For one learner, that may mean a simpler explanation. For another, a deeper derivation. For a teacher, the relevant question may be how to explain the same idea to a class. For a professional, it may be how to apply it to a real task.</Paragraph></div>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <ResearchCard icon={UsersRound} eyebrow="Person" title="Who is asking?">The same concept can require a different starting point for a student, teacher, parent, professional, or organization.</ResearchCard>
-                      <ResearchCard icon={Lightbulb} eyebrow="Context" title="What happened before?">Previous questions, learning, goals, and work can provide context for what comes next.</ResearchCard>
-                      <ResearchCard icon={Sparkles} eyebrow="Goal" title="What are they trying to do?">Understanding for an exam is different from understanding for a project or a real decision.</ResearchCard>
-                      <ResearchCard icon={Layers3} eyebrow="Depth" title="How far should it go?">Good adaptation is not simply shorter or longer. It should change the structure of the explanation itself.</ResearchCard>
-                    </div>
-                  </section>
-
-                  {/* 05 */}
-                  <section id="language" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="05" title="Language and understanding" />
-                    <Paragraph>Language is part of how people think, explain, question, and make meaning.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary's broader product direction is built around allowing people to learn and communicate in the language that feels natural to them. Research here should examine whether changing the language of interaction changes comprehension, confidence, and the ability to continue learning.</Paragraph></div>
-                    <div className="mt-6 rounded-[22px] border p-6 sm:p-7">
-                      <div className="flex items-start gap-4">
-                        <MessageCircle className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.6} style={{ color: COLORS.blue }} />
-                        <div>
-                          <h3 className="text-[20px] font-normal" style={{ color: COLORS.ink }}>
-                            The words can change.
-                            <br />
-                            <span style={{ color: COLORS.blue }}>Understanding should not have to.</span>
-                          </h3>
-                          <p className="mt-3 max-w-[700px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                            This is a research question, not merely a language feature: how can technology preserve meaning as people move between languages and ways of expressing an idea?
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* 06 */}
-                  <section id="continuity" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="06" title="Learning over time" />
-                    <Paragraph>One of Visionary's central product ideas is continuity: what you learn today should help with what comes next.</Paragraph>
-                    <div className="mt-5"><Paragraph>Research needs to determine when remembering previous interactions genuinely helps and when it becomes noise, distraction, or an incorrect assumption.</Paragraph></div>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                      <ResearchCard icon={BookOpen} eyebrow="Remember" title="What matters?">Which information from earlier learning remains useful later?</ResearchCard>
-                      <ResearchCard icon={Network} eyebrow="Connect" title="What relates?">Which concepts, experiences, and goals should be connected?</ResearchCard>
-                      <ResearchCard icon={ArrowUpRight} eyebrow="Continue" title="What comes next?">How can previous understanding shape a better next learning step?</ResearchCard>
-                    </div>
-                  </section>
-
-                  {/* 07 */}
-                  <section id="responsible" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="07" title="Responsible research" />
-                    <Paragraph>Research about people and education carries responsibilities beyond getting a better model score.</Paragraph>
-                    <div className="mt-6 space-y-4">
-                      <PrincipleRow icon={Search} title="Evidence before claims">We should distinguish what has been tested from what we simply believe might work.</PrincipleRow>
-                      <PrincipleRow icon={UsersRound} title="People before benchmarks">A technical improvement matters only when it improves an actual experience for the person using the product.</PrincipleRow>
-                      <PrincipleRow icon={Lock} title="Privacy matters">Learning research should be designed with appropriate care for personal and educational information.</PrincipleRow>
-                      <PrincipleRow icon={MessageCircle} title="Uncertainty should be visible">When the evidence is incomplete, the conclusion should remain appropriately qualified.</PrincipleRow>
-                    </div>
-                    <Note>Specific research protocols, participant protections, ethics review, and data-governance procedures should be documented when Visionary begins conducting formal human-subject research.</Note>
-                  </section>
-
-                  {/* 08 */}
-                  <section id="work" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="08" title="Research to product" />
-                    <Paragraph>Research is useful when what we learn changes what we build.</Paragraph>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <ResearchCard icon={Search} eyebrow="01" title="Ask">Start with a real product or learning question.</ResearchCard>
-                      <ResearchCard icon={FlaskConical} eyebrow="02" title="Study">Gather evidence through the appropriate research method.</ResearchCard>
-                      <ResearchCard icon={Brain} eyebrow="03" title="Learn">Separate the result from the assumption we started with.</ResearchCard>
-                      <ResearchCard icon={Code2} eyebrow="04" title="Build">Turn useful findings into product behavior that can be tested in the real world.</ResearchCard>
-                    </div>
-                    <Note>This is the intended research loop. It is not a claim that Visionary has completed every stage for every research area shown on this page.</Note>
-                  </section>
-
-                  {/* 09 */}
-                  <section id="publications" className="scroll-mt-24 py-14 sm:py-16">
+<section id="publications" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="09" title="Publications and findings" />
                     <Paragraph>When Visionary has research that is ready to share, this is where it belongs.</Paragraph>
                     <div className="mt-8 rounded-[24px] border p-7 sm:p-8" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
@@ -372,69 +212,21 @@ export default function ResearchNewsPage() {
                         </Link>
                       </div>
                     </div>
-                  </section>
-
-                  {/* 10 */}
-                  <section id="collaboration" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="10" title="Research with others" />
-                    <Paragraph>Better questions often come from working with people who see the problem from a different side.</Paragraph>
-                    <div className="mt-5"><Paragraph>As Visionary's research grows, we expect opportunities to work with educators, universities, researchers, practitioners, and other organizations whose expertise can challenge or extend what we are building.</Paragraph></div>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                      <ResearchCard icon={GraduationCap} eyebrow="Education" title="Educators">Bring classroom experience and practical knowledge of how people actually learn.</ResearchCard>
-                      <ResearchCard icon={FlaskConical} eyebrow="Research" title="Researchers">Explore questions that benefit from deeper scientific or methodological work.</ResearchCard>
-                      <ResearchCard icon={UsersRound} eyebrow="Practice" title="Organizations">Study how learning and capability change in real institutions and workplaces.</ResearchCard>
                     </div>
-                  </section>
+        </section>
 
-                  {/* 11 */}
-                  <section id="contact" className="scroll-mt-24 pt-14 sm:pt-16">
-                    <SectionHeading number="11" title="Contact" />
-                    <Paragraph>For research questions, collaboration ideas, or opportunities to contribute to Visionary's research:</Paragraph>
-                    <div className="mt-6">
-                      <a href="mailto:research@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                        style={{ color: COLORS.blue }}>
-                        research@visionary.org.in
-                        <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
-                      </a>
-                    </div>
-                    <Note>This address should be activated and monitored before being published as an official research contact.</Note>
-                  </section>
-                </article>
-
-                {/* CLOSING */}
-                <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
-                  <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Research</div>
-                    <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
-                      Ask better questions.
-                      <br />
-                      <span style={{ color: COLORS.blue }}>Build from what you learn.</span>
-                    </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      That is how research becomes part of Visionary—not as a claim on a page, but as something that changes the product.
-                    </p>
-                    <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/about" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        About Visionary
-                      </Link>
-                      <Link to="/careers" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        Work with us
-                      </Link>
-                      <Link to="/contact" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        Contact
-                      </Link>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </div>
+        {/* CONTACT one-liner */}
+        <section id="contact" aria-label="Contact" className="border-t px-6 py-14 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+          <div className="mx-auto flex max-w-[1240px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-[15px]" style={{ color: COLORS.grey }}>Research questions?</p>
+            <a href="mailto:research@visionary.org.in" className="inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.blue }}>
+              research@visionary.org.in
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
+            </a>
           </div>
         </section>
       </main>
+
       <LandingFooter variant="quiet" />
     </div>
   );
