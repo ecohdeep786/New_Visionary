@@ -16,3 +16,7 @@ Outstanding: organization capture, remaining screen/state baselines before enhan
 ## 2026-09-20 continuation
 
 Browser testing resumed normally. Added `organization-home-1440.png` and `ask-organization-1440.png` at 1440×900 before Home/Ask source changes. Both show the existing Guide-first organization surface. Earlier interruption is historical, not a current blocker. Broader responsive/accessibility and after-state evidence remain separate QA work.
+
+## 2026-09-22 corrective verification
+
+`corrected-home-bn-default.png` records the inherited Home with a saved Bengali fractions activity in the normal1280px browser viewport. `corrected-guide-hi-360.png` is a raw mobile capture with a capture-frame scale discrepancy; use the documented DOM geometry, not this image, for width evidence. Temporary viewport override reset successfully. See `../../QA_HOME_BROWSER.md` for exact-resume, mixed-language, console and responsive observations and their explicit limits. No source-layout replacement or full gate pass is claimed.

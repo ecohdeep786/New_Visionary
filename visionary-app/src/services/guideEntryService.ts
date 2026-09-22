@@ -1,4 +1,4 @@
-import type { AskContext, RequestContext, Role } from '../domain/workspace.ts';
+import type { AskContext, Conversation, RequestContext, Role } from '../domain/workspace.ts';
 import { getJourney } from './journeys.ts';
 import { eligibleJourneys } from './journeyEligibility.ts';
 import { newConversation, selectConversation, snapshot, startJourney, updateConversation, updateSession, workspaceIdentity } from './workspaceService.ts';
@@ -28,7 +28,18 @@ export function selectGuideConversation(ctx: RequestContext, conversationId: str
   const conversation=conversationId?snapshot(ctx).conversations.find(c=>c.id===conversationId):undefined;
   if(conversationId&&!conversation)throw new Error('Conversation not found.');
   selectConversation(ctx,conversationId);
-  return {selected:conversationId,input:conversation?.draft||'',canvasPath:conversation?.canvasPath||'',pane:conversation?.sessionId||conversation?.canvasPath?'activity':'conversation'};
+  return conversationView(conversation);
+}
+function conversationView(conversation?: Conversation) {
+  return {selected:conversation?.id||null,input:conversation?.draft||'',canvasPath:conversation?.canvasPath||'',pane:conversation?.sessionId||conversation?.canvasPath?'activity' as const:'conversation' as const};
+}
+/** A single route-entry snapshot prevents active-history hydration from overwriting an exact resume. */
+export function openGuideLocation(ctx: RequestContext, entry: {sessionId?:string|null;journeyId?:string|null;practice?:boolean;initialQuestion?:string;topic?:string|null}) {
+  if(entry.sessionId||entry.journeyId)return openGuideEntry(ctx,entry).view;
+  const data=snapshot(ctx);
+  const view=conversationView(data.conversations.find(c=>c.id===data.activeConversationId));
+  const initialQuestion=entry.initialQuestion||(entry.topic?`Help me understand ${entry.topic}.`:'');
+  return {...view,input:initialQuestion||view.input,pane:'conversation' as const};
 }
 /** Validate before mutating, and target the exact session rather than the first matching topic. */
 export function openGuideEntry(ctx: RequestContext, entry: {sessionId?:string|null;journeyId?:string|null;practice?:boolean}) {
@@ -42,6 +53,6 @@ export function openGuideEntry(ctx: RequestContext, entry: {sessionId?:string|nu
   if(!conversation)throw new Error('This activity’s conversation is unavailable. Your saved work has not changed.');
   const session=startJourney(ctx,conversation.id,journeyId);
   if(entry.practice&&!entry.sessionId)updateSession(ctx,session.id,{stage:'practicing',position:0});
-  selectConversation(ctx,conversation.id);
-  return {conversation,session};
+  const view=selectGuideConversation(ctx,conversation.id);
+  return {conversation,session,view};
 }
