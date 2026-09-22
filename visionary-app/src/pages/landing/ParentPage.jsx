@@ -280,6 +280,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 const ParentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
+    eyebrow="For parents"
     srSentence="Parenting, to see what is happening."
     sub="Know what your child is learning, where they need support, and how they are growing — before the report card arrives."
     img={parentHero}

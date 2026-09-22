@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  LockKeyhole,
   Eye,
   UserRound,
   Database,
@@ -20,6 +19,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import { LEGAL_META, GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 
 const COLORS = {
   ink: "#121317",
@@ -262,40 +262,19 @@ export default function PrivacyPage() {
             ))}
           </nav>
 
-          {/* Minimal privacy illustration */}
-          <div className="mx-auto mt-16 max-w-[760px]">
-            <div
-              className="relative flex aspect-[16/8] items-center justify-center overflow-hidden rounded-[32px] border"
-              style={{
-                borderColor: COLORS.mist,
-                backgroundColor: COLORS.surface,
-              }}
-            >
-              <div className="absolute h-[330px] w-[330px] rounded-full bg-surface-info-soft" />
-
-              <div className="relative z-10 flex flex-col items-center">
-                <div
-                  className="flex h-24 w-24 items-center justify-center rounded-[28px] bg-white shadow-[0_18px_55px_rgba(18,19,23,0.08)]"
-                  style={{ color: COLORS.blue }}
-                >
-                  <LockKeyhole
-                    className="h-12 w-12"
-                    strokeWidth={1.55}
-                  />
-                </div>
-
-                <p
-                  className="mt-6 text-[14px]"
-                  style={{ color: COLORS.grey }}
-                >
-                  Your learning stays personal.
-                </p>
-              </div>
+          {/* Privacy illustration — same Google-flat scene language as the other trust pages */}
+          <div className="mx-auto mt-12 w-full max-w-[760px]">
+            <div className="overflow-hidden rounded-[28px] border" style={{ borderColor: COLORS.mist }}>
+              <SpotIllustration subject="lock" title="Illustration of a lock keeping your learning personal" className="aspect-[16/8] w-full" />
             </div>
+            <p className="mt-4 text-center text-[13px] tracking-[0.1px]" style={{ color: COLORS.grey }}>
+              Your learning stays personal.
+            </p>
           </div>
         </section>
 
-        {/* 02 — THE SIMPLE IDEA */}
+        {/* 02 — THE SIMPLE IDEA */
+}
         <section className="px-6 py-16 lg:py-24">
           <div className="mx-auto max-w-[1100px]">
             <div className="max-w-[780px]">

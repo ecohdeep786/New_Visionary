@@ -291,6 +291,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 const OrgHeroSection = React.memo(() => (
   <PersonaHero
     words={ORG_HERO_WORDS}
+    eyebrow="For organizations"
     srSentence="One intelligence, to scale understanding."
     sub="One intelligence across every classroom, team, and program — understanding that stays inside your institution."
     img={orgHero}

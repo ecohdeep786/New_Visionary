@@ -299,6 +299,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
+    eyebrow="For students"
     srSentence="Learning, to mastery."
     sub="Every concept you understand becomes the foundation for the next one — in the language you think in."
     img={studentHero}

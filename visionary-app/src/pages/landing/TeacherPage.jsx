@@ -284,6 +284,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 const TeacherHeroSection = React.memo(() => (
   <PersonaHero
     words={TEACHER_HERO_WORDS}
+    eyebrow="For teachers"
     srSentence="Teaching, to reach every learner."
     sub="One class, many minds. See who understood, who needs another way, and who is ready to move on — before the next bell."
     img={teacherHero}
