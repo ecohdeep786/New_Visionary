@@ -12,6 +12,7 @@
 @media(min-width:1200px){.guide-shell.has-activity{grid-template-columns:minmax(360px,.85fr) minmax(440px,1.15fr)}.guide-mobile-tabs{display:none}.guide-canvas.hidden-pane,.guide-conversation.hidden-pane{display:flex;flex-direction:column}.guide-shell.focus-activity{grid-template-columns:1fr}.guide-shell.focus-activity .guide-conversation{display:none}}
 @media(max-width:767px){.v-page{padding:16px;gap:20px}.v-card{padding:16px}.guide-conversation{padding:20px 16px}.guide-canvas{padding:16px;border-left:0}.guide-shell{min-height:calc(100dvh - 170px)}.v-title{font-size:24px}.visionary-workspace{padding-bottom:64px}.workspace-brand{display:none}}
 @media(prefers-reduced-motion:reduce){.visionary-workspace *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){html:has(.visionary-workspace){scroll-behavior:auto!important}}
 .v-button{border-color:var(--v-border,#dadce0);color:var(--v-brand,#1967d2)}.v-button.primary{background:var(--v-brand,#1967d2);border-color:var(--v-brand,#1967d2);color:#fff}.v-card{border-color:var(--v-border,#dadce0)}
 .v-button:focus-visible,.v-field:focus-visible{outline:2px solid #1967d2;outline-offset:3px}
 .guide-canvas .v-page{padding:24px 0}.guide-canvas .v-page .lg\:grid-cols-3{grid-template-columns:1fr}
