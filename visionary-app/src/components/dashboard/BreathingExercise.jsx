@@ -48,7 +48,7 @@ export default function BreathingExercise() {
           style={{
             transform: active ? `scale(${breatheScale})` : "scale(1)",
             transitionDuration: `${phase.duration}ms`,
-            backgroundColor: "#1a73e8",
+            backgroundColor: "#4285F4",
             opacity: 0.15,
           }}
         />
@@ -57,22 +57,22 @@ export default function BreathingExercise() {
           style={{
             transform: active ? `scale(${breatheScale * 0.75})` : "scale(0.6)",
             transitionDuration: `${phase.duration}ms`,
-            backgroundColor: "#1a73e8",
+            backgroundColor: "#4285F4",
             opacity: 0.25,
           }}
         />
-        <div className="relative z-10 w-16 h-16 rounded-full bg-[#1a73e8] flex items-center justify-center">
+        <div className="relative z-10 w-16 h-16 rounded-full bg-[#4285F4] flex items-center justify-center">
           <span className="text-white text-sm font-medium text-center leading-tight">
             {active ? phase.label : "Start"}
           </span>
         </div>
       </button>
       <div className="text-center">
-        <p className="text-base font-normal text-[#3c4043]">
+        <p className="text-base font-normal text-[#5f6368]">
           {active ? "Follow the rhythm" : "Tap the circle to begin"}
         </p>
         {cycleCount > 0 && (
-          <p className="text-sm font-medium text-[#1a73e8] mt-1">{cycleCount} cycle{cycleCount !== 1 ? "s" : ""} complete</p>
+          <p className="text-sm font-medium text-[#4285F4] mt-1">{cycleCount} cycle{cycleCount !== 1 ? "s" : ""} complete</p>
         )}
       </div>
     </div>

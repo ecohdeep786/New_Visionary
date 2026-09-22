@@ -23,18 +23,18 @@ export default function AuthLayout({
             <div className="hidden md:flex flex-col justify-between items-start p-10 lg:p-14">
               <div className="flex items-center gap-3">
                 <VisionaryLogo />
-                {Icon && <Icon className="w-6 h-6 text-[#1a73e8]" />}
+                {Icon && <Icon className="w-6 h-6 text-[#4285F4]" />}
               </div>
               <div className="flex flex-col gap-3">
-                <h1 className="text-[28px] md:text-[30px] font-normal text-[#202124] leading-tight tracking-tight">
+                <h1 className="text-[28px] md:text-[30px] font-normal text-[#121317] leading-tight tracking-tight">
                   {title}
                 </h1>
                 {accountInfo && (
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#dadce0] self-start">
-                    <div className="w-6 h-6 rounded-full bg-[#1a73e8] flex items-center justify-center text-xs text-white font-medium">
+                    <div className="w-6 h-6 rounded-full bg-[#4285F4] flex items-center justify-center text-xs text-white font-medium">
                       {accountInfo?.charAt(0)?.toUpperCase()}
                     </div>
-                    <span className="text-sm text-[#202124]">{accountInfo}</span>
+                    <span className="text-sm text-[#121317]">{accountInfo}</span>
                   </div>
                 )}
                 {displaySubtitle && (
@@ -50,15 +50,15 @@ export default function AuthLayout({
               {/* Mobile-only heading */}
               <div className="md:hidden flex flex-col gap-3 mb-6">
                 <VisionaryLogo />
-                <h1 className="text-[24px] font-normal text-[#202124] leading-tight tracking-tight">
+                <h1 className="text-[24px] font-normal text-[#121317] leading-tight tracking-tight">
                   {title}
                 </h1>
                 {accountInfo && (
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#dadce0] self-start">
-                    <div className="w-6 h-6 rounded-full bg-[#1a73e8] flex items-center justify-center text-xs text-white font-medium">
+                    <div className="w-6 h-6 rounded-full bg-[#4285F4] flex items-center justify-center text-xs text-white font-medium">
                       {accountInfo?.charAt(0)?.toUpperCase()}
                     </div>
-                    <span className="text-sm text-[#202124]">{accountInfo}</span>
+                    <span className="text-sm text-[#121317]">{accountInfo}</span>
                   </div>
                 )}
                 {supportingText && (
@@ -74,9 +74,9 @@ export default function AuthLayout({
       <div className="shrink-0 w-full max-w-[960px] mx-auto flex items-center justify-between px-4 py-2">
         <LanguageSelector />
         <div className="flex items-center gap-6 text-sm text-[#5f6368]">
-          <Link to="/contact" className="hover:text-[#202124] transition-colors">Help</Link>
-          <Link to="/privacy" className="hover:text-[#202124] transition-colors">Privacy</Link>
-          <Link to="/terms" className="hover:text-[#202124] transition-colors">Terms</Link>
+          <Link to="/contact" className="hover:text-[#121317] transition-colors">Help</Link>
+          <Link to="/privacy" className="hover:text-[#121317] transition-colors">Privacy</Link>
+          <Link to="/terms" className="hover:text-[#121317] transition-colors">Terms</Link>
         </div>
       </div>
     </div>

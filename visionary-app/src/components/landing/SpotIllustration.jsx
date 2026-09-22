@@ -309,6 +309,28 @@ S.safety = { vb: "0 0 96 96", el: (
     <path d="M70 26l2 4.5 4.5 2-4.5 2-2 4.5-2-4.5-4.5-2 4.5-2 2-4.5z" fill={C.yellow} />
   </>
 ) };
+/* ── eye: oversight / flag-anything scene ── */
+S.eye = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.yellowT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M48 30c-12 0-20 10-20 18s8 18 20 18 20-10 20-18-8-18-20-18z" fill="none" stroke={C.blue} strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M48 36c-2.5 0-4.5 2-4.5 4.5s2 4.5 4.5 4.5 4.5-2 4.5-4.5S50.5 36 48 36z" fill={C.blue} stroke={C.ink} strokeWidth="2" />
+    <path d="M48 50v8" stroke={C.ink} strokeWidth="3.2" strokeLinecap="round" />
+    <path d="M66 40a10 10 0 00-8-8" fill="none" stroke={C.ink} strokeWidth="2.2" strokeLinecap="round" />
+    <circle cx="72" cy="26" r="3" fill={C.red} />
+  </>
+) };
+/* ── flag: report / review scene ── */
+S.flag = { vb: "0 0 96 96", el: (
+  <>
+    <path d="M14 30c0-9 7-16 16-16h36c9 0 16 7 16 16v28c0 9-7 16-16 16H30c-9 0-16-7-16-16V30z" fill={C.redT} />
+    <ellipse cx="48" cy="76" rx="26" ry="4" fill={C.shadow} />
+    <path d="M40 50l8-6 8 6 8-6v12l-8 6-8-6z" fill={C.red} stroke={C.ink} strokeWidth="2" strokeLinejoin="round" />
+    <path d="M48 44v6" stroke={C.white} strokeWidth="3.2" strokeLinecap="round" />
+    <circle cx="68" cy="30" r="3" fill={C.yellow} />
+  </>
+) };
 
 /* ── 128×96 wide featured-panel scene (Beliefs) ── */
 S.loop = { vb: "0 0 128 96", el: (

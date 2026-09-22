@@ -27,7 +27,7 @@ import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 /* ═══════════════════════ TOKENS ═══════════════════════ */
 const COLORS = {
   ink: "#121317",
-  graphite: "#3c4043",
+  graphite: "#5f6368",
   slate: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
@@ -694,7 +694,7 @@ const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
     <div className="mx-auto flex h-[52px] w-full max-w-[900px] items-stretch overflow-hidden rounded-[90px] border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="Audiences">
       {MEET_SECTIONS.map((s, i) => (
         <button key={s.id} type="button" role="tab" aria-selected={active === i} onClick={() => onSelect(i)}
-          className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === i ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
+          className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === i ? "font-medium" : "font-normal hover:bg-[#ffffff]"}`}
           style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}>
           {s.tab}
         </button>

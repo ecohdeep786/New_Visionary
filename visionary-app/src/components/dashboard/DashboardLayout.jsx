@@ -29,19 +29,19 @@ export default function DashboardLayout() {
   if(!activeWorkspace)return <main className="p-8" role="status">Preparing your workspace…</main>;
   if (!canAccessDashboardPath(user?.identity, location.pathname)) return <Navigate to="/dashboard/home" replace />;
   return <ThemeColorProvider>
-    <div className="visionary-workspace flex h-dvh flex-col overflow-hidden bg-[#f8fafd] text-[#202124]">
+    <div className="visionary-workspace flex h-dvh flex-col overflow-hidden bg-[#ffffff] text-[#121317]">
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
       <div className="flex min-h-0 flex-1 overflow-hidden">
         <div className="hidden h-full md:block"><DashboardSidebar expanded={sidebarExpanded} /></div>
-        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}><SheetContent side="left" className="w-72 bg-[#f8fafd] p-0 pt-10">
+        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}><SheetContent side="left" className="w-72 bg-[#ffffff] p-0 pt-10">
           <SheetTitle className="sr-only">Workspace navigation</SheetTitle><SheetDescription className="sr-only">Choose a page in your workspace.</SheetDescription>
           <DashboardSidebar expanded onNavigate={() => setMobileOpen(false)} />
         </SheetContent></Sheet>
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 sm:px-3 sm:pb-3">
-          <div className="min-h-full overflow-hidden rounded-[20px] border border-[#e1e3e1] bg-white"><Outlet key={activeWorkspace.id} /></div>
+          <div className="min-h-full overflow-hidden rounded-[20px] border border-[#dadce0] bg-white"><Outlet key={activeWorkspace.id} /></div>
         </main>
       </div>
-      <nav aria-label="Mobile navigation" className="fixed inset-x-0 bottom-0 z-30 flex h-16 items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{navigationFor(user.identity).slice(0,4).map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-[11px] ${isActive?'bg-blue-50 text-blue-700':'text-[#5f6368]'}`}><Icon size={18}/>{item.label}</NavLink>;})}<button className="min-h-12 min-w-12 text-xs" onClick={()=>setMobileOpen(true)}>More</button></nav>
+      <nav aria-label="Mobile navigation" className="fixed inset-x-0 bottom-0 z-30 flex h-16 items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{navigationFor(user.identity).slice(0,4).map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-[11px] ${isActive?'bg-[#e8f0fd] text-[#4285F4]':'text-[#5f6368]'}`}><Icon size={18}/>{item.label}</NavLink>;})}<button className="min-h-12 min-w-12 text-xs" onClick={()=>setMobileOpen(true)}>More</button></nav>
     </div>
   </ThemeColorProvider>;
 }

@@ -61,10 +61,10 @@ export default function SubjectHeroBanner({ subject, topics, continueTopic }) {
         </span>
 
         <div>
-          <h1 className="text-[28px] lg:text-[36px] font-medium text-[#202124] tracking-tight leading-tight">
+          <h1 className="text-[28px] lg:text-[36px] font-medium text-[#121317] tracking-tight leading-tight">
             {subject.name}
           </h1>
-          <p className="text-[15px] font-normal text-[#3c4043] mt-2">{description}</p>
+          <p className="text-[15px] font-normal text-[#5f6368] mt-2">{description}</p>
           <div className="flex items-center gap-2 mt-4 flex-wrap">
             {metaPills.map((pill, i) => {
               const Icon = pill.icon;
@@ -93,8 +93,8 @@ export default function SubjectHeroBanner({ subject, topics, continueTopic }) {
             </Link>
 
             <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white">
-              <Star className="w-[16px] h-[16px] text-amber-400" style={{ fill: "#fbbf24" }} />
-              <span className="text-sm font-medium text-[#202124]">{mastered}</span>
+              <Star className="w-[16px] h-[16px] text-[#b06000]" style={{ fill: "#fbbf24" }} />
+              <span className="text-sm font-medium text-[#121317]">{mastered}</span>
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export default function SubjectHeroBanner({ subject, topics, continueTopic }) {
                 style={{ width: `${mastery}%`, backgroundColor: themeColor.accent }}
               />
             </div>
-            <span className="text-sm font-medium text-[#3c4043]">{mastered}/{total}</span>
+            <span className="text-sm font-medium text-[#5f6368]">{mastered}/{total}</span>
           </div>
         </div>
       </div>

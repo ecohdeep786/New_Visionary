@@ -31,9 +31,9 @@ class AppErrorBoundary extends React.Component {
   render() {
     if (this.state.error) {
       return (
-        <main className="flex min-h-screen items-center justify-center bg-[#f8f9fa] px-6 py-12 text-center text-[#202124]">
+        <main className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#121317]">
           <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-600">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#fce8e6] text-red-600">
               <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
@@ -46,14 +46,14 @@ class AppErrorBoundary extends React.Component {
               <button
                 type="button"
                 onClick={() => this.setState({ error: null })}
-                className="flex-1 rounded-full bg-[#1a73e8] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1557b0]"
+                className="flex-1 rounded-full bg-[#4285F4] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#3367d6]"
               >
                 Try again
               </button>
               <button
                 type="button"
                 onClick={this.handleReset}
-                className="flex-1 rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm font-medium text-[#1a73e8] transition-colors hover:bg-[#f8f9fa]"
+                className="flex-1 rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm font-medium text-[#4285F4] transition-colors hover:bg-[#ffffff]"
               >
                 Go to home
               </button>
@@ -61,7 +61,7 @@ class AppErrorBoundary extends React.Component {
             {process.env.NODE_ENV !== 'production' && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="text-xs text-[#5f6368] cursor-pointer hover:underline">Diagnostic details</summary>
-                <pre className="mt-2 max-h-40 overflow-auto rounded bg-slate-50 p-2 text-[11px] text-slate-700">
+                <pre className="mt-2 max-h-40 overflow-auto rounded bg-[#ffffff] p-2 text-[11px] text-[#5f6368]">
                   {this.state.error.toString()}
                 </pre>
               </details>

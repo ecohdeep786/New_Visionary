@@ -22,11 +22,11 @@ export default function ContentsDropdown({ topics, activeTopicId }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center gap-2 h-10 px-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] transition-colors"
+        className="inline-flex items-center gap-2 h-10 px-4 rounded-full bg-[#dadce0] hover:bg-[#dadce0] transition-colors"
       >
         <span className="text-sm font-medium text-[#5f6368]">Contents</span>
         {currentTopic && (
-          <span className="text-sm font-normal text-[#202124] truncate max-w-[200px]">
+          <span className="text-sm font-normal text-[#121317] truncate max-w-[200px]">
             {currentTopic.name}
           </span>
         )}
@@ -59,7 +59,7 @@ export default function ContentsDropdown({ topics, activeTopicId }) {
                 </div>
                 <span
                   className="text-sm font-normal truncate"
-                  style={{ color: isActive ? themeColor.accent : "#202124", fontWeight: isActive ? 500 : 400 }}
+                  style={{ color: isActive ? themeColor.accent : "#121317", fontWeight: isActive ? 500 : 400 }}
                 >
                   {t.name}
                 </span>

@@ -21,8 +21,8 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9aa0a6",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  soft: "#f8f9fa",
+  border: "#dadce0",
+  soft: "#ffffff",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -51,21 +51,21 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.ink }}>{number}</div>
+      <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
 }
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
   );
 }
 
 function PartnerCard({ icon: Icon, eyebrow, title, description }) {
   return (
-    <div className="flex h-full flex-col rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.border }}>
+    <div className="flex h-full flex-col rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
       <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
         <Icon className="h-[19px] w-[19px]" strokeWidth={1.7} />
       </div>
@@ -79,7 +79,7 @@ function PartnerCard({ icon: Icon, eyebrow, title, description }) {
 function PrincipleRow({ icon: Icon, title, children }) {
   return (
     <div className="flex gap-4 border-b py-6 last:border-b-0" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.soft }}>
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border" style={{ borderColor: COLORS.mist }}>
         <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
       </div>
       <div>
@@ -92,7 +92,7 @@ function PrincipleRow({ icon: Icon, title, children }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
       <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
   );
@@ -195,7 +195,7 @@ export default function PartnersPage() {
           <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="09" title="Partner directory" />
                     <Paragraph>A directory is useful only when there are real partners to search for and clear criteria for being listed.</Paragraph>
-                    <div className="mt-8 rounded-[24px] border p-7 sm:p-8" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+                    <div className="mt-8 rounded-[24px] border bg-white p-7 sm:p-8" style={{ borderColor: COLORS.border }}>
                       <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                         <Globe2 className="h-5 w-5" strokeWidth={1.7} />
                       </div>

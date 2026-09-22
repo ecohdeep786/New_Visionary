@@ -14,6 +14,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import StorySection from "@/components/landing/StorySection";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -25,8 +26,8 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9aa0a6",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  soft: "#f8f9fa",
+  border: "#dadce0",
+  soft: "#ffffff",
   blue: "#4285F4",
   darkblue: "#0b57d2",
   white: "#ffffff",
@@ -68,15 +69,15 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.ink }}>{number}</div>
+      <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
 }
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
   );
 }
 
@@ -98,7 +99,7 @@ function ContactCard({ icon: Icon, title, description, email }) {
 
 function Callout({ icon: Icon, title, children }) {
   return (
-    <div className="rounded-[22px] border p-6 sm:p-7" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+    <div className="rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.border }}>
       <div className="flex items-start gap-4">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.white }}>
           <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
@@ -141,18 +142,23 @@ export default function ContactPage() {
           dek="Pick the route that fits your question.">
         </PageHeading>
 
-        {/* STORY BAND */}
-        <section className="border-b" style={{ borderColor: COLORS.border }}>
+        {/* STORY BAND — text + visual (Google 2-up statement pattern) */}
+        <section className="border-b" style={{ borderColor: COLORS.mist }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[940px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                You do not need to know
-                <br className="hidden sm:block" />
-                <span style={{ color: COLORS.ink }}>who at Visionary to contact.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Start with what you need. We route it from there.
-              </p>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <div className="max-w-[560px]">
+                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
+                  You do not need to know
+                  <br className="hidden sm:block" />
+                  <span style={{ color: COLORS.ink }}>who at Visionary to contact.</span>
+                </p>
+                <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                  Start with what you need. We route it from there.
+                </p>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <SpotIllustration subject="mail" className="h-[200px] w-[200px]" />
+              </div>
             </div>
           </div>
         </section>

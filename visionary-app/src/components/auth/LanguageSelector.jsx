@@ -33,7 +33,7 @@ export default function LanguageSelector() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#202124] transition-colors"
+        className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#121317] transition-colors"
       >
         <Globe className="w-4 h-4" />
         {current?.label}
@@ -48,10 +48,10 @@ export default function LanguageSelector() {
                 setSelected(lang.code);
                 setOpen(false);
               }}
-              className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-50 transition-colors text-sm text-[#202124]"
+              className="w-full flex items-center justify-between px-4 py-2 hover:bg-[#121317]/5 transition-colors text-sm text-[#121317]"
             >
               {lang.label}
-              {selected === lang.code && <Check className="w-4 h-4 text-[#1a73e8]" />}
+              {selected === lang.code && <Check className="w-4 h-4 text-[#4285F4]" />}
             </button>
           ))}
         </div>

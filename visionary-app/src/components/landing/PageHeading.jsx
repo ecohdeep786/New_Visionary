@@ -11,7 +11,7 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
  * Spacing: pt-16/lg-24 after the breadcrumb (the pricing-style hero air).
  */
 export function Accent({ children }) {
-  return <span style={{ color: "#4285F4" }}>{children}</span>;
+  return <span style={{ color: "#121317" }}>{children}</span>;
 }
 
 export default function PageHeading({

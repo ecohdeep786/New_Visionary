@@ -20,11 +20,11 @@ const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 const C = {
   ink: "#121317",
-  graphite: "#3c4043",
+  graphite: "#5f6368",
   slate: "#5f6368",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  canvas: "#f8f9fa",
+  border: "#dadce0",
+  canvas: "#ffffff",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -38,6 +38,7 @@ const SECTIONS = [
   { id: "security-over-time", number: "06", title: "Security is ongoing", summary: "Security is a continuous process, not a one-time feature." },
   { id: "report-security", number: "07", title: "When something goes wrong", summary: "How to tell Visionary about a security concern." },
   { id: "commitments", number: "08", title: "Our security commitments", summary: "The principles Visionary follows when protecting the service." },
+  { id: "sync-devices", number: "09", title: "Sync devices", summary: "Sign in once with your Sync Encrypted ID and carry Visionary across your devices." },
   { id: "contact", number: "09", title: "Contact", summary: "How to contact Visionary about security." },
 ];
 
@@ -51,7 +52,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.ink }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: C.ink }}>{title}</h2>
     </div>
   );
@@ -59,7 +60,7 @@ function SectionHeading({ number, title }) {
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
   );
 }
 
@@ -82,7 +83,7 @@ function SecurityCard({ icon: Icon, eyebrow, title, children }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: C.border, backgroundColor: C.canvas }}>
+    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: C.border }}>
       <p className="text-[14px] leading-[1.7]" style={{ color: C.graphite }}>{children}</p>
     </div>
   );
@@ -247,7 +248,7 @@ export default function SecurityPage() {
 
               {/* MAIN CONTENT */}
               <div className="min-w-0">
-                <article className="divide-y divide-[#e5e7eb]">
+                <article className="divide-y divide-[#dadce0]">
                   {/* 01 */}
                   <section id="your-information" className="scroll-mt-24 pb-14 sm:pb-16">
                     <SectionHeading number="01" title="Your information" />
@@ -373,6 +374,51 @@ export default function SecurityPage() {
                     </div>
                   </section>
 
+                    {/* 09 · SYNC DEVICES — the master-order product requirement */}
+                    <section id="sync-devices" className="scroll-mt-24 py-14 sm:py-16">
+                      <SectionHeading number="09" title="Sync devices" />
+                      <p className="max-w-[760px] text-[16px] leading-[1.78]" style={{ color: C.slate }}>
+                        Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use — your questions, progress, and memory arrive as they were, and only you can open them.
+                      </p>
+                      <div className="mt-6 space-y-4">
+                        <div className="rounded-[18px] border p-5 sm:p-6" style={{ borderColor: C.border }}>
+                          <div className="flex gap-4">
+                            <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
+                            <div>
+                              <h3 className="text-[17px] font-normal" style={{ color: C.ink }}>Sign in with your Sync Encrypted ID</h3>
+                              <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: C.slate }}>One encrypted identity unlocks Visionary on a new device — the encryption stays with your account, not with the device.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-4 space-y-4">
+                        <div className="rounded-[18px] border p-5 sm:p-6" style={{ borderColor: C.border }}>
+                          <div className="flex gap-4">
+                            <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
+                            <div>
+                              <h3 className="text-[17px] font-normal" style={{ color: C.ink }}>Your learning follows you</h3>
+                              <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: C.slate }}>Progress, notes, and memory sync across phone, tablet, and laptop — pick up exactly where you stopped.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-4 space-y-4">
+                        <div className="rounded-[18px] border p-5 sm:p-6" style={{ borderColor: C.border }}>
+                          <div className="flex gap-4">
+                            <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
+                            <div>
+                              <h3 className="text-[17px] font-normal" style={{ color: C.ink }}>You see every device</h3>
+                              <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: C.slate }}>Review the devices signed in to your account and remove any of them, at any time, from your settings.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <Link to="/privacy" className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.blue }}>
+                        How privacy works with sync
+                        <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
+                      </Link>
+                    </section>
+
                   {/* 09 */}
                   <section id="contact" className="scroll-mt-24 pt-14 sm:pt-16">
                     <SectionHeading number="09" title="Contact" />
@@ -395,7 +441,7 @@ export default function SecurityPage() {
                 </article>
 
                 {/* CLOSING */}
-                <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
+                <section className="mt-20 border-t border-[#dadce0] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[860px]">
                     <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>Security</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: C.ink }}>

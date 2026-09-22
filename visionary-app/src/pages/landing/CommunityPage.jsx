@@ -1,4 +1,5 @@
 import { Users, HeartHandshake, MessageCircle, Sparkles } from "lucide-react";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import { SimplePage, AboutHero, AboutContentSection, AboutCTA } from "@/components/landing/AboutPageShared";
 
 const PILLARS = [
@@ -16,11 +17,31 @@ export default function CommunityPage() {
         titleParts={[{ text: "Build with " }, { text: "others.", accent: true }]}
         intro="Learners, teachers and builders, together."
       />
+
+      {/* STORY BAND — text + visual (Google 2-up statement pattern) */}
+      <section className="border-b" style={{ borderColor: "#dadce0" }}>
+        <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="max-w-[560px]">
+              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: "#121317" }}>
+                When someone explains a concept in their own words, in their own language, understanding spreads further than any textbook can reach.
+              </p>
+              <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7]" style={{ color: "#5f6368" }}>
+                The community is how Visionary grows past its own codebase. Learners, teachers, and builders share what worked — and what didn't.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <SpotIllustration subject="community" className="h-[200px] w-[200px]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <AboutContentSection
         eyebrow="What the community is"
         heading="One journey, many"
         headingAccent="voices."
-        body="When someone explains a concept in their own words, in their own language, understanding spreads further than any textbook can reach."
+        body="The community turns one person’s breakthrough into everyone’s starting point."
         cards={PILLARS}
       />
       <AboutContentSection

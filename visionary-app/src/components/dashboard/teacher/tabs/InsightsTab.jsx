@@ -85,27 +85,27 @@ export default function InsightsTab({ classId, classroom, accent }) {
 
   return (
     <div className="flex flex-col gap-6 max-w-[680px]">
-      {error && <p role="alert" className="rounded-xl bg-red-50 p-4 text-sm text-red-700">{error} <button onClick={() => { setError(""); load(); }} className="underline">Retry</button></p>}
+      {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error} <button onClick={() => { setError(""); load(); }} className="underline">Retry</button></p>}
       {/* AI analysis */}
       <div className="rounded-3xl p-6 bg-white border border-[#dadce0]/60 flex items-start gap-4">
         <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
           <Sparkles className="w-5 h-5" style={{ color: accent }} />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-[#202124] mb-1.5">AI class analysis</p>
+          <p className="text-sm font-medium text-[#121317] mb-1.5">AI class analysis</p>
           {assignments.length === 0 ? (
             <p className="text-sm text-[#5f6368] leading-relaxed">Create assignments and tag concepts to generate a class coverage insight.</p>
           ) : insightLoading ? (
             <div className="space-y-2">
-              <div className="h-3 bg-gray-100 rounded w-full animate-pulse" />
-              <div className="h-3 bg-gray-100 rounded w-2/3 animate-pulse" />
+              <div className="h-3 bg-[#121317]/5 rounded w-full animate-pulse" />
+              <div className="h-3 bg-[#121317]/5 rounded w-2/3 animate-pulse" />
             </div>
           ) : (
-            <p className="text-sm text-[#3c4043] leading-relaxed">{insight}</p>
+            <p className="text-sm text-[#5f6368] leading-relaxed">{insight}</p>
           )}
         </div>
         {assignments.length > 0 && (
-          <button onClick={generateInsight} disabled={insightLoading} className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0" aria-label="Refresh analysis">
+          <button onClick={generateInsight} disabled={insightLoading} className="w-9 h-9 rounded-full hover:bg-[#121317]/5 flex items-center justify-center shrink-0" aria-label="Refresh analysis">
             <RefreshCw className={`w-4 h-4 text-[#5f6368] ${insightLoading ? "animate-spin" : ""}`} />
           </button>
         )}
@@ -115,12 +115,12 @@ export default function InsightsTab({ classId, classroom, accent }) {
       <div className="bg-white rounded-3xl border border-[#dadce0]/60 p-6">
         <div className="flex items-center gap-2 mb-1">
           <BarChart3 className="w-5 h-5" style={{ color: accent }} />
-          <h3 className="text-sm font-medium text-[#202124]">Concept assessment</h3>
+          <h3 className="text-sm font-medium text-[#121317]">Concept assessment</h3>
         </div>
         <p className="text-xs text-[#5f6368] mb-6">Average scores from graded assignments, normalized to a percentage. A useful signal—not a complete measure of understanding.</p>
         {loading ? (
           <div className="flex justify-center py-8">
-            <div className="w-7 h-7 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+            <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
           </div>
         ) : masteryRows.length === 0 ? (
           <div className="flex flex-col items-center gap-3 py-10 text-center">
@@ -132,10 +132,10 @@ export default function InsightsTab({ classId, classroom, accent }) {
             {masteryRows.map((m) => (
               <div key={m.concept}>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm text-[#3c4043]">{m.concept}</span>
+                  <span className="text-sm text-[#5f6368]">{m.concept}</span>
                   <span className="text-xs text-[#5f6368]">{m.avg}% · {m.count} graded</span>
                 </div>
-                <div className="h-2 bg-[#f1f3f4] rounded-full overflow-hidden">
+                <div className="h-2 bg-[#dadce0] rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full"
                     style={{ width: `${m.avg}%`, backgroundColor: m.avg >= 70 ? "#34a853" : m.avg >= 40 ? accent : "#ea4335" }}
@@ -153,7 +153,7 @@ export default function InsightsTab({ classId, classroom, accent }) {
       <div className="bg-white rounded-3xl border border-[#dadce0]/60 p-6">
         <div className="flex items-center gap-2 mb-1">
           <Layers className="w-5 h-5 text-[#5f6368]" />
-          <h3 className="text-sm font-medium text-[#202124]">Concept coverage</h3>
+          <h3 className="text-sm font-medium text-[#121317]">Concept coverage</h3>
         </div>
         <p className="text-xs text-[#5f6368] mb-6">Topics your assignments touch — the backbone of your students' mastery map.</p>
         {coverageRows.length === 0 ? (
@@ -166,10 +166,10 @@ export default function InsightsTab({ classId, classroom, accent }) {
             {coverageRows.map(([t, c]) => (
               <div key={t}>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm text-[#3c4043]">{t}</span>
+                  <span className="text-sm text-[#5f6368]">{t}</span>
                   <span className="text-xs text-[#5f6368]">{c} assignment{c > 1 ? "s" : ""}</span>
                 </div>
-                <div className="h-2 bg-[#f1f3f4] rounded-full overflow-hidden">
+                <div className="h-2 bg-[#dadce0] rounded-full overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${(c / maxCov) * 100}%`, backgroundColor: accent }} />
                 </div>
               </div>

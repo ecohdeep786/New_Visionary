@@ -1,195 +1,103 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  LockKeyhole,
-  Eye,
-  UserRound,
   Database,
-  Download,
-  Trash2,
-  ShieldCheck,
+  Target,
   Share2,
   Settings2,
   Mail,
-  Target,
-  ChevronDown,
+  Eye,
+  ShieldCheck,
+  Cookie,
+  Accessibility,
+  FileText,
   ArrowRight,
+  ChevronDown,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import { LEGAL_META, GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import SpotIllustration from "@/components/landing/SpotIllustration";
+import { LEGAL_META, GRIEVANCE_OFFICER } from "@/data/legalMeta";
 
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
+  border: "#e5e7eb",
+  soft: "#f8f9fa",
+  blue: "#4285F4",
   white: "#ffffff",
 };
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
-const FONT_FAMILY =
-  "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-
-const TRUST_PAGES = [
-  { label: "About", to: "/about" },
-  { label: "Safety", to: "/safety" },
-  { label: "Privacy", to: "/privacy", active: true },
-  { label: "Security", to: "/security" },
-  { label: "Accessibility", to: "/accessibility" },
-  { label: "Terms", to: "/terms" },
-  { label: "Cookies", to: "/cookies" },
+const AT_A_GLANCE = [
+  { to: "#what-we-collect", label: "What we collect", Icon: Database },
+  { to: "#purpose", label: "Why we use it", Icon: Target },
+  { to: "#sharing", label: "What we share", Icon: Share2 },
+  { to: "#your-controls", label: "Your controls", Icon: Settings2 },
 ];
-
-function IconTile({ Icon, size = 56 }) {
-  return (
-    <span
-      className="flex shrink-0 items-center justify-center rounded-[16px] border bg-white"
-      style={{
-        width: size,
-        height: size,
-        borderColor: COLORS.mist,
-        color: COLORS.blue,
-      }}
-    >
-      <Icon className="h-6 w-6" strokeWidth={1.8} />
-    </span>
-  );
-}
-
-
 
 const FAQ = [
   {
-    q: "What information does Visionary keep about me?",
-    a:
-      "Depending on how you use Visionary, this can include account details, the questions and content you provide, learning activity, progress, projects, and information needed to provide the service.",
+    q: "What information does Visionary collect exactly?",
+    a: "Depending on how you use Visionary, this can include account details, the questions and content you provide, learning activity, progress, projects, and information needed to provide the service.",
   },
   {
-    q: "Why does Visionary use my information?",
-    a:
-      "We use information to provide the product, keep your learning connected, improve the service, maintain security, and communicate with you when needed. The exact uses should always match the published Privacy Policy.",
+    q: "Why does Visionary use personal information?",
+    a: "To provide the service, keep your learning connected across sessions, maintain and improve the service, protect people and the service from misuse, and communicate with you about what matters.",
   },
   {
     q: "Who can see my learning information?",
-    a:
-      "That depends on your role and the relationships connected to your Visionary account. Student, teacher, parent, professional, and organization views should only expose the information that the product and its permissions allow.",
+    a: "Your account's role decides it. Students see their own work; teachers see the classes they teach; parents see what their role allows; institutions see aggregated, role-appropriate views. It is never public.",
   },
   {
-    q: "Can I download my information?",
-    a:
-      "Where data export is available, you should be able to request or download the information associated with your account. The final production policy should describe the exact process and available formats.",
+    q: "How long is information retained?",
+    a: "Learning records are kept while your account is active. When information is no longer needed, it is deleted or anonymized. You can request deletion at any time.",
   },
   {
     q: "Can I delete my account?",
-    a:
-      "Yes, account deletion should have a clear path. The Privacy Policy should explain what is deleted, what may need to be retained, and how long any required retention lasts.",
+    a: "Yes. Request deletion through the grievance officer below. We will confirm what will be removed, complete the deletion, and tell you what was done.",
   },
 ];
 
-function InfoCard({ Icon, title, text }) {
+function SectionHeading({ number, title }) {
   return (
-    <article
-      className="rounded-[24px] border bg-white p-7"
-      style={{ borderColor: COLORS.mist }}
-    >
-      <IconTile Icon={Icon} />
-      <h3
-        className="mt-7 text-[20px] font-medium"
-        style={{ color: COLORS.ink }}
-      >
-        {title}
-      </h3>
-      <p
-        className="mt-3 text-[14.5px] leading-[1.65]"
-        style={{ color: COLORS.grey }}
-      >
-        {text}
-      </p>
-    </article>
-  );
-}
-
-function PurposeRow({ number, Icon, title, text }) {
-  return (
-    <article
-      className="grid gap-5 border-b py-7 md:grid-cols-[72px_60px_1fr]"
-      style={{ borderColor: COLORS.mist }}
-    >
-      <div
-        className="text-[13px] font-medium"
-        style={{ color: COLORS.blue }}
-      >
+    <div className="mb-6">
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
         {number}
       </div>
-      <Icon
-        className="h-6 w-6"
-        style={{ color: COLORS.blue }}
-        strokeWidth={1.7}
-      />
-      <div>
-        <h3
-          className="text-[22px] font-medium"
-          style={{ color: COLORS.ink }}
-        >
-          {title}
-        </h3>
-        <p
-          className="mt-2 max-w-[700px] text-[15px] leading-[1.65]"
-          style={{ color: COLORS.grey }}
-        >
-          {text}
-        </p>
-      </div>
-    </article>
-  );
-}
-
-function RelationshipRow({ label, value }) {
-  return (
-    <div
-      className="flex flex-col gap-1 rounded-[16px] border px-4 py-4 sm:flex-row sm:items-center sm:justify-between"
-      style={{ borderColor: COLORS.mist }}
-    >
-      <span
-        className="text-[13px] font-medium"
-        style={{ color: COLORS.ink }}
-      >
-        {label}
-      </span>
-      <span
-        className="text-[13px]"
-        style={{ color: COLORS.grey }}
-      >
-        {value}
-      </span>
+      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
+        {title}
+      </h2>
     </div>
   );
 }
 
-function ActionCard({ Icon, title, text }) {
+function Paragraph({ children }) {
   return (
-    <article
-      className="rounded-[24px] border bg-white p-7"
-      style={{ borderColor: COLORS.mist }}
-    >
-      <IconTile Icon={Icon} />
-      <h3
-        className="mt-7 text-[20px] font-medium"
-        style={{ color: COLORS.ink }}
-      >
-        {title}
-      </h3>
-      <p
-        className="mt-3 text-[14.5px] leading-[1.65]"
-        style={{ color: COLORS.grey }}
-      >
-        {text}
-      </p>
-    </article>
+    <p className="max-w-[760px] text-[16px] leading-[1.78]" style={{ color: COLORS.grey }}>
+      {children}
+    </p>
+  );
+}
+
+function IconTile({ Icon }) {
+  return (
+    <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+      <Icon className="h-5 w-5" strokeWidth={1.7} />
+    </span>
+  );
+}
+
+function LearnMoreRow({ to, label }) {
+  return (
+    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.blue }}>
+      {label}
+      <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+    </Link>
   );
 }
 
@@ -197,51 +105,33 @@ export default function PrivacyPage() {
   const [openFaq, setOpenFaq] = useState(null);
 
   return (
-    <div
-      className="min-h-screen bg-white"
-      style={{ fontFamily: FONT_FAMILY }}
-    >
+    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <Breadcrumb page="Privacy policy" />
 
       <main id="main">
-        {/* 01 — HERO */}
-        <section className="relative overflow-hidden bg-white px-6 pb-24 pt-32 lg:pb-28 lg:pt-40">
-         
-
-          <div className="mx-auto mt-16 max-w-[1050px] text-center">
-            <p
-              className="text-[12px] font-normal uppercase tracking-[0.43px]"
-              style={{ color: COLORS.grey }}
-            >
-              PRIVACY
-            </p>
-
-            <h1 className="mx-auto mt-5 max-w-[980px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-              Your data, your control.
-            </h1>
-
-            <p
-              className="mx-auto mt-6 max-w-[700px] text-[17.5px] leading-[25px]"
-              style={{ color: COLORS.grey }}
-            >
-              See what we keep. Change or remove it anytime.
-            </p>
-        <p className="mt-4 text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
-          Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.privacy.lastUpdated}</strong>
-        </p>
+        {/* HERO */}
+        <section className="px-6 pb-14 pt-6 sm:px-8 sm:pb-16 lg:px-10">
+          <div className="mx-auto w-full max-w-[1240px]">
+          <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Privacy</p>
+          <h1 className="mt-4 max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+            Your data, your control.
+          </h1>
+          <p className="mt-6 max-w-[640px] text-[18px] leading-[1.6] sm:text-[20px]" style={{ color: COLORS.grey }}>
+            See what we keep. Change or remove it anytime.
+          </p>
+          <p className="mt-6 text-[13px] tracking-[0.24px]" style={{ color: COLORS.lightGrey }}>
+            Last updated: <strong style={{ color: COLORS.ink }}>{LEGAL_META.privacy.lastUpdated}</strong>
+          </p>
           </div>
+        </section>
 
-          {/* At a glance — 4 tiles (C-pattern: ~90% never read prose) */}
-          <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { to: "#what-we-collect", label: "What we collect", Icon: Database },
-              { to: "#purpose", label: "Why we use it", Icon: Target },
-              { to: "#sharing", label: "What we share", Icon: Share2 },
-              { to: "#your-controls", label: "Your controls", Icon: Settings2 },
-            ].map(({ to, label, Icon }) => (
+        {/* AT A GLANCE — 4 tiles */}
+        <section className="px-6 sm:px-8 lg:px-10" aria-label="At a glance">
+          <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {AT_A_GLANCE.map(({ to, label, Icon }) => (
               <a key={to} href={to} className="group relative flex min-h-[132px] flex-col rounded-[16px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
-                <span className="text-[15px] font-medium leading-[1.4] tracking-[0] text-[#121317]">{label}</span>
+                <span className="text-[15px] font-medium leading-[1.4] text-[#121317]">{label}</span>
                 <ArrowRight className="absolute right-5 top-6 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
                 <span className="mt-auto flex h-10 w-10 items-center justify-center rounded-[12px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                   <Icon className="h-4 w-4" strokeWidth={1.7} />
@@ -249,579 +139,76 @@ export default function PrivacyPage() {
               </a>
             ))}
           </div>
+        </section>
 
-          {/* On this page — anchor chips (C-pattern wayfinding) */}
-          <nav aria-label="On this page" className="mx-auto mt-10 flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-2">
+        {/* ON THIS PAGE — anchor chips */}
+        <section className="px-6 pt-10 sm:px-8 lg:px-10" aria-label="On this page">
+          <nav className="mx-auto flex w-full max-w-[1240px] flex-wrap items-center justify-center gap-2">
             {[
-              ["#retention", "Data retention"], ["#younger-learners", "Younger learners"],
-              ["#security", "Security"], ["#explainers", "Explainers"], ["#grievance-officer", "Grievance officer"],
+              ["#retention", "Data retention"],
+              ["#younger-learners", "Younger learners"],
+              ["#security", "Security"],
+              ["#explainers", "Explainers"],
+              ["#grievance-officer", "Grievance officer"],
             ].map(([to, label]) => (
               <a key={to} href={to} className="rounded-full border bg-white px-4 py-2 text-[13px] tracking-[0.1px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist, color: COLORS.grey }}>
                 {label}
               </a>
             ))}
           </nav>
+        </section>
 
-          {/* Minimal privacy illustration */}
-          <div className="mx-auto mt-16 max-w-[760px]">
-            <div
-              className="relative flex aspect-[16/8] items-center justify-center overflow-hidden rounded-[32px] border"
-              style={{
-                borderColor: COLORS.mist,
-                backgroundColor: COLORS.surface,
-              }}
-            >
-              <div className="absolute h-[330px] w-[330px] rounded-full bg-surface-info-soft" />
+        {/* Illustration panel */}
+        <section className="px-6 pt-14 sm:px-8 lg:px-10" aria-hidden="true">
+          <div className="mx-auto max-w-[760px] overflow-hidden rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
+            <SpotIllustration subject="lock" className="aspect-[16/9] w-full" />
+          </div>
+        </section>
 
-              <div className="relative z-10 flex flex-col items-center">
-                <div
-                  className="flex h-24 w-24 items-center justify-center rounded-[28px] bg-white shadow-[0_18px_55px_rgba(18,19,23,0.08)]"
-                  style={{ color: COLORS.blue }}
-                >
-                  <LockKeyhole
-                    className="h-12 w-12"
-                    strokeWidth={1.55}
-                  />
+        {/* 01 — WHAT WE COLLECT */}
+        <section id="what-we-collect" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="01" title="What we collect" />
+            <Paragraph>
+              The information Visionary handles depends on what you are trying to do. Personal information is only collected where it is needed to provide the service, keep it working, and honour the choices you make.
+            </Paragraph>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { Icon: Mail, title: "Your account", text: "Created with an email address — the details needed to provide access and maintain essential settings for you." },
+                { Icon: Target, title: "Your learning", text: "Questions you ask, practice you complete, and projects you build — the work that shapes your progress." },
+                { Icon: Database, title: "Your device", text: "Basic device and browser information that keeps the service working on the devices you use." },
+                { Icon: Settings2, title: "Your choices", text: "The email updates you opt into, and the privacy preferences you set along the way." },
+              ].map(({ Icon, title, text }) => (
+                <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+                  <IconTile Icon={Icon} />
+                  <h3 className="mt-5 text-[16px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
+                  <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
                 </div>
-
-                <p
-                  className="mt-6 text-[14px]"
-                  style={{ color: COLORS.grey }}
-                >
-                  Your learning stays personal.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* 02 — THE SIMPLE IDEA */}
-        <section className="px-6 py-24 lg:py-32">
-          <div className="mx-auto max-w-[1100px]">
-            <div className="max-w-[780px]">
-              <p
-                className="text-[12px] uppercase tracking-[0.43px]"
-                style={{ color: COLORS.grey }}
-              >
-                AT A GLANCE
-              </p>
-
-              <h2 id="what-we-collect"
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
-                style={{ color: COLORS.ink }}
-              >
-                We collect what we need
-                <br />
-                <span style={{ color: COLORS.ink }}>
-                  to provide Visionary.
-                </span>
-              </h2>
-
-              <p
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] max-w-[720px] text-[16px] leading-[1.7]"
-                style={{ color: COLORS.grey }}
-              >
-                The information Visionary handles depends on what you do with
-                the product. An account needs account information. Learning
-                features need the context you provide. Progress and continuity
-                depend on what you have already done.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              <InfoCard
-                Icon={UserRound}
-                title="Your account"
-                text="Name, email, role, and account settings."
-              />
-              <InfoCard
-                Icon={Database}
-                title="Your learning"
-                text="Questions, sessions, progress, projects, and other content you provide."
-              />
-              <InfoCard
-                Icon={Settings2}
-                title="Your device"
-                text="Information needed to keep the product working on the device you use."
-              />
-              <InfoCard
-                Icon={Eye}
-                title="Your choices"
-                text="Settings and permissions that affect how your information is used."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* 03 — WHY WE USE INFORMATION */}
-        <section className="bg-white px-6 py-24 lg:py-36">
-          <div className="mx-auto max-w-[1100px]">
-            <div className="text-center">
-              <p
-                className="text-[12px] uppercase tracking-[0.43px]"
-                style={{ color: COLORS.grey }}
-              >
-                WHY WE USE IT
-              </p>
-
-              <h2 id="purpose"
-                className="mx-auto mt-[calc(clamp(34px,4.5vw,62px)*0.588)] max-w-[820px] text-[clamp(34px,4.5vw,64px)] font-medium leading-[1.06]"
-                style={{ color: COLORS.ink }}
-              >
-                Information should have
-                <br />
-                <span style={{ color: COLORS.ink }}>
-                  a clear purpose.
-                </span>
-              </h2>
-            </div>
-
-            <div className="mt-16 space-y-4">
-              <PurposeRow
-                number="01"
-                Icon={ShieldCheck}
-                title="Provide Visionary"
-                text="Use the information needed to provide the features and experiences you choose to use."
-              />
-              <PurposeRow
-                number="02"
-                Icon={Eye}
-                title="Keep your learning connected"
-                text="Use relevant context so your experience can continue from what came before."
-              />
-              <PurposeRow
-                number="03"
-                Icon={Settings2}
-                title="Maintain and improve the service"
-                text="Use appropriate information to fix problems, understand how the product is working, and improve it."
-              />
-              <PurposeRow
-                number="04"
-                Icon={ShieldCheck}
-                title="Protect people and the service"
-                text="Use information where necessary to help prevent abuse, fraud, security problems, and technical issues."
-              />
-              <PurposeRow
-                number="05"
-                Icon={Mail}
-                title="Communicate with you"
-                text="Use your contact information to respond to requests, account notices, and important service updates."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* 04 — SHARING */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-36">
-          <div className="mx-auto grid max-w-[1120px] items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p
-                className="text-[12px] uppercase tracking-[0.43px]"
-                style={{ color: COLORS.grey }}
-              >
-                SHARING
-              </p>
-
-              <h2 id="sharing"
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] max-w-[620px] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
-                style={{ color: COLORS.ink }}
-              >
-                Your information
-                <br />
-                shouldn't travel
-                <br />
-                <span style={{ color: COLORS.ink }}>
-                  without a reason.
-                </span>
-              </h2>
-
-              <p
-                className="mt-6 max-w-[590px] text-[16px] leading-[1.7]"
-                style={{ color: COLORS.grey }}
-              >
-                Visionary may need to work with service providers that help
-                operate the product. Where information is shared, the purpose,
-                scope, and applicable controls should be described clearly in
-                this policy.
-              </p>
-            </div>
-
-            <div className="rounded-[30px] border bg-white p-7 lg:p-8"
-              style={{ borderColor: COLORS.mist }}
-            >
-              <div className="flex items-start gap-4">
-                <IconTile Icon={Share2} />
-
-                <div>
-                  <p
-                    className="text-[12px] uppercase tracking-[0.43px]"
-                    style={{ color: COLORS.grey }}
-                  >
-                    WHO CAN SEE WHAT
-                  </p>
-
-                  <h3
-                    className="mt-1 text-[23px] font-medium"
-                    style={{ color: COLORS.ink }}
-                  >
-                    It depends on the relationship.
-                  </h3>
-                </div>
-              </div>
-
-              <div className="mt-8 space-y-3">
-                <RelationshipRow
-                  label="Student"
-                  value="Their own learning"
-                />
-                <RelationshipRow
-                  label="Teacher"
-                  value="Class information they are allowed to see"
-                />
-                <RelationshipRow
-                  label="Parent"
-                  value="Relevant information shared through the product"
-                />
-                <RelationshipRow
-                  label="Professional"
-                  value="Their own work and learning"
-                />
-                <RelationshipRow
-                  label="Organization"
-                  value="Information permitted by organization controls"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 05 — YOUR CONTROLS */}
-        <section className="bg-white px-6 py-24 lg:py-36">
-          <div className="mx-auto max-w-[1100px]">
-            <div className="max-w-[760px]">
-              <p
-                className="text-[12px] uppercase tracking-[0.43px]"
-                style={{ color: COLORS.grey }}
-              >
-                YOUR CONTROLS
-              </p>
-
-              <h2 id="your-controls"
-                className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
-                style={{ color: COLORS.ink }}
-              >
-                Know what you can do
-                <br />
-                <span style={{ color: COLORS.ink }}>
-                  with your information.
-                </span>
-              </h2>
-
-              <p
-                className="mt-6 max-w-[680px] text-[16px] leading-[1.7]"
-                style={{ color: COLORS.grey }}
-              >
-                Privacy is easier to trust when the choices are easy to find.
-                Visionary should give you clear ways to manage your account and
-                the information connected to it.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              <ActionCard
-                Icon={Eye}
-                title="View"
-                text="See the information connected to your account."
-              />
-              <ActionCard
-                Icon={Settings2}
-                title="Manage"
-                text="Update settings and permissions where available."
-              />
-              <ActionCard
-                Icon={Download}
-                title="Export"
-                text="Download supported account information where available."
-              />
-              <ActionCard
-                Icon={Trash2}
-                title="Delete"
-                text="Request account deletion and see what happens next."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* 06 — SECURITY */}
-        <section className=" px-6 py-24 lg:py-32">
-          <div className="mx-auto max-w-[1000px] text-center">
-            <p
-              className="text-[12px] uppercase tracking-[0.43px]"
-              style={{ color: COLORS.grey }}
-            >
-              SECURITY
-            </p>
-
-            <h2 id="security"
-              className="mt-[calc(clamp(34px,4.5vw,62px)*0.588)] text-[clamp(34px,4.5vw,62px)] font-medium leading-[1.06]"
-              style={{ color: COLORS.ink }}
-            >
-              Privacy needs
-              <br />
-              <span style={{ color: COLORS.ink }}>
-                security behind it.
-              </span>
-            </h2>
-
-            <p
-              className="mx-auto mt-5 max-w-[680px] text-[16px] leading-[1.7]"
-              style={{ color: COLORS.grey }}
-            >
-              Visionary uses technical and organizational measures to protect
-              information against unauthorized access, loss, misuse, or
-              disclosure. The Security page describes the specific protections
-              that are actually in place.
-            </p>
-
-            <div className="mt-10">
-              <Link
-                to="/security"
-                className="inline-flex items-center rounded-full border bg-white px-6 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{
-                  borderColor: COLORS.mist,
-                  color: COLORS.ink,
-                }}
-              >
-                See security
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 07 — RETENTION */}
-        <section className="bg-white px-6 py-24 lg:py-36">
-          <div className="mx-auto grid max-w-[1080px] items-center gap-16 lg:grid-cols-[1fr_0.9fr]">
-            <div>
-              <p
-                className="text-[12px] uppercase tracking-[0.43px]"
-                style={{ color: COLORS.grey }}
-              >
-                RETENTION
-              </p>
-
-              <h2 id="retention"
-                className="mt-[calc(clamp(34px,4.5vw,60px)*0.471)] text-[clamp(34px,4.5vw,60px)] font-medium leading-[1.06]"
-                style={{ color: COLORS.ink }}
-              >
-                Keep what you need.
-                <br />
-                <span style={{ color: COLORS.ink }}>
-                  Remove what you don't.
-                </span>
-              </h2>
-
-              <p
-                className="mt-6 max-w-[600px] text-[16px] leading-[1.7]"
-                style={{ color: COLORS.grey }}
-              >
-                The time information stays in Visionary should depend on why it
-                is needed. The final Privacy Policy should state the retention
-                periods or the criteria used to determine them.
-              </p>
-            </div>
-
-            <div
-              className="rounded-[28px] border p-7"
-              style={{
-                borderColor: COLORS.mist,
-                backgroundColor: COLORS.surface,
-              }}
-            >
-              <div className="flex items-center gap-4">
-                <IconTile Icon={Database} />
-
-                <div>
-                  <p
-                    className="text-[12px] uppercase tracking-[0.43px]"
-                    style={{ color: COLORS.grey }}
-                  >
-                    YOUR DATA
-                  </p>
-
-                  <h3
-                    className="mt-1 text-[21px] font-medium"
-                    style={{ color: COLORS.ink }}
-                  >
-                    Purpose matters.
-                  </h3>
-                </div>
-              </div>
-
-              <div className="mt-7 space-y-3">
-                {[
-                  "Provide the service",
-                  "Keep your learning connected",
-                  "Maintain security",
-                  "Meet legal obligations",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-[16px] border bg-white px-4 py-3.5"
-                    style={{ borderColor: COLORS.mist }}
-                  >
-                    <ShieldCheck
-                      className="h-4 w-4"
-                      style={{ color: COLORS.blue }}
-                      strokeWidth={1.8}
-                    />
-                    <span
-                      className="text-[14px]"
-                      style={{ color: COLORS.ink }}
-                    >
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 08 — STUDENT / CHILD DATA NOTE */}
-        <section className=" px-6 py-24 lg:py-32">
-          <div className="mx-auto max-w-[1000px]">
-            <div className="rounded-[30px] border bg-white p-8 lg:p-10"
-              style={{ borderColor: COLORS.mist }}
-            >
-              <div className="flex flex-col gap-8 md:flex-row">
-                <IconTile
-                  Icon={ShieldCheck}
-                  size={64}
-                />
-
-                <div>
-                  <p
-                    className="text-[12px] uppercase tracking-[0.43px]"
-                    style={{ color: COLORS.grey }}
-                  >
-                    STUDENTS & YOUNGER LEARNERS
-                  </p>
-
-                  <h2 id="younger-learners"
-                    className="mt-[calc(clamp(28px,3.5vw,44px)*0.571)] text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.08]"
-                    style={{ color: COLORS.ink }}
-                  >
-                    Extra care for
-                    <span style={{ color: COLORS.ink }}>
-                      {" "}younger learners.
-                    </span>
-                  </h2>
-
-                  <p
-                    className="mt-4 max-w-[720px] text-[15.5px] leading-[1.7]"
-                    style={{ color: COLORS.grey }}
-                  >
-                    Visionary may be used by students at different ages and in
-                    different settings. The final policy should clearly explain
-                    how information about younger learners is handled, what
-                    parents or guardians can do where applicable, and which
-                    controls apply.
-                  </p>
-
-                  <div className="mt-7">
-                    <Link
-                      to="/safety"
-                      className="inline-flex items-center rounded-full border px-5 py-3 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                      style={{
-                        borderColor: COLORS.mist,
-                        color: COLORS.ink,
-                      }}
-                    >
-                      See safety
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 09 — FAQ */}
-        <section className="bg-white px-6 py-24 lg:py-32">
-          <div className="mx-auto max-w-[900px]">
-            <div className="text-center">
-              <p
-                className="text-[12px] uppercase tracking-[0.43px]"
-                style={{ color: COLORS.grey }}
-              >
-                QUESTIONS
-              </p>
-
-              <h2 id="explainers"
-                className="mt-[calc(clamp(34px,4.3vw,58px)*0.471)] text-[clamp(34px,4.3vw,58px)] font-medium leading-[1.06]"
-                style={{ color: COLORS.ink }}
-              >
-                Privacy,
-                <br />
-                <span style={{ color: COLORS.ink }}>
-                  clearly explained.
-                </span>
-              </h2>
-            </div>
-
-            <div
-              className="mt-14 border-t"
-              style={{ borderColor: COLORS.mist }}
-            >
-              {FAQ.map((item, index) => (
-                <div
-                  key={item.q}
-                  className="border-b"
-                  style={{ borderColor: COLORS.mist }}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={openFaq === index}
-                    onClick={() =>
-                      setOpenFaq(
-                        openFaq === index ? null : index
-                      )
-                    }
-                    className="flex w-full items-center justify-between gap-8 py-6 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                  >
-                    <span
-                      className="text-[17px] leading-[1.45]"
-                      style={{ color: COLORS.ink }}
-                    >
-                      {item.q}
-                    </span>
-
-                    <ChevronDown
-                      className={[
-                        "h-5 w-5 shrink-0 transition-transform duration-300",
-                        openFaq === index ? "rotate-180" : "",
-                      ].join(" ")}
-                      style={{ color: COLORS.grey }}
-                      strokeWidth={1.8}
-                    />
-                  </button>
-
-                  <div
-                    className={[
-                      "grid transition-all duration-300",
-                      openFaq === index
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0",
-                    ].join(" ")}
-                  >
-                    <div className="overflow-hidden">
-                      <p
-                        className="pb-6 pr-10 text-[15px] leading-[1.7]"
-                        style={{ color: COLORS.grey }}
-                      >
-                        {item.a}
-                      </p>
-                    </div>
+        {/* 02 — WHY WE USE IT */}
+        <section id="purpose" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="02" title="Why we use it" />
+            <Paragraph>
+              Personal information is used to provide, maintain, and improve Visionary — and to keep it safe for the people using it.
+            </Paragraph>
+            <div className="mt-10 max-w-[880px]">
+              {[
+                { Icon: Target, title: "Provide Visionary", text: "Answer questions, guide practice, and keep your work in one place as you continue." },
+                { Icon: Database, title: "Keep your learning connected", text: "Carry understanding across sessions, devices, and years — never starting over." },
+                { Icon: Settings2, title: "Maintain and improve the service", text: "Fix problems, and understand what is helping and what is not." },
+                { Icon: ShieldCheck, title: "Protect people and the service", text: "Prevent misuse, and keep accounts safe from harm." },
+                { Icon: Mail, title: "Communicate with you", text: "Service updates, and the email updates you choose to receive." },
+              ].map(({ Icon, title, text }, i, arr) => (
+                <div key={title} className={`flex items-start gap-5 py-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.border }}>
+                  <IconTile Icon={Icon} />
+                  <div>
+                    <h3 className="text-[17px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
+                    <p className="mt-1.5 max-w-[620px] text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
                   </div>
                 </div>
               ))}
@@ -829,114 +216,182 @@ export default function PrivacyPage() {
           </div>
         </section>
 
-        {/* 10 — FINAL CTA */}
-        <section className="bg-[#F5F6F8] px-6 py-24 lg:py-36">
-          <div className="mx-auto max-w-[900px] text-center">
-            <p
-              className="text-[12px] uppercase tracking-[0.43px]"
-              style={{ color: COLORS.grey }}
-            >
-              PRIVACY
+        {/* 03 — WHAT WE SHARE */}
+        <section id="sharing" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="03" title="What we share" />
+            <Paragraph>
+              We do not sell personal information, and we do not use it for advertising. What is visible depends on the relationship.
+            </Paragraph>
+            <div className="mt-10 overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+              {[
+                ["Student", "Class-level progress is visible to the teacher of that class. Conversations stay private to the account."],
+                ["Teacher", "Sees their classes. Never another class's data."],
+                ["Parent", "Progress and activity — not private conversations."],
+                ["Institution", "Aggregated, role-appropriate views only."],
+                ["Service providers", "Only the processors that run the service — bound by contract to handle data per this page."],
+              ].map(([who, what], i, arr) => (
+                <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.mist }}>
+                  <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
+                  <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 max-w-[760px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
+              We may also share information to meet legal obligations under Indian law. Legal demands are handled through the grievance process below.
             </p>
+          </div>
+        </section>
 
-            <h2
-              className="mt-4 text-[clamp(38px,5vw,70px)] font-medium leading-[1.05]"
-              style={{ color: COLORS.ink }}
-            >
-              Your information
-              <br />
-              <span style={{ color: COLORS.ink }}>
-                stays yours to manage.
-              </span>
-            </h2>
-
-            <p
-              className="mx-auto mt-5 max-w-[650px] text-[16px] leading-[1.7]"
-              style={{ color: COLORS.grey }}
-            >
-              Read the full policy, understand your choices, or explore how
-              Visionary approaches safety and security.
-            </p>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link
-                to="/safety"
-                className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{
-                  borderColor: COLORS.mist,
-                  color: COLORS.ink,
-                }}
-              >
-                See safety
+        {/* 04 — YOUR CONTROLS */}
+        <section id="your-controls" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="04" title="Your controls" />
+            <Paragraph>
+              You can see, manage, export, and delete your information — and change your mind at any time.
+            </Paragraph>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { Icon: Eye, title: "View", text: "Your account and learning history are visible to you in the product." },
+                { Icon: Settings2, title: "Manage", text: "Update cookie preferences and email choices from any update you receive." },
+                { Icon: Database, title: "Export", text: "Request a copy of your account information where available." },
+                { Icon: Mail, title: "Delete", text: "Request account deletion, and see what happens next." },
+              ].map(({ Icon, title, text }) => (
+                <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+                  <IconTile Icon={Icon} />
+                  <h3 className="mt-5 text-[16px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
+                  <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link to="/cookies" className="inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.blue }}>
+                Manage cookie preferences
+                <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
               </Link>
-
-              <Link
-                to="/security"
-                className="inline-flex items-center rounded-full border bg-white px-7 py-3.5 text-[14px] font-medium transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{
-                  borderColor: COLORS.mist,
-                  color: COLORS.ink,
-                }}
-              >
-                See security
+              <Link to="/security" className="inline-flex items-center gap-2 text-[14.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.grey }}>
+                Review security practices
+                <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* DPDP Act 2023 grievance signal + related policies (L4) */}
-        <section id="grievance-officer" className="scroll-mt-24 px-6 py-20" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
-          <div className="mx-auto grid w-full max-w-[1240px] gap-6 lg:grid-cols-2">
-            <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
-              <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Under the DPDP Act, 2023</p>
-              <h2 className="mt-[calc(clamp(24px,2.4vw,32px)*0.5)] text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
-                Your grievance has a <span style={{ color: COLORS.ink }}>named person.</span>
-              </h2>
-              <div className="mt-6 space-y-2 text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>
-                <p>{GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong></p>
-                <p>
-                  Write to{" "}
-                  <a href={`mailto:${GRIEVANCE_OFFICER.email}`} className="font-medium underline decoration-[#4285F4]/40 underline-offset-2 hover:decoration-[#4285F4]" style={{ color: COLORS.blue }}>
-                    {GRIEVANCE_OFFICER.email}
-                  </a>
-                </p>
-                <p>{GRIEVANCE_OFFICER.response}</p>
-              </div>
-              <p className="mt-6 rounded-[14px] px-5 py-4 text-[13px] leading-[1.6]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
-                Consent states: essential processing runs without consent; optional analytics runs only while your consent is on, and you can withdraw it at any time without losing your account. See{" "}
-                <Link to="/cookies" className="font-medium underline decoration-[#4285F4]/40 underline-offset-2 hover:decoration-[#4285F4]" style={{ color: COLORS.blue }}>Cookie policy</Link>.
-              </p>
-              <p className="mt-4 rounded-[14px] px-5 py-4 text-[13px] leading-[1.6]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
-                What you can expect elsewhere: {RESPONSE_TIMES.general} For safety reports, {RESPONSE_TIMES.safety}
-              </p>
-            </div>
-            <div className="rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
-              <p className="text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>Related policies</p>
-              <h2 className="mt-[calc(clamp(24px,2.4vw,32px)*0.5)] text-[clamp(24px,2.4vw,32px)] font-medium leading-[1.15]" style={{ color: COLORS.ink }}>
-                Read them <span style={{ color: COLORS.ink }}>together.</span>
-              </h2>
-              <ul className="mt-6 space-y-3 text-[15px]">
-                {[
-                  { to: "/terms", label: "Terms of service", desc: "The agreement behind your use of Visionary." },
-                  { to: "/security", label: "Security", desc: "How your information is protected in transit and at rest." },
-                  { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only — no advertising, no tracking." },
-                  { to: "/safety", label: "Safety", desc: "Protections, reporting, and family controls." },
-                  { to: "/accessibility", label: "Accessibility", desc: "Our commitment to an accessible product." },
-                ].map((l) => (
-                  <li key={l.to}>
-                    <Link to={l.to} className="inline-flex items-baseline gap-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
-                      {l.label}
-                      <ArrowRight className="h-3.5 w-3.5 self-center" strokeWidth={1.8} />
-                    </Link>
-                    <span className="ml-2 text-[13px]" style={{ color: COLORS.grey }}>{l.desc}</span>
+        {/* 05 — SECURITY */}
+        <section id="security" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="05" title="Security" />
+            <Paragraph>
+              Privacy needs security behind it. Visionary uses appropriate technical and organizational safeguards — including encryption in transit and access controls — to protect information against unauthorized access, alteration, deletion, or misuse.
+            </Paragraph>
+            <LearnMoreRow to="/security" label="How security works at Visionary" />
+          </div>
+        </section>
+
+        {/* 06 — RETENTION */}
+        <section id="retention" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="06" title="Retention" />
+            <Paragraph>
+              Learning records are kept while your account is active — that continuity is the product. When information is no longer needed to provide the service, it is deleted or anonymized.
+            </Paragraph>
+            <div className="mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+              <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your privacy options.</p>
+              <ul className="mt-4 space-y-2.5">
+                {["Request deletion at any time.", "See how long each kind of record is kept.", "Withdraw consent for optional features.", "Export your information."].map((t) => (
+                  <li key={t} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.blue }} />
+                    <span className="text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
         </section>
-      </main>
 
+        {/* 07 — YOUNGER LEARNERS */}
+        <section id="younger-learners" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="07" title="Younger learners" />
+            <Paragraph>
+              Where a learner is a child under the DPDP Act, their information is processed only with the consent of a parent or guardian, and it is never used for advertising or profiling.
+            </Paragraph>
+            <LearnMoreRow to="/safety" label="How safety works for younger learners" />
+          </div>
+        </section>
+
+        {/* 08 — EXPLAINERS (FAQ) */}
+        <section id="explainers" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="08" title="Privacy, clearly explained." />
+            <div className="max-w-[880px] border-t" style={{ borderColor: COLORS.mist }}>
+              {FAQ.map((item, index) => (
+                <div key={item.q} className="border-b" style={{ borderColor: COLORS.mist }}>
+                  <button
+                    type="button"
+                    aria-expanded={openFaq === index}
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    className="flex w-full items-center justify-between gap-6 py-5 text-left hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  >
+                    <span className="text-[16px] leading-[1.45]" style={{ color: COLORS.ink }}>{item.q}</span>
+                    <ChevronDown className={["h-4 w-4 shrink-0 transition-transform duration-200", openFaq === index ? "rotate-180" : ""].join(" ")} strokeWidth={1.8} style={{ color: COLORS.grey }} />
+                  </button>
+                  {openFaq === index && (
+                    <p className="pb-5 text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{item.a}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 09 — GRIEVANCE OFFICER */}
+        <section id="grievance-officer" className="scroll-mt-24 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <SectionHeading number="09" title="Grievance officer" />
+            <div className="max-w-[880px]">
+              <Paragraph>
+                Under the DPDP Act, 2023, a named person is responsible for answering privacy requests and complaints.
+              </Paragraph>
+              <div className="mt-8 rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                <p className="text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                  {GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong>
+                </p>
+                <p className="mt-3">
+                  <a href={`mailto:${GRIEVANCE_OFFICER.email}`} className="inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.blue }}>
+                    {GRIEVANCE_OFFICER.email}
+                    <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+                  </a>
+                </p>
+                <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{GRIEVANCE_OFFICER.response}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* RELATED */}
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+          <div className="mx-auto max-w-[1240px]">
+            <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
+                { to: "/security", label: "Security", desc: "How your information is protected.", Icon: ShieldCheck },
+                { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: Accessibility },
+                { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: FileText },
+              ].map(({ to, label, desc, Icon }) => (
+                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
+                    <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
+                  </div>
+                  <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
       <LandingFooter variant="quiet" />
     </div>
   );

@@ -7,7 +7,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 /* ═══ DESIGN TOKENS — shared across all About sub-pages ═══ */
 export const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
+  surface: "#ffffff",
   blue: "#4285F4",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
@@ -73,10 +73,10 @@ export const IconTile = React.memo(function IconTile({ Icon, size = "lg" }) {
 export function AboutHero({ eyebrow, titleParts, intro }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-28 lg:pt-36" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
-        <h1 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
           {titleParts.map((p, i) => (
             <React.Fragment key={i}>
               {p.accent ? <span style={{ color: COLORS.ink }}>{p.text}</span> : p.text}
@@ -97,7 +97,7 @@ export function AboutHero({ eyebrow, titleParts, intro }) {
 export function AboutContentSection({ id, eyebrow, heading, headingAccent, body, cards, rows, bg = "white", children }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id={id} className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: bg === "surface" ? COLORS.surface : COLORS.white }}>
+    <section ref={ref} id={id} className="relative scroll-mt-44 bg-white px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
         {heading && (
@@ -115,7 +115,7 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
         {cards && (
           <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((c) => (
-              <div key={c.title} className="rounded-[24px] border p-7" style={{ borderColor: COLORS.mist, backgroundColor: bg === "surface" ? COLORS.white : COLORS.surface }}>
+              <div key={c.title} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
                 <IconTile Icon={c.Icon} />
                 <h3 className="mt-6 font-medium tracking-[0] leading-[1.25] text-[20px]" style={{ color: COLORS.ink }}>{c.title}</h3>
                 <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.copy}</p>
@@ -149,7 +149,7 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
 export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started", primaryTo = "/register", secondaryLabel, secondaryTo }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
+    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           {title} {titleAccent && <span style={{ color: COLORS.ink }}>{titleAccent}</span>}

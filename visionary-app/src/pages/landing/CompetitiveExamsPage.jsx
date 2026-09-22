@@ -27,7 +27,7 @@ import imgProfessionalFace from "@/assets/professional-face-main.webp"
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
+  surface: "#ffffff",
   blue: "#4285F4",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
@@ -442,7 +442,7 @@ function AboutSafetySection() {
           </div>
           <div className="grid grid-cols-1 gap-6">
             {SAFETY_PILLARS.map((c) => (
-              <div key={c.title} className="rounded-[24px] border p-7" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.surface }}>
+              <div key={c.title} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
                 <IconTile Icon={c.Icon} />
                 <h3 className="mt-6 font-medium tracking-[0] leading-[1.25] text-[20px]" style={{ color: COLORS.ink }}>{c.title}</h3>
                 <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.copy}</p>
@@ -538,7 +538,7 @@ function AboutSecuritySection() {
             ))}
           </div>
 
-          <div className="rounded-[24px] border p-8" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.surface }}>
+          <div className="rounded-[24px] border p-8" style={{ borderColor: COLORS.mist }}>
             <div className="flex items-center gap-4">
               <IconTile Icon={Shield} />
               <p className="font-medium tracking-[0] text-[20px]" style={{ color: COLORS.ink }}>Protection status</p>
@@ -849,7 +849,7 @@ function AboutCompanySection() {
             { label: "CIN", value: "U85499WB2025PTC284471" },
             { label: "Recognition", value: "DPIIT Startup India" },
           ].map((f) => (
-            <div key={f.label} className="rounded-[24px] border p-7" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.surface }}>
+            <div key={f.label} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
               <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{f.label}</p>
               <p className="mt-3 font-medium tracking-[0] text-[17.5px]" style={{ color: COLORS.ink }}>{f.value}</p>
             </div>
@@ -861,7 +861,7 @@ function AboutCompanySection() {
             { label: "All data stored", value: "In India." },
             { label: "All development", value: "In India." },
           ].map((f) => (
-            <div key={f.label} className="rounded-[24px] border p-7" style={{ borderColor: COLORS.mist, backgroundColor: COLORS.surface }}>
+            <div key={f.label} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
               <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{f.label}</p>
               <p className="mt-3 font-medium tracking-[0] text-[17.5px]" style={{ color: COLORS.ink }}>{f.value}</p>
             </div>
@@ -978,27 +978,44 @@ function AboutContactSection() {
 /* ═══ CTA — specific action, not "be part of the story" ═══ */
 
 /* ── THE ABOUT HUB — 'Explore everything' (founder wayfinding contract) ──
-   A-pattern per the Google blog capture: flat bordered cards, ONE label
-   top-left, thin arrow top-right, hover-only shadow, trailing empty cell. */
-const HUB_LINKS = [
-  { to: '/privacy', label: 'Privacy policy', subject: 'lock' },
-  { to: '/terms', label: 'Terms', subject: 'document' },
-  { to: '/security', label: 'Security', subject: 'shield' },
-  { to: '/safety', label: 'Safety', subject: 'safety' },
-  { to: '/cookies', label: 'Cookies', subject: 'cookie' },
-  { to: '/accessibility', label: 'Accessibility', subject: 'accessibility' },
-  { to: '/how-it-works', label: 'How it works', subject: 'compass' },
-  { to: '/pricing', label: 'Pricing', subject: 'tag' },
-  { to: '/download', label: 'Download', subject: 'download' },
-  { to: '/help', label: 'Help', subject: 'help' },
-  { to: '/careers', label: 'Careers', subject: 'briefcase' },
-  { to: '/career', label: 'Career growth', subject: 'growth' },
-  { to: '/research', label: 'Research', subject: 'research' },
-  { to: '/community', label: 'Community', subject: 'community' },
-  { to: '/contact', label: 'Contact', subject: 'mail' },
-  { to: '/partners', label: 'Partners', subject: 'handshake' },
-  { to: '/updates', label: 'Updates', subject: 'updates' },
-  { to: '/referral', label: 'Referral', subject: 'gift' },
+   Grouped like Google's about.google directory: Company / Support &
+   programs / Trust & legal. Each group is a labeled sub-grid of the
+   same flat-bordered card (ONE label top-left, thin arrow top-right,
+   hover-only shadow). */
+const HUB_GROUPS = [
+  {
+    title: "Company",
+    links: [
+      { to: '/careers', label: 'Careers', subject: 'briefcase' },
+      { to: '/career', label: 'Career growth', subject: 'growth' },
+      { to: '/research', label: 'Research', subject: 'research' },
+      { to: '/community', label: 'Community', subject: 'community' },
+      { to: '/contact', label: 'Contact', subject: 'mail' },
+      { to: '/partners', label: 'Partners', subject: 'handshake' },
+      { to: '/updates', label: 'Updates', subject: 'updates' },
+      { to: '/referral', label: 'Referral', subject: 'gift' },
+    ],
+  },
+  {
+    title: "Support & programs",
+    links: [
+      { to: '/how-it-works', label: 'How it works', subject: 'compass' },
+      { to: '/pricing', label: 'Pricing', subject: 'tag' },
+      { to: '/download', label: 'Download', subject: 'download' },
+      { to: '/help', label: 'Help', subject: 'help' },
+    ],
+  },
+  {
+    title: "Trust & legal",
+    links: [
+      { to: '/privacy', label: 'Privacy policy', subject: 'lock' },
+      { to: '/terms', label: 'Terms', subject: 'document' },
+      { to: '/security', label: 'Security', subject: 'shield' },
+      { to: '/safety', label: 'Safety', subject: 'safety' },
+      { to: '/cookies', label: 'Cookies', subject: 'cookie' },
+      { to: '/accessibility', label: 'Accessibility', subject: 'accessibility' },
+    ],
+  },
 ];
 
 function AboutHubSection() {
@@ -1013,15 +1030,26 @@ function AboutHubSection() {
         <p className="mx-auto mt-5 max-w-[560px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Every page of Visionary, one grid. Start anywhere.
         </p>
-        <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {HUB_LINKS.map(({ to, label, subject }) => (
-            <Link key={to} to={to} className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
-              <span className="text-[16px] font-medium leading-[1.4] tracking-[0] text-[#121317]">{label}</span>
-              <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
-              <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
-            </Link>
+
+        <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-y-16 lg:gap-y-20">
+          {HUB_GROUPS.map((group) => (
+            <div key={group.title}>
+              <p className="mb-6 text-[12px] font-medium uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>
+                {group.title}
+              </p>
+              <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {group.links.map(({ to, label, subject }) => (
+                  <Link key={to} to={to} className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                    <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>{label}</span>
+                    <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
+                    <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
+                  </Link>
+                ))}
+                {/* pad the last row so the grid stays flush-left across groups */}
+                <div aria-hidden="true" className="hidden min-h-[168px] lg:block" />
+              </div>
+            </div>
           ))}
-          <div aria-hidden="true" className="hidden min-h-[168px] lg:block" />
         </div>
       </FadeReveal>
     </section>

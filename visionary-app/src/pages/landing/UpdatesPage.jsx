@@ -29,7 +29,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9aa0a6",
   mist: "#dadce0",
-  soft: "#f8f9fa",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -110,7 +109,7 @@ function ToggleRow({ category, checked, onToggle }) {
   const { Icon } = category;
   return (
     <button type="button" role="checkbox" aria-checked={checked} onClick={() => onToggle(category.id)}
-      className="flex w-full items-center gap-4 border-b py-6 text-left transition-colors last:border-b-0 hover:bg-[#f8f9fa]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:gap-5"
+      className="flex w-full items-center gap-4 border-b py-6 text-left transition-colors last:border-b-0 hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:gap-5"
       style={{ borderColor: COLORS.mist }}>
       <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
         <Icon className="h-5 w-5" strokeWidth={1.7} />
@@ -249,7 +248,7 @@ export default function UpdatesPage() {
                         const active = selected.includes(category.id);
                         return (
                           <button key={category.id} type="button" onClick={() => toggleOption(category.id)} aria-pressed={active}
-                            className="inline-flex h-9 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="inline-flex h-9 items-center gap-2 rounded-full border px-4 text-[13px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ borderColor: active ? COLORS.blue : COLORS.mist, color: active ? COLORS.ink : COLORS.grey, backgroundColor: active ? COLORS.white : COLORS.white }}>
                             {active && <Check className="h-3.5 w-3.5" strokeWidth={2.2} style={{ color: COLORS.blue }} />}
                             {category.label}

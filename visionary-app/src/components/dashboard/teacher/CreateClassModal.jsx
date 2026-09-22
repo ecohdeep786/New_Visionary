@@ -6,7 +6,7 @@ import { Check, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const COLORS = [
-  ["Blue", "#1967d2"], ["Green", "#137333"], ["Red", "#b3261e"],
+  ["Blue", "#4285F4"], ["Green", "#137333"], ["Red", "#b3261e"],
   ["Purple", "#7627bb"], ["Teal", "#007b83"], ["Slate", "#4f647a"],
 ];
 const FIELDS = [
@@ -16,7 +16,7 @@ const FIELDS = [
   ["room", "Room (optional)", "e.g. 204"],
 ];
 
-export default function CreateClassModal({ onClose, onCreate, accent = "#1a73e8" }) {
+export default function CreateClassModal({ onClose, onCreate, accent = "#4285F4" }) {
   const { user } = useAuth();
   const { data: memberships = [] } = useQuery({ queryKey: ["workspace", "teacher-memberships", user.email], queryFn: () => appClient.entities.OrganizationInvite.filter({ email: user.email, role: "teacher", status: "active" }) });
   const [form, setForm] = useState({ name: "", section: "", subject: "", room: "", color: COLORS[0][1] });
@@ -35,21 +35,21 @@ export default function CreateClassModal({ onClose, onCreate, accent = "#1a73e8"
   return (
     <Dialog open onOpenChange={(open) => { if (!open && !busy) onClose(); }}>
       <DialogContent className="max-h-[90dvh] w-[calc(100%-2rem)] max-w-md overflow-y-auto rounded-3xl bg-white p-6 sm:rounded-3xl sm:p-8">
-        <DialogTitle className="text-[22px] font-medium text-[#202124]">Create class</DialogTitle>
+        <DialogTitle className="text-[22px] font-medium text-[#121317]">Create class</DialogTitle>
         <DialogDescription>Give your class a name. You’ll get a code to share with your students.</DialogDescription>
         <form onSubmit={create} className="flex flex-col gap-4">
-          {memberships.length > 0 && <label className="block text-sm font-medium">Learning space<select value={form.organization_email || ""} onChange={e => { const membership = memberships.find(m => m.organization_email === e.target.value); setForm(current => ({ ...current, organization_email: e.target.value, organization_name: membership?.organization_name || "" })); }} className="mt-2 h-11 w-full rounded-lg border border-[#747775] bg-white px-3 font-normal"><option value="">Independent teaching</option>{memberships.map(m => <option key={m.id} value={m.organization_email}>{m.organization_name || m.organization_email}</option>)}</select></label>}
+          {memberships.length > 0 && <label className="block text-sm font-medium">Learning space<select value={form.organization_email || ""} onChange={e => { const membership = memberships.find(m => m.organization_email === e.target.value); setForm(current => ({ ...current, organization_email: e.target.value, organization_name: membership?.organization_name || "" })); }} className="mt-2 h-11 w-full rounded-lg border border-[#5f6368] bg-white px-3 font-normal"><option value="">Independent teaching</option>{memberships.map(m => <option key={m.id} value={m.organization_email}>{m.organization_name || m.organization_email}</option>)}</select></label>}
           {FIELDS.map(([key, label, placeholder]) => (
-            <label key={key} className="block text-sm font-medium text-[#202124]">
+            <label key={key} className="block text-sm font-medium text-[#121317]">
               {label}
-              <input required={key === "name"} maxLength={100} value={form[key]} onChange={(e) => setForm((current) => ({ ...current, [key]: e.target.value }))} placeholder={placeholder} className="mt-2 h-11 w-full rounded-lg border border-[#747775] px-3 font-normal outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]" />
+              <input required={key === "name"} maxLength={100} value={form[key]} onChange={(e) => setForm((current) => ({ ...current, [key]: e.target.value }))} placeholder={placeholder} className="mt-2 h-11 w-full rounded-lg border border-[#5f6368] px-3 font-normal outline-none focus:border-[#4285F4] focus:ring-1 focus:ring-[#4285F4]" />
             </label>
           ))}
-          <fieldset><legend className="mb-3 text-sm font-medium text-[#202124]">Class color</legend><div className="flex flex-wrap gap-3">
+          <fieldset><legend className="mb-3 text-sm font-medium text-[#121317]">Class color</legend><div className="flex flex-wrap gap-3">
             {COLORS.map(([label, color]) => <button key={color} type="button" onClick={() => setForm((current) => ({ ...current, color }))} aria-label={label} aria-pressed={form.color === color} className="flex h-9 w-9 items-center justify-center rounded-full text-white outline-offset-4" style={{ backgroundColor: color }}>{form.color === color && <Check className="h-5 w-5" />}</button>)}
           </div></fieldset>
           {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
-          <div className="mt-3 flex justify-end gap-2"><button type="button" disabled={busy} onClick={onClose} className="h-10 rounded-full px-5 text-sm font-medium text-[#1a73e8] hover:bg-[#f8fafd]">Cancel</button><button type="submit" disabled={busy || !form.name.trim()} className="inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-50" style={{ backgroundColor: accent }}>{busy && <Loader2 className="h-4 w-4 animate-spin" />}{busy ? "Creating…" : "Create class"}</button></div>
+          <div className="mt-3 flex justify-end gap-2"><button type="button" disabled={busy} onClick={onClose} className="h-10 rounded-full px-5 text-sm font-medium text-[#4285F4] hover:bg-[#ffffff]">Cancel</button><button type="submit" disabled={busy || !form.name.trim()} className="inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-50" style={{ backgroundColor: accent }}>{busy && <Loader2 className="h-4 w-4 animate-spin" />}{busy ? "Creating…" : "Create class"}</button></div>
         </form>
       </DialogContent>
     </Dialog>

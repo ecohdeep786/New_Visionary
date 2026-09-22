@@ -29,7 +29,7 @@ export default function Register() {
   if (isLoadingAuth) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
-        <Spinner className="w-8 h-8 text-[#1a73e8]" />
+        <Spinner className="w-8 h-8 text-[#4285F4]" />
       </div>
     );
   }
@@ -129,7 +129,7 @@ export default function Register() {
         footer: (
           <>
             I already have an account.{" "}
-            <Link to="/login" className="text-[#1a73e8] font-medium hover:underline">Sign in</Link>
+            <Link to="/login" className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
           </>
         ),
       }
@@ -140,7 +140,7 @@ export default function Register() {
         footer: (
           <>
             I already have an account.{" "}
-            <Link to="/login" className="text-[#1a73e8] font-medium hover:underline">Sign in</Link>
+            <Link to="/login" className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
           </>
         ),
       };
@@ -160,9 +160,9 @@ export default function Register() {
             <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
             <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
-              <span className="text-[#1a73e8] cursor-pointer hover:underline">Privacy Policy</span>
+              <span className="text-[#4285F4] cursor-pointer hover:underline">Privacy Policy</span>
               {" "}and{" "}
-              <span className="text-[#1a73e8] cursor-pointer hover:underline">Terms of Service</span>.
+              <span className="text-[#4285F4] cursor-pointer hover:underline">Terms of Service</span>.
             </p>
           </div>
         );
@@ -172,12 +172,12 @@ export default function Register() {
           <div key="email" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={goToMethods} />
             {error && (
-              <div className="p-4 rounded-lg bg-red-50 border border-red-100 flex gap-3">
+              <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
                 <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm text-[#ea4335] font-medium">Email already registered</p>
                   <p className="text-xs text-[#ea4335] mt-1">{error}</p>
-                  <Link to="/login" className="text-xs text-[#1a73e8] font-medium hover:underline mt-1.5 inline-block">
+                  <Link to="/login" className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
                     Sign in instead →
                   </Link>
                 </div>
@@ -207,7 +207,7 @@ export default function Register() {
         return (
           <div key="password" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => setView("email")} />
-            {error && !error.includes("already") && <div className="p-3 rounded-lg bg-red-50 text-[#ea4335] text-sm">{error}</div>}
+            {error && !error.includes("already") && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
             <form onSubmit={handleRegister} className="flex flex-col gap-6">
               <GooglePasswordField
                 label="Create a password"
@@ -229,7 +229,7 @@ export default function Register() {
               <ActionRow
                 left={
                   error && error.includes("already") ? (
-                    <Link to="/login" className="text-sm text-[#1a73e8] font-medium hover:underline">
+                    <Link to="/login" className="text-sm text-[#4285F4] font-medium hover:underline">
                       Sign in instead
                     </Link>
                   ) : null
@@ -247,15 +247,15 @@ export default function Register() {
         return (
           <div key="otp" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-8">
             <div className="text-center">
-              <div className="w-14 h-14 rounded-full bg-[#e8f0fe] flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-7 h-7 text-[#1a73e8]" />
+              <div className="w-14 h-14 rounded-full bg-[#e8f0fd] flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-7 h-7 text-[#4285F4]" />
               </div>
-              <h2 className="text-2xl font-normal text-[#202124]">Verify your email</h2>
+              <h2 className="text-2xl font-normal text-[#121317]">Verify your email</h2>
               <p className="text-sm text-[#5f6368] mt-2 leading-relaxed">
-                We sent a 6-digit code to <span className="font-medium text-[#202124]">{email}</span>
+                We sent a 6-digit code to <span className="font-medium text-[#121317]">{email}</span>
               </p>
             </div>
-            {error && <div className="p-3 rounded-lg bg-red-50 text-[#ea4335] text-sm">{error}</div>}
+            {error && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
             <div className="flex justify-center">
               <InputOTP maxLength={6} value={otpCode} onChange={setOtpCode} autoFocus autoComplete="one-time-code">
                 <InputOTPGroup>
@@ -275,7 +275,7 @@ export default function Register() {
             </div>
             <p className="text-center text-sm text-[#5f6368]">
               Didn't receive the code?{" "}
-              <button onClick={handleResend} className="text-[#1a73e8] font-medium hover:underline">
+              <button onClick={handleResend} className="text-[#4285F4] font-medium hover:underline">
                 Resend
               </button>
             </p>
@@ -294,10 +294,10 @@ export default function Register() {
                 onChange={setPhone}
                 required
               />
-              {error && <div className="p-3 rounded-lg bg-amber-50 text-amber-700 text-sm">{error}</div>}
+              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button onClick={goToMethods} className="text-sm text-[#1a73e8] font-medium hover:underline">
+                  <button onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
                     Use another method
                   </button>
                 }
@@ -322,10 +322,10 @@ export default function Register() {
                 onChange={(e) => setOrgEmail(e.target.value)}
                 required
               />
-              {error && <div className="p-3 rounded-lg bg-amber-50 text-amber-700 text-sm">{error}</div>}
+              {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button onClick={goToMethods} className="text-sm text-[#1a73e8] font-medium hover:underline">
+                  <button onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
                     Use another method
                   </button>
                 }

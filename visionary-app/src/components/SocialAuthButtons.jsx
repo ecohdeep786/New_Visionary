@@ -31,7 +31,7 @@ export default function SocialAuthButtons({ onOrganization }) {
   };
 
   const btnClass =
-    "w-12 h-12 rounded-xl border border-[#dadce0] bg-white flex items-center justify-center hover:bg-gray-50 hover:shadow-sm transition-all";
+    "w-12 h-12 rounded-xl border border-[#dadce0] bg-white flex items-center justify-center hover:bg-[#121317]/5 hover:shadow-sm transition-all";
 
   return (
     <div className="flex items-center justify-center gap-3">
@@ -42,7 +42,7 @@ export default function SocialAuthButtons({ onOrganization }) {
         <MicrosoftIcon className="w-5 h-5" />
       </button>
       <button onClick={() => handleSocial("apple")} className={btnClass} aria-label="Continue with Apple">
-        <AppleIcon className="w-5 h-5 text-[#202124]" />
+        <AppleIcon className="w-5 h-5 text-[#121317]" />
       </button>
       <button onClick={onOrganization} className={btnClass} aria-label="Continue with Organization">
         <Building2 className="w-5 h-5 text-[#5f6368]" />

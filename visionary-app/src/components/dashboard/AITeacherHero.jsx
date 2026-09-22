@@ -105,7 +105,7 @@ export default function AITeacherHero({ userName, studentData }) {
       </div>
 
       <div>
-        <h1 className="text-[32px] lg:text-[40px] font-medium text-[#202124] tracking-tight leading-tight">
+        <h1 className="text-[32px] lg:text-[40px] font-medium text-[#121317] tracking-tight leading-tight">
           {greeting}, {userName}.
         </h1>
 
@@ -120,7 +120,7 @@ export default function AITeacherHero({ userName, studentData }) {
             <span className="text-base text-[#5f6368]">{thinkSteps[thinkStep]}</span>
           </div>
         ) : (
-          <p className="text-base text-[#3c4043] mt-3 leading-relaxed max-w-xl">
+          <p className="text-base text-[#5f6368] mt-3 leading-relaxed max-w-xl">
             {reasoning}
           </p>
         )}
@@ -141,14 +141,14 @@ export default function AITeacherHero({ userName, studentData }) {
             <div className="flex items-start justify-between gap-4">
               <div className="flex flex-col gap-1">
                 <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">Today's lesson</span>
-                <h2 className="text-[22px] font-medium text-[#202124] leading-snug">{primaryTopic.name}</h2>
+                <h2 className="text-[22px] font-medium text-[#121317] leading-snug">{primaryTopic.name}</h2>
                 <p className="text-sm text-[#5f6368]">
                   {primaryTopic.subject}{primaryTopic.chapter ? ` · ${primaryTopic.chapter}` : ""}
                 </p>
               </div>
               <div className="flex flex-col items-end gap-1 shrink-0 text-right">
                 <span className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wide">Est. time</span>
-                <span className="text-[22px] font-medium text-[#202124]">{estimatedMinutes} min</span>
+                <span className="text-[22px] font-medium text-[#121317]">{estimatedMinutes} min</span>
               </div>
             </div>
 
@@ -177,7 +177,7 @@ export default function AITeacherHero({ userName, studentData }) {
               </Link>
               <Link
                 to={`/dashboard/practice?subject=${encodeURIComponent(primaryTopic.subject)}&topic=${encodeURIComponent(primaryTopic.name)}`}
-                className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-[#3c4043] bg-white border border-[#dadce0] hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-[#5f6368] bg-white border border-[#dadce0] hover:bg-[#121317]/5 transition-colors"
               >
                 Practice instead
               </Link>

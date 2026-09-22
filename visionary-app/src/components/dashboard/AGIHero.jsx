@@ -27,15 +27,15 @@ export default function AGIHero({ userName, studentData }) {
   return (
     <section className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-lg bg-[#1a73e8] flex items-center justify-center">
+        <div className="w-8 h-8 rounded-lg bg-[#4285F4] flex items-center justify-center">
           <Sparkles className="w-[18px] h-[18px] text-white" />
         </div>
-        <span className="text-sm font-medium text-[#3c4043]">Your AGI teacher</span>
+        <span className="text-sm font-medium text-[#5f6368]">Your AGI teacher</span>
       </div>
-      <h1 className="text-[28px] font-medium text-[#202124] tracking-tight leading-tight">
+      <h1 className="text-[28px] font-medium text-[#121317] tracking-tight leading-tight">
         {greeting}, {userName}
       </h1>
-      <p className="text-base font-normal text-[#3c4043] leading-relaxed max-w-2xl">
+      <p className="text-base font-normal text-[#5f6368] leading-relaxed max-w-2xl">
         {teacherMessage}
       </p>
     </section>

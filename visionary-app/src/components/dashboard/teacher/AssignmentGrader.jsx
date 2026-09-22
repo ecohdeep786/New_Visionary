@@ -55,16 +55,16 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
       <DialogContent className="max-h-[85dvh] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-white p-0 sm:max-w-[640px]">
         <div className="flex items-center justify-between p-6 border-b border-[#dadce0]/60">
           <div className="min-w-0">
-            <DialogTitle className="pr-8 text-sm font-medium text-[#202124]">{assignment.title}</DialogTitle>
+            <DialogTitle className="pr-8 text-sm font-medium text-[#121317]">{assignment.title}</DialogTitle>
             <DialogDescription className="text-xs text-[#5f6368] mt-0.5">Review and return submissions. Grades must be within the assignment’s point range.</DialogDescription>
           </div>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
-          {error && <p role="alert" className="rounded-xl bg-red-50 p-4 text-sm text-red-700">{error}</p>}
+          {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error}</p>}
           {loading ? (
             <div className="flex justify-center py-10">
-              <div className="w-7 h-7 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+              <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
             </div>
           ) : submissions.length === 0 ? (
             <div className="flex flex-col items-center gap-3 py-12 text-center">
@@ -74,18 +74,18 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
             submissions.map((s) => (
               <div key={s.id} className="p-5 rounded-2xl border border-[#dadce0]/60 flex flex-col gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium bg-[#f1f3f4] text-[#3c4043] shrink-0">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium bg-[#dadce0] text-[#5f6368] shrink-0">
                     {(s.student_name || "?").charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#202124] truncate">{s.student_name || s.student_email}</p>
+                    <p className="text-sm font-medium text-[#121317] truncate">{s.student_name || s.student_email}</p>
                     <p className="text-xs text-[#5f6368] truncate">{s.student_email}</p>
                   </div>
                   {s.status === "graded" && (
                     <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-[#e6f4ea] text-[#137333]">Returned</span>
                   )}
                 </div>
-                <div className="p-3 rounded-xl bg-[#f8f9fa] text-sm text-[#3c4043] whitespace-pre-wrap leading-relaxed">
+                <div className="p-3 rounded-xl bg-[#ffffff] text-sm text-[#5f6368] whitespace-pre-wrap leading-relaxed">
                   {s.text || "No submission text"}
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
@@ -98,7 +98,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                       value={s.grade ?? ""}
                       onChange={(e) => updateField(s.id, "grade", e.target.value)}
                       placeholder="Grade"
-                      className="w-20 h-10 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#1a73e8]"
+                      className="w-20 h-10 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]"
                     />
                     <span className="text-xs text-[#5f6368]">/ {assignment.points || 100}</span>
                   </div>
@@ -108,7 +108,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                     value={s.feedback || ""}
                     onChange={(e) => updateField(s.id, "feedback", e.target.value)}
                     placeholder="Private feedback (optional)"
-                    className="flex-1 h-10 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#1a73e8]"
+                    className="flex-1 h-10 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]"
                   />
                   <button
                     onClick={() => returnSub(s)}

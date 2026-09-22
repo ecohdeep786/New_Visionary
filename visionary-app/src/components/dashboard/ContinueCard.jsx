@@ -31,8 +31,8 @@ export default function ContinueCard({ topic, studyLogs = [] }) {
         </div>
 
         <div>
-          <h2 className="text-[22px] font-medium text-[#202124] tracking-tight leading-tight">{topic.name}</h2>
-          <p className="text-base font-normal text-[#3c4043] mt-1">
+          <h2 className="text-[22px] font-medium text-[#121317] tracking-tight leading-tight">{topic.name}</h2>
+          <p className="text-base font-normal text-[#5f6368] mt-1">
             {topic.subject}{topic.chapter ? ` · ${topic.chapter}` : ""}
           </p>
         </div>
@@ -41,11 +41,11 @@ export default function ContinueCard({ topic, studyLogs = [] }) {
           <div className="flex-1 h-[6px] bg-black/5 rounded-full overflow-hidden">
             <div className="h-full rounded-full transition-all duration-200" style={{ width: `${mastery}%`, backgroundColor: themeColor.accent }} />
           </div>
-          <span className="text-sm font-medium text-[#202124] w-10 text-right">{mastery}%</span>
+          <span className="text-sm font-medium text-[#121317] w-10 text-right">{mastery}%</span>
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 text-sm font-normal text-[#3c4043]">
+          <div className="flex items-center gap-4 text-sm font-normal text-[#5f6368]">
             {topic.has_3d && (
               <span className="flex items-center gap-2">
                 <Box className="w-[18px] h-[18px]" /> 3D lesson

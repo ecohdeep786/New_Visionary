@@ -22,10 +22,10 @@ export default function MasteryMap({ subjects }) {
   }));
 
   return (
-    <div className="flex flex-col p-6 bg-white rounded-2xl border border-slate-200 flex-1 min-w-[420px]">
+    <div className="flex flex-col p-6 bg-white rounded-2xl border border-[#dadce0] flex-1 min-w-[420px]">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-base font-semibold text-slate-900">Mastery Map</h3>
-        <span className="text-xs text-slate-500">Confidence by subject</span>
+        <h3 className="text-base font-semibold text-[#121317]">Mastery Map</h3>
+        <span className="text-xs text-[#5f6368]">Confidence by subject</span>
       </div>
       <div className="flex items-center gap-6">
         <div className="w-[200px] h-[200px] shrink-0">
@@ -50,9 +50,9 @@ export default function MasteryMap({ subjects }) {
                   className="w-2.5 h-2.5 rounded-full"
                   style={{ backgroundColor: getColor(s.mastery) }}
                 />
-                <span className="text-sm text-slate-700">{s.name}</span>
+                <span className="text-sm text-[#5f6368]">{s.name}</span>
               </div>
-              <span className="text-sm font-semibold text-slate-900 tabular-nums">{s.mastery}%</span>
+              <span className="text-sm font-semibold text-[#121317] tabular-nums">{s.mastery}%</span>
             </div>
           ))}
         </div>

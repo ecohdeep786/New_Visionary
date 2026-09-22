@@ -23,8 +23,8 @@ export default function ChipMultiSelect({ options, selected = [], onChange, maxS
             onClick={() => toggle(id)}
             className={`flex items-center gap-1.5 px-4 py-2.5 rounded-full border text-sm font-medium transition-all ${
               isSelected
-                ? "border-[#1a73e8] bg-[#e8f0fe] text-[#1a73e8]"
-                : "border-[#dadce0] text-[#202124] hover:border-[#bdc1c6]"
+                ? "border-[#4285F4] bg-[#e8f0fd] text-[#4285F4]"
+                : "border-[#dadce0] text-[#121317] hover:border-[#5f6368]"
             }`}
           >
             {isSelected && <Check className="w-3.5 h-3.5" />}

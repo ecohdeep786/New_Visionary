@@ -52,7 +52,7 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
         <p className="text-sm font-medium" style={{ color: themeColor.accent }}>
           {topic.subject} · {topic.chapter || "Chapter"}
         </p>
-        <h1 className="text-[28px] lg:text-[32px] font-medium text-[#202124] tracking-tight leading-tight">
+        <h1 className="text-[28px] lg:text-[32px] font-medium text-[#121317] tracking-tight leading-tight">
           {topic.name}
         </h1>
       </div>
@@ -61,7 +61,7 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
       <div className="bg-white rounded-3xl border border-[#dadce0]/50 p-8">
         <div className="flex items-center gap-2 mb-6">
           <Target className="w-5 h-5" style={{ color: themeColor.accent }} />
-          <h2 className="text-[18px] font-medium text-[#202124]">What you'll learn</h2>
+          <h2 className="text-[18px] font-medium text-[#121317]">What you'll learn</h2>
         </div>
         {loading ? (
           <div className="flex items-center gap-3 py-8">
@@ -75,7 +75,7 @@ export default function CourseIntro({ topic, onStart, isBookmarked }) {
                 <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: themeColor.light }}>
                   <span className="text-xs font-medium" style={{ color: themeColor.accent }}>{i + 1}</span>
                 </div>
-                <p className="text-sm text-[#3c4043] leading-relaxed">{obj}</p>
+                <p className="text-sm text-[#5f6368] leading-relaxed">{obj}</p>
               </div>
             ))}
           </div>

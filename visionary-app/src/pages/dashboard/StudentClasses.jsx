@@ -160,20 +160,20 @@ export default function StudentClasses() {
     <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-[28px] font-medium text-[#202124] tracking-tight">Your classes</h1>
+          <h1 className="text-[28px] font-medium text-[#121317] tracking-tight">Your classes</h1>
           <p className="text-sm text-[#5f6368] mt-1">Assignments, feedback, and class updates in one place</p>
         </div>
-        <button onClick={() => { setJoinStatus(""); setShowJoin(true); }} className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-full border border-[#dadce0] bg-white px-5 text-sm font-medium text-[#1a73e8] transition-colors hover:bg-[#f8fafd] sm:self-auto">
+        <button onClick={() => { setJoinStatus(""); setShowJoin(true); }} className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-full border border-[#dadce0] bg-white px-5 text-sm font-medium text-[#4285F4] transition-colors hover:bg-[#ffffff] sm:self-auto">
           <Link2 className="h-4 w-4" /> Join class
         </button>
       </div>
 
       {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error} <button onClick={load} className="ml-2 font-medium underline">Retry</button></p>}
-      {invitations.length > 0 && <section aria-label="Class invitations" className="rounded-2xl border border-[#d3e3fd] bg-[#f8fafd] p-5"><h2 className="font-medium text-[#202124]">Class invitations</h2><div className="mt-3 space-y-3">{invitations.map((c) => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#202124]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} invited you to join</p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#1a73e8] px-5 text-sm font-medium text-white disabled:opacity-50">Accept class</button></div>)}</div></section>}
+      {invitations.length > 0 && <section aria-label="Class invitations" className="rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5"><h2 className="font-medium text-[#121317]">Class invitations</h2><div className="mt-3 space-y-3">{invitations.map((c) => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#121317]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} invited you to join</p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#4285F4] px-5 text-sm font-medium text-white disabled:opacity-50">Accept class</button></div>)}</div></section>}
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+          <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
         </div>
       ) : connectedClasses.length === 0 ? (
         <div className="flex flex-col items-center gap-5 py-16 text-center">
@@ -181,7 +181,7 @@ export default function StudentClasses() {
             <GraduationCap className="w-8 h-8" style={{ color: accent }} />
           </div>
           <div>
-            <h3 className="text-[18px] font-medium text-[#202124] mb-2">No classes yet</h3>
+            <h3 className="text-[18px] font-medium text-[#121317] mb-2">No classes yet</h3>
             <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed">
               Join with a class code from your teacher. When you connect, assignments and feedback will appear here.
             </p>
@@ -190,7 +190,7 @@ export default function StudentClasses() {
         </div>
       ) : openClass && activeClassIds.has(openClass.id) ? (
         <div className="flex flex-col gap-6">
-          <button onClick={() => setOpenClassId(null)} className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#202124] self-start">
+          <button onClick={() => setOpenClassId(null)} className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#121317] self-start">
             <ChevronRight className="w-4 h-4 rotate-180" /> All classes
           </button>
 
@@ -202,8 +202,8 @@ export default function StudentClasses() {
             </div>
           </div>
 
-          <div className="flex gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["stream", "Updates"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#1a73e8] text-[#1a73e8]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
-          {classTab === "stream" && <div className="space-y-4">{announcements.filter((a) => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#9aa0a6]" /><p className="text-sm text-[#5f6368]">Class updates from your teacher will appear here.</p></div> : announcements.filter((a) => a.class_id === openClassId).map((a) => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#202124]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : "Class update"}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#3c4043]">{a.text}</p></article>)}</div>}
+          <div className="flex gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["stream", "Updates"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#4285F4]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
+          {classTab === "stream" && <div className="space-y-4">{announcements.filter((a) => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]">Class updates from your teacher will appear here.</p></div> : announcements.filter((a) => a.class_id === openClassId).map((a) => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : "Class update"}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
 
           {classTab === "classwork" && <div className="flex flex-col gap-4">
             {classAssignments.length === 0 ? (
@@ -223,15 +223,15 @@ export default function StudentClasses() {
                         <ClipboardList className="w-5 h-5" style={{ color: accent }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-[#202124]">{a.title}</p>
+                        <p className="text-sm font-medium text-[#121317]">{a.title}</p>
                         <p className="text-xs text-[#5f6368] mt-0.5">
                           {a.points || 100} points{a.due_date ? ` · Due ${a.due_date}` : ""}
                         </p>
-                        {a.description && <p className="text-sm text-[#3c4043] mt-3 leading-relaxed">{a.description}</p>}
+                        {a.description && <p className="text-sm text-[#5f6368] mt-3 leading-relaxed">{a.description}</p>}
                         {a.topics && a.topics.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-3">
                             {a.topics.map((t) => (
-                              <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#f1f3f4] text-[#3c4043]">
+                              <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#dadce0] text-[#5f6368]">
                                 {t}
                               </span>
                             ))}
@@ -244,7 +244,7 @@ export default function StudentClasses() {
                         </span>
                       )}
                       {submitted && (
-                        <span className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-[#fef7e0] text-[#b06000] shrink-0">
+                        <span className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-[#ffffff] text-[#5f6368] shrink-0">
                           <Clock className="w-3.5 h-3.5" /> Submitted
                         </span>
                       )}
@@ -253,16 +253,16 @@ export default function StudentClasses() {
                     {graded ? (
                       <div className="pl-14 flex flex-col gap-2">
                         {sub.feedback && (
-                          <div className="p-4 rounded-2xl bg-[#f8f9fa]">
+                          <div className="p-4 rounded-2xl bg-[#ffffff]">
                             <p className="text-xs font-medium text-[#5f6368] mb-1">Teacher feedback</p>
-                            <p className="text-sm text-[#3c4043] leading-relaxed">{sub.feedback}</p>
+                            <p className="text-sm text-[#5f6368] leading-relaxed">{sub.feedback}</p>
                           </div>
                         )}
                         <p className="text-xs text-[#5f6368]">Returned by your teacher.</p>
                       </div>
                     ) : submitted ? (
                       <div className="pl-14">
-                        <div className="p-4 rounded-2xl bg-[#f8f9fa] text-sm text-[#3c4043] whitespace-pre-wrap leading-relaxed">{sub.text}</div>
+                        <div className="p-4 rounded-2xl bg-[#ffffff] text-sm text-[#5f6368] whitespace-pre-wrap leading-relaxed">{sub.text}</div>
                         <p className="text-xs text-[#5f6368] mt-2">Submitted — waiting for your teacher to review.</p>
                       </div>
                     ) : (
@@ -273,7 +273,7 @@ export default function StudentClasses() {
                           placeholder="Write your response…"
                           aria-label={`Your response to ${a.title}`}
                           rows={3}
-                          className="w-full p-4 rounded-2xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8] resize-none leading-relaxed"
+                          className="w-full p-4 rounded-2xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4] resize-none leading-relaxed"
                         />
                         <div className="flex justify-end">
                           <button
@@ -320,12 +320,12 @@ export default function StudentClasses() {
       <Dialog open={showJoin} onOpenChange={(open) => { if (!open) closeJoin(); }}>
         <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-3xl bg-white p-7 sm:rounded-3xl">
           <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: `${accent}15` }}><KeyRound className="h-5 w-5" style={{ color: accent }} /></div>
-          <DialogTitle className="text-xl font-medium text-[#202124]">Join a class</DialogTitle>
+          <DialogTitle className="text-xl font-medium text-[#121317]">Join a class</DialogTitle>
           <DialogDescription>Ask your teacher for their class code, then enter it below.</DialogDescription>
           <form onSubmit={joinClass}>
-            <label className="mt-6 block text-sm font-medium text-[#202124]">Class code<input value={joinCode} onChange={(event) => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#747775] px-3 font-mono text-sm tracking-wide outline-none focus:border-[#1a73e8] focus:ring-1 focus:ring-[#1a73e8]" /></label>
+            <label className="mt-6 block text-sm font-medium text-[#121317]">Class code<input value={joinCode} onChange={(event) => setJoinCode(event.target.value.toUpperCase())} placeholder="e.g. VISION-AB12" autoFocus className="mt-2 h-12 w-full rounded-lg border border-[#5f6368] px-3 font-mono text-sm tracking-wide outline-none focus:border-[#4285F4] focus:ring-1 focus:ring-[#4285F4]" /></label>
             {joinStatus && <p className="mt-3 text-sm text-[#b3261e]" role="alert">{joinStatus}</p>}
-            <div className="mt-7 flex justify-end gap-3"><button type="button" disabled={joining} onClick={closeJoin} className="h-10 rounded-full px-4 text-sm font-medium text-[#1a73e8] hover:bg-[#f8fafd]">Cancel</button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{ backgroundColor: accent }}><Link2 className="h-4 w-4" />{joining ? "Joining…" : "Join class"}</button></div>
+            <div className="mt-7 flex justify-end gap-3"><button type="button" disabled={joining} onClick={closeJoin} className="h-10 rounded-full px-4 text-sm font-medium text-[#4285F4] hover:bg-[#ffffff]">Cancel</button><button type="submit" disabled={joining || !joinCode.trim()} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-60" style={{ backgroundColor: accent }}><Link2 className="h-4 w-4" />{joining ? "Joining…" : "Join class"}</button></div>
           </form>
         </DialogContent>
       </Dialog>

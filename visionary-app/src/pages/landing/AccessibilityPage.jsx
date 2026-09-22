@@ -16,6 +16,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -27,8 +28,8 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9aa0a6",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  soft: "#f8f9fa",
+  border: "#dadce0",
+  soft: "#ffffff",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -55,7 +56,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.ink }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
     </div>
   );
@@ -63,7 +64,7 @@ function SectionHeading({ number, title }) {
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
   );
 }
 
@@ -84,7 +85,7 @@ function FeatureCard({ icon: Icon, eyebrow, title, children }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border }}>
       <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
   );
@@ -137,18 +138,23 @@ export default function AccessibilityPage() {
           dek="WCAG 2.1 AA, native scripts, screen-reader tested.">
         </PageHeading>
 
-        {/* STORY BAND */}
+        {/* STORY BAND — text + visual (Google 2-up statement pattern) */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[920px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                The goal is not to make everyone use Visionary the same way.
-                <br className="hidden lg:block" />
-                <span style={{ color: COLORS.ink }}>It is to give more people a way in.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
-              </p>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <div className="max-w-[560px]">
+                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
+                  The goal is not to make everyone use Visionary the same way.
+                  <br className="hidden lg:block" />
+                  <span style={{ color: COLORS.ink }}>It is to give more people a way in.</span>
+                </p>
+                <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                  Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
+                </p>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <SpotIllustration subject="accessibility" className="h-[200px] w-[200px]" />
+              </div>
             </div>
           </div>
         </section>
@@ -213,7 +219,7 @@ export default function AccessibilityPage() {
 
               {/* MAIN CONTENT */}
               <div className="min-w-0">
-                <article className="divide-y divide-[#e5e7eb]">
+                <article className="divide-y divide-[#dadce0]">
                   {/* 01 */}
                   <section id="why-accessibility" className="scroll-mt-24 pb-14 sm:pb-16">
                     <SectionHeading number="01" title="Why accessibility matters" />
@@ -336,7 +342,7 @@ export default function AccessibilityPage() {
                 </article>
 
                 {/* CLOSING */}
-                <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
+                <section className="mt-20 border-t border-[#dadce0] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[900px]">
                     <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Accessibility</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>

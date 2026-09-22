@@ -94,7 +94,7 @@ export default function TeacherHome() {
           return (
             <div key={s.label} className="rounded-2xl bg-white border border-[#dadce0]/60 p-4 sm:p-6 flex flex-col gap-2">
               <Icon className="w-5 h-5 text-[#5f6368]" />
-              <p className="text-[28px] font-medium text-[#202124] leading-none">{loading ? "—" : s.value}</p>
+              <p className="text-[28px] font-medium text-[#121317] leading-none">{loading ? "—" : s.value}</p>
               <p className="text-sm text-[#5f6368]">{s.label}</p>
             </div>
           );
@@ -103,7 +103,7 @@ export default function TeacherHome() {
 
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-[22px] font-medium text-[#202124]">Your classes</h2>
+          <h2 className="text-[22px] font-medium text-[#121317]">Your classes</h2>
           <p className="text-sm text-[#5f6368] mt-1">Create a class, add students, and start teaching</p>
         </div>
         <button
@@ -117,7 +117,7 @@ export default function TeacherHome() {
 
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+          <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
         </div>
       ) : classes.length === 0 ? (
         <div className="flex flex-col items-center gap-5 py-16 text-center">
@@ -125,7 +125,7 @@ export default function TeacherHome() {
             <GraduationCap className="w-8 h-8" style={{ color: accent }} />
           </div>
           <div>
-            <h3 className="text-[18px] font-medium text-[#202124] mb-2">No classes yet</h3>
+            <h3 className="text-[18px] font-medium text-[#121317] mb-2">No classes yet</h3>
             <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed">
               Create your first class to post announcements, assign work tagged to concepts, and watch your students' mastery map grow.
             </p>

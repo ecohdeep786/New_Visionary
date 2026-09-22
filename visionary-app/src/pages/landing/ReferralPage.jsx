@@ -6,11 +6,13 @@ import {
   ChevronRight,
   GraduationCap,
   UsersRound,
+  Lightbulb,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import StorySection from "@/components/landing/StorySection";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -21,8 +23,8 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9aa0a6",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  soft: "#f8f9fa",
+  border: "#dadce0",
+  soft: "#ffffff",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -51,10 +53,10 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.ink }}>
         {number}
       </div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
+      <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
         {title}
       </h2>
     </div>
@@ -63,7 +65,7 @@ function SectionHeading({ number, title }) {
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78]" style={{ color: COLORS.grey }}>
+    <p className="max-w-[760px] text-[16px] leading-[1.6]" style={{ color: COLORS.grey }}>
       {children}
     </p>
   );
@@ -91,7 +93,7 @@ function ProgramCard({ icon: Icon, eyebrow, title, description }) {
 function PrincipleRow({ icon: Icon, title, children }) {
   return (
     <div className="flex gap-4 border-b py-6 last:border-b-0" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.soft }}>
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border" style={{ borderColor: COLORS.mist }}>
         <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
       </div>
       <div>
@@ -106,7 +108,7 @@ function PrincipleRow({ icon: Icon, title, children }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border }}>
       <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
   );
@@ -139,18 +141,23 @@ export default function ReferralPage() {
           dek="Share Visionary. Both of you move forward.">
         </PageHeading>
 
-        {/* STORY BAND */}
-        <section className="border-b" style={{ borderColor: COLORS.border }}>
+        {/* STORY BAND — text + visual (Google 2-up statement pattern) */}
+        <section className="border-b" style={{ borderColor: COLORS.mist }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[940px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                A good recommendation
-                <br />
-                <span style={{ color: COLORS.ink }}>can change where someone starts.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                A classmate can introduce a better way to practise. A teacher can share a useful learning resource. A colleague can show someone how Visionary fits into their work. The referral program is built around those moments.
-              </p>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <div className="max-w-[560px]">
+                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
+                  A good recommendation
+                  <br />
+                  <span style={{ color: COLORS.ink }}>can change where someone starts.</span>
+                </p>
+                <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                  A classmate can introduce a better way to practise. A teacher can share a useful learning resource. A colleague can show someone how Visionary fits into their work. The referral program is built around those moments.
+                </p>
+              </div>
+              <div className="flex justify-center lg:justify-end">
+                <SpotIllustration subject="gift" className="h-[200px] w-[200px]" />
+              </div>
             </div>
           </div>
         </section>

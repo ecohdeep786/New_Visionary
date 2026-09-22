@@ -19,7 +19,7 @@ export default function CollapsibleSection({ title, subtitle, action, defaultOpe
             className={`w-5 h-5 text-[#5f6368] transition-transform duration-200 ${open ? "" : "-rotate-90"}`}
           />
           <div>
-            <h2 className="text-[22px] font-medium text-[#202124]">{title}</h2>
+            <h2 className="text-[22px] font-medium text-[#121317]">{title}</h2>
             {subtitle && <p className="text-sm font-normal text-[#5f6368] mt-1">{subtitle}</p>}
           </div>
         </button>

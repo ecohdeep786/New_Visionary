@@ -49,7 +49,7 @@ export default function ClassDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+        <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
       </div>
     );
   }
@@ -70,11 +70,11 @@ export default function ClassDetail() {
   return (
     <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
       <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
-        <Link to="/dashboard/classes" aria-label="Back to your classes" className="flex items-center hover:text-[#202124] transition-colors">
+        <Link to="/dashboard/classes" aria-label="Back to your classes" className="flex items-center hover:text-[#121317] transition-colors">
           <Home className="w-4 h-4" />
         </Link>
-        <ChevronRight className="w-3.5 h-3.5 text-[#9aa0a6]" />
-        <span className="font-medium text-[#202124]">{classroom.name}</span>
+        <ChevronRight className="w-3.5 h-3.5 text-[#5f6368]" />
+        <span className="font-medium text-[#121317]">{classroom.name}</span>
       </nav>
 
       <div className="rounded-3xl overflow-hidden">

@@ -42,7 +42,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
     return Math.round(g.reduce((x, y) => x + y, 0) / g.length);
   };
   const colorFor = (v) => {
-    if (v === null) return "#f1f3f4";
+    if (v === null) return "#dadce0";
     if (v >= 70) return "#34a853";
     if (v >= 40) return accent;
     return "#ea4335";
@@ -52,7 +52,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
     <div className="bg-white rounded-3xl border border-[#dadce0]/60 p-6">
       <div className="flex items-center gap-2 mb-1">
         <Grid3x3 className="w-5 h-5" style={{ color: accent }} />
-        <h3 className="text-sm font-medium text-[#202124]">Knowledge heatmap</h3>
+        <h3 className="text-sm font-medium text-[#121317]">Knowledge heatmap</h3>
       </div>
       <p className="text-xs text-[#5f6368] mb-6">
         Recorded assignment scores by concept. Use these alongside conversations and practice to decide what support helps.
@@ -88,7 +88,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
               <tbody>
                 {students.map((stu, i) => (
                   <tr key={i}>
-                    <td className="sticky left-0 bg-white z-10 text-sm text-[#3c4043] px-2 py-1.5 whitespace-nowrap">
+                    <td className="sticky left-0 bg-white z-10 text-sm text-[#5f6368] px-2 py-1.5 whitespace-nowrap">
                       {stu.name}
                     </td>
                     {concepts.map((c) => {
@@ -99,7 +99,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
                             className="h-9 min-w-[56px] rounded-lg flex items-center justify-center text-xs font-medium"
                             style={{
                               backgroundColor: colorFor(v),
-                              color: v === null ? "#9aa0a6" : "#fff",
+                              color: v === null ? "#5f6368" : "#fff",
                             }}
                             title={v === null ? "No graded work yet" : `${v}%`}
                           >
@@ -120,7 +120,7 @@ export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
               { label: "Mastered 70%+", color: "#34a853" },
               { label: "Developing 40–69%", color: accent },
               { label: "Needs review <40%", color: "#ea4335" },
-              { label: "Not yet graded", color: "#f1f3f4" },
+              { label: "Not yet graded", color: "#dadce0" },
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <span className="w-3.5 h-3.5 rounded" style={{ backgroundColor: l.color }} />

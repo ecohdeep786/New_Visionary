@@ -31,7 +31,7 @@ export default function GamificationSection() {
             <Brain className="w-5 h-5" style={{ color: themeColor.accent }} />
           </div>
           <div>
-            <h3 className="text-[17px] font-medium text-[#202124]">Breathing exercise</h3>
+            <h3 className="text-[17px] font-medium text-[#121317]">Breathing exercise</h3>
             <p className="text-sm text-[#5f6368] mt-0.5">Calm your mind in 60 seconds</p>
           </div>
         </div>
@@ -41,16 +41,16 @@ export default function GamificationSection() {
       {/* Brain teaser */}
       <div className="flex flex-col gap-5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#fef7e0]">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#ffffff]">
             <Lightbulb className="w-5 h-5 text-[#fbbc05]" />
           </div>
           <div>
-            <h3 className="text-[17px] font-medium text-[#202124]">Quick riddle</h3>
+            <h3 className="text-[17px] font-medium text-[#121317]">Quick riddle</h3>
             <p className="text-sm text-[#5f6368] mt-0.5">Give your brain a playful break</p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 p-6 bg-[#f8f9fa] rounded-2xl flex-1 justify-center">
-          <p className="text-base text-[#202124] leading-relaxed">{teaser.q}</p>
+        <div className="flex flex-col gap-4 p-6 bg-[#ffffff] rounded-2xl flex-1 justify-center">
+          <p className="text-base text-[#121317] leading-relaxed">{teaser.q}</p>
           {revealed ? (
             <span className="text-base font-medium" style={{ color: themeColor.accent }}>{teaser.a}</span>
           ) : (
@@ -64,7 +64,7 @@ export default function GamificationSection() {
           )}
           <button
             onClick={nextTeaser}
-            className="inline-flex items-center gap-2 self-start text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors"
+            className="inline-flex items-center gap-2 self-start text-sm font-medium text-[#5f6368] hover:text-[#121317] transition-colors"
           >
             <RotateCw className="w-4 h-4" /> Next riddle
           </button>
