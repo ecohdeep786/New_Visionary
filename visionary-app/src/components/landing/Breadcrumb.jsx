@@ -27,7 +27,7 @@ export default function Breadcrumb({ section, page }) {
   const crumbCls = "text-[13px] tracking-[0.1px] transition-colors hover:underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm";
   return (
     <nav aria-label="Breadcrumb" className="w-full bg-white">
-      <div className="mx-auto flex w-full max-w-[1240px] items-center gap-2 whitespace-nowrap px-6 pt-24 text-[13px] sm:px-8" style={{ color: "#5f6368" }}>
+      <div className="mx-auto flex w-full max-w-[1240px] items-center gap-2 whitespace-nowrap px-6 pt-20 pb-2 text-[13px] sm:px-8" style={{ color: "#5f6368" }}>
         <Link to="/" className={crumbCls} style={{ color: "#4285F4" }}>Home</Link>
         <span aria-hidden="true" className="text-[#9AA0A6]">›</span>
         {hub && (

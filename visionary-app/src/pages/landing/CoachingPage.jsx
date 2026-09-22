@@ -340,7 +340,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
 function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-16 sm:px-8 lg:pb-24 lg:pt-20" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">How Visionary works</GreyTag>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
@@ -464,7 +464,7 @@ function HowLoopSection() {
   const stage = LOOP_STAGES[active];
 
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The learning loop</GreyTag>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -536,7 +536,7 @@ function HowDifferentPeopleSection() {
   const [role, setRole] = useState(0);
   const scenario = ROLES[role];
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Different people</GreyTag>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -592,7 +592,7 @@ function HowDifferentPeopleSection() {
 function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Get started</GreyTag>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>See it with your own question.</h2>

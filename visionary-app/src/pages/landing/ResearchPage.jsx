@@ -7,6 +7,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
@@ -97,48 +98,48 @@ function DownloadHeroSection() {
     document.getElementById("platforms")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-16 sm:px-8 lg:pb-24 lg:pt-20" style={{ backgroundColor: COLORS.white, fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
-        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+        <p className="text-center font-medium uppercase tracking-[0.16em] leading-[16px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
+        <h1 className="mx-auto mt-4 max-w-[14ch] text-balance text-center font-normal tracking-[-0.04em] leading-[1.06] text-[clamp(40px,5.6vw,64px)]" style={{ color: COLORS.ink }}>
           Get <span style={{ color: COLORS.blue }}>Visionary</span> on every device.
         </h1>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[640px] text-pretty text-center font-normal tracking-[0.1px] leading-[1.65] text-[17px] sm:text-[18px]" style={{ color: COLORS.grey }}>
           On the phone, tablet or laptop you already own.
         </p>
 
         {/* The choice — Web or App */}
-        <div className="mx-auto mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 sm:grid-cols-2">
-          <div className="flex flex-col rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
-            <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+        <div className="mx-auto mt-12 grid w-full max-w-[880px] grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="flex flex-col rounded-[20px] border bg-white p-7 transition-shadow duration-300 hover:shadow-[0_1px_3px_rgba(60,64,67,0.12),0_4px_12px_rgba(60,64,67,0.08)] sm:p-8" style={{ borderColor: COLORS.mist }}>
+            <span className="flex h-12 w-12 items-center justify-center rounded-[14px]" style={{ backgroundColor: "#E8F0FE", color: "#1967D2" }}>
               <Globe className="h-5 w-5" strokeWidth={1.8} />
             </span>
-            <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Continue on web</h2>
-            <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
+            <h2 className="mt-6 font-medium tracking-[0.1px] leading-[1.15] text-[22px]" style={{ color: COLORS.ink }}>Continue on web</h2>
+            <p className="mt-2.5 font-normal tracking-[0.1px] leading-[1.6] text-[14.5px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
             <Link
               to="/register"
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+              className="mt-7 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.1px] text-[15px] text-white transition-all hover:shadow-[0_1px_3px_rgba(60,64,67,0.3)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               style={{ backgroundColor: COLORS.blue }}
             >
               Open Visionary
             </Link>
           </div>
 
-          <div className="flex flex-col rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
-            <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+          <div className="flex flex-col rounded-[20px] border bg-white p-7 transition-shadow duration-300 hover:shadow-[0_1px_3px_rgba(60,64,67,0.12),0_4px_12px_rgba(60,64,67,0.08)] sm:p-8" style={{ borderColor: COLORS.mist }}>
+            <span className="flex h-12 w-12 items-center justify-center rounded-[14px]" style={{ backgroundColor: "#E6F4EA", color: "#188038" }}>
               <Download className="h-5 w-5" strokeWidth={1.8} />
             </span>
-            <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
-            <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
+            <h2 className="mt-6 font-medium tracking-[0.1px] leading-[1.15] text-[22px]" style={{ color: COLORS.ink }}>Get the app</h2>
+            <p className="mt-2.5 font-normal tracking-[0.1px] leading-[1.6] text-[14.5px]" style={{ color: COLORS.grey }}>
               Native apps for desktop and mobile — faster, offline-friendly, and synced to your account.
             </p>
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-              style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+              className="mt-7 inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.1px] text-[15px] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              style={{ borderColor: COLORS.mist, color: COLORS.ink }}
             >
               See platforms
             </button>
@@ -154,11 +155,11 @@ function DownloadPlatformsSection() {
   const { ref, visible } = useRevealOnce();
   const detected = useDetectedPlatform();
   return (
-    <section ref={ref} id="platforms" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="platforms" className="relative scroll-mt-24 px-6 py-16 sm:px-8 lg:py-24" style={{ backgroundColor: "#f8f9fa", fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
-        <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
+        <p className="text-center font-medium uppercase tracking-[0.16em] leading-[16px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
+        <h2 className="mx-auto mt-4 max-w-[16ch] text-balance text-center font-normal tracking-[-0.03em] leading-[1.12] text-[clamp(30px,3.6vw,44px)]" style={{ color: COLORS.ink }}>Choose your platform.</h2>
+        <p className="mx-auto mt-4 max-w-[640px] text-center font-normal tracking-[0.1px] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
           Version {APP_VERSION} · Updated this week ·{" "}
           {detected ? (
             <>Recommended for your device: <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span></>
@@ -167,17 +168,17 @@ function DownloadPlatformsSection() {
           )}
         </p>
 
-        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-[1240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {PLATFORMS.map((p) => {
             const isRecommended = detected === p.id;
             return (
               <div
                 key={p.id}
                 id={p.id}
-                className="relative flex flex-col scroll-mt-24 rounded-[24px] border bg-white p-7 transition-all duration-300"
+                className="relative flex flex-col scroll-mt-24 rounded-[20px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_3px_rgba(60,64,67,0.12),0_4px_12px_rgba(60,64,67,0.08)]"
                 style={{
                   borderColor: isRecommended ? COLORS.blue : COLORS.mist,
-                  /*boxShadow: isRecommended ? "0 12px 32px rgba(66,133,244,0.14)" : "0 8px 24px rgba(60,64,67,0.06)",*/
+                  boxShadow: isRecommended ? "0 12px 32px rgba(66,133,244,0.14)" : undefined,
                 }}
               >
                 {isRecommended && (
@@ -185,7 +186,7 @@ function DownloadPlatformsSection() {
                     Recommended
                   </span>
                 )}
-                <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                <span className="flex h-12 w-12 items-center justify-center rounded-[14px]" style={{ backgroundColor: "#E8F0FE", color: "#1967D2" }}>
                   <p.Icon className="h-5 w-5" strokeWidth={1.8} />
                 </span>
                 <h3 className="mt-5 font-medium tracking-[0] leading-[1.15] text-[20px]" style={{ color: COLORS.ink }}>{p.name}</h3>
@@ -295,15 +296,24 @@ function DownloadSyncSection() {
     return () => clearInterval(id);
   }, []);
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
-      <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
-        Start on one device.{" "}
-        <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
-        on every other.
-      </p>
-      <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync across web, desktop, and mobile — automatically, and privately.
-      </p>
+    <section ref={ref} className="relative px-6 py-16 sm:px-8 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+        <div>
+          <p className={`text-balance font-normal tracking-[-0.02em] leading-[1.12] text-[clamp(28px,3.4vw,42px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
+            Start on one device.{" "}
+            <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
+            on every other.
+          </p>
+          <p className={`mt-5 max-w-[560px] text-pretty font-normal tracking-[0.1px] leading-[1.65] text-[16px] sm:text-[17px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
+            Conversations, progress, and context sync across web, desktop, and mobile — automatically, and privately.
+          </p>
+        </div>
+        <div className={`transition-all duration-700 ease-google delay-150 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+          <div className="overflow-hidden rounded-[28px] border" style={{ borderColor: COLORS.mist }}>
+            <SpotIllustration subject="download" title="Illustration of Visionary syncing across devices" className="aspect-[4/3] w-full" />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -312,17 +322,25 @@ function DownloadSyncSection() {
 function DownloadRequirementsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 sm:px-8 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
-        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {REQUIREMENTS.map((r) => (
-            <div key={r.platform} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
-              <h3 className="font-medium tracking-[0] leading-[1.15] text-[18px]" style={{ color: COLORS.ink }}>{r.platform}</h3>
-              <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{r.req}</p>
-            </div>
-          ))}
+        <p className="text-center font-medium uppercase tracking-[0.16em] leading-[16px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
+        <h2 className="mx-auto mt-4 max-w-[18ch] text-balance text-center font-normal tracking-[-0.03em] leading-[1.12] text-[clamp(30px,3.6vw,44px)]" style={{ color: COLORS.ink }}>What you need to run Visionary.</h2>
+        <div className="mx-auto mt-12 grid w-full max-w-[1240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {REQUIREMENTS.map((r) => {
+            const platform = PLATFORMS.find((p) => p.name === r.platform);
+            return (
+              <div key={r.platform} className="rounded-[20px] border bg-white p-6 transition-shadow duration-300 hover:shadow-[0_1px_3px_rgba(60,64,67,0.12),0_4px_12px_rgba(60,64,67,0.08)] sm:p-7" style={{ borderColor: COLORS.mist }}>
+                {platform && (
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[14px]" style={{ backgroundColor: "#E8F0FE", color: "#1967D2" }}>
+                    <platform.Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                  </span>
+                )}
+                <h3 className="mt-4 font-medium tracking-[0.1px] leading-[1.15] text-[18px]" style={{ color: COLORS.ink }}>{r.platform}</h3>
+                <p className="mt-2 font-normal tracking-[0.1px] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{r.req}</p>
+              </div>
+            );
+          })}
         </div>
       </FadeReveal>
     </section>
@@ -350,26 +368,26 @@ function DownloadTrustBand() {
 function DownloadCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
+    <section ref={ref} className="relative px-6 py-16 sm:px-8 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+      <div className={`mx-auto max-w-[840px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+        <h2 className="mx-auto max-w-[16ch] text-balance font-normal tracking-[-0.03em] leading-[1.12] text-[clamp(30px,3.6vw,44px)]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-5 max-w-[600px] text-pretty font-normal tracking-[0.1px] leading-[1.65] text-[16px] sm:text-[17px]" style={{ color: COLORS.grey }}>
           No install, no waiting. Open Visionary in your browser and pick up the app whenever you're ready.
         </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.1px] text-[15px] text-white transition-all hover:shadow-[0_1px_3px_rgba(60,64,67,0.3)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             style={{ backgroundColor: COLORS.blue }}
           >
             Continue on web
           </Link>
           <Link
             to="/how-it-works"
-            className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5"
-            style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+            className="inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.1px] text-[15px] transition-colors hover:bg-white"
+            style={{ borderColor: COLORS.mist, color: COLORS.ink }}
           >
             See how it works
           </Link>

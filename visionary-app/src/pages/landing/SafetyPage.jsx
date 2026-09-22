@@ -8,6 +8,7 @@ export default function SafetyPage() {
       eyebrow="Safety"
       titleParts={[{ text: "Safe by " }, { text: "design.", accent: true }]}
       intro="Guardrails for every learner, by age."
+      heroIllustration="safety"
       sections={[
         {
           id: "security",
@@ -44,6 +45,7 @@ export default function SafetyPage() {
         primaryTo: "/contact",
         secondaryLabel: "Read privacy policy",
         secondaryTo: "/privacy",
+        illustration: "shield",
       }}
     />
   );

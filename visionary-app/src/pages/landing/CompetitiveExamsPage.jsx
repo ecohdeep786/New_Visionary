@@ -294,7 +294,7 @@ function AboutWhySection() {
   const { index: futureIndex } = useCycleIndex(WHY_FUTURES.length, 4800);
   const future = WHY_FUTURES[futureIndex];
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Why we exist</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -333,7 +333,7 @@ function AboutWhySection() {
 function AboutApproachSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our approach</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -377,7 +377,7 @@ function AboutApproachSection() {
 function AboutBenefitsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Who we serve</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -426,7 +426,7 @@ function AboutBenefitsSection() {
 function AboutSafetySection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="safety" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="safety" className="relative scroll-mt-44 bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Safety</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -467,7 +467,7 @@ function AboutSafetySection() {
 function AboutPrivacySection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="privacy" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="privacy" className="relative scroll-mt-44 px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Privacy</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -518,7 +518,7 @@ function AboutPrivacySection() {
 function AboutSecuritySection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="security" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="security" className="relative scroll-mt-44 bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Security</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -567,7 +567,7 @@ function AboutSecuritySection() {
 function AboutAccessibilitySection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="accessibility" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="accessibility" className="relative scroll-mt-44 px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Accessibility</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -608,7 +608,7 @@ function AboutAccessibilitySection() {
 function AboutTermsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="terms" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="terms" className="relative scroll-mt-44 bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex max-w-[1080px] flex-col items-center gap-10 text-center lg:flex-row lg:items-start lg:text-left">
           <IconTile Icon={FileText} />
@@ -636,7 +636,7 @@ function AboutTermsSection() {
 function AboutCookiesSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="cookies" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="cookies" className="relative scroll-mt-44 px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex max-w-[1080px] flex-col items-center gap-10 text-center lg:flex-row lg:items-start lg:text-left">
           <IconTile Icon={Cookie} />
@@ -704,7 +704,7 @@ const ABOUT_APPS = [
 function AboutAppsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The product</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -742,7 +742,7 @@ const ABOUT_STATS = [
 function AboutStatBand() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1240px] grid-cols-2 gap-y-14 lg:grid-cols-4">
           {ABOUT_STATS.map((s) => (
@@ -762,7 +762,7 @@ function AboutStatBand() {
 function AboutBeliefsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1280px] gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
@@ -805,7 +805,7 @@ function AboutVisionSection() {
     { subject: "team", label: "Teams", line: "Learning faster than it forgets." },
   ];
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Our vision</GreyTag>
         <h2 className="mx-auto mt-4 max-w-[1080px] text-center text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
@@ -832,7 +832,7 @@ function AboutVisionSection() {
 function AboutCompanySection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The company</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -877,7 +877,7 @@ const IMG_FOUNDER = imgProfessionalFace;
 function AboutPeopleSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="team" className="relative scroll-mt-24 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="team" className="relative scroll-mt-24 px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The people</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -913,7 +913,7 @@ const RESEARCH_PRINCIPLES = [
 function AboutResearchSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">How we think</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -948,7 +948,7 @@ const CONTACT_ROUTES = [
 function AboutContactSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Get in touch</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1004,7 +1004,7 @@ const HUB_LINKS = [
 function AboutHubSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} data-section="hub" className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="hub" className="relative bg-white px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Explore</GreyTag>
         <h2 className="mt-4 text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>

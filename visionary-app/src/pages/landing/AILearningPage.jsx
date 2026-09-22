@@ -1,72 +1,44 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
-
-
-/* ═══ DESIGN TOKENS (same system) ═══ */
-const COLORS = {
-  ink: "#121317",
-  surface: "#F5F6F8",
-  blue: "#4285F4",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  white: "#ffffff",
-};
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-
-/* ═══ CONTROLLERS ═══ */
-function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const hasRevealed = useRef(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (hasRevealed.current) { setVisible(true); return undefined; }
-    if (!node) { setVisible(true); return undefined; }
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasRevealed.current) { setVisible(true); hasRevealed.current = true; observer.disconnect(); }
-      },
-      { threshold: 0, rootMargin }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [rootMargin]);
-  return { ref, visible };
-}
-const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
-  return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
-      {children}
-    </div>
-  );
-});
+import SpotIllustration from "@/components/landing/SpotIllustration";
+import {
+  Section, SectionHead, Reveal, useRevealOnce, FAQList, CTABand, PK,
+} from "@/components/landing/PageKit";
 
 /* ═══ MODELS — single plan-config fixture (01-PM, Wave L3): src/data/pricingConfig.js ═══ */
 import { PLANS, COMPARISON, PERSONA_PLANS, PRICING_FAQ, formatPrice } from "@/data/pricingConfig";
 
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
-/* ═══ Billing toggle — same pill language as site tabs ═══ */
+/* Persona visual identity — one SpotIllustration scene per audience */
+const PERSONA_SCENE = {
+  student: "student",
+  teacher: "teacher",
+  parent: "parent",
+  professional: "briefcase",
+  organization: "team",
+};
+
+/* ═══ Billing toggle — Google chip-switch ═══ */
 const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
   return (
-    <div className="mx-auto flex h-11 w-fit items-stretch overflow-hidden rounded-full border bg-white p-0" style={{ borderColor: COLORS.mist }} role="group" aria-label="Billing period">
+    <div className="mx-auto flex h-11 w-fit items-stretch overflow-hidden rounded-full border bg-white p-0" style={{ borderColor: PK.mist }} role="group" aria-label="Billing period">
       {["monthly", "annual"].map((b) => (
         <button
           key={b}
           type="button"
           aria-pressed={billing === b}
           onClick={() => onChange(b)}
-          className={`flex h-full items-center justify-center gap-2 rounded-full px-6 text-[14px] tracking-[0.24px] transition-colors ${billing === b ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
-          style={{ backgroundColor: billing === b ? COLORS.ink : "transparent", color: billing === b ? "#ffffff" : COLORS.slate }}
+          className={`flex h-full items-center justify-center gap-2 rounded-full px-6 text-[14px] tracking-[0.1px] transition-colors ${billing === b ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
+          style={{ backgroundColor: billing === b ? PK.ink : "transparent", color: billing === b ? "#ffffff" : PK.slate }}
         >
           {b === "monthly" ? "Monthly" : "Annual"}
           {b === "annual" && (
-            <span className="rounded-full px-2 py-0.5 text-[10px] font-normal uppercase tracking-[0.43px]" style={{ backgroundColor: billing === "annual" ? "#ffffff" : COLORS.surface, color: COLORS.ink }}>
+            <span className="rounded-full px-2 py-0.5 text-[10px] font-normal uppercase tracking-[0.43px]" style={{ backgroundColor: billing === "annual" ? "#ffffff" : PK.canvas, color: PK.ink }}>
               2 months free
             </span>
           )}
@@ -76,63 +48,66 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
   );
 });
 
-/* ═══ Plan card ═══ */
+/* ═══ Plan card — Google One-style: illustration header, price, checks ═══ */
+const PLAN_SCENE = { start: "learn", personal: "growth", family: "parent", institution: "team" };
 const PlanCard = React.memo(function PlanCard({ plan, billing }) {
-  const price = billing === "annual" ? plan.annual : plan.monthly;
   return (
     <div
-      className="relative flex flex-col rounded-[24px] border bg-white p-8"
+      className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-7"
       style={{
-        borderColor: plan.highlight ? COLORS.blue : COLORS.mist,
-        boxShadow: plan.highlight ? "0 16px 40px rgba(66,133,244,0.14)" : "0 8px 24px rgba(60,64,67,0.06)",
+        borderColor: plan.highlight ? PK.blue : PK.mist,
+        boxShadow: plan.highlight ? "0 12px 32px rgba(66,133,244,0.16)" : "0 1px 3px rgba(60,64,67,0.06), 0 4px 12px rgba(60,64,67,0.05)",
       }}
     >
       {plan.badge && (
-        <span className="absolute -top-3 left-8 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
+        <span className="absolute left-7 top-6 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: PK.blue, color: "#ffffff" }}>
           {plan.badge}
         </span>
       )}
-      <h3 className="font-medium tracking-[0] leading-[1.15] text-[22px]" style={{ color: COLORS.ink }}>{plan.name}</h3>
-      <p className="mt-3 font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
+      <div className="mx-auto -mb-1 mt-8 w-full max-w-[200px]">
+        <SpotIllustration subject={PLAN_SCENE[plan.id] || "compass"} className="aspect-[16/9] w-full" />
+      </div>
+      <h3 className="mt-4 text-center font-medium tracking-[0.1px] leading-[1.15] text-[22px]" style={{ color: PK.ink }}>{plan.name}</h3>
+      <p className="mt-2 text-center font-normal tracking-[0.1px] leading-[1.5] text-[14px]" style={{ color: PK.slate }}>{plan.tagline}</p>
 
-      <div className="mt-6 flex items-baseline gap-2">
+      <div className="mt-6 flex items-baseline justify-center gap-2">
         {(() => {
           const fp = formatPrice(plan, billing);
           return fp.kind === "contact" ? (
-            <span className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2vw,28px)]" style={{ color: COLORS.ink }}>{fp.text}</span>
+            <span className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2vw,28px)]" style={{ color: PK.ink }}>{fp.text}</span>
           ) : (
             <>
-              <span className="font-medium tracking-[0] leading-[1] text-[clamp(32px,3vw,44px)]" style={{ color: COLORS.ink }}>{fp.text}</span>
-              <span className="font-normal tracking-[0] text-[14px]" style={{ color: COLORS.grey }}>/ month</span>
+              <span className="font-medium tracking-[-0.02em] leading-[1] text-[clamp(32px,3vw,44px)]" style={{ color: PK.ink }}>{fp.text}</span>
+              <span className="font-normal tracking-[0.1px] text-[14px]" style={{ color: PK.slate }}>/ month</span>
             </>
           );
         })()}
       </div>
-      <p className="mt-1 font-normal tracking-[0] leading-[16px] text-[12px]" style={{ color: COLORS.lightGrey }}>
-        {price === null
-          ? "Pricing shaped with you · pilots available"
-          : price === 0
+      <p className="mt-1 text-center font-normal tracking-[0.1px] leading-[16px] text-[12px]" style={{ color: PK.lightGrey }}>
+        {billing === "annual" && plan.annual !== null && plan.annual > 0
+          ? `Billed yearly (₹${plan.annualTotal}) · 2 months free`
+          : plan.monthly === 0
             ? "Free forever · no card required"
-            : billing === "annual"
-              ? `Billed yearly (₹${plan.annualTotal}) · 2 months free`
+            : plan.monthly === null
+              ? "Pricing shaped with you · pilots available"
               : "Billed monthly"}
       </p>
 
       <Link
         to={plan.to}
-        className={`mt-8 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 ${
-          plan.highlight ? "text-white hover:opacity-90 active:scale-[0.98] focus-visible:ring-[#121317]" : "transition-colors hover:bg-[#121317]/5 focus-visible:ring-[#4285F4]"
+        className={`mt-7 inline-flex h-11 items-center justify-center rounded-full px-8 font-medium tracking-[0.1px] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+          plan.highlight ? "text-white hover:shadow-[0_1px_3px_rgba(60,64,67,0.3)] active:scale-[0.98]" : "border hover:bg-[#f8f9fa]"
         }`}
-        style={plan.highlight ? { backgroundColor: COLORS.blue } : { border: `1px solid ${COLORS.ink}4D`, color: COLORS.ink }}
+        style={plan.highlight ? { backgroundColor: PK.blue } : { border: `1px solid ${PK.mist}`, color: PK.ink }}
       >
         {plan.cta}
       </Link>
 
-      <ul className="mt-8 space-y-3">
+      <ul className="mt-7 space-y-3 border-t pt-7" style={{ borderColor: `${PK.ink}12` }}>
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-3">
-            <Check className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2} style={{ color: COLORS.blue }} />
-            <span className="font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.ink }}>{f}</span>
+            <Check className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2.2} style={{ color: PK.blue }} aria-hidden="true" />
+            <span className="font-normal tracking-[0.1px] leading-[1.5] text-[14px]" style={{ color: PK.ink }}>{f}</span>
           </li>
         ))}
       </ul>
@@ -145,166 +120,125 @@ function PricingPlansSection() {
   const { ref, visible } = useRevealOnce();
   const [billing, setBilling] = useState("annual");
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Pricing</p>
-        
-  <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-          Plans for <span style={{ color: COLORS.blue }}>every learner</span>.
-        </h1>
-         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-Start free. Upgrade when it’s working for you.</p>
-        <div className="mt-12"><BillingToggle billing={billing} onChange={setBilling} /></div>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-16 sm:px-8 lg:pb-24 lg:pt-20" style={{ fontFamily: FONT_FAMILY, backgroundColor: PK.white }}>
+      <Reveal visible={visible}>
+        <SectionHead
+          as="h1"
+          eyebrow="Pricing"
+          title="Plans for"
+          accent="every learner."
+          sub="Start free. Upgrade when it's working for you."
+        />
+        <div className="mt-10"><BillingToggle billing={billing} onChange={setBilling} /></div>
 
-        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mx-auto mt-12 grid w-full max-w-[1240px] grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 lg:gap-6">
           {PLANS.map((p) => (<PlanCard key={p.id} plan={p} billing={billing} />))}
         </div>
 
-        <p className="mt-8 text-center font-normal tracking-[0] leading-[16px] text-[12px]" style={{ color: COLORS.lightGrey }}>
-          Prices in USD · Regional pricing at checkout · Education discounts available
+        <p className="mt-8 text-center font-normal tracking-[0.1px] leading-[16px] text-[12px]" style={{ color: PK.lightGrey }}>
+          Prices in INR · Regional pricing at checkout · Education discounts available
         </p>
-      </FadeReveal>
+      </Reveal>
     </section>
   );
 }
 
-/* ═══ 03 · PERSONA STRIP — which plan is for you ═══ */
+/* ═══ 03 · PERSONA STRIP — which plan is for you (illustrated) ═══ */
 function PricingPersonaSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
-        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+    <Section tone="canvas">
+      <Reveal visible={visible}>
+        <SectionHead title="Every journey has" accent="a plan." />
+        <div className="mx-auto mt-12 grid w-full max-w-[1240px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
           {PERSONA_PLANS.map((p) => (
-            <Link key={p.persona} to={p.to} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
-              <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{p.persona}</p>
-              <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
-              <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
-              <span className="mt-6 font-normal tracking-[0] leading-[22px] text-[15px] group-hover:underline" style={{ color: COLORS.blue }}>See your page</span>
+            <Link
+              key={p.persona}
+              to={p.to}
+              className="group flex flex-col rounded-[20px] border bg-white p-6 text-center transition-all hover:-translate-y-0.5 hover:shadow-[0_1px_3px_rgba(60,64,67,0.12),0_6px_16px_rgba(60,64,67,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              style={{ borderColor: PK.mist }}
+            >
+              <div className="mx-auto w-full max-w-[140px] overflow-hidden rounded-[16px]">
+                <SpotIllustration subject={PERSONA_SCENE[p.persona?.toLowerCase()] || "compass"} className="aspect-[4/3] w-full" />
+              </div>
+              <p className="mt-4 font-medium uppercase tracking-[0.16em] leading-[14px] text-[11px]" style={{ color: PK.slate }}>{p.persona}</p>
+              <p className="mt-2 font-medium tracking-[0.1px] leading-[1.2] text-[19px]" style={{ color: PK.ink }}>{p.plan}</p>
+              <p className="mt-2 font-normal tracking-[0.1px] leading-[1.5] text-[13px]" style={{ color: PK.slate }}>{p.note}</p>
+              <span className="mt-5 font-normal tracking-[0.1px] leading-[22px] text-[14px] group-hover:underline" style={{ color: PK.blue }}>See your page</span>
             </Link>
           ))}
         </div>
-      </FadeReveal>
-    </section>
+      </Reveal>
+    </Section>
   );
 }
 
 /* ═══ 04 · COMPARISON TABLE ═══ */
 function CellValue({ value }) {
-  if (value === true) return <Check className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.blue }} />;
-  if (value === false) return <Minus className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: COLORS.lightGrey }} />;
-  return <span className="font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>{value}</span>;
+  if (value === true) return <Check className="mx-auto h-5 w-5" strokeWidth={2.2} style={{ color: PK.blue }} aria-hidden="true" />;
+  if (value === false) return <Minus className="mx-auto h-5 w-5" strokeWidth={2} style={{ color: PK.lightGrey }} aria-hidden="true" />;
+  return <span className="font-normal tracking-[0.1px] text-[14px]" style={{ color: PK.ink }}>{value}</span>;
 }
 function PricingComparisonSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
-        <div className="mx-auto mt-14 w-full max-w-[1240px] overflow-x-auto rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist }}>
+    <Section tone="white">
+      <Reveal visible={visible}>
+        <SectionHead title="See exactly" accent="what you get." />
+        <div className="mx-auto mt-12 w-full max-w-[1240px] overflow-x-auto rounded-[24px] border bg-white" style={{ borderColor: PK.mist }}>
           <table className="w-full min-w-[760px] border-collapse text-center">
             <thead>
-              <tr className="border-b" style={{ borderColor: COLORS.mist }}>
-                <th scope="col" className="px-6 py-6 text-left font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Features</th>
+              <tr className="border-b" style={{ borderColor: PK.mist }}>
+                <th scope="col" className="px-6 py-6 text-left font-medium tracking-[0.1px] text-[15px]" style={{ color: PK.ink }}>Features</th>
                 {["Start", "Personal", "Family", "Institution"].map((h) => (
-                  <th key={h} scope="col" className="px-6 py-6 font-medium tracking-[0] text-[16px]" style={{ color: h === "Personal" ? COLORS.blue : COLORS.ink }}>{h}</th>
+                  <th key={h} scope="col" className="px-6 py-6 font-medium tracking-[0.1px] text-[15px]" style={{ color: h === "Personal" ? PK.blue : PK.ink }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {COMPARISON.map((row, i) => (
-                <tr key={row.feature} className={i < COMPARISON.length - 1 ? "border-b" : ""} style={{ borderColor: `${COLORS.ink}14` }}>
-                  <th scope="row" className="px-6 py-5 text-left font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>{row.feature}</th>
-                  <td className="px-6 py-5"><CellValue value={row.start} /></td>
-                  <td className="px-6 py-5"><CellValue value={row.personal} /></td>
-                  <td className="px-6 py-5"><CellValue value={row.family} /></td>
-                  <td className="px-6 py-5"><CellValue value={row.institution} /></td>
+                <tr key={row.feature} className={i < COMPARISON.length - 1 ? "border-b" : ""} style={{ borderColor: `${PK.ink}12` }}>
+                  <th scope="row" className="px-6 py-4 text-left font-normal tracking-[0.1px] text-[14px]" style={{ color: PK.ink }}>{row.feature}</th>
+                  <td className="px-6 py-4"><CellValue value={row.start} /></td>
+                  <td className="px-6 py-4"><CellValue value={row.personal} /></td>
+                  <td className="px-6 py-4"><CellValue value={row.family} /></td>
+                  <td className="px-6 py-4"><CellValue value={row.institution} /></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </FadeReveal>
-    </section>
+      </Reveal>
+    </Section>
   );
 }
 
 /* ═══ 05 · TRUST BAND ═══ */
 function PricingTrustBand() {
-  const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-20" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
-          <Sparkles className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
-          <p className="text-center font-normal tracking-[0.24px] text-[15px]" style={{ color: COLORS.ink }}>
-            Cancel anytime · Your memory stays yours · Education discounts for students & teachers
-          </p>
-        </div>
-      </FadeReveal>
-    </section>
+    <Section tone="white" pad="tight">
+      <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-5 sm:flex-row" style={{ backgroundColor: PK.canvas }}>
+        <Sparkles className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: PK.blue }} aria-hidden="true" />
+        <p className="text-center font-normal tracking-[0.1px] text-[15px]" style={{ color: PK.ink }}>
+          Cancel anytime · Your memory stays yours · Education discounts for students &amp; teachers
+        </p>
+      </div>
+    </Section>
   );
 }
 
 /* ═══ 06 · FAQ ═══ */
 function PricingFAQSection() {
   const { ref, visible } = useRevealOnce();
-  const [open, setOpen] = useState(0);
-  const toggle = useCallback((i) => setOpen((cur) => (cur === i ? -1 : i)), []);
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>FAQ</p>
-        <h2 className="mx-auto max-w-[1100px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
-          Questions about pricing, answered.
-        </h2>
-        <div className="mx-auto mt-24 w-full max-w-[1400px]">
-          {PRICING_FAQ.map((item, i) => (
-            <div key={item.q} className="border-b py-10 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
-              <button type="button" aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                <span className="font-normal tracking-[0] leading-[1.15] text-[clamp(20px,2.2vw,30px)]" style={{ color: COLORS.ink }}>{item.q}</span>
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full sm:h-16 sm:w-16" style={{ backgroundColor: `${COLORS.ink}0A`, color: COLORS.ink }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`h-6 w-6 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}>
-                    <path d="M6 15l6-6 6 6" />
-                  </svg>
-                </span>
-              </button>
-              <div className={`grid transition-all duration-500 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                <div className="overflow-hidden">
-                  <p className="max-w-[1240px] pt-8 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.ink }}>{item.a}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+    <Section tone="canvas" width="narrow">
+      <Reveal visible={visible}>
+        <SectionHead eyebrow="FAQ" title="Questions about pricing," accent="answered." />
+        <div className="mt-10">
+          <FAQList items={PRICING_FAQ} />
         </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-
-/* ═══ 07 · FINAL CTA ═══ */
-function PricingCTASection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>Your journey is already happening. Start free.</h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Begin with a question today. Upgrade only when Visionary has earned it.
-        </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
-            Get started
-          </Link>
-          <Link to="/about" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
-            Talk to sales
-          </Link>
-        </div>
-      </div>
-    </section>
+      </Reveal>
+    </Section>
   );
 }
 
@@ -320,7 +254,13 @@ export default function AILearningPage() {
         <PricingComparisonSection />
         <PricingTrustBand />
         <PricingFAQSection />
-        <PricingCTASection />
+        <CTABand
+          title="Your journey is already happening."
+          accent="Start free."
+          sub="Begin with a question today. Upgrade only when Visionary has earned it."
+          primary={{ label: "Get started", to: "/register" }}
+          secondary={{ label: "Talk to sales", to: "/about" }}
+        />
       </main>
       <LandingFooter variant="quiet" />
     </div>

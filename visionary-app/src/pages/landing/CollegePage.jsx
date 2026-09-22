@@ -433,7 +433,7 @@ function ProStruggleSection() {
   const slide = SLIDES[index];
 
   return (
-    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-24 lg:py-32">
+    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-16 lg:py-24">
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
           <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
@@ -463,7 +463,7 @@ function ProStruggleSection() {
 const ProPromiseSection = React.memo(function ProPromiseSection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-16 lg:py-24" style={{ backgroundColor: "#f8f9fa" }}>
       <h2
         className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -797,7 +797,7 @@ function ProJourneySection() {
   }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
+    <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-16 lg:py-24">
       <FadeReveal visible={visible}>
         {/* header — eyebrow / heading / one-line sub */}
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
@@ -937,7 +937,7 @@ const ProClosingSection = React.memo(function ProClosingSection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
-    <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="06-closing" className="relative px-6 py-16 lg:py-24" style={{ backgroundColor: "#f8f9fa" }}>
       <p
         className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -988,7 +988,7 @@ function ProLanguageSection() {
   const activeLabel = LANGUAGE_CHIPS.find((c) => c.code === lang)?.label || lang;
 
   return (
-    <section ref={ref} data-section="07-language" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="07-language" className="relative px-6 py-16 lg:py-24">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
@@ -1146,7 +1146,7 @@ function ProContinuitySection() {
   const stage = CONTINUITY_STAGES[index];
 
   return (
-    <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="08-continuity" className="relative py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Your continuity
@@ -1253,7 +1253,7 @@ function ProAchievementSection() {
   }, [open]);
 
   return (
-    <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="09-achievement" className="relative py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with intelligence.</h2>
@@ -1315,7 +1315,7 @@ function ProJourneyFlowSection() {
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
-    <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1409,7 +1409,7 @@ function ProTrustSection() {
   const stepCards = useCallback((d) => goTo(index + d), [goTo, index]);
 
   return (
-    <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="11-trust" className="relative bg-white py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1454,7 +1454,7 @@ function ProTrustSection() {
 const ProCTASection = React.memo(function ProCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="12-cta" className="relative px-6 py-16 lg:py-24" style={{ backgroundColor: "#f8f9fa" }}>
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >

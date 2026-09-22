@@ -293,7 +293,7 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   const activePerson = LANDING_HERO_PEOPLE[index];
 
   // Same display treatment as category pages for consistency
-  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[#121317] text-[clamp(34px,9.57vw,168px)] sm:text-[clamp(40px,9.57vw,168px)]";
+  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1.05] text-[#121317] text-[clamp(38px,6.6vw,96px)] sm:text-[clamp(44px,6.6vw,96px)]";
 
   return (
     <section
@@ -312,20 +312,165 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
           relative
           mx-auto
           flex
-          min-h-[calc(100svh-64px)]
           w-full
           max-w-[1400px]
           flex-col
           items-center
           px-6
-          pb-24
-          pt-28
+          pb-16
+          pt-20
           text-center
           sm:px-8
-          sm:pt-32
-          lg:pt-36
+          sm:pt-24
+          lg:pb-20
+          lg:pt-28
         "
       >
+
+        {/* =========================================================
+            UNIVERSAL HEADLINE — Google grammar: headline first,
+            visual second. No 500px of dead air above the message.
+        ========================================================= */}
+
+        <p
+          className="hero-fade-up text-[12px] font-medium uppercase tracking-[0.16em] leading-[16px]"
+          style={{ color: COLORS.slate }}
+        >
+          For students, teachers, parents, professionals &amp; organizations
+        </p>
+
+        <h1
+          className="
+            hero-fade-up
+            mt-5
+          "
+          style={{
+            animationDelay: "80ms",
+          }}
+        >
+          <span aria-hidden="true" className={display}>
+            One Intelligence.
+          </span>
+          <span aria-hidden="true" className={display} style={{ color: COLORS.blue }}>
+            Built around you.
+          </span>
+          <span className="sr-only">One Intelligence. Built around you.</span>
+        </h1>
+
+        {/* =========================================================
+            SUPPORTING COPY
+        ========================================================= */}
+
+        <p
+          className="
+            hero-fade-up
+            mx-auto
+            mt-7
+            max-w-[640px]
+            font-normal
+            tracking-[0.1px]
+            leading-[1.65]
+            text-[17px]
+            sm:text-[18px]
+          "
+          style={{
+            color: COLORS.slate,
+            animationDelay: "180ms",
+          }}
+        >
+          Visionary understands what you're trying to do, adapts to how you
+          work, and carries useful context forward — across learning,
+          teaching, supporting, building and leading.
+        </p>
+
+        {/* =========================================================
+            CTA
+        ========================================================= */}
+
+        <div
+          className="
+            hero-fade-up
+            mt-9
+            flex
+            flex-wrap
+            items-center
+            justify-center
+            gap-4
+          "
+          style={{
+            animationDelay: "260ms",
+          }}
+        >
+          <Link
+            to="/register"
+            className="
+              inline-flex
+              h-12
+              items-center
+              justify-center
+              gap-2
+              rounded-full
+              bg-[#121317]
+              px-8
+              text-[15px]
+              font-medium
+              tracking-[0.1px]
+              text-white
+              transition-all
+              duration-200
+              hover:shadow-[0_1px_3px_rgba(60,64,67,0.3)]
+              active:scale-[0.98]
+              focus:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-[#4285F4]
+              focus-visible:ring-offset-2
+            "
+          >
+            Start free
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </Link>
+
+          <Link
+            to="/how-it-works"
+            className="
+              inline-flex
+              h-12
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-[#dadce0]
+              bg-white
+              px-8
+              text-[15px]
+              font-normal
+              tracking-[0.1px]
+              text-[#4285F4]
+              transition-colors
+              duration-200
+              hover:bg-[#F8F9FA]
+              focus:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-[#4285F4]
+              focus-visible:ring-offset-2
+            "
+          >
+            See how it works
+          </Link>
+        </div>
 
         {/* =========================================================
             HUMAN VISUAL
@@ -335,18 +480,16 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
         <div
           className="
             relative
-            mt-12
+            mt-16
             flex
-            h-[230px]
-            w-[230px]
+            h-[210px]
+            w-[210px]
             items-center
             justify-center
-            sm:mt-14
-            sm:h-[260px]
-            sm:w-[260px]
-            lg:mt-16
-            lg:h-[300px]
-            lg:w-[300px]
+            sm:h-[240px]
+            sm:w-[240px]
+            lg:h-[260px]
+            lg:w-[260px]
           "
         >
           {/* Main circular face */}
@@ -471,141 +614,6 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
             <path d="M36 66 l13 -4" />
           </svg>
         </div>
-
-        {/* =========================================================
-            UNIVERSAL HEADLINE
-            Same treatment as category pages for consistency
-        ========================================================= */}
-
-        <h1
-          className="
-            hero-fade-up
-            mt-14
-          "
-          style={{
-            animationDelay: "80ms",
-          }}
-        >
-          <span aria-hidden="true" className={display}>
-            One Intelligence.
-          </span>
-
-          <span className="sr-only">One Intelligence. Built around you.</span>
-        </h1>
-
-        {/* =========================================================
-            SUPPORTING COPY
-        ========================================================= */}
-
-        <p
-          className="
-            hero-fade-up
-            mx-auto
-            mt-10
-            max-w-[760px]
-            font-normal
-            tracking-[0]
-            leading-[25px]
-            text-[17.5px]
-          "
-          style={{
-            color: COLORS.slate,
-            animationDelay: "200ms",
-          }}
-        >
-          Visionary understands what you're trying to do, adapts to how you
-          work, and carries useful context forward — across learning,
-          teaching, supporting, building and leading.
-        </p>
-
-        {/* =========================================================
-            CTA
-        ========================================================= */}
-
-        <div
-          className="
-            hero-fade-up
-            mt-10
-            flex
-            flex-wrap
-            items-center
-            justify-center
-            gap-4
-          "
-          style={{
-            animationDelay: "280ms",
-          }}
-        >
-          <Link
-            to="/register"
-            className="
-              inline-flex
-              h-12
-              items-center
-              justify-center
-              gap-2
-              rounded-full
-              bg-[#121317]
-              px-8
-              text-[15px]
-              font-medium
-              tracking-[0]
-              text-white
-              transition-transform
-              duration-200
-              hover:scale-[1.01]
-              active:scale-[0.98]
-              focus:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-[#4285F4]
-              focus-visible:ring-offset-2
-            "
-          >
-            Start free
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4"
-              aria-hidden="true"
-            >
-              <path d="M5 12h14" />
-              <path d="M13 6l6 6-6 6" />
-            </svg>
-          </Link>
-
-          <Link
-            to="/how-it-works"
-            className="
-              inline-flex
-              h-12
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-[#dadce0]
-              bg-white
-              px-8
-              text-[15px]
-              font-normal
-              tracking-[0]
-              text-[#4285F4]
-              transition-colors
-              duration-200
-              hover:bg-[#F8F9FA]
-              focus:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-[#4285F4]
-              focus-visible:ring-offset-2
-            "
-          >
-            See how it works
-          </Link>
-        </div>
       </div>
 
       {/* Quiet transition into the next story */}
@@ -629,7 +637,7 @@ function LandingProblemSection() {
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
-    <section ref={ref} data-section="02-problem" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="02-problem" className="relative overflow-hidden bg-white py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
           <div className="lg:col-span-5 lg:pl-[6.5%]">
@@ -660,7 +668,7 @@ function LandingProblemSection() {
 const LandingPromiseSection = React.memo(function LandingPromiseSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
+    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
       <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         What if your intelligence never forgot <span style={{ color: COLORS.blue }}>where you were?</span>
       </h2>
@@ -726,7 +734,7 @@ function LandingMeetSection() {
     rows?.[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
   return (
-    <section ref={sectionRef} data-section="04-meet" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={sectionRef} data-section="04-meet" className="relative bg-white py-16 lg:py-24 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <div ref={headRef} className="px-6">
         <FadeReveal visible={visible}>
           <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Meet Visionary</p>
@@ -773,7 +781,7 @@ function LandingOneIntelligenceSection() {
   const finale = phase === 4;
   const state = OI_STATES[Math.min(phase, 3)];
   return (
-    <section ref={ref} data-section="05-one-intelligence" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="05-one-intelligence" className="relative overflow-hidden py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
       <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every tomorrow</p>
@@ -845,7 +853,7 @@ function LandingCommitmentSection() {
   const next = () => { setActive((a) => (a + 1) % COMMITMENT_STEPS.length); setRunId((r) => r + 1); };
   const step = COMMITMENT_STEPS[active];
   return (
-    <section ref={ref} data-section="06-commitment" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="06-commitment" className="relative overflow-hidden bg-white py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes cmFill{from{transform:scaleY(0)}to{transform:scaleY(1)}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our commitment</p>
@@ -912,7 +920,7 @@ function LandingLanguageSection() {
   }, []);
   const question = LG_QUESTIONS[qIndex][lang];
   return (
-    <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="07-language" className="relative overflow-hidden px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
@@ -1004,7 +1012,7 @@ function LandingTrustSection() {
   const activeCard = LX_TRUST_CARDS[cardIndex];
   const nextCard = LX_TRUST_CARDS[(cardIndex + 1) % LX_TRUST_CARDS.length];
   return (
-    <section ref={ref} data-section="08-trust" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="08-trust" className="relative overflow-hidden bg-white py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our trust</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
@@ -1035,7 +1043,7 @@ function LandingTrustSection() {
 function LandingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
+    <section ref={ref} data-section="09-cta" className="relative px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start when you are</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
@@ -1096,7 +1104,7 @@ function LandingExploreSection() {
 }
 
 /* 11 · FAQ */
-function FQChevron({ open, className = "h-6 w-6" }) {
+function FQChevron({ open, className = "h-5 w-5" }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`${className} transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
       <path d="M6 15l6-6 6 6" />
@@ -1107,24 +1115,24 @@ function FQChevron({ open, className = "h-6 w-6" }) {
 function LandingFAQSection() {
   const { ref, visible } = useRevealOnce();
   const [open, setOpen] = useState(0);
-  const toggle = useCallback((i) => { setOpen((cur) => (cur === i ? (i === 0 ? 1 : i - 1) : i)); }, []);
+  const toggle = useCallback((i) => { setOpen((cur) => (cur === i ? -1 : i)); }, []);
   return (
-    <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="11-faq" className="relative overflow-hidden px-6 py-16 lg:py-24" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
       <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
-        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Find answers to common questions about Visionary</h2>
-        <div className="mx-auto mt-24 w-full max-w-[1400px]">
+        <p className="text-center font-medium uppercase tracking-[0.16em] leading-[16px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
+        <h2 className="mx-auto mt-4 max-w-[18ch] text-balance text-center font-normal tracking-[-0.03em] leading-[1.12] text-[clamp(30px,3.6vw,44px)]" style={{ color: COLORS.ink }}>Questions, answered.</h2>
+        <div className="mx-auto mt-10 w-full max-w-[880px]">
           {FAQ_ITEMS.map((item, i) => (
-            <div key={item.q} className="border-b py-10 lg:py-12" style={{ borderColor: COLORS.line }}>
-              <button type="button" aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-[8px]">
-                <span className="font-normal tracking-[0] leading-[1.15] text-[clamp(22px,2.4vw,34px)]" style={{ color: COLORS.ink }}>{item.q}</span>
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full sm:h-16 sm:w-16" style={{ backgroundColor: COLORS.circle, color: COLORS.ink }}>
+            <div key={item.q} className="border-b last:border-b-0" style={{ borderColor: COLORS.line }}>
+              <button type="button" aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 rounded-[8px] py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                <span className="font-normal tracking-[0.1px] leading-[1.4] text-[17px] sm:text-[19px]" style={{ color: COLORS.ink }}>{item.q}</span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.circle, color: COLORS.ink }}>
                   <FQChevron open={open === i} />
                 </span>
               </button>
-              <div className={`grid transition-all duration-500 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className={`grid transition-all duration-300 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                 <div className="overflow-hidden">
-                  <p className="max-w-[1240px] pt-8 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.ink }}>{item.a}</p>
+                  <p className="max-w-[720px] pb-6 font-normal tracking-[0.1px] leading-[1.7] text-[15px]" style={{ color: COLORS.slate }}>{item.a}</p>
                 </div>
               </div>
             </div>

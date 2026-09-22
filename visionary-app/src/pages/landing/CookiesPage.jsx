@@ -8,6 +8,7 @@ export default function CookiesPage() {
       eyebrow="Cookies"
       titleParts={[{ text: "How we use " }, { text: "cookies.", accent: true }]}
       intro="The short version, then the full list."
+      heroIllustration="cookie"
       sections={[
         {
           id: "principles",
@@ -44,6 +45,7 @@ export default function CookiesPage() {
         primaryTo: "/contact",
         secondaryLabel: "Read privacy policy",
         secondaryTo: "/privacy",
+        illustration: "cookie",
       }}
     />
   );

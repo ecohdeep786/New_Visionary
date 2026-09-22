@@ -16,6 +16,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import StorySection from "@/components/landing/StorySection";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -149,18 +150,23 @@ export default function CareersPage() {
         {/* STORY BAND */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[920px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                Six hours of lectures.
-                <br />
-                Still not understanding the problem.
-              </p>
-              <p className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.blue }}>
-                That is the problem we are here to solve.
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Information is easier to find than ever. Understanding, practice, confidence, and continuity are not. Visionary is being built to connect those pieces instead of treating them as separate products.
-              </p>
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+              <div className="max-w-[920px]">
+                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
+                  Six hours of lectures.
+                  <br />
+                  Still not understanding the problem.
+                </p>
+                <p className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.blue }}>
+                  That is the problem we are here to solve.
+                </p>
+                <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
+                  Information is easier to find than ever. Understanding, practice, confidence, and continuity are not. Visionary is being built to connect those pieces instead of treating them as separate products.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-[28px] border" style={{ borderColor: COLORS.mist }}>
+                <SpotIllustration subject="team" title="Illustration of the Visionary team working together" className="aspect-[4/3] w-full" />
+              </div>
             </div>
           </div>
         </section>

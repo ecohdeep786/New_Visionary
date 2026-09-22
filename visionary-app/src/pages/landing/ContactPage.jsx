@@ -175,7 +175,7 @@ export default function ContactPage() {
           ]}
         />
 
-<section id="form" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+<section id="form" className="scroll-mt-24 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="02" title="Send a message" />
                     <Paragraph>Tell us what is happening, what you are trying to do, or what you need help understanding.</Paragraph>

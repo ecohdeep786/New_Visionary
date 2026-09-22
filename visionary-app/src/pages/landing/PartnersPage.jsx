@@ -191,7 +191,7 @@ export default function PartnersPage() {
           ]}
         />
 
-<section id="directory" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+<section id="directory" className="scroll-mt-24 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="09" title="Partner directory" />
                     <Paragraph>A directory is useful only when there are real partners to search for and clear criteria for being listed.</Paragraph>
@@ -218,7 +218,7 @@ export default function PartnersPage() {
                     </div>
         </section>
 
-<section id="become" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+<section id="become" className="scroll-mt-24 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="10" title="Become a partner" />
                     <Paragraph>Tell us what you do, who you work with, and where you think Visionary could become more useful.</Paragraph>

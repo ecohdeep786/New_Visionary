@@ -17,6 +17,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 
 const FONT_FAMILY =
   "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -140,15 +141,20 @@ export default function AccessibilityPage() {
         {/* STORY BAND */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[920px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                The goal is not to make everyone use Visionary the same way.
-                <br className="hidden lg:block" />
-                <span style={{ color: COLORS.ink }}>It is to give more people a way in.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
-              </p>
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+              <div className="max-w-[920px]">
+                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
+                  The goal is not to make everyone use Visionary the same way.
+                  <br className="hidden lg:block" />
+                  <span style={{ color: COLORS.ink }}>It is to give more people a way in.</span>
+                </p>
+                <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
+                  Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-[28px] border" style={{ borderColor: COLORS.mist }}>
+                <SpotIllustration subject="accessibility" title="Illustration of accessibility built into learning" className="aspect-[4/3] w-full" />
+              </div>
             </div>
           </div>
         </section>

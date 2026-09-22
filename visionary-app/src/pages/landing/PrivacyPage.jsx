@@ -206,10 +206,10 @@ export default function PrivacyPage() {
 
       <main id="main">
         {/* 01 — HERO */}
-        <section className="relative overflow-hidden bg-white px-6 pb-24 pt-32 lg:pb-28 lg:pt-40">
+        <section className="relative overflow-hidden bg-white px-6 pb-16 pt-16 sm:px-8 lg:pb-24 lg:pt-20">
          
 
-          <div className="mx-auto mt-16 max-w-[1050px] text-center">
+          <div className="mx-auto mt-10 max-w-[1050px] text-center">
             <p
               className="text-[12px] font-normal uppercase tracking-[0.43px]"
               style={{ color: COLORS.grey }}
@@ -296,7 +296,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 02 — THE SIMPLE IDEA */}
-        <section className="px-6 py-24 lg:py-32">
+        <section className="px-6 py-16 lg:py-24">
           <div className="mx-auto max-w-[1100px]">
             <div className="max-w-[780px]">
               <p
@@ -553,7 +553,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 06 — SECURITY */}
-        <section className=" px-6 py-24 lg:py-32">
+        <section className="px-6 py-16 lg:py-24">
           <div className="mx-auto max-w-[1000px] text-center">
             <p
               className="text-[12px] uppercase tracking-[0.43px]"
@@ -688,7 +688,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 08 — STUDENT / CHILD DATA NOTE */}
-        <section className=" px-6 py-24 lg:py-32">
+        <section className="px-6 py-16 lg:py-24">
           <div className="mx-auto max-w-[1000px]">
             <div className="rounded-[30px] border bg-white p-8 lg:p-10"
               style={{ borderColor: COLORS.mist }}
@@ -747,7 +747,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* 09 — FAQ */}
-        <section className="bg-white px-6 py-24 lg:py-32">
+        <section className="bg-white px-6 py-16 lg:py-24">
           <div className="mx-auto max-w-[900px]">
             <div className="text-center">
               <p

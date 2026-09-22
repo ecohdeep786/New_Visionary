@@ -15,6 +15,7 @@ import LandingNav from "@/components/landing/LandingNav";
 import { LEGAL_META } from "@/data/legalMeta";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
@@ -133,29 +134,34 @@ export default function SecurityPage() {
       <Breadcrumb page="Security" />
       <main id="main">
         {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: C.border }}>
+        <section className="border-b pt-16 sm:pt-20" style={{ borderColor: C.border }}>
           <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[960px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: C.slate }}>
-                <ShieldCheck className="h-4 w-4" strokeWidth={1.7} />
-                Security
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+              <div className="max-w-[960px]">
+                <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: C.slate }}>
+                  <ShieldCheck className="h-4 w-4" strokeWidth={1.7} />
+                  Security
+                </div>
+                <h1 className="max-w-[930px] text-[clamp(40px,5.6vw,64px)] font-normal leading-[1.06] tracking-[-0.04em]" style={{ color: C.ink }}>
+                  Secure by design.
+                </h1>
+                <p className="mt-6 max-w-[640px] text-[17px] leading-[1.65] tracking-[0.1px] sm:text-[18px]" style={{ color: C.graphite }}>
+                  Encryption, residency and access built in.
+                </p>
+                <p className="mt-4 text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
+                  Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.security.lastUpdated}</strong>
+                </p>
+                <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
+                  <span style={{ color: C.slate }}>Security information</span>
+                  <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
+                  <Link to="/privacy" className="inline-flex items-center gap-1.5 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
+                    Read Privacy
+                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
+                  </Link>
+                </div>
               </div>
-              <h1 className="max-w-[930px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: C.ink }}>
-                Secure by design.
-              </h1>
-              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                Encryption, residency and access built in.
-              </p>
-        <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
-          Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.security.lastUpdated}</strong>
-        </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
-                <span style={{ color: C.slate }}>Security information</span>
-                <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
-                <Link to="/privacy" className="inline-flex items-center gap-1.5 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
-                  Read Privacy
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
-                </Link>
+              <div className="hidden overflow-hidden rounded-[28px] border lg:block" style={{ borderColor: C.mist }}>
+                <SpotIllustration subject="shield" title="Illustration of a shield protecting learner data" className="aspect-[4/3] w-full" />
               </div>
             </div>
           </div>

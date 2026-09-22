@@ -32,6 +32,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
+    // Allow the Arena sandbox preview host so the live preview iframe can load the dev server
+    allowedHosts: true,
     headers: securityHeaders,
   },
   preview: {

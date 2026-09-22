@@ -189,7 +189,7 @@ export default function ResearchNewsPage() {
           ]}
         />
 
-<section id="publications" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+<section id="publications" className="scroll-mt-24 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="09" title="Publications and findings" />
                     <Paragraph>When Visionary has research that is ready to share, this is where it belongs.</Paragraph>

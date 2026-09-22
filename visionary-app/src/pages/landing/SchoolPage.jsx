@@ -177,7 +177,7 @@ export default function SchoolPage() {
       <Breadcrumb page="Help" />
       <main id="main">
         {/* ═══ HERO — mark + heading + search (Google Help pattern) ═══ */}
-        <section ref={ref} className="relative px-6 pb-16 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.white }}>
+        <section ref={ref} className="relative px-6 pb-16 pt-16 sm:px-8 lg:pt-20" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>
             <div className="mx-auto flex flex-col items-center text-center">
               <span className="flex h-20 w-20 items-center justify-center rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
@@ -217,7 +217,7 @@ export default function SchoolPage() {
         </section>
 
         {/* ═══ BODY — topics or answers ═══ */}
-        <section className="relative bg-white px-6 py-24 lg:py-32">
+        <section className="relative bg-white px-6 py-16 lg:py-24">
           {activeTopic ? (
             <div className="mx-auto w-full max-w-[900px]">
               <button type="button" onClick={() => setTopicId(null)}

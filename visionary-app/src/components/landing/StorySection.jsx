@@ -20,7 +20,7 @@ export default function StorySection({
   className = "",
 }) {
   return (
-    <section id={id} className={`px-6 py-20 sm:px-8 lg:px-10 lg:py-28 ${className}`}>
+    <section id={id} className={`px-6 py-16 sm:px-8 lg:px-10 lg:py-24 ${className}`}>
       <div className="mx-auto max-w-[1240px]">
         <div className="mb-10 sm:mb-12">
           <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: "#121317" }}>
