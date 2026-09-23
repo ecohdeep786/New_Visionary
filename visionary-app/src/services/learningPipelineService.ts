@@ -90,13 +90,13 @@ export function recordProjectSave(ctx:RequestContext,artifact:Artifact){
 }
 export function prepareLearningConversation(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.conversationId&&snapshot(ctx).conversations.some(c=>c.id===unit.conversationId))return unit.conversationId;const c=newConversation(ctx,unit.title);unit.conversationId=c.id;save(ctx,unit);return c.id;}
 /** L1→L4 seam; only authored adapter/status blocks are appended. No local answer synthesis. */
-export async function sendTeachingTurn(ctx:RequestContext,conversationId:string,text:string){
+export async function sendTeachingTurn(ctx:RequestContext,conversationId:string,text:string,inputType:'text'|'voice'='text'){
  const conversation=snapshot(ctx).conversations.find(c=>c.id===conversationId);if(!conversation)throw Error('Conversation not found.');
  updateConversation(ctx,conversationId,{draft:text});const unit=getLearningForConversation(ctx,conversationId);const intent=conversation.ask?.intent||'understand';
  const api=getTeachingInterface(ctx);const started=Date.now();const packet={input:text,intent,sessionId:unit?.id||conversationId,conceptId:unit?.conceptId,language:unit?.locale||ctx.locale,context:{material:conversation.ask?.material||'',source:conversation.ask?.source||'topic'}};
- emitInteractionEvent(ctx,{app:'ASK',action:'request',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,inputType:'text',intent,...curriculumFields(ctx)});
+ emitInteractionEvent(ctx,{app:'ASK',action:'request',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,inputType,intent,...curriculumFields(ctx)});
  const response=await (intent==='check'?api.requestFeedback(packet):intent==='build'?api.requestProjectGuidance(packet):api.requestExplanation(packet));guard(ctx);
  appendTeachingTurn(ctx,conversationId,text,response.text,response.status==='not_connected'?'en':packet.language,response.status);
- emitInteractionEvent(ctx,{app:'ASK',action:'response',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,latency:Date.now()-started,responseStatus:response.status,inputType:'text',intent,...curriculumFields(ctx)});return response;
+ emitInteractionEvent(ctx,{app:'ASK',action:'response',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,latency:Date.now()-started,responseStatus:response.status,inputType,intent,...curriculumFields(ctx)});return response;
 }
 export function learningPriority(ctx:RequestContext){const units=getLearningWorkspace(ctx).units;const unit=[...units].filter(u=>u.stage!=='completed').sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt))[0];const states=getStudentState(ctx).concepts;const due=states.find(c=>c.dueAt&&new Date(c.dueAt)<=new Date());return{unit,due};}

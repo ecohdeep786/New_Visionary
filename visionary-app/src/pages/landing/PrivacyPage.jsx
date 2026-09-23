@@ -191,6 +191,7 @@ export default function PrivacyPage() {
                 Last updated: <strong style={{ color: COLORS.ink }}>{LEGAL_META.privacy.lastUpdated}</strong>
               </p>
             </div>
+          </div>
         </section>
 
         {/* AT A GLANCE — 4 tiles */}
@@ -205,6 +206,7 @@ export default function PrivacyPage() {
                 </span>
               </a>
             ))}
+          </div>
         </section>
 
         {/* ON THIS PAGE + LEGAL CONTENT — sticky sidebar on desktop, mobile dropdown */}
@@ -501,6 +503,7 @@ export default function PrivacyPage() {
         </section>
               </article>
             </div>
+          </div>
         </section>
 
         {/* RELATED */}

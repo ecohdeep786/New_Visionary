@@ -345,7 +345,9 @@
   /* Motion safety — users who asked for less motion get none */
   @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: auto;
+      /* !important: this block precedes the later html{scroll-behavior:smooth} rule,
+         which otherwise overrides this auto at equal specificity (M-01). */
+      scroll-behavior: auto !important;
     }
 
     *,

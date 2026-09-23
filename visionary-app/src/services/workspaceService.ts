@@ -15,7 +15,7 @@ let fault: 'none' | 'offline' | 'error' = 'none';
 export function configureMock(options: { now?: () => Date; latency?: number; fault?: typeof fault }) { if(options.now) clock=options.now; if(options.latency!==undefined) latency=options.latency; if(options.fault) fault=options.fault; }
 const now = () => clock().toISOString();
 const id = () => crypto.randomUUID();
-function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }
+function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true,voice:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }
 function read(): Database { const raw=localStorage.getItem(KEY); if(!raw) return {version:2,people:[],workspaces:[],active:{},data:{},relationships:[]}; try { const result=JSON.parse(raw); if(result.version!==2) throw new Error(); return result; } catch { throw new Error('Workspace data could not be read. Your previous records have not been deleted.'); } }
 function write(db: Database) { try { localStorage.setItem(KEY,JSON.stringify(db)); } catch { throw new Error('Your changes could not be saved on this device. Free browser storage and try again.'); } if(typeof window!=='undefined') window.dispatchEvent(new CustomEvent('visionary:v2-change')); }
 function record(data: WorkspaceData, action: string, target: string) { data.audit.unshift({id:id(),action,target,at:now()}); }
@@ -44,7 +44,8 @@ export function addRole(personId:string,role:Role) {const db=read();const person
 export function setAgeBand(personId:string,ageBand:Person['ageBand']){const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Account not found.');person.ageBand=ageBand;write(db);}
 export function selectWorkspace(personId:string,workspaceId:string) {const db=read();const workspace=db.workspaces.find(w=>w.id===workspaceId&&w.personId===personId);if(!workspace)throw new Error('Workspace not available.');access(db,{personId,workspaceId,role:workspace.role,locale:'en'});db.active[personId]=workspaceId;write(db);}
 export function saveLastPath(ctx:RequestContext,path:string){if(!path.startsWith('/dashboard/'))return;const db=read();access(db,ctx);const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId)!;if(workspace.lastPath===path)return;workspace.lastPath=path;write(db);}
-export function snapshot(ctx:RequestContext):WorkspaceData {const db=read();const data=structuredClone(access(db,ctx));data.subscription=effectiveSubscription(db,ctx);return data;}
+export function snapshot(ctx:RequestContext):WorkspaceData {const db=read();const data=structuredClone(access(db,ctx));data.subscription=effectiveSubscription(db,ctx);// Workspaces saved before the voice seam default to the founder setting: voice on.
+data.preferences.voice??=true;return data;}
 export function workspaceIdentity(ctx:RequestContext){const db=read();access(db,ctx);return {person:structuredClone(db.people.find(p=>p.id===ctx.personId)!),workspace:structuredClone(db.workspaces.find(w=>w.id===ctx.workspaceId)!)};}
 function effectiveSubscription(db:Database,ctx:RequestContext){
  const own=access(db,ctx);const sub=structuredClone(own.subscription);const day=now().slice(0,10);

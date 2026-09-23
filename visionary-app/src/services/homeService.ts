@@ -2,6 +2,7 @@ import type { Locale, RequestContext } from '../domain/workspace.ts';
 import { familyReports, getWorkspace, workspaceIdentity } from './workspaceService.ts';
 import { getJourney } from './journeys.ts';
 import { learningPriority,getLearningWorkspace } from './learningPipelineService.ts';
+import { getDailyPlan } from './dailyPlanService.ts';
 import { getWeeklyObservations,getStudentClasswork } from './mentorStateService.ts';
 
 export interface HomeAction { label: string; path: string }
@@ -60,18 +61,18 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
       const ownedUnits = new Map(getLearningWorkspace(ctx).units.map(unit => [unit.conceptId,unit.title]));
       model.observations = getWeeklyObservations(ctx).slice(0,3).map(item => ({id:item.id,text:item.conceptId && ownedUnits.has(item.conceptId) ? item.text.replace('this concept',ownedUnits.get(item.conceptId)!) : item.text}));
       const assigned = getStudentClasswork(ctx)[0];
-      if (assigned) {
-        const route = `classes?class=${encodeURIComponent(assigned.classId)}`;
-        if (!session && !next.unit && assigned.dueAt) model.priority = {
+      if (assigned && !session && !next.unit && assigned.dueAt) {
+        model.priority = {
           id:assigned.id,title:assigned.title,detail:`Classwork from ${assigned.className}${assigned.dueAt ? ` · Due ${assigned.dueAt}` : ''}. Open it to review and submit your work.`,
-          action:action('Open classwork',route),alternative:action('Open learning outline','learn'),
+          action:action('Open classwork',`classes?class=${encodeURIComponent(assigned.classId)}`),alternative:action('Open learning outline','learn'),
           reason:'This is the next published assignment in a class where your enrollment is active.',source:'Connected classwork',
         };
-        else model.modules.push({id:'classwork',title:'From your class',rows:[{id:assigned.id,title:assigned.title,detail:`${assigned.className}${assigned.dueAt ? ` · Due ${assigned.dueAt}` : ''}`,action:action('Open',route)}]});
       }
     }
-    const artifact = [...data.artifacts].filter(a => a.status !== 'completed').sort((a,b) => b.updatedAt.localeCompare(a.updatedAt))[0];
-    if (artifact) model.modules.push({id:'build',title:'Something you are building',rows:[{id:artifact.id,title:artifact.title,detail:'Your saved project remains in Build.',action:action('Open projects','build')}]});
+    // The Daily Mentor Engine plan carries classwork, reviews, the open unit and project
+    // work as one sequenced day, replacing the earlier separate module lists.
+    const plan = getDailyPlan(ctx);
+    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action}))});
   } else if (ctx.role === 'teacher') {
     const lesson = resources.find(r => r.kind === 'lesson' && r.status === 'draft');
     model.priority = {id:lesson?.id || 'prepare',title:lesson ? `Continue preparing ${lesson.title}` : 'Prepare your next lesson',detail:'Review the objective, explanation and checks before sharing with a class.',action:action('Open preparation','prepare'),alternative:action('View classwork','classes'),reason:lesson ? 'You have an unfinished lesson draft in this teacher workspace.' : 'Start with the idea you want your learners to understand.',source:lesson ? 'Saved lesson draft' : 'Your selected teacher role',updatedAt:lesson?.updatedAt};
