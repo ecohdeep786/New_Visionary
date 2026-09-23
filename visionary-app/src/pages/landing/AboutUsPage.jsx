@@ -219,18 +219,184 @@ const SECURITY_ROWS = [
   { n: "03", title: "Your report gets fixed.", copy: "Responsible disclosure — we listen, we patch, we tell you." },
 ];
 
+/* ═══ MERGED FROM AboutPage.jsx — Google's product-grid + trust patterns ═══ */
+const PRODUCT_CARDS = [
+  {
+    title: "For Students",
+    desc: "Ask, practice, and get personalized feedback on every concept — from maths to mastery skills.",
+    to: "/student",
+    subject: "student",
+  },
+  {
+    title: "AI for Learning",
+    desc: "Our models understand questions, explanations, practice, and projects — not just keywords.",
+    to: "/ai-learning",
+    subject: "learn",
+  },
+  {
+    title: "Research",
+    desc: "How we study learning, measure understanding, and publish what works.",
+    to: "/research",
+    subject: "research",
+  },
+];
+
+const TRUST_PILLARS = [
+  {
+    title: "Privacy by design",
+    copy: "Your questions, conversations, ideas, and progress are personal. Your learning memory is yours alone.",
+    to: "/privacy",
+    subject: "shield",
+  },
+  {
+    title: "Safe by default",
+    copy: "Every answer is checked against age-appropriate safety guidance — before it reaches you. Nothing to configure.",
+    to: "/safety",
+    subject: "lock",
+  },
+  {
+    title: "Built responsibly",
+    copy: "Intelligence should help people without compromising what matters to them. Review our commitments.",
+    to: "/terms",
+    subject: "document",
+  },
+];
+
 /* ═══ HERO ═══ */
 function AboutHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id="about" className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="about" className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-28 lg:pt-36" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <h1 className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+        <GreyTag className="text-center">About Visionary</GreyTag>
+        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.06] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Make <span className="hero-fade-up inline-block" style={{ color: COLORS.ink }}>understanding</span> last.
         </h1>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           One intelligence that helps anyone learn, teach, support, build, and lead — anywhere, anytime, in any language.
         </p>
+        <Link
+          to="/register"
+          className="mt-8 inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+          style={{ backgroundColor: COLORS.blue }}
+        >
+          Start learning free
+        </Link>
+      </FadeReveal>
+    </section>
+  );
+}
+
+/* ═══ Product grid — Google's "Explore our products" 3-up ═══ */
+function AboutProductGrid() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">What we build</GreyTag>
+        <h2 className="mx-auto mt-6 max-w-[800px] text-center font-normal tracking-[-0.025em] leading-[1.1] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
+          Products that help you learn, teach, and grow
+        </h2>
+        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PRODUCT_CARDS.map((c) => (
+            <Link
+              key={c.title}
+              to={c.to}
+              className="group block rounded-[28px] border bg-white p-8 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+              style={{ borderColor: COLORS.mist }}
+            >
+              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
+                <SpotIllustration subject={c.subject} className="h-[36px] w-[36px]" title={c.title} />
+              </div>
+              <h3 className="mb-3 font-medium tracking-[0] leading-[1.2] text-[22px]" style={{ color: COLORS.ink }}>{c.title}</h3>
+              <p className="font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.desc}</p>
+              <span className="mt-6 inline-block font-medium text-[14px]" style={{ color: COLORS.blue }}>
+                Learn more →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}
+
+/* ═══ Trust pillars — Google's Safety/Privacy/Security trust links ═══ */
+function AboutTrustSection() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">Trust & safety</GreyTag>
+        <h2 className="mx-auto mt-6 max-w-[800px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
+          Built with safety, privacy, and responsibility at the core
+        </h2>
+        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[26px] text-[17px]" style={{ color: COLORS.grey }}>
+          Your data is private by design, every interaction is safe by default, and our AI is built responsibly.
+        </p>
+        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {TRUST_PILLARS.map((p) => (
+            <Link
+              key={p.title}
+              to={p.to}
+              className="group block rounded-[28px] border bg-white p-8 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
+              style={{ borderColor: COLORS.mist }}
+            >
+              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
+                <SpotIllustration subject={p.subject} className="h-[36px] w-[36px]" title={p.title} />
+              </div>
+              <h3 className="mb-3 font-medium tracking-[0] leading-[1.2] text-[22px]" style={{ color: COLORS.ink }}>{p.title}</h3>
+              <p className="font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{p.copy}</p>
+              <span className="mt-6 inline-block font-medium text-[14px]" style={{ color: COLORS.blue }}>
+                Learn more →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}
+
+/* ═══ Newsletter — Google's "Get the latest" pattern ═══ */
+function AboutNewsletterSection() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <div className="mx-auto max-w-[640px] text-center">
+          <GreyTag className="text-center">Newsletter</GreyTag>
+          <h2 className="mt-6 font-normal tracking-[-0.02em] leading-[1.06] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
+            Get the latest news from Visionary
+          </h2>
+          <p className="mx-auto mt-6 max-w-[560px] font-normal tracking-[0] leading-[26px] text-[17px]" style={{ color: COLORS.grey }}>
+            Product updates, research highlights, and learning tips — no spam, ever.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const email = e.target.elements.email.value;
+              if (email) window.location.href = `/register?ref=newsletter&email=${encodeURIComponent(email)}`;
+            }}
+            className="mt-10 flex flex-col gap-3 sm:flex-row"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              className="flex-1 rounded-[32px] border border-[#dadce0] px-6 py-3.5 text-[15px] placeholder-[#9AA0A6] outline-none focus:border-[#4285F4]"
+              style={{ backgroundColor: COLORS.white }}
+            />
+            <button
+              type="submit"
+              className="rounded-full px-10 font-medium text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98]"
+              style={{ backgroundColor: COLORS.blue }}
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
       </FadeReveal>
     </section>
   );
@@ -357,16 +523,21 @@ function AboutApproachSection() {
           </span>
         </div>
 
-        <div className="mx-auto mt-16 w-full max-w-[1080px]">
-          {APPROACH_ROWS.map((r, i) => (
-            <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < APPROACH_ROWS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
-              <div>
-                <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
+        <div className="mx-auto mt-16 grid w-full max-w-[1400px] gap-16 lg:grid-cols-[320px_1fr] lg:gap-24 xl:gap-32">
+          <div className="flex items-start justify-center">
+            <SpotIllustration subject="math" className="h-[260px] w-[260px]" title="Understanding starts from what you know" />
+          </div>
+          <div>
+            {APPROACH_ROWS.map((r, i) => (
+              <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < APPROACH_ROWS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
+                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
+                <div>
+                  <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
+                  <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </FadeReveal>
     </section>
@@ -922,16 +1093,21 @@ function AboutResearchSection() {
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           The way Visionary teaches is not arbitrary. It is based on decades of research in cognitive science, pedagogy, and language acquisition.
         </p>
-        <div className="mx-auto mt-16 w-full max-w-[1080px]">
-          {RESEARCH_PRINCIPLES.map((r, i) => (
-            <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < RESEARCH_PRINCIPLES.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-              <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
-              <div>
-                <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
+        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-16 lg:grid-cols-[1fr_320px] lg:gap-24 xl:gap-32">
+          <div>
+            {RESEARCH_PRINCIPLES.map((r, i) => (
+              <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < RESEARCH_PRINCIPLES.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
+                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
+                <div>
+                  <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
+                  <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="flex items-start justify-center">
+            <SpotIllustration subject="research" className="h-[260px] w-[260px]" title="Research grounded in learning science" />
+          </div>
         </div>
       </FadeReveal>
     </section>
@@ -1087,17 +1263,28 @@ export default function CompetitiveExamsPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <main id="main">
+        <AboutHeroSection />
         <AboutMissionSection />
         <AboutWhySection />
+        <AboutProductGrid />
+        <AboutTrustSection />
         <AboutAppsSection />
         <AboutStatBand />
         <AboutBeliefsSection />
         <AboutVisionSection/>
         <AboutCompanySection />
         <AboutPeopleSection/>
-        <AboutHubSection />
-        <AboutCTASection />
+        <AboutSafetySection />
+        <AboutPrivacySection />
+        <AboutSecuritySection />
+        <AboutAccessibilitySection />
+        <AboutTermsSection />
+        <AboutCookiesSection />
+        <AboutResearchSection />
         <AboutContactSection/>
+        <AboutHubSection />
+        <AboutNewsletterSection />
+        <AboutCTASection />
       </main>
       <LandingFooter />
     </div>

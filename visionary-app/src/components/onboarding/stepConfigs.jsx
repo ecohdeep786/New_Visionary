@@ -193,20 +193,6 @@ export const DAILY_HOURS = [
 
 /* ── Helper ── */
 
-export function generateSubjects(board, gradeLevel) {
-  const isHighSec = ["Class 11", "Class 12"].includes(gradeLevel);
-  const isSecondary = ["Class 9", "Class 10"].includes(gradeLevel);
-  const isMiddle = ["Class 6", "Class 7", "Class 8"].includes(gradeLevel);
-
-  if (isHighSec) {
-    return ["Physics", "Chemistry", "Mathematics", "English", "Computer Science"];
-  }
-  if (isSecondary || isMiddle) {
-    return ["Mathematics", "Science", "Social Science", "English", "Hindi"];
-  }
-  return ["Mathematics", "English", "Hindi", "Environmental Studies", "General Knowledge"];
-}
-
 /* ── Step Definitions ── */
 
 export const NAME_STEP = {
@@ -286,7 +272,7 @@ const StudentOptionalForm = ({ data, updateData }) => {
       {isHighSchool && (
         <div className="mb-8">
           <p className="text-sm font-medium text-[#121317] mb-2">Also preparing for competitive exams?</p>
-          <p className="text-xs text-[#5f6368] mb-3">We'll create a second learning environment alongside your school curriculum.</p>
+          <p className="text-xs text-[#5f6368] mb-3">We’ll save this goal separately; exam content connects when the content service is available.</p>
           <ChoiceGrid
             options={COMPETITIVE_EXAMS}
             value={data.competitive_exam}
@@ -328,15 +314,15 @@ export const SCHOOL_FLOW_STEPS = [
   {
     id: "context",
     title: "Where are you studying?",
-    subtitle: "Tell us about your school and class so we can auto-configure your curriculum.",
+    subtitle: "Tell us your context so Learn can find relevant content when it is connected.",
     component: StudentContextForm,
     canContinue: (data) => data.board && data.medium && data.grade_level,
     illustration: "student",
   },
   {
     id: "curriculum",
-    title: "Your curriculum is ready",
-    subtitle: "We've auto-configured your subjects based on your board and class.",
+    title: "Your learning context",
+    subtitle: "Review what you entered. Missing official content will use a clearly marked provisional outline.",
     component: CurriculumSummary,
     continueLabel: "Looks good",
     illustration: "learn",

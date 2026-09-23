@@ -8,6 +8,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import PageHeading, { Accent } from "@/components/landing/PageHeading";
 import StorySection from "@/components/landing/StorySection";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY =
@@ -24,20 +25,6 @@ const COLORS = {
   blue: "#4285F4",
   white: "#ffffff",
 };
-
-const SECTIONS = [
-  { id: "why", number: "01", title: "Why we research", summary: "The questions behind Visionary's product and learning experience." },
-  { id: "questions", number: "02", title: "Questions we are exploring", summary: "The areas where we need evidence, not assumptions." },
-  { id: "learning", number: "03", title: "How people learn", summary: "Understanding explanation, practice, memory, confidence, and progress." },
-  { id: "intelligence", number: "04", title: "How intelligence should adapt", summary: "Exploring how an AI system can respond to context rather than only prompts." },
-  { id: "language", number: "05", title: "Language and understanding", summary: "Studying what changes when people can think and communicate naturally." },
-  { id: "continuity", number: "06", title: "Learning over time", summary: "Understanding how previous learning can help shape what comes next." },
-  { id: "responsible", number: "07", title: "Responsible research", summary: "Keeping evidence, uncertainty, privacy, and human impact in the work." },
-  { id: "work", number: "08", title: "Research to product", summary: "How ideas move from a question into something people can actually use." },
-  { id: "publications", number: "09", title: "Publications and findings", summary: "A home for research that Visionary is ready to share." },
-  { id: "collaboration", number: "10", title: "Research with others", summary: "How future academic, educational, and technical collaboration can grow." },
-  { id: "contact", number: "11", title: "Contact", summary: "How to reach Visionary about research." },
-];
 
 function scrollToSection(id) {
   const element = document.getElementById(id);
@@ -61,41 +48,6 @@ function Paragraph({ children }) {
   );
 }
 
-function ResearchCard({ icon: Icon, eyebrow, title, children }) {
-  return (
-    <div className="rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-        <Icon className="h-[19px] w-[19px]" strokeWidth={1.7} />
-      </div>
-      <div className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.lightGrey }}>{eyebrow}</div>
-      <h3 className="mt-1.5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
-      <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-    </div>
-  );
-}
-
-function PrincipleRow({ icon: Icon, title, children }) {
-  return (
-    <div className="flex gap-4 border-b py-6 last:border-b-0" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.soft }}>
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-      </div>
-      <div>
-        <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>{title}</h3>
-        <p className="mt-2 max-w-[680px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-      </div>
-    </div>
-  );
-}
-
-function Note({ children }) {
-  return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
-      <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-    </div>
-  );
-}
-
 export default function ResearchNewsPage() {
 
 
@@ -116,20 +68,27 @@ export default function ResearchNewsPage() {
           </div>
         </PageHeading>
 
-        {/* STORY BAND */}
+        {/* STORY BAND — text + visual (Google research.google hero pattern → Visionary uses research illustration) */}
         <section className="border-b" style={{ borderColor: COLORS.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[940px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                A feature can work.
-                <br />
-                That does not mean it works
-                <br />
-                <span style={{ color: COLORS.blue }}>for learning.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                Research helps us tell the difference. It gives us a way to test assumptions, understand people more deeply, and decide what belongs in the product.
-              </p>
+            <div className="grid items-center gap-12 lg:grid-cols-[560px_1fr] lg:gap-16">
+              <div className="max-w-[560px]">
+                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
+                  A feature can work.
+                  <br />
+                  That does not mean it works
+                  <br />
+                  <span style={{ color: COLORS.blue }}>for learning.</span>
+                </p>
+                <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
+                  Research helps us tell the difference. It gives us a way to test assumptions, understand people more deeply, and decide what belongs in the product.
+                </p>
+              </div>
+              <div className="lg:justify-end">
+                <div className="overflow-hidden rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
+                  <SpotIllustration subject="research" className="aspect-[4/3] w-full" title="Research grounded in learning science" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -193,7 +152,7 @@ export default function ResearchNewsPage() {
           <div className="mx-auto max-w-[1240px]">
                     <SectionHeading number="09" title="Publications and findings" />
                     <Paragraph>When Visionary has research that is ready to share, this is where it belongs.</Paragraph>
-                    <div className="mt-8 rounded-[24px] border p-7 sm:p-8" style={{ borderColor: COLORS.border, backgroundColor: COLORS.soft }}>
+                    <div className="mt-8 rounded-[24px] border p-7 sm:p-8 bg-white" style={{ borderColor: COLORS.border }}>
                       <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                         <BookOpen className="h-5 w-5" strokeWidth={1.7} />
                       </div>

@@ -19,9 +19,9 @@ const ROUTE_CHUNKS = () => [
   import("@/pages/landing/CollegePage"),
   import("@/pages/landing/CoachingPage"),
   import("@/pages/landing/OrganizationPage"),
-  import("@/pages/landing/CompetitiveExamsPage"),
+  import("@/pages/landing/AboutUsPage"),
   import("@/pages/landing/AILearningPage"),
-  import("@/pages/landing/ResearchPage"),
+  import("@/pages/landing/DownloadPage"),
   import("@/pages/landing/CareersPage"),
   import("@/pages/landing/ResearchNewsPage"),
   import("@/pages/landing/CommunityPage"),
@@ -48,7 +48,7 @@ const connectionAllowsPrefetch = () => {
 export function RoutePrefetcher() {
   useEffect(() => {
     if (!("requestIdleCallback" in window) || !connectionAllowsPrefetch()) return undefined;
-    const run = () => { for (const load of ROUTE_CHUNKS()) load.catch(() => {}); };
+    const run = () => { for (const load of ROUTE_CHUNKS()) load.catch(() => { }); };
     const id = window.requestIdleCallback(run, { timeout: 3000 });
     return () => window.cancelIdleCallback(id);
   }, []);

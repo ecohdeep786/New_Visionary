@@ -6,8 +6,10 @@ import { useStudentData } from "@/hooks/useStudentData";
 import { cubeExercises, scoreExercises } from "@/lib/practiceExercises";
 import JourneyCatalogue from "@/components/dashboard/JourneyCatalogue";
 import { localDate } from "@/lib/learningMetrics";
+import LearningWorkspace from './LearningWorkspace';
 
-export default function Practice() {
+export default function Practice(){const [params]=useSearchParams();return params.get('legacy')==='1'||params.has('topic')&&!params.has('unit')?<LegacyPractice/>:<LearningWorkspace practice/>;}
+function LegacyPractice() {
   const data = useStudentData();
   const [params] = useSearchParams();
   const [active, setActive] = useState(false);

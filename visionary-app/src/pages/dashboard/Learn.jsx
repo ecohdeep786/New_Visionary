@@ -8,10 +8,12 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import SubjectPills from "@/components/dashboard/learn/SubjectPills";
 import TopicCard from "@/components/dashboard/learn/TopicCard";
 import JourneyCatalogue from '@/components/dashboard/JourneyCatalogue';
+import LearningWorkspace from './LearningWorkspace';
 
 const filters = [{ value: "all", label: "All topics" }, { value: "not-started", label: "Not started" }, { value: "in-progress", label: "In progress" }, { value: "mastered", label: "Mastered" }, { value: "saved", label: "Saved" }];
 
-export default function Learn() {
+export default function Learn(){const [params]=useSearchParams();return params.get('legacy')==='1'||params.has('subject')&&!params.has('unit')?<LegacyLearn/>:<LearningWorkspace/>;}
+function LegacyLearn() {
   const data = useStudentData();
   const theme = useThemeColor();
   const [params, setParams] = useSearchParams();

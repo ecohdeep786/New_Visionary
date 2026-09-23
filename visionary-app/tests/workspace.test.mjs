@@ -94,3 +94,13 @@ test("preview account isolation, consent, persistence, and idempotent onboarding
   assert.equal((await appClient.entities.StudyLog.filter({owner_email:student.email})).length,0);
   await assert.rejects(appClient.integrations.Core.InvokeLLM(),/not available/);
 });
+
+test('onboarding keeps a competitive goal without inventing exam subjects', async () => {
+  memory.clear();
+  const email='exam-no-subjects@visionary.test';
+  await appClient.auth.register({email,password:'Preview-test-123!'});
+  await appClient.auth.verifyOtp({email});
+  const student=await appClient.auth.updateMe({identity:'student'});
+  await initializeLearningWorkspace(appClient,student,{identity:'student',education_stage:'competitive',target_exam:'JEE Main'});
+  assert.deepEqual(await appClient.entities.Subject.list(),[]);
+});

@@ -1,24 +1,3 @@
-const competitiveSubjects = {
-  "JEE Main": ["Physics", "Chemistry", "Mathematics"],
-  "JEE Advanced": ["Physics", "Chemistry", "Mathematics"],
-  NEET: ["Physics", "Chemistry", "Biology"],
-  UPSC: ["General Studies", "Current Affairs", "CSAT"],
-  CAT: ["Quantitative Aptitude", "Verbal Ability", "Data Interpretation"],
-  CUET: ["Language", "Domain Subjects", "General Test"],
-};
-
-function subjectsForProfile(profile) {
-  if (profile.education_stage === "competitive") {
-    return competitiveSubjects[profile.target_exam] || profile.subjects || [];
-  }
-
-  if (profile.education_stage === "higher_ed") {
-    return profile.subjects || [];
-  }
-
-  return profile.subjects || [];
-}
-
 /**
  * Temporary client-side bootstrap for the local prototype store. The record
  * shape is owner-scoped so replacing this with a Firebase/GCP repository is
@@ -29,7 +8,9 @@ export async function initializeLearningWorkspace(client, user, profile) {
 
   const existingSubjects = await client.entities.Subject.filter({ owner_email: user.email });
 
-  const subjects = subjectsForProfile(profile);
+  // Onboarding labels are user-entered. Curriculum comes from ContentRepository
+  // after workspace creation; no exam or board subject list is inferred here.
+  const subjects = Array.isArray(profile.subjects) ? profile.subjects : [];
   await Promise.all(
     subjects.filter(name => !existingSubjects.some(subject => subject.name === name)).map((name) => {
       const confidence = profile.subject_confidence?.[name];

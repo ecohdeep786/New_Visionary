@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
@@ -199,6 +199,7 @@ export default function StudentClasses() {
               <h2 className="text-[24px] font-medium text-white tracking-tight">{openClass.name}</h2>
               {openClass.section && <p className="text-white/85 text-sm mt-1">{openClass.section}</p>}
               {openClass.subject && <p className="text-white/70 text-sm mt-0.5">{openClass.subject}</p>}
+              {openClass.subject && <Link className="v-button mt-4" to={`/dashboard/learn?fromClass=${encodeURIComponent(openClass.id)}`}>Explore {openClass.subject} in Learn</Link>}
             </div>
           </div>
 

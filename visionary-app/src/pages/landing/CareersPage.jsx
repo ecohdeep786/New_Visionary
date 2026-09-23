@@ -34,18 +34,6 @@ const COLORS = {
   white: "#ffffff",
 };
 
-const SECTIONS = [
-  { id: "why", number: "01", title: "Why this work", summary: "The problem Visionary is trying to solve." },
-  { id: "what-building", number: "02", title: "What we are building", summary: "The product and system we are working toward." },
-  { id: "how-work", number: "03", title: "How we work", summary: "How ideas become product decisions and working software." },
-  { id: "where-contribute", number: "04", title: "Where you can contribute", summary: "The disciplines that shape Visionary." },
-  { id: "who-we-need", number: "05", title: "Who we need", summary: "The kind of people and thinking that fit the work." },
-  { id: "open-roles", number: "06", title: "Open roles", summary: "Current opportunities at Visionary." },
-  { id: "students", number: "07", title: "Students and early careers", summary: "Ways to learn with the team as your career begins." },
-  { id: "application", number: "08", title: "General application", summary: "Reach out even when your exact role is not listed." },
-  { id: "contact", number: "09", title: "Contact", summary: "How to reach Visionary about careers." },
-];
-
 function scrollToSection(id) {
   const element = document.getElementById(id);
   if (!element) return;
@@ -316,6 +304,53 @@ export default function CareersPage() {
                 Other ways to contact us
                 <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 08 · WORKING AT VISIONARY — cards (Google's "Working at Google" pattern) */}
+        <section id="working-at" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+          <div className="mx-auto max-w-[1240px]">
+            <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+              Working at Visionary
+            </h2>
+            <p className="mt-4 max-w-[680px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
+              We are a small, focused team. Here is how it actually works — and where you fit.
+            </p>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <a href="/research" className="group rounded-[16px] border bg-white p-7 transition-all hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                  <UsersRound className="h-[19px] w-[19px]" strokeWidth={1.7} />
+                </div>
+                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Our approach to research</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>Evidence-led, learner-grounded, and published openly.</p>
+                <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
+                  Learn more
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
+                </span>
+              </a>
+              <a href="https://www.google.com/about/careers/applications/how-we-hire" className="group rounded-[16px] border bg-white p-7 transition-all hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                  <Code2 className="h-[19px] w-[19px]" strokeWidth={1.7} />
+                </div>
+                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>How we hire</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>Conversation over tricks. Real work, real signal.</p>
+                <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
+                  See how we hire
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
+                </span>
+              </a>
+              <a href="/research" className="group rounded-[16px] border bg-white p-7 transition-all hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                  <FlaskConical className="h-[19px] w-[19px]" strokeWidth={1.7} />
+                </div>
+                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Student programs</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>Internships, apprenticeships, and research residencies.</p>
+                <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
+                  Learn more
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
+                </span>
+              </a>
             </div>
           </div>
         </section>

@@ -1,360 +1,379 @@
+## Master Prompt: Google-Inspired Page Redesign Project
+
+Review the **entire existing product and all current pages first** before making any changes. I have updated files recently, so always work from the latest version of the project.
+
+Your goal is to improve the product’s public-facing pages so they feel as polished, structured, trustworthy, accessible, and consistent as Google’s web experiences—while still preserving our own product identity, content, and functionality.
+
+Do **not** simply copy Google text, add a Google-like illustration, or make superficial visual changes. Study the referenced pages deeply: their layout systems, navigation, hierarchy, spacing, typography, cards, content flow, responsive behavior, calls-to-action, accessibility patterns, trust signals, footer structure, and visual storytelling. Then adapt those principles appropriately to our current product.
+
+The final product should feel like a premium, modern, Google-quality experience with a consistent design system across all pages.
+
+## Core Working Rules
+
+1. **Start by auditing the current product**
+   - Review all existing pages, components, layouts, styles, navigation, footer, responsive behavior, images, and content.
+   - Identify what has changed in the latest files before editing anything.
+   - Understand the current design system before proposing or implementing improvements.
+   - Do not remove working functionality unless it is intentionally being replaced with a better version.
+
+2. **Work on one page at a time**
+   - Complete one page fully before starting the next page.
+   - Do not partially redesign multiple pages at once.
+   - For each page, first review our current implementation, then study every related reference link listed for that page.
+   - Only move to the next page after the current page is complete, polished, responsive, and consistent with the overall product.
+
+3. **Study reference pages deeply**
+   - Inspect the reference pages carefully, not only their text or hero section.
+   - Analyze:
+     - Header and navigation behavior
+     - Hero composition and messaging hierarchy
+     - Typography scale and line length
+     - Grid, spacing, alignment, and whitespace
+     - Card patterns and section composition
+     - Image, icon, illustration, and visual storytelling approach
+     - CTA placement and button hierarchy
+     - Interactive elements
+     - Trust, privacy, safety, and credibility signals
+     - Mobile and tablet layout behavior
+     - Accessibility and readable contrast
+     - Footer structure and legal navigation
+   - Use Google’s design quality and structural thinking as inspiration, but create an original implementation for our brand and product.
+
+4. **Maintain one unified product design system**
+   - Use consistent typography, color usage, spacing, buttons, cards, form controls, icons, section patterns, and animations across all redesigned pages.
+   - Every page should feel like part of the same product—not like separate templates.
+   - Improve the global header, global footer, responsive navigation, and reusable UI components when necessary.
+   - Ensure all pages work well on desktop, tablet, and mobile.
+
+5. **Use images intentionally**
+   - Add or improve images, illustrations, icons, diagrams, screenshots, and visual assets where they improve comprehension or trust.
+   - Do not use decorative visuals only to fill empty space.
+   - Each visual should support the page’s message, product story, feature explanation, safety concept, or user action.
+   - Use an original, consistent visual style throughout the product.
+   - Optimize images for performance and provide meaningful alt text.
+
+6. **Focus on real page improvement**
+   - Do not treat this as a text rewrite.
+   - Do not only add a hero illustration and consider the page complete.
+   - Improve the complete experience: structure, content hierarchy, clarity, interactions, usability, responsive behavior, design quality, and conversion flow.
+   - Each redesigned page should be noticeably more thoughtful, modern, clear, and trustworthy than the current version.
+
+7. **Completion checklist for every page**
+   Before moving to the next page, confirm that:
+   - The current page was reviewed first.
+   - Every assigned reference link was reviewed.
+   - The page structure was improved, not only the copy.
+   - The design aligns with the shared product system.
+   - The page is responsive across desktop, tablet, and mobile.
+   - Accessibility was considered, including contrast, keyboard navigation, focus states, semantic structure, labels, and alt text.
+   - Images and icons support the content.
+   - CTAs are clear and logically placed.
+   - The page is visually polished and production-ready.
+   - Header, footer, and navigation remain consistent.
+
+***
+
+## Required Workflow for Each Page
+
+Follow this exact process for **every page**:
+
+1. Open and inspect the current page in our product.
+2. Review the latest related files and components.
+3. Identify the current page’s weaknesses, missing sections, inconsistent components, and usability issues.
+4. Visit and study each Google reference link assigned to that page.
+5. Extract the useful design principles, information architecture, section order, interaction ideas, visual patterns, and trust-building elements.
+6. Plan how those principles can improve our product without copying Google’s content or branding.
+7. Redesign and implement the page completely.
+8. Add or improve relevant images, illustrations, icons, diagrams, and visual assets.
+9. Test the page for responsiveness, accessibility, consistency, and visual quality.
+10. Review the completed page against both:
+   - Our existing product design system
+   - The quality, clarity, and structure of the Google reference pages
+11. Only after the page is complete, move to the next page.
+
+***
+
+
+## Page router in the repo:
+/about  → AboutUsPage.jsx 
+/privacy → PrivacyPage
+/career → redirects to /careers
+/research → ResearchNewsPage
+/community → CommunityPage
+/contact → ContactPage
+/partners → PartnersPage
+/updates → UpdatesPage
+/referral → ReferralPage
+/safety → SafetyPage
+/research → ResearchPage 
+/terms → TermsPage
+/security → SecurityPage
+/accessibility → AccessibilityPage
+/cookies → CookiesPage
 
+## Page-by-Page Scope and References
 
-You are building a AGI (Artifical General Super Intelligence) Product product for learning and building.
-SUBJECT: Build the internal Visionary product now. Do not turn this into a documentation project.
-
-IMPORTANT INTENT
-Previous agents produced a lot of useful STATUS, DESIGN_INVENTORY, UX, QA and DECISION documents. That phase is enough for now. Your job is NOT to write more analysis, NOT to create new design docs, NOT to redesign marketing pages, and NOT to simulate model answers locally.
-
-Your job is to IMPLEMENT the internal product so the backend/frontend flows are complete enough for beta, with real seams for ML and database content to be connected later.
-
-Read this instruction fully, then execute in order. Do not stop to ask for review unless you encounter an irreversible, security, data-loss or destructive-schema decision. Continue autonomously.
-
-═══════════════════════════════════════════════════════════
-0. CONTEXT YOU MAY USE
-═══════════════════════════════════════════════════════════
-Visionary is India's Pedagogical AGI for learning and building in native languages.
-The product serves five categories through one shared intelligence:
-  - Student
-  - Teacher
-  - Parent
-  - Professional
-  - Organization
-
-The four permanent product apps are:
-  LEARN · ASK · PRACTICE · BUILD
-
-The core architecture is VATS:
-  L1 Perception
-  L2 Student Cognition Model / SCM
-  L3 Adaptive Teaching Engine / ATE
-  L4 Model Stack / inference seam
-  L5 3D visualization seam
-  L6 Memory
-  L7 Data flywheel / interaction event logging
-
-The current internal repo already has:
-  - docs/visionary STATUS, DECISIONS, QA, DESIGN_INVENTORY
-  - role addenda under docs/visionary/roles
-  - existing dashboard routes and Home/Ask implementation
-  - existing tests and Vite app
-  - existing blue/white shell and workspace CSS
-
-Do not restart the repo. Do not rewrite working code unless it is blocking. Preserve existing deep links, routes, session storage, classwork, artifacts, tests and user-visible behavior unless a bug requires correction.
-
-═══════════════════════════════════════════════════════════
-1. HARD RULES — DO NOT VIOLATE
-═══════════════════════════════════════════════════════════
-1. CODE FIRST, DOCS AFTER.
-   Do not create a new master plan, UX doc, inventory, architecture essay, or status document before shipping code.
-   After each completed module, write only a short append-only STATUS/QA entry: one paragraph, files touched, tests run, remaining gap.
-
-2. NO MODEL-ANSWER SIMULATION.
-   Do not build local fake LLMs, fake pedagogy generators, fake answer-quality harnesses, or simulated "model answers" to test content.
-   Real answers will come later from ML + database. Your job is to create the connection seam, not fake the intelligence.
-
-3. NO CURRICULUM HARDCODING.
-   Subject, chapter, topic, concept and course data must come from a ContentRepository interface backed later by the 7-level syllabus database:
-   Board → Class → Subject → Textbook → Chapter → Topic → Concept.
-   You may include a tiny seed/sample dataset for local development, but production code must not depend on hardcoded curriculum.
-
-4. NO PER-ROLE PARALLEL PRODUCTS.
-   Student, Teacher, Parent, Professional and Organization are adapters/views over the same SCM + app shell.
-   Do not build five separate apps. Build one product with role-based data views and permissions.
-
-5. NO MARKETING PAGE WORK.
-   Do not touch Landing, Student, Teacher, Parent, Professional, Organization marketing pages.
-   Do not implement the 25 supporting website pages.
-   This task is internal product only.
-
-6. NO VISUAL REBRAND DETOURS.
-   Preserve the current shell and design DNA unless the founder explicitly orders a teal/blue token swap.
-   If colors need abstraction, put them behind existing token/CSS variables. Do not spend implementation time redesigning.
-
-7. NO FALSE CAPABILITY CLAIMS.
-   The product may use stubs for ML/DB, but UI copy and logs must not claim live AGI, live model analysis, voice listening, sync, or real curriculum coverage when those are not connected.
-   Use honest labels like "demo", "provisional", "not connected", or "saved locally" where required.
-
-8. NO DELETION OF USER/TEAM WORK.
-   Existing unrelated working-tree changes belong to the user/other team. Do not revert them.
-   Do not delete demo fixtures globally. Only retire identified fixtures when real backend connection exists.
-
-═══════════════════════════════════════════════════════════
-2. PRIMARY MISSION
-═══════════════════════════════════════════════════════════
-Complete the internal backend/product surface for all five categories so the product is beta-ready, with clean seams for ML and database integration later.
-
-The most important launch path is the Student loop:
-  Home → Learn → Ask → Practice → Build → SCM update → L7 event → memory/moat card.
-
-After the Student loop is real and stable, implement the other categories as role adapters over the same services:
-  Teacher: class aggregate, quiz builder, lesson plan builder, teacher coach seam.
-  Parent: read-only view of one child's SCM + weekly report seam.
-  Professional: own SCM with career target, skill gap, build/project seam.
-  Organization: aggregate-only analytics, admin/setup, cohort/curriculum/library seams.
-
-Do not aim for perfect AI answers. Aim for a complete product pipeline that can accept real ML/DB answers later without rewriting.
-
-═══════════════════════════════════════════════════════════
-3. EXECUTION ORDER
-═══════════════════════════════════════════════════════════
-Follow this order. At each step, implement, test, then move on.
-
-STEP A — QUICK REPO HEALTH CHECK
-- Run existing tests, lint, typecheck and production build.
-- Fix only blockers that prevent implementation.
-- Do not refactor broadly.
-- Output a 5-line maximum plan, then start coding.
-
-STEP B — DEFINE THE REAL SERVICE SEAMS
-Create or complete these interfaces/services with clear contracts:
-  1. ContentRepository
-     - getSyllabus(board, class, subject)
-     - getChapters(...)
-     - getTopics(...)
-     - getConcepts(...)
-     - getConcept(conceptId)
-     - provisional fallback when DB miss
-  2. SCMService
-     - getStudentState(studentId)
-     - updateMastery(event)
-     - getWeakConcepts(studentId, threshold)
-     - getReadyConcepts(studentId)
-     - getPrerequisitePath(conceptId)
-  3. TeachingInterface
-     - requestExplanation(promptPacket)
-     - requestPracticeQuestion(promptPacket)
-     - requestFeedback(promptPacket)
-     - requestProjectGuidance(promptPacket)
-     This must be a thin interface. It may point to a deterministic local stub for pipeline testing, but the stub must be obviously labeled as stub and must not be used to evaluate answer quality.
-  4. MemoryService
-     - saveEpisodicEvent(...)
-     - getRecentContext(userId)
-     - getWeeklyObservations(userId)
-  5. EventEmitter / L7 flywheel
-     - emitInteractionEvent(event)
-     - event schema must include user_id, role, session_id, app, concept_id, input_type, language, board/class/exam if known, pedagogy used, verification result, latency, timestamp, prompt_version if available.
-  6. AccessControlService
-     - student: own data only
-     - teacher: assigned class/cohort aggregate only
-     - parent: connected child only, consent-scoped
-     - professional: own data only
-     - organization: aggregate-only, no individual private data unless explicitly permitted
-
-STEP C — MAKE THE STUDENT LOOP END-TO-END REAL
-Implement the student product flow using the services above.
-
-1. Student Home
-   - Show one next action based on saved activity, due practice, weak concept, or starting point.
-   - Do not invent weakness if no evidence exists.
-   - Show "Things I remember about you" card using rule-generated weekly observations from SCM/events, not live ML.
-   - Example safe observation:
-     "This week you revisited Fractions 3 times and your accuracy improved."
-     "You have not practiced Newton's Laws since Sept 12."
-   - This moat card is launch-critical. Implement it now.
-
-2. Learn
-   - Chapter → topic → concept flow from ContentRepository.
-   - If syllabus is missing, use provisional skeleton and conversational fallback, but do not block the user.
-   - Teaching request goes through TeachingInterface.
-   - After explanation, run comprehension check.
-   - Comprehension result updates SCM.
-   - Every view/interaction emits L7 event.
-
-3. Ask
-   - Preserve existing Guide/conversation behavior.
-   - Intent/context selection must map to TeachingInterface mode.
-   - Do not auto-send.
-   - Drafts, session, history and activity resume must survive refresh.
-   - Every Ask turn emits L7 event with intent, language, concept if known, and response status.
-
-4. Practice
-   - Adaptive quiz from SCM weak/ready concepts.
-   - Correct answer raises difficulty; wrong answer lowers/remediates.
-   - Wrong answer triggers re-explanation through TeachingInterface, not hardcoded answer text.
-   - Practice result updates SCM.
-   - Every question/answer emits L7 event.
-
-5. Build
-   - Project/artifact creation tied to mastered concepts.
-   - Artifact saved to user workspace.
-   - Build completion emits strongest mastery signal to SCM.
-   - Every build action emits L7 event.
-
-STEP D — IMPLEMENT THE MINOR-CASE / MISSING SYLLABUS FLOW
-This is required because real DB content will arrive later.
-
-When ContentRepository cannot find official syllabus for board/class/subject:
-  - Do not crash.
-  - Do not show empty product.
-  - Create provisional numbered chapters.
-  - Allow user to add subject/chapter names optionally or skip.
-  - Flag data gap internally:
-      board, class, subject, user_id, timestamp.
-  - Product continues in conversational/provisional mode.
-  - When official data later arrives, map provisional → official without losing user progress.
-
-STEP E — IMPLEMENT OTHER ROLE ADAPTERS
-Do not build full polished role products yet. Build the minimum real adapters so the product architecture is complete and not student-only.
-
-1. Teacher
-   - Teacher has own SCM too.
-   - Teacher Home shows:
-       continue preparation, pending submissions, class attention items, own growth.
-   - Class aggregate view:
-       read-only heatmap from student SCM events for assigned class.
-   - Quiz Builder:
-       generate practice set targeting weak class concepts via TeachingInterface seam.
-   - Lesson Plan Builder:
-       scaffold lesson plan via TeachingInterface seam.
-   - No private student doubt exposure beyond permitted class evidence.
-
-2. Parent
-   - Parent Home shows one connected child's weekly summary.
-   - Read-only view over child SCM/events.
-   - Consent/pending/revoked states must be real.
-   - No access to other children.
-   - No raw private conversation logs.
-   - Weekly report generated from rule-based observations, not live ML.
-
-3. Professional
-   - Professional uses same student loop but with career target as exam_target/goal.
-   - Home shows skill gap, next capability, build project.
-   - Build/portfolio is emphasized.
-   - No school/board terminology in personal career context unless the user's goal requires it.
-
-4. Organization
-   - Organization Home shows setup checklist and scoped operational attention.
-   - Analytics are aggregate-only.
-   - People/cohorts/curriculum/library are admin surfaces over the same services.
-   - Do not expose individual learner private data.
-
-STEP F — SAFETY, PRIVACY AND CHILD PROTECTION
-Implement these as code-level guards, not documents.
-
-- Role/age eligibility must prevent minor users from receiving professional/adult journey fallbacks.
-- Crisis keywords on L1/input path must hard-stop normal teaching and return a safe response with helpline placeholder/config.
-- PII must not be emitted into L7 flywheel events.
-- DPDP-style controls:
-    user can view memory,
-    user can delete memory,
-    consent state controls parent/teacher/org access.
-- Access control must be enforced in services, not only UI.
-
-STEP G — TESTS THAT MATTER
-Write tests for your own code, not for fake model answer quality.
-
-Required test coverage:
-  - ContentRepository provisional fallback on missing syllabus.
-  - SCM update after Learn comprehension check.
-  - SCM update after Practice correct/wrong.
-  - Build completion emits mastery signal.
-  - L7 event emitted for each app interaction.
-  - PII scrubbing in events.
-  - Role/age eligibility blocks minor from professional journey fallback.
-  - Parent access only to connected child.
-  - Teacher access only to assigned class aggregate.
-  - Organization access aggregate-only.
-  - Existing Home/Ask regressions remain passing.
-  - Production build passes.
-
-Do not add tests that assert the quality of generated teaching answers. That is ML evaluation work after real model connection.
-
-═══════════════════════════════════════════════════════════
-4. WHAT TO DO WITH EXISTING HOME/ASK WORK
-═══════════════════════════════════════════════════════════
-The current STATUS says Home/Ask is mostly implemented and under corrective QA.
-
-Do not restart it.
-Do not redesign it.
-Do not write new UX docs for it.
-
-Only do this:
-  - Run existing tests.
-  - Fix only blocking bugs in Home/Ask if they prevent the student loop.
-  - Preserve 04/06 semantics and 03 scoped styling.
-  - If M-01 shared smooth-scroll defect is still blocking accessibility, fix it as a one-line scoped/shared-style correction with public-preservation check, then move on.
-  - After that, focus on Learn/Practice/Build/SCM/L7.
-
-═══════════════════════════════════════════════════════════
-5. DOCUMENTATION RULE
-═══════════════════════════════════════════════════════════
-Documentation is allowed only after code ships.
-
-For each completed module, append one short STATUS entry:
-  - module name
-  - files touched
-  - tests run
-  - result
-  - remaining gap
-  - next module
-
-Do not create:
-  - new master spec
-  - new design inventory
-  - new UX flow doc
-  - new architecture essay
-  - new product gate doc
-  - new long QA matrix
-
-If you find yourself writing a document before code, stop and implement instead.
-
-═══════════════════════════════════════════════════════════
-6. DEFINITION OF DONE FOR THIS PHASE
-═══════════════════════════════════════════════════════════
-This phase is done when all of the following are true:
-
-1. A student user can complete:
-     Home → Learn → comprehension check → Ask → Practice → Build
-   and the system persists:
-     SCM state,
-     session/conversation state,
-     artifact/project state,
-     L7 interaction events.
-
-2. Missing syllabus does not block the user.
-   Provisional mode works and data-gap flag is emitted.
-
-3. Teacher, Parent, Professional and Organization can open their role Home without crashing and see honest role-appropriate data/views over the same services.
-
-4. Access control is enforced:
-     student own data,
-     teacher class aggregate,
-     parent connected child only,
-     professional own data,
-     organization aggregate only.
-
-5. L7 flywheel emits structured events for every meaningful interaction in the student loop.
-
-6. The "Things I remember about you" moat card exists on Student Home using rule-generated observations from real events/SCM.
-
-7. Tests pass for service seams, SCM updates, L7 events, access control, minor eligibility, provisional syllabus fallback, and production build.
-
-8. No new documentation project was created ahead of code.
-
-═══════════════════════════════════════════════════════════
-
-
-If you need a decision, ask only when the decision is irreversible, security-sensitive, destructive, or would change founder-visible product policy. Otherwise choose the safest reversible implementation and continue.
-
-BEGIN NOW.
-
-Note: Why i am giving this prompt to you because the AGI we are building that fetch the data from database and model response from backend later so current we have build a complete part only backend connect need later and all will work, everything is worked current but the product AGI will fetch the subject of user from data base and learning and building happend start from there of each subject of student(if i giving one example) and everything will go depend on student subject, and extra learning other from subject, building happend same in product and upgrading the connect class, learning same from connect class and everything show depend on the data,
-Keep in mind: We achieve AGI by building a Daily Mentor Engine: a system that combines a Student Cognition Model, curriculum/class graph, daily planning engine, teaching loop, memory layer, and data flywheel. The product does not wait for the student to ask. It knows the student, plans the day, teaches until understanding is verified, and guides the learner from classwork to homework to projects to class progression. The student never has to decide what to learn or how to learn it. Visionary removes decision fatigue and makes learning feel guided, personal, and continuous — like a real mentor holding the student’s hand every day.
-
- When a student opens a subject, Visionary shows the subject progress and the chapters inside it. The AGI already knows what the student is learning, what they have mastered, what they are struggling with, and what should come next.
-When the student opens a chapter, Visionary does not simply show a static chapter. It converts the chapter into a guided learning path: prerequisite concepts, micro-lessons, visual explanations, 3D scenes where useful, comprehension checks, practice questions, and a final build activity.
-The student can start the chapter, continue where they left off, ask doubts naturally, practise adaptively, and build something real from what they learned. The AGI teaches like a human mentor — step by step, in the student’s language, at the student’s level — and never moves forward until understanding is verified.
-This same intelligence serves students, teachers, parents, professionals and organizations, but each role sees the journey from its own perspective.
-Subject
- └── Chapter
-      └── Concepts
-           └── Learning Units
-                ├── Explain
-                ├── Visual / 3D / Diagram / Simulation
-                ├── Check understanding
-                ├── Ask doubt
-                ├── Practice
-                └── Build / Apply
-
-i gave the example of student and you have to make for all category, now work serious on product.
+### 2. About Us Page
+
+**Goal:** Build a compelling company story that explains who we are, what we build, why it matters, and where we are going.
+
+**Reference links:**  
+[https://about.google/](https://about.google/), [https://about.google/products/](https://about.google/products/), [https://about.google/company-info/](https://about.google/company-info/), [https://blog.google/](https://blog.google/), [https://research.google/blog/](https://research.google/blog/), [https://research.google/teams/](https://research.google/teams/), [https://www.google.com/account/about/](https://www.google.com/account/about/)
+
+**Design direction:**
+- Create an inspiring brand-focused hero.
+- Clearly communicate mission, vision, values, and the product’s purpose.
+- Include company story, team culture, milestones, product ecosystem, and impact.
+- Use strong editorial layout, clean typography, imagery, and modular storytelling.
+- Consider sections for leadership, company values, product principles, innovation, and latest news.
+- Use content cards or featured stories where appropriate.
+- Keep the page approachable, human, and credible.
+
+***
+
+### 2. Privacy Page
+
+**Goal:** Create a clear, trustworthy, transparent privacy page that explains how user data is handled, what choices users have, how security works, and how privacy controls can be managed.
+
+**Reference links:**  
+[https://policies.google.com/privacy?hl=en-US](https://policies.google.com/privacy?hl=en-US), [https://policies.google.com/?hl=en-US](https://policies.google.com/?hl=en-US), [https://safety.google/intl/en_us/safety/](https://safety.google/intl/en_us/safety/), [https://blog.google/innovation-and-ai/technology/safety-security/](https://blog.google/innovation-and-ai/technology/safety-security/), [https://ai.google/safety/](https://ai.google/safety/)
+
+**Design direction:**
+- Use a calm, trustworthy, easy-to-read layout.
+- Create a strong privacy-focused hero section.
+- Include a clear overview of privacy commitments.
+- Use scannable sections with helpful navigation or an in-page table of contents.
+- Explain data use, data protection, user controls, retention, sharing, security, and contact options.
+- Add visual explanations or diagrams where useful.
+- Include privacy-related CTAs such as managing settings, reading policies, or contacting support.
+- Make policy content easier to navigate than a long wall of text.
+
+***
+
+
+### 3. Careers Page
+
+**Goal:** Create a welcoming careers page that helps candidates understand the company, available opportunities, hiring process, culture, and growth opportunities.
+
+**Reference links:**  
+[https://www.google.com/about/careers/applications/](https://www.google.com/about/careers/applications/), [https://www.google.com/about/careers/applications/stories/applying-to-google/](https://www.google.com/about/careers/applications/stories/applying-to-google/), [https://grow.google/certificates?srsltid=AU7gw4WBXD6KQ3wTWmFLodk2yHtvayO6IgF_dlbtBPsi6N4UNV3VM_w4](https://grow.google/certificates?srsltid=AU7gw4WBXD6KQ3wTWmFLodk2yHtvayO6IgF_dlbtBPsi6N4UNV3VM_w4)
+
+**Design direction:**
+- Use a motivating and candidate-friendly structure.
+- Add a careers hero with a clear primary CTA such as “View Open Roles.”
+- Explain why people should work here.
+- Include hiring process steps, interview guidance, employee stories, benefits, culture, learning, and growth.
+- Provide a clear job-search or job-category area if applicable.
+- Design application information to be reassuring, transparent, and easy to scan.
+- Make accessibility, equal opportunity, and inclusive hiring information visible.
+
+***
+
+### 4. Research Page
+
+**Goal:** Present research, innovation, AI work, product experimentation, and technical leadership in a clear and inspiring way.
+
+**Reference links:**  
+[https://research.google/](https://research.google/), [https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=](https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=), [https://labs.google/?utm_source=ai.google&utm_medium=referral](https://labs.google/?utm_source=ai.google&utm_medium=referral), [https://deepmind.google/?utm_source=ai.google&utm_medium=referral](https://deepmind.google/?utm_source=ai.google&utm_medium=referral)
+
+**Design direction:**
+- Create a bold research and innovation hero.
+- Highlight research themes, labs, AI initiatives, experiments, publications, people, and impact.
+- Use editorial cards for research stories, publications, projects, and announcements.
+- Include filters, categories, or topic navigation if the page has enough content.
+- Use visual storytelling to explain complex work simply.
+- Maintain technical credibility while remaining understandable to non-technical users.
+- Make clear how research connects to the product and real-world outcomes.
+
+***
+
+### 5. Community Page
+
+**Goal:** Build a useful community hub where users can find discussions, support, learning opportunities, events, contributors, and shared resources.
+
+**Reference links:**  
+[https://support.google.com/accounts/community?hl=en](https://support.google.com/accounts/community?hl=en), [https://edu.google.com/for-educators/communities/](https://edu.google.com/for-educators/communities/), [https://docs.cloud.google.com/support/docs/community-support](https://docs.cloud.google.com/support/docs/community-support)
+
+**Design direction:**
+- Create a friendly, participatory community hero.
+- Clearly separate community discussions, support, learning, events, resources, and contributor programs.
+- Add search, topic categories, featured questions, popular resources, and community guidelines where relevant.
+- Make it easy for users to ask a question, find answers, or join a discussion.
+- Include trust and moderation signals.
+- Use cards, topics, user stories, and clear entry points rather than a dense forum-like experience.
+
+***
+
+### 6. Contact Page
+
+**Goal:** Create a clear contact and support experience that helps users quickly reach the right team or find self-service help.
+
+**Reference links:**  
+[https://business.google.com/in/support/](https://business.google.com/in/support/)
+
+**Design direction:**
+- Build a simple support-first layout.
+- Start with “How can we help?” and clear paths based on user intent.
+- Include contact methods such as support form, email, sales, technical support, partnerships, media, and account help as applicable.
+- Add a help-center search or common topic cards if relevant.
+- Clearly show expected response times where applicable.
+- Make forms simple, accessible, and easy to complete.
+- Avoid forcing all users through one generic contact form.
+
+***
+
+### 7. Partners Page
+
+**Goal:** Explain partnership opportunities, benefits, program tiers, eligibility, and how businesses or individuals can work with us.
+
+**Reference links:**  
+[https://business.google.com/in/support/become-a-partner/](https://business.google.com/in/support/become-a-partner/), [https://business.google.com/in/support/work-with-a-partner/](https://business.google.com/in/support/work-with-a-partner/), [https://business.google.com/in/think/](https://business.google.com/in/think/), [https://partners.cloud.google.com/enrollment/enter-email](https://partners.cloud.google.com/enrollment/enter-email), [https://enterprisemarketingportal.google/work-with-partners](https://enterprisemarketingportal.google/work-with-partners)
+
+**Design direction:**
+- Create a business-focused, high-trust partnerships page.
+- Clearly distinguish “Become a Partner” from “Find a Partner” if both experiences exist.
+- Explain partnership benefits, partner types, requirements, onboarding, enablement, resources, and support.
+- Use clear CTA paths for prospective partners and customers looking for partners.
+- Include proof points, partner stories, success metrics, logos, or testimonials where appropriate.
+- Use a clear multi-step application or enrollment journey if users can apply.
+
+***
+
+### 8. Updates Page
+
+**Goal:** Create a modern updates, announcements, news, and release hub.
+
+**Reference links:**  
+[https://blog.google/products-and-platforms/products/search/](https://blog.google/products-and-platforms/products/search/), [https://edu.google.com/communications/](https://edu.google.com/communications/), [https://edu.google.com/intl/ALL_in/](https://edu.google.com/intl/ALL_in/)
+
+**Design direction:**
+- Use an editorial, content-rich design.
+- Feature the latest important announcement prominently.
+- Include category filters, search, featured content, release notes, product updates, announcements, and educational resources where relevant.
+- Use clean article cards with dates, tags, images, and concise summaries.
+- Make it easy to discover both recent and older updates.
+- Include newsletter or subscription functionality if supported by the product.
+
+***
+
+### 9. Referral Page
+
+**Goal:** Build a clear referral program page that explains eligibility, rewards, process, terms, tracking, and sharing methods.
+
+**Reference links:**  
+[https://workspace.google.com/intl/en_in/referral-program/](https://workspace.google.com/intl/en_in/referral-program/), [https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1](https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1), [https://business.google.com/in/google-ads/referrals/](https://business.google.com/in/google-ads/referrals/), [https://edu.google.com/intl/ALL_in/resources/reference-program/](https://edu.google.com/intl/ALL_in/resources/reference-program/)
+
+**Design direction:**
+- Create a focused conversion-oriented landing page.
+- Start with a clear explanation of the referral benefit.
+- Show a simple step-by-step referral flow.
+- Explain eligibility, rewards, timelines, limitations, and terms transparently.
+- Include referral sharing tools, tracking status, and referral FAQs if applicable.
+- Use visual progress or illustrated steps to make the process feel easy.
+- Ensure all reward claims are accurate and legally compliant.
+
+***
+
+### 10. Safety Page
+
+**Goal:** Build a safety hub that gives users confidence in the product and helps them take practical steps to protect themselves.
+
+**Reference links:**  
+[https://safety.google/](https://safety.google/), [https://safety.google/intl/en/safety/scams-fraud/](https://safety.google/intl/en/safety/scams-fraud/), [https://safety.google/intl/en/safety/built-in-security/](https://safety.google/intl/en/safety/built-in-security/), [https://safety.google/intl/en/settings/parental-controls/](https://safety.google/intl/en/settings/parental-controls/), [https://safety.google/intl/en/settings/privacy-settings/](https://safety.google/intl/en/settings/privacy-settings/)
+
+**Design direction:**
+- Create a reassuring safety-focused hero.
+- Explain built-in protections, scam prevention, fraud awareness, safety tools, privacy settings, account controls, parental controls, and reporting options.
+- Use easy-to-understand visuals, checklists, and action cards.
+- Make user safety actions visible and easy to complete.
+- Include a safety resource center or topic navigation.
+- Prioritize clarity, calm language, trust, and user empowerment.
+
+***
+
+### 11. Security Page
+
+**Goal:** Explain how the product protects user accounts, devices, data, identity, sign-in processes, and synchronized devices.
+
+**Reference links:**  
+[https://blog.google/security/](https://blog.google/security/), [https://www.google.com/account/about/](https://www.google.com/account/about/), [https://www.google.com/account/about/passkeys/](https://www.google.com/account/about/passkeys/), [https://edu.google.com/intl/ALL_in/our-values/privacy-security/](https://edu.google.com/intl/ALL_in/our-values/privacy-security/)
+
+**Important product requirement:**  
+Create a secure “Sync Device” and “Sign in with Sync Encrypted ID” experience. This should allow users to securely use the same encrypted identity across their devices while maintaining strong privacy and security communication.
+
+**Design direction:**
+- Use a security-focused hero and visual language.
+- Explain encryption, account protection, secure sign-in, passkeys or passwordless access where supported, device synchronization, recovery, and suspicious activity alerts.
+- Present security features as understandable user benefits, not only technical claims.
+- Add clear action paths such as reviewing devices, enabling protection, managing sign-in methods, or learning about encryption.
+- Include security FAQs, best practices, and incident-reporting guidance if appropriate.
+- Ensure the “Sync Device” experience is clearly explained and designed as part of the same security system.
+
+***
+
+### 12. Accessibility Page
+
+**Goal:** Demonstrate that the product is designed for everyone and clearly explain available accessibility features, commitments, and support.
+
+**Reference links:**  
+[https://accessibility.google/](https://accessibility.google/), [https://edu.google.com/intl/ALL_in/our-values/accessibility/](https://edu.google.com/intl/ALL_in/our-values/accessibility/), [https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer](https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer)
+
+**Design direction:**
+- Build an inclusive, human-centered accessibility page.
+- Explain accessibility commitments and product features.
+- Include keyboard navigation, screen-reader compatibility, captions, contrast, zoom, reduced motion, language support, assistive technology compatibility, and other relevant features.
+- Use inclusive imagery and practical examples.
+- Provide accessible documentation, support channels, and feedback options.
+- Ensure the page itself demonstrates excellent accessibility.
+
+***
+
+### 13. Cookies Page
+
+**Goal:** Create a transparent, user-friendly cookie information and preference-management page.
+
+**Reference direction:**  
+Use the strongest patterns established across the redesigned Privacy, Safety, Security, Accessibility, and Footer experiences.
+
+**Design direction:**
+- Clearly explain what cookies are, why they are used, what categories exist, and how users can manage preferences.
+- Use plain language, not legal-heavy language only.
+- Include preference controls where applicable.
+- Separate necessary cookies from optional analytics, personalization, advertising, and functional cookies.
+- Explain the impact of disabling categories where needed.
+- Link clearly to the Privacy Policy and related legal information.
+- Keep the design simple, calm, compliant, and consistent with the rest of the product.
+
+***
+
+### 14. Global Google-Quality Footer
+
+**Goal:** Redesign the global footer so it is comprehensive, organized, trustworthy, and consistent across the whole product.
+
+**Design direction:**
+- Create a reusable footer shared across all pages.
+- Include structured navigation for Product, Company, Support, Community, Developers or Resources, Partners, Legal, and Social links where applicable.
+- Include links to Privacy, Cookies, Terms, Security, Safety, Accessibility, Contact, Careers, Research, Updates, Referral, and Partners.
+- Add language or region controls if the product supports them.
+- Include copyright and legal information.
+- Keep the footer responsive, accessible, easy to scan, and visually aligned with the overall product system.
+- Use the footer as a strong final navigation and trust layer—not just a small list of links.
+
+***
+
+## Final Quality Standard
+
+The redesigned product should not look like a collection of basic pages with extra text and illustrations. It should feel like a complete, intentional, high-quality product website.
+
+The final result must:
+
+- Have a consistent visual language across every page.
+- Use thoughtful layouts inspired by the quality and structure of Google’s pages.
+- Preserve our own product identity rather than copying Google branding.
+- Be modern, polished, responsive, accessible, and easy to navigate.
+- Use purposeful imagery and clear visual storytelling.
+- Improve information architecture, not only visual styling.
+- Include strong hierarchy, readable content, clear CTAs, and user-focused journeys.
+- Make users feel confidence in the product’s privacy, safety, security, support, accessibility, and company credibility.
+
+Start with the **Privacy Page**. Complete it fully using the workflow above, including all assigned reference links, before moving to the **About Us Page**. Continue in the exact order listed until all pages and the global footer are complete.

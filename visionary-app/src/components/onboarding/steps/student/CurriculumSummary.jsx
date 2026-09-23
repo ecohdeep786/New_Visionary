@@ -22,7 +22,7 @@ export default function CurriculumSummary({ data }) {
       </div>
 
       <div>
-        <p className="text-sm font-medium text-[#121317] mb-3">Your subjects</p>
+        <p className="text-sm font-medium text-[#121317] mb-3">Your starting subjects</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {subjects.map((s) => (
             <div
@@ -36,11 +36,11 @@ export default function CurriculumSummary({ data }) {
             </div>
           ))}
         </div>
+        {!subjects.length&&<p className="text-sm text-[#5f6368]">No subject selected yet. You can choose one when you open Learn.</p>}
       </div>
 
       <p className="text-xs text-[#5f6368]">
-        All subjects, textbooks, and your academic calendar have been auto-configured.
-        You can adjust these later in settings.
+        Your board, class, language, and any subject you entered are saved as preferences. Official chapters and textbooks are not connected yet; Learn will show a provisional outline when needed.
       </p>
     </div>
   );

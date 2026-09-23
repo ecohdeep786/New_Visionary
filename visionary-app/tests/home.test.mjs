@@ -20,6 +20,15 @@ test('five role Homes offer direct role-safe next actions without creating conve
   assert.equal(service.snapshot(ctx(role)).conversations.length,0);
  }
 });
+test('a saved onboarding subject becomes the first action without inventing curriculum or weakness',async()=>{
+ const user={id:'subject-learner',email:'subject-learner@visionary.test',full_name:'Learner',identity:'student',age_band:'minor',board:'CBSE',grade_level:'Class 7',subjects:['Mathematics']};
+ service.bootstrapPerson(user);
+ const home=await getHome({personId:user.id,workspaceId:`${user.id}:student`,role:'student',locale:'en'});
+ assert.match(home.priority.title,/Mathematics/);
+ assert.match(home.priority.detail,/provisional/);
+ assert.equal(home.priority.action.path,'/dashboard/learn');
+ assert.equal(service.snapshot({personId:user.id,workspaceId:`${user.id}:student`,role:'student',locale:'en'}).sessions.length,0);
+});
 test('Home and deep link resume the exact session without resetting its snapshot',async()=>{
  const first=service.newConversation(ctx());service.startJourney(ctx(),first.id,'cube');
  const second=service.newConversation(ctx());const target=service.startJourney(ctx(),second.id,'fractions');

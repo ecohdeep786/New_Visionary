@@ -110,9 +110,10 @@ const SchoolPage = lazy(() => import('@/pages/landing/SchoolPage'))
 const CollegePage = lazy(() => import('@/pages/landing/CollegePage'))
 const CoachingPage = lazy(() => import('@/pages/landing/CoachingPage'))
 const OrganizationPage = lazy(() => import('@/pages/landing/OrganizationPage'))
-const CompetitiveExamsPage = lazy(() => import('@/pages/landing/CompetitiveExamsPage'))
+const CompetitiveExamsPage = lazy(() => import('@/pages/landing/AboutUsPage'))
+const AboutPage = lazy(() => import('@/pages/landing/AboutUsPage'))
 const AILearningPage = lazy(() => import('@/pages/landing/AILearningPage'))
-const DownloadPage = lazy(() => import('@/pages/landing/ResearchPage'))
+const DownloadPage = lazy(() => import('@/pages/landing/DownloadPage'))
 
 const CareersPage = lazy(() => import('@/pages/landing/CareersPage'))
 const ResearchNewsPage = lazy(() => import('@/pages/landing/ResearchNewsPage'))
@@ -158,7 +159,7 @@ const PublicApp = () => (
     <Route path="/how-it-works" element={<CoachingPage />} />
     <Route path="/organization" element={<OrganizationPage />} />
     <Route path="/download" element={<DownloadPage />} />
-    <Route path="/about" element={<CompetitiveExamsPage />} />
+    <Route path="/about" element={<AboutPage />} />
     <Route path="/pricing" element={<AILearningPage />} />
     <Route path="/career" element={<Navigate to="/careers" replace />} />
     <Route path="/careers" element={<CareersPage />} />
@@ -198,7 +199,7 @@ const PublicApp = () => (
           <Route path="connections" element={<Connections />} />
           <Route path="explore" element={<Explore />} />
           <Route path="support" element={<Support />} />
-          {['prepare','library','career','growth','progress','reports','notifications','personalization','privacy','audit'].map(area => <Route key={area} path={area} element={<WorkspaceTools area={area} />} />)}
+          {['prepare', 'library', 'career', 'growth', 'progress', 'reports', 'notifications', 'personalization', 'privacy', 'audit'].map(area => <Route key={area} path={area} element={<WorkspaceTools area={area} />} />)}
           <Route path="cohorts" element={<Cohorts />} />
           <Route path="learners" element={<Learners />} />
         </Route>

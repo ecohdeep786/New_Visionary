@@ -98,7 +98,7 @@ export const ROUTE_META = {
       founder: { "@type": "Person", name: "Md Shah Ali" },
     }],
     title: "About Visionary",
-    description: "Why we're building one intelligence for learning — our mission, team, and principles.",
+    description: "Building AI to accelerate learning and improve lives. Our mission, values, and the team behind Visionary.",
     image: "/og-image.jpg",
   },
   "/research": {

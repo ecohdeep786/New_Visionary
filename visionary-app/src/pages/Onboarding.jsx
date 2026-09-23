@@ -15,7 +15,6 @@ import {
   PARENT_FLOW_STEPS,
   ORG_FLOW_STEPS,
   getStudentStageSteps,
-  generateSubjects,
 } from "@/components/onboarding/stepConfigs";
 
 export default function Onboarding() {
@@ -75,13 +74,6 @@ export default function Onboarding() {
   };
 
   const handleContinue = () => {
-    // Subject auto-generation is now handled by StudentContextForm's useEffect.
-    // This legacy hook is kept as a safety net for older drafts.
-    if (currentStep?.id === "context" && data.board && data.grade_level && !data.subjects) {
-      const subjects = generateSubjects(data.board, data.grade_level);
-      setData((prev) => ({ ...prev, subjects, subject_confidence: {} }));
-    }
-
     const idx = visibleSteps.findIndex((s) => s.id === currentStep?.id);
     const next = visibleSteps[idx + 1];
     if (next) {
