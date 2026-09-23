@@ -14,7 +14,7 @@ export interface SpeechRecognitionLike {
  onerror: ((event: { error: string }) => void) | null;
  onend: (() => void) | null;
 }
-interface SpeechRuntime { SpeechRecognition?: new () => SpeechRecognitionLike; webkitSpeechRecognition?: new () => SpeechRecognitionLike; speechSynthesis?: SpeechSynthesisLike }
+interface SpeechRuntime { SpeechRecognition?: new () => SpeechRecognitionLike; webkitSpeechRecognition?: new () => SpeechRecognitionLike; speechSynthesis?: SpeechSynthesisLike; SpeechSynthesisUtterance?: new (text: string) => SpeechUtteranceLike }
 
 let runtime: SpeechRuntime | null = null;
 /** Tests inject a deterministic runtime; the app uses the browser's own speech engine. */
@@ -105,7 +105,12 @@ export function speak(text: string, locale: Locale | undefined, onEnd?: () => vo
  synthesis.cancel();
  const wasListening = intent;
  if (recognition) { suspended = true; try { recognition.stop(); } catch { /* already stopped */ } }
- const utterance: SpeechUtteranceLike = { text, lang: speechLocale(locale), onend: null, onerror: null };
+ const utterance: SpeechUtteranceLike = (() => {
+  // Browsers reject plain objects here; construct the real utterance when it exists.
+  const Ctor = speech().SpeechSynthesisUtterance;
+  return Ctor ? new Ctor(text) : { text, lang: '', onend: null, onerror: null };
+ })();
+ utterance.lang = speechLocale(locale);
  const finish = () => {
   suspended = false;
   if (intent && wasListening) { try { recognition?.start(); } catch { /* onend retries */ } setMode('listening'); }

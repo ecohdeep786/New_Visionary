@@ -52,12 +52,22 @@ async function goto(page, url) {
   await page.getByText('Message Visionary Guide').first().waitFor({ timeout: 15000 });
   const audio = page.getByRole('button', { name: /Audio interaction for this session/ });
   await audio.waitFor({ timeout: 10000 });
-  const before = await audio.getAttribute('aria-pressed');
+  const dictate = await page.getByRole('button', { name: 'Dictate with your voice' }).count();
+  log.push(`ask: dictateButton=${dictate} overflow=${await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)}`);
+  // 2b. Mentor turn with audio ON (default): evidence-based reply, no speak failures.
+  await page.locator('#guide-input').fill('What should I do today?');
+  await page.getByRole('button', { name: 'Send message' }).click();
+  await page.getByText('From your saved records', { exact: false }).first().waitFor({ timeout: 10000 });
+  const mentorStatus = await page.getByText('From your saved records', { exact: false }).count();
+  const mentorActions = await page.locator('.guide-messages').getByRole('button', { name: /Open/ }).count();
+  const errorPanel = await page.locator('.v-error').count();
+  log.push(`mentor turn (audio on): replies=${mentorStatus} actionButtons=${mentorActions} errorPanel=${errorPanel}`);
+  await page.screenshot({ path: 'scripts-tmp/mentor-turn.png' });
+  // 2c. The session quick control still silences audio for this session.
   await audio.click();
   await page.waitForTimeout(400);
   const after = await audio.getAttribute('aria-pressed');
-  const dictate = await page.getByRole('button', { name: 'Dictate with your voice' }).count();
-  log.push(`ask: sessionAudio ${before}→${after} dictateButton=${dictate} overflow=${await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)}`);
+  log.push(`ask: sessionAudio →${after}`);
   await page.screenshot({ path: 'scripts-tmp/audio-presence-ask.png' });
   await page.close();
 }

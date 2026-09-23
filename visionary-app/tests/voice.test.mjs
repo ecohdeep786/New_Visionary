@@ -90,6 +90,19 @@ test('the mentor speaks replies aloud, pauses the microphone, and resumes listen
  assert.equal(getVoiceMode(), 'off');
 });
 
+test('speaking constructs a real utterance through the browser constructor', () => {
+ class MockUtterance {
+  constructor(text) { this.text = text; MockUtterance.created.push(this); }
+ }
+ MockUtterance.created = [];
+ const synthesis = new MockSynthesis();
+ configureSpeechRuntime({ SpeechSynthesisUtterance: MockUtterance, speechSynthesis: synthesis });
+ assert.equal(speak('Hello there', 'en'), true);
+ assert.equal(synthesis.utterances[0] instanceof MockUtterance, true);
+ assert.equal(synthesis.utterances[0].lang, 'en-IN');
+ assert.equal(typeof synthesis.utterances[0].onend, 'function');
+});
+
 test('denied microphone access keeps an honest state, never restarts, and can be retried after permission', () => {
  const synthesis = new MockSynthesis();
  configureSpeechRuntime({ SpeechRecognition: MockRecognition, speechSynthesis: synthesis });

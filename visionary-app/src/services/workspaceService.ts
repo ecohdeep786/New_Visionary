@@ -1,4 +1,4 @@
-import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, MasteryStage, Person, Plan, RequestContext, Resource, Role, Session, Stage, Workspace, WorkspaceData } from '../domain/workspace.ts';
+import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, MasteryStage, Message, Person, Plan, RequestContext, Resource, Role, Session, Stage, Workspace, WorkspaceData } from '../domain/workspace.ts';
 import { getJourney, matchJourney } from './journeys.ts';
 import { eligibleJourneys } from './journeyEligibility.ts';
 import {legacyRelationships,saveLegacyRelationship,legacyProgressSummary} from './legacyConnections.ts';
@@ -78,6 +78,13 @@ export function appendTeachingTurn(ctx:RequestContext,conversationId:string,inpu
  if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');
  const db=read();const c=access(db,ctx).conversations.find(c=>c.id===conversationId);if(!c)throw new Error('Conversation not found.');
  c.messages.push({id:id(),role:'user',blocks:[{type:'text',text:input}],at:now()},{id:id(),role:'guide',blocks:[{type:'text',text:response,locale}],at:now(),status});
+ c.draft='';c.updatedAt=now();if(c.messages.length===2)c.title=input.slice(0,64);write(db);
+}
+/** Mentor-companion turns append authored action/text blocks straight from saved records. */
+export function appendGuideBlocks(ctx:RequestContext,conversationId:string,input:string,blocks:GuideBlock[],status:Message['status']) {
+ if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');
+ const db=read();const c=access(db,ctx).conversations.find(c=>c.id===conversationId);if(!c)throw new Error('Conversation not found.');
+ c.messages.push({id:id(),role:'user',blocks:[{type:'text',text:input}],at:now()},{id:id(),role:'guide',blocks:structuredClone(blocks),at:now(),status});
  c.draft='';c.updatedAt=now();if(c.messages.length===2)c.title=input.slice(0,64);write(db);
 }
 export function updateConversation(ctx:RequestContext,conversationId:string,patch:Partial<Pick<Conversation,'title'|'draft'|'useForPersonalization'|'canvasPath'|'ask'>>) {const db=read();const c=access(db,ctx).conversations.find(c=>c.id===conversationId);if(!c)throw new Error('Conversation not found.');Object.assign(c,patch);write(db);}
