@@ -121,3 +121,17 @@ export function speak(text: string, locale: Locale | undefined, onEnd?: () => vo
  return true;
 }
 export function cancelSpeech() { speech().speechSynthesis?.cancel(); if (mode === 'speaking') setMode(intent ? 'listening' : 'off'); }
+
+// Session audio override: null follows the saved Audio Interaction preference (Settings);
+// true/false forces audio for the current session only (the quick Ask control) and
+// resets when the product reloads.
+let sessionAudioOverride: boolean | null = null;
+export function setSessionAudioOverride(next: boolean | null) {
+ sessionAudioOverride = next;
+ if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('visionary:audio-change'));
+}
+export function getSessionAudioOverride() { return sessionAudioOverride; }
+export function resolveAudioEnabled(savedPreference: unknown) {
+ if (sessionAudioOverride !== null) return sessionAudioOverride;
+ return savedPreference !== false; // workspaces saved before the audio seam default to on
+}

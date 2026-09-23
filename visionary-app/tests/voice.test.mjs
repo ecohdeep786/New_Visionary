@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import * as pipeline from '../src/services/learningPipelineService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
-import { configureSpeechRuntime, startListening, stopListening, speak, cancelSpeech, getVoiceMode, getVoiceCapabilities } from '../src/services/voiceService.ts';
+import { configureSpeechRuntime, startListening, stopListening, speak, cancelSpeech, getVoiceMode, getVoiceCapabilities, resolveAudioEnabled, setSessionAudioOverride, getSessionAudioOverride } from '../src/services/voiceService.ts';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };
@@ -116,6 +116,24 @@ test('voice preference defaults on, is user-controlled, and legacy workspaces no
  delete db.data[request.workspaceId].preferences.voice;
  memory.set('visionary_workspace_v2', JSON.stringify(db));
  assert.equal(workspace.snapshot(request).preferences.voice, true);
+});
+
+test('the Ask session control overrides the saved audio setting for the current session only', () => {
+ assert.equal(getSessionAudioOverride(), null);
+ // No override: audio follows the saved preference, and legacy "on" is the default.
+ assert.equal(resolveAudioEnabled(true), true);
+ assert.equal(resolveAudioEnabled(undefined), true);
+ assert.equal(resolveAudioEnabled(false), false);
+ // Session off wins even when the preference is on.
+ setSessionAudioOverride(false);
+ assert.equal(resolveAudioEnabled(true), false);
+ // Session on wins even when the preference is off.
+ setSessionAudioOverride(true);
+ assert.equal(resolveAudioEnabled(false), true);
+ // Clearing the override returns control to the saved preference.
+ setSessionAudioOverride(null);
+ assert.equal(getSessionAudioOverride(), null);
+ assert.equal(resolveAudioEnabled(false), false);
 });
 
 test('a crisis spoken aloud gets the same safety hard-stop as typed text', async () => {
