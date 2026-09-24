@@ -5,7 +5,7 @@
 // Run: npm run dev, then `node scripts-tmp/plan-home-smoke.mjs`.
 import { chromium } from 'playwright-core';
 
-const BASE = 'http://localhost:5173';
+const BASE = process.env.VISIONARY_BASE || 'http://localhost:5173';
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
 const log = [];
 
@@ -41,6 +41,8 @@ async function openScenario(name) {
   await plan.waitFor({ timeout: 8000 });
   await plan.getByText('Make a model').first().waitFor({ timeout: 8000 });
   const text = await plan.textContent();
+  const primaryTitle = await page.locator('#next-step-title').textContent();
+  if (!primaryTitle.includes('Make a model')) throw new Error(`Home priority diverged from today's plan: ${primaryTitle}`);
   log.push(`plan module: title=${text.includes('Today’s plan')} classwork=${text.includes('Make a model')} due=${text.includes('2026-09-30')}`);
   for (const viewport of [[1440, 900], [390, 844]]) {
     await page.setViewportSize({ width: viewport[0], height: viewport[1] });

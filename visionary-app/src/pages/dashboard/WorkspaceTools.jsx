@@ -1,4 +1,5 @@
 import AssignLesson from '@/components/dashboard/AssignLesson';
+import LocalDataPreview from '@/components/dashboard/LocalDataPreview';
 import { useState } from 'react';
 import { Link,useSearchParams } from 'react-router-dom';
 import { Plus,BookOpen,Save,Search,Archive } from 'lucide-react';
@@ -18,7 +19,7 @@ export default function WorkspaceTools({area}){
  if(area==='reports')return <Reports ctx={ctx}/>;
  if(area==='notifications')return <div className="v-page"><h1 className="v-title">Notifications</h1><p className="v-muted">Updates inside this local workspace. No email or push delivery.</p><label className="max-w-sm text-sm">Summary frequency<select className="v-field mt-2" value={data.preferences.notifications} onChange={e=>updatePreferences(ctx,{notifications:e.target.value})}>{['off','weekly','daily','urgent'].map(v=><option key={v}>{v}</option>)}</select></label>{data.notifications.map(n=><div key={n.id} className="v-list-row"><Link to={n.path} onClick={()=>markNotification(ctx,n.id)} className="text-sm">{n.text}</Link><button className="v-button" disabled={n.read} onClick={()=>markNotification(ctx,n.id)}>{n.read?'Read':'Mark read'}</button></div>)}{!data.notifications.length&&<p className="v-card v-muted">You’re up to date. Relevant updates will appear here.</p>}</div>;
  if(area==='personalization')return <Trust ctx={ctx} data={data} area={area}/>;
- if(area==='privacy')return <><Trust ctx={ctx} data={data} area={area}/><div className="v-page"><MemoryControl ctx={ctx}/></div></>;
+ if(area==='privacy')return <><Trust ctx={ctx} data={data} area={area}/><div className="v-page"><MemoryControl ctx={ctx}/><LocalDataPreview key={ctx.personId} ctx={ctx}/></div></>;
  if(area==='audit')return <div className="v-page"><h1 className="v-title">Workspace audit</h1><p className="v-muted">Local actions in this workspace. This is not a tamper-proof production audit log.</p>{data.audit.length?data.audit.map(a=><div key={a.id} className="v-list-row"><div><p className="text-sm">{a.action}</p><p className="v-muted">{a.target}</p></div><time className="text-xs" dateTime={a.at}>{new Date(a.at).toLocaleString()}</time></div>):<p className="v-card v-muted">Changes to your resources and preferences will appear here.</p>}</div>;
  if(!config)return <div className="v-page">This workspace is unavailable.</div>;
  const rows=data.resources.filter(r=>r.kind===config.kind&&r.title.toLowerCase().includes(query.toLowerCase()));

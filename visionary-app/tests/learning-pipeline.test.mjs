@@ -66,6 +66,27 @@ test('student Home → Learn → Ask → Practice → Build persists one connect
  assert.equal(JSON.stringify(mentor.getInteractionEvents(request)).includes('How does this work?'), false);
 });
 
+test('a failed learning-unit write after project creation recovers the same artifact on retry', async () => {
+ const {request,unit}=await startSample();
+ await pipeline.requestUnitTeaching(request,unit.id,'explanation');
+ const check=await pipeline.beginComprehension(request,unit.id);
+ await pipeline.answerLearningQuestion(request,unit.id,check.question.answerIndex);
+ const practice=await pipeline.nextLearningQuestion(request,unit.id);
+ await pipeline.answerLearningQuestion(request,unit.id,practice.question.answerIndex);
+ const set=localStorage.setItem;
+ localStorage.setItem=(key,value)=>{if(key==='visionary_learning_pipeline_v1')throw Error('full');set(key,value);};
+ try {await assert.rejects(pipeline.createLearningProject(request,unit.id),/could not be saved/);}finally{localStorage.setItem=set;}
+ const first=workspace.snapshot(request).artifacts.find(item=>item.learningSessionId===unit.id);
+ assert.ok(first);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).artifactId,undefined);
+ const recovered=await pipeline.createLearningProject(request,unit.id);
+ assert.equal(recovered.id,first.id);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).artifactId,first.id);
+ assert.equal((await pipeline.createLearningProject(request,unit.id)).id,first.id);
+ assert.equal(workspace.snapshot(request).artifacts.filter(item=>item.learningSessionId===unit.id).length,1);
+ assert.equal(mentor.getInteractionEvents(request).filter(event=>event.app==='BUILD'&&event.action==='start').length,1);
+});
+
 test('wrong practice answer lowers difficulty and requests remediation without a generated local answer', async () => {
  const { request, unit } = await startSample();
  await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
@@ -89,7 +110,7 @@ test('class-started learning reaches only the assigned teacher aggregate', async
   if(query.subject!=='Geometry')return null;
   const conceptId='db:geometry:cube';const chapterId='db:geometry:chapter';const topicId='db:geometry:topic';
   const question={id:'db:geometry:check',prompt:'Which shape is a cube?',options:['Six equal square faces','One round face'],answerIndex:0,source:'database'};
-  return {syllabus:{...query,id:'db:geometry',status:'official',textbooks:[{id:'db:geometry:book',title:'Geometry',chapterIds:[chapterId]}],chapters:[{id:chapterId,title:'Shapes',textbookId:'db:geometry:book',topicIds:[topicId],status:'official'}]},topics:[{id:topicId,title:'Cubes',chapterId,conceptIds:[conceptId],status:'official'}],concepts:[{id:conceptId,title:'Cube shapes',topicId,prerequisiteIds:[],status:'official',explanation:'A cube has six equal square faces.',check:question,representations:[]}]};
+  return {syllabus:{...query,id:'db:geometry',status:'official',contentLocale:'en',availableLocales:['en'],provenance:{provider:'Class syllabus fixture',sourceId:'db:geometry',version:'1'},textbooks:[{id:'db:geometry:book',title:'Geometry',chapterIds:[chapterId]}],chapters:[{id:chapterId,title:'Shapes',textbookId:'db:geometry:book',topicIds:[topicId],status:'official'}]},topics:[{id:topicId,title:'Cubes',chapterId,conceptIds:[conceptId],status:'official'}],concepts:[{id:conceptId,title:'Cube shapes',topicId,prerequisiteIds:[],status:'official',locale:'en',availableLocales:['en'],explanation:'A cube has six equal square faces.',check:question,representations:[]}]};
  }});
  await pipeline.selectLearningSyllabus(learner,SAMPLE_SELECTION);
  await assert.rejects(pipeline.startLearningUnit(learner,'sample:cube:concept','demo-class-cube'),/class subject/);
@@ -117,6 +138,44 @@ test('changing teaching language keeps the same session and localized authored c
  assert.equal(mentor.getStudentState(request).concepts.length, 0);
 });
 
+test('changing to an unavailable language clears old teaching text without erasing the learning position', async () => {
+ const request=ctx(); const selection={board:'Local board',classLevel:'7',subject:'Reasoning'};
+ const conceptId='official:reasoning';const chapterId='official:chapter';const topicId='official:topic';
+ configureContentRepository({async getSyllabus(query){return {syllabus:{...query,id:'official:syllabus',status:'official',contentLocale:'en',availableLocales:['en'],provenance:{provider:'Reviewed fixture',sourceId:'reasoning',version:'1'},textbooks:[{id:'official:book',title:'Book',chapterIds:[chapterId]}],chapters:[{id:chapterId,title:'Chapter',textbookId:'official:book',topicIds:[topicId],status:'official'}]},topics:[{id:topicId,title:'Topic',chapterId,conceptIds:[conceptId],status:'official'}],concepts:[{id:conceptId,title:'Reasoning',topicId,prerequisiteIds:[],status:'official',locale:'en',availableLocales:['en'],explanation:'English explanation.',check:{id:'q1',prompt:'English question?',options:['A','B'],answerIndex:0,source:'database'},representations:[]}]};}});
+ const outline=await pipeline.selectLearningSyllabus(request,selection);
+ const unit=await pipeline.startLearningUnit(request,conceptId);
+ await pipeline.requestUnitTeaching(request,unit.id,'explanation');
+ const checked=await pipeline.beginComprehension(request,unit.id);
+ assert.equal(checked.question.prompt,'English question?');
+ const changed=await pipeline.updateLearningLanguage(request,unit.id,'hi');
+ assert.equal(changed.id,unit.id);
+ assert.equal(changed.stage,'check');
+ assert.equal(changed.locale,'hi');
+ assert.equal(changed.explanation,undefined);
+ assert.equal(changed.question,undefined);
+ assert.equal(changed.response,undefined);
+ assert.equal((await getContentRepository({...request,locale:'hi'}).getConcept(conceptId)).languageUnavailable,true);
+ assert.equal(outline.status,'official');
+ assert.equal(mentor.getStudentState(request).concepts.length,0);
+});
+
+test('language change retrieves a newly available sourced variant without changing unit identity', async () => {
+ const request=ctx(); const selection={board:'Local board',classLevel:'7',subject:'Logic'};
+ const source={provider:'Reviewed fixture',sourceId:'logic',version:'2'};
+ const graph=locale=>{const hi=locale==='hi';return {syllabus:{...selection,id:'official:logic',status:'official',contentLocale:locale,availableLocales:['en','hi'],provenance:source,textbooks:[{id:'official:book',title:'Book',chapterIds:['official:chapter']}],chapters:[{id:'official:chapter',title:'Chapter',textbookId:'official:book',topicIds:['official:topic'],status:'official'}]},topics:[{id:'official:topic',title:'Topic',chapterId:'official:chapter',conceptIds:['official:concept'],status:'official'}],concepts:[{id:'official:concept',title:hi?'तर्क':'Logic',topicId:'official:topic',prerequisiteIds:[],status:'official',locale,availableLocales:['en','hi'],explanation:hi?'हिंदी में तर्क।':'Logic in English.',representations:[]}]};};
+ let calls=0;
+ configureContentRepository({async getSyllabus(_query,requestContext){calls++;return graph(requestContext.locale);}});
+ await pipeline.selectLearningSyllabus(request,selection);
+ const unit=await pipeline.startLearningUnit(request,'official:concept');
+ await pipeline.requestUnitTeaching(request,unit.id,'explanation');
+ const translated=await pipeline.updateLearningLanguage(request,unit.id,'hi');
+ assert.equal(translated.id,unit.id);
+ assert.equal(translated.explanation,'हिंदी में तर्क।');
+ assert.equal(translated.locale,'hi');
+ assert.equal(calls,2);
+ assert.equal((await getContentRepository(request).getConcept('official:concept')).explanation,'Logic in English.');
+});
+
 test('a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback', async () => {
  const request = ctx(); const selection = { board: 'Unconnected board', classLevel: '7', subject: 'Local language subject' };
  const outline = await pipeline.selectLearningSyllabus(request, selection);
@@ -140,7 +199,7 @@ test('official concept mapping resumes the provisional learning unit without spl
  const provisional=await pipeline.selectLearningSyllabus(request,selection);
  const repo=getContentRepository(request);const topic=(await repo.getTopics(provisional.chapters[0].id))[0];
  const previous=(await repo.getConcepts(topic.id))[0];const unit=await pipeline.startLearningUnit(request,previous.id);
- const graph={syllabus:{...selection,id:'official:syllabus',status:'official',textbooks:[{id:'official:book',title:'Official book',chapterIds:['official:chapter']}],chapters:[{id:'official:chapter',title:'Verified chapter',textbookId:'official:book',topicIds:['official:topic'],status:'official'}]},topics:[{id:'official:topic',title:'Verified topic',chapterId:'official:chapter',conceptIds:['official:concept'],status:'official'}],concepts:[{id:'official:concept',title:'Verified concept',topicId:'official:topic',prerequisiteIds:[],status:'official',representations:[]}]};
+ const graph={syllabus:{...selection,id:'official:syllabus',status:'official',contentLocale:'en',availableLocales:['en'],provenance:{provider:'Reviewed syllabus fixture',sourceId:'official:syllabus',version:'1'},textbooks:[{id:'official:book',title:'Official book',chapterIds:['official:chapter']}],chapters:[{id:'official:chapter',title:'Verified chapter',textbookId:'official:book',topicIds:['official:topic'],status:'official'}]},topics:[{id:'official:topic',title:'Verified topic',chapterId:'official:chapter',conceptIds:['official:concept'],status:'official'}],concepts:[{id:'official:concept',title:'Verified concept',topicId:'official:topic',prerequisiteIds:[],status:'official',locale:'en',availableLocales:['en'],representations:[]}]};
  configureContentRepository({async getSyllabus(){return graph;}});
  await pipeline.selectLearningSyllabus(request,selection);
  await getContentRepository(request).mapProvisional(previous.id,'official:concept');

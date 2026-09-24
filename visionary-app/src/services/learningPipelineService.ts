@@ -1,5 +1,5 @@
 import type { RequestContext, Locale, Artifact } from '../domain/workspace.ts';
-import { workspaceIdentity, snapshot, saveArtifact, newConversation, updateConversation, appendTeachingTurn } from './workspaceService.ts';
+import { workspaceIdentity, workspaceNow, snapshot, saveArtifact, newConversation, updateConversation, appendTeachingTurn } from './workspaceService.ts';
 import { getContentRepository, type ContentSelection, type ContentQuestion } from './contentRepository.ts';
 import { getTeachingInterface, type TeachingResponse, type TeachingMode } from './teachingInterface.ts';
 import { emitInteractionEvent, recordLearningOutcome, getStudentState, getStudentClassLearningContext } from './mentorStateService.ts';
@@ -14,7 +14,7 @@ interface LearningOutcome {id:string;conceptId:string;kind:'check'|'practice'|'a
 interface LearningSpace {selection?:ContentSelection;syllabusId?:string;units:LearningUnit[]}
 interface Store {version:1;spaces:Record<string,LearningSpace>}
 const KEY='visionary_learning_pipeline_v1';
-const now=()=>new Date().toISOString();
+const now=()=>workspaceNow().toISOString();
 function guard(ctx:RequestContext){const identity=workspaceIdentity(ctx);if(ctx.role==='professional'&&identity.person.ageBand!=='adult')throw Error('Professional journeys are available only to adult profiles. Use a general learning workspace.');if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');}
 function read():Store{const raw=localStorage.getItem(KEY);if(!raw)return{version:1,spaces:{}};try{const value=JSON.parse(raw);if(value.version!==1||!value.spaces)throw Error();return value;}catch{throw Error('Your saved learning could not be read. No records were removed.');}}
 function own(db:Store,ctx:RequestContext){guard(ctx);return db.spaces[ctx.workspaceId]??={units:[]};}
@@ -38,11 +38,16 @@ export async function startLearningUnit(ctx:RequestContext,conceptId:string,clas
  save(ctx,unit);emitInteractionEvent(ctx,{app:'LEARN',action:'start',sessionId:unit.id,conceptId,language:unit.locale,...curriculumFields(ctx)});return unit;
 }
 export async function updateLearningLanguage(ctx:RequestContext,id:string,locale:Locale){
- const unit=getLearningUnit(ctx,id);const concept=await getContentRepository({...ctx,locale}).getConcept(unit.conceptId);
+ const unit=getLearningUnit(ctx,id);if(unit.locale===locale)return unit;
+ const repository=getContentRepository({...ctx,locale});let concept=await repository.getConcept(unit.conceptId);
+ // A connected source can provide a language variant after the unit was first opened.
+ if(concept?.languageUnavailable){const selected=getLearningWorkspace(ctx).selection;if(selected){await repository.getSyllabus(selected.board,selected.classLevel,selected.subject);concept=await repository.getConcept(unit.conceptId);}}
  guard(ctx);if(!concept)throw Error('This teaching language is not available for the saved concept. Your position remains unchanged.');
  unit.locale=locale;
- if(unit.explanation&&unit.response?.status!=='ready'&&concept.explanation)unit.explanation=concept.explanation;
- if(unit.question){const translated=[concept.check,...(concept.practice||[])].find(q=>q?.id===unit.question?.id);if(translated)unit.question=translated;}
+ // A connected response belongs to its original language. Do not relabel it as a translation.
+ if(concept.explanation)unit.explanation=concept.explanation;else delete unit.explanation;
+ if(unit.question){const translated=[concept.check,...(concept.practice||[])].find(q=>q?.id===unit.question?.id);if(translated)unit.question=translated;else delete unit.question;}
+ delete unit.response;
  return save(ctx,unit);
 }
 export async function requestUnitTeaching(ctx:RequestContext,id:string,mode:TeachingMode){
@@ -74,10 +79,11 @@ export async function answerLearningQuestion(ctx:RequestContext,id:string,index:
 export async function nextLearningQuestion(ctx:RequestContext,id:string,practice=true){const unit=flushLearningOutcome(ctx,id);if(practice&&!unit.checkPassed)throw Error('Complete the comprehension check before practice. You can revisit the explanation at any time.');unit.stage=practice?'practice':'check';unit.practiceRound++;delete unit.answer;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 export async function createLearningProject(ctx:RequestContext,id:string){
  const unit=flushLearningOutcome(ctx,id);if(!unit.checkPassed||!unit.practicePassed)throw Error('Complete a comprehension check and practice step before starting the guided project. Blank projects remain available in Build.');
- if(unit.artifactId)return snapshot(ctx).artifacts.find(a=>a.id===unit.artifactId);
+ const artifacts=snapshot(ctx).artifacts;const existing=artifacts.find(a=>a.id===unit.artifactId)||artifacts.find(a=>a.learningSessionId===id&&a.conceptId===unit.conceptId);
+ if(existing){if(unit.artifactId!==existing.id||!['build','completed'].includes(unit.stage)){unit.artifactId=existing.id;if(unit.stage!=='completed')unit.stage='build';save(ctx,unit);}emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return existing;}
  const concept=await getContentRepository(ctx).getConcept(unit.conceptId);if(!concept)throw Error('Project context unavailable.');
  const artifact=saveArtifact(ctx,{title:concept.project?.title||`Apply: ${concept.title}`,body:concept.project?.brief||'Define an outcome, create an artifact, and describe the evidence. Guidance is not connected yet.',conceptId:unit.conceptId,learningSessionId:id});
- unit.artifactId=artifact.id;unit.stage='build';save(ctx,unit);emitInteractionEvent(ctx,{app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return artifact;
+ unit.artifactId=artifact.id;unit.stage='build';save(ctx,unit);emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return artifact;
 }
 export function recordProjectSave(ctx:RequestContext,artifact:Artifact){
  if(artifact.status==='completed'&&artifact.conceptId&&(!artifact.body.trim()||!artifact.milestones.every(Boolean)))throw Error('Complete the project milestones and add your work before recording application evidence.');
@@ -99,4 +105,4 @@ export async function sendTeachingTurn(ctx:RequestContext,conversationId:string,
  appendTeachingTurn(ctx,conversationId,text,response.text,response.status==='not_connected'?'en':packet.language,response.status);
  emitInteractionEvent(ctx,{app:'ASK',action:'response',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,latency:Date.now()-started,responseStatus:response.status,inputType,intent,...curriculumFields(ctx)});return response;
 }
-export function learningPriority(ctx:RequestContext){const units=getLearningWorkspace(ctx).units;const unit=[...units].filter(u=>u.stage!=='completed').sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt))[0];const states=getStudentState(ctx).concepts;const due=states.find(c=>c.dueAt&&new Date(c.dueAt)<=new Date());return{unit,due};}
+export function learningPriority(ctx:RequestContext){const units=getLearningWorkspace(ctx).units;const unit=[...units].filter(u=>u.stage!=='completed').sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt))[0];const states=getStudentState(ctx).concepts;const due=states.find(c=>c.dueAt&&new Date(c.dueAt)<=workspaceNow());return{unit,due};}

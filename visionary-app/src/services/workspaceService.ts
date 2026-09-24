@@ -13,6 +13,7 @@ let clock = () => new Date();
 let latency = 180;
 let fault: 'none' | 'offline' | 'error' = 'none';
 export function configureMock(options: { now?: () => Date; latency?: number; fault?: typeof fault }) { if(options.now) clock=options.now; if(options.latency!==undefined) latency=options.latency; if(options.fault) fault=options.fault; }
+export function workspaceNow() { return clock(); }
 const now = () => clock().toISOString();
 const id = () => crypto.randomUUID();
 function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true,voice:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }

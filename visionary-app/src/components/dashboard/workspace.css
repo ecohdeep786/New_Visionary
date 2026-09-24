@@ -1,4 +1,5 @@
-.visionary-workspace{
+.visionary-workspace,
+body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]){
   --v-canvas:#f6f8fc;
   --v-surface:#ffffff;
   --v-text:#121317;
@@ -62,19 +63,36 @@
 
 /* Shared internal-product states. The saturated blue remains an accent; its darker
    partner carries text and filled controls so labels remain readable on white. */
-.visionary-workspace :is(a,button,summary)[class*="text-[#4285F4]"],
-.visionary-workspace :is(a,button,summary)[class*="text-[#1967d2]"]{color:var(--v-action)}
-.visionary-workspace :is(a,button)[class*="bg-[#4285F4]"]{background-color:var(--v-action)}
-.visionary-workspace :is(a,button)[class*="bg-[#4285F4]"]:hover{background-color:var(--v-action-hover)}
-.visionary-workspace :is(a,button)[class*="bg-[#4285F4]"][disabled]{background-color:var(--v-soft);color:var(--v-muted)}
+:is(.visionary-workspace,body:has(.visionary-workspace) [role="dialog"]) [class~="text-[#4285F4]"],
+:is(.visionary-workspace,body:has(.visionary-workspace) [role="dialog"]) [class~="text-[#1967d2]"]{color:var(--v-action)}
+:is(.visionary-workspace,body:has(.visionary-workspace) [role="dialog"]) :is(a,button)[class~="bg-[#4285F4]"]{background-color:var(--v-action)}
+:is(.visionary-workspace,body:has(.visionary-workspace) [role="dialog"]) :is(a,button)[class~="bg-[#4285F4]"]:hover:not(:disabled){background-color:var(--v-action-hover)}
+.visionary-workspace :is(a,button)[class~="bg-[#4285F4]"][disabled]{background-color:var(--v-soft);color:var(--v-muted)}
 .visionary-workspace a:not(.v-button):not([class*="rounded-full"]):hover{text-decoration-thickness:1px;text-underline-offset:3px}
 .visionary-workspace :is(input,select,textarea)[aria-invalid="true"]{border-color:var(--v-error);outline-color:var(--v-error)}
 .visionary-workspace [role="alert"]{color:var(--v-error)}
 .visionary-workspace [role="alert"].v-error{color:var(--v-error)}
-.visionary-workspace [role="status"].v-notice{color:var(--v-text)}
+.visionary-workspace [role="status"].v-notice:not(.v-error){color:var(--v-text)}
 .workspace-account-menu{max-height:min(720px,calc(100dvh - 80px));overflow-y:auto;border-color:var(--v-border,#dadce0);box-shadow:0 12px 32px rgba(32,33,36,.14)}
 .workspace-account-item{min-height:44px;border-radius:10px;padding:10px 12px;color:var(--v-text,#121317)}
 .workspace-account-item[data-highlighted]{background:var(--v-soft,#e8f0fd);color:var(--v-action,#0b57d2)}
+body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"]{border-color:var(--v-border);border-radius:24px;width:calc(100% - 32px);max-height:calc(100dvh - 32px);overflow-y:auto;box-shadow:0 16px 48px #20212426}
+body:has(.visionary-workspace) [role="dialog"] :is(input,select,textarea){accent-color:var(--v-action)}
+body:has(.visionary-workspace) [role="dialog"] :is(button,a,input,select,textarea,summary):focus-visible{outline:2px solid var(--v-action);outline-offset:3px}
+body:has(.visionary-workspace) [role="dialog"] > button:last-child:has(.sr-only){min-width:44px;min-height:44px;display:grid;place-items:center;right:8px;top:8px;border-radius:50%}
+body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-height:1.4}
+.visionary-workspace :is(input,select,textarea){accent-color:var(--v-action)}
+.visionary-workspace summary{min-height:44px;align-content:center;cursor:pointer}
+.visionary-workspace .v-list-row > :first-child{min-width:0;overflow-wrap:anywhere}
+.visionary-workspace .v-list-row > .v-button{flex-shrink:0}
+.visionary-workspace .v-page > header p{max-width:72ch}
+.visionary-workspace .v-field{transition:border-color 120ms ease,box-shadow 120ms ease}
+.visionary-workspace .v-field:hover{border-color:var(--v-text)}
+.guide-composer:focus-within{border-color:var(--v-action);box-shadow:0 0 0 1px var(--v-action)}
+.guide-mobile-tabs [aria-selected="true"]{background:var(--v-soft);color:var(--v-action);border-color:transparent}
+.guide-mobile-tabs [aria-selected="false"]:not(:disabled){background:white;color:var(--v-muted);border-color:transparent}
+@media(max-width:767px){.visionary-workspace .v-list-row{flex-wrap:wrap}.visionary-workspace .v-field{font-size:16px}body:has(.visionary-workspace) [role="dialog"] :is(input,select,textarea){font-size:16px}}
+@media(prefers-reduced-motion:reduce){body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]),body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) *{animation:none!important;transition:none!important}}
 
 /* Home/Ask enhancement: white workspace with brand accents */
 .visionary-workspace :is(.v-home,.guide-entry){

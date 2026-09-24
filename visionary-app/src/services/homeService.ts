@@ -3,7 +3,7 @@ import { familyReports, getWorkspace, workspaceIdentity } from './workspaceServi
 import { getJourney } from './journeys.ts';
 import { learningPriority,getLearningWorkspace } from './learningPipelineService.ts';
 import { getDailyPlan } from './dailyPlanService.ts';
-import { getWeeklyObservations,getStudentClasswork } from './mentorStateService.ts';
+import { getWeeklyObservations } from './mentorStateService.ts';
 
 export interface HomeAction { label: string; path: string }
 export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction }
@@ -60,18 +60,18 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
       };
       const ownedUnits = new Map(getLearningWorkspace(ctx).units.map(unit => [unit.conceptId,unit.title]));
       model.observations = getWeeklyObservations(ctx).slice(0,3).map(item => ({id:item.id,text:item.conceptId && ownedUnits.has(item.conceptId) ? item.text.replace('this concept',ownedUnits.get(item.conceptId)!) : item.text}));
-      const assigned = getStudentClasswork(ctx)[0];
-      if (assigned && !session && !next.unit && assigned.dueAt) {
-        model.priority = {
-          id:assigned.id,title:assigned.title,detail:`Classwork from ${assigned.className}${assigned.dueAt ? ` · Due ${assigned.dueAt}` : ''}. Open it to review and submit your work.`,
-          action:action('Open classwork',`classes?class=${encodeURIComponent(assigned.classId)}`),alternative:action('Open learning outline','learn'),
-          reason:'This is the next published assignment in a class where your enrollment is active.',source:'Connected classwork',
-        };
-      }
     }
     // The Daily Mentor Engine plan carries classwork, reviews, the open unit and project
     // work as one sequenced day, replacing the earlier separate module lists.
     const plan = getDailyPlan(ctx);
+    const pending = plan.steps.filter(step => !step.done);
+    const urgent = pending.find(step => step.kind === 'classwork' && step.dueAt && step.dueAt.slice(0, 10) <= plan.date);
+    const nextStep = urgent ?? (!session ? pending[0] : undefined);
+    if (nextStep) model.priority = {
+      id: nextStep.id, title: nextStep.title, titleLocale: nextStep.titleLocale, detail: nextStep.detail,
+      action: nextStep.action, alternative: pending.find(step => step.id !== nextStep.id)?.action ?? action('Open learning outline','learn'),
+      reason: nextStep.reason, source: nextStep.source, updatedAt: nextStep.dueAt,
+    };
     if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action}))});
   } else if (ctx.role === 'teacher') {
     const lesson = resources.find(r => r.kind === 'lesson' && r.status === 'draft');

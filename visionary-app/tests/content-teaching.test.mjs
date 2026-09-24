@@ -12,9 +12,10 @@ const ctx = (person = 'adult', locale = 'en') => ({ personId: `demo-${person}`, 
 const query = { board: 'Unconnected board', classLevel: '7', subject: 'My subject' };
 const syllabus = (repository, selection = query) => repository.getSyllabus(selection.board, selection.classLevel, selection.subject);
 const contentKey = 'visionary_content_v1';
-const officialConcept = (overrides = {}) => ({ id: 'official:concept', title: 'Supplied concept', topicId: 'official:topic', prerequisiteIds: [], status: 'official', representations: [], audience: 'general', ...overrides });
+const source = { provider: 'Reviewed syllabus fixture', sourceId: 'board:7:subject', version: '2026.1' };
+const officialConcept = (overrides = {}) => ({ id: 'official:concept', title: 'Supplied concept', topicId: 'official:topic', prerequisiteIds: [], status: 'official', representations: [], audience: 'general', locale: 'en', availableLocales: ['en'], provenance: source, ...overrides });
 const officialGraph = (overrides = {}) => ({
- syllabus: { ...query, id: 'official:syllabus', status: 'official', textbooks: [{ id: 'official:book', title: 'Supplied textbook', chapterIds: ['official:chapter'] }], chapters: [{ id: 'official:chapter', title: 'Supplied chapter', textbookId: 'official:book', topicIds: ['official:topic'], status: 'official' }] },
+ syllabus: { ...query, id: 'official:syllabus', status: 'official', contentLocale: 'en', availableLocales: ['en'], provenance: source, textbooks: [{ id: 'official:book', title: 'Supplied textbook', chapterIds: ['official:chapter'] }], chapters: [{ id: 'official:chapter', title: 'Supplied chapter', textbookId: 'official:book', topicIds: ['official:topic'], status: 'official' }] },
  topics: [{ id: 'official:topic', title: 'Supplied topic', chapterId: 'official:chapter', conceptIds: ['official:concept'], status: 'official' }],
  concepts: [officialConcept()], ...overrides,
 });
@@ -112,6 +113,46 @@ test('invalid remote content cannot replace saved curriculum and unsuccessful wr
  configureContentRepository(null); const set = localStorage.setItem; localStorage.setItem = () => { throw Error('full'); };
  try { await assert.rejects(syllabus(repository, { ...query, subject: 'New' }), /could not be saved/); } finally { localStorage.setItem = set; }
  assert.equal(memory.get(contentKey), before);
+});
+
+test('connected curriculum requires a source version and explicit concept-language availability', async () => {
+ const repository = getContentRepository(ctx()); const before = memory.get(contentKey);
+ for (const changed of [
+  graph => { delete graph.syllabus.provenance; },
+  graph => { graph.syllabus.availableLocales = []; },
+  graph => { graph.concepts[0].locale = 'hi'; },
+  graph => { graph.concepts[0].availableLocales = ['bn']; },
+ ]) {
+  configureContentRepository({ async getSyllabus() { const graph = officialGraph(); changed(graph); return graph; } });
+  await assert.rejects(syllabus(repository), /source version and explicit language availability/);
+  assert.equal(memory.get(contentKey), before);
+ }
+ configureContentRepository({ async getSyllabus() { return null; }, async getConcept() { return officialConcept({ provenance: undefined }); } });
+ await assert.rejects(repository.getConcept('official:concept'), /source version/);
+});
+
+test('a source-language outline cannot masquerade as translated teaching; localized graph versions coexist', async () => {
+ const english = officialGraph({ concepts: [officialConcept({ explanation: 'An English explanation.', check: { id: 'check', prompt: 'English question?', options: ['A', 'B'], answerIndex: 0, source: 'database' } })] });
+ configureContentRepository({ async getSyllabus() { return english; } });
+ await syllabus(getContentRepository(ctx('adult', 'hi')));
+ const hindiRepository = getContentRepository(ctx('adult', 'hi'));
+ const fallback = await hindiRepository.getConcept('official:concept');
+ assert.equal(fallback.locale, 'en');
+ assert.equal(fallback.languageUnavailable, true);
+ assert.equal(fallback.explanation, undefined);
+ assert.equal(fallback.check, undefined);
+ const concepts = await hindiRepository.getConcepts('official:topic');
+ assert.equal(concepts[0].languageUnavailable, true);
+ const hindi = officialGraph({
+  syllabus: { ...english.syllabus, contentLocale: 'hi', availableLocales: ['en', 'hi'] },
+  concepts: [officialConcept({ title: 'सत्यापित अवधारणा', locale: 'hi', availableLocales: ['en', 'hi'], explanation: 'हिंदी में व्याख्या।' })],
+ });
+ configureContentRepository({ async getSyllabus() { return hindi; } });
+ await syllabus(hindiRepository);
+ assert.equal((await hindiRepository.getConcept('official:concept')).explanation, 'हिंदी में व्याख्या।');
+ configureContentRepository(null);
+ assert.equal((await getContentRepository(ctx()).getConcept('official:concept')).explanation, 'An English explanation.');
+ assert.equal((await hindiRepository.getConcept('official:concept')).locale, 'hi');
 });
 
 test('content requests cancel promptly, including adapters that ignore the cancellation signal', async () => {

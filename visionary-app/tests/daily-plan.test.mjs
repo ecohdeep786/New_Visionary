@@ -100,8 +100,38 @@ test('Home shows the plan as one Today’s plan module instead of scattered clas
  const planModule = home.modules.find(module => module.id === 'daily-plan');
  assert.ok(planModule, 'Today’s plan module is present');
  assert.deepEqual(planModule.rows.map(row => row.id), ['classwork:plan-classwork', `unit:${(await pipeline.getLearningWorkspace(request)).units[0].id}`]);
+ assert.equal(home.priority.id, planModule.rows[0].id, 'the primary action and the first plan step must agree');
+ assert.equal(home.priority.action.path, planModule.rows[0].action.path);
  assert.equal(home.modules.some(module => ['classwork', 'build'].includes(module.id)), false);
  const fresh = await getHome(ctx());
  assert.equal(fresh.modules.some(module => module.id === 'daily-plan'), false);
  assert.throws(getDailyPlan.bind(null, ctx('teacher', 'teacher')), /personal learning workspace/);
+});
+
+test('urgent classwork takes the one primary action; a later assignment does not interrupt an active conversation', async () => {
+ seedConnectedFixtures(localStorage, at());
+ const request = ctx('minor-cbse');
+ const conversation = workspace.newConversation(request);
+ workspace.startJourney(request, conversation.id, 'cube');
+ const assignments = JSON.parse(localStorage.getItem('visionary_entity_Assignment'));
+ assignments.push({ id: 'urgent-classwork', class_id: 'demo-class-cube', title: 'Due now', status: 'published', due_date: '2026-09-23' });
+ localStorage.setItem('visionary_entity_Assignment', JSON.stringify(assignments));
+ let home = await getHome(request);
+ assert.equal(home.priority.id, 'classwork:urgent-classwork');
+ assert.equal(home.priority.action.path, '/dashboard/classes?class=demo-class-cube');
+ assignments[assignments.length - 1].due_date = '2026-10-30';
+ localStorage.setItem('visionary_entity_Assignment', JSON.stringify(assignments));
+ home = await getHome(request);
+ assert.match(home.priority.action.path, /ask\?session=/);
+ assert.equal(home.modules.find(module => module.id === 'daily-plan').rows[0].title, 'Due now');
+});
+
+test('classwork without a due date remains actionable when no activity is open', async () => {
+ seedConnectedFixtures(localStorage, at());
+ const assignments = JSON.parse(localStorage.getItem('visionary_entity_Assignment'));
+ assignments.push({ id: 'undated-classwork', class_id: 'demo-class-cube', title: 'Open inquiry', status: 'published' });
+ localStorage.setItem('visionary_entity_Assignment', JSON.stringify(assignments));
+ const home = await getHome(ctx('minor-cbse'));
+ assert.equal(home.priority.id, 'classwork:undated-classwork');
+ assert.equal(home.priority.source, 'Connected classwork');
 });

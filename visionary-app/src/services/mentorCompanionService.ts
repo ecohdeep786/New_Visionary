@@ -1,9 +1,11 @@
 import type { GuideBlock, Locale, RequestContext } from '../domain/workspace.ts';
-import { snapshot, workspaceIdentity, familyReports } from './workspaceService.ts';
+import { snapshot, workspaceIdentity, familyReports, updateConversation } from './workspaceService.ts';
 import { getStudentState, getWeeklyObservations, getStudentClasswork, getAssignedClasses, emitInteractionEvent } from './mentorStateService.ts';
 import { getLearningWorkspace, sendTeachingTurn } from './learningPipelineService.ts';
 import { getDailyPlan, type PlanStep } from './dailyPlanService.ts';
 import { appendGuideBlocks } from './workspaceService.ts';
+import { hasSafetyConcern } from './teachingInterface.ts';
+import { isMentorModelConfigured, requestMentorModelTurn } from './mentorModelService.ts';
 
 // The mentor companion: one category-aware intelligence surface over the user's real
 // records. It assembles the full context seam the future model will consume, routes
@@ -132,20 +134,39 @@ export function mentorGreeting(ctx: RequestContext): { text: string; actions: { 
 /** The full context seam the real model will consume; never emitted into L7 events. */
 export function buildMentorPacket(ctx: RequestContext) {
  const { person } = workspaceIdentity(ctx);
+ const data = snapshot(ctx);
  const plan = isLearner(ctx.role) ? getDailyPlan(ctx).steps.map(step => ({ kind: step.kind, title: step.title, done: step.done })) : [];
  return {
   promptVersion: 'mentor-context-v1', role: ctx.role, locale: ctx.locale,
   profile: person.learningContext ?? null,
   plan, concepts: isLearner(ctx.role) ? getStudentState(ctx).concepts.slice(0, 5) : [],
   observations: getWeeklyObservations(ctx).slice(0, 3).map(item => item.text),
-  openProjects: snapshot(ctx).artifacts.filter(a => a.status !== 'completed').length,
-  conversationTitles: snapshot(ctx).conversations.slice(0, 5).map(c => c.title),
+  openProjects: data.artifacts.filter(a => a.status !== 'completed').length,
+  conversationTitles: data.preferences.memory ? data.conversations.filter(c => c.useForPersonalization).slice(0, 5).map(c => c.title) : [],
  };
 }
 /** One mentor turn: real actions from saved records, or the teaching seam for open questions. */
 export async function sendMentorTurn(ctx: RequestContext, conversationId: string, text: string, inputType: 'text' | 'voice' = 'text') {
  const trimmed = text.trim();
  if (!trimmed) throw new Error('Type a question first.');
+ updateConversation(ctx, conversationId, { draft: trimmed });
+ // Safety takes precedence over a matching plan/navigation intent and over any model.
+ if (hasSafetyConcern(trimmed)) return sendTeachingTurn(ctx, conversationId, trimmed, inputType);
+ if (isMentorModelConfigured()) {
+  const packet = buildMentorPacket(ctx);
+  const started = Date.now();
+  emitInteractionEvent(ctx, { app: 'ASK', action: 'request', inputType, language: ctx.locale, sessionId: conversationId, promptVersion: packet.promptVersion });
+  try {
+   const reply = await requestMentorModelTurn(ctx, trimmed, packet);
+   if (!reply) throw new Error('The mentor connection changed. Your question remains saved; try again.');
+   appendGuideBlocks(ctx, conversationId, trimmed, reply.blocks, 'model');
+   emitInteractionEvent(ctx, { app: 'ASK', action: 'response', inputType, responseStatus: 'ready', language: ctx.locale, sessionId: conversationId, latency: Date.now() - started, promptVersion: reply.promptVersion });
+   return { status: 'model' as const, text: reply.text, blocks: reply.blocks };
+  } catch (error) {
+   if (!(error instanceof DOMException && error.name === 'AbortError')) emitInteractionEvent(ctx, { app: 'ASK', action: 'response', inputType, responseStatus: 'error', language: ctx.locale, sessionId: conversationId, latency: Date.now() - started, promptVersion: packet.promptVersion });
+   throw error;
+  }
+ }
  const intent = matchIntent(trimmed);
  if (!intent) return sendTeachingTurn(ctx, conversationId, text, inputType);
  const reply = composeMentorReply(ctx, intent, trimmed);

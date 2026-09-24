@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  GraduationCap, Users, HeartHandshake, Briefcase, Building2,
-  ArrowRight, ShieldCheck, BadgeCheck, Eye, Lock, Shield,
-  Monitor, Smartphone, Laptop, Globe, Mic,
-  FileText, Cookie, RefreshCw, Flag, Check,
+  GraduationCap, Users, HeartHandshake, Briefcase, Building2, ArrowRight,
 } from "lucide-react";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import LandingNav from "@/components/landing/LandingNav";
@@ -16,12 +13,7 @@ import promeet from "@/assets/pro-face-main-1600w.webp"
 import orgmeet from "@/assets/org-face-main-1600w.webp"
 import imgStudentCompetitive from "@/assets/student-competitive.webp"
 import imgStudentSecondary from "@/assets/student-secondary.webp"
-import imgStudentPrimary from "@/assets/student-primary.webp"
-import imgStudentHigher from "@/assets/student-higher.webp"
-import imgProblemUnderstanding from "@/assets/problem-understanding.webp"
 import imgProblemPractice from "@/assets/problem-practice.webp"
-import imgTeacherFace from "@/assets/teacher-face-main.webp"
-import imgParentFace from "@/assets/parent-face-main.webp"
 import imgProfessionalFace from "@/assets/professional-face-main.webp"
 
 /* ═══ TOKENS (one system across all pages) ═══ */
@@ -35,17 +27,6 @@ const COLORS = {
   white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-
-/* Observational photography — replace with real commissioned imagery before launch */
-const IMG_STORY = imgStudentSecondary;
-const IMG_APPROACH = imgProblemUnderstanding;
-const IMG_BENEFITS = imgStudentPrimary;
-const IMG_IMPACT_1 = imgStudentCompetitive;
-const IMG_IMPACT_2 = imgTeacherFace;
-const IMG_FUTURE = imgStudentHigher;
-const IMG_SAFETY = imgParentFace;
-const IMG_ACCESS = imgProblemPractice;
-const IMG_WHY = imgStudentCompetitive;
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -67,23 +48,6 @@ function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
     return () => observer.disconnect();
   }, [rootMargin]);
   return { ref, visible };
-}
-function useScrollSpy(ids, offset = 150) {
-  const [active, setActive] = useState(ids[0]);
-  useEffect(() => {
-    const onScroll = () => {
-      let current = ids[0];
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= offset) current = id;
-      }
-      setActive(current);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [ids, offset]);
-  return active;
 }
 function useCycleIndex(total, intervalMs) {
   const [index, setIndex] = useState(0);
@@ -108,26 +72,8 @@ const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
     </p>
   );
 });
-const IconTile = React.memo(function IconTile({ Icon }) {
-  return (
-    <span className="flex h-14 w-14 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-      <Icon className="h-6 w-6" strokeWidth={1.8} />
-    </span>
-  );
-});
 
 /* ═══ MODELS ═══ */
-const PILL_SECTIONS = [
-  { id: "about", label: "About" },
-  { id: "safety", label: "Safety" },
-  { id: "privacy", label: "Privacy" },
-  { id: "security", label: "Security" },
-  { id: "accessibility", label: "Accessibility" },
-  { id: "terms", label: "Terms" },
-  { id: "cookies", label: "Cookies" },
-];
-const PILL_IDS = PILL_SECTIONS.map((s) => s.id);
-
 const ECOSYSTEM = [
   { id: "student", label: "Student", Icon: GraduationCap },
   { id: "teacher", label: "Teacher", Icon: Users },
@@ -135,40 +81,6 @@ const ECOSYSTEM = [
   { id: "professional", label: "Professional", Icon: Briefcase },
   { id: "organization", label: "Organization", Icon: Building2 },
 ];
-
-const PROBLEMS = [
-  "One lesson for thirty different minds.",
-  "Learning restarts every year, every class, every device.",
-  "Scores measure one day, not understanding.",
-  "Parents see a report card, not the journey.",
-];
-
-const LOOP_STEPS = ["Understand", "Ask", "Practise", "Build", "Continue"];
-
-const BENEFITS = [
-  { id: "student", label: "Student", Icon: GraduationCap, line: "Understand what you're learning — and carry it forward." },
-  { id: "teacher", label: "Teacher", Icon: Users, line: "See who understood, and teach every learner." },
-  { id: "parent", label: "Parent", Icon: HeartHandshake, line: "Follow your child's journey with confidence." },
-  { id: "professional", label: "Professional", Icon: Briefcase, line: "Turn learning into the work you do." },
-  { id: "organization", label: "Organization", Icon: Building2, line: "Connect learning across every person and team." },
-];
-
-const IMPACT_STORIES = [
-  { img: IMG_IMPACT_1, quote: "I used to forget what I learned by next week. Now it stays with me.", who: "A student, grade 9 · Pune" },
-  { img: IMG_IMPACT_2, quote: "For the first time, I can see exactly where each of my 40 students stands.", who: "A teacher · Chennai" },
-];
-
-const NEXT_CHIPS = ["More languages", "Offline-first mobile", "School & district rollout", "Career pathways", "Open research"];
-
-const ACCESS_CHIPS = [
-  { Icon: Monitor, t: "Web" },
-  { Icon: Smartphone, t: "Phone" },
-  { Icon: Laptop, t: "Desktop" },
-  { Icon: Mic, t: "Voice + text" },
-  { Icon: Globe, t: "20+ languages" },
-];
-
-const MISSION_WORDS = ["in any language.", "at any age.", "for every role."];
 
 const WHY_FUTURES = [
   { role: "Student", line: "Lessons used to fade by Friday. Now the understanding stays with you." },
@@ -178,12 +90,11 @@ const WHY_FUTURES = [
   { role: "Organization", line: "Attendance said who showed up. Now you see who understood." },
 ];
 
-
-
-const APPROACH_ROWS = [
-  { n: "01", title: "Start from what you know.", copy: "Every journey begins where you are — not where the syllabus happens to be." },
-  { n: "02", title: "Make it make sense.", copy: "Visual, conversational, and in your language, until it clicks." },
-  { n: "03", title: "Keep it for life.", copy: "What you understand today becomes the foundation for what you become tomorrow." },
+const ABOUT_APPS = [
+  { label: "Learn", subject: "learn" },
+  { label: "Ask", subject: "ask" },
+  { label: "Practice", subject: "practice" },
+  { label: "Build", subject: "build" },
 ];
 
 const SERVE_CARDS = [
@@ -194,75 +105,114 @@ const SERVE_CARDS = [
   { id: "organization", label: "Organization", span: "sm:col-span-2 lg:col-span-2", img: orgmeet, title: "Build understanding that stays.", line: "Across your entire institution — every classroom, every team."  },
 ];
 
-const SAFETY_PILLARS = [
-  { Icon: ShieldCheck, title: "You see age-appropriate answers.", copy: "Every explanation is checked against guidance for the learner's age — before it reaches them." },
-  { Icon: BadgeCheck, title: "You're protected by default.", copy: "Safeguards are on from the first question. Nothing to configure." },
-  { Icon: Eye, title: "You can flag anything.", copy: "Report any answer, anytime. A human reviews it and fixes it." },
-];
-const SAFETY_TOOLS = [
-  { Icon: Users, t: "Family controls" },
-  { Icon: Flag, t: "Report anything" },
-  { Icon: BadgeCheck, t: "Safe by default" },
-  { Icon: ShieldCheck, t: "Reviewed guidance" },
+const ABOUT_STATS = [
+  { n: "22", label: "Indian languages" },
+  { n: "4", label: "Ways to use it" },
+  { n: "1", label: "Memory per person" },
+  { n: "100%", label: "Data stored in India" },
 ];
 
-const PRIVACY_PILLARS = [
-  { Icon: Lock, title: "You share only what you need to.", copy: "Visionary remembers your learning — not your life." },
-  { Icon: Eye, title: "You see everything we remember.", copy: "One screen shows every note Visionary keeps about you." },
-  { Icon: BadgeCheck, title: "You'll never be sold.", copy: "No ads. No data sales. Ever." },
-  { Icon: ShieldCheck, title: "You're private before you ask.", copy: "Defaults protect you before you touch a setting." },
-];
-
-const SECURITY_ROWS = [
-  { n: "01", title: "Your journey stays unreadable to others.", copy: "Encrypted in transit and at rest." },
-  { n: "02", title: "Your app verifies itself.", copy: "Every build is signed; updates arrive safely, automatically." },
-  { n: "03", title: "Your report gets fixed.", copy: "Responsible disclosure — we listen, we patch, we tell you." },
-];
-
-/* ═══ MERGED FROM AboutPage.jsx — Google's product-grid + trust patterns ═══ */
-const PRODUCT_CARDS = [
+const BELIEFS = [
   {
-    title: "For Students",
-    desc: "Ask, practice, and get personalized feedback on every concept — from maths to mastery skills.",
-    to: "/student",
-    subject: "student",
+    n: "01",
+    title: "Understanding over scores.",
+    short: "Measure what people can do, not what they watched.",
+    copy: "We measure what people can do with what they know — not how long they watched or how many boxes they ticked. A score tells you what happened after learning was complete. We focus on what is happening while learning is in progress."
   },
   {
-    title: "AI for Learning",
-    desc: "Our models understand questions, explanations, practice, and projects — not just keywords.",
-    to: "/ai-learning",
-    subject: "learn",
+    n: "02",
+    title: "Continuity over restarts.",
+    short: "Understanding travels — across days, devices, and years.",
+    copy: "Your understanding travels with you. Across days, devices, classes, and years — you never start over. When you move from one grade to the next, from one school to the next, from one career to the next, everything you built is still there."
   },
   {
-    title: "Research",
-    desc: "How we study learning, measure understanding, and publish what works.",
-    to: "/research",
-    subject: "research",
+    n: "03",
+    title: "One intelligence, every role.",
+    short: "One system serving every role, not five tools.",
+    copy: "The same underlying intelligence serves the student, the teacher, the parent, the professional, and the organization. Not five different tools. One system that understands what each person needs and responds accordingly."
+  },
+  {
+    n: "04",
+    title: "Language is access.",
+    short: "22 Indian languages, natively — not translated.",
+    copy: "If you can only learn in English, you can only reach the people who think in English. Visionary works in 22 Indian languages — natively, not translated. Because the language you think in is the language you understand in."
+  },
+  {
+    n: "05",
+    title: "Private by design.",
+    short: "Your learning belongs to you. We never sell data.",
+    copy: "Trust is not a feature we added. It is the foundation we built on. Your learning, your questions, your gaps, and your progress belong to you — not to the platform. We do not sell your data. What you build with Visionary is yours."
   },
 ];
 
-const TRUST_PILLARS = [
+const RESEARCH_PRINCIPLES = [
+  { n: "01", title: "The Socratic method.", copy: "Understanding is verified through dialogue — not delivery. Visionary explains, then asks back. When you can answer the question yourself, the understanding is yours." },
+  { n: "02", title: "Mastery tracking.", copy: "Visionary tracks understanding at the concept level, not the chapter level. When a gap appears, it is addressed before the next concept is introduced. Nothing is skipped. Nothing is unnecessarily repeated." },
+  { n: "03", title: "Native language pedagogy.", copy: "Research consistently shows that people understand more deeply in the language they think in. Visionary is built in 22 Indian languages from the ground up — not translated, but natively constructed." },
+];
+
+const COMMITMENTS = [
+  { to: "/safety", label: "Safety", subject: "safety", line: "Age-appropriate answers by default. Flag anything — a human reviews it." },
+  { to: "/privacy", label: "Privacy", subject: "lock", line: "Your memory is yours. See it, export it, or delete it — instantly." },
+  { to: "/security", label: "Security", subject: "shield", line: "Encrypted end to end, signed builds, updates that arrive safely." },
+  { to: "/accessibility", label: "Accessibility", subject: "accessibility", line: "Web, phone, desktop, and voice — built for 20+ languages." },
+];
+
+const LATEST = [
+  { to: "/updates", tag: "Product updates", title: "What's new across Visionary", line: "Follow the product as it ships — new apps, languages, and tools." },
+  { to: "/research", tag: "Research", title: "How we study learning", line: "What we're learning about understanding, published as we go." },
+  { to: "/community", tag: "Community", title: "Stories from learners", line: "Notes from students, teachers, and parents using Visionary." },
+];
+
+const CONTACT_ROUTES = [
+  { label: "General questions", email: "hello@visionary.org.in" },
+  { label: "Schools and institutions", email: "partnerships@visionary.org.in" },
+  { label: "Press and media", email: "press@visionary.org.in" },
+  { label: "Safety concerns", email: "safety@visionary.org.in" },
+];
+
+/* ── THE ABOUT HUB — 'Explore everything' (founder wayfinding contract) ──
+   Grouped like Google's about.google directory: Company / Support &
+   programs / Trust & legal. Each group is a labeled sub-grid of the
+   same flat-bordered card (ONE label top-left, thin arrow top-right,
+   hover-only shadow). */
+const HUB_GROUPS = [
   {
-    title: "Privacy by design",
-    copy: "Your questions, conversations, ideas, and progress are personal. Your learning memory is yours alone.",
-    to: "/privacy",
-    subject: "shield",
+    title: "Company",
+    links: [
+      { to: '/careers', label: 'Careers', subject: 'briefcase' },
+      { to: '/career', label: 'Career growth', subject: 'growth' },
+      { to: '/research', label: 'Research', subject: 'research' },
+      { to: '/community', label: 'Community', subject: 'community' },
+      { to: '/contact', label: 'Contact', subject: 'mail' },
+      { to: '/partners', label: 'Partners', subject: 'handshake' },
+      { to: '/updates', label: 'Updates', subject: 'updates' },
+      { to: '/referral', label: 'Referral', subject: 'gift' },
+    ],
   },
   {
-    title: "Safe by default",
-    copy: "Every answer is checked against age-appropriate safety guidance — before it reaches you. Nothing to configure.",
-    to: "/safety",
-    subject: "lock",
+    title: "Support & programs",
+    links: [
+      { to: '/how-it-works', label: 'How it works', subject: 'compass' },
+      { to: '/pricing', label: 'Pricing', subject: 'tag' },
+      { to: '/download', label: 'Download', subject: 'download' },
+      { to: '/help', label: 'Help', subject: 'help' },
+    ],
   },
   {
-    title: "Built responsibly",
-    copy: "Intelligence should help people without compromising what matters to them. Review our commitments.",
-    to: "/terms",
-    subject: "document",
+    title: "Trust & legal",
+    links: [
+      { to: '/privacy', label: 'Privacy policy', subject: 'lock' },
+      { to: '/terms', label: 'Terms', subject: 'document' },
+      { to: '/security', label: 'Security', subject: 'shield' },
+      { to: '/safety', label: 'Safety', subject: 'safety' },
+      { to: '/cookies', label: 'Cookies', subject: 'cookie' },
+      { to: '/accessibility', label: 'Accessibility', subject: 'accessibility' },
+    ],
   },
 ];
 
-/* ═══ HERO ═══ */
+/* ═══ HERO — the page's single H1 statement ═══ */
 function AboutHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -275,171 +225,39 @@ function AboutHeroSection() {
         <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           One intelligence that helps anyone learn, teach, support, build, and lead — anywhere, anytime, in any language.
         </p>
-        <Link
-          to="/register"
-          className="mt-8 inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-          style={{ backgroundColor: COLORS.blue }}
-        >
-          Start learning free
-        </Link>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ Product grid — Google's "Explore our products" 3-up ═══ */
-function AboutProductGrid() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">What we build</GreyTag>
-        <h2 className="mx-auto mt-6 max-w-[800px] text-center font-normal tracking-[-0.025em] leading-[1.1] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
-          Products that help you learn, teach, and grow
-        </h2>
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PRODUCT_CARDS.map((c) => (
-            <Link
-              key={c.title}
-              to={c.to}
-              className="group block rounded-[28px] border bg-white p-8 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
-              style={{ borderColor: COLORS.mist }}
-            >
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
-                <SpotIllustration subject={c.subject} className="h-[36px] w-[36px]" title={c.title} />
-              </div>
-              <h3 className="mb-3 font-medium tracking-[0] leading-[1.2] text-[22px]" style={{ color: COLORS.ink }}>{c.title}</h3>
-              <p className="font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.desc}</p>
-              <span className="mt-6 inline-block font-medium text-[14px]" style={{ color: COLORS.blue }}>
-                Learn more →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ Trust pillars — Google's Safety/Privacy/Security trust links ═══ */
-function AboutTrustSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Trust & safety</GreyTag>
-        <h2 className="mx-auto mt-6 max-w-[800px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
-          Built with safety, privacy, and responsibility at the core
-        </h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[26px] text-[17px]" style={{ color: COLORS.grey }}>
-          Your data is private by design, every interaction is safe by default, and our AI is built responsibly.
-        </p>
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TRUST_PILLARS.map((p) => (
-            <Link
-              key={p.title}
-              to={p.to}
-              className="group block rounded-[28px] border bg-white p-8 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
-              style={{ borderColor: COLORS.mist }}
-            >
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
-                <SpotIllustration subject={p.subject} className="h-[36px] w-[36px]" title={p.title} />
-              </div>
-              <h3 className="mb-3 font-medium tracking-[0] leading-[1.2] text-[22px]" style={{ color: COLORS.ink }}>{p.title}</h3>
-              <p className="font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{p.copy}</p>
-              <span className="mt-6 inline-block font-medium text-[14px]" style={{ color: COLORS.blue }}>
-                Learn more →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ Newsletter — Google's "Get the latest" pattern ═══ */
-function AboutNewsletterSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto max-w-[640px] text-center">
-          <GreyTag className="text-center">Newsletter</GreyTag>
-          <h2 className="mt-6 font-normal tracking-[-0.02em] leading-[1.06] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
-            Get the latest news from Visionary
-          </h2>
-          <p className="mx-auto mt-6 max-w-[560px] font-normal tracking-[0] leading-[26px] text-[17px]" style={{ color: COLORS.grey }}>
-            Product updates, research highlights, and learning tips — no spam, ever.
-          </p>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const email = e.target.elements.email.value;
-              if (email) window.location.href = `/register?ref=newsletter&email=${encodeURIComponent(email)}`;
-            }}
-            className="mt-10 flex flex-col gap-3 sm:flex-row"
+        <div className="mt-8 text-center">
+          <Link
+            to="/register"
+            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            style={{ backgroundColor: COLORS.blue }}
           >
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              required
-              className="flex-1 rounded-[32px] border border-[#dadce0] px-6 py-3.5 text-[15px] placeholder-[#9AA0A6] outline-none focus:border-[#4285F4]"
-              style={{ backgroundColor: COLORS.white }}
-            />
-            <button
-              type="submit"
-              className="rounded-full px-10 font-medium text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98]"
-              style={{ backgroundColor: COLORS.blue }}
-            >
-              Subscribe
-            </button>
-          </form>
+            Start learning free
+          </Link>
         </div>
       </FadeReveal>
     </section>
   );
 }
 
-// /* ═══ STICKY SECTION TABS ═══ */
-// function AboutSectionTabs() {
-//   const active = useScrollSpy(PILL_IDS);
-//   const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-//   return (
-//     <div className="sticky top-16 z-30 bg-white/90 px-6 py-6 backdrop-blur-md">
-//       <div className="mx-auto flex h-[52px] w-full max-w-[1080px] items-stretch overflow-hidden rounded-[90px] border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="About page sections">
-//         {PILL_SECTIONS.map((s) => (
-//           <button key={s.id} type="button" role="tab" aria-selected={active === s.id} onClick={() => goTo(s.id)}
-//             className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === s.id ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
-//             style={{ backgroundColor: active === s.id ? COLORS.ink : "transparent", color: active === s.id ? "#ffffff" : COLORS.grey }}>
-//             {s.label}
-//           </button>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-/* ═══ A1 · OUR MISSION ═══ */
+/* ═══ MISSION — the formal statement + the five roles it serves ═══ */
 function AboutMissionSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} id="mission" className="relative scroll-mt-24 bg-white px-6 pb-24 pt-16 lg:pb-32 lg:pt-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <GreyTag className="text-center">About Visionary</GreyTag>
-        <h1 className="mx-auto max-w-[1200px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>
+        <GreyTag className="text-center">Our mission</GreyTag>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.1] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Built for <span style={{ color: COLORS.blue }}>every Indian mind</span>.
-        </h1>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.444)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        </h2>
+        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           One intelligence. Every language. A teacher for everyone.
         </p>
 
-        <div className="mx-auto mt-32 grid w-full max-w-[1500px] grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mx-auto mt-24 grid w-full max-w-[1500px] grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
           {ECOSYSTEM.map((e) => (
             <div key={e.id} className="flex flex-col items-center gap-6">
               <span className="flex h-24 w-24 items-center justify-center rounded-[28px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-                <e.Icon className="h-10 w-10" strokeWidth={1.8} />
+                <e.Icon className="h-10 w-10" strokeWidth={1.8} aria-hidden="true" />
               </span>
               <span className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>{e.label}</span>
             </div>
@@ -454,7 +272,7 @@ function AboutMissionSection() {
   );
 }
 
-/* ═══ A2 · WHY WE EXIST — FIXED: white rectangle same width as image ═══ */
+/* ═══ WHY WE EXIST — editorial photo + rotating futures ═══ */
 function AboutWhySection() {
   const { ref, visible } = useRevealOnce();
   const { index: futureIndex } = useCycleIndex(WHY_FUTURES.length, 4800);
@@ -470,7 +288,7 @@ function AboutWhySection() {
         <div className="relative mx-auto mt-16 max-w-[1400px]">
           <div className={`overflow-hidden rounded-t-[48px] ${visible ? "hero-fade-right" : "opacity-0"}`}>
             <img
-              src={IMG_WHY}
+              src={imgStudentCompetitive}
               alt="School students in uniform — the future Visionary is built for"
               loading="lazy"
               decoding="async"
@@ -478,7 +296,6 @@ function AboutWhySection() {
             />
           </div>
 
-          {/* FIXED: removed mx-6 lg:mx-16 insets so width matches image exactly */}
           <div className="relative z-10 -mt-24 rounded-[32px] border bg-white px-6 py-12 text-center lg:-mt-32 lg:px-24 lg:py-14" style={{ borderColor: COLORS.mist }}>
             <div key={futureIndex} className="hero-fade-right mx-auto max-w-[1100px]">
               <p className="font-normal tracking-[0] leading-[1.6] text-[clamp(16px,1.6vw,20px)]" style={{ color: COLORS.grey }}>
@@ -495,56 +312,36 @@ function AboutWhySection() {
   );
 }
 
-/* ═══ A3 · OUR APPROACH ═══ */
-function AboutApproachSection() {
+/* ═══ THE PRODUCT — four apps, Google's 4-up product grid ═══ */
+function AboutAppsSection() {
   const { ref, visible } = useRevealOnce();
   return (
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Our approach</GreyTag>
+        <GreyTag className="text-center">The product</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          We don't teach people. <span style={{ color: COLORS.ink }}>We remember them.</span>
+          Four ways to use it.
         </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Every person on Visionary builds a private, growing record of what they understood, where they struggled, and what they made. That record — not the content — is what changes everything.
+        <p className="mx-auto max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          One intelligence, four apps. See how each one works.
         </p>
-
-        <div className={`mx-auto mt-16 flex w-full max-w-[1080px] flex-wrap items-center justify-center gap-3 ${visible ? "hero-fade-right" : "opacity-0"}`}>
-          {LOOP_STEPS.map((s, i) => (
-            <React.Fragment key={s}>
-              <span className="rounded-full border bg-white px-6 py-3 font-normal tracking-[0.24px] text-[14px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.ink }}>
-                {s}
-              </span>
-              {i < LOOP_STEPS.length - 1 && <ArrowRight className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />}
-            </React.Fragment>
+        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {ABOUT_APPS.map(({ label, subject }) => (
+            <Link key={label} to="/how-it-works"
+              className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              style={{ borderColor: COLORS.mist }}>
+              <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>{label}</span>
+              <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#4285F4]" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} aria-hidden="true" />
+              <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
+            </Link>
           ))}
-          <span className="flex items-center gap-2 px-2 font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            <RefreshCw className="h-4 w-4" strokeWidth={1.8} /> back to Understand
-          </span>
-        </div>
-
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] gap-16 lg:grid-cols-[320px_1fr] lg:gap-24 xl:gap-32">
-          <div className="flex items-start justify-center">
-            <SpotIllustration subject="math" className="h-[260px] w-[260px]" title="Understanding starts from what you know" />
-          </div>
-          <div>
-            {APPROACH_ROWS.map((r, i) => (
-              <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < APPROACH_ROWS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
-                <div>
-                  <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                  <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </FadeReveal>
     </section>
   );
 }
 
-/* ═══ A4 · WHO WE SERVE ═══ */
+/* ═══ WHO WE SERVE — five real-photo role cards + closing vision line ═══ */
 function AboutBenefitsSection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -581,335 +378,23 @@ function AboutBenefitsSection() {
                 </p>
                 <span className="mt-auto pt-8">
                   <span className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-[#121317]/30 px-6 font-medium tracking-[0.24px] text-[14px] text-[#121317] transition-all duration-300 group-hover:border-[#4285F4] group-hover:bg-[#4285F4] group-hover:text-white">
-                    See the page <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+                    See the page <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                 </span>
               </div>
             </Link>
           ))}
         </div>
-      </FadeReveal>
-    </section>
-  );
-}
 
-/* ═══ B · SAFETY ═══ */
-function AboutSafetySection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="safety" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Safety</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Safe to <span style={{ color: COLORS.ink }}>grow with.</span>
-        </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Every answer, every interaction is built to protect the person learning — especially the youngest.
+        <p className="mx-auto mt-16 max-w-[720px] text-center text-[19px] font-normal leading-[1.5] sm:text-[22px]" style={{ color: COLORS.grey }}>
+          One connected journey — from the first question to the work you do. <span style={{ color: COLORS.ink }}>That is the world we are building.</span>
         </p>
-
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div className="overflow-hidden rounded-[48px]">
-            <img src={IMG_SAFETY} alt="A young learner with a trusted adult, learning safely" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-          </div>
-          <div className="grid grid-cols-1 gap-6">
-            {SAFETY_PILLARS.map((c) => (
-              <div key={c.title} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
-                <IconTile Icon={c.Icon} />
-                <h3 className="mt-6 font-medium tracking-[0] leading-[1.25] text-[20px]" style={{ color: COLORS.ink }}>{c.title}</h3>
-                <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.copy}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mx-auto mt-12 flex w-full max-w-[900px] flex-wrap items-center justify-center gap-3">
-          {SAFETY_TOOLS.map(({ Icon, t }) => (
-            <span key={t} className="flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 font-normal tracking-[0.24px] text-[13px]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-              <Icon className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.blue }} /> {t}
-            </span>
-          ))}
-        </div>
       </FadeReveal>
     </section>
   );
 }
 
-/* ═══ C · PRIVACY ═══ */
-function AboutPrivacySection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="privacy" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Privacy</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Your memory is yours. <span style={{ color: COLORS.ink }}>Private by design.</span>
-        </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Privacy here isn't a setting. It's the default — and you hold the controls.
-        </p>
-
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PRIVACY_PILLARS.map((c) => (
-            <div key={c.title} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
-              <IconTile Icon={c.Icon} />
-              <h3 className="mt-6 font-medium tracking-[0] leading-[1.25] text-[20px]" style={{ color: COLORS.ink }}>{c.title}</h3>
-              <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.copy}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-12 w-full max-w-[760px] rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
-          <div className="flex items-center gap-4">
-            <IconTile Icon={Lock} />
-            <p className="font-medium tracking-[0] text-[20px]" style={{ color: COLORS.ink }}>Your memory, your controls</p>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {["See everything", "Export", "Delete all"].map((b) => (
-              <span key={b} className="inline-flex h-11 items-center justify-center rounded-full border px-6 font-medium tracking-[0.24px] text-[14px]" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
-                {b}
-              </span>
-            ))}
-          </div>
-          <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            Instant. No emails, no waiting. Your call, always.
-          </p>
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link to="/privacy" className="inline-flex items-center gap-1 font-normal tracking-[0] text-[15px]" style={{ color: COLORS.blue }}>
-            Read the privacy policy <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
-          </Link>
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ D · SECURITY ═══ */
-function AboutSecuritySection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="security" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Security</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Protected <span style={{ color: COLORS.ink }}>end to end.</span>
-        </h2>
-
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div>
-            {SECURITY_ROWS.map((r, i) => (
-              <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < SECURITY_ROWS.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
-                <div>
-                  <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                  <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-[24px] border p-8" style={{ borderColor: COLORS.mist }}>
-            <div className="flex items-center gap-4">
-              <IconTile Icon={Shield} />
-              <p className="font-medium tracking-[0] text-[20px]" style={{ color: COLORS.ink }}>Protection status</p>
-            </div>
-            <div className="mt-6 space-y-4">
-              {[["Encryption", "on"], ["Signed builds", "verified"], ["Updates", "automatic"]].map(([k, v]) => (
-                <div key={k} className="flex items-center justify-between rounded-[16px] border bg-white px-5 py-4" style={{ borderColor: COLORS.mist }}>
-                  <span className="font-normal tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>{k}</span>
-                  <span className="flex items-center gap-2 font-medium tracking-[0] text-[13px] uppercase tracking-[0.43px]" style={{ color: COLORS.blue }}>
-                    <Check className="h-4 w-4" strokeWidth={2} /> {v}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[13px]" style={{ color: COLORS.lightGrey }}>
-              Checked on every visit.
-            </p>
-          </div>
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ E · ACCESSIBILITY ═══ */
-function AboutAccessibilitySection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="accessibility" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Accessibility</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Everywhere you learn.
-        </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Learning shouldn't stop because of where you are, what device you have, or what language you think in.
-        </p>
-
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div className="overflow-hidden rounded-[48px]">
-            <img src={IMG_ACCESS} alt="People learning on different devices in different places" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-          </div>
-          <div>
-            <div className="flex flex-wrap gap-3">
-              {ACCESS_CHIPS.map(({ Icon, t }) => (
-                <span key={t} className="flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 font-normal tracking-[0.24px] text-[13px]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                  <Icon className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.blue }} /> {t}
-                </span>
-              ))}
-              <span className="rounded-full border bg-white px-5 py-2.5 font-normal tracking-[0.24px] text-[13px]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                Works on low bandwidth
-              </span>
-            </div>
-            <div className="mt-8">
-              <Link to="/download" className="inline-flex items-center gap-1 font-normal tracking-[0] text-[15px]" style={{ color: COLORS.blue }}>
-                See download options <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ F · TERMS ═══ */
-function AboutTermsSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="terms" className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto flex max-w-[1080px] flex-col items-center gap-10 text-center lg:flex-row lg:items-start lg:text-left">
-          <IconTile Icon={FileText} />
-          <div>
-            <GreyTag>Terms</GreyTag>
-            <h2 className="mt-6 font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-              Fair rules, in plain language.
-            </h2>
-            <div className="mt-6 max-w-[760px] space-y-3">
-              {["You own what you create.", "We only use your data to make your learning better.", "Clear cancellation, no lock-in."].map((t) => (
-                <p key={t} className="font-normal tracking-[0] leading-[1.6] text-[17.5px]" style={{ color: COLORS.grey }}>{t}</p>
-              ))}
-            </div>
-            <Link to="/terms" className="mt-8 inline-flex items-center gap-1 font-normal tracking-[0] text-[15px]" style={{ color: COLORS.blue }}>
-              Read the full terms <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
-            </Link>
-          </div>
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ G · COOKIES ═══ */
-function AboutCookiesSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="cookies" className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto flex max-w-[1080px] flex-col items-center gap-10 text-center lg:flex-row lg:items-start lg:text-left">
-          <IconTile Icon={Cookie} />
-          <div>
-            <GreyTag>Cookies</GreyTag>
-            <h2 className="mt-6 font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-              Only what's needed.
-            </h2>
-            <div className="mt-6 max-w-[760px] space-y-3">
-              {["Essential cookies keep you signed in.", "No advertising cookies, ever.", "Analytics only with your consent."].map((t) => (
-                <p key={t} className="font-normal tracking-[0] leading-[1.6] text-[17.5px]" style={{ color: COLORS.grey }}>{t}</p>
-              ))}
-            </div>
-            <Link to="/cookies" className="mt-8 inline-flex items-center gap-1 font-normal tracking-[0] text-[15px]" style={{ color: COLORS.blue }}>
-              Read the cookie policy <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
-            </Link>
-          </div>
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-const BELIEFS = [
-  {
-    n: "01",
-    title: "Understanding over scores.",
-    short: "Measure what people can do, not what they watched.",
-    copy: "We measure what people can do with what they know — not how long they watched or how many boxes they ticked. A score tells you what happened after learning was complete. We focus on what is happening while learning is in progress."
-  },
-  {
-    n: "02",
-    title: "Continuity over restarts.",
-    short: "Understanding travels — across days, devices, and years.",
-    copy: "Your understanding travels with you. Across days, devices, classes, and years — you never start over. When you move from one grade to the next, from one school to the next, from one career to the next, everything you built is still there."
-  },
-  {
-    n: "03",
-    title: "One intelligence, every role.",
-    short: "One system serving every role, not five tools.",
-    copy: "The same underlying intelligence serves the student, the teacher, the parent, the professional, and the organization. Not five different tools. One system that understands what each person needs and responds accordingly."
-  },
-  {
-    n: "04",
-    title: "Language is access.",
-    short: "22 Indian languages, natively — not translated.",
-    copy: "If you can only learn in English, you can only reach the people who think in English. Visionary works in 22 Indian languages — natively, not translated. Because the language you think in is the language you understand in."
-  },
-  {
-    n: "05",
-    title: "Private by design.",
-    short: "Your learning belongs to you. We never sell data.",
-    copy: "Trust is not a feature we added. It is the foundation we built on. Your learning, your questions, your gaps, and your progress belong to you — not to the platform. We do not sell your data. What you build with Visionary is yours."
-  },
-];
-/* ═══ A3 · WHAT WE BELIEVE — loop diagram + 5 expanded beliefs ═══ */
-/* ═══ THE PRODUCT — four apps (A-grid: label + arrow + corner tile, updates pattern) ═══ */
-const ABOUT_APPS = [
-  { label: "Learn", subject: "learn" },
-  { label: "Ask", subject: "ask" },
-  { label: "Practice", subject: "practice" },
-  { label: "Build", subject: "build" },
-];
-
-function AboutAppsSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">The product</GreyTag>
-        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Four ways to use it.
-        </h2>
-        <p className="mx-auto max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          One intelligence, four apps. See how each one works.
-        </p>
-        <div className="mx-auto mt-14 grid w-full max-w-[1280px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {ABOUT_APPS.map(({ label, subject }) => (
-            <Link key={label} to="/how-it-works"
-              className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-              style={{ borderColor: COLORS.mist }}>
-              <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>{label}</span>
-              <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#4285F4]" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
-              <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
-            </Link>
-          ))}
-          <div aria-hidden="true" className="hidden min-h-[176px] lg:block" />
-          <div aria-hidden="true" className="hidden min-h-[176px] lg:block" />
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ STAT BAND — big light numbers + grey labels, type + white only (E-pattern) ═══ */
-const ABOUT_STATS = [
-  { n: "22", label: "Indian languages" },
-  { n: "4", label: "Ways to use it" },
-  { n: "1", label: "Memory per person" },
-  { n: "100%", label: "Data stored in India" },
-];
-
+/* ═══ STAT BAND — big light numbers + grey labels, type + white only ═══ */
 function AboutStatBand() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -928,8 +413,7 @@ function AboutStatBand() {
   );
 }
 
-/* ═══ WHAT WE BELIEVE — the capture's story-block concept:
-   featured illustrated panel left + hairline label rows right ═══ */
+/* ═══ WHAT WE BELIEVE — photo panel + hairline label rows ═══ */
 function AboutBeliefsSection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -938,7 +422,13 @@ function AboutBeliefsSection() {
         <div className="mx-auto grid w-full max-w-[1280px] gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
             <div className="overflow-hidden rounded-[24px] border" style={{ borderColor: COLORS.mist }}>
-              <SpotIllustration subject="loop" className="aspect-[4/3] w-full" />
+              <img
+                src={imgStudentSecondary}
+                alt="A student writing out an idea until it holds — the moment Visionary is built for"
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/3] w-full object-cover"
+              />
             </div>
             <p className="mt-8 text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>What we believe</p>
             <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
@@ -965,41 +455,9 @@ function AboutBeliefsSection() {
       </FadeReveal>
     </section>
   );
-}/* ═══ OUR VISION — the capture's Technology-section concept:
-   a strip of four illustrated persona panels with caps labels + captions ═══ */
-function AboutVisionSection() {
-  const { ref, visible } = useRevealOnce();
-  const PANELS = [
-    { subject: "student", label: "Students", line: "Understanding follows them from classroom to career." },
-    { subject: "teacher", label: "Teachers", line: "Every learner, seen." },
-    { subject: "parent", label: "Parents", line: "Help before the test, not after." },
-    { subject: "team", label: "Teams", line: "Learning faster than it forgets." },
-  ];
-  return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <GreyTag className="text-center">Our vision</GreyTag>
-        <h2 className="mx-auto mt-4 max-w-[1080px] text-center text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-          The world we are building.
-        </h2>
-        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PANELS.map((p) => (
-            <div key={p.subject}>
-              <div className="overflow-hidden rounded-[20px] border" style={{ borderColor: COLORS.mist }}>
-                <SpotIllustration subject={p.subject} className="aspect-[3/4] w-full" />
-              </div>
-              <p className="mt-5 text-[12px] uppercase tracking-[0.43px]" style={{ color: COLORS.grey }}>{p.label}</p>
-              <p className="mt-1.5 text-[15px] font-normal leading-[1.5]" style={{ color: COLORS.ink }}>{p.line}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mx-auto mt-16 max-w-[720px] text-center text-[19px] font-normal leading-[1.5] sm:text-[22px]" style={{ color: COLORS.grey }}>
-          That is the world we are building — one connected mind at a time.
-        </p>
-      </FadeReveal>
-    </section>
-  );
-}/* ═══ THE COMPANY — facts, DPIIT, CIN, data storage ═══ */
+}
+
+/* ═══ THE COMPANY — facts, DPIIT, CIN, data storage ═══ */
 function AboutCompanySection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -1057,11 +515,11 @@ function AboutPeopleSection() {
 
         <div className="mx-auto mt-16 flex w-full max-w-[900px] flex-col items-center gap-10 rounded-[24px] border bg-white p-8 lg:flex-row lg:items-start lg:p-12" style={{ borderColor: COLORS.mist }}>
           <div className="h-40 w-40 shrink-0 overflow-hidden rounded-full border" style={{ borderColor: COLORS.mist }}>
-            <img src={IMG_FOUNDER} alt="Md Shahid Ali" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img src={IMG_FOUNDER} alt="Md Shahid Ali, Founder and CEO of Visionary" loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
           <div>
             <p className="font-medium tracking-[0] text-[22px]" style={{ color: COLORS.ink }}>Md Shahid Ali</p>
-            <p className="mt-1 font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Founder & CEO</p>
+            <p className="mt-1 font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Founder &amp; CEO</p>
             <p className="mt-6 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
               Md Shahid Ali built Visionary from one conviction: that the gap between effort and understanding is the most important problem in Indian education — and that it is solvable.
             </p>
@@ -1074,13 +532,8 @@ function AboutPeopleSection() {
     </section>
   );
 }
-const RESEARCH_PRINCIPLES = [
-  { n: "01", title: "The Socratic method.", copy: "Understanding is verified through dialogue — not delivery. Visionary explains, then asks back. When you can answer the question yourself, the understanding is yours." },
-  { n: "02", title: "Mastery tracking.", copy: "Visionary tracks understanding at the concept level, not the chapter level. When a gap appears, it is addressed before the next concept is introduced. Nothing is skipped. Nothing is unnecessarily repeated." },
-  { n: "03", title: "Native language pedagogy.", copy: "Research consistently shows that people understand more deeply in the language they think in. Visionary is built in 22 Indian languages from the ground up — not translated, but natively constructed." },
-];
 
-/* ═══ HOW WE THINK — research grounding ═══ */
+/* ═══ HOW WE THINK — research grounding, photo panel ═══ */
 function AboutResearchSection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -1093,7 +546,7 @@ function AboutResearchSection() {
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           The way Visionary teaches is not arbitrary. It is based on decades of research in cognitive science, pedagogy, and language acquisition.
         </p>
-        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-16 lg:grid-cols-[1fr_320px] lg:gap-24 xl:gap-32">
+        <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-16 lg:grid-cols-[1fr_340px] lg:gap-24 xl:gap-32">
           <div>
             {RESEARCH_PRINCIPLES.map((r, i) => (
               <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < RESEARCH_PRINCIPLES.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
@@ -1106,25 +559,62 @@ function AboutResearchSection() {
             ))}
           </div>
           <div className="flex items-start justify-center">
-            <SpotIllustration subject="research" className="h-[260px] w-[260px]" title="Research grounded in learning science" />
+            <div className="w-full max-w-[340px] overflow-hidden rounded-[24px] border" style={{ borderColor: COLORS.mist }}>
+              <img
+                src={imgProblemPractice}
+                alt="A learner working through practice problems at a desk"
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </FadeReveal>
     </section>
   );
 }
-const CONTACT_ROUTES = [
-  { label: "General questions", email: "hello@visionary.org.in" },
-  { label: "Schools and institutions", email: "partnerships@visionary.org.in" },
-  { label: "Press and media", email: "press@visionary.org.in" },
-  { label: "Safety concerns", email: "safety@visionary.org.in" },
-];
+
+/* ═══ OUR COMMITMENTS — one Google-style trust row linking out ═══ */
+function AboutCommitmentsSection() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">Our commitments</GreyTag>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          Trust is built in. <span style={{ color: COLORS.ink }}>Not bolted on.</span>
+        </h2>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          Four promises we keep on every page — read the detail behind each one.
+        </p>
+
+        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {COMMITMENTS.map(({ to, label, subject, line }) => (
+            <Link key={to} to={to}
+              className="group relative flex min-h-[200px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              style={{ borderColor: COLORS.mist }}>
+              <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>{label}</span>
+              <span className="mt-2 pr-16 text-[14px] font-normal leading-[1.55] tracking-[0]" style={{ color: COLORS.grey }}>{line}</span>
+              <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} aria-hidden="true" />
+              <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[80px] w-[80px]" />
+            </Link>
+          ))}
+        </div>
+
+        <p className="mx-auto mt-10 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[15px]" style={{ color: COLORS.grey }}>
+          Fair rules, in plain language — read our <Link to="/terms" className="font-medium hover:underline" style={{ color: COLORS.blue }}>terms</Link> and <Link to="/cookies" className="font-medium hover:underline" style={{ color: COLORS.blue }}>cookie policy</Link>.
+        </p>
+      </FadeReveal>
+    </section>
+  );
+}
 
 /* ═══ GET IN TOUCH — 4 specific routes ═══ */
 function AboutContactSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Get in touch</GreyTag>
         <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1133,11 +623,11 @@ function AboutContactSection() {
 
         <div className="mx-auto mt-16 grid w-full max-w-[1080px] grid-cols-1 gap-6 sm:grid-cols-2">
           {CONTACT_ROUTES.map((c) => (
-            <a key={c.email} href={`mailto:${c.email}`} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+            <a key={c.email} href={`mailto:${c.email}`} className="group flex flex-col rounded-[24px] border bg-white p-7 transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
               <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{c.label}</p>
               <p className="mt-3 font-medium tracking-[0] text-[17.5px]" style={{ color: COLORS.ink }}>{c.email}</p>
               <span className="mt-4 inline-flex items-center gap-1 font-normal tracking-[0] text-[14px] group-hover:underline" style={{ color: COLORS.blue }}>
-                Send email <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+                Send email <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
               </span>
             </a>
           ))}
@@ -1150,49 +640,36 @@ function AboutContactSection() {
     </section>
   );
 }
-/* ═══ H · FINAL CTA ═══ */
-/* ═══ CTA — specific action, not "be part of the story" ═══ */
 
-/* ── THE ABOUT HUB — 'Explore everything' (founder wayfinding contract) ──
-   Grouped like Google's about.google directory: Company / Support &
-   programs / Trust & legal. Each group is a labeled sub-grid of the
-   same flat-bordered card (ONE label top-left, thin arrow top-right,
-   hover-only shadow). */
-const HUB_GROUPS = [
-  {
-    title: "Company",
-    links: [
-      { to: '/careers', label: 'Careers', subject: 'briefcase' },
-      { to: '/career', label: 'Career growth', subject: 'growth' },
-      { to: '/research', label: 'Research', subject: 'research' },
-      { to: '/community', label: 'Community', subject: 'community' },
-      { to: '/contact', label: 'Contact', subject: 'mail' },
-      { to: '/partners', label: 'Partners', subject: 'handshake' },
-      { to: '/updates', label: 'Updates', subject: 'updates' },
-      { to: '/referral', label: 'Referral', subject: 'gift' },
-    ],
-  },
-  {
-    title: "Support & programs",
-    links: [
-      { to: '/how-it-works', label: 'How it works', subject: 'compass' },
-      { to: '/pricing', label: 'Pricing', subject: 'tag' },
-      { to: '/download', label: 'Download', subject: 'download' },
-      { to: '/help', label: 'Help', subject: 'help' },
-    ],
-  },
-  {
-    title: "Trust & legal",
-    links: [
-      { to: '/privacy', label: 'Privacy policy', subject: 'lock' },
-      { to: '/terms', label: 'Terms', subject: 'document' },
-      { to: '/security', label: 'Security', subject: 'shield' },
-      { to: '/safety', label: 'Safety', subject: 'safety' },
-      { to: '/cookies', label: 'Cookies', subject: 'cookie' },
-      { to: '/accessibility', label: 'Accessibility', subject: 'accessibility' },
-    ],
-  },
-];
+/* ═══ THE LATEST — blog.google news-card grammar: label → headline → read ═══ */
+function AboutLatestSection() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">The latest</GreyTag>
+        <h2 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          News from Visionary.
+        </h2>
+
+        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {LATEST.map((c) => (
+            <Link key={c.to} to={c.to}
+              className="group flex flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              style={{ borderColor: COLORS.mist }}>
+              <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>{c.tag}</p>
+              <h3 className="mt-3 text-[22px] font-medium leading-[1.25] tracking-[0]" style={{ color: COLORS.ink }}>{c.title}</h3>
+              <p className="mt-2 text-[15px] font-normal leading-[1.6]" style={{ color: COLORS.grey }}>{c.line}</p>
+              <span className="mt-auto inline-flex items-center gap-1 pt-6 text-[14px] font-medium" style={{ color: COLORS.blue }}>
+                Read more <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}
 
 function AboutHubSection() {
   const { ref, visible } = useRevealOnce();
@@ -1217,7 +694,7 @@ function AboutHubSection() {
                 {group.links.map(({ to, label, subject }) => (
                   <Link key={to} to={to} className="group relative flex min-h-[176px] flex-col rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
                     <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>{label}</span>
-                    <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} />
+                    <ArrowRight className="absolute right-6 top-7 h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.7} style={{ color: COLORS.lightGrey }} aria-hidden="true" />
                     <SpotIllustration subject={subject} className="absolute bottom-3 right-4 h-[92px] w-[92px]" />
                   </Link>
                 ))}
@@ -1232,6 +709,53 @@ function AboutHubSection() {
   );
 }
 
+/* ═══ NEWSLETTER — Google's "Get the latest" pattern ═══ */
+function AboutNewsletterSection() {
+  const { ref, visible } = useRevealOnce();
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <div className="mx-auto max-w-[640px] text-center">
+          <GreyTag className="text-center">Newsletter</GreyTag>
+          <h2 className="mt-6 font-normal tracking-[-0.02em] leading-[1.06] text-[34px] sm:text-[42px]" style={{ color: COLORS.ink }}>
+            Get the latest news from Visionary
+          </h2>
+          <p className="mx-auto mt-6 max-w-[560px] font-normal tracking-[0] leading-[26px] text-[17px]" style={{ color: COLORS.grey }}>
+            Product updates, research highlights, and learning tips — no spam, ever.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const email = e.target.elements.email.value;
+              if (email) window.location.href = `/register?ref=newsletter&email=${encodeURIComponent(email)}`;
+            }}
+            className="mt-10 flex flex-col gap-3 sm:flex-row"
+          >
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+            <input
+              id="newsletter-email"
+              type="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+              className="flex-1 rounded-[32px] border border-[#dadce0] px-6 py-3.5 text-[15px] placeholder-[#9AA0A6] outline-none focus:border-[#4285F4]"
+              style={{ backgroundColor: COLORS.white }}
+            />
+            <button
+              type="submit"
+              className="rounded-full px-10 font-medium text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              style={{ backgroundColor: COLORS.blue }}
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </FadeReveal>
+    </section>
+  );
+}
+
+/* ═══ FINAL CTA — account-style closing band ═══ */
 function AboutCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
@@ -1248,7 +772,7 @@ function AboutCTASection() {
           <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
-          <Link to="/how-it-works" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+          <Link to="/how-it-works" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
             See how it works
           </Link>
         </div>
@@ -1258,7 +782,7 @@ function AboutCTASection() {
 }
 
 /* ═══ PAGE ═══ */
-export default function CompetitiveExamsPage() {
+export default function AboutUsPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
@@ -1266,22 +790,16 @@ export default function CompetitiveExamsPage() {
         <AboutHeroSection />
         <AboutMissionSection />
         <AboutWhySection />
-        <AboutProductGrid />
-        <AboutTrustSection />
         <AboutAppsSection />
+        <AboutBenefitsSection />
         <AboutStatBand />
         <AboutBeliefsSection />
-        <AboutVisionSection/>
         <AboutCompanySection />
-        <AboutPeopleSection/>
-        <AboutSafetySection />
-        <AboutPrivacySection />
-        <AboutSecuritySection />
-        <AboutAccessibilitySection />
-        <AboutTermsSection />
-        <AboutCookiesSection />
+        <AboutPeopleSection />
         <AboutResearchSection />
-        <AboutContactSection/>
+        <AboutCommitmentsSection />
+        <AboutContactSection />
+        <AboutLatestSection />
         <AboutHubSection />
         <AboutNewsletterSection />
         <AboutCTASection />

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/lib/AuthContext";
 
 export const googleColors = [
-  { name: "blue", accent: "#4285F4", light: "#e8f0fd" },
+  { name: "blue", accent: "#0b57d2", light: "#e8f0fd" },
   { name: "green", accent: "#137333", light: "#e6f4ea" },
   { name: "amber", accent: "#8a5700", light: "#ffffff" },
   { name: "red", accent: "#b3261e", light: "#fce8e6" },
