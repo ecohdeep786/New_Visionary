@@ -1,343 +1,150 @@
-import { useState } from "react";
-import {
-  ArrowUpRight,
-  CheckCircle2,
-  AlertCircle,
-  ChevronRight,
-  Globe2,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, Building2, Code2, Globe2, Handshake } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import LandingNav from "@/components/landing/LandingNav";
-import PageHeading, { Accent } from "@/components/landing/PageHeading";
-import StorySection from "@/components/landing/StorySection";
+import PageHeading from "@/components/landing/PageHeading";
 import LandingFooter from "@/components/landing/LandingFooter";
 
-const FONT_FAMILY =
-  "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
-const COLORS = {
-  ink: "#121317",
-  surface: "#ffffff",
-  grey: "#5f6368",
-  lightGrey: "#9aa0a6",
-  mist: "#dadce0",
-  border: "#dadce0",
-  soft: "#ffffff",
-  blue: "#4285F4",
-  white: "#ffffff",
-};
-
-const SECTIONS = [
-  { id: "why-partner", number: "01", title: "Why work with a partner", summary: "When local knowledge, implementation, or support can make Visionary more useful." },
-  { id: "what-partners-do", number: "02", title: "What partners can do", summary: "The practical ways partners can help institutions and communities." },
-  { id: "education", number: "03", title: "Education partners", summary: "Bring Visionary closer to schools, colleges, coaching, and educators." },
-  { id: "implementation", number: "04", title: "Implementation and support", summary: "Help organizations move from deciding to using Visionary." },
-  { id: "technology", number: "05", title: "Technology and integration", summary: "Build useful connections around the Visionary experience." },
-  { id: "regional", number: "06", title: "Regional partners", summary: "Help Visionary understand and serve local learning contexts." },
-  { id: "who-partner", number: "07", title: "Who can become a partner", summary: "The kinds of organizations and people Visionary can work with." },
-  { id: "what-we-look", number: "08", title: "What we look for", summary: "The principles that matter when choosing partners." },
-  { id: "directory", number: "09", title: "Partner directory", summary: "Find partners as the network becomes available." },
-  { id: "become", number: "10", title: "Become a partner", summary: "Introduce your organization and explain what you can contribute." },
-  { id: "contact", number: "11", title: "Contact", summary: "How to reach Visionary about partnerships." },
+const COLLABORATION_AREAS = [
+  {
+    Icon: BookOpen,
+    label: "Education",
+    title: "Learning in context",
+    description: "Schools, educators, and learning organizations can share the settings and needs they want us to understand.",
+  },
+  {
+    Icon: Code2,
+    label: "Technology",
+    title: "Ideas for working together",
+    description: "Technology teams can start a conversation about an integration idea. No public integration catalog or technical onboarding is offered here.",
+  },
+  {
+    Icon: Globe2,
+    label: "Regional knowledge",
+    title: "Local needs and language",
+    description: "People with regional or language expertise can describe where existing learning experiences might not fit.",
+  },
+  {
+    Icon: Building2,
+    label: "Organizations",
+    title: "A conversation, not a commitment",
+    description: "Institutions and other organizations can ask about a possible fit without assuming a formal program, package, or commercial arrangement.",
+  },
 ];
 
-function scrollToSection(id) {
-  const element = document.getElementById(id);
-  if (!element) return;
-  element.scrollIntoView({ behavior: "smooth", block: "start" });
-  window.history.replaceState(null, "", `#${id}`);
-}
-
-function SectionHeading({ number, title }) {
+function CollaborationCard({ Icon, label, title, description }) {
   return (
-    <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.ink }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
-    </div>
+    <article className="flex h-full flex-col rounded-[20px] border border-[#dadce0] bg-white p-6 sm:p-7">
+      <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#f1f3f4] text-[#1967d2]">
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+      <p className="mt-6 text-[12px] font-medium uppercase tracking-[0.13em] text-[#5f6368]">{label}</p>
+      <h3 className="mt-2 text-[21px] font-normal leading-[1.3] tracking-[-0.02em] text-[#121317]">{title}</h3>
+      <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">{description}</p>
+    </article>
   );
 }
 
-function Paragraph({ children }) {
+function EmailLink({ subject, children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
+    <a
+      href={`mailto:partnerships@visionary.org.in?subject=${encodeURIComponent(subject)}`}
+      className="inline-flex min-h-11 items-center gap-2 font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+    >
+      {children}
+      <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+    </a>
   );
 }
-
-function PartnerCard({ icon: Icon, eyebrow, title, description }) {
-  return (
-    <div className="flex h-full flex-col rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
-      <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-        <Icon className="h-[19px] w-[19px]" strokeWidth={1.7} />
-      </div>
-      <div className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.lightGrey }}>{eyebrow}</div>
-      <h3 className="mt-1.5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
-      <p className="mt-3 flex-1 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{description}</p>
-    </div>
-  );
-}
-
-function PrincipleRow({ icon: Icon, title, children }) {
-  return (
-    <div className="flex gap-4 border-b py-6 last:border-b-0" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border" style={{ borderColor: COLORS.mist }}>
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-      </div>
-      <div>
-        <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>{title}</h3>
-        <p className="mt-2 max-w-[680px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-      </div>
-    </div>
-  );
-}
-
-function Note({ children }) {
-  return (
-    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
-      <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-    </div>
-  );
-}
-
-const APPLICATION_TYPES = [
-  "Education implementation",
-  "Professional development",
-  "Technology or integration",
-  "Regional partnership",
-  "Content or learning resources",
-  "Other",
-];
 
 export default function PartnersPage() {
-  const [name, setName] = useState("");
-  const [organization, setOrganization] = useState("");
-  const [email, setEmail] = useState("");
-  const [type, setType] = useState(APPLICATION_TYPES[0]);
-  const [website, setWebsite] = useState("");
-  const [message, setMessage] = useState("");
-    const [status, setStatus] = useState("idle"); // idle | submitting | success | error (deterministic mock)
-  const [showError, setShowError] = useState(false);
-
-
-    function handleSubmit(event) {
-    event.preventDefault();
-    if (!name.trim() || !email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus("error");
-      setShowError(true);
-      return;
-    }
-    setStatus("submitting");
-    setTimeout(() => setStatus("success"), 900); // deterministic mock — no backend yet
-  }
-
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
-            <main id="main">
-        <PageHeading page="Partners" eyebrow="Partners"
-          h1={<>Partner with <Accent>us</Accent>.</>}
-          dek="Schools, platforms and governments, on board.">
+      <main id="main">
+        <PageHeading
+          page="Partners"
+          eyebrow="Partners"
+          h1={<>Better learning, <span className="text-[#4285F4]">together.</span></>}
+          dek="Explore a conversation with Visionary—or check what is currently available."
+        >
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#partner-enquiry" className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#1967d2] px-6 text-[15px] font-medium text-white hover:bg-[#1558b0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+              Discuss a partnership <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <a href="#find-a-partner" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#dadce0] px-6 text-[15px] font-medium text-[#121317] hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              Looking for a partner? <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </PageHeading>
 
-        {/* STORY BAND */}
-        <section className="border-b" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="max-w-[940px]">
-              <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                The product is one thing.
-                <br />
-                <span style={{ color: COLORS.ink }}>Knowing where it belongs is another.</span>
-              </p>
-              <p className="mt-6 max-w-[760px] text-[17px] leading-[1.75]" style={{ color: COLORS.grey }}>
-                A school has its own rhythm. A college has different needs. A coaching center works differently from a workplace. Local context matters. Good partners help Visionary understand that context and make the product work within it.
-              </p>
+        <section aria-labelledby="collaboration-title" className="border-y border-[#dadce0] bg-[#f8f9fa] px-6 py-14 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="max-w-[760px]">
+              <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Ways to start a conversation</p>
+              <h2 id="collaboration-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Partnership starts with context.</h2>
+              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">Different organizations bring different perspectives. These are areas we are open to hearing about—not a published list of active programs, benefits, or available services.</p>
+            </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {COLLABORATION_AREAS.map((area) => <CollaborationCard key={area.label} {...area} />)}
             </div>
           </div>
         </section>
 
-        {/* 01 · WHY A PARTNER */},
-        <StorySection
-          id="why-partner"
-          title="Why work with a partner"
-          featured={{
-            subject: "handshake",
-            label: "Partnerships",
-            title: "Closer to where learning happens.",
-            dek: "The right partner makes Visionary more useful in a specific place.",
-          }}
-          rows={[
-            { label: "Schools", title: "Visionary inside real classrooms." },
-            { label: "Platforms", title: "Learning where it already happens." },
-            { label: "Regions", title: "Languages and contexts we serve." },
-            { label: "Governments", title: "Programs that reach everyone." },
-          ]}
-        />
-
-        {/* 02 · WHAT PARTNERS DO */}
-        <StorySection
-          id="what-partners-do"
-          title="What partners can do"
-          flip
-          featured={{
-            subject: "community",
-            label: "The work",
-            title: "Build for more places.",
-            dek: "Deployment, integration, support, and reach — together.",
-          }}
-          rows={[
-            { label: "Education", title: "Curriculum and classroom fit." },
-            { label: "Implementation", title: "Rollout, training, and support." },
-            { label: "Technology", title: "Integration with existing systems." },
-            { label: "Regional", title: "Language and community reach." },
-          ]}
-        />
-
-<section id="directory" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-[1240px]">
-                    <SectionHeading number="09" title="Partner directory" />
-                    <Paragraph>A directory is useful only when there are real partners to search for and clear criteria for being listed.</Paragraph>
-                    <div className="mt-8 rounded-[24px] border bg-white p-7 sm:p-8" style={{ borderColor: COLORS.border }}>
-                      <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-                        <Globe2 className="h-5 w-5" strokeWidth={1.7} />
-                      </div>
-                      <h3 className="mt-6 text-[25px] font-normal tracking-[-0.02em]" style={{ color: COLORS.ink }}>The partner network is growing.</h3>
-                      <p className="mt-3 max-w-[700px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                        Public partner listings will appear here as Visionary establishes and verifies its partner network.
-                      </p>
-                      <p className="mt-4 max-w-[700px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                        Until then, institutions and organizations can contact Visionary directly to discuss the kind of support or partnership they need.
-                      </p>
-                      <div className="mt-6">
-                        <a href="mailto:partnerships@visionary.org.in"
-                          className="inline-flex items-center gap-2 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                          style={{ color: COLORS.blue }}>
-                          partnerships@visionary.org.in
-                          <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
-                        </a>
-                      </div>
-                    </div>
-                    </div>
+        <section id="partner-enquiry" aria-labelledby="enquiry-title" className="scroll-mt-24 px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+          <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div>
+              <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">For prospective partners</p>
+              <h2 id="enquiry-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">Tell us what you have in mind.</h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">Write to us with your organization, the people or learning context you work with, and the idea you would like to discuss. An email draft opens for you to review and send.</p>
+              <EmailLink subject="Partnership enquiry">partnerships@visionary.org.in</EmailLink>
+              <p className="mt-4 text-[13px] leading-[1.7] text-[#5f6368]">This is an enquiry route, not an application portal or confirmation that a partnership is available.</p>
+            </div>
+            <div className="rounded-[22px] border border-[#dadce0] p-6 sm:p-8">
+              <h3 className="text-[20px] font-normal text-[#121317]">A useful first note can include</h3>
+              <ol className="mt-5 divide-y divide-[#dadce0]">
+                <li className="flex gap-4 py-4 first:pt-0">
+                  <span className="text-[13px] font-medium text-[#1967d2]">01</span>
+                  <div><p className="text-[15px] font-medium text-[#121317]">Who you are</p><p className="mt-1 text-[14px] leading-[1.6] text-[#5f6368]">Organization name, role, and how we can reach you.</p></div>
+                </li>
+                <li className="flex gap-4 py-4">
+                  <span className="text-[13px] font-medium text-[#1967d2]">02</span>
+                  <div><p className="text-[15px] font-medium text-[#121317]">The context</p><p className="mt-1 text-[14px] leading-[1.6] text-[#5f6368]">Who you work with and the learning need or setting involved.</p></div>
+                </li>
+                <li className="flex gap-4 py-4 last:pb-0">
+                  <span className="text-[13px] font-medium text-[#1967d2]">03</span>
+                  <div><p className="text-[15px] font-medium text-[#121317]">The idea</p><p className="mt-1 text-[14px] leading-[1.6] text-[#5f6368]">What you hope to explore together—without sending sensitive learner details.</p></div>
+                </li>
+              </ol>
+              <p className="mt-6 border-t border-[#dadce0] pt-5 text-[13px] leading-[1.7] text-[#5f6368]">The link opens your email app; this website does not submit or store the message.</p>
+            </div>
+          </div>
         </section>
 
-<section id="become" className="scroll-mt-24 py-14 sm:py-16 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-[1240px]">
-                    <SectionHeading number="10" title="Become a partner" />
-                    <Paragraph>Tell us what you do, who you work with, and where you think Visionary could become more useful.</Paragraph>
-                    <div className="mt-8 rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.border }}>
-                      {status === "error" ? (
-                        <div className="py-8" role="alert">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
-                            <AlertCircle className="h-5 w-5" strokeWidth={1.7} style={{ color: "#EA4335" }} />
-                          </div>
-                          <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>We couldn't send that.</h3>
-                          <p className="mt-3 max-w-[650px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                            A name and a valid email are required so the partnerships team can reply to you. Check them and try again.
-                          </p>
-                          <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                            style={{ color: COLORS.blue }}>
-                            Back to the form
-                            <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                          </button>
-                        </div>
-                      ) : status === "success" ? (
-                        <div className="py-8">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist }}>
-                            <CheckCircle2 className="h-5 w-5" strokeWidth={1.7} style={{ color: COLORS.blue }} />
-                          </div>
-                          <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>Your introduction is ready.</h3>
-                          <p className="mt-3 max-w-[650px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                            The application flow is connected to this page, but the production partnership endpoint still needs to be connected before launch.
-                          </p>
-                          <button type="button" onClick={() => setStatus("idle")}
-                            className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                            style={{ color: COLORS.blue }}>
-                            Send another introduction
-                            <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                          </button>
-                        </div>
-                      ) : (
-                        <form onSubmit={handleSubmit} noValidate>
-                          <div className="grid gap-6 sm:grid-cols-2">
-                            <div>
-                              <label htmlFor="partner-name" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Your name</label>
-                              <input id="partner-name" name="name" type="text" autoComplete="name" required value={name}
-                                onChange={(event) => setName(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                                style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                            </div>
-                            <div>
-                              <label htmlFor="partner-organization" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Organization</label>
-                              <input id="partner-organization" name="organization" type="text" autoComplete="organization" required value={organization}
-                                onChange={(event) => setOrganization(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                                style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                            </div>
-                          </div>
-                          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                            <div>
-                              <label htmlFor="partner-email" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Work email</label>
-                              <input id="partner-email" name="email" type="email" autoComplete="email" required value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                                style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                            </div>
-                            <div>
-                              <label htmlFor="partner-type" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Partnership type</label>
-                              <select id="partner-type" name="type" value={type}
-                                onChange={(event) => setType(event.target.value)}
-                                className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                                style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                                {APPLICATION_TYPES.map((item) => (
-                                  <option key={item} value={item}>{item}</option>
-                                ))}
-                              </select>
-                            </div>
-                          </div>
-                          <div className="mt-6">
-                            <label htmlFor="partner-website" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Organization website</label>
-                            <input id="partner-website" name="website" type="url" autoComplete="url" placeholder="https://" value={website}
-                              onChange={(event) => setWebsite(event.target.value)}
-                              className="mt-2 h-12 w-full rounded-[14px] border bg-white px-4 text-[15px] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                              style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                          </div>
-                          <div className="mt-6">
-                            <label htmlFor="partner-message" className="block text-[13px] font-medium" style={{ color: COLORS.ink }}>Tell us about the partnership</label>
-                            <textarea id="partner-message" name="message" required rows={7} value={message}
-                              onChange={(event) => setMessage(event.target.value)}
-                              placeholder="Who do you work with, what do you do, and what could we build together?"
-                              className="mt-2 w-full resize-y rounded-[14px] border bg-white px-4 py-3 text-[15px] leading-[1.6] outline-none transition-colors placeholder:text-[#9AA0A6] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
-                              style={{ borderColor: COLORS.mist, color: COLORS.ink }} />
-                          </div>
-                          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                            <p className="max-w-[550px] text-[12px] leading-[1.6]" style={{ color: COLORS.grey }}>
-                              Please share only information needed to help us understand the partnership.
-                            </p>
-                            <button type="submit" disabled={status === "submitting"}
-                              className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
-                              style={{ backgroundColor: COLORS.blue }}>
-                              {status === "submitting" ? "Sending…" : "Send introduction"}
-                              <ArrowUpRight className="ml-2 h-4 w-4" strokeWidth={1.8} />
-                            </button>
-                          </div>
-                        </form>
-                      )}
-                    </div>
-                    <Note>Partner approval criteria, commercial terms, technical requirements, and any formal partner program should be published separately once Visionary has defined them.</Note>
-                    </div>
+        <section id="find-a-partner" aria-labelledby="directory-title" className="scroll-mt-24 border-y border-[#dadce0] bg-[#f8f9fa] px-6 py-14 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+          <div className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[auto_1fr] md:items-start md:gap-8">
+            <span className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#dadce0] bg-white text-[#1967d2]"><Handshake className="h-5 w-5" aria-hidden="true" /></span>
+            <div>
+              <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">For organizations seeking support</p>
+              <h2 id="directory-title" className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[38px]">There is no public partner directory yet.</h2>
+              <p className="mt-4 max-w-[760px] text-[15px] leading-[1.75] text-[#5f6368]">Visionary does not currently list verified partner organizations here. We cannot recommend a partner, confirm coverage, or promise a matching service through this page.</p>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+                <Link to="/contact" className="inline-flex min-h-11 items-center gap-2 text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Contact Visionary <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
+                <Link to="/help" className="inline-flex min-h-11 items-center gap-2 text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Browse help topics <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
+              </div>
+            </div>
+          </div>
         </section>
 
-        {/* CONTACT one-liner */}
-        <section id="contact" aria-label="Contact" className="border-t px-6 py-14 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto flex max-w-[1240px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-[15px]" style={{ color: COLORS.grey }}>Partnership questions?</p>
-            <a href="mailto:partners@visionary.org.in" className="inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.blue }}>
-              partners@visionary.org.in
-              <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} />
-            </a>
+        <section aria-labelledby="terms-title" className="px-6 py-14 sm:px-8 sm:py-18 lg:px-10 lg:py-20">
+          <div className="mx-auto max-w-[1240px] border-l-2 border-[#dadce0] pl-5 sm:pl-7">
+            <h2 id="terms-title" className="text-[19px] font-normal text-[#121317]">Clear expectations matter.</h2>
+            <p className="mt-2 max-w-[800px] text-[14px] leading-[1.75] text-[#5f6368]">No partner tiers, eligibility criteria, fees, onboarding process, enablement resources, customer stories, or success metrics are published on this page. An enquiry alone does not imply approval, endorsement, or a commercial agreement.</p>
           </div>
         </section>
       </main>
-
       <LandingFooter variant="quiet" />
     </div>
   );

@@ -25,8 +25,11 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
   };
   const resources = data.resources.filter(r => r.status !== 'archived').sort((a,b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
   if (ctx.role === 'student' || ctx.role === 'professional') {
-    model.setupNote = 'Stage-specific recommendations are not configured yet. These starting points do not assess your ability.';
-    if (ctx.role === 'professional') model.priority = {id:'career',title:'Give your next skill a clear purpose',detail:'Choose a work problem or career goal to guide your learning.',action:action('Set a skill goal','career'),alternative:action('Explore learning','learn'),reason:'Your professional workspace starts with the outcome you want.',source:'Your selected professional role'};
+    model.setupNote = ctx.role === 'professional' ? 'Career suggestions use only your saved goal and recorded work. No hiring assessment or live model is connected.' : 'Stage-specific recommendations are not configured yet. These starting points do not assess your ability.';
+    if (ctx.role === 'professional') {
+      const goal = resources.find(r => r.kind === 'goal');
+      model.priority = goal ? {id:goal.id,title:`Build evidence for ${goal.title}`,detail:'Connect this target to a capability, check your understanding, and save a project you can explain.',action:action('Continue your career path','career'),alternative:action('Explore learning','learn'),reason:'This is the career target you saved in this workspace, not a prediction of your ability.',source:'Your saved career target',updatedAt:goal.updatedAt} : {id:'career',title:'Give your next skill a clear purpose',detail:'Choose a work problem or career goal to guide your learning.',action:action('Set a skill goal','career'),alternative:action('Explore learning','learn'),reason:'Your professional workspace starts with the outcome you want.',source:'Your selected professional role'};
+    }
     const session = [...data.sessions].filter(s => s.stage !== 'completed' && data.conversations.some(c => c.id === s.conversationId)).sort((a,b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id))[0];
     if (session) {
       try {

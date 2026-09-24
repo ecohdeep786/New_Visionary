@@ -3,6 +3,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
+import { useWorkspace } from "@/hooks/useWorkspace";
+import { submitClassworkResponses } from "@/services/classroomService";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -14,6 +16,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
  */
 export default function StudentClasses() {
   const { user } = useAuth();
+  const { ctx } = useWorkspace();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
   const email = user?.email;
@@ -26,6 +29,7 @@ export default function StudentClasses() {
   const [loading, setLoading] = useState(true);
   const [openClassId, setOpenClassId] = useState(null);
   const [drafts, setDrafts] = useState({});
+  const [draftError, setDraftError] = useState("");
   const [busy, setBusy] = useState(false);
   const [showJoin, setShowJoin] = useState(false);
   const [joinCode, setJoinCode] = useState("");
@@ -35,6 +39,20 @@ export default function StudentClasses() {
   const [error, setError] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [classTab, setClassTab] = useState("classwork");
+
+  const draftKey = user?.id ? `visionary_classwork_drafts_v1:${user.id}` : null;
+  useEffect(() => {
+    if (!draftKey) { setDrafts({}); setDraftError(''); return; }
+    try { const saved = JSON.parse(localStorage.getItem(draftKey) || '{}'); setDrafts(saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {}); setDraftError(''); }
+    catch { setDrafts({}); setDraftError('Saved classwork drafts could not be read on this device. Existing records were not removed.'); }
+  }, [draftKey]);
+  const updateDraft = (assignmentId, value) => {
+    const next = { ...drafts, [assignmentId]: value };
+    if (value === null) delete next[assignmentId];
+    setDrafts(next);
+    if (draftKey) try { localStorage.setItem(draftKey, JSON.stringify(next)); setDraftError(''); }
+    catch { setDraftError('Your classwork draft could not be saved on this device. Keep this page open and try again.'); }
+  };
 
   useEffect(() => {
     if (searchParams.get("join") === "1") setShowJoin(true);
@@ -73,27 +91,16 @@ export default function StudentClasses() {
   const mySubFor = (assignmentId) => (submissions || []).find((s) => s.assignment_id === assignmentId);
 
   const submit = async (a) => {
-    const text = (drafts[a.id] || "").trim();
-    if (!text || busy) return;
+    const checks = Array.isArray(a.checks) ? a.checks : [];
+    const responses = checks.map(check => ({ questionId: check.id, text: (drafts[a.id]?.answers?.[check.id] || '').trim() }));
+    const text = checks.length ? responses.map(response => response.text).join('\n') : (drafts[a.id]?.text || '').trim();
+    if (!text || responses.some(response => !response.text) || busy) return;
     setBusy(true);
     setError("");
     try {
-      const previous = await base44.entities.Submission.filter({ assignment_id: a.id, student_email: email });
-      if (previous.length) { await load(); return; }
-      const created = await base44.entities.Submission.create({
-        assignment_id: a.id,
-        class_id: a.class_id,
-        teacher_id: a.teacher_id || a.created_by_id,
-        teacher_email: a.teacher_email,
-        student_id: user.id,
-        student_name: studentName,
-        student_email: email,
-        text,
-        status: "submitted",
-        submitted_date: new Date().toISOString().split("T")[0],
-      });
-      setSubmissions((p) => [created, ...p]);
-      setDrafts((p) => ({ ...p, [a.id]: "" }));
+      const created = await submitClassworkResponses(ctx,{assignmentId:a.id,text,responses});
+      setSubmissions((p) => p.some(item=>item.id===created.id)?p:[created,...p]);
+      updateDraft(a.id, null);
       window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
     } catch { setError("Your response wasn’t submitted. Your draft is still here; please try again."); }
     finally { setBusy(false); }
@@ -169,6 +176,7 @@ export default function StudentClasses() {
       </div>
 
       {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error} <button onClick={load} className="ml-2 font-medium underline">Retry</button></p>}
+      {draftError && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{draftError}</p>}
       {invitations.length > 0 && <section aria-label="Class invitations" className="rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5"><h2 className="font-medium text-[#121317]">Class invitations</h2><div className="mt-3 space-y-3">{invitations.map((c) => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#121317]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} invited you to join</p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#4285F4] px-5 text-sm font-medium text-white disabled:opacity-50">Accept class</button></div>)}</div></section>}
 
       {loading ? (
@@ -268,18 +276,19 @@ export default function StudentClasses() {
                       </div>
                     ) : (
                       <div className="pl-14 flex flex-col gap-2">
-                        <textarea
-                          value={drafts[a.id] || ""}
-                          onChange={(e) => setDrafts((p) => ({ ...p, [a.id]: e.target.value }))}
+                        {Array.isArray(a.checks) && a.checks.length ? <div className="space-y-4">{a.checks.map((check,index) => <label key={check.id} className="block text-sm font-medium text-[#121317]">{index + 1}. {check.prompt}<textarea value={drafts[a.id]?.answers?.[check.id] || ''} onChange={event => updateDraft(a.id,{...drafts[a.id],answers:{...drafts[a.id]?.answers,[check.id]:event.target.value}})} placeholder="Explain in your own words…" rows={3} className="mt-2 w-full rounded-2xl border border-[#dadce0] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[#4285F4]" /></label>)}</div> : <textarea
+                          value={drafts[a.id]?.text || ""}
+                          onChange={(e) => updateDraft(a.id,{...drafts[a.id],text:e.target.value})}
                           placeholder="Write your response…"
                           aria-label={`Your response to ${a.title}`}
                           rows={3}
                           className="w-full p-4 rounded-2xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4] resize-none leading-relaxed"
-                        />
+                        />}
+                        <p className="text-xs text-[#5f6368]">Drafts are kept on this device when storage is available. Your teacher reviews the response; it is not automatically scored.</p>
                         <div className="flex justify-end">
                           <button
                             onClick={() => submit(a)}
-                            disabled={busy || !(drafts[a.id] || "").trim()}
+                            disabled={busy || (Array.isArray(a.checks) && a.checks.length ? a.checks.some(check => !(drafts[a.id]?.answers?.[check.id] || '').trim()) : !(drafts[a.id]?.text || '').trim())}
                             className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium text-white disabled:opacity-50"
                             style={{ backgroundColor: accent }}
                           >

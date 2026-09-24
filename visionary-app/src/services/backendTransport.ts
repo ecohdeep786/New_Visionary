@@ -28,6 +28,8 @@ export interface BackendRequest {
 export interface BackendTransport {
  getSession(): Promise<BackendSession | null>;
  exchange(request: BackendRequest): Promise<unknown>;
+ /** Whole-operation deadline, including both session checks. Defaults to 20 seconds. */
+ timeoutMs?: number;
 }
 
 let activeTransport: BackendTransport | null = null;
@@ -39,17 +41,6 @@ function checkContext(ctx: RequestContext, selected: BackendTransport, version: 
  if (selected !== activeTransport || version !== generation) throw new Error('The backend connection changed. Your saved work is unchanged; retry.');
  workspaceIdentity(ctx);
 }
-async function abortable<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
- if (!signal) return promise;
- if (signal.aborted) throw cancelled();
- let onAbort: (() => void) | undefined;
- try {
-  return await Promise.race([promise, new Promise<never>((_, reject) => {
-   onAbort = () => reject(cancelled());
-   signal.addEventListener('abort', onAbort, { once: true });
-  })]);
- } finally { if (onAbort) signal.removeEventListener('abort', onAbort); }
-}
 function requireSession(session: BackendSession | null, ctx: RequestContext) {
  if (!session || session.personId !== ctx.personId || session.workspaceId !== ctx.workspaceId || session.role !== ctx.role || (session.expiresAt !== undefined && (!Number.isFinite(session.expiresAt) || session.expiresAt <= Date.now()))) {
   throw new Error('Your authenticated account or workspace changed. Sign in again before retrying.');
@@ -58,19 +49,33 @@ function requireSession(session: BackendSession | null, ctx: RequestContext) {
 
 async function exchange<T>(selected: BackendTransport, version: number, ctx: RequestContext, operation: BackendOperation, body: unknown): Promise<T> {
  checkContext(ctx, selected, version);
- requireSession(await abortable(selected.getSession(), ctx.signal), ctx);
- checkContext(ctx, selected, version);
- const request: BackendRequest = { operation, body: structuredClone(body), requestId: crypto.randomUUID(), signal: ctx.signal };
- const response = await abortable(selected.exchange(request), ctx.signal);
- checkContext(ctx, selected, version);
- requireSession(await abortable(selected.getSession(), ctx.signal), ctx);
- checkContext(ctx, selected, version);
- return response as T;
+ const controller = new AbortController();
+ let timer: ReturnType<typeof setTimeout> | undefined;
+ let rejectBoundary: (reason?: unknown) => void = () => {};
+ const boundary = new Promise<never>((_, reject) => { rejectBoundary = reject; });
+ const onAbort = () => { controller.abort(); rejectBoundary(cancelled()); };
+ ctx.signal?.addEventListener('abort', onAbort, { once: true });
+ if (ctx.signal?.aborted) onAbort();
+ timer = setTimeout(() => { controller.abort(); rejectBoundary(new Error('The backend did not respond in time. Your saved work is unchanged; retry.')); }, selected.timeoutMs ?? 20000);
+ const checkActive = () => { if (controller.signal.aborted) throw ctx.signal?.aborted ? cancelled() : new Error('The backend did not respond in time. Your saved work is unchanged; retry.'); checkContext(ctx, selected, version); };
+ try {
+  return await Promise.race([(async () => {
+   checkActive();
+   const firstSession = await selected.getSession(); checkActive(); requireSession(firstSession, ctx);
+   const request: BackendRequest = { operation, body: structuredClone(body), requestId: crypto.randomUUID(), signal: controller.signal };
+   const response = await selected.exchange(request); checkActive();
+   const finalSession = await selected.getSession(); checkActive(); requireSession(finalSession, ctx);
+   return response as T;
+  })(), boundary]);
+ } finally {
+  if (timer) clearTimeout(timer);
+  ctx.signal?.removeEventListener('abort', onAbort);
+ }
 }
 
 /** Installs only a contract, never a URL, token, backend response, or local model. */
 export function configureBackendTransport(next: BackendTransport | null) {
- if (next && (typeof next.getSession !== 'function' || typeof next.exchange !== 'function')) throw new Error('A backend transport needs session and exchange functions.');
+ if (next && (typeof next.getSession !== 'function' || typeof next.exchange !== 'function' || (next.timeoutMs !== undefined && (!Number.isInteger(next.timeoutMs) || next.timeoutMs < 1 || next.timeoutMs > 120000)))) throw new Error('A backend transport needs session and exchange functions and a valid deadline.');
  activeTransport = next;
  const version = ++generation;
  if (!next) {

@@ -5,7 +5,10 @@ import { workspaceIdentity } from './workspaceService.ts';
 
 export type TeachingMode = 'explanation' | 'practice' | 'feedback' | 'project';
 export interface PromptPacket { input: string; conceptId?: string; sessionId?: string; intent?: 'understand' | 'solve' | 'check' | 'plan' | 'build'; language?: Locale; difficulty?: number; context?: Record<string, unknown>; audience?: 'general' | 'adult'; promptVersion?: string }
-export interface TeachingResponse { status: 'ready' | 'not_connected' | 'blocked'; text: string; source: 'adapter' | 'not_connected' | 'safety'; question?: ContentQuestion; representations?: RepresentationDescriptor[]; promptVersion?: string }
+export type TeachingResponse =
+ | { status: 'ready'; source: 'adapter'; text: string; locale: Locale; promptVersion: string; question?: ContentQuestion; representations?: RepresentationDescriptor[] }
+ | { status: 'not_connected'; source: 'not_connected'; text: string; locale?: Locale; question?: never; representations?: never; promptVersion?: never }
+ | { status: 'blocked'; source: 'safety'; text: string; locale: Locale; question?: never; representations?: never; promptVersion?: never };
 export interface TeachingInterface { requestExplanation(packet: PromptPacket): Promise<TeachingResponse>; requestPracticeQuestion(packet: PromptPacket): Promise<TeachingResponse>; requestFeedback(packet: PromptPacket): Promise<TeachingResponse>; requestProjectGuidance(packet: PromptPacket): Promise<TeachingResponse> }
 export interface TeachingAdapter { request(mode: TeachingMode, packet: PromptPacket, ctx: RequestContext): Promise<TeachingResponse> }
 let adapter: TeachingAdapter | null = null;
@@ -38,17 +41,26 @@ export function getTeachingInterface(ctx: RequestContext): TeachingInterface {
   if (!packet || typeof packet.input !== 'string' || !['en', 'hi', 'bn'].includes(locale)) throw new Error('Choose a supported teaching language and enter your question.');
   // L1 guards the raw input before L4 sees it. No prompt text is written to telemetry here.
   const contextText = packet.context ? JSON.stringify(packet.context) : '';
-  if (hasSafetyConcern(packet.input) || hasSafetyConcern(contextText)) return { status: 'blocked', source: 'safety', text: safetyText[locale] };
-  if (packet.audience === 'adult' && identity.person.ageBand !== 'adult') return { status: 'blocked', source: 'safety', text: ageText[locale] };
+  if (hasSafetyConcern(packet.input) || hasSafetyConcern(contextText)) return { status: 'blocked', source: 'safety', text: safetyText[locale], locale };
+  if (packet.audience === 'adult' && identity.person.ageBand !== 'adult') return { status: 'blocked', source: 'safety', text: ageText[locale], locale };
   const current = adapter;
   if (!current) return { status: 'not_connected', source: 'not_connected', text: 'Visionary Guide’s teaching service is not connected. Your workspace can keep your question and learning progress locally; no model answer has been generated.' };
   const result = await abortable(current.request(mode, structuredClone(packet), ctx), ctx.signal);
   check(ctx);
-  if (!result || !['ready', 'not_connected', 'blocked'].includes(result.status) || !['adapter', 'not_connected', 'safety'].includes(result.source) || typeof result.text !== 'string' || !result.text.trim()) throw new Error('The teaching service returned an incomplete response. Your saved work is unchanged.');
+  if (!result || !['ready', 'not_connected', 'blocked'].includes(result.status) || !['adapter', 'not_connected', 'safety'].includes(result.source) || typeof result.text !== 'string' || !result.text.trim() || result.text.length > 12000) throw new Error('The teaching service returned an incomplete response. Your saved work is unchanged.');
+  if (result.status === 'ready' && (result.source !== 'adapter' || result.locale !== locale || typeof result.promptVersion !== 'string' || !result.promptVersion.trim())) throw new Error('The teaching service returned an incomplete or wrong-language response. Your saved work is unchanged.');
+  if ((result.status === 'not_connected' && result.source !== 'not_connected') || (result.status === 'blocked' && result.source !== 'safety')) throw new Error('The teaching service returned an inconsistent response. Your saved work is unchanged.');
+  if ((result.status === 'blocked' && result.locale !== locale) || (result.status === 'not_connected' && result.locale !== undefined && result.locale !== 'en')) throw new Error('The teaching service returned a wrong-language status. Your saved work is unchanged.');
   if (result.question !== undefined) validateContentQuestion(result.question);
-  if (result.representations !== undefined && (!Array.isArray(result.representations) || result.representations.some(item => !item || typeof item.id !== 'string' || typeof item.alternative !== 'string' || !['text', 'diagram', 'cube', 'number-line', 'scene'].includes(item.kind)))) throw new Error('The teaching service returned an incomplete representation. Your saved work is unchanged.');
-  if (result.status !== 'ready' && (result.question || result.representations?.length)) throw new Error('Unavailable teaching responses cannot start an activity.');
-  return structuredClone(result);
+  if (result.representations !== undefined && (!Array.isArray(result.representations) || result.representations.length > 10 || result.representations.some(item => !item || typeof item.id !== 'string' || !item.id.trim() || typeof item.alternative !== 'string' || !item.alternative.trim() || (item.assetId !== undefined && typeof item.assetId !== 'string') || !['text', 'diagram', 'cube', 'number-line', 'scene'].includes(item.kind)))) throw new Error('The teaching service returned an incomplete representation. Your saved work is unchanged.');
+  const untrusted = result as unknown as Record<string, unknown>;
+  if (result.status !== 'ready' && (untrusted.question || untrusted.representations || untrusted.promptVersion)) throw new Error('Unavailable teaching responses cannot start an activity.');
+  // Only the contract fields may cross into saved sessions; a transport must not
+  // persist arbitrary response metadata, credentials or private server context.
+  if (result.status === 'ready') return { status: 'ready', source: 'adapter', text: result.text, locale, promptVersion: result.promptVersion,
+   ...(result.question ? { question: { id: result.question.id, prompt: result.question.prompt, options: [...result.question.options], answerIndex: result.question.answerIndex, source: result.question.source } } : {}),
+   ...(result.representations ? { representations: result.representations.map(item => ({ id: item.id, kind: item.kind, alternative: item.alternative, ...(item.assetId ? { assetId: item.assetId } : {}) })) } : {}) };
+  return { status: result.status, source: result.source, text: result.text, locale: result.status === 'blocked' ? locale : 'en' } as TeachingResponse;
  }
  return { requestExplanation: p => request('explanation', p), requestPracticeQuestion: p => request('practice', p), requestFeedback: p => request('feedback', p), requestProjectGuidance: p => request('project', p) };
 }

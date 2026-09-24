@@ -29,6 +29,7 @@ export interface ContentRepository {
 }
 
 export const SAMPLE_SELECTION: ContentSelection = { board: 'Sample', classLevel: '6', subject: 'Mathematics' };
+export const PROFESSIONAL_SAMPLE_SELECTION: ContentSelection = { board: 'Sample', classLevel: 'Professional', subject: 'Data interpretation' };
 const KEY = 'visionary_content_v1';
 interface ContentStore { version: 1; spaces: Record<string, { graphs: ContentGraph[]; aliases: Record<string, string>; gaps: ContentDataGap[] }> }
 let adapter: ContentRepositoryAdapter | null = null;
@@ -67,15 +68,17 @@ function provisional(query: ContentSelection): ContentGraph {
  return { syllabus: { ...query, id, status: 'provisional', availableLocales: [], textbooks: [{ id: book, title: 'Your learning outline', chapterIds: [chapter] }], chapters: [{ id: chapter, textbookId: book, title: 'Chapter 1', topicIds: [topic], status: 'provisional' }] }, topics: [{ id: topic, chapterId: chapter, title: 'Topic 1', conceptIds: [concept], status: 'provisional' }], concepts: [{ id: concept, topicId: topic, title: 'Concept 1', prerequisiteIds: [], status: 'provisional', representations: [], availableLocales: [] }] };
 }
 /** Two already-authored activities, explicitly sample-only; not a curriculum or model generator. */
-function sample(locale: Locale): ContentGraph {
- const syllabus: ContentSyllabus = { ...SAMPLE_SELECTION, id: 'sample:math', status: 'sample', contentLocale: locale, availableLocales: ['en', 'hi', 'bn'], provenance: { provider: 'Visionary authored samples', sourceId: 'sample:math', version: '1' }, textbooks: [{ id: 'sample:book', title: 'Authored sample activities', chapterIds: ['sample:fractions', 'sample:geometry'] }], chapters: [] };
+function sample(locale: Locale, professional = false): ContentGraph {
+ const syllabusId = professional ? 'sample:professional' : 'sample:math';
+ const paths = professional ? [['data', 'sample:data']] : [['fractions', 'sample:fractions'], ['cube', 'sample:geometry']];
+ const syllabus: ContentSyllabus = { ...(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION), id: syllabusId, status: 'sample', contentLocale: locale, availableLocales: ['en', 'hi', 'bn'], provenance: { provider: 'Visionary authored samples', sourceId: syllabusId, version: '1' }, textbooks: [{ id: professional ? 'sample:professional:book' : 'sample:book', title: 'Authored sample activities', chapterIds: paths.map(([, chapterId]) => chapterId) }], chapters: [] };
  const topics: ContentTopic[] = []; const concepts: ContentConcept[] = [];
- for (const [journeyId, chapterId] of [['fractions', 'sample:fractions'], ['cube', 'sample:geometry']]) {
+ for (const [journeyId, chapterId] of paths) {
   const journey = getJourney(journeyId!, locale); const topicId = `${chapterId}:topic`; const conceptId = `sample:${journeyId}:concept`;
-  syllabus.chapters.push({ id: chapterId!, textbookId: 'sample:book', title: journey.title, topicIds: [topicId], status: 'sample' });
+  syllabus.chapters.push({ id: chapterId!, textbookId: syllabus.textbooks[0]!.id, title: journey.title, topicIds: [topicId], status: 'sample' });
   topics.push({ id: topicId, chapterId: chapterId!, title: journey.title, conceptIds: [conceptId], status: 'sample' });
   const questions: ContentQuestion[] = journey.questions.map((q, i) => ({ id: `${conceptId}:q:${i}`, prompt: q.prompt, options: q.options, answerIndex: q.answer, source: 'authored-sample' }));
-  concepts.push({ id: conceptId, title: journey.title, topicId, prerequisiteIds: [], status: 'sample', explanation: journey.explanation, check: questions[0], practice: questions.slice(1), project: { title: journey.project, brief: journey.projectBrief }, representations: [{ id: `${conceptId}:visual`, kind: journeyId === 'cube' ? 'cube' : 'number-line', alternative: journey.explanation }], audience: 'general', locale, availableLocales: ['en', 'hi', 'bn'], provenance: syllabus.provenance });
+  concepts.push({ id: conceptId, title: journey.title, topicId, prerequisiteIds: [], status: 'sample', explanation: journey.explanation, check: questions[0], practice: questions.slice(1), project: { title: journey.project, brief: journey.projectBrief }, representations: [{ id: `${conceptId}:visual`, kind: journeyId === 'cube' ? 'cube' : journeyId === 'data' ? 'diagram' : 'number-line', alternative: journey.explanation }], audience: professional ? 'adult' : 'general', locale, availableLocales: ['en', 'hi', 'bn'], provenance: syllabus.provenance });
  }
  return { syllabus, topics, concepts };
 }
@@ -122,7 +125,7 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
  return {
   async getSyllabus(board, classLevel, subject) {
    check(ctx); const query = selection(board, classLevel, subject); const remote = adapter;
-   let graph = remote ? await abortable(remote.getSyllabus(query, ctx), ctx.signal) : same(query, SAMPLE_SELECTION) ? sample(ctx.locale) : null;
+   let graph = remote ? await abortable(remote.getSyllabus(query, ctx), ctx.signal) : same(query, SAMPLE_SELECTION) ? sample(ctx.locale) : same(query, PROFESSIONAL_SAMPLE_SELECTION) && ctx.role === 'professional' ? sample(ctx.locale, true) : null;
    check(ctx); const db = read(); const current = space(db, ctx); const matching = current.graphs.filter(g => same(g.syllabus, query)); const existing = preferredGraph(matching, ctx.locale);
    if (graph) {
     validateGraph(graph, Boolean(remote)); graph = structuredClone(graph);
@@ -137,14 +140,14 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
    graph = provisional(query); current.graphs.push(graph); current.gaps.push({ ...query, user_id: ctx.personId, timestamp: new Date().toISOString(), syllabusId: graph.syllabus.id });
    write(db, ctx); return structuredClone(graph.syllabus);
   },
-  async getChapters(syllabusId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.id === syllabusId), ctx.locale); if (!graph) throw new Error('Syllabus unavailable in this workspace.'); if (graph.syllabus.id === 'sample:math' && graph.syllabus.status === 'sample') graph = sample(ctx.locale); return structuredClone(graph.syllabus.chapters); },
-  async getTopics(chapterId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.chapters.some(c => c.id === chapterId)), ctx.locale); if (!graph) throw new Error('Chapter unavailable in this workspace.'); if (graph.syllabus.id === 'sample:math' && graph.syllabus.status === 'sample') graph = sample(ctx.locale); return structuredClone(graph.topics.filter(t => t.chapterId === chapterId)); },
-  async getConcepts(topicId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.topics.some(t => t.id === topicId)), ctx.locale); if (!graph) throw new Error('Topic unavailable in this workspace.'); if (graph.syllabus.id === 'sample:math' && graph.syllabus.status === 'sample') graph = sample(ctx.locale); return structuredClone(graph.concepts.filter(c => c.topicId === topicId && eligible(ctx, c)).map(c => forLanguage(c, graph!.syllabus, ctx.locale))); },
+  async getChapters(syllabusId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.id === syllabusId), ctx.locale); if (!graph) throw new Error('Syllabus unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional'].includes(graph.syllabus.id)) graph = sample(ctx.locale, graph.syllabus.id === 'sample:professional'); return structuredClone(graph.syllabus.chapters); },
+  async getTopics(chapterId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.chapters.some(c => c.id === chapterId)), ctx.locale); if (!graph) throw new Error('Chapter unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional'].includes(graph.syllabus.id)) graph = sample(ctx.locale, graph.syllabus.id === 'sample:professional'); return structuredClone(graph.topics.filter(t => t.chapterId === chapterId)); },
+  async getConcepts(topicId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.topics.some(t => t.id === topicId)), ctx.locale); if (!graph) throw new Error('Topic unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional'].includes(graph.syllabus.id)) graph = sample(ctx.locale, graph.syllabus.id === 'sample:professional'); return structuredClone(graph.concepts.filter(c => c.topicId === topicId && eligible(ctx, c)).map(c => forLanguage(c, graph!.syllabus, ctx.locale))); },
   async getConcept(conceptId) {
    check(ctx); const db = read(); const officialId = space(db, ctx).aliases[conceptId]; const id = officialId || conceptId;
    const storedGraph = graphForConcept(db, id);
    let concept = conceptFrom(db, id);
-   if (concept?.status === 'sample') concept = sample(ctx.locale).concepts.find(c => c.id === id) ?? concept;
+   if (concept?.status === 'sample') concept = sample(ctx.locale, storedGraph?.syllabus.id === 'sample:professional').concepts.find(c => c.id === id) ?? concept;
    if (!concept && adapter?.getConcept) {
     concept = await abortable(adapter.getConcept(id, ctx), ctx.signal) ?? undefined;
     if (concept && concept.status === 'official' && (!validProvenance(concept.provenance) || !validLocales(concept.availableLocales) || !concept.locale || !concept.availableLocales.includes(concept.locale))) throw new Error('Connected concept needs a source version and explicit language availability.');

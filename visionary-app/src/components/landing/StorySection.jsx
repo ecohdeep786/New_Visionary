@@ -51,7 +51,17 @@ export default function StorySection({
           {/* Featured story block */}
           <div className={flip ? "lg:order-2" : ""}>
             <div className="overflow-hidden rounded-[24px] border" style={{ borderColor: "#dadce0" }}>
-              <SpotIllustration subject={featured.subject} className="aspect-[4/3] w-full" />
+              {featured.img ? (
+                <img
+                  src={featured.img}
+                  alt={featured.imgAlt || featured.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              ) : (
+                <SpotIllustration subject={featured.subject} className="aspect-[4/3] w-full" />
+              )}
             </div>
             <p className="mt-8 text-[12px] uppercase tracking-[0.43px]" style={{ color: "#5f6368" }}>{featured.label}</p>
             <h3 className="mt-3 text-[22px] font-normal leading-[1.3] tracking-[-0.01em] sm:text-[26px]" style={{ color: "#121317" }}>

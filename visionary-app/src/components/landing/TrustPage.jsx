@@ -5,6 +5,13 @@ import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { ChevronRight } from "lucide-react";
 
+/** A colored word/phrase inside a heading — matches Google's blue-accented headings */
+export function Accent({ children }) {
+  return (
+    <span style={{ color: "#4285F4" }}>{children}</span>
+  );
+}
+
 /**
  * TrustPage — the unified wrapper for all legal/trust/support pages
  * (Privacy, Terms, Security, Safety, Cookies, Accessibility, etc.).
@@ -22,8 +29,8 @@ import { ChevronRight } from "lucide-react";
  * Usage in each page:
  *   <TrustPage toc={SECTIONS} lastUpdated="..." eyebrow="Privacy"
  *     title={<>Your <Accent>data</Accent>, your control.</>}
- *     dek="See what we keep. Change or remove it anytime.">
- *     {/* main article content as children *}
+ *     dek="See what we keep. Change or remove it anytime."
+ *     hero={<CustomHero />}>  {/* optional custom hero slot — overrides TrustHero *}
  *   </TrustPage>
  */
 
@@ -49,7 +56,7 @@ function scrollToSection(id) {
 }
 
 /** Single heading used inside the sticky TOC and mobile dropdown */
-function SectionHeading({ number, title, href, active, onClick }) {
+export function SectionHeading({ number, title, href, active, onClick }) {
   const isActive = active === href;
   return (
     <button
@@ -202,6 +209,7 @@ export default function TrustPage({
   dek,
   lastUpdated,
   navChips,
+  hero,
   toc = [],
   intro,
   trustTOCNote,
@@ -256,13 +264,17 @@ export default function TrustPage({
       <LandingNav />
       <Breadcrumb page={page} />
       <main id="main">
-        <TrustHero
-          eyebrow={eyebrow}
-          title={title}
-          dek={dek}
-          lastUpdated={lastUpdated}
-          navChips={navChips}
-        />
+        {hero ? (
+          hero
+        ) : (
+          <TrustHero
+            eyebrow={eyebrow}
+            title={title}
+            dek={dek}
+            lastUpdated={lastUpdated}
+            navChips={navChips}
+          />
+        )}
 
         {intro && (
           <section className="border-b" style={{ borderColor: C.border }}>

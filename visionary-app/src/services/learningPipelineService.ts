@@ -61,7 +61,7 @@ export async function requestUnitTeaching(ctx:RequestContext,id:string,mode:Teac
  guard(ctx);unit.response=response;
  if(mode==='explanation'&&response.status!=='blocked')unit.explanation=response.status==='ready'?response.text:concept.explanation;
  if(mode==='practice'&&response.status!=='blocked')unit.question=response.question||(unit.stage==='check'?concept.check:concept.practice?.[Math.min(unit.difficulty-1,Math.max(0,(concept.practice?.length||1)-1))]);
- save(ctx,unit);emitInteractionEvent(ctx,{app,action:'response',sessionId:id,conceptId:unit.conceptId,language:unit.locale,latency:Date.now()-started,responseStatus:response.status,pedagogy,...curriculumFields(ctx)});return unit;
+ save(ctx,unit);emitInteractionEvent(ctx,{app,action:'response',sessionId:id,conceptId:unit.conceptId,language:unit.locale,latency:Date.now()-started,responseStatus:response.status,promptVersion:response.status==='ready'?response.promptVersion:undefined,pedagogy,...curriculumFields(ctx)});return unit;
 }
 export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');unit.stage='check';delete unit.answer;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 /** An outbox retains a scored local answer if the separate cognition adapter cannot write. */
@@ -87,7 +87,7 @@ export async function createLearningProject(ctx:RequestContext,id:string){
 }
 export function recordProjectSave(ctx:RequestContext,artifact:Artifact){
  if(artifact.status==='completed'&&artifact.conceptId&&(!artifact.body.trim()||!artifact.milestones.every(Boolean)))throw Error('Complete the project milestones and add your work before recording application evidence.');
- emitInteractionEvent(ctx,{app:'BUILD',action:'save',sessionId:artifact.learningSessionId||artifact.id,conceptId:artifact.conceptId,language:ctx.locale,...curriculumFields(ctx)});
+ emitInteractionEvent(ctx,{id:artifact.status==='completed'?`artifact:${artifact.id}:completed-save`:undefined,app:'BUILD',action:'save',sessionId:artifact.learningSessionId||artifact.id,conceptId:artifact.conceptId,language:ctx.locale,...curriculumFields(ctx)});
  if(artifact.status!=='completed'||!artifact.conceptId)return;
  const linkedUnit=artifact.learningSessionId?getLearningUnit(ctx,artifact.learningSessionId):undefined;
  const outcome:LearningOutcome={id:`artifact:${artifact.id}:completed`,conceptId:artifact.conceptId,kind:'application',verified:false,sessionId:artifact.learningSessionId||artifact.id,language:ctx.locale,classId:linkedUnit?.classId,...curriculumFields(ctx)};
@@ -103,6 +103,6 @@ export async function sendTeachingTurn(ctx:RequestContext,conversationId:string,
  emitInteractionEvent(ctx,{app:'ASK',action:'request',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,inputType,intent,...curriculumFields(ctx)});
  const response=await (intent==='check'?api.requestFeedback(packet):intent==='build'?api.requestProjectGuidance(packet):api.requestExplanation(packet));guard(ctx);
  appendTeachingTurn(ctx,conversationId,text,response.text,response.status==='not_connected'?'en':packet.language,response.status);
- emitInteractionEvent(ctx,{app:'ASK',action:'response',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,latency:Date.now()-started,responseStatus:response.status,inputType,intent,...curriculumFields(ctx)});return response;
+ emitInteractionEvent(ctx,{app:'ASK',action:'response',sessionId:packet.sessionId,conceptId:packet.conceptId,language:packet.language,latency:Date.now()-started,responseStatus:response.status,promptVersion:response.status==='ready'?response.promptVersion:undefined,inputType,intent,...curriculumFields(ctx)});return response;
 }
 export function learningPriority(ctx:RequestContext){const units=getLearningWorkspace(ctx).units;const unit=[...units].filter(u=>u.stage!=='completed').sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt))[0];const states=getStudentState(ctx).concepts;const due=states.find(c=>c.dueAt&&new Date(c.dueAt)<=workspaceNow());return{unit,due};}

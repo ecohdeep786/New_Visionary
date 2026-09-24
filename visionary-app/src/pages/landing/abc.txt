@@ -376,4 +376,4 @@ The final result must:
 - Include strong hierarchy, readable content, clear CTAs, and user-focused journeys.
 - Make users feel confidence in the product’s privacy, safety, security, support, accessibility, and company credibility.
 
-Start with the **Privacy Page**. Complete it fully using the workflow above, including all assigned reference links, before moving to the **About Us Page**. Continue in the exact order listed until all pages and the global footer are complete.
+Start with the **AboutUs Page**. Complete it fully using the workflow above, including all assigned reference links, before moving to the **About Us Page**. Continue in the exact order listed until all pages and the global footer are complete.

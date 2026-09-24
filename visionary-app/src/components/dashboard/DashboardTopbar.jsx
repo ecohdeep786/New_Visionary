@@ -17,15 +17,16 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const student = useStudentData();
-  const { data: workspaceData } = useWorkspace();
-  const role = user?.identity;
-  const connect = (role === "student" || role === "professional") ? { label: "Join a class", to: "/dashboard/classes?join=1" }
+  const { data: workspaceData, ctx } = useWorkspace();
+  const role = ctx?.role || user?.identity;
+  const connect = role === "student" ? { label: "Join a class", to: "/dashboard/classes?join=1" }
+    : role === "professional" ? { label: "Set a career goal", to: "/dashboard/career" }
     : role === "teacher" ? { label: "Create a class", to: "/dashboard/classes?create=1" }
     : role === "parent" ? { label: "Connect your child", to: "/dashboard/child" }
     : { label: "Add people", to: "/dashboard/people" };
   const plan = workspaceData?.subscription.plan || PRODUCT_ACCESS.plan;
   const destinations = [...navigationFor(role), ...secondaryNavigation(role), { label: "Profile", to: "/dashboard/profile" }, { label: "Settings", to: "/dashboard/settings" },
-    ...student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id }))];
+    ...(role === 'student' ? student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id })) : [])];
   const results = destinations.filter(item => (item.label + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
   const openResult = (to) => { setSearchOpen(false); setQuery(""); navigate(to); };
   return <header className="z-30 flex h-16 shrink-0 items-center gap-2 border-b border-[#dadce0] bg-white px-3 sm:px-5">

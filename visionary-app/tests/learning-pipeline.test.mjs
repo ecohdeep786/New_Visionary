@@ -59,11 +59,50 @@ test('student Home → Learn → Ask → Practice → Build persists one connect
  pipeline.recordProjectSave(request, completed);
  assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'completed');
  assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 1);
+ assert.equal(mentor.getInteractionEvents(request).filter(event => event.app === 'BUILD' && event.action === 'complete').length, 1);
+ assert.equal(mentor.getInteractionEvents(request).filter(event => event.app === 'BUILD' && event.action === 'save').length, 1);
  assert.equal(mentor.getStudentState(request).concepts[0].stage, 'Secure');
  assert.equal(mentor.getWeeklyObservations(request).some(item => item.kind === 'application'), true);
  const apps = mentor.getInteractionEvents(request).map(event => event.app);
  for (const app of ['LEARN', 'ASK', 'PRACTICE', 'BUILD']) assert.ok(apps.includes(app));
  assert.equal(JSON.stringify(mentor.getInteractionEvents(request)).includes('How does this work?'), false);
+});
+
+test('connected teaching records only a versioned response contract in Learn and Ask', async () => {
+ const { request, unit } = await startSample();
+ configureTeachingInterface({ async request(_mode, packet) { return { status: 'ready', source: 'adapter', text: 'Connected fixture, not evaluated teaching content.', locale: packet.language, promptVersion: 'teach-v2', internalToken: 'never-save' }; } });
+ const taught = await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ assert.equal(taught.response.promptVersion, 'teach-v2');
+ assert.equal('internalToken' in taught.response, false);
+ const conversationId = pipeline.prepareLearningConversation(request, unit.id);
+ await pipeline.sendTeachingTurn(request, conversationId, 'A private question');
+ const responses = mentor.getInteractionEvents(request).filter(event => event.action === 'response');
+ assert.deepEqual(responses.map(event => event.app), ['LEARN', 'ASK']);
+ assert.match(responses[0].prompt_version, /^ref-/);
+ assert.equal(responses[0].prompt_version, responses[1].prompt_version);
+ assert.equal(JSON.stringify(workspace.snapshot(request)).includes('never-save'), false);
+ assert.equal(JSON.stringify(responses).includes('A private question'), false);
+});
+
+test('a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events', async () => {
+ const { request, unit } = await startSample();
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, check.question.answerIndex);
+ const practice = await pipeline.nextLearningQuestion(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex);
+ const artifact = await pipeline.createLearningProject(request, unit.id);
+ const completed = workspace.saveArtifact(request, { ...artifact, body: 'A completed model with reviewed evidence.', milestones: [true, true, true], status: 'completed' });
+ const set = localStorage.setItem;
+ localStorage.setItem = (key, value) => { if (key === 'visionary_learning_pipeline_v1') throw Error('full'); set(key, value); };
+ try { assert.throws(() => pipeline.recordProjectSave(request, completed), /could not be saved/); }
+ finally { localStorage.setItem = set; }
+ assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'build');
+ pipeline.recordProjectSave(request, completed);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'completed');
+ assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 1);
+ assert.equal(mentor.getInteractionEvents(request).filter(event => event.app === 'BUILD' && event.action === 'complete').length, 1);
+ assert.equal(mentor.getInteractionEvents(request).filter(event => event.app === 'BUILD' && event.action === 'save').length, 1);
 });
 
 test('a failed learning-unit write after project creation recovers the same artifact on retry', async () => {

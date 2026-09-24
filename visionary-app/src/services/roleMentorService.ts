@@ -2,6 +2,7 @@ import type { RequestContext } from '../domain/workspace.ts';
 import { familyReports, getWorkspace, saveResource, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
 import { getAssignedClasses, getClassAggregate, getOrganizationAggregate, getParentSummary, getStudentState } from './mentorStateService.ts';
 import { getTeachingInterface } from './teachingInterface.ts';
+import { getLearningWorkspace } from './learningPipelineService.ts';
 
 function requireRole(ctx: RequestContext, role: RequestContext['role']) {
   const identity=workspaceIdentity(ctx);
@@ -56,8 +57,25 @@ export function saveTeacherPreparation(ctx: RequestContext, input: { title: stri
   return saveResource(ctx, { title: input.title.trim().slice(0, 160), body: input.body.slice(0, 16000), kind: 'lesson', status: 'draft', audience: 'Personal' });
 }
 
-export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string }) {
+/** Personal career view: goal, saved learning evidence, and artifacts share one workspace scope. */
+export function getCareerPath(ctx: RequestContext) {
   requireRole(ctx, 'professional');
-  if (input.id && !snapshot(ctx).resources.some(resource => resource.id === input.id && resource.kind === 'goal')) throw new Error('This career target is not available in your workspace.');
-  return saveResource(ctx, { id: input.id, title: input.title.trim().slice(0, 160), body: input.body.slice(0, 6000), kind: 'goal', status: 'draft', audience: 'Personal' });
+  const data = snapshot(ctx);
+  const states = getStudentState(ctx).concepts;
+  const units = getLearningWorkspace(ctx).units;
+  const capabilities = [...new Map([...units].sort((a, b) => a.updatedAt.localeCompare(b.updatedAt)).map(unit => [unit.conceptId, unit])).values()]
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+    .map(unit => ({ conceptId: unit.conceptId, title: unit.title, unitId: unit.id, activityStage: unit.stage, evidence: states.find(item => item.conceptId === unit.conceptId) ?? null }));
+  const goal = data.resources.find(resource => resource.kind === 'goal' && resource.status !== 'archived') ?? null;
+  return { goal, capabilities, target: capabilities.find(item => item.conceptId === goal?.conceptId) ?? null,
+    portfolio: data.artifacts.map(artifact => ({ id: artifact.id, title: artifact.title, conceptId: artifact.conceptId, status: artifact.status, visibility: artifact.visibility, updatedAt: artifact.updatedAt })) };
+}
+
+export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string; conceptId?: string }) {
+  requireRole(ctx, 'professional');
+  const saved = input.id ? snapshot(ctx).resources.find(resource => resource.id === input.id && resource.kind === 'goal') : null;
+  if (input.id && !saved) throw new Error('This career target is not available in your workspace.');
+  const conceptId = input.conceptId === undefined ? saved?.conceptId : input.conceptId || undefined;
+  if (conceptId && !getLearningWorkspace(ctx).units.some(unit => unit.conceptId === conceptId)) throw new Error('Choose a capability from your own learning outline.');
+  return saveResource(ctx, { id: input.id, title: input.title.trim().slice(0, 160), body: input.body.slice(0, 6000), conceptId, kind: 'goal', status: 'draft', audience: 'Personal' });
 }

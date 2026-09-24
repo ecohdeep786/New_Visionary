@@ -3,14 +3,18 @@ import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
 import { getAssignedClasses, getStudentClasswork, getStudentClassLearningContext, recordLearningOutcome, getRecentContext, deleteMemory } from '../src/services/mentorStateService.ts';
-import { getRoleMentorView, requestTeacherSupport, saveCareerTarget } from '../src/services/roleMentorService.ts';
+import { getRoleMentorView, getCareerPath, requestTeacherSupport, saveCareerTarget } from '../src/services/roleMentorService.ts';
+import { configureContentRepository, getContentRepository, PROFESSIONAL_SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
+import { configureTeachingInterface } from '../src/services/teachingInterface.ts';
+import * as pipeline from '../src/services/learningPipelineService.ts';
+import { getHome } from '../src/services/homeService.ts';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };
 globalThis.window = { dispatchEvent() {} };
 globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
 const ctx = (person, role) => ({ personId: `demo-${person}`, workspaceId: `demo-${person}:${role}`, role, locale: 'en' });
-beforeEach(() => { memory.clear(); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-23T12:00:00Z') }); workspace.seedDemo('adult'); seedConnectedFixtures(localStorage, new Date('2026-09-23T12:00:00Z')); });
+beforeEach(() => { memory.clear(); configureContentRepository(null); configureTeachingInterface(null); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-23T12:00:00Z') }); workspace.seedDemo('adult'); seedConnectedFixtures(localStorage, new Date('2026-09-23T12:00:00Z')); });
 
 test('five roles share scoped mentor services without exposing private student events', async () => {
  const student = ctx('minor-cbse', 'student');
@@ -68,6 +72,50 @@ test('professional target is personal and adult-only; guardian revocation closes
  const view = await getRoleMentorView(parent);
  assert.equal(view.children.some(child => child.id === 'demo-minor-cbse'), false);
  await assert.rejects(getRoleMentorView(parent, 'demo-minor-cbse'), /no longer shared/);
+});
+
+test('professional goal links only owned capability evidence and a private portfolio project', async () => {
+ const professional = ctx('professional', 'professional');
+ const repository = getContentRepository(professional);
+ const outline = await pipeline.selectLearningSyllabus(professional, PROFESSIONAL_SAMPLE_SELECTION);
+ assert.equal(outline.status, 'sample');
+ assert.equal(outline.chapters.length, 1);
+ const topic = (await repository.getTopics(outline.chapters[0].id))[0];
+ const concept = (await repository.getConcepts(topic.id))[0];
+ assert.equal(concept.audience, 'adult');
+ assert.equal(concept.id, 'sample:data:concept');
+ for (const [locale, script] of [['hi', /[\u0900-\u097f]/], ['bn', /[\u0980-\u09ff]/]]) {
+  const localized = await getContentRepository({ ...professional, locale }).getConcept(concept.id);
+  assert.match(localized.title, script);
+  assert.equal(localized.check.source, 'authored-sample');
+ }
+ assert.throws(() => saveCareerTarget(professional, { title: 'Invented skill', body: '', conceptId: 'another-workspace-concept' }), /own learning outline/);
+ const unlinked = saveCareerTarget(professional, { title: 'Data-informed decisions', body: 'Write a sample report.' });
+ assert.match((await getHome(professional)).priority.title, /Data-informed decisions/);
+ const unit = await pipeline.startLearningUnit(professional, concept.id);
+ const goal = saveCareerTarget(professional, { id: unlinked.id, title: 'Data-informed decisions', body: 'Write a sample report.', conceptId: concept.id });
+ assert.equal((await getHome(professional)).priority.action.path, `/dashboard/learn?unit=${unit.id}`, 'an open learning unit outranks the saved target');
+ assert.equal(getCareerPath(professional).target.unitId, unit.id);
+ assert.equal(getCareerPath(professional).target.evidence, null);
+ await pipeline.requestUnitTeaching(professional, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(professional, unit.id);
+ await pipeline.answerLearningQuestion(professional, unit.id, check.question.answerIndex);
+ const practice = await pipeline.nextLearningQuestion(professional, unit.id);
+ await pipeline.answerLearningQuestion(professional, unit.id, practice.question.answerIndex);
+ const artifact = await pipeline.createLearningProject(professional, unit.id);
+ const completed = workspace.saveArtifact(professional, { ...artifact, body: 'Fictional task totals and a limitation.', milestones: [true, true, true], status: 'completed' });
+ pipeline.recordProjectSave(professional, completed);
+ const path = getCareerPath(professional);
+ assert.equal(path.goal.id, goal.id);
+ assert.equal(path.target.evidence.total, 2);
+ assert.equal(path.portfolio.find(item => item.id === artifact.id).conceptId, concept.id);
+ assert.equal(path.portfolio.find(item => item.id === artifact.id).visibility, 'private');
+ assert.equal(JSON.stringify(getCareerPath(ctx('employee', 'professional'))).includes(goal.title), false);
+ assert.throws(() => getCareerPath(ctx('parent', 'parent')), /professional workspace/);
+ assert.throws(() => saveCareerTarget(ctx('employee', 'professional'), { id: goal.id, title: 'Take over', body: '' }), /not available/);
+ const minor = ctx('minor-cbse', 'student');
+ const minorOutline = await getContentRepository(minor).getSyllabus(PROFESSIONAL_SAMPLE_SELECTION.board, PROFESSIONAL_SAMPLE_SELECTION.classLevel, PROFESSIONAL_SAMPLE_SELECTION.subject);
+ assert.equal(minorOutline.status, 'provisional');
 });
 
 test('turning personalization off keeps retained memory visible to its owner for deletion', () => {

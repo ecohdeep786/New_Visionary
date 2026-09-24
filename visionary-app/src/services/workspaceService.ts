@@ -127,7 +127,20 @@ function canShare(db:Database,from:string,to:string){return allRelationships(db)
 export function shareArtifact(ctx:RequestContext,artifactId:string,recipient:string){const db=read();const data=access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId)!;if(person.ageBand!=='adult')throw new Error('Sharing requires an approved adult or guardian workflow. This demo does not verify guardians.');if(!canShare(db,ctx.personId,recipient))throw new Error('Choose an accepted connection with shared-resource permission.');const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='shared';if(!a.sharedWith.includes(recipient))a.sharedWith.push(recipient);record(data,'Artifact shared',artifactId);write(db);}
 export function sharedArtifacts(ctx:RequestContext){const db=read();access(db,ctx);return db.workspaces.filter(w=>w.personId!==ctx.personId&&canShare(db,w.personId,ctx.personId)).flatMap(w=>(db.data[w.id]?.artifacts||[]).filter(a=>a.visibility==='shared'&&a.sharedWith.includes(ctx.personId)).map(a=>({id:a.id,title:a.title,body:a.body,updatedAt:a.updatedAt,from:db.people.find(p=>p.id===w.personId)?.name||'Connection'})));}
 export function stopSharingArtifact(ctx:RequestContext,artifactId:string){const db=read();const data=access(db,ctx);const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='private';a.sharedWith=[];record(data,'Artifact sharing stopped',a.id);write(db);}
-export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']}){const db=read();const data=access(db,ctx);if(!patch.title.trim())throw new Error('A title is required.');let resource=data.resources.find(r=>r.id===patch.id);if(!resource){resource={id:id(),title:patch.title,body:patch.body,kind:patch.kind,status:'draft',audience:'Personal',updatedAt:now()};data.resources.unshift(resource);}Object.assign(resource,patch,{id:resource.id,updatedAt:now()});record(data,`${resource.kind} saved`,resource.id);write(db);return resource;}
+export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']}){
+ const db=read();const data=access(db,ctx);
+ if(!patch.title.trim())throw new Error('A title is required.');
+ if(patch.kind==='lesson'&&patch.status==='reviewed'&&!patch.body.trim())throw new Error('Add the lesson outline before marking it reviewed.');
+ if(patch.checks!==undefined&&(
+  patch.kind!=='lesson'||!Array.isArray(patch.checks)||patch.checks.length>10||
+  patch.checks.some(check=>!check||typeof check.id!=='string'||!check.id.trim()||typeof check.prompt!=='string'||!check.prompt.trim()||check.prompt.length>500)||
+  new Set(patch.checks.map(check=>check.id)).size!==patch.checks.length
+ ))throw new Error('Add up to ten distinct, complete questions before saving the lesson.');
+ let resource=data.resources.find(r=>r.id===patch.id);
+ if(!resource){resource={id:id(),title:patch.title,body:patch.body,kind:patch.kind,status:'draft',audience:'Personal',updatedAt:now()};data.resources.unshift(resource);}
+ Object.assign(resource,patch,{id:resource.id,updatedAt:now(),...(patch.checks?{checks:patch.checks.map(check=>({id:check.id,prompt:check.prompt.trim()}))}:{})});
+ record(data,`${resource.kind} saved`,resource.id);write(db);return resource;
+}
 export function archiveResource(ctx:RequestContext,resourceId:string){const db=read();const data=access(db,ctx);const resource=data.resources.find(r=>r.id===resourceId);if(!resource)throw new Error('Item not found.');resource.status=resource.status==='archived'?'draft':'archived';record(data,resource.status,resourceId);write(db);}
 export function markNotification(ctx:RequestContext,notificationId:string){const db=read();const data=access(db,ctx);const n=data.notifications.find(n=>n.id===notificationId);if(n)n.read=true;write(db);}
 export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'active'|'pending'|'failed'|'cancelled'){

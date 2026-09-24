@@ -19,7 +19,7 @@ const officialGraph = (overrides = {}) => ({
  topics: [{ id: 'official:topic', title: 'Supplied topic', chapterId: 'official:chapter', conceptIds: ['official:concept'], status: 'official' }],
  concepts: [officialConcept()], ...overrides,
 });
-const ready = () => ({ status: 'ready', source: 'adapter', text: 'Adapter contract fixture — no answer-quality assertion.' });
+const ready = (locale = 'en') => ({ status: 'ready', source: 'adapter', text: 'Adapter contract fixture — no answer-quality assertion.', locale, promptVersion: 'test-v1' });
 
 beforeEach(() => {
  memory.clear(); configureContentRepository(null); configureTeachingInterface(null);
@@ -175,7 +175,7 @@ test('unconnected teaching returns an honest status for all modes and creates no
 });
 
 test('the teaching seam forwards all four modes and cloned packets without interpreting answer quality', async () => {
- const calls = []; configureTeachingInterface({ async request(mode, packet, request) { calls.push({ mode, packet: structuredClone(packet), request }); packet.input = 'adapter mutation'; return ready(); } });
+ const calls = []; configureTeachingInterface({ async request(mode, packet, request) { calls.push({ mode, packet: structuredClone(packet), request }); const reply = ready(packet.language); packet.input = 'adapter mutation'; return reply; } });
  const api = getTeachingInterface(ctx()); const packet = { input: 'Saved prompt', language: 'hi', conceptId: 'concept:1', sessionId: 'session:1', difficulty: 2, intent: 'check', promptVersion: 'contract-v1' };
  const methods = ['requestExplanation', 'requestPracticeQuestion', 'requestFeedback', 'requestProjectGuidance'];
  for (const method of methods) assert.equal((await api[method](packet)).status, 'ready');
@@ -222,8 +222,31 @@ test('teaching validates question/representation payloads before UI consumption'
   { ...ready(), status: 'not_connected', question: { id: 'q', prompt: 'Check', options: ['A', 'B'], answerIndex: 0, source: 'database' } },
  ]) {
   configureTeachingInterface({ async request() { return malformed; } });
-  await assert.rejects(api.requestPracticeQuestion({ input: 'Next check' }), /incomplete|Unavailable teaching/);
+  await assert.rejects(api.requestPracticeQuestion({ input: 'Next check' }), /incomplete|inconsistent|Unavailable teaching/);
  }
  configureTeachingInterface({ async request() { return { ...ready(), question: { id: 'q', prompt: 'Fixture question', options: ['A', 'B'], answerIndex: 0, source: 'database' } }; } });
  assert.equal((await api.requestPracticeQuestion({ input: 'Next check' })).question.id, 'q');
+});
+
+test('connected teaching requires matching language and version, and saves only contract fields', async () => {
+ const api = getTeachingInterface(ctx());
+ for (const malformed of [
+  { ...ready(), locale: 'hi' },
+  { ...ready(), promptVersion: '' },
+  { ...ready(), source: 'safety' },
+  { ...ready(), status: 'blocked' },
+  { status: 'blocked', source: 'safety', text: 'Safety fixture.', locale: 'hi' },
+  { status: 'not_connected', source: 'not_connected', text: 'Disconnected fixture.', locale: 'hi' },
+  { ...ready(), text: 'x'.repeat(12001) },
+ ]) {
+  configureTeachingInterface({ async request() { return malformed; } });
+  await assert.rejects(api.requestExplanation({ input: 'Explain', language: 'en' }), /incomplete|wrong-language|inconsistent/);
+ }
+ configureTeachingInterface({ async request() { return { ...ready(), privateServerToken: 'must-not-persist', question: { id: 'check', prompt: 'Which?', options: ['One', 'Two'], answerIndex: 0, source: 'database', internalRubric: 'private' }, representations: [{ id: 'visual', kind: 'text', alternative: 'A text alternative.', serverMetadata: 'private' }] }; } });
+ const response = await api.requestExplanation({ input: 'Explain', language: 'en' });
+ assert.equal(response.status, 'ready');
+ assert.equal(response.locale, 'en');
+ assert.equal('privateServerToken' in response, false);
+ assert.equal('internalRubric' in response.question, false);
+ assert.equal('serverMetadata' in response.representations[0], false);
 });

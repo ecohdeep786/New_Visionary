@@ -94,11 +94,11 @@ export const ROUTE_META = {
       "@type": "Organization",
       name: "Visionary",
       url: "https://visionary.app",
-      description: "Visionary builds one intelligence that helps anyone learn, teach, support, and build.",
-      founder: { "@type": "Person", name: "Md Shah Ali" },
+      description: "Visionary builds an education product with role-based workspaces for learning, teaching, and building.",
+      founder: { "@type": "Person", name: "Md Shahid Ali" },
     }],
     title: "About Visionary",
-    description: "Building AI to accelerate learning and improve lives. Our mission, values, and the team behind Visionary.",
+    description: "Who we are and what we build: one learning flow with role-based workspaces for students, teachers, parents, professionals, and organizations.",
     image: "/og-image.jpg",
   },
   "/research": {
@@ -108,7 +108,7 @@ export const ROUTE_META = {
   },
   "/community": {
     title: "Community | Visionary",
-    description: "Join learners, teachers, and parents sharing what works in real classrooms and homes.",
+    description: "Explore Visionary’s learning workspace, optional connections, product updates, and current community features.",
     image: "/og-image.jpg",
   },
   "/updates": {
@@ -118,12 +118,12 @@ export const ROUTE_META = {
   },
   "/partners": {
     title: "Partners | Visionary",
-    description: "Work with schools, boards, and organizations bringing Visionary to their learners.",
+    description: "Explore a partnership enquiry route and find out whether a public Visionary partner directory is available.",
     image: "/og-image.jpg",
   },
   "/referral": {
     title: "Refer a friend | Visionary",
-    description: "Invite friends to Visionary and grow a community of learners together.",
+    description: "Share Visionary’s standard sign-up page. This link is not tracked and does not provide referral rewards.",
     image: "/og-image.jpg",
   },
   "/privacy": {

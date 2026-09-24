@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import { getContentRepository } from '../src/services/contentRepository.ts';
 import { getTeachingInterface } from '../src/services/teachingInterface.ts';
+import { sendTeachingTurn } from '../src/services/learningPipelineService.ts';
 import { buildMentorPacket } from '../src/services/mentorCompanionService.ts';
 import { requestMentorModelTurn } from '../src/services/mentorModelService.ts';
 import { configureBackendTransport, isBackendTransportConfigured } from '../src/services/backendTransport.ts';
@@ -23,7 +24,7 @@ test('one authenticated boundary routes content, teaching and mentor without cha
  configureBackendTransport({ async getSession() { return identity(); }, async exchange(request) {
   calls.push(request);
   if (request.operation === 'content.syllabus') return null;
-  if (request.operation === 'teaching.request') return { status: 'ready', source: 'adapter', text: 'Connected response.' };
+  if (request.operation === 'teaching.request') return { status: 'ready', source: 'adapter', text: 'Connected response.', locale: 'en', promptVersion: 'test-v1' };
   return ready;
  } });
  assert.equal(isBackendTransportConfigured(), true);
@@ -55,7 +56,7 @@ test('a session change after the reply refuses stale data; an explicit retry can
  configureBackendTransport({ async getSession() { return current; }, async exchange() { calls++; current = { ...identity(), workspaceId: 'demo-adult:teacher' }; return { status: 'ready', source: 'adapter', text: 'Old reply' }; } });
  await assert.rejects(getTeachingInterface(ctx()).requestExplanation({ input: 'Explain', language: 'en' }), /authenticated account/);
  assert.equal(calls, 1);
- configureBackendTransport({ async getSession() { return identity(); }, async exchange() { return { status: 'ready', source: 'adapter', text: 'Fresh reply' }; } });
+ configureBackendTransport({ async getSession() { return identity(); }, async exchange() { return { status: 'ready', source: 'adapter', text: 'Fresh reply', locale: 'en', promptVersion: 'test-v1' }; } });
  assert.equal((await getTeachingInterface(ctx()).requestExplanation({ input: 'Explain', language: 'en' })).text, 'Fresh reply');
 });
 
@@ -85,4 +86,32 @@ test('malformed connected replies fail through the existing service validators',
  } });
  await assert.rejects(getTeachingInterface(ctx()).requestExplanation({ input: 'Explain', language: 'en' }), /incomplete response/);
  await assert.rejects(requestMentorModelTurn(ctx(), 'What next?', buildMentorPacket(ctx())), /out-of-scope/);
+});
+
+test('one deadline covers session and model work, aborts timed-out transport, and leaves no late answer', async () => {
+ let calls = 0;
+ configureBackendTransport({ timeoutMs: 10, getSession: () => new Promise(() => {}), async exchange() { calls++; return ready; } });
+ await assert.rejects(requestMentorModelTurn(ctx(), 'What next?', buildMentorPacket(ctx())), /did not respond in time/);
+ assert.equal(calls, 0);
+
+ let resolveLate; let passedSignal;
+ configureBackendTransport({ timeoutMs: 10, async getSession() { return identity(); }, exchange(request) {
+  passedSignal = request.signal;
+  return new Promise(resolve => { resolveLate = resolve; });
+ } });
+ await assert.rejects(getTeachingInterface(ctx()).requestExplanation({ input: 'Explain', language: 'en' }), /did not respond in time/);
+ assert.equal(passedSignal.aborted, true);
+ resolveLate({ status: 'ready', source: 'adapter', text: 'Too late' });
+ configureBackendTransport(null);
+ assert.equal((await getTeachingInterface(ctx()).requestExplanation({ input: 'Explain', language: 'en' })).status, 'not_connected');
+ assert.throws(() => configureBackendTransport({ timeoutMs: 0, async getSession() { return identity(); }, async exchange() { return null; } }), /valid deadline/);
+});
+
+test('a timed-out Ask turn retains its local draft for retry without appending a reply', async () => {
+ const conversation = workspace.newConversation(ctx(), 'A question to retry');
+ configureBackendTransport({ timeoutMs: 10, async getSession() { return identity(); }, exchange: () => new Promise(() => {}) });
+ await assert.rejects(sendTeachingTurn(ctx(), conversation.id, 'How does this work?'), /did not respond in time/);
+ const saved = workspace.snapshot(ctx()).conversations.find(item => item.id === conversation.id);
+ assert.equal(saved.draft, 'How does this work?');
+ assert.equal(saved.messages.length, 0);
 });

@@ -4,6 +4,7 @@ import * as workspace from '../src/services/workspaceService.ts';
 import * as pipeline from '../src/services/learningPipelineService.ts';
 import { getDailyPlan, configureDailyPlanClock } from '../src/services/dailyPlanService.ts';
 import { getHome } from '../src/services/homeService.ts';
+import { configureMentorClock } from '../src/services/mentorStateService.ts';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
 import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
 
@@ -13,8 +14,8 @@ globalThis.window = { dispatchEvent() {} };
 globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
 const ctx = (person = 'adult', role = 'student') => ({ personId: `demo-${person}`, workspaceId: `demo-${person}:${role}`, role, locale: 'en' });
 const at = () => new Date('2026-09-23T12:00:00Z');
-const moveTo = iso => { configureDailyPlanClock(() => new Date(iso)); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date(iso) }); };
-beforeEach(() => { memory.clear(); workspace.configureMock({ latency: 0, fault: 'none', now: at }); configureDailyPlanClock(at); workspace.seedDemo('adult'); });
+const moveTo = iso => { configureDailyPlanClock(() => new Date(iso)); configureMentorClock(() => new Date(iso)); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date(iso) }); };
+beforeEach(() => { memory.clear(); workspace.configureMock({ latency: 0, fault: 'none', now: at }); configureDailyPlanClock(at); configureMentorClock(at); workspace.seedDemo('adult'); });
 
 async function runSampleUnit(request) {
  await pipeline.selectLearningSyllabus(request, SAMPLE_SELECTION);
