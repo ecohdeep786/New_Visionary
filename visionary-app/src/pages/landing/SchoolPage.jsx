@@ -177,7 +177,7 @@ export default function SchoolPage() {
       <Breadcrumb page="Help" />
       <main id="main">
         {/* ═══ HERO — mark + heading + search (Google Help pattern) ═══ */}
-        <section ref={ref} className="relative px-6 pb-16 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.white }}>
+        <section ref={ref} className="relative px-6 pb-16 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>
             <div className="mx-auto flex flex-col items-center text-center">
               <span className="flex h-20 w-20 items-center justify-center rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>

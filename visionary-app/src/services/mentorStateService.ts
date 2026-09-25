@@ -2,8 +2,8 @@ import type { Database, Locale, MasteryStage, RequestContext, Role } from '../do
 import { snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
 import { getContentRepository, type ContentConcept } from './contentRepository.ts';
 
-export type MentorApp = 'LEARN' | 'ASK' | 'PRACTICE' | 'BUILD';
-export type InteractionAction = 'view' | 'start' | 'request' | 'response' | 'answer' | 'save' | 'complete' | 'resume' | 'delete_memory';
+export type MentorApp = 'LEARN' | 'ASK' | 'PRACTICE' | 'BUILD' | 'COMMUNITY';
+export type InteractionAction = 'view' | 'start' | 'request' | 'response' | 'answer' | 'save' | 'complete' | 'resume' | 'delete_memory' | 'remove';
 export interface InteractionInput {
  id?: string; app: MentorApp; action: InteractionAction; sessionId?: string; conceptId?: string;
  inputType?: 'text' | 'selection' | 'voice' | 'system'; language?: Locale;
@@ -86,7 +86,7 @@ function assertClassEvidence(ctx: RequestContext, classId: string) {
 function ref(value: string) { let a = 2166136261; let b = 3339675911; for (const char of value) { const code = char.codePointAt(0)!; a = Math.imul(a ^ code, 16777619); b = Math.imul(b ^ code, 2246822519); } return `ref-${(a >>> 0).toString(16).padStart(8, '0')}${(b >>> 0).toString(16).padStart(8, '0')}`; }
 function select<T extends string>(value: unknown, values: readonly T[], fallback: T): T { return values.includes(value as T) ? value as T : fallback; }
 function eventFor(ctx: RequestContext, input: InteractionInput): InteractionEvent {
- if (!['LEARN', 'ASK', 'PRACTICE', 'BUILD'].includes(input.app) || !['view', 'start', 'request', 'response', 'answer', 'save', 'complete', 'resume', 'delete_memory'].includes(input.action)) throw new Error('Unknown interaction type.');
+ if (!['LEARN', 'ASK', 'PRACTICE', 'BUILD', 'COMMUNITY'].includes(input.app) || !['view', 'start', 'request', 'response', 'answer', 'save', 'complete', 'resume', 'delete_memory', 'remove'].includes(input.action)) throw new Error('Unknown interaction type.');
  const event: InteractionEvent = {
   id: ref(input.id || crypto.randomUUID()), user_id: ref(ctx.personId), workspace_id: ref(ctx.workspaceId), role: ctx.role,
   session_id: input.sessionId ? ref(input.sessionId) : null, app: input.app, action: input.action,

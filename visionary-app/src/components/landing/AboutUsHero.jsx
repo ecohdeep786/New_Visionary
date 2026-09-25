@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SpotIllustration from "@/components/landing/SpotIllustration";
@@ -31,37 +31,22 @@ const STRIP_CARDS = [
   { to: "/organization", label: "Organizations", subject: "team" },
 ];
 const STRIP_TINTS = ["#fdf3d8", "#e3edfc", "#e0efe4", "#f1e8fb", "#fbe3e1"];
+/* Fanned card layout — varied tilt + vertical stagger, like the edu.google strip */
+const CARD_FAN = [
+  "-rotate-6 translate-y-4",
+  "-rotate-2 -translate-y-2",
+  "rotate-1 -translate-y-4",
+  "rotate-3 -translate-y-1",
+  "rotate-6 translate-y-3",
+];
 
-/* ── Category card strip — full page width, straight cards drifting in one
-      continuous slow loop, always on. Cards tilt and drop by their distance
-      from center, recomputed every frame so the arc holds while they move. ── */
+/* ── Category card strip — full page width, a fanned row of tilted cards
+      drifting in one continuous slow loop, always on ── */
 function CategoryStrip() {
-  const wrapRef = useRef(null);
   const cards = [...STRIP_CARDS, ...STRIP_CARDS];
 
-  useEffect(() => {
-    let raf;
-    const update = () => {
-      const wrap = wrapRef.current;
-      if (wrap) {
-        const wr = wrap.getBoundingClientRect();
-        const cx = wr.left + wr.width / 2;
-        const half = Math.max(200, wr.width / 2);
-        wrap.querySelectorAll("[data-card]").forEach((card) => {
-          const r = card.getBoundingClientRect();
-          const dx = r.left + r.width / 2 - cx;
-          const t = Math.max(-1, Math.min(1, dx / half));
-          card.style.transform = `rotate(${(t * 9).toFixed(2)}deg) translateY(${(t * t * 44).toFixed(1)}px)`;
-        });
-      }
-      raf = requestAnimationFrame(update);
-    };
-    raf = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
   return (
-    <div ref={wrapRef} className="w-full overflow-hidden py-12">
+    <div className="w-full overflow-hidden py-14">
       <style>{`
         @keyframes about-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .about-marquee { animation: about-marquee 75s linear infinite; animation-duration: 75s !important; animation-iteration-count: infinite !important; }
@@ -71,7 +56,7 @@ function CategoryStrip() {
         aria-label="Explore Visionary by category"
         className="overflow-hidden"
       >
-        <div className="about-marquee flex w-max gap-8">
+        <div className="about-marquee flex w-max items-center gap-9">
           {cards.map(({ to, label, subject }, i) => {
             const dup = i >= STRIP_CARDS.length;
             const j = i % STRIP_CARDS.length;
@@ -82,11 +67,11 @@ function CategoryStrip() {
                 data-card
                 aria-hidden={dup || undefined}
                 tabIndex={dup ? -1 : undefined}
-                className="group relative flex h-[380px] w-[300px] shrink-0 flex-col overflow-hidden rounded-[28px] p-7 transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(32,33,36,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4"
+                className={`group relative flex h-[400px] w-[310px] shrink-0 flex-col overflow-hidden rounded-[28px] p-7 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(32,33,36,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4 ${CARD_FAN[j % CARD_FAN.length]}`}
                 style={{ backgroundColor: STRIP_TINTS[j % STRIP_TINTS.length] }}
               >
-                <span className="text-[22px] font-medium leading-[1.3]" style={{ color: C.ink }}>{label}</span>
-                <SpotIllustration subject={subject} className="absolute bottom-4 right-4 h-[58%] w-auto" />
+                <span className="text-[23px] font-medium leading-[1.3]" style={{ color: C.ink }}>{label}</span>
+                <SpotIllustration subject={subject} className="absolute bottom-0 left-1/2 h-[74%] w-auto -translate-x-1/2" />
               </Link>
             );
           })}

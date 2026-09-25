@@ -8,12 +8,14 @@ import StreamTab from "@/components/dashboard/teacher/tabs/StreamTab";
 import ClassworkTab from "@/components/dashboard/teacher/tabs/ClassworkTab";
 import PeopleTab from "@/components/dashboard/teacher/tabs/PeopleTab";
 import InsightsTab from "@/components/dashboard/teacher/tabs/InsightsTab";
+import CommunityTab from "@/components/dashboard/CommunityTab";
 
 const TABS = [
   { id: "stream", label: "Stream" },
   { id: "classwork", label: "Classwork" },
   { id: "people", label: "People" },
   { id: "insights", label: "Insights" },
+  { id: "community", label: "Community" },
 ];
 
 export default function ClassDetail() {
@@ -113,6 +115,7 @@ export default function ClassDetail() {
       {tab === "classwork" && <ClassworkTab classId={classId} classroom={classroom} accent={accent} />}
       {tab === "people" && <PeopleTab classId={classId} classroom={classroom} accent={accent} />}
       {tab === "insights" && <InsightsTab classId={classId} classroom={classroom} accent={accent} />}
+  {tab === "community" && <CommunityTab classId={classId} accent={accent} />}
     </div>
   );
 }

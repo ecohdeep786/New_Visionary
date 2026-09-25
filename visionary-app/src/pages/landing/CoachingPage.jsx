@@ -340,10 +340,9 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
 function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <GreyTag className="text-center">How Visionary works</GreyTag>
-        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
           How <span style={{ color: COLORS.blue }}>Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>

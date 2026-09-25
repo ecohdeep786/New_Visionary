@@ -1,0 +1,37 @@
+import { chromium } from 'playwright-core';
+const BASE = 'http://localhost:4173';
+const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--no-proxy-server'] });
+const seed = () => {
+  const user = { id: 'qa-view', email: 'qa-view@visionary.test', full_name: 'Qa Tester', identity: 'student', onboarding_complete: true, age_band: 'adult', roles: ['student'] };
+  localStorage.setItem('visionary_users', JSON.stringify([user]));
+  localStorage.setItem('visionary_sessions', JSON.stringify([{ token: 'qa-view-token', userId: user.id, email: user.email, expiresAt: Date.now() + 86400000, createdAt: Date.now() }]));
+  localStorage.setItem('visionary_session_token', 'qa-view-token');
+  const wsId = 'qa-view:student';
+  const db = { version: 2, people: [{ id: 'qa-view', email: user.email, name: 'Qa Tester', ageBand: 'adult', roles: ['student'], learningContext: { subjects: ['Mathematics'] } }], workspaces: [{ id: wsId, personId: 'qa-view', role: 'student', name: 'Learner space', lastPath: '/dashboard/home' }], active: { 'qa-view': wsId }, relationships: [], data: { [wsId]: { conversations: [], sessions: [], artifacts: [], resources: [], notifications: [], audit: [], preferences: { locale: 'en', interfaceLocale: 'en', bilingual: false, lowBandwidth: false, notifications: 'weekly', memory: true, voice: true }, subscription: { plan: 'Free', state: 'active', invoices: [], usage: 0, usageDay: '2026-09-25' }, legacyImported: false } } };
+  localStorage.setItem('visionary_workspace_v2', JSON.stringify(db));
+};
+// Desktop home after + orb click → Ask.
+{
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  await context.addInitScript(seed);
+  const page = await context.newPage();
+  await page.goto(`${BASE}/dashboard/home`, { waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(1800);
+  await page.screenshot({ path: 'scripts-tmp/after-home-1440.png' });
+  await page.locator('.v-audio-orb-button').click();
+  await page.waitForTimeout(1200);
+  console.log('orbClick →', page.url());
+  await page.screenshot({ path: 'scripts-tmp/after-orb-ask.png' });
+  await context.close();
+}
+// Mobile home after.
+{
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await context.addInitScript(seed);
+  const page = await context.newPage();
+  await page.goto(`${BASE}/dashboard/home`, { waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(1800);
+  await page.screenshot({ path: 'scripts-tmp/after-home-390.png' });
+  await context.close();
+}
+await browser.close();

@@ -5,6 +5,7 @@ import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useWorkspace } from "@/hooks/useWorkspace";
 import { submitClassworkResponses } from "@/services/classroomService";
+import CommunityTab from "@/components/dashboard/CommunityTab";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -211,9 +212,10 @@ export default function StudentClasses() {
             </div>
           </div>
 
-          <div className="flex gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["stream", "Updates"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#4285F4]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
+          <div className="flex gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#4285F4]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
           {classTab === "stream" && <div className="space-y-4">{announcements.filter((a) => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]">Class updates from your teacher will appear here.</p></div> : announcements.filter((a) => a.class_id === openClassId).map((a) => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : "Class update"}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
 
+          {classTab === "community" && <CommunityTab classId={openClassId} accent="#4285F4" />}
           {classTab === "classwork" && <div className="flex flex-col gap-4">
             {classAssignments.length === 0 ? (
               <div className="flex flex-col items-center gap-3 py-12 text-center">

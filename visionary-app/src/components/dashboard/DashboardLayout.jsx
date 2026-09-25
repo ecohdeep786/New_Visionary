@@ -38,7 +38,7 @@ export default function DashboardLayout() {
           <SheetTitle className="sr-only">Workspace navigation</SheetTitle><SheetDescription className="sr-only">Choose a page in your workspace.</SheetDescription>
           <DashboardSidebar expanded onNavigate={() => setMobileOpen(false)} />
         </SheetContent></Sheet>
-        <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 sm:px-3 sm:pb-3">
+        <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3">
           <div className="workspace-surface min-h-full overflow-hidden"><Outlet key={activeWorkspace.id} /></div>
         </main>
       </div>

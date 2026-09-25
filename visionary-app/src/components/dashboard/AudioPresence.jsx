@@ -5,15 +5,15 @@ import { sendTeachingTurn } from '@/services/learningPipelineService';
 import { emitInteractionEvent } from '@/services/mentorStateService';
 import { getVoiceCapabilities, getVoiceMode, resolveAudioEnabled, startListening, stopListening, speak, subscribeVoiceMode } from '@/services/voiceService';
 
-// The AGI lives inside the workspace search bar as a small orb on the right, mirroring
-// the search icon on the left — the same placement Google uses for its AI spark. The
-// design is Visionary's own: a deep-blue sphere with swirling blue-family energy and a
-// guiding orbit ring around a glowing core. Its listen animation is always running —
-// calm when the microphone is not active, bright and fast while listening (swelling
-// with the real microphone level), cadence-driven while speaking, dimmed only when
-// audio is switched off. It activates automatically when the product opens: listening
-// begins as soon as the browser permits the microphone, and on a first visit on the
-// first interaction. No assistant icon, avatar, or activation button exists elsewhere.
+// The AGI is a Visionary-blue orb that lives below the workspace navigation, always
+// visibly ON: a light disc with flowing blue and violet aurora light, the way Gemini or
+// Hey Google make their assistant's on-state unmistakable. Tapping it does NOT navigate
+// anywhere — this is not a chatbot: the AGI turns toward the user and announces
+// "I am your Intelligence — for you, always available", spoken aloud when audio is on
+// and shown as a caption either way. Listening still activates automatically when the
+// browser permits the microphone, and the aurora's brightness and motion stay honest
+// per state (calm ready, bright listening with real microphone level, cadence speaking,
+// dimmed audio-off).
 const STATUS_TEXT = {
   off: 'Audio interaction is on for this workspace, but the microphone is not active right now.',
   listening: 'Listening.',
@@ -22,11 +22,19 @@ const STATUS_TEXT = {
   unsupported: 'This browser does not support audio interaction. Text works everywhere.',
 };
 const SEND_SILENCE_MS = 1500;
+// The summon line, in the user's own language. Spoken when audio is on, always shown.
+const GREETINGS = {
+ en: 'I am your Intelligence — for you, always available.',
+ hi: 'मैं आपकी बुद्धिमत्ता हूँ — हर समय, आपके लिए उपलब्ध।',
+ bn: 'আমি আপনার বুদ্ধিমত্তা — সবসময়, আপনার জন্য উপলব্ধ।',
+};
 
 export default function AudioPresence() {
   const { ctx, data } = useWorkspace();
   const [mode, setMode] = useState(getVoiceMode());
   const [caption, setCaption] = useState('');
+  const [notice, setNotice] = useState('');
+  const bornAt = useRef(0);
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const conversationRef = useRef(null);
@@ -41,6 +49,7 @@ export default function AudioPresence() {
   const reducedMotion = useRef(false);
   ctxRef.current = ctx;
   const effective = data ? resolveAudioEnabled(data.preferences?.voice) : false;
+  if (ctx && !bornAt.current) bornAt.current = performance.now();
   useEffect(() => subscribeVoiceMode(setMode), []);
 
   useEffect(() => { reducedMotion.current = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false; }, []);
@@ -66,6 +75,20 @@ export default function AudioPresence() {
       busyRef.current = false;
       if (pendingRef.current) { const next = pendingRef.current; pendingRef.current = ''; sendTurn(next); }
     }
+  }
+
+  // Tapping the orb does not open any page: the AGI turns toward the user and
+  // introduces itself, spoken when audio is on and visible either way.
+  function summon() {
+    const request = ctxRef.current;
+    if (!request) return;
+    const line = GREETINGS[request.locale] || GREETINGS.en;
+    setNotice(line);
+    try { emitInteractionEvent(request, { app: 'ASK', action: 'start', inputType: 'system', language: request.locale }); } catch { /* telemetry is best-effort */ }
+    const clear = () => setNotice(current => (current === line ? '' : current));
+    if (effective && getVoiceCapabilities().synthesis) speak(line, request.locale);
+    // The line stays visible for a fixed moment even when speech ends instantly.
+    setTimeout(clear, 4500);
   }
 
   function queueSend(transcript) {
@@ -174,65 +197,84 @@ export default function AudioPresence() {
       const dim = effective ? 1 : 0.55;
       const speed = mode === 'speaking' ? 1.6 : listening ? 2 : effective ? 1 : 0.5;
 
-      // Sphere background — Visionary deep blue.
-      const bg = context.createRadialGradient(cx - R * 0.2, cy - R * 0.25, R * 0.1, cx, cy, R);
-      bg.addColorStop(0, `rgba(26, 58, 107, ${0.95 * dim})`);
-      bg.addColorStop(0.6, `rgba(16, 33, 66, ${0.95 * dim})`);
-      bg.addColorStop(1, `rgba(8, 18, 40, ${0.95 * dim})`);
+      // The scene: a deep Visionary navy field so the light can glow.
+      const age = time - bornAt.current;
+      const bloom = Math.max(0, 1 - age / 900);
       context.globalCompositeOperation = 'source-over';
-      context.fillStyle = bg;
-      context.beginPath(); context.arc(cx, cy, R, 0, Math.PI * 2); context.fill();
+      const field = context.createLinearGradient(0, 0, 0, H);
+      field.addColorStop(0, `rgba(8, 30, 74, ${dim})`);
+      field.addColorStop(0.6, `rgba(12, 44, 102, ${dim})`);
+      field.addColorStop(1, `rgba(18, 60, 132, ${dim})`);
+      context.fillStyle = field;
+      context.fillRect(0, 0, W, H);
 
-      // Swirling blue-family energy.
-      context.globalCompositeOperation = 'lighter';
-      const ribbons = [
-        { color: 'rgba(138, 180, 248, 0.7)', speed: 1.0, offset: 0.0, tilt: 0.5 },
-        { color: 'rgba(66, 133, 244, 0.65)', speed: -0.8, offset: 2.1, tilt: -0.9 },
-        { color: 'rgba(23, 78, 166, 0.6)', speed: 0.65, offset: 4.2, tilt: 2.2 },
-      ];
-      for (const ribbon of ribbons) {
-        const angle = time / 1000 * ribbon.speed * speed + ribbon.offset;
-        context.save();
-        context.translate(cx, cy);
-        context.rotate(angle);
-        context.globalAlpha = dim;
-        context.fillStyle = ribbon.color;
-        context.shadowColor = ribbon.color;
-        context.shadowBlur = 4;
-        context.beginPath();
-        context.ellipse(R * 0.18, 0, R * 0.62, R * 0.2, ribbon.tilt, 0, Math.PI * 2);
-        context.fill();
-        context.beginPath();
-        context.ellipse(-R * 0.2, R * 0.1, R * 0.45, R * 0.16, ribbon.tilt + 1.2, 0, Math.PI * 2);
-        context.fill();
-        context.restore();
-      }
-
-      // The guiding orbit: a thin light sweeping around the core — the mentor circling
-      // the learner. This is Visionary's signature, distinct from any assistant clone.
       context.save();
-      context.translate(cx, cy);
-      context.rotate(-time / 1400 * speed);
-      context.globalAlpha = dim;
-      context.strokeStyle = 'rgba(168, 199, 250, 0.85)';
-      context.lineWidth = 1;
       context.beginPath();
-      context.ellipse(0, 0, R * 0.78, R * 0.34, 0.7, 0, Math.PI * 2);
-      context.stroke();
+      if (context.roundRect) context.roundRect(0, 0, W, H, Math.min(W, H) * 0.3); else context.rect(0, 0, W, H);
+      context.clip();
+
+      // The living light: one organic form with three depths. Every radius and offset
+      // breathes on its own slow rhythm — this is what makes it feel alive, not animated.
+      context.globalCompositeOperation = 'lighter';
+      const flicker = f => Math.sin(time * f + Math.sin(time * f * 0.37) * 1.3);
+      const life = levelRef.current;
+      const bodyScaleY = 1.62 + life * 0.4 + bloom * 0.18;
+      const sway = flicker(0.0009) * R * 0.06;
+      const breathe = 1 + flicker(0.0013) * 0.06 + life * 0.28 + bloom * 0.2;
+
+      context.translate(cx, cy);
+      context.scale(1, bodyScaleY);
+      // Outer aura — the light that reaches into the room.
+      let layer = context.createRadialGradient(sway * 0.6, -R * 0.05, 0, sway * 0.6, -R * 0.05, R * (0.72 * breathe));
+      layer.addColorStop(0, `rgba(66, 133, 244, ${0.42 * dim})`);
+      layer.addColorStop(1, 'rgba(66, 133, 244, 0)');
+      context.fillStyle = layer;
+      context.beginPath(); context.arc(sway * 0.6, -R * 0.05, R * 0.72 * breathe, 0, Math.PI * 2); context.fill();
+      // Body — the flame's blue.
+      layer = context.createRadialGradient(sway, 0, 0, sway, 0, R * (0.48 * breathe));
+      layer.addColorStop(0, `rgba(108, 158, 255, ${0.8 * dim})`);
+      layer.addColorStop(1, 'rgba(23, 78, 166, 0)');
+      context.fillStyle = layer;
+      context.beginPath(); context.arc(sway, 0, R * 0.48 * breathe, 0, Math.PI * 2); context.fill();
+      // Inner light — where blue turns bright.
+      layer = context.createRadialGradient(sway * 0.8, -R * 0.04, 0, sway * 0.8, -R * 0.04, R * (0.3 * breathe));
+      layer.addColorStop(0, `rgba(206, 226, 255, ${0.9 * dim})`);
+      layer.addColorStop(1, 'rgba(108, 158, 255, 0)');
+      context.fillStyle = layer;
+      context.beginPath(); context.arc(sway * 0.8, -R * 0.04, R * 0.3 * breathe, 0, Math.PI * 2); context.fill();
       context.restore();
 
-      // Glowing core; it brightens and swells with the real microphone level.
-      const coreR = R * (0.3 + levelRef.current * 0.3);
-      const core = context.createRadialGradient(cx, cy, 0, cx, cy, coreR);
-      core.addColorStop(0, `rgba(255, 255, 255, ${0.95 * dim})`);
-      core.addColorStop(0.5, `rgba(219, 234, 254, ${0.55 * dim})`);
-      core.addColorStop(1, 'rgba(219, 234, 254, 0)');
-      context.fillStyle = core;
-      context.beginPath(); context.arc(cx, cy, coreR, 0, Math.PI * 2); context.fill();
+      // The flame tip — a soft tongue of light reaching upward with its own flicker.
+      const tipX = cx + flicker(0.0016) * R * 0.07;
+      const tip = context.createRadialGradient(tipX, cy - R * 0.34, 0, tipX, cy - R * 0.34, R * 0.26);
+      tip.addColorStop(0, `rgba(168, 199, 250, ${0.5 * dim})`);
+      tip.addColorStop(1, 'rgba(168, 199, 250, 0)');
+      context.fillStyle = tip;
+      context.save();
+      context.translate(tipX, cy - R * 0.34);
+      context.scale(0.62, 1.5);
+      context.beginPath(); context.arc(0, 0, R * 0.26, 0, Math.PI * 2); context.fill();
+      context.restore();
+
+      // The warm heart — the lamp's gold, our signature that this is a mentor's light.
+      const heartY = cy - R * 0.02 + flicker(0.0011) * R * 0.03;
+      const heart = context.createRadialGradient(cx + flicker(0.0007) * R * 0.04, heartY, 0, cx + flicker(0.0007) * R * 0.04, heartY, R * (0.24 * breathe));
+      heart.addColorStop(0, `rgba(255, 255, 255, ${0.98 * dim})`);
+      heart.addColorStop(0.45, `rgba(255, 233, 184, ${0.85 * dim})`);
+      heart.addColorStop(1, 'rgba(255, 233, 184, 0)');
+      context.fillStyle = heart;
+      context.beginPath(); context.arc(cx + flicker(0.0007) * R * 0.04, heartY, R * 0.2 * breathe, 0, Math.PI * 2); context.fill();
+
+      // The lamp base: a quiet pool of light under the flame.
+      const pool = context.createRadialGradient(cx, cy + R * 0.62, 0, cx, cy + R * 0.62, R * 0.75);
+      pool.addColorStop(0, `rgba(138, 180, 248, ${0.28 * dim})`);
+      pool.addColorStop(1, 'rgba(138, 180, 248, 0)');
+      context.fillStyle = pool;
+      context.beginPath(); context.ellipse(cx, cy + R * 0.62, R * 0.75, R * 0.3, 0, 0, Math.PI * 2); context.fill();
       context.globalCompositeOperation = 'source-over';
       context.globalAlpha = 1;
 
-      frameRef.current = requestAnimationFrame(draw);
+            frameRef.current = requestAnimationFrame(draw);
     };
     frameRef.current = requestAnimationFrame(draw);
     return () => { running = false; cancelAnimationFrame(frameRef.current); window.removeEventListener('resize', resize); };
@@ -243,9 +285,15 @@ export default function AudioPresence() {
   const status = !effective
     ? 'Audio interaction is off. The orb is only an availability indicator; the microphone is not active.'
     : STATUS_TEXT[mode];
-  return <>
-    <canvas ref={canvasRef} className="v-audio-orb" aria-hidden="true" />
-    {caption && mode === 'listening' && <p className="v-audio-caption" aria-hidden="true">{caption}</p>}
-    <p role="status" className="sr-only">{status}</p>
-  </>;
+  return <button
+    type="button"
+    className="v-audio-orb-button"
+    onClick={summon}
+    aria-label="Visionary AGI — always available"
+    title="Visionary AGI"
+  >
+    <canvas ref={canvasRef} aria-hidden="true" />
+    {(notice || (caption && mode === 'listening')) && <span className="v-audio-caption" aria-hidden="true">{notice || caption}</span>}
+    <span role="status" className="sr-only">{status}</span>
+  </button>;
 }
