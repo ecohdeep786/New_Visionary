@@ -269,7 +269,7 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }
 
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -453,7 +453,7 @@ const ParentPromiseSection = React.memo(function ParentPromiseSection() {
   return (
     <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
       <h2
-        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
       >
         What if you could see who understood —{" "}
@@ -592,7 +592,7 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                   alt={stage.alt}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
                 />
                 {/* stage icon pill — the missing icon layer */}
                 <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
@@ -937,7 +937,7 @@ const ParentClosingSection = React.memo(function ParentClosingSection() {
   return (
     <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
       <p
-        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
       >
         Visionary keeps{" "}
@@ -1224,7 +1224,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
                 <path d="M6 15l6-6 6 6" />
               </svg>
             </button>
-            <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
                 <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
                   {tab.copy}
@@ -1457,7 +1457,7 @@ const ParentCTASection = React.memo(function ParentCTASection() {
   return (
     <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
       <div
-        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Start where they are

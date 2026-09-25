@@ -1,409 +1,144 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight, BookOpen, MessageCircle, CircleCheck, Hammer,
-  GraduationCap, Infinity as InfinityIcon, Globe,
-} from "lucide-react";
-import SpotIllustration from "@/components/landing/SpotIllustration";
-import LandingNav from "@/components/landing/LandingNav";
+import { ArrowRight, BookOpen, Building2, CheckCircle2, HeartHandshake, MessageCircle, ShieldCheck, Sparkles, Users } from "lucide-react";
 import LandingFooter from "@/components/landing/LandingFooter";
+import LandingNav from "@/components/landing/LandingNav";
+import AboutUsHero from "@/components/landing/AboutUsHero";
+import SpotIllustration from "@/components/landing/SpotIllustration";
+import studentImage from "@/assets/student-hero-main-1600w.webp";
+import teacherImage from "@/assets/teacher-hero-main-1600w.webp";
+import parentImage from "@/assets/parent-hero-main-1600w.webp";
+import professionalImage from "@/assets/pro-face-main-1600w.webp";
+import organizationImage from "@/assets/org-face-main-1600w.webp";
 
-/* ═══ TOKENS (one system across all pages) ═══ */
-const COLORS = {
-  ink: "#121317",
-  blue: "#4285F4",
-  darkBlue: "#0b57d2",
-  grey: "#5f6368",
-  mist: "#dadce0",
-  tintBlue: "#e8f0fe",
-};
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const ROLES = [
+  { to: "/student", label: "Students", line: "Understand a concept, practise it, and build with it.", image: studentImage },
+  { to: "/teacher", label: "Teachers", line: "Prepare learning and review evidence from the class.", image: teacherImage },
+  { to: "/parent", label: "Parents", line: "Follow shared progress and support the next step.", image: parentImage },
+  { to: "/professional", label: "Professionals", line: "Learn practical skills through guided work.", image: professionalImage },
+  { to: "/organization", label: "Organizations", line: "Coordinate learning across teams and institutions.", image: organizationImage },
+];
+const FLOW = [
+  { Icon: MessageCircle, title: "Ask", copy: "Start with a question, goal, or concept." },
+  { Icon: BookOpen, title: "Learn", copy: "Work through an explanation in manageable steps." },
+  { Icon: CheckCircle2, title: "Practise", copy: "Try the idea and see where support is needed." },
+  { Icon: Sparkles, title: "Build", copy: "Apply what you know in work you can return to." },
+];
+const PRINCIPLES = [
+  { Icon: Users, title: "Designed around people", copy: "A shared learning foundation adapts to the work students, teachers, parents, professionals, and organizations need to do." },
+  { Icon: ShieldCheck, title: "Clear about trust", copy: "Privacy, safety, accessibility, and product limits belong in the experience and in plain language." },
+  { Icon: HeartHandshake, title: "Built for useful progress", copy: "Visionary connects explanation, practice, and application so progress has context beyond a score or completed screen." },
+];
+const EXPLORE = [
+  { to: "/research", label: "Research", copy: "The learning questions guiding our work.", subject: "research" },
+  { to: "/careers", label: "Careers", copy: "How to grow with the team building Visionary.", subject: "briefcase" },
+  { to: "/safety", label: "Safety", copy: "Practical information about safer use and reporting.", subject: "shield" },
+  { to: "/updates", label: "Updates", copy: "Product changes, announcements, and what is available.", subject: "updates" },
+];
 
-/* ═══ CONTROLLERS ═══ */
-function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
+function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
-  const hasRevealed = useRef(false);
   useEffect(() => {
     const node = ref.current;
-    if (hasRevealed.current) { setVisible(true); return undefined; }
-    if (!node) { setVisible(true); return undefined; }
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasRevealed.current) { setVisible(true); hasRevealed.current = true; observer.disconnect(); }
-      },
-      { threshold: 0, rootMargin }
-    );
+    if (!node || typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+    }, { rootMargin: "0px 0px -8% 0px" });
     observer.observe(node);
     return () => observer.disconnect();
-  }, [rootMargin]);
+  }, []);
   return { ref, visible };
 }
-const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
-  return (
-    <div
-      className={`transition-all duration-700 ease-google motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}
-    >
-      {children}
-    </div>
-  );
-});
-
-const pillFilled = "inline-flex min-h-12 items-center justify-center rounded-full px-8 text-[15px] font-medium text-white transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
-
-/* Small pill tag — used only where blog.google uses topic labels */
-const Tag = React.memo(function Tag({ children }) {
-  return (
-    <span
-      className="inline-flex items-center rounded-full border px-4 py-1.5 text-[13px] font-medium tracking-[0.1px]"
-      style={{ borderColor: COLORS.mist, color: COLORS.ink }}
-    >
-      {children}
-    </span>
-  );
-});
-
-/* ═══ MODELS ═══ */
-const FLOW = [
-  { Icon: BookOpen, title: "Learn", line: "Work through an idea with guided explanations and activities." },
-  { Icon: MessageCircle, title: "Ask", line: "Bring any question into the conversation, in your own words." },
-  { Icon: CircleCheck, title: "Practise", line: "Try focused checks that show what you actually understand." },
-  { Icon: Hammer, title: "Build", line: "Apply it in projects and work you can keep and share." },
-];
-
-const AUDIENCE = [
-  { who: "Students", what: "building real understanding." },
-  { who: "Teachers", what: "preparing and reviewing learning." },
-  { who: "Parents", what: "following progress early." },
-  { who: "Professionals", what: "growing skills that matter." },
-  { who: "Organizations", what: "supporting teams and institutions." },
-];
-
-const GROWTH = [
-  { Icon: GraduationCap, title: "For education", line: "Teachers see who needs help early; students see their own progress." },
-  { Icon: InfinityIcon, title: "For lifelong learning", line: "Understanding compounds — every step is saved and ready to build on." },
-  { Icon: Globe, title: "For everyone", line: "Prepared learning samples in English, Hindi, and Bengali, with more on the way." },
-];
-
-const LATEST = [
-  { to: "/updates", tag: "Product updates", title: "Product changes and announcements", line: "What has shipped, organized by category." },
-  { to: "/research", tag: "Research", title: "How we approach learning questions", line: "The questions Visionary is exploring and why." },
-  { to: "/community", tag: "Community", title: "Learn and share with others", line: "Ways to take part in the Visionary community." },
-];
-
-/* Category + sub-category cards (edu.google carousel grammar). Sub-categories
-   link to the category page that owns them — no separate sub-pages exist. */
-const CAROUSEL_CARDS = [
-  { to: "/student", label: "Students", subject: "student" },
-  { to: "/student", label: "Primary school", subject: "math" },
-  { to: "/student", label: "Secondary school", subject: "physics" },
-  { to: "/student", label: "Higher Secondary", subject: "chemistry" },
-  { to: "/student", label: "Higher Education", subject: "research" },
-  { to: "/student", label: "Vocational & Skills", subject: "build" },
-  { to: "/student", label: "Competitive Exams", subject: "flag" },
-  { to: "/teacher", label: "Teachers", subject: "teacher" },
-  { to: "/parent", label: "Parents", subject: "parent" },
-  { to: "/professional", label: "Professionals", subject: "briefcase" },
-  { to: "/organization", label: "Organizations", subject: "team" },
-  { to: "/organization", label: "Schools", subject: "handshake" },
-  { to: "/organization", label: "Colleges & Universities", subject: "economics" },
-  { to: "/organization", label: "Coaching", subject: "practice" },
-  { to: "/organization", label: "Workplace learning", subject: "growth" },
-];
-const CARD_TINTS = ["#fdf3d8", "#e3edfc", "#e0efe4", "#f1e8fb", "#fbe3e1"];
-
-/* ═══ CATEGORY CAROUSEL — the edu.google opening module: straight cards in a
-       continuous anticlockwise loop, always on (founder directive), every
-       card links to its category page ═══ */
-function CategoryCarousel() {
-  const cards = [...CAROUSEL_CARDS, ...CAROUSEL_CARDS];
-  return (
-    <div className="overflow-hidden">
-      <style>{`
-        @keyframes about-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .no-bar::-webkit-scrollbar{display:none}
-        .about-marquee { animation: about-marquee 45s linear infinite; animation-duration: 45s !important; animation-iteration-count: infinite !important; }
-      `}</style>
-      <div
-        role="region"
-        aria-label="Explore Visionary by category"
-        className="no-bar overflow-hidden py-8"
-      >
-        <div className="about-marquee flex w-max gap-5">
-          {cards.map(({ to, label, subject }, i) => {
-            const dup = i >= CAROUSEL_CARDS.length;
-            return (
-              <Link
-                key={label + "-" + i}
-                to={to}
-                data-card
-                aria-hidden={dup || undefined}
-                tabIndex={dup ? -1 : undefined}
-                className="group relative flex h-[280px] w-[225px] shrink-0 flex-col overflow-hidden rounded-[24px] p-6 transition-shadow duration-300 hover:shadow-[0_8px_24px_rgba(32,33,36,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{ backgroundColor: CARD_TINTS[i % CARD_TINTS.length] }}
-              >
-                <span className="text-[19px] font-medium leading-[1.3]" style={{ color: COLORS.ink }}>{label}</span>
-                <SpotIllustration subject={subject} className="absolute bottom-2 right-2 h-[58%] w-auto" />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
+function Reveal({ children, className = "" }) {
+  const { ref, visible } = useReveal();
+  return <div ref={ref} className={`${className} transition duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>{children}</div>;
+}
+function Eyebrow({ children }) {
+  return <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">{children}</p>;
+}
+function ArrowLink({ to, children, className = "" }) {
+  return <Link to={to} className={`group inline-flex min-h-11 items-center gap-2 rounded-sm text-[15px] font-medium text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4 ${className}`}>{children}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></Link>;
 }
 
-/* ═══ HERO — centered statement: what we are building, and who it is for ═══ */
-function AboutHeroSection() {
-  return (
-    <section id="mission" className="relative bg-white pt-14 pb-20 sm:px-8 lg:pb-24" style={{ fontFamily: FONT_FAMILY }}>
-      <CategoryCarousel />
-      <div className="mx-auto mt-16 max-w-[860px] px-6 text-center">
-        <h1 className="mx-auto max-w-[820px] text-[40px] font-normal leading-[1.1] tracking-[-0.035em] sm:text-[54px] lg:text-[66px]" style={{ color: COLORS.ink }}>
-          Building AI intelligence for anyone, anywhere.
-        </h1>
-        <p className="mx-auto mt-8 max-w-[640px] text-[17px] leading-[1.7] sm:text-[19px]" style={{ color: COLORS.grey }}>
-          Visionary is an education product with role-based workspaces for students, teachers, parents, professionals, and organizations — one place to learn, teach, and build.
-        </p>
-        <div className="mt-10">
-          <Link to="/how-it-works" className={pillFilled} style={{ backgroundColor: COLORS.darkBlue }}>
-            See how it works
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
+function AboutHero() {
+  return <AboutUsHero />
 }
 
-/* ═══ WHY — why accessible understanding matters, with the learning journey ═══ */
-function AboutWhySection() {
-  const { ref, visible } = useRevealOnce();
-  const steps = ["Ask a question", "Understand it", "Practise it", "Build with it"];
+function MissionSection() {
   return (
-    <section ref={ref} className="relative bg-white px-6 py-20 sm:px-8 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto max-w-[720px] text-center">
-          <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[38px] lg:text-[44px]" style={{ color: COLORS.ink }}>
-            Learning you can see
-          </h2>
-          <p className="mx-auto mt-6 text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-            Most tools measure learning after it ends — a score, a grade, a finished course. But understanding happens in the middle, between the question and the answer. Visionary makes that middle visible, so learners get help while it still matters and teachers can see who needs it.
-          </p>
-        </div>
-
-        {/* The learning journey — the one visual on the page */}
-        <div className="relative mx-auto mt-16 max-w-[880px]" aria-hidden="true">
-          <div className="absolute left-[12.5%] right-[12.5%] top-[6px] hidden h-px sm:block" style={{ backgroundColor: COLORS.mist }} />
-          <ol className="relative grid grid-cols-2 gap-y-10 sm:grid-cols-4">
-            {steps.map((step, i) => (
-              <li key={step} className="flex flex-col items-center gap-3">
-                <span className="h-[14px] w-[14px] rounded-full border-2 bg-white" style={{ borderColor: COLORS.darkBlue, backgroundColor: i === 1 ? COLORS.blue : "#ffffff" }} />
-                <span className="text-[14px] font-medium tracking-[0.24px]" style={{ color: COLORS.ink }}>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ HOW — the guided flow: four moves, icon-led, no boxes ═══ */
-function AboutFlowSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative bg-white px-6 py-20 sm:px-8 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto max-w-[720px] text-center">
-          <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[38px] lg:text-[44px]" style={{ color: COLORS.ink }}>
-            One guided flow, four moves
-          </h2>
-          <p className="mx-auto mt-6 text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-            A single loop runs through every workspace — simple to start, honest about progress.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-[900px] grid-cols-1 gap-x-14 gap-y-12 sm:grid-cols-2">
-          {FLOW.map(({ Icon, title, line }) => (
-            <div key={title} className="flex items-start gap-5 text-left">
-              <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.tintBlue, color: COLORS.darkBlue }}>
-                <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-              </span>
-              <div>
-                <h3 className="text-[18px] font-medium leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
-                <p className="mt-1.5 text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{line}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ WHO — not only for students: the roles in plain lines ═══ */
-function AboutWhoSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative bg-white px-6 py-20 sm:px-8 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto max-w-[720px] text-center">
-          <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[38px] lg:text-[44px]" style={{ color: COLORS.ink }}>
-            Not just for students
-          </h2>
-        </div>
-        <div className="mx-auto mt-12 max-w-[680px] space-y-5 text-center">
-          {AUDIENCE.map(({ who, what }) => (
-            <p key={who} className="text-[20px] leading-snug sm:text-[22px]">
-              <span className="font-medium" style={{ color: COLORS.ink }}>{who}</span>{" "}
-              <span style={{ color: COLORS.grey }}>{what}</span>
-            </p>
-          ))}
-        </div>
-        <p className="mx-auto mt-12 max-w-[620px] text-center text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-          Same product, same flow — a workspace shaped to what each role needs to do.
-        </p>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ GROWTH & IMPACT — education, lifelong learning, social reach ═══ */
-function AboutGrowthSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative bg-white px-6 py-20 sm:px-8 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto max-w-[720px] text-center">
-          <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[38px] lg:text-[44px]" style={{ color: COLORS.ink }}>
-            Growth that lasts
-          </h2>
-          <p className="mx-auto mt-6 text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-            Education does not end at school, and neither does learning. Visionary is designed for the whole journey — from the first question in class to the skills people build at work.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-[980px] grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-3">
-          {GROWTH.map(({ Icon, title, line }) => (
-            <div key={title} className="text-center">
-              <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.tintBlue, color: COLORS.darkBlue }}>
-                <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-              </span>
-              <h3 className="mt-4 text-[17px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
-              <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{line}</p>
-            </div>
-          ))}
-        </div>
-
-        <p className="mx-auto mt-14 max-w-[620px] text-center text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-          Safety and privacy are part of the design, not an afterthought —{" "}
-          <Link to="/safety" className="font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.darkBlue }}>see how we keep people safe</Link>{" "}
-          and{" "}
-          <Link to="/privacy" className="font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.darkBlue }}>how we handle data</Link>.
-        </p>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ THE PEOPLE — one human moment: the question behind the product (id="team") ═══ */
-function AboutPeopleSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="team" className="relative scroll-mt-24 bg-white px-6 py-20 sm:px-8 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <figure className="mx-auto max-w-[760px] text-center">
-          <blockquote>
-            <p className="text-[22px] font-normal leading-[1.4] tracking-[-0.015em] sm:text-[26px]" style={{ color: COLORS.ink }}>
-              "How can learning tools help people move from effort toward clearer understanding?"
-            </p>
-          </blockquote>
-          <figcaption className="mt-5 text-[14px] font-medium tracking-[0.24px]" style={{ color: COLORS.grey }}>
-            Md Shahid Ali — Founder &amp; CEO
-          </figcaption>
-        </figure>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ THE LATEST — blog.google list grammar: tag → headline → deck → link ═══ */
-function AboutLatestSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} id="latest" className="relative scroll-mt-24 bg-white px-6 py-20 sm:px-8 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <h2 className="mx-auto max-w-[860px] text-center text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[38px] lg:text-[44px]" style={{ color: COLORS.ink }}>
-          The latest
-        </h2>
-
-        <ul className="mx-auto mt-12 w-full max-w-[820px] border-t" style={{ borderColor: COLORS.mist }}>
-          {LATEST.map((c) => (
-            <li key={c.to} className="border-b py-7" style={{ borderColor: COLORS.mist }}>
-              <Link to={c.to} className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
-                <Tag>{c.tag}</Tag>
-                <h3 className="mt-4 text-[21px] font-medium leading-[1.3] tracking-[0] transition-colors group-hover:underline sm:text-[24px]" style={{ color: COLORS.ink }}>{c.title}</h3>
-                <p className="mt-2 text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>{c.line}</p>
-                <span className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.darkBlue }}>
-                  Read article <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══ FINAL CTA — one action: create an account (hero owns "see how it works") ═══ */
-function AboutCTASection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} className="relative bg-white px-6 py-24 sm:px-8 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="mx-auto max-w-[900px] text-center">
-          <h2 className="mx-auto max-w-[720px] font-normal tracking-[-0.03em] leading-[1.12] text-[34px] sm:text-[46px]" style={{ color: COLORS.ink }}>
-            Start with Visionary
-          </h2>
-          <p className="mx-auto mt-5 max-w-[560px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-            See what understanding looks like for you — in class, at work, or anywhere in between.
-          </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-4">
-            <Link to="/register" className={pillFilled} style={{ backgroundColor: COLORS.darkBlue }}>
-              Create an account
-            </Link>
-            <Link to="/how-it-works" className="inline-flex items-center justify-center text-[15px] font-medium underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: COLORS.darkBlue }}>
-              See how it works first
-            </Link>
+    <section id="mission" className="scroll-mt-28 px-6 py-24 sm:px-8 lg:px-10 lg:py-36">
+      <Reveal className="mx-auto max-w-[1240px]">
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div><Eyebrow>Why we are building</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Learning should show the way forward.</h2></div>
+          <div className="max-w-[760px] space-y-6 text-[18px] leading-[1.75] text-[#5f6368]">
+            <p>People often receive a result after learning—a score, a grade, or a completed course—without a clear view of what to do next.</p>
+            <p>Visionary brings the question, explanation, practice, and application into one connected flow. The aim is simple: help each person see what they understand, where they need support, and what they can try next.</p>
           </div>
-          <p className="mt-10 text-[13.5px] leading-[1.7]" style={{ color: COLORS.grey }}>
-            Questions?{" "}
-            <a href="mailto:hello@visionary.org.in" className="font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.darkBlue }}>hello@visionary.org.in</a>
-          </p>
         </div>
-      </FadeReveal>
+      </Reveal>
     </section>
   );
 }
 
-/* ═══ PAGE ═══ */
-export default function AboutUsPage() {
+function FlowSection() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
-      <LandingNav />
-      <main id="main">
-        <AboutHeroSection />
-        <AboutWhySection />
-        <AboutFlowSection />
-        <AboutWhoSection />
-        <AboutGrowthSection />
-        <AboutPeopleSection />
-        <AboutLatestSection />
-        <AboutCTASection />
-      </main>
-      <LandingFooter />
-    </div>
+    <section className="bg-[#f8f9fa] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <Reveal className="mx-auto max-w-[1240px]">
+        <div className="max-w-[720px]"><Eyebrow>The product</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">One learning flow. Four useful moves.</h2><p className="mt-5 text-[17px] leading-[1.7] text-[#5f6368]">Every Visionary workspace starts with the same idea: make the path from curiosity to practical work easier to follow.</p></div>
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-[28px] border border-[#dadce0] bg-[#dadce0] sm:grid-cols-2 lg:grid-cols-4">
+          {FLOW.map(({ Icon, title, copy }, index) => <li key={title} className="min-h-[270px] bg-white p-7 sm:p-8"><div className="flex items-center justify-between"><span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]"><Icon className="h-5 w-5" aria-hidden="true" /></span><span className="text-[12px] font-medium text-[#9aa0a6]">0{index + 1}</span></div><h3 className="mt-12 text-[26px] font-normal text-[#202124]">{title}</h3><p className="mt-3 text-[15px] leading-[1.65] text-[#5f6368]">{copy}</p></li>)}
+        </ol>
+        <ArrowLink to="/how-it-works" className="mt-8">Follow the full learning journey</ArrowLink>
+      </Reveal>
+    </section>
   );
+}
+
+function RolesSection() {
+  return (
+    <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-36">
+      <Reveal className="mx-auto max-w-[1240px]">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[720px]"><Eyebrow>Made for different perspectives</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">A shared product, shaped for each role.</h2></div><p className="max-w-[390px] text-[16px] leading-[1.7] text-[#5f6368]">Choose the view closest to you. Each page explains the work, tools, and outcomes that matter for that role.</p></div>
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+          {ROLES.map((role, index) => <Link key={role.label} to={role.to} className={`group overflow-hidden rounded-[28px] border border-[#dadce0] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${index < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}><div className={`overflow-hidden bg-[#f1f3f4] ${index < 2 ? "aspect-[16/9]" : "aspect-[4/3]"}`}><img src={role.image} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div><div className="p-6 sm:p-7"><div className="flex items-center justify-between gap-5"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1" aria-hidden="true" /></div><p className="mt-3 text-[15px] leading-[1.65] text-[#5f6368]">{role.line}</p></div></Link>)}
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function PrinciplesSection() {
+  return (
+    <section className="border-y border-[#dadce0] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <Reveal className="mx-auto max-w-[1240px]"><Eyebrow>How we work</Eyebrow><h2 className="mt-5 max-w-[800px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Useful technology begins with clear principles.</h2><div className="mt-14 grid gap-10 lg:grid-cols-3 lg:gap-14">{PRINCIPLES.map(({ Icon, title, copy }) => <article key={title} className="border-t border-[#dadce0] pt-7"><Icon className="h-6 w-6 text-[#0b57d0]" strokeWidth={1.7} aria-hidden="true" /><h3 className="mt-8 text-[24px] font-normal leading-[1.25] text-[#202124]">{title}</h3><p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">{copy}</p></article>)}</div></Reveal>
+    </section>
+  );
+}
+
+function FounderSection() {
+  return (
+    <section id="team" className="scroll-mt-28 px-6 py-24 sm:px-8 lg:px-10 lg:py-36">
+      <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-20"><div className="flex aspect-square max-w-[480px] items-center justify-center overflow-hidden rounded-[32px] bg-[#e8f0fe]"><SpotIllustration subject="team" className="h-[72%] w-[72%]" title="A team building Visionary" /></div><figure><Eyebrow>The question behind Visionary</Eyebrow><blockquote className="mt-7 text-[32px] font-normal leading-[1.28] tracking-[-0.025em] text-[#202124] sm:text-[42px]">“How can a learning product help people see the next useful step while learning is still happening?”</blockquote><figcaption className="mt-8 text-[14px] leading-[1.6] text-[#5f6368]">Md Shahid Ali<br /><span className="text-[#202124]">Founder and CEO</span></figcaption></figure></Reveal>
+    </section>
+  );
+}
+
+function ExploreSection() {
+  return (
+    <section className="bg-[#f8f9fa] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <Reveal className="mx-auto max-w-[1240px]"><div className="max-w-[720px]"><Eyebrow>Explore Visionary</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">More about the work around the product.</h2></div><div className="mt-14 grid gap-5 sm:grid-cols-2">{EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group grid min-h-[220px] grid-cols-[1fr_140px] overflow-hidden rounded-[24px] border border-[#dadce0] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]"><div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 text-[15px] leading-[1.65] text-[#5f6368]">{item.copy}</p></div><ArrowRight className="mt-8 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1" aria-hidden="true" /></div><div className="flex items-center justify-center bg-[#e8f0fe]"><SpotIllustration subject={item.subject} className="h-[80%] w-[80%]" /></div></Link>)}</div></Reveal>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section className="px-6 py-24 text-center sm:px-8 lg:px-10 lg:py-36"><Reveal className="mx-auto max-w-[840px]"><Building2 className="mx-auto h-7 w-7 text-[#0b57d0]" strokeWidth={1.7} aria-hidden="true" /><h2 className="mt-7 text-[40px] font-normal leading-[1.08] tracking-[-0.04em] text-[#202124] sm:text-[56px]">Find your place in Visionary.</h2><p className="mx-auto mt-6 max-w-[620px] text-[18px] leading-[1.7] text-[#5f6368]">Explore the product for your role, or create an account when you are ready to begin.</p><div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row"><Link to="/register" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b57d0] px-8 text-[15px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4">Get started</Link><ArrowLink to="/contact">Contact Visionary</ArrowLink></div></Reveal></section>
+  );
+}
+
+export default function AboutUsPage() {
+  return <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}><LandingNav /><main id="main"><AboutHero /><MissionSection /><FlowSection /><RolesSection /><PrinciplesSection /><FounderSection /><ExploreSection /><FinalCta /></main><LandingFooter /></div>;
 }

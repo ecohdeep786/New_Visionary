@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Cookie, Check, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import { COLORS, FONT_FAMILY, useRevealOnce, FadeReveal, GreyTag } from "@/components/landing/AboutPageShared";
@@ -9,7 +10,7 @@ import { LEGAL_META } from "@/data/legalMeta";
 
 /* ═══ COOKIE PRINCIPLES — the "why we use them" cards ═══ */
 const COOKIE_PRINCIPLES = [
-  { n: "01", Icon: Cookie, subject: "cookie", title: "Essential cookies.", copy: "These keep you signed in and remember your preferences — your language, your theme. Without them, Visionary doesn't work. They can't be turned off." },
+  { n: "01", Icon: Cookie, subject: "cookie", title: "Essential cookies.", copy: "These support sign-in, security, and core service behavior. Without them, Visionary cannot work as expected, so they cannot be turned off." },
   { n: "02", Icon: Check, subject: "lock", title: "No advertising cookies.", copy: "We don't use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
   { n: "03", Icon: Globe, subject: "community", title: "Analytics with consent.", copy: "If we use analytics cookies, we ask first. You can say no, and Visionary still works perfectly. We only measure what you explicitly allow." },
 ];
@@ -114,6 +115,41 @@ function CookieTypesSection() {
   );
 }
 
+function CookiePreferencesSection() {
+  const readChoice = (key, fallback) => {
+    try {
+      const choice = localStorage.getItem(key);
+      return choice === null ? fallback : choice === "on";
+    } catch { return fallback; }
+  };
+  const [preferences, setPreferences] = useState(() => readChoice("visionary_cookie_preferences", true));
+  const [analytics, setAnalytics] = useState(() => readChoice("visionary_cookie_analytics", false));
+  const [saved, setSaved] = useState(false);
+  function savePreferences() {
+    try {
+      localStorage.setItem("visionary_cookie_preferences", preferences ? "on" : "off");
+      localStorage.setItem("visionary_cookie_analytics", analytics ? "on" : "off");
+    } catch { /* Preferences remain active for this session when storage is unavailable. */ }
+    setSaved(true);
+  }
+  const rows = [
+    { label: "Essential", description: "Required for sign-in, security, and core service behavior.", value: true, disabled: true, onChange: () => {} },
+    { label: "Preferences", description: "Remember choices such as language and appearance on this device.", value: preferences, onChange: () => { setPreferences((value) => !value); setSaved(false); } },
+    { label: "Analytics", description: "Allow product measurement that helps us understand and improve the experience.", value: analytics, onChange: () => { setAnalytics((value) => !value); setSaved(false); } },
+  ];
+  return (
+    <section id="cookie-preferences" className="scroll-mt-24 border-y border-[#dadce0] bg-[#f8f9fa] px-6 py-20 lg:py-28">
+      <div className="mx-auto grid max-w-[1080px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div><GreyTag>Your choices</GreyTag><h2 className="mt-4 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Manage cookies on this device.</h2><p className="mt-5 text-[15px] leading-[1.7] text-[#5f6368]">Optional choices are saved in this browser. They do not change settings on your other devices.</p></div>
+        <div className="rounded-[24px] border border-[#dadce0] bg-white p-6 sm:p-8">
+          <div className="divide-y divide-[#dadce0]">{rows.map((row) => <div key={row.label} className="flex items-center gap-5 py-5 first:pt-0"><div className="min-w-0 flex-1"><h3 className="text-[17px] font-medium text-[#121317]">{row.label}</h3><p className="mt-1 text-[14px] leading-[1.6] text-[#5f6368]">{row.description}</p></div><button type="button" role="switch" aria-label={`${row.label} cookies`} aria-checked={row.value} disabled={row.disabled} onClick={row.onChange} className="relative h-7 w-12 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] disabled:cursor-not-allowed" style={{ backgroundColor: row.value ? "#0b57d0" : "#bdc1c6" }}><span className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-transform ${row.value ? "left-6" : "left-1"}`} /></button></div>)}</div>
+          <div className="mt-6 flex items-center gap-4"><button type="button" onClick={savePreferences} className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">Save choices</button><p role="status" aria-live="polite" className="text-[13px] text-[#1967d2]">{saved ? "Choices saved on this device." : ""}</p></div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ═══ MANAGING COOKIES ═══ */
 function CookieManageSection() {
   const { ref, visible } = useRevealOnce();
@@ -175,10 +211,11 @@ export default function CookiesPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <Breadcrumb page="Cookies" />
-      <main>
+      <main id="main">
         <CookiesHero />
         <CookiePrinciplesSection />
         <CookieTypesSection />
+        <CookiePreferencesSection />
         <CookieManageSection />
         <p className="pb-6 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
           Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.cookies.lastUpdated}</strong>
@@ -190,4 +227,4 @@ export default function CookiesPage() {
   );
 };
 
-export { CookiesHero, CookiePrinciplesSection, CookieTypesSection, CookieManageSection, CookiesCTA, COOKIE_PRINCIPLES, COOKIE_TYPES };
+export { CookiesHero, CookiePrinciplesSection, CookieTypesSection, CookiePreferencesSection, CookieManageSection, CookiesCTA, COOKIE_PRINCIPLES, COOKIE_TYPES };

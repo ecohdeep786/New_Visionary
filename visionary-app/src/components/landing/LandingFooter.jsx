@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Globe } from "lucide-react";
 
@@ -7,8 +8,6 @@ const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce
 const FOOTER_LINK =
   "-mx-3 inline-block rounded-full px-3 py-1.5 text-[14px] font-normal tracking-[0.24px] transition-colors hover:bg-white hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]";
 
-/* 4-column directory per final IA */
-/* 5-column directory per the master footer spec */
 const FOOTER_SECTIONS = [
   {
     title: "Product",
@@ -37,8 +36,8 @@ const FOOTER_SECTIONS = [
     links: [
       { label: "Research", to: "/research" },
       { label: "Updates", to: "/updates" },
+      { label: "Community", to: "/community" },
       { label: "Referral", to: "/referral" },
-      { label: "Career growth", to: "/careers" },
     ],
   },
   {
@@ -75,17 +74,18 @@ const LEGAL_LINKS = [
 
 export default function LandingFooter({ variant = "brand" }) {
   const quiet = variant === "quiet";
-  /* Deliberate language control (R1): persists the choice and updates the
-     document's declared language. Full i18n content ships at L6. */
+  const [language, setLanguage] = useState(() => {
+    try { return localStorage.getItem("visionary_lang") || "en"; } catch { return "en"; }
+  });
   const onLanguageChange = (event) => {
     const code = event.target.value;
+    setLanguage(code);
     try { localStorage.setItem("visionary_lang", code); } catch { /* storage unavailable */ }
     document.documentElement.lang = code;
   };
   return (
     <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: C.white, borderColor: C.mist }}>
       <div className="w-full px-6 pt-12 lg:px-10">
-        {/* 4-column directory */}
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: C.mist }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">
@@ -119,7 +119,7 @@ export default function LandingFooter({ variant = "brand" }) {
             <label className="flex items-center gap-1.5 text-[12px] tracking-[0.24px]" style={{ color: C.slate }}>
               <Globe className="h-3.5 w-3.5" style={{ color: C.slate }} />
               <span>Language:</span>
-              <select defaultValue={typeof document !== "undefined" ? localStorage.getItem("visionary_lang") || "en" : "en"} onChange={onLanguageChange} aria-label="Select language" className="cursor-pointer bg-transparent text-[12px] tracking-[0.24px] focus:outline-none" style={{ color: C.graphite }}>
+              <select value={language} onChange={onLanguageChange} aria-label="Select language" className="cursor-pointer bg-transparent text-[12px] tracking-[0.24px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.graphite }}>
                 <option value="en">English</option>
                 <option value="hi">हिन्दी</option>
                 <option value="bn">বাংলা</option>

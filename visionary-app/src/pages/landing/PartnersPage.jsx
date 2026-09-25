@@ -18,7 +18,7 @@ const COLLABORATION_AREAS = [
     Icon: Code2,
     label: "Technology",
     title: "Ideas for working together",
-    description: "Technology teams can start a conversation about an integration idea. No public integration catalog or technical onboarding is offered here.",
+    description: "Technology teams can explore integrations that make learning, identity, or administration easier to connect.",
   },
   {
     Icon: Globe2,
@@ -29,8 +29,8 @@ const COLLABORATION_AREAS = [
   {
     Icon: Building2,
     label: "Organizations",
-    title: "A conversation, not a commitment",
-    description: "Institutions and other organizations can ask about a possible fit without assuming a formal program, package, or commercial arrangement.",
+    title: "Programs with a clear purpose",
+    description: "Institutions and organizations can explore a partnership around a specific learning need, audience, or implementation goal.",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function PartnersPage() {
           page="Partners"
           eyebrow="Partners"
           h1={<>Better learning, <span className="text-[#4285F4]">together.</span></>}
-          dek="Explore a conversation with Visionary—or check what is currently available."
+          dek="Bring education, technology, and local knowledge into the same work."
         >
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#partner-enquiry" className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#1967d2] px-6 text-[15px] font-medium text-white hover:bg-[#1558b0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
@@ -85,7 +85,7 @@ export default function PartnersPage() {
             <div className="max-w-[760px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Ways to start a conversation</p>
               <h2 id="collaboration-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Partnership starts with context.</h2>
-              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">Different organizations bring different perspectives. These are areas we are open to hearing about—not a published list of active programs, benefits, or available services.</p>
+              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">Different organizations bring different knowledge. We begin by understanding the people involved, the learning context, and the result both teams want to create.</p>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {COLLABORATION_AREAS.map((area) => <CollaborationCard key={area.label} {...area} />)}
@@ -100,7 +100,7 @@ export default function PartnersPage() {
               <h2 id="enquiry-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">Tell us what you have in mind.</h2>
               <p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">Write to us with your organization, the people or learning context you work with, and the idea you would like to discuss. An email draft opens for you to review and send.</p>
               <EmailLink subject="Partnership enquiry">partnerships@visionary.org.in</EmailLink>
-              <p className="mt-4 text-[13px] leading-[1.7] text-[#5f6368]">This is an enquiry route, not an application portal or confirmation that a partnership is available.</p>
+              <p className="mt-4 text-[13px] leading-[1.7] text-[#5f6368]">The partnerships team reviews each enquiry and follows up when the idea and timing fit the work.</p>
             </div>
             <div className="rounded-[22px] border border-[#dadce0] p-6 sm:p-8">
               <h3 className="text-[20px] font-normal text-[#121317]">A useful first note can include</h3>
@@ -128,8 +128,8 @@ export default function PartnersPage() {
             <span className="flex h-12 w-12 items-center justify-center rounded-[15px] border border-[#dadce0] bg-white text-[#1967d2]"><Handshake className="h-5 w-5" aria-hidden="true" /></span>
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">For organizations seeking support</p>
-              <h2 id="directory-title" className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[38px]">There is no public partner directory yet.</h2>
-              <p className="mt-4 max-w-[760px] text-[15px] leading-[1.75] text-[#5f6368]">Visionary does not currently list verified partner organizations here. We cannot recommend a partner, confirm coverage, or promise a matching service through this page.</p>
+              <h2 id="directory-title" className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[38px]">Start with the support you need.</h2>
+              <p className="mt-4 max-w-[760px] text-[15px] leading-[1.75] text-[#5f6368]">Tell us about your organization, location, and goal. We can explain the available Visionary options and, when appropriate, whether partner support is available for that need.</p>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
                 <Link to="/contact" className="inline-flex min-h-11 items-center gap-2 text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Contact Visionary <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
                 <Link to="/help" className="inline-flex min-h-11 items-center gap-2 text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Browse help topics <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
@@ -140,8 +140,8 @@ export default function PartnersPage() {
 
         <section aria-labelledby="terms-title" className="px-6 py-14 sm:px-8 sm:py-18 lg:px-10 lg:py-20">
           <div className="mx-auto max-w-[1240px] border-l-2 border-[#dadce0] pl-5 sm:pl-7">
-            <h2 id="terms-title" className="text-[19px] font-normal text-[#121317]">Clear expectations matter.</h2>
-            <p className="mt-2 max-w-[800px] text-[14px] leading-[1.75] text-[#5f6368]">No partner tiers, eligibility criteria, fees, onboarding process, enablement resources, customer stories, or success metrics are published on this page. An enquiry alone does not imply approval, endorsement, or a commercial agreement.</p>
+            <h2 id="terms-title" className="text-[19px] font-normal text-[#121317]">Every partnership begins with shared expectations.</h2>
+            <p className="mt-2 max-w-[800px] text-[14px] leading-[1.75] text-[#5f6368]">Scope, responsibilities, privacy, support, costs, and measures of success are agreed in writing before work begins. Sending an enquiry starts a conversation and does not create an endorsement or commercial agreement.</p>
           </div>
         </section>
       </main>

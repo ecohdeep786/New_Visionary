@@ -60,7 +60,7 @@ const CATEGORIES = [
     label: "Community & events",
     Icon: UsersRound,
     subject: "community",
-    helper: "Conversations, workshops, and upcoming events.",
+    helper: "Community stories, practical guidance, and ways to participate.",
   },
 ];
 
@@ -91,7 +91,7 @@ function SectionHead({ id, title, linkLabel, onLink }) {
 /* A-pattern card: the label IS the card. Press = pick the category, go to the form. */
 function CategoryCard({ category, onPick }) {
   return (
-    <button type="button" onClick={() => onPick(category.id)} aria-label={`Sign up for ${category.label}`}
+    <button type="button" onClick={() => onPick(category.id)} aria-label={`Request ${category.label}`}
       className="group relative flex min-h-[176px] w-full flex-col rounded-[16px] border bg-white p-7 text-left transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
       style={{ borderColor: COLORS.mist }}>
       <span className="text-[16px] font-medium leading-[1.4] tracking-[0]" style={{ color: COLORS.ink }}>
@@ -147,6 +147,9 @@ export default function UpdatesPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    const topics = CATEGORIES.filter((category) => selected.includes(category.id)).map((category) => category.label).join(", ");
+    const body = `Name: ${name}\nEmail: ${email}\nTopics: ${topics}`;
+    window.location.href = `mailto:hello@visionary.org.in?subject=${encodeURIComponent("Visionary updates request")}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   }
 
@@ -161,7 +164,7 @@ export default function UpdatesPage() {
             <button type="button" onClick={scrollToSignup}
               className="inline-flex h-12 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
               style={{ backgroundColor: COLORS.blue }}>
-              Get updates
+              Choose updates
             </button>
           </div>
         </PageHeading>
@@ -169,7 +172,7 @@ export default function UpdatesPage() {
         {/* WHAT YOU WILL RECEIVE — flat card grid, trailing empty cells */}
         <section aria-labelledby="updates-categories" className="px-6 pb-24 sm:px-8 lg:px-10 lg:pb-32">
           <div className="mx-auto max-w-[1240px]">
-            <SectionHead id="updates-categories" title="What you will receive" linkLabel="Sign up" onLink={scrollToSignup} />
+            <SectionHead id="updates-categories" title="What you will receive" linkLabel="Choose topics" onLink={scrollToSignup} />
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {CATEGORIES.map((category) => (
                 <CategoryCard key={category.id} category={category} onPick={pickAndGo} />
@@ -198,9 +201,9 @@ export default function UpdatesPage() {
         {/* SIGN UP — form, then the privacy one-liner */}
         <section id="signup" aria-labelledby="updates-signup" className="scroll-mt-24 px-6 pb-20 sm:px-8 lg:px-10 lg:pb-28">
           <div className="mx-auto max-w-[1240px]">
-            <SectionHead id="updates-signup" title="Sign up" />
+            <SectionHead id="updates-signup" title="Request updates" />
             <p className="-mt-4 mb-8 max-w-[560px] text-[15px] leading-[1.6]" style={{ color: COLORS.grey }}>
-              Tell us where to send the updates you chose.
+              Choose your topics and prepare an email request to the Visionary team.
             </p>
             <div className="max-w-[880px] rounded-[24px] border bg-white p-6 sm:p-10" style={{ borderColor: COLORS.mist }}>
               {submitted ? (
@@ -209,10 +212,10 @@ export default function UpdatesPage() {
                     <CheckCircle2 className="h-5 w-5" strokeWidth={1.7} />
                   </div>
                   <h3 className="mt-6 text-[28px] font-normal tracking-[-0.025em]" style={{ color: COLORS.ink }}>
-                    You are on the list.
+                    Your request is ready.
                   </h3>
                   <p className="mt-3 max-w-[560px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                    Your preferences are saved. Email delivery starts at launch.
+                    Your email app opened a draft with these preferences. Review it and choose whether to send; this page has not subscribed you automatically.
                   </p>
                   <button type="button" onClick={() => setSubmitted(false)}
                     className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm"
@@ -269,7 +272,7 @@ export default function UpdatesPage() {
                     <button type="submit"
                       className="inline-flex h-12 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
                       style={{ backgroundColor: COLORS.blue }}>
-                      Get updates
+                      Prepare email request
                     </button>
                   </div>
                 </form>

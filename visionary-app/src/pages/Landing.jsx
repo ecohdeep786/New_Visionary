@@ -924,7 +924,7 @@ function LandingLanguageSection() {
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
           <div className="flex items-end justify-center gap-2" aria-hidden="true">
             {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
-              <span key={c} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+              <span key={`${c}-${i}`} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
             ))}
           </div>
           <p aria-live="polite" className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>

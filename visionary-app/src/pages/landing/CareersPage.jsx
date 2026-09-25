@@ -89,10 +89,10 @@ function RoleCard({ icon: Icon, eyebrow, title, description }) {
 /* What to expect — Google's how-we-hire grammar, framed honestly for a
    small team: four steps, no invented process claims. */
 const HIRING_STEPS = [
-  { n: "01", title: "You introduce yourself.", copy: "Email us a short note about the work you care about, with links that show it. No forms, no portals." },
-  { n: "02", title: "We read and reply.", copy: "A real person reads every introduction and replies — even when there is no matching opening yet." },
-  { n: "03", title: "A working conversation.", copy: "If there is a fit, we schedule a conversation about real problems the product faces. No trick questions." },
-  { n: "04", title: "A mutual decision.", copy: "We share what working here is honestly like — including the limits of an early-stage product — and decide together." },
+  { n: "01", title: "Choose a listed role.", copy: "Read the role carefully and decide whether the work and requirements fit your experience." },
+  { n: "02", title: "Share your work.", copy: "Send a concise introduction with the links or examples requested in the role description." },
+  { n: "03", title: "Work through the role.", copy: "If selected, conversations focus on the work, the team, and the problems the role will help solve." },
+  { n: "04", title: "Decide with context.", copy: "We explain the role, process, and next steps clearly so both sides can make an informed decision." },
 ];
 
 export default function CareersPage() {
@@ -326,17 +326,17 @@ export default function CareersPage() {
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                 </span>
               </Link>
-              <a href="https://www.google.com/about/careers/applications/how-we-hire/" target="_blank" rel="noreferrer" aria-label="Open Google Careers hiring guidance in a new tab" className="group rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+              <Link to="/accessibility" className="group rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
                 <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                   <Code2 className="h-[19px] w-[19px]" strokeWidth={1.7} aria-hidden="true" />
                 </div>
-                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Interview guidance</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>Explore general preparation advice from Google Careers. It does not describe Visionary's hiring process.</p>
+                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Accessibility at Visionary</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>See how accessibility shapes the product and how to request support during a hiring conversation.</p>
                 <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
-                  Read the guide
+                  Explore accessibility
                   <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                 </span>
-              </a>
+              </Link>
               <a href="mailto:careers@visionary.org.in?subject=General%20introduction%20%E2%80%94%20Visionary" className="group rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
                 <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                   <Mail className="h-[19px] w-[19px]" strokeWidth={1.7} aria-hidden="true" />

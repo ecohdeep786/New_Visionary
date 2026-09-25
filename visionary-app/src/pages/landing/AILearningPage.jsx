@@ -12,6 +12,7 @@ const COLORS = {
   surface: "#F5F6F8",
   blue: "#4285F4",
   grey: "#5f6368",
+  slate: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
   white: "#ffffff",
@@ -161,7 +162,7 @@ Start free. Upgrade when it’s working for you.</p>
         </div>
 
         <p className="mt-8 text-center font-normal tracking-[0] leading-[16px] text-[12px]" style={{ color: COLORS.lightGrey }}>
-          Prices in USD · Regional pricing at checkout · Education discounts available
+          Prices in INR · Taxes may apply · Education discounts available
         </p>
       </FadeReveal>
     </section>
@@ -299,7 +300,7 @@ function PricingCTASection() {
           <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
-          <Link to="/about" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+          <Link to="/contact" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
             Talk to sales
           </Link>
         </div>

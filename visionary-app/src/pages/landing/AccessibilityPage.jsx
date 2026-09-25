@@ -135,7 +135,8 @@ export default function AccessibilityPage() {
             <main id="main">
         <PageHeading page="Accessibility" eyebrow="Accessibility"
           h1={<>Accessible by <Accent>design</Accent>.</>}
-          dek="WCAG 2.1 AA, native scripts, screen-reader tested.">
+          dek="Clear structure, keyboard access, readable contrast, and reduced motion."
+        >
         </PageHeading>
 
         {/* STORY BAND — text + visual (Google 2-up statement pattern) */}
@@ -234,10 +235,10 @@ export default function AccessibilityPage() {
                     <SectionHeading number="02" title="Different ways to use Visionary" />
                     <Paragraph>The same idea can be reached in more than one way.</Paragraph>
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <FeatureCard icon={Eye} eyebrow="See" title="Read and view">Information should remain understandable when people need to enlarge, simplify, or adjust how they view it.</FeatureCard>
+                      <FeatureCard icon={Eye} eyebrow="See" title="Read and view">Information remains structured when people enlarge text, zoom the page, or adjust how they view it.</FeatureCard>
                       <FeatureCard icon={Volume2} eyebrow="Hear" title="Listen and follow">Spoken explanations can provide another way to receive information and stay with an idea.</FeatureCard>
                       <FeatureCard icon={Mic} eyebrow="Speak" title="Use your voice">Voice can be another way to ask questions, explain an idea, or interact with learning tools.</FeatureCard>
-                      <FeatureCard icon={Keyboard} eyebrow="Navigate" title="Use your controls">The experience should work with the navigation and interaction methods people use on their devices.</FeatureCard>
+                      <FeatureCard icon={Keyboard} eyebrow="Navigate" title="Use your controls">The experience supports keyboard navigation, visible focus, touch, and the controls built into a person’s device.</FeatureCard>
                     </div>
                   </section>
 
@@ -245,9 +246,9 @@ export default function AccessibilityPage() {
                   <section id="vision" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="03" title="Seeing and reading" />
                     <Paragraph>Visual presentation can change whether information is easy to understand or difficult to reach.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary should use clear hierarchy, readable typography, sufficient contrast, meaningful labels, and layouts that remain usable as text size or display conditions change.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Where external device or operating-system features help someone personalize their experience, Visionary should work with those capabilities rather than fighting them.</Paragraph></div>
-                    <Note>Specific support for screen readers, magnification, high-contrast modes, color adjustments, and other assistive technologies should be documented against the versions of Visionary that actually support them.</Note>
+                    <div className="mt-5"><Paragraph>Visionary uses clear hierarchy, readable typography, sufficient contrast, meaningful labels, and layouts that adapt as text size or display conditions change.</Paragraph></div>
+                    <div className="mt-5"><Paragraph>The interface works with browser and operating-system features such as zoom, text scaling, high contrast, and color preferences where those features are available.</Paragraph></div>
+                    <Note>If a page becomes difficult to use with an assistive technology, tell us the device, browser, page, and task involved so we can reproduce the barrier.</Note>
                   </section>
 
                   {/* 04 */}
@@ -258,18 +259,18 @@ export default function AccessibilityPage() {
                       <FeatureCard icon={Mic} eyebrow="Input" title="Ask naturally">Voice interaction can provide another path into a question, explanation, or learning activity.</FeatureCard>
                       <FeatureCard icon={MessageCircle} eyebrow="Conversation" title="Keep the conversation going">A conversational interface can reduce the need to translate a thought into a rigid interface action.</FeatureCard>
                       <FeatureCard icon={Volume2} eyebrow="Output" title="Hear information">Spoken output can make explanations easier to follow in situations where reading is difficult or tiring.</FeatureCard>
-                      <FeatureCard icon={UsersRound} eyebrow="Choice" title="Use the mode that works">Accessibility should increase choice rather than force one interaction style on everyone.</FeatureCard>
+                      <FeatureCard icon={UsersRound} eyebrow="Choice" title="Use the mode that works">Accessibility increases choice instead of forcing one interaction style on everyone.</FeatureCard>
                     </div>
-                    <Note>Current voice features should be listed here only after the exact supported devices, languages, and interaction behavior have been verified.</Note>
+                    <Note>Voice, audio, and caption availability can vary by device, browser, language, and content. Visionary identifies these options where they are available.</Note>
                   </section>
 
                   {/* 05 */}
                   <section id="navigation" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="05" title="Navigation and interaction" />
                     <Paragraph>An accessible interface is also an interface that can be operated predictably.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary should support clear focus states, logical navigation order, understandable controls, usable touch targets, and keyboard interaction wherever applicable.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Interactive content should communicate what is happening, what changed, and what the user can do next.</Paragraph></div>
-                    <Note>Accessibility testing should include keyboard navigation, focus behavior, screen-reader review, responsive layouts, zoom, reduced-motion preferences, and representative assistive technologies.</Note>
+                    <div className="mt-5"><Paragraph>Visionary supports clear focus states, logical navigation order, understandable controls, usable touch targets, and keyboard interaction wherever applicable.</Paragraph></div>
+                    <div className="mt-5"><Paragraph>Interactive content communicates what is happening, what changed, and what the user can do next.</Paragraph></div>
+                    <Note>Our review covers keyboard navigation, focus behavior, responsive layouts, zoom, reduced-motion preferences, semantic labels, and representative screen-reader paths.</Note>
                   </section>
 
                   {/* 06 */}
@@ -279,10 +280,10 @@ export default function AccessibilityPage() {
                     <div className="mt-5"><Paragraph>Visionary's current product direction supports use across web, desktop, and mobile, so the same learning journey can move with the person using it.</Paragraph></div>
                     <div className="mt-6 grid gap-4 sm:grid-cols-3">
                       <FeatureCard icon={Monitor} eyebrow="Web" title="In the browser">Open Visionary without requiring a separate desktop installation.</FeatureCard>
-                      <FeatureCard icon={Smartphone} eyebrow="Mobile" title="On smaller screens">The experience should remain readable, tappable, and understandable on mobile devices.</FeatureCard>
-                      <FeatureCard icon={Monitor} eyebrow="Desktop" title="At your desk">Desktop experiences should preserve the same underlying learning journey.</FeatureCard>
+                      <FeatureCard icon={Smartphone} eyebrow="Mobile" title="On smaller screens">The experience remains readable, tappable, and understandable on mobile devices.</FeatureCard>
+                      <FeatureCard icon={Monitor} eyebrow="Desktop" title="At your desk">Desktop experiences preserve the same underlying learning journey.</FeatureCard>
                     </div>
-                    <Note>The exact platforms and accessibility capabilities should stay synchronized with the Download page as products are released.</Note>
+                    <Note>See the Download page for current platforms. Accessibility options may differ where an operating system or browser supplies the underlying control.</Note>
                   </section>
 
                   {/* 07 */}
@@ -317,7 +318,7 @@ export default function AccessibilityPage() {
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     </div>
-                    <Note>This mailbox should be actively monitored before the address is published as an official accessibility support channel.</Note>
+                    <Note>Please describe the task you were trying to complete and the barrier you met. Avoid sending passwords, medical records, or other unnecessary sensitive information.</Note>
                   </section>
 
                   {/* 09 */}

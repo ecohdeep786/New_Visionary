@@ -13,12 +13,12 @@ export const GRIEVANCE_OFFICER = {
 };
 
 export const LEGAL_META = {
-  privacy: { title: "Privacy policy", lastUpdated: "September 2025" },
-  terms: { title: "Terms of service", lastUpdated: "September 2025" },
-  cookies: { title: "Cookie policy", lastUpdated: "September 2025" },
-  safety: { title: "Safety", lastUpdated: "September 2025" },
-  security: { title: "Security", lastUpdated: "September 2025" },
-  accessibility: { title: "Accessibility", lastUpdated: "September 2025" },
+  privacy: { title: "Privacy policy", lastUpdated: "September 2026" },
+  terms: { title: "Terms of service", lastUpdated: "September 2026" },
+  cookies: { title: "Cookie policy", lastUpdated: "September 2026" },
+  safety: { title: "Safety", lastUpdated: "September 2026" },
+  security: { title: "Security", lastUpdated: "September 2026" },
+  accessibility: { title: "Accessibility", lastUpdated: "September 2026" },
 };
 
 /* Expected first-response times shown on /contact and referenced by legal pages. */

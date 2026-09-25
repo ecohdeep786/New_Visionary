@@ -12,9 +12,16 @@ export default function OnboardingLayout({
   continueLabel = "Continue",
 }) {
   const progress = totalSteps > 0 ? (step / totalSteps) * 100 : 0;
+  // Portrait spots (student/teacher/parent/team, 120×160) need a 3:4 box or the square
+  // slice crops them badly; square spots (96×96) stay 1:1.
+  const PORTRAIT = ["student", "teacher", "parent", "team"];
+  const portrait = PORTRAIT.includes(illustration);
 
   return (
-    <div className="h-screen overflow-hidden flex flex-col bg-white">
+    <form
+      onSubmit={(event) => { event.preventDefault(); if (canContinue && !isSubmitting) onContinue(); }}
+      className="h-screen overflow-hidden flex flex-col bg-white"
+    >
       <header className="shrink-0 flex items-center justify-between px-6 lg:px-10 py-4">
         <VisionaryLogo />
         <LanguageSelector />
@@ -43,8 +50,8 @@ export default function OnboardingLayout({
         <div className="w-full max-w-[680px]">
           {illustration && (
             <div className="flex justify-center mb-6">
-              <div className="w-20 h-20">
-                <SpotIllustration subject={illustration} />
+              <div className={portrait ? "w-24 h-32" : "w-20 h-20"}>
+                <SpotIllustration subject={illustration} className="h-full w-full" />
               </div>
             </div>
           )}
@@ -61,13 +68,14 @@ export default function OnboardingLayout({
       {showNav && (
         <footer className="shrink-0 flex items-center justify-between px-6 lg:px-10 py-4 border-t border-[#dadce0]">
           <button
+            type="button"
             onClick={onBack}
             className="flex items-center gap-1.5 h-10 px-4 text-sm font-medium text-[#4285F4] hover:bg-[#e8f0fd] rounded-full transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Back
           </button>
           <button
-            onClick={onContinue}
+            type="submit"
             disabled={!canContinue || isSubmitting}
             className="flex items-center gap-2 h-10 px-8 bg-[#4285F4] text-white rounded-full text-sm font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -75,6 +83,6 @@ export default function OnboardingLayout({
           </button>
         </footer>
       )}
-    </div>
+    </form>
   );
 }

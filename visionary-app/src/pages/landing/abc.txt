@@ -113,7 +113,7 @@ Follow this exact process for **every page**:
 
 ## Page-by-Page Scope and References
 
-### 2. About Us Page
+### 1. About Us Page
 
 **Goal:** Build a compelling company story that explains who we are, what we build, why it matters, and where we are going.
 
@@ -376,4 +376,4 @@ The final result must:
 - Include strong hierarchy, readable content, clear CTAs, and user-focused journeys.
 - Make users feel confidence in the product’s privacy, safety, security, support, accessibility, and company credibility.
 
-Start with the **AboutUs Page**. Complete it fully using the workflow above, including all assigned reference links, before moving to the **About Us Page**. Continue in the exact order listed until all pages and the global footer are complete.
+Start with the **AboutUs Page**. Complete it fully using the workflow above, including all assigned reference links, before moving to the **Privacy Page**. Continue in the exact order listed until all pages and the global footer are complete.

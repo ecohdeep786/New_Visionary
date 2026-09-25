@@ -7,6 +7,7 @@ import VisionaryLogo from "@/components/VisionaryLogo";
 import { navigationFor,secondaryNavigation } from "@/lib/dashboardNavigation";
 import { PRODUCT_ACCESS } from "@/lib/productAccess";
 import WorkspaceSwitcher from './WorkspaceSwitcher';
+import AudioPresence from './AudioPresence';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -34,9 +35,12 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     <Link to="/dashboard/home" aria-label="Visionary home" className="workspace-brand shrink-0"><VisionaryLogo /></Link>
     <WorkspaceSwitcher />
     <div className="flex flex-1 justify-center sm:px-6">
-      <button onClick={() => setSearchOpen(true)} className="flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label="Search your workspace">
-        <Search className="h-5 w-5 shrink-0" /><span className="hidden text-sm sm:block">Search your workspace</span>
-      </button>
+      <div className="v-audio-anchor relative inline-flex w-20 sm:w-full sm:max-w-xl">
+        <button onClick={() => setSearchOpen(true)} className="flex h-11 w-20 items-center justify-start gap-3 rounded-full bg-[#f1f5fb] pl-3.5 text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:px-4" aria-label="Search your workspace">
+          <Search className="h-5 w-5 shrink-0" /><span className="hidden text-sm sm:block">Search your workspace</span>
+        </button>
+        <AudioPresence />
+      </div>
     </div>
     <Link to={connect.to} aria-label={connect.label} title={connect.label} className="flex h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[#0b57d2] hover:bg-[#e8f0fd] xl:px-3"><Plus className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>
     <Link to="/dashboard/connections" aria-label="Connections and requests" title="Connections and requests" className="hidden h-11 w-11 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] sm:flex"><Users className="h-5 w-5" /></Link>

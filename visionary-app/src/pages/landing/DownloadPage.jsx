@@ -19,7 +19,6 @@ const COLORS = {
   white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-const APP_VERSION = "1.4.2";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -72,11 +71,11 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 /* ═══ MODELS ═══ */
 const PLATFORMS = [
   { id: "web", Icon: Globe, name: "Web", meta: "No install · Always up to date", action: "Open in browser", href: "/register", kind: "web" },
-  { id: "windows", Icon: Monitor, name: "Windows", meta: "Windows 10 or later · 84 MB", action: "Download for Windows", href: "#", kind: "desktop" },
-  { id: "mac", Icon: Apple, name: "Mac", meta: "macOS 12 or later · 96 MB · Universal", action: "Download for Mac", href: "#", kind: "desktop" },
-  { id: "linux", Icon: Laptop, name: "Linux", meta: "Ubuntu 20.04+ · .deb / .AppImage · 78 MB", action: "Download for Linux", href: "#", kind: "desktop" },
-  { id: "ios", Icon: Smartphone, name: "iOS", meta: "iPhone & iPad · iOS 16 or later", action: "Get it on the App Store", href: "#", kind: "store" },
-  { id: "android", Icon: TabletSmartphone, name: "Android", meta: "Android 9 or later · 62 MB", action: "Get it on Google Play", href: "#", kind: "store" },
+  { id: "windows", Icon: Monitor, name: "Windows", meta: "Windows 10 or later", action: "Windows app coming soon", kind: "desktop" },
+  { id: "mac", Icon: Apple, name: "Mac", meta: "macOS 12 or later · Apple Silicon or Intel", action: "Mac app coming soon", kind: "desktop" },
+  { id: "linux", Icon: Laptop, name: "Linux", meta: "Ubuntu 20.04+ · .deb / .AppImage planned", action: "Linux app coming soon", kind: "desktop" },
+  { id: "ios", Icon: Smartphone, name: "iOS", meta: "iPhone & iPad · iOS 16 or later", action: "iOS app coming soon", kind: "store" },
+  { id: "android", Icon: TabletSmartphone, name: "Android", meta: "Android 9 or later", action: "Android app coming soon", kind: "store" },
 ];
 
 const REQUIREMENTS = [
@@ -159,11 +158,11 @@ function DownloadPlatformsSection() {
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
         <p className="mx-auto mt-[16px] sm:mt-[19px] lg:mt-[22px] max-w-[640px] text-center font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
-          Version {APP_VERSION} · Updated this week ·{" "}
+          Use Visionary on the web today. Native apps are being prepared
           {detected ? (
-            <>Recommended for your device: <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span></>
+            <> for your device, including <span style={{ color: COLORS.blue }}>{PLATFORMS.find((p) => p.id === detected)?.name}</span>.</>
           ) : (
-            <>Works everywhere you do</>
+            <> for desktop and mobile.</>
           )}
         </p>
 
@@ -220,18 +219,19 @@ function DownloadPlatformsSection() {
 }
 
 
-/* ═══ 02b · NOTIFY — placeholder form until store links are ready (L3) ═══ */
+/* ═══ 02b · NATIVE APP LAUNCH REQUEST ═══ */
 function DownloadNotifySection() {
   const { ref, visible } = useRevealOnce();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [status, setStatus] = useState("idle");
   const emailId = "notify-email";
 
   function handleSubmit(event) {
     event.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus("error"); return; }
-    setStatus("submitting");
-    setTimeout(() => setStatus("success"), 900); // deterministic mock — no backend
+    const body = `Please let me know when Visionary native apps are available.\n\nEmail: ${email}`;
+    window.location.href = `mailto:hello@visionary.org.in?subject=${encodeURIComponent("Visionary native app launch request")}&body=${encodeURIComponent(body)}`;
+    setStatus("success");
   }
 
   return (
@@ -244,7 +244,7 @@ function DownloadNotifySection() {
           </p>
           {status === "success" ? (
             <p role="status" className="mt-6 w-full rounded-[14px] border px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-              You're on the list. We'll write to <span className="font-medium">{email}</span> at launch.
+              Your email app opened a request for <span className="font-medium">{email}</span>. Review it and send when ready.
             </p>
           ) : (
             <form onSubmit={handleSubmit} noValidate className="mt-6 w-full">
@@ -266,11 +266,10 @@ function DownloadNotifySection() {
                 />
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
                   className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317] disabled:opacity-70"
                   style={{ backgroundColor: COLORS.blue }}
                 >
-                  {status === "submitting" ? "Adding you…" : "Notify me"}
+                  Prepare email request
                 </button>
               </div>
               {status === "error" && (
@@ -380,7 +379,7 @@ function DownloadCTASection() {
 }
 
 /* ═══ PAGE — universal for all users ═══ */
-export default function ResearchPage() {
+export default function DownloadPage() {
   const { hash } = useLocation();
 
   /* Scroll to the platform card when arriving from the nav mega-menu */

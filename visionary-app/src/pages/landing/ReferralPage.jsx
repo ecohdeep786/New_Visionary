@@ -13,7 +13,7 @@ const STEPS = [
     number: "01",
     Icon: Link2,
     title: "Copy the sign-up link",
-    description: "Use the ordinary Visionary account registration link. It is not personalized or linked to an account.",
+    description: "Use the Visionary registration link. It opens the same clear product and account experience for everyone.",
   },
   {
     number: "02",
@@ -25,7 +25,7 @@ const STEPS = [
     number: "03",
     Icon: BookOpen,
     title: "They decide for themselves",
-    description: "The link opens standard registration. It does not identify who shared it or create a referral record.",
+    description: "The person you invite can explore the product and choose whether Visionary fits their goals.",
   },
 ];
 
@@ -57,6 +57,16 @@ export default function ReferralPage() {
     }
   }
 
+  async function shareSignupLink() {
+    if (!navigator.share) { await copySignupLink(); return; }
+    try {
+      await navigator.share({ title: "Explore Visionary", text: "A learning workspace for understanding, practice, and projects.", url: shareUrl });
+      setStatus("Share options opened.");
+    } catch (error) {
+      if (error?.name !== "AbortError") setStatus("Sharing was unavailable. You can copy the link instead.");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
@@ -64,8 +74,8 @@ export default function ReferralPage() {
         <PageHeading
           page="Referral"
           eyebrow="Share Visionary"
-          h1={<>A useful link is <span className="text-[#4285F4]">enough.</span></>}
-          dek="Introduce someone to Visionary. No referral rewards or tracking are currently offered."
+          h1={<>Share a better way to <span className="text-[#4285F4]">learn.</span></>}
+          dek="Invite someone to explore Visionary in a few simple steps."
         >
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#share" className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#1967d2] px-6 text-[15px] font-medium text-white hover:bg-[#1558b0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
@@ -81,13 +91,13 @@ export default function ReferralPage() {
           <div className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
             <div className="max-w-[700px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">A straightforward introduction</p>
-              <h2 id="referral-intro" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Share the product—not a promise.</h2>
+              <h2 id="referral-intro" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Recommend it when it can help.</h2>
               <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">If Visionary has been useful to you, you can send someone the regular account sign-up page. They can review the product and decide whether to join.</p>
             </div>
             <aside className="rounded-[22px] border border-[#dadce0] bg-white p-6 sm:p-8" aria-label="Referral program availability">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Current availability</p>
-              <p className="mt-3 text-[21px] font-normal leading-[1.35] text-[#121317]">There is no active tracked referral program.</p>
-              <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">No referral codes, attribution, account credit, free months, discounts, eligibility terms, or referral dashboard are currently provided on this page.</p>
+              <p className="mt-3 text-[21px] font-normal leading-[1.35] text-[#121317]">Simple sharing, with no reward conditions.</p>
+              <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">This invitation is open to anyone who can use the standard registration experience. It has no cash reward, account credit, referral code, or tracking dashboard.</p>
             </aside>
           </div>
         </section>
@@ -97,7 +107,7 @@ export default function ReferralPage() {
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Three simple steps</p>
               <h2 id="steps-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">How to share Visionary.</h2>
-              <p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">This is an ordinary product introduction, not an enrollment or reward process.</p>
+              <p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">Choose the link, send it in a place where it is welcome, and let the other person decide.</p>
             </div>
             <ol className="mt-9 grid gap-4 md:grid-cols-3">
               {STEPS.map((step) => <li key={step.number}><StepCard {...step} /></li>)}
@@ -126,6 +136,9 @@ export default function ReferralPage() {
               <button type="button" onClick={copySignupLink} className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#1967d2] px-5 text-[14px] font-medium text-white hover:bg-[#1558b0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
                 {status.startsWith("Sign-up link copied") ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
                 {status.startsWith("Sign-up link copied") ? "Copied" : "Copy sign-up link"}
+              </button>
+              <button type="button" onClick={shareSignupLink} className="ml-3 mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#dadce0] px-5 text-[14px] font-medium text-[#121317] hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                <Share2 className="h-4 w-4" aria-hidden="true" /> Share
               </button>
               <p id="referral-link-note" className="mt-4 text-[12px] leading-[1.65] text-[#5f6368]">Copying this link does not register a referral or create a reward.</p>
               <p role="status" aria-live="polite" className="mt-2 min-h-5 text-[13px] leading-[1.6] text-[#1967d2]">{status}</p>

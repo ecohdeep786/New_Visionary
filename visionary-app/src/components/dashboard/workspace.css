@@ -150,25 +150,24 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
   .guide-entry-option{flex-grow:1}
 }
 
-/* AGI audio presence — a thin audio-reactive line at the very top of the interface.
-   No assistant icon, avatar, or activation button; the line reacts to the real
-   microphone while listening, carries the reply cadence while speaking, and stays
-   a quiet static indicator when audio is off. */
-.v-audio-line {
-  position: fixed;
-  inset-inline: 0;
-  top: 0;
-  z-index: 40;
+/* The AGI lives inside the search bar as a small Siri-style orb on the right, mirroring
+   the search icon on the left. Its listen animation is always running; brightness and
+   speed carry the honest state (calm ready, bright listening, dimmed off). */
+.v-audio-orb {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.75rem;
+  height: 1.75rem;
   pointer-events: none;
 }
-.v-audio-canvas {
-  display: block;
-  width: 100%;
-  height: 6px;
+@media (max-width: 639px) {
+  .v-audio-orb { width: 1.375rem; height: 1.375rem; right: 0.625rem; }
 }
 .v-audio-caption {
   position: absolute;
-  top: 10px;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   max-width: min(36rem, calc(100vw - 2rem));
@@ -182,4 +181,5 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
   border-radius: 9999px;
   padding: 0.25rem 0.875rem;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
+  z-index: 40;
 }

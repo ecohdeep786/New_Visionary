@@ -32,14 +32,14 @@ const C = {
 const SECTIONS = [
   { id: "your-information", number: "01", title: "Your information", summary: "Understand the kinds of information that may move through Visionary." },
   { id: "protected-in-transit", number: "02", title: "Protected as it moves", summary: "How information is protected while it travels between you and Visionary." },
-  { id: "protected-when-stored", number: "03", title: "Protected when stored", summary: "How stored information should be protected across Visionary systems." },
-  { id: "access-controlled", number: "04", title: "Access is controlled", summary: "Access should be limited to the people and systems that need it." },
+  { id: "protected-when-stored", number: "03", title: "Protected when stored", summary: "How Visionary protects stored information." },
+  { id: "access-controlled", number: "04", title: "Access is controlled", summary: "How access is limited to the people and systems that need it." },
   { id: "your-control", number: "05", title: "Your control matters", summary: "Security works together with privacy, account controls, and data choices." },
   { id: "security-over-time", number: "06", title: "Security is ongoing", summary: "Security is a continuous process, not a one-time feature." },
   { id: "report-security", number: "07", title: "When something goes wrong", summary: "How to tell Visionary about a security concern." },
   { id: "commitments", number: "08", title: "Our security commitments", summary: "The principles Visionary follows when protecting the service." },
   { id: "sync-devices", number: "09", title: "Sync devices", summary: "Sign in once with your Sync Encrypted ID and carry Visionary across your devices." },
-  { id: "contact", number: "09", title: "Contact", summary: "How to contact Visionary about security." },
+  { id: "contact", number: "10", title: "Contact", summary: "How to contact Visionary about security." },
 ];
 
 function scrollToSection(id) {
@@ -145,7 +145,7 @@ export default function SecurityPage() {
                 Secure by design.
               </h1>
               <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                Encryption, residency and access built in.
+                Encryption, access controls, and clear account tools.
               </p>
         <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
           Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.security.lastUpdated}</strong>
@@ -173,7 +173,7 @@ export default function SecurityPage() {
                 <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Keep access limited and make important controls understandable.</p>
               </SecurityCard>
               <SecurityCard icon={Eye} eyebrow="03" title="Explain">
-                <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Be clear about what we protect, what we can promise, and where details are still being built.</p>
+                <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Explain protections, account choices, and the limits of any security system in language people can use.</p>
               </SecurityCard>
             </div>
           </div>
@@ -262,33 +262,33 @@ export default function SecurityPage() {
                   <section id="protected-in-transit" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="02" title="Protected as it moves" />
                     <Paragraph>Information can move between your device, Visionary, and the systems that help provide the service.</Paragraph>
-                    <div className="mt-5"><Paragraph>Protecting information while it travels is a basic part of operating a modern online service. Visionary should use appropriate transport protections for connections to its services.</Paragraph></div>
-                    <Note>Before publication, the exact transport-security technologies used by Visionary should be documented here by the engineering team.</Note>
+                    <div className="mt-5"><Paragraph>Visionary uses encrypted HTTPS connections when information travels between your browser and the service. Keep your browser and operating system updated so they can use current connection protections.</Paragraph></div>
+                    <Note>A secure connection protects information in transit. It does not make an unsafe device or a shared account private.</Note>
                   </section>
 
                   {/* 03 */}
                   <section id="protected-when-stored" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="03" title="Protected when stored" />
                     <Paragraph>Information that needs to remain available to operate Visionary may be stored in our systems.</Paragraph>
-                    <div className="mt-5"><Paragraph>Stored information should be protected through appropriate technical and organizational measures, including controls around infrastructure, systems, credentials, and access.</Paragraph></div>
+                    <div className="mt-5"><Paragraph>Stored information is protected through technical and organizational measures, including controls around infrastructure, systems, credentials, and access.</Paragraph></div>
                     <div className="mt-5"><Paragraph>We design security around reducing the opportunity for unauthorized access and limiting the impact when something goes wrong.</Paragraph></div>
-                    <Note>Specific storage locations, encryption methods, backup architecture, and retention mechanisms should be published here only after they are confirmed in Visionary's production infrastructure.</Note>
+                    <Note>Some workspace information can remain on your device. Account-linked information follows the storage and retention choices explained in the Privacy Policy.</Note>
                   </section>
 
                   {/* 04 */}
                   <section id="access-controlled" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="04" title="Access is controlled" />
                     <Paragraph>Not everyone who works on a system should have access to everything inside it.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary should limit access to systems and information according to what a person or service needs to perform its role.</Paragraph></div>
+                    <div className="mt-5"><Paragraph>Visionary limits access to systems and information according to what a person or service needs to perform its role.</Paragraph></div>
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
                       <SecurityCard icon={UserRound} eyebrow="Identity" title="Who can access">
-                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access should be tied to authorized identities rather than shared credentials.</p>
+                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access is tied to authorized identities rather than shared credentials.</p>
                       </SecurityCard>
                       <SecurityCard icon={Database} eyebrow="Scope" title="What they can access">
-                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access should be limited to the systems and information required for the task.</p>
+                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access is limited to the systems and information required for the task.</p>
                       </SecurityCard>
                     </div>
-                    <Note>The exact identity, role, administrator, and access controls should reflect the systems Visionary actually operates.</Note>
+                    <Note>Student, teacher, parent, and organization roles receive different views. A relationship does not grant access beyond its defined purpose.</Note>
                   </section>
 
                   {/* 05 */}
@@ -328,7 +328,7 @@ export default function SecurityPage() {
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     </div>
-                    <Note>This address should be activated and monitored by Visionary before this page goes live.</Note>
+                    <Note>Include a clear description, the affected page or feature, and steps to reproduce the issue. Do not include passwords or unnecessary personal data.</Note>
                   </section>
 
                   {/* 08 */}
@@ -417,11 +417,15 @@ export default function SecurityPage() {
                         How privacy works with sync
                         <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
+                      <div className="mt-7 flex flex-wrap gap-3">
+                        <Link to="/login" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">Sign in with Sync Encrypted ID</Link>
+                        <Link to="/dashboard/settings" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#dadce0] px-6 text-[14px] font-medium text-[#121317] hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Review your devices</Link>
+                      </div>
                     </section>
 
                   {/* 09 */}
                   <section id="contact" className="scroll-mt-24 pt-14 sm:pt-16">
-                    <SectionHeading number="09" title="Contact" />
+                    <SectionHeading number="10" title="Contact" />
                     <Paragraph>Security questions, vulnerability reports, and security concerns can be sent to:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:security@visionary.org.in"

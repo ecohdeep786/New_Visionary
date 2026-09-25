@@ -9,8 +9,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 
 /* ═══ SAFETY PRINCIPLES — each paired with an illustration (Google pattern) ═══ */
 const SAFETY_PILLARS = [
-  { id: "age-gates", n: "01", Icon: ShieldCheck, subject: "shield", title: "Age-appropriate by default.", copy: "Every answer is checked against guidance for the learner's age — before it reaches them. No overrides, no exceptions." },
-  { id: "safe-default", n: "02", Icon: BadgeCheck, subject: "lock", title: "Safety is on from the first question.", copy: "You never enable or disable a safety setting. They're always there — built into every interaction, every model call, every response." },
+  { id: "age-gates", n: "01", Icon: ShieldCheck, subject: "shield", title: "Age-aware experiences.", copy: "Safety guidance and product boundaries are applied with the learner's age and context in mind." },
+  { id: "safe-default", n: "02", Icon: BadgeCheck, subject: "lock", title: "Safety starts with the first question.", copy: "Core safeguards are part of the experience from the beginning, with additional controls for families and organizations." },
   { id: "flag-review", n: "03", Icon: Eye, subject: "document", title: "You can flag anything.", copy: "One tap on any answer flags it for human review. We act on every report — usually within 24 hours." },
   { id: "family-controls", n: "04", Icon: Users, subject: "community", title: "Family controls, when you need them.", copy: "Parents and guardians can set boundaries that shape what younger learners see and do — without changing the default safety posture." },
   { id: "transparent-review", n: "05", Icon: Flag, subject: "history", title: "Reviewed, not hidden.", copy: "Our safety policies are reviewed regularly and updated as we learn from real use — just like the product itself." },
@@ -136,6 +136,7 @@ export default function SafetyPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <Breadcrumb page="Safety" />
+      <main id="main">
       <SafetyHero />
 
       {/* "How we protect you" — numbered pillars with illustrations */}
@@ -164,6 +165,7 @@ export default function SafetyPage() {
         Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.safety.lastUpdated}</strong>
       </p>
       <SafetyCTA />
+      </main>
     <LandingFooter variant="quiet" />
     </div>
   );

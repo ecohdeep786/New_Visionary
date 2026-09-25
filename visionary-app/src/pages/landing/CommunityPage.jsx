@@ -18,7 +18,7 @@ const PATHS = [
     Icon: UsersRound,
     label: "Optional connections",
     title: "Choose who you learn with.",
-    description: "The workspace preview supports class, family, and collaborator connections. Requests require acceptance; connected people do not automatically see private questions or project notes.",
+    description: "Class, family, and collaborator connections are intentional. Requests require acceptance, and a connection does not automatically reveal private questions or project notes.",
     link: "/register",
     linkLabel: "Explore the workspace",
   },
@@ -26,7 +26,7 @@ const PATHS = [
     Icon: MessageCircle,
     label: "Stay in the loop",
     title: "Follow what is taking shape.",
-    description: "Read product updates and the questions Visionary is exploring. The updates page is informational; it is not a discussion board or event calendar.",
+    description: "Read product updates, explore research questions, and contact the team when you have feedback or need a clearer answer.",
     link: "/updates",
     linkLabel: "Read product updates",
   },
@@ -59,7 +59,7 @@ export default function CommunityPage() {
               <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Learning, with room to choose</p>
               <h2 className="mt-4 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Learning together should begin with clarity.</h2>
               <p className="mt-5 text-[16px] leading-[1.8] text-[#5f6368]">
-                Visionary’s workspace preview includes individual learning and optional connections. It does not currently offer a public community forum, open discussion threads, an events program, or contributor enrollment.
+                Visionary supports individual learning and purposeful connections between learners, educators, families, and organizations. Each relationship has a clear reason and its own sharing boundaries.
               </p>
             </div>
             <div className="overflow-hidden rounded-[24px] border border-[#dadce0]">
@@ -73,7 +73,7 @@ export default function CommunityPage() {
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Ways to take part</p>
               <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">A few useful paths, without the noise.</h2>
-              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">Choose the experience that fits. Each link leads to a current product page—not a promised event, forum, or support program.</p>
+              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">Choose the path that fits: learn independently, connect through your workspace, or follow the work around the product.</p>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {PATHS.map(({ Icon, label, title, description, link, linkLabel }) => (
@@ -96,7 +96,7 @@ export default function CommunityPage() {
         <section className="border-y border-[#dadce0] bg-[#f8f9fa] px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
           <div className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Connections in the preview</p>
+              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Connection and privacy</p>
               <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">Make the boundaries visible.</h2>
               <p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">Requests are optional and need acceptance. Classroom and family relationships have separate sharing rules.</p>
               <Link to="/safety" className="mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
@@ -109,8 +109,8 @@ export default function CommunityPage() {
                 <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">Organization membership does not expose private questions or project notes. Family progress requires separate permission.</p>
               </article>
               <article className="rounded-[20px] border border-[#dadce0] bg-white p-6">
-                <h3 className="text-[17px] font-medium text-[#121317]">The preview has limits.</h3>
-                <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">Connections are local to accounts in this browser. Cloud invitations, cross-device sync, and a public discussion space are not active here.</p>
+                <h3 className="text-[17px] font-medium text-[#121317]">Every role has boundaries.</h3>
+                <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">Teachers, parents, and organizations see role-appropriate information. Personal notes and private questions stay outside shared views unless you choose to share them.</p>
               </article>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function CommunityPage() {
             <div className="max-w-[650px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Keep exploring</p>
               <h2 className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[36px]">Choose a learning path that works for you.</h2>
-              <p className="mt-4 text-[15px] leading-[1.7] text-[#5f6368]">Start with Visionary’s learning workspace, or contact us with a question. There is no public community sign-up to join today.</p>
+              <p className="mt-4 text-[15px] leading-[1.7] text-[#5f6368]">Start with your Visionary workspace, explore help topics, or contact the team with a question about learning together.</p>
             </div>
             <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
               <Link to="/register" className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-6 text-[14px] font-medium text-white hover:bg-[#3367d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">Get started <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>

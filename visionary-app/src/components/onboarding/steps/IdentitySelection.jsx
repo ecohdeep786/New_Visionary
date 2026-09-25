@@ -29,6 +29,8 @@ const roles = [
     illustration: "team",
   },
 ];
+// Portrait spots (student/teacher/parent/team, 120×160) need a 3:4 tile or slice crops them.
+const PORTRAIT = ["student", "teacher", "parent", "team"];
 
 export default function IdentitySelection({ onContinue }) {
   const [selected, setSelected] = useState(null);
@@ -40,7 +42,10 @@ export default function IdentitySelection({ onContinue }) {
         <LanguageSelector />
       </header>
 
-      <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-6 py-4">
+      <form
+        onSubmit={(event) => { event.preventDefault(); if (selected) onContinue(selected); }}
+        className="flex-1 overflow-y-auto flex flex-col items-center justify-center px-6 py-4"
+      >
         <div className="w-full max-w-[900px] text-center mb-8">
           <h1 className="text-[28px] lg:text-[32px] font-normal text-[#121317] leading-tight">
             Let's personalize your learning journey
@@ -54,10 +59,13 @@ export default function IdentitySelection({ onContinue }) {
           {roles.map((role) => {
             const Icon = role.icon;
             const isSelected = selected === role.id;
+            const portrait = PORTRAIT.includes(role.illustration);
             return (
               <button
                 key={role.id}
+                type="button"
                 onClick={() => setSelected(role.id)}
+                aria-pressed={isSelected}
                 className={`group flex flex-col items-center gap-4 p-8 rounded-[24px] border-2 transition-all bg-white ${
                   isSelected
                     ? "border-[#4285F4] shadow-md"
@@ -65,22 +73,18 @@ export default function IdentitySelection({ onContinue }) {
                 }`}
               >
                 <div
-                  className={`w-20 h-20 rounded-2xl flex items-center justify-center transition-colors ${
-                    isSelected
-                      ? "bg-[#4285F4]"
-                      : "bg-[#e8f0fd] group-hover:bg-[#4285F4]"
+                  className={`${portrait ? "w-[72px] h-24" : "w-16 h-16"} rounded-2xl flex items-center justify-center overflow-hidden transition-colors ${
+                    isSelected ? "bg-[#d7e3fc]" : "bg-[#e8f0fd] group-hover:bg-[#dbe6fb]"
                   }`}
                 >
                   {role.illustration ? (
-                    <div className="w-10 h-10">
-                      <SpotIllustration subject={role.illustration} />
-                    </div>
+                    <SpotIllustration subject={role.illustration} className="w-full h-full" />
                   ) : (
                     <Icon
                       className={`w-8 h-8 transition-colors ${
                         isSelected
-                          ? "text-white"
-                          : "text-[#4285F4] group-hover:text-white"
+                          ? "text-[#0b57d2]"
+                          : "text-[#4285F4] group-hover:text-[#0b57d2]"
                       }`}
                     />
                   )}
@@ -95,13 +99,13 @@ export default function IdentitySelection({ onContinue }) {
         </div>
 
         <button
-          onClick={() => selected && onContinue(selected)}
+          type="submit"
           disabled={!selected}
           className="mt-8 flex items-center gap-2 h-12 px-8 bg-[#4285F4] text-white rounded-full text-sm font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continue <ChevronRight className="w-4 h-4" />
         </button>
-      </div>
+      </form>
     </div>
   );
 }

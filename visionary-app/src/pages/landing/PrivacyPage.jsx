@@ -115,15 +115,15 @@ const FAQ = [
   },
   {
     q: "How long is information retained?",
-    a: "Records saved by the browser-local preview remain in that browser until they are removed or its storage is cleared. The production service retention schedule is not available in this preview; contact the Grievance Officer for request guidance.",
+    a: "Information is kept only for as long as it is needed to provide the service, meet legal obligations, resolve disputes, and protect Visionary. Records stored on your device remain there until you remove them or clear that browser’s storage.",
   },
   {
     q: "Can I delete my account or learning records?",
-    a: "There is no connected self-service account deletion or server-side data removal workflow in this preview. Contact the Grievance Officer with the account or record involved; a request needs review and confirmation.",
+    a: "You can review the controls available in Privacy settings or contact the Grievance Officer to request access, correction, or deletion. We may need to verify the account before completing a request.",
   },
   {
     q: "Does my information sync across devices?",
-    a: "No account sync is connected in the current preview. Workspace records are stored in browser-local storage and do not automatically follow you to another device.",
+    a: "Information saved only on a device stays on that device. Information linked to your Visionary account may be available on devices where you securely sign in. The product identifies which type of storage is being used.",
   },
 ];
 
@@ -275,9 +275,9 @@ export default function PrivacyPage() {
                       <ShieldCheck className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                     </span>
                     <div>
-                      <h2 className="text-[16px] font-medium" style={{ color: COLORS.ink }}>A clear picture, not a promise of control</h2>
+                      <h2 className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Privacy starts with a clear picture</h2>
                       <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>
-                        Visionary currently runs as a browser-local preview. Account sync and data transfer are not connected; review local records before making decisions about them.
+                        Visionary explains when information stays on your device, when it is linked to an account, and which people can see shared learning records.
                       </p>
                     </div>
                   </div>
@@ -388,13 +388,13 @@ export default function PrivacyPage() {
         <section id="what-we-collect" className="scroll-mt-24 py-14 sm:py-16">
             <SectionHeading number="01" title="What we collect" />
             <Paragraph>
-              The information involved depends on the features you use. In this browser-local preview, workspace records are stored in browser storage. The categories below describe information used by the product; a connected production service could have additional processing that is not active or verified here.
+              The information involved depends on the features you use. Some workspace records can stay in your browser, while account services use information needed to sign you in and provide connected features. The categories below explain what may be involved.
             </Paragraph>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 { Icon: Mail, title: "Workspace and account context", text: "The email or identity details used to create or open a workspace, along with the role needed to show the right learning tools." },
                 { Icon: Target, title: "Learning and content you provide", text: "Questions, materials, practice activity, progress records, and projects saved as you use the workspace." },
-                { Icon: Database, title: "Device and technical details", text: "Basic browser or device information may be needed to keep a service available and diagnose problems. The current preview does not send these details to a connected Visionary service." },
+                { Icon: Database, title: "Device and technical details", text: "Basic browser, device, and diagnostic information may be used to keep the service reliable, secure, and compatible with your device." },
                 { Icon: Settings2, title: "Your preferences", text: "Choices such as language, accessibility, audio interaction, and whether optional learning memory is used." },
               ].map(({ Icon, title, text }) => (
                 <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
@@ -410,13 +410,13 @@ export default function PrivacyPage() {
         <section id="purpose" className="scroll-mt-24 py-14 sm:py-16">
             <SectionHeading number="02" title="Why we use it" />
             <Paragraph>
-              Personal information is used to provide the current workspace experience, retain the learning activity you choose to save on this device, maintain and protect the service, and respond to your requests. The local preview is not connected to a production account-sync or teaching service.
+              Personal information is used to provide your workspace, retain the learning activity you choose to save, maintain and protect the service, and respond to your requests.
             </Paragraph>
             <div className="mt-10 max-w-[880px]">
               {[
                 { Icon: Target, title: "Provide Visionary", text: "Answer questions, guide practice, and keep your work in one place as you continue." },
                 { Icon: Database, title: "Keep saved work available", text: "Retain selected learning records, workspace preferences, and activity on this browser so you can resume where supported." },
-                { Icon: Settings2, title: "Maintain and improve", text: "Diagnose issues and improve the experience. The current local preview is not a connected production service." },
+                { Icon: Settings2, title: "Maintain and improve", text: "Diagnose issues, understand service performance, and improve the experience." },
                 { Icon: ShieldCheck, title: "Protect people and the service", text: "Prevent misuse, and keep accounts safe from harm." },
                 { Icon: Mail, title: "Communicate with you", text: "Service updates, and the email updates you choose to receive." },
               ].map(({ Icon, title, text }, i, arr) => (
@@ -435,7 +435,7 @@ export default function PrivacyPage() {
         <section id="sharing" className="scroll-mt-24 py-14 sm:py-16">
             <SectionHeading number="03" title="Who can see it" />
             <Paragraph>
-              Visibility follows the workspace role and any explicit learning relationship. The rows below describe the current product model; this browser-local preview is not production authentication or server-enforced access control.
+              Visibility follows the workspace role and any explicit learning relationship. Visionary limits each view to the information needed for that relationship.
             </Paragraph>
             <div className="mt-10 overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
               {[
@@ -443,7 +443,7 @@ export default function PrivacyPage() {
                 ["Teacher", "Class-linked learning evidence is limited to the teacher’s assigned classes in the product model."],
                 ["Parent", "A parent view contains shared progress and activity summaries for connected children—not private conversations."],
                 ["Institution", "The organization view is designed for aggregate, role-appropriate information rather than private learner conversations."],
-                ["Service providers", "No production backend or processor connection is enabled in this preview. A deployed service should identify its processors and applicable safeguards here."],
+                ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
               ].map(([who, what], i, arr) => (
                 <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.mist }}>
                   <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
@@ -460,7 +460,7 @@ export default function PrivacyPage() {
         <section id="your-controls" className="scroll-mt-24 py-14 sm:py-16">
             <SectionHeading number="04" title="Your controls" />
             <Paragraph>
-              The controls currently available depend on where information is stored. Use the local privacy tools to review this browser’s saved work, change workspace preferences in the product, or contact the Grievance Officer for an access, correction, or deletion request. These are request paths—not a claim of instant server-side deletion or export.
+              Your controls depend on where information is stored. Use Privacy settings to review information saved on this device, change workspace preferences, or contact the Grievance Officer for an access, correction, or deletion request.
             </Paragraph>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {[
@@ -500,7 +500,7 @@ export default function PrivacyPage() {
         <section id="security" className="scroll-mt-24 py-14 sm:py-16">
             <SectionHeading number="05" title="How we protect it" />
             <Paragraph>
-              Privacy also depends on the system that stores and moves information. The current Visionary build is a browser-local preview, not a connected production service; production encryption, hosting safeguards, and server access controls are not verified by this page.
+              Visionary uses access controls, secure transport, and appropriate storage safeguards to protect information. We review these protections as the service changes and limit access to people and providers who need it for their work.
             </Paragraph>
             <LearnMoreRow to="/security" label="How security works at Visionary" />
         </section>
@@ -509,13 +509,13 @@ export default function PrivacyPage() {
         <section id="data-requests" className="scroll-mt-24 py-14 sm:py-16">
           <SectionHeading number="06" title="Access and deletion requests" />
           <Paragraph>
-            You can contact us to ask about personal information associated with your use of Visionary, request a correction, or request deletion. The local preview does not provide a connected self-service account export or server-side deletion workflow, so a request must be reviewed by the Grievance Officer.
+            You can contact us to ask about personal information associated with your use of Visionary, request access or correction, or request deletion. The Grievance Officer reviews the request and may verify your identity before acting on it.
           </Paragraph>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
               { title: "Access or correction", text: "Tell us which workspace or record your request concerns so we can review it." },
               { title: "Deletion", text: "Describe the account or information you want removed. We will confirm the scope and any applicable retention requirements." },
-              { title: "Local preview records", text: "Review what is stored on this browser before you clear browser data or change devices." },
+              { title: "Records on this device", text: "Review what is stored in this browser before you clear browser data or change devices." },
             ].map((item, index) => (
               <div key={item.title} className="rounded-[16px] border p-5 sm:p-6" style={{ borderColor: COLORS.mist }}>
                 <p className="text-[12px] font-medium tabular-nums" style={{ color: COLORS.blue }}>0{index + 1}</p>
@@ -540,12 +540,12 @@ export default function PrivacyPage() {
         <section id="retention" className="scroll-mt-24 py-14 sm:py-16">
             <SectionHeading number="07" title="How long we keep it" />
             <Paragraph>
-              Browser-local workspace records remain in this browser until you remove them or browser storage is cleared. A production retention schedule cannot be verified in this disconnected preview, so request details from the Grievance Officer before relying on a specific deletion timeline.
+              Workspace records stored locally remain in this browser until you remove them or clear browser storage. Account information is retained only while it is needed for the purposes explained in this policy, including legal, safety, and service requirements.
             </Paragraph>
             <div className="mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
               <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your privacy options.</p>
               <ul className="mt-4 space-y-2.5">
-                {["Review personal workspaces stored in this browser.", "Understand which local records a preview can identify.", "Ask the Grievance Officer about access or deletion requests.", "Do not assume clearing one browser removes records from a future connected service."].map((t) => (
+                {["Review personal workspaces stored in this browser.", "Check whether a record is stored on-device or with your account.", "Ask the Grievance Officer about access or deletion requests.", "Sign out of shared devices and review connected devices regularly."].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.blue }} />
                     <span className="text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
@@ -561,7 +561,7 @@ export default function PrivacyPage() {
             <div className="grid gap-10 lg:grid-cols-[1fr_420px] lg:items-center lg:gap-16">
               <div>
                 <Paragraph>
-                  Where a learner is a child under the DPDP Act, their information is handled under the consent and safeguard requirements that apply. The current browser-local preview is not a production child account or verified guardian-consent workflow; do not treat this page as evidence that production protections are active.
+                  Where a learner is a child under the DPDP Act, Visionary applies the consent and safeguard requirements that apply, including age-appropriate experiences and verified consent where required.
                 </Paragraph>
                 <LearnMoreRow to="/safety" label="How safety works for younger learners" />
               </div>

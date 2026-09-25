@@ -16,7 +16,7 @@ async function goto(page, url) {
   }
 }
 
-// 1. Home: presence line renders; no assistant orb/icon branding remains anywhere.
+// 1. Home: presence ring lives on the search pill; the old top line is gone; no assistant icon remains.
 {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   track(page);
@@ -24,12 +24,14 @@ async function goto(page, url) {
   await page.getByRole('button', { name: /Aarav/ }).first().click();
   await page.waitForURL('**/dashboard/home', { timeout: 20000 });
   await page.waitForTimeout(1500);
-  const line = page.locator('.v-audio-line');
-  await line.waitFor({ timeout: 8000 });
-  const canvasCount = await line.locator('.v-audio-canvas').count();
+  const anchor = page.locator('.v-audio-anchor');
+  await anchor.waitFor({ timeout: 8000 });
+  const ring = anchor.locator('.v-audio-ring');
+  const searchHost = await page.getByRole('button', { name: 'Search your workspace' }).locator('xpath=ancestor::div[contains(@class,"v-audio-anchor")]').count();
+  const oldTopLine = await page.locator('.v-audio-line').count();
   const orbCount = await page.locator('.v-voice-orb, .v-voice-dock').count();
-  const status = (await line.locator('[role="status"]').textContent()).trim();
-  log.push(`home: line=${await line.count()} canvas=${canvasCount} oldDock=${orbCount}`);
+  const status = (await anchor.locator('[role="status"]').textContent()).trim();
+  log.push(`home: anchor=${await anchor.count()} ring=${await ring.count()} ringOnSearch=${searchHost} oldTopLine=${oldTopLine} oldDock=${orbCount}`);
   log.push(`home status: "${status.slice(0, 110)}"`);
   for (const viewport of [[1440, 900], [390, 844]]) {
     await page.setViewportSize({ width: viewport[0], height: viewport[1] });
@@ -89,7 +91,7 @@ async function goto(page, url) {
   await page.waitForTimeout(500);
   await goto(page, `${BASE}/dashboard/home`);
   await page.waitForTimeout(1000);
-  const status = (await page.locator('.v-audio-line [role="status"]').textContent()).trim();
+  const status = (await page.locator('.v-audio-anchor [role="status"]').textContent()).trim();
   log.push(`settings: audioToggle=${toggleCount} defaultChecked=${checked}`);
   log.push(`audio off status: "${status.slice(0, 110)}"`);
   await page.screenshot({ path: 'scripts-tmp/audio-presence-off.png' });
