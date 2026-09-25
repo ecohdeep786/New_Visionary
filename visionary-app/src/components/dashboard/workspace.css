@@ -16,7 +16,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]){
   color:var(--v-text)
 }
 .workspace-shell{background:#ffffff}
-.workspace-surface{min-height:100%;border:1px solid #dadce0;border-radius:16px;background:#ffffff}
+.workspace-surface{min-height:100%;border:1px solid rgba(66,133,244,calc(0.32 + var(--agi-ring,0.14)*0.68));border-radius:16px;background:#ffffff;box-shadow:0 0 calc(6px + var(--agi-ring,0.14)*20px) rgba(66,133,244,calc(var(--agi-ring,0.14)*0.5))}
 .workspace-bottom-nav{min-height:64px;padding-bottom:env(safe-area-inset-bottom)}
 .visionary-workspace :lang(hi){font-family:'Noto Sans Devanagari','Kohinoor Devanagari','Nirmala UI',sans-serif;line-height:1.7}
 .visionary-workspace :lang(bn){font-family:'Noto Sans Bengali','Kohinoor Bangla','Nirmala UI',sans-serif;line-height:1.7}
@@ -157,15 +157,16 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
   position: relative;
   display: flex;
   height: 3rem;
-  width: 3.5rem;
+  width: 3rem;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 9999px;
   overflow: hidden;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   animation: v-orb-in 0.7s cubic-bezier(0.2, 0, 0, 1) 1;
 }
-.v-audio-orb-button:hover { transform: scale(1.05); box-shadow: 0 0 0 2px #a8c7fa; }
+.v-audio-orb-button.v-audio-girl { border-radius: 12px; width: 3.5rem; }
+.v-audio-orb-button:hover { transform: scale(1.05); }
 .v-audio-orb-button canvas {
   width: 100%;
   height: 100%;
