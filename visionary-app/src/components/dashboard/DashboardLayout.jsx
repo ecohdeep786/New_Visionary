@@ -8,6 +8,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { ThemeColorProvider } from "@/hooks/useThemeColor";
 import { canAccessDashboardPath, navigationFor } from "@/lib/dashboardNavigation";
 import { saveLastPath } from '@/services/workspaceService';
+import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Ellipsis } from "lucide-react";
@@ -30,8 +31,9 @@ export default function DashboardLayout() {
   if(workspaceError)return <main className="p-8" role="alert">{workspaceError}</main>;
   if(!activeWorkspace)return <main className="p-8" role="status">Preparing your workspace…</main>;
   if (!canAccessDashboardPath(user?.identity, location.pathname)) return <Navigate to="/dashboard/home" replace />;
+  const stageTier = getStagePresentation({ personId: user.id, workspaceId: activeWorkspace.id, role: activeWorkspace.role, locale: "en" }).tier;
   return <ThemeColorProvider>
-    <div className="visionary-workspace workspace-shell flex h-dvh flex-col overflow-hidden text-[#121317]">
+    <div className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
       <div className={`workspace-presence-anchor${sidebarExpanded ? " is-expanded" : ""}`}><AudioPresence /></div>
       <div className="flex min-h-0 flex-1 overflow-hidden">

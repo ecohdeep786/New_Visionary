@@ -10,7 +10,13 @@ import teacherImage from "@/assets/teacher-hero-main-1600w.webp";
 import parentImage from "@/assets/parent-hero-main-1600w.webp";
 import professionalImage from "@/assets/pro-face-main-1600w.webp";
 import organizationImage from "@/assets/org-face-main-1600w.webp";
+import imgStagePrimary from "@/assets/student-primary.webp";
+import imgStageSecondary from "@/assets/student-secondary.webp";
+import imgStageCompetitive from "@/assets/student-competitive.webp";
+import imgStageHigher from "@/assets/student-higher.webp";
 
+/* ═══ Tokens — the shared Material dialect (#202124 ink, #1a73e8/#0b57d0
+   actions, #e8eaed hairlines, pill buttons, radius scaled to card size). ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 const ROLES = [
@@ -21,17 +27,22 @@ const ROLES = [
   { to: "/organization", label: "Organizations", line: "Connect learning across classrooms, teams, and institutions.", image: organizationImage, tint: "#fcebe8" },
 ];
 
+/* The difference we want to make — full-tint Google cards: caps label, big
+   illustration, problem headline, and the building-toward answer, all on
+   the pastel surface. */
 const IMPACT = [
   { number: "01", problem: "A missed idea can follow someone for years.", answer: "Give each person a way to revisit what they missed, ask in their own words, and keep moving with more confidence.", subject: "ask", tint: "#e8f0fe", accent: "#0b57d0" },
   { number: "02", problem: "The people helping them see different pieces.", answer: "Make learning easier to understand for educators and families, so their support can meet the person where they are.", subject: "community", tint: "#e9f5ef", accent: "#137333" },
   { number: "03", problem: "A new direction can feel like starting from zero.", answer: "Help people connect what they already know to the skills, decisions, and opportunities in front of them.", subject: "briefcase", tint: "#fef3df", accent: "#a15c00" },
 ];
 
+/* A life in motion — photo cards: real photography of the stages, white
+   cards, label + title below the photo. */
 const LIFE_STAGES = [
-  { number: "01", title: "Find a way in", copy: "An early question becomes something a person can understand.", subject: "ask", tint: "#e8f0fe" },
-  { number: "02", title: "Grow with support", copy: "Teachers, families, and mentors help progress take shape.", subject: "community", tint: "#e9f5ef" },
-  { number: "03", title: "Choose what comes next", copy: "Learning becomes a skill, a project, or a new direction.", subject: "briefcase", tint: "#f3edff" },
-  { number: "04", title: "Keep growing", copy: "Experience continues through work, change, and helping others.", subject: "loop", tint: "#fef3df" },
+  { number: "01", title: "Find a way in", copy: "An early question becomes something a person can understand.", photo: imgStagePrimary, alt: "A young learner taking a first step into a new idea" },
+  { number: "02", title: "Grow with support", copy: "Teachers, families, and mentors help progress take shape.", photo: imgStageSecondary, alt: "A student growing through school years with support" },
+  { number: "03", title: "Choose what comes next", copy: "Learning becomes a skill, a project, or a new direction.", photo: imgStageCompetitive, alt: "A student preparing for the choices ahead" },
+  { number: "04", title: "Keep growing", copy: "Experience continues through work, change, and helping others.", photo: imgStageHigher, alt: "A learner carrying understanding into what comes next" },
 ];
 
 const EXPLORE = [
@@ -70,7 +81,7 @@ function ArrowLink({ to, children, className = "", style }) {
 }
 
 function MissionSection() {
-  return <section id="mission" className="scroll-mt-28 px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+  return <section id="mission" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Why Visionary exists</Eyebrow>
       <div className="mt-5 grid gap-9 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-20">
@@ -78,43 +89,51 @@ function MissionSection() {
         <p className="max-w-[480px] pb-1 text-[18px] leading-[1.65] text-[#5f6368]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
       </div>
       <div id="team" className="mt-14 grid scroll-mt-28 overflow-hidden rounded-[32px] border border-[#e8eaed] md:grid-cols-[1.1fr_0.9fr]">
-        <div className="flex min-h-[300px] flex-col justify-between bg-[#e8f0fe] p-8 sm:p-10 lg:p-14">
-          <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#174ea6]">Our founding idea</p>
-          <p className="mt-10 max-w-[820px] text-[30px] font-normal leading-[1.18] tracking-[-0.025em] text-[#202124] sm:text-[40px]">A person should not have to start over every time life asks them to learn something new.</p>
-          <p className="mt-8 text-[14px] text-[#3c4043]">Md Shahid Ali · Founder and CEO</p>
+        <div className="flex min-h-[320px] flex-col bg-[#e8f0fe] p-8 sm:p-10 lg:p-14">
+          <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#174ea6]">Our mission</p>
+          <span aria-hidden="true" className="mt-8 select-none text-[88px] font-medium leading-[0.55] text-[#0b57d0]">"</span>
+          <p className="max-w-[760px] text-[30px] font-normal leading-[1.18] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
+            Build AI intelligence for anyone, anywhere — from student to organization — in India's native languages.
+          </p>
+          <p className="mt-10 text-[14px] text-[#3c4043]">Visionary · the mission we build toward</p>
         </div>
-        <div className="flex min-h-[260px] items-center justify-center bg-[#f8fbff] p-8"><SpotIllustration subject="community" className="h-56 w-56 sm:h-72 sm:w-72" title="People at different stages of learning" /></div>
+        <div className="flex min-h-[260px] items-center justify-center bg-[#f8fbff] p-8"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
       </div>
     </Reveal>
   </section>;
 }
 
 function ImpactSection() {
-  return <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-20">
         <div><Eyebrow>The difference we want to make</Eyebrow><h2 className="mt-5 max-w-[790px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">AI can make the next step clearer for more people.</h2></div>
         <p className="max-w-[430px] text-[17px] leading-[1.65] text-[#5f6368]">The challenge is bigger than answering a question. It is helping people keep their context, understand their choices, and use what they know as life changes.</p>
       </div>
       <div className="mt-12 grid gap-5 lg:grid-cols-3">
-        {IMPACT.map((item) => <article key={item.number} className="flex min-h-[410px] flex-col overflow-hidden rounded-[28px] border border-[#e8eaed] bg-white">
-          <div className="flex h-[170px] items-center justify-between px-7 sm:px-8" style={{ backgroundColor: item.tint }}><span className="self-start pt-7 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: item.accent }}>{item.number} / The challenge</span><SpotIllustration subject={item.subject} className="h-28 w-28 shrink-0 sm:h-32 sm:w-32" /></div>
-          <div className="flex flex-1 flex-col p-7 sm:p-8"><h3 className="text-[25px] font-normal leading-[1.2] tracking-[-0.02em] text-[#202124]">{item.problem}</h3><div className="mt-auto pt-8"><p className="text-[12px] font-medium uppercase tracking-[0.13em]" style={{ color: item.accent }}>What Visionary is building toward</p><p className="mt-3 text-[16px] leading-[1.6] text-[#3c4043]">{item.answer}</p></div></div>
+        {IMPACT.map((item) => <article key={item.number} className="flex min-h-[470px] flex-col rounded-[24px] p-8" style={{ backgroundColor: item.tint }}>
+          <span className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: item.accent }}>{item.number} / The challenge</span>
+          <SpotIllustration subject={item.subject} className="mx-auto my-7 h-40 w-40 sm:my-9 sm:h-44 sm:w-44" />
+          <h3 className="max-w-[360px] text-[25px] font-normal leading-[1.2] tracking-[-0.02em] text-[#202124]">{item.problem}</h3>
+          <div className="mt-auto pt-8">
+            <p className="text-[12px] font-medium uppercase tracking-[0.13em]" style={{ color: item.accent }}>What Visionary is building toward</p>
+            <p className="mt-3 text-[16px] leading-[1.6] text-[#3c4043]">{item.answer}</p>
+          </div>
         </article>)}
       </div>
-      <ArrowLink to="/how-it-works" className="mt-8">See how Visionary works</ArrowLink>
+      <ArrowLink to="/how-it-works" className="mt-10">See how Visionary works</ArrowLink>
     </Reveal>
   </section>;
 }
 
 function RolesSection() {
-  return <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[760px]"><Eyebrow>For every perspective</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Different people. One connected journey.</h2></div><p className="max-w-[360px] text-[16px] leading-[1.65] text-[#5f6368]">Find the experience that fits your work today. Visionary can keep growing with where you go next.</p></div>
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-        {ROLES.map((role, index) => <Link key={role.label} to={role.to} style={{ borderColor: "#e0e3e7" }} className={`group flex flex-col overflow-hidden rounded-[28px] border bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${index < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}>
-          <div className={`overflow-hidden ${index < 2 ? "aspect-[16/9]" : "aspect-[4/3]"}`} style={{ backgroundColor: role.tint }}><img src={role.image} alt="" loading="lazy" style={{ mixBlendMode: "multiply" }} className="h-full w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
-          <div className="flex flex-1 flex-col p-6 sm:p-7"><div className="flex items-center justify-between gap-5"><h3 className="text-[24px] font-normal text-[#202124]">{role.label}</h3><ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div><p className="mt-3 max-w-[420px] text-[15px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
+        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group flex flex-col overflow-hidden rounded-[24px] border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
+          <div className="overflow-hidden" style={{ backgroundColor: role.tint }}><img src={role.image} alt="" loading="lazy" style={{ mixBlendMode: "multiply" }} className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
+          <div className="flex flex-1 flex-col p-6"><div className="flex items-center justify-between gap-5"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
         </Link>)}
       </div>
     </Reveal>
@@ -122,29 +141,33 @@ function RolesSection() {
 }
 
 function LifeJourneySection() {
-  return <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
         <div><Eyebrow>A life in motion</Eyebrow><h2 className="mt-5 max-w-[780px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">One journey. Many beginnings.</h2></div>
         <p className="max-w-[470px] text-[17px] leading-[1.65] text-[#5f6368]">A first lesson, a new skill, a different career, and the chance to guide someone else are not separate stories. Visionary is designed for learning that continues through them all.</p>
       </div>
-      <ol className="relative mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {LIFE_STAGES.map((stage) => <li key={stage.number} className="relative flex min-h-[310px] flex-col overflow-hidden rounded-[28px] border border-[#e8eaed] p-7 sm:p-8" style={{ backgroundColor: stage.tint }}>
-          <div className="flex items-start justify-between gap-3"><span className="text-[13px] font-medium text-[#3c4043]">{stage.number} / 04</span><SpotIllustration subject={stage.subject} className="h-20 w-20 shrink-0" /></div>
-          <div className="mt-auto pt-10"><h3 className="text-[25px] font-normal leading-[1.18] tracking-[-0.02em] text-[#202124]">{stage.title}</h3><p className="mt-3 max-w-[250px] text-[15px] leading-[1.6] text-[#3c4043]">{stage.copy}</p></div>
+      <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[24px] border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.08)]">
+          <img src={stage.photo} alt={stage.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+          <div className="flex flex-1 flex-col p-6">
+            <span className="text-[13px] font-medium tabular-nums text-[#5f6368]">{stage.number} / 04</span>
+            <h3 className="mt-3 text-[22px] font-normal leading-[1.18] tracking-[-0.02em] text-[#202124]">{stage.title}</h3>
+            <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{stage.copy}</p>
+          </div>
         </li>)}
       </ol>
-      <div className="mt-10 flex flex-col gap-5 border-t border-[#dadce0] pt-8 sm:flex-row sm:items-center sm:justify-between"><p className="max-w-[660px] text-[18px] leading-[1.55] text-[#202124]">Wherever someone begins, what they learn should remain useful for what comes next.</p><ArrowLink to="/how-it-works" className="shrink-0">See how it works</ArrowLink></div>
+      <div className="mt-10 flex flex-col gap-5 border-t border-[#e8eaed] pt-8 sm:flex-row sm:items-center sm:justify-between"><p className="max-w-[660px] text-[18px] leading-[1.55] text-[#202124]">Wherever someone begins, what they learn should remain useful for what comes next.</p><ArrowLink to="/how-it-works" className="shrink-0">See how it works</ArrowLink></div>
     </Reveal>
   </section>;
 }
 
 function ExploreSection() {
-  return <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Explore further</Eyebrow><h2 className="mt-5 max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">The work around the product.</h2>
       <div className="mt-12 grid gap-5 sm:grid-cols-2">
-        {EXPLORE.map((item) => <Link key={item.to} to={item.to} style={{ borderColor: "#e0e3e7" }} className="group grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] border bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
+        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
           <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#5f6368]">{item.copy}</p></div><ArrowRight className="mt-7 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
           <div className="flex items-center justify-center" style={{ backgroundColor: item.tint }}><SpotIllustration subject={item.subject} className="h-28 w-28 sm:h-36 sm:w-36" /></div>
         </Link>)}
@@ -158,5 +181,5 @@ function FinalCta() {
 }
 
 export default function AboutUsPage() {
-  return <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}><LandingNav /><main id="main"><AboutUsHero /><MissionSection /><RolesSection /><ImpactSection /><LifeJourneySection /><ExploreSection /><FinalCta /></main><LandingFooter /></div>;
+  return <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}><LandingNav /><main id="main"><AboutUsHero /><MissionSection /><LifeJourneySection /><ImpactSection /><RolesSection /><ExploreSection /><FinalCta /></main><LandingFooter /></div>;
 }

@@ -1,70 +1,103 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowUpRight,
+  ArrowRight,
   Briefcase,
-  ChevronRight,
-  Code2,
-  FlaskConical,
-  GraduationCap,
-  Layers3,
+  Compass,
+  Home,
+  Lightbulb,
+  ListChecks,
   Mail,
   UsersRound,
-  Lightbulb,
+  Code2,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import PageHeading, { Accent } from "@/components/landing/PageHeading";
-import StorySection from "@/components/landing/StorySection";
 import LandingFooter from "@/components/landing/LandingFooter";
-import imgProWorking from "@/assets/pro-face-main-1600w.webp";
-import imgStudentsLearning from "@/assets/student-competitive.webp";
-import imgStudentBuilding from "@/assets/student-vocational.webp";
-import imgStudentGrowing from "@/assets/student-higher.webp";
+import imgHero from "@/assets/pro-face-main-1600w.webp";
+import imgStory from "@/assets/student-competitive.webp";
+import imgStrip1 from "@/assets/problem-revision.webp";
+import imgStrip2 from "@/assets/organization-problem-2-1600w.webp";
+import imgStrip3 from "@/assets/student-vocational.webp";
+import imgStrip4 from "@/assets/student-higher.webp";
+import imgEngineering from "@/assets/professional-problem-1-1600w.webp";
+import imgProduct from "@/assets/organization-problem-1-1600w.webp";
+import imgDesign from "@/assets/problem-practice.webp";
+import imgEvidence from "@/assets/problem-understanding.webp";
+import imgEducation from "@/assets/teacher-problem-2.webp";
+import imgOperations from "@/assets/organization-problem-3-1600w.webp";
 
-const FONT_FAMILY =
-  "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-
-const COLORS = {
-  ink: "#121317",
-  surface: "#ffffff",
-  grey: "#5f6368",
-  lightGrey: "#9aa0a6",
+/* ═══ Tokens — careers-product dialect: Material geometry (8–12px cards,
+   pill inputs/buttons), Material blue for actions and selection only ═══ */
+const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const C = {
+  ink: "#202124",
+  graphite: "#3c4043",
+  slate: "#5f6368",
   mist: "#dadce0",
-  border: "#dadce0",
-  soft: "#ffffff",
-  blue: "#4285F4",
-  white: "#ffffff",
+  line: "#e8eaed",
+  hover: "#f1f3f4",
+  selBg: "#e8f0fe",
+  blue: "#1a73e8",
+  darkblue: "#0b57d0",
 };
 
-/* ═══ CONTROLLERS — reveal motion, same system as the landing pages ═══ */
-function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
+const CAREERS_EMAIL = "careers@visionary.org.in";
+const SECTION_IDS = ["overview", "why", "teams", "hiring", "roles", "contact"];
+
+/* ═══ TEAMS — careers.google.com card grammar: photo, title, one grey line,
+   two blue links. Areas of work, honestly framed (not vacancies). ═══ */
+const AREAS = [
+  { title: "Engineering", photo: imgEngineering, alt: "An engineer working across screens and systems", desc: "Build the application experiences and the systems learners use every day." },
+  { title: "Product and strategy", photo: imgProduct, alt: "Teammates talking through a product decision at a desk", desc: "Turn learner needs and open questions into useful product decisions." },
+  { title: "Design", photo: imgDesign, alt: "A designer shaping a learning exercise on paper", desc: "Make learning tools clear, usable, and more accessible." },
+  { title: "Learning and evaluation", photo: imgEvidence, alt: "A teammate reading closely to evaluate an idea", desc: "Explore learning approaches carefully; distinguish design intent from measured results." },
+  { title: "Teaching and curriculum", photo: imgEducation, alt: "A teacher explaining an idea at a whiteboard", desc: "Bring classroom practice and content expertise into product work." },
+  { title: "Company operations", photo: imgOperations, alt: "Teammates coordinating work in a shared workspace", desc: "Help coordinate the practical work of building an education product." },
+];
+
+const STRIP = [
+  { img: imgStrip1, alt: "A student pausing to think through a problem" },
+  { img: imgStrip2, alt: "A team discussing work in an organization meeting" },
+  { img: imgStrip3, alt: "A learner practising a vocational skill" },
+  { img: imgStrip4, alt: "A student moving forward into higher education" },
+];
+
+/* What to expect — framed honestly for a small team: four steps,
+   no invented process claims. */
+const HIRING_STEPS = [
+  { n: "01", title: "Choose a listed role.", copy: "Read the role carefully and decide whether the work and requirements fit your experience." },
+  { n: "02", title: "Share your work.", copy: "Send a concise introduction with the links or examples requested in the role description." },
+  { n: "03", title: "Work through the role.", copy: "If selected, conversations focus on the work, the team, and the problems the role will help solve." },
+  { n: "04", title: "Decide with context.", copy: "We explain the role, process, and next steps clearly so both sides can make an informed decision." },
+];
+
+/* ═══ Motion — the site's shared reveal grammar, kept subtle ═══ */
+function useRevealOnce() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const hasRevealed = useRef(false);
   useEffect(() => {
     const node = ref.current;
     if (hasRevealed.current) { setVisible(true); return undefined; }
-    if (!node) { setVisible(true); return undefined; }
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasRevealed.current) { setVisible(true); hasRevealed.current = true; observer.disconnect(); }
-      },
-      { threshold: 0, rootMargin }
-    );
+    if (!node || typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !hasRevealed.current) { setVisible(true); hasRevealed.current = true; observer.disconnect(); }
+    }, { rootMargin: "0px 0px -8% 0px" });
     observer.observe(node);
     return () => observer.disconnect();
-  }, [rootMargin]);
+  }, []);
   return { ref, visible };
 }
-const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
+
+function Reveal({ children, className = "" }) {
+  const { ref, visible } = useRevealOnce();
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div ref={ref} className={`${className} transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>
       {children}
     </div>
   );
-});
+}
 
 function scrollToSection(id) {
   const element = document.getElementById(id);
@@ -73,339 +106,357 @@ function scrollToSection(id) {
   window.history.replaceState(null, "", `#${id}`);
 }
 
-function RoleCard({ icon: Icon, eyebrow, title, description }) {
-  return (
-    <div className="rounded-[22px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] sm:p-7" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-        <Icon className="h-[19px] w-[19px]" strokeWidth={1.7} aria-hidden="true" />
-      </div>
-      <div className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.lightGrey }}>{eyebrow}</div>
-      <h3 className="mt-1.5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
-      <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{description}</p>
-    </div>
-  );
+/* ═══ Scroll-spy — the rail's selected state follows the section in view ═══ */
+function useScrollSpy() {
+  const [active, setActive] = useState(SECTION_IDS[0]);
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return undefined;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.id); }),
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+    );
+    SECTION_IDS.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+  return active;
 }
 
-/* What to expect — Google's how-we-hire grammar, framed honestly for a
-   small team: four steps, no invented process claims. */
-const HIRING_STEPS = [
-  { n: "01", title: "Choose a listed role.", copy: "Read the role carefully and decide whether the work and requirements fit your experience." },
-  { n: "02", title: "Share your work.", copy: "Send a concise introduction with the links or examples requested in the role description." },
-  { n: "03", title: "Work through the role.", copy: "If selected, conversations focus on the work, the team, and the problems the role will help solve." },
-  { n: "04", title: "Decide with context.", copy: "We explain the role, process, and next steps clearly so both sides can make an informed decision." },
+/* ═══ LEFT RAIL — careers.google.com chrome: icon above a tiny label, the
+   selected item takes the light-blue pill. ═══ */
+const RAIL_ITEMS = [
+  { id: "overview", icon: Home, label: "Home" },
+  { id: "why", icon: Compass, label: "Why us" },
+  { id: "teams", icon: UsersRound, label: "Teams" },
+  { id: "hiring", icon: ListChecks, label: "How we hire" },
+  { id: "roles", icon: Briefcase, label: "Open roles" },
+  { id: "contact", icon: Mail, label: "Contact" },
 ];
 
-export default function CareersPage() {
-  const storyReveal = useRevealOnce();
+function CareersRail({ active }) {
+  return (
+    <nav aria-label="Careers sections" className="hidden w-[96px] shrink-0 border-r lg:block" style={{ borderColor: C.line }}>
+      <div className="sticky top-16 flex h-[calc(100vh-4rem)] flex-col items-center gap-2 overflow-y-auto px-3.5 pt-6">
+        {RAIL_ITEMS.map((item) => {
+          const Icon = item.icon;
+          const isActive = active === item.id;
+          return (
+            <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
+              onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
+              className={`flex w-[68px] flex-col items-center gap-1.5 rounded-2xl px-1 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
+                isActive ? "bg-[#e8f0fe] text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f1f3f4]"
+              }`}>
+              <Icon className="h-[22px] w-[22px]" strokeWidth={1.8} aria-hidden="true" />
+              <span className="text-[12px] leading-none">{item.label}</span>
+            </a>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
+function MobileRail({ active }) {
+  return (
+    <nav aria-label="Careers sections" className="sticky top-16 z-40 border-b bg-white lg:hidden" style={{ borderColor: C.line }}>
+      <div className="flex gap-1 overflow-x-auto px-3 py-2">
+        {RAIL_ITEMS.map((item) => {
+          const Icon = item.icon;
+          const isActive = active === item.id;
+          return (
+            <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
+              onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
+              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
+                isActive ? "bg-[#e8f0fe] font-medium text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f1f3f4]"
+              }`}>
+              <Icon className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
+              {item.label}
+            </a>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
+/* ═══ HERO SEARCH CARD — Google's overlapping card with the blue action.
+   Honest adaptation: with no vacancies to search, the two fields compose a
+   real introduction (area + email → the careers mailbox). ═══ */
+function HeroCard({ idPrefix = "hero" }) {
+  const [area, setArea] = useState(AREAS[0].title);
+  const [email, setEmail] = useState("");
+
+  const submit = (event) => {
+    event.preventDefault();
+    const subject = encodeURIComponent(`Careers — ${area}`);
+    const body = encodeURIComponent(
+      `Hello Visionary team,\n\nI am interested in ${area}.\n\n${email ? `Reply to: ${email}\n` : ""}\n— sent from the Visionary careers page`,
+    );
+    window.location.href = `mailto:${CAREERS_EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  const field = "h-12 w-full rounded-full border border-[#dadce0] bg-white px-5 text-[15px] text-[#202124] outline-none transition-colors placeholder:text-[#80868b] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/25";
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <form onSubmit={submit} noValidate>
+      <h1 className="max-w-[420px] text-[32px] font-normal leading-[1.2] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
+        Search for your place at Visionary.
+      </h1>
+      <div className="mt-8 space-y-5">
+        <div>
+          <label htmlFor={`${idPrefix}-area`} className="mb-2 block text-[14px] text-[#5f6368]">Interested in</label>
+          <select id={`${idPrefix}-area`} value={area} onChange={(event) => setArea(event.target.value)}
+            className={`${field} appearance-none pr-10`}>
+            {AREAS.map((a) => <option key={a.title} value={a.title}>{a.title}</option>)}
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor={`${idPrefix}-email`} className="mb-2 block text-[14px] text-[#5f6368]">Your email</label>
+          <input id={`${idPrefix}-email`} type="email" autoComplete="email" value={email}
+            onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com"
+            className={field} />
+        </div>
+      </div>
+      <div className="mt-8 flex justify-end">
+        <button type="submit"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
+          Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </button>
+      </div>
+    </form>
+  );
+}
+
+export default function CareersPage() {
+  const active = useScrollSpy();
+
+  return (
+    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
-      <main id="main">
-        <PageHeading page="Careers" eyebrow="Careers"
-          h1={<>Come <Accent>build</Accent> with us.</>}
-          dek="Join the work of making learning clearer.">
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href="#open-roles" onClick={(event) => { event.preventDefault(); scrollToSection("open-roles"); }}
-              className="inline-flex h-12 items-center justify-center rounded-full px-7 text-[15px] font-medium text-white transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
-              style={{ backgroundColor: COLORS.blue }}>
-              View current roles
-            </a>
-            <a href="#application" onClick={(event) => { event.preventDefault(); scrollToSection("application"); }}
-              className="inline-flex h-12 items-center justify-center rounded-full border px-7 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-              style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-              Introduce yourself
-            </a>
-          </div>
-        </PageHeading>
+      <div className="lg:flex">
+        <CareersRail active={active} />
+        <div className="min-w-0 flex-1">
+          <MobileRail active={active} />
+          <main id="main">
 
-        {/* STORY BAND — statement + real photograph (Google 2-up pattern) */}
-        <section ref={storyReveal.ref} className="border-b" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <FadeReveal visible={storyReveal.visible}>
-              <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-                <div className="max-w-[560px]">
-                  <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                    Information alone is not understanding.
-                  </p>
-                  <p className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                    That is the challenge behind Visionary.
-                  </p>
-                  <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                    Visionary is an education product being built around learning, questions, practice, and projects. Our aim is to make it easier to work through a difficult idea and apply what you learn.
-                  </p>
-                </div>
-                <div className="overflow-hidden rounded-[28px] border" style={{ borderColor: COLORS.mist }}>
-                  <img
-                    src={imgProWorking}
-                    alt="A professional at work — the kind of person building Visionary"
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-[16/10] w-full object-cover"
-                  />
+            {/* HERO — full-bleed photograph with the overlapping white card
+                (Google careers home). Desktop: card floats left over the photo.
+                Mobile: card drops below the photo with the same overlap. */}
+            <section id="overview" className="scroll-mt-32">
+              <div className="relative h-[380px] overflow-hidden sm:h-[480px] lg:h-[600px]">
+                <img src={imgHero} alt="A Visionary team member at work"
+                  className="absolute inset-0 h-full w-full object-cover" />
+                <div aria-hidden="true" className="absolute inset-0 hidden bg-gradient-to-r from-black/10 to-transparent lg:block" />
+                {/* Desktop card */}
+                <div className="absolute left-10 top-1/2 hidden w-[520px] -translate-y-1/2 rounded-2xl bg-white p-9 shadow-[0_8px_28px_rgba(0,0,0,0.22)] lg:block xl:left-16 xl:w-[560px]">
+                  <HeroCard idPrefix="hero-desktop" />
                 </div>
               </div>
-            </FadeReveal>
-          </div>
-        </section>
-
-        {/* 01 · WHY THIS WORK — featured photograph + hairline rows */}
-        <StorySection
-          id="why"
-          title="Why this work"
-          featured={{
-            img: imgStudentsLearning,
-            imgAlt: "Students learning together in a classroom",
-            label: "The mission",
-            title: "A purpose built around learning.",
-            dek: "Help make difficult ideas clearer and easier to put into practice.",
-            link: { label: "Learn about Visionary", to: "/about" },
-          }}
-          rows={[
-            { label: "Product", title: "Connect real learning needs to practical product decisions." },
-            { label: "Design", title: "Make complex workflows clearer and more accessible." },
-            { label: "Learning", title: "Bring teaching, curriculum, and learner needs into product work." },
-            { label: "Engineering", title: "Build and improve the experiences behind the product." },
-            { label: "Evidence", title: "Test assumptions and share what is still uncertain." },
-          ]}
-        />
-
-        {/* 02 · WHAT WE ARE BUILDING */}
-        <StorySection
-          id="what-building"
-          title="What we are building"
-          flip
-          featured={{
-            img: imgStudentBuilding,
-            imgAlt: "A learner turning knowledge into something they have made",
-            label: "The product",
-            title: "A learning product that connects understanding and practice.",
-            dek: "Explore how Visionary is being built—and where your work might contribute.",
-          }}
-          rows={[
-            { label: "Understand", title: "Make difficult ideas clearer." },
-            { label: "Practise", title: "Turn knowing into ability." },
-            { label: "Build", title: "Make something from knowledge." },
-            { label: "Explore the work", title: "Learn what Visionary is building and what is available today." },
-          ]}
-        />
-
-        {/* 03 · HOW WE WORK */}
-        <StorySection
-          id="how-work"
-          title="How the team works"
-          featured={{
-            img: imgStudentGrowing,
-            imgAlt: "A learner moving forward — growth guided by evidence",
-            label: "Principles",
-            title: "Work shaped by clear questions.",
-            dek: "We want to understand the learner, test assumptions, and make each decision accountable to the people using the product.",
-          }}
-          rows={[
-            { label: "Start with the learner", title: "Understand the need before choosing a feature." },
-            { label: "Build and review", title: "Make progress visible and improve the work." },
-            { label: "Question assumptions", title: "Keep evidence and uncertainty in view." },
-            { label: "Work across disciplines", title: "Bring different expertise to the same problem." },
-            { label: "Take responsibility", title: "Communicate clearly about decisions and limits." },
-          ]}
-        />
-
-        {/* 04 · WHAT TO EXPECT — numbered hiring journey (how-we-hire pattern) */}
-        <section id="process" className="border-y bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto max-w-[1240px]">
-            <div className="max-w-[680px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em]" style={{ color: COLORS.grey }}>What to expect</p>
-              <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-                Four steps. Real people. No tricks.
-              </h2>
-              <p className="mt-4 text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                We are a small, early-stage team, so the process stays simple and honest at every step.
-              </p>
-            </div>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {HIRING_STEPS.map((s) => (
-                <div key={s.n} className="border-t-2 pt-6" style={{ borderColor: COLORS.blue }}>
-                  <p className="text-[13px] font-medium tabular-nums" style={{ color: COLORS.blue }}>{s.n}</p>
-                  <h3 className="mt-3 text-[19px] font-normal leading-[1.35]" style={{ color: COLORS.ink }}>{s.title}</h3>
-                  <p className="mt-2.5 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{s.copy}</p>
+              {/* Mobile card */}
+              <div className="relative z-10 mx-auto -mt-40 max-w-[680px] px-4 sm:px-6 lg:hidden">
+                <div className="rounded-2xl bg-white p-6 shadow-[0_8px_28px_rgba(0,0,0,0.18)] sm:p-8">
+                  <HeroCard idPrefix="hero-mobile" />
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 05 · WHERE YOU CAN CONTRIBUTE */}
-        <section id="where-contribute" className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-[1240px]">
-            <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-              Where you can contribute
-            </h2>
-            <p className="mt-4 max-w-[680px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-              These are areas of work, not advertised vacancies or a promise of hiring. Current openings, if any, are listed below.
-            </p>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              <RoleCard icon={Code2} eyebrow="Engineering" title="Product engineering" description="Work on application experiences and the systems that support them." />
-              <RoleCard icon={Lightbulb} eyebrow="Product" title="Product and strategy" description="Turn learner needs and open questions into useful product decisions." />
-              <RoleCard icon={Layers3} eyebrow="Design" title="Product and experience design" description="Make learning tools clear, usable, and more accessible." />
-              <RoleCard icon={FlaskConical} eyebrow="Evidence" title="Learning and evaluation" description="Explore learning approaches carefully; distinguish design intent from measured results." />
-              <RoleCard icon={GraduationCap} eyebrow="Education" title="Teaching and curriculum" description="Bring classroom practice and content expertise into product work." />
-              <RoleCard icon={UsersRound} eyebrow="Operations" title="Company operations" description="Help coordinate the practical work of building an education product." />
-            </div>
-          </div>
-        </section>
-
-        {/* 06 · OPEN ROLES */}
-        <section id="open-roles" className="border-t px-6 py-20 sm:px-8 lg:px-10 lg:py-28" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto max-w-[1240px]">
-            <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-              Open roles
-            </h2>
-            <div className="mt-10 max-w-[880px] rounded-[24px] border bg-white p-7 sm:p-10" style={{ borderColor: COLORS.mist }}>
-              <div className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-                <Briefcase className="h-5 w-5" strokeWidth={1.7} aria-hidden="true" />
               </div>
-              <h3 className="mt-6 text-[25px] font-normal tracking-[-0.02em]" style={{ color: COLORS.ink }}>No public roles listed right now.</h3>
-              <p className="mt-3 max-w-[620px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                There are no public vacancies listed at the moment. This page is the source for open roles; you can still email a general introduction below, but sending one is not an application to a listed vacancy and does not guarantee a response.
-              </p>
-              <a href="#application" onClick={(event) => { event.preventDefault(); scrollToSection("application"); }}
-                className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{ color: COLORS.blue }}>
-                Introduce yourself by email
-                <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </section>
+            </section>
 
-        {/* 07 · GENERAL APPLICATION */}
-        <section id="application" className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-[1240px]">
-            <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-              General application
-            </h2>
-            <div className="mt-10 max-w-[880px] rounded-[24px] border bg-white p-7 shadow-[0_1px_6px_rgba(32,33,36,0.06)] sm:p-10" style={{ borderColor: COLORS.mist }}>
-              <div className="flex items-start gap-4">
-                <Mail className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.6} style={{ color: COLORS.blue }} aria-hidden="true" />
+            {/* PHOTO STRIP — the "life here" cards row under the hero */}
+            <section aria-label="Life at Visionary" className="mx-auto max-w-[1240px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+              <Reveal>
+                <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
+                  {STRIP.map((photo) => (
+                    <div key={photo.alt} className="overflow-hidden rounded-xl">
+                      <img src={photo.img} alt={photo.alt} loading="lazy" decoding="async"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03] motion-reduce:transform-none" />
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </section>
+
+            {/* WHY US — centered header (Teams-page pattern) + three cards */}
+            <section id="why" className="scroll-mt-32 px-4 pb-20 pt-6 sm:px-6 lg:px-10 lg:pb-28">
+              <Reveal className="mx-auto max-w-[1240px]">
+                <div className="mx-auto max-w-[760px] text-center">
+                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                    Why Visionary
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+                    We are a small team solving a real learning problem: helping someone turn confusion into understanding.
+                  </p>
+                </div>
+                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {[
+                    { icon: Code2, title: "Meaningful problems", copy: "Work tied to helping learners get through difficult ideas and apply what they learn." },
+                    { icon: Lightbulb, title: "Early-stage impact", copy: "Your decisions ship to real learners quickly, with visible effect." },
+                    { icon: UsersRound, title: "Learning-centered", copy: "Product, design, and engineering work shaped by teaching and curriculum expertise." },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <article key={item.title} className="rounded-xl border border-[#dadce0] bg-white p-7 transition-shadow duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.15)]">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
+                          <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                        </div>
+                        <h3 className="mt-5 text-[19px] font-medium leading-[1.3] text-[#202124]">{item.title}</h3>
+                        <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">{item.copy}</p>
+                      </article>
+                    );
+                  })}
+                </div>
+              </Reveal>
+            </section>
+
+            {/* TEAMS — the careers.google.com photo-card grid */}
+            <section id="teams" className="scroll-mt-32 px-4 pb-20 sm:px-6 lg:px-10 lg:pb-28">
+              <Reveal className="mx-auto max-w-[1240px]">
+                <div className="mx-auto max-w-[760px] text-center">
+                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                    Teams
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-[640px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+                    Together, we build a product that helps people keep what they learn. These are areas of work, not advertised vacancies — current openings, if any, are listed below.
+                  </p>
+                </div>
+                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {AREAS.map((area) => (
+                    <article key={area.title} className="flex h-full flex-col overflow-hidden rounded-lg border border-[#dadce0] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                      <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
+                      <div className="flex flex-1 flex-col p-6">
+                        <h3 className="text-[21px] font-normal leading-[1.3] text-[#202124]">{area.title}</h3>
+                        <p className="mt-2 text-[15px] leading-[1.6] text-[#5f6368]">{area.desc}</p>
+                        <div className="mt-auto flex items-center gap-6 pt-5">
+                          <Link to="/about" className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                            Learn more
+                          </Link>
+                          <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Careers — ${area.title}`)}`}
+                            className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                            Introduce yourself
+                          </a>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </Reveal>
+            </section>
+            {/* HOW WE HIRE — the story-page pattern: full-column photograph,
+                centered caps eyebrow, huge centered headline, article body */}
+            <section id="hiring" className="scroll-mt-32 bg-[#f8f9fa] px-4 pb-24 pt-14 sm:px-6 lg:px-10 lg:pb-32">
+              <Reveal className="mx-auto max-w-[1240px]">
+                <div className="overflow-hidden">
+                  <img src={imgStory} alt="A student writing through a problem at her desk"
+                    loading="lazy" decoding="async" className="aspect-[16/8] w-full object-cover" />
+                </div>
+                <div className="mx-auto max-w-[820px] text-center">
+                  <p className="mt-14 text-[13px] font-medium uppercase tracking-[0.18em] text-[#5f6368]">How we hire</p>
+                  <h2 className="mt-5 text-[38px] font-normal leading-[1.1] tracking-[-0.035em] text-[#202124] sm:text-[52px]">
+                    How to prepare for our hiring process
+                  </h2>
+                  <p className="mx-auto mt-6 max-w-[640px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
+                    We are a small, early-stage team, so the process stays simple and honest at every step. Four steps, real people, no tricks.
+                  </p>
+                </div>
+                <ol className="mx-auto mt-12 max-w-[760px] border-t border-[#dadce0]">
+                  {HIRING_STEPS.map((step) => (
+                    <li key={step.n} className="grid grid-cols-[48px_1fr] gap-4 border-b border-[#dadce0] py-6 sm:grid-cols-[64px_240px_1fr] sm:gap-6">
+                      <span className="text-[14px] font-medium tabular-nums text-[#1a73e8]">{step.n}</span>
+                      <h3 className="text-[19px] font-normal leading-[1.35] text-[#202124]">{step.title}</h3>
+                      <p className="col-start-2 text-[15px] leading-[1.65] text-[#5f6368] sm:col-start-3">{step.copy}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Reveal>
+            </section>
+
+            {/* OPEN ROLES — the jobs hub, honestly empty */}
+            <section id="roles" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+              <Reveal className="mx-auto max-w-[1240px]">
+                <div className="mx-auto max-w-[760px] text-center">
+                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                    Open roles
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+                    This page is the single source for openings. When a role opens, it will be listed here first.
+                  </p>
+                </div>
+                <div className="mx-auto mt-12 max-w-[760px] rounded-xl border border-[#dadce0] bg-white p-8 sm:p-10">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
+                    <Briefcase className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-6 text-[24px] font-normal leading-[1.3] text-[#202124]">No public roles listed right now.</h3>
+                  <p className="mt-3 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368]">
+                    There are no public vacancies at the moment. You can still introduce yourself — the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center gap-6">
+                    <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
+                      className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                      Introduce yourself by email
+                    </a>
+                    <a href="#hiring" onClick={(event) => { event.preventDefault(); scrollToSection("hiring"); }}
+                      className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                      How our process works
+                    </a>
+                  </div>
+                </div>
+              </Reveal>
+            </section>
+
+            {/* CONTACT — fair process, accessibility, and how to reach us */}
+            <section id="contact" className="scroll-mt-32 border-t border-[#dadce0] px-4 py-20 sm:px-6 lg:px-10 lg:py-24">
+              <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
                 <div>
-                  <div className="text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.lightGrey }}>General applications</div>
-                  <h3 className="mt-1.5 text-[21px] font-normal" style={{ color: COLORS.ink }}>Start with the work.</h3>
-                  <p className="mt-3 max-w-[560px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                    Send a general introduction by email. You may include a short note about the work you are interested in and links or attachments that help explain your experience. Please do not send passwords, financial details, identity documents, or other sensitive information. This mailbox is not a formal job application portal, and response times are not specified.
+                  <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#202124] sm:text-[38px]">
+                    A fair process starts with clarity.
+                  </h2>
+                </div>
+                <div className="space-y-4 text-[15px] leading-[1.65] text-[#5f6368]">
+                  <p>
+                    We want career information and conversations with our team to be clear and respectful. This page does not describe a formal interview process or published accommodation program.
                   </p>
-                  <a href="mailto:careers@visionary.org.in?subject=General%20application%20%E2%80%94%20Visionary"
-                    className="mt-6 inline-flex items-center gap-2 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                    style={{ color: COLORS.blue }}>
-                    careers@visionary.org.in
-                    <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
+                  <p>
+                    If you need an accessible format or an adjustment to a hiring conversation, email{" "}
+                    <a className="rounded-sm font-medium text-[#1a73e8] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                      href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request — Careers")}`}>
+                      careers@visionary.org.in
+                    </a>{" "}
+                    with the adjustment you need. Please avoid including medical records or other sensitive personal information; we cannot promise that a particular accommodation is available.
+                  </p>
+                  <p>
+                    For accessibility information about the product, visit{" "}
+                    <Link className="rounded-sm font-medium text-[#1a73e8] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" to="/accessibility">
+                      Visionary accessibility
+                    </Link>.
+                  </p>
+                </div>
+              </Reveal>
+            </section>
+
+            {/* CLOSING CTA */}
+            <section className="border-t border-[#dadce0] px-4 py-24 text-center sm:px-6 lg:px-10 lg:py-32">
+              <Reveal className="mx-auto max-w-[840px]">
+                <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                  What you learn here should stay with you.
+                </h2>
+                <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
+                  Understand deeply, build from what you know, carry the learning forward.
+                </p>
+                <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
+                    Email the careers team <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </a>
+                  <Link to="/about" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-7 text-[15px] text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                    About Visionary
+                  </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </Reveal>
+            </section>
 
-        {/* 08 · WORKING AT VISIONARY — cards (Google's "Working at Google" pattern) */}
-        <section id="working-at" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto max-w-[1240px]">
-            <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
-              Working at Visionary
-            </h2>
-            <p className="mt-4 max-w-[680px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-              Learn about Visionary's approach to research and follow the published information about our work.
-            </p>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              <Link to="/research" className="group rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
-                <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-                  <UsersRound className="h-[19px] w-[19px]" strokeWidth={1.7} aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Our approach to research</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>See the learning questions Visionary is exploring.</p>
-                <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
-                  Read about our research
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-              </Link>
-              <Link to="/accessibility" className="group rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
-                <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-                  <Code2 className="h-[19px] w-[19px]" strokeWidth={1.7} aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Accessibility at Visionary</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>See how accessibility shapes the product and how to request support during a hiring conversation.</p>
-                <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
-                  Explore accessibility
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-              </Link>
-              <a href="mailto:careers@visionary.org.in?subject=General%20introduction%20%E2%80%94%20Visionary" className="group rounded-[16px] border bg-white p-7 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
-                <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-                  <Mail className="h-[19px] w-[19px]" strokeWidth={1.7} aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-[18px] font-medium" style={{ color: COLORS.ink }}>Make a general introduction</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>Share a note about your interests. It is not an application to a listed vacancy.</p>
-                <span className="mt-5 inline-flex items-center gap-1 text-[14px] font-medium" style={{ color: COLORS.blue }}>
-                  Email the careers team
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* 09 · ACCESSIBILITY AND INCLUSIVE HIRING */}
-        <section id="inclusive-hiring" className="border-y px-6 py-16 sm:px-8 lg:px-10 lg:py-20" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
-            <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Accessibility and inclusion</p>
-              <h2 className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[34px]" style={{ color: COLORS.ink }}>
-                A fair process starts with clarity.
-              </h2>
-            </div>
-            <div className="space-y-4 text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
-              <p>
-                We want career information and conversations with our team to be clear and respectful. This page does not describe a formal interview process or published accommodation program.
-              </p>
-              <p>
-                If you need an accessible format or an adjustment to a hiring conversation, email <a className="font-medium underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }} href="mailto:careers@visionary.org.in?subject=Accessibility%20request%20%E2%80%94%20Careers">careers@visionary.org.in</a> with the adjustment you need. Please avoid including medical records or other sensitive personal information; we cannot promise that a particular accommodation is available.
-              </p>
-              <p>
-                For accessibility information about the product, visit <Link className="font-medium underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }} to="/accessibility">Visionary accessibility</Link>.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* CLOSING CTA */}
-        <section className="border-t px-6 py-24 sm:px-8 lg:px-10 lg:py-32" style={{ borderColor: COLORS.mist }}>
-          <div className="mx-auto max-w-[1240px]">
-            <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Careers</div>
-            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
-              What you learn here
-              <br />
-              <span style={{ color: COLORS.ink }}>should stay with you.</span>
-            </h2>
-            <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-              Understand deeply, build from what you know, carry the learning forward.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href="mailto:careers@visionary.org.in"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] font-medium text-white transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]"
-                style={{ backgroundColor: COLORS.blue }}>
-                Email the careers team <ArrowUpRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-              </a>
-              <Link to="/about" className="inline-flex h-12 items-center justify-center rounded-full border px-6 text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                About Visionary
-              </Link>
-              <Link to="/contact" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.grey }}>
-                Other ways to contact us
-                <ChevronRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
-      <LandingFooter variant="quiet" />
+          </main>
+          <LandingFooter variant="quiet" />
+        </div>
+      </div>
     </div>
   );
 }
+

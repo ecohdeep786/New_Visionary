@@ -16,6 +16,11 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]){
   color:var(--v-text)
 }
 .workspace-shell{background:#ffffff}
+.workspace-shell.stage-foundational{font-size:17px}
+.workspace-shell.stage-foundational .v-button{min-height:46px;font-size:15px}
+.workspace-shell.stage-foundational .v-home-row-title{font-size:17px}
+.workspace-shell.stage-foundational .v-muted{font-size:15px;line-height:1.7}
+.workspace-shell.stage-foundational .workspace-bottom-nav{min-height:72px}
 .workspace-surface{min-height:100%;border:1px solid #dadce0;border-radius:24px;background:#ffffff}
 .workspace-presence-anchor{position:fixed;z-index:35;bottom:16px;left:16px;width:56px;min-height:56px;display:grid;place-items:center;pointer-events:none}
 .workspace-presence-anchor.is-expanded{left:104px}

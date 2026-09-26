@@ -8,6 +8,7 @@ import StreamTab from "@/components/dashboard/teacher/tabs/StreamTab";
 import ClassworkTab from "@/components/dashboard/teacher/tabs/ClassworkTab";
 import PeopleTab from "@/components/dashboard/teacher/tabs/PeopleTab";
 import InsightsTab from "@/components/dashboard/teacher/tabs/InsightsTab";
+import ClassPromotion from "@/components/dashboard/ClassPromotion";
 import CommunityTab from "@/components/dashboard/CommunityTab";
 
 const TABS = [
@@ -92,6 +93,7 @@ export default function ClassDetail() {
         </div>
       </div>
       {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
+      <ClassPromotion classId={classId} accent={accent} />
 
       <div className="flex items-center gap-1 border-b border-[#dadce0]/60 overflow-x-auto">
         {TABS.map((t) => {

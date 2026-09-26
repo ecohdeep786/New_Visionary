@@ -69,7 +69,7 @@ export default function AudioPresence() {
     try {
       if (!conversationRef.current) conversationRef.current = newConversation(request).id;
       const response = await sendMentorTurn({ ...request }, conversationRef.current, transcript, 'voice');
-      if (response.text) speak(response.text, request.locale, undefined, presentationRef.current);
+      if (response.text) speak(response.text, request.locale);
     } catch (error) {
       // Recoverable, never silent: the spoken words stay as a draft in the conversation
       // and the failure is announced; the transcript is not lost.
@@ -91,7 +91,7 @@ export default function AudioPresence() {
     setNotice(line);
     try { emitInteractionEvent(request, { app: 'ASK', action: 'start', inputType: 'system', language: request.locale }); } catch { /* telemetry is best-effort */ }
     const clear = () => setNotice(current => (current === line ? '' : current));
-    if (effective && getVoiceCapabilities().synthesis) speak(line, request.locale, undefined, presentationRef.current);
+    if (effective && getVoiceCapabilities().synthesis) speak(line, request.locale);
     setTimeout(clear, 4500);
   }
 

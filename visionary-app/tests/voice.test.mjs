@@ -159,19 +159,3 @@ test('a crisis spoken aloud gets the same safety hard-stop as typed text', async
  assert.equal(getVoiceMode(), 'off');
 });
 
-test('Vision Boy and Vision Girl presentations pick different supported voices', () => {
- class MockUtterance { constructor(text) { this.text = text; } }
- const synthesis = new MockSynthesis();
- synthesis.voices = [{ lang: 'en-IN', name: 'Ravi' }, { lang: 'en-IN', name: 'Heera' }, { lang: 'hi-IN', name: 'Madhur' }];
- configureSpeechRuntime({ SpeechSynthesisUtterance: MockUtterance, speechSynthesis: synthesis });
- speak('Hello', 'en', undefined, 'girl');
- assert.equal(synthesis.utterances.at(-1).voice.name, 'Heera');
- speak('Hello', 'en', undefined, 'boy');
- assert.equal(synthesis.utterances.at(-1).voice.name, 'Ravi');
- // Honest fallback: without any gendered voice for the language, the language default
- // is used and nothing claims a presentation it cannot honor.
- synthesis.voices = [{ lang: 'en-IN', name: 'Generic' }];
- speak('Hello', 'en', undefined, 'girl');
- assert.equal(synthesis.utterances.at(-1).voice.name, 'Generic');
- configureSpeechRuntime(null);
-});
