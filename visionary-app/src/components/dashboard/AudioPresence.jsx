@@ -283,12 +283,6 @@ export default function AudioPresence() {
         context.restore();
       }
 
-      // The working-surface rectangle is the AGI's voice visualizer: its border glow
-      // follows the live state (bright while listening/talking with the microphone
-      // level, soft when ready, quiet when audio is off).
-      const ringStrength = dim * (listening ? 0.55 + levelRef.current * 0.45 : ready ? 0.3 : 0.14);
-      document.documentElement.style.setProperty('--agi-ring', ringStrength.toFixed(3));
-
       frameRef.current = requestAnimationFrame(draw);
     };
     frameRef.current = requestAnimationFrame(draw);
