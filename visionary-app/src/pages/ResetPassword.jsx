@@ -38,16 +38,16 @@ export default function ResetPassword() {
         title="Invalid reset link"
         supportingText="This password reset link is missing or invalid."
         footer={
-          <Link to="/forgot-password" className="flex items-center gap-1 text-[#1a73e8] font-medium hover:underline">
+          <Link to="/forgot-password" className="flex items-center gap-1 text-[#4285F4] font-medium hover:underline">
             <ArrowLeft className="w-3 h-3" /> Request a new link
           </Link>
         }
       >
         <div className="flex flex-col items-center gap-6 text-center">
-          <div className="w-14 h-14 rounded-full bg-amber-50 flex items-center justify-center">
-            <AlertTriangle className="w-7 h-7 text-amber-600" />
+          <div className="w-14 h-14 rounded-full bg-[#ffffff] flex items-center justify-center">
+            <AlertTriangle className="w-7 h-7 text-[#5f6368]" />
           </div>
-          <p className="text-sm text-[#3c4043] leading-relaxed max-w-sm">
+          <p className="text-sm text-[#5f6368] leading-relaxed max-w-sm">
             The link you used appears to be incomplete or has expired. Please request a new password reset email.
           </p>
           <Link to="/forgot-password" className={primaryBtnAutoClass}>Request new link</Link>
@@ -61,14 +61,14 @@ export default function ResetPassword() {
       title="Set a new password"
       supportingText="Create a strong password for your account."
       footer={
-        <Link to="/login" className="flex items-center gap-1 text-[#1a73e8] font-medium hover:underline">
+        <Link to="/login" className="flex items-center gap-1 text-[#4285F4] font-medium hover:underline">
           <ArrowLeft className="w-3 h-3" /> Back to sign in
         </Link>
       }
     >
       <div className="flex flex-col gap-6">
         <BackButton to="/login" />
-        {error && <div className="p-3 rounded-lg bg-red-50 text-[#ea4335] text-sm">{error}</div>}
+        {error && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <GooglePasswordField
             label="New password"

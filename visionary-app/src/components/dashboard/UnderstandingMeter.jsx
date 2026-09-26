@@ -6,7 +6,7 @@ import { Database, ArrowRight } from "lucide-react";
  * Treats longitudinal learning memory like Google Drive storage:
  * users see how much "understanding" they've accumulated and upgrade when full.
  */
-export default function UnderstandingMeter({ used = 0, total = 100, accent = "#1a73e8", compact = false }) {
+export default function UnderstandingMeter({ used = 0, total = 100, accent = "#4285F4", compact = false }) {
   const pct = Math.min(100, Math.round((used / total) * 100));
   const remaining = Math.max(0, total - used);
   const isNearFull = pct >= 85;
@@ -15,10 +15,10 @@ export default function UnderstandingMeter({ used = 0, total = 100, accent = "#1
     return (
       <div className="px-4 py-3">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-[#202124]">Visionary Understanding</span>
+          <span className="text-xs font-medium text-[#121317]">Visionary Understanding</span>
           <span className="text-xs text-[#5f6368]">{used}/{total} GB</span>
         </div>
-        <div className="h-1.5 bg-[#f1f3f4] rounded-full overflow-hidden">
+        <div className="h-1.5 bg-[#dadce0] rounded-full overflow-hidden">
           <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: isNearFull ? "#ea4335" : accent }} />
         </div>
         {isNearFull && (
@@ -37,14 +37,14 @@ export default function UnderstandingMeter({ used = 0, total = 100, accent = "#1
           <Database className="w-5 h-5" style={{ color: accent }} />
         </div>
         <div>
-          <h2 className="text-[17px] font-medium text-[#202124]">Your Visionary Understanding</h2>
+          <h2 className="text-[17px] font-medium text-[#121317]">Your Visionary Understanding</h2>
           <p className="text-sm text-[#5f6368]">A living map of everything you've learned</p>
         </div>
       </div>
 
       <div className="flex items-baseline justify-between mb-3">
         <div>
-          <span className="text-3xl font-medium text-[#202124]">{used}</span>
+          <span className="text-3xl font-medium text-[#121317]">{used}</span>
           <span className="text-sm text-[#5f6368] ml-1">/ {total} GB used</span>
         </div>
         <span className="text-sm font-medium" style={{ color: isNearFull ? "#ea4335" : accent }}>
@@ -52,7 +52,7 @@ export default function UnderstandingMeter({ used = 0, total = 100, accent = "#1
         </span>
       </div>
 
-      <div className="h-2 bg-[#f1f3f4] rounded-full overflow-hidden mb-6">
+      <div className="h-2 bg-[#dadce0] rounded-full overflow-hidden mb-6">
         <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, backgroundColor: isNearFull ? "#ea4335" : accent }} />
       </div>
 

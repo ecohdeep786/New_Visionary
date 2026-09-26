@@ -1,0 +1,395 @@
+// src/pages/landing/PrivacyPage.jsx
+import { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
+import {
+  Database,
+  Target,
+  Share2,
+  Settings2,
+  Mail,
+  Eye,
+  ShieldCheck,
+  Cookie,
+  Accessibility,
+  FileText,
+  ArrowRight,
+  ChevronDown,
+  Scale
+} from "lucide-react";
+import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
+import LandingFooter from "@/components/landing/LandingFooter";
+import SpotIllustration from "@/components/landing/SpotIllustration";
+import { LEGAL_META, GRIEVANCE_OFFICER } from "@/data/legalMeta";
+import { jsx, jsxs } from "react/jsx-runtime";
+var COLORS = {
+  ink: "#121317",
+  grey: "#5f6368",
+  lightGrey: "#9AA0A6",
+  mist: "#dadce0",
+  border: "#e5e7eb",
+  soft: "#f8f9fa",
+  canvas: "#f7f8fa",
+  blue: "#4285F4",
+  white: "#ffffff",
+  graphite: "#5f6368"
+};
+var FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+var AT_A_GLANCE = [
+  { to: "#what-we-collect", label: "What we collect", Icon: Database },
+  { to: "#purpose", label: "Why we use it", Icon: Target },
+  { to: "#sharing", label: "What we share", Icon: Share2 },
+  { to: "#your-controls", label: "Your controls", Icon: Settings2 }
+];
+var SECTIONS = [
+  { id: "what-we-collect", number: "01", title: "What we collect" },
+  { id: "purpose", number: "02", title: "Why we use it" },
+  { id: "sharing", number: "03", title: "What we share" },
+  { id: "your-controls", number: "04", title: "Your controls" },
+  { id: "security", number: "05", title: "Security" },
+  { id: "retention", number: "06", title: "Data retention" },
+  { id: "younger-learners", number: "07", title: "Younger learners" },
+  { id: "explainers", number: "08", title: "Privacy, clearly explained" },
+  { id: "grievance-officer", number: "09", title: "Grievance officer" }
+];
+var FAQ = [
+  {
+    q: "What information does Visionary collect exactly?",
+    a: "Depending on how you use Visionary, this can include account details, the questions and content you provide, learning activity, progress, projects, and information needed to provide the service."
+  },
+  {
+    q: "Why does Visionary use personal information?",
+    a: "To provide the service, keep your learning connected across sessions, maintain and improve the service, protect people and the service from misuse, and communicate with you about what matters."
+  },
+  {
+    q: "Who can see my learning information?",
+    a: "Your account's role decides it. Students see their own work; teachers see the classes they teach; parents see what their role allows; institutions see aggregated, role-appropriate views. It is never public."
+  },
+  {
+    q: "How long is information retained?",
+    a: "Learning records are kept while your account is active. When information is no longer needed, it is deleted or anonymized. You can request deletion at any time."
+  },
+  {
+    q: "Can I delete my account?",
+    a: "Yes. Request deletion through the grievance officer below. We will confirm what will be removed, complete the deletion, and tell you what was done."
+  }
+];
+function SectionHeading({ number, title }) {
+  return /* @__PURE__ */ jsxs("div", { className: "mb-6", children: [
+    /* @__PURE__ */ jsx("div", { className: "mb-3 text-[12px] font-medium uppercase tracking-[0.12em]", style: { color: COLORS.grey }, children: number }),
+    /* @__PURE__ */ jsx("h2", { className: "text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]", style: { color: COLORS.ink }, children: title })
+  ] });
+}
+function Paragraph({ children }) {
+  return /* @__PURE__ */ jsx("p", { className: "max-w-[760px] text-[16px] leading-[1.78]", style: { color: COLORS.grey }, children });
+}
+function IconTile({ Icon }) {
+  return /* @__PURE__ */ jsx("span", { className: "flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white", style: { borderColor: COLORS.mist, color: COLORS.blue }, children: /* @__PURE__ */ jsx(Icon, { className: "h-5 w-5", strokeWidth: 1.7 }) });
+}
+function LearnMoreRow({ to, label }) {
+  return /* @__PURE__ */ jsxs(Link, { to, className: "mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.blue }, children: [
+    label,
+    /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
+  ] });
+}
+function PrivacyPage() {
+  const [openFaq, setOpenFaq] = useState(null);
+  const [activeId, setActiveId] = useState("what-we-collect");
+  const [showMobileContents, setShowMobileContents] = useState(false);
+  const activeSection = useMemo(
+    () => SECTIONS.find((section) => section.id === activeId),
+    [activeId]
+  );
+  useEffect(() => {
+    const observers = [];
+    SECTIONS.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (!element) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) setActiveId(section.id);
+          });
+        },
+        { rootMargin: "-18% 0px -65% 0px", threshold: 0.01 }
+      );
+      observer.observe(element);
+      observers.push(observer);
+    });
+    return () => observers.forEach((observer) => observer.disconnect());
+  }, []);
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && SECTIONS.some((section) => section.id === hash)) {
+      requestAnimationFrame(() => {
+        const element = document.getElementById(hash);
+        element?.scrollIntoView({ behavior: "auto", block: "start" });
+        setActiveId(hash);
+      });
+    }
+  }, []);
+  function scrollToSection(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `#${id}`);
+  }
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-white", style: { fontFamily: FONT_FAMILY }, children: [
+    /* @__PURE__ */ jsx(LandingNav, {}),
+    /* @__PURE__ */ jsx(Breadcrumb, { page: "Privacy policy" }),
+    /* @__PURE__ */ jsxs("main", { id: "main", children: [
+      /* @__PURE__ */ jsx("section", { className: "border-b px-6 pb-14 pt-24 sm:pt-28 sm:px-8 sm:pb-16 lg:pt-32 lg:px-10", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full max-w-[1240px]", children: [
+        /* @__PURE__ */ jsxs("div", { className: "mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]", style: { color: COLORS.grey }, children: [
+          /* @__PURE__ */ jsx(Scale, { className: "h-4 w-4", strokeWidth: 1.7 }),
+          "Privacy"
+        ] }),
+        /* @__PURE__ */ jsx("h1", { className: "max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]", style: { color: COLORS.ink }, children: "Your data, your control." }),
+        /* @__PURE__ */ jsx("p", { className: "mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[640px] text-[18px] leading-[1.6] sm:text-[20px]", style: { color: COLORS.grey }, children: "See what we keep. Change or remove it anytime." }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-8 flex flex-wrap items-start gap-6", children: [
+          /* @__PURE__ */ jsxs("a", { href: "#your-controls", className: "inline-flex items-center gap-2.5 rounded-[10px] bg-[#4285F4] px-5 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[#1a73e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2", children: [
+            /* @__PURE__ */ jsx(ShieldCheck, { className: "h-4 w-4", strokeWidth: 1.8 }),
+            "Take Privacy Checkup"
+          ] }),
+          /* @__PURE__ */ jsxs("p", { className: "mt-[3px] text-[13px] tracking-[0.24px]", style: { color: COLORS.lightGrey }, children: [
+            "Last updated: ",
+            /* @__PURE__ */ jsx("strong", { style: { color: COLORS.ink }, children: LEGAL_META.privacy.lastUpdated })
+          ] })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsx("section", { className: "px-6 pt-12 pb-4 sm:px-8 lg:px-10", "aria-label": "At a glance", children: /* @__PURE__ */ jsx("div", { className: "mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4", children: AT_A_GLANCE.map(({ to, label, Icon }) => /* @__PURE__ */ jsxs("a", { href: to, className: "group relative flex min-h-[132px] flex-col rounded-[16px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]", style: { borderColor: COLORS.mist }, children: [
+        /* @__PURE__ */ jsx("span", { className: "text-[15px] font-medium leading-[1.4] text-[#121317]", children: label }),
+        /* @__PURE__ */ jsx(ArrowRight, { className: "absolute right-5 top-6 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5", strokeWidth: 1.7, style: { color: COLORS.lightGrey } }),
+        /* @__PURE__ */ jsx("span", { className: "mt-auto flex h-10 w-10 items-center justify-center rounded-[12px] border bg-white", style: { borderColor: COLORS.mist, color: COLORS.blue }, children: /* @__PURE__ */ jsx(Icon, { className: "h-4 w-4", strokeWidth: 1.7 }) })
+      ] }, to)) }) }),
+      /* @__PURE__ */ jsx("section", { className: "px-6 pt-10 sm:px-8 lg:px-10", "aria-label": "On this page", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto grid w-full max-w-[1240px] gap-12 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-20", children: [
+        /* @__PURE__ */ jsx("aside", { className: "hidden lg:block", children: /* @__PURE__ */ jsxs("div", { className: "sticky top-24", children: [
+          /* @__PURE__ */ jsx("div", { className: "mb-4 text-[12px] font-medium uppercase tracking-[0.12em]", style: { color: COLORS.grey }, children: "On this page" }),
+          /* @__PURE__ */ jsx("nav", { "aria-label": "Privacy sections", children: /* @__PURE__ */ jsx("div", { className: "space-y-1", children: SECTIONS.map((section) => {
+            const active = activeId === section.id;
+            return /* @__PURE__ */ jsxs(
+              "button",
+              {
+                type: "button",
+                onClick: () => scrollToSection(section.id),
+                className: "group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
+                style: { backgroundColor: active ? COLORS.canvas : "transparent" },
+                children: [
+                  /* @__PURE__ */ jsx("span", { className: "mt-0.5 w-6 text-[11px] font-medium", style: { color: active ? COLORS.blue : COLORS.grey }, children: section.number }),
+                  /* @__PURE__ */ jsx("span", { className: "text-[13px] leading-[1.45]", style: { color: active ? COLORS.ink : COLORS.graphite }, children: section.title })
+                ]
+              },
+              section.id
+            );
+          }) }) }),
+          /* @__PURE__ */ jsx("div", { className: "mt-8 border-t pt-6", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3", children: [
+            /* @__PURE__ */ jsx(ShieldCheck, { className: "mt-0.5 h-5 w-5 shrink-0", strokeWidth: 1.7, style: { color: COLORS.blue } }),
+            /* @__PURE__ */ jsx("p", { className: "text-[13px] leading-[1.6]", style: { color: COLORS.grey }, children: "For safety and security details, see the Safety and Security pages." })
+          ] }) })
+        ] }) }),
+        /* @__PURE__ */ jsxs("div", { className: "lg:hidden", children: [
+          /* @__PURE__ */ jsxs(
+            "button",
+            {
+              type: "button",
+              onClick: () => setShowMobileContents((value) => !value),
+              "aria-expanded": showMobileContents,
+              className: "flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
+              children: [
+                /* @__PURE__ */ jsx("span", { className: "text-[15px]", style: { color: COLORS.ink }, children: activeSection?.title }),
+                /* @__PURE__ */ jsx(ChevronDown, { className: `h-4 w-4 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`, strokeWidth: 1.8, style: { color: COLORS.grey } })
+              ]
+            }
+          ),
+          showMobileContents && /* @__PURE__ */ jsx("div", { className: "pb-5", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[18px] border", style: { borderColor: COLORS.mist }, children: SECTIONS.map((section) => {
+            const active = activeId === section.id;
+            return /* @__PURE__ */ jsxs(
+              "button",
+              {
+                type: "button",
+                onClick: () => {
+                  scrollToSection(section.id);
+                  setActiveId(section.id);
+                  setShowMobileContents(false);
+                },
+                className: "flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
+                style: { borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white },
+                children: [
+                  /* @__PURE__ */ jsx("span", { className: "mt-0.5 text-[12px] font-medium", style: { color: active ? COLORS.blue : COLORS.grey }, children: section.number }),
+                  /* @__PURE__ */ jsx("span", { className: "text-[14px] leading-[1.45]", style: { color: active ? COLORS.ink : COLORS.graphite }, children: section.title })
+                ]
+              },
+              section.id
+            );
+          }) }) })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "min-w-0", children: /* @__PURE__ */ jsxs("article", { className: "divide-y divide-[#dadce0]", children: [
+          /* @__PURE__ */ jsxs("section", { id: "what-we-collect", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "01", title: "What we collect" }),
+            /* @__PURE__ */ jsx(Paragraph, { children: "The information Visionary handles depends on what you are trying to do. Personal information is only collected where it is needed to provide the service, keep it working, and honour the choices you make." }),
+            /* @__PURE__ */ jsx("div", { className: "mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4", children: [
+              { Icon: Mail, title: "Your account", text: "Created with an email address \u2014 the details needed to provide access and maintain essential settings for you." },
+              { Icon: Target, title: "Your learning", text: "Questions you ask, practice you complete, and projects you build \u2014 the work that shapes your progress." },
+              { Icon: Database, title: "Your device", text: "Basic device and browser information that keeps the service working on the devices you use." },
+              { Icon: Settings2, title: "Your choices", text: "The email updates you opt into, and the privacy preferences you set along the way." }
+            ].map(({ Icon, title, text }) => /* @__PURE__ */ jsxs("div", { className: "rounded-[16px] border p-6", style: { borderColor: COLORS.mist }, children: [
+              /* @__PURE__ */ jsx(IconTile, { Icon }),
+              /* @__PURE__ */ jsx("h3", { className: "mt-5 text-[16px] font-medium", style: { color: COLORS.ink }, children: title }),
+              /* @__PURE__ */ jsx("p", { className: "mt-2 text-[14px] leading-[1.65]", style: { color: COLORS.grey }, children: text })
+            ] }, title)) })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "purpose", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "02", title: "Why we use it" }),
+            /* @__PURE__ */ jsx(Paragraph, { children: "Personal information is used to provide, maintain, and improve Visionary \u2014 and to keep it safe for the people using it." }),
+            /* @__PURE__ */ jsx("div", { className: "mt-10 max-w-[880px]", children: [
+              { Icon: Target, title: "Provide Visionary", text: "Answer questions, guide practice, and keep your work in one place as you continue." },
+              { Icon: Database, title: "Keep your learning connected", text: "Carry understanding across sessions, devices, and years \u2014 never starting over." },
+              { Icon: Settings2, title: "Maintain and improve the service", text: "Fix problems, and understand what is helping and what is not." },
+              { Icon: ShieldCheck, title: "Protect people and the service", text: "Prevent misuse, and keep accounts safe from harm." },
+              { Icon: Mail, title: "Communicate with you", text: "Service updates, and the email updates you choose to receive." }
+            ].map(({ Icon, title, text }, i, arr) => /* @__PURE__ */ jsxs("div", { className: `flex items-start gap-5 py-6 ${i < arr.length - 1 ? "border-b" : ""}`, style: { borderColor: COLORS.border }, children: [
+              /* @__PURE__ */ jsx(IconTile, { Icon }),
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx("h3", { className: "text-[17px] font-medium", style: { color: COLORS.ink }, children: title }),
+                /* @__PURE__ */ jsx("p", { className: "mt-1.5 max-w-[620px] text-[14.5px] leading-[1.65]", style: { color: COLORS.grey }, children: text })
+              ] })
+            ] }, title)) })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "sharing", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "03", title: "What we share" }),
+            /* @__PURE__ */ jsx(Paragraph, { children: "We do not sell personal information, and we do not use it for advertising. What is visible depends on the relationship." }),
+            /* @__PURE__ */ jsx("div", { className: "mt-10 overflow-hidden rounded-[16px] border", style: { borderColor: COLORS.mist }, children: [
+              ["Student", "Class-level progress is visible to the teacher of that class. Conversations stay private to the account."],
+              ["Teacher", "Sees their classes. Never another class's data."],
+              ["Parent", "Progress and activity \u2014 not private conversations."],
+              ["Institution", "Aggregated, role-appropriate views only."],
+              ["Service providers", "Only the processors that run the service \u2014 bound by contract to handle data per this page."]
+            ].map(([who, what], i, arr) => /* @__PURE__ */ jsxs("div", { className: `px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`, style: { borderColor: COLORS.mist }, children: [
+              /* @__PURE__ */ jsx("p", { className: "text-[14.5px] font-medium", style: { color: COLORS.ink }, children: who }),
+              /* @__PURE__ */ jsx("p", { className: "mt-1 text-[14px] leading-[1.65]", style: { color: COLORS.grey }, children: what })
+            ] }, who)) }),
+            /* @__PURE__ */ jsx("p", { className: "mt-6 max-w-[760px] text-[14px] leading-[1.7]", style: { color: COLORS.grey }, children: "We may also share information to meet legal obligations under Indian law. Legal demands are handled through the grievance process below." })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "your-controls", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "04", title: "Your controls" }),
+            /* @__PURE__ */ jsx(Paragraph, { children: "You can see, manage, export, and delete your information \u2014 and change your mind at any time." }),
+            /* @__PURE__ */ jsx("div", { className: "mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4", children: [
+              { Icon: Eye, title: "View", text: "Your account and learning history are visible to you in the product." },
+              { Icon: Settings2, title: "Manage", text: "Update cookie preferences and email choices from any update you receive." },
+              { Icon: Database, title: "Export", text: "Request a copy of your account information where available." },
+              { Icon: Mail, title: "Delete", text: "Request account deletion, and see what happens next." }
+            ].map(({ Icon, title, text }) => /* @__PURE__ */ jsxs("div", { className: "rounded-[16px] border p-6", style: { borderColor: COLORS.mist }, children: [
+              /* @__PURE__ */ jsx(IconTile, { Icon }),
+              /* @__PURE__ */ jsx("h3", { className: "mt-5 text-[16px] font-medium", style: { color: COLORS.ink }, children: title }),
+              /* @__PURE__ */ jsx("p", { className: "mt-2 text-[14px] leading-[1.65]", style: { color: COLORS.grey }, children: text })
+            ] }, title)) }),
+            /* @__PURE__ */ jsxs("div", { className: "mt-8 flex flex-wrap items-center gap-x-6 gap-y-3", children: [
+              /* @__PURE__ */ jsxs(Link, { to: "/cookies", className: "inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.blue }, children: [
+                "Manage cookie preferences",
+                /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
+              ] }),
+              /* @__PURE__ */ jsxs(Link, { to: "/security", className: "inline-flex items-center gap-2 text-[14.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.grey }, children: [
+                "Review security practices",
+                /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "security", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "05", title: "Security" }),
+            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16", children: [
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx(Paragraph, { children: "Privacy needs security behind it. Visionary uses appropriate technical and organizational safeguards \u2014 including encryption in transit and access controls \u2014 to protect information against unauthorized access, alteration, deletion, or misuse." }),
+                /* @__PURE__ */ jsx(LearnMoreRow, { to: "/security", label: "How security works at Visionary" })
+              ] }),
+              /* @__PURE__ */ jsx("div", { className: "lg:justify-end", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "shield", className: "aspect-[16/11] w-full" }) }) })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "retention", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "06", title: "Data retention" }),
+            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:items-start lg:gap-16 xl:grid-cols-[560px_1fr]", children: [
+              /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx(Paragraph, { children: "Learning records are kept while your account is active \u2014 that continuity is the product. When information is no longer needed to provide the service, it is deleted or anonymized." }) }),
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "download", className: "aspect-[16/11] w-full" }) }),
+                /* @__PURE__ */ jsxs("div", { className: "mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7", style: { borderColor: COLORS.mist }, children: [
+                  /* @__PURE__ */ jsx("p", { className: "text-[16px] font-medium", style: { color: COLORS.ink }, children: "Your privacy options." }),
+                  /* @__PURE__ */ jsx("ul", { className: "mt-4 space-y-2.5", children: ["Request deletion at any time.", "See how long each kind of record is kept.", "Withdraw consent for optional features.", "Export your information."].map((t) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-3", children: [
+                    /* @__PURE__ */ jsx("span", { className: "mt-2 h-1.5 w-1.5 shrink-0 rounded-full", style: { backgroundColor: COLORS.blue } }),
+                    /* @__PURE__ */ jsx("span", { className: "text-[14.5px] leading-[1.65]", style: { color: COLORS.grey }, children: t })
+                  ] }, t)) })
+                ] })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "younger-learners", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "07", title: "Younger learners" }),
+            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16", children: [
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx(Paragraph, { children: "Where a learner is a child under the DPDP Act, their information is processed only with the consent of a parent or guardian, and it is never used for advertising or profiling." }),
+                /* @__PURE__ */ jsx(LearnMoreRow, { to: "/safety", label: "How safety works for younger learners" })
+              ] }),
+              /* @__PURE__ */ jsx("div", { className: "lg:justify-end", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "safety", className: "aspect-[16/11] w-full" }) }) })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "explainers", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "08", title: "Privacy, clearly explained." }),
+            /* @__PURE__ */ jsx("div", { className: "max-w-[880px] border-t", style: { borderColor: COLORS.mist }, children: FAQ.map((item, index) => /* @__PURE__ */ jsxs("div", { className: "border-b", style: { borderColor: COLORS.mist }, children: [
+              /* @__PURE__ */ jsxs(
+                "button",
+                {
+                  type: "button",
+                  "aria-expanded": openFaq === index,
+                  onClick: () => setOpenFaq(openFaq === index ? null : index),
+                  className: "flex w-full items-center justify-between gap-6 py-5 text-left hover:shadow-[0_1px_3px_rgba(16,17,20,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
+                  children: [
+                    /* @__PURE__ */ jsx("span", { className: "text-[16px] leading-[1.45]", style: { color: COLORS.ink }, children: item.q }),
+                    /* @__PURE__ */ jsx(ChevronDown, { className: ["h-4 w-4 shrink-0 transition-transform duration-200", openFaq === index ? "rotate-180" : ""].join(" "), strokeWidth: 1.8, style: { color: COLORS.grey } })
+                  ]
+                }
+              ),
+              openFaq === index && /* @__PURE__ */ jsx("p", { className: "pb-5 text-[14.5px] leading-[1.7]", style: { color: COLORS.grey }, children: item.a })
+            ] }, item.q)) })
+          ] }),
+          /* @__PURE__ */ jsxs("section", { id: "grievance-officer", className: "scroll-mt-24 py-14 sm:py-16", children: [
+            /* @__PURE__ */ jsx(SectionHeading, { number: "09", title: "Grievance officer" }),
+            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16", children: [
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx(Paragraph, { children: "Under the DPDP Act, 2023, a named person is responsible for answering privacy requests and complaints." }),
+                /* @__PURE__ */ jsxs("div", { className: "mt-8 rounded-[16px] border p-6 sm:p-7", style: { borderColor: COLORS.mist }, children: [
+                  /* @__PURE__ */ jsxs("p", { className: "text-[14.5px] leading-[1.7]", style: { color: COLORS.grey }, children: [
+                    GRIEVANCE_OFFICER.role,
+                    ": ",
+                    /* @__PURE__ */ jsx("strong", { style: { color: COLORS.ink }, children: GRIEVANCE_OFFICER.name })
+                  ] }),
+                  /* @__PURE__ */ jsx("p", { className: "mt-3", children: /* @__PURE__ */ jsxs("a", { href: `mailto:${GRIEVANCE_OFFICER.email}`, className: "inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.blue }, children: [
+                    GRIEVANCE_OFFICER.email,
+                    /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
+                  ] }) }),
+                  /* @__PURE__ */ jsx("p", { className: "mt-3 text-[14px] leading-[1.7]", style: { color: COLORS.grey }, children: GRIEVANCE_OFFICER.response })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsx("div", { className: "lg:justify-end", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "help", className: "aspect-[16/11] w-full" }) }) })
+            ] })
+          ] })
+        ] }) })
+      ] }) }),
+      /* @__PURE__ */ jsx("section", { "aria-label": "Related policies", className: "border-t px-6 py-20 sm:px-8 lg:px-10", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full max-w-[1240px]", children: [
+        /* @__PURE__ */ jsx("h2", { className: "text-[22px] font-normal leading-[1.3] tracking-[-0.01em]", style: { color: COLORS.ink }, children: "Read them together" }),
+        /* @__PURE__ */ jsx("div", { className: "mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4", children: [
+          { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
+          { to: "/security", label: "Security", desc: "How your information is protected.", Icon: ShieldCheck },
+          { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: Accessibility },
+          { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: FileText }
+        ].map(({ to, label, desc, Icon }) => /* @__PURE__ */ jsxs(Link, { to, className: "group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]", style: { borderColor: COLORS.mist }, children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsx(Icon, { className: "h-[18px] w-[18px]", strokeWidth: 1.7, style: { color: COLORS.blue } }),
+            /* @__PURE__ */ jsx("span", { className: "text-[15px] font-medium", style: { color: COLORS.ink }, children: label })
+          ] }),
+          /* @__PURE__ */ jsx("p", { className: "mt-2 text-[13.5px] leading-[1.6]", style: { color: COLORS.grey }, children: desc })
+        ] }, to)) })
+      ] }) })
+    ] }),
+    /* @__PURE__ */ jsx(LandingFooter, { variant: "quiet" })
+  ] });
+}
+export {
+  PrivacyPage as default
+};

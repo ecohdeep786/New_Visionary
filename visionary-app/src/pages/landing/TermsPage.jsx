@@ -8,17 +8,19 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import { LEGAL_META } from "@/data/legalMeta";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 const C = {
   ink: "#121317",
-  graphite: "#3c4043",
+  graphite: "#5f6368",
   slate: "#5f6368",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  canvas: "#f8f9fa",
+  border: "#dadce0",
+  canvas: "#ffffff",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -48,15 +50,15 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: C.ink }}>{title}</h2>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.ink }}>{number}</div>
+      <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px]" style={{ color: C.ink }}>{title}</h2>
     </div>
   );
 }
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
   );
 }
 
@@ -75,7 +77,7 @@ function BulletList({ items }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: C.border, backgroundColor: C.canvas }}>
+    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: C.border }}>
       <p className="text-[14px] leading-[1.7]" style={{ color: C.graphite }}>{children}</p>
     </div>
   );
@@ -123,6 +125,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
+      <Breadcrumb page="Terms" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: C.border }}>
@@ -133,16 +136,14 @@ export default function TermsPage() {
                 Terms
               </div>
               <h1 className="max-w-[900px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: C.ink }}>
-                Using Visionary.
-                <br />
-                <span style={{ color: C.blue }}>Here is what you are agreeing to.</span>
+                Terms of service.
               </h1>
-              <p className="mt-8 max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                These Terms explain the rules that apply when you use Visionary, our website, applications, products, and services.
+              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
+                What you can expect, and what we expect.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
                 <span style={{ color: C.slate }}>
-                  Last updated: <strong style={{ color: C.ink }}>September 2025</strong>
+                  Last updated: <strong style={{ color: C.ink }}>{LEGAL_META.terms.lastUpdated}</strong>
                 </span>
                 <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
                 <a href="mailto:legal@visionary.org.in"
@@ -169,7 +170,7 @@ export default function TermsPage() {
                 By accessing or using Visionary, you agree to these Terms. Please read them together with our Privacy Policy and any additional terms or policies that apply to particular Visionary products or services.
               </p>
               <div className="mt-6">
-                <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
+                <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
                   Read the Privacy Policy
                   <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                 </Link>
@@ -182,7 +183,7 @@ export default function TermsPage() {
         <section className="border-b lg:hidden" style={{ borderColor: C.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: C.slate }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: C.ink }}>{activeSection?.title}</span>
@@ -224,7 +225,7 @@ export default function TermsPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 hover:bg-[#121317]/5.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ backgroundColor: active ? C.canvas : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? C.blue : C.slate }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? C.ink : C.graphite }}>{section.title}</span>
@@ -246,7 +247,7 @@ export default function TermsPage() {
 
               {/* MAIN LEGAL COPY */}
               <div className="min-w-0">
-                <article className="divide-y divide-[#e5e7eb]">
+                <article className="divide-y divide-[#dadce0]">
                   {/* 01 */}
                   <section id="who-can-use" className="scroll-mt-24 pb-14 sm:pb-16">
                     <SectionHeading number="01" title="Who can use Visionary" />
@@ -372,7 +373,7 @@ export default function TermsPage() {
                     <Paragraph>Questions about these Terms? Contact Visionary at:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:legal@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         style={{ color: C.blue }}>
                         legal@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
@@ -385,7 +386,7 @@ export default function TermsPage() {
                 </article>
 
                 {/* CLOSING */}
-                <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
+                <section className="mt-20 border-t border-[#dadce0] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[860px]">
                     <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>Terms</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: C.ink }}>
@@ -393,19 +394,19 @@ export default function TermsPage() {
                       <br />
                       <span style={{ color: C.blue }}>Better understanding.</span>
                     </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
+                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
                       Visionary is built to help people learn, create, and move forward. These Terms explain the responsibilities that make that possible.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Privacy
                       </Link>
-                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Safety
                       </Link>
-                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Security
                       </Link>

@@ -7,7 +7,7 @@ import {
 import { base44 } from "@/api/base44Client";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
-const GOOGLE_BLUE = "#1a73e8";
+const GOOGLE_BLUE = "#4285F4";
 
 export default function QuizView({ topic, questions, loading, onExit, onComplete }) {
   const themeColor = useThemeColor();
@@ -81,7 +81,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
   };
 
   const getOptionStyle = (idx) => {
-    const base = { bg: "#fff", border: "#dadce0", text: "#202124", borderWidth: "1px" };
+    const base = { bg: "#fff", border: "#dadce0", text: "#121317", borderWidth: "1px" };
     if (quizState === "answering") {
       if (selectedAnswer === idx)
         return { bg: themeColor.light, border: themeColor.accent, text: themeColor.accent, borderWidth: "2px" };
@@ -111,7 +111,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
   if (loading) {
     return (
       <div className="flex flex-col items-center gap-4 py-24">
-        <div className="w-8 h-8 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: GOOGLE_BLUE }} />
+        <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: GOOGLE_BLUE }} />
         <p className="text-sm text-[#5f6368]">Generating adaptive questions...</p>
       </div>
     );
@@ -126,7 +126,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
           <Trophy className="w-10 h-10" style={{ color: themeColor.accent }} />
         </div>
         <div>
-          <h2 className="text-[32px] font-medium text-[#202124]">{score}/{totalQuestions}</h2>
+          <h2 className="text-[32px] font-medium text-[#121317]">{score}/{totalQuestions}</h2>
           <p className="text-sm text-[#5f6368] mt-2">
             {pct === 100 ? "Perfect! You've mastered this topic." : pct >= 50 ? "Good work! Keep practicing to improve." : "Keep going — review the lesson and try again."}
           </p>
@@ -144,7 +144,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
           </button>
           <Link
             to={`/dashboard/ask?subject=${encodeURIComponent(topic.subject)}&topic=${encodeURIComponent(topic.name)}`}
-            className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-[#121317]/5 transition-colors"
           >
             <BookOpen className="w-[18px] h-[18px]" /> Ask AGI
           </Link>
@@ -161,21 +161,21 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
     <div className="flex flex-col gap-8 max-w-[760px] mx-auto w-full">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
-        <button onClick={onExit} className="hover:text-[#202124] transition-colors">Practice</button>
-        <span className="text-[#9aa0a6]">›</span>
+        <button onClick={onExit} className="hover:text-[#121317] transition-colors">Practice</button>
+        <span className="text-[#5f6368]">›</span>
         <span>{topic.subject}</span>
-        <span className="text-[#9aa0a6]">›</span>
-        <span className="text-[#202124] font-medium truncate">Practice questions — {topic.name}</span>
+        <span className="text-[#5f6368]">›</span>
+        <span className="text-[#121317] font-medium truncate">Practice questions — {topic.name}</span>
       </nav>
 
       {/* Question header + Save */}
       <div className="flex items-start justify-between gap-4">
-        <h1 className="text-[22px] lg:text-[26px] font-medium text-[#202124] tracking-tight leading-snug flex-1">
+        <h1 className="text-[22px] lg:text-[26px] font-medium text-[#121317] tracking-tight leading-snug flex-1">
           {question.question}
         </h1>
         <button
           onClick={handleSave}
-          className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-gray-50 transition-colors shrink-0"
+          className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-[#121317]/5 transition-colors shrink-0"
         >
           <Bookmark className="w-4 h-4" fill={saved ? "currentColor" : "none"} style={saved ? { color: themeColor.accent } : {}} />
           {saved ? "Saved" : "Save"}
@@ -188,7 +188,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
       </p>
 
       {/* Progress bar */}
-      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden -mt-4">
+      <div className="h-1.5 bg-[#121317]/5 rounded-full overflow-hidden -mt-4">
         <div className="h-full rounded-full transition-all duration-300" style={{ width: `${((currentQ + (quizState !== "answering" ? 1 : 0)) / totalQuestions) * 100}%`, backgroundColor: themeColor.accent }} />
       </div>
 
@@ -213,7 +213,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
             >
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-medium shrink-0"
-                style={{ backgroundColor: quizState === "answering" && selectedAnswer === idx ? "rgba(255,255,255,0.5)" : "#f1f3f4", color: "#5f6368" }}
+                style={{ backgroundColor: quizState === "answering" && selectedAnswer === idx ? "rgba(255,255,255,0.5)" : "#dadce0", color: "#5f6368" }}
               >
                 {String.fromCharCode(65 + idx)}
               </div>
@@ -234,7 +234,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
             </div>
             <p className="text-sm font-medium" style={{ color: "#1e8e3e" }}>Correct!</p>
           </div>
-          <p className="text-sm text-[#3c4043] leading-relaxed">{question.explanation}</p>
+          <p className="text-sm text-[#5f6368] leading-relaxed">{question.explanation}</p>
         </div>
       )}
 
@@ -245,7 +245,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
             <Lightbulb className="w-5 h-5" style={{ color: GOOGLE_BLUE }} />
             <p className="text-sm font-medium" style={{ color: GOOGLE_BLUE }}>Hint</p>
           </div>
-          <p className="text-sm text-[#3c4043] leading-relaxed">{question.hint}</p>
+          <p className="text-sm text-[#5f6368] leading-relaxed">{question.hint}</p>
         </div>
       )}
 
@@ -254,26 +254,26 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
         <div className="p-6 rounded-2xl" style={{ backgroundColor: "#f1f5f9" }}>
           <div className="flex items-center gap-2 mb-4">
             <Star className="w-5 h-5" style={{ color: "#34a853", fill: "#34a853" }} />
-            <p className="text-sm font-medium text-[#202124]">Correct answer is: {correctOption}</p>
+            <p className="text-sm font-medium text-[#121317]">Correct answer is: {correctOption}</p>
           </div>
           <p className="text-xs font-medium tracking-wide uppercase mb-2" style={{ color: GOOGLE_BLUE }}>Solution / Explanation</p>
-          <p className="text-sm text-[#3c4043] leading-relaxed mb-6">{question.explanation}</p>
+          <p className="text-sm text-[#5f6368] leading-relaxed mb-6">{question.explanation}</p>
           {question.recommended_lesson && (
             <>
               <p className="text-xs font-medium tracking-wide uppercase mb-3" style={{ color: GOOGLE_BLUE }}>Recommended for you</p>
               <Link
                 to={`/dashboard/learn`}
-                className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-[#dadce0]/50 hover:bg-gray-50 transition-colors mb-3"
+                className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-[#dadce0]/50 hover:bg-[#121317]/5 transition-colors mb-3"
               >
                 <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: themeColor.light }}>
                   <BookOpen className="w-4 h-4" style={{ color: themeColor.accent }} />
                 </div>
-                <p className="text-sm font-medium text-[#202124] flex-1">{question.recommended_lesson}</p>
+                <p className="text-sm font-medium text-[#121317] flex-1">{question.recommended_lesson}</p>
                 <ArrowRight className="w-4 h-4 text-[#5f6368] shrink-0" />
               </Link>
               <Link
                 to={`/dashboard/ask?subject=${encodeURIComponent(topic.subject)}&topic=${encodeURIComponent(topic.name)}`}
-                className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium border transition-colors hover:bg-gray-50"
+                className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium border transition-colors hover:bg-[#121317]/5"
                 style={{ borderColor: GOOGLE_BLUE, color: GOOGLE_BLUE }}
               >
                 Go to lesson
@@ -290,7 +290,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
           {currentQ > 0 && (
             <button
               onClick={handlePrevious}
-              className="inline-flex items-center gap-1 text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[#5f6368] hover:text-[#121317] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" /> Previous
             </button>
@@ -298,7 +298,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
           {quizState === "answering" && (
             <button
               onClick={goNext}
-              className="inline-flex items-center gap-1 text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[#5f6368] hover:text-[#121317] transition-colors"
             >
               <SkipForward className="w-4 h-4" /> Skip
             </button>
@@ -331,7 +331,7 @@ export default function QuizView({ topic, questions, loading, onExit, onComplete
               {!showHint && (
                 <button
                   onClick={() => setShowHint(true)}
-                  className="inline-flex items-center gap-1.5 h-10 px-5 rounded-full text-sm font-medium transition-colors hover:bg-gray-50"
+                  className="inline-flex items-center gap-1.5 h-10 px-5 rounded-full text-sm font-medium transition-colors hover:bg-[#121317]/5"
                   style={{ color: GOOGLE_BLUE }}
                 >
                   <Lightbulb className="w-4 h-4" /> Show hint

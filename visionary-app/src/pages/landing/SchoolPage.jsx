@@ -6,12 +6,13 @@ import {
   CreditCard, Monitor, ShieldCheck,
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
   ink: "#121317", surface: "#F5F6F8", blue: "#4285F4", grey: "#5f6368",
-  lightGrey: "#9AA0A6", mist: "#dadce0", chipBg: "#D2E3FC", white: "#ffffff",
+  lightGrey: "#9AA0A6", mist: "#dadce0", white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
@@ -173,17 +174,19 @@ export default function SchoolPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="Help" />
       <main id="main">
         {/* ═══ HERO — mark + heading + search (Google Help pattern) ═══ */}
-        <section ref={ref} className="relative px-6 pb-16 pt-40 lg:pt-48" style={{ backgroundColor: COLORS.white }}>
+        <section ref={ref} className="relative px-6 pb-16 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>
             <div className="mx-auto flex flex-col items-center text-center">
               <span className="flex h-20 w-20 items-center justify-center rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                 <CircleHelp className="h-9 w-9" strokeWidth={1.8} />
               </span>
-              <h1 className="mt-8 font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-                How can we <span style={{ color: COLORS.blue }}>help</span> you?
+              <h1 className="mt-8 text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+                Find your answer.
               </h1>
+              <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic — then reach us.</p>
 
               {/* Search bar */}
               <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#4285F4]" style={{ borderColor: COLORS.mist }}>

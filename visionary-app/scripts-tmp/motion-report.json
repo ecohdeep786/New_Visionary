@@ -1,0 +1,328 @@
+{
+ "generated": "2026-09-20T14:26:18.744Z",
+ "reducedMotionFallback": "opacity-only (global kill)",
+ "ledger": [
+  {
+   "route": "/",
+   "interactive": 51,
+   "hoverBlanks": [
+    "Go to slide 1",
+    "Student",
+    "1. AdaptWhen what you need",
+    "2. GrowWhen you know more,",
+    "3. CreateWhen an idea beco"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "4/11",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/student",
+   "interactive": 49,
+   "hoverBlanks": [
+    "Student",
+    "Go to challenge 1",
+    "Primary",
+    "Secondary & Higher Seconda",
+    "Competitive Exams"
+   ],
+   "focusBlanks": [
+    "Previous stages"
+   ],
+   "entranceStaggerSections": "4/13",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/teacher",
+   "interactive": 52,
+   "hoverBlanks": [
+    "Teacher",
+    "Go to challenge 1",
+    "Lesson Planning",
+    "In Class",
+    "Checking Understanding"
+   ],
+   "focusBlanks": [
+    "Previous stages"
+   ],
+   "entranceStaggerSections": "4/13",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/parent",
+   "interactive": 50,
+   "hoverBlanks": [
+    "Parent",
+    "Go to concern 1",
+    "Early Years",
+    "Primary",
+    "Secondary"
+   ],
+   "focusBlanks": [
+    "Previous stages"
+   ],
+   "entranceStaggerSections": "4/13",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/professional",
+   "interactive": 50,
+   "hoverBlanks": [
+    "Professional",
+    "Go to challenge 1",
+    "Early Career",
+    "Mid-Level",
+    "Senior"
+   ],
+   "focusBlanks": [
+    "Previous stages"
+   ],
+   "entranceStaggerSections": "4/13",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/organization",
+   "interactive": 47,
+   "hoverBlanks": [
+    "Organization",
+    "For organizations",
+    "Go to challenge 1",
+    "Schools",
+    "Colleges & Universities"
+   ],
+   "focusBlanks": [
+    "Previous stages"
+   ],
+   "entranceStaggerSections": "4/13",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/help",
+   "interactive": 21,
+   "hoverBlanks": [],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/3",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/how-it-works",
+   "interactive": 23,
+   "hoverBlanks": [
+    "How it works",
+    "Goal",
+    "Check",
+    "Teach",
+    "Ask"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "2/5",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/about",
+   "interactive": 19,
+   "hoverBlanks": [
+    "About",
+    "Read the privacy policy",
+    "See download options"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/13",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/pricing",
+   "interactive": 25,
+   "hoverBlanks": [
+    "Pricing",
+    "Annual2 months free",
+    "Can I start free?",
+    "Can I switch plans later?",
+    "What happens to my memory "
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/6",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/download",
+   "interactive": 17,
+   "hoverBlanks": [
+    "Download",
+    "Download for Windows",
+    "Download for Mac",
+    "Download for Linux",
+    "Get it on the App Store"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/7",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/research",
+   "interactive": 26,
+   "hoverBlanks": [
+    "About",
+    "ContentsWhy we research",
+    "01Why we research",
+    "02Questions we are explori",
+    "03How people learn"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/16",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/careers",
+   "interactive": 27,
+   "hoverBlanks": [
+    "About",
+    "ContentsWhy this work",
+    "01Why this work",
+    "02What we are building",
+    "03How we work"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/14",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/community",
+   "interactive": 8,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/4",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/contact",
+   "interactive": 25,
+   "hoverBlanks": [
+    "About",
+    "ContentsContact routes",
+    "01Contact routes",
+    "02Send a message",
+    "03Before you write"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/10",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/partners",
+   "interactive": 27,
+   "hoverBlanks": [
+    "About",
+    "ContentsWhy work with a pa",
+    "01Why work with a partner",
+    "02What partners can do",
+    "03Education partners"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/16",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/updates",
+   "interactive": 34,
+   "hoverBlanks": [
+    "About",
+    "ContentsWhy stay connected",
+    "01Why stay connected",
+    "02What you will hear about",
+    "03Choose what matters"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/15",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/referral",
+   "interactive": 25,
+   "hoverBlanks": [
+    "About",
+    "ContentsWhy referrals exis",
+    "hello@visionary.org.in",
+    "Start referring",
+    "Community"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/16",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/safety",
+   "interactive": 8,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/4",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/privacy",
+   "interactive": 22,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/11",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/terms",
+   "interactive": 25,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/17",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/security",
+   "interactive": 24,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/14",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/accessibility",
+   "interactive": 23,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/14",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/cookies",
+   "interactive": 8,
+   "hoverBlanks": [
+    "About"
+   ],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/4",
+   "reducedMotionFallback": "opacity-only"
+  },
+  {
+   "route": "/definitely-not-a-page",
+   "interactive": 0,
+   "hoverBlanks": [],
+   "focusBlanks": [],
+   "entranceStaggerSections": "0/0",
+   "reducedMotionFallback": "opacity-only"
+  }
+ ],
+ "blanks": {
+  "hover": 281,
+  "focus": 5
+ }
+}

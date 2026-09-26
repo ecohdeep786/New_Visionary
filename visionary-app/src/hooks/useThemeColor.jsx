@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/lib/AuthContext";
 
 export const googleColors = [
-  { name: "blue", accent: "#1a73e8", light: "#e8f0fe" },
+  { name: "blue", accent: "#0b57d2", light: "#e8f0fd" },
   { name: "green", accent: "#137333", light: "#e6f4ea" },
-  { name: "amber", accent: "#8a5700", light: "#fef7e0" },
+  { name: "amber", accent: "#8a5700", light: "#ffffff" },
   { name: "red", accent: "#b3261e", light: "#fce8e6" },
   { name: "purple", accent: "#7627bb", light: "#f3e8fd" },
   { name: "teal", accent: "#00897b", light: "#e0f2f1" },

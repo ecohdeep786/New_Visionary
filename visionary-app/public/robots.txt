@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /onboarding
+Disallow: /dev
+Disallow: /reset-password
+
+Sitemap: https://visionary.app/sitemap.xml

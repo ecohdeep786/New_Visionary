@@ -3,41 +3,43 @@ import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, 
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import orgHero from "@/assets/org-face-main.png";
+import orgHero from "@/assets/org-face-main-2400w.webp";
+import orgHeroContent from "@/assets/org-face-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
+import orgProblem1 from "@/assets/organization-problem-1-1600w.webp";
+import orgProblem2 from "@/assets/organization-problem-2-1600w.webp";
+import orgProblem3 from "@/assets/organization-problem-3-1600w.webp";
+import orgProblem4 from "@/assets/organization-problem-4-1600w.webp";
+import orgProblem5 from "@/assets/organization-problem-5-1600w.webp";
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
  * Problem Section
  */
-import problemexam from "@/assets/problem-exam.png";
-import problempractice from "@/assets/problem-practice.png";
-import problemrevision from "@/assets/problem-revision.png";
-import problemunderstanding from "@/assets/problem-understanding.png";
 
 /**
  * Journey Section images (local)
  */
-import primaryStudent from "@/assets/student-primary.png";
-import secondaryStudent from "@/assets/student-secondary.png";
-import competitiveStudent from "@/assets/student-competitive.png";
-import higherStudent from "@/assets/student-higher.png";
-import vocationStudent from "@/assets/student-vocational.png";
-import proFace from "@/assets/pro-face-main.png";
+import primaryStudent from "@/assets/student-primary.webp";
+import secondaryStudent from "@/assets/student-secondary.webp";
+import competitiveStudent from "@/assets/student-competitive.webp";
+import higherStudent from "@/assets/student-higher.webp";
+import vocationStudent from "@/assets/student-vocational.webp";
+import proFace from "@/assets/pro-face-main-2400w.webp";
 
 /**
  * Achievement Section
  */
-import orgachivenment from "@/assets/achievenment-achieve.png";
-import orgbuild from "@/assets/achivenment-build.png";
+import orgachivenment from "@/assets/achievenment-achieve.webp";
+import orgbuild from "@/assets/achivenment-build.webp";
 
 /**
  * Explore Category
  */
-import studentmeet from "@/assets/student-hero-main.png";
-import teachermeet from "@/assets/teacher-face-main.png";
-import parentmeet from "@/assets/parent-face-main.png";
-import promeet from "@/assets/pro-face-main.png";
+import studentmeet from "@/assets/student-hero-main-2400w.webp";
+import teachermeet from "@/assets/teacher-face-main.webp";
+import parentmeet from "@/assets/parent-face-main.webp";
+import promeet from "@/assets/pro-face-main-2400w.webp";
 
 const EXPLORE_CAT_IMG = [studentmeet, teachermeet, parentmeet, promeet];
 
@@ -175,11 +177,11 @@ const ORG_HERO_WORDS = ["Leading.", "to scale."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: problemunderstanding, alt: "Organization rolling out learning tools" },
-  { word: "Progress", quote: "Every department reports green. The outcomes still surprise us.", image: problempractice, alt: "Leaders reviewing organizational progress" },
-  { word: "Gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: problemrevision, alt: "Team discovering learning gaps late" },
-  { word: "Support", quote: "Our best mentors can only be in one classroom at a time.", image: secondaryStudent, alt: "Mentor supporting many learners" },
-  { word: "Outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: problemexam, alt: "Organization measuring outcomes" },
+  { word: "Adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: orgProblem1, alt: "Leader facing low tool adoption" },
+  { word: "Progress", quote: "Every department reports green. The outcomes still surprise us.", image: orgProblem2, alt: "Leaders reviewing conflicting progress reports" },
+  { word: "Gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: orgProblem3, alt: "Team discovering skill gaps too late" },
+  { word: "Support", quote: "Our best mentors can only be in one classroom at a time.", image: orgProblem4, alt: "Mentor stretched across many learners" },
+  { word: "Outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
 ];
 const CYCLE_MS = 4000;
 
@@ -278,7 +280,7 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }
 
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -368,7 +370,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
             viewBox="0 0 220 120"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.1"
+            strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
@@ -409,14 +411,13 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Organization learning challenges">
+    <div className="flex items-center gap-2" role="group" aria-label="Organization learning challenges">
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
           aria-label={`Go to challenge ${i + 1}`}
-          aria-selected={i === active}
+          aria-pressed={i === active}
           onClick={() => onSelect(i)}
           className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
@@ -464,7 +465,7 @@ const OrgPromiseSection = React.memo(function OrgPromiseSection() {
   return (
     <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
       <h2
-        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
       >
         What if your whole organization could see understanding —{" "}
@@ -564,7 +565,7 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                   alt={stage.alt}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
                 />
                 {/* stage icon pill — the missing icon layer */}
                 <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
@@ -576,8 +577,8 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                   </svg>
                 </span>
               </button>
-              <h3 className="mt-12 text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-5 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
+              <h3 className="mt-[calc(clamp(28px,2.9vw,40px)*1.714)] text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
+              <p className="mx-auto mt-[calc(clamp(28px,2.9vw,40px)*0.714)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
               <p className="mx-auto mt-4 max-w-[640px] text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{stage.connected}</p>
             </article>
           );
@@ -602,7 +603,18 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        const onKey = (e) => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key !== "Tab") return;
+      const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
+      if (!dialog) return;
+      const focusables = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -649,7 +661,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
           {stage.title}
         </p>
 
-        <h3 id="journey-modal-title" className="mt-3 max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
+        <h3 id="journey-modal-title" className="mt-[calc(clamp(30px,3.8vw,56px)*0.4)] max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
           {content.top}
           <br />
           <span style={{ color: COLORS.blue }}>{content.accent}</span>
@@ -765,7 +777,7 @@ function OrgJourneySection() {
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
           Your institution, your journey
         </p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Every organization learns differently.
           <br className="hidden md:block" />{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
@@ -779,7 +791,7 @@ function OrgJourneySection() {
 
         {/* stage rail — even beat under the header */}
         <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="tablist" aria-label="Organization contexts">
+          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Organization contexts">
             {JOURNEY_STAGES.map((stage, i) => {
               const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
               const active = i === activeStage;
@@ -787,8 +799,7 @@ function OrgJourneySection() {
                 <button
                   key={stage.title}
                   type="button"
-                  role="tab"
-                  aria-selected={active}
+                  aria-pressed={active}
                   onClick={() => goToStage(i)}
                   className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   style={active
@@ -828,7 +839,7 @@ const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
       <h3 className="whitespace-pre-line font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
         {step.title}
       </h3>
-      <p className="mt-10 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+      <p className="mt-[calc(clamp(28px,2.78vw,40px)*1.429)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
         {step.copy}
       </p>
     </div>
@@ -863,13 +874,13 @@ function OrgIntelligenceSection() {
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           The intelligence behind your organization
         </p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           One intelligence.{" "}
           <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
             {INTELLIGENCE_WORDS[wordIndex]}
           </span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Visionary connects every learner, teacher, parent, and professional into one clear picture your organization can act on.
         </p>
       </FadeReveal>
@@ -902,7 +913,7 @@ const OrgClosingSection = React.memo(function OrgClosingSection() {
   return (
     <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
       <p
-        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
       >
         Visionary keeps{" "}
@@ -956,10 +967,10 @@ function OrgLanguageSection() {
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your organization.<br />In every language.
         </h2>
-        <p className="mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           People ask, learn, teach, and report in different languages. Visionary keeps the meaning connected across them.
         </p>
 
@@ -972,7 +983,7 @@ function OrgLanguageSection() {
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
           {/* Assistant-signature four-color voice indicator */}
           <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
+            {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
               <span
                 key={c}
                 className="h-8 w-1.5 rounded-full"
@@ -988,7 +999,7 @@ function OrgLanguageSection() {
           {/* the utterance — plain ink type, keyed fade on change */}
           <p
             aria-live="polite"
-            className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]"
+            className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.6] text-[clamp(26px,3.4vw,48px)]"
             style={{ color: COLORS.blue }}
           >
             <span key={`${lang}-${index}`} className="hero-fade-up inline">{question}</span>
@@ -1114,10 +1125,10 @@ function OrgContinuitySection() {
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Your continuity
         </p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           What your organization learns stays with it.
         </h2>
-        <p className="mx-auto mt-6 max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           What your people understand, practise, and build becomes part of what comes next — across classes, cohorts, programs, and teams.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
@@ -1158,7 +1169,7 @@ function OrgContinuitySection() {
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
 
-const ACHIEVEMENT_IMAGE = [orgHero, orgachivenment, orgbuild];
+const ACHIEVEMENT_IMAGE = [orgHeroContent, orgachivenment, orgbuild];
 
 /* icon per achievement tab — reuses icons already imported in this file */
 const ACHIEVEMENT_META = [
@@ -1190,7 +1201,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
                 <path d="M6 15l6-6 6 6" />
               </svg>
             </button>
-            <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
                 <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
                   {tab.copy}
@@ -1220,8 +1231,8 @@ function OrgAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>See what your organization can achieve with intelligence.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your organization can achieve with intelligence.</h2>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Turn connected learning signals into stronger outcomes — for every learner, teacher, parent, and professional you serve.
         </p>
 
@@ -1290,10 +1301,10 @@ function OrgJourneyFlowSection() {
     <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Individual journeys.<br />Shared intelligence.
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Every role in your organization sees what matters to them — while the same intelligence connects them all.
         </p>
 
@@ -1376,11 +1387,11 @@ function OrgTrustSection() {
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your people's questions, conversations, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
         </p>
 
@@ -1420,15 +1431,15 @@ const OrgCTASection = React.memo(function OrgCTASection() {
   return (
     <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
       <div
-        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Start where your people are
         </p>
-        <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Bring Visionary to your organization.
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Start with one class, one program, one cohort, or one team — and build a clearer learning system from there.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">

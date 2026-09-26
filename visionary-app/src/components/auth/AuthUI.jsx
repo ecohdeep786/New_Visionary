@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 /* ── Shared classes ── */
 
 export const primaryBtnClass =
-  "w-full h-12 bg-[#1a73e8] text-white rounded-full text-sm font-medium hover:bg-[#1557b0] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
+  "w-full h-12 bg-[#4285F4] text-white rounded-full text-sm font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
 
 export const primaryBtnAutoClass =
-  "h-10 px-6 bg-[#1a73e8] text-white rounded-full text-sm font-medium hover:bg-[#1557b0] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
+  "h-10 px-6 bg-[#4285F4] text-white rounded-full text-sm font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
 
 export const outlineBtnClass =
-  "w-full h-12 bg-white text-[#1a73e8] rounded-full text-sm font-medium border border-[#dadce0] hover:bg-[#f8f9fa] hover:border-[#bdc1c6] transition-colors flex items-center justify-center gap-2";
+  "w-full h-12 bg-white text-[#4285F4] rounded-full text-sm font-medium border border-[#dadce0] hover:bg-[#121317]/5 hover:border-[#4285F4] transition-colors flex items-center justify-center gap-2";
 
 /* ── Primitives ── */
 
@@ -33,7 +33,7 @@ export function AuthDivider() {
 }
 
 export function BackButton({ onClick = undefined, to = undefined, label = "Back" }) {
-  const className = "flex items-center gap-1.5 text-sm text-[#1a73e8] font-medium hover:underline self-start mb-6";
+  const className = "flex items-center gap-1.5 text-sm text-[#4285F4] font-medium hover:underline self-start mb-6";
   if (to) {
     return (
       <Link to={to} className={className}>
@@ -102,7 +102,7 @@ export function PhoneInput({ label = "Phone number", value = "", onChange = () =
         <select
           value={countryCode}
           onChange={handleCountryChange}
-          className="h-14 pl-3 pr-7 rounded-lg border border-[#80868b] text-sm text-[#202124] bg-white outline-none appearance-none cursor-pointer focus:border-[#1a73e8]"
+          className="h-14 pl-3 pr-7 rounded-lg border border-[#dadce0] text-sm text-[#121317] bg-white outline-none appearance-none cursor-pointer focus:border-[#4285F4]"
         >
           {countryCodes.map((c) => (
             <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
@@ -110,7 +110,7 @@ export function PhoneInput({ label = "Phone number", value = "", onChange = () =
         </select>
         <ChevronDown className="absolute right-1.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5f6368] pointer-events-none" />
       </div>
-      <div className={`relative flex-1 rounded-lg border transition-colors ${focused ? "border-[#1a73e8]" : "border-[#80868b]"}`}>
+      <div className={`relative flex-1 rounded-lg border transition-colors ${focused ? "border-[#4285F4]" : "border-[#dadce0]"}`}>
         <input
           type="tel"
           autoFocus={autoFocus}
@@ -120,12 +120,12 @@ export function PhoneInput({ label = "Phone number", value = "", onChange = () =
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           required={required}
-          className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#202124] outline-none"
+          className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#121317] outline-none"
         />
         <label
           className={`absolute left-3 transition-all duration-150 pointer-events-none bg-white px-1 ${
             floated
-              ? "top-0 -translate-y-1/2 text-xs text-[#1a73e8]"
+              ? "top-0 -translate-y-1/2 text-xs text-[#4285F4]"
               : "top-1/2 -translate-y-1/2 text-sm text-[#5f6368]"
           }`}
         >
@@ -154,7 +154,7 @@ export function GooglePasswordField({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className={`relative rounded-lg border transition-colors ${focused ? "border-[#1a73e8]" : "border-[#80868b]"}`}>
+      <div className={`relative rounded-lg border transition-colors ${focused ? "border-[#4285F4]" : "border-[#dadce0]"}`}>
         <input
           type={showPassword ? "text" : "password"}
           autoFocus={autoFocus}
@@ -165,12 +165,12 @@ export function GooglePasswordField({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           required={required}
-          className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#202124] outline-none"
+          className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#121317] outline-none"
         />
         <label
           className={`absolute left-3 transition-all duration-150 pointer-events-none bg-white px-1 ${
             floated
-              ? "top-0 -translate-y-1/2 text-xs text-[#1a73e8]"
+              ? "top-0 -translate-y-1/2 text-xs text-[#4285F4]"
               : "top-1/2 -translate-y-1/2 text-sm text-[#5f6368]"
           }`}
         >
@@ -182,9 +182,9 @@ export function GooglePasswordField({
           type="checkbox"
           checked={showPassword}
           onChange={(e) => setShowPassword(e.target.checked)}
-          className="w-4 h-4 rounded border-[#5f6368] accent-[#1a73e8]"
+          className="w-4 h-4 rounded border-[#5f6368] accent-[#4285F4]"
         />
-        <span className="text-sm text-[#202124]">Show password</span>
+        <span className="text-sm text-[#121317]">Show password</span>
       </label>
     </div>
   );
@@ -207,7 +207,7 @@ export function InputField({
   const floated = focused || (value && value.length > 0);
 
   return (
-    <div className={`relative rounded-lg border transition-colors ${focused ? "border-[#1a73e8]" : "border-[#80868b]"}`}>
+    <div className={`relative rounded-lg border transition-colors ${focused ? "border-[#4285F4]" : "border-[#dadce0]"}`}>
       <input
         type={type}
         autoFocus={autoFocus}
@@ -218,12 +218,12 @@ export function InputField({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         required={required}
-        className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#202124] outline-none"
+        className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#121317] outline-none"
       />
       <label
         className={`absolute left-3 transition-all duration-150 pointer-events-none bg-white px-1 ${
           floated
-            ? "top-0 -translate-y-1/2 text-xs text-[#1a73e8]"
+            ? "top-0 -translate-y-1/2 text-xs text-[#4285F4]"
             : "top-1/2 -translate-y-1/2 text-sm text-[#5f6368]"
         }`}
       >

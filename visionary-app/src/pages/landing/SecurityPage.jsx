@@ -12,17 +12,19 @@ import {
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
+import { LEGAL_META } from "@/data/legalMeta";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 const C = {
   ink: "#121317",
-  graphite: "#3c4043",
+  graphite: "#5f6368",
   slate: "#5f6368",
   mist: "#dadce0",
-  border: "#e5e7eb",
-  canvas: "#f8f9fa",
+  border: "#dadce0",
+  canvas: "#ffffff",
   blue: "#4285F4",
   white: "#ffffff",
 };
@@ -30,13 +32,14 @@ const C = {
 const SECTIONS = [
   { id: "your-information", number: "01", title: "Your information", summary: "Understand the kinds of information that may move through Visionary." },
   { id: "protected-in-transit", number: "02", title: "Protected as it moves", summary: "How information is protected while it travels between you and Visionary." },
-  { id: "protected-when-stored", number: "03", title: "Protected when stored", summary: "How stored information should be protected across Visionary systems." },
-  { id: "access-controlled", number: "04", title: "Access is controlled", summary: "Access should be limited to the people and systems that need it." },
+  { id: "protected-when-stored", number: "03", title: "Protected when stored", summary: "How Visionary protects stored information." },
+  { id: "access-controlled", number: "04", title: "Access is controlled", summary: "How access is limited to the people and systems that need it." },
   { id: "your-control", number: "05", title: "Your control matters", summary: "Security works together with privacy, account controls, and data choices." },
   { id: "security-over-time", number: "06", title: "Security is ongoing", summary: "Security is a continuous process, not a one-time feature." },
   { id: "report-security", number: "07", title: "When something goes wrong", summary: "How to tell Visionary about a security concern." },
   { id: "commitments", number: "08", title: "Our security commitments", summary: "The principles Visionary follows when protecting the service." },
-  { id: "contact", number: "09", title: "Contact", summary: "How to contact Visionary about security." },
+  { id: "sync-devices", number: "09", title: "Sync devices", summary: "Sign in once with your Sync Encrypted ID and carry Visionary across your devices." },
+  { id: "contact", number: "10", title: "Contact", summary: "How to contact Visionary about security." },
 ];
 
 function scrollToSection(id) {
@@ -49,7 +52,7 @@ function scrollToSection(id) {
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>{number}</div>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.ink }}>{number}</div>
       <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: C.ink }}>{title}</h2>
     </div>
   );
@@ -57,7 +60,7 @@ function SectionHeading({ number, title }) {
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.78] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
   );
 }
 
@@ -80,7 +83,7 @@ function SecurityCard({ icon: Icon, eyebrow, title, children }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border px-5 py-5 sm:px-6" style={{ borderColor: C.border, backgroundColor: C.canvas }}>
+    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: C.border }}>
       <p className="text-[14px] leading-[1.7]" style={{ color: C.graphite }}>{children}</p>
     </div>
   );
@@ -128,6 +131,7 @@ export default function SecurityPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
+      <Breadcrumb page="Security" />
       <main id="main">
         {/* HERO */}
         <section className="border-b pt-28 sm:pt-32" style={{ borderColor: C.border }}>
@@ -138,17 +142,18 @@ export default function SecurityPage() {
                 Security
               </div>
               <h1 className="max-w-[930px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: C.ink }}>
-                What you trust Visionary with,
-                <br />
-                <span style={{ color: C.blue }}>we work to protect.</span>
+                Secure by design.
               </h1>
-              <p className="mt-8 max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                Your learning, conversations, ideas, and progress can become part of your journey. Security is what helps keep that information protected as you use Visionary.
+              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[780px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
+                Encryption, access controls, and clear account tools.
               </p>
+        <p className="mt-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
+          Last updated: <strong style={{ color: "#121317" }}>{LEGAL_META.security.lastUpdated}</strong>
+        </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
                 <span style={{ color: C.slate }}>Security information</span>
                 <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
-                <Link to="/privacy" className="inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
+                <Link to="/privacy" className="inline-flex items-center gap-1.5 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
                   Read Privacy
                   <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
                 </Link>
@@ -158,7 +163,7 @@ export default function SecurityPage() {
         </section>
 
         {/* INTRO / THREE PRINCIPLES */}
-        <section className="border-b" style={{ borderColor: C.border, backgroundColor: C.canvas }}>
+        <section className="border-b" style={{ borderColor: C.border }}>
           <div className="mx-auto max-w-[1240px] px-6 py-14 sm:px-8 sm:py-18 lg:px-10 lg:py-20">
             <div className="grid gap-6 md:grid-cols-3">
               <SecurityCard icon={Lock} eyebrow="01" title="Protect">
@@ -168,7 +173,7 @@ export default function SecurityPage() {
                 <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Keep access limited and make important controls understandable.</p>
               </SecurityCard>
               <SecurityCard icon={Eye} eyebrow="03" title="Explain">
-                <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Be clear about what we protect, what we can promise, and where details are still being built.</p>
+                <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Explain protections, account choices, and the limits of any security system in language people can use.</p>
               </SecurityCard>
             </div>
           </div>
@@ -178,7 +183,7 @@ export default function SecurityPage() {
         <section className="border-b lg:hidden" style={{ borderColor: C.border }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
             <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+              className="flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
               <span>
                 <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: C.slate }}>Contents</span>
                 <span className="mt-1 block text-[15px]" style={{ color: C.ink }}>{activeSection?.title}</span>
@@ -220,7 +225,7 @@ export default function SecurityPage() {
                         const active = activeId === section.id;
                         return (
                           <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 hover:bg-[#121317]/5.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             style={{ backgroundColor: active ? C.canvas : "transparent" }}>
                             <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? C.blue : C.slate }}>{section.number}</span>
                             <span className="text-[13px] leading-[1.45]" style={{ color: active ? C.ink : C.graphite }}>{section.title}</span>
@@ -233,7 +238,7 @@ export default function SecurityPage() {
                     <p className="text-[13px] leading-[1.6]" style={{ color: C.slate }}>
                       Security and privacy work together. For information about personal data and your rights, see Privacy.
                     </p>
-                    <Link to="/privacy" className="mt-3 inline-flex items-center gap-1.5 text-[13px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.blue }}>
+                    <Link to="/privacy" className="mt-3 inline-flex items-center gap-1.5 text-[13px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.blue }}>
                       Privacy Policy
                       <ChevronRight className="h-3.5 w-3.5" strokeWidth={1.8} />
                     </Link>
@@ -243,7 +248,7 @@ export default function SecurityPage() {
 
               {/* MAIN CONTENT */}
               <div className="min-w-0">
-                <article className="divide-y divide-[#e5e7eb]">
+                <article className="divide-y divide-[#dadce0]">
                   {/* 01 */}
                   <section id="your-information" className="scroll-mt-24 pb-14 sm:pb-16">
                     <SectionHeading number="01" title="Your information" />
@@ -257,33 +262,33 @@ export default function SecurityPage() {
                   <section id="protected-in-transit" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="02" title="Protected as it moves" />
                     <Paragraph>Information can move between your device, Visionary, and the systems that help provide the service.</Paragraph>
-                    <div className="mt-5"><Paragraph>Protecting information while it travels is a basic part of operating a modern online service. Visionary should use appropriate transport protections for connections to its services.</Paragraph></div>
-                    <Note>Before publication, the exact transport-security technologies used by Visionary should be documented here by the engineering team.</Note>
+                    <div className="mt-5"><Paragraph>Visionary uses encrypted HTTPS connections when information travels between your browser and the service. Keep your browser and operating system updated so they can use current connection protections.</Paragraph></div>
+                    <Note>A secure connection protects information in transit. It does not make an unsafe device or a shared account private.</Note>
                   </section>
 
                   {/* 03 */}
                   <section id="protected-when-stored" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="03" title="Protected when stored" />
                     <Paragraph>Information that needs to remain available to operate Visionary may be stored in our systems.</Paragraph>
-                    <div className="mt-5"><Paragraph>Stored information should be protected through appropriate technical and organizational measures, including controls around infrastructure, systems, credentials, and access.</Paragraph></div>
+                    <div className="mt-5"><Paragraph>Stored information is protected through technical and organizational measures, including controls around infrastructure, systems, credentials, and access.</Paragraph></div>
                     <div className="mt-5"><Paragraph>We design security around reducing the opportunity for unauthorized access and limiting the impact when something goes wrong.</Paragraph></div>
-                    <Note>Specific storage locations, encryption methods, backup architecture, and retention mechanisms should be published here only after they are confirmed in Visionary's production infrastructure.</Note>
+                    <Note>Some workspace information can remain on your device. Account-linked information follows the storage and retention choices explained in the Privacy Policy.</Note>
                   </section>
 
                   {/* 04 */}
                   <section id="access-controlled" className="scroll-mt-24 py-14 sm:py-16">
                     <SectionHeading number="04" title="Access is controlled" />
                     <Paragraph>Not everyone who works on a system should have access to everything inside it.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary should limit access to systems and information according to what a person or service needs to perform its role.</Paragraph></div>
+                    <div className="mt-5"><Paragraph>Visionary limits access to systems and information according to what a person or service needs to perform its role.</Paragraph></div>
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
                       <SecurityCard icon={UserRound} eyebrow="Identity" title="Who can access">
-                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access should be tied to authorized identities rather than shared credentials.</p>
+                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access is tied to authorized identities rather than shared credentials.</p>
                       </SecurityCard>
                       <SecurityCard icon={Database} eyebrow="Scope" title="What they can access">
-                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access should be limited to the systems and information required for the task.</p>
+                        <p className="text-[14px] leading-[1.7]" style={{ color: C.slate }}>Access is limited to the systems and information required for the task.</p>
                       </SecurityCard>
                     </div>
-                    <Note>The exact identity, role, administrator, and access controls should reflect the systems Visionary actually operates.</Note>
+                    <Note>Student, teacher, parent, and organization roles receive different views. A relationship does not grant access beyond its defined purpose.</Note>
                   </section>
 
                   {/* 05 */}
@@ -317,13 +322,13 @@ export default function SecurityPage() {
                     <div className="mt-5"><Paragraph>If you believe you have discovered a vulnerability, unauthorized access, or another security issue involving Visionary, please report it through our security contact channel.</Paragraph></div>
                     <div className="mt-6">
                       <a href="mailto:security@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         style={{ color: C.blue }}>
                         security@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     </div>
-                    <Note>This address should be activated and monitored by Visionary before this page goes live.</Note>
+                    <Note>Include a clear description, the affected page or feature, and steps to reproduce the issue. Do not include passwords or unnecessary personal data.</Note>
                   </section>
 
                   {/* 08 */}
@@ -369,20 +374,69 @@ export default function SecurityPage() {
                     </div>
                   </section>
 
+                    {/* 09 · SYNC DEVICES — the master-order product requirement */}
+                    <section id="sync-devices" className="scroll-mt-24 py-14 sm:py-16">
+                      <SectionHeading number="09" title="Sync devices" />
+                      <p className="max-w-[760px] text-[16px] leading-[1.78]" style={{ color: C.slate }}>
+                        Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use — your questions, progress, and memory arrive as they were, and only you can open them.
+                      </p>
+                      <div className="mt-6 space-y-4">
+                        <div className="rounded-[18px] border p-5 sm:p-6" style={{ borderColor: C.border }}>
+                          <div className="flex gap-4">
+                            <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
+                            <div>
+                              <h3 className="text-[17px] font-normal" style={{ color: C.ink }}>Sign in with your Sync Encrypted ID</h3>
+                              <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: C.slate }}>One encrypted identity unlocks Visionary on a new device — the encryption stays with your account, not with the device.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-4 space-y-4">
+                        <div className="rounded-[18px] border p-5 sm:p-6" style={{ borderColor: C.border }}>
+                          <div className="flex gap-4">
+                            <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
+                            <div>
+                              <h3 className="text-[17px] font-normal" style={{ color: C.ink }}>Your learning follows you</h3>
+                              <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: C.slate }}>Progress, notes, and memory sync across phone, tablet, and laptop — pick up exactly where you stopped.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-4 space-y-4">
+                        <div className="rounded-[18px] border p-5 sm:p-6" style={{ borderColor: C.border }}>
+                          <div className="flex gap-4">
+                            <Eye className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
+                            <div>
+                              <h3 className="text-[17px] font-normal" style={{ color: C.ink }}>You see every device</h3>
+                              <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: C.slate }}>Review the devices signed in to your account and remove any of them, at any time, from your settings.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <Link to="/privacy" className="mt-6 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.blue }}>
+                        How privacy works with sync
+                        <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
+                      </Link>
+                      <div className="mt-7 flex flex-wrap gap-3">
+                        <Link to="/login" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">Sign in with Sync Encrypted ID</Link>
+                        <Link to="/dashboard/settings" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#dadce0] px-6 text-[14px] font-medium text-[#121317] hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Review your devices</Link>
+                      </div>
+                    </section>
+
                   {/* 09 */}
                   <section id="contact" className="scroll-mt-24 pt-14 sm:pt-16">
-                    <SectionHeading number="09" title="Contact" />
+                    <SectionHeading number="10" title="Contact" />
                     <Paragraph>Security questions, vulnerability reports, and security concerns can be sent to:</Paragraph>
                     <div className="mt-6">
                       <a href="mailto:security@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         style={{ color: C.blue }}>
                         security@visionary.org.in
                         <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
                       </a>
                     </div>
                     <div className="mt-6">
-                      <Link to="/help" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.blue }}>
+                      <Link to="/help" className="inline-flex items-center gap-2 text-[15px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: C.blue }}>
                         Visit Help
                         <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
                       </Link>
@@ -391,7 +445,7 @@ export default function SecurityPage() {
                 </article>
 
                 {/* CLOSING */}
-                <section className="mt-20 border-t border-[#e5e7eb] pt-14 sm:mt-24 sm:pt-16">
+                <section className="mt-20 border-t border-[#dadce0] pt-14 sm:mt-24 sm:pt-16">
                   <div className="max-w-[860px]">
                     <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>Security</div>
                     <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: C.ink }}>
@@ -399,19 +453,19 @@ export default function SecurityPage() {
                       <br />
                       <span style={{ color: C.blue }}>Your trust should, too.</span>
                     </h2>
-                    <p className="mt-6 max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
+                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
                       Security is part of how Visionary earns the right to carry your learning journey forward.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Privacy
                       </Link>
-                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Safety
                       </Link>
-                      <Link to="/terms" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                      <Link to="/terms" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                         style={{ borderColor: C.mist, color: C.ink }}>
                         Terms
                       </Link>

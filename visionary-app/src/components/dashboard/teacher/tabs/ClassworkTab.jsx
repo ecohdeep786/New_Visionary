@@ -89,8 +89,8 @@ export default function ClassworkTab({ classId, classroom, accent }) {
 
       {showForm && (
         <form onSubmit={create} className="flex flex-col gap-4 p-6 bg-white rounded-2xl border border-[#dadce0]">
-          <h3 className="text-base font-medium text-[#202124]">New assignment</h3>
-          <label htmlFor="assignment-title" className="text-sm font-medium text-[#202124]">Title</label>
+          <h3 className="text-base font-medium text-[#121317]">New assignment</h3>
+          <label htmlFor="assignment-title" className="text-sm font-medium text-[#121317]">Title</label>
           <input
             id="assignment-title"
             required
@@ -98,7 +98,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
             placeholder="Assignment title"
-            className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
+            className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]"
           />
           <textarea
             aria-label="Assignment instructions"
@@ -106,7 +106,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Instructions (optional)"
             rows={3}
-            className="w-full p-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8] resize-none"
+            className="w-full p-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4] resize-none"
           />
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -116,7 +116,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                 type="date"
                 value={form.due_date}
                 onChange={(e) => setForm({ ...form, due_date: e.target.value })}
-                className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
+                className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]"
               />
             </div>
             <div>
@@ -129,7 +129,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                 required
                 value={form.points}
                 onChange={(e) => setForm({ ...form, points: e.target.value })}
-                className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
+                className="w-full h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]"
               />
             </div>
           </div>
@@ -148,9 +148,9 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                   }
                 }}
                 placeholder="e.g. Quadratic equations"
-                className="flex-1 h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#202124] outline-none focus:border-[#1a73e8]"
+                className="flex-1 h-11 px-4 rounded-xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4]"
               />
-              <button type="button" onClick={addTopic} disabled={!topicInput.trim()} className="h-11 px-4 rounded-xl border border-[#dadce0] text-sm font-medium text-[#3c4043] hover:bg-gray-50 disabled:opacity-40">
+              <button type="button" onClick={addTopic} disabled={!topicInput.trim()} className="h-11 px-4 rounded-xl border border-[#dadce0] text-sm font-medium text-[#5f6368] hover:bg-[#121317]/5 disabled:opacity-40">
                 Add
               </button>
             </div>
@@ -173,7 +173,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
           </div>
 
           <div className="flex justify-end gap-3">
-            <button type="button" disabled={busy} onClick={() => setShowForm(false)} className="h-10 px-5 rounded-full text-sm font-medium text-[#5f6368] hover:bg-gray-100">
+            <button type="button" disabled={busy} onClick={() => setShowForm(false)} className="h-10 px-5 rounded-full text-sm font-medium text-[#5f6368] hover:bg-[#121317]/5">
               Cancel
             </button>
             <button
@@ -190,7 +190,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
 
       {loading ? (
         <div className="flex justify-center py-8">
-          <div className="w-7 h-7 border-4 border-gray-200 rounded-full animate-spin" style={{ borderTopColor: accent }} />
+          <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
         </div>
       ) : assignments.length === 0 ? (
         <div className="flex flex-col items-center gap-3 py-12 text-center">
@@ -208,14 +208,14 @@ export default function ClassworkTab({ classId, classroom, accent }) {
                   <ClipboardList className="w-5 h-5" style={{ color: accent }} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[#202124]">{a.title}</p>
+                  <p className="text-sm font-medium text-[#121317]">{a.title}</p>
                   <p className="text-xs text-[#5f6368] mt-0.5">
                     {a.points || 100} points{a.due_date ? ` · Due ${a.due_date}` : ""}
                   </p>
                 </div>
                 <button
                   onClick={() => setGrading(a)}
-                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full text-sm font-medium border border-[#dadce0] text-[#3c4043] hover:bg-gray-50 shrink-0"
+                  className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full text-sm font-medium border border-[#dadce0] text-[#5f6368] hover:bg-[#121317]/5 shrink-0"
                 >
                   <Inbox className="w-4 h-4" style={{ color: ungraded ? "#ea4335" : "#5f6368" }} />
                   {subs.length > 0 ? `Review (${subs.length}${ungraded ? ` · ${ungraded} new` : ""})` : "Review"}
@@ -225,7 +225,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
               {a.topics && a.topics.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4 pl-14">
                   {a.topics.map((t) => (
-                    <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#f1f3f4] text-[#3c4043]">
+                    <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#dadce0] text-[#5f6368]">
                       {t}
                     </span>
                   ))}

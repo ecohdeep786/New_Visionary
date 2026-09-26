@@ -1,0 +1,379 @@
+## Master Prompt: Google-Inspired Page Redesign Project
+
+Review the **entire existing product and all current pages first** before making any changes. I have updated files recently, so always work from the latest version of the project.
+
+Your goal is to improve the product’s public-facing pages so they feel as polished, structured, trustworthy, accessible, and consistent as Google’s web experiences—while still preserving our own product identity, content, and functionality.
+
+Do **not** simply copy Google text, add a Google-like illustration, or make superficial visual changes. Study the referenced pages deeply: their layout systems, navigation, hierarchy, spacing, typography, cards, content flow, responsive behavior, calls-to-action, accessibility patterns, trust signals, footer structure, and visual storytelling. Then adapt those principles appropriately to our current product.
+
+The final product should feel like a premium, modern, Google-quality experience with a consistent design system across all pages.
+
+## Core Working Rules
+
+1. **Start by auditing the current product**
+   - Review all existing pages, components, layouts, styles, navigation, footer, responsive behavior, images, and content.
+   - Identify what has changed in the latest files before editing anything.
+   - Understand the current design system before proposing or implementing improvements.
+   - Do not remove working functionality unless it is intentionally being replaced with a better version.
+
+2. **Work on one page at a time**
+   - Complete one page fully before starting the next page.
+   - Do not partially redesign multiple pages at once.
+   - For each page, first review our current implementation, then study every related reference link listed for that page.
+   - Only move to the next page after the current page is complete, polished, responsive, and consistent with the overall product.
+
+3. **Study reference pages deeply**
+   - Inspect the reference pages carefully, not only their text or hero section.
+   - Analyze:
+     - Header and navigation behavior
+     - Hero composition and messaging hierarchy
+     - Typography scale and line length
+     - Grid, spacing, alignment, and whitespace
+     - Card patterns and section composition
+     - Image, icon, illustration, and visual storytelling approach
+     - CTA placement and button hierarchy
+     - Interactive elements
+     - Trust, privacy, safety, and credibility signals
+     - Mobile and tablet layout behavior
+     - Accessibility and readable contrast
+     - Footer structure and legal navigation
+   - Use Google’s design quality and structural thinking as inspiration, but create an original implementation for our brand and product.
+
+4. **Maintain one unified product design system**
+   - Use consistent typography, color usage, spacing, buttons, cards, form controls, icons, section patterns, and animations across all redesigned pages.
+   - Every page should feel like part of the same product—not like separate templates.
+   - Improve the global header, global footer, responsive navigation, and reusable UI components when necessary.
+   - Ensure all pages work well on desktop, tablet, and mobile.
+
+5. **Use images intentionally**
+   - Add or improve images, illustrations, icons, diagrams, screenshots, and visual assets where they improve comprehension or trust.
+   - Do not use decorative visuals only to fill empty space.
+   - Each visual should support the page’s message, product story, feature explanation, safety concept, or user action.
+   - Use an original, consistent visual style throughout the product.
+   - Optimize images for performance and provide meaningful alt text.
+
+6. **Focus on real page improvement**
+   - Do not treat this as a text rewrite.
+   - Do not only add a hero illustration and consider the page complete.
+   - Improve the complete experience: structure, content hierarchy, clarity, interactions, usability, responsive behavior, design quality, and conversion flow.
+   - Each redesigned page should be noticeably more thoughtful, modern, clear, and trustworthy than the current version.
+
+7. **Completion checklist for every page**
+   Before moving to the next page, confirm that:
+   - The current page was reviewed first.
+   - Every assigned reference link was reviewed.
+   - The page structure was improved, not only the copy.
+   - The design aligns with the shared product system.
+   - The page is responsive across desktop, tablet, and mobile.
+   - Accessibility was considered, including contrast, keyboard navigation, focus states, semantic structure, labels, and alt text.
+   - Images and icons support the content.
+   - CTAs are clear and logically placed.
+   - The page is visually polished and production-ready.
+   - Header, footer, and navigation remain consistent.
+
+***
+
+## Required Workflow for Each Page
+
+Follow this exact process for **every page**:
+
+1. Open and inspect the current page in our product.
+2. Review the latest related files and components.
+3. Identify the current page’s weaknesses, missing sections, inconsistent components, and usability issues.
+4. Visit and study each Google reference link assigned to that page.
+5. Extract the useful design principles, information architecture, section order, interaction ideas, visual patterns, and trust-building elements.
+6. Plan how those principles can improve our product without copying Google’s content or branding.
+7. Redesign and implement the page completely.
+8. Add or improve relevant images, illustrations, icons, diagrams, and visual assets.
+9. Test the page for responsiveness, accessibility, consistency, and visual quality.
+10. Review the completed page against both:
+   - Our existing product design system
+   - The quality, clarity, and structure of the Google reference pages
+11. Only after the page is complete, move to the next page.
+
+***
+
+
+## Page router in the repo:
+/about  → AboutUsPage.jsx 
+/privacy → PrivacyPage
+/career → redirects to /careers
+/research → ResearchNewsPage
+/community → CommunityPage
+/contact → ContactPage
+/partners → PartnersPage
+/updates → UpdatesPage
+/referral → ReferralPage
+/safety → SafetyPage
+/research → ResearchPage 
+/terms → TermsPage
+/security → SecurityPage
+/accessibility → AccessibilityPage
+/cookies → CookiesPage
+
+## Page-by-Page Scope and References
+
+### 1. About Us Page
+
+**Goal:** Build a compelling company story that explains who we are, what we build, why it matters, and where we are going.
+
+**Reference links:**  
+[https://about.google/](https://about.google/), [https://about.google/products/](https://about.google/products/), [https://about.google/company-info/](https://about.google/company-info/), [https://blog.google/](https://blog.google/), [https://research.google/blog/](https://research.google/blog/), [https://research.google/teams/](https://research.google/teams/), [https://www.google.com/account/about/](https://www.google.com/account/about/)
+
+**Design direction:**
+- Create an inspiring brand-focused hero.
+- Clearly communicate mission, vision, values, and the product’s purpose.
+- Include company story, team culture, milestones, product ecosystem, and impact.
+- Use strong editorial layout, clean typography, imagery, and modular storytelling.
+- Consider sections for leadership, company values, product principles, innovation, and latest news.
+- Use content cards or featured stories where appropriate.
+- Keep the page approachable, human, and credible.
+
+***
+
+### 2. Privacy Page
+
+**Goal:** Create a clear, trustworthy, transparent privacy page that explains how user data is handled, what choices users have, how security works, and how privacy controls can be managed.
+
+**Reference links:**  
+[https://policies.google.com/privacy?hl=en-US](https://policies.google.com/privacy?hl=en-US), [https://policies.google.com/?hl=en-US](https://policies.google.com/?hl=en-US), [https://safety.google/intl/en_us/safety/](https://safety.google/intl/en_us/safety/), [https://blog.google/innovation-and-ai/technology/safety-security/](https://blog.google/innovation-and-ai/technology/safety-security/), [https://ai.google/safety/](https://ai.google/safety/)
+
+**Design direction:**
+- Use a calm, trustworthy, easy-to-read layout.
+- Create a strong privacy-focused hero section.
+- Include a clear overview of privacy commitments.
+- Use scannable sections with helpful navigation or an in-page table of contents.
+- Explain data use, data protection, user controls, retention, sharing, security, and contact options.
+- Add visual explanations or diagrams where useful.
+- Include privacy-related CTAs such as managing settings, reading policies, or contacting support.
+- Make policy content easier to navigate than a long wall of text.
+
+***
+
+
+### 3. Careers Page
+
+**Goal:** Create a welcoming careers page that helps candidates understand the company, available opportunities, hiring process, culture, and growth opportunities.
+
+**Reference links:**  
+[https://www.google.com/about/careers/applications/](https://www.google.com/about/careers/applications/), [https://www.google.com/about/careers/applications/stories/applying-to-google/](https://www.google.com/about/careers/applications/stories/applying-to-google/), [https://grow.google/certificates?srsltid=AU7gw4WBXD6KQ3wTWmFLodk2yHtvayO6IgF_dlbtBPsi6N4UNV3VM_w4](https://grow.google/certificates?srsltid=AU7gw4WBXD6KQ3wTWmFLodk2yHtvayO6IgF_dlbtBPsi6N4UNV3VM_w4)
+
+**Design direction:**
+- Use a motivating and candidate-friendly structure.
+- Add a careers hero with a clear primary CTA such as “View Open Roles.”
+- Explain why people should work here.
+- Include hiring process steps, interview guidance, employee stories, benefits, culture, learning, and growth.
+- Provide a clear job-search or job-category area if applicable.
+- Design application information to be reassuring, transparent, and easy to scan.
+- Make accessibility, equal opportunity, and inclusive hiring information visible.
+
+***
+
+### 4. Research Page
+
+**Goal:** Present research, innovation, AI work, product experimentation, and technical leadership in a clear and inspiring way.
+
+**Reference links:**  
+[https://research.google/](https://research.google/), [https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=](https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=), [https://labs.google/?utm_source=ai.google&utm_medium=referral](https://labs.google/?utm_source=ai.google&utm_medium=referral), [https://deepmind.google/?utm_source=ai.google&utm_medium=referral](https://deepmind.google/?utm_source=ai.google&utm_medium=referral)
+
+**Design direction:**
+- Create a bold research and innovation hero.
+- Highlight research themes, labs, AI initiatives, experiments, publications, people, and impact.
+- Use editorial cards for research stories, publications, projects, and announcements.
+- Include filters, categories, or topic navigation if the page has enough content.
+- Use visual storytelling to explain complex work simply.
+- Maintain technical credibility while remaining understandable to non-technical users.
+- Make clear how research connects to the product and real-world outcomes.
+
+***
+
+### 5. Community Page
+
+**Goal:** Build a useful community hub where users can find discussions, support, learning opportunities, events, contributors, and shared resources.
+
+**Reference links:**  
+[https://support.google.com/accounts/community?hl=en](https://support.google.com/accounts/community?hl=en), [https://edu.google.com/for-educators/communities/](https://edu.google.com/for-educators/communities/), [https://docs.cloud.google.com/support/docs/community-support](https://docs.cloud.google.com/support/docs/community-support)
+
+**Design direction:**
+- Create a friendly, participatory community hero.
+- Clearly separate community discussions, support, learning, events, resources, and contributor programs.
+- Add search, topic categories, featured questions, popular resources, and community guidelines where relevant.
+- Make it easy for users to ask a question, find answers, or join a discussion.
+- Include trust and moderation signals.
+- Use cards, topics, user stories, and clear entry points rather than a dense forum-like experience.
+
+***
+
+### 6. Contact Page
+
+**Goal:** Create a clear contact and support experience that helps users quickly reach the right team or find self-service help.
+
+**Reference links:**  
+[https://business.google.com/in/support/](https://business.google.com/in/support/)
+
+**Design direction:**
+- Build a simple support-first layout.
+- Start with “How can we help?” and clear paths based on user intent.
+- Include contact methods such as support form, email, sales, technical support, partnerships, media, and account help as applicable.
+- Add a help-center search or common topic cards if relevant.
+- Clearly show expected response times where applicable.
+- Make forms simple, accessible, and easy to complete.
+- Avoid forcing all users through one generic contact form.
+
+***
+
+### 7. Partners Page
+
+**Goal:** Explain partnership opportunities, benefits, program tiers, eligibility, and how businesses or individuals can work with us.
+
+**Reference links:**  
+[https://business.google.com/in/support/become-a-partner/](https://business.google.com/in/support/become-a-partner/), [https://business.google.com/in/support/work-with-a-partner/](https://business.google.com/in/support/work-with-a-partner/), [https://business.google.com/in/think/](https://business.google.com/in/think/), [https://partners.cloud.google.com/enrollment/enter-email](https://partners.cloud.google.com/enrollment/enter-email), [https://enterprisemarketingportal.google/work-with-partners](https://enterprisemarketingportal.google/work-with-partners)
+
+**Design direction:**
+- Create a business-focused, high-trust partnerships page.
+- Clearly distinguish “Become a Partner” from “Find a Partner” if both experiences exist.
+- Explain partnership benefits, partner types, requirements, onboarding, enablement, resources, and support.
+- Use clear CTA paths for prospective partners and customers looking for partners.
+- Include proof points, partner stories, success metrics, logos, or testimonials where appropriate.
+- Use a clear multi-step application or enrollment journey if users can apply.
+
+***
+
+### 8. Updates Page
+
+**Goal:** Create a modern updates, announcements, news, and release hub.
+
+**Reference links:**  
+[https://blog.google/products-and-platforms/products/search/](https://blog.google/products-and-platforms/products/search/), [https://edu.google.com/communications/](https://edu.google.com/communications/), [https://edu.google.com/intl/ALL_in/](https://edu.google.com/intl/ALL_in/)
+
+**Design direction:**
+- Use an editorial, content-rich design.
+- Feature the latest important announcement prominently.
+- Include category filters, search, featured content, release notes, product updates, announcements, and educational resources where relevant.
+- Use clean article cards with dates, tags, images, and concise summaries.
+- Make it easy to discover both recent and older updates.
+- Include newsletter or subscription functionality if supported by the product.
+
+***
+
+### 9. Referral Page
+
+**Goal:** Build a clear referral program page that explains eligibility, rewards, process, terms, tracking, and sharing methods.
+
+**Reference links:**  
+[https://workspace.google.com/intl/en_in/referral-program/](https://workspace.google.com/intl/en_in/referral-program/), [https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1](https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1), [https://business.google.com/in/google-ads/referrals/](https://business.google.com/in/google-ads/referrals/), [https://edu.google.com/intl/ALL_in/resources/reference-program/](https://edu.google.com/intl/ALL_in/resources/reference-program/)
+
+**Design direction:**
+- Create a focused conversion-oriented landing page.
+- Start with a clear explanation of the referral benefit.
+- Show a simple step-by-step referral flow.
+- Explain eligibility, rewards, timelines, limitations, and terms transparently.
+- Include referral sharing tools, tracking status, and referral FAQs if applicable.
+- Use visual progress or illustrated steps to make the process feel easy.
+- Ensure all reward claims are accurate and legally compliant.
+
+***
+
+### 10. Safety Page
+
+**Goal:** Build a safety hub that gives users confidence in the product and helps them take practical steps to protect themselves.
+
+**Reference links:**  
+[https://safety.google/](https://safety.google/), [https://safety.google/intl/en/safety/scams-fraud/](https://safety.google/intl/en/safety/scams-fraud/), [https://safety.google/intl/en/safety/built-in-security/](https://safety.google/intl/en/safety/built-in-security/), [https://safety.google/intl/en/settings/parental-controls/](https://safety.google/intl/en/settings/parental-controls/), [https://safety.google/intl/en/settings/privacy-settings/](https://safety.google/intl/en/settings/privacy-settings/)
+
+**Design direction:**
+- Create a reassuring safety-focused hero.
+- Explain built-in protections, scam prevention, fraud awareness, safety tools, privacy settings, account controls, parental controls, and reporting options.
+- Use easy-to-understand visuals, checklists, and action cards.
+- Make user safety actions visible and easy to complete.
+- Include a safety resource center or topic navigation.
+- Prioritize clarity, calm language, trust, and user empowerment.
+
+***
+
+### 11. Security Page
+
+**Goal:** Explain how the product protects user accounts, devices, data, identity, sign-in processes, and synchronized devices.
+
+**Reference links:**  
+[https://blog.google/security/](https://blog.google/security/), [https://www.google.com/account/about/](https://www.google.com/account/about/), [https://www.google.com/account/about/passkeys/](https://www.google.com/account/about/passkeys/), [https://edu.google.com/intl/ALL_in/our-values/privacy-security/](https://edu.google.com/intl/ALL_in/our-values/privacy-security/)
+
+**Important product requirement:**  
+Create a secure “Sync Device” and “Sign in with Sync Encrypted ID” experience. This should allow users to securely use the same encrypted identity across their devices while maintaining strong privacy and security communication.
+
+**Design direction:**
+- Use a security-focused hero and visual language.
+- Explain encryption, account protection, secure sign-in, passkeys or passwordless access where supported, device synchronization, recovery, and suspicious activity alerts.
+- Present security features as understandable user benefits, not only technical claims.
+- Add clear action paths such as reviewing devices, enabling protection, managing sign-in methods, or learning about encryption.
+- Include security FAQs, best practices, and incident-reporting guidance if appropriate.
+- Ensure the “Sync Device” experience is clearly explained and designed as part of the same security system.
+
+***
+
+### 12. Accessibility Page
+
+**Goal:** Demonstrate that the product is designed for everyone and clearly explain available accessibility features, commitments, and support.
+
+**Reference links:**  
+[https://accessibility.google/](https://accessibility.google/), [https://edu.google.com/intl/ALL_in/our-values/accessibility/](https://edu.google.com/intl/ALL_in/our-values/accessibility/), [https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer](https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer)
+
+**Design direction:**
+- Build an inclusive, human-centered accessibility page.
+- Explain accessibility commitments and product features.
+- Include keyboard navigation, screen-reader compatibility, captions, contrast, zoom, reduced motion, language support, assistive technology compatibility, and other relevant features.
+- Use inclusive imagery and practical examples.
+- Provide accessible documentation, support channels, and feedback options.
+- Ensure the page itself demonstrates excellent accessibility.
+
+***
+
+### 13. Cookies Page
+
+**Goal:** Create a transparent, user-friendly cookie information and preference-management page.
+
+**Reference direction:**  
+Use the strongest patterns established across the redesigned Privacy, Safety, Security, Accessibility, and Footer experiences.
+
+**Design direction:**
+- Clearly explain what cookies are, why they are used, what categories exist, and how users can manage preferences.
+- Use plain language, not legal-heavy language only.
+- Include preference controls where applicable.
+- Separate necessary cookies from optional analytics, personalization, advertising, and functional cookies.
+- Explain the impact of disabling categories where needed.
+- Link clearly to the Privacy Policy and related legal information.
+- Keep the design simple, calm, compliant, and consistent with the rest of the product.
+
+***
+
+### 14. Global Google-Quality Footer
+
+**Goal:** Redesign the global footer so it is comprehensive, organized, trustworthy, and consistent across the whole product.
+
+**Design direction:**
+- Create a reusable footer shared across all pages.
+- Include structured navigation for Product, Company, Support, Community, Developers or Resources, Partners, Legal, and Social links where applicable.
+- Include links to Privacy, Cookies, Terms, Security, Safety, Accessibility, Contact, Careers, Research, Updates, Referral, and Partners.
+- Add language or region controls if the product supports them.
+- Include copyright and legal information.
+- Keep the footer responsive, accessible, easy to scan, and visually aligned with the overall product system.
+- Use the footer as a strong final navigation and trust layer—not just a small list of links.
+
+***
+
+## Final Quality Standard
+
+The redesigned product should not look like a collection of basic pages with extra text and illustrations. It should feel like a complete, intentional, high-quality product website.
+
+The final result must:
+
+- Have a consistent visual language across every page.
+- Use thoughtful layouts inspired by the quality and structure of Google’s pages.
+- Preserve our own product identity rather than copying Google branding.
+- Be modern, polished, responsive, accessible, and easy to navigate.
+- Use purposeful imagery and clear visual storytelling.
+- Improve information architecture, not only visual styling.
+- Include strong hierarchy, readable content, clear CTAs, and user-focused journeys.
+- Make users feel confidence in the product’s privacy, safety, security, support, accessibility, and company credibility.
+
+Start with the **AboutUs Page**. Complete it fully using the workflow above, including all assigned reference links, before moving to the **Privacy Page**. Continue in the exact order listed until all pages and the global footer are complete.

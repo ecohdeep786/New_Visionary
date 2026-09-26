@@ -59,7 +59,14 @@ module.exports = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+  			/* MASTER_SPEC §3.1 semantic tokens (landing pack; 03-design-system Wave L1) */
+  			surface: {
+  				canvas: '#F5F6F8',
+  				subtle: '#F8F9FA',
+  				'info-soft': '#E9EFFA',
+  			},
   			border: 'hsl(var(--border))',
+  			'danger': '#EA4335',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			chart: {

@@ -8,10 +8,12 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import SubjectPills from "@/components/dashboard/learn/SubjectPills";
 import TopicCard from "@/components/dashboard/learn/TopicCard";
 import JourneyCatalogue from '@/components/dashboard/JourneyCatalogue';
+import LearningWorkspace from './LearningWorkspace';
 
 const filters = [{ value: "all", label: "All topics" }, { value: "not-started", label: "Not started" }, { value: "in-progress", label: "In progress" }, { value: "mastered", label: "Mastered" }, { value: "saved", label: "Saved" }];
 
-export default function Learn() {
+export default function Learn(){const [params]=useSearchParams();return params.get('legacy')==='1'||params.has('subject')&&!params.has('unit')?<LegacyLearn/>:<LearningWorkspace/>;}
+function LegacyLearn() {
   const data = useStudentData();
   const theme = useThemeColor();
   const [params, setParams] = useSearchParams();
@@ -54,34 +56,34 @@ export default function Learn() {
   return (
     <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 p-5 sm:p-8">
       <header className="flex flex-wrap items-start justify-between gap-4">
-        <div><h1 className="text-2xl font-medium tracking-tight text-[#202124]">Learn</h1><p className="mt-2 text-sm text-[#5f6368]">Follow your curiosity. Understand an idea, then put it to work.</p></div>
+        <div><h1 className="text-2xl font-medium tracking-tight text-[#121317]">Learn</h1><p className="mt-2 text-sm text-[#5f6368]">Follow your curiosity. Understand an idea, then put it to work.</p></div>
         <button onClick={() => { setError(""); setDialogOpen(true); }} disabled={!subject || data.loading} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white disabled:opacity-40" style={{ backgroundColor: theme.accent }}><Plus className="h-4 w-4" /> Add topic</button>
       </header>
       <JourneyCatalogue />
-      {data.loading ? <div role="status" className="flex items-center justify-center gap-3 py-24 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> Loading your lessons</div> : data.error ? <div role="alert" className="rounded-xl border p-6 text-sm">Your lessons could not be loaded. <button className="text-blue-700 underline" onClick={() => data.refresh?.()}>Try again</button></div> : <>
-        <div className="flex flex-wrap items-center gap-3"><SubjectPills subjects={data.subjects} activeSubject={subject} onSelect={(name) => { setParams({ subject: name }); setFilter("all"); setQuery(""); }} /><Link to="/dashboard/profile" className="inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-[#bdc1c6] px-4 py-2 text-sm text-blue-700"><Plus className="h-4 w-4" />Learning area</Link></div>
-        <Link to="/dashboard/explore" className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#dce6f5] bg-[#f6f9ff] p-5"><div><p className="text-xs font-medium text-[#1967d2]">Explore in 3D · Interactive example</p><h2 className="mt-2 text-lg font-medium">See how a small change grows.</h2><p className="mt-1 text-sm text-[#5f6368]">Rotate a cube, change its size, and discover volume.</p></div><span className="rounded-full bg-white px-4 py-2 text-sm text-[#1967d2]">Open lab →</span></Link>
+      {data.loading ? <div role="status" className="flex items-center justify-center gap-3 py-24 text-sm text-[#5f6368]"><Loader2 className="h-5 w-5 animate-spin" /> Loading your lessons</div> : data.error ? <div role="alert" className="rounded-xl border p-6 text-sm">Your lessons could not be loaded. <button className="text-[#4285F4] underline" onClick={() => data.refresh?.()}>Try again</button></div> : <>
+        <div className="flex flex-wrap items-center gap-3"><SubjectPills subjects={data.subjects} activeSubject={subject} onSelect={(name) => { setParams({ subject: name }); setFilter("all"); setQuery(""); }} /><Link to="/dashboard/profile" className="inline-flex shrink-0 items-center gap-1 rounded-full border border-dashed border-[#5f6368] px-4 py-2 text-sm text-[#4285F4]"><Plus className="h-4 w-4" />Learning area</Link></div>
+        <Link to="/dashboard/explore" className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5"><div><p className="text-xs font-medium text-[#4285F4]">Explore in 3D · Interactive example</p><h2 className="mt-2 text-lg font-medium">See how a small change grows.</h2><p className="mt-1 text-sm text-[#5f6368]">Rotate a cube, change its size, and discover volume.</p></div><span className="rounded-full bg-white px-4 py-2 text-sm text-[#4285F4]">Open lab →</span></Link>
         <section className="rounded-xl border border-[#dadce0] bg-white">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#dadce0] p-4">
             <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-xs"><Search className="h-4 w-4 shrink-0 text-[#5f6368]" /><span className="sr-only">Search topics</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search topics" className="w-full min-w-0 bg-transparent py-1 text-sm outline-none" /></label>
             <div className="flex items-center gap-2">
               <label className="sr-only" htmlFor="lesson-status">Topic status</label><select id="lesson-status" value={filter} onChange={(e) => setFilter(e.target.value)} className="rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm">{filters.map((f) => <option key={f.value} value={f.value}>{f.label}</option>)}</select>
-              <div className="flex rounded-lg border border-[#dadce0] p-1">{[{ id: "grid", icon: LayoutGrid }, { id: "list", icon: List }].map(({ id, icon: Icon }) => <button key={id} onClick={() => setView(id)} aria-label={`${id} view`} aria-pressed={view === id} className={`rounded-md p-2 ${view === id ? "bg-blue-50 text-blue-700" : "text-[#5f6368] hover:bg-gray-50"}`}><Icon className="h-4 w-4" /></button>)}</div>
+              <div className="flex rounded-lg border border-[#dadce0] p-1">{[{ id: "grid", icon: LayoutGrid }, { id: "list", icon: List }].map(({ id, icon: Icon }) => <button key={id} onClick={() => setView(id)} aria-label={`${id} view`} aria-pressed={view === id} className={`rounded-md p-2 ${view === id ? "bg-[#e8f0fd] text-[#4285F4]" : "text-[#5f6368] hover:bg-[#121317]/5"}`}><Icon className="h-4 w-4" /></button>)}</div>
             </div>
           </div>
           <div className="p-4 sm:p-5">
-            <div className="mb-5 flex items-center justify-between"><h2 className="text-base font-medium text-[#202124]">{subject || "Your lessons"}</h2><span className="text-xs text-[#5f6368]">{topics.length} {topics.length === 1 ? "topic" : "topics"}</span></div>
+            <div className="mb-5 flex items-center justify-between"><h2 className="text-base font-medium text-[#121317]">{subject || "Your lessons"}</h2><span className="text-xs text-[#5f6368]">{topics.length} {topics.length === 1 ? "topic" : "topics"}</span></div>
             {topics.length ? <div className={view === "grid" ? "grid gap-4 md:grid-cols-2 xl:grid-cols-3" : "space-y-3"}>{topics.map((topic) => <TopicCard key={topic.id} topic={topic} variant={view} />)}</div> : <div className="flex flex-col items-center gap-3 px-4 py-14 text-center">
-              <div className="rounded-2xl bg-[#f1f3f4] p-4">{filter === "saved" ? <Bookmark className="h-7 w-7 text-[#5f6368]" /> : <BookOpen className="h-7 w-7 text-[#5f6368]" />}</div>
-              <h3 className="text-base font-medium text-[#202124]">{query || filter !== "all" ? "No matching topics" : "Make room for your next discovery"}</h3>
+              <div className="rounded-2xl bg-[#dadce0] p-4">{filter === "saved" ? <Bookmark className="h-7 w-7 text-[#5f6368]" /> : <BookOpen className="h-7 w-7 text-[#5f6368]" />}</div>
+              <h3 className="text-base font-medium text-[#121317]">{query || filter !== "all" ? "No matching topics" : "Make room for your next discovery"}</h3>
               <p className="max-w-md text-sm leading-6 text-[#5f6368]">{query || filter !== "all" ? "Try a different search or filter. Save a topic from its lesson to find it here." : subject ? "Add a topic you want to explore. Your class assignments remain in Classes, alongside your personal learning." : "Add a learning area in Profile to get started."}</p>
-              {query || filter !== "all" ? <button className="text-sm font-medium text-blue-700" onClick={() => { setQuery(""); setFilter("all"); }}>Clear filters</button> : <Link to={subject ? "/dashboard/classes" : "/dashboard/profile"} className="text-sm font-medium text-blue-700">{subject ? "Go to classes" : "Open profile"}</Link>}
+              {query || filter !== "all" ? <button className="text-sm font-medium text-[#4285F4]" onClick={() => { setQuery(""); setFilter("all"); }}>Clear filters</button> : <Link to={subject ? "/dashboard/classes" : "/dashboard/profile"} className="text-sm font-medium text-[#4285F4]">{subject ? "Go to classes" : "Open profile"}</Link>}
             </div>}
           </div>
         </section>
       </>}
-      {error && !dialogOpen && <p role="alert" className="text-sm text-red-700">{error}</p>}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}><DialogContent className="max-w-[calc(100vw-2rem)] rounded-2xl sm:max-w-md"><DialogTitle>Add a topic</DialogTitle><DialogDescription>Keep track of a concept you want to learn in {subject}.</DialogDescription><form onSubmit={addTopic} className="space-y-4"><label className="block text-sm font-medium">Topic name<input required maxLength={140} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="For example, quadratic equations" className="mt-2 w-full rounded-lg border border-[#dadce0] p-3 font-normal" /></label>{error && <p role="alert" className="text-sm text-red-700">{error}</p>}<div className="flex justify-end gap-3"><button type="button" onClick={() => setDialogOpen(false)} className="rounded-full px-4 py-2 text-sm">Cancel</button><button disabled={saving || !title.trim()} className="rounded-full bg-blue-600 px-5 py-2 text-sm font-medium text-white disabled:opacity-40">{saving ? "Saving…" : "Add topic"}</button></div></form></DialogContent></Dialog>
+      {error && !dialogOpen && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}><DialogContent className="max-w-[calc(100vw-2rem)] rounded-2xl sm:max-w-md"><DialogTitle>Add a topic</DialogTitle><DialogDescription>Keep track of a concept you want to learn in {subject}.</DialogDescription><form onSubmit={addTopic} className="space-y-4"><label className="block text-sm font-medium">Topic name<input required maxLength={140} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="For example, quadratic equations" className="mt-2 w-full rounded-lg border border-[#dadce0] p-3 font-normal" /></label>{error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}<div className="flex justify-end gap-3"><button type="button" onClick={() => setDialogOpen(false)} className="rounded-full px-4 py-2 text-sm">Cancel</button><button disabled={saving || !title.trim()} className="rounded-full bg-[#4285F4] px-5 py-2 text-sm font-medium text-white disabled:opacity-40">{saving ? "Saving…" : "Add topic"}</button></div></form></DialogContent></Dialog>
     </div>
   );
 }

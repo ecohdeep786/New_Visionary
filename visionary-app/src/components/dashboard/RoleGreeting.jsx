@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
  * Personalized AGI greeting — the first thing every user reads.
  * Mirrors the student AITeacherHero pattern but adapts the message per role.
  */
-export default function RoleGreeting({ userName = "there", role = "student", subtitle = "", accent = "#1a73e8", children }) {
+export default function RoleGreeting({ userName = "there", role = "student", subtitle = "", accent = "#4285F4", children }) {
   const greetings = {
     student: `Hello, ${userName}.`,
     teacher: `Welcome back, ${userName}.`,
@@ -25,7 +25,7 @@ export default function RoleGreeting({ userName = "there", role = "student", sub
           <Sparkles className="w-6 h-6" style={{ color: accent }} />
         </div>
         <div className="flex-1">
-          <h1 className="text-[26px] lg:text-[30px] font-medium text-[#202124] leading-tight">
+          <h1 className="text-[26px] lg:text-[30px] font-medium text-[#121317] leading-tight">
             {greetings[role] || greetings.student}
           </h1>
           <p className="text-base text-[#5f6368] mt-2 leading-relaxed">

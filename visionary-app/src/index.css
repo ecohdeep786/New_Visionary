@@ -1,3 +1,5 @@
+@import "./styles/rhythm.css";
+
 /* Google Fonts imports */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700&display=swap');
@@ -19,33 +21,66 @@
 @tailwind utilities;
 
 @keyframes oi-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── Student: struggle carousel — keyframes only; all layout/type lives in Tailwind ── */
 @keyframes struggle-blink {
-  0%, 55% { opacity: 1; }
-  56%, 100% { opacity: 0; }
+
+  0%,
+  55% {
+    opacity: 1;
+  }
+
+  56%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes heroFadeRight {
-  from { opacity: 0; transform: translateX(-32px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
 .hero-fade-right {
-    animation: heroFadeRight 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: heroFadeRight 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
 /* text enters from the left */
 @keyframes fadeLeft {
-  from { opacity: 0; transform: translateX(-32px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* circles spin in anticlockwise as their image swaps */
 
 @keyframes ccwIn {
-  from { opacity: 0; transform: rotate(90deg) scale(0.82); }
-  to   { opacity: 1; transform: rotate(0deg) scale(1); }
+  from {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
 }
 
 @layer base {
@@ -182,7 +217,7 @@
     --figma-text-1-2: 0 0% 31%;
     /* figma:company-pitch-deck-all-design (Ty6gmHof) — end */
   }
-  
+
 
   .dark {
 
@@ -265,7 +300,8 @@
     box-sizing: border-box;
   }
 
-  html, body {
+  html,
+  body {
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
@@ -278,28 +314,64 @@
     overflow-x: clip;
   }
 
-button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zoom */
+  button,
+  a {
+    touch-action: manipulation;
+  }
 
-  img, video, svg {
+  /* kills 300ms delay + double-tap zoom */
+
+  img,
+  video,
+  svg {
     max-width: 100%;
     height: auto;
   }
 
-  ::selection { background: #D2E3FC; color: #121317; }
-
-/* iOS notch / home-bar safe areas */
-.safe-b { padding-bottom: env(safe-area-inset-bottom); }
-.safe-t { padding-top: env(safe-area-inset-top); }
-
-/* Motion safety — users who asked for less motion get none */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  ::selection {
+    background: #D2E3FC;
+    color: #121317;
   }
-}
+
+  /* iOS notch / home-bar safe areas */
+  .safe-b {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-t {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Motion safety — users who asked for less motion get none */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      /* !important: this block precedes the later html{scroll-behavior:smooth} rule,
+         which otherwise overrides this auto at equal specificity (M-01). */
+      scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      /* Delays must die too — a 120–240ms entrance delay leaves keyed content
+       invisible at opacity 0 after every remount (L5 05-motion defect). */
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0s !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    /* Keyed remounts (cycling words, reveals) must never sit at opacity 0 */
+    .hero-fade-up {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 
   /* Apple-style smooth scrolling */
   html {
@@ -307,7 +379,7 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
     /* anchor targets (e.g. /organization#schools) never hide under the fixed 64px nav */
     scroll-padding-top: 88px;
     -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   /* Refined scrollbar — Apple style */
@@ -315,19 +387,23 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
     width: 6px;
     height: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
+
   ::-webkit-scrollbar-thumb {
     background: hsl(0 0% 80%);
     border-radius: 9999px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(0 0% 65%);
   }
 }
 
 @layer components {
+
   /* Apple frosted glass effect */
   .glass {
     background: rgba(255, 255, 255, 0.72);
@@ -339,13 +415,14 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
   .elevation-1 {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px 0 rgba(0, 0, 0, 0.04);
   }
+
   .elevation-2 {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 4px 12px 0 rgba(0, 0, 0, 0.06);
   }
 
 
 
-    /* ── Student: Learning → Mastery ─────────────────────────────── */
+  /* ── Student: Learning → Mastery ─────────────────────────────── */
   .lm-section {
     color: #121317;
     font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', sans-serif;
@@ -353,7 +430,8 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
 
   /* Display type — 168px / line-height same / tracking 0% / Medium (500) */
   .lm-display {
-    font-size: clamp(40px, 9.57vw, 168px); /* hits exactly 168px @ 1756px ref */
+    font-size: clamp(40px, 9.57vw, 168px);
+    /* hits exactly 168px @ 1756px ref */
     line-height: 1;
     letter-spacing: 0;
     font-weight: 500;
@@ -369,8 +447,62 @@ button, a { touch-action: manipulation; }   /* kills 300ms delay + double-tap zo
 }
 
 @keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.hero-fade-up { animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;}
+.hero-fade-up {
+  animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ═══ Wave L4 — anchor navigation + print (03-design-system) ═══ */
+/* Anchored sections must never hide behind the sticky nav */
+section[id],
+h1[id],
+h2[id],
+h3[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Print: strip chrome, keep content legible — legal pages print cleanly */
+@media print {
+
+  header,
+  nav,
+  footer,
+  button,
+  video {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  main,
+  main * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  section,
+  [id] {
+    scroll-margin-top: 0 !important;
+    break-inside: avoid-page;
+  }
+
+  a[href^="/"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #555;
+  }
+}

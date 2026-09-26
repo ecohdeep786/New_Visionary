@@ -16,10 +16,10 @@ export default function BuildHero({ userName, masteredCount, unlockedCount, reco
           <span className="text-sm font-medium text-[#5f6368]">Your AGI teacher</span>
         </div>
         <div>
-          <h1 className="text-[32px] font-medium text-[#202124] tracking-tight leading-tight">
+          <h1 className="text-[32px] font-medium text-[#121317] tracking-tight leading-tight">
             Hi {userName}, ready to build?
           </h1>
-          <p className="text-base text-[#3c4043] mt-3 leading-relaxed max-w-xl">
+          <p className="text-base text-[#5f6368] mt-3 leading-relaxed max-w-xl">
             Master a concept first, and I'll unlock a real project for you to build. You've mastered {masteredCount} so far — keep learning and the build lab opens up.
           </p>
         </div>
@@ -44,10 +44,10 @@ export default function BuildHero({ userName, masteredCount, unlockedCount, reco
       </div>
 
       <div>
-        <h1 className="text-[32px] font-medium text-[#202124] tracking-tight leading-tight">
+        <h1 className="text-[32px] font-medium text-[#121317] tracking-tight leading-tight">
           Hi {userName}, ready to build?
         </h1>
-        <p className="text-base text-[#3c4043] mt-3 leading-relaxed max-w-xl">
+        <p className="text-base text-[#5f6368] mt-3 leading-relaxed max-w-xl">
           You've mastered {masteredCount} concept{masteredCount !== 1 ? "s" : ""} — that unlocks {unlockedCount} project{unlockedCount !== 1 ? "s" : ""}. Here's where I'd start.
         </p>
       </div>
@@ -57,12 +57,12 @@ export default function BuildHero({ userName, masteredCount, unlockedCount, reco
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">Recommended for you</span>
-            <h2 className="text-[22px] font-medium text-[#202124] leading-snug">{recommendedProject.title}</h2>
+            <h2 className="text-[22px] font-medium text-[#121317] leading-snug">{recommendedProject.title}</h2>
             <p className="text-sm text-[#5f6368]">Applies: {recommendedProject.concept}</p>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0 text-right">
             <span className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wide">Est. time</span>
-            <span className="text-[22px] font-medium text-[#202124]">{recommendedProject.duration}</span>
+            <span className="text-[22px] font-medium text-[#121317]">{recommendedProject.duration}</span>
           </div>
         </div>
 

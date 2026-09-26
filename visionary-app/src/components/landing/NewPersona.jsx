@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
 
 const rise = (delay = 0) => ({
   animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
@@ -28,7 +29,9 @@ export default function NewPersona({
   sub,
   img,
   alt,
-  heroBg = "#fafafc",
+  /* Matches the photo's own background (#ffffff, sampled from image edges) so
+     the contained photo blends seamlessly into the hero — Apple-style. */
+  heroBg = "#ffffff",
   ctaTo = "/register",
   ctaLabel = "Start learning free",
   secondaryTo = "/how-it-works",
@@ -54,6 +57,8 @@ export default function NewPersona({
       <div className="absolute inset-0" aria-hidden="true">
         <img
           src={img}
+          srcSet={HERO_SRCSETS[img]}
+          sizes={HERO_SIZES}
           alt={alt}
           loading="eager"
           decoding="async"
@@ -81,7 +86,7 @@ export default function NewPersona({
               <span className="sr-only">{srSentence}</span>
             </h1>
             <p
-              className="mt-6 max-w-[410px] font-normal tracking-[0] leading-[1.6] text-[clamp(15px,0.97vw,17px)]"
+              className="mt-[calc(clamp(40px,9.57vw,168px)*0.167)] max-w-[410px] font-normal tracking-[0] leading-[1.6] text-[clamp(15px,0.97vw,17px)]"
               style={{ color: "#121317", ...rise(140) }}
             >
               {sub}

@@ -28,7 +28,7 @@ export default function StudyRoutine({ data, updateData }) {
   return (
     <div className="flex flex-col gap-8 w-full">
       <div>
-        <p className="text-sm font-medium text-[#202124] mb-3">
+        <p className="text-sm font-medium text-[#121317] mb-3">
           When do you prefer to study?
         </p>
         <ChipMultiSelect
@@ -40,7 +40,7 @@ export default function StudyRoutine({ data, updateData }) {
       </div>
 
       <div>
-        <p className="text-sm font-medium text-[#202124] mb-3">
+        <p className="text-sm font-medium text-[#121317] mb-3">
           Which days do you study?
         </p>
         <ChipMultiSelect
@@ -52,7 +52,7 @@ export default function StudyRoutine({ data, updateData }) {
       </div>
 
       <div>
-        <p className="text-sm font-medium text-[#202124] mb-3">
+        <p className="text-sm font-medium text-[#121317] mb-3">
           How much time can you spend daily?
         </p>
         <ChipMultiSelect

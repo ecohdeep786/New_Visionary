@@ -3,40 +3,41 @@ import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, 
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import studentHero from "@/assets/student-hero-main.png";
+import studentHero from "@/assets/student-hero-main-2400w.webp";
+import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
  * Problem Section
  */
-import problemexam from "@/assets/problem-exam.png";
-import problempractice from "@/assets/problem-practice.png";
-import problemrevision from "@/assets/problem-revision.png";
-import problemunderstanding from "@/assets/problem-understanding.png";
+import problemexam from "@/assets/problem-exam.webp";
+import problempractice from "@/assets/problem-practice.webp";
+import problemrevision from "@/assets/problem-revision.webp";
+import problemunderstanding from "@/assets/problem-understanding.webp";
 
 /**
  * Our Journey Section 
  */
-import primaryStudent from "@/assets/student-primary.png";
-import secondaryStudent from "@/assets/student-secondary.png";
-import competitiveStudent from "@/assets/student-competitive.png";
-import higherStudent from "@/assets/student-higher.png";
-import vocationStudent from "@/assets/student-vocational.png";
+import primaryStudent from "@/assets/student-primary.webp";
+import secondaryStudent from "@/assets/student-secondary.webp";
+import competitiveStudent from "@/assets/student-competitive.webp";
+import higherStudent from "@/assets/student-higher.webp";
+import vocationStudent from "@/assets/student-vocational.webp";
 
 /**
  * Achievement Section
  */
-import studentachivenment from "@/assets/achievenment-achieve.png";
-import studentbuild from "@/assets/achivenment-build.png";
+import studentachivenment from "@/assets/achievenment-achieve.webp";
+import studentbuild from "@/assets/achivenment-build.webp";
 
 /**
  * Explore Category
  */
-import teachermeet from "@/assets/teacher-hero-main.png";
-import parentmeet from "@/assets/parent-hero-main.png";
-import promeet from "@/assets/pro-face-main.png";
-import orgmeet from "@/assets/org-face-main.png";
+import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
+import parentmeet from "@/assets/parent-hero-main-2400w.webp";
+import promeet from "@/assets/pro-face-main-2400w.webp";
+import orgmeet from "@/assets/org-face-main-2400w.webp";
 
 const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
 
@@ -287,7 +288,7 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }
 
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
@@ -376,7 +377,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
             viewBox="0 0 220 120"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.1"
+            strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
@@ -417,14 +418,13 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Student learning challenges">
+    <div className="flex items-center gap-2" role="group" aria-label="Student learning challenges">
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
           aria-label={`Go to challenge ${i + 1}`}
-          aria-selected={i === active}
+          aria-pressed={i === active}
           onClick={() => onSelect(i)}
           className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
@@ -472,7 +472,7 @@ const StudentPromiseSection = React.memo(function StudentPromiseSection() {
   return (
     <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
       <h2
-        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
       >
         What if it never forgot{" "}
@@ -612,7 +612,7 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                   alt={stage.alt}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
                 />
                 {/* stage icon pill — the missing icon layer */}
                 <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
@@ -624,8 +624,8 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                   </svg>
                 </span>
               </button>
-              <h3 className="mt-12 text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-5 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
+              <h3 className="mt-[calc(clamp(28px,2.9vw,40px)*1.714)] text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
+              <p className="mx-auto mt-[calc(clamp(28px,2.9vw,40px)*0.714)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
             </article>
           );
         })}
@@ -649,7 +649,18 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+        const onKey = (e) => {
+      if (e.key === "Escape") { onClose(); return; }
+      if (e.key !== "Tab") return;
+      const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
+      if (!dialog) return;
+      const focusables = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -696,7 +707,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
           {stage.title}
         </p>
 
-        <h3 id="journey-modal-title" className="mt-3 max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
+        <h3 id="journey-modal-title" className="mt-[calc(clamp(30px,3.8vw,56px)*0.4)] max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
           {content.top}
           <br />
           <span style={{ color: COLORS.blue }}>{content.accent}</span>
@@ -812,7 +823,7 @@ function StudentJourneySection() {
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
           Your learning, your journey
         </p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Learning that
           <br className="hidden md:block" />{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
@@ -826,7 +837,7 @@ function StudentJourneySection() {
 
         {/* stage rail — even beat under the header */}
         <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="tablist" aria-label="Learning stages">
+          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Learning stages">
             {JOURNEY_STAGES.map((stage, i) => {
               const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
               const active = i === activeStage;
@@ -834,8 +845,7 @@ function StudentJourneySection() {
                 <button
                   key={stage.title}
                   type="button"
-                  role="tab"
-                  aria-selected={active}
+                  aria-pressed={active}
                   onClick={() => goToStage(i)}
                   className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   style={active
@@ -873,7 +883,7 @@ const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
       <h3 className="whitespace-pre-line font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
         {step.title}
       </h3>
-      <p className="mt-10 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+      <p className="mt-[calc(clamp(28px,2.78vw,40px)*1.429)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
         {step.copy}
       </p>
     </div>
@@ -908,13 +918,13 @@ function StudentIntelligenceSection() {
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           The intelligence behind your learning
         </p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           One intelligence.{" "}
           <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
             {INTELLIGENCE_WORDS[wordIndex]}
           </span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Visionary keeps the learning moving from the first question to the moment you can use what you've learned.
         </p>
       </FadeReveal>
@@ -947,7 +957,7 @@ const StudentClosingSection = React.memo(function StudentClosingSection() {
   return (
     <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
       <p
-        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
       >
         Visionary keeps{" "}
@@ -1001,10 +1011,10 @@ function StudentLanguageSection() {
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           The words can change.<br />Understanding shouldn't.
         </h2>
-        <p className="mx-auto mt-6 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Ask, learn, and practice in the language that feels natural to you. Visionary keeps the meaning, context, and learning journey connected as your language changes.
         </p>
 
@@ -1017,7 +1027,7 @@ function StudentLanguageSection() {
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
           {/* Assistant-signature four-color voice indicator */}
           <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
+            {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
               <span
                 key={c}
                 className="h-8 w-1.5 rounded-full"
@@ -1033,7 +1043,7 @@ function StudentLanguageSection() {
           {/* the utterance — plain ink type, keyed fade on change */}
           <p
             aria-live="polite"
-            className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]"
+            className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.6] text-[clamp(26px,3.4vw,48px)]"
             style={{ color: COLORS.blue }}
           >
             <span key={`${lang}-${index}`} className="hero-fade-up inline">{question}</span>
@@ -1159,10 +1169,10 @@ function StudentContinuitySection() {
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Your continuity
         </p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           What you learn stays with you.
         </h2>
-        <p className="mx-auto mt-6 max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           What you understand, practise, and build becomes part of what comes next. You don't have to start over.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
@@ -1202,7 +1212,7 @@ function StudentContinuitySection() {
 }
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
-const ACHIEVEMENT_IMAGE = [studentHero, studentachivenment, studentbuild];
+const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild];
 
 /* icon per achievement tab — reuses icons already imported in this file */
 const ACHIEVEMENT_META = [
@@ -1234,7 +1244,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
                 <path d="M6 15l6-6 6 6" />
               </svg>
             </button>
-            <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
                 <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
                   {tab.copy}
@@ -1264,8 +1274,8 @@ function StudentAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>See what you can achieve with intelligence.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with intelligence.</h2>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Turn what you understand into stronger results, useful skills, meaningful work, and progress you can see.
         </p>
 
@@ -1327,10 +1337,10 @@ function StudentJourneyFlowSection() {
     <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your journey changes.<br />Your learning stays with you.
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           As your subjects, skills, interests, and goals change, Visionary keeps giving you a place to continue learning, creating, and moving forward.
         </p>
 
@@ -1421,11 +1431,11 @@ function StudentTrustSection() {
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
-        <h2 className="mt-4 px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your questions, conversations, ideas, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
         </p>
 
@@ -1465,15 +1475,15 @@ const StudentCTASection = React.memo(function StudentCTASection() {
   return (
     <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
       <div
-        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Start where you are
         </p>
-        <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your learning starts with where you are.
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Explore what you're learning, ask your first question, and start building from what you know.
         </p>
         <div className="mt-12 flex justify-center">

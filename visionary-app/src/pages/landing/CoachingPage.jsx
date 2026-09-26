@@ -2,9 +2,10 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   UserPlus, Target, Compass, RefreshCw, Monitor, Laptop, Smartphone, Lock, ArrowRight,
-  GraduationCap, Users, HeartHandshake, Briefcase, Building2,
+  GraduationCap, Users, HeartHandshake, Briefcase, Building2, MessageCircle, CircleCheck, Hammer, Sparkles,
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 /* ═══ TOKENS (one system across all pages) ═══ */
@@ -15,7 +16,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -99,7 +99,7 @@ const GreyTag = React.memo(function GreyTag({ children, className = "" }) {
 });
 const BlueTag = React.memo(function BlueTag({ children, className = "" }) {
   return (
-    <p className={`font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px] ${className}`} style={{ color: COLORS.blue }}>
+    <p className={`font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px] ${className}`} style={{ color: COLORS.grey }}>
       {children}
     </p>
   );
@@ -196,7 +196,7 @@ const MockShell = React.memo(function MockShell({ children, label }) {
       <div className="flex items-center gap-2 border-b px-5 py-3" style={{ borderColor: COLORS.mist }}>
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
-        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.chipBg }} />
+        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.blue }} />
         <span className="ml-2 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ color: COLORS.lightGrey }}>{label}</span>
       </div>
       <div className="p-6">{children}</div>
@@ -254,7 +254,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
           {ONBOARDING_ROLES.map((role, i) => {
             const isActive = activeRole === i;
             return (
-              <div key={role.id} className="flex items-start gap-4 rounded-[16px] border p-4 transition-colors" style={{ borderColor: isActive ? COLORS.blue : COLORS.mist, backgroundColor: isActive ? COLORS.chipBg : "transparent" }}>
+              <div key={role.id} className="flex items-start gap-4 rounded-[16px] border p-4 transition-colors" style={{ borderColor: isActive ? COLORS.blue : COLORS.mist, backgroundColor: isActive ? COLORS.soft : "transparent" }}>
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
                   <role.Icon className="h-5 w-5" strokeWidth={1.8} />
                 </span>
@@ -274,7 +274,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
     return (
       <MockShell label="Your space">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg }}>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full border bg-white" style={{ borderColor: COLORS.mist }}>
             {React.createElement(ONBOARDING_ROLES[activeSpace || 0].Icon, { className: "h-5 w-5", strokeWidth: 1.8, style: { color: COLORS.blue } })}
           </span>
           <div>
@@ -339,18 +339,14 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
 /* ═══ 01 · HERO — grey eyebrow, cycling word always on line 2 ═══ */
 function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
-  const { index } = useCycleIndex(HERO_WORDS.length, 2400);
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <GreyTag className="text-center">How Visionary works</GreyTag>
-        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          How you use Visionary,
-          <br />
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{HERO_WORDS[index]}</span>
+        <h1 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+          How <span style={{ color: COLORS.blue }}>Visionary</span> works.
         </h1>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Four simple steps from sign-up to connected learning. See exactly how Visionary works for students, teachers, parents, professionals, and organizations.
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          Understand, ask, practise, then build.
         </p>
       </FadeReveal>
     </section>
@@ -386,10 +382,10 @@ function HowJourneySection() {
       return (
         <>
           <BlueTag>{a.tag}</BlueTag>
-          <h3 className="mt-5 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-            {a.blue} <span style={{ color: COLORS.blue }}>{a.title}</span>
+          <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+            {a.blue} <span style={{ color: COLORS.ink }}>{a.title}</span>
           </h3>
-          <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{a.do}</p>
+          <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{a.do}</p>
           <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>{a.micro}</p>
         </>
       );
@@ -397,8 +393,8 @@ function HowJourneySection() {
     return (
       <>
         <BlueTag>{step.n} · {step.id}</BlueTag>
-        <h3 className="mt-5 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
-        <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{step.do}</p>
+        <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
+        <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>{step.micro}</p>
       </>
     );
@@ -439,6 +435,100 @@ function HowJourneySection() {
   );
 }
 
+
+/* ═══ 05b · THE LEARNING LOOP — demonstrates the pedagogical invariant ═══ */
+const LOOP_STAGES = [
+  { id: "goal", label: "Goal", copy: "You set the goal — a subject, a skill, or a question you need answered.", Icon: Target },
+  { id: "check", label: "Check", copy: "Visionary checks what you already know, so it starts from where you actually are.", Icon: Compass },
+  { id: "teach", label: "Teach", copy: "It teaches the missing piece — in your language, at your pace, the way that clicks.", Icon: GraduationCap },
+  { id: "ask", label: "Ask", copy: "You ask anything, any time. Confusion is a feature of learning, not a failure.", Icon: MessageCircle },
+  { id: "check-2", label: "Check again", copy: "A quick check confirms the idea landed before you move on.", Icon: CircleCheck },
+  { id: "practise", label: "Practise", copy: "Practice is drawn from what you just learned — short, focused, and adaptive.", Icon: RefreshCw },
+  { id: "build", label: "Build", copy: "You build something real with it — a project, a solution, an artifact of your own.", Icon: Hammer },
+  { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal — and the loop begins again.", Icon: Sparkles },
+];
+const LOOP_MS = 2600;
+
+function HowLoopSection() {
+  const { ref, visible } = useRevealOnce();
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return undefined;
+    /* Reduced motion: the loop must not auto-advance — user drives it. */
+    if (typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = setInterval(() => setActive((i) => (i + 1) % LOOP_STAGES.length), LOOP_MS);
+    return () => clearInterval(id);
+  }, [paused]);
+  const stage = LOOP_STAGES[active];
+
+  return (
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <GreyTag className="text-center">The learning loop</GreyTag>
+        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          One loop,
+          <br className="hidden sm:block" />{" "}
+          <span key={stage.id} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{stage.label.toLowerCase()}.</span>
+        </h2>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+          Every subject in Visionary moves through the same loop — from your goal to what you can build with it.
+        </p>
+
+        <div
+          className="mx-auto mt-14 flex max-w-[1080px] flex-wrap items-center justify-center gap-3"
+          role="group"
+          aria-label="Learning loop stages"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+        >
+          {LOOP_STAGES.map((st, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={st.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setActive(i)}
+                className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                style={isActive
+                  ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
+                  : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
+              >
+                <st.Icon className="h-4 w-4" strokeWidth={1.8} />
+                {st.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* keyed reveal per stage — approved motion (heroFadeUp), same grammar as the journey mocks */}
+        <div key={stage.id} className="hero-fade-up mx-auto mt-12 max-w-[760px] rounded-[24px] border bg-white p-8 text-center" style={{ borderColor: COLORS.mist }}>
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+            <stage.Icon className="h-5 w-5" strokeWidth={1.8} />
+          </span>
+          <p className="mt-5 font-medium tracking-[0] leading-[1.2] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>
+            {stage.label}
+          </p>
+          <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{stage.copy}</p>
+          <p className="mt-5 text-[12px] tracking-[0.43px] uppercase" style={{ color: COLORS.lightGrey }}>
+            {stage.id === "check-2" ? "Step 5 of 8 · the loop keeps you moving" : `Step ${active + 1} of 8 · ${stage.id === "reflect" ? "then it begins again" : "then " + LOOP_STAGES[(active + 1) % 8].label.toLowerCase()}`}
+          </p>
+        </div>
+
+        {/* sequential a11y: the loop's full content, in order, for screen readers */}
+        <ol className="sr-only">
+          {LOOP_STAGES.map((st) => (
+            <li key={st.id}>{st.label}: {st.copy}</li>
+          ))}
+        </ol>
+      </FadeReveal>
+    </section>
+  );
+}
+
 /* ═══ 06 · DIFFERENT PEOPLE — GREY tag (matches hero) ═══ */
 function HowDifferentPeopleSection() {
   const { ref, visible } = useRevealOnce();
@@ -448,10 +538,10 @@ function HowDifferentPeopleSection() {
     <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Different people</GreyTag>
-        <h2 className="mt-4 text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          One intelligence. <span style={{ color: COLORS.blue }}>Different ways to use it.</span>
+        <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+          One intelligence. <span style={{ color: COLORS.ink }}>Different ways to use it.</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           The product doesn't change. What you're doing does.
         </p>
 
@@ -504,8 +594,8 @@ function HowCTASection() {
     <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Get started</GreyTag>
-        <h2 className="mt-4 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>See it with your own question.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>See it with your own question.</h2>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Ask a question. Try an idea. See where it takes you.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -526,9 +616,11 @@ export default function CoachingPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      <Breadcrumb page="How it works" />
       <main id="main">
         <HowHeroSection />
         <HowJourneySection />
+        <HowLoopSection />
         <HowDifferentPeopleSection />
         <HowCTASection />
       </main>

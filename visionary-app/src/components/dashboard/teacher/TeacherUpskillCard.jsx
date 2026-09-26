@@ -27,20 +27,20 @@ export default function TeacherUpskillCard({ accent }) {
           <GraduationCap className="w-6 h-6" style={{ color: accent }} />
         </div>
         <div className="flex-1">
-          <p className="text-sm font-medium text-[#202124]">Grow as a teacher</p>
+          <p className="text-sm font-medium text-[#121317]">Grow as a teacher</p>
           <p className="text-xs text-[#5f6368] mt-0.5">One skill to sharpen this week</p>
         </div>
         <button
           onClick={() => setIdx((i) => (i + 1) % SKILLS.length)}
-          className="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center shrink-0"
+          className="w-9 h-9 rounded-full hover:bg-[#121317]/5 flex items-center justify-center shrink-0"
           aria-label="Another skill"
         >
           <RefreshCw className="w-4 h-4 text-[#5f6368]" />
         </button>
       </div>
       <div>
-        <p className="text-base font-medium text-[#202124]">{skill.skill}</p>
-        <p className="text-sm text-[#3c4043] mt-1 leading-relaxed">{skill.action}</p>
+        <p className="text-base font-medium text-[#121317]">{skill.skill}</p>
+        <p className="text-sm text-[#5f6368] mt-1 leading-relaxed">{skill.action}</p>
       </div>
       <Link to="/dashboard/ask" className="inline-flex items-center gap-2 self-start text-sm font-medium" style={{ color: accent }}>
         Get a personalized growth plan <ArrowRight className="w-4 h-4" />

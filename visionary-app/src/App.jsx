@@ -5,6 +5,8 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import PageNotFound from '@/lib/PageNotFound'
 import ScrollToTop from '@/components/ScrollToTop'
+import { MetaManager } from '@/lib/PageMeta'
+import { RoutePrefetcher } from '@/lib/RoutePrefetcher'
 import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
@@ -29,9 +31,9 @@ class AppErrorBoundary extends React.Component {
   render() {
     if (this.state.error) {
       return (
-        <main className="flex min-h-screen items-center justify-center bg-[#f8f9fa] px-6 py-12 text-center text-[#202124]">
+        <main className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#121317]">
           <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-600">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#fce8e6] text-red-600">
               <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
@@ -44,14 +46,14 @@ class AppErrorBoundary extends React.Component {
               <button
                 type="button"
                 onClick={() => this.setState({ error: null })}
-                className="flex-1 rounded-full bg-[#1a73e8] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#1557b0]"
+                className="flex-1 rounded-full bg-[#4285F4] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#3367d6]"
               >
                 Try again
               </button>
               <button
                 type="button"
                 onClick={this.handleReset}
-                className="flex-1 rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm font-medium text-[#1a73e8] transition-colors hover:bg-[#f8f9fa]"
+                className="flex-1 rounded-full border border-[#dadce0] bg-white px-5 py-2.5 text-sm font-medium text-[#4285F4] transition-colors hover:bg-[#ffffff]"
               >
                 Go to home
               </button>
@@ -59,7 +61,7 @@ class AppErrorBoundary extends React.Component {
             {process.env.NODE_ENV !== 'production' && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="text-xs text-[#5f6368] cursor-pointer hover:underline">Diagnostic details</summary>
-                <pre className="mt-2 max-h-40 overflow-auto rounded bg-slate-50 p-2 text-[11px] text-slate-700">
+                <pre className="mt-2 max-h-40 overflow-auto rounded bg-[#ffffff] p-2 text-[11px] text-[#5f6368]">
                   {this.state.error.toString()}
                 </pre>
               </details>
@@ -108,9 +110,10 @@ const SchoolPage = lazy(() => import('@/pages/landing/SchoolPage'))
 const CollegePage = lazy(() => import('@/pages/landing/CollegePage'))
 const CoachingPage = lazy(() => import('@/pages/landing/CoachingPage'))
 const OrganizationPage = lazy(() => import('@/pages/landing/OrganizationPage'))
-const CompetitiveExamsPage = lazy(() => import('@/pages/landing/CompetitiveExamsPage'))
+const CompetitiveExamsPage = lazy(() => import('@/pages/landing/AboutUsPage'))
+const AboutPage = lazy(() => import('@/pages/landing/AboutUsPage'))
 const AILearningPage = lazy(() => import('@/pages/landing/AILearningPage'))
-const DownloadPage = lazy(() => import('@/pages/landing/ResearchPage'))
+const DownloadPage = lazy(() => import('@/pages/landing/DownloadPage'))
 
 const CareersPage = lazy(() => import('@/pages/landing/CareersPage'))
 const ResearchNewsPage = lazy(() => import('@/pages/landing/ResearchNewsPage'))
@@ -142,6 +145,7 @@ const PublicApp = () => (
   <Routes>
     {DemoPreview && <Route path="/dev/scenarios" element={<DemoPreview />} />}
     <Route path="/" element={<LandingEntry />} />
+    <Route path="/signin" element={<Navigate to="/login" replace />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -155,7 +159,7 @@ const PublicApp = () => (
     <Route path="/how-it-works" element={<CoachingPage />} />
     <Route path="/organization" element={<OrganizationPage />} />
     <Route path="/download" element={<DownloadPage />} />
-    <Route path="/about" element={<CompetitiveExamsPage />} />
+    <Route path="/about" element={<AboutPage />} />
     <Route path="/pricing" element={<AILearningPage />} />
     <Route path="/career" element={<Navigate to="/careers" replace />} />
     <Route path="/careers" element={<CareersPage />} />
@@ -195,7 +199,7 @@ const PublicApp = () => (
           <Route path="connections" element={<Connections />} />
           <Route path="explore" element={<Explore />} />
           <Route path="support" element={<Support />} />
-          {['prepare','library','career','growth','progress','reports','notifications','personalization','privacy','audit'].map(area => <Route key={area} path={area} element={<WorkspaceTools area={area} />} />)}
+          {['prepare', 'library', 'career', 'growth', 'progress', 'reports', 'notifications', 'personalization', 'privacy', 'audit'].map(area => <Route key={area} path={area} element={<WorkspaceTools area={area} />} />)}
           <Route path="cohorts" element={<Cohorts />} />
           <Route path="learners" element={<Learners />} />
         </Route>
@@ -217,6 +221,8 @@ function App() {
             Skip to content
           </a>
           <ScrollToTop />
+          <MetaManager />
+          <RoutePrefetcher />
           <AppErrorBoundary>
             <Suspense fallback={<RouteFallback />}>
               <PublicApp />

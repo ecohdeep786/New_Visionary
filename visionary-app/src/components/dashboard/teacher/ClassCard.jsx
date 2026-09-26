@@ -7,7 +7,7 @@ import { User } from "lucide-react";
  * then a white footer showing the student count.
  */
 export default function ClassCard({ classroom }) {
-  const color = classroom.color || "#1a73e8";
+  const color = classroom.color || "#4285F4";
   return (
     <Link
       to={`/dashboard/class/${classroom.id}`}

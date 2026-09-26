@@ -6,7 +6,7 @@ import { scoreExercises, cubeExercises } from "../src/lib/practiceExercises.js";
 import { safeReturnTo } from "../src/lib/authReturnTo.js";
 import { appClient } from "../src/api/appClient.js";
 import { bootstrapPerson,snapshot,saveResource } from '../src/services/workspaceService.ts';
-import { assignReviewedLesson,teacherLearners } from '../src/services/classroomService.js';
+import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses } from '../src/services/classroomService.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key,value) => memory.set(key,String(value)), removeItem: key => memory.delete(key) };
@@ -18,23 +18,36 @@ test('reviewed lesson → assignment → learner submission → returned feedbac
   const create=async(email,identity)=>{await appClient.auth.register({email,password:'Preview-test-123!'});await appClient.auth.verifyOtp({email});return appClient.auth.updateMe({identity,onboarding_complete:true});};
   const teacher=await create('loop-teacher@visionary.test','teacher');const person=bootstrapPerson(teacher);const ctx={personId:teacher.id,workspaceId:person.active,role:'teacher',locale:'en'};
   const classroom=await appClient.entities.Classroom.create({name:'Reasoning together',teacher_email:teacher.email,teacher_id:teacher.id,join_code:'LOOP-CUBE'});
-  const lesson=saveResource(ctx,{title:'Explain cube volume',kind:'lesson',body:'Explain why side × side × side counts unit cubes.',status:'reviewed'});
+  assert.throws(()=>saveResource(ctx,{title:'Incomplete',kind:'lesson',body:'',status:'reviewed'}),/outline/);
+  assert.throws(()=>saveResource(ctx,{title:'Incomplete',kind:'lesson',body:'A draft.',status:'draft',checks:[{id:'check-1',prompt:''}]}),/complete questions/);
+  const lesson=saveResource(ctx,{title:'Explain cube volume',kind:'lesson',body:'Explain why side × side × side counts unit cubes.',status:'reviewed',checks:[{id:'check-1',prompt:'Why do three dimensions count unit cubes?'}]});
   const assignment=await assignReviewedLesson(ctx,{resourceId:lesson.id,classId:classroom.id,points:10});
+  await assert.rejects(assignReviewedLesson(ctx,{resourceId:lesson.id,classId:classroom.id,points:10,expectedVersion:'stale'}),/changed before assignment/);
+  assert.deepEqual(assignment.checks,[{id:'check-1',prompt:'Why do three dimensions count unit cubes?'}]);
   assert.equal((await assignReviewedLesson(ctx,{resourceId:lesson.id,classId:classroom.id,points:10})).id,assignment.id);
-  saveResource(ctx,{...lesson,body:'Changed preparation notes'});assert.equal((await appClient.entities.Assignment.get(assignment.id)).description,'Explain why side × side × side counts unit cubes.');
-  const learner=await create('loop-learner@visionary.test','student');bootstrapPerson(learner);
+  saveResource(ctx,{...lesson,body:'Changed preparation notes',checks:[{id:'check-1',prompt:'A changed question?'}]});assert.equal((await appClient.entities.Assignment.get(assignment.id)).description,'Explain why side × side × side counts unit cubes.');
+  assert.equal((await appClient.entities.Assignment.get(assignment.id)).checks[0].prompt,'Why do three dimensions count unit cubes?');
+  const learner=await create('loop-learner@visionary.test','student');const learnerPerson=bootstrapPerson(learner);const learnerCtx={personId:learner.id,workspaceId:learnerPerson.active,role:'student',locale:'en'};
   assert.equal((await appClient.entities.Classroom.list()).length,0);assert.equal((await appClient.entities.Assignment.list()).length,0);
   const join=await appClient.entities.Classroom.findByJoinCode('LOOP-CUBE');assert.equal(join.id,classroom.id);
   await appClient.entities.Enrollment.create({class_id:join.id,student_email:learner.email,student_name:'Demo learner',status:'active',join_code:'LOOP-CUBE'});
-  const visible=await appClient.entities.Assignment.list();assert.equal(visible.length,1);
-  const submission=await appClient.entities.Submission.create({assignment_id:assignment.id,class_id:join.id,student_email:learner.email,text:'Three layers of nine unit cubes make 27.',status:'submitted'});
+  const visible=await appClient.entities.Assignment.list();assert.equal(visible.length,1);assert.equal(visible[0].checks[0].prompt,'Why do three dimensions count unit cubes?');
+  await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[]}),/Answer every/);
+  const submission=await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]});
+  assert.equal((await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]})).id,submission.id);
+  assert.deepEqual(submission.responses,[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]);
   await assert.rejects(appClient.entities.Submission.update(submission.id,{grade:10,status:'graded'}));
   await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
-  const learners=await teacherLearners(ctx);assert.equal(learners[0].pending,1);assert.equal(learners[0].evidence[0].response,'Three layers of nine unit cubes make 27.');
+  const learners=await teacherLearners(ctx);assert.equal(learners[0].pending,1);assert.match(learners[0].evidence[0].response,/Three layers of nine unit cubes make 27/);
   await appClient.entities.Submission.update(submission.id,{grade:8,status:'graded',feedback:'Good model. Label the cubic units.',graded_date:new Date().toISOString()});
   await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');assert.equal((await appClient.entities.Submission.get(submission.id)).feedback,'Good model. Label the cubic units.');
   assert.equal(snapshot({personId:learner.id,workspaceId:`${learner.id}:student`,role:'student',locale:'en'}).sessions.length,0);
-  await create('loop-outsider@visionary.test','teacher');assert.equal((await appClient.entities.Submission.list()).length,0);assert.equal((await appClient.entities.Enrollment.list()).length,0);
+  const outsider=await create('loop-outsider@visionary.test','teacher');assert.equal((await appClient.entities.Submission.list()).length,0);assert.equal((await appClient.entities.Enrollment.list()).length,0);
+  const outsiderPerson=bootstrapPerson(outsider);const outsiderCtx={personId:outsider.id,workspaceId:outsiderPerson.active,role:'teacher',locale:'en'};
+  const outsiderLesson=saveResource(outsiderCtx,{title:'Private lesson',kind:'lesson',body:'Only my class.',status:'reviewed'});
+  assert.deepEqual(await teacherClasses(outsiderCtx),[]);
+  assert.deepEqual(await teacherLearners(outsiderCtx),[]);
+  await assert.rejects(assignReviewedLesson(outsiderCtx,{resourceId:outsiderLesson.id,classId:classroom.id,points:10}),/not available|not permitted|not assigned/);
 });
 
 test("visiting the dashboard never creates a streak or changes inputs", () => {
@@ -93,4 +106,14 @@ test("preview account isolation, consent, persistence, and idempotent onboarding
   await appClient.entities.FamilyLink.update(request.id,{status:"revoked"});
   assert.equal((await appClient.entities.StudyLog.filter({owner_email:student.email})).length,0);
   await assert.rejects(appClient.integrations.Core.InvokeLLM(),/not available/);
+});
+
+test('onboarding keeps a competitive goal without inventing exam subjects', async () => {
+  memory.clear();
+  const email='exam-no-subjects@visionary.test';
+  await appClient.auth.register({email,password:'Preview-test-123!'});
+  await appClient.auth.verifyOtp({email});
+  const student=await appClient.auth.updateMe({identity:'student'});
+  await initializeLearningWorkspace(appClient,student,{identity:'student',education_stage:'competitive',target_exam:'JEE Main'});
+  assert.deepEqual(await appClient.entities.Subject.list(),[]);
 });

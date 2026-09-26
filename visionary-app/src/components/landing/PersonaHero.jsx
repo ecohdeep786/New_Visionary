@@ -59,8 +59,8 @@ export default function PersonaHero({
           {sub}
         </p>
 
-        {/* arrow: copy → CTA */}
-        <svg viewBox="0 0 220 120" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+        {/* arrow: copy → CTA — spec §5: strokeWidth 3.5, barbs ±30° off reverse tangent */}
+        <svg viewBox="0 0 220 120" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
           className="pointer-events-none absolute left-[40%] top-[60%] hidden h-20 w-40 lg:block" style={{ color: "#121317" }}>
           <path d="M212 10 C150 14, 84 40, 24 96" />
           <path d="M24 96 l5 -15" />

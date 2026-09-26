@@ -9,10 +9,10 @@ export default function UpNextCard({ topics, studyLogs = [] }) {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-[22px] font-medium text-[#202124]">Up Next</h2>
+          <h2 className="text-[22px] font-medium text-[#121317]">Up Next</h2>
           <p className="text-sm font-normal text-[#5f6368] mt-1">Continue your learning journey</p>
         </div>
-        <Link to="/dashboard/learn" className="text-sm text-[#1a73e8] hover:underline font-medium">View all</Link>
+        <Link to="/dashboard/learn" className="text-sm text-[#4285F4] hover:underline font-medium">View all</Link>
       </div>
       <div className="flex flex-col gap-4">
         {topics.map((t, i) => {
@@ -32,7 +32,7 @@ export default function UpNextCard({ topics, studyLogs = [] }) {
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-[17px] font-medium text-[#202124] truncate">{t.name}</h3>
+                <h3 className="text-[17px] font-medium text-[#121317] truncate">{t.name}</h3>
                 <div className="flex items-center gap-3 mt-2">
                   <p className="text-sm font-normal text-[#5f6368]">{t.subject}{t.chapter ? ` · ${t.chapter}` : ""}</p>
                   {t.has_3d && (

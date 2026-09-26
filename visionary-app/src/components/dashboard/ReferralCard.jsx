@@ -28,12 +28,12 @@ export default function ReferralCard() {
         <Gift className="w-7 h-7" style={{ color: themeColor.accent }} />
       </div>
       <div className="flex-1 min-w-0">
-        <h3 className="text-[22px] font-medium text-[#202124]">Refer a friend, earn a free month</h3>
+        <h3 className="text-[22px] font-medium text-[#121317]">Refer a friend, earn a free month</h3>
         <p className="text-sm text-[#5f6368] mt-1 leading-relaxed">
           Share Visionary with a classmate. When they subscribe, you both get a month free — keep learning, keep earning.
         </p>
         <div className="flex items-center gap-2 mt-5">
-          <div className="flex-1 h-11 px-4 flex items-center rounded-full bg-[#f1f3f4] text-sm text-[#3c4043] truncate">{link}</div>
+          <div className="flex-1 h-11 px-4 flex items-center rounded-full bg-[#dadce0] text-sm text-[#5f6368] truncate">{link}</div>
           <button
             onClick={copy}
             className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-white shrink-0"

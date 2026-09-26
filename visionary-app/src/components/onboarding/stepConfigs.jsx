@@ -1,7 +1,10 @@
 import CurriculumSummary from "@/components/onboarding/steps/student/CurriculumSummary";
 import SubjectConfidence from "@/components/onboarding/steps/student/SubjectConfidence";
 import StudyRoutine from "@/components/onboarding/steps/student/StudyRoutine";
+import StudentContextForm from "@/components/onboarding/steps/student/StudentContextForm";
 import OrgInfo from "@/components/onboarding/steps/org/OrgInfo";
+import ChoiceGrid from "@/components/onboarding/ChoiceGrid";
+import ChipMultiSelect from "@/components/onboarding/ChipMultiSelect";
 
 /* ── Constants ── */
 
@@ -190,20 +193,6 @@ export const DAILY_HOURS = [
 
 /* ── Helper ── */
 
-export function generateSubjects(board, gradeLevel) {
-  const isHighSec = ["Class 11", "Class 12"].includes(gradeLevel);
-  const isSecondary = ["Class 9", "Class 10"].includes(gradeLevel);
-  const isMiddle = ["Class 6", "Class 7", "Class 8"].includes(gradeLevel);
-
-  if (isHighSec) {
-    return ["Physics", "Chemistry", "Mathematics", "English", "Computer Science"];
-  }
-  if (isSecondary || isMiddle) {
-    return ["Mathematics", "Science", "Social Science", "English", "Hindi"];
-  }
-  return ["Mathematics", "English", "Hindi", "Environmental Studies", "General Knowledge"];
-}
-
 /* ── Step Definitions ── */
 
 export const NAME_STEP = {
@@ -213,6 +202,7 @@ export const NAME_STEP = {
   type: "input",
   field: "full_name",
   placeholder: "Your first name",
+  illustration: "student",
 };
 
 export const STAGE_STEP = {
@@ -227,124 +217,134 @@ export const STAGE_STEP = {
     { id: "competitive", label: "Competitive Examination", desc: "JEE / NEET / UPSC / CAT" },
     { id: "professional", label: "Career & independent learning", desc: "Professional skills, interests, and personal projects" },
   ],
+  illustration: "student",
+};
+
+/**
+ * StudentGoalsForm — consolidates subject confidence, learning goals, study routine,
+ * and reference books into a single screen.
+ */
+const StudentGoalsForm = ({ data, updateData }) => {
+  const subjects = data.subjects || [];
+  const showConfidence = subjects.length > 0;
+
+  return (
+    <>
+      {showConfidence && (
+        <div className="mb-8">
+          <SubjectConfidence data={data} updateData={updateData} />
+        </div>
+      )}
+      <div className="mb-8">
+        <p className="text-sm font-medium text-[#121317] mb-2">What are your learning goals?</p>
+        <p className="text-xs text-[#5f6368] mb-3">Select all that apply.</p>
+        <ChipMultiSelect
+          options={LEARNING_GOALS}
+          selected={data.learning_goals || []}
+          onChange={(val) => updateData("learning_goals", val)}
+        />
+      </div>
+      <div className="mb-8">
+        <StudyRoutine data={data} updateData={updateData} />
+      </div>
+      <div className="mb-6">
+        <p className="text-sm font-medium text-[#121317] mb-2">Do you use reference books?</p>
+        <p className="text-xs text-[#5f6368] mb-3">Optional — skip if you don't use any.</p>
+        <ChipMultiSelect
+          options={REFERENCE_BOOKS}
+          selected={data.reference_books || []}
+          onChange={(val) => updateData("reference_books", val)}
+          maxSelection={3}
+        />
+      </div>
+    </>
+  );
+};
+
+/**
+ * StudentOptionalForm — consolidates org connect, competitive exam, and notifications.
+ */
+const StudentOptionalForm = ({ data, updateData }) => {
+  const isHighSchool = ["Class 9", "Class 10", "Class 11", "Class 12"].includes(data.grade_level);
+
+  return (
+    <>
+      {isHighSchool && (
+        <div className="mb-8">
+          <p className="text-sm font-medium text-[#121317] mb-2">Also preparing for competitive exams?</p>
+          <p className="text-xs text-[#5f6368] mb-3">We’ll save this goal separately; exam content connects when the content service is available.</p>
+          <ChoiceGrid
+            options={COMPETITIVE_EXAMS}
+            value={data.competitive_exam}
+            onChange={(val) => updateData("competitive_exam", val)}
+            columns={2}
+            singleSelect
+            dense
+          />
+        </div>
+      )}
+      <div className="mb-8">
+        <p className="text-sm font-medium text-[#121317] mb-2">What should we notify you about?</p>
+        <p className="text-xs text-[#5f6368] mb-3">Select all that apply.</p>
+        <ChipMultiSelect
+          options={NOTIFICATION_PREFS}
+          selected={data.notifications || []}
+          onChange={(val) => updateData("notifications", val)}
+        />
+      </div>
+      <div className="mb-6">
+        <p className="text-sm font-medium text-[#121317] mb-2">Connect your school or coaching?</p>
+        <p className="text-xs text-[#5f6368] mb-3">Optional — you can always connect later from settings.</p>
+        <ChoiceGrid
+          options={[
+            { id: "skip", label: "Skip for now", desc: "Full personal learning available immediately" },
+            { id: "connect", label: "Connect later", desc: "Add organization from settings" },
+          ]}
+          value={data.org_connect || "skip"}
+          onChange={(val) => updateData("org_connect", val)}
+          singleSelect
+          dense
+        />
+      </div>
+    </>
+  );
 };
 
 export const SCHOOL_FLOW_STEPS = [
   {
-    id: "country",
-    title: "Where are you located?",
-    subtitle: "India is pre-selected for you.",
-    type: "choice",
-    field: "country",
-    options: [{ id: "India", label: "India", desc: "Pre-selected" }],
-  },
-  {
-    id: "board",
-    title: "Which board are you studying under?",
-    type: "choice",
-    field: "board",
-    options: BOARDS,
-  },
-  {
-    id: "state",
-    title: "Which state are you in?",
-    subtitle: "We'll auto-assign your state board.",
-    type: "choice",
-    field: "state",
-    condition: (d) => d.board === "State",
-    options: INDIAN_STATES,
-    columns: 3,
-  },
-  {
-    id: "medium",
-    title: "What language does your school use to teach?",
-    subtitle: "This affects your entire learning experience — explanations, practice, and AGI conversations.",
-    type: "choice",
-    field: "medium",
-    options: LANGUAGES,
-    columns: 3,
-  },
-  {
-    id: "grade_level",
-    title: "Which class are you studying in?",
-    subtitle: "This auto-configures your subjects, textbooks, and academic calendar.",
-    type: "choice",
-    field: "grade_level",
-    options: CLASSES,
-    columns: 3,
+    id: "context",
+    title: "Where are you studying?",
+    subtitle: "Tell us your context so Learn can find relevant content when it is connected.",
+    component: StudentContextForm,
+    canContinue: (data) => data.board && data.medium && data.grade_level,
+    illustration: "student",
   },
   {
     id: "curriculum",
-    title: "Your curriculum is ready",
-    subtitle: "We've auto-configured your subjects based on your selections.",
+    title: "Your learning context",
+    subtitle: "Review what you entered. Missing official content will use a clearly marked provisional outline.",
     component: CurriculumSummary,
     continueLabel: "Looks good",
-  },
-  {
-    id: "confidence",
-    title: "How confident are you in each subject?",
-    subtitle: "This helps us personalize your learning from day one.",
-    component: SubjectConfidence,
-    canContinue: (data) => {
-      const subjects = data.subjects || [];
-      const confidence = data.subject_confidence || {};
-      return subjects.length > 0 && subjects.every((s) => confidence[s] > 0);
-    },
+    illustration: "learn",
   },
   {
     id: "goals",
-    title: "What are your learning goals?",
-    subtitle: "Select all that apply.",
-    type: "multiselect",
-    field: "learning_goals",
-    options: LEARNING_GOALS,
-  },
-  {
-    id: "routine",
-    title: "Tell us about your study routine",
-    component: StudyRoutine,
+    title: "Tell us about your goals",
+    subtitle: "This helps us personalize your learning from day one.",
+    component: StudentGoalsForm,
     canContinue: (data) => {
       const r = data.study_routine;
       return r && r.time && r.days && r.duration;
     },
+    illustration: "growth",
   },
   {
-    id: "books",
-    title: "Do you use reference books?",
-    subtitle: "Optional — skip if you don't use any. We'll add these to your AGI's knowledge.",
-    type: "multiselect",
-    field: "reference_books",
-    options: REFERENCE_BOOKS,
+    id: "optional",
+    title: "Almost done",
+    subtitle: "A few optional settings so we can serve you better.",
+    component: StudentOptionalForm,
     optional: true,
-  },
-  {
-    id: "org_connect",
-    title: "Connect your school or coaching?",
-    subtitle: "Optional — you can always connect later from settings.",
-    type: "choice",
-    field: "org_connect",
-    options: [
-      { id: "skip", label: "Skip for now", desc: "Full personal learning available immediately" },
-      { id: "connect", label: "Connect now", desc: "Search by name or enter organization code" },
-    ],
-  },
-  {
-    id: "competitive_addon",
-    title: "Are you also preparing for competitive exams?",
-    subtitle: "We'll create a second learning environment alongside your school curriculum.",
-    type: "choice",
-    field: "competitive_exam",
-    condition: (d) =>
-      ["Class 9", "Class 10", "Class 11", "Class 12"].includes(d.grade_level),
-    options: COMPETITIVE_EXAMS,
-  },
-  {
-    id: "notifications",
-    title: "What should we notify you about?",
-    subtitle: "Select all that apply.",
-    type: "multiselect",
-    field: "notifications",
-    options: NOTIFICATION_PREFS,
+    illustration: "shield",
   },
 ];
 
@@ -355,6 +355,7 @@ export const HIGHER_ED_FLOW_STEPS = [
     type: "choice",
     field: "institution_type",
     options: HIGHER_ED_INSTITUTIONS,
+    illustration: "team",
   },
   {
     id: "degree",
@@ -419,6 +420,7 @@ export const COMPETITIVE_FLOW_STEPS = [
     type: "choice",
     field: "target_exam",
     options: COMPETITIVE_TARGETS,
+    illustration: "compass",
   },
   {
     id: "attempt_year",
@@ -472,8 +474,8 @@ export const COMPETITIVE_FLOW_STEPS = [
 
 export function getStudentStageSteps(stage) {
   if (stage === "professional") return [
-    { id: "learning_language", title: "Which language feels natural to you?", subtitle: "Saved for your learning context. The preview interface is in English.", type: "choice", field: "preferred_language", options: LANGUAGES },
-    { id: "career_goal", title: "What would you like to work towards?", subtitle: "A skill, a project, or simply something you are curious about.", type: "input", field: "career_goal", placeholder: "For example, build my first app" },
+    { id: "learning_language", title: "Which language feels natural to you?", subtitle: "Saved for your learning context. The preview interface is in English.", type: "choice", field: "preferred_language", options: LANGUAGES, illustration: "languages" },
+    { id: "career_goal", title: "What would you like to work towards?", subtitle: "A skill, a project, or simply something you are curious about.", type: "input", field: "career_goal", placeholder: "For example, build my first app", illustration: "growth" },
   ];
   if (stage === "higher_ed") return HIGHER_ED_FLOW_STEPS;
   if (stage === "competitive") return COMPETITIVE_FLOW_STEPS;
@@ -487,6 +489,7 @@ export const TEACHER_FLOW_STEPS = [
     type: "choice",
     field: "teacher_category",
     options: TEACHER_CATEGORIES,
+    illustration: "teacher",
   },
   {
     id: "board",
@@ -577,6 +580,7 @@ export const PARENT_FLOW_STEPS = [
     type: "input",
     field: "full_name",
     placeholder: "Your first name",
+    illustration: "parent",
   },
   {
     id: "parent_relation",
@@ -648,6 +652,7 @@ export const ORG_FLOW_STEPS = [
     type: "choice",
     field: "org_type",
     options: ORG_TYPES,
+    illustration: "team",
   },
   {
     id: "org_info",

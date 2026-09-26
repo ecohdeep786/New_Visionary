@@ -42,7 +42,7 @@ export default function StreakCard({ streak = 0, studyLogs = [] }) {
   return (
     <div className="flex flex-col gap-5 px-6 py-6 min-w-[280px]">
       <div className="flex items-start gap-2">
-        <span className="text-[56px] font-medium text-[#202124] leading-none">{streak}</span>
+        <span className="text-[56px] font-medium text-[#121317] leading-none">{streak}</span>
         <div className="flex flex-col gap-1 pt-1.5">
           <Flame className="w-[18px] h-[18px] text-orange-500" fill="currentColor" />
           <span className="text-sm text-[#5f6368]">day streak</span>
@@ -54,7 +54,7 @@ export default function StreakCard({ streak = 0, studyLogs = [] }) {
       {expanded ? (
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-[#202124]">{today.toLocaleString("default", { month: "long" })}</span>
+            <span className="text-sm font-medium text-[#121317]">{today.toLocaleString("default", { month: "long" })}</span>
             <span className="text-xs text-[#5f6368]">{studiedThisMonth}/{todayDate} days</span>
           </div>
           <div className="grid grid-cols-7 gap-1.5">
@@ -64,7 +64,7 @@ export default function StreakCard({ streak = 0, studyLogs = [] }) {
                   key={i}
                   className="aspect-square rounded-[5px]"
                   style={{
-                    backgroundColor: isStudied(c.key) ? themeColor.accent : "#f1f3f4",
+                    backgroundColor: isStudied(c.key) ? themeColor.accent : "#dadce0",
                     boxShadow: c.isToday ? `0 0 0 2px ${themeColor.accent}` : undefined,
                   }}
                   title={`${c.key}${isStudied(c.key) ? " · studied" : ""}`}
@@ -75,7 +75,7 @@ export default function StreakCard({ streak = 0, studyLogs = [] }) {
             )}
           </div>
           {perfectMonth ? (
-            <div className="inline-flex items-center gap-1.5 self-start px-3 py-1.5 rounded-full bg-[#fef7e0] text-[#b06000] text-xs font-medium">
+            <div className="inline-flex items-center gap-1.5 self-start px-3 py-1.5 rounded-full bg-[#ffffff] text-[#5f6368] text-xs font-medium">
               <Flame className="w-3.5 h-3.5" fill="currentColor" /> Perfect month — every day studied
             </div>
           ) : (
@@ -88,7 +88,7 @@ export default function StreakCard({ streak = 0, studyLogs = [] }) {
             <div key={i} className="flex flex-col items-center gap-2">
               <div
                 className="w-7 h-7 rounded-[7px] flex items-center justify-center"
-                style={{ backgroundColor: isStudied(d.key) ? themeColor.accent : "#f1f3f4" }}
+                style={{ backgroundColor: isStudied(d.key) ? themeColor.accent : "#dadce0" }}
               >
                 {isStudied(d.key) && <Flame className="w-3 h-3 text-white" fill="currentColor" />}
               </div>
@@ -102,7 +102,7 @@ export default function StreakCard({ streak = 0, studyLogs = [] }) {
 
       <button
         onClick={() => setExpanded((e) => !e)}
-        className="inline-flex items-center gap-1 text-xs font-medium text-[#5f6368] hover:text-[#202124] self-start"
+        className="inline-flex items-center gap-1 text-xs font-medium text-[#5f6368] hover:text-[#121317] self-start"
       >
         {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
         {expanded ? "Show week" : "Show month"}

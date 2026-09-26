@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 /* ═══ DESIGN TOKENS — shared across all About sub-pages ═══ */
 export const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
+  surface: "#ffffff",
   blue: "#4285F4",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
-  chipBg: "#D2E3FC",
   white: "#ffffff",
 };
 export const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
@@ -73,13 +73,13 @@ export const IconTile = React.memo(function IconTile({ Icon, size = "lg" }) {
 export function AboutHero({ eyebrow, titleParts, intro }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-40 lg:pt-48" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative scroll-mt-44 overflow-hidden px-6 pb-10 pt-28 lg:pt-36" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
-        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
           {titleParts.map((p, i) => (
             <React.Fragment key={i}>
-              {p.accent ? <span style={{ color: COLORS.blue }}>{p.text}</span> : p.text}
+              {p.accent ? <span style={{ color: COLORS.ink }}>{p.text}</span> : p.text}
             </React.Fragment>
           ))}
         </h1>
@@ -97,16 +97,16 @@ export function AboutHero({ eyebrow, titleParts, intro }) {
 export function AboutContentSection({ id, eyebrow, heading, headingAccent, body, cards, rows, bg = "white", children }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id={id} className="relative scroll-mt-44 px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: bg === "surface" ? COLORS.surface : COLORS.white }}>
+    <section ref={ref} id={id} className="relative scroll-mt-44 bg-white px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
         {heading && (
-          <h2 className="mx-auto mt-4 max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-            {heading} {headingAccent && <span style={{ color: COLORS.blue }}>{headingAccent}</span>}
+          <h2 className="mx-auto mt-6 max-w-[1080px] text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink }}>
+            {heading} {headingAccent && <span style={{ color: COLORS.ink }}>{headingAccent}</span>}
           </h2>
         )}
         {body && (
-          <p className="mx-auto mt-6 max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
             {body}
           </p>
         )}
@@ -115,7 +115,7 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
         {cards && (
           <div className="mx-auto mt-16 grid w-full max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((c) => (
-              <div key={c.title} className="rounded-[24px] border p-7" style={{ borderColor: COLORS.mist, backgroundColor: bg === "surface" ? COLORS.white : COLORS.surface }}>
+              <div key={c.title} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
                 <IconTile Icon={c.Icon} />
                 <h3 className="mt-6 font-medium tracking-[0] leading-[1.25] text-[20px]" style={{ color: COLORS.ink }}>{c.title}</h3>
                 <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{c.copy}</p>
@@ -129,10 +129,10 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
           <div className="mx-auto mt-16 w-full max-w-[1080px]">
             {rows.map((r, i) => (
               <div key={r.n} className={`grid grid-cols-1 gap-4 py-10 md:grid-cols-[120px_1fr] md:gap-10 ${i < rows.length - 1 ? "border-b" : ""}`} style={{ borderColor: `${COLORS.ink}14` }}>
-                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.blue }}>{r.n}</p>
+                <p className="font-medium tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{r.n}</p>
                 <div>
                   <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{r.title}</h3>
-                  <p className="mt-3 max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
+                  <p className="mt-[calc(clamp(22px,2.4vw,32px)*0.545)] max-w-[640px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{r.copy}</p>
                 </div>
               </div>
             ))}
@@ -149,13 +149,13 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
 export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started", primaryTo = "/register", secondaryLabel, secondaryTo }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.surface }}>
+    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          {title} {titleAccent && <span style={{ color: COLORS.blue }}>{titleAccent}</span>}
+        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
+          {title} {titleAccent && <span style={{ color: COLORS.ink }}>{titleAccent}</span>}
         </h2>
         {desc && (
-          <p className="mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             {desc}
           </p>
         )}
@@ -175,12 +175,18 @@ export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started
 }
 
 /* ═══ LEGAL PAGE — full wrapper for trust/legal pages ═══ */
-export function LegalPage({ eyebrow, titleParts, intro, sections, cta }) {
+export function LegalPage({ eyebrow, titleParts, intro, sections, cta, lastUpdated, breadcrumb }) {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      {breadcrumb && <Breadcrumb page={breadcrumb} />}
       <main>
         <AboutHero eyebrow={eyebrow} titleParts={titleParts} intro={intro} />
+        {lastUpdated && (
+          <p className="-mt-6 pb-4 text-center text-[13px] tracking-[0.24px]" style={{ color: "#5f6368" }}>
+            Last updated: <strong style={{ color: "#121317" }}>{lastUpdated}</strong>
+          </p>
+        )}
         {sections.map((s, i) => (
           <AboutContentSection key={s.id || i} {...s} />
         ))}
@@ -192,10 +198,11 @@ export function LegalPage({ eyebrow, titleParts, intro, sections, cta }) {
 }
 
 /* ═══ SIMPLE PAGE — wrapper for company/support pages ═══ */
-export function SimplePage({ children, footerVariant = "quiet" }) {
+export function SimplePage({ children, footerVariant = "quiet", breadcrumb }) {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
+      {breadcrumb && <Breadcrumb page={breadcrumb} />}
       <main>{children}</main>
       <LandingFooter variant={footerVariant} />
     </div>

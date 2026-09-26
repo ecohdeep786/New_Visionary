@@ -55,7 +55,7 @@ function scanFile(file, label) {
       const [path, hash] = to.split("#");
       anchored.push({ from: label, to, path: path || "(self)", hash });
     } else if (to !== "" && !/^https?:/.test(to)) {
-      const norm = to.startsWith("/") ? to : "/" + to;
+      const norm = (to.startsWith("/") ? to : "/" + to).split("?")[0]; // strip query (plan params resolve to real routes)
       if (!allLinks.has(norm)) allLinks.set(norm, []);
       allLinks.get(norm).push(label);
     }
