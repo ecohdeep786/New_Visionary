@@ -98,8 +98,24 @@ export function stopListening() {
  try { recognition?.stop(); } catch { /* stopping an unset recognition is harmless */ }
  if (mode !== 'speaking') setMode('off');
 }
+const VOICE_PRESENTATION_HINTS = {
+  girl: /female|woman|zira|heera|kalpana|swara|veena|aditi|neerja|sarika|sweta/i,
+  boy: /\bmale\b|ravi|madhur|prabhat|hemant|daniel|david|guy|mark|james/i,
+} as const;
+export type VoicePresentation = keyof typeof VOICE_PRESENTATION_HINTS;
+function pickVoice(voices: SpeechVoiceLike[], utteranceLang: string, presentation?: VoicePresentation) {
+  const langPool = voices.filter(v => v.lang.toLowerCase().startsWith(utteranceLang.slice(0, 2).toLowerCase()));
+  const exact = langPool.find(v => v.lang.toLowerCase() === utteranceLang.toLowerCase()) || langPool[0];
+  if (presentation) {
+    const hints = VOICE_PRESENTATION_HINTS[presentation];
+    const other = VOICE_PRESENTATION_HINTS[presentation === 'girl' ? 'boy' : 'girl'];
+    return langPool.find(v => hints.test(v.name)) || langPool.find(v => !other.test(v.name)) || exact || undefined;
+  }
+  return exact || undefined;
+}
+
 /** Half-duplex: the microphone pauses while the mentor speaks, then resumes if still wanted. */
-export function speak(text: string, locale: Locale | undefined, onEnd?: () => void): boolean {
+export function speak(text: string, locale: Locale | undefined, onEnd?: () => void, presentation?: VoicePresentation): boolean {
  const synthesis = speech().speechSynthesis;
  if (!synthesis || !text.trim()) { onEnd?.(); return false; }
  synthesis.cancel();
@@ -118,8 +134,7 @@ export function speak(text: string, locale: Locale | undefined, onEnd?: () => vo
   onEnd?.();
  };
  utterance.onend = finish; utterance.onerror = finish;
- const voice = synthesis.getVoices().find(candidate => candidate.lang === utterance.lang) ||
-  synthesis.getVoices().find(candidate => candidate.lang.startsWith(utterance.lang.slice(0, 2)));
+ const voice = pickVoice(synthesis.getVoices(), utterance.lang, presentation);
  if (voice) utterance.voice = voice;
  setMode('speaking');
  synthesis.speak(utterance);

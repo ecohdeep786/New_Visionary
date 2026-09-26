@@ -3,6 +3,7 @@ import { Navigate, Outlet, useLocation, NavLink } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopbar from "./DashboardTopbar";
+import AudioPresence from "./AudioPresence";
 import { useAuth } from "@/lib/AuthContext";
 import { ThemeColorProvider } from "@/hooks/useThemeColor";
 import { canAccessDashboardPath, navigationFor } from "@/lib/dashboardNavigation";
@@ -32,6 +33,7 @@ export default function DashboardLayout() {
   return <ThemeColorProvider>
     <div className="visionary-workspace workspace-shell flex h-dvh flex-col overflow-hidden text-[#121317]">
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
+      <div className={`workspace-presence-anchor${sidebarExpanded ? " is-expanded" : ""}`}><AudioPresence /></div>
       <div className="flex min-h-0 flex-1 overflow-hidden">
         <div className="hidden h-full md:block"><DashboardSidebar expanded={sidebarExpanded} /></div>
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}><SheetContent side="left" className="w-72 bg-[#ffffff] p-0 pt-10">

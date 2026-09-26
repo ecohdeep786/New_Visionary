@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useWorkspace } from '@/hooks/useWorkspace';
-import { getClassCommunity, postToClassCommunity, removeCommunityPost } from '@/services/communityService';
+import { getClassCommunity, postToClassCommunity, removeCommunityPost, reportCommunityPost, restoreCommunityPost } from '@/services/communityService';
 
 const MAX_TEXT = 1000;
 
@@ -58,6 +58,22 @@ export default function CommunityTab({ classId, accent = '#4285F4' }) {
       setError(e.message);
     }
   }
+  function report(postId) {
+    setError('');
+    try {
+      reportCommunityPost(ctx, classId, postId);
+    } catch (e) {
+      setError(e.message);
+    }
+  }
+  function restore(postId) {
+    setError('');
+    try {
+      restoreCommunityPost(ctx, classId, postId);
+    } catch (e) {
+      setError(e.message);
+    }
+  }
 
   return <div className="flex flex-col gap-5">
     {loadError && <p role="alert" className="rounded-xl bg-[#fce8e6] px-4 py-3 text-sm text-[#b3261e]">{loadError}</p>}
@@ -110,16 +126,40 @@ export default function CommunityTab({ classId, accent = '#4285F4' }) {
               <time dateTime={item.at} className="text-xs text-[#5f6368]">{new Date(item.at).toLocaleString()}</time>
             </div>
             <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-[#121317]">{item.text}</p>
-            {role === 'teacher' && (
-              <button
-                type="button"
-                onClick={() => remove(item.id)}
-                className="mt-3 text-xs font-medium text-[#b3261e] underline hover:no-underline"
-                aria-label={`Remove post by ${item.authorName}`}
-              >
-                Remove
-              </button>
-            )}
+            {item.status === 'flagged' && role === 'teacher' && <p role="status" className="mt-2 text-xs font-medium text-[#b3261e]">A learner reported this post.</p>}
+            <div className="mt-3 flex items-center gap-4">
+              {role === 'teacher' && (
+                <button
+                  type="button"
+                  onClick={() => remove(item.id)}
+                  className="text-xs font-medium text-[#b3261e] underline hover:no-underline"
+                  aria-label={`Remove post by ${item.authorName}`}
+                >
+                  Remove
+                </button>
+              )}
+              {role === 'teacher' && item.status === 'flagged' && (
+                <button
+                  type="button"
+                  onClick={() => restore(item.id)}
+                  className="text-xs font-medium underline hover:no-underline"
+                  style={{ color: accent }}
+                  aria-label={`Restore reported post by ${item.authorName}`}
+                >
+                  Restore
+                </button>
+              )}
+              {role === 'student' && item.status === 'visible' && (
+                <button
+                  type="button"
+                  onClick={() => report(item.id)}
+                  className="text-xs text-[#5f6368] underline hover:no-underline"
+                  aria-label={`Report post by ${item.authorName}`}
+                >
+                  Report
+                </button>
+              )}
+            </div>
           </li>
         ))}
       </ul>

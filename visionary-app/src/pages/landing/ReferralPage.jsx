@@ -8,6 +8,16 @@ import LandingFooter from "@/components/landing/LandingFooter";
 
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
+const COLORS = {
+  ink: "#121317",
+  grey: "#5f6368",
+  lightGrey: "#9aa0a6",
+  mist: "#dadce0",
+  soft: "#f8f9fa",
+  blue: "#4285F4",
+  white: "#ffffff",
+};
+
 const STEPS = [
   {
     number: "01",
@@ -31,15 +41,15 @@ const STEPS = [
 
 function StepCard({ number, Icon, title, description }) {
   return (
-    <article className="rounded-[20px] border border-[#dadce0] bg-white p-6 sm:p-7">
+    <article className="rounded-[20px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
       <div className="flex items-center justify-between">
-        <span className="text-[13px] font-medium tracking-[0.12em] text-[#1967d2]">{number}</span>
-        <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#f1f3f4] text-[#1967d2]">
+        <span className="text-[13px] font-normal tracking-[0.08em]" style={{ color: COLORS.blue }}>{number}</span>
+        <span className="flex h-11 w-11 items-center justify-center rounded-[14px]" style={{ backgroundColor: COLORS.soft, color: COLORS.blue }}>
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
       </div>
-      <h3 className="mt-7 text-[20px] font-normal leading-[1.3] tracking-[-0.02em] text-[#121317]">{title}</h3>
-      <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">{description}</p>
+      <h3 className="mt-7 text-[20px] font-normal leading-[1.3] tracking-[-0.02em]" style={{ color: COLORS.ink }}>{title}</h3>
+      <p className="mt-3 text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{description}</p>
     </article>
   );
 }

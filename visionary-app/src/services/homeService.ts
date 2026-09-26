@@ -6,7 +6,7 @@ import { getDailyPlan } from './dailyPlanService.ts';
 import { getWeeklyObservations } from './mentorStateService.ts';
 
 export interface HomeAction { label: string; path: string }
-export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction }
+export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction; deferId?: string }
 export interface HomeModel {
   name: string; workspace: string; boundary: string; setupNote?: string; observations?: {id:string;text:string}[]; memoryEnabled?: boolean;
   priority: HomeRow & { reason: string; source: string; updatedAt?: string; alternative: HomeAction };
@@ -75,7 +75,7 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
       action: nextStep.action, alternative: pending.find(step => step.id !== nextStep.id)?.action ?? action('Open learning outline','learn'),
       reason: nextStep.reason, source: nextStep.source, updatedAt: nextStep.dueAt,
     };
-    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action}))});
+    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action,deferId:step.done?undefined:step.id}))});
   } else if (ctx.role === 'teacher') {
     const lesson = resources.find(r => r.kind === 'lesson' && r.status === 'draft');
     model.priority = {id:lesson?.id || 'prepare',title:lesson ? `Continue preparing ${lesson.title}` : 'Prepare your next lesson',detail:'Review the objective, explanation and checks before sharing with a class.',action:action('Open preparation','prepare'),alternative:action('View classwork','classes'),reason:lesson ? 'You have an unfinished lesson draft in this teacher workspace.' : 'Start with the idea you want your learners to understand.',source:lesson ? 'Saved lesson draft' : 'Your selected teacher role',updatedAt:lesson?.updatedAt};

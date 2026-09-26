@@ -95,3 +95,26 @@ test('the context packet assembles the category view while events stay free of c
  assert.equal(Array.isArray(packet.observations), true);
  assert.equal(mentor.getInteractionEvents(request).length, 0);
 });
+
+test('typed and spoken requests take the same authorized mentor path', async () => {
+ const request = ctx();
+ const typedConv = workspace.newConversation(request).id;
+ const typed = await sendMentorTurn(request, typedConv, 'What should I do today?', 'text');
+ const spokenConv = workspace.newConversation(request).id;
+ const spoken = await sendMentorTurn(request, spokenConv, 'What should I do today?', 'voice');
+ assert.equal(typed.status, 'mentor');
+ assert.equal(spoken.status, 'mentor');
+ assert.deepEqual(spoken.blocks.map(b => b.type), typed.blocks.map(b => b.type));
+ const events = mentor.getInteractionEvents(request).filter(e => e.app === 'ASK' && e.action === 'request');
+ assert.equal(events.some(e => e.input_type === 'text'), true);
+ assert.equal(events.some(e => e.input_type === 'voice'), true);
+});
+
+test('a spoken turn cannot leak across a role or workspace switch', async () => {
+ const request = ctx();
+ const conversationId = workspace.newConversation(request).id;
+ await assert.rejects(sendMentorTurn(ctx('teacher', 'teacher'), conversationId, 'What should I do today?', 'voice'), /not found|access/);
+ await assert.rejects(sendMentorTurn(ctx('bengali'), conversationId, 'What should I do today?', 'voice'), /not found|access/);
+ // The conversation and its draft remain untouched in the owner's workspace.
+ assert.equal(workspace.snapshot(request).conversations.find(c => c.id === conversationId).draft, '');
+});

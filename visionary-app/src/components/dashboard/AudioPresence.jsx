@@ -1,18 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useWorkspace } from '@/hooks/useWorkspace';
-import { newConversation } from '@/services/workspaceService';
-import { sendTeachingTurn } from '@/services/learningPipelineService';
+import { newConversation, updateConversation } from '@/services/workspaceService';
+import { sendMentorTurn } from '@/services/mentorCompanionService';
 import { emitInteractionEvent } from '@/services/mentorStateService';
 import { getVoiceCapabilities, getVoiceMode, resolveAudioEnabled, startListening, stopListening, speak, subscribeVoiceMode } from '@/services/voiceService';
 
-// The AGI's presence below the workspace navigation, always visibly ON, in one of two
-// named designs the user picks in Personalization: "Vision Boy" — the soft sky sphere
-// with drifting clouds; "Vision Girl" — four glowing white bars on a luminous blue
-// field. Tapping it does NOT navigate anywhere — this is not a chatbot: the AGI turns
-// toward the user and announces "I am your Intelligence — for you, always available",
-// spoken aloud when audio is on and shown as a caption either way. Listening still
-// activates automatically when the browser permits the microphone, and both designs
-// stay honest per state (calm ready, bright listening, cadence speaking, dimmed off).
+// Two selectable visual presences for one shared Guide, not separate models or memories.
+// The single shell instance sits by the desktop rail and in the mobile app bar. Tapping
+// it announces availability without navigating. Audio behavior remains governed by
+// browser support, permission and the workspace preference; animation is not proof
+// that a microphone, model or cloud service is active.
 const STATUS_TEXT = {
   off: 'Audio interaction is on for this workspace, but the microphone is not active right now.',
   listening: 'Listening.',
@@ -50,6 +47,9 @@ export default function AudioPresence() {
   if (ctx && !bornAt.current) bornAt.current = performance.now();
   const effective = data ? resolveAudioEnabled(data.preferences?.voice) : false;
   const animation = data?.preferences?.agiAnimation === 'girl' ? 'girl' : 'boy';
+  const presentation = animation;
+  const presentationRef = useRef('boy');
+  presentationRef.current = presentation;
   useEffect(() => subscribeVoiceMode(setMode), []);
 
   useEffect(() => { reducedMotion.current = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false; }, []);
@@ -68,10 +68,15 @@ export default function AudioPresence() {
     busyRef.current = true;
     try {
       if (!conversationRef.current) conversationRef.current = newConversation(request).id;
-      const response = await sendTeachingTurn({ ...request }, conversationRef.current, transcript, 'voice');
-      if (response.text) speak(response.text, request.locale);
-    } catch { /* spoken turns fail soft: the animation keeps breathing, the text path remains */ }
-    finally {
+      const response = await sendMentorTurn({ ...request }, conversationRef.current, transcript, 'voice');
+      if (response.text) speak(response.text, request.locale, undefined, presentationRef.current);
+    } catch (error) {
+      // Recoverable, never silent: the spoken words stay as a draft in the conversation
+      // and the failure is announced; the transcript is not lost.
+      try { if (conversationRef.current) updateConversation(request, conversationRef.current, { draft: transcript }); } catch { /* storage full: the notice still shows */ }
+      setNotice(error.message || 'The spoken request could not be sent. Your words are saved in Ask.');
+      setTimeout(() => setNotice(current => (current === error.message ? '' : current)), 6000);
+    } finally {
       busyRef.current = false;
       if (pendingRef.current) { const next = pendingRef.current; pendingRef.current = ''; sendTurn(next); }
     }
@@ -86,7 +91,7 @@ export default function AudioPresence() {
     setNotice(line);
     try { emitInteractionEvent(request, { app: 'ASK', action: 'start', inputType: 'system', language: request.locale }); } catch { /* telemetry is best-effort */ }
     const clear = () => setNotice(current => (current === line ? '' : current));
-    if (effective && getVoiceCapabilities().synthesis) speak(line, request.locale);
+    if (effective && getVoiceCapabilities().synthesis) speak(line, request.locale, undefined, presentationRef.current);
     setTimeout(clear, 4500);
   }
 
@@ -180,6 +185,12 @@ export default function AudioPresence() {
       context.clearRect(0, 0, W, H);
       const listening = mode === 'listening' || mode === 'speaking';
       const ready = !listening;
+      const motion = reducedMotion.current ? 0.25 : 1;
+      // A spoken reply has no live microphone signal (half-duplex), so use a gentle
+      // cadence only while speech synthesis is actually in the speaking state.
+      const cadence = mode === 'speaking'
+        ? 0.5 + 0.25 * Math.sin(time / 155 * motion) + 0.25 * Math.sin(time / 330 * motion)
+        : 0;
       let level = 0;
       if (listening) {
         if (mode === 'listening' && analyserRef.current) {
@@ -189,7 +200,7 @@ export default function AudioPresence() {
           for (let index = 0; index < data.length; index++) { const value = (data[index] - 128) / 128; sum += value * value; }
           level = Math.min(1, Math.sqrt(sum / data.length) * 4);
         }
-        const floor = mode === 'speaking' ? 0.5 : 0.3;
+        const floor = mode === 'speaking' ? 0.3 + cadence * 0.55 : 0.3;
         levelRef.current = Math.max(levelRef.current * 0.88, level, floor);
       } else levelRef.current = ready ? 0.16 : 0.06;
       const dim = effective ? 1 : 0.55;
@@ -197,7 +208,6 @@ export default function AudioPresence() {
       const age = time - bornAt.current;
       const bloom = Math.max(0, 1 - age / 900);
 
-      const motion = reducedMotion.current ? 0.25 : 1;
       if (animation === 'girl') {
         // "Vision Girl" - four glowing blue bars rippling like a voice equalizer, no
         // panel behind them: the bars and their glow are the whole element.
@@ -214,8 +224,10 @@ export default function AudioPresence() {
           }
         } else {
           for (let bar = 0; bar < 4; bar++) {
-            const ripple = ready ? 0.18 * Math.sin(time / 480 * motion + bar * 1.05) : 0.05;
-            barsRef.current[bar] = Math.max(barsRef.current[bar] * 0.85, 0.34 + ripple, 0.2);
+            const ripple = mode === 'speaking'
+              ? 0.28 * Math.sin(time / 180 * motion + bar * 1.15) + 0.12 * Math.sin(time / 390 * motion + bar * 0.7)
+              : ready ? 0.18 * Math.sin(time / 480 * motion + bar * 1.05) : 0;
+            barsRef.current[bar] = Math.max(0.2, Math.min(1, 0.34 + ripple));
           }
         }
         // The resting composition from the reference: bar three is the tallest.

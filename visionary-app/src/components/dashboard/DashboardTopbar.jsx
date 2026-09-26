@@ -30,7 +30,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const results = destinations.filter(item => (item.label + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
   const openResult = (to) => { setSearchOpen(false); setQuery(""); navigate(to); };
   return <header className="z-30 flex h-16 shrink-0 items-center gap-2 bg-white px-3 sm:px-5">
-    <button onClick={onToggleSidebar} aria-label="Toggle navigation" aria-expanded={sidebarExpanded} aria-controls="dashboard-navigation" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd]"><Menu className="h-5 w-5" /></button>
+    <button onClick={onToggleSidebar} aria-label="Toggle navigation" aria-expanded={sidebarExpanded} aria-controls="dashboard-navigation" className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] md:flex"><Menu className="h-5 w-5" /></button>
     <Link to="/dashboard/home" aria-label="Visionary home" className="workspace-brand shrink-0"><VisionaryLogo /></Link>
     <WorkspaceSwitcher />
     <div className="flex flex-1 justify-center sm:px-6">
@@ -38,11 +38,10 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <Search className="h-5 w-5 shrink-0" /><span className="hidden text-sm sm:block">Search your workspace</span>
       </button>
     </div>
-    <Link to={connect.to} aria-label={connect.label} title={connect.label} className="flex h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[#0b57d2] hover:bg-[#e8f0fd] xl:px-3"><Plus className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>
-    <Link to="/dashboard/connections" aria-label="Connections and requests" title="Connections and requests" className="hidden h-11 w-11 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] sm:flex"><Users className="h-5 w-5" /></Link>
-    <Link to="/dashboard/support" aria-label="Help and support" className="hidden h-11 w-11 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] sm:flex"><HelpCircle className="h-5 w-5" /></Link>
+    <Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[#0b57d2] hover:bg-[#e8f0fd] md:flex xl:px-3"><Plus className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>
+    <span className="w-14 shrink-0 md:hidden" aria-hidden="true" />
     <DropdownMenu>
-      <DropdownMenuTrigger asChild><button aria-label="Open account menu" className="ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0b57d2] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#4285F4]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild><button aria-label="Open account menu" className="ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0b57d2] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#4285F4]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={8} className="workspace-account-menu w-[min(320px,calc(100vw-24px))] rounded-[20px] bg-white p-2">
         <DropdownMenuLabel className="p-3 font-normal"><div className="flex items-center gap-3"><div aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0b57d2] text-lg font-medium text-white">{userName.charAt(0).toUpperCase()}</div><div className="min-w-0"><p className="truncate text-base font-medium text-[#121317]">{userName}</p><p className="mt-0.5 truncate text-xs text-[#5f6368]">{user?.email}</p></div></div><div className="mt-4 flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#e8f0fd] px-3 py-1 text-xs font-medium capitalize text-[#0b57d2]">{role} workspace</span><span className="rounded-full border border-[#dadce0] px-3 py-1 text-xs text-[#5f6368]">{plan} · Local preview</span></div></DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -55,6 +54,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <DropdownMenuItem onSelect={() => navigate('/dashboard/notifications')} className="workspace-account-item gap-3"><Bell aria-hidden="true" />Notifications</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/personalization')} className="workspace-account-item gap-3"><SlidersHorizontal aria-hidden="true" />Personalization</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/privacy')} className="workspace-account-item gap-3"><ShieldCheck aria-hidden="true" />Privacy & consent</DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => navigate('/dashboard/support')} className="workspace-account-item gap-3"><HelpCircle aria-hidden="true" />Help and support</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => { logout(); navigate("/login", { replace: true }); }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />Sign out</DropdownMenuItem>
       </DropdownMenuContent>

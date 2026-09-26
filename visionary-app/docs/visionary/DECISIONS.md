@@ -30,3 +30,7 @@ D-012: Adopt PM's safe transition edge interpretation for later Part W implement
 ## 2026-09-20 — 04 implementation record
 
 D-013: Apply D-007/UX_HOME_FLOW with additive03 classes: Home selects a scoped next action; Ask retains conversations/canvases and adds persisted intent/context. Existing Home journey/topic/question links still enter Guide. Exact session-ID links avoid resuming another conversation about the same topic. No public source or existing CSS changed by04. Before/after evidence is in baseline/wave-0.5; remaining stage/transition and full QA gaps are explicit in STATUS.
+
+## 2026-09-26 — Founder-confirmed presence and audit decision
+
+D-014: Vision Boy and Vision Girl are distinct selectable **presences of one shared intelligence**, not separate learning accounts or memories. They use the same authorized SCM, pedagogical policy, conversations and safety boundary; appearance and supported voice presentation may vary by user choice, never learning entitlement or inferred ability. Current code has two visual styles but no distinct voice profile. The older Home/Learn PDFs are optional references only: keep the useful subject/chapter/continue pattern, not unsupported scores or card-heavy layouts. The existing internal blue/white design remains authoritative. The next code milestone is unified role-aware spoken/typed mentor behavior and trust edges, followed by the still-unimplemented D-012 transition flow; backend and real-model work are later gates, not an automatic connection claim.

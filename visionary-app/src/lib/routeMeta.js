@@ -158,7 +158,7 @@ export const ROUTE_META = {
   },
   "/careers": {
     title: "Careers | Visionary",
-    description: "Help build one intelligence for learning. See open roles across teams.",
+    description: "See how Visionary works and how to introduce yourself. There are no public roles listed right now.",
     image: "/og-image.jpg",
   },
   "/contact": {
