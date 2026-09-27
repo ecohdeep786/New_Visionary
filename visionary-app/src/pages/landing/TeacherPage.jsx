@@ -1605,7 +1605,7 @@ export default function TeacherPage() {
         <TeacherCTASection />
         <TeacherExploreSection />
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

@@ -1545,7 +1545,7 @@ export default function OrganizationPage() {
         <OrgCTASection />
         <OrgExploreSection />
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

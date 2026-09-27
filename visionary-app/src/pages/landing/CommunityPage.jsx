@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, HeartHandshake, Plus, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowRight, HeartHandshake, ShieldCheck, UsersRound } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import imgM1 from "@/assets/student-primary.webp";
 import imgM2 from "@/assets/student-vocational.webp";
@@ -152,34 +153,6 @@ function scrollToSection(id) {
   window.history.replaceState(null, "", `#${id}`);
 }
 
-/* FAQ accordion — the reference's circular-control grammar */
-function FaqList() {
-  const [open, setOpen] = useState(0);
-  return (
-    <div className="mt-12 space-y-3">
-      {FAQS.map((faq, index) => {
-        const isOpen = open === index;
-        return (
-          <div key={faq.q} className="overflow-hidden rounded-2xl border border-[#e8eaed] bg-white">
-            <button type="button" onClick={() => setOpen(isOpen ? -1 : index)} aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-              <span className="text-[16px] font-medium text-[#202124]">{faq.q}</span>
-              <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${isOpen ? "bg-[#1a73e8] text-white" : "bg-[#e8f0fe] text-[#0b57d0]"}`}>
-                <Plus className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`} aria-hidden="true" />
-              </span>
-            </button>
-            {isOpen && (
-              <div className="px-6 pb-6">
-                <p className="text-[15px] leading-[1.65] text-[#5f6368]">{faq.a}</p>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 export default function CommunityPage() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
@@ -312,7 +285,7 @@ export default function CommunityPage() {
             <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
               Find answers to common questions
             </h2>
-            <FaqList />
+            <LandingFAQ faqs={FAQS} defaultOpen={0} />
           </Reveal>
         </section>
 
@@ -337,7 +310,7 @@ export default function CommunityPage() {
         </section>
 
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

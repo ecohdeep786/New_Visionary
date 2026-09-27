@@ -8,7 +8,7 @@ import StatsBar from "@/components/landing/sections/StatsBar";
 import FeatureShowcase from "@/components/landing/sections/FeatureShowcase";
 import JourneySteps from "@/components/landing/sections/JourneySteps";
 import TestimonialBlock from "@/components/landing/sections/TestimonialBlock";
-import FAQAccordion from "@/components/landing/sections/FAQAccordion";
+import LandingFAQ from "@/components/landing/LandingFAQ";
 import CTASection from "@/components/landing/sections/CTASection";
 import RelatedCategories from "@/components/landing/sections/RelatedCategories";
 
@@ -60,20 +60,26 @@ export default function CareerPage() {
         role="Software Engineer · Bengaluru"
         initials="RM"
       />
-      <FAQAccordion
-        eyebrow="Questions"
-        title="Frequently asked"
-        color={category.color}
-        faqs={[
-          { q: "Which industries does Visionary cover?", a: "Technology, finance, healthcare, education, and law are currently supported, with more domains being added every quarter." },
-          { q: "Are the portfolio projects real or fake?", a: "Real. Visionary's Build App guides you through building functioning products — not toy exercises. Employers see working code and live projects." },
-          { q: "Do I need prior experience?", a: "No. Visionary adapts to where you are — whether you're a fresh graduate or changing careers. The AI builds your plan from your current baseline." },
-          { q: "How does the recruiter connection work?", a: "Partner companies have access to Visionary's talent pool. When your profile matches their requirements, you get a direct introduction — no middlemen." },
-        ]}
-      />
+      <section className="px-6 pb-20 sm:px-8 lg:px-10 lg:pb-28">
+        <div className="mx-auto max-w-[840px] text-center">
+          <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Questions</p>
+          <h2 className="mt-4 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[36px]">Frequently asked</h2>
+          <div className="mt-8">
+          <LandingFAQ
+            faqs={[
+              { q: "Which industries does Visionary cover?", a: "Technology, finance, healthcare, education, and law are currently supported, with more domains being added every quarter." },
+              { q: "Are the portfolio projects real or fake?", a: "Real. Visionary's Build App guides you through building functioning products — not toy exercises. Employers see working code and live projects." },
+              { q: "Do I need prior experience?", a: "No. Visionary adapts to where you are — whether you're a fresh graduate or changing careers. The AI builds your plan from your current baseline." },
+              { q: "How does the recruiter connection work?", a: "Partner companies have access to Visionary's talent pool. When your profile matches their requirements, you get a direct introduction — no middlemen." },
+            ]}
+            defaultOpen={0}
+          />
+          </div>
+        </div>
+      </section>
       <CTASection title="Ready to launch your career?" description="Start building the skills and portfolio that get you hired." />
       <RelatedCategories currentSlug="career" />
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

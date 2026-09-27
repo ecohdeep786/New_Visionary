@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowUpRight, BookOpen, Briefcase, Building2, ChevronDown,
-  CircleHelp, GraduationCap, Lock, Mail, Newspaper, Plus, ShieldCheck,
+  ArrowUpRight, BookOpen, Briefcase, Building2,
+  CircleHelp, GraduationCap, Lock, Mail, Newspaper, ShieldCheck,
   TrendingUp, UserRound, UsersRound,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import LandingFAQ from "@/components/landing/LandingFAQ";
 import { GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
 
 /* ═══ Tokens — the shared Material dialect (#202124 ink, #1a73e8/#0b57d0
@@ -120,62 +121,6 @@ function ResourceCard({ Icon, label, title, to }) {
   );
 }
 
-function FaqList() {
-  const [open, setOpen] = useState(new Set([0]));
-  const [showAll, setShowAll] = useState(false);
-  const visible = showAll ? FAQS : FAQS.slice(0, 5);
-
-  const toggle = (index) => {
-    setOpen((current) => {
-      const next = new Set(current);
-      if (next.has(index)) next.delete(index); else next.add(index);
-      return next;
-    });
-  };
-  const allOpen = visible.every((_, i) => open.has(i));
-
-  return (
-    <div>
-      <div className="mb-4 flex justify-end">
-        <button type="button"
-          onClick={() => setShowAll(true)}
-          className="inline-flex min-h-11 items-center gap-2 rounded-sm px-2 text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-          Expand all <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${allOpen ? "rotate-180" : ""}`} aria-hidden="true" />
-        </button>
-      </div>
-      <div className="space-y-3">
-        {visible.map((faq, index) => {
-          const isOpen = open.has(index);
-          return (
-            <div key={faq.q} className="rounded-xl border border-[#e8eaed] bg-white">
-              <button type="button" aria-expanded={isOpen} onClick={() => toggle(index)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                <span className="text-[15px] font-medium text-[#202124]">{faq.q}</span>
-                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors ${isOpen ? "bg-[#1a73e8] text-white" : "text-[#5f6368]"}`}>
-                  <Plus className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-45" : ""}`} aria-hidden="true" />
-                </span>
-              </button>
-              {isOpen && (
-                <div className="px-5 pb-5">
-                  <p className="max-w-[720px] text-[14px] leading-[1.65] text-[#5f6368]">{faq.a}</p>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-      {!showAll && (
-        <div className="mt-8 text-center">
-          <button type="button" onClick={() => setShowAll(true)}
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-            Show more
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function ContactPage() {
   const [activeTab, setActiveTab] = useState(TABS[0].id);
   const tab = TABS.find((t) => t.id === activeTab);
@@ -258,7 +203,15 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="mt-12">
-              <FaqList />
+              <LandingFAQ
+                faqs={FAQS}
+                multiple={true}
+                showExpandAll={true}
+                visibleCount={5}
+                expandAllLabel="Expand all"
+                collapseAllLabel="Collapse all"
+                showMoreLabel="Show more"
+              />
             </div>
           </Reveal>
         </section>
