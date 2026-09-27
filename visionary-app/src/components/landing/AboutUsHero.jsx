@@ -1,96 +1,26 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import HeroFanCards from "@/components/landing/HeroFanCards";
 
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
-/* Color tokens matching the shared design system */
-const C = {
-  ink: "#121317",
-  graphite: "#3c4043",
-  slate: "#5f6368",
-  mist: "#dadce0",
-  blue: "#4285F4",
-  navy: "#0b57d0",
-  white: "#ffffff",
-};
-
-/* ── Card strip: categories + sub-categories. Sub-categories link to the
-      category page that owns them — no separate sub-pages exist. ── */
-const STRIP_CARDS = [
-  { to: "/student", label: "Students", subject: "student" },
-  { to: "/student", label: "Primary", subject: "math" },
-  { to: "/student", label: "Secondary", subject: "physics" },
-  { to: "/student", label: "Competitive Exams", subject: "flag" },
-  { to: "/student", label: "Higher Education", subject: "research" },
-  { to: "/student", label: "Individual Learning", subject: "loop" },
-  { to: "/teacher", label: "Teachers", subject: "teacher" },
-  { to: "/parent", label: "Parents", subject: "parent" },
-  { to: "/professional", label: "Professionals", subject: "briefcase" },
-  { to: "/organization", label: "Organizations", subject: "team" },
-];
-const STRIP_TINTS = ["#fdf3d8", "#e3edfc", "#e0efe4", "#f1e8fb", "#fbe3e1"];
-/* Fanned card layout — varied tilt + vertical stagger, like the edu.google strip */
-const CARD_FAN = [
-  "-rotate-6 translate-y-4",
-  "-rotate-2 -translate-y-2",
-  "rotate-1 -translate-y-4",
-  "rotate-3 -translate-y-1",
-  "rotate-6 translate-y-3",
+/* ── Fan cards: every main category plus the sub-categories used on each
+      category page. All sub-category cards redirect to their main category
+      page — no separate sub-pages exist. ── */
+const FAN_GROUPS = [
+  { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher Secondary", "chemistry"], ["Competitive Exams", "flag"], ["Vocational & Skills", "build"], ["Higher Education", "research"], ["Learning on Your Own", "loop"]] },
+  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson Planning", "document"], ["In Class", "ask"], ["Checking Understanding", "practice"], ["Adapting", "compass"], ["Supporting Individuals", "handshake"], ["Growing", "growth"]] },
+  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early Years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher Secondary", "chemistry"]] },
+  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early Career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
+  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges & Universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
 ];
 
-/* ── Category card strip — full page width, a fanned row of tilted cards
-      drifting in one continuous slow loop, always on ── */
-function CategoryStrip() {
-  const cards = [...STRIP_CARDS, ...STRIP_CARDS];
+const STRIP_CARDS = FAN_GROUPS.flatMap((group) => [
+  { to: group.to, label: group.label, subject: group.subject, tint: group.tint },
+  ...group.subs.map(([label, subject]) => ({ to: group.to, label, subject, tint: group.tint })),
+]);
 
-  return (
-    <div className="w-full overflow-hidden py-14">
-      <style>{`
-        @keyframes about-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        .about-marquee { animation: about-marquee 75s linear infinite; animation-duration: 75s !important; animation-iteration-count: infinite !important; }
-      `}</style>
-      <div
-        role="region"
-        aria-label="Explore Visionary by category"
-        className="overflow-hidden"
-      >
-        <div className="about-marquee flex w-max items-center gap-9">
-          {cards.map(({ to, label, subject }, i) => {
-            const dup = i >= STRIP_CARDS.length;
-            const j = i % STRIP_CARDS.length;
-            return (
-              <Link
-                key={label + "-" + i}
-                to={to}
-                data-card
-                aria-hidden={dup || undefined}
-                tabIndex={dup ? -1 : undefined}
-                className={`group relative flex h-[400px] w-[310px] shrink-0 flex-col overflow-hidden rounded-[28px] p-7 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(32,33,36,0.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4 ${CARD_FAN[j % CARD_FAN.length]}`}
-                style={{ backgroundColor: STRIP_TINTS[j % STRIP_TINTS.length] }}
-              >
-                <span className="text-[23px] font-medium leading-[1.3]" style={{ color: C.ink }}>{label}</span>
-                <SpotIllustration subject={subject} className="absolute bottom-0 left-1/2 h-[74%] w-auto -translate-x-1/2" />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Eyebrow (matches original AboutHero) ── */
-function Eyebrow({ children }) {
-  return (
-    <p className="mb-8 text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">
-      {children}
-    </p>
-  );
-}
-
-/* ── ArrowLink (matches original AboutHero) ── */
+/* ── ArrowLink ── */
 function ArrowLink({ to, children, className = "" }) {
   return (
     <Link
@@ -103,28 +33,21 @@ function ArrowLink({ to, children, className = "" }) {
   );
 }
 
-/* ── Main hero section ── */
+/* ── Main hero — the communities.google layout: centered eyebrow, statement,
+      and CTAs first, then the full-width fanned card strip with paging. ── */
 export default function AboutUsHero() {
   return (
     <section
-      className="relative overflow-hidden border-b"
+      className="relative overflow-hidden border-b border-[#e8eaed] bg-white"
       style={{
         fontFamily: FONT,
-        borderColor: C.mist,
-        backgroundColor: C.white,
-        paddingTop: "calc(64px + 80px)",
-        paddingBottom: "64px",
+        paddingTop: "calc(64px + 168px)",
+        paddingBottom: "40px",
       }}
     >
-      {/* Category card strip — full page width, always drifting */}
-      <CategoryStrip />
-
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
-        {/* Eyebrow */}
-        <Eyebrow>About Visionary</Eyebrow>
-
-        {/* Centered heading, subheading, and button — original content restored exactly */}
-        <div className="mx-auto mt-8 max-w-[1120px] text-center">
+        <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">About Visionary</p>
+        <div className="mx-auto mt-6 max-w-[1120px] text-center">
           <h1 className="text-[clamp(32px,6vw,64px)] font-normal leading-[0.98] tracking-[-0.045em] text-[#202124]">
             Helping people turn questions into <span className="text-[#0b57d0]">understanding.</span>
           </h1>
@@ -141,18 +64,11 @@ export default function AboutUsHero() {
             <ArrowLink to="/research">Explore our approach</ArrowLink>
           </div>
         </div>
+      </div>
 
-        {/* Subtle radial gradient backdrop for the carousel area */}
-        <div
-          className="pointer-events-none absolute left-1/2 top-[220px] -translate-x-1/2"
-          style={{
-            width: "520px",
-            height: "520px",
-            background: "radial-gradient(circle, rgba(66,133,244,0.03) 0%, transparent 70%)",
-            filter: "blur(2px)",
-          }}
-          aria-hidden="true"
-        />
+      {/* Fanned card strip — full page width, drifting anticlockwise */}
+      <div className="mt-14">
+        <HeroFanCards items={STRIP_CARDS} ariaLabel="Explore Visionary by category" />
       </div>
     </section>
   );

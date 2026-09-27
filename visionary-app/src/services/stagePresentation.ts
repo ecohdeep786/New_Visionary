@@ -20,14 +20,13 @@ export interface StagePresentation {
 export function deriveStageTier(ctx: RequestContext): StageTier {
  return tierForPerson(workspaceIdentity(ctx).person);
 }
-/** Pure per-person tier: works for the signed-in learner AND for authorized teacher
- * views of one enrolled learner (Gate 5 ownership applies in the caller). */
-export function tierForPerson(person: { ageBand?: string; learningContext?: { classLevel?: string; stage?: string; exam?: string } }): StageTier {
- // Competitive-exam preparation (JEE/NEET/UPSC/CAT) is its own student sub-category:
- // the work is advanced regardless of age, so the presentation is never foundational.
- if (person.learningContext?.stage === 'competitive' || person.learningContext?.exam) return 'secondary';
- const level = Number(String(person.learningContext?.classLevel || '').replace(/\D/g, ''));
- if (person.learningContext?.classLevel && Number.isFinite(level) && level >= 1) {
+/** Pure per-person tier: accepts the full person record (learningContext) OR the flat
+ * stage-profile shape returned by stageProfileByEmail, so authorized teacher views of
+ * one enrolled learner compute the same tier the learner's own shell shows. */
+export function tierForPerson(person: { ageBand?: string; learningContext?: { classLevel?: string }; classLevel?: string }): StageTier {
+ const view = person.learningContext || person;
+ const level = Number(String(view.classLevel || '').replace(/\D/g, ''));
+ if (view.classLevel && Number.isFinite(level) && level >= 1) {
   if (level <= 5) return 'foundational';
   if (level <= 8) return 'developing';
   return 'secondary';
