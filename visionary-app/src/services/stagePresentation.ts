@@ -23,14 +23,17 @@ export function deriveStageTier(ctx: RequestContext): StageTier {
 /** Pure per-person tier: accepts the full person record (learningContext) OR the flat
  * stage-profile shape returned by stageProfileByEmail, so authorized teacher views of
  * one enrolled learner compute the same tier the learner's own shell shows. */
-export function tierForPerson(person: { ageBand?: string; learningContext?: { classLevel?: string }; classLevel?: string }): StageTier {
+export function tierForPerson(person: { ageBand?: string; learningContext?: { classLevel?: string; stage?: string }; classLevel?: string; stage?: string }): StageTier {
  const view = person.learningContext || person;
+ if (view.stage === 'higher_ed') return 'higher';
+ const competitive = view.stage === 'competitive';
  const level = Number(String(view.classLevel || '').replace(/\D/g, ''));
  if (view.classLevel && Number.isFinite(level) && level >= 1) {
-  if (level <= 5) return 'foundational';
-  if (level <= 8) return 'developing';
+  if (level <= 5) return competitive ? 'secondary' : 'foundational';
+  if (level <= 8) return competitive ? 'secondary' : 'developing';
   return 'secondary';
  }
+ if (competitive) return person.ageBand === 'adult' ? 'higher' : 'secondary';
  return person.ageBand === 'minor' ? 'foundational' : 'higher';
 }
 export const tierLabels: Record<StageTier, string> = {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, Menu, Plus, HelpCircle, Settings, LogOut, UserCircle, Users, Crown, Bell, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
@@ -19,6 +19,13 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const student = useStudentData();
   const { data: workspaceData, ctx } = useWorkspace();
   const role = ctx?.role || user?.identity;
+  const searchPrompt = {
+    student: 'Find a subject, topic, or page',
+    teacher: 'Find teaching pages and tools',
+    parent: 'Find reports, connections, or tools',
+    professional: 'Find learning, projects, or tools',
+    organization: 'Find people, cohorts, or tools',
+  }[role] || 'Search your workspace';
   const connect = role === "student" ? { label: "Join a class", to: "/dashboard/classes?join=1" }
     : role === "professional" ? { label: "Set a career goal", to: "/dashboard/career" }
     : role === "teacher" ? { label: "Create a class", to: "/dashboard/classes?create=1" }
@@ -29,13 +36,22 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     ...(role === 'student' ? student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id })) : [])];
   const results = destinations.filter(item => (item.label + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
   const openResult = (to) => { setSearchOpen(false); setQuery(""); navigate(to); };
+  useEffect(() => {
+    const onShortcut = event => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault(); setSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', onShortcut);
+    return () => window.removeEventListener('keydown', onShortcut);
+  }, []);
   return <header className="z-30 flex h-16 shrink-0 items-center gap-2 bg-white px-3 sm:px-5">
     <button onClick={onToggleSidebar} aria-label="Toggle navigation" aria-expanded={sidebarExpanded} aria-controls="dashboard-navigation" className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] md:flex"><Menu className="h-5 w-5" /></button>
     <Link to="/dashboard/home" aria-label="Visionary home" className="workspace-brand shrink-0"><VisionaryLogo /></Link>
     <WorkspaceSwitcher />
     <div className="flex flex-1 justify-center sm:px-6">
-      <button onClick={() => setSearchOpen(true)} className="flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label="Search your workspace">
-        <Search className="h-5 w-5 shrink-0" /><span className="hidden text-sm sm:block">Search your workspace</span>
+      <button onClick={() => setSearchOpen(true)} className="workspace-search-trigger flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label={searchPrompt}>
+        <Search className="h-5 w-5 shrink-0" /><span className="hidden min-w-0 flex-1 truncate text-left text-sm sm:block">{searchPrompt}</span><kbd className="workspace-search-shortcut hidden text-xs sm:inline">Ctrl K</kbd>
       </button>
     </div>
     <Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[#0b57d2] hover:bg-[#e8f0fd] md:flex xl:px-3"><Plus className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>
@@ -61,8 +77,8 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     </DropdownMenu>
     <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
       <DialogContent className="max-w-xl rounded-2xl">
-        <DialogHeader><DialogTitle>Search your workspace</DialogTitle><DialogDescription>Find a page or one of your learning topics.</DialogDescription></DialogHeader>
-        <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder="Search pages and topics" aria-label="Search pages and topics" className="v-field" />
+        <DialogHeader><DialogTitle>Search your workspace</DialogTitle><DialogDescription>{searchPrompt}. Results stay within this workspace.</DialogDescription></DialogHeader>
+        <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder={searchPrompt} aria-label="Search pages and topics" className="v-field" />
         <div className="max-h-[50vh] space-y-1 overflow-y-auto">{results.length ? results.map(item => <button key={item.to} onClick={() => openResult(item.to)} className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-[#e8f0fd]"><span>{item.label}</span><span className="ml-4 truncate text-xs text-[#5f6368]">{item.detail || "Page"}</span></button>) : <p className="px-4 py-6 text-sm text-[#5f6368]">No results. Try a page name or topic.</p>}</div>
       </DialogContent>
     </Dialog>

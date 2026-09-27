@@ -13,6 +13,8 @@ export default function ClassPromotion({ classId, accent }) {
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
+  const alreadyCount = result?.skipped.filter(item => item.reason.startsWith('already in')).length || 0;
+  const reviewCount = (result?.skipped.length || 0) - alreadyCount;
   function submit(event) {
     event.preventDefault();
     if (!user || !activeWorkspace) return;
@@ -35,6 +37,7 @@ export default function ClassPromotion({ classId, accent }) {
       <summary className="flex cursor-pointer items-center gap-2 text-sm font-medium text-[#121317]">
         <GraduationCap className="h-4 w-4" style={{ color: accent }} /> Record class promotion
       </summary>
+      <p className="mt-3 text-sm text-[#5f6368]">Adjacent class changes apply to actively enrolled learners. Anyone already in that class or needing a larger change keeps their current stage.</p>
       <form onSubmit={submit} className="mt-4 flex flex-col gap-3">
         <div className="flex flex-wrap items-end gap-3">
           <label className="text-sm">Moving to class
@@ -50,8 +53,9 @@ export default function ClassPromotion({ classId, accent }) {
         {result && (
           <div role="status" className="rounded-xl bg-[#e8f0fd] p-4 text-sm">
             <p className="font-medium text-[#121317]">{result.promoted.length} learner{result.promoted.length === 1 ? '' : 's'} moved to class {result.nextClassLevel}.</p>
-            {result.skipped.length > 0 && <p className="mt-1 text-[#5f6368]">{result.skipped.length} already in class {result.nextClassLevel}.</p>}
-            <p className="mt-1 text-xs text-[#5f6368]">Each learner can postpone or undo this on their own Home.</p>
+            {alreadyCount > 0 && <p className="mt-1 text-[#5f6368]">{alreadyCount} already in class {result.nextClassLevel}.</p>}
+            {reviewCount > 0 && <p className="mt-1 text-[#5f6368]">{reviewCount} need individual review or learner confirmation; their stage was not changed.</p>}
+            {result.promoted.length > 0 && <p className="mt-1 text-xs text-[#5f6368]">Promoted learners can postpone or undo this on their own Home.</p>}
           </div>
         )}
         {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}

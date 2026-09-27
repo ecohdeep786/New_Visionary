@@ -1,29 +1,83 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowUpRight,
-  ChevronRight,
-  FileText,
-  ShieldCheck,
+  Accessibility, ArrowRight, ChevronDown, Cookie, FileText,
+  Lock, ShieldCheck, UsersRound,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import { LEGAL_META } from "@/data/legalMeta";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import PolicyTabs from "@/components/landing/PolicyTabs";
+import SpotIllustration from "@/components/landing/SpotIllustration";
+import { LEGAL_META } from "@/data/legalMeta";
 
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-
-const C = {
+const COLORS = {
   ink: "#121317",
-  graphite: "#5f6368",
-  slate: "#5f6368",
+  grey: "#5f6368",
+  lightGrey: "#9AA0A6",
   mist: "#dadce0",
   border: "#dadce0",
-  canvas: "#ffffff",
+  soft: "#f8f9fa",
+  canvas: "#f7f8fa",
   blue: "#4285F4",
+  navy: "#0b57d0",
   white: "#ffffff",
+  graphite: "#5f6368",
 };
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+
+/* ═══ CONTROLLERS ═══ */
+function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const hasRevealed = useRef(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (hasRevealed.current) { setVisible(true); return undefined; }
+    if (!node) { setVisible(true); return undefined; }
+    if (typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasRevealed.current) { setVisible(true); hasRevealed.current = true; observer.disconnect(); }
+      },
+      { threshold: 0, rootMargin }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [rootMargin]);
+  return { ref, visible };
+}
+const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
+  return (
+    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
+const TERMS_PROMISES = ["Written to be understood", "Your content stays yours", "Material changes get notice"];
+
+const AT_A_GLANCE = [
+  {
+    to: "#what-you-cannot-do",
+    label: "Know the rules",
+    text: "The do's and don'ts that keep Visionary safe and useful for everyone.",
+    Icon: ShieldCheck,
+  },
+  {
+    to: "#your-content",
+    label: "Understand your content",
+    text: "You stay responsible for what you create, and for the rights to it.",
+    Icon: FileText,
+  },
+  {
+    to: "#plans-payments",
+    label: "See how plans work",
+    text: "Billing, renewal, and cancellation follow what the Pricing page describes.",
+    Icon: UsersRound,
+  },
+];
 
 const SECTIONS = [
   { id: "who-can-use", number: "01", title: "Who can use Visionary", summary: "The people and organizations that may use Visionary." },
@@ -40,34 +94,33 @@ const SECTIONS = [
   { id: "contact", number: "12", title: "Contact", summary: "How to reach Visionary about these Terms." },
 ];
 
-function scrollToSection(id) {
-  const target = document.getElementById(id);
-  if (!target) return;
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
-  window.history.replaceState(null, "", `#${id}`);
-}
-
 function SectionHeading({ number, title }) {
   return (
     <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.ink }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.15] tracking-[-0.025em] sm:text-[36px]" style={{ color: C.ink }}>{title}</h2>
+      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+        {number}
+      </div>
+      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>
+        {title}
+      </h2>
     </div>
   );
 }
 
 function Paragraph({ children }) {
   return (
-    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: C.graphite }}>{children}</p>
+    <p className="max-w-[760px] text-[16px] leading-[1.78]" style={{ color: COLORS.grey }}>
+      {children}
+    </p>
   );
 }
 
 function BulletList({ items }) {
   return (
-    <ul className="mt-5 max-w-[760px] space-y-3">
+    <ul className="mt-6 max-w-[760px] rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
       {items.map((item, index) => (
-        <li key={index} className="flex gap-3 text-[16px] leading-[1.7]" style={{ color: C.graphite }}>
-          <span aria-hidden="true" className="mt-[0.72em] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: C.blue }} />
+        <li key={index} className="flex items-start gap-3 py-1.5 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>
+          <span aria-hidden="true" className="mt-[0.68em] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
           <span>{item}</span>
         </li>
       ))}
@@ -77,15 +130,26 @@ function BulletList({ items }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: C.border }}>
-      <p className="text-[14px] leading-[1.7]" style={{ color: C.graphite }}>{children}</p>
+    <div className="mt-6 max-w-[760px] rounded-[16px] border bg-[#f8f9fa] px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
+      <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
+  );
+}
+
+function LearnMoreRow({ to, label }) {
+  return (
+    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
+      {label}
+      <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+    </Link>
   );
 }
 
 export default function TermsPage() {
   const [activeId, setActiveId] = useState("who-can-use");
   const [showMobileContents, setShowMobileContents] = useState(false);
+  const heroReveal = useRevealOnce();
+  const heroVisible = heroReveal.visible;
 
   const activeSection = useMemo(
     () => SECTIONS.find((section) => section.id === activeId),
@@ -122,298 +186,340 @@ export default function TermsPage() {
     }
   }, []);
 
+  function scrollToSection(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `#${id}`);
+  }
+
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <Breadcrumb page="Terms" />
+      <PolicyTabs />
+
       <main id="main">
-        {/* HERO */}
-        <section className="border-b pt-28 sm:pt-32" style={{ borderColor: C.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-            <div className="max-w-[940px]">
-              <div className="mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]" style={{ color: C.slate }}>
-                <FileText className="h-4 w-4" strokeWidth={1.7} />
-                Terms
-              </div>
-              <h1 className="max-w-[900px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: C.ink }}>
-                Terms of service.
-              </h1>
-              <p className="mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[760px] text-[18px] leading-[1.6] tracking-[0.005em] sm:text-[20px]" style={{ color: C.graphite }}>
-                What you can expect, and what we expect.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
-                <span style={{ color: C.slate }}>
-                  Last updated: <strong style={{ color: C.ink }}>{LEGAL_META.terms.lastUpdated}</strong>
-                </span>
-                <span className="hidden h-1 w-1 rounded-full sm:block" style={{ backgroundColor: C.mist }} />
-                <a href="mailto:legal@visionary.org.in"
-                  className="inline-flex items-center gap-1.5 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                  style={{ color: C.blue }}>
-                  legal@visionary.org.in
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* INTRO */}
-        <section className="border-b" style={{ borderColor: C.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 py-12 sm:px-8 sm:py-16 lg:px-10">
-            <div className="max-w-[860px]">
-              <p className="text-[20px] leading-[1.55] tracking-[-0.01em] sm:text-[24px]" style={{ color: C.ink }}>
-                These Terms cover your use of Visionary.
-                <br className="hidden sm:block" />
-                They are written to be understood, not to obscure.
-              </p>
-              <p className="mt-5 max-w-[720px] text-[16px] leading-[1.75]" style={{ color: C.slate }}>
-                By accessing or using Visionary, you agree to these Terms. Please read them together with our Privacy Policy and any additional terms or policies that apply to particular Visionary products or services.
-              </p>
-              <div className="mt-6">
-                <Link to="/privacy" className="inline-flex items-center gap-2 text-[15px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ color: C.blue }}>
-                  Read the Privacy Policy
-                  <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* MOBILE CONTENTS */}
-        <section className="border-b lg:hidden" style={{ borderColor: C.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
-            <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-              <span>
-                <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: C.slate }}>Contents</span>
-                <span className="mt-1 block text-[15px]" style={{ color: C.ink }}>{activeSection?.title}</span>
-              </span>
-              <ChevronRight className={`h-5 w-5 transition-transform duration-200 ${showMobileContents ? "rotate-90" : ""}`} strokeWidth={1.7} style={{ color: C.slate }} />
-            </button>
-            {showMobileContents && (
-              <div className="pb-5">
-                <div className="overflow-hidden rounded-[18px] border" style={{ borderColor: C.border }}>
-                  {SECTIONS.map((section) => {
-                    const active = activeId === section.id;
-                    return (
-                      <button key={section.id} type="button"
-                        onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
-                        style={{ borderColor: C.border, backgroundColor: active ? C.canvas : C.white }}>
-                        <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? C.blue : C.slate }}>{section.number}</span>
-                        <span className="text-[14px] leading-[1.45]" style={{ color: active ? C.ink : C.graphite }}>{section.title}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* LEGAL CONTENT */}
-        <section>
-          <div className="mx-auto max-w-[1240px] px-6 py-12 sm:px-8 lg:px-10 lg:py-20">
-            <div className="grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-20">
-              {/* STICKY CONTENTS */}
-              <aside className="hidden lg:block">
-                <div className="sticky top-24">
-                  <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.slate }}>Contents</div>
-                  <nav aria-label="Terms sections">
-                    <div className="space-y-1">
-                      {SECTIONS.map((section) => {
-                        const active = activeId === section.id;
-                        return (
-                          <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 hover:bg-[#121317]/5.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                            style={{ backgroundColor: active ? C.canvas : "transparent" }}>
-                            <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? C.blue : C.slate }}>{section.number}</span>
-                            <span className="text-[13px] leading-[1.45]" style={{ color: active ? C.ink : C.graphite }}>{section.title}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </nav>
-                  <div className="mt-8 border-t pt-6" style={{ borderColor: C.border }}>
-                    <div className="flex items-start gap-3">
-                      <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: C.blue }} />
-                      <p className="text-[13px] leading-[1.6]" style={{ color: C.slate }}>
-                        For privacy, safety, and security information, see the Trust & Legal pages.
-                      </p>
-                    </div>
+        <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">
+          <div className="grid gap-8 lg:grid-cols-[248px_minmax(0,1fr)] lg:gap-14">
+            {/* SIDEBAR TOC — starts at the top, beside the policy hero */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 py-10">
+                <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</div>
+                <nav aria-label="Terms sections">
+                  <div className="space-y-1">
+                    {SECTIONS.map((section) => {
+                      const active = activeId === section.id;
+                      return (
+                        <button
+                          key={section.id}
+                          type="button"
+                          onClick={() => scrollToSection(section.id)}
+                          aria-current={active ? "location" : undefined}
+                          className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
+                        >
+                          <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                          <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </nav>
+                <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
+                      These Terms are read together with the Privacy Policy and the Cookie policy.
+                    </p>
                   </div>
                 </div>
-              </aside>
+              </div>
+            </aside>
 
-              {/* MAIN LEGAL COPY */}
-              <div className="min-w-0">
-                <article className="divide-y divide-[#dadce0]">
-                  {/* 01 */}
-                  <section id="who-can-use" className="scroll-mt-24 pb-14 sm:pb-16">
-                    <SectionHeading number="01" title="Who can use Visionary" />
-                    <Paragraph>You may use Visionary only if you are legally permitted to enter into these Terms.</Paragraph>
-                    <div className="mt-5"><Paragraph>For younger learners, use of Visionary may require involvement or permission from a parent or legal guardian, depending on the learner's age and the applicable law.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>If you are using Visionary on behalf of a school, company, institution, or another organization, you confirm that you have authority to accept these Terms on its behalf.</Paragraph></div>
-                    <Note>The final minimum-age and parental-consent language should match Visionary's actual account model and applicable law before publication.</Note>
-                  </section>
+            {/* CONTENT COLUMN */}
+            <div className="min-w-0">
+              {/* POLICY HERO — the same policies.google.com opening as Privacy */}
+              <FadeReveal visible={heroVisible}>
+                <div className="pb-12 pt-2">
+                  <div className="flex justify-center"><SpotIllustration subject="document" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
+                  <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Terms of service</p>
+                  <h1 className="mt-4 max-w-[720px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] sm:text-[48px] lg:text-[56px]" style={{ color: COLORS.ink }}>
+                    Clear rules, written to be understood.
+                  </h1>
+                  <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
+                    What you can expect from Visionary, and what we expect from the people who use it — without the obscure language.
+                  </p>
 
-                  {/* 02 */}
-                  <section id="what-you-can-do" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="02" title="What you can do" />
-                    <Paragraph>Use Visionary to support learning, teaching, practice, creation, and work.</Paragraph>
-                    <BulletList items={[
-                      <><strong style={{ color: C.ink }}>Learn.</strong> Understand ideas, ask questions, practise skills, and continue your learning.</>,
-                      <><strong style={{ color: C.ink }}>Teach.</strong> Create learning experiences, support learners, and use information generated by Visionary as part of teaching.</>,
-                      <><strong style={{ color: C.ink }}>Create.</strong> Build projects, ideas, documents, or other work using the features available to you.</>,
-                      <><strong style={{ color: C.ink }}>Work.</strong> Use Visionary to support professional learning and tasks.</>,
-                    ]} />
-                    <div className="mt-5"><Paragraph>You are responsible for how you use information and output provided by Visionary.</Paragraph></div>
-                  </section>
+                  <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+                    {TERMS_PROMISES.map((p) => (
+                      <span key={p} className="flex items-center gap-1.5 text-[13.5px] font-medium" style={{ color: COLORS.ink }}>
+                        <ShieldCheck className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.navy }} aria-hidden="true" />
+                        {p}
+                      </span>
+                    ))}
+                  </div>
 
-                  {/* 03 */}
-                  <section id="what-you-cannot-do" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="03" title="What you cannot do" />
-                    <Paragraph>Keep Visionary useful and safe for everyone.</Paragraph>
-                    <BulletList items={[
-                      "Break applicable laws or regulations.",
-                      "Harm, threaten, harass, exploit, or deceive another person.",
-                      "Infringe another person's intellectual-property, privacy, or other legal rights.",
-                      "Attempt to gain unauthorized access to Visionary or another user's account or information.",
-                      "Interfere with, disrupt, reverse engineer, or bypass the security or operation of the service, except where applicable law expressly permits it.",
-                      "Upload or distribute malicious software or harmful code.",
-                      "Use Visionary to create or distribute content that violates applicable safety policies.",
-                      "Misuse automated access or attempt to circumvent usage limits or other service protections.",
-                    ]} />
-                  </section>
-
-                  {/* 04 */}
-                  <section id="what-we-provide" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="04" title="What we provide" />
-                    <Paragraph>Visionary provides technology designed to support learning, teaching, practice, creation, and connected progress.</Paragraph>
-                    <div className="mt-5"><Paragraph>Features may change over time. We may add, improve, remove, or limit features as the product develops.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Visionary can provide useful information and assistance, but it does not guarantee that every response, explanation, recommendation, or generated result will always be accurate, complete, or suitable for your particular situation.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>For decisions that require professional judgment, you should rely on an appropriately qualified professional.</Paragraph></div>
-                    <Note>Visionary is a learning and productivity service, not a replacement for qualified medical, legal, financial, or other professional advice.</Note>
-                  </section>
-
-                  {/* 05 */}
-                  <section id="your-content" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="05" title="Your content" />
-                    <Paragraph>You remain responsible for the content you submit, upload, create, or share through Visionary.</Paragraph>
-                    <div className="mt-5"><Paragraph>You must have the necessary rights and permissions to provide that content.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>When operating Visionary requires us to store, process, display, or transmit your content, you give Visionary the permissions reasonably necessary to provide those services.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Your Privacy Policy explains separately how personal information and other data are handled.</Paragraph></div>
-                  </section>
-
-                  {/* 06 */}
-                  <section id="your-account" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="06" title="Your account" />
-                    <Paragraph>Keep your account information accurate and take reasonable steps to protect your account.</Paragraph>
-                    <BulletList items={[
-                      "Provide accurate information when creating your account.",
-                      "Keep your login information secure.",
-                      "Take responsibility for activity that occurs through your account.",
-                      "Tell us when you believe your account has been compromised.",
-                    ]} />
-                    <div className="mt-5"><Paragraph>You must not use another person's account without permission or create accounts in deceptive ways.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>For organizational accounts, an authorized administrator may have additional responsibilities and controls.</Paragraph></div>
-                  </section>
-
-                  {/* 07 */}
-                  <section id="plans-payments" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="07" title="Plans, payments, and cancellation" />
-                    <Paragraph>Some Visionary features or services may require payment.</Paragraph>
-                    <div className="mt-5"><Paragraph>Prices, billing periods, available features, renewal terms, refunds, and cancellation rules are described on the Pricing page or at the time of purchase.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>A subscription does not transfer ownership of Visionary or its underlying technology to you.</Paragraph></div>
-                    <Note>The published Terms must be kept consistent with the actual pricing, billing, refund, tax, and cancellation implementation.</Note>
-                  </section>
-
-                  {/* 08 */}
-                  <section id="changes" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="08" title="When Visionary or your access changes" />
-                    <Paragraph>Products change. These Terms may need to change with them.</Paragraph>
-                    <div className="mt-5"><Paragraph>We may update, suspend, or discontinue parts of Visionary when reasonably necessary, including for product development, security, legal, or operational reasons.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>When changes to these Terms are material, we will provide notice where required by applicable law.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>The updated Terms will show a new <strong style={{ color: C.ink }}>Last updated</strong> date.</Paragraph></div>
-                  </section>
-
-                  {/* 09 */}
-                  <section id="restriction" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="09" title="When access may be restricted" />
-                    <Paragraph>We may restrict, suspend, or terminate access when necessary to protect users, Visionary, or the integrity of the service.</Paragraph>
-                    <BulletList items={[
-                      "These Terms or applicable policies are seriously or repeatedly violated.",
-                      "The service is being used in a way that creates a safety, security, or legal risk.",
-                      "We are required to do so by law or legal process.",
-                      "Your conduct causes harm or significant risk to another person, organization, or Visionary.",
-                    ]} />
-                    <div className="mt-5"><Paragraph>Where reasonably possible and legally permitted, we should provide an explanation and an opportunity to address the issue.</Paragraph></div>
-                  </section>
-
-                  {/* 10 */}
-                  <section id="responsibility" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="10" title="Disclaimers and responsibility" />
-                    <Paragraph>Visionary is provided subject to applicable law.</Paragraph>
-                    <div className="mt-5"><Paragraph>We do not promise that the service will always be uninterrupted, error-free, completely accurate, or available in every circumstance.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>You remain responsible for reviewing important information before relying on it, particularly where an incorrect result could materially affect a person or organization.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Any limitation of liability, warranty disclaimer, indemnification provision, or related legal language will apply only to the extent permitted by applicable law.</Paragraph></div>
-                  </section>
-
-                  {/* 11 */}
-                  <section id="disputes" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="11" title="Governing law and disputes" />
-                    <Paragraph>If there is a disagreement, contact Visionary first and give us an opportunity to understand and resolve the issue.</Paragraph>
-                    <div className="mt-5"><Paragraph>If a dispute cannot be resolved informally, the applicable governing law, jurisdiction, dispute-resolution procedure, arbitration provisions, and courts will be specified here.</Paragraph></div>
-                    <Note>Final jurisdiction, arbitration, governing-law, and dispute provisions should be reviewed and approved by Visionary's legal counsel before publication.</Note>
-                  </section>
-
-                  {/* 12 */}
-                  <section id="contact" className="scroll-mt-24 pt-14 sm:pt-16">
-                    <SectionHeading number="12" title="Contact" />
-                    <Paragraph>Questions about these Terms? Contact Visionary at:</Paragraph>
-                    <div className="mt-6">
-                      <a href="mailto:legal@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                        style={{ color: C.blue }}>
+                  {/* Action row */}
+                  <div className="mt-10 flex items-start gap-4">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-[#e8f0fe]" style={{ color: COLORS.navy }}>
+                      <FileText className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Questions about these Terms?</p>
+                      <p className="mt-0.5 text-[14.5px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
+                      <a href="mailto:legal@visionary.org.in" className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
                         legal@visionary.org.in
-                        <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
+                        <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                       </a>
                     </div>
-                    <div className="mt-5">
-                      <Paragraph>For privacy, safety, account, billing, or product questions, please use the relevant Visionary support channel.</Paragraph>
-                    </div>
-                  </section>
-                </article>
+                  </div>
 
-                {/* CLOSING */}
-                <section className="mt-20 border-t border-[#dadce0] pt-14 sm:mt-24 sm:pt-16">
-                  <div className="max-w-[860px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: C.blue }}>Terms</div>
-                    <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: C.ink }}>
-                      Clear rules.
-                      <br />
-                      <span style={{ color: C.blue }}>Better understanding.</span>
-                    </h2>
-                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: C.slate }}>
-                      Visionary is built to help people learn, create, and move forward. These Terms explain the responsibilities that make that possible.
-                    </p>
-                    <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: C.mist, color: C.ink }}>
-                        Privacy
-                      </Link>
-                      <Link to="/safety" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: C.mist, color: C.ink }}>
-                        Safety
-                      </Link>
-                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: C.mist, color: C.ink }}>
-                        Security
-                      </Link>
+                  <p className="mt-10 border-t pt-5 text-[13px] leading-5" style={{ borderColor: COLORS.mist, color: COLORS.grey }}>
+                    Effective {LEGAL_META.terms.lastUpdated}
+                  </p>
+                </div>
+
+                {/* Mobile TOC */}
+                <div className="border-b pb-4 lg:hidden" style={{ borderColor: COLORS.mist }}>
+                  <button
+                    type="button"
+                    onClick={() => setShowMobileContents((value) => !value)}
+                    aria-expanded={showMobileContents}
+                    aria-controls="terms-mobile-contents"
+                    className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  >
+                    <span>
+                      <span className="block text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
+                    </span>
+                    <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
+                  </button>
+                  {showMobileContents && (
+                    <div id="terms-mobile-contents" className="pt-4">
+                      <div className="overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                        {SECTIONS.map((section) => {
+                          const active = activeId === section.id;
+                          return (
+                            <button
+                              key={section.id}
+                              type="button"
+                              onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
+                              aria-current={active ? "location" : undefined}
+                              className="flex min-h-12 w-full items-start gap-4 border-b px-4 py-3 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                              style={{ borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white }}
+                            >
+                              <span className="mt-0.5 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                              <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
+                  )}
+                </div>
+
+                {/* AT A GLANCE */}
+                <section className="py-12" aria-labelledby="terms-summary-title">
+                  <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Start here</p>
+                  <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
+                  <div className="mt-6 grid gap-4 md:grid-cols-3">
+                    {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
+                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] border bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6" style={{ borderColor: COLORS.mist }}>
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
+                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}<ArrowRight className="ml-auto h-4 w-4 shrink-0" style={{ color: COLORS.grey }} aria-hidden="true" /></span>
+                        <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
+                      </a>
+                    ))}
                   </div>
                 </section>
-              </div>
+              </FadeReveal>
+
+              {/* LEGAL CONTENT */}
+              <article className="divide-y divide-[#dadce0]">
+                {/* 01 */}
+                <section id="who-can-use" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="01" title="Who can use Visionary" />
+                  <Paragraph>You may use Visionary only if you are legally permitted to enter into these Terms.</Paragraph>
+                  <div className="mt-5"><Paragraph>For younger learners, use of Visionary may require involvement or permission from a parent or legal guardian, depending on the learner's age and the applicable law.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>If you are using Visionary on behalf of a school, company, institution, or another organization, you confirm that you have authority to accept these Terms on its behalf.</Paragraph></div>
+                  <Note>The final minimum-age and parental-consent language should match Visionary's actual account model and applicable law before publication.</Note>
+                </section>
+
+                {/* 02 */}
+                <section id="what-you-can-do" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="02" title="What you can do" />
+                  <Paragraph>Use Visionary to support learning, teaching, practice, creation, and work.</Paragraph>
+                  <BulletList items={[
+                    <><strong style={{ color: COLORS.ink }}>Learn.</strong> Understand ideas, ask questions, practise skills, and continue your learning.</>,
+                    <><strong style={{ color: COLORS.ink }}>Teach.</strong> Create learning experiences, support learners, and use information generated by Visionary as part of teaching.</>,
+                    <><strong style={{ color: COLORS.ink }}>Create.</strong> Build projects, ideas, documents, or other work using the features available to you.</>,
+                    <><strong style={{ color: COLORS.ink }}>Work.</strong> Use Visionary to support professional learning and tasks.</>,
+                  ]} />
+                  <div className="mt-5"><Paragraph>You are responsible for how you use information and output provided by Visionary.</Paragraph></div>
+                </section>
+
+                {/* 03 */}
+                <section id="what-you-cannot-do" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="03" title="What you cannot do" />
+                  <Paragraph>Keep Visionary useful and safe for everyone.</Paragraph>
+                  <BulletList items={[
+                    "Break applicable laws or regulations.",
+                    "Harm, threaten, harass, exploit, or deceive another person.",
+                    "Infringe another person's intellectual-property, privacy, or other legal rights.",
+                    "Attempt to gain unauthorized access to Visionary or another user's account or information.",
+                    "Interfere with, disrupt, reverse engineer, or bypass the security or operation of the service, except where applicable law expressly permits it.",
+                    "Upload or distribute malicious software or harmful code.",
+                    "Use Visionary to create or distribute content that violates applicable safety policies.",
+                    "Misuse automated access or attempt to circumvent usage limits or other service protections.",
+                  ]} />
+                </section>
+
+                {/* 04 */}
+                <section id="what-we-provide" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="04" title="What we provide" />
+                  <Paragraph>Visionary provides technology designed to support learning, teaching, practice, creation, and connected progress.</Paragraph>
+                  <div className="mt-5"><Paragraph>Features may change over time. We may add, improve, remove, or limit features as the product develops.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>Visionary can provide useful information and assistance, but it does not guarantee that every response, explanation, recommendation, or generated result will always be accurate, complete, or suitable for your particular situation.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>For decisions that require professional judgment, you should rely on an appropriately qualified professional.</Paragraph></div>
+                  <Note>Visionary is a learning and productivity service, not a replacement for qualified medical, legal, financial, or other professional advice.</Note>
+                </section>
+
+                {/* 05 */}
+                <section id="your-content" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="05" title="Your content" />
+                  <Paragraph>You remain responsible for the content you submit, upload, create, or share through Visionary.</Paragraph>
+                  <div className="mt-5"><Paragraph>You must have the necessary rights and permissions to provide that content.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>When operating Visionary requires us to store, process, display, or transmit your content, you give Visionary the permissions reasonably necessary to provide those services.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>Your Privacy Policy explains separately how personal information and other data are handled.</Paragraph></div>
+                  <LearnMoreRow to="/privacy" label="Read the Privacy Policy" />
+                </section>
+
+                {/* 06 */}
+                <section id="your-account" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="06" title="Your account" />
+                  <Paragraph>Keep your account information accurate and take reasonable steps to protect your account.</Paragraph>
+                  <BulletList items={[
+                    "Provide accurate information when creating your account.",
+                    "Keep your login information secure.",
+                    "Take responsibility for activity that occurs through your account.",
+                    "Tell us when you believe your account has been compromised.",
+                  ]} />
+                  <div className="mt-5"><Paragraph>You must not use another person's account without permission or create accounts in deceptive ways.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>For organizational accounts, an authorized administrator may have additional responsibilities and controls.</Paragraph></div>
+                </section>
+
+                {/* 07 */}
+                <section id="plans-payments" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="07" title="Plans, payments, and cancellation" />
+                  <Paragraph>Some Visionary features or services may require payment.</Paragraph>
+                  <div className="mt-5"><Paragraph>Prices, billing periods, available features, renewal terms, refunds, and cancellation rules are described on the Pricing page or at the time of purchase.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>A subscription does not transfer ownership of Visionary or its underlying technology to you.</Paragraph></div>
+                  <Note>The published Terms must be kept consistent with the actual pricing, billing, refund, tax, and cancellation implementation.</Note>
+                  <LearnMoreRow to="/pricing" label="See the Pricing page" />
+                </section>
+
+                {/* 08 */}
+                <section id="changes" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="08" title="When Visionary or your access changes" />
+                  <Paragraph>Products change. These Terms may need to change with them.</Paragraph>
+                  <div className="mt-5"><Paragraph>We may update, suspend, or discontinue parts of Visionary when reasonably necessary, including for product development, security, legal, or operational reasons.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>When changes to these Terms are material, we will provide notice where required by applicable law.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>The updated Terms will show a new <strong style={{ color: COLORS.ink }}>Last updated</strong> date.</Paragraph></div>
+                </section>
+
+                {/* 09 */}
+                <section id="restriction" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="09" title="When access may be restricted" />
+                  <Paragraph>We may restrict, suspend, or terminate access when necessary to protect users, Visionary, or the integrity of the service.</Paragraph>
+                  <BulletList items={[
+                    "These Terms or applicable policies are seriously or repeatedly violated.",
+                    "The service is being used in a way that creates a safety, security, or legal risk.",
+                    "We are required to do so by law or legal process.",
+                    "Your conduct causes harm or significant risk to another person, organization, or Visionary.",
+                  ]} />
+                  <div className="mt-5"><Paragraph>Where reasonably possible and legally permitted, we should provide an explanation and an opportunity to address the issue.</Paragraph></div>
+                </section>
+
+                {/* 10 */}
+                <section id="responsibility" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="10" title="Disclaimers and responsibility" />
+                  <Paragraph>Visionary is provided subject to applicable law.</Paragraph>
+                  <div className="mt-5"><Paragraph>We do not promise that the service will always be uninterrupted, error-free, completely accurate, or available in every circumstance.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>You remain responsible for reviewing important information before relying on it, particularly where an incorrect result could materially affect a person or organization.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>Any limitation of liability, warranty disclaimer, indemnification provision, or related legal language will apply only to the extent permitted by applicable law.</Paragraph></div>
+                </section>
+
+                {/* 11 */}
+                <section id="disputes" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="11" title="Governing law and disputes" />
+                  <Paragraph>If there is a disagreement, contact Visionary first and give us an opportunity to understand and resolve the issue.</Paragraph>
+                  <div className="mt-5"><Paragraph>If a dispute cannot be resolved informally, the applicable governing law, jurisdiction, dispute-resolution procedure, arbitration provisions, and courts will be specified here.</Paragraph></div>
+                  <Note>Final jurisdiction, arbitration, governing-law, and dispute provisions should be reviewed and approved by Visionary's legal counsel before publication.</Note>
+                </section>
+
+                {/* 12 */}
+                <section id="contact" className="scroll-mt-24 py-14 sm:py-16">
+                  <SectionHeading number="12" title="Contact" />
+                  <Paragraph>Questions about these Terms? Contact Visionary at:</Paragraph>
+                  <div className="mt-6">
+                    <a href="mailto:legal@visionary.org.in"
+                      className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                      style={{ color: COLORS.navy }}>
+                      legal@visionary.org.in
+                      <ArrowRight className="h-5 w-5" strokeWidth={1.7} />
+                    </a>
+                  </div>
+                  <div className="mt-5">
+                    <Paragraph>For privacy, safety, account, billing, or product questions, please use the relevant Visionary support channel.</Paragraph>
+                  </div>
+                </section>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        {/* KEY TERMS — the policies.google.com glossary pattern */}
+        <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+          <div className="mx-auto w-full max-w-[1240px]">
+            <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
+            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2" style={{ borderColor: COLORS.mist }}>
+              {[
+                { term: "Visionary", def: "The learning workspace, its features, and the connected services described on this site." },
+                { term: "Workspace", def: "The learning environment you use in a browser — it holds the questions, practice, and projects from your sessions." },
+                { term: "Content", def: "What you submit, upload, create, or share through Visionary, for which you stay responsible." },
+                { term: "Plans", def: "Paid feature sets with the prices, billing periods, renewal terms, refunds, and cancellation rules shown at purchase." },
+                { term: "Organization administrator", def: "A person authorized to accept these Terms and manage accounts on behalf of a school, company, or institution." },
+                { term: "Service protections", def: "The usage limits, security measures, and safeguards that keep the service reliable and safe for everyone." },
+              ].map(({ term, def }) => (
+                <div key={term}>
+                  <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RELATED */}
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+          <div className="mx-auto w-full max-w-[1240px]">
+            <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { to: "/privacy", label: "Privacy Policy", desc: "Your learning is personal.", Icon: Lock },
+                { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
+                { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
+                { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
+              ].map(({ to, label, desc, Icon }) => (
+                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
+                    <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
+                  </div>
+                  <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

@@ -23,7 +23,6 @@ export async function teacherLearners(ctx){
   return [...new Set(roster.map(e=>e.student_email))].map(email=>{
     const entries=roster.filter(e=>e.student_email===email);const relevant=submissions.filter(s=>s.student_email===email);
     const profile = stageProfileByEmail(email);
-    console.log('LEARNER TIER DEBUG:', email, JSON.stringify(profile));
     const tier = tierForPerson(profile || {});
     return {id:email,name:entries[0].student_name||email,tier,tierLabel:{foundational:'Foundational',developing:'Developing',secondary:'Secondary',higher:'Higher education'}[tier],classes:classes.filter(c=>entries.some(e=>e.class_id===c.id)).map(c=>({id:c.id,name:c.name})),
       submitted:relevant.length,pending:relevant.filter(s=>s.status==='submitted').length,

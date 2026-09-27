@@ -2,7 +2,7 @@ import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import { bootstrapPerson } from '../src/services/workspaceService.ts';
-import { deriveStageTier, getStagePresentation } from '../src/services/stagePresentation.ts';
+import { deriveStageTier, getStagePresentation, tierForPerson } from '../src/services/stagePresentation.ts';
 import { getHome } from '../src/services/homeService.ts';
 
 const memory = new Map();
@@ -18,9 +18,9 @@ const onboard = overrides => {
 beforeEach(() => { memory.clear(); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-26T12:00:00Z') }); workspace.seedDemo('adult'); });
 
 test('onboarding decides the stage tier: class 3 is foundational, 7 developing, 10 secondary', () => {
- assert.equal(deriveStageTier(onboard({ board: 'CBSE', grade_level: 'Class 3', subjects: ['Mathematics'] })), 'foundational');
- assert.equal(deriveStageTier(onboard({ board: 'CBSE', grade_level: 'Class 7', subjects: ['Mathematics'] })), 'developing');
- assert.equal(deriveStageTier(onboard({ board: 'CBSE', grade_level: 'Class 10', subjects: ['Mathematics'] })), 'secondary');
+ assert.equal(deriveStageTier(onboard({ id: 'tier-class-3', board: 'CBSE', grade_level: 'Class 3', subjects: ['Mathematics'] })), 'foundational');
+ assert.equal(deriveStageTier(onboard({ id: 'tier-class-7', board: 'CBSE', grade_level: 'Class 7', subjects: ['Mathematics'] })), 'developing');
+ assert.equal(deriveStageTier(onboard({ id: 'tier-class-10', board: 'CBSE', grade_level: 'Class 10', subjects: ['Mathematics'] })), 'secondary');
 });
 
 test('adults and professionals get the full presentation; a minor without a recorded class gets the simplest', () => {
@@ -49,6 +49,14 @@ test('competitive exam is a student sub-category: a minor JEE aspirant never get
  assert.equal(profile.stage, 'competitive', 'onboarding recorded the stage');
  assert.equal(profile.exam, 'JEE Advanced', 'onboarding recorded the exam target');
  assert.equal(deriveStageTier(request), 'secondary', 'the exam aspirant is never the foundational tier');
+ assert.equal(tierForPerson(workspace.stageProfileByEmail('tier@visionary.test')), 'secondary', 'the teacher sees the same tier');
  const home = await getHome(request);
  assert.notEqual(home.setupNote, undefined, 'the standard student experience, not the simplified one');
+});
+
+test('higher education has the higher tier even when a school class value is still present', () => {
+ const request = onboard({ id: 'tier-higher-ed', age_band: 'adult', education_stage: 'higher_ed', grade_level: 'Class 12' });
+ assert.equal(deriveStageTier(request), 'higher');
+ const adultExam = onboard({ id: 'tier-adult-exam', age_band: 'adult', education_stage: 'competitive', target_exam: 'UPSC' });
+ assert.equal(deriveStageTier(adultExam), 'higher', 'an adult competitive learner without a school class is not demoted');
 });

@@ -17,6 +17,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { LEGAL_META, GRIEVANCE_OFFICER } from "@/data/legalMeta";
 
@@ -65,16 +66,6 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 const PRIVACY_PROMISES = ["No ads, ever", "Your data is never sold", "Delete on request"];
-
-/* Legal-family tab row — the policies.google.com tab nav pattern */
-const LEGAL_TABS = [
-  { to: "/privacy", label: "Privacy policy" },
-  { to: "/terms", label: "Terms of service" },
-  { to: "/cookies", label: "Cookie policy" },
-  { to: "/safety", label: "Safety" },
-  { to: "/security", label: "Security" },
-  { to: "/accessibility", label: "Accessibility" },
-];
 
 const AT_A_GLANCE = [
   {
@@ -228,6 +219,7 @@ export default function PrivacyPage() {
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <Breadcrumb page="Privacy policy" />
+      <PolicyTabs />
 
       <main id="main">
         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-10">

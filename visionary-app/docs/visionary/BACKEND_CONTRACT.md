@@ -1,9 +1,10 @@
 # BACKEND CONTRACT — Visionary AGI (backend phase, v1)
 
-The client boundary already exists and is verified: `src/services/backendTransport.ts` (team Gate 1).
-The server implements **one exchange shape** and the operations below. This document is the
-build spec for the backend phase; the client installs it through `configureBackendTransport`
-and needs **no rewrites** when the real transport arrives.
+The client boundary already exists and has frontend contract tests: `src/services/backendTransport.ts` (team Gate 1).
+No backend exists yet (founder direction D-015, 2026-09-27). Complete the local product gate first.
+The exchange shape and operations below are a **proposal for the later backend phase**, to reconcile
+with the actual server design before implementation. The client installs a transport through
+`configureBackendTransport`; compatibility without changes cannot be guaranteed until real integration tests pass.
 
 ## Session and authorization (every operation, no exceptions)
 - `getSession()` returns the authenticated `{ personId, workspaceId, role, expiresAt? }` from

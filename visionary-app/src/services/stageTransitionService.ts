@@ -1,5 +1,5 @@
 import type { RequestContext } from '../domain/workspace.ts';
-import { snapshot, updateStageProfile, workspaceIdentity } from './workspaceService.ts';
+import { familyReports, snapshot, updateStageProfile, updateStageProfilesBatch, workspaceIdentity } from './workspaceService.ts';
 import { getDailyPlan } from './dailyPlanService.ts';
 import { getLearningWorkspace } from './learningPipelineService.ts';
 import { getStudentClasswork } from './mentorStateService.ts';
@@ -21,7 +21,7 @@ export interface StageTransition {
   state: 'notified' | 'applied' | 'postponed' | 'undone' | 'awaiting-confirm';
   reason: string;
   diff: { unitsKept: number; planStepsKept: number; openClassworkKept: number; dueDatesRetained: boolean };
-  notifiedAt: string; appliedAt?: string; postponedUntil?: string; undoneAt?: string;
+  notifiedAt: string; appliedAt?: string; postponedAt?: string; postponedUntil?: string; undoneAt?: string;
   laterWorkCount?: number;
 }
 interface TransitionStore { version: 1; transitions: StageTransition[] }
@@ -42,6 +42,15 @@ function write(store: TransitionStore) {
  catch { throw new Error('The stage transition could not be saved on this device. Your stage is unchanged.'); }
  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('visionary:plan-change'));
 }
+function writeWithProfile(ctx: RequestContext, store: TransitionStore, next: StageProfile, previous: StageProfile) {
+ updateStageProfile(ctx, next, { replace: true });
+ try { write(store); }
+ catch (error) {
+  try { updateStageProfile(ctx, previous, { replace: true }); }
+  catch { throw new Error('The stage notice could not be saved and the prior stage could not be restored. Review your stage before retrying.'); }
+  throw error;
+ }
+}
 function cleanProfile(profile: StageProfile): StageProfile {
  return {
   board: profile.board?.trim().slice(0, 100) || undefined,
@@ -52,7 +61,7 @@ function cleanProfile(profile: StageProfile): StageProfile {
  };
 }
 function sameProfile(a: StageProfile, b: StageProfile) {
- return (a.board || '') === (b.board || '') && (a.classLevel || '') === (b.classLevel || '') && (a.subjects || []).join('|') === (b.subjects || []).join('|');
+ return (a.board || '') === (b.board || '') && (a.classLevel || '') === (b.classLevel || '') && (a.subjects || []).join('|') === (b.subjects || []).join('|') && (a.stage || '') === (b.stage || '') && (a.exam || '') === (b.exam || '');
 }
 function classDistance(fromLevel?: string, toLevel?: string): number {
  const from = Number(String(fromLevel || '').replace(/\D/g, '')); const to = Number(String(toLevel || '').replace(/\D/g, ''));
@@ -60,11 +69,11 @@ function classDistance(fromLevel?: string, toLevel?: string): number {
  if (!Number.isFinite(from) || !Number.isFinite(to)) return 0;
  return Math.abs(to - from);
 }
-function captureEvidence(ctx: RequestContext, profile: StageProfile) {
+function captureEvidence(ctx: RequestContext, profile: StageProfile, strict = false) {
  try {
   const plan = getDailyPlan(ctx);
   return { units: getLearningWorkspace(ctx).units.length, planSteps: plan.steps.filter(s => !s.done).length, openClasswork: ctx.role === 'student' ? getStudentClasswork(ctx).length : 0, stageProfile: profile };
- } catch { return { units: 0, planSteps: 0, openClasswork: 0, stageProfile: profile }; }
+ } catch { if (strict) throw new Error('Learning evidence could not be checked for every learner. No class promotion was applied; retry after restoring the local records.'); return { units: 0, planSteps: 0, openClasswork: 0, stageProfile: profile }; }
 }
 function assertCanPropose(ctx: RequestContext) {
  check(ctx);
@@ -77,8 +86,8 @@ function assertCanPropose(ctx: RequestContext) {
 export function proposeStageTransition(ctx: RequestContext, next: StageProfile, reason: string): StageTransition {
  assertCanPropose(ctx);
  const identity = workspaceIdentity(ctx);
- const to = cleanProfile(next);
  const from = cleanProfile(identity.person.learningContext || { subjects: [] });
+ const to = cleanProfile({ ...from, ...next });
  if (sameProfile(from, to)) throw new Error('This stage profile is already the active one.');
  const store = read();
  // One active transition per person: a new proposal supersedes a postponed/notified one.
@@ -89,8 +98,9 @@ export function proposeStageTransition(ctx: RequestContext, next: StageProfile, 
  const policy: StageTransition['policy'] = boardJump || distance > 1 ? 'CONFIRM' : 'AUTO';
  const diff = { unitsKept: evidence.units, planStepsKept: evidence.planSteps, openClassworkKept: evidence.openClasswork, dueDatesRetained: true };
  const transition: StageTransition = { id: crypto.randomUUID(), personId: ctx.personId, from, to, policy, state: policy === 'AUTO' ? 'applied' : 'awaiting-confirm', reason: String(reason || '').trim().slice(0, 200) || 'Stage profile updated', diff, notifiedAt: clock().toISOString(), appliedAt: policy === 'AUTO' ? clock().toISOString() : undefined };
- if (policy === 'AUTO') updateStageProfile(ctx, to, { replace: true });
- store.transitions.push(transition); write(store);
+ store.transitions.push(transition);
+ if (policy === 'AUTO') writeWithProfile(ctx, store, to, from);
+ else write(store);
  return transition;
 }
 /** Confirm a boundary jump that policy held for explicit confirmation. */
@@ -99,17 +109,15 @@ export function confirmStageTransition(ctx: RequestContext, transitionId: string
  const store = read(); const transition = store.transitions.find(t => t.id === transitionId && t.personId === ctx.personId);
  if (!transition || transition.state !== 'awaiting-confirm') throw new Error('This transition is not waiting for confirmation.');
  transition.state = 'applied'; transition.appliedAt = clock().toISOString();
- updateStageProfile(ctx, transition.to, { replace: true });
- write(store); return transition;
+ writeWithProfile(ctx, store, transition.to, transition.from); return transition;
 }
 /** Postpone: reverses the applied mapping and reevaluates in seven days (D-012). */
 export function postponeStageTransition(ctx: RequestContext, transitionId: string): StageTransition {
  check(ctx);
  const store = read(); const transition = store.transitions.find(t => t.id === transitionId && t.personId === ctx.personId);
  if (!transition || transition.state !== 'applied') throw new Error('Only an applied transition can be postponed.');
- transition.state = 'postponed'; transition.postponedUntil = new Date(clock().getTime() + POSTPONE_MS).toISOString();
- updateStageProfile(ctx, transition.from, { replace: true });
- write(store); return transition;
+ transition.state = 'postponed'; transition.postponedAt = clock().toISOString(); transition.postponedUntil = new Date(clock().getTime() + POSTPONE_MS).toISOString();
+ writeWithProfile(ctx, store, transition.from, transition.to); return transition;
 }
 /** Undo within 14 days: restores the exact prior mapping; later work is retained. */
 export function undoStageTransition(ctx: RequestContext, transitionId: string): StageTransition {
@@ -120,8 +128,7 @@ export function undoStageTransition(ctx: RequestContext, transitionId: string): 
  const laterUnits = getLearningWorkspace(ctx).units.filter(u => transition.appliedAt && u.updatedAt > transition.appliedAt).length;
  transition.laterWorkCount = laterUnits;
  transition.state = 'undone'; transition.undoneAt = clock().toISOString();
- updateStageProfile(ctx, transition.from, { replace: true });
- write(store); return transition;
+ writeWithProfile(ctx, store, transition.from, transition.to); return transition;
 }
 type LegacyRow = Record<string, unknown>;
 function entityRows(name: string): LegacyRow[] {
@@ -144,17 +151,36 @@ export function proposeClassPromotion(ctx: RequestContext, classId: string, next
  const promoted: Array<{ personId: string; name: string }> = []; const skipped: Array<{ personId: string; reason: string }> = [];
  const enrollments = entityRows('Enrollment').filter(e => e.class_id === classId && e.status === 'active');
  if (!enrollments.length) throw new Error('No actively enrolled learners in this class.');
+ const store = read();
+ const changes: Array<{ ctx: RequestContext; from: StageProfile; to: StageProfile; transition: StageTransition; name: string }> = [];
+ const seen = new Set<string>();
+ // Read and authorize the entire roster before writing any learner. A missing
+ // second workspace must not leave the first learner silently promoted.
  for (const enrollment of enrollments) {
   const learnerId = String(enrollment.student_id || enrollment.student_email || '');
-  const learner = workspaceIdentity({ ...ctx, personId: learnerId, workspaceId: `${learnerId}:student`, role: 'student' }).person;
+  if (seen.has(learnerId)) continue;
+  seen.add(learnerId);
+  const learnerCtx: RequestContext = { ...ctx, personId: learnerId, workspaceId: `${learnerId}:student`, role: 'student' };
+  const learner = workspaceIdentity(learnerCtx).person;
   const current = cleanProfile(learner.learningContext || { subjects: [] });
-  if ((current.classLevel || '') === level) { skipped.push({ personId: learnerId, reason: 'already in ' + level }); continue; }
+  const currentLevel = Number(String(current.classLevel || '').match(/\d+/)?.[0]);
+  if (currentLevel === Number(level)) { skipped.push({ personId: learnerId, reason: 'already in ' + level }); continue; }
+  if (!currentLevel || Number(level) - currentLevel !== 1) { skipped.push({ personId: learnerId, reason: 'not an adjacent promotion; learner confirmation is required' }); continue; }
   const to = { ...current, classLevel: level };
-  const store = read();
-  const transition: StageTransition = { id: crypto.randomUUID(), personId: learnerId, from: current, to, policy: 'AUTO', state: 'applied', reason: String(reason || '').trim().slice(0, 200) || `Class promotion to ${level} recorded by the teacher`, diff: { unitsKept: 0, planStepsKept: 0, openClassworkKept: 0, dueDatesRetained: true }, notifiedAt: clock().toISOString(), appliedAt: clock().toISOString() };
-  updateStageProfile({ ...ctx, personId: learnerId, workspaceId: `${learnerId}:student`, role: 'student' }, to, { replace: true });
-  store.transitions.push(transition); write(store);
-  promoted.push({ personId: learnerId, name: learner.name });
+  const evidence = captureEvidence(learnerCtx, current, true);
+  const transition: StageTransition = { id: crypto.randomUUID(), personId: learnerId, from: current, to, policy: 'AUTO', state: 'applied', reason: String(reason || '').trim().slice(0, 200) || `Class promotion to ${level} recorded by the teacher`, diff: { unitsKept: evidence.units, planStepsKept: evidence.planSteps, openClassworkKept: evidence.openClasswork, dueDatesRetained: true }, notifiedAt: clock().toISOString(), appliedAt: clock().toISOString() };
+  changes.push({ ctx: learnerCtx, from: current, to, transition, name: learner.name });
+ }
+ if (changes.length) {
+  updateStageProfilesBatch(changes.map(({ ctx: learnerCtx, to }) => ({ ctx: learnerCtx, profile: to })));
+  store.transitions.push(...changes.map(change => change.transition));
+  try { write(store); }
+  catch (error) {
+   try { updateStageProfilesBatch(changes.map(({ ctx: learnerCtx, from }) => ({ ctx: learnerCtx, profile: from }))); }
+   catch { throw new Error('The promotion notice could not be saved and the prior class levels could not be restored. Review each learner before retrying.'); }
+   throw error;
+  }
+  promoted.push(...changes.map(change => ({ personId: change.ctx.personId, name: change.name })));
  }
  return { classId, nextClassLevel: level, promoted, skipped };
 }
@@ -173,8 +199,7 @@ export function getActiveTransitionNotice(ctx: RequestContext): StageTransition 
   const current = cleanProfile(workspaceIdentity(ctx).person.learningContext || { subjects: [] });
   if (sameProfile(current, transition.from)) {
    transition.state = 'applied'; transition.appliedAt = clock().toISOString();
-   updateStageProfile(ctx, transition.to, { replace: true });
-   write(store);
+   writeWithProfile(ctx, store, transition.to, transition.from);
   } else {
    transition.state = 'undone'; transition.undoneAt = clock().toISOString(); write(store);
    return null;
@@ -183,4 +208,19 @@ export function getActiveTransitionNotice(ctx: RequestContext): StageTransition 
  if (transition.state === 'undone') return null;
  if (transition.state === 'applied' && transition.appliedAt && now - new Date(transition.appliedAt).getTime() > UNDO_WINDOW_MS) return null;
  return transition;
+}
+
+/** A minimal recent class update for a consented parent report. Private work,
+ * transition reasons and the learner's own Undo control never leave their space. */
+export function getParentStageInsight(ctx: RequestContext, childId: string): { state: 'applied' | 'postponed' | 'undone'; from: string; to: string; at: string } | null {
+ check(ctx);
+ if (ctx.role !== 'parent' || !familyReports(ctx).some(child => child.id === childId)) throw new Error('This child’s stage update is not shared with you.');
+ const transition = read().transitions.filter(item => item.personId === childId && item.from.classLevel && item.to.classLevel && item.from.classLevel !== item.to.classLevel).at(-1);
+ if (!transition || !['applied', 'postponed', 'undone'].includes(transition.state)) return null;
+ const state = transition.state as 'applied' | 'postponed' | 'undone';
+ const at = state === 'undone' ? transition.undoneAt : state === 'applied' ? transition.appliedAt : transition.postponedAt || transition.notifiedAt;
+ if (!at || !Number.isFinite(new Date(at).getTime()) || Math.abs(clock().getTime() - new Date(at).getTime()) > 7 * 86400000) return null;
+ const current = cleanProfile(workspaceIdentity({ ...ctx, personId: childId, workspaceId: `${childId}:student`, role: 'student' }).person.learningContext || { subjects: [] });
+ if (current.classLevel !== (state === 'applied' ? transition.to.classLevel : transition.from.classLevel)) return null;
+ return { state, from: transition.from.classLevel!, to: transition.to.classLevel!, at };
 }

@@ -4,7 +4,9 @@ import * as workspace from '../src/services/workspaceService.ts';
 import { workspaceIdentity } from '../src/services/workspaceService.ts';
 const stageProfileOf = request => workspaceIdentity(request).person.learningContext || {};
 import * as pipeline from '../src/services/learningPipelineService.ts';
-import { proposeStageTransition, proposeClassPromotion, confirmStageTransition, postponeStageTransition, undoStageTransition, getActiveTransitionNotice, configureStageTransitionClock } from '../src/services/stageTransitionService.ts';
+import { proposeStageTransition, proposeClassPromotion, confirmStageTransition, postponeStageTransition, undoStageTransition, getActiveTransitionNotice, getParentStageInsight, configureStageTransitionClock } from '../src/services/stageTransitionService.ts';
+import { getOrganizationAggregate } from '../src/services/mentorStateService.ts';
+import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
 
 const memory = new Map();
@@ -35,6 +37,38 @@ test('an adjacent class promotion applies automatically with notice, diff and re
  const notice = getActiveTransitionNotice(request);
  assert.equal(notice?.id, transition.id);
  assert.equal(notice?.state, 'applied');
+});
+
+test('class promotion preserves competitive stage and exam through postpone and undo', () => {
+ const user = { id: 'competitive-stage', email: 'competitive-stage@visionary.test', full_name: 'Exam Learner', identity: 'student', age_band: 'minor', onboarding_complete: true, education_stage: 'competitive', target_exam: 'JEE Advanced', grade_level: 'Class 11' };
+ workspace.bootstrapPerson(user);
+ const request = { personId: user.id, workspaceId: `${user.id}:student`, role: 'student', locale: 'en' };
+ const transition = proposeStageTransition(request, { classLevel: 'Class 12' }, 'school promotion');
+ assert.equal(stageProfileOf(request).stage, 'competitive');
+ assert.equal(stageProfileOf(request).exam, 'JEE Advanced');
+ postponeStageTransition(request, transition.id);
+ assert.equal(stageProfileOf(request).stage, 'competitive');
+ assert.equal(stageProfileOf(request).exam, 'JEE Advanced');
+ clockAt('2026-10-04T12:00:00Z');
+ getActiveTransitionNotice(request);
+ undoStageTransition(request, transition.id);
+ assert.equal(stageProfileOf(request).classLevel, 'Class 11');
+ assert.equal(stageProfileOf(request).stage, 'competitive');
+ assert.equal(stageProfileOf(request).exam, 'JEE Advanced');
+});
+
+test('sign-in bootstrap keeps the active transition instead of restoring stale onboarding stage', () => {
+ const user = { id: 'returning-learner', email: 'returning-learner@visionary.test', full_name: 'Returning Learner', identity: 'student', age_band: 'minor', onboarding_complete: true, education_stage: 'secondary', grade_level: 'Class 7' };
+ workspace.bootstrapPerson(user);
+ const request = { personId: user.id, workspaceId: `${user.id}:student`, role: 'student', locale: 'en' };
+ const transition = proposeStageTransition(request, { classLevel: 'Class 8' }, 'end of year');
+ assert.equal(stageProfileOf(request).classLevel, 'Class 8');
+ workspace.bootstrapPerson(user);
+ assert.equal(stageProfileOf(request).classLevel, 'Class 8');
+ assert.equal(getActiveTransitionNotice(request)?.id, transition.id);
+ undoStageTransition(request, transition.id);
+ workspace.bootstrapPerson(user);
+ assert.equal(stageProfileOf(request).classLevel, 'Class 7');
 });
 
 test('postpone reverses the mapping and reevaluation re-applies after seven days', async () => {
@@ -77,6 +111,70 @@ test('undo restores the exact prior mapping while work created since is retained
  // Double undo is refused.
  assert.throws(() => undoStageTransition(request, transition.id), /applied/);
  // After the undo the notice is no longer active.
+ assert.equal(getActiveTransitionNotice(request), null);
+});
+
+test('a consented parent sees a minimal class update, then Undo, and loses access on revocation', () => {
+ const child = ctx('minor-cbse'); const parent = ctx('parent', 'parent');
+ proposeStageTransition(child, { classLevel: '7' }, 'starting class');
+ const transition = proposeStageTransition(child, { classLevel: '8' }, 'private teacher reason');
+ assert.deepEqual(getParentStageInsight(parent, child.personId), { state: 'applied', from: '7', to: '8', at: at().toISOString() });
+ assert.ok(!JSON.stringify(getParentStageInsight(parent, child.personId)).includes('private teacher reason'));
+ proposeStageTransition(child, { subjects: ['Mathematics'] }, 'subject plan');
+ assert.equal(getParentStageInsight(parent, child.personId)?.state, 'applied', 'a later subject update keeps the recent class update visible');
+ undoStageTransition(child, transition.id);
+ assert.deepEqual(getParentStageInsight(parent, child.personId), { state: 'undone', from: '7', to: '8', at: at().toISOString() });
+ workspace.changeRelationship(parent, 'demo-parent:demo-minor-cbse', 'revoked');
+ assert.equal(workspace.familyReports(parent).some(report => report.id === child.personId), false);
+ assert.throws(() => getParentStageInsight(parent, child.personId), /not shared/);
+ assert.throws(() => getParentStageInsight(ctx('school-admin', 'organization'), child.personId), /not shared|access/);
+});
+
+test('a postponed parent class update uses the postponement date and expires after seven days', () => {
+ const child = ctx('minor-cbse'); const parent = ctx('parent', 'parent');
+ proposeStageTransition(child, { classLevel: '7' }, 'starting class');
+ const transition = proposeStageTransition(child, { classLevel: '8' }, 'promotion');
+ clockAt('2026-09-29T12:00:00Z');
+ postponeStageTransition(child, transition.id);
+ assert.equal(getParentStageInsight(parent, child.personId)?.state, 'postponed');
+ assert.equal(getParentStageInsight(parent, child.personId)?.at, '2026-09-29T12:00:00.000Z');
+ clockAt('2026-10-05T12:00:00Z');
+ assert.equal(getParentStageInsight(parent, child.personId)?.state, 'postponed');
+ clockAt('2026-10-07T12:00:00Z');
+ assert.equal(getParentStageInsight(parent, child.personId), null);
+});
+
+test('organization aggregate stays class-scoped through stage change and drops revoked enrollment', () => {
+ seedConnectedFixtures(localStorage, at());
+ const child = ctx('minor-cbse'); const organization = ctx('school-admin', 'organization');
+ proposeStageTransition(child, { classLevel: '7' }, 'starting class');
+ proposeStageTransition(child, { classLevel: '8' }, 'private change reason');
+ const before = getOrganizationAggregate(organization);
+ assert.equal(before.learnerCount, 2);
+ assert.ok(!JSON.stringify(before).includes('private change reason'));
+ assert.ok(!('stage' in before));
+ const memberships = JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite'));
+ memberships.find(item => item.email === 'minor-cbse@visionary.test').status = 'revoked';
+ localStorage.setItem('visionary_entity_OrganizationInvite', JSON.stringify(memberships));
+ assert.equal(getOrganizationAggregate(organization).learnerCount, 1);
+});
+
+test('a failed Undo notice write restores the active mapping so retry is safe', () => {
+ const request = ctx();
+ proposeStageTransition(request, { classLevel: '7' }, 'starting class');
+ const transition = proposeStageTransition(request, { classLevel: '8' }, 'promotion');
+ const setItem = localStorage.setItem;
+ let fail = true;
+ localStorage.setItem = (key, value) => {
+  if (key === 'visionary_stage_transitions_v1' && fail) { fail = false; throw new Error('Quota exceeded'); }
+  setItem(key, value);
+ };
+ try { assert.throws(() => undoStageTransition(request, transition.id), /could not be saved/); }
+ finally { localStorage.setItem = setItem; }
+ assert.equal(stageProfileOf(request).classLevel, '8');
+ assert.equal(getActiveTransitionNotice(request)?.state, 'applied');
+ undoStageTransition(request, transition.id);
+ assert.equal(stageProfileOf(request).classLevel, '7');
  assert.equal(getActiveTransitionNotice(request), null);
 });
 
@@ -124,13 +222,15 @@ test('an identical profile is refused and pending proposals do not stack', () =>
  assert.equal(workspaceIdentity(request).person.learningContext.classLevel, '8');
 });
 
-test('the teacher records a class promotion for every enrolled learner', () => {
+test('the teacher records a class promotion for every enrolled learner', async () => {
  const teacher = ctx('teacher', 'teacher');
  localStorage.setItem('visionary_entity_Classroom', JSON.stringify([{ id: 'demo-class-cube', name: 'Space, shape and reasoning', subject: 'Geometry', teacher_email: 'teacher@visionary.test', teacher_id: 'demo-teacher', teacher_name: 'Dev', join_code: 'DEMO-CUBE', color: '#1967d2', createdAt: Date.now() }]));
  localStorage.setItem('visionary_entity_Enrollment', JSON.stringify([{ id: 'qa-enrollment-aarav', class_id: 'demo-class-cube', student_email: 'minor-cbse@visionary.test', student_id: 'demo-minor-cbse', student_name: 'Aarav', status: 'active', createdAt: Date.now() }, { id: 'qa-enrollment-maya', class_id: 'demo-class-cube', student_email: 'bengali@visionary.test', student_id: 'demo-bengali', student_name: 'Maya', status: 'active', createdAt: Date.now() }]));
  const learner = ctx('minor-cbse', 'student');
  // The learner starts in class 7 with a prior profile to protect.
  proposeStageTransition(learner, { board: 'CBSE', classLevel: '7', subjects: ['Mathematics'] }, 'initial stage');
+ await pipeline.selectLearningSyllabus(learner, SAMPLE_SELECTION);
+ const savedUnit = await pipeline.startLearningUnit(learner, 'sample:cube:concept');
  // A second learner in the same class, already in class 8.
  workspace.seedDemo('bengali');
  const maya = ctx('bengali', 'student');
@@ -145,8 +245,62 @@ test('the teacher records a class promotion for every enrolled learner', () => {
  // The learner's own notice is active with the teacher's reason, and undo works.
  const notice = getActiveTransitionNotice(learner);
  assert.equal(notice?.state, 'applied');
+ assert.equal(notice?.diff.unitsKept, 1);
  assert.match(notice?.reason || '', /end of year promotion/);
  const undone = undoStageTransition(learner, notice.id);
  assert.equal(undone.state, 'undone');
  assert.equal(workspaceIdentity(learner).person.learningContext.classLevel, '7');
+ assert.equal(pipeline.getLearningWorkspace(learner).units.some(unit => unit.id === savedUnit.id), true);
+});
+
+test('teacher promotion validates the full roster before changing the first learner', () => {
+ const teacher = ctx('teacher', 'teacher');
+ const learner = ctx('minor-cbse', 'student');
+ proposeStageTransition(learner, { classLevel: '7' }, 'starting class');
+ localStorage.setItem('visionary_entity_Classroom', JSON.stringify([{ id: 'class-preflight', teacher_id: 'demo-teacher' }]));
+ localStorage.setItem('visionary_entity_Enrollment', JSON.stringify([
+  { class_id: 'class-preflight', student_id: learner.personId, status: 'active' },
+  { class_id: 'class-preflight', student_id: 'missing-learner', status: 'active' },
+ ]));
+ const before = stageProfileOf(learner);
+ const notices = localStorage.getItem('visionary_stage_transitions_v1');
+ assert.throws(() => proposeClassPromotion(teacher, 'class-preflight', '8', 'end of year'), /access to this workspace/);
+ assert.deepEqual(stageProfileOf(learner), before);
+ assert.equal(localStorage.getItem('visionary_stage_transitions_v1'), notices);
+});
+
+test('teacher promotion restores the class profile if the notice write fails and retry succeeds once', () => {
+ const teacher = ctx('teacher', 'teacher');
+ const learner = ctx('minor-cbse', 'student');
+ proposeStageTransition(learner, { classLevel: '7' }, 'starting class');
+ localStorage.setItem('visionary_entity_Classroom', JSON.stringify([{ id: 'class-retry', teacher_id: 'demo-teacher' }]));
+ localStorage.setItem('visionary_entity_Enrollment', JSON.stringify([{ class_id: 'class-retry', student_id: learner.personId, status: 'active' }]));
+ const before = stageProfileOf(learner);
+ const notices = localStorage.getItem('visionary_stage_transitions_v1');
+ const setItem = localStorage.setItem;
+ let fail = true;
+ localStorage.setItem = (key, value) => {
+  if (key === 'visionary_stage_transitions_v1' && fail) { fail = false; throw new Error('Quota exceeded'); }
+  setItem(key, value);
+ };
+ try { assert.throws(() => proposeClassPromotion(teacher, 'class-retry', '8', 'end of year'), /could not be saved/); }
+ finally { localStorage.setItem = setItem; }
+ assert.deepEqual(stageProfileOf(learner), before);
+ assert.equal(localStorage.getItem('visionary_stage_transitions_v1'), notices);
+ const result = proposeClassPromotion(teacher, 'class-retry', '8', 'end of year');
+ assert.equal(result.promoted.length, 1);
+ assert.equal(proposeClassPromotion(teacher, 'class-retry', '8', 'end of year').promoted.length, 0);
+ assert.equal(stageProfileOf(learner).classLevel, '8');
+});
+
+test('teacher cannot automatically apply a nonadjacent class change', () => {
+ const teacher = ctx('teacher', 'teacher');
+ const learner = ctx('minor-cbse', 'student');
+ proposeStageTransition(learner, { classLevel: '6' }, 'starting class');
+ localStorage.setItem('visionary_entity_Classroom', JSON.stringify([{ id: 'class-jump', teacher_id: 'demo-teacher' }]));
+ localStorage.setItem('visionary_entity_Enrollment', JSON.stringify([{ class_id: 'class-jump', student_id: learner.personId, status: 'active' }]));
+ const result = proposeClassPromotion(teacher, 'class-jump', '8', 'end of year');
+ assert.equal(result.promoted.length, 0);
+ assert.match(result.skipped[0].reason, /learner confirmation/);
+ assert.equal(stageProfileOf(learner).classLevel, '6');
 });

@@ -34,3 +34,13 @@ D-013: Apply D-007/UX_HOME_FLOW with additive03 classes: Home selects a scoped n
 ## 2026-09-26 — Founder-confirmed presence and audit decision
 
 D-014: Vision Boy and Vision Girl are distinct selectable **presences of one shared intelligence**, not separate learning accounts or memories. They use the same authorized SCM, pedagogical policy, conversations and safety boundary; appearance and supported voice presentation may vary by user choice, never learning entitlement or inferred ability. Current code has two visual styles but no distinct voice profile. The older Home/Learn PDFs are optional references only: keep the useful subject/chapter/continue pattern, not unsupported scores or card-heavy layouts. The existing internal blue/white design remains authoritative. The next code milestone is unified role-aware spoken/typed mentor behavior and trust edges, followed by the still-unimplemented D-012 transition flow; backend and real-model work are later gates, not an automatic connection claim.
+
+## 2026-09-27 — Founder product-first sequence
+
+D-015: The founder confirmed that no backend exists yet. Complete and verify the local product and its five role journeys first, then build the backend as a separate integration phase. This supersedes the older `AGI_LAUNCH_SEQUENCE.md` resume instruction that placed backend immediately after M2. Keep the existing service boundary and migration dry-run for future use; preserve honest browser-local/unsupported-model copy. The local product gate is a product-preview verdict, not production auth, cross-device sync or an AGI claim. Reversible only by a later founder sequencing decision.
+
+Historical clarification: D-014's optional distinct-voice clause was superseded by the founder's 2026-09-26 single-voice correction recorded in STATUS. Vision Boy/Girl remain visual preferences of one intelligence and do not choose separate speech profiles.
+
+## 2026-09-27 — Internal design-first order
+
+D-016: The founder directed an internal UI/UX and voice-animation audit and upgrade before further core feature development. The active scope is the dashboard and work areas; `src/pages/landing` is explicitly excluded. Keep the blue/white identity and working contracts, improve discoverability, hierarchy, accessibility and responsive states, and make Vision Boy/Girl visible choices of the same Guide. Complete and record design acceptance before resuming M2/core work; D-015 still places backend after local product completion. This supersedes the earlier immediate-M2 resume wording, not the underlying transition or safety requirements.
