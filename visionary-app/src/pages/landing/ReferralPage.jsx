@@ -59,9 +59,9 @@ const DESTINATIONS = [
 
 /* ═══ COLLAGE — the reference's image trio, in our illustration voice ═══ */
 const COLLAGE = [
-  { subject: "student", tint: "#EFF5FF", title: "A student learning with Visionary" },
-  { subject: "teacher", tint: "#FFF8E6", title: "A teacher preparing classwork" },
-  { subject: "team", tint: "#ECFAF7", title: "A team growing together" },
+  { subject: "student", tint: "#F1F1F4", title: "A student learning with Visionary" },
+  { subject: "teacher", tint: "#F1F1F4", title: "A teacher preparing classwork" },
+  { subject: "team", tint: "#F1F1F4", title: "A team growing together" },
 ];
 
 export default function ReferralPage() {
@@ -340,11 +340,6 @@ export default function ReferralPage() {
         <section aria-labelledby="closing-title" className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-14 text-center sm:px-12 lg:py-16">
-              <span aria-hidden="true" className="absolute left-10 top-10 h-3.5 w-3.5 rounded-full bg-[#fbbc04]" />
-              <span aria-hidden="true" className="absolute right-14 top-14 h-3 w-3 rounded-full bg-[#ea4335]" />
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute bottom-10 right-12 h-5 w-5 text-[#0b57d2]" fill="currentColor">
-                <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
-              </svg>
               <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124]">
                 Not sharing yet? Keep growing with us.
               </h2>

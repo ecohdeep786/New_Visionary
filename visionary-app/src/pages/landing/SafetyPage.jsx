@@ -72,19 +72,19 @@ function DeviceFrame({ subject, tint, title, className = "" }) {
 /* ═══ BUILT-IN PROTECTIONS — the reference's alternating feature rows ═══ */
 const PROTECTIONS = [
   {
-    eyebrow: "Age-aware experiences", subject: "shield", tint: "#EFF5FF",
+    eyebrow: "Age-aware experiences", subject: "shield", tint: "#F1F1F4",
     title: <>Safety that fits <span className="text-[#0b57d0]">the learner.</span></>,
     copy: "Safety guidance and product boundaries are applied with the learner's age and context in mind — a twelve-year-old and an adult professional see different guardrails for the same question.",
     visualSide: "right",
   },
   {
-    eyebrow: "Safe by default", subject: "lock", tint: "#FFF8E6",
+    eyebrow: "Safe by default", subject: "lock", tint: "#F1F1F4",
     title: <>On from the <span className="text-[#0b57d0]">first question.</span></>,
     copy: "Core safeguards are part of the experience from the beginning — nothing to configure, nothing to remember to turn on. Families and organizations can add boundaries, but the default is already safe.",
     visualSide: "left",
   },
   {
-    eyebrow: "Private by design", subject: "eye", tint: "#ECFAF7",
+    eyebrow: "Private by design", subject: "eye", tint: "#F1F1F4",
     title: <>Your memory is <span className="text-[#0b57d0]">yours.</span></>,
     copy: "Parents follow progress through consent-scoped summaries, and organizations see aggregate patterns across cohorts — never an individual learner's answers. Details live in the Privacy Policy.",
     visualSide: "right",
@@ -113,19 +113,19 @@ const FAMILY_CARDS = [
 /* ═══ REPORTING & REVIEW — the reference's eyebrow cards ═══ */
 const REPORTING_CARDS = [
   {
-    eyebrow: "Flag", subject: "flag", tint: "#FFF1EF",
+    eyebrow: "Flag", subject: "flag", tint: "#F1F1F4",
     title: "One tap to flag anything",
     copy: "Every answer can be flagged in one tap, from any persona. Flagging is always available — no special mode, no forms to find.",
     link: { to: "/community", label: "How moderation works" },
   },
   {
-    eyebrow: "Review", subject: "safety", tint: "#EFF5FF",
+    eyebrow: "Review", subject: "safety", tint: "#F1F1F4",
     title: "A human reads every report",
     copy: RESPONSE_TIMES.safety + " Automated filters help, but the decision about what stayed wrong — and what changes — is made by a person.",
     link: { to: "/contact", label: "Contact the safety team" },
   },
   {
-    eyebrow: "Policy", subject: "document", tint: "#EEFBF1",
+    eyebrow: "Policy", subject: "document", tint: "#F1F1F4",
     title: "Reviewed in the open",
     copy: "Our safety policies are reviewed regularly and updated as we learn from real use — just like the product itself. Changes land in the terms and policies you can read.",
     link: { to: "/terms", label: "Read the terms" },
@@ -320,11 +320,6 @@ export default function SafetyPage() {
         <section aria-labelledby="closing-title" className="px-6 py-12 sm:px-8 lg:px-10 lg:py-16">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-14 text-center sm:px-12 lg:py-16">
-              <span aria-hidden="true" className="absolute left-10 top-10 h-3.5 w-3.5 rounded-full bg-[#fbbc04]" />
-              <span aria-hidden="true" className="absolute right-14 top-14 h-3 w-3 rounded-full bg-[#ea4335]" />
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute bottom-10 right-12 h-5 w-5 text-[#0b57d2]" fill="currentColor">
-                <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
-              </svg>
               <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124]">
                 Discover more ways we keep learning safe.
               </h2>

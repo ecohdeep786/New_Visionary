@@ -112,17 +112,17 @@ const JOURNEY = [
    tinted circle backdrop + illustration left, title + copy right. ═══ */
 const SLIDES = [
   {
-    subject: "loop", tint: "#fcefba",
+    subject: "loop",
     title: "A source to grow learning capability",
     copy: "A Visionary partnership is a one-stop place for enablement content for the teams introducing the product — walkthroughs, setup guides, and teaching materials for the learning loop: Learn, Ask, Practice, Build.",
   },
   {
-    subject: "languages", tint: "#d2e3fc",
+    subject: "languages",
     title: "Local context, real languages",
     copy: "Language journeys are English, Hindi, and Bengali today, with more on the roadmap. Regional and language partners help us understand where existing learning experiences do not fit — and what should exist instead.",
   },
   {
-    subject: "research", tint: "#ceead6",
+    subject: "research",
     title: "Evidence over claims",
     copy: "We study how people learn with Visionary and publish what we find. Partners see the honest aggregate picture — what worked, what did not, and what we changed as a result.",
   },
@@ -149,16 +149,11 @@ function WhatCarousel() {
             >
               <div className="grid items-center gap-10 md:grid-cols-[minmax(0,420px)_1fr] md:gap-16">
                 <div className="flex justify-center">
-                  <div
-                    className="relative flex h-[260px] w-[260px] items-center justify-center rounded-full sm:h-[300px] sm:w-[300px]"
-                    style={{ backgroundColor: slide.tint }}
-                  >
-                    <SpotIllustration
-                      subject={slide.subject}
-                      className="h-[168px] w-[168px] sm:h-[196px] sm:w-[196px]"
-                      title={slide.title}
-                    />
-                  </div>
+                  <SpotIllustration
+                    subject={slide.subject}
+                    className="h-[240px] w-[240px] sm:h-[280px] sm:w-[280px]"
+                    title={slide.title}
+                  />
                 </div>
                 <div className="max-w-[520px]">
                   <h3 className="text-[24px] font-normal leading-[1.25] tracking-[-0.02em] text-[#202124] sm:text-[28px]">
@@ -241,21 +236,16 @@ export default function PartnersPage() {
               </p>
             </div>
 
-            {/* Illustration scene — handshake in a tinted panel with the
-                illustration grammar's accent marks + an honest trust chip */}
+            {/* Illustration scene — flat handshake on a neutral panel with an
+                honest trust chip */}
             <div className="relative mx-auto w-full max-w-[440px]">
-              <div className="flex h-[320px] w-full items-center justify-center rounded-[44px] bg-[#e8f0fe] sm:h-[360px]">
+              <div className="flex h-[320px] w-full items-center justify-center rounded-[44px] bg-[#f1f1f4] sm:h-[360px]">
                 <SpotIllustration
                   subject="handshake"
                   className="h-[200px] w-[200px] sm:h-[224px] sm:w-[224px]"
                   title="Two teams shaking hands over a shared learning project"
                 />
               </div>
-              <span aria-hidden="true" className="absolute -top-3 right-10 h-4 w-4 rounded-full bg-[#fbbc04]" />
-              <span aria-hidden="true" className="absolute bottom-12 -left-2.5 h-3 w-3 rounded-full bg-[#ea4335]" />
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute -right-2 bottom-16 h-5 w-5 text-[#34a853]" fill="currentColor">
-                <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
-              </svg>
               <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[#dadce0] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#202124] shadow-[0_1px_3px_rgba(60,64,67,0.15)]">
                 <Clock className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
                 Reply within 5 business days
