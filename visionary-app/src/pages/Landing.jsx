@@ -7,6 +7,7 @@ import organizationImage from "@/assets/organization-face-main.webp";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import LandingFAQ from "@/components/landing/LandingFAQ";
 import studentmeet from "@/assets/student-hero-main-1600w.webp"
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp"
 import parentmeet from "@/assets/parent-hero-main-1600w.webp"
@@ -1096,39 +1097,15 @@ function LandingExploreSection() {
 }
 
 /* 11 · FAQ */
-function FQChevron({ open, className = "h-6 w-6" }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`${className} transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
-      <path d="M6 15l6-6 6 6" />
-    </svg>
-  );
-}
-
 function LandingFAQSection() {
   const { ref, visible } = useRevealOnce();
-  const [open, setOpen] = useState(0);
-  const toggle = useCallback((i) => { setOpen((cur) => (cur === i ? (i === 0 ? 1 : i - 1) : i)); }, []);
   return (
     <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
         <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Find answers to common questions about Visionary</h2>
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
-          {FAQ_ITEMS.map((item, i) => (
-            <div key={item.q} className="border-b py-10 lg:py-12" style={{ borderColor: COLORS.line }}>
-              <button type="button" aria-expanded={open === i} onClick={() => toggle(i)} className="flex w-full items-center justify-between gap-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-[8px]">
-                <span className="font-normal tracking-[0] leading-[1.15] text-[clamp(22px,2.4vw,34px)]" style={{ color: COLORS.ink }}>{item.q}</span>
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full sm:h-16 sm:w-16" style={{ backgroundColor: COLORS.circle, color: COLORS.ink }}>
-                  <FQChevron open={open === i} />
-                </span>
-              </button>
-              <div className={`grid transition-all duration-500 ease-google ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                <div className="overflow-hidden">
-                  <p className="max-w-[1240px] pt-8 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.ink }}>{item.a}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+          <LandingFAQ faqs={FAQ_ITEMS} variant="hero" defaultOpen={0} />
         </div>
       </FadeReveal>
     </section>

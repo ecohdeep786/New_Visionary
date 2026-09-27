@@ -624,7 +624,7 @@ export default function CoachingPage() {
         <HowDifferentPeopleSection />
         <HowCTASection />
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

@@ -4,9 +4,10 @@ import { getJourney } from './journeys.ts';
 import { learningPriority,getLearningWorkspace } from './learningPipelineService.ts';
 import { getDailyPlan } from './dailyPlanService.ts';
 import { getWeeklyObservations } from './mentorStateService.ts';
+import { getStagePresentation } from './stagePresentation.ts';
 
 export interface HomeAction { label: string; path: string }
-export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction }
+export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction; deferId?: string }
 export interface HomeModel {
   name: string; workspace: string; boundary: string; setupNote?: string; observations?: {id:string;text:string}[]; memoryEnabled?: boolean;
   priority: HomeRow & { reason: string; source: string; updatedAt?: string; alternative: HomeAction };
@@ -17,10 +18,11 @@ const action = (label: string, area: string): HomeAction => ({label, path: `/das
 /** Returns an already-scoped decision surface, never another person's raw records. */
 export async function getHome(ctx: RequestContext): Promise<HomeModel> {
   const data = await getWorkspace(ctx);
+  const presentation = getStagePresentation(ctx);
   const { person, workspace } = workspaceIdentity(ctx);
   const model: HomeModel = {
     name: person.name.split(' ')[0] || 'there', workspace: workspace.name,
-    boundary: workspace.organizationId ? 'Organization workspace · Personal learning stays separate' : ctx.role === 'organization' ? 'Organization workspace · Only connected work belongs here' : 'Personal workspace · Sharing is always scoped',
+    boundary: workspace.organizationId ? 'Connected organization · Personal learning stays separate' : ctx.role === 'organization' ? 'Only connected work belongs here' : 'Sharing is always scoped',
     priority: {id:'start',title:'Choose something to understand',detail:'Begin with one idea, explore it, then put it to use.',action:action('Choose a learning journey','learn'),alternative:action('Explore a project','build'),reason:'A starting point, not an assessment of what you know.',source:'Your selected learner role'}, modules: [],
   };
   const resources = data.resources.filter(r => r.status !== 'archived').sort((a,b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
@@ -75,7 +77,7 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
       action: nextStep.action, alternative: pending.find(step => step.id !== nextStep.id)?.action ?? action('Open learning outline','learn'),
       reason: nextStep.reason, source: nextStep.source, updatedAt: nextStep.dueAt,
     };
-    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action}))});
+    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action,deferId:step.done?undefined:step.id}))});
   } else if (ctx.role === 'teacher') {
     const lesson = resources.find(r => r.kind === 'lesson' && r.status === 'draft');
     model.priority = {id:lesson?.id || 'prepare',title:lesson ? `Continue preparing ${lesson.title}` : 'Prepare your next lesson',detail:'Review the objective, explanation and checks before sharing with a class.',action:action('Open preparation','prepare'),alternative:action('View classwork','classes'),reason:lesson ? 'You have an unfinished lesson draft in this teacher workspace.' : 'Start with the idea you want your learners to understand.',source:lesson ? 'Saved lesson draft' : 'Your selected teacher role',updatedAt:lesson?.updatedAt};
@@ -87,6 +89,19 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
     const cohort = resources.find(r => r.kind === 'cohort');
     const curriculum = resources.find(r => r.kind === 'curriculum' && r.status === 'reviewed');
     model.priority = {id:'organization',title:cohort ? curriculum ? 'Review your organization’s next steps' : 'Review the learning direction' : 'Bring your people together',detail:cohort ? 'Connect curriculum and reviewed content to the groups you support.' : 'Start with invitations, then organize connected people into cohorts.',action:cohort ? action(curriculum ? 'Open insights' : 'Open curriculum',curriculum ? 'analytics' : 'curriculum') : action('Manage people','people'),alternative:action('Review cohorts','cohorts'),reason:cohort ? 'A cohort is saved in this workspace; a draft alone does not establish approved curriculum.' : 'No cohort has been saved in this workspace yet. People and permissions come first.',source:'Saved organization setup records'};
+  }
+  // Foundational tier (young learners): fewer modules, plain-words detail, no jargon.
+  if (presentation.tier === 'foundational') {
+    model.modules = model.modules.filter(m => ['daily-plan', 'classwork'].includes(m.id)).slice(0, presentation.maxModules);
+    model.setupNote = undefined;
+    const plain: Record<string, string> = {
+      'Your onboarding preference': 'Open Mathematics. We will go step by step.',
+      'Connected classwork': 'Your teacher is waiting to see your work.',
+      'Your own recorded learning evidence': 'A quick review will keep it fresh.',
+      'Saved learning activity': 'Continue where you stopped.',
+    };
+    const plainText = plain[model.priority.source];
+    if (plainText) model.priority = { ...model.priority, detail: plainText };
   }
   return model;
 }

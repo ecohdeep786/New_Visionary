@@ -24,17 +24,19 @@ function allRelationships(db:Database){return [...db.relationships,...legacyRela
 function access(db: Database, ctx: RequestContext) { const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId && w.personId===ctx.personId && w.role===ctx.role); if(!workspace) throw new Error('You do not have access to this workspace.');if(workspace.organizationId){const person=db.people.find(p=>p.id===ctx.personId);const memberships:Record<string,unknown>[]=JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite')||'[]');if(!memberships.some(m=>m.email===person?.email&&m.organization_email===workspace.organizationId&&m.role===workspace.role&&m.status==='active'))throw new Error('This organization connection is no longer active. Your personal workspace remains available.');} return db.data[workspace.id]!; }
 async function wait(ctx?: RequestContext) { if(ctx?.signal?.aborted) throw new DOMException('Cancelled','AbortError'); await new Promise<void>((resolve,reject)=>{ const abort=()=>{clearTimeout(timer);reject(new DOMException('Cancelled','AbortError'));}; const timer=setTimeout(()=>{ctx?.signal?.removeEventListener('abort',abort);resolve();},latency);ctx?.signal?.addEventListener('abort',abort,{once:true}); }); if(fault==='offline') throw new Error('Offline demo: saved work is still available. Change the demo condition to retry.'); if(fault==='error') throw new Error('The demo service could not complete this request. Your saved work is unchanged.'); }
 
-function addWorkspace(db: Database, person: Person, role: Role): Workspace { const existing=db.workspaces.find(w=>w.personId===person.id&&w.role===role&&!w.organizationId); if(existing)return existing; const workspace={id:`${person.id}:${role}`,personId:person.id,role,name:role==='organization'?'My organization':`${roleNames[role]} space`,lastPath:'/dashboard/home'};db.workspaces.push(workspace);db.data[workspace.id]=emptyData();const previous=db.workspaces.find(w=>w.personId===person.id&&w.id!==workspace.id);if(previous)db.data[workspace.id]!.subscription={...structuredClone(db.data[previous.id]!.subscription),usage:0,usageDay:now().slice(0,10)};return workspace; }
-export function bootstrapPerson(user: {id:string;email:string;full_name?:string;identity?:string;education_stage?:string;preferred_language?:string;age_band?:Person['ageBand'];board?:string;grade_level?:string;subjects?:string[];preferences?:{learning_language?:string}}) {
+function addWorkspace(db: Database, person: Person, role: Role): Workspace { const existing=db.workspaces.find(w=>w.personId===person.id&&w.role===role&&!w.organizationId); if(existing)return existing; const workspace={id:`${person.id}:${role}`,personId:person.id,role,name:role==='organization'?'My organization':roleNames[role],lastPath:'/dashboard/home'};db.workspaces.push(workspace);db.data[workspace.id]=emptyData();const previous=db.workspaces.find(w=>w.personId===person.id&&w.id!==workspace.id);if(previous)db.data[workspace.id]!.subscription={...structuredClone(db.data[previous.id]!.subscription),usage:0,usageDay:now().slice(0,10)};return workspace; }
+export function bootstrapPerson(user: {id:string;email:string;full_name?:string;identity?:string;education_stage?:string;preferred_language?:string;age_band?:Person['ageBand'];board?:string;grade_level?:string;subjects?:string[];target_exam?:string;preferences?:{learning_language?:string}}) {
  const db=read();let person=db.people.find(p=>p.id===user.id);const rawRole=user.education_stage==='professional'?'professional':user.identity;const role:Role=rawRole && rawRole in roleNames?rawRole as Role:'student';
- const learningContext=user.board||user.grade_level||Array.isArray(user.subjects)?{board:user.board?.slice(0,100),classLevel:user.grade_level?.slice(0,100),subjects:Array.isArray(user.subjects)?user.subjects.filter(subject=>typeof subject==='string'&&subject.trim()).map(subject=>subject.trim().slice(0,100)):[]}:undefined;
+ const learningContext=user.board||user.grade_level||user.education_stage||user.target_exam||Array.isArray(user.subjects)?{stage:user.education_stage?.slice(0,40),exam:user.target_exam?.slice(0,60),board:user.board?.slice(0,100),classLevel:user.grade_level?.slice(0,100),subjects:Array.isArray(user.subjects)?user.subjects.filter(subject=>typeof subject==='string'&&subject.trim()).map(subject=>subject.trim().slice(0,100)):[]}:undefined;
  if(!person){person={id:user.id,email:user.email,name:user.full_name||user.email.split('@')[0]||'Learner',ageBand:user.age_band||'unknown',roles:[role],learningContext};db.people.push(person);const workspace=addWorkspace(db,person,role);db.active[person.id]=workspace.id;const data=db.data[workspace.id]!;const lang=user.preferences?.learning_language||user.preferred_language;data.preferences.locale=lang==='Hindi'?'hi':lang==='Bengali'?'bn':'en';
  // Import only owned records. Original stores are intentionally untouched.
  for(const name of ['Project','Question']) {let rows:Record<string,unknown>[]=[];try{rows=JSON.parse(localStorage.getItem(`visionary_entity_${name}`)||'[]');}catch{continue;}for(const row of rows.filter(r=>(r.owner_email||r.student_email)===user.email)){if(name==='Project')data.artifacts.push({id:`legacy-${String(row.id)}`,title:String(row.title||'Saved project'),body:String(row.notes||''),milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'in-progress',updatedAt:now()});else data.conversations.push({id:`legacy-${String(row.id)}`,title:String(row.question||'Saved question').slice(0,70),messages:[],draft:String(row.question||''),updatedAt:now(),useForPersonalization:false});}}data.legacyImported=true;write(db);
  }
  const memberships: {organization_email:string;organization_name?:string;email:string;role:Role;status:string}[]=JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite')||'[]');
  const accepted=memberships.filter(m=>m.email===person.email&&m.status==='active'&&person.roles.includes(m.role));let changed=false;
- if(learningContext&&JSON.stringify(person.learningContext)!==JSON.stringify(learningContext)){person.learningContext=learningContext;changed=true;}
+ // Onboarding seeds the stage once. A later sign-in still carries the original
+ // onboarding fields, but must not roll back a teacher/learner transition.
+ if(learningContext&&!person.learningContext){person.learningContext=learningContext;changed=true;}
  for(const m of accepted){const workspaceId=`${person.id}:${m.role}:org:${m.organization_email}`;if(!db.workspaces.some(w=>w.id===workspaceId)){db.workspaces.push({id:workspaceId,personId:person.id,role:m.role,name:`${m.organization_name||'Connected organization'} · ${roleNames[m.role]}`,organizationId:m.organization_email,lastPath:'/dashboard/home'});db.data[workspaceId]=emptyData();const personal=db.data[`${person.id}:${m.role}`];if(personal){db.data[workspaceId]!.preferences=structuredClone(personal.preferences);db.data[workspaceId]!.subscription={...structuredClone(personal.subscription),usage:0,usageDay:now().slice(0,10)};}changed=true;}}
  const available=db.workspaces.filter(w=>w.personId===person.id&&(!w.organizationId||accepted.some(m=>m.organization_email===w.organizationId&&m.role===w.role)));
  if(!available.some(w=>w.id===db.active[person.id])){db.active[person.id]=available[0]!.id;changed=true;}
@@ -44,6 +46,42 @@ export function bootstrapPerson(user: {id:string;email:string;full_name?:string;
 export function addRole(personId:string,role:Role) {const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Sign in first.');if(person.ageBand!=='adult'&&role!=='student')throw new Error('An adult age confirmation is required before adding this role.');if(!person.roles.includes(role))person.roles.push(role);const workspace=addWorkspace(db,person,role);write(db);return workspace;}
 export function setAgeBand(personId:string,ageBand:Person['ageBand']){const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Account not found.');person.ageBand=ageBand;write(db);}
 export function selectWorkspace(personId:string,workspaceId:string) {const db=read();const workspace=db.workspaces.find(w=>w.id===workspaceId&&w.personId===personId);if(!workspace)throw new Error('Workspace not available.');access(db,{personId,workspaceId,role:workspace.role,locale:'en'});db.active[personId]=workspaceId;write(db);}
+/** Minimal stage facts for an authorized teacher view of one learner (Gate 5 rules
+ * apply in the caller). Returns only age band and the stage mapping — nothing private. */
+export function stageProfileByEmail(email: string): { ageBand: Person['ageBand'] | 'unknown'; classLevel?: string; stage?: string } | null {
+ const db = read(); const person = db.people.find(p => p.email === email);
+ if (!person) return null;
+ return { ageBand: person.ageBand, classLevel: person.learningContext?.classLevel, stage: person.learningContext?.stage };
+}
+
+/** Part W: the learner's active stage mapping, written only through services. */
+type StageProfileInput = { board?: string; classLevel?: string; subjects?: string[]; stage?: string; exam?: string };
+function applyStageProfile(db: Database, ctx: RequestContext, profile: StageProfileInput, options?: { replace?: boolean }): void {
+ const person = db.people.find(p => p.id === ctx.personId); if (!person) throw new Error('Sign in first.');
+ const clean = {
+  board: profile.board === undefined ? undefined : String(profile.board).trim().slice(0, 100) || undefined,
+  classLevel: profile.classLevel === undefined ? undefined : String(profile.classLevel).trim().slice(0, 100) || undefined,
+  subjects: profile.subjects === undefined ? undefined : profile.subjects.map(s => String(s).trim().slice(0, 100)).filter(Boolean),
+  stage: profile.stage === undefined ? undefined : String(profile.stage).trim().slice(0, 40) || undefined,
+  exam: profile.exam === undefined ? undefined : String(profile.exam).trim().slice(0, 60) || undefined,
+ };
+ const current = person.learningContext || { subjects: [] };
+ // Replace mode (Part W restore) writes the exact mapping: absent fields are removed.
+ person.learningContext = options?.replace
+  ? { board: clean.board, classLevel: clean.classLevel, subjects: clean.subjects || [], stage: clean.stage, exam: clean.exam }
+  : { board: clean.board ?? current.board, classLevel: clean.classLevel ?? current.classLevel, subjects: clean.subjects && clean.subjects.length ? clean.subjects : current.subjects || [], stage: clean.stage ?? current.stage, exam: clean.exam ?? current.exam };
+ const data = access(db, ctx); record(data, 'Stage profile updated', ctx.workspaceId);
+}
+export function updateStageProfile(ctx: RequestContext, profile: StageProfileInput, options?: { replace?: boolean }): void {
+ const db = read(); applyStageProfile(db, ctx, profile, options); write(db);
+}
+/** One local workspace write for a teacher's prevalidated class promotion. */
+export function updateStageProfilesBatch(changes: Array<{ ctx: RequestContext; profile: StageProfileInput }>): void {
+ const db = read();
+ for (const change of changes) applyStageProfile(db, change.ctx, change.profile, { replace: true });
+ write(db);
+}
+
 export function saveLastPath(ctx:RequestContext,path:string){if(!path.startsWith('/dashboard/'))return;const db=read();access(db,ctx);const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId)!;if(workspace.lastPath===path)return;workspace.lastPath=path;write(db);}
 export function snapshot(ctx:RequestContext):WorkspaceData {const db=read();const data=structuredClone(access(db,ctx));data.subscription=effectiveSubscription(db,ctx);// Workspaces saved before the voice seam default to the founder setting: voice on.
 data.preferences.voice??=true;data.preferences.agiAnimation = data.preferences.agiAnimation==='boy'?'boy':'girl';return data;}
@@ -152,14 +190,27 @@ export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'a
  for(const w of db.workspaces.filter(w=>w.personId===ctx.personId)){const target=db.data[w.id]!;target.subscription={...structuredClone(data.subscription),usage:target.subscription.usage,usageDay:target.subscription.usageDay};}
  record(data,`Demo subscription ${outcome}`,plan);write(db);
 }
-export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
-export function requestRelationship(ctx:RequestContext,email:string,type:'guardian'|'teacher'|'organization'){const db=read();access(db,ctx);const person=db.people.find(p=>p.email.toLowerCase()===email.trim().toLowerCase());if(!person||person.id===ctx.personId)throw new Error('Choose another account available in this local demo.');if(allRelationships(db).some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&['active','pending'].includes(r.status)))throw new Error('This connection already exists.');db.relationships.push({id:id(),from:ctx.personId,to:person.id,type,status:'pending',scope:type==='guardian'?['progress-summary']:['shared-resources'],expiresAt:new Date(clock().getTime()+7*86400000).toISOString()});write(db);}
+export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,status:r.status==='pending'&&r.expiresAt&&new Date(r.expiresAt)<=clock()?'expired':r.status,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
+export function requestRelationship(ctx:RequestContext,email:string,type:'guardian'|'teacher'|'organization'){
+ const db=read();access(db,ctx);
+ if(type==='guardian'&&ctx.role!=='parent')throw new Error('Open a parent workspace to request progress sharing.');
+ const person=db.people.find(p=>p.email.toLowerCase()===email.trim().toLowerCase());
+ if(!person||person.id===ctx.personId)throw new Error('Choose another account available in this local demo.');
+ if(type==='guardian'&&!person.roles.includes('student'))throw new Error('Choose a learner account for progress sharing.');
+ if(allRelationships(db).some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&(r.status==='active'||r.status==='pending'&&(!r.expiresAt||new Date(r.expiresAt)>clock()))))throw new Error('This connection already exists.');
+ db.relationships.push({id:id(),from:ctx.personId,to:person.id,type,status:'pending',scope:type==='guardian'?['progress-summary']:['shared-resources'],expiresAt:new Date(clock().getTime()+7*86400000).toISOString()});write(db);
+}
 export function changeRelationship(ctx:RequestContext,relationshipId:string,status:'active'|'declined'|'revoked'){
  const db=read();const data=access(db,ctx);const r=allRelationships(db).find(r=>r.id===relationshipId&&(r.from===ctx.personId||r.to===ctx.personId));
  if(!r)throw new Error('Connection not found.');
  if(status!=='revoked'&&r.to!==ctx.personId)throw new Error('Only the recipient can answer a request.');
  if(status!=='revoked'&&r.status!=='pending')throw new Error('This request is no longer pending.');
  if(r.expiresAt&&new Date(r.expiresAt)<=clock()&&status==='active')throw new Error('This invitation expired. Request a new invitation.');
+ if(status==='active'&&r.type==='guardian'&&ctx.role!=='student')throw new Error('Open the learner workspace to answer this request.');
+ if(status==='active'&&r.id.startsWith('legacy:OrganizationInvite:')){
+  const row=JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite')||'[]').find((item:{id:string})=>`legacy:OrganizationInvite:${item.id}`===r.id);
+  if(row?.role!==ctx.role)throw new Error('Open the invited workspace role to accept this organization request.');
+ }
  if(status==='revoked'&&!['active','pending'].includes(r.status))throw new Error('This connection is already closed.');
  if(r.id.startsWith('legacy:')){saveLegacyRelationship(r.id,status);return;}
  r.status=status;if(status==='active')delete r.expiresAt;

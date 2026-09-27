@@ -23,7 +23,7 @@ It supports personal learning alongside optional class, family, and organization
 This is a browser-local frontend preview, not production authentication or cloud storage.
 Use fictional data only. AI, payment processing, usage metering, and ad delivery are not connected.
 
-See [the workspace handoff](docs/internal-workspace.md) for architecture, QA evidence, and launch requirements.
+See [the internal product handoff](docs/visionary/README.md) and [the current product status](docs/visionary/CURRENT_PRODUCT_STATUS.md) for architecture, QA evidence, open work, and launch requirements.
 
 ## Checks
 

@@ -1582,7 +1582,7 @@ export default function StudentPage() {
         <StudentCTASection />
         <StudentExploreSection />
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

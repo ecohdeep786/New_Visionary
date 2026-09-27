@@ -174,7 +174,8 @@ Follow this exact process for **every page**:
 **Goal:** Present research, innovation, AI work, product experimentation, and technical leadership in a clear and inspiring way.
 
 **Reference links:**  
-[https://research.google/](https://research.google/), [https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=](https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=), [https://labs.google/?utm_source=ai.google&utm_medium=referral](https://labs.google/?utm_source=ai.google&utm_medium=referral), [https://deepmind.google/?utm_source=ai.google&utm_medium=referral](https://deepmind.google/?utm_source=ai.google&utm_medium=referral)
+[https://research.google/](https://research.google/), [https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=](https://ai.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=), 
+[https://labs.google/?utm_source=ai.google&utm_medium=referral](https://labs.google/?utm_source=ai.google&utm_medium=referral), [https://deepmind.google/?utm_source=ai.google&utm_medium=referral](https://deepmind.google/?utm_source=ai.google&utm_medium=referral)
 
 **Design direction:**
 - Create a bold research and innovation hero.
@@ -192,7 +193,8 @@ Follow this exact process for **every page**:
 **Goal:** Build a useful community hub where users can find discussions, support, learning opportunities, events, contributors, and shared resources.
 
 **Reference links:**  
-[https://support.google.com/accounts/community?hl=en](https://support.google.com/accounts/community?hl=en), [https://edu.google.com/for-educators/communities/](https://edu.google.com/for-educators/communities/), [https://docs.cloud.google.com/support/docs/community-support](https://docs.cloud.google.com/support/docs/community-support)
+[https://support.google.com/accounts/community?hl=en](https://support.google.com/accounts/community?hl=en), [https://edu.google.com/for-educators/communities/](https://edu.google.com/for-educators/communities/),
+ [https://docs.cloud.google.com/support/docs/community-support](https://docs.cloud.google.com/support/docs/community-support)
 
 **Design direction:**
 - Create a friendly, participatory community hero.
@@ -227,7 +229,9 @@ Follow this exact process for **every page**:
 **Goal:** Explain partnership opportunities, benefits, program tiers, eligibility, and how businesses or individuals can work with us.
 
 **Reference links:**  
-[https://business.google.com/in/support/become-a-partner/](https://business.google.com/in/support/become-a-partner/), [https://business.google.com/in/support/work-with-a-partner/](https://business.google.com/in/support/work-with-a-partner/), [https://business.google.com/in/think/](https://business.google.com/in/think/), [https://partners.cloud.google.com/enrollment/enter-email](https://partners.cloud.google.com/enrollment/enter-email), [https://enterprisemarketingportal.google/work-with-partners](https://enterprisemarketingportal.google/work-with-partners)
+[https://business.google.com/in/support/become-a-partner/](https://business.google.com/in/support/become-a-partner/), [https://business.google.com/in/support/work-with-a-partner/](https://business.google.com/in/support/work-with-a-partner/),
+ [https://business.google.com/in/think/](https://business.google.com/in/think/), [https://partners.cloud.google.com/enrollment/enter-email](https://partners.cloud.google.com/enrollment/enter-email), 
+[https://enterprisemarketingportal.google/work-with-partners](https://enterprisemarketingportal.google/work-with-partners)
 
 **Design direction:**
 - Create a business-focused, high-trust partnerships page.
@@ -244,7 +248,8 @@ Follow this exact process for **every page**:
 **Goal:** Create a modern updates, announcements, news, and release hub.
 
 **Reference links:**  
-[https://blog.google/products-and-platforms/products/search/](https://blog.google/products-and-platforms/products/search/), [https://edu.google.com/communications/](https://edu.google.com/communications/), [https://edu.google.com/intl/ALL_in/](https://edu.google.com/intl/ALL_in/)
+[https://blog.google/products-and-platforms/products/search/](https://blog.google/products-and-platforms/products/search/), [https://edu.google.com/communications/](https://edu.google.com/communications/), 
+[https://edu.google.com/intl/ALL_in/](https://edu.google.com/intl/ALL_in/)
 
 **Design direction:**
 - Use an editorial, content-rich design.
@@ -261,7 +266,9 @@ Follow this exact process for **every page**:
 **Goal:** Build a clear referral program page that explains eligibility, rewards, process, terms, tracking, and sharing methods.
 
 **Reference links:**  
-[https://workspace.google.com/intl/en_in/referral-program/](https://workspace.google.com/intl/en_in/referral-program/), [https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1](https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1), [https://business.google.com/in/google-ads/referrals/](https://business.google.com/in/google-ads/referrals/), [https://edu.google.com/intl/ALL_in/resources/reference-program/](https://edu.google.com/intl/ALL_in/resources/reference-program/)
+[https://workspace.google.com/intl/en_in/referral-program/](https://workspace.google.com/intl/en_in/referral-program/), 
+[https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1](https://store.google.com/gb/magazine/pixel-referrals?hl=en-GB&srsltid=AU7gw4XnZOuiSqRcY5djQOcJSxUvt7dgwm1m8PfqKBvVX7Wm7FXGfh2B&pli=1), 
+[https://business.google.com/in/google-ads/referrals/](https://business.google.com/in/google-ads/referrals/), [https://edu.google.com/intl/ALL_in/resources/reference-program/](https://edu.google.com/intl/ALL_in/resources/reference-program/)
 
 **Design direction:**
 - Create a focused conversion-oriented landing page.
@@ -279,7 +286,9 @@ Follow this exact process for **every page**:
 **Goal:** Build a safety hub that gives users confidence in the product and helps them take practical steps to protect themselves.
 
 **Reference links:**  
-[https://safety.google/](https://safety.google/), [https://safety.google/intl/en/safety/scams-fraud/](https://safety.google/intl/en/safety/scams-fraud/), [https://safety.google/intl/en/safety/built-in-security/](https://safety.google/intl/en/safety/built-in-security/), [https://safety.google/intl/en/settings/parental-controls/](https://safety.google/intl/en/settings/parental-controls/), [https://safety.google/intl/en/settings/privacy-settings/](https://safety.google/intl/en/settings/privacy-settings/)
+[https://safety.google/](https://safety.google/), [https://safety.google/intl/en/safety/scams-fraud/](https://safety.google/intl/en/safety/scams-fraud/), 
+[https://safety.google/intl/en/safety/built-in-security/](https://safety.google/intl/en/safety/built-in-security/), [https://safety.google/intl/en/settings/parental-controls/](https://safety.google/intl/en/settings/parental-controls/), 
+[https://safety.google/intl/en/settings/privacy-settings/](https://safety.google/intl/en/settings/privacy-settings/)
 
 **Design direction:**
 - Create a reassuring safety-focused hero.

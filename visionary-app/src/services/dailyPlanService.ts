@@ -13,6 +13,37 @@ export interface PlanStep {
  dueAt?: string; done: boolean;
 }
 export interface DailyPlan { date: string; steps: PlanStep[] }
+interface DeferralStore { version: 1; deferred: Array<{ workspaceId: string; day: string; stepId: string }> }
+const DEFERRAL_KEY = 'visionary_daily_deferrals_v1';
+function readDeferrals(): DeferralStore {
+ const raw = localStorage.getItem(DEFERRAL_KEY); if (!raw) return { version: 1, deferred: [] };
+ try { const value = JSON.parse(raw); if (value.version !== 1 || !Array.isArray(value.deferred)) throw Error(); return value; }
+ catch { throw new Error('Deferred plan steps could not be read. Your records have not been changed.'); }
+}
+function writeDeferrals(store: DeferralStore, ctx: RequestContext) {
+ try { localStorage.setItem(DEFERRAL_KEY, JSON.stringify(store)); }
+ catch { throw new Error('The deferral could not be saved on this device. Nothing was changed.'); }
+ if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('visionary:plan-change'));
+}
+/** "Not today": the step returns on its own tomorrow. Day-scoped, per workspace. */
+export function deferPlanStep(ctx: RequestContext, stepId: string): void {
+ if (ctx.signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
+ workspaceIdentity(ctx);
+ if (!['student', 'professional'].includes(ctx.role)) throw new Error('A daily plan belongs to a personal learning workspace.');
+ if (!stepId || typeof stepId !== 'string') throw new Error('The plan step is missing.');
+ const store = readDeferrals();
+ const deferredDay = day(clock().toISOString());
+ store.deferred = store.deferred.filter(d => !(d.workspaceId === ctx.workspaceId && d.day === deferredDay && d.stepId === stepId));
+ store.deferred.push({ workspaceId: ctx.workspaceId, day: deferredDay, stepId });
+ // Prune other days for this workspace; a deferral only ever hides today.
+ store.deferred = store.deferred.filter(d => d.workspaceId !== ctx.workspaceId || d.day === deferredDay);
+ writeDeferrals(store, ctx);
+}
+function deferredIds(ctx: RequestContext, today: string): Set<string> {
+ try {
+  return new Set(readDeferrals().deferred.filter(d => d.workspaceId === ctx.workspaceId && d.day === today).map(d => d.stepId));
+ } catch { return new Set(); }
+}
 let clock = () => new Date();
 /** Injectable clock so the plan is testable against the same fixed day as the other services. */
 export function configureDailyPlanClock(next: () => Date) { clock = next; }
@@ -81,5 +112,6 @@ export function getDailyPlan(ctx: RequestContext): DailyPlan {
   action: { label: 'Open projects', path: '/dashboard/build' },
   reason: 'Recorded earlier today from your completed project.', source: 'Your saved project', done: true,
  });
- return { date: today, steps: [...steps, ...done] };
+ const deferred = deferredIds(ctx, today);
+ return { date: today, steps: [...steps.filter(step => !deferred.has(step.id)), ...done] };
 }

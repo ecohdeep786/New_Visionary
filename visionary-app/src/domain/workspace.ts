@@ -1,7 +1,7 @@
 export type Role = 'student' | 'teacher' | 'parent' | 'professional' | 'organization';
 export type Locale = 'en' | 'hi' | 'bn';
 export type Status = 'pending' | 'active' | 'declined' | 'expired' | 'revoked';
-export interface Person { id: string; email: string; name: string; ageBand: 'adult' | 'minor' | 'unknown'; roles: Role[]; learningContext?: { board?: string; classLevel?: string; subjects: string[] } }
+export interface Person { id: string; email: string; name: string; ageBand: 'adult' | 'minor' | 'unknown'; roles: Role[]; learningContext?: { board?: string; classLevel?: string; subjects: string[]; stage?: string; exam?: string } }
 export interface Workspace { id: string; personId: string; role: Role; name: string; organizationId?: string; lastPath: string }
 export interface RequestContext { personId: string; workspaceId: string; role: Role; locale: Locale; signal?: AbortSignal }
 export interface Relationship { id: string; from: string; to: string; type: 'guardian' | 'organization' | 'teacher'; scope: string[]; status: Status; expiresAt?: string }

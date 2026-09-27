@@ -158,3 +158,4 @@ test('a crisis spoken aloud gets the same safety hard-stop as typed text', async
  assert.equal(response.status, 'blocked');
  assert.equal(getVoiceMode(), 'off');
 });
+

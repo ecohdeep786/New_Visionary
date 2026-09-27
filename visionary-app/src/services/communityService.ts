@@ -9,7 +9,7 @@ import { emitInteractionEvent } from './mentorStateService.ts';
 // Nothing here is public; nothing leaves the local preview until a backend connects.
 export interface CommunityPost {
  id: string; classId: string; authorId: string; authorName: string; authorRole: 'student' | 'teacher';
- text: string; at: string; status: 'visible' | 'removed'; removedById?: string;
+ text: string; at: string; status: 'visible' | 'removed' | 'flagged'; removedById?: string; flaggedBy?: string; flagReason?: string;
 }
 interface CommunityStore { version: 1; posts: CommunityPost[] }
 const KEY = 'visionary_community_v1';
@@ -55,7 +55,8 @@ function assertClassAccess(ctx: RequestContext, classId: string): 'student' | 't
 export function getClassCommunity(ctx: RequestContext, classId: string): { classId: string; role: 'student' | 'teacher'; posts: CommunityPost[] } {
  const role = assertClassAccess(ctx, classId);
  emitInteractionEvent(ctx, { app: 'COMMUNITY', action: 'view', sessionId: classId, language: ctx.locale });
- const posts = read().posts.filter(p => p.classId === classId && p.status === 'visible').sort((a, b) => a.at.localeCompare(b.at));
+ const visible = role === 'teacher' ? (p: CommunityPost) => p.status === 'visible' || p.status === 'flagged' : (p: CommunityPost) => p.status === 'visible';
+ const posts = read().posts.filter(p => p.classId === classId && visible(p)).sort((a, b) => a.at.localeCompare(b.at));
  return { classId, role, posts };
 }
 export function postToClassCommunity(ctx: RequestContext, classId: string, text: string): CommunityPost {
@@ -64,10 +65,35 @@ export function postToClassCommunity(ctx: RequestContext, classId: string, text:
  if (!trimmed) throw new Error('Write something before posting.');
  if (trimmed.length > MAX_TEXT) throw new Error(`Keep your post under ${MAX_TEXT} characters.`);
  const { person } = workspaceIdentity(ctx);
+ // Trust edges: a short cooldown between posts and a daily ceiling per author per class.
+ const nowMs = clock().getTime();
+ const mine = read().posts.filter(p => p.classId === classId && p.authorId === ctx.personId && p.status !== 'removed');
+ const lastMine = mine.at(-1);
+ if (lastMine && nowMs - new Date(lastMine.at).getTime() < MIN_POST_INTERVAL_MS) throw new Error('Take a short breath before posting again.');
+ if (mine.filter(p => nowMs - new Date(p.at).getTime() < 86400000).length >= MAX_POSTS_PER_DAY) throw new Error('You have reached today\'s posting limit for this class community. Try again tomorrow.');
  const post: CommunityPost = { id: crypto.randomUUID(), classId, authorId: ctx.personId, authorName: person.name, authorRole: role, text: trimmed, at: clock().toISOString(), status: 'visible' };
  const store = read(); store.posts.push(post); write(store, ctx);
  emitInteractionEvent(ctx, { app: 'COMMUNITY', action: 'save', sessionId: classId, language: ctx.locale, inputType: 'text' });
  return post;
+}
+const MIN_POST_INTERVAL_MS = 15000;
+const MAX_POSTS_PER_DAY = 10;
+export function reportCommunityPost(ctx: RequestContext, classId: string, postId: string, reason?: string): void {
+ const role = assertClassAccess(ctx, classId);
+ if (role !== 'student') throw new Error('Teachers moderate this community directly instead of reporting.');
+ const store = read(); const post = store.posts.find(p => p.id === postId && p.classId === classId);
+ if (!post || post.status !== 'visible') throw new Error('This post is not available to report.');
+ post.status = 'flagged'; post.flaggedBy = ctx.personId;
+ if (reason && reason.trim()) post.flagReason = reason.trim().slice(0, 200);
+ write(store, ctx);
+ emitInteractionEvent(ctx, { app: 'COMMUNITY', action: 'report', sessionId: classId, language: ctx.locale });
+}
+export function restoreCommunityPost(ctx: RequestContext, classId: string, postId: string): void {
+ if (assertClassAccess(ctx, classId) !== 'teacher') throw new Error('Only the assigned teacher can restore a reported post.');
+ const store = read(); const post = store.posts.find(p => p.id === postId && p.classId === classId);
+ if (!post || post.status !== 'flagged') throw new Error('This post is not waiting for review.');
+ post.status = 'visible'; delete post.flaggedBy; delete post.flagReason; write(store, ctx);
+ emitInteractionEvent(ctx, { app: 'COMMUNITY', action: 'save', sessionId: classId, language: ctx.locale });
 }
 export function removeCommunityPost(ctx: RequestContext, classId: string, postId: string): void {
  if (assertClassAccess(ctx, classId) !== 'teacher') throw new Error('Only the assigned teacher can remove a community post.');

@@ -5,7 +5,7 @@ import {
   GraduationCap, Users, Briefcase, Building2, HeartHandshake, Sparkles,
   BookOpen, UsersRound,
   Monitor, Smartphone, Laptop, Apple, Chrome, TabletSmartphone,
-  ShieldCheck, Lock, FileText, Accessibility, Cookie,
+  ShieldCheck, Lock, Accessibility,
   Newspaper, Mail, Handshake, Bell, Gift,
 } from "lucide-react";
 import VisionaryLogo from "@/components/VisionaryLogo";
@@ -81,11 +81,9 @@ const ABOUT_GROUPS = [
     title: "Trust & legal",
     items: [
       { id: "safety", Icon: ShieldCheck, title: "Safety", desc: "Age-appropriate answers and human review.", to: "/safety" },
-      { id: "privacy", Icon: Lock, title: "Privacy Policy", desc: "Your memory is yours. Private by design.", to: "/privacy" },
-      { id: "terms", Icon: FileText, title: "Terms & Conditions", desc: "Fair rules, written clearly.", to: "/terms" },
+      { id: "privacy", Icon: Lock, title: "Privacy Policy", desc: "Your memory is yours. Terms and Cookies included.", to: "/privacy" },
       { id: "security", Icon: ShieldCheck, title: "Security", desc: "Protected end to end.", to: "/security" },
       { id: "accessibility", Icon: Accessibility, title: "Accessibility", desc: "Built for every learner, every device.", to: "/accessibility" },
-      { id: "cookies", Icon: Cookie, title: "Cookies", desc: "Only what is needed.", to: "/cookies" },
     ],
   },
 ];

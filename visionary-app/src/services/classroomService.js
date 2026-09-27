@@ -1,5 +1,6 @@
 import {appClient} from '../api/appClient.js';
-import {snapshot,saveResource} from './workspaceService.ts';
+import {snapshot,saveResource,stageProfileByEmail} from './workspaceService.ts';
+import {tierForPerson} from './stagePresentation.ts';
 
 async function teacherContext(ctx){
   const account=await appClient.auth.me();
@@ -21,7 +22,9 @@ export async function teacherLearners(ctx){
   const submissions=allSubmissions.filter(s=>ids.has(s.class_id)&&assignmentIds.has(s.assignment_id));
   return [...new Set(roster.map(e=>e.student_email))].map(email=>{
     const entries=roster.filter(e=>e.student_email===email);const relevant=submissions.filter(s=>s.student_email===email);
-    return {id:email,name:entries[0].student_name||email,classes:classes.filter(c=>entries.some(e=>e.class_id===c.id)).map(c=>({id:c.id,name:c.name})),
+    const profile = stageProfileByEmail(email);
+    const tier = tierForPerson(profile || {});
+    return {id:email,name:entries[0].student_name||email,tier,tierLabel:{foundational:'Foundational',developing:'Developing',secondary:'Secondary',higher:'Higher education'}[tier],classes:classes.filter(c=>entries.some(e=>e.class_id===c.id)).map(c=>({id:c.id,name:c.name})),
       submitted:relevant.length,pending:relevant.filter(s=>s.status==='submitted').length,
       evidence:relevant.map(s=>{const a=assignments.find(a=>a.id===s.assignment_id);return {id:s.id,title:a?.title||'Class activity',classId:s.class_id,status:s.status,grade:s.grade,total:a?.points||100,feedback:s.feedback||'',response:s.text||''};})};
   });

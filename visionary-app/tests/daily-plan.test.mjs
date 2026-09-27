@@ -2,7 +2,7 @@ import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import * as pipeline from '../src/services/learningPipelineService.ts';
-import { getDailyPlan, configureDailyPlanClock } from '../src/services/dailyPlanService.ts';
+import { getDailyPlan, configureDailyPlanClock, deferPlanStep } from '../src/services/dailyPlanService.ts';
 import { getHome } from '../src/services/homeService.ts';
 import { configureMentorClock } from '../src/services/mentorStateService.ts';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
@@ -135,4 +135,24 @@ test('classwork without a due date remains actionable when no activity is open',
  const home = await getHome(ctx('minor-cbse'));
  assert.equal(home.priority.id, 'classwork:undated-classwork');
  assert.equal(home.priority.source, 'Connected classwork');
+});
+
+test('a deferred step hides for today and returns tomorrow, scoped to the workspace', async () => {
+ seedConnectedFixtures(localStorage, at());
+ const assignments = JSON.parse(localStorage.getItem('visionary_entity_Assignment'));
+ assignments.push({ id: 'defer-classwork', class_id: 'demo-class-cube', title: 'Bring the model', status: 'published', due_date: '2026-09-26' });
+ localStorage.setItem('visionary_entity_Assignment', JSON.stringify(assignments));
+ const request = ctx('minor-cbse');
+ const plan = getDailyPlan(request);
+ const step = plan.steps.find(s => s.id === 'classwork:defer-classwork');
+ assert.ok(step, 'the classwork step is planned');
+ deferPlanStep(request, step.id);
+ assert.equal(getDailyPlan(request).steps.some(s => s.id === step.id), false, 'hidden for today');
+ // Another workspace's plan is unaffected by this deferral (Maya is not enrolled here).
+ assert.equal(getDailyPlan(ctx('bengali')).steps.some(s => s.id === step.id), false, 'other workspace unaffected');
+ // Tomorrow the step returns on its own.
+ configureDailyPlanClock(() => new Date(Date.parse('2026-09-25T12:00:00Z') + 86400000));
+ assert.equal(getDailyPlan(request).steps.some(s => s.id === step.id), true, 'back tomorrow');
+ // Non-learner roles have no plan to defer.
+ assert.throws(() => deferPlanStep(ctx('teacher', 'teacher'), step.id), /personal learning workspace/);
 });

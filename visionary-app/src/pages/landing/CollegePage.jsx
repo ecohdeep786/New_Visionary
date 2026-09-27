@@ -1563,7 +1563,7 @@ export default function ProfessionalPage() {
         <ProCTASection />
         <ProExploreSection />
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

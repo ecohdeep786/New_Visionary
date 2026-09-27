@@ -1,136 +1,317 @@
-import { ArrowRight, ArrowUpRight, BookOpen, MessageCircle, ShieldCheck, UsersRound } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import PageHeading from "@/components/landing/PageHeading";
-import SpotIllustration from "@/components/landing/SpotIllustration";
-import LandingNav from "@/components/landing/LandingNav";
-import LandingFooter from "@/components/landing/LandingFooter";
+import { ArrowRight, HeartHandshake, ShieldCheck, UsersRound } from "lucide-react";
 
-const PATHS = [
+import LandingNav from "@/components/landing/LandingNav";
+import Breadcrumb from "@/components/landing/Breadcrumb";
+import LandingFooter from "@/components/landing/LandingFooter";
+import LandingFAQ from "@/components/landing/LandingFAQ";
+import SpotIllustration from "@/components/landing/SpotIllustration";
+import imgM1 from "@/assets/student-primary.webp";
+import imgM2 from "@/assets/student-vocational.webp";
+import imgM3 from "@/assets/organization-problem-3-1600w.webp";
+import imgM4 from "@/assets/problem-practice.webp";
+import imgM5 from "@/assets/teacher-problem-2.webp";
+import imgM6 from "@/assets/student-secondary.webp";
+import imgM7 from "@/assets/student-competitive.webp";
+import imgM8 from "@/assets/problem-understanding.webp";
+import imgM9 from "@/assets/organization-problem-2-1600w.webp";
+import imgM10 from "@/assets/professional-problem-1-1600w.webp";
+import imgM11 from "@/assets/student-higher.webp";
+import imgM12 from "@/assets/organization-problem-1-1600w.webp";
+
+/* ═══ Tokens — the shared Material dialect (#202124 ink, #1a73e8/#0b57d0
+   actions, #e8eaed hairlines, pill buttons, rounded-2xl cards). ═══ */
+const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+
+/* Dual-row image marquee — the company-info-top pattern: rows circulating
+   anticlockwise (top row drifts left, bottom row drifts right). Decorative. */
+const MARQUEE_TOP = [
+  { img: imgM1, alt: "" }, { img: imgM2, alt: "" }, { img: imgM3, alt: "" },
+  { img: imgM4, alt: "" }, { img: imgM5, alt: "" }, { img: imgM6, alt: "" },
+];
+const MARQUEE_BOTTOM = [
+  { img: imgM7, alt: "" }, { img: imgM8, alt: "" }, { img: imgM9, alt: "" },
+  { img: imgM10, alt: "" }, { img: imgM11, alt: "" }, { img: imgM12, alt: "" },
+];
+
+function PhotoMarquee() {
+  return (
+    <div className="w-full overflow-hidden pb-2" aria-hidden="true">
+      <style>{`
+        @keyframes community-marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes community-marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+        .cm-left { animation: community-marquee-left 60s linear infinite !important; }
+        .cm-right { animation: community-marquee-right 60s linear infinite !important; }
+      `}</style>
+      {[{ cls: "cm-left mb-5", photos: MARQUEE_TOP }, { cls: "cm-right", photos: MARQUEE_BOTTOM }].map((row) => (
+        <div key={row.cls} className="overflow-hidden">
+          <div className={`flex w-max ${row.cls}`}>
+            {[...row.photos, ...row.photos].map((photo, i) => (
+              <div key={row.cls + i} className="mr-4 shrink-0 overflow-hidden rounded-2xl">
+                <img src={photo.img} alt="" loading="lazy" decoding="async" className="h-[190px] w-[300px] object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Anchor chips — pill nav under the hero */
+const ANCHORS = [
+  { id: "learners", label: "For learners" },
+  { id: "teachers", label: "With teachers" },
+  { id: "families", label: "Families & organizations" },
+  { id: "more", label: "More ways" },
+  { id: "faq", label: "FAQ" },
+];
+
+/* Community areas — each holds real, shipped capability cards. */
+const AREAS = [
   {
-    Icon: BookOpen,
-    label: "Learn at your own pace",
-    title: "Start with a question.",
-    description: "Explore learning activities, practice an idea, and try applying it in a project. You can begin without joining a public group.",
-    link: "/register",
-    linkLabel: "Get started with Visionary",
+    id: "learners",
+    icon: UsersRound,
+    tint: "#e8f0fe",
+    iconColor: "#0b57d0",
+    title: "Communities for learners",
+    copy: "Class-scoped spaces to discuss, ask, and share what you build — only the people in your class are inside, and nothing leaves it.",
+    cards: [
+      { title: "Class discussions", copy: "Ask and discuss with the people you learn with every day. The space is scoped to your class and kept separate from private work.", to: "/student", subject: "ask", tint: "#e8f0fe" },
+      { title: "Share what you build", copy: "Post artifacts from Build and see classmates' work in the same space — application evidence, not noise.", to: "/student", subject: "build", tint: "#e9f5ef" },
+    ],
   },
   {
-    Icon: UsersRound,
-    label: "Optional connections",
-    title: "Choose who you learn with.",
-    description: "Class, family, and collaborator connections are intentional. Requests require acceptance, and a connection does not automatically reveal private questions or project notes.",
-    link: "/register",
-    linkLabel: "Explore the workspace",
+    id: "teachers",
+    icon: ShieldCheck,
+    tint: "#e9f5ef",
+    iconColor: "#137333",
+    title: "Guided by teachers",
+    copy: "Teachers keep the space safe with moderation built in — reports and rate limits are part of the space, not bolted on afterwards.",
+    cards: [
+      { title: "Moderation built in", copy: "Reports reach the teacher with rate limits, so misuse can't flood the space. The teacher reviews and acts.", to: "/teacher", subject: "shield", tint: "#e9f5ef" },
+      { title: "Reviewed, then shared", copy: "Reported content is held for the teacher's review — nothing spreads through the class unreviewed.", to: "/teacher", subject: "flag", tint: "#f3edff" },
+    ],
+    flip: true,
   },
   {
-    Icon: MessageCircle,
-    label: "Stay in the loop",
-    title: "Follow what is taking shape.",
-    description: "Read product updates, explore research questions, and contact the team when you have feedback or need a clearer answer.",
-    link: "/updates",
-    linkLabel: "Read product updates",
+    id: "families",
+    icon: HeartHandshake,
+    tint: "#fef3df",
+    iconColor: "#a15c00",
+    title: "For families and organizations",
+    copy: "Community visibility follows consent — families and institutions see what their role allows, and never a learner's private work.",
+    cards: [
+      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows — nothing more is rendered anywhere.", to: "/parent", subject: "lock", tint: "#fef3df" },
+      { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces — insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#fcebe8" },
+    ],
   },
 ];
 
+/* More ways to engage — real destinations. */
+const MORE = [
+  { title: "Get updates", copy: "Follow what is changing across the product, one honest update at a time.", to: "/updates", subject: "updates", tint: "#fef3df" },
+  { title: "Explore how it works", copy: "See the loop the communities grow around — learn, ask, practise, build.", to: "/how-it-works", subject: "loop", tint: "#e8f0fe" },
+  { title: "Get help", copy: "Clear answers when something is unclear, from setup to safety.", to: "/help", subject: "help", tint: "#e9f5ef" },
+];
+
+/* FAQs — real behavior, no invented policies. */
+const FAQS = [
+  { q: "Who can see a class community?", a: "Only the people in that class, plus the teacher who keeps it safe. Communities are scoped to the class — they are not public spaces and do not appear in organization-wide views." },
+  { q: "What happens when someone reports a post?", a: "The report goes straight to the teacher, with rate limits so misuse can't flood the space. The teacher reviews the reported content and decides what happens next." },
+  { q: "Can people outside my class join?", a: "No. Communities are scoped to the class on purpose. Wider institution-level spaces are part of the roadmap, but a class community stays a class community." },
+  { q: "Does the community work in my language?", a: "The community follows the product's language journeys — English, Hindi, and Bengali — and a missing language is shown honestly rather than filled with machine-translated content." },
+  { q: "Is community available today?", a: "Yes — class communities with teacher moderation, reporting, and rate limits are in the product now. Wider spaces and more languages are what we are building next." },
+];
+
+/* ═══ Motion — the shared reveal grammar ═══ */
+function useReveal() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
+    }, { rootMargin: "0px 0px -8% 0px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  return { ref, visible };
+}
+
+function Reveal({ children, className = "" }) {
+  const { ref, visible } = useReveal();
+  return <div ref={ref} className={`${className} transition duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>{children}</div>;
+}
+
+function scrollToSection(id) {
+  const element = document.getElementById(id);
+  if (!element) return;
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.history.replaceState(null, "", `#${id}`);
+}
+
 export default function CommunityPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Google Sans Flex', 'Google Sans', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
       <main id="main">
-        <PageHeading
-          page="Community"
-          eyebrow="Community at Visionary"
-          h1={<>Learning is personal. <span className="text-[#4285F4]">Connection is a choice.</span></>}
-          dek="A clearer guide to learning together—and the community features available today."
-        >
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href="#ways-to-connect" className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-6 text-[15px] font-medium text-white transition-colors hover:bg-[#3367d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
-              Explore ways to connect <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-            <Link to="/safety" className="inline-flex h-12 items-center gap-2 rounded-full px-5 text-[15px] font-medium text-[#121317] hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-              Community safety <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </PageHeading>
+        <Breadcrumb page="Community" />
 
-        <section className="border-y border-[#dadce0]">
-          <div className="mx-auto grid max-w-[1240px] items-center gap-8 px-6 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:px-10">
-            <div className="max-w-[620px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Learning, with room to choose</p>
-              <h2 className="mt-4 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">Learning together should begin with clarity.</h2>
-              <p className="mt-5 text-[16px] leading-[1.8] text-[#5f6368]">
-                Visionary supports individual learning and purposeful connections between learners, educators, families, and organizations. Each relationship has a clear reason and its own sharing boundaries.
+        {/* HERO — the communities.google layout: centered statement first,
+            then the full-width fanned card strip with paging */}
+        <section className="relative overflow-hidden border-b border-[#e8eaed] bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
+          <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
+            <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Visionary communities</p>
+            <div className="mx-auto mt-6 max-w-[1000px] text-center">
+              <h1 className="text-[clamp(32px,5.5vw,60px)] font-normal leading-[1.02] tracking-[-0.045em] text-[#202124]">
+                Communities &amp; programs for everyone learning together.
+              </h1>
+              <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.55] text-[#3c4043] sm:text-[22px]">
+                Class-scoped spaces where learners, teachers, and families grow together — kept safe by teachers, scoped to your class, and honest about what is available.
               </p>
+              <div className="mt-9 flex flex-wrap justify-center gap-4">
+                <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b57d0] px-7 text-[15px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4">
+                  Find your community
+                </a>
+                <Link to="/safety" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-6 text-[15px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                  Community safety <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-            <div className="overflow-hidden rounded-[24px] border border-[#dadce0]">
-              <SpotIllustration subject="community" className="aspect-[4/3] w-full" title="Illustration for learning and community" />
-            </div>
+          </div>
+          <div className="mt-6">
+            <PhotoMarquee />
           </div>
         </section>
 
-        <section id="ways-to-connect" className="scroll-mt-24 px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
-          <div className="mx-auto max-w-[1240px]">
-            <div className="max-w-[680px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Ways to take part</p>
-              <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">A few useful paths, without the noise.</h2>
-              <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">Choose the path that fits: learn independently, connect through your workspace, or follow the work around the product.</p>
-            </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {PATHS.map(({ Icon, label, title, description, link, linkLabel }) => (
-                <article key={label} className="flex min-h-[300px] flex-col rounded-[22px] border border-[#dadce0] bg-white p-6 sm:p-7">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border border-[#dadce0] text-[#4285F4]">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
+        {/* ANCHOR CHIPS — the reference's pill nav under the hero */}
+        <nav aria-label="Community sections" className="sticky top-16 z-30 border-b border-[#e8eaed] bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-[1240px] items-center gap-2 overflow-x-auto px-4 py-3 sm:px-8 lg:justify-center lg:px-10">
+            {ANCHORS.map((anchor) => (
+              <a key={anchor.id} href={`#${anchor.id}`}
+                onClick={(event) => { event.preventDefault(); scrollToSection(anchor.id); }}
+                className="shrink-0 rounded-full border border-[#dadce0] bg-white px-4 py-2 text-[13px] font-medium text-[#3c4043] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                {anchor.label}
+              </a>
+            ))}
+          </div>
+        </nav>
+        {/*__AREAS__*/}
+
+        {/* FIND A COMMUNITY — the reference's alternating label + program-card
+            areas, with playful accent strokes beside the heading */}
+        <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <Reveal className="relative mx-auto max-w-[720px] text-center">
+            <svg aria-hidden="true" viewBox="0 0 120 60" className="absolute -right-16 -top-8 hidden h-14 w-28 lg:block">
+              <path d="M8 50 C 40 12, 78 8, 112 22" fill="none" stroke="#1a73e8" strokeWidth="5" strokeLinecap="round" />
+              <path d="M20 56 C 52 30, 88 26, 114 38" fill="none" stroke="#fbbc04" strokeWidth="5" strokeLinecap="round" />
+            </svg>
+            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+              Find a community that's right for you
+            </h2>
+          </Reveal>
+          <div className="mx-auto mt-16 max-w-[1240px] space-y-20">
+            {AREAS.map((area) => (
+              <div key={area.id} id={area.id} className="scroll-mt-36 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+                <div className="lg:sticky lg:top-40 lg:self-start">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full" style={{ backgroundColor: area.tint, color: area.iconColor }}>
+                    <area.icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <p className="mt-6 text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">{label}</p>
-                  <h3 className="mt-2 text-[21px] font-normal leading-[1.35] text-[#121317]">{title}</h3>
-                  <p className="mt-3 flex-1 text-[15px] leading-[1.7] text-[#5f6368]">{description}</p>
-                  <Link to={link} className="mt-6 inline-flex items-center gap-2 self-start text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                    {linkLabel} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  <h3 className="mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#202124]">{area.title}</h3>
+                  <p className="mt-4 max-w-[380px] text-[16px] leading-[1.7] text-[#5f6368]">{area.copy}</p>
+                </div>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  {area.cards.map((card) => (
+                    <article key={card.title} className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                      <div className="flex h-[150px] items-center justify-center" style={{ backgroundColor: card.tint }}>
+                        <SpotIllustration subject={card.subject} className="h-24 w-24" />
+                      </div>
+                      <div className="flex flex-1 flex-col p-6">
+                        <h4 className="text-[18px] font-medium leading-[1.35] text-[#202124]">{card.title}</h4>
+                        <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
+                        <div className="mt-auto pt-5">
+                          <Link to={card.to} className="inline-flex items-center gap-1 rounded-sm text-[14px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                            Learn more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* MORE WAYS TO ENGAGE */}
+        <section id="more" className="scroll-mt-36 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <Reveal className="mx-auto max-w-[1240px]">
+            <div className="mx-auto max-w-[720px] text-center">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                More ways to engage and learn
+              </h2>
+              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
+                Keep your journey moving with the product and the people around it.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {MORE.map((item) => (
+                <article key={item.title} className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                  <div className="flex h-[160px] items-center justify-center" style={{ backgroundColor: item.tint }}>
+                    <SpotIllustration subject={item.subject} className="h-24 w-24" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-[20px] font-medium leading-[1.3] text-[#202124]">{item.title}</h3>
+                    <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{item.copy}</p>
+                    <div className="mt-auto pt-5">
+                      <Link to={item.to} className="inline-flex items-center gap-1 rounded-sm text-[14px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                        Learn more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </Link>
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
-          </div>
+          </Reveal>
         </section>
 
-        <section className="border-y border-[#dadce0] bg-[#f8f9fa] px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
-          <div className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Connection and privacy</p>
-              <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">Make the boundaries visible.</h2>
-              <p className="mt-4 text-[15px] leading-[1.75] text-[#5f6368]">Requests are optional and need acceptance. Classroom and family relationships have separate sharing rules.</p>
-              <Link to="/safety" className="mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-[#1967d2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                Read Visionary’s safety information <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        {/* FAQ — the reference's accordion with circular controls */}
+        <section id="faq" className="scroll-mt-36 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+          <Reveal className="mx-auto max-w-[840px]">
+            <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+              Find answers to common questions
+            </h2>
+            <LandingFAQ faqs={FAQS} defaultOpen={0} />
+          </Reveal>
+        </section>
+
+        {/* CLOSING CTA */}
+        <section className="border-t border-[#e8eaed] px-6 py-20 text-center sm:px-8 lg:px-10 lg:py-28">
+          <Reveal className="mx-auto max-w-[720px]">
+            <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+              Bring your class together.
+            </h2>
+            <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
+              Communities grow around real learning. Start with the loop, and the space builds itself around it.
+            </p>
+            <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link to="/register" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b57d0] px-8 text-[15px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4">
+                Get started
+              </Link>
+              <Link to="/safety" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-6 text-[15px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                Read community safety <ShieldCheck className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <article className="rounded-[20px] border border-[#dadce0] bg-white p-6">
-                <h3 className="text-[17px] font-medium text-[#121317]">Connection is not automatic access.</h3>
-                <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">Organization membership does not expose private questions or project notes. Family progress requires separate permission.</p>
-              </article>
-              <article className="rounded-[20px] border border-[#dadce0] bg-white p-6">
-                <h3 className="text-[17px] font-medium text-[#121317]">Every role has boundaries.</h3>
-                <p className="mt-3 text-[14px] leading-[1.7] text-[#5f6368]">Teachers, parents, and organizations see role-appropriate information. Personal notes and private questions stay outside shared views unless you choose to share them.</p>
-              </article>
-            </div>
-          </div>
+          </Reveal>
         </section>
 
-        <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
-          <div className="mx-auto flex max-w-[1240px] flex-col gap-8 rounded-[26px] border border-[#dadce0] p-7 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-[650px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-[#5f6368]">Keep exploring</p>
-              <h2 className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[36px]">Choose a learning path that works for you.</h2>
-              <p className="mt-4 text-[15px] leading-[1.7] text-[#5f6368]">Start with your Visionary workspace, explore help topics, or contact the team with a question about learning together.</p>
-            </div>
-            <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-              <Link to="/register" className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-6 text-[14px] font-medium text-white hover:bg-[#3367d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">Get started <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-              <Link to="/contact" className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#dadce0] px-6 text-[14px] font-medium text-[#121317] hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">Contact us <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
-            </div>
-          </div>
-        </section>
       </main>
       <LandingFooter variant="quiet" />
     </div>
   );
 }
+

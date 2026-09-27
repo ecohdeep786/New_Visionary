@@ -1564,7 +1564,7 @@ export default function ParentPage() {
         <ParentCTASection />
         <ParentExploreSection />
       </main>
-      <LandingFooter />
+      <LandingFooter variant="quiet" />
     </div>
   );
 }
