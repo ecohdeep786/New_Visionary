@@ -185,7 +185,7 @@ export default function UpdatesPage() {
 
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {visibleUpdates.map((item) => (
-                <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl border border-[#e8eaed] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6">
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center rounded-[6px] bg-[#f1f3f4] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
                       {catLabel(item.cat)}
@@ -244,7 +244,7 @@ export default function UpdatesPage() {
 
             <div className="mt-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
               {/* Topic toggles */}
-              <div role="group" aria-label="Update categories" className="self-start rounded-2xl border border-[#e8eaed] bg-white p-2 sm:p-3">
+              <div role="group" aria-label="Update categories" className="self-start rounded-2xl g-card bg-white p-2 sm:p-3">
                 {CATEGORIES.map((category) => {
                   const checked = selected.includes(category.id);
                   const { Icon } = category;
@@ -270,7 +270,7 @@ export default function UpdatesPage() {
               </div>
 
               {/* The form */}
-              <div className="rounded-2xl border border-[#e8eaed] bg-white p-6 sm:p-8">
+              <div className="rounded-2xl g-card bg-white p-6 sm:p-8">
                 {submitted ? (
                   <div className="py-4" role="status">
                     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#e8f0fe] text-[#0b57d0]">
@@ -295,7 +295,7 @@ export default function UpdatesPage() {
                         <input
                           id="updates-name" name="name" type="text" autoComplete="name" required value={name}
                           onChange={(event) => setName(event.target.value)}
-                          className="mt-2 h-12 w-full rounded-xl border border-[#dadce0] bg-white px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                          className="mt-2 h-12 w-full rounded-xl g-card px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                         />
                       </div>
                       <div>
@@ -303,7 +303,7 @@ export default function UpdatesPage() {
                         <input
                           id="updates-email" name="email" type="email" autoComplete="email" required value={email}
                           onChange={(event) => setEmail(event.target.value)}
-                          className="mt-2 h-12 w-full rounded-xl border border-[#dadce0] bg-white px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                          className="mt-2 h-12 w-full rounded-xl g-card px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                         />
                       </div>
                     </div>

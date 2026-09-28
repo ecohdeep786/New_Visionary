@@ -88,7 +88,7 @@ function MissionSection() {
         <h2 className="max-w-[760px] text-[40px] font-normal leading-[1.07] tracking-[-0.045em] text-[#202124] sm:text-[52px] lg:text-[64px]">Understanding should open the next door.</h2>
         <p className="max-w-[480px] pb-1 text-[18px] leading-[1.65] text-[#5f6368]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
       </div>
-      <div id="team" className="mt-14 grid scroll-mt-28 overflow-hidden rounded-[32px] border border-[#e8eaed] md:grid-cols-[1.1fr_0.9fr]">
+      <div id="team" className="mt-14 grid scroll-mt-28 overflow-hidden rounded-[32px] g-card md:grid-cols-[1.1fr_0.9fr]">
         <div className="flex min-h-[320px] flex-col bg-[#e8f0fe] p-8 sm:p-10 lg:p-14">
           <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#174ea6]">Our mission</p>
           <span aria-hidden="true" className="mt-8 select-none text-[88px] font-medium leading-[0.55] text-[#0b57d0]">"</span>
@@ -131,7 +131,7 @@ function RolesSection() {
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[760px]"><Eyebrow>For every perspective</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Different people. One connected journey.</h2></div><p className="max-w-[360px] text-[16px] leading-[1.65] text-[#5f6368]">Find the experience that fits your work today. Visionary can keep growing with where you go next.</p></div>
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group flex flex-col overflow-hidden rounded-[24px] border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
+        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group flex flex-col overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
           <div className="overflow-hidden" style={{ backgroundColor: role.tint }}><img src={role.image} alt="" loading="lazy" style={{ mixBlendMode: "multiply" }} className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
           <div className="flex flex-1 flex-col p-6"><div className="flex items-center justify-between gap-5"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
         </Link>)}
@@ -148,7 +148,7 @@ function LifeJourneySection() {
         <p className="max-w-[470px] text-[17px] leading-[1.65] text-[#5f6368]">A first lesson, a new skill, a different career, and the chance to guide someone else are not separate stories. Visionary is designed for learning that continues through them all.</p>
       </div>
       <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[24px] border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.08)]">
+        {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[24px] g-card bg-white">
           <img src={stage.photo} alt={stage.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
           <div className="flex flex-1 flex-col p-6">
             <span className="text-[13px] font-medium tabular-nums text-[#5f6368]">{stage.number} / 04</span>
@@ -167,7 +167,7 @@ function ExploreSection() {
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Explore further</Eyebrow><h2 className="mt-5 max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">The work around the product.</h2>
       <div className="mt-12 grid gap-5 sm:grid-cols-2">
-        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_10px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
+        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
           <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#5f6368]">{item.copy}</p></div><ArrowRight className="mt-7 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
           <div className="flex items-center justify-center" style={{ backgroundColor: item.tint }}><SpotIllustration subject={item.subject} className="h-28 w-28 sm:h-36 sm:w-36" /></div>
         </Link>)}

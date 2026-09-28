@@ -220,7 +220,7 @@ export default function CookiesPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
                           <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
@@ -230,7 +230,7 @@ export default function CookiesPage() {
                     })}
                   </div>
                 </nav>
-                <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                <div className="mt-8 border-t pt-6">
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
@@ -285,7 +285,7 @@ export default function CookiesPage() {
                 </div>
 
                 {/* Mobile TOC */}
-                <div className="border-b pb-4 lg:hidden" style={{ borderColor: COLORS.mist }}>
+                <div className="border-b pb-4 lg:hidden">
                   <button
                     type="button"
                     onClick={() => setShowMobileContents((value) => !value)}
@@ -301,7 +301,7 @@ export default function CookiesPage() {
                   </button>
                   {showMobileContents && (
                     <div id="cookies-mobile-contents" className="pt-4">
-                      <div className="overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                      <div className="overflow-hidden rounded-[16px] border">
                         {SECTIONS.map((section) => {
                           const active = activeId === section.id;
                           return (
@@ -329,7 +329,7 @@ export default function CookiesPage() {
                   <h2 id="cookies-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] border bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6" style={{ borderColor: COLORS.mist }}>
+                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] g-card bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}<ArrowRight className="ml-auto h-4 w-4 shrink-0" style={{ color: COLORS.grey }} aria-hidden="true" /></span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
@@ -347,7 +347,7 @@ export default function CookiesPage() {
                   <Paragraph>
                     Cookies are small files a website saves in your browser. They let the site recognize your session, remember your choices, and keep things working the way you expect between visits.
                   </Paragraph>
-                  <div className="mt-8 max-w-[760px] rounded-[16px] border bg-[#f8f9fa] px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[760px] rounded-[16px] bg-[#f8f9fa] px-5 py-5 sm:px-6">
                     <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       Visionary uses them to keep you signed in and remember your preferences — never to follow you around the internet or sell what it learns.
                     </p>
@@ -366,7 +366,7 @@ export default function CookiesPage() {
                       { Icon: Lock, title: "No advertising cookies.", text: "We don't use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
                       { Icon: Globe, title: "Analytics with consent.", text: "If we use analytics cookies, we ask first. You can say no, and Visionary still works perfectly. We only measure what you explicitly allow." },
                     ].map(({ Icon, title, text }) => (
-                      <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+                      <div key={title} className="rounded-[16px] g-card p-6">
                         <IconTile Icon={Icon} />
                         <h3 className="mt-5 text-[16px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
                         <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
@@ -381,13 +381,13 @@ export default function CookiesPage() {
                   <Paragraph>
                     Each type does one job. Here is the full list.
                   </Paragraph>
-                  <div className="mt-10 max-w-[880px] overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-10 max-w-[880px] overflow-hidden rounded-[16px] border">
                     {[
                       ["Session cookies", "Keep you signed in while you use Visionary. Deleted when you close your browser."],
                       ["Preference cookies", "Remember things like your language and theme so you don't have to set them every time."],
                       ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent — and you can opt out anytime."],
                     ].map(([who, what], i, arr) => (
-                      <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.mist }}>
+                      <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`}>
                         <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
                         <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
                       </div>
@@ -401,8 +401,8 @@ export default function CookiesPage() {
                   <Paragraph>
                     Optional choices are saved in this browser. They do not change settings on your other devices.
                   </Paragraph>
-                  <div className="mt-8 max-w-[720px] rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.mist }}>
-                    <div className="divide-y" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[720px] rounded-[24px] g-card bg-white p-6 sm:p-8">
+                    <div className="divide-y">
                       {preferenceRows.map((row) => (
                         <div key={row.label} className="flex items-center gap-5 py-5 first:pt-0">
                           <div className="min-w-0 flex-1">
@@ -438,7 +438,7 @@ export default function CookiesPage() {
                   <Paragraph>
                     You control them, always. Clear them anytime from your browser or your Visionary settings — no emails, no waiting.
                   </Paragraph>
-                  <div className="mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-10 max-w-[880px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your cookie options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {[
@@ -462,7 +462,7 @@ export default function CookiesPage() {
                   <Paragraph>
                     We're transparent about every cookie we use and why. If something isn't clear, reach out.
                   </Paragraph>
-                  <div className="mt-8 max-w-[640px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[640px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>Write to the team</p>
                     <p className="mt-3">
                       <a href="mailto:hello@visionary.org.in?subject=Cookie%20question" className="inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
@@ -485,7 +485,7 @@ export default function CookiesPage() {
         <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
-            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2" style={{ borderColor: COLORS.mist }}>
+            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
                 { term: "Cookies", def: "Small files a website saves in your browser to recognize your session and remember your choices." },
                 { term: "Essential cookies", def: "The cookies required for sign-in, security, and core service behavior. They cannot be turned off." },
@@ -504,7 +504,7 @@ export default function CookiesPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -514,7 +514,7 @@ export default function CookiesPage() {
                 { to: "/security", label: "Security", desc: "How your information is protected.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <Link key={to} to={to} className="group rounded-[12px] g-card p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>

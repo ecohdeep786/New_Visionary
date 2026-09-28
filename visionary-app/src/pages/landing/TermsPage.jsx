@@ -117,7 +117,7 @@ function Paragraph({ children }) {
 
 function BulletList({ items }) {
   return (
-    <ul className="mt-6 max-w-[760px] rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+    <ul className="mt-6 max-w-[760px] rounded-[16px] g-card p-6">
       {items.map((item, index) => (
         <li key={index} className="flex items-start gap-3 py-1.5 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>
           <span aria-hidden="true" className="mt-[0.68em] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
@@ -130,7 +130,7 @@ function BulletList({ items }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 max-w-[760px] rounded-[16px] border bg-[#f8f9fa] px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
+    <div className="mt-6 max-w-[760px] rounded-[16px] bg-[#f8f9fa] px-5 py-5 sm:px-6">
       <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
   );
@@ -216,7 +216,7 @@ export default function TermsPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
                           <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
@@ -226,7 +226,7 @@ export default function TermsPage() {
                     })}
                   </div>
                 </nav>
-                <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                <div className="mt-8 border-t pt-6">
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
@@ -281,7 +281,7 @@ export default function TermsPage() {
                 </div>
 
                 {/* Mobile TOC */}
-                <div className="border-b pb-4 lg:hidden" style={{ borderColor: COLORS.mist }}>
+                <div className="border-b pb-4 lg:hidden">
                   <button
                     type="button"
                     onClick={() => setShowMobileContents((value) => !value)}
@@ -297,7 +297,7 @@ export default function TermsPage() {
                   </button>
                   {showMobileContents && (
                     <div id="terms-mobile-contents" className="pt-4">
-                      <div className="overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                      <div className="overflow-hidden rounded-[16px] border">
                         {SECTIONS.map((section) => {
                           const active = activeId === section.id;
                           return (
@@ -325,7 +325,7 @@ export default function TermsPage() {
                   <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] border bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6" style={{ borderColor: COLORS.mist }}>
+                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] g-card bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}<ArrowRight className="ml-auto h-4 w-4 shrink-0" style={{ color: COLORS.grey }} aria-hidden="true" /></span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
@@ -483,7 +483,7 @@ export default function TermsPage() {
         <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
-            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2" style={{ borderColor: COLORS.mist }}>
+            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
                 { term: "Visionary", def: "The learning workspace, its features, and the connected services described on this site." },
                 { term: "Workspace", def: "The learning environment you use in a browser — it holds the questions, practice, and projects from your sessions." },
@@ -502,7 +502,7 @@ export default function TermsPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -512,7 +512,7 @@ export default function TermsPage() {
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <Link key={to} to={to} className="group rounded-[12px] g-card p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>

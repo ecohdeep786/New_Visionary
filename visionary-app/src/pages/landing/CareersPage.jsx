@@ -293,7 +293,7 @@ export default function CareersPage() {
                   ].map((item) => {
                     const Icon = item.icon;
                     return (
-                      <article key={item.title} className="rounded-xl border border-[#dadce0] bg-white p-7 transition-shadow duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.15)]">
+                      <article key={item.title} className="rounded-xl g-card p-7">
                         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                           <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                         </div>
@@ -319,7 +319,7 @@ export default function CareersPage() {
                 </div>
                 <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {AREAS.map((area) => (
-                    <article key={area.title} className="flex h-full flex-col overflow-hidden rounded-lg border border-[#dadce0] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                    <article key={area.title} className="flex h-full flex-col overflow-hidden rounded-lg g-card">
                       <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
                       <div className="flex flex-1 flex-col p-6">
                         <h3 className="text-[21px] font-normal leading-[1.3] text-[#202124]">{area.title}</h3>
@@ -379,7 +379,7 @@ export default function CareersPage() {
                     This page is the single source for openings. When a role opens, it will be listed here first.
                   </p>
                 </div>
-                <div className="mx-auto mt-12 max-w-[760px] rounded-xl border border-[#dadce0] bg-white p-8 sm:p-10">
+                <div className="mx-auto mt-12 max-w-[760px] rounded-xl g-card p-8 sm:p-10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Briefcase className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </div>

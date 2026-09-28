@@ -176,7 +176,7 @@ export default function SafetyPage() {
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               {[ShieldCheck, Lock, Eye, Flag, UsersRound].map((Icon, i) => (
-                <span key={i} className="flex h-12 w-12 items-center justify-center rounded-[14px] border border-[#e8eaed] bg-white text-[#0b57d0] shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
+                <span key={i} className="flex h-12 w-12 items-center justify-center rounded-[14px] g-card bg-white text-[#0b57d0] shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
                   <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </span>
               ))}
@@ -224,7 +224,7 @@ export default function SafetyPage() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {FAMILY_CARDS.map(({ Icon, eyebrow, to, linkLabel, title, copy }) => (
-                <article key={title} className="flex min-h-[280px] flex-col rounded-2xl border border-[#e8eaed] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] sm:p-7">
+                <article key={title} className="flex min-h-[280px] flex-col rounded-2xl g-card bg-white p-6 sm:p-7">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
@@ -253,7 +253,7 @@ export default function SafetyPage() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {REPORTING_CARDS.map(({ eyebrow, subject, tint, title, copy, link }) => (
-                <article key={eyebrow} className="flex min-h-[340px] flex-col rounded-2xl border border-[#e8eaed] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] sm:p-7">
+                <article key={eyebrow} className="flex min-h-[340px] flex-col rounded-2xl g-card bg-white p-6 sm:p-7">
                   <span className="flex h-[120px] w-[120px] items-center justify-center rounded-[24px]" style={{ backgroundColor: tint }}>
                     <SpotIllustration subject={subject} className="h-[88px] w-[88px]" title={eyebrow} />
                   </span>

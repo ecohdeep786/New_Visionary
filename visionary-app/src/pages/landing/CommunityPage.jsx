@@ -226,7 +226,7 @@ export default function CommunityPage() {
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   {area.cards.map((card) => (
-                    <article key={card.title} className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                    <article key={card.title} className="flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white">
                       <div className="flex h-[150px] items-center justify-center" style={{ backgroundColor: card.tint }}>
                         <SpotIllustration subject={card.subject} className="h-24 w-24" />
                       </div>
@@ -260,7 +260,7 @@ export default function CommunityPage() {
             </div>
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {MORE.map((item) => (
-                <article key={item.title} className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#e8eaed] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                <article key={item.title} className="flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white">
                   <div className="flex h-[160px] items-center justify-center" style={{ backgroundColor: item.tint }}>
                     <SpotIllustration subject={item.subject} className="h-24 w-24" />
                   </div>

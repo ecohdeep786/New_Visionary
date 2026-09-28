@@ -153,7 +153,7 @@ function Reveal({ children, className = "" }) {
 
 function Pill({ to, href, onClick, children, outline = false }) {
   const cls = `inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 ${
-    outline ? "border border-[#dadce0] bg-white text-[#202124] hover:bg-[#f1f3f4]" : "bg-[#1a73e8] text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] hover:bg-[#1765cc]"
+    outline ? "g-card text-[#202124] hover:bg-[#f1f3f4]" : "bg-[#1a73e8] text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] hover:bg-[#1765cc]"
   } ${onClick ? "cursor-pointer" : ""}`;
   if (to) return <Link to={to} className={cls}>{children}</Link>;
   return <a href={href} onClick={onClick} className={cls}>{children}</a>;
@@ -254,7 +254,7 @@ export default function ResearchNewsPage() {
             </div>
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {LATEST.map((item) => (
-                <article key={item.title} className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#dadce0] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                <article key={item.title} className="flex h-full flex-col overflow-hidden rounded-2xl g-card">
                   <div className="flex h-[160px] items-center justify-center" style={{ backgroundColor: item.tint }}>
                     <SpotIllustration subject={item.subject} className="h-24 w-24" />
                   </div>
@@ -337,7 +337,7 @@ export default function ResearchNewsPage() {
             </div>
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {PROJECTS.map((project) => (
-                <article key={project.title} className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#dadce0] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                <article key={project.title} className="flex h-full flex-col overflow-hidden rounded-2xl g-card">
                   <img src={project.photo} alt={project.alt} loading="lazy" decoding="async" className="h-[190px] w-full object-cover" />
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="text-[21px] font-normal leading-[1.3] text-[#202124]">{project.title}</h3>
@@ -393,7 +393,7 @@ export default function ResearchNewsPage() {
                 <TextLink href="mailto:research@visionary.org.in">Contact the research team <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></TextLink>
               </div>
             </div>
-            <div className="rounded-2xl border border-[#dadce0] bg-white p-8 shadow-[0_8px_28px_rgba(0,0,0,0.08)] sm:p-10">
+            <div className="rounded-2xl g-card p-8 sm:p-10">
               <div className="flex items-center justify-between">
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#1a73e8]">The first question</p>
                 <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e8f0fe] text-[13px] font-medium text-[#0b57d0]">01</span>
@@ -438,7 +438,7 @@ export default function ResearchNewsPage() {
               Help us shape the future.
             </h2>
             <div className="mt-12 grid gap-5 lg:grid-cols-2">
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#dadce0] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+              <article className="flex h-full flex-col overflow-hidden rounded-2xl g-card">
                 <img src={imgFutureCommunity} alt="A teacher explaining an idea" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
                 <div className="flex flex-1 flex-col p-7">
                   <h3 className="text-[23px] font-normal leading-[1.3] text-[#202124]">Join the community</h3>
@@ -450,7 +450,7 @@ export default function ResearchNewsPage() {
                   </div>
                 </div>
               </article>
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#dadce0] bg-white transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+              <article className="flex h-full flex-col overflow-hidden rounded-2xl g-card">
                 <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
                 <div className="flex flex-1 flex-col p-7">
                   <h3 className="text-[23px] font-normal leading-[1.3] text-[#202124]">Work with us</h3>

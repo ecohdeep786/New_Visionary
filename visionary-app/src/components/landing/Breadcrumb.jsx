@@ -10,8 +10,9 @@ import { Link, useLocation } from "react-router-dom";
 const CLUSTER = {
   privacy: ["Privacy", "/privacy"], terms: ["Privacy", "/privacy"],
   cookies: ["Privacy", "/privacy"], accessibility: ["Privacy", "/privacy"],
+  security: ["Privacy", "/privacy"],
   pricing: ["How it works", "/how-it-works"], download: ["How it works", "/how-it-works"],
-  safety: ["How it works", "/how-it-works"], security: ["How it works", "/how-it-works"],
+  safety: ["How it works", "/how-it-works"],
   career: ["How it works", "/how-it-works"], referral: ["How it works", "/how-it-works"],
   updates: ["How it works", "/how-it-works"],
   careers: ["About", "/about"], research: ["About", "/about"],

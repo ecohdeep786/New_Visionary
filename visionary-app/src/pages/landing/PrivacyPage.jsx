@@ -238,7 +238,7 @@ export default function PrivacyPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
                           <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
@@ -248,7 +248,7 @@ export default function PrivacyPage() {
                     })}
                   </div>
                 </nav>
-                <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                <div className="mt-8 border-t pt-6">
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
@@ -305,7 +305,7 @@ export default function PrivacyPage() {
                 </div>
 
                 {/* Mobile TOC */}
-                <div className="border-b pb-4 lg:hidden" style={{ borderColor: COLORS.mist }}>
+                <div className="border-b pb-4 lg:hidden">
                   <button
                     type="button"
                     onClick={() => setShowMobileContents((value) => !value)}
@@ -321,7 +321,7 @@ export default function PrivacyPage() {
                   </button>
                   {showMobileContents && (
                     <div id="privacy-mobile-contents" className="pt-4">
-                      <div className="overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                      <div className="overflow-hidden rounded-[16px] border">
                         {SECTIONS.map((section) => {
                           const active = activeId === section.id;
                           return (
@@ -349,7 +349,7 @@ export default function PrivacyPage() {
                   <h2 id="privacy-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] border bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6" style={{ borderColor: COLORS.mist }}>
+                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] g-card bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}<ArrowRight className="ml-auto h-4 w-4 shrink-0" style={{ color: COLORS.grey }} aria-hidden="true" /></span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
@@ -374,7 +374,7 @@ export default function PrivacyPage() {
                       { Icon: Database, title: "Device and technical details", text: "Basic browser, device, and diagnostic information may be used to keep the service reliable, secure, and compatible with your device." },
                       { Icon: Settings2, title: "Your preferences", text: "Choices such as language, accessibility, audio interaction, and whether optional learning memory is used." },
                     ].map(({ Icon, title, text }) => (
-                      <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+                      <div key={title} className="rounded-[16px] g-card p-6">
                         <IconTile Icon={Icon} />
                         <h3 className="mt-5 text-[16px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
                         <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
@@ -397,7 +397,7 @@ export default function PrivacyPage() {
                       { Icon: ShieldCheck, title: "Protect people and the service", text: "Prevent misuse, and keep accounts safe from harm." },
                       { Icon: Mail, title: "Communicate with you", text: "Service updates, and the email updates you choose to receive." },
                     ].map(({ Icon, title, text }, i, arr) => (
-                      <div key={title} className={`flex items-start gap-5 py-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.border }}>
+                      <div key={title} className={`flex items-start gap-5 py-6 ${i < arr.length - 1 ? "border-b" : ""}`}>
                         <IconTile Icon={Icon} />
                         <div>
                           <h3 className="text-[17px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
@@ -414,7 +414,7 @@ export default function PrivacyPage() {
                   <Paragraph>
                     Visibility follows the workspace role and any explicit learning relationship. Visionary limits each view to the information needed for that relationship.
                   </Paragraph>
-                  <div className="mt-10 overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-10 overflow-hidden rounded-[16px] border">
                     {[
                       ["Student", "Learners can review their own work. Private conversation text is not included in the parent and teacher progress views described here."],
                       ["Teacher", "Class-linked learning evidence is limited to the teacher’s assigned classes in the product model."],
@@ -422,7 +422,7 @@ export default function PrivacyPage() {
                       ["Institution", "The organization view is designed for aggregate, role-appropriate information rather than private learner conversations."],
                       ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
                     ].map(([who, what], i, arr) => (
-                      <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.mist }}>
+                      <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`}>
                         <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
                         <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
                       </div>
@@ -450,7 +450,7 @@ export default function PrivacyPage() {
                       { Icon: Database, title: "Export", text: "No self-service account export is currently connected. Ask the Grievance Officer about a data request." },
                       { Icon: Mail, title: "Request removal", text: "Send an account or record deletion request; it is reviewed rather than completed instantly here." },
                     ].map(({ Icon, title, text }) => (
-                      <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+                      <div key={title} className="rounded-[16px] g-card p-6">
                         <IconTile Icon={Icon} />
                         <h3 className="mt-5 text-[16px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
                         <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
@@ -494,14 +494,14 @@ export default function PrivacyPage() {
                       { title: "Deletion", text: "Describe the account or information you want removed. We will confirm the scope and any applicable retention requirements." },
                       { title: "Records on this device", text: "Review what is stored in this browser before you clear browser data or change devices." },
                     ].map((item, index) => (
-                      <div key={item.title} className="rounded-[16px] border p-5 sm:p-6" style={{ borderColor: COLORS.mist }}>
+                      <div key={item.title} className="rounded-[16px] g-card p-5 sm:p-6">
                         <p className="text-[12px] font-medium tabular-nums" style={{ color: COLORS.navy }}>0{index + 1}</p>
                         <h3 className="mt-3 text-[16px] font-medium" style={{ color: COLORS.ink }}>{item.title}</h3>
                         <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{item.text}</p>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 flex flex-col gap-4 rounded-[18px] border bg-[#f8f9fa] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-6 flex flex-col gap-4 rounded-[18px] bg-[#f8f9fa] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
                     <div>
                       <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>Send a privacy request</p>
                       <p className="mt-1 text-[14px] leading-6" style={{ color: COLORS.grey }}>{GRIEVANCE_OFFICER.response}</p>
@@ -519,7 +519,7 @@ export default function PrivacyPage() {
                   <Paragraph>
                     Workspace records stored locally remain in this browser until you remove them or clear browser storage. Account information is retained only while it is needed for the purposes explained in this policy, including legal, safety, and service requirements.
                   </Paragraph>
-                  <div className="mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-10 max-w-[880px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your privacy options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {["Review personal workspaces stored in this browser.", "Check whether a record is stored on-device or with your account.", "Ask the Grievance Officer about access or deletion requests.", "Sign out of shared devices and review connected devices regularly."].map((t) => (
@@ -544,9 +544,9 @@ export default function PrivacyPage() {
                 {/* 09 — COMMON QUESTIONS */}
                 <section id="explainers" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="09" title="Common privacy questions" />
-                  <div className="max-w-[880px] border-t" style={{ borderColor: COLORS.mist }}>
+                  <div className="max-w-[880px] border-t">
                     {FAQ.map((item, index) => (
-                      <div key={item.q} className="border-b" style={{ borderColor: COLORS.mist }}>
+                      <div key={item.q} className="border-b">
                         <button
                           type="button"
                           aria-expanded={openFaq === index}
@@ -572,7 +572,7 @@ export default function PrivacyPage() {
                   <Paragraph>
                     For questions about this policy or to submit a privacy grievance, contact the named Grievance Officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
                   </Paragraph>
-                  <div className="mt-8 max-w-[640px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[640px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       {GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong>
                     </p>
@@ -594,7 +594,7 @@ export default function PrivacyPage() {
         <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
-            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2" style={{ borderColor: COLORS.mist }}>
+            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
                 { term: "Workspace", def: "The learning environment you use in a browser — it holds the questions, practice, and projects from your sessions." },
                 { term: "Learning records", def: "The activity and progress tied to your account or device: what you asked, practised, and built." },
@@ -613,7 +613,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -623,7 +623,7 @@ export default function PrivacyPage() {
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: Accessibility },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: FileText },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <Link key={to} to={to} className="group rounded-[12px] g-card p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>

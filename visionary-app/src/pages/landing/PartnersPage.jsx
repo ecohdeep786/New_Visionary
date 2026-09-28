@@ -236,16 +236,14 @@ export default function PartnersPage() {
               </p>
             </div>
 
-            {/* Illustration scene — flat handshake on a neutral panel with an
+            {/* Illustration — the HIG wide scene on its own card, with an
                 honest trust chip */}
-            <div className="relative mx-auto w-full max-w-[440px]">
-              <div className="flex h-[320px] w-full items-center justify-center rounded-[44px] bg-[#f1f1f4] sm:h-[360px]">
-                <SpotIllustration
-                  subject="handshake"
-                  className="h-[200px] w-[200px] sm:h-[224px] sm:w-[224px]"
-                  title="Two teams shaking hands over a shared learning project"
-                />
-              </div>
+            <div className="relative mx-auto w-full max-w-[520px]">
+              <SpotIllustration
+                subject="collab"
+                className="w-full rounded-[24px]"
+                title="Two partners meeting at a table over a laptop"
+              />
               <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[#dadce0] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#202124] shadow-[0_1px_3px_rgba(60,64,67,0.15)]">
                 <Clock className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
                 Reply within 5 business days
@@ -291,7 +289,7 @@ export default function PartnersPage() {
             <div className="mt-16 grid gap-x-12 gap-y-14 lg:grid-cols-2">
               {PARTNER_TYPES.map((type) => (
                 <div key={type.chip} className="grid items-center gap-6 sm:grid-cols-[128px_1fr] sm:gap-8">
-                  <div className="flex h-[128px] w-[128px] items-center justify-center rounded-[24px] border border-[#e8eaed] bg-white shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
+                  <div className="flex h-[128px] w-[128px] items-center justify-center rounded-[24px] g-card bg-white shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
                     <SpotIllustration subject={type.subject} className="h-[92px] w-[92px]" title={type.chip} />
                   </div>
                   <div>
@@ -319,7 +317,7 @@ export default function PartnersPage() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3 lg:gap-6">
               {BENEFITS.map(({ Icon, tile, title, items }) => (
-                <article key={title} className="flex flex-col rounded-2xl border border-[#e8eaed] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] sm:p-7">
+                <article key={title} className="flex flex-col rounded-2xl g-card bg-white p-6 sm:p-7">
                   <span className={`flex h-12 w-12 items-center justify-center rounded-[14px] ${tile}`}>
                     <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                   </span>
@@ -366,7 +364,7 @@ export default function PartnersPage() {
               </dl>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-[#e8eaed] bg-white">
+            <div className="overflow-x-auto rounded-2xl g-card bg-white">
               <table className="w-full min-w-[560px] border-collapse text-left">
                 <caption className="sr-only">What each partnership depth includes</caption>
                 <thead>
@@ -430,7 +428,7 @@ export default function PartnersPage() {
                 </li>
               ))}
             </ol>
-            <p className="mt-12 max-w-[820px] rounded-2xl border border-[#e8eaed] bg-[#f8f9fa] px-6 py-5 text-[14px] leading-[1.7] text-[#3c4043]">
+            <p className="mt-12 max-w-[820px] rounded-2xl bg-[#f8f9fa] px-6 py-5 text-[14px] leading-[1.7] text-[#3c4043]">
               Every partnership begins with shared expectations. Scope, responsibilities, privacy, support, costs, and measures of success are agreed in writing before work begins. Sending an enquiry starts a conversation and does not create an endorsement or commercial agreement.
             </p>
           </Reveal>

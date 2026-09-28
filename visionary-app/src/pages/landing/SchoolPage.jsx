@@ -180,7 +180,7 @@ export default function SchoolPage() {
         <section ref={ref} className="relative px-6 pb-16 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>
             <div className="mx-auto flex flex-col items-center text-center">
-              <span className="flex h-20 w-20 items-center justify-center rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+              <span className="flex h-20 w-20 items-center justify-center rounded-[24px] g-card bg-white" style={{ color: COLORS.blue }}>
                 <CircleHelp className="h-9 w-9" strokeWidth={1.8} />
               </span>
               <h1 className="mt-8 text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
@@ -189,7 +189,7 @@ export default function SchoolPage() {
               <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic — then reach us.</p>
 
               {/* Search bar */}
-              <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+              <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#4285F4]">
                 <Search className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />
                 <input
                   value={q}
@@ -226,7 +226,7 @@ export default function SchoolPage() {
                 <ArrowLeft className="h-4 w-4" strokeWidth={1.8} /> All topics
               </button>
               <div className="mt-8 flex items-center gap-5">
-                <span className="flex h-14 w-14 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card bg-white" style={{ color: COLORS.blue }}>
                   <activeTopic.Icon className="h-6 w-6" strokeWidth={1.8} />
                 </span>
                 <div>
@@ -253,9 +253,9 @@ export default function SchoolPage() {
                   <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {topics.map((t) => (
                       <button key={t.id} type="button" onClick={() => { setTopicId(t.id); setQ(""); }}
-                        className="group flex flex-col items-start rounded-[24px] border bg-white p-7 text-left transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist }}>
-                        <span className="flex h-14 w-14 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                        className="group flex flex-col items-start rounded-[24px] g-card bg-white p-7 text-left transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                       >
+                        <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card bg-white" style={{ color: COLORS.blue }}>
                           <t.Icon className="h-6 w-6" strokeWidth={1.8} />
                         </span>
                         <p className="mt-6 font-medium tracking-[0] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</p>
@@ -278,7 +278,7 @@ export default function SchoolPage() {
 
               {/* No results */}
               {noResults && (
-                <div className="mx-auto max-w-[760px] rounded-[24px] border bg-white p-10 text-center" style={{ borderColor: COLORS.mist }}>
+                <div className="mx-auto max-w-[760px] rounded-[24px] g-card bg-white p-10 text-center">
                   <p className="font-medium tracking-[0] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Nothing matches "{q}".</p>
                   <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
                     Tell us what you need — a human answers within one business day.
@@ -294,7 +294,7 @@ export default function SchoolPage() {
 
         {/* ═══ CONTACT BAND (Apple support pattern) ═══ */}
         <section className="relative px-6 py-24" style={{ backgroundColor: COLORS.surface }}>
-          <div className="mx-auto max-w-[760px] rounded-[24px] border bg-white p-10 text-center" style={{ borderColor: COLORS.mist }}>
+          <div className="mx-auto max-w-[760px] rounded-[24px] g-card bg-white p-10 text-center">
             <p className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>Still stuck?</p>
             <p className="mx-auto mt-3 max-w-[560px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
               We answer within one business day. Urgent safety reports are handled within 24 hours.

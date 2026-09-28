@@ -14,6 +14,8 @@ export interface ContentConcept { id: string; title: string; topicId: string; pr
 export interface ContentSyllabus extends ContentSelection { id: string; status: ContentStatus; textbooks: ContentTextbook[]; chapters: ContentChapter[]; contentLocale?: Locale; availableLocales?: Locale[]; provenance?: ContentProvenance }
 export interface ContentGraph { syllabus: ContentSyllabus; topics: ContentTopic[]; concepts: ContentConcept[] }
 export interface ContentDataGap extends ContentSelection { user_id: string; timestamp: string; syllabusId: string; resolvedAt?: string }
+export type ContentIssueKind = 'explanation' | 'question' | 'representation' | 'translation' | 'source';
+export interface ContentIssue { id: string; conceptId: string; kind: ContentIssueKind; locale: Locale; sourceId?: string; sourceVersion?: string; createdAt: string; state: 'saved-locally' }
 /** Implement this boundary with the syllabus API. A miss is null, not invented curriculum. */
 export interface ContentRepositoryAdapter { getSyllabus(selection: ContentSelection, ctx: RequestContext): Promise<ContentGraph | null>; getConcept?(conceptId: string, ctx: RequestContext): Promise<ContentConcept | null> }
 export interface ContentRepository {
@@ -26,12 +28,14 @@ export interface ContentRepository {
  renameProvisional(id: string, title: string): Promise<void>;
  mapProvisional(provisionalId: string, officialId: string): Promise<void>;
  getDataGaps(): Promise<ContentDataGap[]>;
+ getContentIssues(): Promise<ContentIssue[]>;
+ reportIssue(conceptId: string, kind: ContentIssueKind, locale?: Locale): Promise<ContentIssue>;
 }
 
 export const SAMPLE_SELECTION: ContentSelection = { board: 'Sample', classLevel: '6', subject: 'Mathematics' };
 export const PROFESSIONAL_SAMPLE_SELECTION: ContentSelection = { board: 'Sample', classLevel: 'Professional', subject: 'Data interpretation' };
 const KEY = 'visionary_content_v1';
-interface ContentStore { version: 1; spaces: Record<string, { graphs: ContentGraph[]; aliases: Record<string, string>; gaps: ContentDataGap[] }> }
+interface ContentStore { version: 1; spaces: Record<string, { graphs: ContentGraph[]; aliases: Record<string, string>; gaps: ContentDataGap[]; issues?: ContentIssue[] }> }
 let adapter: ContentRepositoryAdapter | null = null;
 export function configureContentRepository(next: ContentRepositoryAdapter | null) { adapter = next; }
 function check(ctx: RequestContext) { if (ctx.signal?.aborted) throw new DOMException('Cancelled', 'AbortError'); workspaceIdentity(ctx); }
@@ -181,5 +185,17 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
    const fresh = read(); space(fresh, ctx).aliases[provisionalId] = officialId; write(fresh, ctx);
   },
   async getDataGaps() { check(ctx); return structuredClone(space(read(), ctx).gaps); },
+  async getContentIssues() { check(ctx); return structuredClone(space(read(), ctx).issues ?? []); },
+  async reportIssue(conceptId, kind, locale = ctx.locale) {
+   check(ctx);
+   if (!['explanation', 'question', 'representation', 'translation', 'source'].includes(kind) || !['en', 'hi', 'bn'].includes(locale)) throw new Error('Choose a valid content issue and teaching language.');
+   const concept = await getContentRepository({ ...ctx, locale }).getConcept(conceptId);
+   check(ctx); if (!concept) throw new Error('This concept is unavailable in your workspace. Your report was not saved.');
+   const db = read(); const own = space(db, ctx); const issues = own.issues ?? [];
+   const previous = issues.find(item => item.conceptId === conceptId && item.kind === kind && item.locale === locale && item.sourceVersion === concept.provenance?.version);
+   if (previous) return structuredClone(previous);
+   const issue: ContentIssue = { id: crypto.randomUUID(), conceptId, kind, locale, sourceId: concept.provenance?.sourceId, sourceVersion: concept.provenance?.version, createdAt: new Date().toISOString(), state: 'saved-locally' };
+   own.issues = [...issues, issue]; write(db, ctx); return structuredClone(issue);
+  },
  };
 }

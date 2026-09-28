@@ -64,9 +64,9 @@ test('parent summaries require active scoped consent and exclude private content
 });
 test('report period filters out old activity and expired invitations cannot be accepted',()=>{
  const child=ctx('minor-cbse');const c=service.newConversation(child);service.startJourney(child,c.id,'cube');
- service.requestRelationship(ctx('adult','parent'),'professional@visionary.test','guardian');
+ service.requestRelationship(ctx('adult','parent'),'bengali@visionary.test','guardian');
  instant=new Date('2026-10-01T12:00:00Z');assert.equal(service.familyReports(ctx('parent','parent'))[0].objectives.length,0);
- const request=service.visibleRelationships(ctx('professional','professional'))[0];assert.throws(()=>service.changeRelationship(ctx('professional','professional'),request.id,'active'),/expired/);
+ const request=service.visibleRelationships(ctx('bengali','student')).find(r=>r.from==='demo-adult');assert.throws(()=>service.changeRelationship(ctx('bengali','student'),request.id,'active'),/expired/);
 });
 test('account quotas span roles, never block saved activities, and reset daily',async()=>{
  service.setDemoUsage(ctx(),10);const c=service.newConversation(ctx('adult','teacher'));

@@ -2,16 +2,18 @@ import { Link, useLocation } from "react-router-dom";
 
 /**
  * PolicyTabs — the policies.google.com merge pattern: one shared tab bar
- * across the Privacy / Terms / Cookies policy pages. Each policy keeps its
- * own URL (deep links, breadcrumb, footer links all preserved) while the
- * pills make the three read as a single multi-section policy experience.
- * Pill style matches the product tab bar (active = white pill on the grey
- * track); the pt-6 gives breathing room after the breadcrumb row.
+ * across the Privacy / Terms / Cookies / Security policy pages. Each policy
+ * keeps its own URL (deep links, breadcrumb, footer links all preserved)
+ * while the centered pills make the four read as a single multi-section
+ * policy experience. Pill style matches the product tab bar (active = white
+ * pill on the grey track); pt-6/pb-2 give balanced breathing room around
+ * the breadcrumb above and the policy content below.
  */
 const POLICIES = [
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/terms", label: "Terms of Service" },
   { to: "/cookies", label: "Cookies" },
+  { to: "/security", label: "Security" },
 ];
 
 export default function PolicyTabs() {
@@ -19,7 +21,7 @@ export default function PolicyTabs() {
   return (
     <nav aria-label="Visionary policies" className="bg-white">
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
-        <div className="flex justify-start pt-6">
+        <div className="flex justify-center pt-6 pb-10">
           <div
             role="group"
             aria-label="Policy sections"

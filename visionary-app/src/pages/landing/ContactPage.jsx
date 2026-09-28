@@ -108,7 +108,7 @@ function EmailLink({ email, subject, children = email, className = "" }) {
 
 function ResourceCard({ Icon, label, title, to }) {
   return (
-    <Link to={to} className="group flex min-h-[208px] flex-col rounded-2xl border border-[#e8eaed] bg-white p-5 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+    <Link to={to} className="group flex min-h-[208px] flex-col rounded-2xl g-card bg-white p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
       <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1a73e8] text-[#1a73e8]">
         <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
       </span>
@@ -246,7 +246,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {CONTACT_ROUTES.map(({ Icon, category, title, description, email, subject }) => (
-                <article key={category} className="flex min-h-[262px] flex-col rounded-2xl border border-[#e8eaed] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
+                <article key={category} className="flex min-h-[262px] flex-col rounded-2xl g-card bg-white p-6">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1a73e8] text-[#1a73e8]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
@@ -268,7 +268,7 @@ export default function ContactPage() {
               <h2 className="mt-3 text-[30px] font-normal leading-[1.2] tracking-[-0.025em] text-[#202124] sm:text-[38px]">A formal route for privacy concerns.</h2>
               <p className="mt-4 max-w-[420px] text-[15px] leading-[1.75] text-[#5f6368]">For a privacy grievance under India's DPDP Act, contact the named Grievance Officer directly.</p>
             </div>
-            <div className="rounded-2xl border border-[#e8eaed] bg-white p-6 sm:p-8">
+            <div className="rounded-2xl g-card bg-white p-6 sm:p-8">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">{GRIEVANCE_OFFICER.role}</p>
               <h3 className="mt-3 text-[22px] font-normal text-[#202124]">{GRIEVANCE_OFFICER.name}</h3>
               <p className="mt-3 max-w-[650px] text-[14px] leading-[1.7] text-[#5f6368]">{GRIEVANCE_OFFICER.response}</p>

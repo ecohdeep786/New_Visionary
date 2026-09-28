@@ -59,9 +59,9 @@ const DESTINATIONS = [
 
 /* ═══ COLLAGE — the reference's image trio, in our illustration voice ═══ */
 const COLLAGE = [
-  { subject: "student", tint: "#F1F1F4", title: "A student learning with Visionary" },
-  { subject: "teacher", tint: "#F1F1F4", title: "A teacher preparing classwork" },
-  { subject: "team", tint: "#F1F1F4", title: "A team growing together" },
+  { subject: "study", title: "A student learning with Visionary" },
+  { subject: "teach", title: "A teacher preparing classwork" },
+  { subject: "teamwork", title: "A team growing together" },
 ];
 
 export default function ReferralPage() {
@@ -131,10 +131,9 @@ export default function ReferralPage() {
             {COLLAGE.map((panel, i) => (
               <div
                 key={panel.subject}
-                className={`flex h-[220px] items-center justify-center rounded-[28px] sm:h-[260px] ${i === 1 ? "sm:mt-10" : ""}`}
-                style={{ backgroundColor: panel.tint }}
+                className={`overflow-hidden rounded-[24px] ${i === 1 ? "sm:mt-10" : ""}`}
               >
-                <SpotIllustration subject={panel.subject} className="h-[160px] w-[120px]" title={panel.title} />
+                <SpotIllustration subject={panel.subject} className="h-auto w-full" title={panel.title} />
               </div>
             ))}
           </Reveal>
@@ -192,8 +191,8 @@ export default function ReferralPage() {
 
             <div className="mx-auto mt-14 grid max-w-[1080px] gap-4 md:grid-cols-3">
               {DESTINATIONS.map(({ subject, label, to, alt, copy }) => (
-                <article key={label} className="flex min-h-[300px] flex-col rounded-2xl border border-[#e8eaed] bg-white p-6 transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)]">
-                  <span className="flex h-[104px] w-[104px] items-center justify-center rounded-[22px] border border-[#e8eaed] bg-white">
+                <article key={label} className="flex min-h-[300px] flex-col rounded-2xl g-card bg-white p-6">
+                  <span className="flex h-[104px] w-[104px] items-center justify-center rounded-[22px] g-card bg-white">
                     <SpotIllustration subject={subject} className="h-[76px] w-[76px]" title={label} />
                   </span>
                   <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#202124]">{label}</h3>
@@ -228,7 +227,7 @@ export default function ReferralPage() {
                 Works for every persona — no account needed to copy it.
               </p>
             </div>
-            <div className="rounded-2xl border border-[#e8eaed] bg-white p-6 sm:p-8">
+            <div className="rounded-2xl g-card bg-white p-6 sm:p-8">
               <label htmlFor="referral-signup-link" className="block text-[13px] font-medium text-[#202124]">Visionary sign-up page</label>
               <input
                 id="referral-signup-link"

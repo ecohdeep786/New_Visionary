@@ -1,11 +1,13 @@
 import type { RequestContext, Locale, Artifact } from '../domain/workspace.ts';
 import { workspaceIdentity, workspaceNow, snapshot, saveArtifact, newConversation, updateConversation, appendTeachingTurn } from './workspaceService.ts';
-import { getContentRepository, type ContentSelection, type ContentQuestion } from './contentRepository.ts';
+import { getContentRepository, SAMPLE_SELECTION, type ContentSelection, type ContentQuestion } from './contentRepository.ts';
 import { getTeachingInterface, type TeachingResponse, type TeachingMode } from './teachingInterface.ts';
 import { emitInteractionEvent, recordLearningOutcome, getStudentState, getStudentClassLearningContext } from './mentorStateService.ts';
 
 export interface LearningUnit {
  id:string; conceptId:string; title:string; locale:Locale; classId?:string; stage:'explain'|'check'|'practice'|'build'|'completed';
+ representation?:{mode:'model'|'text';size:number;rotation:number};
+ attempts?:{id:string;kind:'check'|'practice';question:ContentQuestion;selectedIndex:number;correct:boolean;at:string;locale?:Locale}[];
  checkPassed:boolean; practicePassed?:boolean; difficulty:number; practiceRound:number; question?:ContentQuestion;
  answer?:{index:number;correct:boolean;id:string}; response?:TeachingResponse; explanation?:string;
  conversationId?:string; artifactId?:string; updatedAt:string; pending?:LearningOutcome;
@@ -22,9 +24,33 @@ function write(db:Store,ctx:RequestContext){guard(ctx);try{localStorage.setItem(
 function save(ctx:RequestContext,unit:LearningUnit){const db=read();const data=own(db,ctx);const index=data.units.findIndex(u=>u.id===unit.id);unit.updatedAt=now();if(index<0)data.units.push(unit);else data.units[index]=unit;write(db,ctx);return structuredClone(unit);}
 export function getLearningWorkspace(ctx:RequestContext){return structuredClone(own(read(),ctx));}
 export function getLearningUnit(ctx:RequestContext,id:string){const unit=getLearningWorkspace(ctx).units.find(u=>u.id===id);if(!unit)throw Error('This learning activity is unavailable in this workspace.');return unit;}
+export function getLearningReviewQueue(ctx:RequestContext){
+ const states=new Map(getStudentState(ctx).concepts.map(item=>[item.conceptId,item]));const today=workspaceNow().getTime();
+ const unique=new Map<string,LearningUnit>();
+ for(const unit of getLearningWorkspace(ctx).units.filter(item=>item.checkPassed).reverse().sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt))){const key=`${unit.classId||'personal'}:${unit.conceptId}`;if(!unique.has(key))unique.set(key,unit);}
+ return [...unique.values()].map(unit=>{const evidence=states.get(unit.conceptId);return{unit,dueAt:evidence?.dueAt,due:Boolean(evidence?.dueAt&&new Date(evidence.dueAt).getTime()<=today),recordedAnswers:evidence?.total||0};}).sort((a,b)=>Number(b.due)-Number(a.due)||(a.dueAt||'9999').localeCompare(b.dueAt||'9999'));
+}
+/** A representation changes the view, never assessment evidence or mastery. */
+export function updateLearningRepresentation(ctx:RequestContext,id:string,patch:Partial<NonNullable<LearningUnit['representation']>>){
+ const unit=getLearningUnit(ctx,id);const next={mode:'model' as const,size:3,rotation:25,...unit.representation,...patch};
+ if(!['model','text'].includes(next.mode)||!Number.isInteger(next.size)||next.size<1||next.size>8||!Number.isInteger(next.rotation)||next.rotation<0||next.rotation>360)throw Error('Choose a valid model view. Your saved position is unchanged.');
+ unit.representation=next;return save(ctx,unit);
+}
+/** Revisiting teaching preserves recorded answers and the saved model controls. */
+export function reviewLearningExplanation(ctx:RequestContext,id:string){
+ const unit=flushLearningOutcome(ctx,id);
+ if(!['check','practice'].includes(unit.stage))throw Error('Open a check or practice step before reviewing this explanation.');
+ unit.stage='explain';return save(ctx,unit);
+}
 export function getLearningForConversation(ctx:RequestContext,id:string){return getLearningWorkspace(ctx).units.find(u=>u.conversationId===id);}
 function curriculumFields(ctx:RequestContext){const selected=getLearningWorkspace(ctx).selection;return selected?{board:selected.board,classLevel:selected.classLevel}:{};}
 export async function selectLearningSyllabus(ctx:RequestContext,selection:ContentSelection){const syllabus=await getContentRepository(ctx).getSyllabus(selection.board,selection.classLevel,selection.subject);const db=read();Object.assign(own(db,ctx),{selection,syllabusId:syllabus.id});write(db,ctx);emitInteractionEvent(ctx,{app:'LEARN',action:'view',sessionId:syllabus.id,language:ctx.locale,board:selection.board,classLevel:selection.classLevel});return syllabus;}
+/** Explicit bridge from older cube entry points into the single saved learning activity. */
+export async function openCubeLearningSample(ctx:RequestContext){
+ if(ctx.role!=='student')throw Error('Open a student workspace to use this authored cube activity.');
+ await selectLearningSyllabus(ctx,SAMPLE_SELECTION);
+ return startLearningUnit(ctx,'sample:cube:concept');
+}
 export async function startLearningUnit(ctx:RequestContext,conceptId:string,classId?:string){
  const classContext=classId?getStudentClassLearningContext(ctx,classId):null;
  const selection=getLearningWorkspace(ctx).selection;
@@ -63,7 +89,7 @@ export async function requestUnitTeaching(ctx:RequestContext,id:string,mode:Teac
  if(mode==='practice'&&response.status!=='blocked')unit.question=response.question||(unit.stage==='check'?concept.check:concept.practice?.[Math.min(unit.difficulty-1,Math.max(0,(concept.practice?.length||1)-1))]);
  save(ctx,unit);emitInteractionEvent(ctx,{app,action:'response',sessionId:id,conceptId:unit.conceptId,language:unit.locale,latency:Date.now()-started,responseStatus:response.status,promptVersion:response.status==='ready'?response.promptVersion:undefined,pedagogy,...curriculumFields(ctx)});return unit;
 }
-export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');unit.stage='check';delete unit.answer;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
+export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 /** An outbox retains a scored local answer if the separate cognition adapter cannot write. */
 export function flushLearningOutcome(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.pending){recordLearningOutcome(ctx,unit.pending);delete unit.pending;save(ctx,unit);}return unit;}
 export async function answerLearningQuestion(ctx:RequestContext,id:string,index:number){
@@ -71,6 +97,7 @@ export async function answerLearningQuestion(ctx:RequestContext,id:string,index:
  if(!Number.isInteger(index)||!unit.question.options[index])throw Error('Choose one answer.');if(unit.answer)return unit;
  const correct=index===unit.question.answerIndex;const eventId=`${id}:${unit.stage}:${unit.practiceRound}:${unit.question.id}`;
  unit.answer={index,correct,id:eventId};unit.checkPassed=unit.checkPassed||(unit.stage==='check'&&correct);unit.practicePassed=unit.practicePassed||(unit.stage==='practice'&&correct);unit.difficulty=Math.max(1,Math.min(5,unit.difficulty+(correct?1:-1)));
+ if(!unit.attempts?.some(item=>item.id===eventId))unit.attempts=[...(unit.attempts||[]),{id:eventId,kind:unit.stage==='check'?'check':'practice',question:unit.question,selectedIndex:index,correct,at:now(),locale:unit.locale}];
  unit.pending={id:eventId,conceptId:unit.conceptId,kind:unit.stage==='check'?'check':'practice',correct:correct?1:0,total:1,verified:true,sessionId:id,language:unit.locale,classId:unit.classId,...curriculumFields(ctx)};
  save(ctx,unit);unit=flushLearningOutcome(ctx,id);
  if(!correct){const response=await getTeachingInterface(ctx).requestExplanation({input:'Re-explain this concept after an incorrect check.',conceptId:unit.conceptId,sessionId:id,language:unit.locale,difficulty:unit.difficulty});unit.response=response;save(ctx,unit);}

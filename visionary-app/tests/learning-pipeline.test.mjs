@@ -27,6 +27,102 @@ async function startSample() {
  return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
 }
 
+async function startCubeSample() {
+ const request = ctx(); const syllabus = await pipeline.selectLearningSyllabus(request, SAMPLE_SELECTION);
+ const repo = getContentRepository(request); const topics = await repo.getTopics(syllabus.chapters[1].id);
+ const concepts = await repo.getConcepts(topics[0].id);
+ return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
+}
+
+test('cube entry points reuse one authored unit without importing old topic results as evidence', async () => {
+ const request = ctx();
+ const oldTopics = '[{"id":"old-cube","name":"Understanding cube volume","subject":"Geometry"}]';
+ localStorage.setItem('visionary_entity_Topic', oldTopics);
+ const first = await pipeline.openCubeLearningSample(request);
+ const again = await pipeline.openCubeLearningSample(request);
+ assert.equal(again.id, first.id);
+ assert.equal(first.conceptId, 'sample:cube:concept');
+ assert.equal(pipeline.getLearningWorkspace(request).selection.subject, 'Mathematics');
+ assert.equal(pipeline.getLearningWorkspace(request).units.length, 1);
+ assert.equal(mentor.getStudentState(request).concepts.length, 0);
+ assert.equal(localStorage.getItem('visionary_entity_Topic'), oldTopics);
+ await assert.rejects(pipeline.openCubeLearningSample(ctx('adult', 'parent')), /student workspace/);
+});
+
+test('the cube view resumes in its learning unit and review preserves recorded evidence', async () => {
+ const { request, unit, concept } = await startCubeSample();
+ assert.equal(concept.representations[0].kind, 'cube');
+ const viewed = pipeline.updateLearningRepresentation(request, unit.id, { size: 5, rotation: 180 });
+ assert.deepEqual(viewed.representation, { mode: 'model', size: 5, rotation: 180 });
+ assert.deepEqual(pipeline.getLearningUnit(request, unit.id).representation, viewed.representation);
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ const wrongIndex = (check.question.answerIndex + 1) % check.question.options.length;
+ const answered = await pipeline.answerLearningQuestion(request, unit.id, wrongIndex);
+ assert.equal(answered.answer.correct, false);
+ assert.equal(answered.attempts.length, 1);
+ assert.equal(answered.attempts[0].question.id, check.question.id);
+ assert.equal(answered.attempts[0].selectedIndex, wrongIndex);
+ assert.equal(mentor.getStudentState(request).concepts[0].total, 1);
+ const reviewed = pipeline.reviewLearningExplanation(request, unit.id);
+ assert.equal(reviewed.stage, 'explain');
+ assert.deepEqual(reviewed.representation, viewed.representation);
+ assert.equal(mentor.getStudentState(request).concepts[0].total, 1);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).answer.id, answered.answer.id);
+ const retried = await pipeline.beginComprehension(request, unit.id);
+ assert.equal(retried.stage, 'check');
+ assert.equal(retried.answer, undefined);
+ assert.equal(retried.attempts.length, 1);
+ assert.deepEqual(retried.representation, viewed.representation);
+ const corrected = await pipeline.answerLearningQuestion(request, unit.id, retried.question.answerIndex);
+ assert.equal(corrected.checkPassed, true);
+ assert.equal(corrected.attempts.length, 2);
+ assert.notEqual(corrected.attempts[0].id, corrected.attempts[1].id);
+ assert.equal(mentor.getStudentState(request).concepts[0].total, 2);
+});
+
+test('review queue uses recorded evidence timing and a new review retains completed work', async () => {
+ const { request, unit } = await startSample();
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, check.question.answerIndex);
+ let queue = pipeline.getLearningReviewQueue(request);
+ assert.equal(queue.length, 1);
+ assert.equal(queue[0].due, false);
+ assert.equal(queue[0].recordedAnswers, 1);
+ assert.equal(queue[0].dueAt, '2026-09-30T12:00:00.000Z');
+ const practice = await pipeline.nextLearningQuestion(request, unit.id);
+ const practiced = await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex);
+ assert.equal(practiced.attempts.length, 2);
+ assert.deepEqual(practiced.attempts.map(item => item.kind), ['check', 'practice']);
+ assert.equal((await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex)).attempts.length, 2);
+ const artifact = await pipeline.createLearningProject(request, unit.id);
+ const completed = workspace.saveArtifact(request, { ...artifact, body: 'A completed model and reflection.', milestones: [true, true, true], status: 'completed' });
+ pipeline.recordProjectSave(request, completed);
+ workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-10-01T12:00:00Z') });
+ mentor.configureMentorClock(() => new Date('2026-10-01T12:00:00Z'));
+ queue = pipeline.getLearningReviewQueue(request);
+ assert.equal(queue[0].due, true);
+ assert.equal(queue[0].unit.stage, 'completed');
+ const reopened = await pipeline.startLearningUnit(request, unit.conceptId);
+ assert.notEqual(reopened.id, unit.id);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'completed');
+ assert.equal(pipeline.getLearningReviewQueue(request).length, 1);
+});
+
+test('an invalid or failed model-view save leaves the prior saved view intact', async () => {
+ const { request, unit } = await startCubeSample();
+ pipeline.updateLearningRepresentation(request, unit.id, { mode: 'text', size: 4, rotation: 90 });
+ const before = pipeline.getLearningUnit(request, unit.id).representation;
+ assert.throws(() => pipeline.updateLearningRepresentation(request, unit.id, { size: 9 }), /valid model view/);
+ const set = localStorage.setItem;
+ localStorage.setItem = (key, value) => { if (key === 'visionary_learning_pipeline_v1') throw Error('full'); set(key, value); };
+ try { assert.throws(() => pipeline.updateLearningRepresentation(request, unit.id, { mode: 'model' }), /could not be saved/); }
+ finally { localStorage.setItem = set; }
+ assert.deepEqual(pipeline.getLearningUnit(request, unit.id).representation, before);
+ assert.deepEqual(pipeline.updateLearningRepresentation(request, unit.id, { mode: 'model' }).representation, { ...before, mode: 'model' });
+});
+
 test('student Home → Learn → Ask → Practice → Build persists one connected activity and evidence', async () => {
  const { request, unit, concept } = await startSample();
  assert.equal((await getHome(request)).priority.action.path, `/dashboard/learn?unit=${unit.id}`);

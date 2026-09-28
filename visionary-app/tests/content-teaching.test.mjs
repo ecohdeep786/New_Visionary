@@ -38,6 +38,29 @@ test('a database miss persists a numbered provisional hierarchy and one scoped g
  assert.equal(await getContentRepository(ctx('minor-cbse')).getConcept(concepts[0].id), null);
 });
 
+test('content issues are local, workspace-scoped and retryable without duplicate reports', async () => {
+ configureContentRepository({ async getSyllabus() { return officialGraph(); } });
+ const repository = getContentRepository(ctx());
+ await syllabus(repository);
+ const first = await repository.reportIssue('official:concept', 'translation', 'hi');
+ assert.equal(first.locale, 'hi');
+ assert.equal(first.sourceVersion, source.version);
+ assert.equal(first.state, 'saved-locally');
+ assert.equal((await repository.reportIssue('official:concept', 'translation', 'hi')).id, first.id);
+ assert.deepEqual(await getContentRepository(ctx()).getContentIssues(), [first]);
+ const set = localStorage.setItem; localStorage.setItem = () => { throw Error('full'); };
+ try { await assert.rejects(repository.reportIssue('official:concept', 'question'), /could not be saved/); }
+ finally { localStorage.setItem = set; }
+ assert.deepEqual(await repository.getContentIssues(), [first]);
+ const retried = await repository.reportIssue('official:concept', 'question');
+ assert.notEqual(retried.id, first.id);
+ assert.equal((await repository.getContentIssues()).length, 2);
+ await assert.rejects(repository.reportIssue('official:concept', 'unknown'), /valid content issue/);
+ seedDemo('minor-cbse');
+ assert.deepEqual(await getContentRepository(ctx('minor-cbse')).getContentIssues(), []);
+ await assert.rejects(getContentRepository(ctx('minor-cbse')).reportIssue('official:concept', 'source'), /unavailable in your workspace/);
+});
+
 test('new provisional object IDs never contain raw personal labels and remain deterministic', async () => {
  const sensitive = { board: 'person@example.test', classLevel: '+91 98765 43210', subject: 'My private name' };
  const a = await syllabus(getContentRepository(ctx()), sensitive); const b = await syllabus(getContentRepository(ctx('minor-cbse')), sensitive);
