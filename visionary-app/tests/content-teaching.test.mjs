@@ -61,6 +61,16 @@ test('content issues are local, workspace-scoped and retryable without duplicate
  await assert.rejects(getContentRepository(ctx('minor-cbse')).reportIssue('official:concept', 'source'), /unavailable in your workspace/);
 });
 
+test('duplicate or incomplete project criteria cannot replace a saved curriculum', async () => {
+ const repository = getContentRepository(ctx());
+ configureContentRepository({ async getSyllabus() { return officialGraph({ concepts: [officialConcept({ project: { title: 'Apply', brief: 'Make an artifact.', criteria: [{ id: 'same', label: 'First', prompt: 'Show work.' }, { id: 'same', label: 'Second', prompt: 'Reflect.' }] } })] }); } });
+ await assert.rejects(syllabus(repository), /project criteria/);
+ assert.equal(memory.get(contentKey), undefined);
+ configureContentRepository({ async getSyllabus() { return officialGraph({ concepts: [officialConcept({ project: { title: 'Apply', brief: 'Make an artifact.', criteria: [{ id: 'evidence', label: '', prompt: 'Show work.' }] } })] }); } });
+ await assert.rejects(syllabus(repository), /project criteria/);
+ assert.equal(memory.get(contentKey), undefined);
+});
+
 test('new provisional object IDs never contain raw personal labels and remain deterministic', async () => {
  const sensitive = { board: 'person@example.test', classLevel: '+91 98765 43210', subject: 'My private name' };
  const a = await syllabus(getContentRepository(ctx()), sensitive); const b = await syllabus(getContentRepository(ctx('minor-cbse')), sensitive);

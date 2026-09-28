@@ -37,11 +37,11 @@ export default function ContentIssueReport({ ctx, concept, locale }) {
  return <details className="v-card" id="content-issue-report">
   <summary className="cursor-pointer font-medium">Report a content problem</summary>
   <p className="v-muted mt-3 text-sm">Choose a category. This report stays in this workspace on this device; no review team receives it yet.</p>
-  <form className="mt-4 flex flex-wrap items-end gap-3" onSubmit={save}>
-   <label className="min-w-0 flex-1 text-sm">What is the problem?
+  <form className="mt-4 grid gap-3 sm:flex sm:items-end" onSubmit={save}>
+   <label className="min-w-0 w-full text-sm sm:flex-1">What is the problem?
     <select className="v-field mt-2" value={kind} disabled={busy} onChange={event => setKind(event.target.value)}>{Object.entries(issueNames).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select>
    </label>
-   <button className="v-button" disabled={busy}>{busy ? 'Saving…' : 'Save issue locally'}</button>
+   <button className="v-button justify-self-start" disabled={busy}>{busy ? 'Saving…' : 'Save issue locally'}</button>
   </form>
   {current.length > 0 && <p className="v-muted mt-3 text-sm">{current.length} {current.length === 1 ? 'issue' : 'issues'} saved for this concept and language on this device.</p>}
   {message && <p className="v-notice mt-3" role="status">{message}</p>}

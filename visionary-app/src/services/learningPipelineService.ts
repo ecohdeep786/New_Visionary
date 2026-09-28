@@ -108,12 +108,18 @@ export async function createLearningProject(ctx:RequestContext,id:string){
  const unit=flushLearningOutcome(ctx,id);if(!unit.checkPassed||!unit.practicePassed)throw Error('Complete a comprehension check and practice step before starting the guided project. Blank projects remain available in Build.');
  const artifacts=snapshot(ctx).artifacts;const existing=artifacts.find(a=>a.id===unit.artifactId)||artifacts.find(a=>a.learningSessionId===id&&a.conceptId===unit.conceptId);
  if(existing){if(unit.artifactId!==existing.id||!['build','completed'].includes(unit.stage)){unit.artifactId=existing.id;if(unit.stage!=='completed')unit.stage='build';save(ctx,unit);}emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return existing;}
- const concept=await getContentRepository(ctx).getConcept(unit.conceptId);if(!concept)throw Error('Project context unavailable.');
- const artifact=saveArtifact(ctx,{title:concept.project?.title||`Apply: ${concept.title}`,body:concept.project?.brief||'Define an outcome, create an artifact, and describe the evidence. Guidance is not connected yet.',conceptId:unit.conceptId,learningSessionId:id});
+ const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);if(!concept)throw Error('Project context unavailable.');
+ const rubric=concept.project?.criteria?.length?{criteria:concept.project.criteria,responses:{},locale:unit.locale,sourceProvider:concept.provenance?.provider,sourceVersion:concept.provenance?.version}:undefined;
+ const artifact=saveArtifact(ctx,{title:concept.project?.title||`Apply: ${concept.title}`,body:'',projectBrief:concept.project?.brief||'Define an outcome, create an artifact, and describe the evidence. Guidance is not connected yet.',conceptId:unit.conceptId,learningSessionId:id,rubric});
  unit.artifactId=artifact.id;unit.stage='build';save(ctx,unit);emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return artifact;
 }
+export function validateProjectCompletion(artifact:Artifact){
+ if(artifact.status!=='completed'||!artifact.conceptId)return;
+ if(!artifact.body.trim()||!artifact.milestones.every(Boolean))throw Error('Complete the project milestones and add your work before recording application evidence.');
+ if(artifact.rubric?.criteria.some(item=>!artifact.rubric?.responses[item.id]?.trim()))throw Error('Respond to every project criterion before recording application evidence. Your draft is kept.');
+}
 export function recordProjectSave(ctx:RequestContext,artifact:Artifact){
- if(artifact.status==='completed'&&artifact.conceptId&&(!artifact.body.trim()||!artifact.milestones.every(Boolean)))throw Error('Complete the project milestones and add your work before recording application evidence.');
+ validateProjectCompletion(artifact);
  emitInteractionEvent(ctx,{id:artifact.status==='completed'?`artifact:${artifact.id}:completed-save`:undefined,app:'BUILD',action:'save',sessionId:artifact.learningSessionId||artifact.id,conceptId:artifact.conceptId,language:ctx.locale,...curriculumFields(ctx)});
  if(artifact.status!=='completed'||!artifact.conceptId)return;
  const linkedUnit=artifact.learningSessionId?getLearningUnit(ctx,artifact.learningSessionId):undefined;

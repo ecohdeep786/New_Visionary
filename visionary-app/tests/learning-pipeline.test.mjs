@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import * as pipeline from '../src/services/learningPipelineService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
+import * as editorDraft from '../src/services/artifactEditorDraft.ts';
 import { getContentRepository, SAMPLE_SELECTION, configureContentRepository } from '../src/services/contentRepository.ts';
 import { configureTeachingInterface } from '../src/services/teachingInterface.ts';
 import { getHome } from '../src/services/homeService.ts';
@@ -47,6 +48,42 @@ test('cube entry points reuse one authored unit without importing old topic resu
  assert.equal(mentor.getStudentState(request).concepts.length, 0);
  assert.equal(localStorage.getItem('visionary_entity_Topic'), oldTopics);
  await assert.rejects(pipeline.openCubeLearningSample(ctx('adult', 'parent')), /student workspace/);
+});
+
+test('authored cube criteria require written self review without claiming a grade', async () => {
+ const { request, unit } = await startCubeSample();
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, check.question.answerIndex);
+ const practice = await pipeline.nextLearningQuestion(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex);
+ const artifact = await pipeline.createLearningProject(request, unit.id);
+ assert.deepEqual(artifact.rubric.criteria.map(item => item.id), ['capacity', 'comparison', 'safety']);
+ assert.equal(artifact.rubric.sourceVersion, '1');
+ const candidate = { ...artifact, body: 'I compared two cube boxes and described my material.', milestones: [true, true, true], status: 'completed' };
+ assert.throws(() => pipeline.validateProjectCompletion(candidate), /every project criterion/);
+ assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 0);
+ candidate.rubric = { ...artifact.rubric, responses: Object.fromEntries(artifact.rubric.criteria.map(item => [item.id, `My evidence for ${item.id}.`])) };
+ assert.doesNotThrow(() => pipeline.validateProjectCompletion(candidate));
+ const saved = workspace.saveArtifact(request, candidate);
+ pipeline.recordProjectSave(request, saved);
+ assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 1);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'completed');
+});
+
+test('interrupted project edits recover only inside their workspace and can be discarded', () => {
+ const request = ctx();
+ const saved = workspace.saveArtifact(request, { title: 'Cube model', body: 'First version', status: 'draft' });
+ const edited = { ...saved, title: 'Better cube model', body: 'New unsaved reasoning', milestones: [true, false, false] };
+ editorDraft.saveArtifactEditorDraft(request, edited);
+ assert.equal(workspace.snapshot(request).artifacts.find(item => item.id === saved.id).body, 'First version');
+ const recovered = editorDraft.getArtifactEditorDraft(request, saved.id);
+ assert.equal(editorDraft.hasUnsavedArtifactEdits(saved, recovered), true);
+ assert.equal(editorDraft.recoverArtifactEditorDraft(saved, recovered).body, 'New unsaved reasoning');
+ workspace.seedDemo('minor-cbse');
+ assert.throws(() => editorDraft.getArtifactEditorDraft(ctx('minor-cbse'), saved.id), /unavailable in this workspace/);
+ editorDraft.clearArtifactEditorDraft(request, saved.id);
+ assert.equal(editorDraft.getArtifactEditorDraft(request, saved.id), null);
 });
 
 test('the cube view resumes in its learning unit and review preserves recorded evidence', async () => {
