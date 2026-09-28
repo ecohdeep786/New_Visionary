@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import studentHero from "@/assets/student-hero-main-800w.webp";
-import teacherHero from "@/assets/teacher-hero-main-800w.webp";
-import parentHero from "@/assets/parent-hero-main-800w.webp";
-import proHero from "@/assets/pro-face-main-800w.webp";
-import orgHero from "@/assets/org-face-main-800w.webp";
+import professionalHero from "@/assets/hero-cutouts/professional-800w.webp";
+import teacherHero from "@/assets/hero-cutouts/teacher-800w.webp";
+import studentHero from "@/assets/hero-cutouts/student-800w.webp";
+import parentHero from "@/assets/hero-cutouts/parent-800w.webp";
+import orgHero from "@/assets/hero-cutouts/organization-800w.webp";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -262,18 +262,21 @@ const FAQ_ITEMS = [
    same proportional breathing space. Non-interactive — the Meet Visionary
    section owns per-category navigation. */
 const LINEUP_WIDTHS = {
-  outer: "clamp(48px, min(23vh, 12.3vw), 240px)",
-  mid: "clamp(62px, min(29vh, 15.5vw), 300px)",
-  center: "clamp(80px, min(34vh, 19vw), 380px)",
+  outer: "clamp(54px, min(23vh, 12.3vw), 240px)",
+  mid: "clamp(70px, min(29vh, 15.5vw), 300px)",
+  center: "clamp(88px, min(34vh, 19vw), 380px)",
 };
 
 const LANDING_HERO_LINEUP = [
-  { label: "Professional", src: proHero, w: "outer" },
+  { label: "Professional", src: professionalHero, w: "outer" },
   { label: "Teacher", src: teacherHero, w: "mid" },
   { label: "Student", src: studentHero, w: "center" },
   { label: "Parent", src: parentHero, w: "mid" },
   { label: "Organization", src: orgHero, w: "outer" },
 ];
+
+/* the cast overlaps slightly on desktop — one group, not five cards */
+const overlapCls = (i) => (i > 0 ? "lg:-ml-6 xl:-ml-8" : "");
 
 const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
@@ -315,49 +318,42 @@ to{opacity:1}
 }`}
       </style>
 
+      {/* the stage — white. The cutouts' baked mist fades dissolve them into
+          it, so the cast stands in light without any atmosphere layer. */}
+
       <div
-        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 text-center sm:px-8"
-        style={{ paddingTop: "clamp(32px, 6.5vh, 96px)", paddingBottom: "clamp(32px, 5.5vh, 80px)" }}
+        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 pt-14 pb-12 text-center sm:px-8 lg:pt-[min(8.5vh,110px)] lg:pb-[4.5vh]"
       >
-        {/* the five journeys — one product family, the hero's lead visual.
-            Pure white behind them: the studio photos blend seamlessly, so no
-            atmosphere layer — anything tinted exposes the photo squares. */}
+        {/* the five journeys — one cast, standing together in the light.
+            The figures are background-free cutouts with a baked mist fade,
+            so they can share a stage and overlap like a family portrait. */}
         <div className="relative flex w-full flex-col items-center">
           {/* portraits — stepped heights, bottom-aligned on one ground line;
               after the entrance the whole row levitates almost imperceptibly */}
           <div
-            className="apple-float relative z-10 flex items-end justify-center gap-1.5 sm:gap-3 lg:gap-5"
+            className="apple-float relative z-10 flex items-end justify-center gap-0 sm:gap-3 lg:gap-4"
             style={{ animation: "appleFloat 7s ease-in-out 2.6s infinite" }}
           >
             {LANDING_HERO_LINEUP.map((p, i) => (
               <div
                 key={p.label}
-                className="apple-anim"
+                className={`apple-anim relative ${overlapCls(i)}`}
                 style={{
                   width: LINEUP_WIDTHS[p.w],
+                  zIndex: p.w === "center" ? 30 : p.w === "mid" ? 20 : 10,
                   animation: "appleRise 1.1s cubic-bezier(0.16,1,0.3,1) both",
                   animationDelay: `${100 + i * 80}ms`,
                 }}
               >
-                <div className="relative">
-                  <img
-                    src={p.src}
-                    alt=""
-                    aria-hidden="true"
-                    loading="eager"
-                    decoding="async"
-                    draggable="false"
-                    className="h-auto w-full select-none"
-                  />
-                  {/* white dissolve over the photo's bottom cut — the per-image
-                      version of the category scrim, so portraits stand on the
-                      page instead of ending in a hard edge */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 h-[36%]"
-                    style={{ background: "linear-gradient(to top, #ffffff 16%, rgba(255,255,255,0))" }}
-                  />
-                </div>
+                <img
+                  src={p.src}
+                  alt=""
+                  aria-hidden="true"
+                  loading="eager"
+                  decoding="async"
+                  draggable="false"
+                  className="h-auto w-full select-none"
+                />
               </div>
             ))}
           </div>
@@ -365,9 +361,9 @@ to{opacity:1}
           {/* contact shadow — tight and quiet, like a product shot */}
           <div
             aria-hidden="true"
-            className="apple-anim relative z-10 -mt-1.5 h-[11px] w-[min(1180px,92%)] rounded-[100%]"
+            className="apple-anim relative z-10 -mt-1.5 h-[11px] w-[min(1280px,94%)] rounded-[100%]"
             style={{
-              backgroundColor: "rgba(0,0,0,0.085)",
+              backgroundColor: "rgba(31,35,45,0.12)",
               filter: "blur(9px)",
               animation: "appleRise 1s cubic-bezier(0.16,1,0.3,1) both",
               animationDelay: "480ms",
@@ -375,11 +371,11 @@ to{opacity:1}
           />
 
           {/* labels — identification only, never links (Meet section navigates) */}
-          <div className="mt-3 flex items-start justify-center gap-1.5 sm:gap-3 lg:gap-5">
-            {LANDING_HERO_LINEUP.map((p) => (
+          <div className="mt-3 flex items-start justify-center gap-1.5 sm:gap-3 lg:gap-4">
+            {LANDING_HERO_LINEUP.map((p, i) => (
               <span
                 key={p.label}
-                className="apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[10px] sm:block"
+                className={`apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[10px] sm:block ${overlapCls(i)}`}
                 style={{
                   width: LINEUP_WIDTHS[p.w],
                   color: COLORS.slate,
@@ -395,7 +391,7 @@ to{opacity:1}
 
         {/* title → tagline → promise — the Apple/Google hero hierarchy at the
             category display scale; vh caps keep shorter laptops whole */}
-        <h1 className="m-0" style={{ marginTop: "clamp(28px, 6vh, 96px)" }}>
+        <h1 className="m-0 mt-[max(28px,6vh)] lg:mt-[5.5vh]">
           <span
             className="apple-anim block font-medium leading-[1.02] tracking-[0] text-[#121317]"
             style={{
@@ -420,7 +416,7 @@ to{opacity:1}
           </span>
         </h1>
 
-        {/* promise — the one-sentence body, Google-Workspace width */}
+        {/* promise — Google writing style: plain, personal, one breath */}
         <p
           className="apple-anim mx-auto mt-3 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[16.5px] lg:text-[17.5px]"
           style={{
@@ -430,15 +426,14 @@ to{opacity:1}
           }}
         >
           Visionary understands what you're trying to do, adapts to how you
-          work, and carries useful context forward — across learning, teaching,
-          supporting, building and leading.
+          work, and carries your context forward — across learning, teaching,
+          work, and life.
         </p>
 
         {/* CTA pair — same pills as every category hero */}
         <div
-          className="apple-anim flex flex-wrap items-center justify-center gap-3"
+          className="apple-anim mt-[max(24px,3.5vh)] flex flex-wrap items-center justify-center gap-3 lg:mt-[3vh]"
           style={{
-            marginTop: "clamp(24px, 3.5vh, 48px)",
             animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
             animationDelay: "860ms",
           }}
@@ -461,12 +456,6 @@ to{opacity:1}
           </Link>
         </div>
       </div>
-
-      {/* quiet transition into the next story */}
-      <div
-        aria-hidden="true"
-        className="mx-auto h-px w-[88%] max-w-[1420px] bg-[#121317]/[0.08]"
-      />
     </section>
   );
 });
