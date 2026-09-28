@@ -108,7 +108,7 @@ function DownloadHeroSection() {
 
         {/* The choice — Web or App */}
         <div className="mx-auto mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 sm:grid-cols-2">
-          <div className="flex flex-col rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+          <div className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-8 pb-20" style={{ borderColor: COLORS.mist }}>
             <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
               <Globe className="h-5 w-5" strokeWidth={1.8} />
             </span>
@@ -116,16 +116,18 @@ function DownloadHeroSection() {
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
+            {/* google.com card curve — tint sweeps into the corner with the card's action nested in it */}
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[60px] w-[196px] rounded-tl-[24px] bg-[#e8f0fe]" />
             <Link
               to="/register"
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+              className="absolute bottom-0 right-0 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
               style={{ backgroundColor: COLORS.blue }}
             >
               Open Visionary
             </Link>
           </div>
 
-          <div className="flex flex-col rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+          <div className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-8 pb-20" style={{ borderColor: COLORS.mist }}>
             <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
               <Download className="h-5 w-5" strokeWidth={1.8} />
             </span>
@@ -133,10 +135,11 @@ function DownloadHeroSection() {
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Native apps for desktop and mobile — faster, offline-friendly, and synced to your account.
             </p>
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[60px] w-[196px] rounded-tl-[24px] bg-[#e8f0fe]" />
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              className="absolute bottom-0 right-0 inline-flex h-12 items-center justify-center rounded-full border bg-white px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
             >
               See platforms

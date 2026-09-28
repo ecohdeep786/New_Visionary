@@ -191,20 +191,23 @@ export default function ReferralPage() {
 
             <div className="mx-auto mt-14 grid max-w-[1080px] gap-4 md:grid-cols-3">
               {DESTINATIONS.map(({ subject, label, to, alt, copy }) => (
-                <article key={label} className="flex min-h-[300px] flex-col rounded-2xl g-card bg-white p-6">
+                <article key={label} className="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6">
                   <span className="flex h-[104px] w-[104px] items-center justify-center rounded-[22px] g-card bg-white">
                     <SpotIllustration subject={subject} className="h-[76px] w-[76px]" title={label} />
                   </span>
                   <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#202124]">{label}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-                    <Link to={to} className="inline-flex min-h-9 items-center gap-1.5 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                      Open {to} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                    </Link>
                     <Link to={alt} className="inline-flex min-h-9 items-center gap-1.5 rounded-sm text-[14px] font-medium text-[#5f6368] transition-colors hover:text-[#202124] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                       or {alt} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                     </Link>
                   </div>
+                  {/* google.com card curve — the page background sweeps into the
+                      corner with the card's primary destination nested in it */}
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#f8f9fa]" />
+                  <Link to={to} aria-label={`Open ${to}`} className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                    <ArrowUpRight className="h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
+                  </Link>
                 </article>
               ))}
             </div>

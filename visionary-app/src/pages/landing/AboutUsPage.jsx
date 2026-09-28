@@ -88,7 +88,7 @@ function MissionSection() {
         <h2 className="max-w-[760px] text-[40px] font-normal leading-[1.07] tracking-[-0.045em] text-[#202124] sm:text-[52px] lg:text-[64px]">Understanding should open the next door.</h2>
         <p className="max-w-[480px] pb-1 text-[18px] leading-[1.65] text-[#5f6368]">People move between classrooms, homes, work, and new ambitions. Too often, what they have learned gets left behind at each change. We are building Visionary so understanding can grow with them.</p>
       </div>
-      <div id="team" className="mt-14 grid scroll-mt-28 overflow-hidden rounded-[32px] g-card md:grid-cols-[1.1fr_0.9fr]">
+      <div id="team" className="relative mt-14 grid scroll-mt-28 overflow-hidden rounded-[32px] g-card md:grid-cols-[1.1fr_0.9fr]">
         <div className="flex min-h-[320px] flex-col bg-[#e8f0fe] p-8 sm:p-10 lg:p-14">
           <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#174ea6]">Our mission</p>
           <span aria-hidden="true" className="mt-8 select-none text-[88px] font-medium leading-[0.55] text-[#0b57d0]">"</span>
@@ -97,7 +97,12 @@ function MissionSection() {
           </p>
           <p className="mt-10 text-[14px] text-[#3c4043]">Visionary · the mission we build toward</p>
         </div>
-        <div className="flex min-h-[260px] items-center justify-center bg-[#f8fbff] p-8"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
+        <div className="flex min-h-[260px] items-center justify-center bg-[#f8fbff] p-8 pb-20 sm:pb-24"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
+        {/* google.com card curve — the page-background cutout sweeps into the
+            bottom-right of the illustration panel and the card's action pill
+            sits nested in it, as on the "Benefits at Google" card */}
+        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[212px] rounded-tl-[28px] bg-white" />
+        <Link to="/how-it-works" className="absolute bottom-0 right-0 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
       </div>
     </Reveal>
   </section>;
@@ -131,9 +136,13 @@ function RolesSection() {
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[760px]"><Eyebrow>For every perspective</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Different people. One connected journey.</h2></div><p className="max-w-[360px] text-[16px] leading-[1.65] text-[#5f6368]">Find the experience that fits your work today. Visionary can keep growing with where you go next.</p></div>
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group flex flex-col overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
+        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group relative flex flex-col overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
           <div className="overflow-hidden" style={{ backgroundColor: role.tint }}><img src={role.image} alt="" loading="lazy" style={{ mixBlendMode: "multiply" }} className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
-          <div className="flex flex-1 flex-col p-6"><div className="flex items-center justify-between gap-5"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
+          <div className="flex flex-1 flex-col p-6 pb-16"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
+          {/* google.com card curve — the card's own image tint sweeps into the
+              white body corner with the card's action button nested in it */}
+          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[136px] rounded-tl-[20px]" style={{ backgroundColor: role.tint }} />
+          <span className="absolute bottom-0 right-0 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
         </Link>)}
       </div>
     </Reveal>
@@ -167,9 +176,13 @@ function ExploreSection() {
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Explore further</Eyebrow><h2 className="mt-5 max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">The work around the product.</h2>
       <div className="mt-12 grid gap-5 sm:grid-cols-2">
-        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
-          <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#5f6368]">{item.copy}</p></div><ArrowRight className="mt-7 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group relative grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
+          <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#5f6368]">{item.copy}</p></div></div>
           <div className="flex items-center justify-center" style={{ backgroundColor: item.tint }}><SpotIllustration subject={item.subject} className="h-28 w-28 sm:h-36 sm:w-36" /></div>
+          {/* google.com card curve — a page-background cutout sweeps into the
+              bottom-right corner and the card's own arrow sits nested in it */}
+          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-white" />
+          <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
         </Link>)}
       </div>
     </Reveal>

@@ -59,9 +59,27 @@ export async function submitClassworkResponses(ctx,{assignmentId,text='',respons
  }
  if(!content||content.length>50000)throw new Error('Add a response before submitting classwork.');
  const existing=await appClient.entities.Submission.filter({assignment_id:assignmentId,student_email:account.email});
- if(existing.length)return existing[0];
+ if(existing.length){
+  const previous=existing[0];
+  if(previous.status!=='revision_requested')return previous;
+  return appClient.entities.Submission.update(previous.id,{text:content,responses:answers,status:'submitted',grade:null,feedback:'',graded_date:null,
+   submitted_date:new Date().toISOString(),attempt:(previous.attempt||1)+1,
+   revision_history:[...(previous.revision_history||[]),{text:previous.text,responses:previous.responses||[],feedback:previous.feedback||'',submitted_date:previous.submitted_date,graded_date:previous.graded_date,attempt:previous.attempt||1}]});
+ }
  return appClient.entities.Submission.create({assignment_id:assignment.id,class_id:assignment.class_id,teacher_id:assignment.teacher_id||assignment.created_by_id,teacher_email:assignment.teacher_email,
   student_id:account.id,student_name:account.full_name||account.email.split('@')[0],student_email:account.email,text:content,...(answers.length?{responses:answers}:{}),status:'submitted',submitted_date:new Date().toISOString().slice(0,10)});
+}
+export async function reviewClasswork(ctx,{submissionId,attempt=1,status,grade,feedback=''}){
+ await teacherContext(ctx);
+ const submission=await appClient.entities.Submission.get(submissionId);
+ if(!submission)throw new Error('This submission is no longer available.');
+ if((submission.attempt||1)!==attempt)throw new Error('A newer response arrived. Reopen the review before returning feedback.');
+ if(!['graded','revision_requested'].includes(status))throw new Error('Choose Return or Request revision.');
+ if(typeof feedback!=='string'||feedback.length>5000)throw new Error('Keep feedback within 5,000 characters.');
+ if(status==='revision_requested'&&!feedback.trim())throw new Error('Explain what the learner should revise.');
+ const assignment=await appClient.entities.Assignment.get(submission.assignment_id);
+ if(status==='graded'&&(grade===''||grade==null||!Number.isFinite(Number(grade))||Number(grade)<0||Number(grade)>(assignment?.points||100)))throw new Error('Enter a grade within the assignment point range.');
+ return appClient.entities.Submission.update(submissionId,{status,grade:status==='graded'?Number(grade):null,feedback:feedback.trim(),graded_date:new Date().toISOString()});
 }
 export async function organizationRoster(ctx){
  const account=await appClient.auth.me();if(account.id!==ctx.personId||ctx.role!=='organization')throw new Error('Open your organization workspace first.');snapshot(ctx);

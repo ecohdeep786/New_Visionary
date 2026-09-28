@@ -217,12 +217,14 @@ function HeroCard({ idPrefix = "hero" }) {
             className={field} />
         </div>
       </div>
-      <div className="mt-8 flex justify-end">
-        <button type="submit"
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
-          Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </button>
-      </div>
+      {/* google.com card curve — tint sweeps into the card corner with the
+          form's submit button nested in it (card wrappers are the positioned
+          ancestors, so this pins to the card's bottom-right) */}
+      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[60px] w-[240px] rounded-tl-[16px] bg-[#e8f0fe]" />
+      <button type="submit"
+        className="absolute bottom-0 right-0 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
+        Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
+      </button>
     </form>
   );
 }
@@ -248,13 +250,13 @@ export default function CareersPage() {
                   className="absolute inset-0 h-full w-full object-cover" />
                 <div aria-hidden="true" className="absolute inset-0 hidden bg-gradient-to-r from-black/10 to-transparent lg:block" />
                 {/* Desktop card */}
-                <div className="absolute left-10 top-1/2 hidden w-[520px] -translate-y-1/2 rounded-2xl bg-white p-9 shadow-[0_8px_28px_rgba(0,0,0,0.22)] lg:block xl:left-16 xl:w-[560px]">
+                <div className="absolute left-10 top-1/2 hidden w-[520px] -translate-y-1/2 overflow-hidden rounded-2xl bg-white p-9 pb-24 shadow-[0_8px_28px_rgba(0,0,0,0.22)] lg:block xl:left-16 xl:w-[560px]">
                   <HeroCard idPrefix="hero-desktop" />
                 </div>
               </div>
               {/* Mobile card */}
               <div className="relative z-10 mx-auto -mt-40 max-w-[680px] px-4 sm:px-6 lg:hidden">
-                <div className="rounded-2xl bg-white p-6 shadow-[0_8px_28px_rgba(0,0,0,0.18)] sm:p-8">
+                <div className="relative overflow-hidden rounded-2xl bg-white p-6 pb-24 shadow-[0_8px_28px_rgba(0,0,0,0.18)] sm:p-8 sm:pb-24">
                   <HeroCard idPrefix="hero-mobile" />
                 </div>
               </div>

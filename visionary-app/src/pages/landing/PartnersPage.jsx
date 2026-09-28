@@ -461,7 +461,7 @@ export default function PartnersPage() {
             for organizations seeking help rather than partnership */}
         <section id="support" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
           <Reveal className="mx-auto max-w-[1240px]">
-            <div className="grid items-center gap-10 rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
+            <div className="relative grid items-center gap-10 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">For organizations seeking support</p>
                 <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[38px]">
@@ -471,9 +471,6 @@ export default function PartnersPage() {
                   Tell us about your organization, location, and goal. We can explain the available Visionary options and, when appropriate, whether partner support is available for that need.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-                  <Link to="/contact" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                    Contact Visionary <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
                   <Link to="/help" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                     Browse help topics <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -484,6 +481,12 @@ export default function PartnersPage() {
                   <SpotIllustration subject="compass" className="h-[120px] w-[120px]" title="A compass pointing toward the right support" />
                 </div>
               </div>
+              {/* google.com card curve — the page background sweeps into the corner
+                  with the banner's primary destination nested in it */}
+              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-white" />
+              <Link to="/contact" aria-label="Contact Visionary" className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                <ArrowUpRight className="h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
+              </Link>
             </div>
           </Reveal>
         </section>

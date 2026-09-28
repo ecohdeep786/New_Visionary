@@ -438,30 +438,29 @@ export default function ResearchNewsPage() {
               Help us shape the future.
             </h2>
             <div className="mt-12 grid gap-5 lg:grid-cols-2">
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl g-card">
+              <Link to="/community" className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                 <img src={imgFutureCommunity} alt="A teacher explaining an idea" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
-                <div className="flex flex-1 flex-col p-7">
+                <div className="flex flex-1 flex-col p-7 pb-16">
                   <h3 className="text-[23px] font-normal leading-[1.3] text-[#202124]">Join the community</h3>
                   <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">
                     Learners, teachers, and parents use the product every day — their experience is a primary source for every question on this page.
                   </p>
-                  <div className="mt-auto pt-5">
-                    <TextLink to="/community">Explore the community <ArrowRight className="h-4 w-4" aria-hidden="true" /></TextLink>
-                  </div>
                 </div>
-              </article>
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl g-card">
+                {/* google.com card curve — tint sweeps into the white corner with the card's action nested in it */}
+                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[136px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                <span className="absolute bottom-0 right-0 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+              </Link>
+              <Link to="/careers" className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                 <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
-                <div className="flex flex-1 flex-col p-7">
+                <div className="flex flex-1 flex-col p-7 pb-16">
                   <h3 className="text-[23px] font-normal leading-[1.3] text-[#202124]">Work with us</h3>
                   <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">
                     Help turn these questions into a product — research-minded people across engineering, design, and evidence.
                   </p>
-                  <div className="mt-auto pt-5">
-                    <TextLink to="/careers">See careers at Visionary <ArrowRight className="h-4 w-4" aria-hidden="true" /></TextLink>
-                  </div>
                 </div>
-              </article>
+                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[136px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                <span className="absolute bottom-0 right-0 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+              </Link>
             </div>
             <div className="mt-12 flex flex-col gap-2 border-t border-[#e8eaed] pt-8 sm:flex-row sm:items-center sm:justify-between">
               <div>

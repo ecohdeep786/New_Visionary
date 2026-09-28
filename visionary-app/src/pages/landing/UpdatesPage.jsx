@@ -120,7 +120,7 @@ export default function UpdatesPage() {
         {/* FEATURED — the editorial lead story */}
         <section aria-labelledby="featured-title" className="px-6 pb-16 sm:px-8 lg:px-10 lg:pb-24">
           <Reveal className="mx-auto max-w-[1240px]">
-            <article className="grid items-center gap-8 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:p-12">
+            <article className="relative grid items-center gap-8 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:p-12">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#202124]">Featured</span>
@@ -132,18 +132,19 @@ export default function UpdatesPage() {
                 <p className="mt-4 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
                   Visionary&rsquo;s language journeys run in English, Hindi, and Bengali today, and the team can reply in all three. More languages are on the roadmap — the loop stays the same: Learn, Ask, Practice, Build.
                 </p>
-                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <Link to="/how-it-works" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                    How the loop works <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <p className="text-[13px] tracking-[0.01em] text-[#5f6368]">September 2026</p>
-                </div>
+                <p className="mt-6 text-[13px] tracking-[0.01em] text-[#5f6368]">September 2026</p>
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="flex h-[220px] w-full max-w-[340px] items-center justify-center rounded-[28px] bg-white/80 sm:h-[240px]">
                   <SpotIllustration subject="loop" className="h-[150px] w-[200px]" title="The learning loop: Learn, Ask, Practice, Build" />
                 </div>
               </div>
+              {/* google.com card curve — the page background sweeps into the corner
+                  with the banner's story link nested in it */}
+              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-white" />
+              <Link to="/how-it-works" aria-label="How the loop works" className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                <ArrowUpRight className="h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
+              </Link>
             </article>
           </Reveal>
         </section>
@@ -207,7 +208,7 @@ export default function UpdatesPage() {
         {/* FROM THE RESEARCH — the light-blue evidence band */}
         <section aria-labelledby="research-band-title" className="px-6 pb-20 sm:px-8 lg:px-10 lg:pb-28">
           <Reveal className="mx-auto max-w-[1240px]">
-            <div className="grid items-center gap-8 rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
+            <div className="relative grid items-center gap-8 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Research &amp; learning</p>
                 <h2 id="research-band-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[38px]">
@@ -216,15 +217,18 @@ export default function UpdatesPage() {
                 <p className="mt-4 max-w-[620px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
                   We study how people learn with Visionary and publish what we find — what worked, what did not, and what changed as a result.
                 </p>
-                <Link to="/research" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                  Read Research &amp; News <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="flex h-[180px] w-[180px] items-center justify-center rounded-full bg-white/80">
                   <SpotIllustration subject="research" className="h-[116px] w-[116px]" title="A magnifier over data" />
                 </div>
               </div>
+              {/* google.com card curve — the page background sweeps into the corner
+                  with the banner's destination nested in it */}
+              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-white" />
+              <Link to="/research" aria-label="Read Research and News" className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                <ArrowUpRight className="h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
+              </Link>
             </div>
           </Reveal>
         </section>

@@ -42,8 +42,18 @@ export function previewPolicy(user, read) {
           (['left','inactive'].includes(patch.status)||patch.status==='active'&&(r.status==='invited'||patch.join_code===code))));
     }else if(name==='Submission'){
       const assignment=read('Assignment').find(a=>a.id===r.assignment_id&&a.class_id===r.class_id);
-      allowed=operation==='create'?learner&&r.student_email===email&&enrolled(r.class_id)&&Boolean(assignment)&&r.grade==null&&r.status==='submitted':
-        operation==='update'&&teacher(r.class_id)&&Object.keys(patch).every(k=>['grade','feedback','status','graded_date'].includes(k));
+      allowed=operation==='create'?learner&&r.student_email===email&&enrolled(r.class_id)&&Boolean(assignment)&&!['draft','archived'].includes(assignment.status)&&r.grade==null&&r.status==='submitted':
+          operation==='update'&&teacher(r.class_id)&&Object.keys(patch).every(k=>['grade','feedback','status','graded_date'].includes(k))&&
+          (!patch.status||['graded','revision_requested'].includes(patch.status))&&
+          (patch.status!=='revision_requested'||typeof patch.feedback==='string'&&Boolean(patch.feedback.trim())&&patch.grade==null);
+      if(operation==='update'&&learner&&r.student_email===email&&enrolled(r.class_id)&&r.status==='revision_requested'&&assignment&&!['draft','archived'].includes(assignment.status)){
+        const history=[...(r.revision_history||[]),{text:r.text,responses:r.responses||[],feedback:r.feedback||'',submitted_date:r.submitted_date,graded_date:r.graded_date,attempt:r.attempt||1}];
+        allowed=Object.keys(patch).every(k=>['text','responses','status','grade','feedback','graded_date','submitted_date','attempt','revision_history'].includes(k))&&
+          patch.status==='submitted'&&patch.grade===null&&patch.feedback===''&&patch.graded_date===null&&patch.attempt===(r.attempt||1)+1&&
+          typeof patch.text==='string'&&Boolean(patch.text.trim())&&patch.text.length<=50000&&
+          Array.isArray(patch.responses)&&JSON.stringify(patch.revision_history)===JSON.stringify(history)&&
+          (assignment.checks||[]).every(check=>patch.responses.some(answer=>answer?.questionId===check.id&&typeof answer.text==='string'&&Boolean(answer.text.trim())&&answer.text.length<=5000));
+      }
       if(allowed&&patch.grade!=null)allowed=Number.isFinite(Number(patch.grade))&&Number(patch.grade)>=0&&Number(patch.grade)<=Number(assignment?.points||100);
     }
     if(name==='Classroom'&&operation==='create'&&r.organization_email)allowed=allowed&&read('OrganizationInvite').some(i=>i.organization_email===r.organization_email&&i.email===email&&i.role==='teacher'&&i.status==='active');

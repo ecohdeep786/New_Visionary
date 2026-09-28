@@ -6,7 +6,7 @@ import { scoreExercises, cubeExercises } from "../src/lib/practiceExercises.js";
 import { safeReturnTo } from "../src/lib/authReturnTo.js";
 import { appClient } from "../src/api/appClient.js";
 import { bootstrapPerson,snapshot,saveResource } from '../src/services/workspaceService.ts';
-import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses } from '../src/services/classroomService.js';
+import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses,reviewClasswork } from '../src/services/classroomService.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key,value) => memory.set(key,String(value)), removeItem: key => memory.delete(key) };
@@ -39,7 +39,23 @@ test('reviewed lesson → assignment → learner submission → returned feedbac
   await assert.rejects(appClient.entities.Submission.update(submission.id,{grade:10,status:'graded'}));
   await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
   const learners=await teacherLearners(ctx);assert.equal(learners[0].pending,1);assert.match(learners[0].evidence[0].response,/Three layers of nine unit cubes make 27/);
-  await appClient.entities.Submission.update(submission.id,{grade:8,status:'graded',feedback:'Good model. Label the cubic units.',graded_date:new Date().toISOString()});
+  await assert.rejects(reviewClasswork(ctx,{submissionId:submission.id,status:'revision_requested'}),/Explain what/);
+  await reviewClasswork(ctx,{submissionId:submission.id,status:'revision_requested',feedback:'Label the cubic units.'});
+  await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');
+  await assert.rejects(appClient.entities.Submission.update(submission.id,{text:'Replace without preserving feedback',status:'submitted'}));
+  const setItem=localStorage.setItem;
+  try {
+    localStorage.setItem=(key,value)=>{if(key==='visionary_entity_Submission')throw new Error('Storage full');setItem(key,value);};
+    await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'A revised answer'}]}));
+    assert.equal((await appClient.entities.Submission.get(submission.id)).status,'revision_requested');
+  } finally { localStorage.setItem=setItem; }
+  const revised=await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes give 27 cubic units.'}]});
+  assert.equal(revised.id,submission.id);assert.equal(revised.attempt,2);assert.equal(revised.grade,null);assert.equal(revised.status,'submitted');
+  assert.equal(revised.revision_history[0].feedback,'Label the cubic units.');assert.equal(revised.revision_history[0].text,submission.text);
+  assert.equal((await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:revised.responses})).revision_history.length,1);
+  await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
+  await assert.rejects(reviewClasswork(ctx,{submissionId:submission.id,attempt:1,status:'graded',grade:10}),/newer response/);
+  await reviewClasswork(ctx,{submissionId:submission.id,attempt:2,status:'graded',grade:8,feedback:'Good model. Label the cubic units.'});
   await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');assert.equal((await appClient.entities.Submission.get(submission.id)).feedback,'Good model. Label the cubic units.');
   assert.equal(snapshot({personId:learner.id,workspaceId:`${learner.id}:student`,role:'student',locale:'en'}).sessions.length,0);
   const outsider=await create('loop-outsider@visionary.test','teacher');assert.equal((await appClient.entities.Submission.list()).length,0);assert.equal((await appClient.entities.Enrollment.list()).length,0);

@@ -108,14 +108,18 @@ function EmailLink({ email, subject, children = email, className = "" }) {
 
 function ResourceCard({ Icon, label, title, to }) {
   return (
-    <Link to={to} className="group flex min-h-[208px] flex-col rounded-2xl g-card bg-white p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+    <Link to={to} className="group relative flex min-h-[208px] flex-col overflow-hidden rounded-2xl g-card bg-white p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
       <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1a73e8] text-[#1a73e8]">
         <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
       </span>
       <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{label}</p>
       <h4 className="mt-1.5 max-w-[220px] text-[16px] font-medium leading-[1.4] text-[#202124]">{title}</h4>
-      <span className="mt-auto flex h-8 w-8 items-center justify-center rounded-full bg-[#1a73e8] text-white transition-transform duration-300 group-hover:scale-110 motion-reduce:transform-none" aria-hidden="true">
-        <ArrowUpRight className="h-4 w-4" />
+      {/* google.com card curve — tint sweeps into the corner with the card's arrow nested in it */}
+      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#e8f0fe]" />
+      <span className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1a73e8] text-white transition-transform duration-300 group-hover:scale-110 motion-reduce:transform-none" aria-hidden="true">
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
       </span>
     </Link>
   );

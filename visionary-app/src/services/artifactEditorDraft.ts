@@ -8,7 +8,7 @@ const KEY = 'visionary_artifact_editor_v1';
 function read(): EditorStore {
  const raw = localStorage.getItem(KEY);
  if (!raw) return { version: 1, spaces: {} };
- try { const value = JSON.parse(raw); if (value.version !== 1 || !value.spaces || typeof value.spaces !== 'object') throw Error(); return value; }
+ try { const value = JSON.parse(raw); if (value.version !== 1 || !value.spaces || typeof value.spaces !== 'object' || Array.isArray(value.spaces)) throw Error(); return value; }
  catch { throw Error('Recovered project drafts could not be read. Saved projects were not changed.'); }
 }
 function owned(ctx: RequestContext, artifactId: string) {
@@ -30,7 +30,7 @@ export function getArtifactEditorDraft(ctx: RequestContext, artifactId: string):
  owned(ctx, artifactId);
  const draft = read().spaces[ctx.workspaceId]?.[artifactId];
  if (!draft) return null;
- if (draft.artifactId !== artifactId || typeof draft.title !== 'string' || typeof draft.body !== 'string' || !Array.isArray(draft.milestones) || draft.milestones.some(item => typeof item !== 'boolean') || !['draft', 'in-progress', 'completed'].includes(draft.status) || !draft.responses || typeof draft.responses !== 'object') throw Error('Recovered project draft is incomplete. The saved project remains available.');
+ if (draft.artifactId !== artifactId || typeof draft.title !== 'string' || typeof draft.body !== 'string' || !Array.isArray(draft.milestones) || draft.milestones.some(item => typeof item !== 'boolean') || !['draft', 'in-progress', 'completed'].includes(draft.status) || !draft.responses || typeof draft.responses !== 'object' || Array.isArray(draft.responses) || Object.values(draft.responses).some(value => typeof value !== 'string')) throw Error('Recovered project draft is incomplete. The saved project remains available.');
  return structuredClone(draft);
 }
 export function clearArtifactEditorDraft(ctx: RequestContext, artifactId: string) {

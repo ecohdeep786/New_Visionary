@@ -90,17 +90,25 @@ export default function StudentClasses() {
   }, [load]);
 
   const mySubFor = (assignmentId) => (submissions || []).find((s) => s.assignment_id === assignmentId);
+  const draftFor = (assignmentId) => {
+    const submission = mySubFor(assignmentId);
+    const saved = drafts[assignmentId];
+    if (submission?.status !== 'revision_requested') return saved || {};
+    if (saved?.revisionAttempt === (submission.attempt || 1)) return saved;
+    return { text: submission.text || '', answers: Object.fromEntries((submission.responses || []).map(answer => [answer.questionId, answer.text])), revisionAttempt: submission.attempt || 1 };
+  };
 
   const submit = async (a) => {
     const checks = Array.isArray(a.checks) ? a.checks : [];
-    const responses = checks.map(check => ({ questionId: check.id, text: (drafts[a.id]?.answers?.[check.id] || '').trim() }));
-    const text = checks.length ? responses.map(response => response.text).join('\n') : (drafts[a.id]?.text || '').trim();
+    const draft = draftFor(a.id);
+    const responses = checks.map(check => ({ questionId: check.id, text: (draft.answers?.[check.id] || '').trim() }));
+    const text = checks.length ? responses.map(response => response.text).join('\n') : (draft.text || '').trim();
     if (!text || responses.some(response => !response.text) || busy) return;
     setBusy(true);
     setError("");
     try {
       const created = await submitClassworkResponses(ctx,{assignmentId:a.id,text,responses});
-      setSubmissions((p) => p.some(item=>item.id===created.id)?p:[created,...p]);
+      setSubmissions((p) => [created,...p.filter(item=>item.id!==created.id)]);
       updateDraft(a.id, null);
       window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
     } catch { setError("Your response wasn’t submitted. Your draft is still here; please try again."); }
@@ -227,6 +235,8 @@ export default function StudentClasses() {
                 const sub = mySubFor(a.id);
                 const graded = sub && sub.status === "graded";
                 const submitted = sub && sub.status === "submitted";
+                const revision = sub?.status === 'revision_requested';
+                const draft = draftFor(a.id);
                 return (
                   <div key={a.id} className="p-6 bg-white rounded-3xl border border-[#dadce0]/60 flex flex-col gap-4">
                     <div className="flex items-start gap-4">
@@ -261,6 +271,8 @@ export default function StudentClasses() {
                       )}
                     </div>
 
+                    {revision && <div role="status" className="rounded-2xl bg-[#fef7e0] p-4 text-sm"><p className="font-medium">Revision requested · Attempt {sub.attempt || 1}</p><p className="mt-2 whitespace-pre-wrap">{sub.feedback}</p><p className="mt-2">Update your answers below and resubmit. Your previous response and feedback stay in the attempt history.</p></div>}
+                    {!!sub?.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer">Previous attempts and feedback ({sub.revision_history.length})</summary>{sub.revision_history.map((entry,index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium">Attempt {entry.attempt}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap">Feedback: {entry.feedback}</p></div>)}</details>}
                     {graded ? (
                       <div className="pl-14 flex flex-col gap-2">
                         {sub.feedback && (
@@ -278,9 +290,9 @@ export default function StudentClasses() {
                       </div>
                     ) : (
                       <div className="pl-14 flex flex-col gap-2">
-                        {Array.isArray(a.checks) && a.checks.length ? <div className="space-y-4">{a.checks.map((check,index) => <label key={check.id} className="block text-sm font-medium text-[#121317]">{index + 1}. {check.prompt}<textarea value={drafts[a.id]?.answers?.[check.id] || ''} onChange={event => updateDraft(a.id,{...drafts[a.id],answers:{...drafts[a.id]?.answers,[check.id]:event.target.value}})} placeholder="Explain in your own words…" rows={3} className="mt-2 w-full rounded-2xl border border-[#dadce0] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[#4285F4]" /></label>)}</div> : <textarea
-                          value={drafts[a.id]?.text || ""}
-                          onChange={(e) => updateDraft(a.id,{...drafts[a.id],text:e.target.value})}
+                        {Array.isArray(a.checks) && a.checks.length ? <div className="space-y-4">{a.checks.map((check,index) => <label key={check.id} className="block text-sm font-medium text-[#121317]">{index + 1}. {check.prompt}<textarea value={draft.answers?.[check.id] || ''} onChange={event => updateDraft(a.id,{...draft,answers:{...draft.answers,[check.id]:event.target.value}})} placeholder="Explain in your own words…" rows={3} className="mt-2 w-full rounded-2xl border border-[#dadce0] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[#4285F4]" /></label>)}</div> : <textarea
+                          value={draft.text || ""}
+                          onChange={(e) => updateDraft(a.id,{...draft,text:e.target.value})}
                           placeholder="Write your response…"
                           aria-label={`Your response to ${a.title}`}
                           rows={3}
@@ -290,11 +302,11 @@ export default function StudentClasses() {
                         <div className="flex justify-end">
                           <button
                             onClick={() => submit(a)}
-                            disabled={busy || (Array.isArray(a.checks) && a.checks.length ? a.checks.some(check => !(drafts[a.id]?.answers?.[check.id] || '').trim()) : !(drafts[a.id]?.text || '').trim())}
+                            disabled={busy || (Array.isArray(a.checks) && a.checks.length ? a.checks.some(check => !(draft.answers?.[check.id] || '').trim()) : !(draft.text || '').trim())}
                             className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium text-white disabled:opacity-50"
                             style={{ backgroundColor: accent }}
                           >
-                            <Send className="w-4 h-4" /> Submit
+                            <Send className="w-4 h-4" /> {revision ? "Resubmit" : "Submit"}
                           </button>
                         </div>
                       </div>

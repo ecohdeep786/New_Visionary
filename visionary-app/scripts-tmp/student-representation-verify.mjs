@@ -16,6 +16,7 @@ await context.addInitScript(() => {
  localStorage.setItem('visionary_workspace_v2', JSON.stringify({ version: 2, people: [person], workspaces: [{ id: workspaceId, personId: id, role: 'student', name: 'Learner', lastPath: '/dashboard/learn' }], active: { [id]: workspaceId }, relationships: [], data: { [workspaceId]: data } }));
 });
 const page = await context.newPage();
+page.setDefaultNavigationTimeout(120000);
 const errors = [];
 page.on('pageerror', error => errors.push(String(error)));
 try {

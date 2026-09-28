@@ -35,7 +35,7 @@ export default function ClassworkTab({ classId, classroom, accent }) {
   }, [load]);
 
   const subsFor = (assignmentId) => (submissions || []).filter((s) => s.assignment_id === assignmentId);
-  const ungradedFor = (assignmentId) => subsFor(assignmentId).filter((s) => s.status !== "graded").length;
+  const ungradedFor = (assignmentId) => subsFor(assignmentId).filter((s) => s.status === "submitted").length;
 
   const addTopic = () => {
     const t = topicInput.trim();

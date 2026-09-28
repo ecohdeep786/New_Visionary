@@ -223,18 +223,19 @@ export default function SafetyPage() {
               </p>
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
-              {FAMILY_CARDS.map(({ Icon, eyebrow, to, linkLabel, title, copy }) => (
-                <article key={title} className="flex min-h-[280px] flex-col rounded-2xl g-card bg-white p-6 sm:p-7">
+              {FAMILY_CARDS.map(({ Icon, eyebrow, to, title, copy }) => (
+                <Link key={title} to={to} aria-label={title} className="group relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                   <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
-                  <Link to={to} className="mt-4 inline-flex min-h-9 w-fit items-center gap-1.5 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                    {linkLabel} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </Link>
-                </article>
+                  {/* google.com card curve — the section background sweeps into
+                      the corner with the card's destination nested in it */}
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#f8f9fa]" />
+                  <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
+                </Link>
               ))}
             </div>
           </Reveal>
@@ -253,17 +254,16 @@ export default function SafetyPage() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {REPORTING_CARDS.map(({ eyebrow, subject, tint, title, copy, link }) => (
-                <article key={eyebrow} className="flex min-h-[340px] flex-col rounded-2xl g-card bg-white p-6 sm:p-7">
+                <Link key={eyebrow} to={link.to} aria-label={link.label} className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                   <span className="flex h-[120px] w-[120px] items-center justify-center rounded-[24px]" style={{ backgroundColor: tint }}>
                     <SpotIllustration subject={subject} className="h-[88px] w-[88px]" title={eyebrow} />
                   </span>
                   <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
-                  <Link to={link.to} className="mt-4 inline-flex min-h-9 w-fit items-center gap-1.5 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                    {link.label} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </Link>
-                </article>
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                  <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
+                </Link>
               ))}
             </div>
           </Reveal>

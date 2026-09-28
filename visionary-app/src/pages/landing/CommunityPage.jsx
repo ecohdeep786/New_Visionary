@@ -226,20 +226,18 @@ export default function CommunityPage() {
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   {area.cards.map((card) => (
-                    <article key={card.title} className="flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white">
+                    <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                       <div className="flex h-[150px] items-center justify-center" style={{ backgroundColor: card.tint }}>
                         <SpotIllustration subject={card.subject} className="h-24 w-24" />
                       </div>
-                      <div className="flex flex-1 flex-col p-6">
+                      <div className="flex flex-1 flex-col p-6 pb-14">
                         <h4 className="text-[18px] font-medium leading-[1.35] text-[#202124]">{card.title}</h4>
                         <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
-                        <div className="mt-auto pt-5">
-                          <Link to={card.to} className="inline-flex items-center gap-1 rounded-sm text-[14px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                            Learn more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                          </Link>
-                        </div>
                       </div>
-                    </article>
+                      {/* google.com card curve — the card's own tint sweeps into the corner with its arrow nested in it */}
+                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px]" style={{ backgroundColor: card.tint }} />
+                      <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -260,20 +258,17 @@ export default function CommunityPage() {
             </div>
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {MORE.map((item) => (
-                <article key={item.title} className="flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white">
+                <Link key={item.title} to={item.to} className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                   <div className="flex h-[160px] items-center justify-center" style={{ backgroundColor: item.tint }}>
                     <SpotIllustration subject={item.subject} className="h-24 w-24" />
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-1 flex-col p-6 pb-14">
                     <h3 className="text-[20px] font-medium leading-[1.3] text-[#202124]">{item.title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{item.copy}</p>
-                    <div className="mt-auto pt-5">
-                      <Link to={item.to} className="inline-flex items-center gap-1 rounded-sm text-[14px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                        Learn more <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                      </Link>
-                    </div>
                   </div>
-                </article>
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px]" style={{ backgroundColor: item.tint }} />
+                  <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+                </Link>
               ))}
             </div>
           </Reveal>
