@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import studentImage from "@/assets/student-face-main.webp";
-import teacherImage from "@/assets/teacher-face-main.webp";
-import parentImage from "@/assets/parent-face-main.webp";
-import professionalImage from "@/assets/professional-face-main.webp";
-import organizationImage from "@/assets/organization-face-main.webp";
+import studentHero from "@/assets/student-hero-main-800w.webp";
+import teacherHero from "@/assets/teacher-hero-main-800w.webp";
+import parentHero from "@/assets/parent-hero-main-800w.webp";
+import proHero from "@/assets/pro-face-main-800w.webp";
+import orgHero from "@/assets/org-face-main-800w.webp";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -172,9 +172,6 @@ function VMark({ className = "h-10 w-auto" }) {
 }
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
-const HERO_WORDS = ["your classroom.", "their journey.", "your work.", "your people."];
-const HERO_WORD_MS = 2800;
-
 const PROBLEM_SLIDES = [
   { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A Teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
   { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A Parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
@@ -254,371 +251,221 @@ const FAQ_ITEMS = [
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
 
-/* 01 · HERO */
-const LANDING_HERO_PEOPLE = [
-  {
-    role: "Student",
-    src: studentImage,
-    alt: "Student",
-  },
-  {
-    role: "Teacher",
-    src: teacherImage,
-    alt: "Teacher",
-  },
-  {
-    role: "Parent",
-    src: parentImage,
-    alt: "Parent",
-  },
-  {
-    role: "Professional",
-    src: professionalImage,
-    alt: "Professional",
-  },
-  {
-    role: "Organization",
-    src: organizationImage,
-    alt: "Organization leader",
-  },
+/* 01 · HERO — the universal front door, product-first. Analyzed against
+   Apple's iPhone 18 Pro hero ("iPhone 18 Pro" / "Pro further." / links) and
+   Google's Store + Workspace heroes (name / short tagline / one CTA): tiny
+   word counts, a clear title→tagline hierarchy, and the product visual as
+   the largest element on screen. So: the five journeys stand together as
+   one family on top (the lead visual), then a single-line title, a true
+   sub-heading, the one-sentence promise, and the CTA pair — no eyebrow, no
+   decoration. All vertical rhythm is vh-clamped so every device keeps the
+   same proportional breathing space. Non-interactive — the Meet Visionary
+   section owns per-category navigation. */
+const LINEUP_WIDTHS = {
+  outer: "clamp(48px, min(23vh, 12.3vw), 240px)",
+  mid: "clamp(62px, min(29vh, 15.5vw), 300px)",
+  center: "clamp(80px, min(34vh, 19vw), 380px)",
+};
+
+const LANDING_HERO_LINEUP = [
+  { label: "Professional", src: proHero, w: "outer" },
+  { label: "Teacher", src: teacherHero, w: "mid" },
+  { label: "Student", src: studentHero, w: "center" },
+  { label: "Parent", src: parentHero, w: "mid" },
+  { label: "Organization", src: orgHero, w: "outer" },
 ];
 
-const LANDING_HERO_MS = 4200;
-
 const LandingHeroSection = React.memo(function LandingHeroSection() {
-  const { index } = useCycleIndex(
-    LANDING_HERO_PEOPLE.length,
-    LANDING_HERO_MS
-  );
-
-  const activePerson = LANDING_HERO_PEOPLE[index];
-
-  // Same display treatment as category pages for consistency
-  const display = "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[#121317] text-[clamp(34px,9.57vw,168px)] sm:text-[clamp(40px,9.57vw,168px)]";
-
   return (
     <section
       data-section="01-hero"
-      className="
-        relative
-        overflow-hidden
-        bg-white
-      "
-      style={{
-        fontFamily: FONT_FAMILY,
-      }}
+      className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-white"
+      style={{ fontFamily: FONT_FAMILY, marginTop: 64 }}
     >
+      {/* Apple-style entrance: the product lands first with a soft blur-rise,
+          then the words resolve in — the launch-tile sequence. After landing,
+          the family keeps a barely-there levitation and the ground shadow
+          breathes with it. Devices that report reduced-motion (many Windows
+          installs ship with client-area animations off) still get a calm
+          staggered crossfade — visible, just without movement. */}
+      <style>
+        {`@keyframes appleRise{
+from{opacity:0;transform:translateY(30px) scale(0.96);filter:blur(10px)}
+to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes appleTextIn{
+from{opacity:0;transform:translateY(16px);filter:blur(8px)}
+to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@keyframes appleFloat{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-7px)}
+}
+@keyframes appleShadowSwell{
+0%,100%{transform:scaleX(1)}
+50%{transform:scaleX(0.96)}
+}
+@keyframes appleFadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+@media (prefers-reduced-motion: reduce){
+.apple-anim{animation-name:appleFadeIn !important;animation-duration:0.7s !important;animation-timing-function:ease-out !important;animation-iteration-count:1 !important}
+.apple-float{animation:none !important}
+}`}
+      </style>
+
       <div
-        className="
-          relative
-          mx-auto
-          flex
-          min-h-[calc(100svh-64px)]
-          w-full
-          max-w-[1400px]
-          flex-col
-          items-center
-          px-6
-          pb-24
-          pt-28
-          text-center
-          sm:px-8
-          sm:pt-32
-          lg:pt-36
-        "
+        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 text-center sm:px-8"
+        style={{ paddingTop: "clamp(32px, 6.5vh, 96px)", paddingBottom: "clamp(32px, 5.5vh, 80px)" }}
       >
-
-        {/* =========================================================
-            HUMAN VISUAL
-            The changing face is the visual meaning of "you"
-        ========================================================= */}
-
-        <div
-          className="
-            relative
-            mt-12
-            flex
-            h-[230px]
-            w-[230px]
-            items-center
-            justify-center
-            sm:mt-14
-            sm:h-[260px]
-            sm:w-[260px]
-            lg:mt-16
-            lg:h-[300px]
-            lg:w-[300px]
-          "
-        >
-          {/* Main circular face */}
+        {/* the five journeys — one product family, the hero's lead visual.
+            Pure white behind them: the studio photos blend seamlessly, so no
+            atmosphere layer — anything tinted exposes the photo squares. */}
+        <div className="relative flex w-full flex-col items-center">
+          {/* portraits — stepped heights, bottom-aligned on one ground line;
+              after the entrance the whole row levitates almost imperceptibly */}
           <div
-            className="
-              relative
-              z-10
-              h-full
-              w-full
-              overflow-hidden
-              rounded-full
-              border
-              border-[#dadce0]
-              bg-[#F8F9FA]
-            "
+            className="apple-float relative z-10 flex items-end justify-center gap-1.5 sm:gap-3 lg:gap-5"
+            style={{ animation: "appleFloat 7s ease-in-out 2.6s infinite" }}
           >
-            <img
-              key={activePerson.src}
-              src={activePerson.src}
-              alt={activePerson.alt}
-              loading="eager"
-              decoding="async"
-              className="
-                hero-fade-up
-                block
-                h-full
-                w-full
-                object-cover
-              "
-              style={{
-                animationDuration: "0.9s",
-                animationTimingFunction:
-                  "cubic-bezier(0.22,1,0.36,1)",
-              }}
-            />
+            {LANDING_HERO_LINEUP.map((p, i) => (
+              <div
+                key={p.label}
+                className="apple-anim"
+                style={{
+                  width: LINEUP_WIDTHS[p.w],
+                  animation: "appleRise 1.1s cubic-bezier(0.16,1,0.3,1) both",
+                  animationDelay: `${100 + i * 80}ms`,
+                }}
+              >
+                <div className="relative">
+                  <img
+                    src={p.src}
+                    alt=""
+                    aria-hidden="true"
+                    loading="eager"
+                    decoding="async"
+                    draggable="false"
+                    className="h-auto w-full select-none"
+                  />
+                  {/* white dissolve over the photo's bottom cut — the per-image
+                      version of the category scrim, so portraits stand on the
+                      page instead of ending in a hard edge */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-0 h-[36%]"
+                    style={{ background: "linear-gradient(to top, #ffffff 16%, rgba(255,255,255,0))" }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Small surrounding visual circles */}
-          <span
+          {/* contact shadow — tight and quiet, like a product shot */}
+          <div
             aria-hidden="true"
-            className="
-              absolute
-              -left-6
-              top-[24%]
-              h-10
-              w-10
-              rounded-full
-              border
-              border-[#dadce0]
-              bg-white
-            "
-          />
-
-          <span
-            aria-hidden="true"
-            className="
-              absolute
-              -right-8
-              top-[18%]
-              h-14
-              w-14
-              rounded-full
-              border
-              border-[#dadce0]
-              bg-white
-            "
-          />
-
-          <span
-            aria-hidden="true"
-            className="
-              absolute
-              -right-5
-              bottom-[18%]
-              h-8
-              w-8
-              rounded-full
-            "
+            className="apple-anim relative z-10 -mt-1.5 h-[11px] w-[min(1180px,92%)] rounded-[100%]"
             style={{
-              backgroundColor: COLORS.blue,
+              backgroundColor: "rgba(0,0,0,0.085)",
+              filter: "blur(9px)",
+              animation: "appleRise 1s cubic-bezier(0.16,1,0.3,1) both",
+              animationDelay: "480ms",
             }}
           />
 
-          <span
-            aria-hidden="true"
-            className="
-              absolute
-              -left-2
-              bottom-[8%]
-              h-5
-              w-5
-              rounded-full
-            "
-            style={{
-              backgroundColor: "#FBBC04",
-            }}
-          />
-
-          {/* Quiet pointer */}
-          <svg
-            viewBox="0 0 170 90"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              -right-[74px]
-              -top-[38px]
-              h-[54px]
-              w-[108px]
-            "
-            style={{
-              color: COLORS.ink,
-            }}
-          >
-            <path d="M160 8 C126 12, 80 28, 36 66" />
-            <path d="M36 66 l5 -13" />
-            <path d="M36 66 l13 -4" />
-          </svg>
+          {/* labels — identification only, never links (Meet section navigates) */}
+          <div className="mt-3 flex items-start justify-center gap-1.5 sm:gap-3 lg:gap-5">
+            {LANDING_HERO_LINEUP.map((p) => (
+              <span
+                key={p.label}
+                className="apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[10px] sm:block"
+                style={{
+                  width: LINEUP_WIDTHS[p.w],
+                  color: COLORS.slate,
+                  animation: "appleTextIn 0.9s cubic-bezier(0.16,1,0.3,1) both",
+                  animationDelay: "600ms",
+                }}
+              >
+                {p.label}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* =========================================================
-            UNIVERSAL HEADLINE
-            Same treatment as category pages for consistency
-        ========================================================= */}
-
-        <h1
-          className="
-            hero-fade-up
-            mt-14
-          "
-          style={{
-            animationDelay: "80ms",
-          }}
-        >
-          <span aria-hidden="true" className={display}>
+        {/* title → tagline → promise — the Apple/Google hero hierarchy at the
+            category display scale; vh caps keep shorter laptops whole */}
+        <h1 className="m-0" style={{ marginTop: "clamp(28px, 6vh, 96px)" }}>
+          <span
+            className="apple-anim block font-medium leading-[1.02] tracking-[0] text-[#121317]"
+            style={{
+              fontSize: "clamp(40px, min(9.57vw, 15.5vh), 168px)",
+              animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
+              animationDelay: "560ms",
+            }}
+          >
             One Intelligence.
           </span>
-
-          <span className="sr-only">One Intelligence. Built around you.</span>
+          <span
+            className="apple-anim block font-medium leading-[1.2] tracking-[0]"
+            style={{
+              fontSize: "clamp(22px, min(2.6vw, 4.2vh), 40px)",
+              color: COLORS.blue,
+              marginTop: "clamp(10px, 1.6vh, 22px)",
+              animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
+              animationDelay: "660ms",
+            }}
+          >
+            Built around you.
+          </span>
         </h1>
 
-        {/* =========================================================
-            SUPPORTING COPY
-        ========================================================= */}
-
+        {/* promise — the one-sentence body, Google-Workspace width */}
         <p
-          className="
-            hero-fade-up
-            mx-auto
-            mt-10
-            max-w-[760px]
-            font-normal
-            tracking-[0]
-            leading-[25px]
-            text-[17.5px]
-          "
+          className="apple-anim mx-auto mt-3 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[16.5px] lg:text-[17.5px]"
           style={{
             color: COLORS.slate,
-            animationDelay: "200ms",
+            animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
+            animationDelay: "760ms",
           }}
         >
           Visionary understands what you're trying to do, adapts to how you
-          work, and carries useful context forward — across learning,
-          teaching, supporting, building and leading.
+          work, and carries useful context forward — across learning, teaching,
+          supporting, building and leading.
         </p>
 
-        {/* =========================================================
-            CTA
-        ========================================================= */}
-
+        {/* CTA pair — same pills as every category hero */}
         <div
-          className="
-            hero-fade-up
-            mt-10
-            flex
-            flex-wrap
-            items-center
-            justify-center
-            gap-4
-          "
+          className="apple-anim flex flex-wrap items-center justify-center gap-3"
           style={{
-            animationDelay: "280ms",
+            marginTop: "clamp(24px, 3.5vh, 48px)",
+            animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
+            animationDelay: "860ms",
           }}
         >
           <Link
             to="/register"
-            className="
-              inline-flex
-              h-12
-              items-center
-              justify-center
-              gap-2
-              rounded-full
-              bg-[#121317]
-              px-8
-              text-[15px]
-              font-medium
-              tracking-[0]
-              text-white
-              transition-transform
-              duration-200
-              hover:scale-[1.01]
-              active:scale-[0.98]
-              focus:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-[#4285F4]
-              focus-visible:ring-offset-2
-            "
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
           >
             Start free
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
               <path d="M5 12h14" />
               <path d="M13 6l6 6-6 6" />
             </svg>
           </Link>
-
           <Link
             to="/how-it-works"
-            className="
-              inline-flex
-              h-12
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-[#dadce0]
-              bg-white
-              px-8
-              text-[15px]
-              font-normal
-              tracking-[0]
-              text-[#4285F4]
-              transition-colors
-              duration-200
-              hover:bg-[#F8F9FA]
-              focus:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-[#4285F4]
-              focus-visible:ring-offset-2
-            "
+            className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
           >
             See how it works
           </Link>
         </div>
       </div>
 
-      {/* Quiet transition into the next story */}
+      {/* quiet transition into the next story */}
       <div
         aria-hidden="true"
-        className="
-          mx-auto
-          h-px
-          w-[88%]
-          max-w-[1420px]
-          bg-[#121317]/[0.08]
-        "
+        className="mx-auto h-px w-[88%] max-w-[1420px] bg-[#121317]/[0.08]"
       />
     </section>
   );
