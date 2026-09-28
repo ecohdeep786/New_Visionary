@@ -446,9 +446,9 @@ export default function ResearchNewsPage() {
                     Learners, teachers, and parents use the product every day — their experience is a primary source for every question on this page.
                   </p>
                 </div>
-                {/* google.com card curve — tint sweeps into the white corner with the card's action nested in it */}
-                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[136px] rounded-tl-[20px] bg-[#e8f0fe]" />
-                <span className="absolute bottom-0 right-0 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+                {/* google.com card curve — tint sweeps into the white corner and the card's action floats in it with breath */}
+                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[160px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                <span className="absolute bottom-3 right-3 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
               </Link>
               <Link to="/careers" className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                 <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
@@ -458,8 +458,8 @@ export default function ResearchNewsPage() {
                     Help turn these questions into a product — research-minded people across engineering, design, and evidence.
                   </p>
                 </div>
-                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[136px] rounded-tl-[20px] bg-[#e8f0fe]" />
-                <span className="absolute bottom-0 right-0 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[160px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                <span className="absolute bottom-3 right-3 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
               </Link>
             </div>
             <div className="mt-12 flex flex-col gap-2 border-t border-[#e8eaed] pt-8 sm:flex-row sm:items-center sm:justify-between">

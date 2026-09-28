@@ -325,7 +325,8 @@ Create a secure “Sync Device” and “Sign in with Sync Encrypted ID” exper
 **Goal:** Demonstrate that the product is designed for everyone and clearly explain available accessibility features, commitments, and support.
 
 **Reference links:**  
-[https://accessibility.google/](https://accessibility.google/), [https://edu.google.com/intl/ALL_in/our-values/accessibility/](https://edu.google.com/intl/ALL_in/our-values/accessibility/), [https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer](https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer)
+[https://accessibility.google/](https://accessibility.google/), [https://edu.google.com/intl/ALL_in/our-values/accessibility/](https://edu.google.com/intl/ALL_in/our-values/accessibility/), 
+[https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer](https://edu.google.com/intl/ALL_in/our-values/education-sustainability/?topic=acer)
 
 **Design direction:**
 - Build an inclusive, human-centered accessibility page.

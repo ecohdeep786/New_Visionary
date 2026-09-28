@@ -192,16 +192,16 @@ function PricingPersonaSection() {
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
         <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
-            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#4285F4] hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] border bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:border-[#4285F4] hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
                 <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
               <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
-              {/* google.com card curve — tint sweeps into the white corner with the card's arrow nested in it */}
-              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px]" style={{ backgroundColor: "#e8f0fe" }} />
-              <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
+              {/* google.com card curve — tint sweeps into the white corner and the card's arrow floats in it with breath */}
+              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px]" style={{ backgroundColor: "#e8f0fe" }} />
+              <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
             </Link>
           ))}
         </div>

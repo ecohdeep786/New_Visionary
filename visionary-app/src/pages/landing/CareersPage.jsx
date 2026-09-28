@@ -217,12 +217,12 @@ function HeroCard({ idPrefix = "hero" }) {
             className={field} />
         </div>
       </div>
-      {/* google.com card curve — tint sweeps into the card corner with the
-          form's submit button nested in it (card wrappers are the positioned
-          ancestors, so this pins to the card's bottom-right) */}
-      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[60px] w-[240px] rounded-tl-[16px] bg-[#e8f0fe]" />
+      {/* google.com card curve — tint sweeps into the card corner and the
+          form's submit button floats in it with breath (card wrappers are the
+          positioned ancestors, so this pins to the card's bottom-right) */}
+      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[264px] rounded-tl-[16px] bg-[#e8f0fe]" />
       <button type="submit"
-        className="absolute bottom-0 right-0 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
+        className="absolute bottom-3 right-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
         Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </button>
     </form>

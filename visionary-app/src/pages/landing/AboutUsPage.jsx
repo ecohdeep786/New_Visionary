@@ -98,11 +98,11 @@ function MissionSection() {
           <p className="mt-10 text-[14px] text-[#3c4043]">Visionary · the mission we build toward</p>
         </div>
         <div className="flex min-h-[260px] items-center justify-center bg-[#f8fbff] p-8 pb-20 sm:pb-24"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
-        {/* google.com card curve — the page-background cutout sweeps into the
+        {/* google.com card curve — a page-background cutout sweeps into the
             bottom-right of the illustration panel and the card's action pill
-            sits nested in it, as on the "Benefits at Google" card */}
-        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[212px] rounded-tl-[28px] bg-white" />
-        <Link to="/how-it-works" className="absolute bottom-0 right-0 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            floats in it with breathing room, as on the "Benefits at Google" card */}
+        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[240px] rounded-tl-[28px] bg-white" />
+        <Link to="/how-it-works" className="absolute bottom-3 right-3 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
       </div>
     </Reveal>
   </section>;
@@ -140,9 +140,9 @@ function RolesSection() {
           <div className="overflow-hidden" style={{ backgroundColor: role.tint }}><img src={role.image} alt="" loading="lazy" style={{ mixBlendMode: "multiply" }} className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
           <div className="flex flex-1 flex-col p-6 pb-16"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
           {/* google.com card curve — the card's own image tint sweeps into the
-              white body corner with the card's action button nested in it */}
-          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[136px] rounded-tl-[20px]" style={{ backgroundColor: role.tint }} />
-          <span className="absolute bottom-0 right-0 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+              white body corner and the card's action button floats in it with breath */}
+          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[160px] rounded-tl-[20px]" style={{ backgroundColor: role.tint }} />
+          <span className="absolute bottom-3 right-3 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
         </Link>)}
       </div>
     </Reveal>
@@ -180,9 +180,9 @@ function ExploreSection() {
           <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#5f6368]">{item.copy}</p></div></div>
           <div className="flex items-center justify-center" style={{ backgroundColor: item.tint }}><SpotIllustration subject={item.subject} className="h-28 w-28 sm:h-36 sm:w-36" /></div>
           {/* google.com card curve — a page-background cutout sweeps into the
-              bottom-right corner and the card's own arrow sits nested in it */}
-          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-white" />
-          <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+              bottom-right corner and the card's arrow floats in it with breath */}
+          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
+          <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
         </Link>)}
       </div>
     </Reveal>

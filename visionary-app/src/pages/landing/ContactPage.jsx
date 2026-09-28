@@ -114,12 +114,10 @@ function ResourceCard({ Icon, label, title, to }) {
       </span>
       <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{label}</p>
       <h4 className="mt-1.5 max-w-[220px] text-[16px] font-medium leading-[1.4] text-[#202124]">{title}</h4>
-      {/* google.com card curve — tint sweeps into the corner with the card's arrow nested in it */}
-      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#e8f0fe]" />
-      <span className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1a73e8] text-white transition-transform duration-300 group-hover:scale-110 motion-reduce:transform-none" aria-hidden="true">
-          <ArrowUpRight className="h-4 w-4" />
-        </span>
+      {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
+      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#e8f0fe]" />
+      <span className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#1a73e8] text-white transition-transform duration-300 group-hover:scale-110 motion-reduce:transform-none" aria-hidden="true">
+        <ArrowUpRight className="h-4 w-4" />
       </span>
     </Link>
   );

@@ -234,9 +234,9 @@ export default function CommunityPage() {
                         <h4 className="text-[18px] font-medium leading-[1.35] text-[#202124]">{card.title}</h4>
                         <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
                       </div>
-                      {/* google.com card curve — the card's own tint sweeps into the corner with its arrow nested in it */}
-                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px]" style={{ backgroundColor: card.tint }} />
-                      <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+                      {/* google.com card curve — the card's own tint sweeps into the corner and its arrow floats in it with breath */}
+                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px]" style={{ backgroundColor: card.tint }} />
+                      <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
                     </Link>
                   ))}
                 </div>
@@ -266,8 +266,8 @@ export default function CommunityPage() {
                     <h3 className="text-[20px] font-medium leading-[1.3] text-[#202124]">{item.title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{item.copy}</p>
                   </div>
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px]" style={{ backgroundColor: item.tint }} />
-                  <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px]" style={{ backgroundColor: item.tint }} />
+                  <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
                 </Link>
               ))}
             </div>

@@ -116,11 +116,11 @@ function DownloadHeroSection() {
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
-            {/* google.com card curve — tint sweeps into the corner with the card's action nested in it */}
-            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[60px] w-[196px] rounded-tl-[24px] bg-[#e8f0fe]" />
+            {/* google.com card curve — tint sweeps into the corner and the card's action floats in it with breath */}
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-[#e8f0fe]" />
             <Link
               to="/register"
-              className="absolute bottom-0 right-0 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
               style={{ backgroundColor: COLORS.blue }}
             >
               Open Visionary
@@ -135,11 +135,11 @@ function DownloadHeroSection() {
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Native apps for desktop and mobile — faster, offline-friendly, and synced to your account.
             </p>
-            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[60px] w-[196px] rounded-tl-[24px] bg-[#e8f0fe]" />
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-[#e8f0fe]" />
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="absolute bottom-0 right-0 inline-flex h-12 items-center justify-center rounded-full border bg-white px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full border bg-white px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
             >
               See platforms

@@ -203,10 +203,10 @@ export default function ReferralPage() {
                     </Link>
                   </div>
                   {/* google.com card curve — the page background sweeps into the
-                      corner with the card's primary destination nested in it */}
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#f8f9fa]" />
-                  <Link to={to} aria-label={`Open ${to}`} className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
-                    <ArrowUpRight className="h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
+                      corner and the card's primary destination floats in it with breath */}
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#f8f9fa]" />
+                  <Link to={to} aria-label={`Open ${to}`} className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                    <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
                   </Link>
                 </article>
               ))}

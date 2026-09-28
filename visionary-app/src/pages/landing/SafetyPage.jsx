@@ -232,9 +232,9 @@ export default function SafetyPage() {
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   {/* google.com card curve — the section background sweeps into
-                      the corner with the card's destination nested in it */}
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#f8f9fa]" />
-                  <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
+                      the corner and the card's destination floats in it with breath */}
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#f8f9fa]" />
+                  <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
                 </Link>
               ))}
             </div>
@@ -261,8 +261,8 @@ export default function SafetyPage() {
                   <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[44px] w-[76px] rounded-tl-[20px] bg-[#e8f0fe]" />
-                  <div className="absolute bottom-0 right-0 flex h-[44px] w-[76px] items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                  <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
                 </Link>
               ))}
             </div>
