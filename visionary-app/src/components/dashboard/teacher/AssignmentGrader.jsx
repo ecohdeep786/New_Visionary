@@ -18,19 +18,24 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
   const [busyId, setBusyId] = useState(null);
   const [error, setError] = useState("");
 
-  const load = async () => {
-    try {
-      const list = await base44.entities.Submission.filter({ assignment_id: assignment.id });
-      setSubmissions((list || []).map(item => {
-        if (item.status !== 'submitted') return item;
-        const draft = getReviewDraft(ctx, assignment.id, item.id, item.attempt || 1);
-        return draft ? { ...item, grade: draft.grade, feedback: draft.feedback } : item;
-      }));
-    } catch { setError("Submissions could not be loaded. Close this dialog and try again."); }
-    setLoading(false);
-  };
   useEffect(() => {
-    load();
+    let active = true;
+    setLoading(true);
+    setSubmissions([]);
+    setError('');
+    (async () => {
+      try {
+        const list = await base44.entities.Submission.filter({ assignment_id: assignment.id });
+        const withDrafts = (list || []).map(item => {
+          if (item.status !== 'submitted') return item;
+          const draft = getReviewDraft(ctx, assignment.id, item.id, item.attempt || 1);
+          return draft ? { ...item, grade: draft.grade, feedback: draft.feedback } : item;
+        });
+        if (active) setSubmissions(withDrafts);
+      } catch (failure) { if (active) setError(failure.message || "Submissions could not be loaded. Close this dialog and try again."); }
+      finally { if (active) setLoading(false); }
+    })();
+    return () => { active = false; };
   }, [assignment.id, ctx.workspaceId]);
 
   const updateField = (submission, field, value) => {

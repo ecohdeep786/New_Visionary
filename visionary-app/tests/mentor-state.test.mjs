@@ -130,7 +130,16 @@ test('teacher accesses assigned class aggregates only; personal evidence and rev
 test('organization gets aggregate-only class evidence, never personal learner SCM or unrelated classes', () => {
  workspace.seedDemo('school-admin'); const organization = ctx('school-admin', 'organization'); const child = ctx('minor-cbse');
  mentor.recordLearningOutcome(child, outcome('personal', 'practice', 0)); mentor.recordLearningOutcome(child, outcome('class', 'check', 1, { classId: 'demo-class-cube' }));
- const result = mentor.getOrganizationAggregate(organization); assert.equal(result.classCount, 2); assert.equal(result.learnerCount, 2); assert.equal(result.concepts[0].correct, 1); assert.equal(result.concepts[0].total, 1);
+ const result = mentor.getOrganizationAggregate(organization); assert.equal(result.classCount, 2); assert.equal(result.learnerCount, 2); assert.equal(result.suppressed,true);assert.equal(result.pendingSubmissions,null);assert.deepEqual(result.concepts,[]);
+ const memberships=JSON.parse(storage.get('visionary_entity_OrganizationInvite'));
+ const enrollments=JSON.parse(storage.get('visionary_entity_Enrollment'));
+ for(const name of ['bengali','exam','college','adult']){
+  memberships.push({id:`member-${name}`,organization_email:'school-admin@visionary.test',email:`${name}@visionary.test`,role:'student',status:'active'});
+  enrollments.push({id:`enrollment-${name}`,class_id:'demo-class-cube',student_email:`${name}@visionary.test`,student_id:`demo-${name}`,status:'active'});
+ }
+ storage.set('visionary_entity_OrganizationInvite',JSON.stringify(memberships));storage.set('visionary_entity_Enrollment',JSON.stringify(enrollments));
+ for(const name of ['bengali','exam','college','adult'])mentor.recordLearningOutcome(ctx(name),outcome(`class-${name}`,'check',1,{classId:'demo-class-cube'}));
+ const large=mentor.getOrganizationAggregate(organization);assert.equal(large.learnerCount,5);assert.equal(large.suppressed,false);assert.equal(large.concepts[0].learners,5);
  assert.ok(!JSON.stringify(result).includes('demo-minor-cbse')); assert.ok(!('evidence' in result));
  assert.throws(() => mentor.getStudentState(organization, child.personId), /private/);
  assert.throws(() => mentor.getClassAggregate(organization, 'demo-class-cube'), /assigned teachers/);

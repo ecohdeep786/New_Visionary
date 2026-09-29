@@ -62,6 +62,28 @@ test('parent summaries require active scoped consent and exclude private content
  service.changeRelationship(ctx('parent','parent'),'demo-parent:demo-minor-cbse','revoked');assert.equal(service.familyReports(ctx('parent','parent')).length,1);
  assert.throws(()=>service.changeRelationship(child,'demo-parent:demo-minor-cbse','active'),/no longer pending/);
 });
+test('returned classwork digest stays with the selected child and closes on revocation',()=>{
+ const parent=ctx('parent','parent');
+ localStorage.setItem('visionary_entity_Assignment',JSON.stringify([{id:'a-one',class_id:'c',title:'Volume reasoning'},{id:'a-two',class_id:'c',title:'Reading data'},{id:'a-three',class_id:'c',title:'Measure a box',due_date:'2026-09-17',status:'published'}]));
+ localStorage.setItem('visionary_entity_Enrollment',JSON.stringify([{id:'enrolled-one',student_email:'minor-cbse@visionary.test',class_id:'c',status:'active'}]));
+ localStorage.setItem('visionary_entity_Submission',JSON.stringify([
+  {id:'one',assignment_id:'a-one',class_id:'c',student_email:'minor-cbse@visionary.test',status:'graded',graded_date:instant.toISOString(),text:'PRIVATE ANSWER',feedback:'PRIVATE FEEDBACK',grade:9},
+  {id:'two',assignment_id:'a-two',class_id:'c',student_email:'bengali@visionary.test',status:'graded',graded_date:instant.toISOString(),text:'OTHER PRIVATE ANSWER',feedback:'OTHER PRIVATE FEEDBACK',grade:7},
+ ]));
+ const first=service.familyClassworkDigest(parent,'demo-minor-cbse');
+ const second=service.familyClassworkDigest(parent,'demo-bengali');
+ assert.deepEqual(first.returned.map(row=>row.title),['Volume reasoning']);
+ assert.deepEqual(second.returned.map(row=>row.title),['Reading data']);
+ assert.deepEqual(first.upcoming.map(row=>row.title),['Measure a box']);
+ assert.deepEqual(second.upcoming,[]);
+ assert.ok(!JSON.stringify(first).includes('PRIVATE'));
+ assert.ok(!JSON.stringify(first).includes('grade'));
+ service.changeRelationship(parent,'demo-parent:demo-minor-cbse','revoked');
+ assert.throws(()=>service.familyClassworkDigest(parent,'demo-minor-cbse'),/no longer shared/);
+ assert.equal(service.familyClassworkDigest(parent,'demo-bengali').returned.length,1);
+ localStorage.setItem('visionary_entity_Submission','broken');
+ assert.throws(()=>service.familyClassworkDigest(parent,'demo-bengali'),/could not be read/);
+});
 test('report period filters out old activity and expired invitations cannot be accepted',()=>{
  const child=ctx('minor-cbse');const c=service.newConversation(child);service.startJourney(child,c.id,'cube');
  service.requestRelationship(ctx('adult','parent'),'bengali@visionary.test','guardian');
@@ -117,6 +139,13 @@ test('sharing exposes only the confirmed artifact; revocation removes the receiv
  const a=service.saveArtifact(ctx(),{title:'Shared report',body:'Public to this connection'});service.saveArtifact(ctx(),{title:'Private report',body:'PRIVATE'});
  assert.equal(service.sharedArtifacts(recipient).length,0);service.shareArtifact(ctx(),a.id,recipient.personId);
  const received=service.sharedArtifacts(recipient);assert.equal(received.length,1);assert.ok(!JSON.stringify(received).includes('PRIVATE'));assert.ok(!('versions' in received[0]));
+ service.saveArtifact(ctx(),{id:a.id,title:'Revised report',body:'A new private revision'});
+ assert.equal(service.sharedArtifacts(recipient)[0].title,'Shared report');
+ assert.equal(service.sharedArtifacts(recipient)[0].body,'Public to this connection');
+ assert.throws(()=>service.shareArtifact(ctx(),a.id,recipient.personId,JSON.stringify([a.updatedAt,a.title,a.body])),/changed/);
+ const updated=service.snapshot(ctx()).artifacts.find(item=>item.id===a.id);
+ service.shareArtifact(ctx(),a.id,recipient.personId,JSON.stringify([updated.updatedAt,updated.title,updated.body]));
+ assert.equal(service.sharedArtifacts(recipient)[0].body,'A new private revision');
  service.stopSharingArtifact(ctx(),a.id);assert.equal(service.sharedArtifacts(recipient).length,0);assert.equal(service.snapshot(ctx()).artifacts.length,2);
 });
 test('class policies prevent roster browsing, self-grading and ownership transfers',()=>{

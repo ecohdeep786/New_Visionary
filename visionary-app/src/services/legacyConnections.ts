@@ -18,6 +18,8 @@ export function saveLegacyRelationship(id:string,status:Relationship['status']){
  if(typeof window!=='undefined'){window.dispatchEvent(new CustomEvent('visionary:workspace-change'));window.dispatchEvent(new CustomEvent('visionary:v2-change'));}
 }
 export function legacyProgressSummary(email:string,since:number){
- const submissions:Row[]=JSON.parse(localStorage.getItem('visionary_entity_Submission')||'[]');
+ let submissions:Row[];
+ try{const parsed=JSON.parse(localStorage.getItem('visionary_entity_Submission')||'[]');if(!Array.isArray(parsed))throw Error();submissions=parsed;}
+ catch{return {returnedClasswork:null};}
  return {returnedClasswork:submissions.filter(s=>s.student_email===email&&s.status==='graded'&&new Date(String(s.graded_date||0)).getTime()>=since).length};
 }

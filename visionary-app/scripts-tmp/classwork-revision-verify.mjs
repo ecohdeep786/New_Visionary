@@ -6,12 +6,13 @@ const browser = await chromium.launch({ channel: 'msedge', headless: true, args:
 const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
 await context.addInitScript(() => {
  if (localStorage.getItem('visionary_workspace_v2')) return;
- const users = ['teacher', 'student'].map(identity => ({ id: `revision-${identity}`, email: `${identity}@revision.test`, full_name: identity === 'teacher' ? 'Dev' : 'Aarav', identity, roles: [identity], age_band: 'adult', onboarding_complete: true }));
+ const users = ['teacher', 'student', 'parent'].map(identity => ({ id: `revision-${identity}`, email: `${identity}@revision.test`, full_name: identity === 'teacher' ? 'Dev' : identity === 'parent' ? 'Anika' : 'Aarav', identity, roles: [identity], age_band: 'adult', onboarding_complete: true }));
+ users.push({ id:'revision-student2',email:'student2@revision.test',full_name:'Maya',identity:'student',roles:['student'],age_band:'adult',onboarding_complete:true });
  const empty = { conversations: [], sessions: [], artifacts: [], resources: [], notifications: [], audit: [], preferences: { locale: 'en', interfaceLocale: 'en', lowBandwidth: false, notifications: 'weekly', memory: true, voice: false }, subscription: { plan: 'Free', state: 'active', invoices: [], usage: 0, usageDay: '2026-09-28' }, legacyImported: false };
  localStorage.setItem('visionary_users', JSON.stringify(users));
- localStorage.setItem('visionary_sessions', JSON.stringify(users.map(user => ({ token: user.identity, userId: user.id, email: user.email, expiresAt: Date.now() + 86400000, createdAt: Date.now() }))));
+ localStorage.setItem('visionary_sessions', JSON.stringify(users.map(user => ({ token: user.id === 'revision-student2' ? 'student2' : user.identity, userId: user.id, email: user.email, expiresAt: Date.now() + 86400000, createdAt: Date.now() }))));
  localStorage.setItem('visionary_session_token', 'teacher');
- localStorage.setItem('visionary_workspace_v2', JSON.stringify({ version: 2, people: users.map(user => ({ id: user.id, email: user.email, name: user.full_name, ageBand: 'adult', roles: user.roles })), workspaces: users.map(user => ({ id: `${user.id}:${user.identity}`, personId: user.id, role: user.identity, name: user.identity, lastPath: '/dashboard/home' })), active: Object.fromEntries(users.map(user => [user.id, `${user.id}:${user.identity}`])), relationships: [], data: Object.fromEntries(users.map(user => [`${user.id}:${user.identity}`, empty])) }));
+ localStorage.setItem('visionary_workspace_v2', JSON.stringify({ version: 2, people: users.map(user => ({ id: user.id, email: user.email, name: user.full_name, ageBand: 'adult', roles: user.roles })), workspaces: users.map(user => ({ id: `${user.id}:${user.identity}`, personId: user.id, role: user.identity, name: user.identity, lastPath: '/dashboard/home' })), active: Object.fromEntries(users.map(user => [user.id, `${user.id}:${user.identity}`])), relationships: [{ id:'revision-guardian',from:'revision-parent',to:'revision-student',type:'guardian',scope:['progress-summary'],status:'active' },{ id:'revision-guardian-two',from:'revision-parent',to:'revision-student2',type:'guardian',scope:['progress-summary'],status:'active' }], data: Object.fromEntries(users.map(user => [`${user.id}:${user.identity}`, empty])) }));
  localStorage.setItem('visionary_entity_Classroom', JSON.stringify([{ id: 'revision-class', name: 'Reasoning together', subject: 'Mathematics', teacher_email: users[0].email, teacher_id: users[0].id, teacher_name: 'Dev', join_code: 'REVISION', color: '#1967d2' }]));
  localStorage.setItem('visionary_entity_Enrollment', JSON.stringify([{ id: 'revision-enrollment', class_id: 'revision-class', student_email: users[1].email, student_id: users[1].id, student_name: 'Aarav', status: 'active' }]));
 });
@@ -54,6 +55,9 @@ try {
  await page.getByRole('button', { name: 'Request revision', exact: true }).click();
  await page.getByRole('alert').filter({ hasText: 'Explain what the learner should revise.' }).waitFor();
  await page.getByLabel('Feedback for Aarav').fill('Explain rows, columns and cubic units.');
+ await page.reload({ waitUntil: 'networkidle' });
+ await openReview();
+ assert.equal(await page.getByLabel('Feedback for Aarav').inputValue(), 'Explain rows, columns and cubic units.');
  await page.getByRole('button', { name: 'Request revision', exact: true }).click();
  await page.getByText('Attempt 1 · Revision requested', { exact: true }).waitFor();
  await switchRole('student', '/dashboard/classes?class=revision-class');
@@ -81,6 +85,30 @@ try {
  const record = await page.evaluate(() => JSON.parse(localStorage.getItem('visionary_entity_Submission'))[0]);
  assert.equal(record.attempt, 2); assert.equal(record.grade, 9); assert.equal(record.revision_history.length, 1);
  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
+ await page.evaluate(() => { const assignments=JSON.parse(localStorage.getItem('visionary_entity_Assignment'));assignments.push({id:'next-activity',class_id:'revision-class',title:'Next mathematics activity',status:'published',due_date:new Date(Date.now()+86400000).toISOString().slice(0,10)});localStorage.setItem('visionary_entity_Assignment',JSON.stringify(assignments)); });
+ await switchRole('parent', '/dashboard/reports?child=revision-student');
+ await page.getByRole('heading', { name: 'Returned classwork' }).waitFor();
+ await page.getByText('Explain volume', { exact: true }).waitFor();
+ await page.getByText('Next mathematics activity', { exact: true }).waitFor();
+ await page.getByRole('heading', { name: 'Returned classwork' }).scrollIntoViewIfNeeded();
+ await page.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/parent-classwork-digest-390.png' });
+ assert.equal(await page.getByText('Clear reasoning with cubic units.', { exact: true }).count(), 0);
+ assert.equal(await page.getByText('Three layers of nine cubes make 27 cubic units.', { exact: true }).count(), 0);
+ await page.getByRole('combobox', { name: /^Child/ }).selectOption('revision-student2');
+ await page.getByText('No classwork was returned in this period.').waitFor();
+ assert.equal(await page.getByText('Explain volume', { exact: true }).count(), 0);
+ assert.equal(await page.getByText('Next mathematics activity', { exact: true }).count(), 0);
+ await page.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/parent-second-child-390.png' });
+ await page.reload({ waitUntil: 'networkidle' });
+ await page.getByText('No classwork was returned in this period.').waitFor();
+ await page.getByRole('combobox', { name: /^Child/ }).selectOption('revision-student');
+ await page.getByText('Explain volume', { exact: true }).waitFor();
+ await page.evaluate(() => { const db=JSON.parse(localStorage.getItem('visionary_workspace_v2'));db.relationships[0].status='revoked';localStorage.setItem('visionary_workspace_v2',JSON.stringify(db));window.dispatchEvent(new CustomEvent('visionary:v2-change')); });
+ await page.getByText('This report is no longer shared').waitFor();
+ assert.equal(await page.getByText('Explain volume', { exact: true }).count(), 0);
+ await page.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/parent-classwork-revoked-390.png' });
+ await page.getByRole('combobox', { name: /^Child/ }).selectOption('revision-student2');
+ await page.getByText('No classwork was returned in this period.').waitFor();
  assert.deepEqual(errors, []);
- console.log('PASS: authored assignment → submission → required revision feedback → saved revised draft → resubmit → teacher return → learner history; zero page errors or mobile overflow.');
+ console.log('PASS: reviewed assignment → submission → persisted teacher feedback draft → revision → resubmit → return → scoped parent digest → revocation; zero page errors or mobile overflow.');
 } finally { await browser.close(); }

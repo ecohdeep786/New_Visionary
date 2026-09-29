@@ -7,11 +7,29 @@ import { safeReturnTo } from "../src/lib/authReturnTo.js";
 import { appClient } from "../src/api/appClient.js";
 import { bootstrapPerson,snapshot,saveResource } from '../src/services/workspaceService.ts';
 import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses,reviewClasswork } from '../src/services/classroomService.js';
+import { getReviewDraft, saveReviewDraft, clearReviewDraft } from '../src/services/reviewDraftService.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key,value) => memory.set(key,String(value)), removeItem: key => memory.delete(key) };
 globalThis.window = { dispatchEvent() {}, location: { origin: "http://localhost:5173", search: "" } };
 globalThis.CustomEvent ??= class CustomEvent { constructor(type) { this.type = type; } };
+
+test('teacher review drafts keep only the current attempt and survive a failed local write',()=>{
+  memory.clear();
+  const teacher={workspaceId:'teacher-space',role:'teacher'};
+  const other={workspaceId:'other-space',role:'teacher'};
+  saveReviewDraft(teacher,'assignment','submission',1,'8','Explain the units');
+  assert.deepEqual(getReviewDraft(teacher,'assignment','submission',1),{grade:'8',feedback:'Explain the units'});
+  assert.equal(getReviewDraft(teacher,'assignment','submission',2),null);
+  assert.equal(getReviewDraft(other,'assignment','submission',1),null);
+  const setItem=localStorage.setItem;
+  try {localStorage.setItem=()=>{throw new Error('Storage full');};assert.throws(()=>saveReviewDraft(teacher,'assignment','submission',1,'9','Changed feedback'),/could not be backed up/);}
+  finally {localStorage.setItem=setItem;}
+  assert.equal(getReviewDraft(teacher,'assignment','submission',1).feedback,'Explain the units');
+  clearReviewDraft(teacher,'assignment','submission');
+  assert.equal(getReviewDraft(teacher,'assignment','submission',1),null);
+  assert.throws(()=>getReviewDraft({...teacher,role:'student'},'assignment','submission',1),/teacher workspace/);
+});
 
 test('reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped',async()=>{
   memory.clear();

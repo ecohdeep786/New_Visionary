@@ -262,7 +262,11 @@ export function getOrganizationAggregate(ctx: RequestContext) {
  const classes = classesFor(ctx); const records = classes.flatMap(c => scopedClassEvidence(c));
  const grouped = [...new Set(records.map(r => r.personId))].map(personId => ({ personId, evidence: records.filter(r => r.personId === personId).flatMap(r => r.evidence) }));
  const memberships = rows('OrganizationInvite').filter(r => r.organization_email === person.email && alive(r));
- return { classCount: classes.length, learnerCount: new Set(classes.flatMap(c => enrolled(c).map(e => String(e.student_id || e.student_email)))).size, activeMemberships: memberships.length, pendingSubmissions: rows('Submission').filter(s => classes.some(c => c.id === s.class_id) && s.status === 'submitted').length, concepts: aggregate(grouped) };
+ const learnerCount = new Set(classes.flatMap(c => enrolled(c).map(e => String(e.student_id || e.student_email)))).size;
+ const minimumGroupSize = 5;
+ const allConcepts = learnerCount >= minimumGroupSize ? aggregate(grouped) : [];
+ const concepts = allConcepts.filter(item => item.learners >= minimumGroupSize);
+ return { classCount: classes.length, learnerCount, activeMemberships: memberships.length, pendingSubmissions: learnerCount >= minimumGroupSize ? rows('Submission').filter(s => classes.some(c => c.id === s.class_id) && s.status === 'submitted').length : null, concepts, suppressed: learnerCount < minimumGroupSize || concepts.length < allConcepts.length, minimumGroupSize, period: 'All saved local class records' };
 }
 
 export interface SCMService {
