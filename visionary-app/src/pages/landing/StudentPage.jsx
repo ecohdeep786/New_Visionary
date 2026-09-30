@@ -175,10 +175,10 @@ const HERO_WORDS = ["Learning,", "to master.", "to build."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Understanding", quote: "I studied for hours. I still couldn't explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
-  { word: "Remembering", quote: "I understood it in class. I forgot it by evening.", image: problemrevision, alt: "Student reviewing notes on a laptop" },
-  { word: "Practice", quote: "I knew the formula. I didn't know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
-  { word: "Exams", quote: "I just needed someone to explain it differently.", image: problemexam, alt: "Student preparing before an exam" },
+  { word: "understanding", quote: "I studied for hours. I still couldn't explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
+  { word: "remembering", quote: "I understood it in class. I forgot it by evening.", image: problemrevision, alt: "Student reviewing notes on a laptop" },
+  { word: "practice", quote: "I knew the formula. I didn't know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
+  { word: "exams", quote: "I just needed someone to explain it differently.", image: problemexam, alt: "Student preparing before an exam" },
 ];
 const CYCLE_MS = 4000;
 
@@ -194,21 +194,21 @@ const JOURNEY_WORD_MS = 3000;
 const JOURNEY_STAGES1 = [
   { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
   { title: "Secondary", copy: "When a lesson gets difficult, you can keep going until the idea finally makes sense.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
-  { title: "Higher Secondary", copy: "Connect difficult ideas, go deeper into the subject, and build the understanding that carries forward.", image: higherStudent, alt: "Student writing notes from an open textbook" },
-  { title: "Competitive Exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
-  { title: "Vocational & Skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
-  { title: "Higher Education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
-  { title: "Learning on Your Own", copy: "Start with what you want to understand, build, or become better at—and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
+  { title: "Higher secondary", copy: "Connect difficult ideas, go deeper into the subject, and build the understanding that carries forward.", image: higherStudent, alt: "Student writing notes from an open textbook" },
+  { title: "Competitive exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational and skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
+  { title: "Higher education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
+  { title: "Learning on your own", copy: "Start with what you want to understand, build, or become better at — and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
 ];
 
 const INTELLIGENCE_WORDS = ["Every step connected.", "Every question connected.", "Every idea connected.", "Every attempt connected.", "Every discovery connected."];
 const INTELLIGENCE_WORD_MS = 3000;
 
 const INTELLIGENCE_STEPS = [
-  { title: "Understand what you're learning.", copy: "Learning shouldn't restart every time you open a new chapter. Visionary continues from where you are, helping every lesson become understanding through visual learning, natural conversation, guided practice, and real application." },
+  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
   { title: "See it.\nHear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
-  { title: "Practice what you're learning", copy: "Visionary keeps teaching, listening, adapting, and encouraging until understanding becomes confidence." },
-  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, creativity, and problem solving while your journey continues naturally." },
+  { title: "Practice what you're learning.", copy: "Visionary keeps teaching, listening, adapting, and encouraging until understanding becomes confidence." },
+  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
 ];
 
 const KEEPS_WORDS = ["teaching", "listening", "adapting"];
@@ -235,19 +235,19 @@ const QUESTION_MS = 3200;
 const CONTINUITY_STAGES = [
   { name: "Primary", previous: "Fractions", now: "Decimals", next: "Percentages" },
   { name: "Secondary", previous: "Linear equations", now: "Graphs", next: "Equations" },
-  { name: "Competitive Exams", previous: "Concept", now: "Difficult problem", next: "New problem" },
-  { name: "Vocational & Skills", previous: "Basic skill", now: "Practice", next: "Real project" },
-  { name: "Higher Education", previous: "Research", now: "Analysis", next: "Project / discovery" },
+  { name: "Competitive exams", previous: "Concept", now: "Difficult problem", next: "New problem" },
+  { name: "Vocational and skills", previous: "Basic skill", now: "Practice", next: "Real project" },
+  { name: "Higher education", previous: "Research", now: "Analysis", next: "Project / discovery" },
   { name: "Independent Learning", previous: "Goal", now: "Progress", next: "New direction" },
 ];
 
 const ACHIEVEMENT_TABS = [
-  { black: "Understand", blue: "what matters.", copy: "Build a clear understanding of the subjects, skills, ideas, and questions that matter in your learning today." },
-  { black: "Achieve what", blue: "you're working toward.", copy: "Set your goal and keep moving — with support that adapts until the result is something you're proud of." },
-  { black: "Build something from", blue: "what you know.", copy: "Turn what you've learned into real projects, real skills, and real work that grows with you." },
+  { black: "Understand", blue: "what matters.", copy: "A clear picture of the subjects and skills that matter today." },
+  { black: "Achieve what", blue: "you're working toward.", copy: "Set your goal and keep moving, with support that adapts." },
+  { black: "Build something from", blue: "what you know.", copy: "Turn what you know into real projects, real skills, real work." },
 ];
 
-const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Independent Learning"];
+const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Independent Learning"];
 const CATEGORY_MS = 4200;
 
 // const TRUST_WORDS = ["learning", "intelligence.", "control."];
@@ -260,10 +260,10 @@ const CATEGORY_MS = 4200;
 // ];
 
 const EXPLORE_CATEGORIES = [
-  { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
-  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child's journey.", alt: "Parents helping students at a classroom desk" },
-  { slug: "professional", chip: "Professional", copy: "Know how Visionary fits into the work you do.", alt: "Professional discussing work with a tablet" },
-  { slug: "organization", chip: "Organization", copy: "Know how Visionary fits across your organization.", alt: "Leader talking at an organization table" },
+  { slug: "teacher", chip: "Teacher", copy: "See who needs another explanation.", alt: "Teacher working on a laptop in a classroom" },
+  { slug: "parent", chip: "Parent", copy: "See where your child needs support.", alt: "Parents helping students at a classroom desk" },
+  { slug: "professional", chip: "Professional", copy: "Turn what you know into useful work.", alt: "Professional discussing work with a tablet" },
+  { slug: "organization", chip: "Organization", copy: "Help teams carry knowledge forward.", alt: "Leader talking at an organization table" },
 ];
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
@@ -300,7 +300,7 @@ const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Learning, to mastery."
-    sub="Every concept you understand becomes the foundation for the next one — in the language you think in."
+    sub="Every concept you understand becomes the foundation for the next."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"
     ctaLabel="Start learning free"
@@ -342,9 +342,9 @@ const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) 
       style={{ color: COLORS.ink }}
     >
       <span className="block">Every</span>
-      <span className="block">Student</span>
-      <span className="block">Struggles</span>
-      <span className="block">With</span>
+      <span className="block">student</span>
+      <span className="block">struggles</span>
+      <span className="block">with</span>
       <span className="block overflow-hidden whitespace-nowrap">
         <span
           key={slideKey}
@@ -488,40 +488,40 @@ const StudentPromiseSection = React.memo(function StudentPromiseSection() {
 const JOURNEY_STAGE_ICONS = {
   "Primary": Sparkles,
   "Secondary": BookOpen,
-  "Secondary & Higher Secondary": BookOpen,
-  "Higher Secondary": Layers3,
-  "Competitive Exams": Target,
-  "Vocational & Skills": RefreshCw,
-  "Higher Education": Brain,
-  "Learning on Your Own": Clock,
+  "Secondary & Higher secondary": BookOpen,
+  "Higher secondary": Layers3,
+  "Competitive exams": Target,
+  "Vocational and skills": RefreshCw,
+  "Higher education": Brain,
+  "Learning on your own": Clock,
   "Independent Learning": Clock,
 };
 
 const JOURNEY_STAGES = [
   { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
-  { title: "Secondary & Higher Secondary", copy: "When lessons get difficult, understanding keeps up — from class 6 to class 12, every chapter and exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
-  { title: "Competitive Exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
-  { title: "Vocational & Skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
-  { title: "Higher Education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
-  { title: "Learning on Your Own", copy: "Start with what you want to understand, build, or become better at — and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
+  { title: "Secondary & Higher secondary", copy: "When lessons get difficult, understanding keeps up — every chapter, every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Competitive exams", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational and skills", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
+  { title: "Higher education", copy: "Turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
+  { title: "Learning on your own", copy: "Start with what you want to understand. The path takes shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
 ];
 
-const JOURNEY_CATEGORIES = ["Primary", "Secondary & Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Learning on Your Own"];
+const JOURNEY_CATEGORIES = ["Primary", "Secondary & Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
 
 const STAGE_META = {
   "Primary": { Icon: GraduationCap },
-  "Secondary & Higher Secondary": { Icon: BookOpen },
-  "Competitive Exams": { Icon: Target },
-  "Vocational & Skills": { Icon: Layers3 },
-  "Higher Education": { Icon: Brain },
-  "Learning on Your Own": { Icon: Sparkles },
+  "Secondary & Higher secondary": { Icon: BookOpen },
+  "Competitive exams": { Icon: Target },
+  "Vocational and skills": { Icon: Layers3 },
+  "Higher education": { Icon: Brain },
+  "Learning on your own": { Icon: Sparkles },
 };
 
 const JOURNEY_MODALS = {
   "Primary": {
     top: "Build the basics.", accent: "Build them right.",
     intro: "Primary learning sets the pattern for everything after. Visionary makes first understanding visual, gentle, and connected.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "See it first.", c: "Numbers and words begin as pictures, stories, and voice.", l: "How it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise gently.", c: "Short, encouraging practice that rewards effort, not speed.", l: "Start practising free", to: "/register" },
@@ -529,58 +529,58 @@ const JOURNEY_MODALS = {
       { Icon: UsersRound, t: "Parents stay close.", c: "Progress shared in ways that help at home, not only at report time.", l: "For parents", to: "/parent" },
     ],
   },
-  "Secondary & Higher Secondary": {
+  "Secondary & Higher secondary": {
     top: "One place for", accent: "every subject.",
     intro: "From class 6 to class 12, lessons get deeper and exams get closer. Visionary keeps understanding connected across every chapter, board, and subject.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "When it gets difficult.", c: "Explanations adapt until the idea finally makes sense.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise what matters.", c: "Practice tied to your syllabus and the way your exams ask.", l: "Start practising free", to: "/register" },
-      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday's understanding stays available for today's lesson.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday's understanding stays available for today's lesson.", l: "Keep your place", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Boards and beyond.", c: "The same understanding carries into competitive preparation.", l: "Talk to us", to: "/contact" },
     ],
   },
-  "Competitive Exams": {
+  "Competitive exams": {
     top: "Prepare for the exam.", accent: "Not just the syllabus.",
     intro: "Competitive preparation is reasoning under pressure. Visionary strengthens the thinking that holds when the question changes shape.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "Reasoning over memorising.", c: "Understand why a method works, so new questions feel familiar.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise under real conditions.", c: "Accuracy, speed, and confidence built together.", l: "Start practising free", to: "/register" },
-      { Icon: BookOpen, t: "Learn from every attempt.", c: "Each mock becomes context: what to revise, skip, strengthen.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Learn from every attempt.", c: "Each mock becomes context: what to revise, skip, strengthen.", l: "Keep your place", to: "/how-it-works" },
       { Icon: Clock, t: "Stay steady.", c: "Clear explanations when pressure is high and time is short.", l: "Get support", to: "/help" },
     ],
   },
-  "Vocational & Skills": {
+  "Vocational and skills": {
     top: "Learn by doing.", accent: "Skills that work.",
     intro: "Vocational learning is meant to be used. Visionary connects practice, projects, and real work into one continuing journey.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: RefreshCw, t: "Practise the real thing.", c: "Skills build through doing — guidance never gives the answer away.", l: "See how it works", to: "/how-it-works" },
       { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Start building free", to: "/register" },
-      { Icon: BookOpen, t: "Skills that carry forward.", c: "What you practise now connects to the next skill and job.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Skills that carry forward.", c: "What you practise now connects to the next skill and job.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Learn with others.", c: "Communities and partners help you practise in real contexts.", l: "Find a partner", to: "/partners" },
     ],
   },
-  "Higher Education": {
+  "Higher education": {
     top: "Go deeper.", accent: "Build further.",
     intro: "University work asks for depth: research, analysis, and original thinking. Visionary keeps the threads connected across semesters.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "Understand at depth.", c: "Explanations that support serious subject work, not summaries.", l: "See how it works", to: "/how-it-works" },
-      { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and semesters.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and semesters.", l: "Keep your place", to: "/how-it-works" },
       { Icon: Layers3, t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Start building free", to: "/register" },
       { Icon: Building2, t: "Work with your institution.", c: "Visionary can support classrooms, labs, and departments.", l: "For organizations", to: "/organization" },
     ],
   },
-  "Learning on Your Own": {
+  "Learning on your own": {
     top: "Your pace.", accent: "Your path.",
     intro: "No syllabus required. Start with what you want to understand, build, or become better at — and let the learning take shape from there.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your question, not a curriculum.", l: "See how it works", to: "/how-it-works" },
       { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Start learning free", to: "/register" },
-      { Icon: BookOpen, t: "Keep your place.", c: "Return after weeks away and continue where you stopped.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Keep your place.", c: "Return after weeks away and continue where you stopped.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and updates keep independent learners connected.", l: "Join the community", to: "/community" },
     ],
   },
@@ -925,7 +925,7 @@ function StudentIntelligenceSection() {
           </span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Visionary keeps the learning moving from the first question to the moment you can use what you've learned.
+          From the first question to the moment you can use what you've learned.
         </p>
       </FadeReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
@@ -1010,12 +1010,12 @@ function StudentLanguageSection() {
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           The words can change.<br />Understanding shouldn't.
         </h2>
         <p className="mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Ask, learn, and practice in the language that feels natural to you. Visionary keeps the meaning, context, and learning journey connected as your language changes.
+          Ask, learn, and practice in the language you think in.
         </p>
 
         {/* Breath 1 — control first */}
@@ -1167,13 +1167,13 @@ function StudentContinuitySection() {
     <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Your continuity
+          Keep your place
         </p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           What you learn stays with you.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          What you understand, practise, and build becomes part of what comes next. You don't have to start over.
+          What you understand becomes part of what comes next. You never start over.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
           <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
@@ -1274,9 +1274,9 @@ function StudentAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with intelligence.</h2>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Turn what you understand into stronger results, useful skills, meaningful work, and progress you can see.
+          Turn understanding into results, skills, and progress you can see.
         </p>
 
         {/* Breath 2 — accordion + image, balanced columns */}
@@ -1338,10 +1338,10 @@ function StudentJourneyFlowSection() {
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Your journey changes.<br />Your learning stays with you.
+          New stage.<br />Same intelligence.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          As your subjects, skills, interests, and goals change, Visionary keeps giving you a place to continue learning, creating, and moving forward.
+          As your goals change, Visionary is the place to continue.
         </p>
 
         {/* Breath 2 — cascade + closing column */}
@@ -1395,8 +1395,8 @@ const TRUST_WORD_MS = 6000;
 
 const TRUST_CARDS = [
   { title: "Private by design.", copy: "Your personal information is treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
-  { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See security practices" },
-  { title: "Built responsibly.", copy: "Intelligence should help people without compromising what matters to them.", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+  { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
+  { title: "Built responsibly.", copy: "Intelligence should help people, never work against them.", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
 
 const TrustCard = React.memo(function TrustCard({ card }) {
@@ -1430,13 +1430,13 @@ function StudentTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your questions, conversations, ideas, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
+          Your questions, conversations, ideas, and progress are personal. Visionary is built to keep it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1478,13 +1478,13 @@ const StudentCTASection = React.memo(function StudentCTASection() {
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Start where you are
+          Begin today
         </p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your learning starts with where you are.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Explore what you're learning, ask your first question, and start building from what you know.
+          Ask your first question. Start building from what you know.
         </p>
         <div className="mt-12 flex justify-center">
           <Link
@@ -1519,7 +1519,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category }) {
           {category.copy}
         </p>
         <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
-          Explore more
+          Learn more
         </span>
       </div>
     </Link>
@@ -1534,7 +1534,7 @@ function StudentExploreSection() {
     <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
-          Explore more categories
+          Explore Visionary
         </h2>
         <div className="relative mt-16 lg:mt-20">
           <div

@@ -1,5 +1,5 @@
 import type { RequestContext } from '../domain/workspace.ts';
-import { familyReports, getWorkspace, saveResource, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
+import { familyReports, getWorkspace, portfolioProjectVersion, saveResource, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
 import { getAssignedClasses, getClassAggregate, getOrganizationAggregate, getParentSummary, getStudentState } from './mentorStateService.ts';
 import { getTeachingInterface } from './teachingInterface.ts';
 import { getLearningWorkspace } from './learningPipelineService.ts';
@@ -68,7 +68,7 @@ export function getCareerPath(ctx: RequestContext) {
     .map(unit => ({ conceptId: unit.conceptId, title: unit.title, unitId: unit.id, activityStage: unit.stage, evidence: states.find(item => item.conceptId === unit.conceptId) ?? null }));
   const goal = data.resources.find(resource => resource.kind === 'goal' && resource.status !== 'archived') ?? null;
   return { goal, capabilities, target: capabilities.find(item => item.conceptId === goal?.conceptId) ?? null,
-    portfolio: data.artifacts.map(artifact => ({ id: artifact.id, title: artifact.title, conceptId: artifact.conceptId, status: artifact.status, visibility: artifact.visibility, updatedAt: artifact.updatedAt })) };
+    portfolio: data.artifacts.map(artifact => ({ id: artifact.id, title: artifact.title, conceptId: artifact.conceptId, status: artifact.status, visibility: artifact.visibility, updatedAt: artifact.updatedAt, review: artifact.status !== 'completed' ? 'Finish to review' : !artifact.portfolioReviews?.length ? 'Self-review needed' : artifact.portfolioReviews[0]?.projectVersion === portfolioProjectVersion(artifact) ? 'Self-reviewed' : 'Review outdated' })) };
 }
 
 export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string; conceptId?: string }) {

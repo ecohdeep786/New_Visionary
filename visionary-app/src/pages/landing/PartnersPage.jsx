@@ -69,7 +69,7 @@ const BENEFITS = [
     Icon: GraduationCap, tile: "bg-[#e8f0fe] text-[#0b57d0]", title: "Enablement & onboarding",
     items: [
       { t: "Walkthroughs for your team", d: "Sessions that take teachers and administrators through the learning loop: Learn, Ask, Practice, Build." },
-      { t: "Classroom-ready setup guides", d: "Setup, cohort creation, and consent-scoped access — documented for your context." },
+      { t: "Classroom-ready setup guides", d: "Setup, cohort creation, and consent-based access — documented for your context." },
     ],
   },
   {
@@ -80,7 +80,7 @@ const BENEFITS = [
     ],
   },
   {
-    Icon: Newspaper, tile: "bg-[#fcefba] text-[#b06000]", title: "Recognition & shared learning",
+    Icon: Newspaper, tile: "bg-[#fcefba] text-[#b06000]", title: "Recognition and shared learning",
     items: [
       { t: "Co-publication of results", d: "Findings from pilots are written up and shared with your name on them, where both teams agree." },
       { t: "Early visibility of what is changing", d: "Roadmap changes that affect your rollout, before they reach the release notes." },
@@ -114,17 +114,17 @@ const SLIDES = [
   {
     subject: "loop",
     title: "A source to grow learning capability",
-    copy: "A Visionary partnership is a one-stop place for enablement content for the teams introducing the product — walkthroughs, setup guides, and teaching materials for the learning loop: Learn, Ask, Practice, Build.",
+    copy: "A partnership gives your team the guides and teaching materials to introduce Visionary and run the learning loop: Learn, Ask, Practise, Build.",
   },
   {
     subject: "languages",
     title: "Local context, real languages",
-    copy: "Language journeys are English, Hindi, and Bengali today, with more on the roadmap. Regional and language partners help us understand where existing learning experiences do not fit — and what should exist instead.",
+    copy: "Language journeys run in English, Hindi, and Bengali today. Regional partners help us see where learning experiences need to work differently.",
   },
   {
     subject: "research",
     title: "Evidence over claims",
-    copy: "We study how people learn with Visionary and publish what we find. Partners see the honest aggregate picture — what worked, what did not, and what we changed as a result.",
+    copy: "We study how people learn with Visionary and publish what we find. Partners see what worked, what did not, and what changed.",
   },
 ];
 
@@ -214,7 +214,7 @@ export default function PartnersPage() {
                 Better learning, <span className="text-[#0b57d0]">together.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
-                Bring education, technology, and local knowledge into the same work — with pilots measured in outcomes, not promises.
+                Education, technology, and local knowledge in one effort, measured by outcomes.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
@@ -227,7 +227,7 @@ export default function PartnersPage() {
                   to="/how-it-works"
                   className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                 >
-                  See how Visionary works
+                  See how it works
                 </Link>
               </div>
               <p className="mt-5 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#5f6368]">
@@ -509,7 +509,7 @@ export default function PartnersPage() {
                   { q: "How quickly will the partnerships team reply?", a: RESPONSE_TIMES.partners + " Every enquiry is read by a person on the team." },
                   { q: "What does a partnership cost?", a: "There is no programme fee to start a conversation. Costs, if any, are agreed in writing for a scoped piece of work — before that work begins." },
                   { q: "Is there a public partner directory?", a: "Not today. This page is the single enquiry route. If a public directory is introduced, it will be published here first." },
-                  { q: "How is learner data protected in a partnership?", a: "Learner data stays governed by the Privacy Policy. Pilots use consent-scoped access and aggregate views by default, and sensitive learner information never travels by email." },
+                  { q: "How is learner data protected in a partnership?", a: "Learner data stays governed by the Privacy Policy. Pilots use consent-based access and views that group learners by default, and sensitive learner information never travels by email." },
                   { q: "Does an enquiry create an endorsement?", a: "No. An enquiry starts a conversation. Scope, responsibilities, and any public acknowledgement are agreed in writing before work begins." },
                   { q: "Can we bring Visionary to our school or organization?", a: `Yes — that is the most common starting point. Write to ${PARTNERS_EMAIL} about rollouts for classrooms, cohorts, and workplaces.` },
                 ]}

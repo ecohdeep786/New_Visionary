@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, BookOpen, CheckCircle2, GraduationCap, LibraryBig, Plus, Search, Send, UserPlus, Users, X } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, CheckCircle2, GraduationCap, LibraryBig, Plus, Send, UserPlus, Users, X } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import FamilyProgress from "@/components/dashboard/FamilyProgress";
 import Connections from "./Connections";
+import OrganizationEvidencePanel from "@/components/dashboard/OrganizationEvidencePanel";
 
 const inputClass = "mt-2 h-11 w-full rounded-lg border border-[#5f6368] bg-white px-3 text-sm font-normal text-[#121317] outline-none focus:border-[#4285F4] focus:ring-1 focus:ring-[#4285F4]";
 const primaryClass = "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-60";
@@ -97,56 +98,6 @@ function ParentChildWorkspace({ user, accent }) {
   </div>;
 }
 
-function OrganizationPeopleWorkspace({ user, accent }) {
-  const [people, setPeople] = useState([]);
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("teacher");
-  const [query, setQuery] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
-  const load = useCallback(async () => {
-    if (!user?.email) return;
-    setError("");
-    try { setPeople((await base44.entities.OrganizationInvite.filter({ organization_email: user.email })).filter((person) => person.status !== "removed")); }
-    catch { setError("Your people list couldn’t be loaded."); }
-    finally { setLoading(false); }
-  }, [user?.email]);
-  useEffect(() => { load(); }, [load]);
-
-  const addPerson = async (event) => {
-    event.preventDefault();
-    if (!email.trim() || saving) return;
-    const normalized = normalize(email);
-    setNotice("");
-    if (normalized === normalize(user.email)) { setNotice("You already manage this workspace. Add another person’s email."); return; }
-    if (people.some((person) => normalize(person.email) === normalized)) { setNotice("This email is already in your people list."); return; }
-    setSaving(true);
-    try {
-      await base44.entities.OrganizationInvite.create({ organization_email: user.email, email: normalized, role, status: "draft" });
-      setEmail("");
-      setNotice("Person saved as a roster draft. No invitation has been sent and no account access has changed.");
-      await load();
-      announceChange();
-    } catch { setNotice("This person couldn’t be saved. Please try again."); }
-    finally { setSaving(false); }
-  };
-  const removePerson = async (person) => {
-    setSaving(true);
-    try { await base44.entities.OrganizationInvite.update(person.id, { status: "removed" }); await load(); announceChange(); setNotice("Roster draft removed."); }
-    catch { setNotice("We couldn’t remove this roster draft. Please try again."); }
-    finally { setSaving(false); }
-  };
-  const visiblePeople = people.filter((person) => (person.email + " " + person.role).toLowerCase().includes(query.toLowerCase().trim()));
-  return <div className={pageClass}>
-    <WorkspaceHeader eyebrow="Organization" title="People" description="Prepare your institution’s roster with clear roles for every educator and learner." action={<span className="shrink-0 rounded-full bg-[#e8f0fd] px-3 py-1.5 text-sm font-medium text-[#3367d6]">{people.length} roster drafts</span>} />
-    <section className="rounded-2xl border border-[#dadce0] bg-white p-6"><h2 className="text-base font-medium text-[#121317]">Add to your roster</h2><form onSubmit={addPerson} className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-end"><label className="flex-1 text-sm font-medium text-[#121317]">Email address<input required type="email" maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} placeholder="person@example.com" className={inputClass} /></label><label className="text-sm font-medium text-[#121317]">Role<select value={role} onChange={(event) => setRole(event.target.value)} className={inputClass + " sm:w-40"}><option value="teacher">Teacher</option><option value="student">Student</option><option value="coordinator">Coordinator</option><option value="admin">Administrator</option></select></label><button type="submit" disabled={saving || loading || !!error || !email.trim()} className={primaryClass} style={{ backgroundColor: accent }}><Plus className="h-4 w-4" />{saving ? "Saving…" : "Add person"}</button></form><p className="mt-4 text-xs leading-relaxed text-[#5f6368]">Roster drafts are saved in this browser. Email invitations and account permissions are not active yet.</p>{notice && <p className="mt-3 text-sm text-[#5f6368]" role="status">{notice}</p>}</section>
-    <LoadState loading={loading} error={error} retry={load} />
-    {!loading && !error && (people.length === 0 ? <EmptyWorkspace icon={Users} title="Start with your team" description="Add your first teacher, student, or coordinator above. You can review the roster before invitations become available." /> : <section><label className="mb-4 flex max-w-sm items-center gap-2 rounded-full border border-[#dadce0] px-4"><Search className="h-4 w-4 text-[#5f6368]" /><input aria-label="Search people" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search email or role" className="h-11 min-w-0 flex-1 bg-transparent text-sm outline-none" /></label><div className="overflow-hidden rounded-2xl border border-[#dadce0] bg-white">{visiblePeople.length === 0 ? <p className="p-6 text-sm text-[#5f6368]">No people match your search.</p> : visiblePeople.map((person) => <div key={person.id} className="flex items-center gap-3 border-b border-[#dadce0] px-5 py-4 last:border-b-0"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#dadce0] text-sm font-medium text-[#5f6368]">{person.email?.charAt(0)?.toUpperCase()}</div><div className="min-w-0 flex-1"><p className="truncate text-sm font-medium text-[#121317]">{person.email}</p><p className="text-xs capitalize text-[#5f6368]">{person.role === "admin" ? "Administrator" : person.role}</p></div><span className="rounded-full bg-[#dadce0] px-3 py-1 text-xs font-medium text-[#5f6368]">Draft</span><button type="button" disabled={saving} onClick={() => removePerson(person)} aria-label={"Remove " + person.email + " from roster drafts"} className="rounded-full p-2 text-[#5f6368] hover:bg-[#dadce0] disabled:opacity-50"><X className="h-4 w-4" /></button></div>)}</div></section>)}
-  </div>;
-}
-
 function CurriculumWorkspace({ user, updateUser, accent }) {
   const [name, setName] = useState(user?.curriculum_name || "");
   const [board, setBoard] = useState(user?.org_board || user?.board || "");
@@ -224,7 +175,7 @@ function MetricsWorkspace({ user, area, accent }) {
   return <div className={pageClass}>
     <WorkspaceHeader eyebrow={teaching ? "Teaching" : "Organization"} title={teaching ? "Teaching insights" : "Institution analytics"} description={teaching ? "An overview of your classes, connected learners, and teaching workload." : "A focused view of your institution’s roster and explicitly linked classrooms."} />
     <LoadState loading={loading} error={error} retry={load} />
-    {!loading && !error && <><div className="grid gap-4 sm:grid-cols-3">{metrics.map((metric) => { const Icon = metric.icon; return <div key={metric.label} className="rounded-2xl border border-[#dadce0] bg-white p-6"><Icon className="h-5 w-5" style={{ color: accent }} /><p className="mt-5 text-3xl font-medium text-[#121317]">{metric.value}</p><p className="mt-1 text-sm text-[#5f6368]">{metric.label}</p></div>; })}</div>{data.classes.length > 0 ? <section><h2 className="mb-4 text-lg font-medium text-[#121317]">Class overview</h2><div className="overflow-x-auto rounded-2xl border border-[#dadce0]"><table className="w-full min-w-[480px] text-left text-sm"><thead className="bg-[#ffffff] text-[#5f6368]"><tr><th className="px-5 py-4 font-medium">Class</th><th className="px-5 py-4 font-medium">Students</th><th className="px-5 py-4 font-medium">Assignments</th></tr></thead><tbody>{data.classes.map((classroom) => <tr key={classroom.id} className="border-t border-[#dadce0]"><td className="px-5 py-4 font-medium text-[#121317]">{classroom.name || classroom.title || "Untitled class"}</td><td className="px-5 py-4 text-[#5f6368]">{data.enrollments.filter((entry) => entry.class_id === classroom.id).length}</td><td className="px-5 py-4 text-[#5f6368]">{data.assignments.filter((item) => item.class_id === classroom.id).length}</td></tr>)}</tbody></table></div></section> : <EmptyWorkspace icon={BarChart3} title={teaching ? "Insights start with a class" : "No linked classrooms yet"} description={teaching ? "Create a class and share its join code. Learner and assignment totals appear here as you teach." : "Roster drafts do not create classroom access. Only classes explicitly linked to your institution will contribute to this report."} action={<Link to={teaching ? "/dashboard/home" : "/dashboard/people"} className={primaryClass} style={{ backgroundColor: accent }}>{teaching ? "Go to classes" : "Manage people"}<ArrowRight className="h-4 w-4" /></Link>} />}</>}
+    {!loading && !error && <><div className="grid gap-4 sm:grid-cols-3">{metrics.map((metric) => { const Icon = metric.icon; return <div key={metric.label} className="rounded-2xl border border-[#dadce0] bg-white p-6"><Icon className="h-5 w-5" style={{ color: accent }} /><p className="mt-5 text-3xl font-medium text-[#121317]">{metric.value}</p><p className="mt-1 text-sm text-[#5f6368]">{metric.label}</p></div>; })}</div>{!teaching && <OrganizationEvidencePanel/>}{data.classes.length > 0 ? <section><h2 className="mb-4 text-lg font-medium text-[#121317]">Class overview</h2><div className="overflow-x-auto rounded-2xl border border-[#dadce0]"><table className="w-full min-w-[480px] text-left text-sm"><thead className="bg-[#ffffff] text-[#5f6368]"><tr><th className="px-5 py-4 font-medium">Class</th><th className="px-5 py-4 font-medium">Students</th><th className="px-5 py-4 font-medium">Assignments</th></tr></thead><tbody>{data.classes.map((classroom) => <tr key={classroom.id} className="border-t border-[#dadce0]"><td className="px-5 py-4 font-medium text-[#121317]">{classroom.name || classroom.title || "Untitled class"}</td><td className="px-5 py-4 text-[#5f6368]">{data.enrollments.filter((entry) => entry.class_id === classroom.id).length}</td><td className="px-5 py-4 text-[#5f6368]">{data.assignments.filter((item) => item.class_id === classroom.id).length}</td></tr>)}</tbody></table></div></section> : <EmptyWorkspace icon={BarChart3} title={teaching ? "Insights start with a class" : "No linked classrooms yet"} description={teaching ? "Create a class and share its join code. Learner and assignment totals appear here as you teach." : "Roster drafts do not create classroom access. Only classes explicitly linked to your institution will contribute to this report."} action={<Link to={teaching ? "/dashboard/home" : "/dashboard/people"} className={primaryClass} style={{ backgroundColor: accent }}>{teaching ? "Go to classes" : "Manage people"}<ArrowRight className="h-4 w-4" /></Link>} />}</>}
   </div>;
 }
 

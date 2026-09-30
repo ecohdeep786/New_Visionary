@@ -1,5 +1,5 @@
 import type { RequestContext } from '../domain/workspace.ts';
-import { familyReports, snapshot, updateStageProfile, updateStageProfilesBatch, workspaceIdentity } from './workspaceService.ts';
+import { familyReports, reportDays, snapshot, updateStageProfile, updateStageProfilesBatch, workspaceIdentity } from './workspaceService.ts';
 import { getDailyPlan } from './dailyPlanService.ts';
 import { getLearningWorkspace } from './learningPipelineService.ts';
 import { getStudentClasswork } from './mentorStateService.ts';
@@ -212,14 +212,15 @@ export function getActiveTransitionNotice(ctx: RequestContext): StageTransition 
 
 /** A minimal recent class update for a consented parent report. Private work,
  * transition reasons and the learner's own Undo control never leave their space. */
-export function getParentStageInsight(ctx: RequestContext, childId: string): { state: 'applied' | 'postponed' | 'undone'; from: string; to: string; at: string } | null {
+export function getParentStageInsight(ctx: RequestContext, childId: string, days: 7 | 30 = 7): { state: 'applied' | 'postponed' | 'undone'; from: string; to: string; at: string } | null {
+ reportDays(days);
  check(ctx);
  if (ctx.role !== 'parent' || !familyReports(ctx).some(child => child.id === childId)) throw new Error('This child’s stage update is not shared with you.');
  const transition = read().transitions.filter(item => item.personId === childId && item.from.classLevel && item.to.classLevel && item.from.classLevel !== item.to.classLevel).at(-1);
  if (!transition || !['applied', 'postponed', 'undone'].includes(transition.state)) return null;
  const state = transition.state as 'applied' | 'postponed' | 'undone';
  const at = state === 'undone' ? transition.undoneAt : state === 'applied' ? transition.appliedAt : transition.postponedAt || transition.notifiedAt;
- if (!at || !Number.isFinite(new Date(at).getTime()) || Math.abs(clock().getTime() - new Date(at).getTime()) > 7 * 86400000) return null;
+ if (!at || !Number.isFinite(new Date(at).getTime()) || Math.abs(clock().getTime() - new Date(at).getTime()) > days * 86400000) return null;
  const current = cleanProfile(workspaceIdentity({ ...ctx, personId: childId, workspaceId: `${childId}:student`, role: 'student' }).person.learningContext || { subjects: [] });
  if (current.classLevel !== (state === 'applied' ? transition.to.classLevel : transition.from.classLevel)) return null;
  return { state, from: transition.from.classLevel!, to: transition.to.classLevel!, at };

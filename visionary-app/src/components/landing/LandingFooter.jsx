@@ -41,17 +41,17 @@ const FOOTER_SECTIONS = [
     ],
   },
   {
-    title: "Partners & Support",
+    title: "Partners and support",
     links: [
-      { label: "Help Center", to: "/help" },
-      { label: "Contact & Sales", to: "/contact" },
+      { label: "Help center", to: "/help" },
+      { label: "Contact sales", to: "/contact" },
       { label: "Partner program", to: "/partners" },
-      { label: "Find a Partner", to: "/partners" },
+      { label: "Find a partner", to: "/partners" },
       { label: "Sign up for updates", to: "/updates" },
     ],
   },
   {
-    title: "Trust & Legal",
+    title: "Trust and legal",
     links: [
       { label: "Safety", to: "/safety" },
       { label: "Privacy", to: "/privacy" },

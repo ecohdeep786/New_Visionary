@@ -94,10 +94,10 @@ const CATEGORIES = [
 
 /* ═══ RESOURCES — "Get started at your own pace" link rows ═══ */
 const RESOURCES = [
-  { to: "/help", label: "Help Center", desc: "Guides for setup, classrooms, and every persona." },
+  { to: "/help", label: "Help center", desc: "Guides for setup, classrooms, and every persona." },
   { to: "/download", label: "Download Visionary", desc: "Web, desktop, and mobile — the platforms sync covers." },
-  { to: "/security", label: "Security & sync", desc: "How the Sync Encrypted ID protects what moves between devices." },
-  { to: "/privacy", label: "Privacy Policy", desc: "What information is handled, why, and the choices you have." },
+  { to: "/security", label: "Security and sync", desc: "How the Sync Encrypted ID protects what moves between devices." },
+  { to: "/privacy", label: "Privacy policy", desc: "What information is handled, why, and the choices you have." },
 ];
 
 /* ═══ COMMITMENT — the reference's three-column promise ═══ */
@@ -134,7 +134,7 @@ export default function AccessibilityPage() {
               Help every learner learn <span className="text-[#0b57d0]">how they learn best.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
-              One product, many ways in — vision, hearing, motor, cognition, and language. Wherever you learn, on whatever you have.
+              One product, many ways in: vision, hearing, movement, thinking, and language on the device you have.
             </p>
             <div className="mt-8 flex justify-center">
               <Link
@@ -163,7 +163,7 @@ export default function AccessibilityPage() {
                 <span className="text-[#0b57d0]">It is to give more people a way in.</span>
               </p>
               <p className="mt-6 max-w-[560px] text-[16px] leading-[1.7] text-[#5f6368]">
-                Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
+                Accessibility shapes the product experience. It changes how information appears, how people interact with Visionary, and how easily someone can keep going when the usual path does not work.
               </p>
             </div>
             <div className="flex justify-center lg:justify-end">
@@ -264,7 +264,7 @@ export default function AccessibilityPage() {
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Resources</p>
               <h2 id="resources-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[40px]">
-                Get started at your own pace.
+                Start at your own pace.
               </h2>
               <p className="mt-4 max-w-[420px] text-[15px] leading-[1.75] text-[#5f6368]">
                 Move at your own speed — every resource below is free to read, and the team answers every barrier report.

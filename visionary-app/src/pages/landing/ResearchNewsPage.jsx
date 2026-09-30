@@ -39,9 +39,9 @@ const AREAS = [
     tint: "#e8f0fe",
     copy: "The Learn, Ask, Practice, and Build loop turns one day of learning into evidence the mentor plans from — progress described by what was actually done, never by invented scores.",
     items: [
-      { tag: "In the product", subject: "updates", title: "The Daily Mentor plan", detail: "Home is a decision, not a grid: one evidence-backed next step, chosen from classwork, activity, and due practice." },
+      { tag: "In the product", subject: "updates", title: "The Daily Mentor plan", detail: "Home is a decision, not a grid: one clear next step, chosen from classwork, activity, and due practice." },
       { tag: "In the product", subject: "learn", title: "Exact session resume", detail: "A lesson interrupted by a refresh or a language change resumes exactly where it stopped." },
-      { tag: "In the product", subject: "build", title: "Build with recovery", detail: "An artifact that fails to save partway recovers instead of losing the learner's work." },
+      { tag: "In the product", subject: "build", title: "Build with recovery", detail: "A project that fails to save partway recovers — your work is not lost." },
       { tag: "Next", subject: "growth", title: "Practice that truly adapts", detail: "Deeper adaptation from real outcomes across subjects — not a score dressed up as understanding." },
     ],
   },
@@ -72,9 +72,9 @@ const AREAS = [
     tint: "#fef3df",
     copy: "Follow a child's learning through summaries scoped by consent — support at home without opening the learner's private world.",
     items: [
-      { tag: "In the product", subject: "shield", title: "Consent-scoped summaries", detail: "Parent reports show only what the learner's consent allows — nothing more is rendered anywhere." },
+      { tag: "In the product", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner's consent allows — nothing more appears anywhere." },
       { tag: "In the product", subject: "lock", title: "Boundaries by design", detail: "Private doubts and personal projects stay outside family and organizational views by default." },
-      { tag: "Next", subject: "eye", title: "Richer progress signals", detail: "Clearer summaries of what changed and why, as the evidence model grows." },
+      { tag: "Next", subject: "eye", title: "Clearer progress updates", detail: "Clearer summaries of what changed and why." },
     ],
   },
   {
@@ -85,9 +85,9 @@ const AREAS = [
     photo: imgProfessional,
     alt: "A professional building skills for work",
     tint: "#f3edff",
-    copy: "A professional declares a goal; the mentor turns study and real work into skill evidence — and the evidence into a portfolio employers can read.",
+    copy: "A professional declares a goal; the mentor turns study and real work into proof of skill — and the proof into a portfolio employers can read.",
     items: [
-      { tag: "In the product", subject: "briefcase", title: "Goal, evidence, portfolio", detail: "A professional goal becomes applied artifacts that save as skill evidence, assembled into a portfolio." },
+      { tag: "In the product", subject: "briefcase", title: "Goal, evidence, portfolio", detail: "A professional goal becomes real projects, saved as proof of skill, and assembled into a portfolio." },
       { tag: "In the product", subject: "growth", title: "Understanding, not percentages", detail: "Progress is described by evidence — invented confidence scores and exam-readiness numbers are never shown." },
       { tag: "Next", subject: "research", title: "Verified skill claims", detail: "Outcome-level claims that independent evaluation can support." },
     ],
@@ -103,7 +103,7 @@ const AREAS = [
     tint: "#fcebe8",
     copy: "Schools, colleges, coaching institutes, and workplaces roll out learning across cohorts — with role isolation enforced at every view.",
     items: [
-      { tag: "In the product", subject: "team", title: "Cohorts and aggregate insights", detail: "Organization setup flows to cohorts and aggregates — institution insight without exposing any individual." },
+      { tag: "In the product", subject: "team", title: "Insights across cohorts", detail: "Organization setup flows to cohorts and grouped views — insight without exposing any individual." },
       { tag: "In the product", subject: "shield", title: "Isolation enforced", detail: "One account can switch roles without data leakage; organizational views never see private work." },
       { tag: "Next", subject: "handshake", title: "Production enforcement", detail: "Server-side authorization repeating every client-side role and consent check." },
     ],
@@ -112,16 +112,16 @@ const AREAS = [
 
 /* Recently shipped — real capabilities, real month. */
 const LATEST = [
-  { label: "September 2026", title: "The Daily Mentor Engine", copy: "Home became a decision: one evidence-backed next step for every role, chosen from classwork, activity, and due practice.", subject: "updates", tint: "#e8f0fe" },
-  { label: "September 2026", title: "Two faces of one intelligence", copy: "Vision Boy and Vision Girl ship as two presentations of the same cognition — one memory, one pedagogy, one safety policy.", subject: "ask", tint: "#e9f5ef" },
-  { label: "September 2026", title: "Community, teacher-moderated", copy: "Class-scoped communities where learners grow together and teachers keep the space safe.", subject: "community", tint: "#fef3df" },
+  { label: "September 2026", title: "The Daily Mentor Engine", copy: "Home became a decision: one clear next step for every role, chosen from classwork, activity, and due practice.", subject: "updates", tint: "#e8f0fe" },
+  { label: "September 2026", title: "Two faces of one intelligence", copy: "Vision Boy and Vision Girl ship as two presentations of the same intelligence — one memory, one way of teaching, one safety policy.", subject: "ask", tint: "#e9f5ef" },
+  { label: "September 2026", title: "A teacher-moderated community", copy: "Class-scoped communities where learners grow together and teachers keep the space safe.", subject: "community", tint: "#fef3df" },
 ];
 
 /* The work the research feeds — product surfaces shaped by these questions. */
 const PROJECTS = [
   { title: "How it works", photo: imgProjectA, alt: "A designer shaping a learning exercise on paper", copy: "The learning loop the research feeds — explore, check, practise, build." },
   { title: "The product", photo: imgProjectB, alt: "A learner reading closely to make sense of an idea", copy: "Where questions become the experiences learners use every day." },
-  { title: "Community", photo: imgProjectC, alt: "Teammates discussing work in a meeting", copy: "Learners, teachers, and parents growing together — and shaping the questions." },
+  { title: "Community", photo: imgProjectC, alt: "Teammates discussing work in a meeting", copy: "Learners, teachers, and parents growing together and shaping the questions." },
 ];
 
 /* ═══ Motion — the shared reveal grammar ═══ */
@@ -193,7 +193,7 @@ export default function ResearchNewsPage() {
                 </span>
               </h1>
               <p className="mt-14 max-w-[480px] text-[17px] leading-[1.65] text-[#5f6368] sm:text-[18px]">
-                Visionary is building a mentor intelligence — one intelligence that knows your journey, teaches in your language, and turns every day of learning into evidence. This page is the record of that work.
+                We are building a mentor that knows your journey. This page records what we learn.
               </p>
             </Reveal>
           </div>
@@ -208,7 +208,7 @@ export default function ResearchNewsPage() {
                 Building the mentor intelligence.
               </h2>
               <p className="mt-4 max-w-[520px] text-[16px] leading-[1.75] text-[#5f6368]">
-                The product contract is simple to say and hard to do: one identity across five roles, one cognition behind every view, one evidence-backed next step each day. The mentor is not artificial general intelligence today — that is the direction of the research, and this page shares where it stands.
+                The product contract is simple to say and hard to do: one identity across five roles, one understanding behind every view, and one clear next step each day. The mentor is not artificial general intelligence today. That is the direction of the research, and this page shows where it stands.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-3xl bg-[#202124] p-10 sm:p-14">

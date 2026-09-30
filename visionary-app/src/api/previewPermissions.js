@@ -2,13 +2,15 @@
 export function previewPolicy(user, read) {
   const email=user?.email;
   const role=user?.identity;
-  const inScope=c=>Boolean(c&&(!user?.organization_id||c.organization_email===user.organization_id));
-  const ownsClass=c=>Boolean(inScope(c)&&(c.teacher_email===email||c.teacher_id===user?.id||c.created_by_id===user?.id||c.created_by===email));
+  const inScope=c=>Boolean(c&&(user?.organization_id?c.organization_email===user.organization_id:!c.organization_email));
+  const activeMember=(organizationEmail, memberRole)=>read('OrganizationInvite').some(i=>i.organization_email===organizationEmail&&i.email===email&&i.role===memberRole&&i.status==='active'&&(!i.expiresAt||new Date(i.expiresAt).getTime()>Date.now()));
+  const ownsClass=c=>Boolean(inScope(c)&&(!c.organization_email||activeMember(c.organization_email,'teacher'))&&(c.teacher_email===email||c.teacher_id===user?.id||c.created_by_id===user?.id||c.created_by===email));
   const classroom=id=>read('Classroom').find(c=>c.id===id);
   const teacher=id=>role==='teacher'&&ownsClass(classroom(id));
   const learner=['student','professional'].includes(role);
-  const enrolled=id=>learner&&inScope(classroom(id))&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='active');
-  const invited=id=>learner&&inScope(classroom(id))&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='invited');
+  const learnerClass=id=>{const c=classroom(id);return inScope(c)&&(!c.organization_email||activeMember(c.organization_email,role));};
+  const enrolled=id=>learner&&learnerClass(id)&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='active');
+  const invited=id=>learner&&learnerClass(id)&&read('Enrollment').some(e=>e.class_id===id&&e.student_email===email&&e.status==='invited');
   const organization=id=>role==='organization'&&classroom(id)?.organization_email===email;
   const endpoints={FamilyLink:['parent_email','child_email'],OrganizationInvite:['organization_email','email'],Connection:['requester_email','recipient_email']};
   function canRead(name,r){
@@ -30,7 +32,9 @@ export function previewPolicy(user, read) {
         (name!=='FamilyLink'||role==='parent')&&(name!=='OrganizationInvite'||role==='organization');
       else if(operation==='update')allowed=canRead(name,r)&&Object.keys(patch).every(k=>['status','accepted_at'].includes(k))&&
         (patch.status==='active'||patch.status==='declined'?r[to]===email&&r.status==='pending': ['revoked','cancelled','removed'].includes(patch.status));
-      if(patch.status==='active'&&name==='OrganizationInvite')allowed=allowed&&r.role===role;
+      // Membership changes use the scoped invitation service so state and
+      // action history are saved together in the local preview record.
+      if(name==='OrganizationInvite')allowed=false;
     }else if(name==='Classroom')allowed=role==='teacher'&&(operation==='create'?ownsClass(r):teacher(r.id));
     else if(name==='Assignment'||name==='Announcement')allowed=teacher(r.class_id);
     else if(name==='OrganizationCurriculum')allowed=role==='organization'&&r.organization_email===email;
@@ -56,7 +60,7 @@ export function previewPolicy(user, read) {
       }
       if(allowed&&patch.grade!=null)allowed=Number.isFinite(Number(patch.grade))&&Number(patch.grade)>=0&&Number(patch.grade)<=Number(assignment?.points||100);
     }
-    if(name==='Classroom'&&operation==='create'&&r.organization_email)allowed=allowed&&read('OrganizationInvite').some(i=>i.organization_email===r.organization_email&&i.email===email&&i.role==='teacher'&&i.status==='active');
+    if(name==='Classroom'&&operation==='create'&&r.organization_email)allowed=allowed&&activeMember(r.organization_email,'teacher');
     if(!allowed)throw new Error('This action is not permitted in your active workspace.');
     if(operation==='update'&&['class_id','teacher_email','teacher_id','student_email','organization_email'].some(k=>k in patch&&patch[k]!==r[k]))throw new Error('Record ownership cannot be changed.');
   }

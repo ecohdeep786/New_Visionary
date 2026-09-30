@@ -71,13 +71,13 @@ const AT_A_GLANCE = [
   {
     to: "#what-we-collect",
     label: "Know what is involved",
-    text: "Account, learning activity, device, and preference information—explained by category.",
+    text: "Account, learning activity, device, and preference information — explained by category.",
     Icon: Database,
   },
   {
     to: "#sharing",
     label: "Understand who can see it",
-    text: "Access depends on account role and the learning relationship—not a public profile.",
+    text: "Access depends on account role and the learning relationship — not a public profile.",
     Icon: Eye,
   },
   {
@@ -421,7 +421,7 @@ export default function PrivacyPage() {
                     {[
                       ["Student", "Learners can review their own work. Private conversation text is not included in the parent and teacher progress views described here."],
                       ["Teacher", "Class-linked learning evidence is limited to the teacher’s assigned classes in the product model."],
-                      ["Parent", "A parent view contains shared progress and activity summaries for connected children—not private conversations."],
+                      ["Parent", "A parent view contains shared progress and activity summaries for connected children — not private conversations."],
                       ["Institution", "The organization view is designed for aggregate, role-appropriate information rather than private learner conversations."],
                       ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
                     ].map(([who, what], i, arr) => (

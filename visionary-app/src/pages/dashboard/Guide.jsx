@@ -11,6 +11,7 @@ import { listJourneys } from '@/services/journeys';
 import { openGuideLocation,selectGuideConversation,saveAskContext,suggestedJourneys,defaultAskContext } from '@/services/guideEntryService';
 import GuideEntry from '@/components/dashboard/GuideEntry';
 import GuideActivity from '@/components/dashboard/GuideActivity';
+import ParentReportAsk from './ParentReportAsk';
 import { Dialog,DialogContent,DialogTitle,DialogDescription } from '@/components/ui/dialog';
 const WorkspaceTools=lazy(()=>import('./WorkspaceTools'));
 const Children=lazy(()=>import('./Children'));
@@ -22,6 +23,10 @@ const ArtifactStudio=lazy(()=>import('./ArtifactStudio'));
 const LearningWorkspace=lazy(()=>import('./LearningWorkspace'));
 
 export default function Guide(){
+ const [params]=useSearchParams();
+ return params.has('child')?<ParentReportAsk key={`${params.get('child')||''}:${params.get('period')||'7'}`}/>:<GuideConversation/>;
+}
+function GuideConversation(){
  const {ctx,data,error:loadError}=useWorkspace();const location=useLocation();const [params]=useSearchParams();const [selected,setSelected]=useState(()=>data?.activeConversationId||null);const [input,setInput]=useState(location.state?.initialQuestion|| (params.get('topic')?`Help me understand ${params.get('topic')}.`:''));const [busy,setBusy]=useState(false);const [error,setError]=useState('');const [history,setHistory]=useState(false);const [deleting,setDeleting]=useState(null);const [pane,setPane]=useState('conversation');const [focus,setFocus]=useState(false);const abort=useRef(null);const field=useRef(null);
  const [renderedScope,setRenderedScope]=useState(ctx?`${ctx.personId}:${ctx.workspaceId}`:'');
  useEffect(()=>()=>abort.current?.abort(),[]);

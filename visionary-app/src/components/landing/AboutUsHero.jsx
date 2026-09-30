@@ -8,9 +8,9 @@ const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
       category page. All sub-category cards redirect to their main category
       page — no separate sub-pages exist. ── */
 const FAN_GROUPS = [
-  { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher Secondary", "chemistry"], ["Competitive Exams", "flag"], ["Vocational & Skills", "build"], ["Higher Education", "research"], ["Learning on Your Own", "loop"]] },
+  { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"], ["Competitive exams", "flag"], ["Vocational and skills", "build"], ["Higher education", "research"], ["Learning on your own", "loop"]] },
   { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson Planning", "document"], ["In Class", "ask"], ["Checking Understanding", "practice"], ["Adapting", "compass"], ["Supporting Individuals", "handshake"], ["Growing", "growth"]] },
-  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early Years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher Secondary", "chemistry"]] },
+  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early Years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"]] },
   { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early Career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
   { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges & Universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
 ];
@@ -52,7 +52,7 @@ export default function AboutUsHero() {
             Helping people turn questions into <span className="text-[#0b57d0]">understanding.</span>
           </h1>
           <p className="mx-auto mt-8 max-w-[760px] text-[20px] leading-[1.55] text-[#3c4043] sm:text-[24px]">
-            Visionary is a learning product for people who want to understand, practise, and apply what they learn—in class, at home, and at work.
+            A learning product for people who want to understand, practise, and apply what they learn.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link

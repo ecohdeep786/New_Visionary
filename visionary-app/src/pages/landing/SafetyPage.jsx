@@ -80,13 +80,13 @@ const PROTECTIONS = [
   {
     eyebrow: "Safe by default", subject: "lock", tint: "#F1F1F4",
     title: <>On from the <span className="text-[#0b57d0]">first question.</span></>,
-    copy: "Core safeguards are part of the experience from the beginning — nothing to configure, nothing to remember to turn on. Families and organizations can add boundaries, but the default is already safe.",
+    copy: "Core safeguards are part of the experience from the beginning. Families and organizations can add boundaries, but the default is already safe.",
     visualSide: "left",
   },
   {
     eyebrow: "Private by design", subject: "eye", tint: "#F1F1F4",
     title: <>Your memory is <span className="text-[#0b57d0]">yours.</span></>,
-    copy: "Parents follow progress through consent-scoped summaries, and organizations see aggregate patterns across cohorts — never an individual learner's answers. Details live in the Privacy Policy.",
+    copy: "Parents follow progress through consent-based summaries. Organizations see patterns across cohorts, never an individual learner's answers. Details live in the privacy policy.",
     visualSide: "right",
   },
 ];
@@ -157,7 +157,7 @@ export default function SafetyPage() {
               <span className="text-[#0b57d0]">for every learner.</span>
             </h1>
             <p className="mt-6 max-w-[560px] text-[16px] leading-[1.7] text-[#5f6368] sm:text-[17px]">
-              Protection is the default, not a setting — on from the first question, for every age, in every persona. Here is how it works, what you control, and where to flag anything that feels wrong.
+              Protection is on from the start. See how it works and what you control.
             </p>
             <nav aria-label="On this page" className="mt-7 flex flex-wrap gap-2">
               <AnchorChip href="#protections">Built-in protections</AnchorChip>
@@ -215,7 +215,7 @@ export default function SafetyPage() {
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
               <h2 id="family-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#202124] sm:text-[44px]">
-                Set the boundaries that are<br className="hidden sm:block" />
+                Set boundaries that are<br className="hidden sm:block" />
                 <span className="text-[#0b57d0]"> right for your family.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[620px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">

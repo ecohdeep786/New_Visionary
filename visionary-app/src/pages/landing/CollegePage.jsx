@@ -179,40 +179,40 @@ const HERO_WORDS = ["Building.", "to apply.", "to grow."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Application", quote: "I took three courses. I still don't know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
-  { word: "Relevance", quote: "I read every article. The next project still feels like the first.", image: proProblem2, alt: "Professional overwhelmed by learning resources" },
-  { word: "Growth", quote: "Five years in, and I can't show what I've actually learned.", image: proProblem3, alt: "Professional reflecting on career growth" },
-  { word: "Focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
-  { word: "Results", quote: "My team ships. I still don't know if we're building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
+  { word: "application", quote: "I took three courses. I still don't know how to use them at work.", image: proProblem1, alt: "Professional struggling to apply coursework at work" },
+  { word: "relevance", quote: "I read every article. The next project still feels like the first.", image: proProblem2, alt: "Professional overwhelmed by learning resources" },
+  { word: "growth", quote: "Five years in, and I can't show what I've actually learned.", image: proProblem3, alt: "Professional reflecting on career growth" },
+  { word: "focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
+  { word: "results", quote: "My team ships. I still don't know if we're building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
 ];
 const CYCLE_MS = 4000;
 
 const JOURNEY_WORDS = [
-  "moves with your career?",
-  "meets your challenges",
-  "grows with your goals",
-  "compounds with your skills",
+  "moves with your career.",
+  "meets your challenges.",
+  "grows with your goals.",
+  "builds on your skills.",
   "opens what comes next.",
 ];
 const JOURNEY_WORD_MS = 3000;
 
 const JOURNEY_STAGES = [
   { title: "Early Career", copy: "Turn every first project into real skill — not just another line on your resume.", image: secondaryStudent, alt: "Early career professional at work" },
-  { title: "Mid-Level", copy: "When the questions get harder and the decisions matter more, Visionary helps you reason through them.", image: higherStudent, alt: "Mid-level professional solving problems" },
-  { title: "Senior", copy: "Your judgement is your product. Visionary sharpens it by connecting what you've done to what comes next.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
-  { title: "Leadership", copy: "Lead with clarity — see what your team understands, where they're stuck, and what they're ready for.", image: competitiveStudent, alt: "Leader reviewing team progress" },
-  { title: "Specialist", copy: "Go deep without losing context. Every paper, project, and problem builds on the last.", image: higherStudent, alt: "Specialist deep in their domain" },
-  { title: "Entrepreneur", copy: "Turn ideas into shipped work — with intelligence that remembers every decision and every lesson.", image: primaryStudent, alt: "Entrepreneur building something real" },
+  { title: "Mid-Level", copy: "Harder questions, bigger decisions — reasoned through with you.", image: higherStudent, alt: "Mid-level professional solving problems" },
+  { title: "Senior", copy: "Your judgement, sharpened by everything you've done.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
+  { title: "Leadership", copy: "See what your team understands and where they're stuck.", image: competitiveStudent, alt: "Leader reviewing team progress" },
+  { title: "Specialist", copy: "Go deep. Every paper and project builds on the last.", image: higherStudent, alt: "Specialist deep in their domain" },
+  { title: "Entrepreneur", copy: "Turn ideas into shipped work, with every lesson remembered.", image: primaryStudent, alt: "Entrepreneur building something real" },
 ];
 
 const INTELLIGENCE_WORDS = ["Every project connected.", "Every skill connected.", "Every decision connected.", "Every idea connected."];
 const INTELLIGENCE_WORD_MS = 3000;
 
 const INTELLIGENCE_STEPS = [
-  { title: "Understand the work before you do it.", copy: "Visionary reads the context, remembers what you've done before, and helps you reason through the problem — not just execute it." },
-  { title: "Turn every project into a lesson.", copy: "Every decision, every failure, every shipped feature becomes part of what you understand next — not just another ticket closed." },
-  { title: "Carry your expertise across teams and tools.", copy: "Your knowledge shouldn't reset every time you switch projects, companies, or tech stacks. Visionary keeps the continuity." },
-  { title: "Know what your work is actually building toward.", copy: "See whether your skills are compounding or stalling — and what the next meaningful step looks like." },
+  { title: "Understand the work before you do it.", copy: "Visionary remembers what you've done and helps you reason through the problem." },
+  { title: "Turn every project into a lesson.", copy: "Every decision and every failure becomes part of what you understand next." },
+  { title: "Carry your expertise across teams and tools.", copy: "Your knowledge survives every project, company, and stack change." },
+  { title: "Know what your work is actually building toward.", copy: "See whether your skills are growing — and what comes next." },
 ];
 
 const KEEPS_WORDS = ["applying", "building", "solving"];
@@ -244,19 +244,19 @@ const CONTINUITY_STAGES = [
 ];
 
 const ACHIEVEMENT_TABS = [
-  { black: "Understand", blue: "the problems you're working on.", copy: "See every problem through the lens of what you've solved before — and what you still need to learn." },
-  { black: "Solve", blue: "with intelligence behind you.", copy: "Get past the stuck moment faster. Visionary surfaces the exact concept, example, or previous decision that unlocks the next step." },
-  { black: "Build", blue: "what you actually came here to build.", copy: "Turn learning into shipped work — real projects, real products, real skills that compound over your career." },
+  { black: "Understand", blue: "the problems you're working on.", copy: "Every problem, seen through what you've solved before." },
+  { black: "Solve", blue: "with intelligence behind you.", copy: "Visionary finds the exact concept or decision that moves you forward." },
+  { black: "Build", blue: "what you actually came here to build.", copy: "Turn learning into shipped work — skills that grow over your career." },
 ];
 
 const JOURNEY_CATEGORIES = ["Early Career", "Mid-Level", "Senior", "Leadership", "Specialist", "Entrepreneur", "Career Change"];
 const CATEGORY_MS = 4200;
 
 const EXPLORE_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "Know how Visionary fits into your learning.", alt: "Student learning with a laptop" },
-  { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
-  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child's journey.", alt: "Parent helping a child at a desk" },
-  { slug: "organization", chip: "Organization", copy: "Know how Visionary fits across your organization.", alt: "Leader talking at an organization table" },
+  { slug: "student", chip: "Student", copy: "Understand lessons, practise ideas, and build with confidence.", alt: "Student learning with a laptop" },
+  { slug: "teacher", chip: "Teacher", copy: "See who needs another explanation.", alt: "Teacher working on a laptop in a classroom" },
+  { slug: "parent", chip: "Parent", copy: "See where your child needs support.", alt: "Parent helping a child at a desk" },
+  { slug: "organization", chip: "Organization", copy: "Help teams carry knowledge forward.", alt: "Leader talking at an organization table" },
 ];
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
@@ -293,7 +293,7 @@ const ProHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
     srSentence="Learning, to apply what you learn."
-    sub="Turn what you learn into work that ships — skills, solutions, and projects that compound with your career."
+    sub="Turn what you learn into work that ships."
     img={proHero}
     alt="A professional writing notes beside a laptop"
     ctaLabel="Start building free"
@@ -335,9 +335,9 @@ const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) 
       style={{ color: COLORS.ink }}
     >
       <span className="block">Every</span>
-      <span className="block">Professional</span>
-      <span className="block">Wonders</span>
-      <span className="block">About</span>
+      <span className="block">professional</span>
+      <span className="block">wonders</span>
+      <span className="block">about</span>
       <span className="block overflow-hidden whitespace-nowrap">
         <span
           key={slideKey}
@@ -500,8 +500,8 @@ const STAGE_META = {
 const JOURNEY_MODALS = {
   "Early Career": {
     top: "Turn first roles", accent: "into real skill.",
-    intro: "Your first years set the pattern for everything after. Visionary turns every first project into understanding that compounds.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    intro: "Your first years set the pattern for everything after. Visionary turns every first project into understanding that grows.",
+    primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "Learn on the job.", c: "Understand the code, the client, and the decision — not just the ticket.", l: "How it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise deliberately.", c: "Short, focused practice on the skills your work actually demands.", l: "Start practising free", to: "/register" },
@@ -512,21 +512,21 @@ const JOURNEY_MODALS = {
   "Mid-Level": {
     top: "Reason through", accent: "the harder decisions.",
     intro: "The questions get harder and the decisions matter more. Visionary helps you reason through them with the full context of what you've done.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: Brain, t: "Decisions with context.", c: "Every choice builds on what you've already solved.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise what matters.", c: "Deepen the skills your next role will ask for.", l: "Start practising free", to: "/register" },
-      { Icon: BookOpen, t: "Remember every project.", c: "Yesterday's work stays available for today's decision.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Remember every project.", c: "Yesterday's work stays available for today's decision.", l: "Keep the context", to: "/how-it-works" },
       { Icon: MessageCircle, t: "When you're stuck.", c: "Clear explanations when the problem is unfamiliar.", l: "Get support", to: "/help" },
     ],
   },
   "Senior": {
     top: "Your judgement,", accent: "sharpened.",
     intro: "Your judgement is your product. Visionary sharpens it by connecting what you've done to what comes next.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "See the pattern.", c: "Understand why past decisions worked, so new ones feel familiar.", l: "See how it works", to: "/how-it-works" },
-      { Icon: BookOpen, t: "Learn from every call.", c: "Each decision becomes context for the next one.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Learn from every call.", c: "Each decision becomes context for the next one.", l: "Keep the context", to: "/how-it-works" },
       { Icon: Layers3, t: "Mentor with clarity.", c: "Explain what you know to the people you're helping grow.", l: "Talk to us", to: "/contact" },
       { Icon: Clock, t: "Stay steady.", c: "Clear thinking when pressure is high and time is short.", l: "Get support", to: "/help" },
     ],
@@ -534,10 +534,10 @@ const JOURNEY_MODALS = {
   "Leadership": {
     top: "Lead with", accent: "clear sight.",
     intro: "Lead with clarity — see what your team understands, where they're stuck, and what they're ready for.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: UsersRound, t: "See your team.", c: "Understand where each person is and what they need next.", l: "For organizations", to: "/organization" },
-      { Icon: BookOpen, t: "Keep the threads.", c: "Context carries across projects, quarters, and teams.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Keep the threads.", c: "Context carries across projects, quarters, and teams.", l: "Keep the context", to: "/how-it-works" },
       { Icon: Layers3, t: "Build on what you know.", c: "Turn your experience into strategy, process, and teaching.", l: "Start building free", to: "/register" },
       { Icon: Building2, t: "Bring it to your organization.", c: "Visionary can support teams, departments, and whole companies.", l: "For organizations", to: "/organization" },
     ],
@@ -545,10 +545,10 @@ const JOURNEY_MODALS = {
   "Specialist": {
     top: "Go deep", accent: "without losing context.",
     intro: "Every paper, project, and problem builds on the last. Visionary keeps the depth connected across your domain.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: Eye, t: "Understand at depth.", c: "Explanations that support serious domain work, not summaries.", l: "See how it works", to: "/how-it-works" },
-      { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and years.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and years.", l: "Keep the context", to: "/how-it-works" },
       { Icon: Target, t: "Practise the hard parts.", c: "Focus on the edge of your skill, where growth happens.", l: "Start practising free", to: "/register" },
       { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Get support", to: "/help" },
     ],
@@ -556,11 +556,11 @@ const JOURNEY_MODALS = {
   "Entrepreneur": {
     top: "Ship ideas.", accent: "Keep the lessons.",
     intro: "Turn ideas into shipped work — with intelligence that remembers every decision and every lesson.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your problem, not a curriculum.", l: "See how it works", to: "/how-it-works" },
       { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together — decisions you can defend later.", l: "Start building free", to: "/register" },
-      { Icon: BookOpen, t: "Every pivot teaches.", c: "What you learned in the last attempt carries into the next.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Every pivot teaches.", c: "What you learned in the last attempt carries into the next.", l: "Keep the context", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and partners help you build in real contexts.", l: "Find a partner", to: "/partners" },
     ],
   },
@@ -907,7 +907,7 @@ function ProIntelligenceSection() {
           </span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Visionary keeps your work moving — from the first problem of the day to the skills that define your career.
+          From today's problem to the skills that define your career.
         </p>
       </FadeReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
@@ -946,7 +946,7 @@ const ProClosingSection = React.memo(function ProClosingSection() {
         <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
           {KEEPS_WORDS[index]}
         </span>{" "}
-        with you until every skill compounds into the work you came here to do.
+        with you until every skill grows into the work you came here to do.
       </p>
     </section>
   );
@@ -992,12 +992,12 @@ function ProLanguageSection() {
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your work.<br />In your language.
         </h2>
         <p className="mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Think, ask, and solve in the language that feels natural to you. Visionary keeps the reasoning, the context, and the decision connected.
+          Think, ask, and solve in the language you think in.
         </p>
 
         {/* Breath 1 — control first */}
@@ -1149,13 +1149,13 @@ function ProContinuitySection() {
     <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Your continuity
+          Keep the context
         </p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           What you build stays with you.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          What you ship, what you learn, and what you solve becomes part of what comes next. You don't have to start over — and neither does your team.
+          What you ship and what you learn becomes part of what comes next.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
           <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
@@ -1256,9 +1256,9 @@ function ProAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with intelligence.</h2>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Turn what you understand into shipped work — real projects, real skills, and a career that compounds.
+          Turn understanding into shipped work and a career that grows.
         </p>
 
         {/* Breath 2 — accordion + image, balanced columns */}
@@ -1322,7 +1322,7 @@ function ProJourneyFlowSection() {
           Your work changes.<br />Your intelligence grows with you.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          As your role, your tools, and your goals evolve, Visionary keeps giving you a place to continue learning, building, and shipping.
+          As your role and goals evolve, Visionary is the place to continue.
         </p>
 
         {/* Breath 2 — cascade + closing column */}
@@ -1375,9 +1375,9 @@ const TRUST_WORDS = ["work.", "ideas.", "career."];
 const TRUST_WORD_MS = 6000;
 
 const TRUST_CARDS = [
-  { title: "Private by Design", copy: "Your work. Your ideas. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
-  { title: "Safe to grow with", copy: "Built from the first project to what's next.", Icon: HeartHandshake, to: "/security", link: "See security practices" },
-  { title: "Built responsibly.", copy: "Intelligence should help professionals without compromising matters to them.", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+  { title: "Private by design.", copy: "Your work. Your ideas. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
+  { title: "Safe to grow with.", copy: "Built from the first project to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
+  { title: "Built responsibly.", copy: "Intelligence should help people, never work against them.", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
 
 const TrustCard = React.memo(function TrustCard({ card }) {
@@ -1411,13 +1411,13 @@ function ProTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your projects, ideas, and career decisions are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
+          Your projects, ideas, and career decisions are personal. Visionary is built to keep it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1459,7 +1459,7 @@ const ProCTASection = React.memo(function ProCTASection() {
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Start with what's in front of you
+          Begin today
         </p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your next project is already in front of you.
@@ -1500,7 +1500,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category }) {
           {category.copy}
         </p>
         <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
-          Explore more
+          Learn more
         </span>
       </div>
     </Link>
@@ -1515,7 +1515,7 @@ function ProExploreSection() {
     <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
-          Explore more categories
+          Explore Visionary
         </h2>
         <div className="relative mt-16 lg:mt-20">
           <div

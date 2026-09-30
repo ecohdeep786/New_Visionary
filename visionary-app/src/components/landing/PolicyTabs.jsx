@@ -10,8 +10,8 @@ import { Link, useLocation } from "react-router-dom";
  * the breadcrumb above and the policy content below.
  */
 const POLICIES = [
-  { to: "/privacy", label: "Privacy Policy" },
-  { to: "/terms", label: "Terms of Service" },
+  { to: "/privacy", label: "Privacy policy" },
+  { to: "/terms", label: "Terms of service" },
   { to: "/cookies", label: "Cookies" },
   { to: "/security", label: "Security" },
 ];

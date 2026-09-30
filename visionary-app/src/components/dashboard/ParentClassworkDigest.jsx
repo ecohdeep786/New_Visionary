@@ -1,8 +1,8 @@
 import { familyClassworkDigest } from '@/services/workspaceService';
 
-export default function ParentClassworkDigest({ ctx, childId }) {
+export default function ParentClassworkDigest({ ctx, childId, days = 7 }) {
   let digest;
-  try { digest = familyClassworkDigest(ctx, childId); }
+  try { digest = familyClassworkDigest(ctx, childId, days); }
   catch { return <section className="mt-6 rounded-2xl border border-[#dadce0] p-4" role="status"><h3 className="text-base font-medium">Classwork updates unavailable</h3><p className="v-muted mt-2">The local classwork records could not be read or sharing changed. Reopen this report to try again.</p></section>; }
   return <section className="mt-6 rounded-2xl border border-[#dadce0] p-4" aria-label="Returned classwork">
     <h3 className="text-base font-medium">Returned classwork</h3>

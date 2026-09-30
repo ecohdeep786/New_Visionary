@@ -4,12 +4,12 @@ import {
 } from "lucide-react";
 
 export const CATEGORIES = [
-  { slug: "student", label: "Student", tagline: "Master every subject and exam", icon: GraduationCap, color: "#4285F4", path: "/student" },
-  { slug: "teacher", label: "Teacher", tagline: "Teach smarter, not harder", icon: BookOpen, color: "#34A853", path: "/teacher" },
-  { slug: "parent", label: "Parent", tagline: "Stay connected to your child's learning", icon: Baby, color: "#EA4335", path: "/parent" },
-  { slug: "professional", label: "Professional", tagline: "Modernize your college's education", icon: Building2, color: "#9334E9", path: "/professional" },
-  { slug: "organization", label: "Organization", tagline: "Build your academic ecosystem", icon: Network, color: "#1a73e8", path: "/organization" },
-  
+  { slug: "student", label: "Student", tagline: "Understand more. Build what comes next.", icon: GraduationCap, color: "#4285F4", path: "/student" },
+  { slug: "teacher", label: "Teacher", tagline: "See who is ready for the next lesson.", icon: BookOpen, color: "#34A853", path: "/teacher" },
+  { slug: "parent", label: "Parent", tagline: "See where your child needs support.", icon: Baby, color: "#EA4335", path: "/parent" },
+  { slug: "professional", label: "Professional", tagline: "Turn what you know into useful work.", icon: Building2, color: "#9334E9", path: "/professional" },
+  { slug: "organization", label: "Organization", tagline: "Help teams carry knowledge forward.", icon: Network, color: "#1a73e8", path: "/organization" },
+
 ];
 
 export function getCategory(slug) {

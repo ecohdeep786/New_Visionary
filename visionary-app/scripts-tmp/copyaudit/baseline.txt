@@ -1,0 +1,96 @@
+headline count (HEADLINE+SUBHEAD): 1057
+word-length buckets: {"1-2":409,"3-4":404,"5-6":112,"7-8":35,"9+":97}
+HEADLINE-only >8 words: 83
+
+--- repeated phrases (>=2 files):
+32x "See how it works" | files: 11
+25x "Your continuity" | files: 5
+19x "See how Visionary explains" | files: 4
+18x "Competitive Exams" | files: 4
+17x "How it works" | files: 10
+16x "Higher Education" | files: 5
+15x "Vocational & Skills" | files: 4
+14x "Get started" | files: 12
+14x "Privacy Policy" | files: 13
+13x "Get support" | files: 5
+12x "Talk to us" | files: 5
+12x "Higher Secondary" | files: 4
+11x "relative bg-white py-24 lg:py-32 [overflow-x:clip]" | files: 6
+11x "mt-0.5 h-5 w-5 shrink-0" | files: 4
+10x "For organizations" | files: 7
+10x "relative py-24 lg:py-32 [overflow-x:clip]" | files: 5
+9x "grid-rows-[1fr] opacity-100" | files: 9
+9x "grid-rows-[0fr] opacity-0" | files: 9
+9x "Sign in" | files: 4
+9x "Independent Learning" | files: 3
+8x "In progress" | files: 5
+8x "Try again" | files: 8
+8x "Learn more" | files: 8
+8x "In this policy" | files: 4
+8x "Terms of service" | files: 8
+
+--- CTA vocabulary (unique): 221
+7x try again
+6x retry
+6x read the privacy approach
+6x see our security practices
+6x read our commitments
+5x student
+5x teacher
+5x parent
+5x organization
+5x professional
+5x continue
+4x cancel
+2x open my outline
+2x what would useful progress look like?
+2x back to sign in
+2x sign up
+2x create account
+2x sign in
+2x reset model
+1x saved versions
+1x restore a previous local version. save afterward to keep the restored document.
+1x restore
+1x edit and save again to create a previous version.
+1x view lessons
+1x open project
+1x review all connection history
+1x share this class code
+1x copied
+1x loading accepted members and linked classes…
+1x manage people
+1x refresh roster
+1x only accepted members and explicitly organization-linked classes are available. no private notes or conversations are included.
+1x name
+1x purpose and curriculum objectives
+1x connected people
+1x invite people and wait for acceptance in people.
+1x linked classes
+1x an accepted teacher can link a class when creating it.
+1x accept
+1x retry notice
+
+--- worst files by flag count:
+49/352 src/pages/landing/StudentPage.jsx
+48/322 src/pages/landing/TeacherPage.jsx
+45/311 src/pages/landing/ParentPage.jsx
+20/305 src/pages/landing/CollegePage.jsx
+17/90 src/pages/landing/AccessibilityPage.jsx
+17/112 src/pages/landing/PartnersPage.jsx
+17/131 src/pages/landing/ResearchNewsPage.jsx
+17/193 src/pages/Landing.jsx
+16/263 src/pages/landing/OrganizationPage.jsx
+13/144 src/pages/landing/CoachingPage.jsx
+13/104 src/pages/landing/CookiesPage.jsx
+13/58 src/pages/landing/SafetyPage.jsx
+
+AREA landing : strings 3618 flagged 397 pct 11.0
+
+AREA dashboard : strings 1820 flagged 144 pct 7.9
+
+AREA data : strings 747 flagged 38 pct 5.1
+
+AREA other : strings 130 flagged 3 pct 2.3
+
+flag types: {"TITLE_CASE":285,"LONG_HEADING":83,"EM_DASH":222,"PASSIVE":36,"AI_SLOP":7,"BUZZWORD":3,"HARD_WORD":1}

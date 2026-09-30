@@ -38,6 +38,38 @@ test('expired request cannot be accepted, remains in history, and a new request 
  assert.deepEqual(rows.map(r => r.status), ['expired', 'pending']);
 });
 
+test('an expired active guardian permission closes reports and can be renewed only with fresh learner acceptance', () => {
+ const parent = ctx('adult', 'parent'); const learner = ctx('bengali', 'student');
+ workspace.requestRelationship(parent, 'bengali@visionary.test', 'guardian');
+ const first = workspace.visibleRelationships(parent).find(row => row.to === learner.personId);
+ workspace.changeRelationship(learner, first.id, 'active');
+ assert.equal(workspace.familyReports(parent).some(row => row.id === learner.personId), true);
+ const db = JSON.parse(localStorage.getItem('visionary_workspace_v2'));
+ db.relationships.find(row => row.id === first.id).expiresAt = '2026-09-28T12:00:00Z';
+ localStorage.setItem('visionary_workspace_v2', JSON.stringify(db));
+ clockAt('2026-09-29T12:00:00Z');
+ assert.equal(workspace.visibleRelationships(parent).find(row => row.id === first.id).status, 'expired');
+ assert.equal(workspace.familyReports(parent).some(row => row.id === learner.personId), false);
+ workspace.renewGuardianRelationship(parent, first.id);
+ const rows = workspace.visibleRelationships(parent).filter(row => row.to === learner.personId);
+ assert.deepEqual(rows.map(row => row.status), ['expired', 'pending']);
+ assert.throws(() => workspace.renewGuardianRelationship(parent, first.id), /already exists/);
+ assert.equal(workspace.familyReports(parent).some(row => row.id === learner.personId), false);
+ workspace.changeRelationship(learner, rows[1].id, 'active');
+ assert.equal(workspace.familyReports(parent).some(row => row.id === learner.personId), true);
+});
+
+test('declined guardian request remains history and a parent may request again', () => {
+ const parent = ctx('adult', 'parent'); const learner = ctx('minor-cbse', 'student');
+ workspace.requestRelationship(parent, 'minor-cbse@visionary.test', 'guardian');
+ const first = workspace.visibleRelationships(parent).find(row => row.to === learner.personId);
+ workspace.changeRelationship(learner, first.id, 'declined');
+ assert.equal(workspace.familyReports(parent).some(row => row.id === learner.personId), false);
+ assert.throws(() => workspace.renewGuardianRelationship(learner, first.id), /parent workspace/);
+ workspace.renewGuardianRelationship(parent, first.id);
+ assert.deepEqual(workspace.visibleRelationships(parent).filter(row => row.to === learner.personId).map(row => row.status), ['declined', 'pending']);
+});
+
 test('a failed connection write leaves no phantom request and an organization invite needs its intended role', () => {
  const parent = ctx('adult', 'parent');
  const previous = localStorage.getItem('visionary_workspace_v2'); const setItem = localStorage.setItem;

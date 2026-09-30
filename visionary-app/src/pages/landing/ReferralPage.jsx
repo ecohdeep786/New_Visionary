@@ -52,9 +52,9 @@ const STEPS = [
 
 /* ═══ WHERE TO POINT PEOPLE — the reference's second step block ═══ */
 const DESTINATIONS = [
-  { subject: "student", label: "Students & families", to: "/student", alt: "/parent", copy: "The learning companion that keeps your place — with consent-scoped parent summaries." },
+  { subject: "student", label: "Students and families", to: "/student", alt: "/parent", copy: "The learning companion that keeps your place — with parent summaries, shared with consent." },
   { subject: "teacher", label: "Teachers", to: "/teacher", alt: "/how-it-works", copy: "Prepare, publish, and review classwork in the language the classroom speaks." },
-  { subject: "team", label: "Organizations", to: "/organization", alt: "/partners", copy: "Cohorts and aggregate insights across a whole institution — never individual answers." },
+  { subject: "team", label: "Organizations", to: "/organization", alt: "/partners", copy: "Progress across the whole institution — never individual answers." },
 ];
 
 /* ═══ COLLAGE — the reference's image trio, in our illustration voice ═══ */

@@ -175,19 +175,19 @@ const TEACHER_HERO_WORDS = ["Teaching.", "to grow.", "to reach."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Understanding", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem1, alt: "Teacher looking overwhelmed after class" },
-  { word: "Engagement", quote: "I can see the eyes glaze over. I just don't know whose.", image: teacherProblem2, alt: "Teacher puzzled by disengaged students" },
-  { word: "Pace", quote: "I finish the syllabus. I never finish the learning.", image: teacherProblem3, alt: "Teacher stressed about lesson pacing" },
-  { word: "Practice", quote: "They copy the steps. They can't start the problem alone.", image: teacherProblem4, alt: "Teacher reviewing student practice work" },
-  { word: "Results", quote: "The exam shows the gap I never saw coming.", image: teacherProblem2, alt: "Teacher searching for the gap in exam results" },
+  { word: "understanding", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem1, alt: "Teacher looking overwhelmed after class" },
+  { word: "engagement", quote: "I can see the eyes glaze over. I just don't know whose.", image: teacherProblem2, alt: "Teacher puzzled by disengaged students" },
+  { word: "pace", quote: "I finish the syllabus. I never finish the learning.", image: teacherProblem3, alt: "Teacher stressed about lesson pacing" },
+  { word: "practice", quote: "They copy the steps. They can't start the problem alone.", image: teacherProblem4, alt: "Teacher reviewing student practice work" },
+  { word: "results", quote: "The exam shows the gap I never saw coming.", image: teacherProblem2, alt: "Teacher searching for the gap in exam results" },
 ];
 const CYCLE_MS = 4000;
 
 const JOURNEY_WORDS = [
-  "moves with your class?",
-  "meets your questions",
-  "changes with your goals",
-  "grows with your learners",
+  "moves with your class.",
+  "meets your questions.",
+  "changes with your goals.",
+  "grows with your learners.",
   "opens what comes next.",
 ];
 const JOURNEY_WORD_MS = 3000;
@@ -196,15 +196,15 @@ const TEACHER_INTELLIGENCE_WORDS = ["Every lesson connected.", "Every learner co
 const INTELLIGENCE_WORD_MS = 3000;
 
 const TEACHER_ROLE_STEPS = [
-  { title: "Understand what your class is learning.", copy: "Teaching shouldn't restart every period. Visionary continues from where your class is, so every lesson builds on the last instead of starting from zero." },
-  { title: "Show it. Hear it. Teach it another way.", copy: "When a concept doesn't land, Visionary gives you the visual, the explanation, and the example — in the language your class actually understands." },
-  { title: "Check who's with you, before the exam tells you.", copy: "See exactly which learners got it and which didn't — and what to change in the next period — while the teaching continues naturally." },
+  { title: "Understand what your class is learning.", copy: "Visionary continues from where your class is, so every lesson builds on the last." },
+  { title: "Show it. Hear it. Teach it another way.", copy: "When a concept doesn't land, you get the visual, the explanation, the example." },
+  { title: "Check who's with you before the exam tells you.", copy: "See who got it, who didn't, and what to change next period." },
 ];
 
 const TEACHER_LEARNER_STEPS = [
-  { title: "Learn what your teaching demands next.", copy: "New syllabus, new board, new subject — Visionary keeps pace with your classroom so your preparation always meets the moment." },
-  { title: "Build what your classroom actually needs.", copy: "Turn every lesson plan into a skill you keep. Every project, worksheet, and question you craft becomes part of your growing craft." },
-  { title: "Grow your craft, not just your syllabus.", copy: "See which teaching moves are working and which aren't — and carry that insight into the next class, the next year, and the next decade." },
+  { title: "Learn what your teaching demands next.", copy: "New syllabus, new subject — your preparation keeps pace with your classroom." },
+  { title: "Build what your classroom actually needs.", copy: "Every plan, project, and question you craft becomes part of your growing craft." },
+  { title: "Grow your craft, not just your syllabus.", copy: "See what works, and carry it into the next class, year, and decade." },
 ];
 
 const TEACHER_KEEPS_WORDS = ["teaching", "adapting", "supporting"];
@@ -229,26 +229,26 @@ const QUESTION_MS = 3200;
 const CONTINUITY_STAGES = [
   { name: "Primary", previous: "Their foundations", now: "Your classroom", next: "Their next class" },
   { name: "Secondary", previous: "Last unit", now: "This unit", next: "The exam" },
-  { name: "Competitive Exams", previous: "Concepts", now: "Your coaching", next: "The test" },
-  { name: "Vocational & Skills", previous: "Their basics", now: "Your training", next: "The job" },
-  { name: "Higher Education", previous: "Their degree", now: "Your course", next: "Their research" },
-  { name: "Independent Learning", previous: "Their goals", now: "Your mentoring", next: "Their path" },
+  { name: "Competitive exams", previous: "Concepts", now: "Your coaching", next: "The test" },
+  { name: "Vocational and skills", previous: "Their basics", now: "Your training", next: "The job" },
+  { name: "Higher education", previous: "Their degree", now: "Your course", next: "Their research" },
+  { name: "Independent learning", previous: "Their goals", now: "Your mentoring", next: "Their path" },
 ];
 
 const TEACHER_ACHIEVEMENT_TABS = [
-  { black: "Understand", blue: "your classroom.", copy: "Build a clear picture of the learners, levels, questions, and gaps that shape your classroom today." },
-  { black: "Achieve what", blue: "you're teaching toward.", copy: "Set your goal and keep every learner moving — with support that adapts until the result is something you're proud of." },
-  { black: "Build something from", blue: "what you teach.", copy: "Turn what you teach into real projects, real skills, and real work that grows with your students." },
+  { black: "Understand", blue: "your classroom.", copy: "A clear picture of the learners and gaps that shape your classroom." },
+  { black: "Achieve what", blue: "you're teaching toward.", copy: "Set your goal and keep every learner moving." },
+  { black: "Build something from", blue: "what you teach.", copy: "Turn what you teach into projects and skills that grow with your students." },
 ];
 
-const JOURNEY_CATEGORIES = ["Primary", "Secondary", "Higher Secondary", "Competitive Exams", "Vocational & Skills", "Higher Education", "Independent Learning"];
+const JOURNEY_CATEGORIES = ["Primary", "Secondary", "Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Independent learning"];
 const CATEGORY_MS = 4200;
 
 const EXPLORE_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "Know how Visionary fits into your learning.", alt: "Student learning with a laptop" },
-  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child's journey.", alt: "Parents helping students at a classroom desk" },
-  { slug: "professional", chip: "Professional", copy: "Know how Visionary fits into the work you do.", alt: "Professional discussing work with a tablet" },
-  { slug: "organization", chip: "Organization", copy: "Know how Visionary fits across your organization.", alt: "Leader talking at an organization table" },
+  { slug: "student", chip: "Student", copy: "Understand lessons, practise ideas, and keep your place.", alt: "Student learning with a laptop" },
+  { slug: "parent", chip: "Parent", copy: "See progress clearly and know when to help.", alt: "Parents helping students at a classroom desk" },
+  { slug: "professional", chip: "Professional", copy: "Turn what you learn into work you can use.", alt: "Professional discussing work with a tablet" },
+  { slug: "organization", chip: "Organization", copy: "Help teams share context across projects.", alt: "Leader talking at an organization table" },
 ];
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
@@ -285,7 +285,7 @@ const TeacherHeroSection = React.memo(() => (
   <PersonaHero
     words={TEACHER_HERO_WORDS}
     srSentence="Teaching, to reach every learner."
-    sub="One class, many minds. See who understood, who needs another way, and who is ready to move on — before the next bell."
+    sub="One class, many minds. See who's with you — before the next bell."
     img={teacherHero}
     alt="A teacher presenting at a whiteboard"
     ctaLabel="Start teaching free"
@@ -327,9 +327,9 @@ const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) 
       style={{ color: COLORS.ink }}
     >
       <span className="block">Every</span>
-      <span className="block">Teacher</span>
-      <span className="block">Wonders</span>
-      <span className="block">About</span>
+      <span className="block">teacher</span>
+      <span className="block">wonders</span>
+      <span className="block">about</span>
       <span className="block overflow-hidden whitespace-nowrap">
         <span
           key={slideKey}
@@ -480,11 +480,11 @@ const JOURNEY_STAGE_ICONS = {
   /* journey-flow categories */
   "Primary": GraduationCap,
   "Secondary": BookOpen,
-  "Higher Secondary": Layers3,
-  "Competitive Exams": Target,
-  "Vocational & Skills": Layers3,
-  "Higher Education": Brain,
-  "Independent Learning": Clock,
+  "Higher secondary": Layers3,
+  "Competitive exams": Target,
+  "Vocational and skills": Layers3,
+  "Higher education": Brain,
+  "Independent learning": Clock,
 };
 
 const JOURNEY_STAGES = [
@@ -520,7 +520,7 @@ const JOURNEY_MODALS = {
   "In Class": {
     top: "Teach it.", accent: "Another way, any time.",
     intro: "When a concept doesn't land the first time, you need another way — not another period. Visionary gives you the visual, the explanation, and the example on demand.",
-    primary: { label: "See how Visionary explains", to: "/how-it-works" },
+    primary: { label: "See a teaching example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Show it visually.", c: "Turn the hardest idea into something the whole class can see.", l: "See how it works", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Hear the questions.", c: "Learners ask naturally — in their own words and language.", l: "Talk to us", to: "/contact" },
@@ -535,7 +535,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Eye, t: "See it as it happens.", c: "Understanding becomes visible — per learner, per concept, per class.", l: "See how it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise with purpose.", c: "Practice that shows you exactly where the class stands.", l: "Start teaching free", to: "/register" },
-      { Icon: Target, t: "Know what to change.", c: "Clear signals for the next period, not just the next report.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: Target, t: "Know what to change.", c: "Clear signals for the next period, not just the next report.", l: "Keep the thread", to: "/how-it-works" },
       { Icon: Clock, t: "Act in time.", c: "Intervene before the gap becomes the exam result.", l: "Get support", to: "/help" },
     ],
   },
@@ -546,7 +546,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: RefreshCw, t: "Adapt in the moment.", c: "A different example or a slower path — without leaving the lesson behind.", l: "See how it works", to: "/how-it-works" },
       { Icon: Layers3, t: "Group with intent.", c: "Know which learners are ready to move and which need another round.", l: "Start teaching free", to: "/register" },
-      { Icon: BookOpen, t: "Keep the thread.", c: "Adapting never breaks the continuity of the unit.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Keep the thread.", c: "Adapting never breaks the continuity of the unit.", l: "Keep the thread", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Explain in context.", c: "Adapted explanations that still land in the language of your class.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -567,7 +567,7 @@ const JOURNEY_MODALS = {
     primary: { label: "See how Visionary grows", to: "/how-it-works" },
     blocks: [
       { Icon: TrendingUp, t: "See what worked.", c: "Understand which teaching moves moved which learners.", l: "See how it works", to: "/how-it-works" },
-      { Icon: BookOpen, t: "Keep what works.", c: "Your best explanations and plans stay with you, ready to reuse.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Keep what works.", c: "Your best explanations and plans stay with you, ready to reuse.", l: "Keep the thread", to: "/how-it-works" },
       { Icon: Brain, t: "Learn what's next.", c: "New syllabus, new methods — your own learning keeps pace.", l: "Start teaching free", to: "/register" },
       { Icon: Building2, t: "Grow with your school.", c: "Visionary supports departments, coaching centres, and institutions.", l: "For organizations", to: "/organization" },
     ],
@@ -919,7 +919,7 @@ function TeacherIntelligenceSection() {
           </span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Visionary keeps the teaching moving — for you and for your class — from the first question to the moment every learner can use what they've learned.
+          For you and your class, from first question to real understanding.
         </p>
 
         {/* Tab switcher — two equal pills, centered under the header */}
@@ -1032,12 +1032,12 @@ function TeacherLanguageSection() {
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Teach your way.<br />Explain your way.
         </h2>
         <p className="mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Planning, teaching, checking, and adapting feel different when you can do them in the language that comes naturally to you. Visionary understands what you mean—not just the words you use.
+          Plan, teach, and adapt in the language you think in.
         </p>
 
         {/* Breath 1 — control first */}
@@ -1189,13 +1189,13 @@ function TeacherContinuitySection() {
     <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Your continuity
+          Keep the thread
         </p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           What you teach stays with them.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          What your class understands, practises, and builds becomes part of what comes next. They don't have to start over.
+          What your class understands becomes part of what comes next. They never start over.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
           <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
@@ -1297,9 +1297,9 @@ function TeacherAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your class can achieve with intelligence.</h2>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your class can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Turn what your learners understand into stronger results, useful skills, meaningful work, and progress you can see.
+          Turn understanding into results, skills, and progress you can see.
         </p>
 
         {/* Breath 2 — accordion + image, balanced columns */}
@@ -1364,7 +1364,7 @@ function TeacherJourneyFlowSection() {
           Your classroom changes.<br />Your teaching stays with you.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          As your subjects, classes, and goals change, Visionary keeps giving you a place to continue teaching, adapting, and moving forward.
+          As your classes and goals change, Visionary is the place to continue.
         </p>
 
         {/* Breath 2 — cascade + closing column */}
@@ -1418,8 +1418,8 @@ const TRUST_WORD_MS = 6000;
 
 const TRUST_CARDS = [
   { title: "Private by design.", copy: "Your personal information is treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
-  { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See security practices" },
-  { title: "Built responsibly.", copy: "Intelligence should help people without compromising what matters to them.", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+  { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
+  { title: "Built responsibly.", copy: "Intelligence should help people, never work against them.", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
 
 const TrustCard = React.memo(function TrustCard({ card }) {
@@ -1453,13 +1453,13 @@ function TeacherTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your classes, conversations, ideas, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
+          Your classes, conversations, ideas, and progress are personal. Visionary is built to keep it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1501,13 +1501,13 @@ const TeacherCTASection = React.memo(function TeacherCTASection() {
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Start where your class is
+          Begin today
         </p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your teaching starts with where your class is.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          See who understands, adapt your next lesson, and start building from what your class knows.
+          See who understands. Adapt the next lesson.
         </p>
         <div className="mt-12 flex justify-center">
           <Link
@@ -1542,7 +1542,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category }) {
           {category.copy}
         </p>
         <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
-          Explore more
+          Learn more
         </span>
       </div>
     </Link>
@@ -1557,7 +1557,7 @@ function TeacherExploreSection() {
     <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
-          Explore more categories
+          Explore Visionary
         </h2>
         <div className="relative mt-16 lg:mt-20">
           <div

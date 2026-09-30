@@ -74,7 +74,7 @@ const TABS = [
     heading: "Get help bringing Visionary to your institution",
     cards: [
       { Icon: CircleHelp, label: "Help center", title: "Your guide to Visionary", to: "/help" },
-      { Icon: UsersRound, label: "Product", title: "Cohorts and aggregate insights", to: "/organization" },
+      { Icon: UsersRound, label: "Product", title: "Insights across cohorts", to: "/organization" },
       { Icon: Building2, label: "Partners", title: "Rollout and partnerships", to: "/partners" },
       { Icon: Lock, label: "Security", title: "Protected end to end", to: "/security" },
     ],
@@ -141,7 +141,7 @@ export default function ContactPage() {
               Guidance to get you going on Visionary
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
-              Find the answers and support you need to make the most of Visionary — whether you're just getting started or running a classroom.
+              Find the answers and support you need to make the most of Visionary.
             </p>
             <div className="mt-8 flex justify-center">
               <Link to="/help" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] bg-white px-5 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">

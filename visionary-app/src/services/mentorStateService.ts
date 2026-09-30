@@ -1,5 +1,5 @@
 import type { Database, Locale, MasteryStage, RequestContext, Role } from '../domain/workspace.ts';
-import { snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
+import { reportDays, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
 import { getContentRepository, type ContentConcept } from './contentRepository.ts';
 
 export type MentorApp = 'LEARN' | 'ASK' | 'PRACTICE' | 'BUILD' | 'COMMUNITY';
@@ -203,14 +203,15 @@ function workspaceDatabase(): Database {
  try { const db = JSON.parse(localStorage.getItem('visionary_workspace_v2') || '{}'); if (db.version !== 2 || !Array.isArray(db.workspaces) || !Array.isArray(db.people)) throw Error(); return db; }
  catch { throw new Error('Learning sharing is unavailable until connection records can be read.'); }
 }
-export function getParentSummary(ctx: RequestContext, childId: string) {
+export function getParentSummary(ctx: RequestContext, childId: string, days: 7 | 30 = 7) {
+ reportDays(days);
  check(ctx); if (ctx.role !== 'parent' || !visibleRelationships(ctx).some(r => r.type === 'guardian' && r.from === ctx.personId && r.to === childId && r.status === 'active' && r.scope.includes('progress-summary') && (!r.expiresAt || new Date(r.expiresAt).getTime() > clock().getTime()))) throw new Error('An active, consent-scoped child connection is required.');
  const db = read(); const workspaces = workspaceDatabase(); const childSpaces = workspaces.workspaces.filter(w => w.personId === childId && w.role === 'student' && !w.organizationId);
- const cutoff = clock().getTime() - 7 * 86400000;
+ const cutoff = clock().getTime() - days * 86400000;
  const evidence = childSpaces.flatMap(w => db.spaces[w.id]?.evidence || []).filter(e => new Date(e.at).getTime() >= cutoff);
  const memory = childSpaces.flatMap(w => workspaces.data[w.id]?.preferences.memory ? db.spaces[w.id]?.memory || [] : []);
  const combined: MentorSpace = { owner: childId, role: 'student', evidence, events: [], memory, memoryEpoch: 0 };
- return { childId, period: 'Last 7 days' as const, concepts: conceptsFor(evidence).map(({ conceptId, correct, total, accuracy, stage }) => ({ conceptId, correct, total, accuracy, stage })), observations: observations(combined, cutoff), completedApplications: evidence.filter(e => e.kind === 'application').length };
+ return { childId, period: `Last ${days} days`, concepts: conceptsFor(evidence).map(({ conceptId, correct, total, accuracy, stage }) => ({ conceptId, correct, total, accuracy, stage })), observations: observations(combined, cutoff), completedApplications: evidence.filter(e => e.kind === 'application').length };
 }
 function scopedClassEvidence(classroom: LegacyRow) {
  const db = read(); const workspaces = workspaceDatabase(); const members = enrolled(classroom);
@@ -257,16 +258,19 @@ export function getClassAggregate(ctx: RequestContext, classId: string) {
  const learners = scopedClassEvidence(classroom);
  return { classId, name: String(classroom.name || 'Class'), learnerCount: enrolled(classroom).length, participatingLearners: learners.filter(l => l.evidence.length).length, pendingSubmissions: rows('Submission').filter(s => s.class_id === classId && s.status === 'submitted').length, concepts: aggregate(learners) };
 }
-export function getOrganizationAggregate(ctx: RequestContext) {
+export function getOrganizationAggregate(ctx: RequestContext, days: 0 | 7 | 30 = 0) {
+ if (![0, 7, 30].includes(days)) throw new Error('Choose a supported organization period.');
  const { person } = check(ctx); if (ctx.role !== 'organization') throw new Error('Open an organization workspace.');
  const classes = classesFor(ctx); const records = classes.flatMap(c => scopedClassEvidence(c));
- const grouped = [...new Set(records.map(r => r.personId))].map(personId => ({ personId, evidence: records.filter(r => r.personId === personId).flatMap(r => r.evidence) }));
+ const cutoff = days ? clock().getTime() - days * 86400000 : -Infinity;
+ const grouped = [...new Set(records.map(r => r.personId))].map(personId => ({ personId, evidence: records.filter(r => r.personId === personId).flatMap(r => r.evidence).filter(e => new Date(e.at).getTime() >= cutoff) }));
  const memberships = rows('OrganizationInvite').filter(r => r.organization_email === person.email && alive(r));
  const learnerCount = new Set(classes.flatMap(c => enrolled(c).map(e => String(e.student_id || e.student_email)))).size;
  const minimumGroupSize = 5;
  const allConcepts = learnerCount >= minimumGroupSize ? aggregate(grouped) : [];
  const concepts = allConcepts.filter(item => item.learners >= minimumGroupSize);
- return { classCount: classes.length, learnerCount, activeMemberships: memberships.length, pendingSubmissions: learnerCount >= minimumGroupSize ? rows('Submission').filter(s => classes.some(c => c.id === s.class_id) && s.status === 'submitted').length : null, concepts, suppressed: learnerCount < minimumGroupSize || concepts.length < allConcepts.length, minimumGroupSize, period: 'All saved local class records' };
+ const periodContributors = grouped.filter(row => row.evidence.length).length;
+ return { classCount: classes.length, learnerCount, activeMemberships: memberships.length, pendingSubmissions: learnerCount >= minimumGroupSize ? rows('Submission').filter(s => classes.some(c => c.id === s.class_id) && s.status === 'submitted').length : null, concepts, suppressed: learnerCount < minimumGroupSize || concepts.length < allConcepts.length, minimumGroupSize, periodContributors: periodContributors >= minimumGroupSize ? periodContributors : null, period: days ? `Last ${days} days of recorded class evidence` : 'All saved local class records' };
 }
 
 export interface SCMService {

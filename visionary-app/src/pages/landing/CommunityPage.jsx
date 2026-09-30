@@ -79,7 +79,7 @@ const AREAS = [
     copy: "Class-scoped spaces to discuss, ask, and share what you build — only the people in your class are inside, and nothing leaves it.",
     cards: [
       { title: "Class discussions", copy: "Ask and discuss with the people you learn with every day. The space is scoped to your class and kept separate from private work.", to: "/student", subject: "ask", tint: "#e8f0fe" },
-      { title: "Share what you build", copy: "Post artifacts from Build and see classmates' work in the same space — application evidence, not noise.", to: "/student", subject: "build", tint: "#e9f5ef" },
+      { title: "Share what you build", copy: "Post projects from Build and see classmates' work in the same space — real work, not noise.", to: "/student", subject: "build", tint: "#e9f5ef" },
     ],
   },
   {
@@ -167,10 +167,10 @@ export default function CommunityPage() {
             <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
               <h1 className="text-[clamp(32px,5.5vw,60px)] font-normal leading-[1.02] tracking-[-0.045em] text-[#202124]">
-                Communities &amp; programs for everyone learning together.
+                Communities and programs for everyone learning together.
               </h1>
               <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.55] text-[#3c4043] sm:text-[22px]">
-                Class-scoped spaces where learners, teachers, and families grow together — kept safe by teachers, scoped to your class, and honest about what is available.
+                Class-scoped spaces where learners, teachers, and families grow together — kept safe by teachers.
               </p>
               <div className="mt-9 flex flex-wrap justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
@@ -278,7 +278,7 @@ export default function CommunityPage() {
         <section id="faq" className="scroll-mt-36 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
           <Reveal className="mx-auto max-w-[840px]">
             <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
-              Find answers to common questions
+              Have questions? We've got answers.
             </h2>
             <LandingFAQ faqs={FAQS} defaultOpen={0} />
           </Reveal>

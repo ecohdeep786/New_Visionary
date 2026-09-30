@@ -44,10 +44,10 @@ function Reveal({ children, className = "", delay = 0 }) {
 
 /* ═══ Update categories — also the signup topics (preserved functionality) ═══ */
 const CATEGORIES = [
-  { id: "product", label: "Product updates", Icon: Sparkles, subject: "updates", helper: "New capabilities, improvements, and important changes." },
-  { id: "language", label: "Languages & access", Icon: Languages, subject: "languages", helper: "New language experiences and accessibility improvements." },
-  { id: "research", label: "Research & learning", Icon: BookOpen, subject: "research", helper: "Findings and thinking behind the product." },
-  { id: "community", label: "Community & events", Icon: UsersRound, subject: "community", helper: "Community stories, practical guidance, and ways to participate." },
+  { id: "product", label: "Product updates", Icon: Sparkles, subject: "updates", helper: "New features, improvements, and important changes." },
+  { id: "language", label: "Languages and access", Icon: Languages, subject: "languages", helper: "New language experiences and accessibility improvements." },
+  { id: "research", label: "Research and learning", Icon: BookOpen, subject: "research", helper: "Findings and thinking behind the product." },
+  { id: "community", label: "Community and events", Icon: UsersRound, subject: "community", helper: "Community stories, practical guidance, and ways to participate." },
 ];
 
 /* ═══ LATEST — every entry grounded in shipped product behavior ═══ */
@@ -55,7 +55,7 @@ const UPDATES = [
   { date: "September 2026", cat: "product", subject: "build", title: "The learning loop, end to end", copy: "Learn, Ask, Practice, Build — one workspace now carries every step of the loop." },
   { date: "September 2026", cat: "language", subject: "languages", title: "Three languages, one loop", copy: "Language journeys run in English, Hindi, and Bengali, with more on the roadmap." },
   { date: "September 2026", cat: "product", subject: "lock", title: "Consent-scoped progress summaries", copy: "Parents follow the journey with confidence — without opening the learner's private space." },
-  { date: "September 2026", cat: "product", subject: "growth", title: "Cohorts and aggregate insights", copy: "Organizations see patterns across learners. Individual answers stay individual." },
+  { date: "September 2026", cat: "product", subject: "growth", title: "Insights across cohorts", copy: "Organizations see patterns across learners. Individual answers stay individual." },
   { date: "August 2026", cat: "community", subject: "community", title: "Class communities, moderated", copy: "Discussions stay safe with one-tap reporting and human review — usually within 24 hours." },
   { date: "August 2026", cat: "research", subject: "research", title: "What we learn, we publish", copy: "Findings from real use shape the loop. The work so far lives in Research & News." },
   { date: "July 2026", cat: "language", subject: "teacher", title: "Teach in your language", copy: "Teachers can prepare and publish classwork in the language their classroom speaks." },

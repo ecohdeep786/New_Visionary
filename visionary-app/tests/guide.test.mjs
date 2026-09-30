@@ -90,6 +90,25 @@ test('report period filters out old activity and expired invitations cannot be a
  instant=new Date('2026-10-01T12:00:00Z');assert.equal(service.familyReports(ctx('parent','parent'))[0].objectives.length,0);
  const request=service.visibleRelationships(ctx('bengali','student')).find(r=>r.from==='demo-adult');assert.throws(()=>service.changeRelationship(ctx('bengali','student'),request.id,'active'),/expired/);
 });
+test('seven and thirty day parent report periods use the same consent boundary and source window',()=>{
+ const child=ctx('minor-cbse');const parent=ctx('parent','parent');
+ const conversation=service.newConversation(child);const session=service.startJourney(child,conversation.id,'cube');
+ service.updateSession(child,session.id,{stage:'completed',notes:'PRIVATE JOURNAL'});
+ localStorage.setItem('visionary_entity_Assignment',JSON.stringify([{id:'older',class_id:'class',title:'Older returned work'}]));
+ localStorage.setItem('visionary_entity_Enrollment','[]');
+ localStorage.setItem('visionary_entity_Submission',JSON.stringify([{id:'older-return',assignment_id:'older',class_id:'class',student_email:'minor-cbse@visionary.test',status:'graded',graded_date:instant.toISOString(),text:'PRIVATE ANSWER',grade:10}]));
+ instant=new Date('2026-10-01T12:00:00Z');
+ assert.equal(service.familyReports(parent,7)[0].completed,0);
+ assert.equal(service.familyReports(parent,30)[0].completed,1);
+ assert.equal(service.familyClassworkDigest(parent,'demo-minor-cbse',7).returned.length,0);
+ assert.equal(service.familyClassworkDigest(parent,'demo-minor-cbse',30).returned[0].title,'Older returned work');
+ assert.equal(JSON.stringify(service.familyReports(parent,30)).includes('PRIVATE JOURNAL'),false);
+ assert.equal(JSON.stringify(service.familyClassworkDigest(parent,'demo-minor-cbse',30)).includes('PRIVATE ANSWER'),false);
+ assert.throws(()=>service.familyReports(parent,14),/supported report period/);
+ service.changeRelationship(parent,'demo-parent:demo-minor-cbse','revoked');
+ assert.equal(service.familyReports(parent,30).some(report=>report.id==='demo-minor-cbse'),false);
+ assert.throws(()=>service.familyClassworkDigest(parent,'demo-minor-cbse',30),/no longer shared/);
+});
 test('account quotas span roles, never block saved activities, and reset daily',async()=>{
  service.setDemoUsage(ctx(),10);const c=service.newConversation(ctx('adult','teacher'));
  await assert.rejects(service.sendMessage(ctx('adult','teacher'),c.id,'Prepare a lesson'),/10 guided turns/);

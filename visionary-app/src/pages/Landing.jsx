@@ -185,18 +185,18 @@ const MEET_WORD_MS = 3000;
 const MEET_IMG = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
 const MEET_SECTIONS = [
-  { id: "student", tab: "Student", leadBlack: "Understand", blues: ["what you're learning.", "why it matters.", "where you're stuck.", "it for life."], copy: "Every lesson becomes easier to understand through visual learning, natural conversation, guided practice, and real-world application. One chapter leads naturally to the next, so your understanding keeps growing—not just your completed syllabus.", link: "See how students learn", to: "/student", alt: "Student studying with books" },
-  { id: "teacher", tab: "Teacher", leadBlack: "Know", blues: ["what your class is learning.", "who needs another explanation.", "who's ready to move forward.", "every learner better."], copy: "Every learner understands differently. Visionary helps you adapt every lesson through visual teaching, guided conversations, and continuous support, so your classroom keeps moving forward together.", link: "Explore the Teacher Journey", to: "/teacher", alt: "Teacher presenting at a whiteboard" },
-  { id: "parent", tab: "Parent", leadBlack: "Know", blues: ["what your child is learning.", "where they need support.", "how they're growing.", "before the exam."], copy: "See how your child is learning before report cards arrive. Understand their progress, know where they need support, and help them grow with confidence every step of the way.", link: "Explore the Parent Journey", to: "/parent", alt: "Parent helping child with homework" },
-  { id: "professional", tab: "Professional", leadBlue: ["Learn", "Build"], midBlack: "what the work", blues: ["requires.", "rewards."], copy: "Learning shouldn't interrupt your work. Visionary helps every project become an opportunity to learn, solve problems, and build skills that continue growing with your career.", link: "Explore the Professional Journey", to: "/professional", alt: "Professional writing notes beside a laptop" },
-  { id: "organization", tab: "Organization", leadBlack: "See", midBlack: "what your people are", blues: ["learning.", "becoming."], copy: "Great organizations don't just share information—they build understanding that lasts. Visionary helps knowledge grow across people, teams, and projects, so every experience strengthens what comes next.", link: "Explore the Organization Journey", to: "/organization", alt: "Leader reviewing team progress on a tablet" },
+  { id: "student", tab: "Student", leadBlack: "Understand", blues: ["what you're learning.", "why it matters.", "where you're stuck.", "what stays with you."], copy: "See the idea, practise it, and use it in the next thing you build.", link: "Explore student learning", to: "/student", alt: "Student studying with books" },
+  { id: "teacher", tab: "Teacher", leadBlack: "Know", blues: ["what your class is learning.", "who needs another explanation.", "who's ready to move forward.", "how to teach the next idea."], copy: "Plan, explain, and check understanding while the lesson is still in front of you.", link: "Explore teaching tools", to: "/teacher", alt: "Teacher presenting at a whiteboard" },
+  { id: "parent", tab: "Parent", leadBlack: "Know", blues: ["what your child is learning.", "where they need support.", "how they're growing.", "what to ask next."], copy: "See the progress behind the report and find a useful next step at home.", link: "Explore parent support", to: "/parent", alt: "Parent helping child with homework" },
+  { id: "professional", tab: "Professional", leadBlue: ["Learn", "Build"], midBlack: "what the work", blues: ["requires.", "rewards."], copy: "Turn a question, project, or new skill into work you can use.", link: "Explore professional work", to: "/professional", alt: "Professional writing notes beside a laptop" },
+  { id: "organization", tab: "Organization", leadBlack: "See", midBlack: "what your people are", blues: ["learning.", "building."], copy: "Give teams a shared view of learning across people, projects, and time.", link: "Explore organization learning", to: "/organization", alt: "Leader reviewing team progress on a tablet" },
 ];
 
 const OI_STATES = [
   { label: "Remember", heading: "It remembers more than what you said.", body: "It remembers what you understood, where you struggled, what you tried, and what changed along the way." },
   { label: "Understand", heading: "You never have to start over.", body: "When you return, Visionary already knows where you were, what you've done, and what makes sense to do next." },
-  { label: "Continue", heading: "The more you use it, the more it understands you.", body: "Every lesson, conversation, practice, project, and decision gives the next one more context to work with." },
-  { label: "Grow", heading: "Understanding compounds.", body: "What you learn, teach, and build today becomes the foundation for what you can do tomorrow." },
+  { label: "Continue", heading: "It learns from what you do.", body: "Each lesson, practice, project, and decision gives the next step more context." },
+  { label: "Grow", heading: "Understanding grows.", body: "What you learn, teach, and build today becomes the foundation for what you can do tomorrow." },
 ];
 const OI_STEP_LABELS = ["Remember", "Understand", "Continue", "Grow"];
 const OI_PHASE_MS = [3000, 3000, 3000, 4000, 4500];
@@ -227,26 +227,26 @@ const CM_FILL_MS = 4000;
 
 const LX_TRUST_WORDS = ["information", "privacy", "progress."];
 const LX_TRUST_CARDS = [
-  { title: "Private by Design", copy: "Your personal information is treated with care.", alt: "Person working privately on a laptop", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
-  { title: "Safe to grow with", copy: "Built from the first question to what's next.", alt: "Shield protecting a learner's journey", Icon: HeartHandshake, to: "/security", link: "See security practices" },
-  { title: "Built responsibly.", copy: "Intelligence should help people without compromising matters to them.", alt: "Responsibly built intelligence illustration", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+  { title: "Your data stays yours.", copy: "You choose what Visionary remembers and how you use it.", alt: "Person working privately on a laptop", Icon: ShieldCheck, to: "/privacy", link: "Read our privacy approach" },
+  { title: "Safe to grow with.", copy: "Age-aware guidance and human review help keep learning on track.", alt: "Shield protecting a learner's journey", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
+  { title: "Built with care.", copy: "Visionary is designed to help people learn, work, and create.", alt: "Responsibly built intelligence illustration", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
 const LX_TRUST_IMG = [cmContinue, teacherSlide, parentSlide];
 const LX_EXPLORE_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "Know how Visionary fits into your learning.", alt: "Student learning with a laptop" },
-  { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
-  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child's journey.", alt: "Parent helping a child at a desk" },
-  { slug: "professional", chip: "Professional", copy: "Know how Visionary fits into the work you do.", alt: "Professional discussing work with a tablet" },
-  { slug: "organization", chip: "Organization", copy: "Know how Visionary fits across your organization.", alt: "Leader talking at an organization table" },
+  { slug: "student", chip: "Student", copy: "Understand lessons, practise ideas, and build with confidence.", alt: "Student learning with a laptop" },
+  { slug: "teacher", chip: "Teacher", copy: "Plan lessons, check understanding, and teach the next idea.", alt: "Teacher working on a laptop in a classroom" },
+  { slug: "parent", chip: "Parent", copy: "See progress clearly and know when to help.", alt: "Parent helping a child at a desk" },
+  { slug: "professional", chip: "Professional", copy: "Turn what you learn into work you can use.", alt: "Professional discussing work with a tablet" },
+  { slug: "organization", chip: "Organization", copy: "Help teams share context across projects.", alt: "Leader talking at an organization table" },
 ];
 
 const FAQ_ITEMS = [
-  { q: "What is Visionary?", a: "Visionary is an all-in-one learning platform that offers visual explanations, AI mentor support, practice tools, and no-code project creation for students, teachers, parents, professionals, and institutions." },
-  { q: "Who is Visionary for?", a: "Visionary is built for every learner — students, teachers, parents, professionals, and organizations. Each journey adapts to the person using it, while the same intelligence connects them all." },
-  { q: "What can Visionary remember?", a: "It remembers what you understood, where you struggled, what you tried, and what changed along the way — so you never have to start over when you return." },
-  { q: "How does Visionary use my information?", a: "Your information is used only to make your learning better. Visionary is designed with privacy, security, and transparency at the heart of the experience — your data is never sold." },
-  { q: "Can I use Visionary in my own language?", a: "Yes. You can ask, learn, and practice in 20+ languages. Visionary keeps the meaning, the context, and your journey connected even as your language changes." },
-  { q: "Is Visionary suitable for children?", a: "Yes. Visionary is built responsibly — safe to grow with, from the first question to what's next, with age-appropriate guidance and strong protections for young learners." },
+  { q: "What is Visionary?", a: "Visionary brings explanations, practice, an AI mentor, and project tools into one place for learning and work." },
+  { q: "Who is Visionary for?", a: "Students, teachers, parents, professionals, and organizations can each use a journey shaped around their work." },
+  { q: "What can Visionary remember?", a: "It can remember what you understood, where you struggled, and what you tried, so you can continue when you return." },
+  { q: "How does Visionary use my information?", a: "Visionary uses your information to support your journey. It does not sell your information, and you stay in control." },
+  { q: "Can I use Visionary in my own language?", a: "Yes. You can ask, learn, and practise in 20+ languages while keeping your context connected." },
+  { q: "Is Visionary suitable for children?", a: "Yes. Age-aware guidance, strong protections, and human review help make Visionary safe to grow with." },
 ];
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
@@ -425,8 +425,7 @@ to{opacity:1}
             animationDelay: "760ms",
           }}
         >
-          Visionary understands what you're trying to do, adapts to how you
-          work, and carries your context forward — across learning, teaching,
+          Visionary carries your context forward — across learning, teaching,
           work, and life.
         </p>
 
@@ -470,7 +469,7 @@ function LandingProblemSection() {
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
           <div className="lg:col-span-5 lg:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Why it needs to exist</p>
+            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Why Visionary exists</p>
             <h2 key={`h-${index}`} className="hero-fade-up mt-[calc(clamp(28px,2.78vw,40px)*0.857)] max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
             </h2>
@@ -571,7 +570,7 @@ function LandingMeetSection() {
             It <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
           </h2>
           <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-            Visionary continues your journey instead of restarting it. Whether you're learning, teaching, supporting, building, or leading, every interaction grows from what you already know and where you're going next.
+            Visionary continues your journey instead of restarting it.
           </p>
         </FadeReveal>
       </div>
@@ -613,10 +612,10 @@ function LandingOneIntelligenceSection() {
     <section ref={ref} data-section="05-one-intelligence" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every tomorrow</p>
+        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>One Intelligence</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           What you <span style={{ color: COLORS.blue }}>understand</span> today
-          <br className="hidden md:block" /> make tomorrow easier.
+          <br className="hidden md:block" /> makes tomorrow easier.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Every lesson, conversation, project, and breakthrough becomes part of what comes next.
@@ -632,7 +631,7 @@ function LandingOneIntelligenceSection() {
               {finale ? (
                 <>
                   <VMark className="h-10 w-auto" />
-                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One Intelligence, Always stay with you.</h3>
+                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One Intelligence. Always with you.</h3>
                 </>
               ) : (
                 <>
@@ -686,9 +685,9 @@ function LandingCommitmentSection() {
       <style>{"@keyframes cmFill{from{transform:scaleY(0)}to{transform:scaleY(1)}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our commitment</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>You won't stay the same.<br />Neither should your intelligence.</h2>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>You keep changing.<br />Visionary keeps learning with you.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]" style={{ color: COLORS.slate }}>
-          New questions. New goals. New challenges. New possibilities. What you need today shouldn't limit what you can become tomorrow.
+          New questions bring new work. Visionary helps you carry what you learn into the next step.
         </p>
         <div className="mx-auto mt-24 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <div className="flex flex-col gap-10">
@@ -716,7 +715,7 @@ function LandingCommitmentSection() {
           </div>
         </div>
         <p className="mx-auto mt-28 max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-          Built For Who You Are. Ready For <span style={{ color: COLORS.blue }}>Who You Become.</span>
+          Built for who you are. Ready for <span style={{ color: COLORS.blue }}>who you become.</span>
         </p>
       </div>
     </section>
@@ -755,7 +754,7 @@ function LandingLanguageSection() {
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Learning, teaching, asking, practicing, and building feel different when they happen in the language that comes naturally to you. Visionary understands what you mean — not just the words you use.
+          Visionary understands what you mean — in the language you think in.
         </p>
         <div className="mt-14 lg:mt-20"><LGLanguageChips active={lang} onSelect={setLang} /></div>
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
@@ -843,12 +842,12 @@ function LandingTrustSection() {
   return (
     <section ref={ref} data-section="08-trust" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our trust</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Trust and safety</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[wordIndex]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Your learning, conversations, ideas, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
+          Your learning, conversations, ideas, and progress are personal. Visionary is built to keep it that way.
         </p>
         <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
           <div className="lg:pl-[6.5%]">
@@ -874,7 +873,7 @@ function LandingCTASection() {
   return (
     <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start when you are</p>
+        <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start today</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
@@ -897,7 +896,7 @@ const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>{category.chip}</p>
         <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{category.copy}</p>
-        <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>Explore more</span>
+        <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>Learn more</span>
       </div>
     </Link>
   );
@@ -910,7 +909,7 @@ function LandingExploreSection() {
     <section ref={ref} data-section="10-explore" className="relative bg-white py-16 lg:py-20 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="flex items-center justify-between gap-6 px-6 lg:pl-[6.5%] lg:pr-[6%]">
-          <h2 className="font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>Explore more categories</h2>
+          <h2 className="font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>Explore Visionary</h2>
           <div className="flex items-center gap-3">
             <button type="button" aria-label="Previous categories" onClick={() => scrollByCard(-1)}
               className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${canPrev ? "opacity-100" : "pointer-events-none opacity-40"}`}
@@ -939,7 +938,7 @@ function LandingFAQSection() {
     <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
-        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Find answers to common questions about Visionary</h2>
+        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Have questions? We've got answers.</h2>
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
           <LandingFAQ faqs={FAQ_ITEMS} variant="hero" defaultOpen={0} />
         </div>

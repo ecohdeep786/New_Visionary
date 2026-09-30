@@ -70,7 +70,7 @@ export default function Register() {
     e.preventDefault();
     setError("");
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError("Passwords don't match.");
       return;
     }
     setLoading(true);
@@ -135,7 +135,7 @@ export default function Register() {
       }
     : {
         title: "Create a Visionary account",
-        supportingText: "Start your personalized learning journey today.",
+        supportingText: "Start a learning journey shaped around you.",
         accountInfo: null,
         footer: (
           <>

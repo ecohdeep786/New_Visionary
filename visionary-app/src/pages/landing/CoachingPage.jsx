@@ -17,6 +17,7 @@ const COLORS = {
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
   white: "#ffffff",
+  soft: "#F5F6F8",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
@@ -114,7 +115,8 @@ const HERO_WORDS = ["step by step.", "your way.", "from day one.", "together."];
 const USER_JOURNEY_STEPS = [
   {
     id: "signup",
-    n: "Step - 01",
+    n: "Step 01",
+    label: "Sign up",
     Icon: UserPlus,
     title: "Create your account.",
     do: "Sign up free with your email or Google account. Already on Visionary? Sign in and pick up where you left off.",
@@ -122,7 +124,8 @@ const USER_JOURNEY_STEPS = [
   },
   {
     id: "onboarding",
-    n: "Step - 02",
+    n: "Step 02",
+    label: "Start as yourself",
     Icon: Target,
     title: "Start as yourself.",
     do: "Tell Visionary who you are and what you want to work on — it shapes everything around that from the first moment.",
@@ -130,15 +133,17 @@ const USER_JOURNEY_STEPS = [
   },
   {
     id: "space",
-    n: "Step - 03",
+    n: "Step 03",
+    label: "Your space",
     Icon: Compass,
     title: "Step into your space.",
     do: "Your personal space shows what matters to you — your progress, your questions, your next step. Always ready, always yours.",
-    micro: "Ask, practise, and continue — all from one space that knows you.",
+    micro: "Ask, practise, and continue from one space that remembers your place.",
   },
   {
     id: "connected",
-    n: "Step - 04",
+    n: "Step 04",
+    label: "Stay connected",
     Icon: RefreshCw,
     title: "Stay connected.",
     do: "Your learning never resets. Visionary remembers your context, connects you to the people who matter, and keeps everything moving forward.",
@@ -148,14 +153,14 @@ const USER_JOURNEY_STEPS = [
 /* Step 01 — left column copy, synced with the right auth mock */
 const AUTH_STATES = {
   signup: {
-    tag: " Step - 01 · Sign up",
+    tag: "Step 01 · Sign up",
     title: "your account.",
     blue: "Create",
     do: "Sign up free with your email or Google account. No credit card required.",
     micro: "Takes less than 30 seconds. Your journey starts here.",
   },
   signin: {
-    tag: "Step - 01 · Sign in",
+    tag: "Step 01 · Sign in",
     title: "your account.",
     blue: "Sign in",
     do: "Already on Visionary? Sign in and pick up exactly where you left off.",
@@ -177,7 +182,7 @@ const SPACE_ANIMATIONS = [
   { role: "Teacher", text: "Today: 23 students ready · 5 need support · Lesson plan adapts" },
   { role: "Parent", text: "Today: Priya understood fractions · stuck on decimals · help tonight" },
   { role: "Professional", text: "Today: Architecture review → trade-offs → ship with confidence" },
-  { role: "Organization", text: "Today: 847 learners · 12 gaps found · 3 interventions ready" },
+  { role: "Organization", text: "Today: 847 learners · 12 gaps found · 3 next steps ready" },
 ];
 
 const ROLES = [
@@ -185,7 +190,7 @@ const ROLES = [
   { id: "teacher", tab: "Teacher", prompt: "How should I explain this?", ui: "Plan tomorrow's lesson for a mixed class.", outcome: "The lesson maps the gaps. You adapt before the bell rings." },
   { id: "parent", tab: "Parent", prompt: "How is Priya doing?", ui: "Show me this week in one view.", outcome: "You see where she's stuck. You help before the test." },
   { id: "professional", tab: "Professional", prompt: "How do I improve this?", ui: "Reason through this architecture with me.", outcome: "The trade-offs surface. You ship with confidence." },
-  { id: "organization", tab: "Organization", prompt: "Where does my team need help?", ui: "Show me learning signals across the cohort.", outcome: "You find the gap. You intervene before outcomes drop." },
+  { id: "organization", tab: "Organization", prompt: "Where does my team need help?", ui: "Show me progress across the cohort.", outcome: "You find the gap. You step in before results drop." },
 ];
 
 /* ═══ MOCK SHELL ═══ */
@@ -392,7 +397,7 @@ function HowJourneySection() {
     }
     return (
       <>
-        <BlueTag>{step.n} · {step.id}</BlueTag>
+        <BlueTag>{step.n} · {step.label}</BlueTag>
         <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
         <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>{step.micro}</p>
@@ -444,7 +449,7 @@ const LOOP_STAGES = [
   { id: "ask", label: "Ask", copy: "You ask anything, any time. Confusion is a feature of learning, not a failure.", Icon: MessageCircle },
   { id: "check-2", label: "Check again", copy: "A quick check confirms the idea landed before you move on.", Icon: CircleCheck },
   { id: "practise", label: "Practise", copy: "Practice is drawn from what you just learned — short, focused, and adaptive.", Icon: RefreshCw },
-  { id: "build", label: "Build", copy: "You build something real with it — a project, a solution, an artifact of your own.", Icon: Hammer },
+  { id: "build", label: "Build", copy: "You build something real with it — a project, a solution, work of your own.", Icon: Hammer },
   { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal — and the loop begins again.", Icon: Sparkles },
 ];
 const LOOP_MS = 2600;

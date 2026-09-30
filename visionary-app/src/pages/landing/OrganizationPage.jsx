@@ -177,11 +177,11 @@ const ORG_HERO_WORDS = ["Leading.", "to scale."];
 const HERO_WORD_MS = 2800;
 
 const SLIDES = [
-  { word: "Adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: orgProblem1, alt: "Leader facing low tool adoption" },
-  { word: "Progress", quote: "Every department reports green. The outcomes still surprise us.", image: orgProblem2, alt: "Leaders reviewing conflicting progress reports" },
-  { word: "Gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: orgProblem3, alt: "Team discovering skill gaps too late" },
-  { word: "Support", quote: "Our best mentors can only be in one classroom at a time.", image: orgProblem4, alt: "Mentor stretched across many learners" },
-  { word: "Outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
+  { word: "adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: orgProblem1, alt: "Leader facing low tool adoption" },
+  { word: "progress", quote: "Every department reports green. The outcomes still surprise us.", image: orgProblem2, alt: "Leaders reviewing conflicting progress reports" },
+  { word: "gaps", quote: "We find the learning gaps at the exit interview, not in week two.", image: orgProblem3, alt: "Team discovering skill gaps too late" },
+  { word: "support", quote: "Our best mentors can only be in one classroom at a time.", image: orgProblem4, alt: "Mentor stretched across many learners" },
+  { word: "outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
 ];
 const CYCLE_MS = 4000;
 
@@ -200,10 +200,10 @@ const INTELLIGENCE_WORDS = ["People connected.", "Progress connected.", "Support
 const INTELLIGENCE_WORD_MS = 3000;
 
 const INTELLIGENCE_STEPS = [
-  { title: "See what people understand.", copy: "Visionary turns learning activity into a clear picture of understanding across learners, classes, teams, and programs." },
-  { title: "Find gaps before they spread.", copy: "Know where people are stuck early enough to support them — before small gaps become large outcomes." },
-  { title: "Support every role from one system.", copy: "Students, teachers, parents, professionals, and leaders all see what matters to them without losing the shared picture." },
-  { title: "Improve the next decision.", copy: "Use real learning signals to improve lessons, programs, coaching, training, and institutional planning." },
+  { title: "See what people understand.", copy: "Learning activity becomes a clear picture of understanding across your institution." },
+  { title: "Find gaps before they spread.", copy: "Know where people are stuck — before small gaps become outcomes." },
+  { title: "Support every role from one system.", copy: "Every role sees what matters to them, on one shared picture." },
+  { title: "Improve the next decision.", copy: "Use real learning activity to improve lessons, programs, coaching, and planning." },
 ];
 
 const KEEPS_WORDS = ["learning", "support", "progress"];
@@ -235,8 +235,8 @@ const CONTINUITY_STAGES = [
 
 const ACHIEVEMENT_TABS = [
   { black: "Understand", blue: "what people actually know.", copy: "Move beyond completion rates and see real understanding across your organization." },
-  { black: "Support", blue: "the people who need it early.", copy: "Give teachers, coaches, managers, and leaders the signals they need before outcomes drop." },
-  { black: "Improve", blue: "every program with evidence.", copy: "Use connected learning signals to improve curriculum, training, coaching, and institutional decisions." },
+  { black: "Support", blue: "the people who need it early.", copy: "Give teachers, coaches, and leaders what they need — before results drop." },
+  { black: "Improve", blue: "every program with evidence.", copy: "Use connected learning activity to improve curriculum, training, and coaching." },
 ];
 
 const JOURNEY_CATEGORIES = ["Student", "Teacher", "Parent", "Professional", "Organization"];
@@ -246,16 +246,16 @@ const TRUST_WORDS = ["people.", "data.", "trust."];
 const TRUST_WORD_MS = 6000;
 
 const TRUST_CARDS = [
-  { title: "Private by Design", copy: "Your people and their learning data. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
-  { title: "Built for institutions", copy: "Designed for responsible use across learners, teachers, teams, and leaders.", Icon: HeartHandshake, to: "/security", link: "See security practices" },
-  { title: "Transparent intelligence", copy: "Organizations should understand how intelligence supports decisions.", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+  { title: "Private by design.", copy: "Your people and their learning data. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
+  { title: "Built for institutions.", copy: "Designed for responsible use across learners, teachers, teams, and leaders.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
+  { title: "Transparent intelligence.", copy: "Organizations should understand how intelligence supports decisions.", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
 
 const EXPLORE_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "Know how Visionary fits into your learning.", alt: "Student learning with a laptop" },
-  { slug: "teacher", chip: "Teacher", copy: "Know how Visionary fits into your classroom.", alt: "Teacher working on a laptop in a classroom" },
-  { slug: "parent", chip: "Parent", copy: "Know how Visionary fits into your child's journey.", alt: "Parent helping a child at a desk" },
-  { slug: "professional", chip: "Professional", copy: "Know how Visionary fits into the work you do.", alt: "Professional discussing work with a tablet" },
+  { slug: "student", chip: "Student", copy: "Understand lessons, practise ideas, and keep your place.", alt: "Student learning with a laptop" },
+  { slug: "teacher", chip: "Teacher", copy: "See who needs another explanation.", alt: "Teacher working on a laptop in a classroom" },
+  { slug: "parent", chip: "Parent", copy: "See where your child needs support.", alt: "Parent helping a child at a desk" },
+  { slug: "professional", chip: "Professional", copy: "Turn what you know into useful work.", alt: "Professional discussing work with a tablet" },
 ];
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
@@ -335,9 +335,9 @@ const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) 
       style={{ color: COLORS.ink }}
     >
       <span className="block">Every</span>
-      <span className="block">Organization</span>
-      <span className="block">Wonders</span>
-      <span className="block">About</span>
+      <span className="block">organization</span>
+      <span className="block">wonders</span>
+      <span className="block">about</span>
       <span className="block overflow-hidden whitespace-nowrap">
         <span
           key={slideKey}
@@ -509,8 +509,8 @@ const JOURNEY_MODALS = {
     intro: "Higher education asks for depth across programs and semesters. Visionary helps faculty, departments, and students understand progress across programs, skills, and outcomes.",
     primary: { label: "See how Visionary works", to: "/how-it-works" },
     blocks: [
-      { Icon: Brain, t: "Depth, not dashboards.", c: "Real understanding signals across coursework, projects, and semesters.", l: "How it works", to: "/how-it-works" },
-      { Icon: Layers3, t: "Programs that carry forward.", c: "Foundation courses connect to program skills and career readiness.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: Brain, t: "Depth, not dashboards.", c: "Real understanding across coursework, projects, and semesters.", l: "How it works", to: "/how-it-works" },
+      { Icon: Layers3, t: "Programs that carry forward.", c: "Foundation courses connect to program skills and career readiness.", l: "Keep the record", to: "/how-it-works" },
       { Icon: BookOpen, t: "Faculty see what matters.", c: "Signals that help teaching adjust before outcomes drop.", l: "Get support", to: "/help" },
       { Icon: Building2, t: "Support your institution.", c: "Visionary fits classrooms, labs, and departments.", l: "For organizations", to: "/organization" },
     ],
@@ -522,7 +522,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: Target, t: "Every batch, every learner.", c: "Know where each learner is stuck while there is still time to act.", l: "How it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practice with direction.", c: "Mentors see what to revise, skip, and strengthen for each learner.", l: "Start practising free", to: "/register" },
-      { Icon: Clock, t: "Exam confidence.", c: "Concept gaps close before the exam, not after the result.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: Clock, t: "Exam confidence.", c: "Concept gaps close before the exam, not after the result.", l: "Keep the record", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Talk to us.", c: "Bring Visionary to your batches and mentors.", l: "Contact us", to: "/contact" },
     ],
   },
@@ -533,7 +533,7 @@ const JOURNEY_MODALS = {
     blocks: [
       { Icon: TrendingUp, t: "From training to application.", c: "See where training turns into capability — and where it stalls.", l: "How it works", to: "/how-it-works" },
       { Icon: UsersRound, t: "Managers see growth.", c: "Signals that help teams and L&D support the people who need it early.", l: "Get support", to: "/help" },
-      { Icon: Layers3, t: "Skills that compound.", c: "Each program builds on what your teams already know.", l: "Your continuity", to: "/how-it-works" },
+      { Icon: Layers3, t: "Skills that grow.", c: "Each program builds on what your teams already know.", l: "Keep the record", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Start with one team.", c: "Pilot Visionary with one cohort and grow from there.", l: "Talk to us", to: "/contact" },
     ],
   },
@@ -881,7 +881,7 @@ function OrgIntelligenceSection() {
           </span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Visionary connects every learner, teacher, parent, and professional into one clear picture your organization can act on.
+          Every learner, teacher, and professional — one clear picture you can act on.
         </p>
       </FadeReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
@@ -966,7 +966,7 @@ function OrgLanguageSection() {
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your organization.<br />In every language.
         </h2>
@@ -1123,13 +1123,13 @@ function OrgContinuitySection() {
     <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Your continuity
+          Keep the record
         </p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           What your organization learns stays with it.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          What your people understand, practise, and build becomes part of what comes next — across classes, cohorts, programs, and teams.
+          What your people understand becomes part of what comes next.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
           <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
@@ -1231,9 +1231,9 @@ function OrgAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your organization can achieve with intelligence.</h2>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your organization can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Turn connected learning signals into stronger outcomes — for every learner, teacher, parent, and professional you serve.
+          Connected learning, stronger results — for everyone you serve.
         </p>
 
         {/* Breath 2 — accordion + image, balanced columns */}
@@ -1386,13 +1386,13 @@ function OrgTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your people's questions, conversations, and progress are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
+          Your people's questions, conversations, and progress are personal. Visionary is built to keep it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1434,13 +1434,13 @@ const OrgCTASection = React.memo(function OrgCTASection() {
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Start where your people are
+          Begin today
         </p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Bring Visionary to your organization.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Start with one class, one program, one cohort, or one team — and build a clearer learning system from there.
+          Start with one class, one team — and build from there.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
@@ -1482,7 +1482,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category }) {
           {category.copy}
         </p>
         <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
-          Explore more
+          Learn more
         </span>
       </div>
     </Link>
@@ -1497,7 +1497,7 @@ function OrgExploreSection() {
     <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
-          Explore more categories
+          Explore Visionary
         </h2>
         <div className="relative mt-16 lg:mt-20">
           <div

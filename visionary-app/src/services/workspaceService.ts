@@ -4,6 +4,7 @@ import { eligibleJourneys } from './journeyEligibility.ts';
 import {legacyRelationships,saveLegacyRelationship,legacyProgressSummary} from './legacyConnections.ts';
 
 const KEY = 'visionary_workspace_v2';
+export function reportDays(days:number):7|30{if(days!==7&&days!==30)throw new Error('Choose a supported report period.');return days;}
 export const roleNames: Record<Role, string> = {student:'Learner',teacher:'Teacher',parent:'Parent',professional:'Professional',organization:'Organization admin'};
 export const plans: Plan[] = [{id:'Free',price:0,profiles:1,provisional:false},{id:'Premium',price:299,profiles:1,provisional:false},{id:'Family',price:499,profiles:6,provisional:true}];
 export const scenarioPersonas = [
@@ -16,12 +17,12 @@ export function configureMock(options: { now?: () => Date; latency?: number; fau
 export function workspaceNow() { return clock(); }
 const now = () => clock().toISOString();
 const id = () => crypto.randomUUID();
-function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true,voice:true,agiAnimation:'girl'},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }
+function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',notificationLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true,voice:true,agiAnimation:'girl'},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }
 function read(): Database { const raw=localStorage.getItem(KEY); if(!raw) return {version:2,people:[],workspaces:[],active:{},data:{},relationships:[]}; try { const result=JSON.parse(raw); if(result.version!==2) throw new Error(); return result; } catch { throw new Error('Workspace data could not be read. Your previous records have not been deleted.'); } }
 function write(db: Database) { try { localStorage.setItem(KEY,JSON.stringify(db)); } catch { throw new Error('Your changes could not be saved on this device. Free browser storage and try again.'); } if(typeof window!=='undefined') window.dispatchEvent(new CustomEvent('visionary:v2-change')); }
 function record(data: WorkspaceData, action: string, target: string) { data.audit.unshift({id:id(),action,target,at:now()}); }
 function allRelationships(db:Database){return [...db.relationships,...legacyRelationships(db)];}
-function access(db: Database, ctx: RequestContext) { const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId && w.personId===ctx.personId && w.role===ctx.role); if(!workspace) throw new Error('You do not have access to this workspace.');if(workspace.organizationId){const person=db.people.find(p=>p.id===ctx.personId);const memberships:Record<string,unknown>[]=JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite')||'[]');if(!memberships.some(m=>m.email===person?.email&&m.organization_email===workspace.organizationId&&m.role===workspace.role&&m.status==='active'))throw new Error('This organization connection is no longer active. Your personal workspace remains available.');} return db.data[workspace.id]!; }
+function access(db: Database, ctx: RequestContext) { const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId && w.personId===ctx.personId && w.role===ctx.role); if(!workspace) throw new Error('You do not have access to this workspace.');if(workspace.organizationId){const person=db.people.find(p=>p.id===ctx.personId);if(!readOrganizationInviteRows().some(m=>m.email===person?.email&&m.organization_email===workspace.organizationId&&m.role===workspace.role&&inviteStatus(m)==='active'))throw new Error('This organization connection is no longer active. Your personal workspace remains available.');} return db.data[workspace.id]!; }
 async function wait(ctx?: RequestContext) { if(ctx?.signal?.aborted) throw new DOMException('Cancelled','AbortError'); await new Promise<void>((resolve,reject)=>{ const abort=()=>{clearTimeout(timer);reject(new DOMException('Cancelled','AbortError'));}; const timer=setTimeout(()=>{ctx?.signal?.removeEventListener('abort',abort);resolve();},latency);ctx?.signal?.addEventListener('abort',abort,{once:true}); }); if(fault==='offline') throw new Error('Offline demo: saved work is still available. Change the demo condition to retry.'); if(fault==='error') throw new Error('The demo service could not complete this request. Your saved work is unchanged.'); }
 
 function addWorkspace(db: Database, person: Person, role: Role): Workspace { const existing=db.workspaces.find(w=>w.personId===person.id&&w.role===role&&!w.organizationId); if(existing)return existing; const workspace={id:`${person.id}:${role}`,personId:person.id,role,name:role==='organization'?'My organization':roleNames[role],lastPath:'/dashboard/home'};db.workspaces.push(workspace);db.data[workspace.id]=emptyData();const previous=db.workspaces.find(w=>w.personId===person.id&&w.id!==workspace.id);if(previous)db.data[workspace.id]!.subscription={...structuredClone(db.data[previous.id]!.subscription),usage:0,usageDay:now().slice(0,10)};return workspace; }
@@ -32,8 +33,8 @@ export function bootstrapPerson(user: {id:string;email:string;full_name?:string;
  // Import only owned records. Original stores are intentionally untouched.
  for(const name of ['Project','Question']) {let rows:Record<string,unknown>[]=[];try{rows=JSON.parse(localStorage.getItem(`visionary_entity_${name}`)||'[]');}catch{continue;}for(const row of rows.filter(r=>(r.owner_email||r.student_email)===user.email)){if(name==='Project')data.artifacts.push({id:`legacy-${String(row.id)}`,title:String(row.title||'Saved project'),body:String(row.notes||''),milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'in-progress',updatedAt:now()});else data.conversations.push({id:`legacy-${String(row.id)}`,title:String(row.question||'Saved question').slice(0,70),messages:[],draft:String(row.question||''),updatedAt:now(),useForPersonalization:false});}}data.legacyImported=true;write(db);
  }
- const memberships: {organization_email:string;organization_name?:string;email:string;role:Role;status:string}[]=JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite')||'[]');
- const accepted=memberships.filter(m=>m.email===person.email&&m.status==='active'&&person.roles.includes(m.role));let changed=false;
+ const memberships=readOrganizationInviteRows();
+ const accepted=memberships.filter(m=>m.email===person.email&&inviteStatus(m)==='active'&&person.roles.includes(m.role));let changed=false;
  // Onboarding seeds the stage once. A later sign-in still carries the original
  // onboarding fields, but must not roll back a teacher/learner transition.
  if(learningContext&&!person.learningContext){person.learningContext=learningContext;changed=true;}
@@ -161,10 +162,99 @@ export function beginReview(ctx:RequestContext,sessionId:string){
 }
 export function mastery(evidence:Evidence[],started=false,at=new Date()):MasteryStage {if(!evidence.length)return started?'Exploring':'Not started';const ordered=[...evidence].sort((a,b)=>b.at.localeCompare(a.at));const recent=ordered[0]!;if(at.getTime()-new Date(recent.at).getTime()>7*86400000)return 'Needs review';const passed=evidence.filter(e=>e.total>0&&e.correct/e.total>=0.7);if(recent.correct/recent.total<0.7)return 'Needs review';const kinds=new Set(passed.map(e=>e.kind));if(kinds.has('application')&&passed.some(e=>e.delayed&&e.kind==='retrieval')&&kinds.size>=3)return 'Mastered';if(kinds.has('check')&&kinds.has('practice'))return 'Secure';return 'Practicing';}
 export function saveArtifact(ctx:RequestContext,patch:Partial<Artifact>&{title:string;body:string}){const db=read();const data=access(db,ctx);let a=data.artifacts.find(a=>a.id===patch.id);if(!patch.title.trim())throw new Error('Give your project a title.');if(!a){a={id:id(),title:patch.title,body:'',journeyId:patch.journeyId,conceptId:patch.conceptId,learningSessionId:patch.learningSessionId,projectBrief:patch.projectBrief,rubric:patch.rubric,milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'draft',updatedAt:now()};data.artifacts.unshift(a);}if(a.body!==patch.body&&a.body)a.versions.unshift({body:a.body,at:a.updatedAt});a.title=patch.title;a.body=patch.body;a.projectBrief=patch.projectBrief||a.projectBrief;a.rubric=patch.rubric||a.rubric;a.milestones=patch.milestones||a.milestones;a.status=patch.status||a.status;a.updatedAt=now();record(data,'Artifact saved',a.id);write(db);return a;}
+export const portfolioReviewCriteria=[
+ {id:'purpose',label:'Purpose and audience',prompt:'Who is this for, and what decision or task does it support?'},
+ {id:'evidence',label:'Evidence and method',prompt:'What in the artifact supports your conclusion, and how did you check it?'},
+ {id:'limits',label:'Limits and next step',prompt:'What remains uncertain, and what would you improve next?'},
+] as const;
+/** Local content-change detector, never an authorization or evidence credential. */
+export function portfolioProjectVersion(artifact:Pick<Artifact,'title'|'body'|'status'|'milestones'|'rubric'>){
+ const source=JSON.stringify([artifact.title,artifact.body,artifact.status,artifact.milestones,artifact.rubric?.responses||{}]);
+ let hash=2166136261;for(let index=0;index<source.length;index++)hash=Math.imul(hash^source.charCodeAt(index),16777619);
+ return `${source.length}:${(hash>>>0).toString(16)}`;
+}
+export function savePortfolioSelfReview(ctx:RequestContext,artifactId:string,expectedVersion:string,criteria:{id:string;rating:'needs-work'|'explained'|'supported';note:string}[],reflection:string){
+ if(ctx.role!=='professional')throw new Error('Open your professional workspace to review a portfolio project.');
+ const db=read();const data=access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId);
+ if(person?.ageBand!=='adult')throw new Error('Portfolio review is available to adult professional profiles.');
+ const artifact=data.artifacts.find(item=>item.id===artifactId);
+ if(!artifact)throw new Error('This portfolio project is not in your workspace.');
+ if(artifact.status!=='completed'||!artifact.body.trim())throw new Error('Complete the project and add your work before self-review.');
+ if(portfolioProjectVersion(artifact)!==expectedVersion)throw new Error('This project changed. Save and review the current version.');
+ if(!Array.isArray(criteria)||criteria.length!==portfolioReviewCriteria.length||new Set(criteria.map(item=>item?.id)).size!==criteria.length||criteria.some(item=>!item||!portfolioReviewCriteria.some(rule=>rule.id===item.id)||!['needs-work','explained','supported'].includes(item.rating)||typeof item.note!=='string'||!item.note.trim()||item.note.trim().length>500))throw new Error('Review each criterion with a rating and a note of up to 500 characters.');
+ if(typeof reflection!=='string'||!reflection.trim()||reflection.trim().length>1000)throw new Error('Add a reflection of up to 1000 characters.');
+ artifact.portfolioReviews=[{projectVersion:expectedVersion,criteria:criteria.map(item=>({id:item.id,rating:item.rating,note:item.note.trim()})),reflection:reflection.trim(),reviewedAt:now()},...(artifact.portfolioReviews||[])].slice(0,10);
+ record(data,'Portfolio self-review saved',artifactId);write(db);return artifact;
+}
 function canShare(db:Database,from:string,to:string){return allRelationships(db).some(r=>r.status==='active'&&r.scope.includes('shared-resources')&&(!r.expiresAt||new Date(r.expiresAt)>clock())&&((r.from===from&&r.to===to)||(r.to===from&&r.from===to)));}
 export function shareArtifact(ctx:RequestContext,artifactId:string,recipient:string,expectedVersion?:string){const db=read();const data=access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId)!;if(person.ageBand!=='adult')throw new Error('Sharing requires an approved adult or guardian workflow. This demo does not verify guardians.');if(!canShare(db,ctx.personId,recipient))throw new Error('Choose an accepted connection with shared-resource permission.');const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');if(expectedVersion&&JSON.stringify([a.updatedAt,a.title,a.body])!==expectedVersion)throw new Error('This project changed. Reopen the saved version before sharing.');if(!a.body.trim())throw new Error('Add project content before sharing.');a.visibility='shared';if(!a.sharedWith.includes(recipient))a.sharedWith.push(recipient);a.shares=(a.shares||[]).filter(share=>share.recipient!==recipient);a.shares.push({recipient,title:a.title,body:a.body,version:a.updatedAt,sharedAt:now()});record(data,'Artifact shared',artifactId);write(db);return a;}
 export function sharedArtifacts(ctx:RequestContext){const db=read();access(db,ctx);return db.workspaces.filter(w=>w.personId!==ctx.personId&&canShare(db,w.personId,ctx.personId)).flatMap(w=>(db.data[w.id]?.artifacts||[]).filter(a=>a.visibility==='shared'&&a.sharedWith.includes(ctx.personId)).map(a=>{const share=a.shares?.find(item=>item.recipient===ctx.personId);return {id:a.id,title:share?.title||a.title,body:share?.body||a.body,updatedAt:share?.sharedAt||a.updatedAt,sharedVersion:share?.version,from:db.people.find(p=>p.id===w.personId)?.name||'Connection'};}));}
 export function stopSharingArtifact(ctx:RequestContext,artifactId:string){const db=read();const data=access(db,ctx);const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='private';a.sharedWith=[];a.shares=[];record(data,'Artifact sharing stopped',a.id);write(db);}
+function activeGuardian(db:Database,parentId:string,learnerId:string){return allRelationships(db).find(r=>r.type==='guardian'&&r.from===parentId&&r.to===learnerId&&r.status==='active'&&r.scope.includes('progress-summary')&&(!r.expiresAt||new Date(r.expiresAt).getTime()>clock().getTime()));}
+/** A learner shares only a short, fixed project summary with one active parent. */
+export function shareParentProjectSummary(ctx:RequestContext,artifactId:string,parentId:string,summary:string,expectedVersion:string){
+ if(ctx.role!=='student')throw new Error('Open the learner workspace to share a project summary.');
+ const db=read();const data=access(db,ctx);
+ const relationship=activeGuardian(db,parentId,ctx.personId);
+ if(!relationship)throw new Error('Progress sharing with this parent is no longer active.');
+ const artifact=data.artifacts.find(a=>a.id===artifactId);
+ if(!artifact)throw new Error('Project not found.');
+ if(artifact.status!=='completed')throw new Error('Complete the project before sharing a summary.');
+ if(JSON.stringify([artifact.updatedAt,artifact.title,artifact.body,artifact.status])!==expectedVersion)throw new Error('This project changed. Review the saved version before sharing.');
+ const clean=summary.trim();if(!clean||clean.length>500)throw new Error('Write a project summary of up to 500 characters.');
+ artifact.parentSummaries=(artifact.parentSummaries||[]).filter(share=>share.recipient!==parentId);
+ artifact.parentSummaries.push({recipient:parentId,relationshipId:relationship.id,title:artifact.title,summary:clean,version:artifact.updatedAt,sharedAt:now()});
+ record(data,'Parent project summary shared',artifactId);write(db);return artifact;
+}
+export function stopParentProjectSummary(ctx:RequestContext,artifactId:string,parentId:string){
+ if(ctx.role!=='student')throw new Error('Open the learner workspace to stop sharing.');
+ const db=read();const data=access(db,ctx);const artifact=data.artifacts.find(a=>a.id===artifactId);
+ if(!artifact)throw new Error('Project not found.');
+ artifact.parentSummaries=(artifact.parentSummaries||[]).filter(share=>share.recipient!==parentId);
+ record(data,'Parent project summary stopped',artifactId);write(db);return artifact;
+}
+export function familyProjectSummaries(ctx:RequestContext,childId:string){
+ if(ctx.role!=='parent')throw new Error('Parent workspace required.');
+ const db=read();access(db,ctx);
+ const relationship=activeGuardian(db,ctx.personId,childId);
+ if(!relationship)throw new Error('This child’s project summaries are no longer shared.');
+ const learnerWorkspace=db.workspaces.find(w=>w.personId===childId&&w.role==='student'&&!w.organizationId);
+ return (learnerWorkspace?db.data[learnerWorkspace.id]?.artifacts||[]:[]).flatMap(artifact=>(artifact.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:artifact.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
+}
+export function saveLearnerGoal(ctx:RequestContext,input:{id?:string;title:string;body:string}){
+ if(ctx.role!=='student')throw new Error('Open the learner workspace to save a learning goal.');
+ const db=read();const data=access(db,ctx);
+ if(input.id&&!data.resources.some(resource=>resource.id===input.id&&resource.kind==='goal'))throw new Error('This learning goal is not in your workspace.');
+ if(!input.title.trim()||input.title.trim().length>160)throw new Error('Give your goal a title of up to 160 characters.');
+ if(input.body.length>6000)throw new Error('Keep private goal notes within 6000 characters.');
+ return saveResource(ctx,{id:input.id,title:input.title.trim(),body:input.body,kind:'goal',status:'draft',audience:'Personal'});
+}
+export function shareParentGoalSummary(ctx:RequestContext,goalId:string,parentId:string,summary:string,expectedVersion:string){
+ if(ctx.role!=='student')throw new Error('Open the learner workspace to share a learning goal.');
+ const db=read();const data=access(db,ctx);const relationship=activeGuardian(db,parentId,ctx.personId);
+ if(!relationship)throw new Error('Progress sharing with this parent is no longer active.');
+ const goal=data.resources.find(resource=>resource.id===goalId&&resource.kind==='goal');
+ if(!goal||goal.status==='archived')throw new Error('This learning goal is unavailable.');
+ if(JSON.stringify([goal.updatedAt,goal.title,goal.body,goal.status])!==expectedVersion)throw new Error('This goal changed. Review the saved version before sharing.');
+ const clean=summary.trim();if(!clean||clean.length>500)throw new Error('Write a goal summary of up to 500 characters.');
+ goal.parentSummaries=(goal.parentSummaries||[]).filter(share=>share.recipient!==parentId);
+ goal.parentSummaries.push({recipient:parentId,relationshipId:relationship.id,title:goal.title,summary:clean,version:goal.updatedAt,sharedAt:now()});
+ record(data,'Parent learning goal shared',goalId);write(db);return goal;
+}
+export function stopParentGoalSummary(ctx:RequestContext,goalId:string,parentId:string){
+ if(ctx.role!=='student')throw new Error('Open the learner workspace to stop sharing.');
+ const db=read();const data=access(db,ctx);const goal=data.resources.find(resource=>resource.id===goalId&&resource.kind==='goal');
+ if(!goal)throw new Error('Learning goal not found.');
+ goal.parentSummaries=(goal.parentSummaries||[]).filter(share=>share.recipient!==parentId);
+ record(data,'Parent learning goal stopped',goalId);write(db);return goal;
+}
+export function familyGoalSummaries(ctx:RequestContext,childId:string){
+ if(ctx.role!=='parent')throw new Error('Parent workspace required.');
+ const db=read();access(db,ctx);const relationship=activeGuardian(db,ctx.personId,childId);
+ if(!relationship)throw new Error('This child’s goal summaries are no longer shared.');
+ const learnerWorkspace=db.workspaces.find(w=>w.personId===childId&&w.role==='student'&&!w.organizationId);
+ return (learnerWorkspace?db.data[learnerWorkspace.id]?.resources||[]:[]).filter(goal=>goal.kind==='goal'&&goal.status!=='archived').flatMap(goal=>(goal.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:goal.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
+}
 export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']}){
  const db=read();const data=access(db,ctx);
  if(!patch.title.trim())throw new Error('A title is required.');
@@ -190,15 +280,82 @@ export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'a
  for(const w of db.workspaces.filter(w=>w.personId===ctx.personId)){const target=db.data[w.id]!;target.subscription={...structuredClone(data.subscription),usage:target.subscription.usage,usageDay:target.subscription.usageDay};}
  record(data,`Demo subscription ${outcome}`,plan);write(db);
 }
-export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,status:r.status==='pending'&&r.expiresAt&&new Date(r.expiresAt)<=clock()?'expired':r.status,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
+export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,status:['pending','active'].includes(r.status)&&r.expiresAt&&new Date(r.expiresAt)<=clock()?'expired':r.status,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
+type OrganizationInviteEvent = {action:'requested'|'accepted'|'declined'|'cancelled'|'revoked';actor:string;actorEmail:string;at:string;status:string};
+type OrganizationInviteRow = {id:string;organization_email:string;organization_name?:string;email:string;role:Role;status:string;expiresAt?:string;accepted_at?:string;createdAt?:string;history?:OrganizationInviteEvent[];historyComplete?:boolean};
+const ORGANIZATION_INVITES_KEY='visionary_entity_OrganizationInvite';
+const organizationInviteRoles:Role[]=['student','teacher','professional','parent'];
+function readOrganizationInviteRows():OrganizationInviteRow[]{
+ try{const rows=JSON.parse(localStorage.getItem(ORGANIZATION_INVITES_KEY)||'[]');if(!Array.isArray(rows))throw Error();return rows;}
+ catch{throw new Error('Organization invitations could not be read on this device. Your saved records have not been changed.');}
+}
+function inviteStatus(row:OrganizationInviteRow){return ['pending','active'].includes(row.status)&&row.expiresAt&&new Date(row.expiresAt).getTime()<=clock().getTime()?'expired':row.status;}
+function saveOrganizationInviteRows(rows:OrganizationInviteRow[]){
+ try{localStorage.setItem(ORGANIZATION_INVITES_KEY,JSON.stringify(rows));}
+ catch{throw new Error('The organization change could not be saved on this device. Try again.');}
+ if(typeof window!=='undefined'){window.dispatchEvent(new CustomEvent('visionary:workspace-change'));window.dispatchEvent(new CustomEvent('visionary:v2-change'));}
+}
+function organizationActor(ctx:RequestContext){const db=read();access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId);if(!person)throw new Error('Account unavailable.');return {person,workspace:db.workspaces.find(w=>w.id===ctx.workspaceId)!};}
+/** Local invitation source of truth. The recipient sees only their own requests. */
+export function organizationInvites(ctx:RequestContext){
+ const {person,workspace}=organizationActor(ctx);
+ return readOrganizationInviteRows().filter(row=>workspace.role==='organization'&&!workspace.organizationId?row.organization_email===person.email:row.email===person.email).map(row=>({...row,status:inviteStatus(row),history:Array.isArray(row.history)?row.history:[]}));
+}
+export function requestOrganizationInvite(ctx:RequestContext,targetEmail:string,role:Role,organizationName?:string){
+ const {person,workspace}=organizationActor(ctx);
+ if(workspace.role!=='organization'||workspace.organizationId)throw new Error('Open your organization admin workspace to invite someone.');
+ if(!organizationInviteRoles.includes(role))throw new Error('Choose an available member role.');
+ const email=targetEmail.trim().toLowerCase();
+ if(email.length>254||!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(email)||email===person.email.toLowerCase())throw new Error('Enter another person’s valid account email.');
+ const rows=readOrganizationInviteRows();
+ if(rows.some(row=>row.organization_email===person.email&&row.email.toLowerCase()===email&&['draft','pending','active'].includes(inviteStatus(row))))throw new Error('This person already has an open organization request. Close it before inviting again.');
+ const at=now();const row:OrganizationInviteRow={id:id(),organization_email:person.email,organization_name:organizationName?.trim().slice(0,120)||person.name,email,role,status:'pending',createdAt:at,expiresAt:new Date(clock().getTime()+7*86400000).toISOString(),historyComplete:true,history:[{action:'requested',actor:ctx.personId,actorEmail:person.email,at,status:'pending'}]};
+ rows.push(row);saveOrganizationInviteRows(rows);return row;
+}
+export function changeOrganizationInvite(ctx:RequestContext,inviteId:string,status:'active'|'declined'|'cancelled'|'revoked'){
+ const {person,workspace}=organizationActor(ctx);const rows=readOrganizationInviteRows();const row=rows.find(item=>item.id===inviteId);
+ if(!row)throw new Error('Organization invitation unavailable.');
+ const organizer=workspace.role==='organization'&&!workspace.organizationId&&row.organization_email===person.email;
+ const member=row.email===person.email&&workspace.role===row.role&&(!workspace.organizationId||workspace.organizationId===row.organization_email);
+ if(row.email===person.email&&workspace.role!==row.role&&!organizer)throw new Error('Open the invited workspace role to answer this organization request.');
+ if(!organizer&&!member)throw new Error('This organization invitation is outside your workspace.');
+ const current=inviteStatus(row);
+ if(status==='active'||status==='declined'){
+  if(!member)throw new Error('Only the invited member can answer this request in the invited role.');
+  if(current==='expired')throw new Error('This invitation expired. Request a new invitation.');
+  if(current!=='pending')throw new Error('This invitation is no longer pending.');
+ }else if(status==='cancelled'){
+  if(!organizer||current!=='pending')throw new Error('Only the organization can cancel a pending invitation.');
+ }else if(current!=='active')throw new Error('Only an active membership can be disconnected.');
+ const at=now();row.status=status;if(status==='active'){row.accepted_at=at;delete row.expiresAt;}
+ row.history=[...(Array.isArray(row.history)?row.history:[]),{action:status==='active'?'accepted':status,status,actor:ctx.personId,actorEmail:person.email,at}];
+ saveOrganizationInviteRows(rows);return row;
+}
+function recordGuardianNotification(db:Database,relationship:Database['relationships'][number],event:'requested'|'accepted'|'declined'|'cancelled'|'revoked'){
+ if(relationship.type!=='guardian')return;
+ const workspace=db.workspaces.find(w=>w.personId===relationship.from&&w.role==='parent'&&!w.organizationId);
+ const target=workspace&&db.data[workspace.id];if(!target)return;
+ target.notifications.unshift({id:id(),text:'Progress-sharing permission changed.',read:false,path:'/dashboard/child',kind:'guardian',childId:relationship.to,event,at:now()});
+}
 export function requestRelationship(ctx:RequestContext,email:string,type:'guardian'|'teacher'|'organization'){
  const db=read();access(db,ctx);
  if(type==='guardian'&&ctx.role!=='parent')throw new Error('Open a parent workspace to request progress sharing.');
  const person=db.people.find(p=>p.email.toLowerCase()===email.trim().toLowerCase());
  if(!person||person.id===ctx.personId)throw new Error('Choose another account available in this local demo.');
  if(type==='guardian'&&!person.roles.includes('student'))throw new Error('Choose a learner account for progress sharing.');
- if(allRelationships(db).some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&(r.status==='active'||r.status==='pending'&&(!r.expiresAt||new Date(r.expiresAt)>clock()))))throw new Error('This connection already exists.');
- db.relationships.push({id:id(),from:ctx.personId,to:person.id,type,status:'pending',scope:type==='guardian'?['progress-summary']:['shared-resources'],expiresAt:new Date(clock().getTime()+7*86400000).toISOString()});write(db);
+ if(allRelationships(db).some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&['active','pending'].includes(r.status)&&(!r.expiresAt||new Date(r.expiresAt)>clock())))throw new Error('This connection already exists.');
+ const relationship={id:id(),from:ctx.personId,to:person.id,type,status:'pending' as const,scope:type==='guardian'?['progress-summary']:['shared-resources'],expiresAt:new Date(clock().getTime()+7*86400000).toISOString()};db.relationships.push(relationship);recordGuardianNotification(db,relationship,'requested');write(db);
+}
+export function renewGuardianRelationship(ctx:RequestContext,relationshipId:string){
+ if(ctx.role!=='parent')throw new Error('Open your parent workspace to renew progress sharing.');
+ const db=read();access(db,ctx);
+ const relationship=allRelationships(db).find(r=>r.id===relationshipId&&r.type==='guardian'&&r.from===ctx.personId);
+ if(!relationship)throw new Error('This progress connection is unavailable.');
+ const expired=relationship.expiresAt&&new Date(relationship.expiresAt)<=clock();
+ if(!['declined','revoked'].includes(relationship.status)&&!expired)throw new Error('This progress connection is still open.');
+ const learner=db.people.find(person=>person.id===relationship.to);
+ if(!learner)throw new Error('This learner account is no longer available.');
+ requestRelationship(ctx,learner.email,'guardian');
 }
 export function changeRelationship(ctx:RequestContext,relationshipId:string,status:'active'|'declined'|'revoked'){
  const db=read();const data=access(db,ctx);const r=allRelationships(db).find(r=>r.id===relationshipId&&(r.from===ctx.personId||r.to===ctx.personId));
@@ -208,27 +365,31 @@ export function changeRelationship(ctx:RequestContext,relationshipId:string,stat
  if(r.expiresAt&&new Date(r.expiresAt)<=clock()&&status==='active')throw new Error('This invitation expired. Request a new invitation.');
  if(status==='active'&&r.type==='guardian'&&ctx.role!=='student')throw new Error('Open the learner workspace to answer this request.');
  if(status==='active'&&r.id.startsWith('legacy:OrganizationInvite:')){
-  const row=JSON.parse(localStorage.getItem('visionary_entity_OrganizationInvite')||'[]').find((item:{id:string})=>`legacy:OrganizationInvite:${item.id}`===r.id);
+  const row=readOrganizationInviteRows().find(item=>`legacy:OrganizationInvite:${item.id}`===r.id);
   if(row?.role!==ctx.role)throw new Error('Open the invited workspace role to accept this organization request.');
  }
  if(status==='revoked'&&!['active','pending'].includes(r.status))throw new Error('This connection is already closed.');
+ if(r.id.startsWith('legacy:OrganizationInvite:')){changeOrganizationInvite(ctx,r.id.slice('legacy:OrganizationInvite:'.length),status==='revoked'&&r.status==='pending'?'cancelled':status);return;}
  if(r.id.startsWith('legacy:')){saveLegacyRelationship(r.id,status);return;}
+ const event=status==='active'?'accepted':status==='declined'?'declined':r.status==='pending'?'cancelled':'revoked';
  r.status=status;if(status==='active')delete r.expiresAt;
+ recordGuardianNotification(db,r,event);
  record(data,`Connection ${status}`,r.id);write(db);
 }
-export function familyReports(ctx:RequestContext){
- if(ctx.role!=='parent')throw new Error('Parent workspace required.');
- const db=read();access(db,ctx);const cutoff=clock().getTime()-7*86400000;
+export function familyReports(ctx:RequestContext,days:7|30=7){
+ reportDays(days);if(ctx.role!=='parent')throw new Error('Parent workspace required.');
+ const db=read();access(db,ctx);const cutoff=clock().getTime()-days*86400000;
  const seen=new Set<string>();
  return allRelationships(db).filter(r=>r.type==='guardian'&&r.from===ctx.personId&&r.status==='active'&&r.scope.includes('progress-summary')&&(!r.expiresAt||new Date(r.expiresAt).getTime()>clock().getTime())).filter(r=>{if(seen.has(r.to))return false;seen.add(r.to);return true;}).flatMap(r=>{
   const child=db.people.find(p=>p.id===r.to);if(!child)return [];
   const sessions=db.workspaces.filter(w=>w.personId===child.id&&w.role==='student').flatMap(w=>db.data[w.id]?.sessions||[]);
   const recent=sessions.filter(s=>new Date(s.updatedAt).getTime()>=cutoff);
-  return [{...legacyProgressSummary(child.email,cutoff),id:child.id,name:child.name,period:'Last 7 days',scope:r.scope,completed:recent.filter(s=>s.stage==='completed').length,objectives:recent.map(s=>({title:getJourney(s.journeyId,ctx.locale).title,stage:mastery(s.evidence.filter(e=>new Date(e.at).getTime()>=cutoff),true,clock())})),summary:recent.length?'Ask which explanation helped most. Offer time for a short review together.':'No guided-learning activity was shared in this period. Ask what they would like to explore next.'}];
+  return [{...legacyProgressSummary(child.email,cutoff),id:child.id,name:child.name,period:`Last ${days} days`,scope:r.scope,completed:recent.filter(s=>s.stage==='completed').length,objectives:recent.map(s=>({title:getJourney(s.journeyId,ctx.locale).title,stage:mastery(s.evidence.filter(e=>new Date(e.at).getTime()>=cutoff),true,clock())})),summary:recent.length?'Ask which explanation helped most. Offer time for a short review together.':'No guided-learning activity was shared in this period. Ask what they would like to explore next.'}];
  });
 }
 /** Summary-only classwork events for one child with active progress sharing. */
-export function familyClassworkDigest(ctx:RequestContext,childId:string){
+export function familyClassworkDigest(ctx:RequestContext,childId:string,days:7|30=7){
+ reportDays(days);
  const child=familyReports(ctx).find(row=>row.id===childId);
  if(!child)throw new Error('This child’s classwork summary is no longer shared.');
  const db=read();const person=db.people.find(row=>row.id===childId);
@@ -238,7 +399,7 @@ export function familyClassworkDigest(ctx:RequestContext,childId:string){
   catch{throw new Error('Classwork updates could not be read on this device. Try again.');}
  };
  const submissions=rows('Submission');const assignments=rows('Assignment');const enrollments=rows('Enrollment');
- const cutoff=clock().getTime()-7*86400000;
+ const cutoff=clock().getTime()-days*86400000;
  const returned=submissions.filter(row=>row.student_email===person.email&&row.status==='graded'&&new Date(String(row.graded_date||0)).getTime()>=cutoff).map(row=>{
   const assignment=assignments.find(item=>item.id===row.assignment_id&&item.class_id===row.class_id);
   return {id:String(row.id),title:typeof assignment?.title==='string'?assignment.title:'Class activity',date:String(row.graded_date).slice(0,10)};
@@ -247,7 +408,7 @@ export function familyClassworkDigest(ctx:RequestContext,childId:string){
  const today=clock().toISOString().slice(0,10);const through=new Date(clock().getTime()+7*86400000).toISOString().slice(0,10);
  const upcoming=assignments.filter(row=>enrolledIds.has(row.class_id)&&!['draft','archived'].includes(String(row.status))&&typeof row.due_date==='string'&&row.due_date>=today&&row.due_date<=through&&
    !submissions.some(item=>item.assignment_id===row.id&&item.student_email===person.email)).map(row=>({id:String(row.id),title:typeof row.title==='string'?row.title:'Class activity',dueDate:String(row.due_date)})).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
- return {period:'Last 7 days',returned,upcoming};
+ return {period:`Last ${days} days`,returned,upcoming};
 }
 export function seedDemo(personaId:string){const persona=scenarioPersonas.find(p=>p[0]===personaId);if(!persona)throw new Error('Unknown demo scenario.');const db=read();for(const p of scenarioPersonas){const personId=`demo-${p[0]}`;let person=db.people.find(x=>x.id===personId);if(!person){person={id:personId,email:`${p[0]}@visionary.test`,name:p[1].split(' · ')[0]!,ageBand:p[3],roles:[p[2]]};db.people.push(person);const ws=addWorkspace(db,person,p[2]);db.active[personId]=ws.id;const data=db.data[ws.id]!;data.preferences.locale=p[0]==='bengali'?'bn':'en';data.notifications.push({id:`welcome-${personId}`,text:'Your demo workspace is ready. Start with one useful next step.',read:false,path:'/dashboard/home'});}}
  const parent='demo-parent';for(const child of ['demo-minor-cbse','demo-bengali'])if(!db.relationships.some(r=>r.id===`${parent}:${child}`))db.relationships.push({id:`${parent}:${child}`,from:parent,to:child,type:'guardian',scope:['progress-summary'],status:'active'});

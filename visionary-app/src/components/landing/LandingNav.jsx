@@ -25,11 +25,11 @@ const C = {
 
 /* Persona metadata */
 const CATEGORY_META = {
-  student: { Icon: GraduationCap, desc: "Learn with a companion that keeps your place." },
-  teacher: { Icon: Users, desc: "See every learner and teach in your language." },
-  parent: { Icon: HeartHandshake, desc: "Follow your child's journey with confidence." },
-  professional: { Icon: Briefcase, desc: "Grow the skills your work demands next." },
-  organization: { Icon: Building2, desc: "Build understanding that stays across your institution." },
+  student: { Icon: GraduationCap, desc: "Understand more and keep your place." },
+  teacher: { Icon: Users, desc: "See who needs another explanation." },
+  parent: { Icon: HeartHandshake, desc: "See where your child needs support." },
+  professional: { Icon: Briefcase, desc: "Turn what you know into useful work." },
+  organization: { Icon: Building2, desc: "Help teams carry knowledge forward." },
 };
 
 const FALLBACK_META = {
@@ -64,24 +64,24 @@ const ABOUT_GROUPS = [
     items: [
       { id: "about", Icon: Sparkles, title: "About Visionary", desc: "Our mission, beliefs, company, and people.", to: "/about" },
       { id: "careers", Icon: Briefcase, title: "Careers", desc: "Help us make understanding last.", to: "/careers" },
-      { id: "research", Icon: Newspaper, title: "Research & News", desc: "News from Visionary, product updates, and research.", to: "/research" },
+      { id: "research", Icon: Newspaper, title: "Research and news", desc: "News from Visionary, product updates, and research.", to: "/research" },
       { id: "community", Icon: UsersRound, title: "Community", desc: "Learners, teachers, and parents growing together.", to: "/community" },
     ],
   },
   {
-    title: "Support & programs",
+    title: "Support and programs",
     items: [
-      { id: "contact", Icon: Mail, title: "Contact & Sales", desc: "Talk to us about schools, teams, and partnerships.", to: "/contact" },
-      { id: "partners", Icon: Handshake, title: "Find a Partner", desc: "Bring Visionary closer to your region or institution.", to: "/partners" },
+      { id: "contact", Icon: Mail, title: "Contact and sales", desc: "Talk to us about schools, teams, and partnerships.", to: "/contact" },
+      { id: "partners", Icon: Handshake, title: "Find a partner", desc: "Bring Visionary closer to your region or institution.", to: "/partners" },
       { id: "updates", Icon: Bell, title: "Sign up for updates", desc: "Product news, new languages, and launch updates.", to: "/updates" },
-      { id: "referral", Icon: Gift, title: "Referral Program", desc: "Invite people and grow with Visionary.", to: "/referral" },
+      { id: "referral", Icon: Gift, title: "Referral program", desc: "Invite people and grow with Visionary.", to: "/referral" },
     ],
   },
   {
-    title: "Trust & legal",
+    title: "Trust and legal",
     items: [
       { id: "safety", Icon: ShieldCheck, title: "Safety", desc: "Age-appropriate answers and human review.", to: "/safety" },
-      { id: "privacy", Icon: Lock, title: "Privacy Policy", desc: "Your memory is yours. Terms and Cookies included.", to: "/privacy" },
+      { id: "privacy", Icon: Lock, title: "Privacy policy", desc: "Your memory is yours.", to: "/privacy" },
       { id: "security", Icon: ShieldCheck, title: "Security", desc: "Protected end to end.", to: "/security" },
       { id: "accessibility", Icon: Accessibility, title: "Accessibility", desc: "Built for every learner, every device.", to: "/accessibility" },
     ],
@@ -500,7 +500,7 @@ export default function LandingNav() {
             className="flex h-11 items-center rounded-full px-5 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
             style={{ backgroundColor: C.darkblue }}
           >
-            Get Started
+            Get started
           </Link>
 
           <button
@@ -706,7 +706,7 @@ export default function LandingNav() {
               className="flex h-11 items-center justify-center rounded-full text-[15px] font-medium tracking-[0.24px] text-white"
               style={{ backgroundColor: C.darkblue }}
             >
-              Get Started
+              Get started
             </Link>
           </div>
         </div>
