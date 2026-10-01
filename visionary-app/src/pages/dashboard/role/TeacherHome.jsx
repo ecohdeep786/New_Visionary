@@ -9,6 +9,8 @@ import ClassCard from "@/components/dashboard/teacher/ClassCard";
 import CreateClassModal from "@/components/dashboard/teacher/CreateClassModal";
 import TeacherInsightCard from "@/components/dashboard/teacher/TeacherInsightCard";
 import TeacherUpskillCard from "@/components/dashboard/teacher/TeacherUpskillCard";
+import { useWorkspace } from "@/hooks/useWorkspace";
+import { createTeacherClass } from "@/services/classroomService";
 
 /**
  * Teacher home — Google Classroom vibe with Visionary's AI layer on top.
@@ -17,6 +19,7 @@ import TeacherUpskillCard from "@/components/dashboard/teacher/TeacherUpskillCar
  */
 export default function TeacherHome() {
   const { user } = useAuth();
+  const { ctx } = useWorkspace();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
   const userName = user?.full_name?.split(" ")[0] || "Teacher";
@@ -56,17 +59,7 @@ export default function TeacherHome() {
   }, [load]);
 
   const handleCreate = async (data) => {
-      const allClasses = await base44.entities.Classroom.list();
-      let joinCode;
-      do { joinCode = `VISION-${crypto.randomUUID().replaceAll("-", "").slice(0, 6).toUpperCase()}`; } while (allClasses.some((c) => c.join_code === joinCode));
-      const created = await base44.entities.Classroom.create({
-        ...data,
-        teacher_email: user?.email,
-        teacher_id: user?.id,
-        teacher_name: userName,
-        join_code: joinCode,
-        student_count: 0,
-      });
+      const created = await createTeacherClass(ctx, data);
       setClasses((prev) => [created, ...prev]);
       setShowCreate(false);
       window.dispatchEvent(new CustomEvent("visionary:workspace-change"));

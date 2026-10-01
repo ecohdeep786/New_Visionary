@@ -93,7 +93,7 @@ function useRevealOnce() {
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <div ref={ref} className={`${className} transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>
+    <div ref={ref} className={`${className} transition-all duration-700 ease-google motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
       {children}
     </div>
   );
@@ -220,7 +220,7 @@ function HeroCard({ idPrefix = "hero" }) {
       {/* google.com card curve — tint sweeps into the card corner and the
           form's submit button floats in it with breath (card wrappers are the
           positioned ancestors, so this pins to the card's bottom-right) */}
-      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[264px] rounded-tl-[16px] bg-[#e8f0fe]" />
+      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[264px] rounded-tl-[16px] bg-white" />
       <button type="submit"
         className="absolute bottom-3 right-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
         Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -316,26 +316,29 @@ export default function CareersPage() {
                     Teams
                   </h2>
                   <p className="mx-auto mt-4 max-w-[640px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
-                    Together, we build a product that helps people keep what they learn. These are areas of work, not advertised vacancies — current openings, if any, are listed below.
+                    Together, we build a product that helps people keep what they learn. These are areas of work, not advertised vacancies. Current openings, if any, are listed below.
                   </p>
                 </div>
                 <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {AREAS.map((area) => (
-                    <article key={area.title} className="flex h-full flex-col overflow-hidden rounded-lg g-card">
+                    <article key={area.title} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] g-card">
                       <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
-                      <div className="flex flex-1 flex-col p-6">
+                      <div className="flex flex-1 flex-col p-7 pb-16">
                         <h3 className="text-[21px] font-normal leading-[1.3] text-[#202124]">{area.title}</h3>
                         <p className="mt-2 text-[15px] leading-[1.6] text-[#5f6368]">{area.desc}</p>
-                        <div className="mt-auto flex items-center gap-6 pt-5">
-                          <Link to="/about" className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
-                            Learn more
-                          </Link>
+                        <div className="mt-auto pt-6">
                           <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Careers — ${area.title}`)}`}
-                            className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                            className="inline-flex items-center gap-1.5 text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
                             Introduce yourself
                           </a>
                         </div>
                       </div>
+                      {/* google.com card curve — a page-background cutout sweeps into the
+                          bottom-right corner and the card's arrow floats in it with breath */}
+                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
+                      <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center">
+                        <ArrowRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                      </Link>
                     </article>
                   ))}
                 </div>
@@ -387,7 +390,7 @@ export default function CareersPage() {
                   </div>
                   <h3 className="mt-6 text-[24px] font-normal leading-[1.3] text-[#202124]">No public roles listed right now.</h3>
                   <p className="mt-3 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368]">
-                    There are no public vacancies at the moment. You can still introduce yourself — the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
+                    There are no public vacancies at the moment. You can still introduce yourself: the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-6">
                     <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
@@ -418,7 +421,7 @@ export default function CareersPage() {
                   <p>
                     If you need an accessible format or an adjustment to a hiring conversation, email{" "}
                     <a className="rounded-sm font-medium text-[#1a73e8] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
-                      href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request — Careers")}`}>
+                      href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request (Careers)")}`}>
                       careers@visionary.org.in
                     </a>{" "}
                     with the adjustment you need. Please avoid including medical records or other sensitive personal information; we cannot promise that a particular accommodation is available.

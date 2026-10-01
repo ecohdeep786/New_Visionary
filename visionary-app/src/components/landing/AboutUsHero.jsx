@@ -9,10 +9,10 @@ const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
       page — no separate sub-pages exist. ── */
 const FAN_GROUPS = [
   { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"], ["Competitive exams", "flag"], ["Vocational and skills", "build"], ["Higher education", "research"], ["Learning on your own", "loop"]] },
-  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson Planning", "document"], ["In Class", "ask"], ["Checking Understanding", "practice"], ["Adapting", "compass"], ["Supporting Individuals", "handshake"], ["Growing", "growth"]] },
-  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early Years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"]] },
-  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early Career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
-  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges & Universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
+  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson planning", "document"], ["In class", "ask"], ["Checking understanding", "practice"], ["Adapting", "compass"], ["Supporting individuals", "handshake"], ["Growing", "growth"]] },
+  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"]] },
+  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
+  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges and universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
 ];
 
 const STRIP_CARDS = FAN_GROUPS.flatMap((group) => [

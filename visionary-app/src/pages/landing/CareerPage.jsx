@@ -33,7 +33,7 @@ export default function CareerPage() {
       <FeatureShowcase
         eyebrow="Features"
         title="Everything you need to launch your career"
-        subtitle="From skill gaps to job offer — Visionary guides every step."
+        subtitle="From skill gaps to job offer, Visionary guides every step."
         color={category.color}
         features={[
           { icon: Target, title: "Skill gap analysis", desc: "AI maps your current skills against your target role and creates a personalized upskilling plan." },
@@ -57,7 +57,7 @@ export default function CareerPage() {
         color={category.color}
         quote="I graduated with a computer science degree and couldn't get interviews. Visionary helped me build three real projects in six weeks and connected me with recruiters. I had an offer within a month."
         author="Rohan Malhotra"
-        role="Software Engineer · Bengaluru"
+        role="Software engineer · Bengaluru"
         initials="RM"
       />
       <section className="px-6 pb-20 sm:px-8 lg:px-10 lg:pb-28">
@@ -68,9 +68,9 @@ export default function CareerPage() {
           <LandingFAQ
             faqs={[
               { q: "Which industries does Visionary cover?", a: "Technology, finance, healthcare, education, and law are currently supported, with more domains being added every quarter." },
-              { q: "Are the portfolio projects real or fake?", a: "Real. Visionary's Build App guides you through building functioning products — not toy exercises. Employers see working code and live projects." },
-              { q: "Do I need prior experience?", a: "No. Visionary adapts to where you are — whether you're a fresh graduate or changing careers. The AI builds your plan from your current baseline." },
-              { q: "How does the recruiter connection work?", a: "Partner companies have access to Visionary's talent pool. When your profile matches their requirements, you get a direct introduction — no middlemen." },
+              { q: "Are the portfolio projects real or fake?", a: "Real. Visionary's Build App guides you through building functioning products, not toy exercises. Employers see working code and live projects." },
+              { q: "Do I need prior experience?", a: "No. Visionary adapts to where you are, whether you're a fresh graduate or changing careers. The AI builds your plan from your current baseline." },
+              { q: "How does the recruiter connection work?", a: "Partner companies have access to Visionary's talent pool. When your profile matches their requirements, you get a direct introduction with no middlemen." },
             ]}
             defaultOpen={0}
           />

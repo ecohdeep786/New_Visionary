@@ -4,7 +4,7 @@ import * as workspace from '../src/services/workspaceService.ts';
 import { workspaceIdentity } from '../src/services/workspaceService.ts';
 const stageProfileOf = request => workspaceIdentity(request).person.learningContext || {};
 import * as pipeline from '../src/services/learningPipelineService.ts';
-import { proposeStageTransition, proposeClassPromotion, confirmStageTransition, postponeStageTransition, undoStageTransition, getActiveTransitionNotice, getParentStageInsight, configureStageTransitionClock } from '../src/services/stageTransitionService.ts';
+import { proposeStageTransition, proposeClassPromotion, confirmStageTransition, postponeStageTransition, undoStageTransition, getActiveTransitionNotice, getParentStageInsight, configureStageTransitionClock, getStageContinuity } from '../src/services/stageTransitionService.ts';
 import { getOrganizationAggregate } from '../src/services/mentorStateService.ts';
 import { seedConnectedFixtures } from '../src/api/demoFixtures.js';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
@@ -120,8 +120,10 @@ test('a consented parent sees a minimal class update, then Undo, and loses acces
  const transition = proposeStageTransition(child, { classLevel: '8' }, 'private teacher reason');
  assert.deepEqual(getParentStageInsight(parent, child.personId), { state: 'applied', from: '7', to: '8', at: at().toISOString() });
  assert.ok(!JSON.stringify(getParentStageInsight(parent, child.personId)).includes('private teacher reason'));
- proposeStageTransition(child, { subjects: ['Mathematics'] }, 'subject plan');
+ const subjectChange=proposeStageTransition(child, { subjects: ['Mathematics'] }, 'subject plan');
  assert.equal(getParentStageInsight(parent, child.personId)?.state, 'applied', 'a later subject update keeps the recent class update visible');
+ assert.throws(()=>undoStageTransition(child,transition.id),/stage changed after/);
+ undoStageTransition(child,subjectChange.id);
  undoStageTransition(child, transition.id);
  assert.deepEqual(getParentStageInsight(parent, child.personId), { state: 'undone', from: '7', to: '8', at: at().toISOString() });
  workspace.changeRelationship(parent, 'demo-parent:demo-minor-cbse', 'revoked');
@@ -304,3 +306,7 @@ test('teacher cannot automatically apply a nonadjacent class change', () => {
  assert.match(result.skipped[0].reason, /learner confirmation/);
  assert.equal(stageProfileOf(learner).classLevel, '6');
 });
+
+test('stage continuity keeps exact saved positions, source outline and review dates without new-stage mastery',async()=>{const request=ctx();await pipeline.selectLearningSyllabus(request,SAMPLE_SELECTION);proposeStageTransition(request,{board:'Sample',classLevel:'6',subjects:['Mathematics','Art']},'Starting profile');const unit=await pipeline.startLearningUnit(request,'sample:cube:concept');await pipeline.updateLearningLanguage(request,unit.id,'en');await pipeline.requestUnitTeaching(request,unit.id,'explanation');await pipeline.beginComprehension(request,unit.id);await pipeline.answerLearningQuestion(request,unit.id,pipeline.getLearningUnit(request,unit.id).question.answerIndex);const prior=memory.get('visionary_learning_pipeline_v1');const transition=proposeStageTransition(request,{classLevel:'7',subjects:['Mathematics','Science']},'Next class');const detail=getStageContinuity(request,transition.id);assert.deepEqual(detail.subjects,{kept:['Mathematics'],added:['Science'],removed:['Art']});assert.equal(detail.mappingStatus,'awaiting-reviewed-mapping');assert.equal(detail.sourceSelection.classLevel,'6');assert.equal(detail.activities[0].path,'/dashboard/learn?unit='+encodeURIComponent(unit.id));assert.equal(detail.activities[0].stage,pipeline.getLearningUnit(request,unit.id).stage);assert.ok(detail.activities[0].dueAt);assert.equal(memory.get('visionary_learning_pipeline_v1'),prior);assert.throws(()=>getStageContinuity(ctx('bengali'),transition.id),/unavailable/);undoStageTransition(request,transition.id);assert.equal(getStageContinuity(request,transition.id).activities[0].id,unit.id);});
+test('stale confirmation and expired postponement cannot rewrite a newer profile',()=>{const request=ctx();proposeStageTransition(request,{board:'Sample',classLevel:'6'},'Start');const pending=proposeStageTransition(request,{board:'CBSE'},'Boundary');workspace.updateStageProfile(request,{classLevel:'9'});const before=memory.get('visionary_workspace_v2');assert.throws(()=>confirmStageTransition(request,pending.id),/stage changed after/);assert.equal(memory.get('visionary_workspace_v2'),before);const next=proposeStageTransition(request,{classLevel:'10'},'Adjacent');clockAt('2026-10-12T12:00:00Z');assert.throws(()=>postponeStageTransition(request,next.id),/14-day/);});
+test('unreadable retained learning blocks a personal transition without swapping the profile',()=>{const request=ctx(),before=memory.get('visionary_workspace_v2');memory.set('visionary_learning_pipeline_v1','{broken');assert.throws(()=>proposeStageTransition(request,{classLevel:'7'},'Change'),/evidence could not be checked/);assert.equal(memory.get('visionary_workspace_v2'),before);assert.equal(memory.get('visionary_learning_pipeline_v1'),'{broken');});

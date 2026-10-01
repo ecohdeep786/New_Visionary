@@ -53,6 +53,8 @@ test('reviewed lesson → assignment → learner submission → returned feedbac
   await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[]}),/Answer every/);
   const submission=await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]});
   assert.equal((await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]})).id,submission.id);
+  await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'A different tab edited this answer.'}]}),/different response is already submitted/);
+  assert.equal((await appClient.entities.Submission.get(submission.id)).text,submission.text);
   assert.deepEqual(submission.responses,[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]);
   await assert.rejects(appClient.entities.Submission.update(submission.id,{grade:10,status:'graded'}));
   await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');

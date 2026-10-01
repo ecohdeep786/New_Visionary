@@ -45,7 +45,7 @@ export default function NewPersona({
   return (
     <section
       data-section="01-hero"
-      className="relative overflow-hidden"
+      className="relative isolate overflow-hidden"
       style={{
         backgroundColor: heroBg,
         height: "calc(100svh - 64px)",

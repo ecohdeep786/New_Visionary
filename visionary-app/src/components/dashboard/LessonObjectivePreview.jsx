@@ -1,0 +1,11 @@
+import {useState} from 'react';
+import LearningRepresentation from './LearningRepresentation';
+import {assertLessonObjective} from '@/services/lessonObjective';
+
+const languages={en:'English',hi:'Hindi',bn:'Bengali'};
+export default function LessonObjectivePreview({objective,value,onChange,preferText=false}){
+ const [previewView,setPreviewView]=useState({});
+ if(!objective)return null;
+ try{assertLessonObjective(objective);}catch(failure){return <p role="alert" className="v-notice v-error">{failure.message}</p>;}
+ return <section className="mt-5 min-w-0" aria-label="Attached learning objective"><h2 lang={objective.locale} className="text-lg font-medium">Learning objective: {objective.title}</h2><p className="v-muted mt-2 break-words">{objective.status==='sample'?'Authored sample':'Sourced curriculum'} · {objective.selection.subject} · {languages[objective.locale]} · {objective.provenance.provider} · Version {objective.provenance.version}</p><details className="mt-3 text-sm"><summary className="cursor-pointer">Assigned objective source</summary><p className="mt-2 break-all">{objective.conceptId} · {objective.provenance.sourceId}</p><p className="v-muted mt-2">{objective.selection.board} · Level {objective.selection.classLevel}. This assigned copy retains its source version. Teacher review does not establish independent curriculum approval.</p></details><p lang={objective.locale} className="mt-4 whitespace-pre-wrap leading-8">{objective.explanation}</p><LearningRepresentation descriptors={objective.representations} value={value||previewView} preferText={preferText} onChange={onChange||((patch)=>setPreviewView(current=>({...current,...patch})))}/>{!objective.representations.length&&<p className="v-muted mt-3">No authored visual is available for this objective. The explanation remains usable.</p>}{!!objective.criteria?.length&&<section className="mt-5"><h3 className="font-medium">Assigned review criteria</h3><ul className="mt-3 space-y-3 text-sm">{objective.criteria.map(item=><li key={item.id}>{item.label}: {item.prompt}</li>)}</ul></section>}</section>;
+}

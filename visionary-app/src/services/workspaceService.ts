@@ -2,6 +2,9 @@ import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, Ma
 import { getJourney, matchJourney } from './journeys.ts';
 import { eligibleJourneys } from './journeyEligibility.ts';
 import {legacyRelationships,saveLegacyRelationship,legacyProgressSummary} from './legacyConnections.ts';
+import {organizationPolicy,organizationProfiles} from './organizationPolicy.js';
+import {assignmentAcceptsResponses} from '../lib/assignmentAvailability.js';
+import {assertLessonObjective} from './lessonObjective.ts';
 
 const KEY = 'visionary_workspace_v2';
 export function reportDays(days:number):7|30{if(days!==7&&days!==30)throw new Error('Choose a supported report period.');return days;}
@@ -20,7 +23,7 @@ const id = () => crypto.randomUUID();
 function emptyData(): WorkspaceData { return {conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',notificationLocale:'en',bilingual:false,lowBandwidth:false,notifications:'weekly',memory:true,voice:true,agiAnimation:'girl'},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:now().slice(0,10)},legacyImported:false}; }
 function read(): Database { const raw=localStorage.getItem(KEY); if(!raw) return {version:2,people:[],workspaces:[],active:{},data:{},relationships:[]}; try { const result=JSON.parse(raw); if(result.version!==2) throw new Error(); return result; } catch { throw new Error('Workspace data could not be read. Your previous records have not been deleted.'); } }
 function write(db: Database) { try { localStorage.setItem(KEY,JSON.stringify(db)); } catch { throw new Error('Your changes could not be saved on this device. Free browser storage and try again.'); } if(typeof window!=='undefined') window.dispatchEvent(new CustomEvent('visionary:v2-change')); }
-function record(data: WorkspaceData, action: string, target: string) { data.audit.unshift({id:id(),action,target,at:now()}); }
+function record(data: WorkspaceData, action: string, target: string, actor?:string) { data.audit.unshift({id:id(),action,target,at:now(),...(actor?{actor}:{})}); }
 function allRelationships(db:Database){return [...db.relationships,...legacyRelationships(db)];}
 function access(db: Database, ctx: RequestContext) { const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId && w.personId===ctx.personId && w.role===ctx.role); if(!workspace) throw new Error('You do not have access to this workspace.');if(workspace.organizationId){const person=db.people.find(p=>p.id===ctx.personId);if(!readOrganizationInviteRows().some(m=>m.email===person?.email&&m.organization_email===workspace.organizationId&&m.role===workspace.role&&inviteStatus(m)==='active'))throw new Error('This organization connection is no longer active. Your personal workspace remains available.');} return db.data[workspace.id]!; }
 async function wait(ctx?: RequestContext) { if(ctx?.signal?.aborted) throw new DOMException('Cancelled','AbortError'); await new Promise<void>((resolve,reject)=>{ const abort=()=>{clearTimeout(timer);reject(new DOMException('Cancelled','AbortError'));}; const timer=setTimeout(()=>{ctx?.signal?.removeEventListener('abort',abort);resolve();},latency);ctx?.signal?.addEventListener('abort',abort,{once:true}); }); if(fault==='offline') throw new Error('Offline demo: saved work is still available. Change the demo condition to retry.'); if(fault==='error') throw new Error('The demo service could not complete this request. Your saved work is unchanged.'); }
@@ -85,6 +88,7 @@ export function updateStageProfilesBatch(changes: Array<{ ctx: RequestContext; p
 
 export function saveLastPath(ctx:RequestContext,path:string){if(!path.startsWith('/dashboard/'))return;const db=read();access(db,ctx);const workspace=db.workspaces.find(w=>w.id===ctx.workspaceId)!;if(workspace.lastPath===path)return;workspace.lastPath=path;write(db);}
 export function snapshot(ctx:RequestContext):WorkspaceData {const db=read();const data=structuredClone(access(db,ctx));data.subscription=effectiveSubscription(db,ctx);// Workspaces saved before the voice seam default to the founder setting: voice on.
+if(ctx.role==='organization'){const policy=organizationAccess(ctx);data.resources=policy.permissions.includes('academic')?structuredClone(resourceData(db,ctx).resources):[];}
 data.preferences.voice??=true;data.preferences.agiAnimation = data.preferences.agiAnimation==='boy'?'boy':'girl';return data;}
 export function workspaceIdentity(ctx:RequestContext){const db=read();access(db,ctx);return {person:structuredClone(db.people.find(p=>p.id===ctx.personId)!),workspace:structuredClone(db.workspaces.find(w=>w.id===ctx.workspaceId)!)};}
 function effectiveSubscription(db:Database,ctx:RequestContext){
@@ -161,7 +165,8 @@ export function beginReview(ctx:RequestContext,sessionId:string){
  s.reviewRound=(s.reviewRound||0)+1;s.reviewStartedAt=now();s.stage='practicing';s.position=0;s.updatedAt=now();write(db);
 }
 export function mastery(evidence:Evidence[],started=false,at=new Date()):MasteryStage {if(!evidence.length)return started?'Exploring':'Not started';const ordered=[...evidence].sort((a,b)=>b.at.localeCompare(a.at));const recent=ordered[0]!;if(at.getTime()-new Date(recent.at).getTime()>7*86400000)return 'Needs review';const passed=evidence.filter(e=>e.total>0&&e.correct/e.total>=0.7);if(recent.correct/recent.total<0.7)return 'Needs review';const kinds=new Set(passed.map(e=>e.kind));if(kinds.has('application')&&passed.some(e=>e.delayed&&e.kind==='retrieval')&&kinds.size>=3)return 'Mastered';if(kinds.has('check')&&kinds.has('practice'))return 'Secure';return 'Practicing';}
-export function saveArtifact(ctx:RequestContext,patch:Partial<Artifact>&{title:string;body:string}){const db=read();const data=access(db,ctx);let a=data.artifacts.find(a=>a.id===patch.id);if(!patch.title.trim())throw new Error('Give your project a title.');if(!a){a={id:id(),title:patch.title,body:'',journeyId:patch.journeyId,conceptId:patch.conceptId,learningSessionId:patch.learningSessionId,projectBrief:patch.projectBrief,rubric:patch.rubric,milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'draft',updatedAt:now()};data.artifacts.unshift(a);}if(a.body!==patch.body&&a.body)a.versions.unshift({body:a.body,at:a.updatedAt});a.title=patch.title;a.body=patch.body;a.projectBrief=patch.projectBrief||a.projectBrief;a.rubric=patch.rubric||a.rubric;a.milestones=patch.milestones||a.milestones;a.status=patch.status||a.status;a.updatedAt=now();record(data,'Artifact saved',a.id);write(db);return a;}
+export function artifactRevision(artifact:Artifact){return JSON.stringify([artifact.updatedAt,artifact.title,artifact.body,artifact.milestones,artifact.status,artifact.projectBrief,artifact.rubric]);}
+export function saveArtifact(ctx:RequestContext,patch:Partial<Artifact>&{title:string;body:string},expectedRevision?:string){const db=read();const data=access(db,ctx);let a=data.artifacts.find(a=>a.id===patch.id);if(expectedRevision!==undefined&&(!a||artifactRevision(a)!==expectedRevision)){const conflict=new Error('This project changed since you opened it. Your edits remain in the editor. Load the latest saved version or save a separate copy.');conflict.name='ArtifactConflictError';throw conflict;}if(!patch.title.trim())throw new Error('Give your project a title.');if(!a){a={id:id(),title:patch.title,body:'',journeyId:patch.journeyId,conceptId:patch.conceptId,learningSessionId:patch.learningSessionId,projectBrief:patch.projectBrief,rubric:patch.rubric,milestones:[false,false,false],visibility:'private',sharedWith:[],versions:[],status:'draft',updatedAt:now()};data.artifacts.unshift(a);}if(a.body!==patch.body&&a.body)a.versions.unshift({body:a.body,at:a.updatedAt});a.title=patch.title;a.body=patch.body;a.projectBrief=patch.projectBrief||a.projectBrief;a.rubric=patch.rubric||a.rubric;a.milestones=patch.milestones||a.milestones;a.status=patch.status||a.status;a.updatedAt=now();record(data,'Artifact saved',a.id);write(db);return a;}
 export const portfolioReviewCriteria=[
  {id:'purpose',label:'Purpose and audience',prompt:'Who is this for, and what decision or task does it support?'},
  {id:'evidence',label:'Evidence and method',prompt:'What in the artifact supports your conclusion, and how did you check it?'},
@@ -255,9 +260,14 @@ export function familyGoalSummaries(ctx:RequestContext,childId:string){
  const learnerWorkspace=db.workspaces.find(w=>w.personId===childId&&w.role==='student'&&!w.organizationId);
  return (learnerWorkspace?db.data[learnerWorkspace.id]?.resources||[]:[]).filter(goal=>goal.kind==='goal'&&goal.status!=='archived').flatMap(goal=>(goal.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:goal.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
 }
-export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']}){
- const db=read();const data=access(db,ctx);
+export function resourceRevision(resource:Resource){return JSON.stringify([resource.updatedAt,resource.title,resource.body,resource.status,resource.audience,resource.checks,resource.members,resource.classIds,resource.objectiveSnapshot]);}
+export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']},expectedRevision?:string){
+ const db=read();const data=resourceData(db,ctx);
+ const current=data.resources.find(row=>row.id===patch.id);if(expectedRevision!==undefined&&(!current||resourceRevision(current)!==expectedRevision)){const error=new Error('This resource changed since you opened it. Your edits remain in the editor. Review the latest version or export your edits before continuing.');error.name='ResourceConflictError';throw error;}
+ if(patch.contentReview||data.resources.find(row=>row.id===patch.id)?.contentReview)throw new Error('Use the content review workflow to change this versioned resource.');
+ if(Object.hasOwn(patch,'sourceSnapshot')&&JSON.stringify(patch.sourceSnapshot)!==JSON.stringify(data.resources.find(row=>row.id===patch.id)?.sourceSnapshot))throw new Error('The delivered source snapshot cannot be replaced in this editor.');
  if(!patch.title.trim())throw new Error('A title is required.');
+ if(patch.objectiveSnapshot!==undefined&&patch.objectiveSnapshot!==null){if(patch.kind!=='lesson'||ctx.role!=='teacher')throw new Error('Attach objectives in your teacher lesson workspace.');assertLessonObjective(patch.objectiveSnapshot);}
  if(patch.kind==='lesson'&&patch.status==='reviewed'&&!patch.body.trim())throw new Error('Add the lesson outline before marking it reviewed.');
  if(patch.checks!==undefined&&(
   patch.kind!=='lesson'||!Array.isArray(patch.checks)||patch.checks.length>10||
@@ -266,10 +276,59 @@ export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:s
  ))throw new Error('Add up to ten distinct, complete questions before saving the lesson.');
  let resource=data.resources.find(r=>r.id===patch.id);
  if(!resource){resource={id:id(),title:patch.title,body:patch.body,kind:patch.kind,status:'draft',audience:'Personal',updatedAt:now()};data.resources.unshift(resource);}
- Object.assign(resource,patch,{id:resource.id,updatedAt:now(),...(patch.checks?{checks:patch.checks.map(check=>({id:check.id,prompt:check.prompt.trim()}))}:{})});
+ Object.assign(resource,patch,{id:resource.id,updatedAt:now(),...(ctx.role==='organization'?{audience:'Organization'}:{}),...(patch.checks?{checks:patch.checks.map(check=>({id:check.id,prompt:check.prompt.trim()}))}:{})});
  record(data,`${resource.kind} saved`,resource.id);write(db);return resource;
 }
-export function archiveResource(ctx:RequestContext,resourceId:string){const db=read();const data=access(db,ctx);const resource=data.resources.find(r=>r.id===resourceId);if(!resource)throw new Error('Item not found.');resource.status=resource.status==='archived'?'draft':'archived';record(data,resource.status,resourceId);write(db);}
+function resourceData(db:Database,ctx:RequestContext){const own=access(db,ctx);if(ctx.role!=='organization')return own;const policy=requireOrganizationPermission(ctx,'academic');const owner=db.people.find(person=>person.email===policy.organizationEmail);const space=db.workspaces.find(workspace=>workspace.personId===owner?.id&&workspace.role==='organization'&&!workspace.organizationId);if(!space||!db.data[space.id])throw new Error('The organization resource workspace is unavailable.');return db.data[space.id]!;}
+export function archiveResource(ctx:RequestContext,resourceId:string){const db=read();const data=resourceData(db,ctx);const resource=data.resources.find(r=>r.id===resourceId);if(!resource)throw new Error('Item not found.');if(resource.contentReview)throw new Error('Use the content review workflow to archive or restore this resource.');resource.status=resource.status==='archived'?'draft':'archived';record(data,resource.status,resourceId);write(db);}
+
+/** Versioned organization review is local editorial approval, not published curriculum. */
+export function saveOrganizationContent(ctx:RequestContext,input:{id?:string;title:string;body:string;source:string;language:Locale},expectedRevision?:number){
+ const db=read();const data=resourceData(db,ctx);requireOrganizationPermission(ctx,'academic');
+ if(typeof input.title!=='string'||!input.title.trim()||input.title.length>200||typeof input.body!=='string'||input.body.length>50000||typeof input.source!=='string'||input.source.length>2000||!['en','hi','bn'].includes(input.language))throw new Error('Add a title within 200 characters, content within 50,000 characters, a source within 2,000 characters, and a supported language.');
+ let item=data.resources.find(row=>row.id===input.id);
+ if(input.id&&(!item?.contentReview||item.contentReview.revision!==expectedRevision))throw new Error('This content version changed. Reopen the latest saved version; your edits remain here.');
+ if(item&&!['draft','changes'].includes(item.status))throw new Error('Create a new draft revision before editing submitted, approved or archived content.');
+ if(!item){item={id:id(),kind:'lesson',title:input.title.trim(),body:input.body,status:'draft',audience:'Organization',updatedAt:now(),contentReview:{revision:1,source:input.source.trim(),language:input.language,author:ctx.personId,history:[],versions:[]}};data.resources.unshift(item);}
+ else{const review=item.contentReview!;review.versions.unshift({revision:review.revision,title:item.title,body:item.body,source:review.source,language:review.language});review.revision++;review.source=input.source.trim();review.language=input.language;review.author=ctx.personId;item.title=input.title.trim();item.body=input.body;item.status='draft';}
+ item.updatedAt=now();item.contentReview!.history.push({action:'draft-saved',actor:ctx.personId,at:item.updatedAt,revision:item.contentReview!.revision,note:''});record(data,'Content draft saved',item.id,ctx.personId);write(db);return item;
+}
+export function changeOrganizationContent(ctx:RequestContext,resourceId:string,expectedRevision:number,action:'submit'|'request-changes'|'approve'|'archive'|'restore'|'revise',note='',checks?:{source:boolean;accuracy:boolean;language:boolean}){
+ const db=read();const data=resourceData(db,ctx);requireOrganizationPermission(ctx,'academic');const item=data.resources.find(row=>row.id===resourceId);const review=item?.contentReview;
+ if(!item||!review||review.revision!==expectedRevision)throw new Error('This content version is unavailable or changed. Reopen the latest saved version.');
+ if(typeof note!=='string'||note.length>2000)throw new Error('Keep review notes within 2,000 characters.');
+ const transitions={submit:{from:['draft','changes'],to:'submitted'},'request-changes':{from:['submitted'],to:'changes'},approve:{from:['submitted'],to:'approved'},archive:{from:['draft','changes','approved'],to:'archived'},restore:{from:['archived'],to:'draft'},revise:{from:['approved'],to:'draft'}};
+ const transition=transitions[action];if(!transition||!transition.from.includes(item.status))throw new Error('This review action is unavailable in the current content state.');
+ if(action==='submit'&&(!item.body.trim()||!review.source.trim()))throw new Error('Add content and an exact source/version before submitting for review.');
+ if(['approve','request-changes'].includes(action)&&review.author===ctx.personId)throw new Error('A different academic administrator must review this authored revision.');
+ if(action==='request-changes'&&!note.trim())throw new Error('Explain the required changes for the author.');
+ if(action==='approve'&&(!checks?.source||!checks.accuracy||!checks.language||!note.trim()))throw new Error('Review source, accuracy and language and record your review note before approval.');
+ item.status=transition.to;item.updatedAt=now();review.history.push({action,actor:ctx.personId,at:item.updatedAt,revision:review.revision,note:note.trim(),...(action==='approve'?{checks:{source:true,accuracy:true,language:true}}:{})});record(data,`Content ${action}`,item.id,ctx.personId);write(db);return item;
+}
+export function deliverOrganizationContent(ctx:RequestContext,resourceId:string,expectedRevision:number,teacherEmail:string){
+ const db=read();const data=resourceData(db,ctx);const policy=requireOrganizationPermission(ctx,'academic');const item=data.resources.find(row=>row.id===resourceId);const review=item?.contentReview;
+ if(!item||!review||item.status!=='approved'||review.revision!==expectedRevision)throw new Error('Choose the latest approved content revision before sharing.');
+ const membership=readOrganizationInviteRows().find(row=>row.organization_email===policy.organizationEmail&&row.email===teacherEmail&&row.role==='teacher'&&inviteStatus(row)==='active');
+ if(!membership)throw new Error('Choose an active accepted teacher in this organization.');
+ const deliveries=review.deliveries??=[];const existing=deliveries.find(row=>row.membershipId===membership.id&&row.revision===review.revision);if(existing)return existing;
+ const delivery={id:id(),resourceId:item.id,membershipId:membership.id,teacherEmail,title:item.title,body:item.body,source:review.source,language:review.language,revision:review.revision,sharedAt:now(),sharedBy:ctx.personId};deliveries.push(delivery);record(data,'Approved content delivered',item.id,ctx.personId);write(db);return delivery;
+}
+/** Accepted teachers receive explicit fixed deliveries only, never the organization's full library. */
+export function teacherOrganizationContent(ctx:RequestContext){
+ const db=read();access(db,ctx);if(ctx.role!=='teacher')throw new Error('Open the teacher workspace to review delivered content.');
+ const space=db.workspaces.find(row=>row.id===ctx.workspaceId)!;if(!space.organizationId)return [];
+ const teacher=db.people.find(row=>row.id===ctx.personId)!;const membership=readOrganizationInviteRows().find(row=>row.organization_email===space.organizationId&&row.email===teacher.email&&row.role==='teacher'&&inviteStatus(row)==='active');
+ if(!membership)throw new Error('This organization teaching membership is no longer active.');
+ const owner=db.people.find(row=>row.email===space.organizationId);const ownerSpace=db.workspaces.find(row=>row.personId===owner?.id&&row.role==='organization'&&!row.organizationId);
+ const resources=ownerSpace?db.data[ownerSpace.id]?.resources||[]:[];
+ return resources.flatMap(item=>(item.contentReview?.deliveries||[]).filter(row=>row.teacherEmail===teacher.email&&row.membershipId===membership.id).map(row=>({...row,organizationEmail:space.organizationId!,importedResourceId:db.data[ctx.workspaceId]?.resources.find(resource=>resource.sourceSnapshot?.deliveryId===row.id)?.id}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
+}
+export function importOrganizationContent(ctx:RequestContext,deliveryId:string){
+ const delivery=teacherOrganizationContent(ctx).find(row=>row.id===deliveryId);if(!delivery)throw new Error('This delivered content is unavailable in your active teacher workspace.');
+ const db=read();const data=access(db,ctx);const existing=data.resources.find(row=>row.sourceSnapshot?.deliveryId===delivery.id);if(existing)return existing;
+ const resource:Resource={id:id(),title:delivery.title,body:delivery.body,kind:'lesson',status:'draft',audience:'Personal',updatedAt:now(),sourceSnapshot:{deliveryId:delivery.id,resourceId:delivery.resourceId,organizationEmail:delivery.organizationEmail,revision:delivery.revision,source:delivery.source,language:delivery.language,sharedAt:delivery.sharedAt}};
+ data.resources.unshift(resource);record(data,'Delivered content copied to teacher draft',resource.id,ctx.personId);write(db);return resource;
+}
 export function markNotification(ctx:RequestContext,notificationId:string){const db=read();const data=access(db,ctx);const n=data.notifications.find(n=>n.id===notificationId);if(n)n.read=true;write(db);}
 export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'active'|'pending'|'failed'|'cancelled'){
  const db=read();const data=access(db,ctx);const selected=plans.find(p=>p.id===plan);if(!selected)throw new Error('Unknown plan.');
@@ -281,10 +340,10 @@ export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'a
  record(data,`Demo subscription ${outcome}`,plan);write(db);
 }
 export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,status:['pending','active'].includes(r.status)&&r.expiresAt&&new Date(r.expiresAt)<=clock()?'expired':r.status,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
-type OrganizationInviteEvent = {action:'requested'|'accepted'|'declined'|'cancelled'|'revoked';actor:string;actorEmail:string;at:string;status:string};
-type OrganizationInviteRow = {id:string;organization_email:string;organization_name?:string;email:string;role:Role;status:string;expiresAt?:string;accepted_at?:string;createdAt?:string;history?:OrganizationInviteEvent[];historyComplete?:boolean};
+type OrganizationInviteEvent = {action:'requested'|'accepted'|'declined'|'cancelled'|'revoked'|'permission-changed';actor:string;actorEmail:string;at:string;status:string;capability?:string;previousCapability?:string;readBy?:string[]};
+type OrganizationInviteRow = {id:string;organization_email:string;organization_name?:string;email:string;role:Role;status:string;capability?:string;expiresAt?:string;accepted_at?:string;createdAt?:string;history?:OrganizationInviteEvent[];historyComplete?:boolean};
 const ORGANIZATION_INVITES_KEY='visionary_entity_OrganizationInvite';
-const organizationInviteRoles:Role[]=['student','teacher','professional','parent'];
+const organizationInviteRoles:Role[]=['student','teacher','professional','parent','organization'];
 function readOrganizationInviteRows():OrganizationInviteRow[]{
  try{const rows=JSON.parse(localStorage.getItem(ORGANIZATION_INVITES_KEY)||'[]');if(!Array.isArray(rows))throw Error();return rows;}
  catch{throw new Error('Organization invitations could not be read on this device. Your saved records have not been changed.');}
@@ -296,26 +355,82 @@ function saveOrganizationInviteRows(rows:OrganizationInviteRow[]){
  if(typeof window!=='undefined'){window.dispatchEvent(new CustomEvent('visionary:workspace-change'));window.dispatchEvent(new CustomEvent('visionary:v2-change'));}
 }
 function organizationActor(ctx:RequestContext){const db=read();access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId);if(!person)throw new Error('Account unavailable.');return {person,workspace:db.workspaces.find(w=>w.id===ctx.workspaceId)!};}
+export function organizationAccess(ctx:RequestContext){const {person,workspace}=organizationActor(ctx);return organizationPolicy({email:person.email,identity:workspace.role,organization_id:workspace.organizationId},workspace.organizationId&&workspace.role==='organization'?readOrganizationInviteRows():[],clock().getTime());}
+export function requireOrganizationPermission(ctx:RequestContext,permission:string){const policy=organizationAccess(ctx);if(!policy.permissions.includes(permission))throw new Error('Your organization permission does not allow this action.');return policy;}
+export function changeOrganizationCapability(ctx:RequestContext,inviteId:string,capability:string){
+ requireOrganizationPermission(ctx,'permissions');const {person}=organizationActor(ctx);const rows=readOrganizationInviteRows();const invite=rows.find(row=>row.id===inviteId&&row.organization_email===person.email&&row.role==='organization');
+ if(!invite||!['active','pending'].includes(inviteStatus(invite)))throw new Error('This administrative membership is unavailable.');
+ if(capability==='owner'||!Object.hasOwn(organizationProfiles,capability))throw new Error('Choose an available administrative permission.');
+ if(invite.capability===capability)return;
+ const previousCapability=invite.capability;invite.capability=capability;invite.history=[...(invite.history||[]),{action:'permission-changed',actor:ctx.personId,actorEmail:person.email,at:now(),status:invite.status,capability,previousCapability}];saveOrganizationInviteRows(rows);
+}
 /** Local invitation source of truth. The recipient sees only their own requests. */
 export function organizationInvites(ctx:RequestContext){
  const {person,workspace}=organizationActor(ctx);
- return readOrganizationInviteRows().filter(row=>workspace.role==='organization'&&!workspace.organizationId?row.organization_email===person.email:row.email===person.email).map(row=>({...row,status:inviteStatus(row),history:Array.isArray(row.history)?row.history:[]}));
+ const policy=organizationAccess(ctx);
+ return readOrganizationInviteRows().filter(row=>row.email===person.email||workspace.role==='organization'&&policy.permissions.includes('members')&&row.organization_email===policy.organizationEmail).map(row=>({...row,status:inviteStatus(row),history:Array.isArray(row.history)?row.history:[]}));
 }
-export function requestOrganizationInvite(ctx:RequestContext,targetEmail:string,role:Role,organizationName?:string){
+/** Combines authorized local sources without inventing missing historical actors. */
+export function organizationAudit(ctx:RequestContext,days:7|30=30){
+ reportDays(days);if(ctx.role!=='organization')throw new Error('Open an organization workspace to review its audit.');const policy=requireOrganizationPermission(ctx,'audit');
+ const data=snapshot(ctx);const cutoff=clock().getTime()-days*86400000;
+ const sharedAudit=resourceData(read(),ctx).audit;
+ const workspaceAudit=[...sharedAudit,...data.audit].filter((row,index,rows)=>rows.findIndex(other=>other.id===row.id)===index);
+ const entries:{id:string;source:'workspace'|'membership'|'classwork';action:string;target:string;actor:string|null;at:string;outcome:string}[]=workspaceAudit.map(row=>({id:`workspace:${row.id}`,source:'workspace',action:row.action,target:row.target,actor:row.actor||null,at:row.at,outcome:'Saved locally'}));
+ const unavailableSources:string[]=[];let importedWithoutHistory=0;
+ try{for(const invite of organizationInvites(ctx).filter(row=>row.organization_email===policy.organizationEmail)){
+  if(!invite.historyComplete)importedWithoutHistory++;
+  invite.history.forEach((event,index)=>entries.push({id:`membership:${invite.id}:${index}`,source:'membership',action:event.action,target:`${invite.email} · ${invite.role}`,actor:event.actorEmail||null,at:event.at,outcome:event.capability?`${event.status} · ${event.previousCapability||'unassigned'} → ${event.capability}`:event.status}));
+ }}catch{unavailableSources.push('Membership history');}
+ let classworkWithoutHistory=0;
+ try{
+  const rows=(name:string):Record<string,unknown>[]=>{const parsed=JSON.parse(localStorage.getItem(`visionary_entity_${name}`)||'[]');if(!Array.isArray(parsed)||parsed.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw Error();return parsed;};
+  const classes=rows('Classroom').filter(row=>row.organization_email===policy.organizationEmail);const assignments=rows('Assignment').filter(row=>classes.some(classroom=>classroom.id===row.class_id));
+  for(const assignment of assignments){
+   if(!Array.isArray(assignment.state_history)){classworkWithoutHistory++;continue;}
+   for(const [index,event] of assignment.state_history.entries()){
+    if(!event||typeof event!=='object'||typeof event.at!=='string'||typeof event.from!=='string'||typeof event.to!=='string')throw Error();
+    entries.push({id:`classwork:${assignment.id}:${index}`,source:'classwork',action:'Assignment state changed',target:`Class ${assignment.class_id} · Activity ${assignment.id}`,actor:typeof event.actor==='string'?event.actor:null,at:event.at,outcome:`${event.from} → ${event.to}`});
+   }
+  }
+ }catch{unavailableSources.push('Classwork state history');}
+ return {entries:entries.filter(row=>Number.isFinite(new Date(row.at).getTime())&&new Date(row.at).getTime()>=cutoff).sort((a,b)=>b.at.localeCompare(a.at)||a.id.localeCompare(b.id)),unavailableSources,importedWithoutHistory,classworkWithoutHistory,period:`Last ${days} days`};
+}
+export function organizationUpdates(ctx:RequestContext){
+ if(ctx.role!=='organization')throw new Error('Open an organization workspace to review membership updates.');
+ const invites=organizationInvites(ctx);
+ const policy=organizationAccess(ctx);const path=policy.permissions.includes('members')?'people':'connections';
+ return {importedWithoutHistory:invites.filter(invite=>!invite.historyComplete).length,items:invites.flatMap(invite=>invite.history.map((event,index)=>({id:`${invite.id}:${index}`,inviteId:invite.id,eventIndex:index,action:event.action,actor:event.actorEmail||null,target:invite.email,role:invite.role,at:event.at,read:event.readBy?.includes(ctx.workspaceId)||false,currentStatus:invite.status,path:`/dashboard/${path}#organization-invite-${encodeURIComponent(invite.id)}`}))).sort((a,b)=>b.at.localeCompare(a.at)||a.id.localeCompare(b.id))};
+}
+/** Read acknowledgement is stored with its source event, without altering membership. */
+export function markOrganizationUpdate(ctx:RequestContext,inviteId:string,eventIndex:number){
  const {person,workspace}=organizationActor(ctx);
- if(workspace.role!=='organization'||workspace.organizationId)throw new Error('Open your organization admin workspace to invite someone.');
+ if(workspace.role!=='organization')throw new Error('Open your organization workspace to mark this update read.');
+ const policy=organizationAccess(ctx);
+ const rows=readOrganizationInviteRows();const invite=rows.find(row=>row.id===inviteId&&(policy.permissions.includes('members')&&row.organization_email===policy.organizationEmail||row.email===person.email));
+ const event=Number.isInteger(eventIndex)&&eventIndex>=0?invite?.history?.[eventIndex]:undefined;
+ if(!event)throw new Error('This membership update is unavailable.');
+ if(event.readBy?.includes(ctx.workspaceId))return;
+ event.readBy=[...(event.readBy||[]),ctx.workspaceId];saveOrganizationInviteRows(rows);
+}
+export function requestOrganizationInvite(ctx:RequestContext,targetEmail:string,role:Role,organizationName?:string,capability?:string){
+ const {person,workspace}=organizationActor(ctx);
+ if(workspace.role!=='organization')throw new Error('Open your organization admin workspace to invite someone.');
+ const policy=requireOrganizationPermission(ctx,'invite');
+ if(role==='organization'){requireOrganizationPermission(ctx,'permissions');if(!capability||capability==='owner'||!Object.hasOwn(organizationProfiles,capability))throw new Error('Choose an available administrative permission.');}
  if(!organizationInviteRoles.includes(role))throw new Error('Choose an available member role.');
  const email=targetEmail.trim().toLowerCase();
  if(email.length>254||!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(email)||email===person.email.toLowerCase())throw new Error('Enter another person’s valid account email.');
  const rows=readOrganizationInviteRows();
- if(rows.some(row=>row.organization_email===person.email&&row.email.toLowerCase()===email&&['draft','pending','active'].includes(inviteStatus(row))))throw new Error('This person already has an open organization request. Close it before inviting again.');
- const at=now();const row:OrganizationInviteRow={id:id(),organization_email:person.email,organization_name:organizationName?.trim().slice(0,120)||person.name,email,role,status:'pending',createdAt:at,expiresAt:new Date(clock().getTime()+7*86400000).toISOString(),historyComplete:true,history:[{action:'requested',actor:ctx.personId,actorEmail:person.email,at,status:'pending'}]};
+ if(rows.some(row=>row.organization_email===policy.organizationEmail&&row.email.toLowerCase()===email&&['draft','pending','active'].includes(inviteStatus(row))))throw new Error('This person already has an open organization request. Close it before inviting again.');
+ const at=now();const row:OrganizationInviteRow={id:id(),organization_email:policy.organizationEmail!,organization_name:organizationName?.trim().slice(0,120)||person.name,email,role,...(role==='organization'?{capability}:{}),status:'pending',createdAt:at,expiresAt:new Date(clock().getTime()+7*86400000).toISOString(),historyComplete:true,history:[{action:'requested',actor:ctx.personId,actorEmail:person.email,at,status:'pending',...(role==='organization'?{capability}:{})}]};
  rows.push(row);saveOrganizationInviteRows(rows);return row;
 }
 export function changeOrganizationInvite(ctx:RequestContext,inviteId:string,status:'active'|'declined'|'cancelled'|'revoked'){
  const {person,workspace}=organizationActor(ctx);const rows=readOrganizationInviteRows();const row=rows.find(item=>item.id===inviteId);
  if(!row)throw new Error('Organization invitation unavailable.');
- const organizer=workspace.role==='organization'&&!workspace.organizationId&&row.organization_email===person.email;
+ const policy=organizationAccess(ctx);
+ const organizer=workspace.role==='organization'&&policy.permissions.includes('invite')&&row.organization_email===policy.organizationEmail&&(row.role!=='organization'||policy.permissions.includes('permissions'));
  const member=row.email===person.email&&workspace.role===row.role&&(!workspace.organizationId||workspace.organizationId===row.organization_email);
  if(row.email===person.email&&workspace.role!==row.role&&!organizer)throw new Error('Open the invited workspace role to answer this organization request.');
  if(!organizer&&!member)throw new Error('This organization invitation is outside your workspace.');
@@ -406,7 +521,7 @@ export function familyClassworkDigest(ctx:RequestContext,childId:string,days:7|3
  }).sort((a,b)=>b.date.localeCompare(a.date));
  const enrolledIds=new Set(enrollments.filter(row=>row.student_email===person.email&&row.status==='active').map(row=>row.class_id));
  const today=clock().toISOString().slice(0,10);const through=new Date(clock().getTime()+7*86400000).toISOString().slice(0,10);
- const upcoming=assignments.filter(row=>enrolledIds.has(row.class_id)&&!['draft','archived'].includes(String(row.status))&&typeof row.due_date==='string'&&row.due_date>=today&&row.due_date<=through&&
+ const upcoming=assignments.filter(row=>enrolledIds.has(row.class_id)&&assignmentAcceptsResponses(row,clock().getTime())&&typeof row.due_date==='string'&&row.due_date>=today&&row.due_date<=through&&
    !submissions.some(item=>item.assignment_id===row.id&&item.student_email===person.email)).map(row=>({id:String(row.id),title:typeof row.title==='string'?row.title:'Class activity',dueDate:String(row.due_date)})).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
  return {period:`Last ${days} days`,returned,upcoming};
 }

@@ -36,8 +36,8 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
-        shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
       {children}
@@ -57,9 +57,9 @@ function AccessChip({ children }) {
 /* ═══ WHO WE PARTNER WITH — the reference's 2×2 access-levels grid:
    illustration tile + outlined chip + copy, on a soft arc backdrop. ═══ */
 const PARTNER_TYPES = [
-  { subject: "learn", chip: "Schools & systems", copy: "Schools and educators can share the settings, cohorts, and outcomes they want us to understand — from a single classroom to a whole network." },
+  { subject: "learn", chip: "Schools & systems", copy: "Schools and educators can share the settings, cohorts, and outcomes they want us to understand, from a single classroom to a whole network." },
   { subject: "computerScience", chip: "Technology teams", copy: "Technology teams can explore integrations that make learning, identity, or administration easier to connect." },
-  { subject: "languages", chip: "Regional & language experts", copy: "People with regional or language expertise can describe where existing learning experiences might not fit — and help shape what should exist instead." },
+  { subject: "languages", chip: "Regional & language experts", copy: "People with regional or language expertise can describe where existing learning experiences might not fit, and help shape what should exist instead." },
   { subject: "community", chip: "Institutions & organizations", copy: "Colleges, coaching institutes, and workplaces can explore a partnership around a specific learning need, audience, or implementation goal." },
 ];
 
@@ -69,7 +69,7 @@ const BENEFITS = [
     Icon: GraduationCap, tile: "bg-[#e8f0fe] text-[#0b57d0]", title: "Enablement & onboarding",
     items: [
       { t: "Walkthroughs for your team", d: "Sessions that take teachers and administrators through the learning loop: Learn, Ask, Practice, Build." },
-      { t: "Classroom-ready setup guides", d: "Setup, cohort creation, and consent-based access — documented for your context." },
+      { t: "Classroom-ready setup guides", d: "Setup, cohort creation, and consent-based access, documented for your context." },
     ],
   },
   {
@@ -102,10 +102,10 @@ const DEPTH_ROWS = [
 
 /* ═══ HOW A PARTNERSHIP BEGINS — the multi-step journey ═══ */
 const JOURNEY = [
-  { n: "01", title: "Write to us", copy: `Send your organization, the learners you serve, and the idea you want to explore to ${PARTNERS_EMAIL}. Your email app opens a draft — nothing is submitted from this page.` },
+  { n: "01", title: "Write to us", copy: `Send your organization, the learners you serve, and the idea you want to explore to ${PARTNERS_EMAIL}. Your email app opens a draft. Nothing is submitted from this page.` },
   { n: "02", title: "A context call", copy: "A short conversation about needs, constraints, and timing. " + RESPONSE_TIMES.partners },
-  { n: "03", title: "A scoped pilot", copy: "Where the idea fits, we agree a bounded pilot: scope, responsibilities, privacy, costs, and success measures — in writing." },
-  { n: "04", title: "Review, then begin", copy: "We start, review against the measures together, and decide what continues — with findings written up either way." },
+  { n: "03", title: "A scoped pilot", copy: "Where the idea fits, we agree a bounded pilot: scope, responsibilities, privacy, costs, and success measures, in writing." },
+  { n: "04", title: "Review, then begin", copy: "We start, review against the measures together, and decide what continues, with findings written up either way." },
 ];
 
 /* ═══ CAROUSEL — the reference's "What is EMP?" slides:
@@ -242,7 +242,7 @@ export default function PartnersPage() {
               <SpotIllustration
                 subject="collab"
                 className="w-full rounded-[24px]"
-                title="Two partners meeting at a table over a laptop"
+                title="Two partners meeting over a laptop"
               />
               <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[#dadce0] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#202124] shadow-[0_1px_3px_rgba(60,64,67,0.15)]">
                 <Clock className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
@@ -283,13 +283,13 @@ export default function PartnersPage() {
                 Who we partner with
               </h2>
               <p className="mx-auto mt-5 max-w-[720px] text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">
-                Partnerships start from different kinds of knowledge — the contexts our product must understand to serve learners well. Each starts with the same conversation.
+                Partnerships start from different kinds of knowledge, the contexts our product must understand to serve learners well. Each starts with the same conversation.
               </p>
             </div>
             <div className="mt-16 grid gap-x-12 gap-y-14 lg:grid-cols-2">
               {PARTNER_TYPES.map((type) => (
                 <div key={type.chip} className="grid items-center gap-6 sm:grid-cols-[128px_1fr] sm:gap-8">
-                  <div className="flex h-[128px] w-[128px] items-center justify-center rounded-[24px] g-card bg-white shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
+                  <div className="flex h-[128px] w-[128px] items-center justify-center rounded-[24px] g-card shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
                     <SpotIllustration subject={type.subject} className="h-[92px] w-[92px]" title={type.chip} />
                   </div>
                   <div>
@@ -312,7 +312,7 @@ export default function PartnersPage() {
                 What a partnership includes
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
-                The same foundations for every partner — scaled to the work we agree on together.
+                The same foundations for every partner, scaled to the work we agree on together.
               </p>
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3 lg:gap-6">
@@ -348,7 +348,7 @@ export default function PartnersPage() {
                 How deep the work can go
               </h2>
               <p className="mt-4 max-w-[440px] text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">
-                Every partnership begins as a conversation. Where it goes from there is agreed together — measured in outcomes, not tiers.
+                Every partnership begins as a conversation. Where it goes from there is agreed together, measured in outcomes, not tiers.
               </p>
               <dl className="mt-7 space-y-4 border-t border-[#e8eaed] pt-6">
                 {DEPTH_TIERS.map((tier) => (
@@ -364,7 +364,7 @@ export default function PartnersPage() {
               </dl>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl g-card bg-white">
+            <div className="overflow-x-auto rounded-2xl g-card">
               <table className="w-full min-w-[560px] border-collapse text-left">
                 <caption className="sr-only">What each partnership depth includes</caption>
                 <thead>
@@ -416,7 +416,7 @@ export default function PartnersPage() {
                 How a partnership begins.
               </h2>
               <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">
-                Four steps from a first note to work in progress — with writing at every hinge.
+                Four steps from a first note to work in progress, with writing at every hinge.
               </p>
             </div>
             <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -438,7 +438,7 @@ export default function PartnersPage() {
         <section className="bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto flex max-w-[1000px] flex-col items-center text-center">
             <h2 className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124]">
-              If your organization works with learners — in a classroom, a system, or a region — we want to understand your context.
+              If your organization works with learners, in a classroom, a system, or a region, we want to understand your context.
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <a
@@ -499,7 +499,7 @@ export default function PartnersPage() {
                 Frequently asked questions
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
-                Straight answers about how partnerships work — and what they do not promise.
+                Straight answers about how partnerships work, and what they do not promise.
               </p>
             </div>
             <div className="mt-12">
@@ -507,11 +507,11 @@ export default function PartnersPage() {
                 faqs={[
                   { q: "Who can become a partner?", a: "Schools, school systems, colleges, coaching institutes, workplaces, technology teams, and people with regional or language expertise. If your work touches how people learn, the conversation can start." },
                   { q: "How quickly will the partnerships team reply?", a: RESPONSE_TIMES.partners + " Every enquiry is read by a person on the team." },
-                  { q: "What does a partnership cost?", a: "There is no programme fee to start a conversation. Costs, if any, are agreed in writing for a scoped piece of work — before that work begins." },
+                  { q: "What does a partnership cost?", a: "There is no programme fee to start a conversation. Costs, if any, are agreed in writing for a scoped piece of work before that work begins." },
                   { q: "Is there a public partner directory?", a: "Not today. This page is the single enquiry route. If a public directory is introduced, it will be published here first." },
                   { q: "How is learner data protected in a partnership?", a: "Learner data stays governed by the Privacy Policy. Pilots use consent-based access and views that group learners by default, and sensitive learner information never travels by email." },
                   { q: "Does an enquiry create an endorsement?", a: "No. An enquiry starts a conversation. Scope, responsibilities, and any public acknowledgement are agreed in writing before work begins." },
-                  { q: "Can we bring Visionary to our school or organization?", a: `Yes — that is the most common starting point. Write to ${PARTNERS_EMAIL} about rollouts for classrooms, cohorts, and workplaces.` },
+                  { q: "Can we bring Visionary to our school or organization?", a: `Yes. That is the most common starting point. Write to ${PARTNERS_EMAIL} about rollouts for classrooms, cohorts, and workplaces.` },
                 ]}
                 multiple={true}
                 showExpandAll={true}

@@ -11,6 +11,7 @@ import orgProblem3 from "@/assets/organization-problem-3-1600w.webp";
 import orgProblem4 from "@/assets/organization-problem-4-1600w.webp";
 import orgProblem5 from "@/assets/organization-problem-5-1600w.webp";
 import PersonaHero from "@/components/landing/NewPersona";
+import useSheetStack from "@/components/landing/system/useSheetStack";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
@@ -183,31 +184,34 @@ const SLIDES = [
   { word: "support", quote: "Our best mentors can only be in one classroom at a time.", image: orgProblem4, alt: "Mentor stretched across many learners" },
   { word: "outcomes", quote: "We measure attendance and completion. We still can't see understanding.", image: orgProblem5, alt: "Leader measuring outcomes without insight" },
 ];
+
 const CYCLE_MS = 4000;
+const JOURNEY_WORD_MS = 3000;
+const INTELLIGENCE_WORD_MS = 3000;
+const KEEPS_WORD_MS = 2500;
+const QUESTION_MS = 3200;
+const CATEGORY_MS = 4200;
 
 const JOURNEY_WORDS = ["Visionary adapts to each.", "Schools see it first", "Colleges build on it", "Coaching scales with it", "Workplaces grow from it"];
-const JOURNEY_WORD_MS = 3000;
 
 /* The four nav sub-sections — anchored for /organization#schools etc. */
 const JOURNEY_STAGES = [
-  { id: "schools", title: "Schools", copy: "Connect students, teachers, parents, and school leaders around the same learning picture.", connected: "Students · Teachers · Parents · Leaders", image: primaryStudent, alt: "School learning environment" },
-  { id: "colleges", title: "Colleges & Universities", copy: "Help departments, faculty, and students understand progress across programs, skills, and outcomes.", connected: "Students · Faculty · Departments · Placement", image: higherStudent, alt: "University campus learning" },
-  { id: "coaching", title: "Coaching", copy: "Scale personalized support across batches, mentors, learners, and parent conversations.", connected: "Learners · Mentors · Parents · Coaches", image: competitiveStudent, alt: "Coaching institute classroom" },
-  { id: "workplace", title: "Workplace learning", copy: "Help teams build real skills, apply learning to work, and see capability grow over time.", connected: "Professionals · Managers · Teams · L&D", image: proFace, alt: "Workplace learning session" },
+  { id: "schools", title: "Schools", copy: "Connect students, teachers, parents, and school leaders around the same learning picture.", connected: "Students, teachers, parents, and leaders", image: primaryStudent, alt: "School learning environment" },
+  { id: "colleges", title: "Colleges and universities", copy: "Help departments, faculty, and students understand progress across programs, skills, and outcomes.", connected: "Students, faculty, departments, and placement", image: higherStudent, alt: "University campus learning" },
+  { id: "coaching", title: "Coaching", copy: "Scale personalized support across batches, mentors, learners, and parent conversations.", connected: "Learners, mentors, parents, and coaches", image: competitiveStudent, alt: "Coaching institute classroom" },
+  { id: "workplace", title: "Workplace learning", copy: "Help teams build real skills, apply learning to work, and see capability grow over time.", connected: "Professionals, managers, teams, and learning leads", image: proFace, alt: "Workplace learning session" },
 ];
 
 const INTELLIGENCE_WORDS = ["People connected.", "Progress connected.", "Support connected.", "Outcomes connected."];
-const INTELLIGENCE_WORD_MS = 3000;
 
 const INTELLIGENCE_STEPS = [
   { title: "See what people understand.", copy: "Learning activity becomes a clear picture of understanding across your institution." },
-  { title: "Find gaps before they spread.", copy: "Know where people are stuck — before small gaps become outcomes." },
+  { title: "Find gaps before they spread.", copy: "Know where people are stuck before small gaps become outcomes." },
   { title: "Support every role from one system.", copy: "Every role sees what matters to them, on one shared picture." },
   { title: "Improve the next decision.", copy: "Use real learning activity to improve lessons, programs, coaching, and planning." },
 ];
 
 const KEEPS_WORDS = ["learning", "support", "progress"];
-const KEEPS_WORD_MS = 2500;
 
 const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
@@ -223,7 +227,6 @@ const LANGUAGE_QUESTIONS = [
   { hi: "Kaunsi class ko zyada support chahiye?", en: "Which class needs more support?", bn: "কোন শ্রেণির বেশি সাহায্য দরকার?", ta: "எந்த வகுப்புக்கு அதிக உதவி தேவை?", kn: "ಯಾವ ತರಗತಿಗೆ ಹೆಚ್ಚಿನ ಸಹಾಯ ಬೇಕು?", pa: "ਕਿਹੜੀ ਜਮਾਤ ਨੂੰ ਵੱਧ ਮਦਦ ਚਾਹੀਦੀ ਹੈ?" },
   { hi: "Training ka impact kahan dikh raha hai?", en: "Where is the training impact showing?", bn: "প্রশিক্ষণের প্রভাব কোথায় দেখা যাচ্ছে?", ta: "பயிற்சியின் தாக்கம் எங்கே தெரிகிறது?", kn: "ತರಬೇತಿಯ ಪ್ರಭಾವ ಎಲ್ಲಿ ಕಾಣುತ್ತಿದೆ?", pa: "ਸਿਖਲਾਈ ਦਾ ਅਸਰ ਕਿੱਥੇ ਦਿਖ ਰਿਹਾ ਹੈ?" },
 ];
-const QUESTION_MS = 3200;
 
 const CONTINUITY_STAGES = [
   { name: "School", previous: "Last class", now: "Current learning", next: "Next grade" },
@@ -235,12 +238,11 @@ const CONTINUITY_STAGES = [
 
 const ACHIEVEMENT_TABS = [
   { black: "Understand", blue: "what people actually know.", copy: "Move beyond completion rates and see real understanding across your organization." },
-  { black: "Support", blue: "the people who need it early.", copy: "Give teachers, coaches, and leaders what they need — before results drop." },
+  { black: "Support", blue: "the people who need it early.", copy: "Give teachers, coaches, and leaders what they need before results drop." },
   { black: "Improve", blue: "every program with evidence.", copy: "Use connected learning activity to improve curriculum, training, and coaching." },
 ];
 
 const JOURNEY_CATEGORIES = ["Student", "Teacher", "Parent", "Professional", "Organization"];
-const CATEGORY_MS = 4200;
 
 const TRUST_WORDS = ["people.", "data.", "trust."];
 const TRUST_WORD_MS = 6000;
@@ -292,7 +294,7 @@ const OrgHeroSection = React.memo(() => (
   <PersonaHero
     words={ORG_HERO_WORDS}
     srSentence="One intelligence, to scale understanding."
-    sub="One intelligence across every classroom, team, and program — understanding that stays inside your institution."
+    sub="One intelligence across every classroom, team, and program. Understanding stays inside your institution."
     img={orgHero}
     alt="A leader reviewing team progress on a tablet"
     ctaTo="/contact"
@@ -409,6 +411,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
   );
 });
 
+
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
     <div className="flex items-center gap-2" role="group" aria-label="Organization learning challenges">
@@ -426,6 +429,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect 
     </div>
   );
 });
+
 
 function OrgStruggleSection() {
   const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
@@ -463,7 +467,7 @@ function OrgStruggleSection() {
 const OrgPromiseSection = React.memo(function OrgPromiseSection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="03-promise" className="relative isolate overflow-hidden px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <h2
         className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -480,14 +484,14 @@ const OrgPromiseSection = React.memo(function OrgPromiseSection() {
 /* Icons per journey stage — reuses icons already imported in this file */
 const JOURNEY_STAGE_ICONS = {
   "Schools": GraduationCap,
-  "Colleges & Universities": BookOpen,
+  "Colleges and universities": BookOpen,
   "Coaching": Target,
   "Workplace learning": Building2,
 };
 
 const STAGE_META = {
   "Schools": { Icon: GraduationCap },
-  "Colleges & Universities": { Icon: BookOpen },
+  "Colleges and universities": { Icon: BookOpen },
   "Coaching": { Icon: Target },
   "Workplace learning": { Icon: Building2 },
 };
@@ -504,7 +508,7 @@ const JOURNEY_MODALS = {
       { Icon: MessageCircle, t: "Bring it to your school.", c: "Start with one class and grow from there.", l: "Talk to us", to: "/contact" },
     ],
   },
-  "Colleges & Universities": {
+  "Colleges and universities": {
     top: "Departments connected.", accent: "Outcomes visible.",
     intro: "Higher education asks for depth across programs and semesters. Visionary helps faculty, departments, and students understand progress across programs, skills, and outcomes.",
     primary: { label: "See how Visionary works", to: "/how-it-works" },
@@ -531,7 +535,7 @@ const JOURNEY_MODALS = {
     intro: "Workplace learning only matters when it changes the work. Visionary helps teams build real skills, apply learning to work, and see capability grow over time.",
     primary: { label: "See how Visionary works", to: "/how-it-works" },
     blocks: [
-      { Icon: TrendingUp, t: "From training to application.", c: "See where training turns into capability — and where it stalls.", l: "How it works", to: "/how-it-works" },
+      { Icon: TrendingUp, t: "From training to application.", c: "See where training turns into capability, and where it stalls.", l: "How it works", to: "/how-it-works" },
       { Icon: UsersRound, t: "Managers see growth.", c: "Signals that help teams and L&D support the people who need it early.", l: "Get support", to: "/help" },
       { Icon: Layers3, t: "Skills that grow.", c: "Each program builds on what your teams already know.", l: "Keep the record", to: "/how-it-works" },
       { Icon: MessageCircle, t: "Start with one team.", c: "Pilot Visionary with one cohort and grow from there.", l: "Talk to us", to: "/contact" },
@@ -771,7 +775,7 @@ function OrgJourneySection() {
   }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
+    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         {/* header — eyebrow / heading / one-line sub */}
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
@@ -869,7 +873,7 @@ function OrgIntelligenceSection() {
   const current = INTELLIGENCE_STEPS[active];
 
   return (
-    <section ref={headRef} data-section="05-intelligence" className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={headRef} data-section="05-intelligence" className="relative isolate [overflow-x:clip] bg-white rounded-t-[32px]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           The intelligence behind your organization
@@ -881,7 +885,7 @@ function OrgIntelligenceSection() {
           </span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Every learner, teacher, and professional — one clear picture you can act on.
+          Every learner, teacher, and professional in one clear picture you can act on.
         </p>
       </FadeReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
@@ -911,7 +915,7 @@ const OrgClosingSection = React.memo(function OrgClosingSection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
-    <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="06-closing" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <p
         className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -962,7 +966,7 @@ function OrgLanguageSection() {
   const activeLabel = LANGUAGE_CHIPS.find((c) => c.code === lang)?.label || lang;
 
   return (
-    <section ref={ref} data-section="07-language" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="07-language" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
@@ -1120,7 +1124,7 @@ function OrgContinuitySection() {
   const stage = CONTINUITY_STAGES[index];
 
   return (
-    <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Keep the record
@@ -1228,12 +1232,12 @@ function OrgAchievementSection() {
   }, [open]);
 
   return (
-    <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your organization can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Connected learning, stronger results — for everyone you serve.
+          Connected learning, stronger results for everyone you serve.
         </p>
 
         {/* Breath 2 — accordion + image, balanced columns */}
@@ -1298,7 +1302,7 @@ function OrgJourneyFlowSection() {
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
-    <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1384,7 +1388,7 @@ function OrgTrustSection() {
   const stepCards = useCallback((d) => goTo(index + d), [goTo, index]);
 
   return (
-    <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1392,7 +1396,7 @@ function OrgTrustSection() {
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your people's questions, conversations, and progress are personal. Visionary is built to keep it that way.
+          Your people's questions, conversations, and progress are personal. Visionary keeps it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1429,7 +1433,7 @@ function OrgTrustSection() {
 const OrgCTASection = React.memo(function OrgCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
@@ -1440,7 +1444,7 @@ const OrgCTASection = React.memo(function OrgCTASection() {
           Bring Visionary to your organization.
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Start with one class, one team — and build from there.
+          Start with one class, one team, and build from there.
         </p>
         <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
@@ -1494,7 +1498,7 @@ function OrgExploreSection() {
   const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
+    <section ref={ref} data-section="13-explore" className="relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
           Explore Visionary
@@ -1527,6 +1531,7 @@ function OrgExploreSection() {
 /* ═══════════════════════ PAGE ═══════════════════════ */
 
 export default function OrganizationPage() {
+  useSheetStack();
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />

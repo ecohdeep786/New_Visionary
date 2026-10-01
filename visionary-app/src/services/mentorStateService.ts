@@ -1,6 +1,7 @@
 import type { Database, Locale, MasteryStage, RequestContext, Role } from '../domain/workspace.ts';
-import { reportDays, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
+import { reportDays, snapshot, visibleRelationships, workspaceIdentity,requireOrganizationPermission } from './workspaceService.ts';
 import { getContentRepository, type ContentConcept } from './contentRepository.ts';
+import {assignmentAcceptsResponses} from '../lib/assignmentAvailability.js';
 
 export type MentorApp = 'LEARN' | 'ASK' | 'PRACTICE' | 'BUILD' | 'COMMUNITY';
 export type InteractionAction = 'view' | 'start' | 'request' | 'response' | 'answer' | 'save' | 'complete' | 'resume' | 'delete_memory' | 'remove' | 'report';
@@ -68,8 +69,8 @@ function classesFor(ctx: RequestContext) {
  const { person, workspace } = check(ctx);
  if (ctx.role !== 'teacher' && ctx.role !== 'organization') throw new Error('An assigned teacher or organization workspace is required.');
  return rows('Classroom').filter(c => {
-  if (ctx.role === 'organization') return c.organization_email === person.email;
-  return (!workspace.organizationId || c.organization_email === workspace.organizationId) &&
+  if (ctx.role === 'organization') return c.organization_email === requireOrganizationPermission(ctx,'analytics').organizationEmail;
+  return (workspace.organizationId ? c.organization_email === workspace.organizationId : !c.organization_email) &&
    (c.teacher_email === person.email || c.teacher_id === person.id || c.created_by_id === person.id || c.created_by === person.email) &&
    schoolMembership(person.email, c.organization_email, 'teacher');
  });
@@ -78,7 +79,7 @@ function enrolled(classroom: LegacyRow) { return rows('Enrollment').filter(e => 
 function assertClassEvidence(ctx: RequestContext, classId: string) {
  const { person, workspace } = check(ctx);
  const classroom = rows('Classroom').find(c => c.id === classId);
- if (!['student', 'professional'].includes(ctx.role) || !classroom || (workspace.organizationId && classroom.organization_email !== workspace.organizationId) ||
+ if (!['student', 'professional'].includes(ctx.role) || !classroom || !(workspace.organizationId ? classroom.organization_email === workspace.organizationId : !classroom.organization_email) ||
   !enrolled(classroom).some(e => e.student_email === person.email || e.student_id === person.id)) throw new Error('This class is not active for your learning workspace.');
 }
 // Telemetry uses stable opaque references, never raw input or identifiers that can embed names/email/phone numbers.
@@ -235,10 +236,10 @@ export function getStudentClasswork(ctx: RequestContext) {
  const { person, workspace } = check(ctx);
  if (ctx.role !== 'student') throw new Error('Open your student workspace to view classwork.');
  const classes = rows('Classroom').filter(classroom =>
-  (!workspace.organizationId || classroom.organization_email === workspace.organizationId) &&
+  (workspace.organizationId ? classroom.organization_email === workspace.organizationId : !classroom.organization_email) &&
   enrolled(classroom).some(item => item.student_id === person.id || item.student_email === person.email));
  const submissions = rows('Submission').filter(item => item.student_id === person.id || item.student_email === person.email);
- return rows('Assignment').filter(item => item.status === 'published' && classes.some(classroom => classroom.id === item.class_id))
+ return rows('Assignment').filter(item => (item.status === 'published'||item.status==='scheduled'&&assignmentAcceptsResponses(item,clock().getTime())) && classes.some(classroom => classroom.id === item.class_id))
   .map(item => ({ id: String(item.id), title: String(item.title || 'Classwork'), classId: String(item.class_id), className: String(classes.find(classroom => classroom.id === item.class_id)?.name || 'Class'), dueAt: typeof item.due_date === 'string' ? item.due_date : undefined, submitted: submissions.some(row => row.assignment_id === item.id && ['submitted', 'graded', 'returned'].includes(String(row.status))) }))
   .filter(item => !item.submitted).sort((a, b) => (a.dueAt || '9999').localeCompare(b.dueAt || '9999'));
 }
@@ -247,7 +248,7 @@ export function getStudentClassLearningContext(ctx: RequestContext, classId: str
  const { person, workspace } = check(ctx);
  if (ctx.role !== 'student') throw new Error('Open your student workspace to view class learning.');
  const classroom = rows('Classroom').find(item => item.id === classId &&
-  (!workspace.organizationId || item.organization_email === workspace.organizationId) &&
+  (workspace.organizationId ? item.organization_email === workspace.organizationId : !item.organization_email) &&
   enrolled(item).some(enrollment => enrollment.student_id === person.id || enrollment.student_email === person.email));
  if (!classroom) throw new Error('This class is not connected to your student workspace.');
  return { id: String(classroom.id), name: String(classroom.name || 'Class'), subject: typeof classroom.subject === 'string' ? classroom.subject.trim().slice(0, 100) : '' };
@@ -260,11 +261,12 @@ export function getClassAggregate(ctx: RequestContext, classId: string) {
 }
 export function getOrganizationAggregate(ctx: RequestContext, days: 0 | 7 | 30 = 0) {
  if (![0, 7, 30].includes(days)) throw new Error('Choose a supported organization period.');
- const { person } = check(ctx); if (ctx.role !== 'organization') throw new Error('Open an organization workspace.');
+ check(ctx); if (ctx.role !== 'organization') throw new Error('Open an organization workspace.');
+ const policy=requireOrganizationPermission(ctx,'analytics');
  const classes = classesFor(ctx); const records = classes.flatMap(c => scopedClassEvidence(c));
  const cutoff = days ? clock().getTime() - days * 86400000 : -Infinity;
  const grouped = [...new Set(records.map(r => r.personId))].map(personId => ({ personId, evidence: records.filter(r => r.personId === personId).flatMap(r => r.evidence).filter(e => new Date(e.at).getTime() >= cutoff) }));
- const memberships = rows('OrganizationInvite').filter(r => r.organization_email === person.email && alive(r));
+ const memberships = rows('OrganizationInvite').filter(r => r.organization_email === policy.organizationEmail && alive(r));
  const learnerCount = new Set(classes.flatMap(c => enrolled(c).map(e => String(e.student_id || e.student_email)))).size;
  const minimumGroupSize = 5;
  const allConcepts = learnerCount >= minimumGroupSize ? aggregate(grouped) : [];

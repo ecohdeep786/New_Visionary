@@ -34,8 +34,8 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
-        shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
       {children}
@@ -46,15 +46,15 @@ function Reveal({ children, className = "", delay = 0 }) {
 /* ═══ HOW IT WORKS — the reference's blue-circle steps ═══ */
 const STEPS = [
   { Icon: Link2, title: "Share the link", copy: "Copy the standard sign-up link and send it to someone who may want to explore Visionary. Only share it where it is welcome." },
-  { Icon: Compass, title: "Your friend explores", copy: "The link opens the same clear sign-up experience everyone gets — the product tour, the learning loop, and the plans." },
-  { Icon: GraduationCap, title: "Learning begins", copy: "If it fits, they create an account and start with Learn, Ask, Practice, Build. You had a part in it — quietly." },
+  { Icon: Compass, title: "Your friend explores", copy: "The link opens the same clear sign-up experience everyone gets: the product tour, the learning loop, and the plans." },
+  { Icon: GraduationCap, title: "Learning begins", copy: "If it fits, they create an account and start with Learn, Ask, Practice, Build. You had a part in it, quietly." },
 ];
 
 /* ═══ WHERE TO POINT PEOPLE — the reference's second step block ═══ */
 const DESTINATIONS = [
-  { subject: "student", label: "Students and families", to: "/student", alt: "/parent", copy: "The learning companion that keeps your place — with parent summaries, shared with consent." },
+  { subject: "student", label: "Students and families", to: "/student", alt: "/parent", copy: "The learning companion that keeps your place, with parent summaries shared with consent." },
   { subject: "teacher", label: "Teachers", to: "/teacher", alt: "/how-it-works", copy: "Prepare, publish, and review classwork in the language the classroom speaks." },
-  { subject: "team", label: "Organizations", to: "/organization", alt: "/partners", copy: "Progress across the whole institution — never individual answers." },
+  { subject: "team", label: "Organizations", to: "/organization", alt: "/partners", copy: "Progress across the whole institution, never individual answers." },
 ];
 
 /* ═══ COLLAGE — the reference's image trio, in our illustration voice ═══ */
@@ -104,7 +104,7 @@ export default function ReferralPage() {
               Share a better way to <span className="text-[#0b57d0]">learn.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
-              Invite someone to explore Visionary. One link, the same sign-up everyone gets — no codes, no tracking, nothing to manage.
+              Invite someone to explore Visionary. One link, the same sign-up everyone gets. No codes, no tracking, nothing to manage.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <button
@@ -185,14 +185,14 @@ export default function ReferralPage() {
                 Start from what they need.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
-                A share lands better when the page matches the person. Send the one that fits — or the how-it-works tour for everyone.
+                A share lands better when the page matches the person. Send the one that fits, or the how-it-works tour for everyone.
               </p>
             </div>
 
             <div className="mx-auto mt-14 grid max-w-[1080px] gap-4 md:grid-cols-3">
               {DESTINATIONS.map(({ subject, label, to, alt, copy }) => (
                 <article key={label} className="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6">
-                  <span className="flex h-[104px] w-[104px] items-center justify-center rounded-[22px] g-card bg-white">
+                  <span className="flex h-[104px] w-[104px] items-center justify-center rounded-[22px] g-card">
                     <SpotIllustration subject={subject} className="h-[76px] w-[76px]" title={label} />
                   </span>
                   <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#202124]">{label}</h3>
@@ -227,10 +227,10 @@ export default function ReferralPage() {
               </p>
               <p className="mt-6 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#5f6368]">
                 <UserRoundPlus className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
-                Works for every persona — no account needed to copy it.
+                Works for every persona, no account needed to copy it.
               </p>
             </div>
-            <div className="rounded-2xl g-card bg-white p-6 sm:p-8">
+            <div className="rounded-2xl g-card p-6 sm:p-8">
               <label htmlFor="referral-signup-link" className="block text-[13px] font-medium text-[#202124]">Visionary sign-up page</label>
               <input
                 id="referral-signup-link"
@@ -298,7 +298,7 @@ export default function ReferralPage() {
                 Frequently asked questions.
               </h2>
               <p className="mt-4 max-w-[360px] text-[15px] leading-[1.75] text-[#5f6368]">
-                Straight answers about sharing Visionary — including what this page does not promise.
+                Straight answers about sharing Visionary, including what this page does not promise.
               </p>
             </div>
             <div>
@@ -307,8 +307,8 @@ export default function ReferralPage() {
                   { q: "Do I or my friend receive a reward?", a: "No referral reward or discount is currently offered through this page. We do not promise free months, credits, or other benefits for sharing or signing up." },
                   { q: "Can Visionary track who I invite?", a: "No. The shareable link opens ordinary registration and carries no working referral code or attribution. No referral status or history is shown here." },
                   { q: "Who can use the sign-up link?", a: "Anyone. The link leads to Visionary's standard registration page; account access follows the sign-up experience and terms shown there. Sharing it grants no special eligibility." },
-                  { q: "What should I tell my friend?", a: "Start with what they need. The how-it-works page explains the loop — Learn, Ask, Practice, Build — and each persona page shows how Visionary fits students, teachers, parents, professionals, and organizations." },
-                  { q: "Can I ask about future referral features?", a: "Yes — write to hello@visionary.org.in with the subject \u201cReferral question\u201d. Contacting Visionary does not enroll you in a referral program." },
+                  { q: "What should I tell my friend?", a: "Start with what they need. The how-it-works page explains the loop (Learn, Ask, Practice, Build), and each persona page shows how Visionary fits students, teachers, parents, professionals, and organizations." },
+                  { q: "Can I ask about future referral features?", a: "Yes. Write to hello@visionary.org.in with the subject \u201cReferral question\u201d. Contacting Visionary does not enroll you in a referral program." },
                 ]}
                 multiple={true}
                 showExpandAll={true}
@@ -346,7 +346,7 @@ export default function ReferralPage() {
                 Not sharing yet? Keep growing with us.
               </h2>
               <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.7] text-[#3c4043]">
-                Follow what changes, or meet the people who learn with Visionary — then share when it feels right.
+                Follow what changes, or meet the people who learn with Visionary, then share when it feels right.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link

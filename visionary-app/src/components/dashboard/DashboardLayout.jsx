@@ -7,7 +7,10 @@ import AudioPresence from "./AudioPresence";
 import { useAuth } from "@/lib/AuthContext";
 import { ThemeColorProvider } from "@/hooks/useThemeColor";
 import { canAccessDashboardPath, navigationFor } from "@/lib/dashboardNavigation";
-import { saveLastPath } from '@/services/workspaceService';
+import { saveLastPath,organizationAccess } from '@/services/workspaceService';
+import {organizationPathAllowed} from '@/services/organizationPolicy';
+import OrganizationAccessHome from '@/pages/dashboard/OrganizationAccessHome';
+import OrganizationBilling from '@/pages/dashboard/OrganizationBilling';
 import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -31,6 +34,11 @@ export default function DashboardLayout() {
   if(workspaceError)return <main className="p-8" role="alert">{workspaceError}</main>;
   if(!activeWorkspace)return <main className="p-8" role="status">Preparing your workspace…</main>;
   if (!canAccessDashboardPath(user?.identity, location.pathname)) return <Navigate to="/dashboard/home" replace />;
+  const ctx={personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'};
+  let policy;
+  try{if(ctx.role==='organization')policy=organizationAccess(ctx);}catch(error){return <main className="p-8" role="alert">{error.message}</main>;}
+  const permitted=!policy||organizationPathAllowed(policy,location.pathname);
+  const navigation=navigationFor(user.identity).filter(item=>!policy||organizationPathAllowed(policy,item.to));
   const stageTier = getStagePresentation({ personId: user.id, workspaceId: activeWorkspace.id, role: activeWorkspace.role, locale: "en" }).tier;
   return <ThemeColorProvider>
     <div className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
@@ -43,10 +51,10 @@ export default function DashboardLayout() {
           <DashboardSidebar expanded onNavigate={() => setMobileOpen(false)} />
         </SheetContent></Sheet>
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3">
-          <div className="workspace-surface min-h-full overflow-hidden"><Outlet key={activeWorkspace.id} /></div>
+          <div className="workspace-surface min-h-full overflow-hidden">{!permitted?<div className="v-page"><h1 className="v-title">Permission required</h1><p className="v-notice" role="alert">Your {policy.label.toLowerCase()} permission does not include this section. Ask the organization owner to review access.</p><NavLink to="/dashboard/home" className="v-button">Return to workspace</NavLink></div>:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome ctx={ctx}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling ctx={ctx}/>:<Outlet key={activeWorkspace.id} />}</div>
         </main>
       </div>
-      <nav aria-label="Mobile navigation" className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{navigationFor(user.identity).slice(0,4).map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs ${isActive?'bg-[#e8f0fd] font-medium text-[#1967d2]':'text-[#5f6368]'}`}><Icon aria-hidden="true" size={19}/>{item.label}</NavLink>;})}<button aria-label="More navigation" aria-expanded={mobileOpen} className="flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs text-[#5f6368]" onClick={()=>setMobileOpen(true)}><Ellipsis aria-hidden="true" size={19}/>More</button></nav>
+      <nav aria-label="Mobile navigation" className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{navigation.slice(0,4).map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs ${isActive?'bg-[#e8f0fd] font-medium text-[#1967d2]':'text-[#5f6368]'}`}><Icon aria-hidden="true" size={19}/>{item.label}</NavLink>;})}<button aria-label="More navigation" aria-expanded={mobileOpen} className="flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs text-[#5f6368]" onClick={()=>setMobileOpen(true)}><Ellipsis aria-hidden="true" size={19}/>More</button></nav>
     </div>
   </ThemeColorProvider>;
 }

@@ -34,8 +34,8 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
-        shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
       {children}
@@ -74,7 +74,7 @@ const PROTECTIONS = [
   {
     eyebrow: "Age-aware experiences", subject: "shield", tint: "#F1F1F4",
     title: <>Safety that fits <span className="text-[#0b57d0]">the learner.</span></>,
-    copy: "Safety guidance and product boundaries are applied with the learner's age and context in mind — a twelve-year-old and an adult professional see different guardrails for the same question.",
+    copy: "Safety guidance and product boundaries follow the learner's age and context: a twelve-year-old and an adult professional see different guardrails for the same question.",
     visualSide: "right",
   },
   {
@@ -96,17 +96,17 @@ const FAMILY_CARDS = [
   {
     Icon: Eye, eyebrow: "For parents", to: "/parent", linkLabel: "See parent features",
     title: "Consent-scoped progress summaries",
-    copy: "Parents and guardians follow the journey with confidence — summaries shaped by consent, without opening the learner's private space.",
+    copy: "Parents and guardians follow the journey with confidence: summaries shaped by consent, without opening the learner's private space.",
   },
   {
     Icon: UsersRound, eyebrow: "For families", to: "/privacy", linkLabel: "Read the privacy policy",
     title: "Boundaries for younger learners",
-    copy: "Set boundaries that shape what younger learners see and do — without changing the default safety posture for everyone else.",
+    copy: "Set boundaries that shape what younger learners see and do, without changing the default safety posture for everyone else.",
   },
   {
     Icon: ShieldCheck, eyebrow: "For organizations", to: "/organization", linkLabel: "See organization features",
     title: "Aggregate insights, never individual answers",
-    copy: "Institutions see patterns across cohorts to guide support. An individual learner's answers stay individual — by design.",
+    copy: "Institutions see patterns across cohorts to guide support. An individual learner's answers stay individual, by design.",
   },
 ];
 
@@ -115,26 +115,26 @@ const REPORTING_CARDS = [
   {
     eyebrow: "Flag", subject: "flag", tint: "#F1F1F4",
     title: "One tap to flag anything",
-    copy: "Every answer can be flagged in one tap, from any persona. Flagging is always available — no special mode, no forms to find.",
+    copy: "Every answer can be flagged in one tap, from any persona. Flagging is always available: no special mode, no forms to find.",
     link: { to: "/community", label: "How moderation works" },
   },
   {
     eyebrow: "Review", subject: "safety", tint: "#F1F1F4",
     title: "A human reads every report",
-    copy: RESPONSE_TIMES.safety + " Automated filters help, but the decision about what stayed wrong — and what changes — is made by a person.",
+    copy: RESPONSE_TIMES.safety + " Automated filters help, but a person decides what stayed wrong and what changes.",
     link: { to: "/contact", label: "Contact the safety team" },
   },
   {
     eyebrow: "Policy", subject: "document", tint: "#F1F1F4",
     title: "Reviewed in the open",
-    copy: "Our safety policies are reviewed regularly and updated as we learn from real use — just like the product itself. Changes land in the terms and policies you can read.",
+    copy: "We review our safety policies regularly and update them as we learn from real use, just like the product itself. Changes land in the terms and policies you can read.",
     link: { to: "/terms", label: "Read the terms" },
   },
 ];
 
 /* ═══ BEFORE YOU SHARE — the reference's checklist band ═══ */
 const SHARE_CHECKS = [
-  "Never share passwords, payment details, or sensitive learner information — not with us, not with anyone.",
+  "Never share passwords, payment details, or sensitive learner information. Not with us, not with anyone.",
   "No one from Visionary will ever ask for your password or verification codes.",
   "If a message claims to be from Visionary and asks for those things, flag it and tell us.",
 ];
@@ -176,13 +176,13 @@ export default function SafetyPage() {
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               {[ShieldCheck, Lock, Eye, Flag, UsersRound].map((Icon, i) => (
-                <span key={i} className="flex h-12 w-12 items-center justify-center rounded-[14px] g-card bg-white text-[#0b57d0] shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
+                <span key={i} className="flex h-12 w-12 items-center justify-center rounded-[14px] g-card text-[#0b57d0] shadow-[0_1px_3px_rgba(60,64,67,0.08)]">
                   <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                 </span>
               ))}
             </div>
             <p className="mx-auto mt-8 max-w-[640px] text-[15px] leading-[1.75] text-[#5f6368]">
-              You shouldn't have to configure safety — it should be there before you ask your first question, and it should be visible enough to check.
+              You shouldn't have to configure safety. It should be there before you ask your first question, and visible enough to check.
             </p>
           </Reveal>
         </section>
@@ -249,19 +249,19 @@ export default function SafetyPage() {
                 Seen something wrong? <span className="text-[#0b57d0]">Flag it.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[600px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">
-                Reporting is one tap away everywhere in the product — and every report is read by a person, not a queue.
+                Reporting is one tap away everywhere in the product, and a person reads every report, not a queue.
               </p>
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {REPORTING_CARDS.map(({ eyebrow, subject, tint, title, copy, link }) => (
-                <Link key={eyebrow} to={link.to} aria-label={link.label} className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                <Link key={eyebrow} to={link.to} aria-label={link.label} className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl g-card p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                   <span className="flex h-[120px] w-[120px] items-center justify-center rounded-[24px]" style={{ backgroundColor: tint }}>
                     <SpotIllustration subject={subject} className="h-[88px] w-[88px]" title={eyebrow} />
                   </span>
                   <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
                   <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
                 </Link>
               ))}
@@ -324,7 +324,7 @@ export default function SafetyPage() {
                 Discover more ways we keep learning safe.
               </h2>
               <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.7] text-[#3c4043]">
-                Tour the product's guardrails end to end, or write to the safety team directly — a human reads every message.
+                Tour the product's guardrails end to end, or write to the safety team directly. A human reads every message.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <a

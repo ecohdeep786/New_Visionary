@@ -1,0 +1,37 @@
+
+> visionary-app@0.0.0 build
+> vite build
+
+vite v6.4.3 building for production...
+transforming...
+
+<--- Last few GCs --->
+
+[2616:00000231F5875000]   228108 ms: Scavenge (interleaved) 155.3 (195.0) -> 131.0 (195.0) MB, pooled: 0 MB, 63.26 / 0.00 ms  (average mu = 0.993, current mu = 0.983) allocation failure; 
+[2616:00000231F5875000]   231734 ms: Scavenge (interleaved) 157.6 (195.0) -> 141.8 (198.5) MB, pooled: 0 MB, 156.56 / 0.00 ms  (average mu = 0.993, current mu = 0.983) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF72C6250BF 
+ 2: 00007FF72B24DD27 
+ 3: 00007FF72ABC5BC6 
+ 4: 00007FF72AABC027 
+ 5: 00007FF72ABC777E 
+ 6: 00007FF72ABC80C6 
+ 7: 00007FF72ABC8191 
+ 8: 00007FF72B9D9E93 
+ 9: 00007FF72BA08188 
+10: 00007FF72BA28FEB 
+11: 00007FF72BA27264 
+12: 00007FF72AA9C9BB 
+13: 00007FF72AA9B770 
+14: 00007FF72AA9956A 
+15: 00007FF72B1C19DF 
+16: 00007FF72AA9B04B 
+17: 00007FF72BA3F2CF 
+18: 00007FF72C56954B 
+19: 00007FF72B2A3136 
+20: 00007FF72C9635B3 
+21: 00007FFBA08AE987 BaseThreadInitThunk+23
+22: 00007FFBA1AEC53C RtlUserThreadStart+44

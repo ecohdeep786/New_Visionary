@@ -313,7 +313,10 @@ const auth = {
 
 /* Personal account separation in the preview; production needs database rules. */
 const personalEntities = new Set(['Subject', 'Topic', 'Exam', 'StudyLog', 'Question', 'Bookmark', 'Project', 'PracticeSession']);
-const readEntities = (name) => readJson(`visionary_entity_${name}`, []);
+const readEntities = (name) => {
+  try {const raw=localStorage.getItem(`visionary_entity_${name}`);if(!raw)return [];const rows=JSON.parse(raw);if(!Array.isArray(rows)||rows.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw Error();return rows;}
+  catch {throw new Error(`${name} records could not be read. Saved records have not been replaced. Retry after reviewing the local data.`);}
+};
 const entityUser = () => {
   const user=getCurrentUser();if(!user)return null;
   const db=readJson('visionary_workspace_v2',null);
@@ -362,7 +365,7 @@ const entityStore = new Proxy({}, {
       if(name!=='Classroom'||!['student','professional'].includes(entityUser()?.identity))throw new Error('Use a learner workspace to join a class.');
       const normalized=String(code||'').trim().toUpperCase();if(!normalized)return null;
       const c=readEntities('Classroom').find(c=>c.join_code===normalized);
-      return c?{id:c.id,name:c.name,teacher_name:c.teacher_name,join_code:c.join_code}:null;
+      return c&&previewPolicy(entityUser(),readEntities).canJoinClass(c.id)?{id:c.id,name:c.name,teacher_name:c.teacher_name,join_code:c.join_code}:null;
     },
     async list(sort, limit) { return sortedRecords(visibleRecords(name), sort, limit); },
     async filter(filters = {}, sort, limit) {
@@ -372,13 +375,23 @@ const entityStore = new Proxy({}, {
     async get(id) { return visibleRecords(name).find((record) => record.id === id) || null; },
     async create(record) {
       const created = prepareRecord(name, record);
-      writeJson(`visionary_entity_${name}`, [...readEntities(name), created]);
+      const rows=readEntities(name);
+      if(name==='Submission'){
+        const existing=rows.find(row=>row.assignment_id===created.assignment_id&&row.class_id===created.class_id&&row.student_email===created.student_email);
+        if(existing){if(existing.text===created.text&&JSON.stringify(existing.responses||[])===JSON.stringify(created.responses||[])&&existing.status!=='revision_requested')return existing;throw new Error('A response is already saved for this assignment. Reopen it before submitting a different copy.');}
+      }
+      writeJson(`visionary_entity_${name}`, [...rows, created]);
       notifyChange();
       return created;
     },
     async bulkCreate(newRecords) {
       const created = newRecords.map((record) => prepareRecord(name, record));
-      writeJson(`visionary_entity_${name}`, [...readEntities(name), ...created]);
+      const rows=readEntities(name);
+      if(name==='Submission'){
+        const keys=new Set(rows.map(row=>JSON.stringify([row.class_id,row.assignment_id,row.student_email])));
+        for(const row of created){const key=JSON.stringify([row.class_id,row.assignment_id,row.student_email]);if(keys.has(key))throw new Error('A response is already saved for this assignment. No bulk submissions were added.');keys.add(key);}
+      }
+      writeJson(`visionary_entity_${name}`, [...rows, ...created]);
       notifyChange();
       return created;
     },

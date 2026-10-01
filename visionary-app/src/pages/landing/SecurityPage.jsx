@@ -74,7 +74,7 @@ const AT_A_GLANCE = [
   {
     to: "#sync-devices",
     label: "Carry it across devices",
-    text: "One Sync Encrypted ID brings your learning to every device — only you can open it.",
+    text: "One Sync Encrypted ID brings your learning to every device. Only you can open it.",
     Icon: ShieldCheck,
   },
 ];
@@ -252,7 +252,7 @@ export default function SecurityPage() {
                     Secure by design, protected end to end.
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-                    Encryption, access controls, and clear account tools — described plainly, without security promises we cannot keep.
+                    Encryption, access controls, and clear account tools, described plainly, without security promises we cannot keep.
                   </p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -329,12 +329,12 @@ export default function SecurityPage() {
                   <h2 id="security-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card bg-white p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
                         {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
-                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
                         <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                       </a>
                     ))}
@@ -349,7 +349,7 @@ export default function SecurityPage() {
                   <SectionHeading number="01" title="Your information" />
                   <Paragraph>Security starts with understanding what information moves through a product.</Paragraph>
                   <div className="mt-5"><Paragraph>Depending on how you use Visionary, this can include information such as your account details, conversations, learning activity, content you provide, and information needed to operate the service.</Paragraph></div>
-                  <div className="mt-5"><Paragraph>The Privacy Policy explains what information Visionary collects, why it is used, how it is handled, and the choices available to you.</Paragraph></div>
+                  <div className="mt-5"><Paragraph>The privacy policy explains what information Visionary collects, why Visionary uses it, how Visionary handles it, and the choices available to you.</Paragraph></div>
                   <Note>Security protects information. Privacy explains what information we handle and why.</Note>
                 </section>
 
@@ -393,7 +393,7 @@ export default function SecurityPage() {
                   <div className="mt-5"><Paragraph>You should be able to understand what happens to your information and use the controls Visionary provides to manage your account and data.</Paragraph></div>
                   <div className="mt-6 grid gap-4 sm:grid-cols-2">
                     <SecurityCard icon={Lock} eyebrow="Privacy" title="Understand your data">
-                      See what information is collected and how it is used through the Privacy Policy.
+                      See what information Visionary collects and how Visionary uses it in the privacy policy.
                     </SecurityCard>
                     <SecurityCard icon={ShieldCheck} eyebrow="Account" title="Protect your account">
                       Keep your account credentials secure and use the account controls made available by Visionary.
@@ -473,7 +473,7 @@ export default function SecurityPage() {
                 <section id="sync-devices" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="09" title="Sync devices" />
                   <Paragraph>
-                    Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use — your questions, progress, and memory arrive as they were, and only you can open them.
+                    Sign in with your Sync Encrypted ID and Visionary carries your learning to every device you use: your questions, progress, and memory arrive as they were, and only you can open them.
                   </Paragraph>
                   <div className="mt-8 max-w-[880px] space-y-4">
                     <div className="rounded-[16px] g-card p-5 sm:p-6">
@@ -481,7 +481,7 @@ export default function SecurityPage() {
                         <Lock className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Sign in with your Sync Encrypted ID</h3>
-                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>One encrypted identity unlocks Visionary on a new device — the encryption stays with your account, not with the device.</p>
+                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>One encrypted identity opens Visionary on a new device. The encryption stays with your account, not with the device.</p>
                         </div>
                       </div>
                     </div>
@@ -490,7 +490,7 @@ export default function SecurityPage() {
                         <Database className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                         <div>
                           <h3 className="text-[17px] font-normal" style={{ color: COLORS.ink }}>Your learning follows you</h3>
-                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Progress, notes, and memory sync across phone, tablet, and laptop — pick up exactly where you stopped.</p>
+                          <p className="mt-2 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>Progress, notes, and memory sync across phone, tablet, and laptop. Pick up exactly where you stopped.</p>
                         </div>
                       </div>
                     </div>
@@ -526,7 +526,7 @@ export default function SecurityPage() {
                   <div className="mt-6">
                     <Paragraph>For privacy, safety, account, billing, or product questions, please use the relevant Visionary support channel.</Paragraph>
                   </div>
-                  <LearnMoreRow to="/help" label="Visit the Help Center" />
+                  <LearnMoreRow to="/help" label="Visit the Help center" />
                 </section>
               </article>
             </div>
@@ -543,8 +543,8 @@ export default function SecurityPage() {
                 { term: "HTTPS", def: "The encrypted connection used between your browser and Visionary whenever information moves." },
                 { term: "Sync Encrypted ID", def: "The single encrypted identity that carries your Visionary learning across your devices." },
                 { term: "Role-based access", def: "Access limited to what a student, teacher, parent, or organization role legitimately needs." },
-                { term: "Workspace records", def: "The questions, practice, and projects from your sessions — on-device or linked to your account." },
-                { term: "Vulnerability", def: "A weakness that could be exploited. If you find one, report it — we investigate every report." },
+                { term: "Workspace records", def: "The questions, practice, and projects from your sessions, on-device or linked to your account." },
+                { term: "Vulnerability", def: "A weakness that could be exploited. If you find one, report it. We investigate every report." },
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
@@ -561,7 +561,7 @@ export default function SecurityPage() {
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { to: "/privacy", label: "Privacy Policy", desc: "Your learning is personal.", Icon: Lock },
+                { to: "/privacy", label: "Privacy policy", desc: "Your learning is personal.", Icon: Lock },
                 { to: "/terms", label: "Terms of service", desc: "Clear rules, written to be understood.", Icon: FileText },
                 { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
@@ -573,7 +573,7 @@ export default function SecurityPage() {
                   </div>
                   <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-[#e8f0fe]" />
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-white" />
                   <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                 </Link>
               ))}

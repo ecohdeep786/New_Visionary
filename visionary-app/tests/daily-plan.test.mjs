@@ -1,3 +1,4 @@
+import {connectedContext} from './fixtures/connectedContext.mjs';
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
@@ -12,7 +13,7 @@ const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };
 globalThis.window = { dispatchEvent() {} };
 globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
-const ctx = (person = 'adult', role = 'student') => ({ personId: `demo-${person}`, workspaceId: `demo-${person}:${role}`, role, locale: 'en' });
+const ctx = (person = 'adult', role = 'student') => { const base={personId:'demo-'+person,workspaceId:'demo-'+person+':'+role,role,locale:'en'};return ['minor-cbse','bengali','teacher','school-teacher'].includes(person)&&['student','teacher'].includes(role)?connectedContext(base,false):base; };
 const at = () => new Date('2026-09-23T12:00:00Z');
 const moveTo = iso => { configureDailyPlanClock(() => new Date(iso)); configureMentorClock(() => new Date(iso)); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date(iso) }); };
 beforeEach(() => { memory.clear(); workspace.configureMock({ latency: 0, fault: 'none', now: at }); configureDailyPlanClock(at); configureMentorClock(at); workspace.seedDemo('adult'); });
@@ -25,6 +26,11 @@ async function runSampleUnit(request) {
  await pipeline.answerLearningQuestion(request, unit.id, check.question.answerIndex);
  return unit;
 }
+test('standalone unfinished projects appear in the daily plan and Home without an open learning unit',async()=>{
+ const request=ctx();const project=workspace.saveArtifact(request,{title:'Independent project',body:'My own saved work',status:'in-progress'});
+ const plan=getDailyPlan(request);assert.equal(plan.steps.find(step=>step.kind==='build').id,`build:${project.id}`);const home=await getHome(request);assert.ok(home.modules.some(module=>module.rows.some(row=>row.deferId===`build:${project.id}`)));
+ const before=workspace.snapshot(request);deferPlanStep(request,`build:${project.id}`);assert.equal(getDailyPlan(request).steps.some(step=>step.id===`build:${project.id}`),false);assert.deepEqual(workspace.snapshot(request),before);
+});
 
 test('the daily plan sequences classwork and the open unit from real evidence without a duplicate review', async () => {
  seedConnectedFixtures(localStorage, at());

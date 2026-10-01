@@ -76,10 +76,10 @@ const AREAS = [
     tint: "#e8f0fe",
     iconColor: "#0b57d0",
     title: "Communities for learners",
-    copy: "Class-scoped spaces to discuss, ask, and share what you build — only the people in your class are inside, and nothing leaves it.",
+    copy: "Class-scoped spaces to discuss, ask, and share what you build. Only the people in your class are inside, and nothing leaves it.",
     cards: [
       { title: "Class discussions", copy: "Ask and discuss with the people you learn with every day. The space is scoped to your class and kept separate from private work.", to: "/student", subject: "ask", tint: "#e8f0fe" },
-      { title: "Share what you build", copy: "Post projects from Build and see classmates' work in the same space — real work, not noise.", to: "/student", subject: "build", tint: "#e9f5ef" },
+      { title: "Share what you build", copy: "Post projects from Build and see classmates' work in the same space. Real work, not noise.", to: "/student", subject: "build", tint: "#e9f5ef" },
     ],
   },
   {
@@ -88,10 +88,10 @@ const AREAS = [
     tint: "#e9f5ef",
     iconColor: "#137333",
     title: "Guided by teachers",
-    copy: "Teachers keep the space safe with moderation built in — reports and rate limits are part of the space, not bolted on afterwards.",
+    copy: "Teachers keep the space safe with moderation built in: reports and rate limits are part of the space, not bolted on afterwards.",
     cards: [
       { title: "Moderation built in", copy: "Reports reach the teacher with rate limits, so misuse can't flood the space. The teacher reviews and acts.", to: "/teacher", subject: "shield", tint: "#e9f5ef" },
-      { title: "Reviewed, then shared", copy: "Reported content is held for the teacher's review — nothing spreads through the class unreviewed.", to: "/teacher", subject: "flag", tint: "#f3edff" },
+      { title: "Reviewed, then shared", copy: "Reported content waits for the teacher's review, so nothing spreads through the class unreviewed.", to: "/teacher", subject: "flag", tint: "#f3edff" },
     ],
     flip: true,
   },
@@ -103,8 +103,8 @@ const AREAS = [
     title: "For families and organizations",
     copy: "Community visibility follows consent — families and institutions see what their role allows, and never a learner's private work.",
     cards: [
-      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows — nothing more is rendered anywhere.", to: "/parent", subject: "lock", tint: "#fef3df" },
-      { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces — insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#fcebe8" },
+      { title: "Consent-scoped visibility", copy: "Parent and organization views render only what the learner's consent allows, and nothing more renders anywhere.", to: "/parent", subject: "lock", tint: "#fef3df" },
+      { title: "Cohort spaces", copy: "Organization cohorts share institution-scoped spaces: insight across the group without exposing any individual.", to: "/organization", subject: "community", tint: "#fcebe8" },
     ],
   },
 ];
@@ -112,17 +112,17 @@ const AREAS = [
 /* More ways to engage — real destinations. */
 const MORE = [
   { title: "Get updates", copy: "Follow what is changing across the product, one honest update at a time.", to: "/updates", subject: "updates", tint: "#fef3df" },
-  { title: "Explore how it works", copy: "See the loop the communities grow around — learn, ask, practise, build.", to: "/how-it-works", subject: "loop", tint: "#e8f0fe" },
+  { title: "Explore how it works", copy: "See the loop the communities grow around: learn, ask, practise, build.", to: "/how-it-works", subject: "loop", tint: "#e8f0fe" },
   { title: "Get help", copy: "Clear answers when something is unclear, from setup to safety.", to: "/help", subject: "help", tint: "#e9f5ef" },
 ];
 
 /* FAQs — real behavior, no invented policies. */
 const FAQS = [
-  { q: "Who can see a class community?", a: "Only the people in that class, plus the teacher who keeps it safe. Communities are scoped to the class — they are not public spaces and do not appear in organization-wide views." },
+  { q: "Who can see a class community?", a: "Only the people in that class, plus the teacher who keeps it safe. Communities are scoped to the class: they are not public spaces and do not appear in organization-wide views." },
   { q: "What happens when someone reports a post?", a: "The report goes straight to the teacher, with rate limits so misuse can't flood the space. The teacher reviews the reported content and decides what happens next." },
   { q: "Can people outside my class join?", a: "No. Communities are scoped to the class on purpose. Wider institution-level spaces are part of the roadmap, but a class community stays a class community." },
-  { q: "Does the community work in my language?", a: "The community follows the product's language journeys — English, Hindi, and Bengali — and a missing language is shown honestly rather than filled with machine-translated content." },
-  { q: "Is community available today?", a: "Yes — class communities with teacher moderation, reporting, and rate limits are in the product now. Wider spaces and more languages are what we are building next." },
+  { q: "Does the community work in my language?", a: "The community follows the product's language journeys, English, Hindi, and Bengali, and a missing language is shown honestly rather than filled with machine-translated content." },
+  { q: "Is community available today?", a: "Yes. Class communities with teacher moderation, reporting, and rate limits are in the product now. Wider spaces and more languages are what we are building next." },
 ];
 
 /* ═══ Motion — the shared reveal grammar ═══ */
@@ -143,7 +143,7 @@ function useReveal() {
 
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useReveal();
-  return <div ref={ref} className={`${className} transition duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>{children}</div>;
+  return <div ref={ref} className={`${className} transition duration-700 ease-google motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
 }
 
 function scrollToSection(id) {
@@ -170,7 +170,7 @@ export default function CommunityPage() {
                 Communities and programs for everyone learning together.
               </h1>
               <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.55] text-[#3c4043] sm:text-[22px]">
-                Class-scoped spaces where learners, teachers, and families grow together — kept safe by teachers.
+                Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.
               </p>
               <div className="mt-9 flex flex-wrap justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
@@ -226,7 +226,7 @@ export default function CommunityPage() {
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   {area.cards.map((card) => (
-                    <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                    <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                       <div className="flex h-[150px] items-center justify-center" style={{ backgroundColor: card.tint }}>
                         <SpotIllustration subject={card.subject} className="h-24 w-24" />
                       </div>
@@ -235,7 +235,7 @@ export default function CommunityPage() {
                         <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
                       </div>
                       {/* google.com card curve — the card's own tint sweeps into the corner and its arrow floats in it with breath */}
-                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px]" style={{ backgroundColor: card.tint }} />
+                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
                       <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
                     </Link>
                   ))}
@@ -266,7 +266,7 @@ export default function CommunityPage() {
                     <h3 className="text-[20px] font-medium leading-[1.3] text-[#202124]">{item.title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{item.copy}</p>
                   </div>
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px]" style={{ backgroundColor: item.tint }} />
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#f8f9fa]" />
                   <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#1a73e8] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
                 </Link>
               ))}

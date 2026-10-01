@@ -37,9 +37,9 @@ const AREAS = [
     photo: imgStudent,
     alt: "A student learning with the Visionary mentor",
     tint: "#e8f0fe",
-    copy: "The Learn, Ask, Practice, and Build loop turns one day of learning into evidence the mentor plans from — progress described by what was actually done, never by invented scores.",
+    copy: "The Learn, Ask, Practice, and Build loop turns one day of learning into evidence the mentor plans from: progress described by what was actually done, never by invented scores.",
     items: [
-      { tag: "In the product", subject: "updates", title: "The Daily Mentor plan", detail: "Home is a decision, not a grid: one clear next step, chosen from classwork, activity, and due practice." },
+      { tag: "In the product", subject: "updates", title: "The daily mentor plan", detail: "Home is a decision, not a grid: one clear next step, chosen from classwork, activity, and due practice." },
       { tag: "In the product", subject: "learn", title: "Exact session resume", detail: "A lesson interrupted by a refresh or a language change resumes exactly where it stopped." },
       { tag: "In the product", subject: "build", title: "Build with recovery", detail: "A project that fails to save partway recovers — your work is not lost." },
       { tag: "Next", subject: "growth", title: "Practice that truly adapts", detail: "Deeper adaptation from real outcomes across subjects — not a score dressed up as understanding." },
@@ -53,9 +53,9 @@ const AREAS = [
     photo: imgTeacher,
     alt: "A teacher guiding a classroom",
     tint: "#e9f5ef",
-    copy: "Prepare, publish, and review classwork while the intelligence handles the follow-through — and the learner's private learning stays the learner's own.",
+    copy: "Prepare, publish, and review classwork while the intelligence handles the follow-through, and the learner's private learning stays the learner's own.",
     items: [
-      { tag: "In the product", subject: "document", title: "Publish and review loop", detail: "Teacher preparation flows to publication, student submission, and a reviewed check — one connected loop." },
+      { tag: "In the product", subject: "document", title: "Publish and review loop", detail: "Teacher preparation flows to publication, student submission, and a reviewed check. One connected loop." },
       { tag: "In the product", subject: "community", title: "Class communities, moderated", detail: "Class-scoped communities with report and rate-limit controls, kept safe by the teacher." },
       { tag: "In the product", subject: "handshake", title: "Work in a learner's day", detail: "Classwork joins a student's Daily Mentor plan without taking ownership of their private learning." },
       { tag: "Next", subject: "student", title: "Stage-aware presentation", detail: "The same concept presented for the learner's stage, derived from evidence rather than age alone." },
@@ -70,9 +70,9 @@ const AREAS = [
     photo: imgParent,
     alt: "A parent supporting learning at home",
     tint: "#fef3df",
-    copy: "Follow a child's learning through summaries scoped by consent — support at home without opening the learner's private world.",
+    copy: "Follow a child's learning through summaries scoped by consent, support at home without opening the learner's private world.",
     items: [
-      { tag: "In the product", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner's consent allows — nothing more appears anywhere." },
+      { tag: "In the product", subject: "shield", title: "Consent-based summaries", detail: "Parent reports show only what the learner's consent allows. Nothing more appears anywhere." },
       { tag: "In the product", subject: "lock", title: "Boundaries by design", detail: "Private doubts and personal projects stay outside family and organizational views by default." },
       { tag: "Next", subject: "eye", title: "Clearer progress updates", detail: "Clearer summaries of what changed and why." },
     ],
@@ -88,7 +88,7 @@ const AREAS = [
     copy: "A professional declares a goal; the mentor turns study and real work into proof of skill — and the proof into a portfolio employers can read.",
     items: [
       { tag: "In the product", subject: "briefcase", title: "Goal, evidence, portfolio", detail: "A professional goal becomes real projects, saved as proof of skill, and assembled into a portfolio." },
-      { tag: "In the product", subject: "growth", title: "Understanding, not percentages", detail: "Progress is described by evidence — invented confidence scores and exam-readiness numbers are never shown." },
+      { tag: "In the product", subject: "growth", title: "Understanding, not percentages", detail: "Progress is described by evidence. Invented confidence scores and exam-readiness numbers are never shown." },
       { tag: "Next", subject: "research", title: "Verified skill claims", detail: "Outcome-level claims that independent evaluation can support." },
     ],
     flip: true,
@@ -112,14 +112,14 @@ const AREAS = [
 
 /* Recently shipped — real capabilities, real month. */
 const LATEST = [
-  { label: "September 2026", title: "The Daily Mentor Engine", copy: "Home became a decision: one clear next step for every role, chosen from classwork, activity, and due practice.", subject: "updates", tint: "#e8f0fe" },
-  { label: "September 2026", title: "Two faces of one intelligence", copy: "Vision Boy and Vision Girl ship as two presentations of the same intelligence — one memory, one way of teaching, one safety policy.", subject: "ask", tint: "#e9f5ef" },
+  { label: "September 2026", title: "The daily mentor engine", copy: "Home became a decision: one clear next step for every role, chosen from classwork, activity, and due practice.", subject: "updates", tint: "#e8f0fe" },
+  { label: "September 2026", title: "Two faces of one intelligence", copy: "Vision Boy and Vision Girl ship as two presentations of the same intelligence: one memory, one way of teaching, one safety policy.", subject: "ask", tint: "#e9f5ef" },
   { label: "September 2026", title: "A teacher-moderated community", copy: "Class-scoped communities where learners grow together and teachers keep the space safe.", subject: "community", tint: "#fef3df" },
 ];
 
 /* The work the research feeds — product surfaces shaped by these questions. */
 const PROJECTS = [
-  { title: "How it works", photo: imgProjectA, alt: "A designer shaping a learning exercise on paper", copy: "The learning loop the research feeds — explore, check, practise, build." },
+  { title: "How it works", photo: imgProjectA, alt: "A designer shaping a learning exercise on paper", copy: "The learning loop the research feeds: explore, check, practise, build." },
   { title: "The product", photo: imgProjectB, alt: "A learner reading closely to make sense of an idea", copy: "Where questions become the experiences learners use every day." },
   { title: "Community", photo: imgProjectC, alt: "Teammates discussing work in a meeting", copy: "Learners, teachers, and parents growing together and shaping the questions." },
 ];
@@ -145,7 +145,7 @@ function useRevealOnce() {
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <div ref={ref} className={`${className} transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>
+    <div ref={ref} className={`${className} transition-all duration-700 ease-google motion-reduce:transition-none motion-reduce:transform-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
       {children}
     </div>
   );
@@ -153,7 +153,7 @@ function Reveal({ children, className = "" }) {
 
 function Pill({ to, href, onClick, children, outline = false }) {
   const cls = `inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 ${
-    outline ? "g-card text-[#202124] hover:bg-[#f1f3f4]" : "bg-[#1a73e8] text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] hover:bg-[#1765cc]"
+    outline ? "border border-[#dadce0] bg-white text-[#202124] hover:bg-[#f1f3f4]" : "bg-[#1a73e8] text-white hover:bg-[#1765cc]"
   } ${onClick ? "cursor-pointer" : ""}`;
   if (to) return <Link to={to} className={cls}>{children}</Link>;
   return <a href={href} onClick={onClick} className={cls}>{children}</a>;
@@ -357,7 +357,7 @@ export default function ResearchNewsPage() {
                   The mind behind the mentor.
                 </h2>
                 <p className="mt-5 max-w-[460px] text-[16px] leading-[1.7] text-white/70">
-                  The mentor's intelligence is an adapter, not a fixed brain. Retrieval, grounding, safety, memory, and evaluation sit behind one contract — so the mind can improve without the mentor changing, and an unconnected answer is always shown as unconnected.
+                  The mentor's intelligence is an adapter, not a fixed brain. Retrieval, grounding, safety, memory, and evaluation sit behind one contract, so the mind can improve without the mentor changing, and an unconnected answer is always shown as unconnected.
                 </p>
                 <div className="mt-8">
                   <Pill to="/how-it-works" outline>Explore how it works <ArrowRight className="h-4 w-4" aria-hidden="true" /></Pill>
@@ -383,7 +383,7 @@ export default function ResearchNewsPage() {
                 The mentor began with a question, not a feature: why an explanation reaches one learner and misses another. It is why the product began, and why the research continues.
               </p>
               <p className="mt-4 max-w-[520px] text-[15px] leading-[1.75] text-[#5f6368]">
-                The method stays the same: begin with a learner need, turn it into a testable product question, design and observe, and share what the evidence supports — with methods and limits described clearly.
+                The method stays the same: begin with a learner need, turn it into a testable product question, design and observe, and share what the evidence supports, with methods and limits described clearly.
               </p>
               <p className="mt-4 max-w-[520px] text-[15px] leading-[1.75] text-[#5f6368]">
                 Visionary has not published formal research papers yet. When work is ready, this page will link to the method, contributors, evidence, and limitations so readers can assess the finding for themselves.
@@ -421,7 +421,7 @@ export default function ResearchNewsPage() {
                 Responsible research is at the heart of what we do.
               </h2>
               <p className="mt-5 max-w-[520px] text-[16px] leading-[1.75] text-[#5f6368]">
-                Learning involves trust. The research shared here describes questions and methods — not claims of proven outcomes — and the product treats learner privacy and safety as part of the work itself.
+                Learning involves trust. The research shared here describes questions and methods, not claims of proven outcomes, and the product treats learner privacy and safety as part of the work itself.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Pill to="/safety" outline>Our approach to safety <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Pill>
@@ -443,23 +443,23 @@ export default function ResearchNewsPage() {
                 <div className="flex flex-1 flex-col p-7 pb-16">
                   <h3 className="text-[23px] font-normal leading-[1.3] text-[#202124]">Join the community</h3>
                   <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">
-                    Learners, teachers, and parents use the product every day — their experience is a primary source for every question on this page.
+                    Learners, teachers, and parents use the product every day, and their experience is a primary source for every question on this page.
                   </p>
                 </div>
-                {/* google.com card curve — tint sweeps into the white corner and the card's action floats in it with breath */}
-                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[160px] rounded-tl-[20px] bg-[#e8f0fe]" />
-                <span className="absolute bottom-3 right-3 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+                {/* google.com card curve — a page-background cutout sweeps into the bottom-right corner and the card's action floats in it with breath */}
+                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[192px] rounded-tl-[24px] bg-white" />
+                <span className="absolute bottom-3 right-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
               </Link>
               <Link to="/careers" className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
                 <img src={imgFutureCareers} alt="A teammate at work in a shared space" loading="lazy" decoding="async" className="h-[200px] w-full object-cover" />
                 <div className="flex flex-1 flex-col p-7 pb-16">
                   <h3 className="text-[23px] font-normal leading-[1.3] text-[#202124]">Work with us</h3>
                   <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">
-                    Help turn these questions into a product — research-minded people across engineering, design, and evidence.
+                    Help turn these questions into a product: research-minded people across engineering, design, and evidence.
                   </p>
                 </div>
-                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[160px] rounded-tl-[20px] bg-[#e8f0fe]" />
-                <span className="absolute bottom-3 right-3 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+                <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[192px] rounded-tl-[24px] bg-white" />
+                <span className="absolute bottom-3 right-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
               </Link>
             </div>
             <div className="mt-12 flex flex-col gap-2 border-t border-[#e8eaed] pt-8 sm:flex-row sm:items-center sm:justify-between">

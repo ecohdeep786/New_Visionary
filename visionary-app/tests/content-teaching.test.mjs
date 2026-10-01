@@ -21,6 +21,20 @@ const officialGraph = (overrides = {}) => ({
 });
 const ready = (locale = 'en') => ({ status: 'ready', source: 'adapter', text: 'Adapter contract fixture — no answer-quality assertion.', locale, promptVersion: 'test-v1' });
 
+test('reviewed number-line and chart payloads validate before replacing saved content',async()=>{
+ memory.clear();configureMock({latency:0,fault:'none'});seedDemo('adult');configureContentRepository(null);
+ const repo=getContentRepository(ctx());await syllabus(repo);const before=memory.get(contentKey);
+ for(const representation of [
+  {id:'line',kind:'number-line',alternative:'Equal parts',numberLine:{minimum:0,maximum:1,divisions:0,initial:0}},
+  {id:'line',kind:'number-line',alternative:'Equal parts',numberLine:{minimum:1,maximum:0,divisions:8,initial:4}},
+  {id:'line',kind:'number-line',alternative:'Equal parts',numberLine:{minimum:0,maximum:1,divisions:8,initial:9}},
+  {id:'chart',kind:'diagram',alternative:'Sample data',series:[{label:'Week',value:20},{label:'Week',value:30}]},
+  {id:'chart',kind:'diagram',alternative:'Sample data',series:[{label:'A',value:-1},{label:'B',value:20}]},
+ ]){configureContentRepository({async getSyllabus(){return officialGraph({concepts:[officialConcept({representations:[representation]})]});}});await assert.rejects(syllabus(repo),/data is unavailable/);assert.equal(memory.get(contentKey),before);}
+ configureContentRepository({async getSyllabus(){return officialGraph({concepts:[officialConcept({representations:[{id:'line',kind:'number-line',alternative:'Eight equal parts',numberLine:{minimum:0,maximum:1,divisions:8,initial:4}},{id:'chart',kind:'diagram',alternative:'Recorded values',series:[{label:'A',value:0},{label:'B',value:20}]}]})]});}});
+ await syllabus(repo);const concepts=await repo.getConcepts('official:topic');assert.equal(concepts[0].representations[0].numberLine.divisions,8);assert.equal(concepts[0].representations[1].series[0].value,0);
+});
+
 beforeEach(() => {
  memory.clear(); configureContentRepository(null); configureTeachingInterface(null);
  configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-23T12:00:00Z') }); seedDemo('adult');

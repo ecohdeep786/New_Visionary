@@ -62,19 +62,19 @@ const AT_A_GLANCE = [
   {
     to: "#principles",
     label: "Know what we use",
-    text: "Essential cookies for sign-in and security — no ad networks, no cross-site tracking.",
+    text: "Essential cookies for sign-in and security. No ad networks, no cross-site tracking.",
     Icon: Cookie,
   },
   {
     to: "#types",
     label: "See each type",
-    text: "Session, preference, and optional analytics — what each one does, in one line.",
+    text: "Session, preference, and optional analytics: what each one does, in one line.",
     Icon: Globe,
   },
   {
     to: "#preferences",
     label: "Set your choices",
-    text: "Turn optional cookies on or off on this device and save — it takes one tap.",
+    text: "Turn optional cookies on or off on this device and save. It takes one tap.",
     Icon: Accessibility,
   },
 ];
@@ -252,7 +252,7 @@ export default function CookiesPage() {
                     How we use cookies. And how you control them.
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-                    The short version, then the full list. Only what's needed — nothing extra, nothing sold.
+                    The short version, then the full list. Only what's needed, nothing extra, nothing sold.
                   </p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -329,12 +329,12 @@ export default function CookiesPage() {
                   <h2 id="cookies-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card bg-white p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
                         {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
-                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
                         <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                       </a>
                     ))}
@@ -352,7 +352,7 @@ export default function CookiesPage() {
                   </Paragraph>
                   <div className="mt-8 max-w-[760px] rounded-[16px] bg-[#f8f9fa] px-5 py-5 sm:px-6">
                     <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary uses them to keep you signed in and remember your preferences — never to follow you around the internet or sell what it learns.
+                      Visionary uses them to keep you signed in and remember your preferences, never to follow you around the internet or sell what it learns.
                     </p>
                   </div>
                 </section>
@@ -388,7 +388,7 @@ export default function CookiesPage() {
                     {[
                       ["Session cookies", "Keep you signed in while you use Visionary. Deleted when you close your browser."],
                       ["Preference cookies", "Remember things like your language and theme so you don't have to set them every time."],
-                      ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent — and you can opt out anytime."],
+                      ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent, and you can opt out anytime."],
                     ].map(([who, what], i, arr) => (
                       <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`}>
                         <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
@@ -404,7 +404,7 @@ export default function CookiesPage() {
                   <Paragraph>
                     Optional choices are saved in this browser. They do not change settings on your other devices.
                   </Paragraph>
-                  <div className="mt-8 max-w-[720px] rounded-[24px] g-card bg-white p-6 sm:p-8">
+                  <div className="mt-8 max-w-[720px] rounded-[24px] g-card p-6 sm:p-8">
                     <div className="divide-y">
                       {preferenceRows.map((row) => (
                         <div key={row.label} className="flex items-center gap-5 py-5 first:pt-0">
@@ -439,16 +439,16 @@ export default function CookiesPage() {
                 <section id="managing" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
-                    You control them, always. Clear them anytime from your browser or your Visionary settings — no emails, no waiting.
+                    You control them, always. Clear them anytime from your browser or your Visionary settings. No emails, no waiting.
                   </Paragraph>
                   <div className="mt-10 max-w-[880px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your cookie options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {[
-                        "Essential cookies cannot be turned off — they're what make Visionary work.",
+                        "Essential cookies cannot be turned off. They're what make Visionary work.",
                         "Preference and analytics cookies are optional, and you can change your choices at any time from your Visionary settings (Settings → Privacy & cookies).",
                         "Clear or block cookies anytime from your browser's site settings.",
-                        "Optional choices apply to this device only — set them again on devices you use.",
+                        "Optional choices apply to this device only. Set them again on devices you use.",
                       ].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
@@ -474,10 +474,10 @@ export default function CookiesPage() {
                       </a>
                     </p>
                     <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      For how personal information is handled, read the Privacy Policy — it sits under the same tab bar as this page.
+                      For how personal information is handled, read the privacy policy. It sits under the same tab bar as this page.
                     </p>
                   </div>
-                  <LearnMoreRow to="/privacy" label="Read the Privacy Policy" />
+                  <LearnMoreRow to="/privacy" label="Read the privacy policy" />
                 </section>
               </article>
             </div>
@@ -495,7 +495,7 @@ export default function CookiesPage() {
                 { term: "Preference cookies", def: "Cookies that remember choices such as language and appearance on the device you use." },
                 { term: "Analytics cookies", def: "Optional cookies that measure what works so we can improve. Used only with your consent." },
                 { term: "Browser storage", def: "Where cookies and on-device records live. Clearing your browser's site data removes them." },
-                { term: "Consent", def: "Your explicit yes before optional cookies are used — and your ability to say no without losing the product." },
+                { term: "Consent", def: "Your explicit yes before we use optional cookies, and your ability to say no without losing the product." },
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
@@ -512,7 +512,7 @@ export default function CookiesPage() {
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { to: "/privacy", label: "Privacy Policy", desc: "Your learning is personal.", Icon: Lock },
+                { to: "/privacy", label: "Privacy policy", desc: "Your learning is personal.", Icon: Lock },
                 { to: "/terms", label: "Terms of service", desc: "Clear rules, written to be understood.", Icon: FileText },
                 { to: "/security", label: "Security", desc: "How your information is protected.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
@@ -524,7 +524,7 @@ export default function CookiesPage() {
                   </div>
                   <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-[#e8f0fe]" />
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-white" />
                   <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                 </Link>
               ))}

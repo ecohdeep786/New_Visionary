@@ -7,13 +7,18 @@ export interface ContentProvenance { provider: string; sourceId: string; version
 export interface ContentSelection { board: string; classLevel: string; subject: string }
 export interface ContentQuestion { id: string; prompt: string; options: string[]; answerIndex: number; source: 'authored-sample' | 'database' }
 export interface ContentCriterion { id: string; label: string; prompt: string }
-export interface RepresentationDescriptor { id: string; kind: 'text' | 'diagram' | 'cube' | 'number-line' | 'scene'; alternative: string; assetId?: string }
+export interface RepresentationDescriptor { id: string; kind: 'text' | 'diagram' | 'cube' | 'number-line' | 'scene'; alternative: string; assetId?: string; numberLine?:{minimum:number;maximum:number;divisions:number;initial:number}; series?:{label:string;value:number}[] }
 export interface ContentTextbook { id: string; title: string; chapterIds: string[] }
 export interface ContentChapter { id: string; title: string; textbookId: string; topicIds: string[]; status: ContentStatus }
 export interface ContentTopic { id: string; title: string; chapterId: string; conceptIds: string[]; status: ContentStatus }
 export interface ContentConcept { id: string; title: string; topicId: string; prerequisiteIds: string[]; status: ContentStatus; officialId?: string; explanation?: string; check?: ContentQuestion; practice?: ContentQuestion[]; project?: { title: string; brief: string; criteria?: ContentCriterion[] }; representations: RepresentationDescriptor[]; audience?: 'general' | 'adult'; locale?: Locale; availableLocales?: Locale[]; languageUnavailable?: boolean; provenance?: ContentProvenance }
 export interface ContentSyllabus extends ContentSelection { id: string; status: ContentStatus; textbooks: ContentTextbook[]; chapters: ContentChapter[]; contentLocale?: Locale; availableLocales?: Locale[]; provenance?: ContentProvenance }
-export interface ContentGraph { syllabus: ContentSyllabus; topics: ContentTopic[]; concepts: ContentConcept[] }
+export interface CurriculumMapping {
+ fromConceptId:string; fromSelection:ContentSelection; fromSource:ContentProvenance;
+ disposition:'equivalent'|'archive'; toConceptId?:string; reason:string;
+ reviewedBy:string; reviewedAt:string;
+}
+export interface ContentGraph { syllabus: ContentSyllabus; topics: ContentTopic[]; concepts: ContentConcept[]; continuityMappings?:CurriculumMapping[] }
 export interface ContentDataGap extends ContentSelection { user_id: string; timestamp: string; syllabusId: string; resolvedAt?: string }
 export type ContentIssueKind = 'explanation' | 'question' | 'representation' | 'translation' | 'source';
 export interface ContentIssue { id: string; conceptId: string; kind: ContentIssueKind; locale: Locale; sourceId?: string; sourceVersion?: string; createdAt: string; state: 'saved-locally' }
@@ -76,7 +81,7 @@ function provisional(query: ContentSelection): ContentGraph {
 function sample(locale: Locale, professional = false): ContentGraph {
  const syllabusId = professional ? 'sample:professional' : 'sample:math';
  const paths = professional ? [['data', 'sample:data']] : [['fractions', 'sample:fractions'], ['cube', 'sample:geometry']];
- const syllabus: ContentSyllabus = { ...(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION), id: syllabusId, status: 'sample', contentLocale: locale, availableLocales: ['en', 'hi', 'bn'], provenance: { provider: 'Visionary authored samples', sourceId: syllabusId, version: '1' }, textbooks: [{ id: professional ? 'sample:professional:book' : 'sample:book', title: 'Authored sample activities', chapterIds: paths.map(([, chapterId]) => chapterId) }], chapters: [] };
+ const syllabus: ContentSyllabus = { ...(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION), id: syllabusId, status: 'sample', contentLocale: locale, availableLocales: ['en', 'hi', 'bn'], provenance: { provider: 'Visionary authored samples', sourceId: syllabusId, version: '2' }, textbooks: [{ id: professional ? 'sample:professional:book' : 'sample:book', title: 'Authored sample activities', chapterIds: paths.map(([, chapterId]) => chapterId) }], chapters: [] };
  const topics: ContentTopic[] = []; const concepts: ContentConcept[] = [];
  for (const [journeyId, chapterId] of paths) {
   const journey = getJourney(journeyId!, locale); const topicId = `${chapterId}:topic`; const conceptId = `sample:${journeyId}:concept`;
@@ -88,7 +93,7 @@ function sample(locale: Locale, professional = false): ContentGraph {
    hi: [{ id: 'capacity', label: 'क्षमता की गणना', prompt: 'हर डिब्बे की भुजा और आयतन घन इकाई में दिखाएँ।' }, { id: 'comparison', label: 'डिब्बों की तुलना', prompt: 'बताएँ कि किस डिब्बे में अधिक सामान आएगा और क्यों।' }, { id: 'safety', label: 'सुरक्षित सामग्री चुनें', prompt: 'एक सामग्री और उसकी एक सुरक्षा या व्यावहारिक सीमा बताएँ।' }],
    bn: [{ id: 'capacity', label: 'ধারণক্ষমতা গণনা', prompt: 'প্রতিটি বাক্সের বাহু ও আয়তন ঘন এককে দেখান।' }, { id: 'comparison', label: 'বাক্স তুলনা', prompt: 'কোন বাক্সে বেশি ধরবে এবং কেন তা ব্যাখ্যা করুন।' }, { id: 'safety', label: 'নিরাপদ উপাদান বেছে নিন', prompt: 'একটি উপাদান এবং একটি নিরাপত্তা বা ব্যবহারিক সীমা লিখুন।' }],
   };
-  concepts.push({ id: conceptId, title: journey.title, topicId, prerequisiteIds: [], status: 'sample', explanation: journey.explanation, check: questions[0], practice: questions.slice(1), project: { title: journey.project, brief: journey.projectBrief, ...(journeyId === 'cube' ? { criteria: cubeCriteria[locale] } : {}) }, representations: [{ id: `${conceptId}:visual`, kind: journeyId === 'cube' ? 'cube' : journeyId === 'data' ? 'diagram' : 'number-line', alternative: journey.explanation }], audience: professional ? 'adult' : 'general', locale, availableLocales: ['en', 'hi', 'bn'], provenance: syllabus.provenance });
+  concepts.push({ id: conceptId, title: journey.title, topicId, prerequisiteIds: [], status: 'sample', explanation: journey.explanation, check: questions[0], practice: questions.slice(1), project: { title: journey.project, brief: journey.projectBrief, ...(journeyId === 'cube' ? { criteria: cubeCriteria[locale] } : {}) }, representations: [{ id: `${conceptId}:visual`, kind: journeyId === 'cube' ? 'cube' : journeyId === 'data' ? 'diagram' : 'number-line', alternative: journey.explanation,...(journeyId==='fractions'?{numberLine:{minimum:0,maximum:1,divisions:8,initial:4}}:journeyId==='data'?{series:[{label:locale==='hi'?'सप्ताह 1':locale==='bn'?'সপ্তাহ 1':'Week 1',value:20},{label:locale==='hi'?'सप्ताह 2':locale==='bn'?'সপ্তাহ 2':'Week 2',value:30},{label:locale==='hi'?'सप्ताह 3':locale==='bn'?'সপ্তাহ 3':'Week 3',value:25}]}:{}) }], audience: professional ? 'adult' : 'general', locale, availableLocales: ['en', 'hi', 'bn'], provenance: syllabus.provenance });
  }
  return { syllabus, topics, concepts };
 }
@@ -100,6 +105,12 @@ function validProvenance(value: unknown): value is ContentProvenance { const sou
 function validateConcept(concept: ContentConcept) {
  if (!concept || typeof concept.id !== 'string' || !concept.id.trim() || typeof concept.title !== 'string' || !concept.title.trim() || typeof concept.topicId !== 'string' || !Array.isArray(concept.prerequisiteIds) || concept.prerequisiteIds.some(id => typeof id !== 'string' || !id) || !['sample', 'provisional', 'official'].includes(concept.status) || !Array.isArray(concept.representations) || concept.representations.some(item => !item || typeof item.id !== 'string' || typeof item.alternative !== 'string' || !['text', 'diagram', 'cube', 'number-line', 'scene'].includes(item.kind)) || (concept.audience !== undefined && !['general', 'adult'].includes(concept.audience)) || (concept.locale !== undefined && !['en', 'hi', 'bn'].includes(concept.locale))) throw new Error('The content service returned an incomplete concept. Your saved work is unchanged.');
  if (concept.explanation !== undefined && typeof concept.explanation !== 'string') throw new Error('The concept explanation is unavailable.');
+ for(const descriptor of concept.representations){
+  const line=descriptor.numberLine;
+  if(line!==undefined&&(descriptor.kind!=='number-line'||!line||!Number.isFinite(line.minimum)||!Number.isFinite(line.maximum)||line.maximum<=line.minimum||Math.abs(line.minimum)>1e9||Math.abs(line.maximum)>1e9||!Number.isInteger(line.divisions)||line.divisions<2||line.divisions>16||!Number.isInteger(line.initial)||line.initial<0||line.initial>line.divisions))throw new Error('The number line data is unavailable. Your saved content is unchanged.');
+  const series=descriptor.series;
+  if(series!==undefined&&(descriptor.kind!=='diagram'||!Array.isArray(series)||series.length<2||series.length>12||new Set(series.map(item=>item?.label)).size!==series.length||series.some(item=>!item||typeof item.label!=='string'||!item.label.trim()||item.label.length>100||!Number.isFinite(item.value)||item.value<0||item.value>1e9)))throw new Error('The diagram data is unavailable. Your saved content is unchanged.');
+ }
  if (concept.project !== undefined && (!concept.project || typeof concept.project.title !== 'string' || typeof concept.project.brief !== 'string' || (concept.project.criteria !== undefined && (!Array.isArray(concept.project.criteria) || !concept.project.criteria.length || new Set(concept.project.criteria.map(item => item?.id)).size !== concept.project.criteria.length || concept.project.criteria.some(item => !item || typeof item.id !== 'string' || !item.id.trim() || typeof item.label !== 'string' || !item.label.trim() || typeof item.prompt !== 'string' || !item.prompt.trim()))))) throw new Error('The project criteria are unavailable.');
  if (concept.check !== undefined) validateContentQuestion(concept.check);
  if (concept.practice !== undefined) { if (!Array.isArray(concept.practice)) throw new Error('Practice questions are unavailable.'); concept.practice.forEach(validateContentQuestion); }
@@ -113,6 +124,12 @@ function validateGraph(graph: ContentGraph, connected: boolean) {
  if (new Set(ids).size !== ids.length || ids.some(id => typeof id !== 'string' || !id.trim())) throw new Error('The curriculum response contains invalid identifiers.');
  if (graph.syllabus.textbooks.some(b => !Array.isArray(b.chapterIds) || b.chapterIds.some(id => !chapters.some(c => c.id === id && c.textbookId === b.id))) || chapters.some(c => !Array.isArray(c.topicIds) || !graph.syllabus.textbooks.some(b => b.id === c.textbookId && b.chapterIds.includes(c.id)) || c.topicIds.some(id => !topics.some(t => t.id === id && t.chapterId === c.id))) || topics.some(t => !Array.isArray(t.conceptIds) || !chapters.some(c => c.id === t.chapterId && c.topicIds.includes(t.id)) || t.conceptIds.some(id => !concepts.some(c => c.id === id && c.topicId === t.id))) || concepts.some(c => !topics.some(t => t.id === c.topicId && t.conceptIds.includes(c.id)))) throw new Error('The curriculum response contains an incomplete hierarchy.');
  concepts.forEach(validateConcept);
+ if(graph.continuityMappings!==undefined){
+  const mappings=graph.continuityMappings;
+  if(graph.syllabus.status!=='official'||!Array.isArray(mappings)||mappings.length>500||mappings.some(item=>!item||typeof item.fromConceptId!=='string'||!item.fromConceptId.trim()||!validProvenance(item.fromSource)||!item.fromSelection||['board','classLevel','subject'].some(key=>typeof item.fromSelection[key as keyof ContentSelection]!=='string'||!item.fromSelection[key as keyof ContentSelection].trim())||!['equivalent','archive'].includes(item.disposition)||typeof item.reason!=='string'||!item.reason.trim()||item.reason.length>2000||typeof item.reviewedBy!=='string'||!item.reviewedBy.trim()||typeof item.reviewedAt!=='string'||!Number.isFinite(Date.parse(item.reviewedAt))||(item.disposition==='equivalent'?typeof item.toConceptId!=='string'||!concepts.some(concept=>concept.id===item.toConceptId&&concept.status==='official'):item.toConceptId!==undefined)))throw Error('Reviewed curriculum mappings are incomplete. Your saved work is unchanged.');
+  const keys=mappings.map(item=>JSON.stringify([item.fromConceptId,item.fromSelection.board,item.fromSelection.classLevel,item.fromSelection.subject,item.fromSource.provider,item.fromSource.sourceId,item.fromSource.version]));
+  if(new Set(keys).size!==keys.length||new Set(mappings.filter(item=>item.disposition==='equivalent').map(item=>item.toConceptId)).size!==mappings.filter(item=>item.disposition==='equivalent').length)throw Error('Curriculum mappings must be unambiguous and one-to-one. Your saved work is unchanged.');
+ }
  if (connected && (graph.syllabus.status !== 'official' || !validProvenance(graph.syllabus.provenance) || !validLocales(graph.syllabus.availableLocales) || !graph.syllabus.contentLocale || !graph.syllabus.availableLocales.includes(graph.syllabus.contentLocale) || concepts.some(concept => concept.status !== 'official' || concept.locale !== graph.syllabus.contentLocale || !validLocales(concept.availableLocales) || !concept.availableLocales.includes(concept.locale!)))) throw new Error('Connected curriculum needs a source version and explicit language availability. Your saved work is unchanged.');
 }
 function eligible(ctx: RequestContext, concept: ContentConcept) { return concept.audience !== 'adult' || workspaceIdentity(ctx).person.ageBand === 'adult'; }
@@ -126,6 +143,22 @@ function forLanguage(concept: ContentConcept, syllabus: ContentSyllabus, locale:
  const { explanation: _explanation, check: _check, practice: _practice, project: _project, ...metadata } = concept;
  void _explanation; void _check; void _practice; void _project;
  return { ...metadata, representations: [], locale: sourceLocale, availableLocales, provenance, languageUnavailable: true };
+}
+
+/** Owned cached graphs only: never creates provisional content or calls a transport. */
+export function getSavedCurriculumGraphs(ctx:RequestContext):ContentGraph[]{
+ check(ctx);
+ const graphs=space(read(),ctx).graphs;
+ graphs.forEach(graph=>validateGraph(graph,graph.syllabus.status==='official'));
+ return structuredClone(graphs.map(graph=>({...graph,concepts:graph.concepts.filter(concept=>eligible(ctx,concept))})));
+}
+export function getSavedConceptOrigin(ctx:RequestContext,conceptId:string){
+ const graphs=getSavedCurriculumGraphs(ctx).filter(graph=>graph.concepts.some(concept=>concept.id===conceptId));
+ const graph=preferredGraph(graphs,ctx.locale);
+ if(!graph||graphs.some(item=>!same(item.syllabus,graph.syllabus)))return undefined;
+ const concept=graph.concepts.find(item=>item.id===conceptId)!;
+ const provenance=concept.provenance||graph.syllabus.provenance;
+ return provenance?{selection:{board:graph.syllabus.board,classLevel:graph.syllabus.classLevel,subject:graph.syllabus.subject},provenance:structuredClone(provenance)}:undefined;
 }
 
 export function getContentRepository(ctx: RequestContext): ContentRepository {

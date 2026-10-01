@@ -71,7 +71,7 @@ const AT_A_GLANCE = [
   {
     to: "#what-we-collect",
     label: "Know what is involved",
-    text: "Account, learning activity, device, and preference information — explained by category.",
+    text: "Account, learning activity, device, and preference information, explained by category.",
     Icon: Database,
   },
   {
@@ -116,15 +116,15 @@ const FAQ = [
   },
   {
     q: "How long is information retained?",
-    a: "Information is kept only for as long as it is needed to provide the service, meet legal obligations, resolve disputes, and protect Visionary. Records stored on your device remain there until you remove them or clear that browser’s storage.",
+    a: "We keep information only for as long as it is needed to provide the service, meet legal obligations, resolve disputes, and protect Visionary. Records stored on your device remain there until you remove them or clear that browser’s storage.",
   },
   {
     q: "Can I delete my account or learning records?",
-    a: "You can review the controls available in Privacy settings or contact the Grievance Officer to request access, correction, or deletion. We may need to verify the account before completing a request.",
+    a: "You can review the controls available in Privacy settings or contact the Grievance officer to request access, correction, or deletion. We may need to verify the account before completing a request.",
   },
   {
     q: "Does my information sync across devices?",
-    a: "Information saved only on a device stays on that device. Information linked to your Visionary account may be available on devices where you securely sign in. The product identifies which type of storage is being used.",
+    a: "Information saved only on a device stays on that device. Information linked to your Visionary account may be available on devices where you securely sign in. The product identifies which type of storage is in use.",
   },
 ];
 
@@ -349,7 +349,7 @@ export default function PrivacyPage() {
                   <h2 id="privacy-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card bg-white p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
@@ -374,8 +374,8 @@ export default function PrivacyPage() {
                     {[
                       { Icon: Mail, title: "Workspace and account context", text: "The email or identity details used to create or open a workspace, along with the role needed to show the right learning tools." },
                       { Icon: Target, title: "Learning and content you provide", text: "Questions, materials, practice activity, progress records, and projects saved as you use the workspace." },
-                      { Icon: Database, title: "Device and technical details", text: "Basic browser, device, and diagnostic information may be used to keep the service reliable, secure, and compatible with your device." },
-                      { Icon: Settings2, title: "Your preferences", text: "Choices such as language, accessibility, audio interaction, and whether optional learning memory is used." },
+                      { Icon: Database, title: "Device and technical details", text: "Basic browser, device, and Visionary may use basic browser, device, and diagnostic information to keep the service reliable, secure, and compatible with your device." },
+                      { Icon: Settings2, title: "Your preferences", text: "Choices such as language, accessibility, audio interaction, and whether optional learning memory is active." },
                     ].map(({ Icon, title, text }) => (
                       <div key={title} className="rounded-[16px] g-card p-6">
                         <IconTile Icon={Icon} />
@@ -390,7 +390,7 @@ export default function PrivacyPage() {
                 <section id="purpose" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="02" title="Why we use it" />
                   <Paragraph>
-                    Personal information is used to provide your workspace, retain the learning activity you choose to save, maintain and protect the service, and respond to your requests.
+                    We use personal information to provide your workspace, retain the learning activity you choose to save, maintain and protect the service, and respond to your requests.
                   </Paragraph>
                   <div className="mt-10 max-w-[880px]">
                     {[
@@ -421,7 +421,7 @@ export default function PrivacyPage() {
                     {[
                       ["Student", "Learners can review their own work. Private conversation text is not included in the parent and teacher progress views described here."],
                       ["Teacher", "Class-linked learning evidence is limited to the teacher’s assigned classes in the product model."],
-                      ["Parent", "A parent view contains shared progress and activity summaries for connected children — not private conversations."],
+                      ["Parent", "A parent view contains shared progress and activity summaries for connected children, not private conversations."],
                       ["Institution", "The organization view is designed for aggregate, role-appropriate information rather than private learner conversations."],
                       ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
                     ].map(([who, what], i, arr) => (
@@ -443,14 +443,14 @@ export default function PrivacyPage() {
                     Your controls depend on where information is stored. Use{" "}
                     <Link to="/dashboard/privacy" className="font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>Privacy settings</Link>{" "}
                     to review information saved on this device, change workspace preferences, or contact the{" "}
-                    <a href="#grievance-officer" className="font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>Grievance Officer</a>{" "}
+                    <a href="#grievance-officer" className="font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>Grievance officer</a>{" "}
                     for an access, correction, or deletion request.
                   </Paragraph>
                   <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                     {[
                       { Icon: Eye, title: "Review", text: "Inspect the personal workspace records saved in this browser." },
                       { Icon: Settings2, title: "Adjust", text: "Change available language, audio, accessibility, and personalization preferences." },
-                      { Icon: Database, title: "Export", text: "No self-service account export is currently connected. Ask the Grievance Officer about a data request." },
+                      { Icon: Database, title: "Export", text: "No self-service account export is currently connected. Ask the Grievance officer about a data request." },
                       { Icon: Mail, title: "Request removal", text: "Send an account or record deletion request; it is reviewed rather than completed instantly here." },
                     ].map(({ Icon, title, text }) => (
                       <div key={title} className="rounded-[16px] g-card p-6">
@@ -489,7 +489,7 @@ export default function PrivacyPage() {
                 <section id="data-requests" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="06" title="Access and deletion requests" />
                   <Paragraph>
-                    You can contact us to ask about personal information associated with your use of Visionary, request access or correction, or request deletion. The Grievance Officer reviews the request and may verify your identity before acting on it.
+                    You can contact us to ask about personal information associated with your use of Visionary, request access or correction, or request deletion. The Grievance officer reviews the request and may verify your identity before acting on it.
                   </Paragraph>
                   <div className="mt-8 grid gap-4 sm:grid-cols-3">
                     {[
@@ -510,7 +510,7 @@ export default function PrivacyPage() {
                       <p className="mt-1 text-[14px] leading-6" style={{ color: COLORS.grey }}>{GRIEVANCE_OFFICER.response}</p>
                     </div>
                     <a href={`mailto:${GRIEVANCE_OFFICER.email}?subject=Privacy%20request`} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#0b57d0] px-5 text-[14px] font-medium text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
-                      Contact the Grievance Officer
+                      Contact the Grievance officer
                       <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                     </a>
                   </div>
@@ -525,7 +525,7 @@ export default function PrivacyPage() {
                   <div className="mt-10 max-w-[880px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your privacy options.</p>
                     <ul className="mt-4 space-y-2.5">
-                      {["Review personal workspaces stored in this browser.", "Check whether a record is stored on-device or with your account.", "Ask the Grievance Officer about access or deletion requests.", "Sign out of shared devices and review connected devices regularly."].map((t) => (
+                      {["Review personal workspaces stored in this browser.", "Check whether a record is stored on-device or with your account.", "Ask the Grievance officer about access or deletion requests.", "Sign out of shared devices and review connected devices regularly."].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
                           <span className="text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
@@ -573,7 +573,7 @@ export default function PrivacyPage() {
                 <section id="grievance-officer" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="10" title="Contact and grievances" />
                   <Paragraph>
-                    For questions about this policy or to submit a privacy grievance, contact the named Grievance Officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
+                    For questions about this policy or to submit a privacy grievance, contact the named Grievance officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
                   </Paragraph>
                   <div className="mt-8 max-w-[640px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>
@@ -599,12 +599,12 @@ export default function PrivacyPage() {
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
-                { term: "Workspace", def: "The learning environment you use in a browser — it holds the questions, practice, and projects from your sessions." },
+                { term: "Workspace", def: "The learning environment you use in a browser. It holds the questions, practice, and projects from your sessions." },
                 { term: "Learning records", def: "The activity and progress tied to your account or device: what you asked, practised, and built." },
                 { term: "Browser-local storage", def: "Records saved in your browser on this device. They stay until you remove them or clear the browser's storage." },
                 { term: "Account services", def: "The connected features that need an identity to work — sign-in, shared progress, and role-based access." },
-                { term: "Grievance Officer", def: "The named person responsible for reviewing your privacy requests and grievances under Indian law." },
-                { term: "DPDP Act", def: "India's Digital Personal Data Protection Act — the law whose consent and safeguard rules this policy follows." },
+                { term: "Grievance officer", def: "The named person responsible for reviewing your privacy requests and grievances under Indian law." },
+                { term: "DPDP Act", def: "India's Digital Personal Data Protection Act, the law whose consent and safeguard rules this policy follows." },
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>

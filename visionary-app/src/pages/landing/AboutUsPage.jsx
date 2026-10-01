@@ -69,7 +69,7 @@ function useReveal() {
 
 function Reveal({ children, className = "" }) {
   const { ref, visible } = useReveal();
-  return <div ref={ref} className={`${className} transition duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>{children}</div>;
+  return <div ref={ref} className={`${className} transition duration-700 ease-google motion-reduce:transform-none motion-reduce:transition-none ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>{children}</div>;
 }
 
 function Eyebrow({ children }) {
@@ -93,14 +93,14 @@ function MissionSection() {
           <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#174ea6]">Our mission</p>
           <span aria-hidden="true" className="mt-8 select-none text-[88px] font-medium leading-[0.55] text-[#0b57d0]">"</span>
           <p className="max-w-[760px] text-[30px] font-normal leading-[1.18] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
-            Build AI intelligence for anyone, anywhere — from student to organization — in India's native languages.
+            Build AI intelligence for anyone, anywhere, from student to organization, in India's native languages.
           </p>
           <p className="mt-10 text-[14px] text-[#3c4043]">Visionary · the mission we build toward</p>
         </div>
         <div className="flex min-h-[260px] items-center justify-center bg-[#f8fbff] p-8 pb-20 sm:pb-24"><SpotIllustration subject="loop" className="h-56 w-56 sm:h-72 sm:w-72" title="One intelligence across every learner" /></div>
         {/* google.com card curve — a page-background cutout sweeps into the
             bottom-right of the illustration panel and the card's action pill
-            floats in it with breathing room, as on the "Benefits at Google" card */}
+            floats in it with breathing room, as on the google.com benefits card */}
         <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[240px] rounded-tl-[28px] bg-white" />
         <Link to="/how-it-works" className="absolute bottom-3 right-3 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2">See how it works<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
       </div>
@@ -112,7 +112,7 @@ function ImpactSection() {
   return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-20">
-        <div><Eyebrow>The difference we want to make</Eyebrow><h2 className="mt-5 max-w-[790px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">AI can make the next step clearer for more people.</h2></div>
+        <div><Eyebrow>The difference we want to make</Eyebrow><h2 className="mt-5 max-w-[790px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">AI can make the next step clearer.</h2></div>
         <p className="max-w-[430px] text-[17px] leading-[1.65] text-[#5f6368]">The challenge is bigger than answering a question. It is helping people keep their context, understand their choices, and use what they know as life changes.</p>
       </div>
       <div className="mt-12 grid gap-5 lg:grid-cols-3">
@@ -134,15 +134,17 @@ function ImpactSection() {
 function RolesSection() {
   return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[760px]"><Eyebrow>For every perspective</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Different people. One connected journey.</h2></div><p className="max-w-[360px] text-[16px] leading-[1.65] text-[#5f6368]">Find the experience that fits your work today. Visionary can keep growing with where you go next.</p></div>
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[760px]"><Eyebrow>For every perspective</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Different people, one connected journey.</h2></div><p className="max-w-[360px] text-[16px] leading-[1.65] text-[#5f6368]">
+            Find the experience that fits your work today. Visionary can keep growing with where you go next.
+          </p></div>
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group relative flex flex-col overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
+        {ROLES.map((role) => <Link key={role.label} to={role.to} className="group relative flex flex-col overflow-hidden rounded-[24px] g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] lg:col-span-2">
           <div className="overflow-hidden" style={{ backgroundColor: role.tint }}><img src={role.image} alt="" loading="lazy" style={{ mixBlendMode: "multiply" }} className="h-[190px] w-full object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transform-none" /></div>
           <div className="flex flex-1 flex-col p-6 pb-16"><h3 className="text-[22px] font-normal text-[#202124]">{role.label}</h3><p className="mt-3 max-w-[420px] text-[14px] leading-[1.6] text-[#5f6368]">{role.line}</p></div>
-          {/* google.com card curve — the card's own image tint sweeps into the
-              white body corner and the card's action button floats in it with breath */}
-          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[64px] w-[160px] rounded-tl-[20px]" style={{ backgroundColor: role.tint }} />
-          <span className="absolute bottom-3 right-3 inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-4 text-[13px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
+          {/* google.com card curve — a page-background cutout sweeps into the
+              bottom-right corner and the card's action button floats in it with breath */}
+          <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[192px] rounded-tl-[24px] bg-white" />
+          <span className="absolute bottom-3 right-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[#0b57d0] px-6 text-[14px] font-medium text-white group-hover:bg-[#0842a0]">Explore<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" /></span>
         </Link>)}
       </div>
     </Reveal>
@@ -153,11 +155,11 @@ function LifeJourneySection() {
   return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
-        <div><Eyebrow>A life in motion</Eyebrow><h2 className="mt-5 max-w-[780px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">One journey. Many beginnings.</h2></div>
-        <p className="max-w-[470px] text-[17px] leading-[1.65] text-[#5f6368]">A first lesson, a new skill, a different career, and the chance to guide someone else are not separate stories. Visionary is designed for learning that continues through them all.</p>
+        <div><Eyebrow>A life in motion</Eyebrow><h2 className="mt-5 max-w-[780px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">One journey, many beginnings.</h2></div>
+        <p className="max-w-[470px] text-[17px] leading-[1.65] text-[#5f6368]">A first lesson, a new skill, a different career, and the chance to guide someone else are not separate stories. Visionary exists for learning that continues through them all.</p>
       </div>
       <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[24px] g-card bg-white">
+        {LIFE_STAGES.map((stage) => <li key={stage.number} className="flex flex-col overflow-hidden rounded-[24px] g-card">
           <img src={stage.photo} alt={stage.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
           <div className="flex flex-1 flex-col p-6">
             <span className="text-[13px] font-medium tabular-nums text-[#5f6368]">{stage.number} / 04</span>
@@ -176,7 +178,7 @@ function ExploreSection() {
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Explore further</Eyebrow><h2 className="mt-5 max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">The work around the product.</h2>
       <div className="mt-12 grid gap-5 sm:grid-cols-2">
-        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group relative grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
+        {EXPLORE.map((item) => <Link key={item.to} to={item.to} className="group relative grid min-h-[220px] grid-cols-[1fr_130px] overflow-hidden rounded-[24px] g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] sm:grid-cols-[1fr_180px]">
           <div className="flex flex-col justify-between p-6 sm:p-8"><div><h3 className="text-[24px] font-normal text-[#202124]">{item.label}</h3><p className="mt-3 max-w-[300px] text-[15px] leading-[1.6] text-[#5f6368]">{item.copy}</p></div></div>
           <div className="flex items-center justify-center" style={{ backgroundColor: item.tint }}><SpotIllustration subject={item.subject} className="h-28 w-28 sm:h-36 sm:w-36" /></div>
           {/* google.com card curve — a page-background cutout sweeps into the

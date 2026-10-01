@@ -1,0 +1,28 @@
+transition/animation vocabulary (top patterns):
+    230x  0.32s|color|cubic-bezier(0.4, 0, 0.6, 1)
+    109x  0.24s|opacity|ease
+     32x  0.32s|opacity|ease
+     25x  0.22s|opacity|ease
+     23x  0.2s|opacity|ease
+     23x  0.18s|opacity|ease
+     22x  0.24s|opacity|cubic-bezier(0.4, 0, 0.6, 1)
+     20x  0.16s|opacity|ease
+     18x  0.4s|opacity|ease
+     11x  0.24s|visibility|steps(1)
+     10x  0.02s|color|cubic-bezier(0.4, 0, 0.6, 1
+     10x  0.02s|background-color|cubic-bezier(0.4, 0, 0.6, 1
+     10x  0.02s|fill|cubic-bezier(0.4, 0, 0.6, 1)
+      8x  0.14s|opacity|ease
+      7x  0.25s|width|linear
+      6x  ANIM globalnav-search-fade-and-slide|0.32s|1
+      3x  0.12s|opacity|ease
+      3x  0.32s|opacity|cubic-bezier(0.4, 0, 0.6, 1
+      2x  0.1s|opacity|ease
+      2x  0.32s|visibility|steps(1)
+      2x  0.3s|transform|cubic-bezier(0.25, 0.1, 0.3, 1)
+      2x  1s|width|ease-in-out, ease-in-out, ease-in-out, ease-in-out, ease-in-out
+      2x  1s|height|ease-in-out, ease-in-out, ease-in-out, ease-in-out, ease-in-out
+      2x  1s|padding-block|ease-in-out, ease-in-out, ease-in-out, ease-in-out, ease-in-out
+scroll-reveal: <H2> "Apple Watch Series 12" -> opacity 1->1 in 0ms, translateY 0px
+hover: no matching pill CTA found
+reduce-mode: h1 opacity=1 animation=none, below-fold opacity=1

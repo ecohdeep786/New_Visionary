@@ -1,0 +1,98 @@
+{
+  "summary": [
+    {
+      "route": "/student",
+      "counts": {
+        "04-journey": 5,
+        "06-closing": 3,
+        "07-language": 5,
+        "10-journey-flow": 5
+      },
+      "dotJump": {
+        "moved": -440,
+        "active": 3
+      },
+      "parallax": {
+        "atRest": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrolled": "matrix(1, 0, 0, 1, 0, 23.5576)"
+      },
+      "errors": []
+    },
+    {
+      "route": "/teacher",
+      "counts": {
+        "04-journey": 5,
+        "06-closing": 3,
+        "07-language": 3,
+        "10-journey-flow": 6
+      },
+      "dotJump": {
+        "moved": -458,
+        "active": 4
+      },
+      "parallax": {
+        "atRest": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrolled": "matrix(1, 0, 0, 1, 0, 23.5576)"
+      },
+      "errors": []
+    },
+    {
+      "route": "/parent",
+      "counts": {
+        "04-journey": 5,
+        "06-closing": 3,
+        "07-language": 3,
+        "10-journey-flow": 6
+      },
+      "dotJump": {
+        "moved": -458,
+        "active": 4
+      },
+      "parallax": {
+        "atRest": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrolled": "matrix(1, 0, 0, 1, 0, 23.5576)"
+      },
+      "errors": []
+    },
+    {
+      "route": "/professional",
+      "counts": {
+        "04-journey": 5,
+        "06-closing": 3,
+        "07-language": 3,
+        "10-journey-flow": 6
+      },
+      "dotJump": {
+        "moved": -458,
+        "active": 4
+      },
+      "parallax": {
+        "atRest": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrolled": "matrix(1, 0, 0, 1, 0, 23.5576)"
+      },
+      "errors": []
+    },
+    {
+      "route": "/organization",
+      "counts": {
+        "04-journey": 5,
+        "06-closing": 3,
+        "07-language": 3,
+        "10-journey-flow": 4
+      },
+      "dotJump": {
+        "moved": -458,
+        "active": 4
+      },
+      "parallax": {
+        "atRest": "matrix(1, 0, 0, 1, 0, 0)",
+        "scrolled": "matrix(1, 0, 0, 1, 0, 23.5576)"
+      },
+      "errors": []
+    }
+  ],
+  "stacked": {
+    "sticky": false,
+    "clusters": 4
+  }
+}

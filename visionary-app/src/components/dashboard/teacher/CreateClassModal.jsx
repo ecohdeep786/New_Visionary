@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/lib/AuthContext";
-import { appClient } from "@/api/appClient";
 import { Check, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -17,8 +15,7 @@ const FIELDS = [
 ];
 
 export default function CreateClassModal({ onClose, onCreate, accent = "#4285F4" }) {
-  const { user } = useAuth();
-  const { data: memberships = [] } = useQuery({ queryKey: ["workspace", "teacher-memberships", user.email], queryFn: () => appClient.entities.OrganizationInvite.filter({ email: user.email, role: "teacher", status: "active" }) });
+  const { activeWorkspace } = useAuth();
   const [form, setForm] = useState({ name: "", section: "", subject: "", room: "", color: COLORS[0][1] });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -28,7 +25,7 @@ export default function CreateClassModal({ onClose, onCreate, accent = "#4285F4"
     setBusy(true);
     setError("");
     try { await onCreate(Object.fromEntries(Object.entries(form).map(([key, value]) => [key, value.trim()]))); }
-    catch { setError("Your class couldn’t be created. Please try again."); }
+    catch (failure) { setError(failure.message || "Your class couldn’t be created. Please try again."); }
     finally { setBusy(false); }
   };
 
@@ -38,7 +35,7 @@ export default function CreateClassModal({ onClose, onCreate, accent = "#4285F4"
         <DialogTitle className="text-[22px] font-medium text-[#121317]">Create class</DialogTitle>
         <DialogDescription>Give your class a name. You’ll get a code to share with your students.</DialogDescription>
         <form onSubmit={create} className="flex flex-col gap-4">
-          {memberships.length > 0 && <label className="block text-sm font-medium">Learning space<select value={form.organization_email || ""} onChange={e => { const membership = memberships.find(m => m.organization_email === e.target.value); setForm(current => ({ ...current, organization_email: e.target.value, organization_name: membership?.organization_name || "" })); }} className="mt-2 h-11 w-full rounded-lg border border-[#5f6368] bg-white px-3 font-normal"><option value="">Independent teaching</option>{memberships.map(m => <option key={m.id} value={m.organization_email}>{m.organization_name || m.organization_email}</option>)}</select></label>}
+          <p className="v-notice">{activeWorkspace?.organizationId ? `Organization class · ${activeWorkspace.organizationId}. This class will appear in the organization’s linked classroom view.` : 'Independent teaching · This class belongs to your personal workspace.'} To create in another space, close this dialog and switch workspace first.</p>
           {FIELDS.map(([key, label, placeholder]) => (
             <label key={key} className="block text-sm font-medium text-[#121317]">
               {label}

@@ -33,8 +33,8 @@ function Reveal({ children, className = "", delay = 0 }) {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
-        shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } ${className}`}
     >
       {children}
@@ -52,14 +52,14 @@ const CATEGORIES = [
 
 /* ═══ LATEST — every entry grounded in shipped product behavior ═══ */
 const UPDATES = [
-  { date: "September 2026", cat: "product", subject: "build", title: "The learning loop, end to end", copy: "Learn, Ask, Practice, Build — one workspace now carries every step of the loop." },
+  { date: "September 2026", cat: "product", subject: "build", title: "The learning loop, end to end", copy: "Learn, Ask, Practice, Build: one workspace now carries every step of the loop." },
   { date: "September 2026", cat: "language", subject: "languages", title: "Three languages, one loop", copy: "Language journeys run in English, Hindi, and Bengali, with more on the roadmap." },
-  { date: "September 2026", cat: "product", subject: "lock", title: "Consent-scoped progress summaries", copy: "Parents follow the journey with confidence — without opening the learner's private space." },
+  { date: "September 2026", cat: "product", subject: "lock", title: "Consent-scoped progress summaries", copy: "Parents follow the journey with confidence, without opening the learner's private space." },
   { date: "September 2026", cat: "product", subject: "growth", title: "Insights across cohorts", copy: "Organizations see patterns across learners. Individual answers stay individual." },
-  { date: "August 2026", cat: "community", subject: "community", title: "Class communities, moderated", copy: "Discussions stay safe with one-tap reporting and human review — usually within 24 hours." },
+  { date: "August 2026", cat: "community", subject: "community", title: "Class communities, moderated", copy: "Discussions stay safe with one-tap reporting and human review, usually within 24 hours." },
   { date: "August 2026", cat: "research", subject: "research", title: "What we learn, we publish", copy: "Findings from real use shape the loop. The work so far lives in Research & News." },
   { date: "July 2026", cat: "language", subject: "teacher", title: "Teach in your language", copy: "Teachers can prepare and publish classwork in the language their classroom speaks." },
-  { date: "July 2026", cat: "product", subject: "shield", title: "Safety guidance, reviewed openly", copy: "Safety policies are updated as we learn from real use — just like the product itself." },
+  { date: "July 2026", cat: "product", subject: "shield", title: "Safety guidance, reviewed openly", copy: "We update safety policies as we learn from real use, just like the product itself." },
 ];
 
 /* ═══ FAQ-style micro-facts are not needed here; the signup keeps the
@@ -98,7 +98,7 @@ export default function UpdatesPage() {
               What&rsquo;s <span className="text-[#0b57d0]">new</span> at Visionary.
             </h1>
             <p className="mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
-              Product news, new languages, and launch updates — as they land, with the date on each one.
+              Product news, new languages, and launch updates as they land, with the date on each one.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -127,7 +127,7 @@ export default function UpdatesPage() {
                   <span className="inline-flex items-center rounded-[6px] bg-white/70 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">Languages &amp; access</span>
                 </div>
                 <h2 id="featured-title" className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
-                  One intelligence, every learner — in their language.
+                  One intelligence, every learner, in their language.
                 </h2>
                 <p className="mt-4 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
                   Visionary&rsquo;s language journeys run in English, Hindi, and Bengali today, and the team can reply in all three. More languages are on the roadmap — the loop stays the same: Learn, Ask, Practice, Build.
@@ -186,7 +186,7 @@ export default function UpdatesPage() {
 
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {visibleUpdates.map((item) => (
-                <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6">
+                <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl g-card p-6">
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center rounded-[6px] bg-[#f1f3f4] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
                       {catLabel(item.cat)}
@@ -215,7 +215,7 @@ export default function UpdatesPage() {
                   Evidence over claims.
                 </h2>
                 <p className="mt-4 max-w-[620px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
-                  We study how people learn with Visionary and publish what we find — what worked, what did not, and what changed as a result.
+                  We study how people learn with Visionary and publish what we find: what worked, what did not, and what changed as a result.
                 </p>
               </div>
               <div className="flex justify-center lg:justify-end">
@@ -282,7 +282,7 @@ export default function UpdatesPage() {
                     </span>
                     <h3 className="mt-5 text-[24px] font-normal tracking-[-0.02em] text-[#202124]">Your request is ready.</h3>
                     <p className="mt-3 max-w-[520px] text-[14px] leading-[1.7] text-[#5f6368]">
-                      Your email app opened a draft with these preferences. Review it and choose whether to send — this page has not subscribed you automatically.
+                      Your email app opened a draft with these preferences. Review it and choose whether to send. This page has not subscribed you automatically.
                     </p>
                     <button
                       type="button" onClick={() => setSubmitted(false)}
@@ -299,7 +299,7 @@ export default function UpdatesPage() {
                         <input
                           id="updates-name" name="name" type="text" autoComplete="name" required value={name}
                           onChange={(event) => setName(event.target.value)}
-                          className="mt-2 h-12 w-full rounded-xl g-card px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                          className="mt-2 h-12 w-full rounded-xl g-card border border-[#dadce0] bg-white px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                         />
                       </div>
                       <div>
@@ -307,7 +307,7 @@ export default function UpdatesPage() {
                         <input
                           id="updates-email" name="email" type="email" autoComplete="email" required value={email}
                           onChange={(event) => setEmail(event.target.value)}
-                          className="mt-2 h-12 w-full rounded-xl g-card px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                          className="mt-2 h-12 w-full rounded-xl g-card border border-[#dadce0] bg-white px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                         />
                       </div>
                     </div>
@@ -348,7 +348,7 @@ export default function UpdatesPage() {
                       Prepare email request
                     </button>
                     <p className="mt-4 text-[13px] leading-[1.6] text-[#5f6368]">
-                      Nothing is submitted from this page — your email app opens a draft for you to review and send.
+                      Nothing is submitted from this page. Your email app opens a draft for you to review and send.
                     </p>
                   </form>
                 )}

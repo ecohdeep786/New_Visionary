@@ -1,12 +1,12 @@
 import type { RequestContext } from '../domain/workspace.ts';
 import { familyReports, reportDays, snapshot, updateStageProfile, updateStageProfilesBatch, workspaceIdentity } from './workspaceService.ts';
 import { getDailyPlan } from './dailyPlanService.ts';
-import { getLearningWorkspace } from './learningPipelineService.ts';
+import { getLearningWorkspace, getLearningReviewQueue } from './learningPipelineService.ts';
 import { getStudentClasswork } from './mentorStateService.ts';
 
 // Part W stage-transition engine (M2): an eligible stage change applies itself with
 // zero required action, notice + change-diff, Postpone 7d and Undo 14d — through this
-// service, with an atomic transition record. Policy: AUTO for ordinary progressions
+// service, with recoverable local writes across the profile and notice stores. Policy: AUTO for ordinary progressions
 // (adjacent class promotion, subject updates); CONFIRM for boundary jumps (board or
 // institution change, a class jump of more than one grade). Undo restores the exact
 // prior mapping while retaining every piece of work created since — history is never
@@ -92,7 +92,7 @@ export function proposeStageTransition(ctx: RequestContext, next: StageProfile, 
  const store = read();
  // One active transition per person: a new proposal supersedes a postponed/notified one.
  store.transitions = store.transitions.filter(t => !(t.personId === ctx.personId && (t.state === 'notified' || t.state === 'postponed' || t.state === 'awaiting-confirm')));
- const evidence = captureEvidence(ctx, from);
+ const evidence = captureEvidence(ctx, from, true);
  const boardJump = (from.board || '') !== (to.board || '') && Boolean(from.board) && Boolean(to.board);
  const distance = classDistance(from.classLevel, to.classLevel);
  const policy: StageTransition['policy'] = boardJump || distance > 1 ? 'CONFIRM' : 'AUTO';
@@ -103,11 +103,36 @@ export function proposeStageTransition(ctx: RequestContext, next: StageProfile, 
  else write(store);
  return transition;
 }
+function requireCurrentTransition(ctx: RequestContext, store: TransitionStore, transition: StageTransition, expected: StageProfile) {
+ assertCanPropose(ctx);
+ const latest=store.transitions.filter(item=>item.personId===ctx.personId&&item.state!=='undone').at(-1);
+ const current=cleanProfile(workspaceIdentity(ctx).person.learningContext||{subjects:[]});
+ if(latest?.id!==transition.id||!sameProfile(current,expected))throw Error('Your stage changed after this notice. Refresh Home before changing it; your saved work is retained.');
+}
+function requireOpenWindow(transition: StageTransition) {
+ if(clock().getTime()-new Date(transition.appliedAt||0).getTime()>UNDO_WINDOW_MS)throw Error('The 14-day change window has closed. Your work is retained; change your stage profile instead.');
+}
+/** Read-only continuity details. Retention is not proof of a new curriculum mapping. */
+export function getStageContinuity(ctx: RequestContext, transitionId: string) {
+ assertCanPropose(ctx);
+ const store=read(),transition=store.transitions.find(item=>item.id===transitionId&&item.personId===ctx.personId);
+ if(!transition)throw Error('This stage change is unavailable in your learning workspace.');
+ const before=transition.from.subjects||[],after=transition.to.subjects||[];
+ const learning=getLearningWorkspace(ctx),reviews=new Map(getLearningReviewQueue(ctx).map(item=>[item.unit.id,item.dueAt]));
+ return {from:structuredClone(transition.from),to:structuredClone(transition.to),state:transition.state,
+ subjects:{kept:after.filter(subject=>before.includes(subject)),added:after.filter(subject=>!before.includes(subject)),removed:before.filter(subject=>!after.includes(subject))},
+ activities:learning.units.map(unit=>({id:unit.id,title:unit.title,stage:unit.stage,locale:unit.locale,classId:unit.classId,dueAt:reviews.get(unit.id),path:'/dashboard/learn?unit='+encodeURIComponent(unit.id)})),
+ classwork:ctx.role==='student'?getStudentClasswork(ctx).map(item=>({...item,path:'/dashboard/learn?assignment='+encodeURIComponent(item.id)})):[],
+ sourceSelection:learning.selection?structuredClone(learning.selection):null,
+ isLatest:store.transitions.filter(item=>item.personId===ctx.personId&&item.state!=='undone').at(-1)?.id===transition.id,
+ mappingStatus:'awaiting-reviewed-mapping' as const};
+}
 /** Confirm a boundary jump that policy held for explicit confirmation. */
 export function confirmStageTransition(ctx: RequestContext, transitionId: string): StageTransition {
  check(ctx);
  const store = read(); const transition = store.transitions.find(t => t.id === transitionId && t.personId === ctx.personId);
  if (!transition || transition.state !== 'awaiting-confirm') throw new Error('This transition is not waiting for confirmation.');
+ requireCurrentTransition(ctx,store,transition,transition.from);
  transition.state = 'applied'; transition.appliedAt = clock().toISOString();
  writeWithProfile(ctx, store, transition.to, transition.from); return transition;
 }
@@ -116,6 +141,7 @@ export function postponeStageTransition(ctx: RequestContext, transitionId: strin
  check(ctx);
  const store = read(); const transition = store.transitions.find(t => t.id === transitionId && t.personId === ctx.personId);
  if (!transition || transition.state !== 'applied') throw new Error('Only an applied transition can be postponed.');
+ requireCurrentTransition(ctx,store,transition,transition.to); requireOpenWindow(transition);
  transition.state = 'postponed'; transition.postponedAt = clock().toISOString(); transition.postponedUntil = new Date(clock().getTime() + POSTPONE_MS).toISOString();
  writeWithProfile(ctx, store, transition.from, transition.to); return transition;
 }
@@ -124,6 +150,7 @@ export function undoStageTransition(ctx: RequestContext, transitionId: string): 
  check(ctx);
  const store = read(); const transition = store.transitions.find(t => t.id === transitionId && t.personId === ctx.personId);
  if (!transition || transition.state !== 'applied') throw new Error('Only an applied transition can be undone.');
+ requireCurrentTransition(ctx,store,transition,transition.to);
  if (clock().getTime() - new Date(transition.appliedAt || 0).getTime() > UNDO_WINDOW_MS) throw new Error('The 14-day undo window has closed. Your work is retained; change your stage profile instead.');
  const laterUnits = getLearningWorkspace(ctx).units.filter(u => transition.appliedAt && u.updatedAt > transition.appliedAt).length;
  transition.laterWorkCount = laterUnits;

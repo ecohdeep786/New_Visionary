@@ -24,6 +24,7 @@ export default function LocalDataPreview({ ctx }) {
    <p className="v-muted mt-2">{totals.conversations} conversations · {totals.learning} learning activities · {totals.evidence} evidence records · {totals.projects} projects</p>
    {preview.blockers.length ? <div className="v-notice mt-4"><p className="font-medium">Some records need review before a future transfer.</p><ul className="mt-2 list-disc pl-5">{preview.blockers.map(reason => <li key={reason}>{reason}</li>)}</ul></div> : <p className="v-muted mt-3">Owned local records are identifiable. An authenticated backend and your confirmation will still be required before any transfer.</p>}
    {preview.relationshipsNeedingReconsent > 0 && <p className="v-muted mt-3">{preview.relationshipsNeedingReconsent} local {preview.relationshipsNeedingReconsent === 1 ? 'connection' : 'connections'} would require renewed permission; connections are not transferred automatically.</p>}
+   {!!preview.additionalStoresNeedingReview?.length&&<p className="v-muted mt-3">Separate records awaiting ownership review: {preview.additionalStoresNeedingReview.join(', ')}. They remain on this device and are excluded from these counts.</p>}
   </div>}
  </section>;
 }

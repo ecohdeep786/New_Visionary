@@ -1,0 +1,40 @@
+✖ versioned equivalent/archive/unresolved mappings preserve original activities, evidence and due stores (73.146ms)
+✔ mapping declarations reject ambiguity and incomplete review before replacing cached content (20.2371ms)
+✔ unknown legacy origins, wrong versions, absent languages and other owners remain unresolved (26.604ms)
+✔ changed source versions do not replace a pinned activity explanation or language (17.1257ms)
+✔ fraction representation position persists without evidence; invalid and failed changes preserve it (75.0797ms)
+✔ cube entry points reuse one authored unit without importing old topic results as evidence (55.5975ms)
+✔ authored cube criteria require written self review without claiming a grade (76.9226ms)
+✔ interrupted project edits recover only inside their workspace and can be discarded (3.4272ms)
+✔ the cube view resumes in its learning unit and review preserves recorded evidence (17.2377ms)
+✔ review queue uses recorded evidence timing and a new review retains completed work (20.5645ms)
+✔ an invalid or failed model-view save leaves the prior saved view intact (5.9989ms)
+✔ student Home → Learn → Ask → Practice → Build persists one connected activity and evidence (46.829ms)
+✔ connected teaching records only a versioned response contract in Learn and Ask (9.8626ms)
+✔ a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events (19.9171ms)
+✔ a failed learning-unit write after project creation recovers the same artifact on retry (16.2924ms)
+✔ wrong practice answer lowers difficulty and requests remediation without a generated local answer (13.4522ms)
+✔ class-started learning reaches only the assigned teacher aggregate (20.9818ms)
+✔ changing teaching language keeps the same session and localized authored check (8.9328ms)
+✔ changing to an unavailable language clears old teaching text without erasing the learning position (10.1585ms)
+✔ language change retrieves a newly available sourced variant without changing unit identity (6.8246ms)
+✔ a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback (9.5447ms)
+✔ official concept mapping resumes the provisional learning unit without splitting its progress (8.0203ms)
+✔ minor profiles cannot enter a professional journey through the service (0.8089ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 22
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4339.4682
+
+✖ failing tests:
+
+test at tests\curriculum-bridge.test.mjs:15:1
+✖ versioned equivalent/archive/unresolved mappings preserve original activities, evidence and due stores (73.146ms)
+  TypeError: Cannot read properties of undefined (reading 'class')
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/curriculum-bridge.test.mjs:15:1055)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

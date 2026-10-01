@@ -128,8 +128,8 @@ const USER_JOURNEY_STEPS = [
     label: "Start as yourself",
     Icon: Target,
     title: "Start as yourself.",
-    do: "Tell Visionary who you are and what you want to work on — it shapes everything around that from the first moment.",
-    micro: "Student · Teacher · Parent · Professional · Organization — one intelligence, shaped for you.",
+    do: "Tell Visionary who you are and what you want to work on. It shapes everything around that from the first moment.",
+    micro: "Student · Teacher · Parent · Professional · Organization: one intelligence, shaped for you.",
   },
   {
     id: "space",
@@ -137,7 +137,7 @@ const USER_JOURNEY_STEPS = [
     label: "Your space",
     Icon: Compass,
     title: "Step into your space.",
-    do: "Your personal space shows what matters to you — your progress, your questions, your next step. Always ready, always yours.",
+    do: "Your personal space shows what matters to you: your progress, your questions, your next step. Always ready, always yours.",
     micro: "Ask, practise, and continue from one space that remembers your place.",
   },
   {
@@ -153,18 +153,18 @@ const USER_JOURNEY_STEPS = [
 /* Step 01 — left column copy, synced with the right auth mock */
 const AUTH_STATES = {
   signup: {
-    tag: "Step 01 · Sign up",
+    tag: "Step 01: sign up",
     title: "your account.",
     blue: "Create",
     do: "Sign up free with your email or Google account. No credit card required.",
     micro: "Takes less than 30 seconds. Your journey starts here.",
   },
   signin: {
-    tag: "Step 01 · Sign in",
+    tag: "Step 01: sign in",
     title: "your account.",
     blue: "Sign in",
     do: "Already on Visionary? Sign in and pick up exactly where you left off.",
-    micro: "Your space, your progress, your context — all waiting for you.",
+    micro: "Your space, your progress, your context, all waiting for you.",
   },
 };
 
@@ -443,14 +443,14 @@ function HowJourneySection() {
 
 /* ═══ 05b · THE LEARNING LOOP — demonstrates the pedagogical invariant ═══ */
 const LOOP_STAGES = [
-  { id: "goal", label: "Goal", copy: "You set the goal — a subject, a skill, or a question you need answered.", Icon: Target },
+  { id: "goal", label: "Goal", copy: "You set the goal: a subject, a skill, or a question you need answered.", Icon: Target },
   { id: "check", label: "Check", copy: "Visionary checks what you already know, so it starts from where you actually are.", Icon: Compass },
-  { id: "teach", label: "Teach", copy: "It teaches the missing piece — in your language, at your pace, the way that clicks.", Icon: GraduationCap },
+  { id: "teach", label: "Teach", copy: "It teaches the missing piece: in your language, at your pace, the way that clicks.", Icon: GraduationCap },
   { id: "ask", label: "Ask", copy: "You ask anything, any time. Confusion is a feature of learning, not a failure.", Icon: MessageCircle },
   { id: "check-2", label: "Check again", copy: "A quick check confirms the idea landed before you move on.", Icon: CircleCheck },
-  { id: "practise", label: "Practise", copy: "Practice is drawn from what you just learned — short, focused, and adaptive.", Icon: RefreshCw },
-  { id: "build", label: "Build", copy: "You build something real with it — a project, a solution, work of your own.", Icon: Hammer },
-  { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal — and the loop begins again.", Icon: Sparkles },
+  { id: "practise", label: "Practise", copy: "Practice comes from what you just learned: short, focused, and adaptive.", Icon: RefreshCw },
+  { id: "build", label: "Build", copy: "You build something real with it: a project, a solution, work of your own.", Icon: Hammer },
+  { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal, and the loop begins again.", Icon: Sparkles },
 ];
 const LOOP_MS = 2600;
 
@@ -477,7 +477,7 @@ function HowLoopSection() {
           <span key={stage.id} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{stage.label.toLowerCase()}.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Every subject in Visionary moves through the same loop — from your goal to what you can build with it.
+          Every subject in Visionary moves through the same loop, from your goal to what you can build with it.
         </p>
 
         <div

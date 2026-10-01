@@ -200,7 +200,7 @@ function PricingPersonaSection() {
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
               {/* google.com card curve — tint sweeps into the white corner and the card's arrow floats in it with breath */}
-              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px]" style={{ backgroundColor: "#e8f0fe" }} />
+              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white"  />
               <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
             </Link>
           ))}
@@ -312,7 +312,7 @@ function PricingCTASection() {
   return (
     <section ref={ref} className="relative px-6 py-20 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>Your journey is already happening. Start free.</h2>
+        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <p className="mx-auto mt-5 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Begin with a question today. Upgrade only when Visionary has earned it.
         </p>

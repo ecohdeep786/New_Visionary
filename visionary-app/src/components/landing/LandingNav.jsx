@@ -42,7 +42,7 @@ const metaFor = (cat) => CATEGORY_META[cat.slug] || FALLBACK_META;
 /* For organizations — 4 contexts inside /organization */
 const ORG_CONTEXTS = [
   { id: "schools", Icon: GraduationCap, title: "Schools", desc: "Roll out learning across K-12." },
-  { id: "colleges", Icon: BookOpen, title: "Colleges & Universities", desc: "Bring Visionary to higher education." },
+  { id: "colleges", Icon: BookOpen, title: "Colleges and universities", desc: "Bring Visionary to higher education." },
   { id: "coaching", Icon: UsersRound, title: "Coaching", desc: "Scale personalized coaching." },
   { id: "workplace", Icon: Briefcase, title: "Workplace learning", desc: "Grow skills across your workforce." },
 ];

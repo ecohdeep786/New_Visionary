@@ -1,0 +1,13 @@
+import {workspaceIdentity} from './workspaceService.ts';
+export function classworkDraftKey(ctx){workspaceIdentity(ctx);if(!['student','professional'].includes(ctx.role))throw Error('Open your learning workspace for classwork drafts.');return `visionary_classwork_drafts_v1:${ctx.personId}`;}
+function validView(view){return view&&typeof view==='object'&&!Array.isArray(view)&&Object.keys(view).every(key=>['mode','size','rotation','point'].includes(key))&&(view.mode===undefined||['text','model'].includes(view.mode))&&(view.size===undefined||Number.isInteger(view.size)&&view.size>=1&&view.size<=8)&&(view.rotation===undefined||Number.isFinite(view.rotation)&&view.rotation>=0&&view.rotation<=360)&&(view.point===undefined||Number.isInteger(view.point)&&view.point>=0&&view.point<=16);}
+export function validClassworkDrafts(value){return Boolean(value&&typeof value==='object'&&!Array.isArray(value)&&Object.values(value).every(row=>row&&typeof row==='object'&&!Array.isArray(row)&&(row.text===undefined||typeof row.text==='string')&&(row.selfReview===undefined||row.selfReview&&typeof row.selfReview==='object'&&!Array.isArray(row.selfReview)&&Object.values(row.selfReview).every(note=>typeof note==='string'))&&(row.objectiveRevision===undefined||typeof row.objectiveRevision==='string')&&(row.objectiveView===undefined||validView(row.objectiveView))&&(row.answers===undefined||row.answers&&typeof row.answers==='object'&&!Array.isArray(row.answers)&&Object.values(row.answers).every(answer=>typeof answer==='string'))));}
+export function readClassworkDrafts(ctx){try{const value=JSON.parse(localStorage.getItem(classworkDraftKey(ctx))||'{}');if(!validClassworkDrafts(value))throw Error();return value;}catch{throw Error('Saved classwork drafts could not be read. Older records have not been replaced. Export your current response before leaving.');}}
+export function classworkDraftRevision(draft){return JSON.stringify(draft||null);}
+export function saveClassworkDraft(ctx,assignmentId,draft,expectedRevision){
+ if(!assignmentId||typeof assignmentId!=='string'||draft!==null&&!validClassworkDrafts({[assignmentId]:draft}))throw Error('This classwork draft is incomplete.');
+ const saved=readClassworkDrafts(ctx);
+ if(expectedRevision!==undefined&&classworkDraftRevision(saved[assignmentId])!==expectedRevision)throw Error('This assignment draft changed in another screen or tab. Your current edits remain here. Export them or load the latest saved draft before saving again.');
+ if(draft===null)delete saved[assignmentId];else saved[assignmentId]=draft;
+ try{localStorage.setItem(classworkDraftKey(ctx),JSON.stringify(saved));}catch{throw Error('Your classwork draft could not be saved on this device. Keep this page open and export your edits.');}
+}

@@ -117,7 +117,7 @@ function DownloadHeroSection() {
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
             {/* google.com card curve — tint sweeps into the corner and the card's action floats in it with breath */}
-            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-[#e8f0fe]" />
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <Link
               to="/register"
               className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
@@ -133,9 +133,9 @@ function DownloadHeroSection() {
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-              Native apps for desktop and mobile — faster, offline-friendly, and synced to your account.
+              Native apps for desktop and mobile: faster, offline-friendly, and synced to your account.
             </p>
-            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-[#e8f0fe]" />
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <button
               type="button"
               onClick={scrollToPlatforms}
@@ -277,7 +277,7 @@ function DownloadNotifySection() {
               </div>
               {status === "error" && (
                 <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#EA4335" }}>
-                  Please enter a valid email address — we can't notify you without one.
+                  Please enter a valid email address. We can't notify you without one.
                 </p>
               )}
             </form>
@@ -304,7 +304,7 @@ function DownloadSyncSection() {
         on every other.
       </p>
       <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync across web, desktop, and mobile — automatically, and privately.
+        Conversations, progress, and context sync across web, desktop, and mobile, automatically and privately.
       </p>
     </section>
   );

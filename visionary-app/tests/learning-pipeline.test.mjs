@@ -1,3 +1,4 @@
+import {connectedContext} from './fixtures/connectedContext.mjs';
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
@@ -35,6 +36,16 @@ async function startCubeSample() {
  return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
 }
 
+test('fraction representation position persists without evidence; invalid and failed changes preserve it',async()=>{
+ const {request,unit,concept}=await startSample();assert.equal(concept.representations[0].numberLine.divisions,8);
+ const before=mentor.getStudentState(request);
+ pipeline.updateLearningRepresentation(request,unit.id,{point:6,mode:'model'});assert.equal(pipeline.getLearningUnit(request,unit.id).representation.point,6);assert.deepEqual(mentor.getStudentState(request),before);
+ for(const point of [-1,17,1.5])assert.throws(()=>pipeline.updateLearningRepresentation(request,unit.id,{point}),/valid number line/);
+ const original=localStorage.setItem;localStorage.setItem=(key,value)=>{if(key==='visionary_learning_pipeline_v1')throw Error('Full');original(key,value);};
+ try{assert.throws(()=>pipeline.updateLearningRepresentation(request,unit.id,{point:2}),/could not be saved/);}finally{localStorage.setItem=original;}
+ assert.equal(pipeline.getLearningUnit(request,unit.id).representation.point,6);assert.deepEqual(mentor.getStudentState(request),before);
+});
+
 test('cube entry points reuse one authored unit without importing old topic results as evidence', async () => {
  const request = ctx();
  const oldTopics = '[{"id":"old-cube","name":"Understanding cube volume","subject":"Geometry"}]';
@@ -59,7 +70,7 @@ test('authored cube criteria require written self review without claiming a grad
  await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex);
  const artifact = await pipeline.createLearningProject(request, unit.id);
  assert.deepEqual(artifact.rubric.criteria.map(item => item.id), ['capacity', 'comparison', 'safety']);
- assert.equal(artifact.rubric.sourceVersion, '1');
+ assert.equal(artifact.rubric.sourceVersion, '2');
  const candidate = { ...artifact, body: 'I compared two cube boxes and described my material.', milestones: [true, true, true], status: 'completed' };
  assert.throws(() => pipeline.validateProjectCompletion(candidate), /every project criterion/);
  assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 0);
@@ -276,7 +287,7 @@ test('wrong practice answer lowers difficulty and requests remediation without a
 
 test('class-started learning reaches only the assigned teacher aggregate', async () => {
  seedConnectedFixtures(localStorage, new Date('2026-09-23T12:00:00Z'));
- const learner=ctx('minor-cbse');
+ const learner=connectedContext(ctx('minor-cbse'));
  const selection={board:'CBSE',classLevel:'6',subject:'Geometry'};
  configureContentRepository({async getSyllabus(query){
   if(query.subject!=='Geometry')return null;
@@ -293,8 +304,8 @@ test('class-started learning reaches only the assigned teacher aggregate', async
  await pipeline.requestUnitTeaching(learner,unit.id,'explanation');
  const check=await pipeline.beginComprehension(learner,unit.id);
  await pipeline.answerLearningQuestion(learner,unit.id,check.question.answerIndex);
- assert.equal(mentor.getClassAggregate(ctx('teacher','teacher'),'demo-class-cube').concepts[0].correct,1);
- assert.equal(mentor.getClassAggregate(ctx('school-teacher','teacher'),'demo-class-fractions').concepts.some(item=>item.conceptId==='db:geometry:cube'),false);
+ assert.equal(mentor.getClassAggregate(connectedContext(ctx('teacher','teacher')),'demo-class-cube').concepts[0].correct,1);
+ assert.equal(mentor.getClassAggregate(connectedContext(ctx('school-teacher','teacher')),'demo-class-fractions').concepts.some(item=>item.conceptId==='db:geometry:cube'),false);
 });
 
 test('changing teaching language keeps the same session and localized authored check', async () => {

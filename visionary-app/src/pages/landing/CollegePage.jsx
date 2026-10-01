@@ -10,6 +10,7 @@ import proProblem2 from "@/assets/professional-problem-2-1600w.webp";
 import proProblem3 from "@/assets/professional-problem-3-1600w.webp";
 import proProblem4 from "@/assets/professional-problem-4-1600w.webp";
 import PersonaHero from "@/components/landing/NewPersona";
+import useSheetStack from "@/components/landing/system/useSheetStack";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
@@ -185,7 +186,13 @@ const SLIDES = [
   { word: "focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
   { word: "results", quote: "My team ships. I still don't know if we're building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
 ];
+
 const CYCLE_MS = 4000;
+const JOURNEY_WORD_MS = 3000;
+const INTELLIGENCE_WORD_MS = 3000;
+const KEEPS_WORD_MS = 2500;
+const QUESTION_MS = 3200;
+const CATEGORY_MS = 4200;
 
 const JOURNEY_WORDS = [
   "moves with your career.",
@@ -194,11 +201,10 @@ const JOURNEY_WORDS = [
   "builds on your skills.",
   "opens what comes next.",
 ];
-const JOURNEY_WORD_MS = 3000;
 
 const JOURNEY_STAGES = [
-  { title: "Early Career", copy: "Turn every first project into real skill — not just another line on your resume.", image: secondaryStudent, alt: "Early career professional at work" },
-  { title: "Mid-Level", copy: "Harder questions, bigger decisions — reasoned through with you.", image: higherStudent, alt: "Mid-level professional solving problems" },
+  { title: "Early career", copy: "Turn every first project into real skill, not just another line on your resume.", image: secondaryStudent, alt: "Early career professional at work" },
+  { title: "Mid-Level", copy: "Harder questions, bigger decisions, reasoned through with you.", image: higherStudent, alt: "Mid-level professional solving problems" },
   { title: "Senior", copy: "Your judgement, sharpened by everything you've done.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
   { title: "Leadership", copy: "See what your team understands and where they're stuck.", image: competitiveStudent, alt: "Leader reviewing team progress" },
   { title: "Specialist", copy: "Go deep. Every paper and project builds on the last.", image: higherStudent, alt: "Specialist deep in their domain" },
@@ -206,17 +212,15 @@ const JOURNEY_STAGES = [
 ];
 
 const INTELLIGENCE_WORDS = ["Every project connected.", "Every skill connected.", "Every decision connected.", "Every idea connected."];
-const INTELLIGENCE_WORD_MS = 3000;
 
 const INTELLIGENCE_STEPS = [
   { title: "Understand the work before you do it.", copy: "Visionary remembers what you've done and helps you reason through the problem." },
   { title: "Turn every project into a lesson.", copy: "Every decision and every failure becomes part of what you understand next." },
   { title: "Carry your expertise across teams and tools.", copy: "Your knowledge survives every project, company, and stack change." },
-  { title: "Know what your work is actually building toward.", copy: "See whether your skills are growing — and what comes next." },
+  { title: "Know what your work is actually building toward.", copy: "See whether your skills are growing, and what comes next." },
 ];
 
 const KEEPS_WORDS = ["applying", "building", "solving"];
-const KEEPS_WORD_MS = 2500;
 
 const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
@@ -232,25 +236,23 @@ const LANGUAGE_QUESTIONS = [
   { hi: "Mera team is problem ko kaise solve kare?", en: "How should my team solve this problem?", bn: "আমার দল এই সমস্যা কীভাবে সমাধান করবে?", ta: "என் குழு இந்த பிரச்சினையை எப்படி தீர்க்க வேண்டும்?", kn: "ನನ್ನ ತಂಡ ಈ ಸಮಸ್ಯೆಯನ್ನು ಹೇಗೆ ಪರಿಹರಿಸಬೇಕು?", pa: "ਮੇਰੀ ਟੀਮ ਇਸ ਸਮੱਸਿਆ ਨੂੰ ਕਿਵੇਂ ਹੱਲ ਕਰੇ?" },
   { hi: "Next quarter ke liye main kaunsi skill seekhun?", en: "Which skill should I learn for next quarter?", bn: "পরবর্তী কোয়ার্টারের জন্য আমি কোন দক্ষতা শিখব?", ta: "அடுத்த காலாண்டிற்கு நான் எந்த திறனை கற்க வேண்டும்?", kn: "ಮುಂದಿನ ತ್ರೈಮಾಸಿಕಕ್ಕೆ ನಾನು ಯಾವ ಕೌಶಲ್ಯ ಕಲಿಯಬೇಕು?", pa: "ਅਗਲੀ ਤਿਮਾਹੀ ਲਈ ਮੈਂ ਕਿਹੜਾ ਹੁਨਰ ਸਿੱਖਾਂ?" },
 ];
-const QUESTION_MS = 3200;
 
 const CONTINUITY_STAGES = [
-  { name: "New Project", previous: "Last project", now: "Current problem", next: "Next decision" },
+  { name: "New project", previous: "Last project", now: "Current problem", next: "Next decision" },
   { name: "Mid-Career", previous: "Early lessons", now: "Current work", next: "Next role" },
   { name: "Leadership", previous: "Your craft", now: "Your team", next: "Your vision" },
   { name: "Specialist", previous: "Foundations", now: "Your domain", next: "Your contribution" },
   { name: "Entrepreneur", previous: "Your ideas", now: "Your product", next: "Your company" },
-  { name: "Career Change", previous: "Your experience", now: "Your transition", next: "Your new path" },
+  { name: "Career change", previous: "Your experience", now: "Your transition", next: "Your new path" },
 ];
 
 const ACHIEVEMENT_TABS = [
   { black: "Understand", blue: "the problems you're working on.", copy: "Every problem, seen through what you've solved before." },
   { black: "Solve", blue: "with intelligence behind you.", copy: "Visionary finds the exact concept or decision that moves you forward." },
-  { black: "Build", blue: "what you actually came here to build.", copy: "Turn learning into shipped work — skills that grow over your career." },
+  { black: "Build", blue: "what you actually came here to build.", copy: "Turn learning into shipped work, skills that grow over your career." },
 ];
 
-const JOURNEY_CATEGORIES = ["Early Career", "Mid-Level", "Senior", "Leadership", "Specialist", "Entrepreneur", "Career Change"];
-const CATEGORY_MS = 4200;
+const JOURNEY_CATEGORIES = ["Early career", "Mid-Level", "Senior", "Leadership", "Specialist", "Entrepreneur", "Career change"];
 
 const EXPLORE_CATEGORIES = [
   { slug: "student", chip: "Student", copy: "Understand lessons, practise ideas, and build with confidence.", alt: "Student learning with a laptop" },
@@ -409,6 +411,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
   );
 });
 
+
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
     <div className="flex items-center gap-2" role="group" aria-label="Professional work challenges">
@@ -426,6 +429,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect 
     </div>
   );
 });
+
 
 function ProStruggleSection() {
   const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
@@ -463,7 +467,7 @@ function ProStruggleSection() {
 const ProPromiseSection = React.memo(function ProPromiseSection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="03-promise" className="sticky bottom-0 isolate overflow-hidden px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <h2
         className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -479,17 +483,17 @@ const ProPromiseSection = React.memo(function ProPromiseSection() {
 
 /* Icons per journey stage — reuses icons already imported in this file */
 const JOURNEY_STAGE_ICONS = {
-  "Early Career": Sparkles,
+  "Early career": Sparkles,
   "Mid-Level": BookOpen,
   "Senior": Brain,
   "Leadership": UsersRound,
   "Specialist": Target,
   "Entrepreneur": Zap,
-  "Career Change": RefreshCw,
+  "Career change": RefreshCw,
 };
 
 const STAGE_META = {
-  "Early Career": { Icon: GraduationCap },
+  "Early career": { Icon: GraduationCap },
   "Mid-Level": { Icon: BookOpen },
   "Senior": { Icon: Brain },
   "Leadership": { Icon: UsersRound },
@@ -498,12 +502,12 @@ const STAGE_META = {
 };
 
 const JOURNEY_MODALS = {
-  "Early Career": {
+  "Early career": {
     top: "Turn first roles", accent: "into real skill.",
     intro: "Your first years set the pattern for everything after. Visionary turns every first project into understanding that grows.",
     primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
-      { Icon: Eye, t: "Learn on the job.", c: "Understand the code, the client, and the decision — not just the ticket.", l: "How it works", to: "/how-it-works" },
+      { Icon: Eye, t: "Learn on the job.", c: "Understand the code, the client, and the decision, not just the ticket.", l: "How it works", to: "/how-it-works" },
       { Icon: RefreshCw, t: "Practise deliberately.", c: "Short, focused practice on the skills your work actually demands.", l: "Start practising free", to: "/register" },
       { Icon: Globe2, t: "In your language.", c: "Ask, reason, and learn in the language you think in.", l: "Language support", to: "/how-it-works" },
       { Icon: UsersRound, t: "Learn from your team.", c: "Bring what you learn back into the work you share with others.", l: "Talk to us", to: "/contact" },
@@ -533,7 +537,7 @@ const JOURNEY_MODALS = {
   },
   "Leadership": {
     top: "Lead with", accent: "clear sight.",
-    intro: "Lead with clarity — see what your team understands, where they're stuck, and what they're ready for.",
+    intro: "Lead with clarity: see what your team understands, where they're stuck, and what they're ready for.",
     primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: UsersRound, t: "See your team.", c: "Understand where each person is and what they need next.", l: "For organizations", to: "/organization" },
@@ -555,11 +559,11 @@ const JOURNEY_MODALS = {
   },
   "Entrepreneur": {
     top: "Ship ideas.", accent: "Keep the lessons.",
-    intro: "Turn ideas into shipped work — with intelligence that remembers every decision and every lesson.",
+    intro: "Turn ideas into shipped work, with intelligence that remembers every decision and every lesson.",
     primary: { label: "See a work example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your problem, not a curriculum.", l: "See how it works", to: "/how-it-works" },
-      { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together — decisions you can defend later.", l: "Start building free", to: "/register" },
+      { Icon: Zap, t: "Move fast, understand deeply.", c: "Speed and depth together, decisions you can defend later.", l: "Start building free", to: "/register" },
       { Icon: BookOpen, t: "Every pivot teaches.", c: "What you learned in the last attempt carries into the next.", l: "Keep the context", to: "/how-it-works" },
       { Icon: UsersRound, t: "Find your people.", c: "Communities and partners help you build in real contexts.", l: "Find a partner", to: "/partners" },
     ],
@@ -651,7 +655,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
   }, [onClose]);
 
   const content = JOURNEY_MODALS[stage.title];
-  const meta = STAGE_META[stage.title] || STAGE_META["Early Career"];
+  const meta = STAGE_META[stage.title] || STAGE_META["Early career"];
   if (!content) return null;
   const secondary = content.primary.to === "/how-it-works"
     ? { label: "Start free", to: "/register" }
@@ -797,7 +801,7 @@ function ProJourneySection() {
   }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
+    <section ref={ref} data-section="04-journey" className="sticky bottom-0 isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         {/* header — eyebrow / heading / one-line sub */}
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
@@ -895,7 +899,7 @@ function ProIntelligenceSection() {
   const current = INTELLIGENCE_STEPS[active];
 
   return (
-    <section ref={headRef} data-section="05-intelligence" className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={headRef} data-section="05-intelligence" className="sticky bottom-0 isolate [overflow-x:clip] bg-white rounded-t-[32px]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           The intelligence behind your work
@@ -937,7 +941,7 @@ const ProClosingSection = React.memo(function ProClosingSection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
-    <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="06-closing" className="sticky bottom-0 isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <p
         className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -988,7 +992,7 @@ function ProLanguageSection() {
   const activeLabel = LANGUAGE_CHIPS.find((c) => c.code === lang)?.label || lang;
 
   return (
-    <section ref={ref} data-section="07-language" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="07-language" className="sticky bottom-0 isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
@@ -1042,7 +1046,7 @@ function ProLanguageSection() {
           <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
             <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
             <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
-              Think your way — voice or text, in the language you're comfortable with.
+              Think your way: voice or text, in the language you're comfortable with.
             </p>
           </div>
         </div>
@@ -1146,7 +1150,7 @@ function ProContinuitySection() {
   const stage = CONTINUITY_STAGES[index];
 
   return (
-    <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="08-continuity" className="sticky bottom-0 isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Keep the context
@@ -1253,7 +1257,7 @@ function ProAchievementSection() {
   }, [open]);
 
   return (
-    <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="09-achievement" className="sticky bottom-0 isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve.</h2>
@@ -1315,7 +1319,7 @@ function ProJourneyFlowSection() {
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
-    <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="10-journey-flow" className="sticky bottom-0 isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1409,7 +1413,7 @@ function ProTrustSection() {
   const stepCards = useCallback((d) => goTo(index + d), [goTo, index]);
 
   return (
-    <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="11-trust" className="sticky bottom-0 isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1417,7 +1421,7 @@ function ProTrustSection() {
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your projects, ideas, and career decisions are personal. Visionary is built to keep it that way.
+          Your projects, ideas, and career decisions are personal. Visionary keeps it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1454,7 +1458,7 @@ function ProTrustSection() {
 const ProCTASection = React.memo(function ProCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="12-cta" className="sticky bottom-0 isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
@@ -1512,7 +1516,7 @@ function ProExploreSection() {
   const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
+    <section ref={ref} data-section="13-explore" className="sticky bottom-0 isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
           Explore Visionary
@@ -1545,6 +1549,7 @@ function ProExploreSection() {
 /* ═══════════════════════ PAGE ═══════════════════════ */
 
 export default function ProfessionalPage() {
+  useSheetStack();
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />

@@ -6,6 +6,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main-2400w.webp";
 import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
+import useSheetStack from "@/components/landing/system/useSheetStack";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
@@ -180,7 +181,13 @@ const SLIDES = [
   { word: "practice", quote: "I knew the formula. I didn't know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
   { word: "exams", quote: "I just needed someone to explain it differently.", image: problemexam, alt: "Student preparing before an exam" },
 ];
+
 const CYCLE_MS = 4000;
+const JOURNEY_WORD_MS = 3000;
+const INTELLIGENCE_WORD_MS = 3000;
+const KEEPS_WORD_MS = 2500;
+const QUESTION_MS = 3200;
+const CATEGORY_MS = 4200;
 
 const JOURNEY_WORDS = [
   "moves with you.",
@@ -189,7 +196,6 @@ const JOURNEY_WORDS = [
   "grows with your understanding.",
   "opens what comes next.",
 ];
-const JOURNEY_WORD_MS = 3000;
 
 const JOURNEY_STAGES1 = [
   { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
@@ -198,11 +204,10 @@ const JOURNEY_STAGES1 = [
   { title: "Competitive exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
   { title: "Vocational and skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
   { title: "Higher education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
-  { title: "Learning on your own", copy: "Start with what you want to understand, build, or become better at — and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
+  { title: "Learning on your own", copy: "Start with what you want to understand, build, or become better at, and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
 ];
 
 const INTELLIGENCE_WORDS = ["Every step connected.", "Every question connected.", "Every idea connected.", "Every attempt connected.", "Every discovery connected."];
-const INTELLIGENCE_WORD_MS = 3000;
 
 const INTELLIGENCE_STEPS = [
   { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
@@ -212,7 +217,6 @@ const INTELLIGENCE_STEPS = [
 ];
 
 const KEEPS_WORDS = ["teaching", "listening", "adapting"];
-const KEEPS_WORD_MS = 2500;
 
 const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
@@ -230,7 +234,6 @@ const LANGUAGE_QUESTIONS = [
   { hi: "DCF valuation ke steps kya hain?", en: "What are the steps of DCF valuation?", bn: "DCF valuation-এর ধাপগুলো কী?", ta: "DCF valuation-இன் படிகள் எவை?", kn: "DCF valuation ನ ಹಂತಗಳು ಯಾವುವು?", pa: "DCF valuation ਦੇ ਕਦਮ ਕੀ ਹਨ?" },
   { hi: "Integration by parts kab use karte hain?", en: "When do you use integration by parts?", bn: "Integration by parts কখন ব্যবহার করা হয়?", ta: "Integration by parts எப்போது பயன்படுத்துவது?", kn: "Integration by parts ಅನ್ನು ಯಾವಾಗ ಬಳಸುವುದು?", pa: "Integration by parts ਕਦੋਂ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ?" },
 ];
-const QUESTION_MS = 3200;
 
 const CONTINUITY_STAGES = [
   { name: "Primary", previous: "Fractions", now: "Decimals", next: "Percentages" },
@@ -238,7 +241,7 @@ const CONTINUITY_STAGES = [
   { name: "Competitive exams", previous: "Concept", now: "Difficult problem", next: "New problem" },
   { name: "Vocational and skills", previous: "Basic skill", now: "Practice", next: "Real project" },
   { name: "Higher education", previous: "Research", now: "Analysis", next: "Project / discovery" },
-  { name: "Independent Learning", previous: "Goal", now: "Progress", next: "New direction" },
+  { name: "Independent learning", previous: "Goal", now: "Progress", next: "New direction" },
 ];
 
 const ACHIEVEMENT_TABS = [
@@ -247,14 +250,13 @@ const ACHIEVEMENT_TABS = [
   { black: "Build something from", blue: "what you know.", copy: "Turn what you know into real projects, real skills, real work." },
 ];
 
-const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Independent Learning"];
-const CATEGORY_MS = 4200;
+const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Independent learning"];
 
 // const TRUST_WORDS = ["learning", "intelligence.", "control."];
 // const TRUST_WORD_MS = 3000;
 
 // const TRUST_CARDS = [
-//   { title: "Private by Design", copy: "Your personal information is treated with care." },
+//   { title: "Private by Design", copy: "We treat your personal information with care." },
 //   { title: "Safe to grow with", copy: "Built from the first question to what's next." },
 //   { title: "Built responsibly.", copy: "Intelligence should help people without compromising matters to them." },
 // ];
@@ -416,6 +418,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
   );
 });
 
+
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
     <div className="flex items-center gap-2" role="group" aria-label="Student learning challenges">
@@ -433,6 +436,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect 
     </div>
   );
 });
+
 
 function StudentStruggleSection() {
   const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
@@ -470,7 +474,7 @@ function StudentStruggleSection() {
 const StudentPromiseSection = React.memo(function StudentPromiseSection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="03-promise" className="relative isolate overflow-hidden px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <h2
         className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -488,29 +492,29 @@ const StudentPromiseSection = React.memo(function StudentPromiseSection() {
 const JOURNEY_STAGE_ICONS = {
   "Primary": Sparkles,
   "Secondary": BookOpen,
-  "Secondary & Higher secondary": BookOpen,
+  "Secondary and higher secondary": BookOpen,
   "Higher secondary": Layers3,
   "Competitive exams": Target,
   "Vocational and skills": RefreshCw,
   "Higher education": Brain,
   "Learning on your own": Clock,
-  "Independent Learning": Clock,
+  "Independent learning": Clock,
 };
 
 const JOURNEY_STAGES = [
   { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
-  { title: "Secondary & Higher secondary", copy: "When lessons get difficult, understanding keeps up — every chapter, every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Secondary and higher secondary", copy: "When lessons get difficult, understanding keeps up through every chapter and every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
   { title: "Competitive exams", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
   { title: "Vocational and skills", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
   { title: "Higher education", copy: "Turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
   { title: "Learning on your own", copy: "Start with what you want to understand. The path takes shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
 ];
 
-const JOURNEY_CATEGORIES = ["Primary", "Secondary & Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
+const JOURNEY_CATEGORIES = ["Primary", "Secondary and higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
 
 const STAGE_META = {
   "Primary": { Icon: GraduationCap },
-  "Secondary & Higher secondary": { Icon: BookOpen },
+  "Secondary and higher secondary": { Icon: BookOpen },
   "Competitive exams": { Icon: Target },
   "Vocational and skills": { Icon: Layers3 },
   "Higher education": { Icon: Brain },
@@ -529,7 +533,7 @@ const JOURNEY_MODALS = {
       { Icon: UsersRound, t: "Parents stay close.", c: "Progress shared in ways that help at home, not only at report time.", l: "For parents", to: "/parent" },
     ],
   },
-  "Secondary & Higher secondary": {
+  "Secondary and higher secondary": {
     top: "One place for", accent: "every subject.",
     intro: "From class 6 to class 12, lessons get deeper and exams get closer. Visionary keeps understanding connected across every chapter, board, and subject.",
     primary: { label: "See an example", to: "/how-it-works" },
@@ -553,10 +557,10 @@ const JOURNEY_MODALS = {
   },
   "Vocational and skills": {
     top: "Learn by doing.", accent: "Skills that work.",
-    intro: "Vocational learning is meant to be used. Visionary connects practice, projects, and real work into one continuing journey.",
+    intro: "Vocational learning works best when you use it. Visionary connects practice, projects, and real work into one continuing journey.",
     primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
-      { Icon: RefreshCw, t: "Practise the real thing.", c: "Skills build through doing — guidance never gives the answer away.", l: "See how it works", to: "/how-it-works" },
+      { Icon: RefreshCw, t: "Practise the real thing.", c: "Skills build through doing. Guidance never gives the answer away.", l: "See how it works", to: "/how-it-works" },
       { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Start building free", to: "/register" },
       { Icon: BookOpen, t: "Skills that carry forward.", c: "What you practise now connects to the next skill and job.", l: "Keep your place", to: "/how-it-works" },
       { Icon: UsersRound, t: "Learn with others.", c: "Communities and partners help you practise in real contexts.", l: "Find a partner", to: "/partners" },
@@ -575,7 +579,7 @@ const JOURNEY_MODALS = {
   },
   "Learning on your own": {
     top: "Your pace.", accent: "Your path.",
-    intro: "No syllabus required. Start with what you want to understand, build, or become better at — and let the learning take shape from there.",
+    intro: "No syllabus required. Start with what you want to understand, build, or become better at, and let the learning take shape from there.",
     primary: { label: "See an example", to: "/how-it-works" },
     blocks: [
       { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your question, not a curriculum.", l: "See how it works", to: "/how-it-works" },
@@ -817,7 +821,7 @@ function StudentJourneySection() {
   }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
+    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         {/* header — eyebrow / heading / one-line sub */}
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
@@ -955,7 +959,7 @@ const StudentClosingSection = React.memo(function StudentClosingSection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
-    <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="06-closing" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <p
         className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
         style={{ color: COLORS.ink }}
@@ -1006,7 +1010,7 @@ function StudentLanguageSection() {
   const activeLabel = LANGUAGE_CHIPS.find((c) => c.code === lang)?.label || lang;
 
   return (
-    <section ref={ref} data-section="07-language" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="07-language" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
@@ -1060,7 +1064,7 @@ function StudentLanguageSection() {
           <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
             <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
             <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
-              Think your way — voice or text, in the language you're comfortable with.
+              Think your way: voice or text, in the language you're comfortable with.
             </p>
           </div>
         </div>
@@ -1164,7 +1168,7 @@ function StudentContinuitySection() {
   const stage = CONTINUITY_STAGES[index];
 
   return (
-    <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Keep your place
@@ -1271,7 +1275,7 @@ function StudentAchievementSection() {
   }, [open]);
 
   return (
-    <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve.</h2>
@@ -1334,7 +1338,7 @@ function StudentJourneyFlowSection() {
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
-    <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1394,7 +1398,7 @@ const TRUST_WORDS = ["control.", "learning.", "intelligence."];
 const TRUST_WORD_MS = 6000;
 
 const TRUST_CARDS = [
-  { title: "Private by design.", copy: "Your personal information is treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
+  { title: "Private by design.", copy: "We treat your personal information with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
   { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
   { title: "Built responsibly.", copy: "Intelligence should help people, never work against them.", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
@@ -1428,7 +1432,7 @@ function StudentTrustSection() {
   const stepCards = useCallback((d) => goTo(index + d), [goTo, index]);
 
   return (
-    <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
+    <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1436,7 +1440,7 @@ function StudentTrustSection() {
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your questions, conversations, ideas, and progress are personal. Visionary is built to keep it that way.
+          Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
 
         {/* Breath 2 — narrative column + preview cards */}
@@ -1473,7 +1477,7 @@ function StudentTrustSection() {
 const StudentCTASection = React.memo(function StudentCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
@@ -1531,7 +1535,7 @@ function StudentExploreSection() {
   const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
+    <section ref={ref} data-section="13-explore" className="relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
           Explore Visionary
@@ -1564,6 +1568,7 @@ function StudentExploreSection() {
 /* ═══════════════════════ PAGE ═══════════════════════ */
 
 export default function StudentPage() {
+  useSheetStack();
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />

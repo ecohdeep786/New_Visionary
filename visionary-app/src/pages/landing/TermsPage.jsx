@@ -248,7 +248,7 @@ export default function TermsPage() {
                     Clear rules, written to be understood.
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-                    What you can expect from Visionary, and what we expect from the people who use it — without the obscure language.
+                    What you can expect from Visionary, and what we expect from the people who use it, without the obscure language.
                   </p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -325,12 +325,12 @@ export default function TermsPage() {
                   <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card bg-white p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
                         <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
                         {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
-                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#e8f0fe]" />
+                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
                         <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                       </a>
                     ))}
@@ -395,7 +395,7 @@ export default function TermsPage() {
                   <div className="mt-5"><Paragraph>You must have the necessary rights and permissions to provide that content.</Paragraph></div>
                   <div className="mt-5"><Paragraph>When operating Visionary requires us to store, process, display, or transmit your content, you give Visionary the permissions reasonably necessary to provide those services.</Paragraph></div>
                   <div className="mt-5"><Paragraph>Your Privacy Policy explains separately how personal information and other data are handled.</Paragraph></div>
-                  <LearnMoreRow to="/privacy" label="Read the Privacy Policy" />
+                  <LearnMoreRow to="/privacy" label="Read the privacy policy" />
                 </section>
 
                 {/* 06 */}
@@ -418,7 +418,7 @@ export default function TermsPage() {
                   <Paragraph>Some Visionary features or services may require payment.</Paragraph>
                   <div className="mt-5"><Paragraph>Prices, billing periods, available features, renewal terms, refunds, and cancellation rules are described on the Pricing page or at the time of purchase.</Paragraph></div>
                   <div className="mt-5"><Paragraph>A subscription does not transfer ownership of Visionary or its underlying technology to you.</Paragraph></div>
-                  <Note>The published Terms must be kept consistent with the actual pricing, billing, refund, tax, and cancellation implementation.</Note>
+                  <Note>The published Terms must stay consistent with the actual pricing, billing, refund, tax, and cancellation implementation.</Note>
                   <LearnMoreRow to="/pricing" label="See the Pricing page" />
                 </section>
 
@@ -437,7 +437,7 @@ export default function TermsPage() {
                   <Paragraph>We may restrict, suspend, or terminate access when necessary to protect users, Visionary, or the integrity of the service.</Paragraph>
                   <BulletList items={[
                     "These Terms or applicable policies are seriously or repeatedly violated.",
-                    "The service is being used in a way that creates a safety, security, or legal risk.",
+                    "Use of the service creates a safety, security, or legal risk.",
                     "We are required to do so by law or legal process.",
                     "Your conduct causes harm or significant risk to another person, organization, or Visionary.",
                   ]} />
@@ -447,7 +447,7 @@ export default function TermsPage() {
                 {/* 10 */}
                 <section id="responsibility" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="10" title="Disclaimers and responsibility" />
-                  <Paragraph>Visionary is provided subject to applicable law.</Paragraph>
+                  <Paragraph>Visionary operates subject to applicable law.</Paragraph>
                   <div className="mt-5"><Paragraph>We do not promise that the service will always be uninterrupted, error-free, completely accurate, or available in every circumstance.</Paragraph></div>
                   <div className="mt-5"><Paragraph>You remain responsible for reviewing important information before relying on it, particularly where an incorrect result could materially affect a person or organization.</Paragraph></div>
                   <div className="mt-5"><Paragraph>Any limitation of liability, warranty disclaimer, indemnification provision, or related legal language will apply only to the extent permitted by applicable law.</Paragraph></div>
@@ -489,7 +489,7 @@ export default function TermsPage() {
             <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
                 { term: "Visionary", def: "The learning workspace, its features, and the connected services described on this site." },
-                { term: "Workspace", def: "The learning environment you use in a browser — it holds the questions, practice, and projects from your sessions." },
+                { term: "Workspace", def: "The learning environment you use in a browser. It holds the questions, practice, and projects from your sessions." },
                 { term: "Content", def: "What you submit, upload, create, or share through Visionary, for which you stay responsible." },
                 { term: "Plans", def: "Paid feature sets with the prices, billing periods, renewal terms, refunds, and cancellation rules shown at purchase." },
                 { term: "Organization administrator", def: "A person authorized to accept these Terms and manage accounts on behalf of a school, company, or institution." },
@@ -510,7 +510,7 @@ export default function TermsPage() {
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { to: "/privacy", label: "Privacy Policy", desc: "Your learning is personal.", Icon: Lock },
+                { to: "/privacy", label: "Privacy policy", desc: "Your learning is personal.", Icon: Lock },
                 { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
@@ -522,7 +522,7 @@ export default function TermsPage() {
                   </div>
                   <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-[#e8f0fe]" />
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-white" />
                   <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                 </Link>
               ))}

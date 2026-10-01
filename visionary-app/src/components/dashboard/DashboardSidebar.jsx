@@ -1,13 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
 import { navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
+import {useWorkspace} from '@/hooks/useWorkspace';
+import {organizationAccess} from '@/services/workspaceService';
+import {organizationPathAllowed} from '@/services/organizationPolicy';
 
 // Google-style navigation: pill states, a neutral hover, and blue reserved for the
 // selected item. In the collapsed rail the active pill wraps only the icon, Gmail-style;
 // expanded rows carry the pill behind the whole label.
 export default function DashboardSidebar({ expanded, onNavigate }) {
   const { user } = useAuth();
-  const items = navigationFor(user?.identity);
+  const {ctx}=useWorkspace();
+  const policy=ctx?.role==='organization'?organizationAccess(ctx):null;
+  const allowed=item=>!policy||organizationPathAllowed(policy,item.to);
+  const items = navigationFor(user?.identity).filter(allowed);
   const renderItem = (item) => {
     const Icon = item.icon;
     return <NavLink key={item.to} to={item.to} onClick={onNavigate}
@@ -23,6 +29,6 @@ export default function DashboardSidebar({ expanded, onNavigate }) {
     </NavLink>;
   };
   return <aside id="dashboard-navigation" className={`${expanded ? "w-64 px-3" : "w-[88px] px-2"} flex h-full shrink-0 flex-col bg-white py-3`}>
-    <nav aria-label="Primary navigation" className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto py-3">{items.map(renderItem)}{expanded&&<><span className="workspace-nav-divider" aria-hidden="true" /><p className="workspace-nav-section-label">More in your workspace</p>{secondaryNavigation(user?.identity).map(renderItem)}</>}</nav>
+    <nav aria-label="Primary navigation" className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto py-3">{items.map(renderItem)}{expanded&&<><span className="workspace-nav-divider" aria-hidden="true" /><p className="workspace-nav-section-label">More in your workspace</p>{secondaryNavigation(user?.identity).filter(allowed).map(renderItem)}</>}</nav>
   </aside>;
 }

@@ -506,26 +506,15 @@ h3[id] {
     color: #555;
   }
 }
-/* ═══ g-card — the google.com card surface: a borderless white card that
-   floats on a soft diffuse shadow; hover raises the elevation. Color and
-   outline never define the card — elevation does. Radius and padding come
-   from the element's own utilities. Hairline dividers inside lists stay as
-   borders; chips, pills, and inputs keep their deliberate outlines. ═══ */
-.g-card {
-  background-color: #ffffff;
-  box-shadow:
-    0 1px 2px rgba(60, 64, 67, 0.08),
-    0 2px 8px rgba(60, 64, 67, 0.10);
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.g-card:hover {
-  box-shadow:
-    0 2px 4px rgba(60, 64, 67, 0.10),
-    0 8px 24px rgba(60, 64, 67, 0.16);
-}
-@media (prefers-reduced-motion: reduce) {
-  .g-card,
-  .g-card:hover {
-    transition: none;
-  }
+/* ═══ g-card — the Google card surface, measured from about.google and the
+   careers marketing pages (2026-09-30): a FLAT tinted fill, no shadow, no
+   border, no hover elevation. The surface itself defines the card; radius
+   and padding come from the element's own utilities. Cards that must read
+   as white (on grey bands) override with bg-white explicitly. The notched
+   corner + nested link/button anatomy lives in the page markup, not here.
+   Hairline dividers inside lists stay as borders; chips, pills, and inputs
+   keep their deliberate outlines. ═══ */
+/* :where() = zero specificity, so bg-white / bg-[…] utilities always win */
+:where(.g-card) {
+  background-color: #f8f9fa;
 }

@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { classworkReviewRevision } from "@/lib/classworkRubric";
+import { downloadText } from "@/lib/downloadText";
+import CriterionFeedback from "@/components/dashboard/CriterionFeedback";
 import { Check } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useWorkspace } from "@/hooks/useWorkspace";
@@ -16,6 +19,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState(null);
+  const [reload, setReload] = useState(0);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -27,22 +31,23 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
       try {
         const list = await base44.entities.Submission.filter({ assignment_id: assignment.id });
         const withDrafts = (list || []).map(item => {
-          if (item.status !== 'submitted') return item;
+          const reviewRevision=classworkReviewRevision(item);
+          if (item.status !== 'submitted') return {...item,_reviewRevision:reviewRevision};
           const draft = getReviewDraft(ctx, assignment.id, item.id, item.attempt || 1);
-          return draft ? { ...item, grade: draft.grade, feedback: draft.feedback } : item;
+          return draft ? { ...item,_reviewRevision:draft.reviewRevision||reviewRevision, grade: draft.grade, feedback: draft.feedback,criterion_feedback:draft.criterionFeedback||item.criterion_feedback||{} } : {...item,_reviewRevision:reviewRevision};
         });
         if (active) setSubmissions(withDrafts);
       } catch (failure) { if (active) setError(failure.message || "Submissions could not be loaded. Close this dialog and try again."); }
       finally { if (active) setLoading(false); }
     })();
     return () => { active = false; };
-  }, [assignment.id, ctx.workspaceId]);
+  }, [assignment.id, ctx.workspaceId,reload]);
 
   const updateField = (submission, field, value) => {
     const next = { ...submission, [field]: value };
     setSubmissions((p) => p.map((s) => (s.id === submission.id ? next : s)));
     try {
-      saveReviewDraft(ctx, assignment.id, submission.id, submission.attempt || 1, String(next.grade ?? ''), next.feedback || '');
+      saveReviewDraft(ctx, assignment.id, submission.id, submission.attempt || 1, String(next.grade ?? ''), next.feedback || '',next.criterion_feedback||{},next._reviewRevision);
       setError('');
     } catch (failure) { setError(failure.message); }
   };
@@ -56,8 +61,8 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
     setError("");
     setBusyId(s.id);
     try {
-      const saved = await reviewClasswork(ctx, { submissionId: s.id, attempt: s.attempt || 1, status, grade, feedback: s.feedback || '' });
-      setSubmissions((p) => p.map((x) => (x.id === s.id ? saved : x)));
+      const saved = await reviewClasswork(ctx, { submissionId: s.id, attempt: s.attempt || 1, status, grade, feedback: s.feedback || '',criterionFeedback:s.criterion_feedback||{},expectedReviewRevision:s._reviewRevision });
+      setSubmissions((p) => p.map((x) => (x.id === s.id ? {...saved,_reviewRevision:classworkReviewRevision(saved)} : x)));
       try { clearReviewDraft(ctx, assignment.id, s.id); }
       catch (failure) { setError(failure.message); }
       window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
@@ -77,7 +82,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
-          {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error}</p>}
+          {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"><p>{error}</p><button disabled={!!busyId} className="v-button mt-3" onClick={()=>downloadText('visionary-current-review-edits.json',JSON.stringify(submissions.map(s=>({id:s.id,attempt:s.attempt,grade:s.grade,feedback:s.feedback,criterionFeedback:s.criterion_feedback})),null,2))}>Export current review edits</button><button disabled={!!busyId} className="v-button mt-3" onClick={async()=>{try{for(const s of submissions)clearReviewDraft(ctx,assignment.id,s.id);setReload(value=>value+1);}catch(failure){setError(failure.message);}}}>Discard edits and load latest reviews</button></div>}
           {loading ? (
             <div className="flex justify-center py-10">
               <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
@@ -105,11 +110,13 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                 <div className="p-3 rounded-xl bg-[#ffffff] text-sm text-[#5f6368] whitespace-pre-wrap leading-relaxed">
                   {s.text || "No submission text"}
                 </div>
-                {!!s.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer">Previous attempts and feedback ({s.revision_history.length})</summary>{s.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium">Attempt {entry.attempt}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap">Feedback: {entry.feedback}</p></div>)}</details>}
+                {!!s.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer">Previous attempts and feedback ({s.revision_history.length})</summary>{s.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium">Attempt {entry.attempt}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap">Feedback: {entry.feedback}</p><CriterionFeedback criteria={assignment.objective_snapshot?.criteria} feedback={entry.criterion_feedback}/></div>)}</details>}
                 <div className="flex flex-wrap items-center gap-3">
+                  {!!assignment.objective_snapshot?.criteria?.length&&<section className="w-full"><h3 className="text-sm font-medium">Review the assigned criteria</h3><p className="mt-2 text-xs text-[#5f6368]">Returning a grade requires a rating and note for each criterion. Revision requests may address selected criteria.</p>{assignment.objective_snapshot.criteria.map(item=><div className="mt-4" key={item.id}><p className="text-sm font-medium">{item.label}</p><p className="mt-1 text-xs text-[#5f6368]">{item.prompt}</p><select className="v-field mt-2" aria-label={`Criterion rating: ${item.label} for ${s.student_name||s.student_email}`} value={s.criterion_feedback?.[item.id]?.rating||''} disabled={!!busyId} onChange={event=>updateField(s,'criterion_feedback',{...s.criterion_feedback,[item.id]:{rating:event.target.value,note:s.criterion_feedback?.[item.id]?.note||''}})}><option value="">Choose a rating</option><option value="met">Met</option><option value="needs-work">Needs work</option><option value="not-assessed">Not assessed</option></select><textarea className="v-field mt-2" aria-label={`Criterion note: ${item.label} for ${s.student_name||s.student_email}`} maxLength={2000} value={s.criterion_feedback?.[item.id]?.note||''} disabled={!!busyId} onChange={event=>updateField(s,'criterion_feedback',{...s.criterion_feedback,[item.id]:{rating:s.criterion_feedback?.[item.id]?.rating||'',note:event.target.value}})}/></div>)}</section>}
                   <div className="flex items-center gap-2">
                     <input
                       type="number"
+                      disabled={!!busyId}
                       aria-label={"Grade for " + (s.student_name || s.student_email)}
                       min="0"
                       max={assignment.points || 100}
@@ -123,6 +130,7 @@ export default function AssignmentGrader({ assignment, accent, onClose }) {
                   <input
                     aria-label={"Feedback for " + (s.student_name || s.student_email)}
                     maxLength={5000}
+                    disabled={!!busyId}
                     value={s.feedback || ""}
                     onChange={(e) => updateField(s, "feedback", e.target.value)}
                     placeholder="Feedback (required for revision)"

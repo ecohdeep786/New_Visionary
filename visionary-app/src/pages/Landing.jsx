@@ -173,10 +173,10 @@ function VMark({ className = "h-10 w-auto" }) {
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A Teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A Parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
-  { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A Student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A Professional", quote: "I have all the articles. I still can't turn them into the work.", image: proSlide, alt: "Professional applying knowledge at work" },
+  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
+  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
+  { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
+  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I have all the articles. I still can't turn them into the work.", image: proSlide, alt: "Professional applying knowledge at work" },
 ];
 const PROBLEM_MS = 4200;
 
@@ -229,7 +229,7 @@ const LX_TRUST_WORDS = ["information", "privacy", "progress."];
 const LX_TRUST_CARDS = [
   { title: "Your data stays yours.", copy: "You choose what Visionary remembers and how you use it.", alt: "Person working privately on a laptop", Icon: ShieldCheck, to: "/privacy", link: "Read our privacy approach" },
   { title: "Safe to grow with.", copy: "Age-aware guidance and human review help keep learning on track.", alt: "Shield protecting a learner's journey", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
-  { title: "Built with care.", copy: "Visionary is designed to help people learn, work, and create.", alt: "Responsibly built intelligence illustration", Icon: Scale, to: "/terms", link: "Read our commitments" },
+  { title: "Built with care.", copy: "Visionary helps people learn, work, and create.", alt: "Responsibly built intelligence illustration", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
 const LX_TRUST_IMG = [cmContinue, teacherSlide, parentSlide];
 const LX_EXPLORE_CATEGORIES = [
@@ -425,7 +425,7 @@ to{opacity:1}
             animationDelay: "760ms",
           }}
         >
-          Visionary carries your context forward — across learning, teaching,
+          Visionary carries your context across learning, teaching,
           work, and life.
         </p>
 
@@ -598,18 +598,63 @@ function LandingMeetSection() {
   );
 }
 
-/* 05 · ONE INTELLIGENCE */
+/* 05 · ONE INTELLIGENCE — the Apple Vision Pro pinned stage: on desktop the
+   visual holds in place while scroll position advances the four phases;
+   mobile and reduced motion keep the autonomous cycle. */
 function LandingOneIntelligenceSection() {
   const { ref, visible } = useRevealOnce();
   const [phase, setPhase] = useState(0);
+  const [scrollDriven, setScrollDriven] = useState(false);
+  const runwayRef = useRef(null);
+
   useEffect(() => {
-    const id = setTimeout(() => setPhase((p) => (p + 1) % 5), OI_PHASE_MS[phase]);
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setScrollDriven(desktop.matches && !reduce.matches);
+    update();
+    desktop.addEventListener("change", update);
+    reduce.addEventListener("change", update);
+    return () => {
+      desktop.removeEventListener("change", update);
+      reduce.removeEventListener("change", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scrollDriven) return undefined;
+    const id = setTimeout(() => setPhase((p) => (p + 1) % 5), OI_PHASE_MS[Math.min(phase, 4)]);
     return () => clearTimeout(id);
-  }, [phase]);
+  }, [phase, scrollDriven]);
+
+  useEffect(() => {
+    if (!scrollDriven) return undefined;
+    let raf = 0;
+    const measure = () => {
+      const run = runwayRef.current;
+      if (!run) return;
+      const rect = run.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+      setPhase(progress >= 0.96 ? 4 : Math.min(3, Math.floor(progress / 0.24)));
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [scrollDriven]);
+
   const finale = phase === 4;
   const state = OI_STATES[Math.min(phase, 3)];
   return (
-    <section ref={ref} data-section="05-one-intelligence" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="05-one-intelligence" className="relative [overflow-x:clip] bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>One Intelligence</p>
@@ -620,7 +665,9 @@ function LandingOneIntelligenceSection() {
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Every lesson, conversation, project, and breakthrough becomes part of what comes next.
         </p>
-        <div className="relative mx-auto mt-32 h-[min(440px,88vw)] w-[min(440px,88vw)] sm:h-[540px] sm:w-[540px] lg:h-[640px] lg:w-[640px]">          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
+        <div ref={runwayRef} className={scrollDriven ? "relative lg:h-[280vh]" : "relative"}>
+          <div className={scrollDriven ? "lg:sticky lg:top-[10vh] flex justify-center lg:min-h-[76vh] lg:items-center" : undefined}>
+            <div className={`relative mx-auto mt-32 h-[min(440px,88vw)] w-[min(440px,88vw)] sm:h-[540px] sm:w-[540px] lg:h-[640px] lg:w-[640px] ${scrollDriven ? "lg:mt-0" : ""}`}>          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
           <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.35" strokeDasharray="4 5" />
         </svg>
           <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
@@ -631,7 +678,7 @@ function LandingOneIntelligenceSection() {
               {finale ? (
                 <>
                   <VMark className="h-10 w-auto" />
-                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One Intelligence. Always with you.</h3>
+                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One intelligence. Always with you.</h3>
                 </>
               ) : (
                 <>
@@ -663,6 +710,8 @@ function LandingOneIntelligenceSection() {
             </div>
           </div>
         </div>
+        </div>
+          </div>
         <div className="mx-auto mt-24 flex w-fit max-w-full items-center justify-center gap-4 rounded-full px-8 py-5 sm:px-10" style={{ backgroundColor: COLORS.surface }}>
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-6 w-6 shrink-0" style={{ color: COLORS.ink }}><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" /></svg>
           <p className="text-center font-normal tracking-[0.24px] text-[15px] text-balance" style={{ color: COLORS.ink }}>It doesn't just remember your past. <span style={{ color: COLORS.blue }}>It understands what comes next.</span></p>
@@ -754,7 +803,7 @@ function LandingLanguageSection() {
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Visionary understands what you mean — in the language you think in.
+          Visionary understands what you mean, in the language you think in.
         </p>
         <div className="mt-14 lg:mt-20"><LGLanguageChips active={lang} onSelect={setLang} /></div>
         <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
@@ -788,7 +837,7 @@ function LandingLanguageSection() {
 const LXTrustCard = React.memo(function LXTrustCard({ card, cardIndex }) {
   const img = LX_TRUST_IMG[cardIndex % LX_TRUST_IMG.length];
   return (
-    <div className="elevation-1 relative w-full max-w-[780px] overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
+    <div className="relative w-full max-w-[780px] overflow-hidden rounded-[32px]">
       <img src={img} alt={card.alt} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
@@ -847,7 +896,7 @@ function LandingTrustSection() {
           Your <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[wordIndex]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Your learning, conversations, ideas, and progress are personal. Visionary is built to keep it that way.
+          Your learning, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
         <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
           <div className="lg:pl-[6.5%]">
@@ -938,7 +987,7 @@ function LandingFAQSection() {
     <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
-        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Have questions? We've got answers.</h2>
+        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Questions, answered.</h2>
         <div className="mx-auto mt-24 w-full max-w-[1400px]">
           <LandingFAQ faqs={FAQ_ITEMS} variant="hero" defaultOpen={0} />
         </div>

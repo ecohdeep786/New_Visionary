@@ -17,7 +17,7 @@ function Reveal({ children, className = "", delay = 0 }) {
   return (
     <div
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${className}`}
+      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${className}`}
     >
       {children}
     </div>
@@ -47,7 +47,7 @@ const CATEGORIES = [
     cards: [
       { title: "Clear structure", copy: "Information stays structured when people enlarge text, zoom the page, or change how they view it." },
       { title: "Readable contrast", copy: "Clear hierarchy, readable typography, sufficient contrast, and meaningful labels throughout." },
-      { title: "Zoom & text scaling", copy: "Works with browser and operating-system features — zoom, text scaling, high contrast, and color preferences where available." },
+      { title: "Zoom & text scaling", copy: "Works with browser and operating-system features: zoom, text scaling, high contrast, and color preferences where available." },
       { title: "Reduced motion", copy: "Movement respects the reduced-motion setting you already chose on your device." },
     ],
   },
@@ -61,7 +61,7 @@ const CATEGORIES = [
       { title: "Ask with your voice", copy: "Voice interaction provides another path into a question, explanation, or learning activity." },
       { title: "Hear information", copy: "Spoken output makes explanations easier to follow when reading is difficult or tiring." },
       { title: "Keep the conversation going", copy: "A conversational interface reduces the need to translate a thought into a rigid interface action." },
-      { title: "Availability, honestly", copy: "Voice, audio, and caption availability can vary by device, browser, and language — Visionary identifies these options where they exist." },
+      { title: "Availability, honestly", copy: "Voice, audio, and caption availability can vary by device, browser, and language. Visionary identifies these options where they exist." },
     ],
   },
   {
@@ -84,10 +84,10 @@ const CATEGORIES = [
     intro: "Understanding should not depend on one language, one format, or one interaction style.",
     band: "bg-white",
     cards: [
-      { title: "Three languages today", copy: "Language journeys run in English, Hindi, and Bengali — with more on the roadmap." },
+      { title: "Three languages today", copy: "Language journeys run in English, Hindi, and Bengali, with more on the roadmap." },
       { title: "Plain language", copy: "The interface favors clear, understandable wording over jargon." },
-      { title: "Human-reviewed answers", copy: "One tap on any answer flags it for human review — usually within 24 hours." },
-      { title: "Choice of mode", copy: "Read, hear, speak, or navigate — accessibility increases choice instead of forcing one style on everyone." },
+      { title: "Human-reviewed answers", copy: "One tap on any answer flags it for human review, usually within 24 hours." },
+      { title: "Choice of mode", copy: "Read, hear, speak, or navigate: accessibility increases choice instead of forcing one style on everyone." },
     ],
   },
 ];
@@ -95,7 +95,7 @@ const CATEGORIES = [
 /* ═══ RESOURCES — "Get started at your own pace" link rows ═══ */
 const RESOURCES = [
   { to: "/help", label: "Help center", desc: "Guides for setup, classrooms, and every persona." },
-  { to: "/download", label: "Download Visionary", desc: "Web, desktop, and mobile — the platforms sync covers." },
+  { to: "/download", label: "Download Visionary", desc: "Web, desktop, and mobile: the platforms sync covers." },
   { to: "/security", label: "Security and sync", desc: "How the Sync Encrypted ID protects what moves between devices." },
   { to: "/privacy", label: "Privacy policy", desc: "What information is handled, why, and the choices you have." },
 ];
@@ -105,7 +105,7 @@ const COMMITMENT = [
   {
     Icon: AccessibilityIcon,
     title: "Built in, not bolted on",
-    copy: "Accessibility is part of product decisions, interface design, engineering, testing, and research — not something added after the product is finished.",
+    copy: "Accessibility is part of product decisions, interface design, engineering, testing, and research, not something added after the product is finished.",
   },
   {
     Icon: UsersRound,
@@ -115,7 +115,7 @@ const COMMITMENT = [
   {
     Icon: Lock,
     title: "Honest about limits",
-    copy: "We avoid accessibility claims the product cannot support, and we say plainly what is still being built.",
+    copy: "We avoid accessibility claims the product cannot support, and we say plainly what we are still building.",
   },
 ];
 
@@ -190,7 +190,7 @@ export default function AccessibilityPage() {
               </div>
               <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {category.cards.map(({ title, copy }) => (
-                  <article key={title} className="flex min-h-[190px] flex-col rounded-2xl g-card bg-white p-6">
+                  <article key={title} className={`flex min-h-[190px] flex-col rounded-2xl g-card ${category.band === "bg-white" ? "" : "bg-white"} p-6`}>
                     <h3 className="text-[16px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   </article>
@@ -210,11 +210,11 @@ export default function AccessibilityPage() {
                   One person. Every device. <span className="text-[#0b57d0]">Anywhere.</span>
                 </h2>
                 <p className="mt-5 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
-                  Sign in with your Sync Encrypted ID and your learning follows you — end to end encrypted. Your questions, progress, and memory arrive as they were, and only you can open them. Start on a school laptop, continue on a phone, finish on a home desktop.
+                  Sign in with your Sync Encrypted ID and your learning follows you, end to end encrypted. Your questions, progress, and memory arrive as they were, and only you can open them. Start on a school laptop, continue on a phone, finish on a home desktop.
                 </p>
                 <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#202124]/20 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#202124]">
                   <Lock className="h-4 w-4 text-[#188038]" aria-hidden="true" />
-                  End to end encrypted — the key stays with you
+                  End to end encrypted. The key stays with you
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
@@ -251,7 +251,7 @@ export default function AccessibilityPage() {
                   ))}
                 </div>
                 <p className="mt-6 text-center text-[13px] leading-[1.6] text-[#5f6368]">
-                  One Sync Encrypted ID — the encryption stays with your account, not with the device.
+                  One Sync Encrypted ID. The encryption stays with your account, not with the device.
                 </p>
               </div>
             </div>
@@ -267,7 +267,7 @@ export default function AccessibilityPage() {
                 Start at your own pace.
               </h2>
               <p className="mt-4 max-w-[420px] text-[15px] leading-[1.75] text-[#5f6368]">
-                Move at your own speed — every resource below is free to read, and the team answers every barrier report.
+                Move at your own speed. Every resource below is free to read, and the team answers every barrier report.
               </p>
             </div>
             <div className="overflow-hidden rounded-2xl g-card">
@@ -290,7 +290,7 @@ export default function AccessibilityPage() {
               >
                 <span className="min-w-0 flex-1">
                   <span className="block text-[15px] font-medium text-[#202124]">Tell us what is missing</span>
-                  <span className="mt-0.5 block text-[13.5px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier — accessibility@visionary.org.in</span>
+                  <span className="mt-0.5 block text-[13.5px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier: accessibility@visionary.org.in</span>
                 </span>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
               </a>
@@ -306,12 +306,12 @@ export default function AccessibilityPage() {
                 Our commitment.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">
-                Accessibility is not a checkbox that gets completed once. It is part of how Visionary is designed, built, and tested.
+                Accessibility is not a checkbox that gets completed once. We design, build, and test Visionary with accessibility as part of the work.
               </p>
             </div>
             <div className="mt-12 grid gap-4 md:grid-cols-3">
               {COMMITMENT.map(({ Icon, title, copy }) => (
-                <article key={title} className="flex min-h-[220px] flex-col rounded-2xl g-card bg-white p-6 sm:p-7">
+                <article key={title} className="flex min-h-[220px] flex-col rounded-2xl g-card p-6 sm:p-7">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
@@ -331,7 +331,7 @@ export default function AccessibilityPage() {
                 Accessibility is part of <span className="text-[#0b57d0]">our design DNA.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.7] text-[#3c4043] sm:text-[16px]">
-                Visionary is built around the idea that people learn differently. Accessibility is part of making that idea real — and your feedback is part of building it.
+                Visionary grows from the idea that people learn differently. Accessibility makes that idea real, and your feedback builds it.
               </p>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <a

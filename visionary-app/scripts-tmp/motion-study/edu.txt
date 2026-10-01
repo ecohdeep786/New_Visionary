@@ -1,0 +1,28 @@
+transition/animation vocabulary (top patterns):
+    200x  0.2s|background-color|ease, ease, ease, ease
+    200x  0.2s|box-shadow|ease, ease, ease, ease
+    200x  0.2s|color|ease, ease, ease, ease
+    200x  0.2s|-webkit-box-shadow|ease, ease, ease, ease
+     77x  0.3s|color|ease-out
+     41x  0.2s|background|ease
+     18x  0.2s|height|ease-out
+     15x  0.2s|background-color|ease, ease
+     15x  0.2s|color|ease, ease
+     13x  0.2s|all|ease
+     13x  0.5s|max-height|cubic-bezier(0, 0.99, 0.31, 1.05)
+     13x  0.1s|transform|ease-out, ease-out
+     13x  0.1s|-webkit-transform|ease-out, ease-out
+     12x  0.2s|transform|ease, ease
+     12x  0.2s|-webkit-transform|ease, ease
+      7x  0.4s|background-color|linear
+      5x  0.8s|max-height|ease, ease
+      5x  0.1s|opacity|ease, ease
+      5x  0.5s|transform|ease, ease, ease
+      5x  0.5s|-webkit-transform|ease, ease, ease
+      5x  0.1s|transform|ease-in, ease-in
+      5x  0.1s|-webkit-transform|ease-in, ease-in
+      4x  1.2s|opacity|ease, ease, ease
+      4x  ANIM gradient-boxes|2s|infinite
+scroll-reveal: <H3> "Create engaging learning experiences wit" -> opacity 1->1 in 0ms, translateY 0px
+hover: no matching pill CTA found
+reduce-mode: h1 opacity=0.992922 animation=none, below-fold opacity=1

@@ -17,6 +17,15 @@ const edit = (key, change) => { const value = JSON.parse(memory.get(key)); chang
 
 beforeEach(() => { memory.clear(); writes = 0; workspace.configureMock({ latency: 0, fault: 'none' }); workspace.seedDemo('adult'); });
 
+test('auxiliary project and organization stores cannot be silently omitted from a migration mapping',()=>{
+ memory.set('visionary_artifact_editor_v1',JSON.stringify({version:1,spaces:{}}));memory.set('visionary_organization_billing_v1','[]');
+ memory.set('visionary_classwork_drafts_v1:demo-adult',JSON.stringify({assignment:{text:'Private unfinished answer'}}));
+ const before=new Map(memory);const preview=inspectLocalMigration(ctx());
+ assert.deepEqual(preview.additionalStoresNeedingReview,['Unsaved project edits','Classwork response drafts','Organization seat requests']);assert.equal(preview.readyForOwnerMapping,false);assert.equal(JSON.stringify(preview).includes('Private unfinished answer'),false);
+ assert.throws(()=>planLocalMigrationMapping(ctx(),'server-owner',preview.workspaces.map(row=>({sourceWorkspaceId:row.sourceWorkspaceId,targetWorkspaceId:row.sourceWorkspaceId,role:row.role}))),/unresolved/);
+ assert.deepEqual(memory,before);assert.equal(JSON.stringify(preview).includes('requestedBy'),false);
+});
+
 test('the preview includes only the current person’s owned roles and never writes or transfers data', () => {
  workspace.addRole('demo-adult', 'teacher');
  workspace.newConversation(ctx());
