@@ -793,8 +793,6 @@ function ProJourneyFlowSection() {
 const TRUST_WORDS = ["work.", "ideas.", "career."];
 const TRUST_WORD_MS = 6000;
 
-const TRUST_CARD_IMAGE = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-
 const TRUST_CARDS = [
   { title: "Private by design.", copy: "Your work. Your ideas. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
   { title: "Safe to grow with.", copy: "Built from the first project to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
@@ -842,8 +840,8 @@ function ProTrustSection() {
           </div>
 
           <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} image={TRUST_CARD_IMAGE} /></div>
-            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} image={TRUST_CARD_IMAGE} /></div>
+            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} /></div>
+            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
       </FadeReveal>

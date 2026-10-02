@@ -31,14 +31,14 @@ import imgOperations from "@/assets/organization-problem-3-1600w.webp";
    pill inputs/buttons), Material blue for actions and selection only ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 const C = {
-  ink: "#202124",
+  ink: "#121317",
   graphite: "#3c4043",
   slate: "#5f6368",
   mist: "#dadce0",
-  line: "#e8eaed",
-  hover: "#f1f3f4",
+  line: "#dadce0",
+  hover: "#f8f9fa",
   selBg: "#e8f0fe",
-  blue: "#1a73e8",
+  blue: "#4285F4",
   darkblue: "#0b57d0",
 };
 
@@ -142,8 +142,8 @@ function CareersRail({ active }) {
           return (
             <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
               onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
-              className={`flex w-[68px] flex-col items-center gap-1.5 rounded-2xl px-1 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
-                isActive ? "bg-[#e8f0fe] text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f1f3f4]"
+              className={`flex w-[68px] flex-col items-center gap-1.5 rounded-2xl px-1 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                isActive ? "bg-[#e8f0fe] text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f8f9fa]"
               }`}>
               <Icon className="h-[22px] w-[22px]" strokeWidth={1.8} aria-hidden="true" />
               <span className="text-[12px] leading-none">{item.label}</span>
@@ -165,8 +165,8 @@ function MobileRail({ active }) {
           return (
             <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
               onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
-              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
-                isActive ? "bg-[#e8f0fe] font-medium text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f1f3f4]"
+              className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                isActive ? "bg-[#e8f0fe] font-medium text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f8f9fa]"
               }`}>
               <Icon className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
               {item.label}
@@ -194,11 +194,11 @@ function HeroCard({ idPrefix = "hero" }) {
     window.location.href = `mailto:${CAREERS_EMAIL}?subject=${subject}&body=${body}`;
   };
 
-  const field = "h-12 w-full rounded-full border border-[#dadce0] bg-white px-5 text-[15px] text-[#202124] outline-none transition-colors placeholder:text-[#80868b] focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/25";
+  const field = "h-12 w-full rounded-full border border-[#dadce0] bg-white px-5 text-[15px] text-[#121317] outline-none transition-colors placeholder:text-[#80868b] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/25";
 
   return (
     <form onSubmit={submit} noValidate>
-      <h1 className="max-w-[520px] text-[36px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[44px] lg:text-[52px]">
+      <h1 className="max-w-[520px] text-[36px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[44px] lg:text-[52px]">
         Search for your place at Visionary.
       </h1>
       <div className="mt-8 space-y-5">
@@ -222,7 +222,7 @@ function HeroCard({ idPrefix = "hero" }) {
           positioned ancestors, so this pins to the card's bottom-right) */}
       <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[264px] rounded-tl-[16px] bg-white" />
       <button type="submit"
-        className="absolute bottom-3 right-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
+        className="absolute bottom-3 right-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]">
         Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </button>
     </form>
@@ -247,7 +247,7 @@ export default function CareersPage() {
             <section id="overview" className="scroll-mt-32">
               <div className="relative h-[380px] overflow-hidden sm:h-[480px] lg:h-[600px]">
                 <img src={imgHero} alt="A Visionary team member at work"
-                  className="absolute inset-0 h-full w-full object-cover" />
+                  loading="eager" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
                 <div aria-hidden="true" className="absolute inset-0 hidden bg-gradient-to-r from-black/10 to-transparent lg:block" />
                 {/* Desktop card */}
                 <div className="absolute left-10 top-1/2 hidden w-[520px] -translate-y-1/2 overflow-hidden rounded-2xl bg-white p-9 pb-24 shadow-[0_8px_28px_rgba(0,0,0,0.22)] lg:block xl:left-16 xl:w-[560px]">
@@ -280,7 +280,7 @@ export default function CareersPage() {
             <section id="why" className="scroll-mt-32 px-4 pb-20 pt-6 sm:px-6 lg:px-10 lg:pb-28">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
-                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
                     Why Visionary
                   </h2>
                   <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -299,7 +299,7 @@ export default function CareersPage() {
                         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                           <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                         </div>
-                        <h3 className="mt-5 text-[19px] font-medium leading-[1.3] text-[#202124]">{item.title}</h3>
+                        <h3 className="mt-5 text-[19px] font-medium leading-[1.3] text-[#121317]">{item.title}</h3>
                         <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">{item.copy}</p>
                       </article>
                     );
@@ -312,7 +312,7 @@ export default function CareersPage() {
             <section id="teams" className="scroll-mt-32 px-4 pb-20 sm:px-6 lg:px-10 lg:pb-28">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
-                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
                     Teams
                   </h2>
                   <p className="mx-auto mt-4 max-w-[640px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -324,11 +324,11 @@ export default function CareersPage() {
                     <article key={area.title} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] g-card">
                       <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
                       <div className="flex flex-1 flex-col p-7 pb-16">
-                        <h3 className="text-[21px] font-normal leading-[1.3] text-[#202124]">{area.title}</h3>
+                        <h3 className="text-[21px] font-normal leading-[1.3] text-[#121317]">{area.title}</h3>
                         <p className="mt-2 text-[15px] leading-[1.6] text-[#5f6368]">{area.desc}</p>
                         <div className="mt-auto pt-6">
                           <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Careers — ${area.title}`)}`}
-                            className="inline-flex items-center gap-1.5 text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                            className="inline-flex items-center gap-1.5 text-[15px] font-medium text-[#4285F4] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm">
                             Introduce yourself
                           </a>
                         </div>
@@ -354,7 +354,7 @@ export default function CareersPage() {
                 </div>
                 <div className="mx-auto max-w-[820px] text-center">
                   <p className="mt-14 text-[13px] font-medium uppercase tracking-[0.18em] text-[#5f6368]">How we hire</p>
-                  <h2 className="mt-5 text-[36px] font-normal leading-[1.1] tracking-[-0.035em] text-[#202124] sm:text-[48px]">
+                  <h2 className="mt-5 text-[36px] font-normal leading-[1.1] tracking-[-0.035em] text-[#121317] sm:text-[48px]">
                     How to prepare for our hiring process
                   </h2>
                   <p className="mx-auto mt-6 max-w-[640px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
@@ -364,8 +364,8 @@ export default function CareersPage() {
                 <ol className="mx-auto mt-12 max-w-[760px] border-t border-[#dadce0]">
                   {HIRING_STEPS.map((step) => (
                     <li key={step.n} className="grid grid-cols-[48px_1fr] gap-4 border-b border-[#dadce0] py-6 sm:grid-cols-[64px_240px_1fr] sm:gap-6">
-                      <span className="text-[14px] font-medium tabular-nums text-[#1a73e8]">{step.n}</span>
-                      <h3 className="text-[19px] font-normal leading-[1.35] text-[#202124]">{step.title}</h3>
+                      <span className="text-[14px] font-medium tabular-nums text-[#4285F4]">{step.n}</span>
+                      <h3 className="text-[19px] font-normal leading-[1.35] text-[#121317]">{step.title}</h3>
                       <p className="col-start-2 text-[15px] leading-[1.65] text-[#5f6368] sm:col-start-3">{step.copy}</p>
                     </li>
                   ))}
@@ -377,7 +377,7 @@ export default function CareersPage() {
             <section id="roles" className="scroll-mt-32 px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
-                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                  <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
                     Open roles
                   </h2>
                   <p className="mx-auto mt-4 max-w-[620px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -388,17 +388,17 @@ export default function CareersPage() {
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Briefcase className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </div>
-                  <h3 className="mt-6 text-[24px] font-normal leading-[1.3] text-[#202124]">No public roles listed right now.</h3>
+                  <h3 className="mt-6 text-[24px] font-normal leading-[1.3] text-[#121317]">No public roles listed right now.</h3>
                   <p className="mt-3 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368]">
                     There are no public vacancies at the moment. You can still introduce yourself: the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
                   </p>
                   <div className="mt-6 flex flex-wrap items-center gap-6">
                     <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
-                      className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                      className="text-[15px] font-medium text-[#4285F4] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm">
                       Introduce yourself by email
                     </a>
                     <a href="#hiring" onClick={(event) => { event.preventDefault(); scrollToSection("hiring"); }}
-                      className="text-[15px] font-medium text-[#1a73e8] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] rounded-sm">
+                      className="text-[15px] font-medium text-[#4285F4] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm">
                       How our process works
                     </a>
                   </div>
@@ -410,7 +410,7 @@ export default function CareersPage() {
             <section id="contact" className="scroll-mt-32 border-t border-[#dadce0] px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-24">
               <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
                 <div>
-                  <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#202124] sm:text-[38px]">
+                  <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#121317] sm:text-[38px]">
                     A fair process starts with clarity.
                   </h2>
                 </div>
@@ -420,7 +420,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     If you need an accessible format or an adjustment to a hiring conversation, email{" "}
-                    <a className="rounded-sm font-medium text-[#1a73e8] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                    <a className="rounded-sm font-medium text-[#4285F4] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                       href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request (Careers)")}`}>
                       careers@visionary.org.in
                     </a>{" "}
@@ -428,7 +428,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     For accessibility information about the product, visit{" "}
-                    <Link className="rounded-sm font-medium text-[#1a73e8] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]" to="/accessibility">
+                    <Link className="rounded-sm font-medium text-[#4285F4] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" to="/accessibility">
                       Visionary accessibility
                     </Link>.
                   </p>
@@ -439,7 +439,7 @@ export default function CareersPage() {
             {/* CLOSING CTA */}
             <section className="border-t border-[#dadce0] px-4 py-24 text-center sm:px-6 lg:px-10 lg:py-32">
               <Reveal className="mx-auto max-w-[840px]">
-                <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
+                <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
                   What you learn here should stay with you.
                 </h2>
                 <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
@@ -447,10 +447,10 @@ export default function CareersPage() {
                 </p>
                 <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-8 text-[15px] font-medium text-white transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 active:scale-[0.98]">
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-8 text-[15px] font-medium text-white transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]">
                     Email the careers team <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </a>
-                  <Link to="/about" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-7 text-[15px] text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                  <Link to="/about" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-7 text-[15px] text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                     About Visionary
                   </Link>
                 </div>

@@ -17,6 +17,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import ValuesStrip from "@/components/landing/ValuesStrip";
 import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { LEGAL_META, GRIEVANCE_OFFICER } from "@/data/legalMeta";
@@ -641,6 +642,7 @@ export default function PrivacyPage() {
           </div>
         </section>
       </main>
+      <ValuesStrip current="/privacy" />
       <LandingFooter variant="quiet" />
     </div>
   );

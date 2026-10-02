@@ -354,17 +354,69 @@ const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
   );
 });
 
+/* Designed "intelligence" stage — the homepage's ring-and-V-mark language on
+   a flat Google-Store surface. Pure SVG in canonical tokens: no external
+   requests, no binary weight. `variant` varies composition so repeated cards
+   on one page don't read as copies. Rendered wherever a persona section has
+   no local photograph (and as a guard, whenever an http(s) URL is passed). */
+const ART_VARIANTS = [
+  { rotate: 0, dots: [18, 62, 82], scale: 1 },
+  { rotate: 40, dots: [30, 74], scale: 1.06 },
+  { rotate: 95, dots: [12, 48, 88], scale: 0.94 },
+  { rotate: 150, dots: [24, 66], scale: 1.02 },
+];
+
+const isExternalSrc = (src) => typeof src === "string" && /^https?:/i.test(src);
+
+const IntelligenceArt = React.memo(function IntelligenceArt({ label, variant = 0, className = "" }) {
+  const v = ART_VARIANTS[variant % ART_VARIANTS.length];
+  return (
+    <div role="img" aria-label={label} className={`relative overflow-hidden bg-[#f8f9fa] ${className}`}>
+      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden="true">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#dadce0" strokeWidth="0.4" strokeDasharray="4 5" transform={`rotate(${v.rotate} 50 50)`} />
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#4285F4" strokeOpacity="0.35" strokeWidth="0.45" strokeDasharray="3 6" transform={`rotate(${-v.rotate * 1.6} 50 50)`} />
+        <circle cx="50" cy="50" r="24" fill="#ffffff" stroke="#121317" strokeOpacity="0.08" strokeWidth="0.4" />
+        {v.dots.map((deg, i) => {
+          const rad = ((deg + v.rotate) * Math.PI) / 180;
+          return (
+            <circle
+              key={deg}
+              cx={50 + 36 * Math.cos(rad)}
+              cy={50 + 36 * Math.sin(rad)}
+              r={i === 0 ? 2.1 : 1.4}
+              fill="#4285F4"
+              fillOpacity={i === 0 ? 1 : 0.55}
+            />
+          );
+        })}
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <svg viewBox="1.5 6 60 44.5" className="w-[26%]" fill="none" aria-hidden="true" style={{ transform: `scale(${v.scale})` }}>
+          <g transform="translate(0,64) scale(0.1,-0.1)" fill="#121317" stroke="none">
+            <path d="M49 551 c-16 -16 -29 -40 -29 -53 0 -14 42 -98 93 -187 l92 -163 6 38 c13 76 99 118 159 77 33 -22 44 -41 50 -83 5 -33 9 -28 98 128 60 105 92 172 92 192 0 34 -28 67 -66 76 -41 10 -72 -22 -149 -154 -38 -66 -72 -123 -75 -126 -4 -3 -41 55 -83 128 -95 164 -128 186 -188 127z" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+});
+
 const IntelligenceVisual = React.memo(function IntelligenceVisual({ step, index, setStepRef, image }) {
+  const showArt = !image || isExternalSrc(image);
   return (
     <figure ref={setStepRef(index)} data-step={index} className="m-0">
       <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[60px] lg:mx-0 lg:max-w-none">
-        <img
-          src={image}
-          alt={step.title}
-          loading="lazy"
-          decoding="async"
-          className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]"
-        />
+        {showArt ? (
+          <IntelligenceArt label={step.title} variant={index} className="aspect-[4/3] w-full lg:aspect-[15/16]" />
+        ) : (
+          <img
+            src={image}
+            alt={step.title}
+            loading="lazy"
+            decoding="async"
+            className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]"
+          />
+        )}
       </div>
     </figure>
   );
@@ -545,9 +597,14 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
 });
 
 const TrustCard = React.memo(function TrustCard({ card, image }) {
+  const showArt = !image || isExternalSrc(image);
   return (
     <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
-      <img src={image} alt={card.title} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
+      {showArt ? (
+        <IntelligenceArt label={card.title} className="aspect-[8/5] w-full" />
+      ) : (
+        <img src={image} alt={card.title} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
+      )}
       {/* white chip guarantees copy contrast on any image */}
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
@@ -623,6 +680,7 @@ export {
   JourneyModal,
   IntelligenceCopy,
   IntelligenceVisual,
+  IntelligenceArt,
   LanguageChips,
   StageDropdown,
   ContinuityCard,

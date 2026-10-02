@@ -7,10 +7,11 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 
-/* ═══ Tokens — the shared Material dialect (#202124 ink, #0b57d0/#1a73e8
-   actions, #e8eaed hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 function Reveal({ children, className = "", delay = 0 }) {
@@ -28,7 +29,7 @@ function AnchorChip({ href, children }) {
   return (
     <a
       href={href}
-      className="inline-flex min-h-9 items-center rounded-full border border-[#dadce0] bg-white px-4 text-[13px] font-medium text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+      className="inline-flex min-h-9 items-center rounded-full border border-[#dadce0] bg-white px-4 text-[13px] font-medium text-[#5f6368] transition-colors hover:bg-[#f8f9fa] hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
     >
       {children}
     </a>
@@ -130,7 +131,7 @@ export default function AccessibilityPage() {
         <section className="px-6 pb-12 pt-10 text-center sm:px-8 lg:px-10 lg:pb-14 lg:pt-16">
           <Reveal className="mx-auto max-w-[900px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Accessibility</p>
-            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
               Help every learner learn <span className="text-[#0b57d0]">how they learn best.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -139,7 +140,7 @@ export default function AccessibilityPage() {
             <div className="mt-8 flex justify-center">
               <Link
                 to="/register"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 Explore what's built in
               </Link>
@@ -155,10 +156,10 @@ export default function AccessibilityPage() {
         </section>
 
         {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
-        <section className="border-y border-[#e8eaed] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <section className="border-y border-[#dadce0] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[560px]">
-              <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124] sm:text-[36px]">
+              <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317] sm:text-[36px]">
                 The goal is not to make everyone use Visionary the same way.{" "}
                 <span className="text-[#0b57d0]">It is to give more people a way in.</span>
               </p>
@@ -183,7 +184,7 @@ export default function AccessibilityPage() {
             <Reveal className="mx-auto max-w-[1240px]">
               <div className="max-w-[720px]">
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">{category.eyebrow}</p>
-                <h2 id={`${category.id}-title`} className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[40px]">
+                <h2 id={`${category.id}-title`} className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">
                   {category.title}
                 </h2>
                 <p className="mt-4 max-w-[620px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">{category.intro}</p>
@@ -191,7 +192,7 @@ export default function AccessibilityPage() {
               <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {category.cards.map(({ title, copy }) => (
                   <article key={title} className={`flex min-h-[190px] flex-col rounded-2xl g-card ${category.band === "bg-white" ? "" : "bg-white"} p-6`}>
-                    <h3 className="text-[16px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
+                    <h3 className="text-[16px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   </article>
                 ))}
@@ -206,26 +207,26 @@ export default function AccessibilityPage() {
             <div className="grid items-center gap-10 rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               <div>
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Sync &amp; devices</p>
-                <h2 id="sync-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+                <h2 id="sync-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                   One person. Every device. <span className="text-[#0b57d0]">Anywhere.</span>
                 </h2>
                 <p className="mt-5 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
                   Sign in with your Sync Encrypted ID and your learning follows you, end to end encrypted. Your questions, progress, and memory arrive as they were, and only you can open them. Start on a school laptop, continue on a phone, finish on a home desktop.
                 </p>
-                <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#202124]/20 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#202124]">
+                <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#121317]/20 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#121317]">
                   <Lock className="h-4 w-4 text-[#188038]" aria-hidden="true" />
                   End to end encrypted. The key stays with you
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
                     to="/security"
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                   >
                     How sync works
                   </Link>
                   <Link
                     to="/dashboard/settings"
-                    className="inline-flex min-h-11 items-center rounded-full border border-[#202124]/30 px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                    className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     Review your devices
                   </Link>
@@ -243,7 +244,7 @@ export default function AccessibilityPage() {
                       <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                         <Icon className="h-6 w-6" strokeWidth={1.7} aria-hidden="true" />
                       </span>
-                      <span className="text-[13px] font-medium text-[#202124]">{label}</span>
+                      <span className="text-[13px] font-medium text-[#121317]">{label}</span>
                       <span className="flex items-center gap-1 text-[12px] font-medium text-[#188038]">
                         <Lock className="h-3 w-3" aria-hidden="true" /> Encrypted
                       </span>
@@ -259,11 +260,11 @@ export default function AccessibilityPage() {
         </section>
 
         {/* GET STARTED — the reference's own-pace resource split */}
-        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Resources</p>
-              <h2 id="resources-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[40px]">
+              <h2 id="resources-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">
                 Start at your own pace.
               </h2>
               <p className="mt-4 max-w-[420px] text-[15px] leading-[1.75] text-[#5f6368]">
@@ -275,10 +276,10 @@ export default function AccessibilityPage() {
                 <Link
                   key={to}
                   to={to}
-                  className={`group flex items-center gap-4 bg-white px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset ${i < RESOURCES.length - 1 ? "border-b border-[#e8eaed]" : ""}`}
+                  className={`group flex items-center gap-4 bg-white px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset ${i < RESOURCES.length - 1 ? "border-b border-[#dadce0]" : ""}`}
                 >
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[15px] font-medium text-[#202124]">{label}</span>
+                    <span className="block text-[15px] font-medium text-[#121317]">{label}</span>
                     <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">{desc}</span>
                   </span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
@@ -286,10 +287,10 @@ export default function AccessibilityPage() {
               ))}
               <a
                 href="mailto:accessibility@visionary.org.in"
-                className="group flex items-center gap-4 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-5 transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-inset"
+                className="group flex items-center gap-4 border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
               >
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[15px] font-medium text-[#202124]">Tell us what is missing</span>
+                  <span className="block text-[15px] font-medium text-[#121317]">Tell us what is missing</span>
                   <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier: accessibility@visionary.org.in</span>
                 </span>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
@@ -299,10 +300,10 @@ export default function AccessibilityPage() {
         </section>
 
         {/* COMMITMENT — the reference's three-column promise */}
-        <section aria-labelledby="commitment-title" className="border-t border-[#e8eaed] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section aria-labelledby="commitment-title" className="border-t border-[#dadce0] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+              <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                 Our commitment.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">
@@ -315,7 +316,7 @@ export default function AccessibilityPage() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
+                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
                   <p className="mt-2 text-[14px] leading-[1.7] text-[#5f6368]">{copy}</p>
                 </article>
               ))}
@@ -327,7 +328,7 @@ export default function AccessibilityPage() {
         <section aria-labelledby="closing-title" className="px-6 pb-24 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-16 text-center sm:px-12 lg:py-20">
-              <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#202124]">
+              <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#121317]">
                 Accessibility is part of <span className="text-[#0b57d0]">our design DNA.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.7] text-[#3c4043] sm:text-[16px]">
@@ -336,13 +337,13 @@ export default function AccessibilityPage() {
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <a
                   href="mailto:accessibility@visionary.org.in"
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   Email the accessibility team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <Link
                   to="/how-it-works"
-                  className="inline-flex min-h-11 items-center rounded-full border border-[#202124]/30 px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   Explore the product
                 </Link>
@@ -352,6 +353,7 @@ export default function AccessibilityPage() {
         </section>
 
       </main>
+      <ValuesStrip current="/accessibility" />
       <LandingFooter variant="quiet" />
     </div>
   );

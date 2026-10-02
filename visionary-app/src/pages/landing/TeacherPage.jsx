@@ -105,8 +105,6 @@ const HERO_WORD_MS = 2800;
 
 const STRUGGLE_LINES = ["Every","teacher","wonders","about"];
 
-const INTELLIGENCE_VISUAL_IMAGE = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-
 const SLIDES = [
   { word: "understanding", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem1, alt: "Teacher looking overwhelmed after class" },
   { word: "engagement", quote: "I can see the eyes glaze over. I just don't know whose.", image: teacherProblem2, alt: "Teacher puzzled by disengaged students" },
@@ -544,7 +542,7 @@ function TeacherIntelligenceSection() {
         <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
           {activeSteps.map((s, i) => (
             <div key={s.title}>
-              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} image={INTELLIGENCE_VISUAL_IMAGE} />
+              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} />
               <div className="mt-10 lg:hidden">
                 <IntelligenceCopy step={s} />
               </div>
@@ -837,8 +835,6 @@ function TeacherJourneyFlowSection() {
 const TRUST_WORDS = ["control.", "teaching.", "intelligence."];
 const TRUST_WORD_MS = 6000;
 
-const TRUST_CARD_IMAGE = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
-
 const TRUST_CARDS = [
   { title: "Private by design.", copy: "We treat your personal information with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
   { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
@@ -886,8 +882,8 @@ function TeacherTrustSection() {
           </div>
 
           <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} image={TRUST_CARD_IMAGE} /></div>
-            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} image={TRUST_CARD_IMAGE} /></div>
+            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} /></div>
+            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
       </FadeReveal>

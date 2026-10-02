@@ -81,7 +81,7 @@ function flagsFor(role, str) {
 }
 
 for (const f of files) {
-  const rel = f.slice(ROOT.length+1).replace(/\/g,'/');
+  const rel = f.slice(ROOT.length+1).replace(/\\/g,'/');
   const src = fs.readFileSync(f,'utf8');
   const lines = src.split(/\r?\n/);
   const isData = rel.startsWith('src/data/') || rel.startsWith('src/services/') || rel.startsWith('src/domain/');

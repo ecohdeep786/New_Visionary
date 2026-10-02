@@ -10,8 +10,8 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 
-/* ═══ Tokens — the shared Material dialect (#202124 ink, #0b57d0/#1a73e8
-   actions, #e8eaed hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
@@ -94,7 +94,7 @@ export default function UpdatesPage() {
         <section className="px-6 pb-14 pt-10 sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">News &amp; updates</p>
-            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
               What&rsquo;s <span className="text-[#0b57d0]">new</span> at Visionary.
             </h1>
             <p className="mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -103,13 +103,13 @@ export default function UpdatesPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#signup"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 <Bell className="h-4 w-4" aria-hidden="true" /> Get updates by email
               </a>
               <a
                 href="#latest"
-                className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               >
                 Browse the latest
               </a>
@@ -123,10 +123,10 @@ export default function UpdatesPage() {
             <article className="relative grid items-center gap-8 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:p-12">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#202124]">Featured</span>
+                  <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#121317]">Featured</span>
                   <span className="inline-flex items-center rounded-[6px] bg-white/70 px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">Languages &amp; access</span>
                 </div>
-                <h2 id="featured-title" className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
+                <h2 id="featured-title" className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#121317] sm:text-[40px]">
                   One intelligence, every learner, in their language.
                 </h2>
                 <p className="mt-4 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
@@ -142,7 +142,7 @@ export default function UpdatesPage() {
               {/* google.com card curve — the page background sweeps into the corner
                   and the banner's story link floats in it with breath */}
               <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
-              <Link to="/how-it-works" aria-label="How the loop works" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+              <Link to="/how-it-works" aria-label="How the loop works" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                 <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
               </Link>
             </article>
@@ -150,12 +150,12 @@ export default function UpdatesPage() {
         </section>
 
         {/* LATEST — filter chips + dated cards */}
-        <section id="latest" aria-labelledby="latest-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="latest" aria-labelledby="latest-title" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-[680px]">
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">The changes, by category</p>
-                <h2 id="latest-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+                <h2 id="latest-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                   Latest updates.
                 </h2>
                 <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">
@@ -165,8 +165,8 @@ export default function UpdatesPage() {
               <div role="group" aria-label="Filter updates by category" className="flex flex-wrap gap-2">
                 <button
                   type="button" aria-pressed={filter === "all"} onClick={() => setFilter("all")}
-                  className={`inline-flex min-h-11 items-center rounded-full border px-4 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
-                    filter === "all" ? "border-transparent bg-[#202124] text-white" : "border-[#dadce0] bg-white text-[#5f6368] hover:text-[#202124]"
+                  className={`inline-flex min-h-11 items-center rounded-full border px-4 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                    filter === "all" ? "border-transparent bg-[#121317] text-white" : "border-[#dadce0] bg-white text-[#5f6368] hover:text-[#121317]"
                   }`}
                 >
                   All
@@ -174,8 +174,8 @@ export default function UpdatesPage() {
                 {CATEGORIES.map(({ id, label }) => (
                   <button
                     key={id} type="button" aria-pressed={filter === id} onClick={() => setFilter(id)}
-                    className={`inline-flex min-h-11 items-center rounded-full border px-4 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
-                      filter === id ? "border-transparent bg-[#202124] text-white" : "border-[#dadce0] bg-white text-[#5f6368] hover:text-[#202124]"
+                    className={`inline-flex min-h-11 items-center rounded-full border px-4 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                      filter === id ? "border-transparent bg-[#121317] text-white" : "border-[#dadce0] bg-white text-[#5f6368] hover:text-[#121317]"
                     }`}
                   >
                     {label}
@@ -188,12 +188,12 @@ export default function UpdatesPage() {
               {visibleUpdates.map((item) => (
                 <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl g-card p-6">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center rounded-[6px] bg-[#f1f3f4] px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
+                    <span className="inline-flex items-center rounded-[6px] bg-[#f8f9fa] px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
                       {catLabel(item.cat)}
                     </span>
                     <span className="text-[12px] tracking-[0.01em] text-[#9aa0a6]">{item.date}</span>
                   </div>
-                  <h3 className="relative z-10 mt-4 max-w-[220px] text-[17px] font-medium leading-[1.4] text-[#202124]">{item.title}</h3>
+                  <h3 className="relative z-10 mt-4 max-w-[220px] text-[17px] font-medium leading-[1.4] text-[#121317]">{item.title}</h3>
                   <p className="relative z-10 mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{item.copy}</p>
                   <SpotIllustration subject={item.subject} className="pointer-events-none absolute -bottom-2 -right-2 h-[84px] w-[84px] opacity-95" />
                 </article>
@@ -211,7 +211,7 @@ export default function UpdatesPage() {
             <div className="relative grid items-center gap-8 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Research &amp; learning</p>
-                <h2 id="research-band-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[38px]">
+                <h2 id="research-band-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#121317] sm:text-[38px]">
                   Evidence over claims.
                 </h2>
                 <p className="mt-4 max-w-[620px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
@@ -226,7 +226,7 @@ export default function UpdatesPage() {
               {/* google.com card curve — the page background sweeps into the corner
                   and the banner's destination floats in it with breath */}
               <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
-              <Link to="/research" aria-label="Read Research and News" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+              <Link to="/research" aria-label="Read Research and News" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                 <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
               </Link>
             </div>
@@ -234,11 +234,11 @@ export default function UpdatesPage() {
         </section>
 
         {/* CHOOSE YOUR UPDATES + SIGN UP — preserved mailto flow, restyled */}
-        <section id="signup" aria-labelledby="signup-title" className="scroll-mt-28 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="signup" aria-labelledby="signup-title" className="scroll-mt-28 border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Stay in the loop</p>
-              <h2 id="signup-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+              <h2 id="signup-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                 Get updates by email.
               </h2>
               <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">
@@ -256,13 +256,13 @@ export default function UpdatesPage() {
                     <button
                       key={category.id} type="button" role="checkbox" aria-checked={checked}
                       onClick={() => { setSelected((current) => (current.includes(category.id) ? current.filter((item) => item !== category.id) : [...current, category.id])); }}
-                      className="flex w-full items-center gap-4 rounded-xl border-b border-[#e8eaed] p-4 text-left transition-colors last:border-b-0 hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                      className="flex w-full items-center gap-4 rounded-xl border-b border-[#dadce0] p-4 text-left transition-colors last:border-b-0 hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                     >
-                      <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] ${checked ? "bg-[#e8f0fe] text-[#0b57d0]" : "bg-[#f1f3f4] text-[#5f6368]"}`}>
+                      <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] ${checked ? "bg-[#e8f0fe] text-[#0b57d0]" : "bg-[#f8f9fa] text-[#5f6368]"}`}>
                         <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block text-[15px] font-medium leading-[1.4] text-[#202124]">{category.label}</span>
+                        <span className="block text-[15px] font-medium leading-[1.4] text-[#121317]">{category.label}</span>
                         <span className="mt-1 block text-[13px] leading-[1.55] text-[#5f6368]">{category.helper}</span>
                       </span>
                       <span aria-hidden="true" className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-colors ${checked ? "border-[#0b57d2] bg-[#0b57d2]" : "border-[#dadce0] bg-white"}`}>
@@ -280,13 +280,13 @@ export default function UpdatesPage() {
                     <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#e8f0fe] text-[#0b57d0]">
                       <CheckCircle2 className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                     </span>
-                    <h3 className="mt-5 text-[24px] font-normal tracking-[-0.02em] text-[#202124]">Your request is ready.</h3>
+                    <h3 className="mt-5 text-[24px] font-normal tracking-[-0.02em] text-[#121317]">Your request is ready.</h3>
                     <p className="mt-3 max-w-[520px] text-[14px] leading-[1.7] text-[#5f6368]">
                       Your email app opened a draft with these preferences. Review it and choose whether to send. This page has not subscribed you automatically.
                     </p>
                     <button
                       type="button" onClick={() => setSubmitted(false)}
-                      className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                      className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                     >
                       Change your preferences <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </button>
@@ -295,25 +295,25 @@ export default function UpdatesPage() {
                   <form onSubmit={handleSubmit}>
                     <div className="grid gap-5 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="updates-name" className="block text-[13px] font-medium text-[#202124]">Name</label>
+                        <label htmlFor="updates-name" className="block text-[13px] font-medium text-[#121317]">Name</label>
                         <input
                           id="updates-name" name="name" type="text" autoComplete="name" required value={name}
                           onChange={(event) => setName(event.target.value)}
-                          className="mt-2 h-12 w-full rounded-xl g-card border border-[#dadce0] bg-white px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                          className="mt-2 h-12 w-full rounded-xl g-card border border-[#dadce0] bg-white px-4 text-[15px] text-[#121317] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
                         />
                       </div>
                       <div>
-                        <label htmlFor="updates-email" className="block text-[13px] font-medium text-[#202124]">Email</label>
+                        <label htmlFor="updates-email" className="block text-[13px] font-medium text-[#121317]">Email</label>
                         <input
                           id="updates-email" name="email" type="email" autoComplete="email" required value={email}
                           onChange={(event) => setEmail(event.target.value)}
-                          className="mt-2 h-12 w-full rounded-xl g-card border border-[#dadce0] bg-white px-4 text-[15px] text-[#202124] outline-none transition-colors focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
+                          className="mt-2 h-12 w-full rounded-xl g-card border border-[#dadce0] bg-white px-4 text-[15px] text-[#121317] outline-none transition-colors focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/20"
                         />
                       </div>
                     </div>
 
                     <div className="mt-6">
-                      <div className="text-[13px] font-medium text-[#202124]">You will receive</div>
+                      <div className="text-[13px] font-medium text-[#121317]">You will receive</div>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {CATEGORIES.map((category) => {
                           const active = selected.includes(category.id);
@@ -321,7 +321,7 @@ export default function UpdatesPage() {
                             <button
                               key={category.id} type="button" aria-pressed={active}
                               onClick={() => setSelected((current) => (current.includes(category.id) ? current.filter((item) => item !== category.id) : [...current, category.id]))}
-                              className="inline-flex min-h-9 items-center gap-2 rounded-full border border-[#dadce0] bg-white px-4 text-[13px] text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                              className="inline-flex min-h-9 items-center gap-2 rounded-full border border-[#dadce0] bg-white px-4 text-[13px] text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                             >
                               {active && <Check className="h-3.5 w-3.5" strokeWidth={2.4} style={{ color: "#0b57d0" }} aria-hidden="true" />}
                               {category.label}
@@ -343,7 +343,7 @@ export default function UpdatesPage() {
 
                     <button
                       type="submit"
-                      className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b57d2] px-7 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                      className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b57d2] px-7 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                     >
                       Prepare email request
                     </button>
@@ -357,7 +357,7 @@ export default function UpdatesPage() {
 
             <p className="mt-8 max-w-[880px] text-[13px] leading-[1.6] text-[#5f6368]">
               We use your information according to the Visionary{" "}
-              <Link to="/privacy" className="rounded-sm underline underline-offset-2 transition-colors hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+              <Link to="/privacy" className="rounded-sm underline underline-offset-2 transition-colors hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                 Privacy Policy
               </Link>
               .
@@ -366,12 +366,12 @@ export default function UpdatesPage() {
         </section>
 
         {/* CONTACT one-liner */}
-        <section aria-label="Contact" className="border-t border-[#e8eaed] px-6 py-14 sm:px-8 lg:px-10">
+        <section aria-label="Contact" className="border-t border-[#dadce0] px-6 py-14 sm:px-8 lg:px-10">
           <div className="mx-auto flex max-w-[1240px] flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[15px] text-[#5f6368]">Questions about updates?</p>
             <a
               href="mailto:hello@visionary.org.in"
-              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
             >
               hello@visionary.org.in <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>

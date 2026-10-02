@@ -1,4 +1,5 @@
 import AssignedCurriculumOutline from '@/components/dashboard/AssignedCurriculumOutline';
+import ClassCurriculum from '@/components/dashboard/ClassCurriculum';
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
@@ -47,7 +48,7 @@ export default function StudentClasses() {
   const [loadError,setLoadError]=useState('');
   const loadSequence=useRef(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [classTab, setClassTab] = useState("classwork");
+  const [classTab, setClassTab] = useState(() => searchParams.has('curriculum') ? 'outline' : 'classwork');
 
   const draftKey = user?.id ? `visionary_classwork_drafts_v1:${user.id}` : null;
   const draftBases=useRef({});
@@ -99,9 +100,11 @@ export default function StudentClasses() {
   }, [email,ctx?.workspaceId]);
   useEffect(() => {
     load();
-    const timer=window.setInterval(()=>{if(document.visibilityState==='visible')load(false);},30000);
-    window.addEventListener("visionary:workspace-change", load);
-    return () => {loadSequence.current++;window.clearInterval(timer);window.removeEventListener("visionary:workspace-change", load);};
+    const refresh=()=>load(false);
+    const timer=window.setInterval(()=>{if(document.visibilityState==='visible')refresh();},30000);
+    const events=['visionary:workspace-change','visionary:v2-change','storage'];
+    events.forEach(event=>window.addEventListener(event,refresh));
+    return () => {loadSequence.current++;window.clearInterval(timer);events.forEach(event=>window.removeEventListener(event,refresh));};
   }, [load]);
 
   const mySubFor = (assignmentId) => (submissions || []).find((s) => s.assignment_id === assignmentId);
@@ -239,7 +242,7 @@ export default function StudentClasses() {
           <div className="flex flex-wrap gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["outline", "Learning outline"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#4285F4]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
           {classTab === "stream" && <div className="space-y-4">{announcements.filter((a) => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]">Class updates from your teacher will appear here.</p></div> : announcements.filter((a) => a.class_id === openClassId).map((a) => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : "Class update"}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
 
-          {classTab === "outline" && <AssignedCurriculumOutline key={ctx?.workspaceId+':'+openClassId} classId={openClassId}/>}
+          {classTab === "outline" && <><ClassCurriculum key={'published:'+ctx?.workspaceId+':'+openClassId} classId={openClassId}/><AssignedCurriculumOutline key={ctx?.workspaceId+':'+openClassId} classId={openClassId}/></>}
           {classTab === "community" && <CommunityTab classId={openClassId} accent="#4285F4" />}
           {classTab === "classwork" && <div className="flex flex-col gap-4">
             {classAssignments.length === 0 ? (

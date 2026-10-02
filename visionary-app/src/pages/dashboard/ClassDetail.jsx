@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, useSearchParams, Link, Navigate } from "react-router-dom";
 import { Home, ChevronRight, Copy, Check } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useThemeColor } from "@/hooks/useThemeColor";
@@ -10,10 +10,12 @@ import PeopleTab from "@/components/dashboard/teacher/tabs/PeopleTab";
 import InsightsTab from "@/components/dashboard/teacher/tabs/InsightsTab";
 import ClassPromotion from "@/components/dashboard/ClassPromotion";
 import CommunityTab from "@/components/dashboard/CommunityTab";
+import ClassCurriculum from '@/components/dashboard/ClassCurriculum';
 
 const TABS = [
   { id: "stream", label: "Stream" },
   { id: "classwork", label: "Classwork" },
+  { id: "curriculum", label: "Curriculum" },
   { id: "people", label: "People" },
   { id: "insights", label: "Insights" },
   { id: "community", label: "Community" },
@@ -21,11 +23,12 @@ const TABS = [
 
 export default function ClassDetail() {
   const { classId } = useParams();
+  const [searchParams] = useSearchParams();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
   const [classroom, setClassroom] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState("stream");
+  const [tab, setTab] = useState(() => searchParams.has('curriculum') ? 'curriculum' : 'stream');
   const { user } = useAuth();
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
@@ -95,7 +98,7 @@ export default function ClassDetail() {
       {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
       <ClassPromotion classId={classId} accent={accent} />
 
-      <div className="flex items-center gap-1 border-b border-[#dadce0]/60 overflow-x-auto">
+      <div className="flex flex-wrap items-center gap-1 border-b border-[#dadce0]/60">
         {TABS.map((t) => {
           const active = tab === t.id;
           return (
@@ -115,6 +118,7 @@ export default function ClassDetail() {
 
       {tab === "stream" && <StreamTab classId={classId} classroom={classroom} accent={accent} />}
       {tab === "classwork" && <ClassworkTab classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "curriculum" && <ClassCurriculum key={classId} classId={classId}/>}
       {tab === "people" && <PeopleTab classId={classId} classroom={classroom} accent={accent} />}
       {tab === "insights" && <InsightsTab classId={classId} classroom={classroom} accent={accent} />}
   {tab === "community" && <CommunityTab classId={classId} accent={accent} />}

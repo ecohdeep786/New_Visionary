@@ -12,8 +12,8 @@ import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { RESPONSE_TIMES } from "@/data/legalMeta";
 
-/* ═══ Tokens — the shared Material dialect (#202124 ink, #0b57d0/#1a73e8
-   actions, #e8eaed hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 const PARTNERS_EMAIL = "partnerships@visionary.org.in";
 
@@ -48,7 +48,7 @@ function Reveal({ children, className = "", delay = 0 }) {
 /* The outlined label chip from the reference's access-levels grid */
 function AccessChip({ children }) {
   return (
-    <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#202124]">
+    <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#121317]">
       {children}
     </span>
   );
@@ -131,7 +131,7 @@ const SLIDES = [
 function WhatCarousel() {
   const [index, setIndex] = useState(0);
   const go = (next) => setIndex((next + SLIDES.length) % SLIDES.length);
-  const arrowCls = "flex h-11 w-11 items-center justify-center rounded-full border border-[#dadce0] bg-white text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]";
+  const arrowCls = "flex h-11 w-11 items-center justify-center rounded-full border border-[#dadce0] bg-white text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]";
 
   return (
     <div role="region" aria-roledescription="carousel" aria-label="What a Visionary partnership is">
@@ -156,7 +156,7 @@ function WhatCarousel() {
                   />
                 </div>
                 <div className="max-w-[520px]">
-                  <h3 className="text-[24px] font-normal leading-[1.25] tracking-[-0.02em] text-[#202124] sm:text-[28px]">
+                  <h3 className="text-[24px] font-normal leading-[1.25] tracking-[-0.02em] text-[#121317] sm:text-[28px]">
                     {slide.title}
                   </h3>
                   <p className="mt-4 text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">{slide.copy}</p>
@@ -180,8 +180,8 @@ function WhatCarousel() {
               aria-selected={i === index}
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 ${
-                i === index ? "w-6 bg-[#1a73e8]" : "w-2 bg-[#dadce0] hover:bg-[#9aa0a6]"
+              className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+                i === index ? "w-6 bg-[#4285F4]" : "w-2 bg-[#dadce0] hover:bg-[#9aa0a6]"
               }`}
             />
           ))}
@@ -210,7 +210,7 @@ export default function PartnersPage() {
               <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">
                 Visionary partnerships
               </p>
-              <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
+              <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
                 Better learning, <span className="text-[#0b57d0]">together.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -219,19 +219,19 @@ export default function PartnersPage() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href={`mailto:${PARTNERS_EMAIL}?subject=${encodeURIComponent("Partnership enquiry")}`}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   Discuss a partnership <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <Link
                   to="/how-it-works"
-                  className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   See how it works
                 </Link>
               </div>
               <p className="mt-5 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#5f6368]">
-                <Clock className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
+                <Clock className="h-4 w-4 text-[#4285F4]" aria-hidden="true" />
                 {RESPONSE_TIMES.partners}
               </p>
             </div>
@@ -244,8 +244,8 @@ export default function PartnersPage() {
                 className="w-full rounded-[24px]"
                 title="Two partners meeting over a laptop"
               />
-              <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[#dadce0] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#202124] shadow-[0_1px_3px_rgba(60,64,67,0.15)]">
-                <Clock className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
+              <p className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full border border-[#dadce0] bg-white py-2 pl-3 pr-4 text-[13px] font-medium text-[#121317] shadow-[0_1px_3px_rgba(60,64,67,0.15)]">
+                <Clock className="h-4 w-4 text-[#4285F4]" aria-hidden="true" />
                 Reply within 5 business days
               </p>
             </div>
@@ -253,10 +253,10 @@ export default function PartnersPage() {
         </section>
 
         {/* WHAT IS A VISIONARY PARTNERSHIP? — the reference's carousel */}
-        <section id="what" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="what" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
                 What is a Visionary partnership?
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -279,7 +279,7 @@ export default function PartnersPage() {
           />
           <Reveal className="relative mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[820px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
                 Who we partner with
               </h2>
               <p className="mx-auto mt-5 max-w-[720px] text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">
@@ -308,7 +308,7 @@ export default function PartnersPage() {
         <section id="includes" className="scroll-mt-28 bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
                 What a partnership includes
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -321,11 +321,11 @@ export default function PartnersPage() {
                   <span className={`flex h-12 w-12 items-center justify-center rounded-[14px] ${tile}`}>
                     <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-5 text-[20px] font-normal tracking-[-0.02em] text-[#202124]">{title}</h3>
+                  <h3 className="mt-5 text-[20px] font-normal tracking-[-0.02em] text-[#121317]">{title}</h3>
                   <dl className="mt-4 space-y-5">
                     {items.map(({ t, d }) => (
                       <div key={t}>
-                        <dt className="text-[15px] font-medium leading-[1.4] text-[#202124]">{t}</dt>
+                        <dt className="text-[15px] font-medium leading-[1.4] text-[#121317]">{t}</dt>
                         <dd className="mt-1 text-[14px] leading-[1.65] text-[#5f6368]">{d}</dd>
                       </div>
                     ))}
@@ -344,16 +344,16 @@ export default function PartnersPage() {
               <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#e8f0fe] text-[#0b57d0]">
                 <Compass />
               </span>
-              <h2 className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[38px]">
+              <h2 className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#121317] sm:text-[38px]">
                 How deep the work can go
               </h2>
               <p className="mt-4 max-w-[440px] text-[15px] leading-[1.7] text-[#5f6368] sm:text-[16px]">
                 Every partnership begins as a conversation. Where it goes from there is agreed together, measured in outcomes, not tiers.
               </p>
-              <dl className="mt-7 space-y-4 border-t border-[#e8eaed] pt-6">
+              <dl className="mt-7 space-y-4 border-t border-[#dadce0] pt-6">
                 {DEPTH_TIERS.map((tier) => (
                   <div key={tier}>
-                    <dt className="text-[15px] font-medium text-[#202124]">{tier}</dt>
+                    <dt className="text-[15px] font-medium text-[#121317]">{tier}</dt>
                     <dd className="mt-0.5 text-[14px] leading-[1.6] text-[#5f6368]">
                       {tier === "Conversation" && "Understand each other's context, constraints, and timing."}
                       {tier === "Scoped pilot" && "A bounded rollout with success measures agreed in writing."}
@@ -368,13 +368,13 @@ export default function PartnersPage() {
               <table className="w-full min-w-[560px] border-collapse text-left">
                 <caption className="sr-only">What each partnership depth includes</caption>
                 <thead>
-                  <tr className="border-b border-[#e8eaed] bg-[#f8f9fa]">
+                  <tr className="border-b border-[#dadce0] bg-[#f8f9fa]">
                     <th scope="col" className="px-5 py-4 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
                       What is included
                     </th>
                     {DEPTH_TIERS.map((tier) => (
                       <th key={tier} scope="col" className="px-4 py-4 text-center">
-                        <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.1em] text-[#202124]">
+                        <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.1em] text-[#121317]">
                           {tier}
                         </span>
                       </th>
@@ -383,8 +383,8 @@ export default function PartnersPage() {
                 </thead>
                 <tbody>
                   {DEPTH_ROWS.map(({ label, reach }) => (
-                    <tr key={label} className="border-b border-[#e8eaed] last:border-b-0">
-                      <th scope="row" className="px-5 py-4 text-[14px] font-medium leading-[1.5] text-[#202124]">
+                    <tr key={label} className="border-b border-[#dadce0] last:border-b-0">
+                      <th scope="row" className="px-5 py-4 text-[14px] font-medium leading-[1.5] text-[#121317]">
                         {label}
                       </th>
                       {reach.map((included, i) => (
@@ -408,11 +408,11 @@ export default function PartnersPage() {
         </section>
 
         {/* HOW A PARTNERSHIP BEGINS — the four-step journey */}
-        <section id="journey" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="journey" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">The process</p>
-              <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+              <h2 className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                 How a partnership begins.
               </h2>
               <p className="mt-4 text-[16px] leading-[1.75] text-[#5f6368]">
@@ -421,9 +421,9 @@ export default function PartnersPage() {
             </div>
             <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
               {JOURNEY.map(({ n, title, copy }) => (
-                <li key={n} className="border-t-2 border-[#202124] pt-5">
+                <li key={n} className="border-t-2 border-[#121317] pt-5">
                   <p className="text-[13px] font-medium text-[#0b57d0]">Step {n}</p>
-                  <h3 className="mt-2 text-[19px] font-medium leading-[1.3] text-[#202124]">{title}</h3>
+                  <h3 className="mt-2 text-[19px] font-medium leading-[1.3] text-[#121317]">{title}</h3>
                   <p className="mt-2 text-[14px] leading-[1.7] text-[#5f6368]">{copy}</p>
                 </li>
               ))}
@@ -437,19 +437,19 @@ export default function PartnersPage() {
         {/* STATEMENT BAND — the reference's grey call-to-decision band */}
         <section className="bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto flex max-w-[1000px] flex-col items-center text-center">
-            <h2 className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124]">
+            <h2 className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317]">
               If your organization works with learners, in a classroom, a system, or a region, we want to understand your context.
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <a
                 href={`mailto:${PARTNERS_EMAIL}?subject=${encodeURIComponent("Partnership enquiry")}`}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 Discuss a partnership <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
                 href="#support"
-                className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               >
                 Looking for support instead?
               </a>
@@ -464,14 +464,14 @@ export default function PartnersPage() {
             <div className="relative grid items-center gap-10 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">For organizations seeking support</p>
-                <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[38px]">
+                <h2 className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#121317] sm:text-[38px]">
                   Start with the support you need.
                 </h2>
                 <p className="mt-4 max-w-[640px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
                   Tell us about your organization, location, and goal. We can explain the available Visionary options and, when appropriate, whether partner support is available for that need.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-                  <Link to="/help" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                  <Link to="/help" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-[14px] font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                     Browse help topics <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
@@ -484,7 +484,7 @@ export default function PartnersPage() {
               {/* google.com card curve — the page background sweeps into the corner
                   and the banner's primary destination floats in it with breath */}
               <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
-              <Link to="/contact" aria-label="Contact Visionary" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+              <Link to="/contact" aria-label="Contact Visionary" className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                 <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
               </Link>
             </div>
@@ -492,10 +492,10 @@ export default function PartnersPage() {
         </section>
 
         {/* FREQUENTLY ASKED QUESTIONS — the reference's expand-all accordion */}
-        <section id="faq" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="faq" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[840px]">
             <div className="text-center">
-              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
+              <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
                 Frequently asked questions
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -533,7 +533,7 @@ export default function PartnersPage() {
               <svg aria-hidden="true" viewBox="0 0 24 24" className="absolute bottom-12 right-12 h-5 w-5 text-[#0b57d2]" fill="currentColor">
                 <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
               </svg>
-              <h2 className="mx-auto max-w-[720px] text-[clamp(30px,4vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#202124]">
+              <h2 className="mx-auto max-w-[720px] text-[clamp(30px,4vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#121317]">
                 Bring Visionary closer to your learners.
               </h2>
               <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.7] text-[#3c4043] sm:text-[16px]">
@@ -542,13 +542,13 @@ export default function PartnersPage() {
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <a
                   href={`mailto:${PARTNERS_EMAIL}?subject=${encodeURIComponent("Partnership enquiry")}`}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   Email the partnerships team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <Link
                   to="/contact"
-                  className="inline-flex min-h-11 items-center rounded-full border border-[#202124]/30 px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   Or use the contact routes
                 </Link>

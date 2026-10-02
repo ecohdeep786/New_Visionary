@@ -8,6 +8,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import ValuesStrip from "@/components/landing/ValuesStrip";
 import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { LEGAL_META } from "@/data/legalMeta";
@@ -581,6 +582,7 @@ export default function SecurityPage() {
           </div>
         </section>
       </main>
+      <ValuesStrip current="/security" />
       <LandingFooter variant="quiet" />
     </div>
   );

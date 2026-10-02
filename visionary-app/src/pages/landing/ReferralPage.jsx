@@ -11,8 +11,8 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 
-/* ═══ Tokens — the shared Material dialect (#202124 ink, #0b57d0/#1a73e8
-   actions, #e8eaed hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
@@ -100,7 +100,7 @@ export default function ReferralPage() {
         <section className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Referral programme</p>
-            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
               Share a better way to <span className="text-[#0b57d0]">learn.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -109,14 +109,14 @@ export default function ReferralPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <button
                 type="button" onClick={copySignupLink}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
                 {copied ? "Link copied" : "Copy your invite link"}
               </button>
               <a
                 href="#how" 
-                className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                className="inline-flex min-h-11 items-center rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               >
                 How sharing works
               </a>
@@ -140,11 +140,11 @@ export default function ReferralPage() {
         </section>
 
         {/* HOW IT WORKS — the reference's blue-circle steps */}
-        <section id="how" aria-labelledby="how-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="how" aria-labelledby="how-title" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Sending an invite</p>
-              <h2 id="how-title" className="mt-3 text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
+              <h2 id="how-title" className="mt-3 text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[46px]">
                 How it works.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -158,7 +158,7 @@ export default function ReferralPage() {
                   <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#0b57d2] text-white">
                     <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
+                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
                   <p className="mx-auto mt-2 max-w-[300px] text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                 </li>
               ))}
@@ -167,7 +167,7 @@ export default function ReferralPage() {
             <div className="mt-12 flex justify-center">
               <a
                 href="#share"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] bg-white px-6 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               >
                 Copy the link now <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -177,11 +177,11 @@ export default function ReferralPage() {
 
         {/* POINT THEM WELL — the reference's "redeeming" block, mapped to
             honest destinations */}
-        <section aria-labelledby="point-title" className="border-y border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section aria-labelledby="point-title" className="border-y border-[#dadce0] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Pointing them well</p>
-              <h2 id="point-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+              <h2 id="point-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                 Start from what they need.
               </h2>
               <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368] sm:text-[16px]">
@@ -195,17 +195,17 @@ export default function ReferralPage() {
                   <span className="flex h-[104px] w-[104px] items-center justify-center rounded-[22px] g-card">
                     <SpotIllustration subject={subject} className="h-[76px] w-[76px]" title={label} />
                   </span>
-                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#202124]">{label}</h3>
+                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#121317]">{label}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-                    <Link to={alt} className="inline-flex min-h-9 items-center gap-1.5 rounded-sm text-[14px] font-medium text-[#5f6368] transition-colors hover:text-[#202124] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                    <Link to={alt} className="inline-flex min-h-9 items-center gap-1.5 rounded-sm text-[14px] font-medium text-[#5f6368] transition-colors hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                       or {alt} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                     </Link>
                   </div>
                   {/* google.com card curve — the page background sweeps into the
                       corner and the card's primary destination floats in it with breath */}
                   <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#f8f9fa]" />
-                  <Link to={to} aria-label={`Open ${to}`} className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                  <Link to={to} aria-label={`Open ${to}`} className="absolute bottom-0 right-0 flex h-[56px] w-[92px] items-end justify-end rounded-tl-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                     <ArrowUpRight className="mb-3 mr-3 h-5 w-5 text-[#0b57d0]" aria-hidden="true" />
                   </Link>
                 </article>
@@ -219,45 +219,45 @@ export default function ReferralPage() {
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Ready to share?</p>
-              <h2 id="share-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+              <h2 id="share-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                 Copy the standard sign-up link.
               </h2>
               <p className="mt-4 max-w-[480px] text-[15px] leading-[1.75] text-[#5f6368]">
                 It opens Visionary registration. It contains no personal referral code and does not tell Visionary who shared it.
               </p>
               <p className="mt-6 flex items-center gap-2 text-[13px] tracking-[0.01em] text-[#5f6368]">
-                <UserRoundPlus className="h-4 w-4 text-[#1a73e8]" aria-hidden="true" />
+                <UserRoundPlus className="h-4 w-4 text-[#4285F4]" aria-hidden="true" />
                 Works for every persona, no account needed to copy it.
               </p>
             </div>
             <div className="rounded-2xl g-card p-6 sm:p-8">
-              <label htmlFor="referral-signup-link" className="block text-[13px] font-medium text-[#202124]">Visionary sign-up page</label>
+              <label htmlFor="referral-signup-link" className="block text-[13px] font-medium text-[#121317]">Visionary sign-up page</label>
               <input
                 id="referral-signup-link"
                 type="text"
                 readOnly
                 value={shareUrl}
                 onFocus={(event) => event.currentTarget.select()}
-                className="mt-2 h-12 w-full min-w-0 rounded-xl border border-[#dadce0] bg-[#f8f9fa] px-4 text-[14px] text-[#5f6368] outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                className="mt-2 h-12 w-full min-w-0 rounded-xl border border-[#dadce0] bg-[#f8f9fa] px-4 text-[14px] text-[#5f6368] outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 aria-describedby="referral-link-note"
               />
               <div className="mt-4 flex flex-wrap gap-3">
                 <button
                   type="button" onClick={copySignupLink}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-5 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-5 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
                   {copied ? "Copied" : "Copy sign-up link"}
                 </button>
                 <button
                   type="button" onClick={shareSignupLink}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] px-5 text-[14px] font-medium text-[#202124] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] px-5 text-[14px] font-medium text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   <Share2 className="h-4 w-4" aria-hidden="true" /> Share
                 </button>
                 <Link
                   to="/register"
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] px-5 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f1f3f4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#dadce0] px-5 text-[14px] font-medium text-[#0b57d0] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   Open registration <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -273,7 +273,7 @@ export default function ReferralPage() {
         {/* HONESTY BAND — the reference's rates block, told straight */}
         <section aria-labelledby="honest-title" className="bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto flex max-w-[900px] flex-col items-center text-center">
-            <h2 id="honest-title" className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124]">
+            <h2 id="honest-title" className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317]">
               No points. No tracking. Just a good tool worth passing on.
             </h2>
             <p className="mt-5 max-w-[640px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">
@@ -281,7 +281,7 @@ export default function ReferralPage() {
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-2">
               {["No tracking", "No codes", "No rewards", "No expiry"].map((chip) => (
-                <span key={chip} className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-3 py-1.5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#202124]">
+                <span key={chip} className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-3 py-1.5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#121317]">
                   {chip}
                 </span>
               ))}
@@ -294,7 +294,7 @@ export default function ReferralPage() {
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Good to know</p>
-              <h2 id="faq-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
+              <h2 id="faq-title" className="mt-3 text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
                 Frequently asked questions.
               </h2>
               <p className="mt-4 max-w-[360px] text-[15px] leading-[1.75] text-[#5f6368]">
@@ -319,7 +319,7 @@ export default function ReferralPage() {
                 More questions?{" "}
                 <a
                   href="mailto:hello@visionary.org.in?subject=Referral%20question"
-                  className="inline-flex min-h-9 items-center gap-1.5 rounded-sm font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-9 items-center gap-1.5 rounded-sm font-medium text-[#0b57d0] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   hello@visionary.org.in <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
@@ -329,7 +329,7 @@ export default function ReferralPage() {
         </section>
 
         {/* PRIVACY REMINDER — preserved strip */}
-        <section aria-label="Privacy reminder" className="border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-8 sm:px-8 lg:px-10">
+        <section aria-label="Privacy reminder" className="border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-8 sm:px-8 lg:px-10">
           <div className="mx-auto flex max-w-[1240px] items-start gap-3">
             <UserRoundPlus className="mt-0.5 h-5 w-5 shrink-0 text-[#5f6368]" aria-hidden="true" />
             <p className="max-w-[850px] text-[13px] leading-[1.7] text-[#5f6368]">
@@ -342,7 +342,7 @@ export default function ReferralPage() {
         <section aria-labelledby="closing-title" className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-14 text-center sm:px-12 lg:py-16">
-              <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124]">
+              <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317]">
                 Not sharing yet? Keep growing with us.
               </h2>
               <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.7] text-[#3c4043]">
@@ -351,13 +351,13 @@ export default function ReferralPage() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to="/updates"
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   Sign up for updates <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
                   to="/community"
-                  className="inline-flex min-h-11 items-center rounded-full border border-[#202124]/30 px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   Meet the community
                 </Link>

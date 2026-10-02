@@ -1,0 +1,1 @@
+Parent lifecycle: active, pending, declined, expired request, expired permission, renewal and cancellation pass at 390px.

@@ -139,7 +139,7 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
         {plan.cta}
       </Link>
 
-      <p className="mt-7 border-t pt-6 text-[13px] font-medium" style={{ borderColor: "#e8eaed", color: COLORS.ink }}>What’s included</p>
+      <p className="mt-7 border-t pt-6 text-[13px] font-medium" style={{ borderColor: "#dadce0", color: COLORS.ink }}>What’s included</p>
       <ul className="mt-4 space-y-3">
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-3">

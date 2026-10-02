@@ -2,6 +2,7 @@ import {connectionStatus} from '../lib/connectionAvailability.js';
 import {organizationPolicy} from '../services/organizationPolicy.js';
 import {assignmentAcceptsResponses} from '../lib/assignmentAvailability.js';
 import {validCriterionFeedback} from '../lib/classworkRubric.js';
+import {validCurriculumPublicationUpdate} from '../lib/curriculumPublication.js';
 const emptyFeedback=value=>Boolean(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).length===0);
 /** Local mock policy. The backend must enforce the same rules independently. */
 export function previewPolicy(user, read) {
@@ -70,8 +71,22 @@ export function previewPolicy(user, read) {
       if(allowed&&learner){const criteria=assignment?.objective_snapshot?.criteria||[];if(criteria.length)allowed=patch.self_review&&typeof patch.self_review==='object'&&!Array.isArray(patch.self_review)&&criteria.every(item=>typeof patch.self_review[item.id]==='string'&&Boolean(patch.self_review[item.id].trim())&&patch.self_review[item.id].length<=2000)&&Object.keys(patch.self_review).every(key=>criteria.some(item=>item.id===key));}
     }
     if(name==='Classroom'&&operation==='create'&&r.organization_email)allowed=allowed&&activeMember(r.organization_email,'teacher');
+    if(name==='Classroom'&&Object.hasOwn(patch,'curriculum_publications')){
+      if(operation!=='update')allowed=false;
+      else{
+        allowed=allowed&&validCurriculumPublicationUpdate(r.curriculum_publications===undefined?[]:r.curriculum_publications,patch.curriculum_publications);
+        allowed=allowed&&patch.curriculum_publications.every((row,index)=>!r.curriculum_publications?.[index]||row.status===r.curriculum_publications[index].status||row.stateHistory.at(-1)?.actor===user.id);
+      }
+    }
     if(!allowed)throw new Error('This action is not permitted in your active workspace.');
     if(operation==='update'&&['class_id','teacher_email','teacher_id','student_email','organization_email'].some(k=>k in patch&&patch[k]!==r[k]))throw new Error('Record ownership cannot be changed.');
   }
-  return {canRead,assertWrite,canJoinClass: id => learner&&learnerClass(id)};
+  function projectRead(name,row){
+    if(name==='Classroom'&&!teacher(row.id)&&!enrolled(row.id)){
+      const {curriculum_publications:excluded,...summary}=row;return summary;
+    }
+    if(name==='Classroom'&&learner&&Array.isArray(row.curriculum_publications))return {...row,curriculum_publications:row.curriculum_publications.filter(copy=>copy?.status!=='withdrawn')};
+    return row;
+  }
+  return {canRead,assertWrite,projectRead,canJoinClass: id => learner&&learnerClass(id)};
 }

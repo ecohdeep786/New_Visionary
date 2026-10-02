@@ -1,5 +1,7 @@
 # BACKEND CONTRACT — Visionary AGI (backend phase, v1)
 
+2026-10-02 class-publication handoff: the local client now publishes a complete reviewed curriculum delivery to an owned class with an expected publication revision. Future server operations must resolve the authorized original delivery themselves, strip banks/keys/editorial notes, validate complete chapter/prerequisite/source structure and atomically append a fixed learner-safe copy. Use opaque server revision tokens, authenticated actor IDs and trusted timestamps. Withdrawal/restore appends availability history without rewriting source or existing assignments. Invited/closed/revoked readers receive no body; a read begun before withdrawal must not return that withdrawn copy afterward. Enforce these rules independently for list/get/export, not only in UI controls. Publication is distinct from assignments, attempts, grades and mastery. No server operation is deployed by this frontend milestone.
+
 The client boundary already exists and has frontend contract tests: `src/services/backendTransport.ts` (team Gate 1).
 No backend exists yet (founder direction D-015, 2026-09-27). Complete the local product gate first.
 The exchange shape and operations below are a **proposal for the later backend phase**, to reconcile

@@ -6,6 +6,7 @@
 
 import { previewPolicy } from './previewPermissions.js';
 import {connectionStatus} from '../lib/connectionAvailability.js';
+import {curriculumPublicationRevision} from '../lib/curriculumPublication.js';
 const USERS_KEY = 'visionary_users';
 const SESSION_TOKEN_KEY = 'visionary_session_token';
 const SESSIONS_KEY = 'visionary_sessions';
@@ -333,7 +334,10 @@ const visibleRecords = (name, ownerEmail) => {
   const currentUser = entityUser();
   if (name === 'User') return currentUser?[{id:currentUser.id,email:currentUser.email}]:[];
   if (!currentUser) return [];
-  if (!personalEntities.has(name)) return readEntities(name).filter(r=>previewPolicy(currentUser,readEntities).canRead(name,r));
+  if (!personalEntities.has(name)) {
+    const policy=previewPolicy(currentUser,readEntities);
+    return readEntities(name).filter(r=>policy.canRead(name,r)).map(r=>policy.projectRead(name,r));
+  }
   const owner = ownerEmail || currentUser.email;
   if (owner !== currentUser.email) {
     const shared = ['Subject', 'Topic', 'StudyLog'].includes(name) && currentUser.identity === 'parent' &&
@@ -400,8 +404,9 @@ const entityStore = new Proxy({}, {
       notifyChange();
       return created;
     },
-    async update(id, updates) {
+    async update(id, updates, options = {}) {
       if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      if(name==='Classroom'&&Object.hasOwn(updates,'curriculum_publications')&&options.expectedCurriculumRevision!==curriculumPublicationRevision(readEntities(name).find(record=>record.id===id)?.curriculum_publications))throw new Error('The published curriculum changed. Review the latest copies before publishing.');
       if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'update',updates);
       const { id: ignoredId, owner_email: ignoredOwner, workspace_id: ignoredWorkspace, ...fields } = updates;
       const updated = readEntities(name).map((record) => record.id === id ? { ...record, ...fields } : record);

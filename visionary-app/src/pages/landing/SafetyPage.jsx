@@ -7,11 +7,12 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { LEGAL_META, RESPONSE_TIMES } from "@/data/legalMeta";
 
-/* ═══ Tokens — the shared Material dialect (#202124 ink, #0b57d0/#1a73e8
-   actions, #e8eaed hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
 const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 const SAFETY_EMAIL = "safety@visionary.org.in";
 
@@ -48,7 +49,7 @@ function AnchorChip({ href, children }) {
   return (
     <a
       href={href}
-      className="inline-flex min-h-9 items-center rounded-full border border-[#dadce0] bg-white px-4 text-[13px] font-medium text-[#5f6368] transition-colors hover:bg-[#f1f3f4] hover:text-[#202124] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+      className="inline-flex min-h-9 items-center rounded-full border border-[#dadce0] bg-white px-4 text-[13px] font-medium text-[#5f6368] transition-colors hover:bg-[#f8f9fa] hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
     >
       {children}
     </a>
@@ -59,8 +60,8 @@ function AnchorChip({ href, children }) {
 function DeviceFrame({ subject, tint, title, className = "" }) {
   return (
     <div className={`relative mx-auto w-full max-w-[320px] ${className}`}>
-      <div className="rounded-[36px] border-[5px] border-[#202124] bg-white p-4 pb-7 shadow-[0_2px_12px_rgba(32,33,36,0.08)]">
-        <div aria-hidden="true" className="mx-auto mb-3 h-1.5 w-14 rounded-full bg-[#e8eaed]" />
+      <div className="rounded-[36px] border-[5px] border-[#121317] bg-white p-4 pb-7 shadow-[0_2px_12px_rgba(32,33,36,0.08)]">
+        <div aria-hidden="true" className="mx-auto mb-3 h-1.5 w-14 rounded-full bg-[#dadce0]" />
         <div className="flex items-center justify-center rounded-[22px] py-2" style={{ backgroundColor: tint }}>
           <SpotIllustration subject={subject} className="h-[170px] w-[170px]" title={title} />
         </div>
@@ -152,7 +153,7 @@ export default function SafetyPage() {
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0b57d2] text-white shadow-[0_2px_8px_rgba(11,87,210,0.3)]">
               <ShieldCheck className="h-7 w-7" strokeWidth={1.8} aria-hidden="true" />
             </span>
-            <h1 className="mt-7 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
+            <h1 className="mt-7 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
               Safe by design,<br />
               <span className="text-[#0b57d0]">for every learner.</span>
             </h1>
@@ -171,7 +172,7 @@ export default function SafetyPage() {
         {/* STATEMENT + ICON STRIP — the reference's icon row */}
         <section aria-labelledby="statement-title" className="px-6 pb-20 sm:px-8 lg:px-10 lg:pb-28">
           <Reveal className="mx-auto max-w-[880px] text-center">
-            <h2 id="statement-title" className="text-[clamp(24px,3vw,34px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124]">
+            <h2 id="statement-title" className="text-[clamp(24px,3vw,34px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317]">
               The questions you ask every day, <span className="text-[#0b57d0]">safer in all kinds of ways.</span>
             </h2>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -188,7 +189,7 @@ export default function SafetyPage() {
         </section>
 
         {/* BUILT-IN PROTECTIONS — the reference's alternating rows */}
-        <section id="protections" aria-labelledby="protections-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="protections" aria-labelledby="protections-title" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1080px]">
             <h2 id="protections-title" className="sr-only">Built-in protections</h2>
             <div className="grid gap-16 lg:gap-24">
@@ -196,7 +197,7 @@ export default function SafetyPage() {
                 <div key={row.eyebrow} className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
                   <div className={row.visualSide === "left" ? "lg:order-2" : ""}>
                     <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">{row.eyebrow}</p>
-                    <h3 className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#202124] sm:text-[36px]">
+                    <h3 className="mt-3 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[36px]">
                       {row.title}
                     </h3>
                     <p className="mt-4 max-w-[480px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">{row.copy}</p>
@@ -211,10 +212,10 @@ export default function SafetyPage() {
         </section>
 
         {/* FAMILY CONTROLS — the reference's centered heading + action cards */}
-        <section id="family" aria-labelledby="family-title" className="scroll-mt-28 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="family" aria-labelledby="family-title" className="scroll-mt-28 border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
-              <h2 id="family-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#202124] sm:text-[44px]">
+              <h2 id="family-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#121317] sm:text-[44px]">
                 Set boundaries that are<br className="hidden sm:block" />
                 <span className="text-[#0b57d0]"> right for your family.</span>
               </h2>
@@ -224,12 +225,12 @@ export default function SafetyPage() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {FAMILY_CARDS.map(({ Icon, eyebrow, to, title, copy }) => (
-                <Link key={title} to={to} aria-label={title} className="group relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                <Link key={title} to={to} aria-label={title} className="group relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl g-card bg-white p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                   <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
-                  <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
+                  <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   {/* google.com card curve — the section background sweeps into
                       the corner and the card's destination floats in it with breath */}
@@ -245,7 +246,7 @@ export default function SafetyPage() {
         <section id="reporting" aria-labelledby="reporting-title" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
-              <h2 id="reporting-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#202124] sm:text-[44px]">
+              <h2 id="reporting-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#121317] sm:text-[44px]">
                 Seen something wrong? <span className="text-[#0b57d0]">Flag it.</span>
               </h2>
               <p className="mx-auto mt-5 max-w-[600px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">
@@ -254,12 +255,12 @@ export default function SafetyPage() {
             </div>
             <div className="mt-14 grid gap-4 md:grid-cols-3">
               {REPORTING_CARDS.map(({ eyebrow, subject, tint, title, copy, link }) => (
-                <Link key={eyebrow} to={link.to} aria-label={link.label} className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl g-card p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]">
+                <Link key={eyebrow} to={link.to} aria-label={link.label} className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-2xl g-card p-6 pb-14 sm:p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <span className="flex h-[120px] w-[120px] items-center justify-center rounded-[24px]" style={{ backgroundColor: tint }}>
                     <SpotIllustration subject={subject} className="h-[88px] w-[88px]" title={eyebrow} />
                   </span>
                   <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
-                  <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
+                  <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
                   <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowUpRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" aria-hidden="true" /></div>
@@ -275,7 +276,7 @@ export default function SafetyPage() {
             <div className="rounded-[28px] bg-[#e8f0fe] px-8 py-12 sm:px-12 lg:py-14">
               <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
                 <div>
-                  <h2 className="text-[26px] font-normal leading-[1.2] tracking-[-0.025em] text-[#202124] sm:text-[34px]">
+                  <h2 className="text-[26px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317] sm:text-[34px]">
                     Three checks before you share anything.
                   </h2>
                   <p className="mt-4 max-w-[420px] text-[15px] leading-[1.7] text-[#3c4043]">
@@ -284,13 +285,13 @@ export default function SafetyPage() {
                   <div className="mt-7 flex flex-wrap gap-3">
                     <a
                       href={`mailto:${SAFETY_EMAIL}?subject=${encodeURIComponent("Safety concern")}`}
-                      className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-5 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-5 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                     >
                       Report something suspicious
                     </a>
                     <Link
                       to="/privacy"
-                      className="inline-flex min-h-11 items-center rounded-full border border-[#202124]/30 px-5 text-[14px] font-medium text-[#202124] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                      className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-5 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                     >
                       Read the privacy policy
                     </Link>
@@ -320,7 +321,7 @@ export default function SafetyPage() {
         <section aria-labelledby="closing-title" className="px-6 py-12 sm:px-8 lg:px-10 lg:py-16">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-14 text-center sm:px-12 lg:py-16">
-              <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124]">
+              <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317]">
                 Discover more ways we keep learning safe.
               </h2>
               <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.7] text-[#3c4043]">
@@ -329,13 +330,13 @@ export default function SafetyPage() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <a
                   href={`mailto:${SAFETY_EMAIL}?subject=${encodeURIComponent("Safety concern")}`}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   Contact the safety team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <Link
                   to="/how-it-works"
-                  className="inline-flex min-h-11 items-center rounded-full border border-[#202124]/30 px-6 text-[14px] font-medium text-[#202124] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
                   Explore how it works
                 </Link>
@@ -345,6 +346,7 @@ export default function SafetyPage() {
         </section>
 
       </main>
+      <ValuesStrip current="/safety" />
       <LandingFooter variant="quiet" />
     </div>
   );
