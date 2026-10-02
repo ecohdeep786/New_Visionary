@@ -12,7 +12,7 @@ import SpotIllustration from "@/components/landing/SpotIllustration";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -95,7 +95,7 @@ export default function UpdatesPage() {
           <Reveal className="mx-auto max-w-[880px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">News &amp; updates</p>
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
-              What&rsquo;s <span className="text-[#0b57d0]">new</span> at Visionary.
+              What&rsquo;s <span className="accent-gradient">new</span> at Visionary.
             </h1>
             <p className="mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
               Product news, new languages, and launch updates as they land, with the date on each one.

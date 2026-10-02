@@ -12,7 +12,7 @@ import VisionaryLogo from "@/components/VisionaryLogo";
 import { CATEGORIES } from "@/data/landingCategories";
 
 /* ═══ Tokens ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = {
   ink: "#121317",
   graphite: "#3c4043",

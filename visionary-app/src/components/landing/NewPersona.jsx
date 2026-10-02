@@ -79,16 +79,16 @@ export default function NewPersona({
                 className={display}
                 style={{ color: "#121317" }}
               >
-                <span
-                  key={index}
-                  className="inline-block"
-                  style={{
-                    animation:
-                      "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
-                  }}
-                >
-                  {words[index]}
-                </span>
+              <span
+                key={index}
+                className="accent-gradient inline-block"
+                style={{
+                  animation:
+                    "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                }}
+              >
+                {words[index]}
+              </span>
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>

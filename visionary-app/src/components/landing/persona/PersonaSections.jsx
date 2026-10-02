@@ -401,14 +401,67 @@ const IntelligenceArt = React.memo(function IntelligenceArt({ label, variant = 0
   );
 });
 
+/* The product window — the persona pages' product shot. The same dark glass
+   window as the landing's One Intelligence stage, one ability lighting up per
+   step so the product visibly grows as you scroll. Used only when a step has
+   no photograph; photography stays photography. */
+const PERSONA_WINDOW_ABILITIES = [
+  "Understands where you are",
+  "Remembers what you tried",
+  "Adapts to your pace",
+  "Builds from what you know",
+];
+
+const PersonaWindow = React.memo(function PersonaWindow({ step }) {
+  const active = ((step % PERSONA_WINDOW_ABILITIES.length) + PERSONA_WINDOW_ABILITIES.length) % PERSONA_WINDOW_ABILITIES.length;
+  return (
+    <div className="relative w-[min(420px,88vw)]">
+      <style>{"@keyframes pwSpin{to{transform:rotate(360deg)}}@keyframes pwRowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}"}</style>
+      <div
+        aria-hidden="true"
+        className="absolute inset-[-16%] -z-10 rounded-full"
+        style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.14) 0%, rgba(66,133,244,0.05) 45%, transparent 72%)" }}
+      />
+      <svg viewBox="0 0 100 100" className="absolute inset-[-11%] h-[122%] w-[122%]" style={{ animation: "pwSpin 70s linear infinite" }} aria-hidden="true">
+        <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(66,133,244,0.3)" strokeWidth="0.3" strokeDasharray="4 5" />
+      </svg>
+      <div
+        className="relative overflow-hidden rounded-[26px] border bg-[#1b1e23] shadow-[0_36px_80px_-28px_rgba(18,19,23,0.55)]"
+        style={{ borderColor: "rgba(66,133,244,0.24)" }}
+        aria-hidden="true"
+      >
+        <div className="flex h-11 items-center border-b px-5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+          {["a", "b", "c"].map((d, i) => (
+            <span key={d} className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.2)", marginRight: i === 2 ? 0 : 6 }} />
+          ))}
+          <span className="ml-3 text-[12px] font-medium tracking-[0.24px]" style={{ color: "rgba(255,255,255,0.6)" }}>Visionary</span>
+        </div>
+        <div key={step} className="flex min-h-[188px] flex-col justify-center gap-[18px] px-7 py-7">
+          {PERSONA_WINDOW_ABILITIES.map((label, i) => (
+            <div key={label} className="flex items-center gap-3" style={{ animation: `pwRowIn 600ms cubic-bezier(0.22,1,0.36,1) ${i * 70}ms both` }}>
+              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: i === active ? COLORS.blue : "rgba(255,255,255,0.28)" }} />
+              <span className="min-w-0 flex-1 text-left text-[13px] leading-[17px] tracking-[0.2px]" style={{ color: i === active ? "#ffffff" : "rgba(255,255,255,0.6)" }}>{label}</span>
+              <span className="h-1.5 w-16 shrink-0 overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.09)" }}>
+                <span className="block h-full rounded-full" style={{ width: i <= active ? "100%" : "18%", backgroundColor: i <= active ? COLORS.blue : "rgba(255,255,255,0.3)" }} />
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+});
+
 const IntelligenceVisual = React.memo(function IntelligenceVisual({ step, index, setStepRef, image }) {
   const showArt = !image || isExternalSrc(image);
   return (
     <figure ref={setStepRef(index)} data-step={index} className="m-0">
-      <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[60px] lg:mx-0 lg:max-w-none">
-        {showArt ? (
-          <IntelligenceArt label={step.title} variant={index} className="aspect-[4/3] w-full lg:aspect-[15/16]" />
-        ) : (
+      {showArt ? (
+        <div className="mx-auto flex aspect-[4/3] w-full max-w-[440px] items-center justify-center lg:aspect-[15/16] lg:mx-0 lg:max-w-none">
+          <PersonaWindow step={index} />
+        </div>
+      ) : (
+        <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[60px] lg:mx-0 lg:max-w-none">
           <img
             src={image}
             alt={step.title}
@@ -416,8 +469,8 @@ const IntelligenceVisual = React.memo(function IntelligenceVisual({ step, index,
             decoding="async"
             className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]"
           />
-        )}
-      </div>
+        </div>
+      )}
     </figure>
   );
 });
@@ -627,10 +680,10 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
     <Link
       to={`/${category.slug}`}
       data-card
-      className="elevation-1 block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white sm:w-[320px]"
+      className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)] sm:w-[320px]"
       style={{ borderColor: `${COLORS.ink}1A` }}
     >
-      <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+      <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
           {category.chip}

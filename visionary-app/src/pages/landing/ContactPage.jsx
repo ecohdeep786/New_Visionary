@@ -14,7 +14,7 @@ import { GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #4285F4/#0b57d0
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* Contact routes — real mailboxes (preserved from the page). */
 const CONTACT_ROUTES = [
@@ -138,7 +138,7 @@ export default function ContactPage() {
         <section className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
             <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
-              Guidance to get you going on Visionary
+              Guidance to <span className="accent-gradient">get you going</span> on Visionary
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
               Find the answers and support you need to make the most of Visionary.

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import HeroFanCards from "@/components/landing/HeroFanCards";
 
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ── Fan cards: every main category plus the sub-categories used on each
       category page. All sub-category cards redirect to their main category
@@ -49,7 +49,7 @@ export default function AboutUsHero() {
         <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">About Visionary</p>
         <div className="mx-auto mt-6 max-w-[1120px] text-center">
           <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[64px] lg:text-[76px]">
-            Helping people turn questions into <span className="text-[#0b57d0]">understanding.</span>
+            Helping people turn questions into <span className="accent-gradient">understanding.</span>
           </h1>
           <p className="mx-auto mt-8 max-w-[760px] text-[20px] leading-[1.55] text-[#3c4043] sm:text-[24px]">
             A learning product for people who want to understand, practise, and apply what they learn.

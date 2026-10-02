@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Globe } from "lucide-react";
 
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#4285F4" };
 
 const FOOTER_LINK =

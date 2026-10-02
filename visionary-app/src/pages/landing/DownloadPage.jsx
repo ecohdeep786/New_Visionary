@@ -18,7 +18,7 @@ const COLORS = {
   mist: "#dadce0",
   white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -100,7 +100,7 @@ function DownloadHeroSection() {
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-          Get <span style={{ color: COLORS.blue }}>Visionary</span> on every device.
+          Get <span className="accent-gradient">Visionary</span> on every device.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           On the phone, tablet or laptop you already own.

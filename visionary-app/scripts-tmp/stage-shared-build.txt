@@ -1,0 +1,166 @@
+vite v6.4.3 building for production...
+transforming...
+✓ 2178 modules transformed.
+rendering chunks...
+computing gzip size...
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/index.html                                           1.24 kB │ gzip:   0.56 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-primary-BQqYJWen.webp                27.31 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/index-o8YMaDqd.css                          141.28 kB │ gzip:  24.90 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/WorkspaceIntro-D_2Itdjy.js                    0.60 kB │ gzip:   0.30 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/useStudentData-Cl9LPKWe.js                    0.71 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/useThemeColor-DkeDb7Y7.js                     0.78 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/useWorkspace-DWTilbBM.js                      0.85 kB │ gzip:   0.47 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CriterionFeedback-CE5c1e2N.js                 0.88 kB │ gzip:   0.51 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/VisionaryLogo-qT1nXpIS.js                     0.94 kB │ gzip:   0.62 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/PolicyTabs-rSG64YQZ.js                        1.13 kB │ gzip:   0.65 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/JourneyCatalogue-RtUDu1M4.js                  1.29 kB │ gzip:   0.68 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/resourceEditorDraft-B4uetcTJ.js               1.59 kB │ gzip:   0.76 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Breadcrumb-DgT8lxod.js                        1.80 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/dialog-CFBcMFXv.js                            1.99 kB │ gzip:   0.80 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ValuesStrip-Bsy3j2Ep.js                       2.16 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/LessonObjectivePreview-BmgENBRH.js            2.25 kB │ gzip:   0.94 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ForgotUserId-DhrDlEHt.js                      2.29 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ForgotPassword-i71zuz0a.js                    2.32 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ResetPassword-CgW8gj2x.js                     2.42 kB │ gzip:   1.07 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CubeLearningEntry-D9jSUc4P.js                 2.72 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/AuthLayout-DKzDmvrL.js                        2.90 kB │ gzip:   0.89 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/SocialAuthButtons-DqQruxXF.js                 3.12 kB │ gzip:   1.37 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Learners-lR8cHOMo.js                          3.30 kB │ gzip:   1.46 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/stagePresentation-u6vbyV6n.js                 3.33 kB │ gzip:   1.15 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/curriculumBridgeService-D0WLKJlo.js           3.71 kB │ gzip:   1.56 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/LandingFAQ-l97eiS8-.js                        4.04 kB │ gzip:   1.52 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/roleMentorService-T4dHerkG.js                 4.22 kB │ gzip:   1.81 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Children-FfRvbGAq.js                          4.70 kB │ gzip:   1.88 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/dailyPlanService-BUm9B3dl.js                  4.84 kB │ gzip:   1.90 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ClassworkProjectSubmission-LyLnKKV7.js        5.33 kB │ gzip:   2.27 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Explore-B4FCwWI7.js                           5.46 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Cohorts-D6zIzh_Y.js                           6.13 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/AuthUI-4N0O3xRw.js                            6.70 kB │ gzip:   2.11 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Login-BcqIh5IT.js                             7.42 kB │ gzip:   2.06 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Plans-vE9Em5bg.js                             8.39 kB │ gzip:   3.05 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Practice-CYPT5_GN.js                          9.25 kB │ gzip:   3.39 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Register-BsjZfKz4.js                          9.36 kB │ gzip:   2.85 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Settings-RNB5_HYd.js                         10.82 kB │ gzip:   3.89 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/TopicDetail-CQnaIbm4.js                      10.83 kB │ gzip:   3.79 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Learn-Bz6NV1bE.js                            11.41 kB │ gzip:   4.02 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/TeacherHome-BW8P5a_d.js                      12.75 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Connections-o59LNfR9.js                      12.76 kB │ gzip:   4.51 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/stageTransitionService-C71zGAR0.js           13.26 kB │ gzip:   4.48 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/SchoolPage-CQF-yIfc.js                       13.82 kB │ gzip:   4.51 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/AILearningPage-C6RBwcVc.js                   14.56 kB │ gzip:   4.31 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CommunityPage-khvYQ_Jk.js                    14.87 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/mentorStateService-B3SyIXvz.js               15.78 kB │ gzip:   5.58 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ContactPage-DJ8OkUHP.js                      15.85 kB │ gzip:   4.45 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/classroomService-3BAEbaTz.js                 16.05 kB │ gzip:   5.31 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/SafetyPage-Wm3P6G_8.js                       16.34 kB │ gzip:   4.66 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/DownloadPage-Qpe0kC41.js                     16.48 kB │ gzip:   4.53 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/AccessibilityPage-CTzPhu92.js                17.51 kB │ gzip:   5.01 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/contentRepository-B2pIRZ8Z.js                17.62 kB │ gzip:   5.81 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ReferralPage-CDq-vuDx.js                     17.94 kB │ gzip:   5.08 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/learningPipelineService-DMlhurQ4.js          18.63 kB │ gzip:   6.72 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/UpdatesPage-CQf6HqFh.js                      18.80 kB │ gzip:   5.05 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Support-B17UIu7W.js                          19.31 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/AboutUsPage-D3FPNVI4.js                      19.78 kB │ gzip:   5.63 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CareersPage-B69S9eNg.js                      20.04 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Profile-C27zspCV.js                          20.14 kB │ gzip:   5.21 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ClassworkStudy-BMzuv778.js                   20.62 kB │ gzip:   6.37 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CookiesPage-53xHU5WT.js                      21.63 kB │ gzip:   6.04 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/voiceService-Bpnu-6LE.js                     21.90 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/LandingFooter-sRniwwJX.js                    23.76 kB │ gzip:   5.54 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CoachingPage-3miUOfVT.js                     24.21 kB │ gzip:   6.64 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/PartnersPage-DNuFUk4x.js                     24.94 kB │ gzip:   6.90 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/RoleWorkspace-CwsYV6U_.js                    25.11 kB │ gzip:   7.59 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/TermsPage-CmyWNbes.js                        25.95 kB │ gzip:   7.30 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/LearningRepresentation-BwTsxLaN.js           25.98 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ResearchNewsPage-D642Xbui.js                 26.24 kB │ gzip:   6.93 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/StudentClasses-D-Z0V9Hk.js                   27.15 kB │ gzip:   8.29 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/classworkCopy-DkEjc3ly.js                    27.40 kB │ gzip:   6.20 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/SecurityPage-DCKgj9tO.js                     27.66 kB │ gzip:   6.92 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/PersonaSections-CGK0GVKc.js                  28.17 kB │ gzip:   7.91 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/OrganizationContent-DDXtd3lf.js              28.29 kB │ gzip:   7.95 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/PrivacyPage-DtcjKWuX.js                      29.39 kB │ gzip:   7.87 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ArtifactStudio-CYkTTC0e.js                   29.53 kB │ gzip:   8.66 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/SpotIllustration-K29JmLpg.js                 32.27 kB │ gzip:   6.46 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/OrganizationPage-Cf_E7vcp.js                 32.83 kB │ gzip:   9.67 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/StudentPage-CxVqyqiH.js                      33.85 kB │ gzip:   9.89 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CollegePage-DaEGf9ap.js                      34.09 kB │ gzip:  10.12 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/CommunityTab-unb0naaf.js                     34.10 kB │ gzip:  10.09 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ParentPage-BPODCR8l.js                       34.34 kB │ gzip:  10.14 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/TeacherPage--a6Pg4cA.js                      35.11 kB │ gzip:  10.21 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Onboarding-8sluFnE6.js                       36.91 kB │ gzip:  10.75 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Guide-DDyW5u1W.js                            39.57 kB │ gzip:  12.47 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/DashboardHome-DwdEthKm.js                    43.16 kB │ gzip:  12.80 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/LearningWorkspace-VmAxrOuO.js                44.99 kB │ gzip:  12.87 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/ClassDetail-yRIoU4O9.js                      47.44 kB │ gzip:  12.40 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/Landing-rSb1BGBN.js                          50.21 kB │ gzip:  14.13 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/DashboardLayout-DKWmeF_q.js                  53.90 kB │ gzip:  16.82 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/WorkspaceTools-B5AMPp8h.js                  126.41 kB │ gzip:  33.11 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/index-Cw_KR0MQ.js                           144.91 kB │ gzip:  44.67 kB
+../../AppData/Local/Temp/visionary-stage-shared-final5-20261002/assets/vendor-BxCPPHXQ.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 50.84s

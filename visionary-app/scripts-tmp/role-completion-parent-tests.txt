@@ -1,0 +1,13 @@
+✔ manual parent preview is localized, consent scoped and contains no private learner record (10.0012ms)
+✔ revocation immediately removes digest and report action for only the affected child (1.567ms)
+✔ new guardian actions append ordered local event history without widening report access (2.8126ms)
+✔ cancelled requests remain readable history in every preview language without report access (2.8371ms)
+✔ unreadable expiry and unsupported legacy status close access without breaking other summaries or repairing originals (3.2043ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 283.7904

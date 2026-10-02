@@ -17,7 +17,7 @@ import imgStageHigher from "@/assets/student-higher.webp";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #4285F4/#0b57d0
    actions, #dadce0 hairlines, pill buttons, radius scaled to card size). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 const ROLES = [
   { to: "/student", label: "Students", line: "From first concepts to higher education and learning on your own.", image: studentImage, tint: "#e8f0fe" },

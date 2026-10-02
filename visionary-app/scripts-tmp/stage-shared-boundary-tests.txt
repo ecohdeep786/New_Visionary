@@ -1,0 +1,43 @@
+✔ reviewed number-line and chart payloads validate before replacing saved content (11.8503ms)
+✔ a database miss persists a numbered provisional hierarchy and one scoped gap without invented teaching content (4.5026ms)
+✔ content issues are local, workspace-scoped and retryable without duplicate reports (17.9031ms)
+✔ duplicate or incomplete project criteria cannot replace a saved curriculum (11.7751ms)
+✔ new provisional object IDs never contain raw personal labels and remain deterministic (5.1424ms)
+✔ renaming owned provisional nodes survives reload and failed writes retain the prior name (2.7228ms)
+✔ official arrival maps a provisional concept without changing its progress/session identifier (4.3835ms)
+✔ existing owned legacy IDs are reused rather than rewritten (1.5508ms)
+✔ sample concepts are available after syllabus retrieval and resolve English, Hindi and Bengali independently (5.1278ms)
+✔ adult content is rejected for minors and unauthorized workspace identities fail before content access (5.5558ms)
+✔ invalid remote content cannot replace saved curriculum and unsuccessful writes leave no phantom graph (22.7068ms)
+✔ connected curriculum requires a source version and explicit concept-language availability (18.1657ms)
+✔ a source-language outline cannot masquerade as translated teaching; localized graph versions coexist (3.9567ms)
+✔ content requests cancel promptly, including adapters that ignore the cancellation signal (8.8222ms)
+✔ unconnected teaching returns an honest status for all modes and creates no generated answer or storage record (2.6891ms)
+✔ the teaching seam forwards all four modes and cloned packets without interpreting answer quality (11.8032ms)
+✔ English, Hindi and Bengali crisis input or context stops before an adapter can receive it (1.7885ms)
+✔ minor and unknown age profiles cannot request adult teaching or leak through forged context (14.6579ms)
+✔ teaching cancellation rejects promptly and never substitutes a local answer (1.3208ms)
+✔ teaching validates question/representation payloads before UI consumption (5.0531ms)
+✔ connected teaching requires matching language and version, and saves only contract fields (21.2024ms)
+✔ accent saves preserve other preferences, reject stale colors and account changes (25.5427ms)
+✔ profile save compares the loaded name and rejects stale tabs without replacing newer account fields (0.9126ms)
+✔ profile save remains bound to the original signed-in account after a session switch (4.3327ms)
+✔ invalid and failed profile saves retain original account data for retry (3.4678ms)
+✔ onboarding decides the stage tier: class 3 is foundational, 7 developing, 10 secondary (13.8803ms)
+✔ adults and professionals get the full presentation; a minor without a recorded class gets the simplest (2.0279ms)
+✔ the foundational Home is simplified: fewer modules, plain details, no jargon (22.0129ms)
+✔ competitive exam is a student sub-category: a minor JEE aspirant never gets the foundational presentation (6.3661ms)
+✔ higher education has the higher tier even when a school class value is still present (2.8466ms)
+✔ saved categories derive different presentation while age safety stays independent (6.9887ms)
+✔ a professional shell ignores stale school presentation and Home uses the saved subject (4.3799ms)
+✔ all teaching modes receive authorized stage policy instead of forged caller hints (5.6751ms)
+✔ unconnected teaching status follows the requested language without inventing answers (1.3252ms)
+✔ an in-flight teaching response cannot cross a changed age or learning-stage boundary (4.2225ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2031.8037

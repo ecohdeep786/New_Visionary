@@ -12,7 +12,7 @@ import SpotIllustration from "@/components/landing/SpotIllustration";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 function Reveal({ children, className = "", delay = 0 }) {
   return (
@@ -132,7 +132,7 @@ export default function AccessibilityPage() {
           <Reveal className="mx-auto max-w-[900px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Accessibility</p>
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
-              Help every learner learn <span className="text-[#0b57d0]">how they learn best.</span>
+              Help every learner learn <span className="accent-gradient">how they learn best.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
               One product, many ways in: vision, hearing, movement, thinking, and language on the device you have.

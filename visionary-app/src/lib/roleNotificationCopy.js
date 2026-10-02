@@ -1,0 +1,33 @@
+import {notificationCopy} from './notificationCopy.js';
+const entries=[
+ ['Family updates','परिवार के अपडेट','পরিবারের আপডেট'],
+ ['Current connection status and a manual summary preview from this device. No email, push message or scheduled digest is sent.','इस उपकरण पर संबंध की वर्तमान स्थिति और सारांश का पूर्वावलोकन। ईमेल, पुश संदेश या निर्धारित सारांश नहीं भेजा जाता।','এই ডিভাইসে সংযোগের বর্তমান অবস্থা ও সারাংশের প্রিভিউ। ইমেল, পুশ বার্তা বা নির্ধারিত সারাংশ পাঠানো হয় না।'],
+ ['Digest preferences','सारांश की प्राथमिकताएँ','সারাংশের পছন্দ'],['Preview language','पूर्वावलोकन की भाषा','প্রিভিউয়ের ভাষা'],
+ ['These settings are saved for this workspace. Automatic delivery needs a future notification service.','ये सेटिंग्स इस कार्यक्षेत्र में सहेजी जाती हैं। अपने आप भेजने के लिए भविष्य की सूचना सेवा आवश्यक है।','এই সেটিংস এই কর্মক্ষেত্রে সংরক্ষিত থাকে। স্বয়ংক্রিয়ভাবে পাঠাতে ভবিষ্যতের বিজ্ঞপ্তি পরিষেবা প্রয়োজন।'],
+ ['Local preference saved. No message was scheduled or sent.','प्राथमिकता इस उपकरण पर सहेजी गई। कोई संदेश निर्धारित या भेजा नहीं गया।','পছন্দ এই ডিভাইসে সংরক্ষিত হয়েছে। কোনো বার্তা নির্ধারিত বা পাঠানো হয়নি।'],
+ ['Sharing status','साझा करने की स्थिति','ভাগ করার অবস্থা'],
+ ['Live status, not a sent alert. A report link appears only while progress sharing is active.','वर्तमान स्थिति, भेजी गई सूचना नहीं। रिपोर्ट का लिंक केवल प्रगति साझा करना सक्रिय होने पर दिखता है।','বর্তমান অবস্থা, পাঠানো বিজ্ঞপ্তি নয়। অগ্রগতি ভাগ করা সক্রিয় থাকলেই রিপোর্টের লিঙ্ক দেখা যায়।'],
+ ['View report','रिपोर्ट देखें','রিপোর্ট দেখুন'],['Manage sharing','साझा करने की अनुमति देखें','ভাগ করার অনুমতি পরিচালনা করুন'],
+ ['No child connection yet. You can request progress sharing from Children.','अभी बच्चे से कोई संबंध नहीं है। बच्चे अनुभाग से प्रगति साझा करने का अनुरोध कर सकते हैं।','এখনও সন্তানের সঙ্গে সংযোগ নেই। সন্তান বিভাগ থেকে অগ্রগতি ভাগ করার অনুরোধ করতে পারেন।'],
+ ['Open Children','बच्चे अनुभाग खोलें','সন্তান বিভাগ খুলুন'],['Summary preview','सारांश का पूर्वावलोकन','সারাংশের প্রিভিউ'],
+ ['Current last-7-day counts only. Private questions, answers, grades, feedback and drafts are excluded.','केवल पिछले 7 दिनों की वर्तमान गिनती। निजी प्रश्न, उत्तर, अंक, प्रतिक्रिया और ड्राफ़्ट शामिल नहीं हैं।','শুধু গত ৭ দিনের বর্তমান সংখ্যা। ব্যক্তিগত প্রশ্ন, উত্তর, নম্বর, প্রতিক্রিয়া ও খসড়া বাদ থাকে।'],
+ ['Summary previews are off in this workspace.','इस कार्यक्षेत्र में सारांश का पूर्वावलोकन बंद है।','এই কর্মক্ষেত্রে সারাংশের প্রিভিউ বন্ধ আছে।'],
+ ['No active progress-sharing connection is available for a summary preview.','सारांश के पूर्वावलोकन के लिए कोई सक्रिय प्रगति साझा करने वाला संबंध नहीं है।','সারাংশের প্রিভিউয়ের জন্য অগ্রগতি ভাগ করার কোনো সক্রিয় সংযোগ নেই।'],
+ ['Sharing event history','साझा करने की गतिविधियों का इतिहास','ভাগ করার ঘটনার ইতিহাস'],
+ ['Saved local actions for new connections. Older imported connections may have current status without an event history.','नए संबंधों की सहेजी गई स्थानीय गतिविधियाँ। पुराने आयातित संबंधों में गतिविधि इतिहास के बिना वर्तमान स्थिति हो सकती है।','নতুন সংযোগের সংরক্ষিত স্থানীয় কাজ। পুরোনো আমদানিকৃত সংযোগে ঘটনার ইতিহাস ছাড়াই বর্তমান অবস্থা থাকতে পারে।'],
+ ['No saved sharing actions yet.','अभी साझा करने की कोई गतिविधि सहेजी नहीं गई है।','এখনও ভাগ করার কোনো কাজ সংরক্ষিত নেই।'],['Other local notices','अन्य स्थानीय सूचनाएँ','অন্যান্য স্থানীয় বিজ্ঞপ্তি'],
+ ['Organization updates','संगठन के अपडेट','প্রতিষ্ঠানের আপডেট'],
+ ['Membership actions saved on this device. Current access always follows the latest permission, even when an older update remains unread.','इस उपकरण पर सहेजी सदस्यता गतिविधियाँ। पहुँच हमेशा नवीनतम अनुमति पर आधारित है, चाहे पुराना अपडेट अपठित रहे।','এই ডিভাইসে সংরক্ষিত সদস্যপদের কাজ। পুরোনো আপডেট অপঠিত থাকলেও প্রবেশাধিকার সর্বশেষ অনুমতি অনুযায়ী থাকে।'],
+ ['Preference saved locally. No delivery has been scheduled.','प्राथमिकता इस उपकरण पर सहेजी गई। भेजना निर्धारित नहीं किया गया है।','পছন্দ এই ডিভাইসে সংরক্ষিত হয়েছে। পাঠানোর সময় নির্ধারণ করা হয়নি।'],
+ ['This preference does not remove saved history. Email, push and scheduled delivery require the later notification service.','यह प्राथमिकता सहेजा गया इतिहास नहीं हटाती। ईमेल, पुश और निर्धारित सूचना भेजने के लिए बाद की सूचना सेवा आवश्यक है।','এই পছন্দ সংরক্ষিত ইতিহাস মুছে দেয় না। ইমেল, পুশ ও নির্ধারিত বিজ্ঞপ্তি পাঠাতে পরবর্তী বিজ্ঞপ্তি পরিষেবা প্রয়োজন।'],
+ ['Membership history','सदस्यता का इतिहास','সদস্যপদের ইতিহাস'],['Membership updates unavailable:','सदस्यता अपडेट उपलब्ध नहीं:','সদস্যপদের আপডেট উপলব্ধ নয়:'],['Retry','फिर प्रयास करें','আবার চেষ্টা করুন'],
+ ['Earlier history is incomplete for {count} imported invitations. Review current access in People.','{count} आयातित निमंत्रणों का पुराना इतिहास अधूरा है। लोग अनुभाग में वर्तमान पहुँच देखें।','{count}টি আমদানিকৃত আমন্ত্রণের আগের ইতিহাস অসম্পূর্ণ। মানুষ বিভাগে বর্তমান প্রবেশাধিকার দেখুন।'],
+ ['Invitation','निमंत्रण','আমন্ত্রণ'],['Actor:','कर्ता:','কর্তা:'],['Not recorded','दर्ज नहीं','নথিভুক্ত নেই'],['Current connection:','वर्तमान संबंध:','বর্তমান সংযোগ:'],['Review connection','संबंध की समीक्षा करें','সংযোগ পর্যালোচনা করুন'],
+ ['No unread membership updates.','कोई अपठित सदस्यता अपडेट नहीं है।','কোনো অপঠিত সদস্যপদের আপডেট নেই।'],['No saved membership actions yet.','अभी कोई सदस्यता गतिविधि सहेजी नहीं गई है।','এখনও সদস্যপদের কোনো কাজ সংরক্ষিত নেই।'],['Open People','लोग अनुभाग खोलें','মানুষ বিভাগ খুলুন'],['Notice marked read on this device.','सूचना इस उपकरण पर पठित चिह्नित की गई।','বিজ্ঞপ্তি এই ডিভাইসে পঠিত হিসেবে চিহ্নিত হয়েছে।'],
+ ['active','सक्रिय','সক্রিয়'],['pending','लंबित','অপেক্ষমাণ'],['declined','अस्वीकृत','প্রত্যাখ্যাত'],['expired','समाप्त','মেয়াদ শেষ'],['revoked','वापस लिया गया','প্রত্যাহৃত'],['cancelled','रद्द','বাতিল'],['invited','निमंत्रित','আমন্ত্রিত'],['accepted','स्वीकृत','গৃহীত'],['requested','अनुरोध किया गया','অনুরোধ করা হয়েছে'],['removed','हटाया गया','সরানো হয়েছে'],['updated','बदला गया','পরিবর্তিত'],['role-changed','भूमिका बदली गई','ভূমিকা পরিবর্তিত'],
+ ['student','विद्यार्थी','শিক্ষার্থী'],['teacher','शिक्षक','শিক্ষক'],['parent','अभिभावक','অভিভাবক'],['professional','पेशेवर','পেশাজীবী'],['organization','संगठन','প্রতিষ্ঠান'],
+ ['restricted','सारांश की अनुमति नहीं','সারাংশের অনুমতি নেই'],
+ ['permission-changed','अनुमति बदली गई','অনুমতি পরিবর্তিত'],['unavailable','उपलब्ध नहीं','উপলব্ধ নয়'],
+];
+const translations=Object.fromEntries(entries.map(([en,hi,bn])=>[en,{en,hi,bn}]));
+export const roleNotificationCopy=locale=>(value,params={})=>(translations[value]?.[locale]||notificationCopy(locale)(value)).replace(/\{(\w+)\}/g,(token,key)=>Object.hasOwn(params,key)?String(params[key]):token);

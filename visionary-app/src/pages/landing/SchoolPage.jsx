@@ -14,7 +14,7 @@ const COLORS = {
   ink: "#121317", surface: "#F5F6F8", blue: "#4285F4", grey: "#5f6368",
   lightGrey: "#9AA0A6", mist: "#dadce0", white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -184,7 +184,7 @@ export default function SchoolPage() {
                 <CircleHelp className="h-9 w-9" strokeWidth={1.8} />
               </span>
               <h1 className="mt-8 text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Find your answer.
+                Find <span className="accent-gradient">your answer.</span>
               </h1>
               <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic, then reach us.</p>
 

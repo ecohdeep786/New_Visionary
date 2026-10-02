@@ -25,7 +25,7 @@ export default function VisionaryLogo({ className = "", showText = true }) {
         <text
           x="29"
           y="29.5"
-          fontFamily="'Google Sans Flex', 'Google Sans', system-ui, sans-serif"
+          fontFamily="'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif"
           fontSize="34"
           fontWeight="500"
           letterSpacing="-0.5"

@@ -22,7 +22,7 @@ const COLORS = {
   mist: "#dadce0",
   white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const PERSONA_IMAGES = {
   Student: studentImage,
   Teacher: teacherImage,
@@ -161,7 +161,7 @@ function PricingPlansSection() {
       <FadeReveal visible={visible}>
         <div className="mx-auto max-w-[1440px] text-center">
           <h1 className="mx-auto max-w-[1000px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-            Plans for <span style={{ color: COLORS.blue }}>every journey</span>.
+            Plans for <span className="accent-gradient">every journey</span>.
           </h1>
           <p className="mx-auto max-w-[760px] text-[17.5px] font-normal leading-[25px] text-[#5f6368]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
             Start free. Find the right fit for yourself, your family, or your organization.

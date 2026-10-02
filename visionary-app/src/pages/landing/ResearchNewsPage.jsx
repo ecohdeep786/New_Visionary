@@ -22,7 +22,7 @@ import imgFutureCareers from "@/assets/organization-problem-3-1600w.webp";
 /* ═══ Tokens — the careers-page dialect (Material geometry, #121317 ink,
    #4285F4 actions, pill buttons), shared across converted pages. Styling
    uses Tailwind arbitrary values of the same tokens. ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ The research, honestly labelled. "In the product" items are real,
    shipped capabilities of the internal mentor; "Next" items are the work
@@ -185,7 +185,7 @@ export default function ResearchNewsPage() {
               <h1 className="max-w-[1000px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
                 <span className="block">One intelligence,</span>
                 <span className="block pl-[10%] sm:pl-[18%]">
-                  every learner.
+                  <span className="accent-gradient">every learner.</span>
                   <svg aria-hidden="true" viewBox="0 0 120 40" className="ml-5 inline-block h-9 w-28 text-[#121317] sm:h-11 sm:w-36">
                     <path d="M6 8 C 40 34, 78 34, 108 18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                     <path d="M98 14 L 110 17 L 102 27" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />

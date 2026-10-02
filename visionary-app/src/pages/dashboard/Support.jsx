@@ -2,24 +2,16 @@ import {Link} from 'react-router-dom';
 import {useWorkspace} from '@/hooks/useWorkspace';
 import {organizationAccess} from '@/services/workspaceService';
 import {organizationPathAllowed} from '@/services/organizationPolicy';
-const starts={
- student:['How do I start a learning activity?','Open Learn and choose a sourced subject, chapter and objective. Use the authored model or text view, ask about the source, check understanding, practise and build an application. A personal learning-area name alone does not generate curriculum.','/dashboard/learn','Open Learn'],
- professional:['How do I connect learning to my work?','Choose a career goal, learn a reviewed objective and create a project you can explain. Portfolio self-review records your own assessment; it is not a verified credential. Personal and accepted company workspaces remain separate.','/dashboard/career','Open Career'],
- teacher:['How do I prepare and assign work?','Prepare a lesson with a source, reviewed objective, questions and criteria. Save and review your own draft before explicitly assigning a fixed copy to a class you teach. Learners submit only their chosen classroom response; private study stays separate.','/dashboard/prepare','Open Prepare'],
- parent:['How do I support my child?','Request a connection and wait for the required acceptance. Select one child in Reports to see only permitted summaries, shared goals/projects and classroom updates. The connection does not reveal private doubts, drafts or conversations.','/dashboard/reports','Open Reports'],
- organization:['How do we review curriculum and content?','Create a sourced curriculum template, submit the saved version and have a different authorized administrator review it. Deliver a fixed approved copy to an accepted teacher. The teacher reviews their adaptation and classroom assignment; approval does not publish a learner curriculum graph.','/dashboard/curriculum','Open Curriculum'],
-};
+import {supportCopy} from '@/lib/supportCopy';
+const starts={student:'/dashboard/learn',professional:'/dashboard/career',teacher:'/dashboard/prepare',parent:'/dashboard/reports',organization:'/dashboard/curriculum'};
+const commonPaths=['/dashboard/connections','/dashboard/settings','/dashboard/ask','/dashboard/privacy','/dashboard/privacy','/dashboard/subscription'];
 export default function Support(){
- const {ctx,error}=useWorkspace();if(error)return <div className="v-page" role="alert">{error}</div>;if(!ctx)return <div className="v-page" role="status">Reading workspace help…</div>;
- let policy;try{if(ctx.role==='organization')policy=organizationAccess(ctx);}catch(cause){return <div className="v-page" role="alert">{cause.message}</div>;}
+ const {ctx,data,error}=useWorkspace();const locale=data?.preferences.interfaceLocale||'en';const t=supportCopy(locale);
+ if(error)return <div className="v-page" role="alert" lang="en">{error}</div>;
+ if(!ctx)return <div className="v-page" role="status">{t.loading}</div>;
+ let policy;try{if(ctx.role==='organization')policy=organizationAccess(ctx);}catch(cause){return <div className="v-page" role="alert" lang="en">{cause.message}</div>;}
  const allowed=path=>!policy||organizationPathAllowed(policy,path);
- const cards=[starts[ctx.role]||starts.student,
- ['How do connections and access work?','Classroom access follows your active workspace, enrollment and organization membership. Family and other connections require their own acceptance and sharing scope. Expired or revoked permission closes access; paying for a plan does not grant guardian permission.','/dashboard/connections','Review connections'],
- ['Can I use my own language?','Settings saves separate teaching and interface languages for this workspace. Authored sample learning is available in supported languages. Navigation and Progress have English, Hindi and Bengali labels; other screens still contain English. Changing a preference does not translate an unsupported source or connect a live model.','/dashboard/settings','Open language settings'],
- ['How does voice work?','Open Guide and explicitly start listening. Review recognized words before Send. Stop or close the panel to end input. Text remains available if permission is denied, speech is unsupported or device input fails. Real-device recognition quality still needs acceptance testing.','/dashboard/ask','Open Ask'],
- ['How do I recover unfinished work?','Reopen the same workspace and browser tab to recover supported editor drafts. If saving fails, keep the page open, export current edits and retry. When another tab changes a saved version, review the latest version before replacing your edits. Browser-local recovery is not cloud backup.','/dashboard/privacy','Review storage and export'],
- ['Where are my records stored?','This preview uses this browser’s local storage. Clearing browser data can remove saved work. Export and supporting-record ownership review are available in Privacy; they do not migrate data or certify server security. Use fictional records while testing.','/dashboard/privacy','Open Privacy'],
- ['What is connected today?','Learning uses authored samples, local evidence rules and bounded Guide helpers. Live model inference, cloud identity/storage, cross-device sync, production speech, payments and ad delivery are not connected. This frontend is not evidence of AGI capability.','/dashboard/subscription',ctx.role==='organization'?'Review seat planning':'Review plans and usage'],
- ];
- return <div className="v-page"><header><h1 className="v-title">Help with your workspace</h1><p className="v-muted mt-2">Next steps for your {ctx.role} workspace, with the current local preview boundaries.</p></header>{cards.map(([title,description,to,label])=><section className="v-card" key={title}><h2 className="text-lg font-medium">{title}</h2><p className="v-muted mt-3 leading-7">{description}</p>{allowed(to)?<Link className="v-button mt-4" to={to}>{label}</Link>:<p className="v-muted mt-4">This section is outside your current organization permission. The owner can review access.</p>}</section>)}</div>;
+ const first=t.roles[ctx.role]||t.roles.student;
+ const cards=[[...first,starts[ctx.role]||starts.student],...t.common.map((card,index)=>[...card,commonPaths[index]])];
+ return <div className="v-page" lang={locale}><header><h1 className="v-title">{t.title}</h1><p className="v-muted mt-2">{t.intro}</p></header>{cards.map(([title,description,label,to])=><section className="v-card" key={to+title}><h2 className="text-lg font-medium">{title}</h2><p className="v-muted mt-3 leading-7">{description}</p>{allowed(to)?<Link className="v-button mt-4" to={to}>{label}</Link>:<p className="v-muted mt-4">{t.restricted}</p>}</section>)}</div>;
 }

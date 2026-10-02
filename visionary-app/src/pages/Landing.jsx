@@ -41,7 +41,7 @@ const COLORS = {
   line: "rgba(18,19,23,0.26)",
   circle: "rgba(18,19,23,0.06)",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 function useCycleIndex(total, intervalMs) {
@@ -161,10 +161,10 @@ function VoiceIcon({ className = "h-9 w-9", style }) {
   );
 }
 
-function VMark({ className = "h-10 w-auto" }) {
+function VMark({ className = "h-10 w-auto", color = COLORS.ink }) {
   return (
     <svg viewBox="1.5 6 60 44.5" className={className} fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g transform="translate(0,64) scale(0.1,-0.1)" fill={COLORS.ink} stroke="none">
+      <g transform="translate(0,64) scale(0.1,-0.1)" fill={color} stroke="none">
         <path d="M49 551 c-16 -16 -29 -40 -29 -53 0 -14 42 -98 93 -187 l92 -163 6 38 c13 76 99 118 159 77 33 -22 44 -41 50 -83 5 -33 9 -28 98 128 60 105 92 172 92 192 0 34 -28 67 -66 76 -41 10 -72 -22 -149 -154 -38 -66 -72 -123 -75 -126 -4 -3 -41 55 -83 128 -95 164 -128 186 -188 127z" />
       </g>
     </svg>
@@ -225,7 +225,7 @@ const COMMITMENT_STEPS = [
 ];
 const CM_FILL_MS = 4000;
 
-const LX_TRUST_WORDS = ["information", "privacy", "progress."];
+const LX_TRUST_WORDS = ["information.", "privacy.", "progress."];
 const LX_TRUST_CARDS = [
   { title: "Your data stays yours.", copy: "You choose what Visionary remembers and how you use it.", alt: "Person working privately on a laptop", Icon: ShieldCheck, to: "/privacy", link: "Read our privacy approach" },
   { title: "Safe to grow with.", copy: "Age-aware guidance and human review help keep learning on track.", alt: "Shield protecting a learner's journey", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
@@ -403,10 +403,9 @@ to{opacity:1}
             One Intelligence.
           </span>
           <span
-            className="apple-anim block font-medium leading-[1.2] tracking-[0]"
+            className="apple-anim accent-gradient block font-medium leading-[1.2] tracking-[0]"
             style={{
               fontSize: "clamp(22px, min(2.6vw, 4.2vh), 40px)",
-              color: COLORS.blue,
               marginTop: "clamp(10px, 1.6vh, 22px)",
               animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
               animationDelay: "660ms",
@@ -418,7 +417,7 @@ to{opacity:1}
 
         {/* promise — Google writing style: plain, personal, one breath */}
         <p
-          className="apple-anim mx-auto mt-3 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[16.5px] lg:text-[17.5px]"
+          className="apple-anim mx-auto mt-3 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[17px] lg:text-[18px]"
           style={{
             color: COLORS.slate,
             animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
@@ -477,7 +476,10 @@ function LandingProblemSection() {
           <div className="lg:col-span-7 lg:pr-[var(--frame-x)]">
             <figure className="m-0">
               <div key={`m-${index}`} className="hero-fade-up [animation-delay:120ms] [animation-fill-mode:both]">
-                <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[16/9] w-full max-w-[640px] mx-auto rounded-[50px] object-cover" />
+                {/* the source photography is portrait-first; a 16:9 centre crop
+                    decapitated it — 4:3 with an upper-third bias keeps every
+                    face whole like a product shot should */}
+                <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full max-w-[640px] mx-auto rounded-[50px] object-cover object-[50%_28%] sm:aspect-[16/10]" />
               </div>
               <figcaption key={`q-${index}`} aria-live="polite" className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center [animation-delay:200ms] [animation-fill-mode:both]">
                 <p className="font-medium tracking-[0] leading-[20px] text-[16px]" style={{ color: COLORS.ink }}>{slide.persona}</p>
@@ -498,7 +500,8 @@ const LandingPromiseSection = React.memo(function LandingPromiseSection() {
   return (
     <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
       <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
-        What if your intelligence never forgot <span style={{ color: COLORS.blue }}>where you were?</span>
+        What if your intelligence never forgot{" "}
+        <span className="accent-gradient">where you were?</span>
       </h2>
     </section>
   );
@@ -544,7 +547,7 @@ const MeetCopy = React.memo(function MeetCopy({ section }) {
   return (
     <div className="max-w-[460px]">
       <MeetHeading section={section} index={index} />
-      <p className="mt-8 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
+      <p className="mt-8 font-normal tracking-[0] leading-[1.6] text-[15.5px] lg:text-[16px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
       <Link to={section.to} className="mt-10 inline-flex h-10 items-center justify-center rounded-full border border-[#dadce0] px-6 text-[14px] font-normal tracking-[0.24px] text-[#4285F4] transition-colors hover:border-[#4285F4] hover:bg-[#4285F4] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
         {section.link}
       </Link>
@@ -598,9 +601,67 @@ function LandingMeetSection() {
   );
 }
 
-/* 05 · ONE INTELLIGENCE — the Apple Vision Pro pinned stage: on desktop the
-   visual holds in place while scroll position advances the four phases;
-   mobile and reduced motion keep the autonomous cycle. */
+/* 05 · ONE INTELLIGENCE — the dark keynote chapter. Apple alternates its
+   product pages between light and black "scenes"; this is our black scene,
+   and it is where the product shows itself: a quiet glass window running
+   Visionary, its memory rows advancing with the four phases. On desktop the
+   stage holds in place while scroll position advances the phases; mobile and
+   reduced motion keep the autonomous cycle. */
+
+/* the window's memory rows — labels mirror the promise copy of each phase,
+   bars are skeleton lines, the last row carries the phase's new light */
+const OI_WINDOW_ROWS = [
+  [["What you understood", 84], ["Where you struggled", 58], ["What you tried", 38]],
+  [["Where you were", 72], ["What you've done", 52], ["What makes sense next", 88]],
+  [["Each lesson", 64], ["Each project", 46], ["Each decision", 80]],
+  [["What you learn", 56], ["What you teach", 44], ["What you can do tomorrow", 92]],
+];
+
+const OIWindow = React.memo(function OIWindow({ phase, finale }) {
+  const rows = OI_WINDOW_ROWS[Math.min(phase, 3)];
+  return (
+    <div
+      className="w-[min(420px,84vw)] overflow-hidden rounded-[26px] border bg-[#1b1e23]/80 shadow-[0_40px_90px_-24px_rgba(0,0,0,0.85)] backdrop-blur-md"
+      style={{ borderColor: "rgba(138,180,248,0.22)" }}
+      aria-hidden="true"
+    >
+      {/* title bar — three quiet dots and the product's name */}
+      <div className="flex h-11 items-center border-b px-5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        {["left", "mid", "right"].map((pos) => (
+          <span key={pos} className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.2)", marginRight: pos === "right" ? 0 : 6 }} />
+        ))}
+        <span className="ml-3 text-[12px] font-medium tracking-[0.24px]" style={{ color: "rgba(255,255,255,0.6)" }}>Visionary</span>
+      </div>
+      {/* body — the phase's memory taking shape */}
+      <div className="flex min-h-[196px] flex-col justify-center gap-[18px] px-7 py-7 sm:min-h-[212px]">
+        {finale ? (
+          <div className="flex flex-col items-center gap-4 py-4" style={{ animation: "oiFade 800ms cubic-bezier(0.22,1,0.36,1) both" }}>
+            <VMark className="h-8 w-auto" color="#ffffff" />
+            <p className="text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: "rgba(255,255,255,0.55)" }}>Always with you</p>
+          </div>
+        ) : (
+          rows.map(([label, width], i) => (
+            <div key={label} className="flex items-center gap-3" style={{ animation: "oiFade 700ms cubic-bezier(0.22,1,0.36,1) both", animationDelay: `${120 + i * 110}ms` }}>
+              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: i === 2 ? COLORS.blue : "rgba(255,255,255,0.3)" }} />
+              <span className="w-[132px] shrink-0 text-left text-[12px] leading-[16px] tracking-[0.2px] sm:w-[168px] sm:text-[12.5px]" style={{ color: "rgba(255,255,255,0.62)" }}>{label}</span>
+              <span className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.09)" }}>
+                <span
+                  className="block h-full rounded-full"
+                  style={{
+                    width: `${width}%`,
+                    backgroundColor: i === 2 ? COLORS.blue : "rgba(255,255,255,0.34)",
+                    animation: `oiGrow 900ms cubic-bezier(0.22,1,0.36,1) ${240 + i * 110}ms both`,
+                  }}
+                />
+              </span>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+});
+
 function LandingOneIntelligenceSection() {
   const { ref, visible } = useRevealOnce();
   const [phase, setPhase] = useState(0);
@@ -654,67 +715,84 @@ function LandingOneIntelligenceSection() {
   const finale = phase === 4;
   const state = OI_STATES[Math.min(phase, 3)];
   return (
-    <section ref={ref} data-section="05-one-intelligence" className="relative [overflow-x:clip] bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
+    <section ref={ref} data-section="05-one-intelligence" className="relative [overflow-x:clip] bg-[#121317] py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes oiGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>One Intelligence</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          What you <span style={{ color: COLORS.blue }}>understand</span> today
+        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.lightGrey }}>One Intelligence</p>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)] text-white">
+          What you <span style={{ color: "#8ab4f8" }}>understand</span> today
           <br className="hidden md:block" /> makes tomorrow easier.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: "#bdc1c6" }}>
           Every lesson, conversation, project, and breakthrough becomes part of what comes next.
         </p>
-        <div ref={runwayRef} className={scrollDriven ? "relative lg:h-[280vh]" : "relative"}>
-          <div className={scrollDriven ? "lg:sticky lg:top-[10vh] flex justify-center lg:min-h-[76vh] lg:items-center" : undefined}>
-            <div className={`relative mx-auto mt-32 h-[min(440px,88vw)] w-[min(440px,88vw)] sm:h-[540px] sm:w-[540px] lg:h-[640px] lg:w-[640px] ${scrollDriven ? "lg:mt-0" : ""}`}>          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
-          <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.35" strokeDasharray="4 5" />
-        </svg>
-          <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
-            <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.4" strokeDasharray="4 5" />
-          </svg>
-          <div className="absolute inset-0 z-10 flex items-center justify-center">
-            <div key={phase} className="flex w-full max-w-[340px] flex-col items-center px-4 text-center" style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>
-              {finale ? (
-                <>
-                  <VMark className="h-10 w-auto" />
-                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One intelligence. Always with you.</h3>
-                </>
-              ) : (
-                <>
-                  <span className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>{state.label}</span>
-                  <h3 className="mt-[calc(clamp(22px,2.6vw,34px)*0.909)] font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)]" style={{ color: COLORS.ink }}>{state.heading}</h3>
-                  <p className="mt-[calc(clamp(22px,2.6vw,34px)*0.727)] font-normal tracking-[0.24px] leading-[1.5] text-[14px]" style={{ color: COLORS.slate }}>{state.body}</p>
-                  <div className="mt-6 h-[2px] w-[240px] overflow-hidden rounded-full" style={{ backgroundColor: COLORS.mist }}>
-                    <div className="h-full transition-all duration-700" style={{ width: `${((Math.min(phase, 3) + 1) / 4) * 100}%`, backgroundColor: COLORS.blue }} />
-                  </div>
-                </>
-              )}
+
+        {/* phase chip — the scene's title card */}
+        <div className="mt-14 flex justify-center lg:mt-20" aria-live="polite">
+          {!finale && (
+            <span key={`chip-${phase}`} className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink, animation: "oiFade 700ms cubic-bezier(0.22,1,0.36,1) both" }}>{state.label}</span>
+          )}
+        </div>
+
+        <div ref={runwayRef} className={scrollDriven ? "relative lg:h-[300vh]" : "relative"}>
+          <div className={scrollDriven ? "lg:sticky lg:top-[9vh] flex justify-center lg:min-h-[78vh] lg:items-center" : undefined}>
+            {/* the stage — rings, glow, and the product itself */}
+            <div className={`relative mx-auto mt-14 h-[min(480px,92vw)] w-[min(480px,92vw)] sm:h-[560px] sm:w-[560px] lg:mt-6 lg:h-[640px] lg:w-[640px]`}>
+              <div
+                aria-hidden="true"
+                className="absolute inset-[-14%] -z-10 rounded-full"
+                style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.3) 0%, rgba(66,133,244,0.1) 45%, transparent 70%)" }}
+              />
+              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
+                <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(138,180,248,0.5)" strokeWidth="0.3" strokeDasharray="4 5" />
+              </svg>
+              <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
+                <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(138,180,248,0.3)" strokeWidth="0.35" strokeDasharray="4 5" />
+              </svg>
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <OIWindow phase={phase} finale={finale} />
+              </div>
+
+              {/* the 1-2-3-4 walk straddling the stage's ground line */}
+              <div className="absolute bottom-0 left-1/2 z-20 w-[min(680px,94vw)] -translate-x-1/2 translate-y-1/2 px-2 sm:px-6">
+                <div className="flex items-start justify-between">
+                  {OI_STEP_LABELS.map((label, i) => (
+                    <React.Fragment key={label}>
+                      <div className="flex w-16 flex-col items-center gap-3 sm:w-20">
+                        {phase >= i ? (
+                          <span className="flex h-12 w-12 items-center justify-center rounded-full text-[28px] font-medium transition-colors duration-700" style={{ backgroundColor: COLORS.blue, color: COLORS.white }}>{i + 1}</span>
+                        ) : (
+                          <span className="flex h-12 w-12 items-center justify-center text-[28px] font-normal leading-none transition-colors duration-700" style={{ color: "rgba(255,255,255,0.38)" }}>{i + 1}</span>
+                        )}
+                        <span className="text-[12px] font-normal uppercase tracking-[0.43px] transition-colors duration-700" style={{ color: phase >= i ? "#8ab4f8" : "rgba(255,255,255,0.38)" }}>{label}</span>
+                      </div>
+                      {i < 3 && <div className="mx-1 mt-6 h-[2px] flex-1 transition-colors duration-700" style={{ backgroundColor: phase > i ? COLORS.blue : "rgba(255,255,255,0.15)" }} />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-          <div className="absolute bottom-0 left-1/2 z-20 w-[min(680px,92vw)] -translate-x-1/2 translate-y-1/2 bg-white px-2 sm:px-6">
-            <div className="flex items-start justify-between">
-              {OI_STEP_LABELS.map((label, i) => (
-                <React.Fragment key={label}>
-                  <div className="flex w-16 flex-col items-center gap-3 sm:w-20">
-                    {phase >= i ? (
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full text-[28px] font-medium transition-colors duration-700" style={{ backgroundColor: COLORS.blue, color: COLORS.white }}>{i + 1}</span>
-                    ) : (
-                      <span className="flex h-12 w-12 items-center justify-center text-[28px] font-normal leading-none transition-colors duration-700" style={{ color: COLORS.lightGrey }}>{i + 1}</span>
-                    )}
-                    <span className="text-[12px] font-normal uppercase tracking-[0.43px] transition-colors duration-700" style={{ color: phase >= i ? COLORS.blue : COLORS.lightGrey }}>{label}</span>
-                  </div>
-                  {i < 3 && <div className="mx-1 mt-6 h-[2px] flex-1 transition-colors duration-700" style={{ backgroundColor: phase > i ? COLORS.blue : COLORS.mist }} />}
-                </React.Fragment>
-              ))}
-            </div>
+
+          {/* the words under the shot — Apple puts the visual first, the copy beneath */}
+          <div className="mx-auto mt-[130px] max-w-[620px] text-center sm:mt-[140px] lg:mt-[150px]">
+            {finale ? (
+              <h3 key="finale" className="font-medium tracking-[0] leading-[1.15] text-[clamp(24px,2.8vw,38px)] text-white" style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>One intelligence. Always with you.</h3>
+            ) : (
+              <div key={phase} style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>
+                <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)] text-white">{state.heading}</h3>
+                <p className="mx-auto mt-4 max-w-[520px] font-normal tracking-[0.24px] leading-[1.5] text-[15.5px]" style={{ color: "#bdc1c6" }}>{state.body}</p>
+                <div className="mx-auto mt-7 h-[2px] w-[240px] overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.14)" }}>
+                  <div className="h-full transition-all duration-700" style={{ width: `${((Math.min(phase, 3) + 1) / 4) * 100}%`, backgroundColor: COLORS.blue }} />
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        </div>
-          </div>
-        <div className="mx-auto mt-24 flex w-fit max-w-full items-center justify-center gap-4 rounded-full px-8 py-5 sm:px-10" style={{ backgroundColor: COLORS.surface }}>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-6 w-6 shrink-0" style={{ color: COLORS.ink }}><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" /></svg>
-          <p className="text-center font-normal tracking-[0.24px] text-[15px] text-balance" style={{ color: COLORS.ink }}>It doesn't just remember your past. <span style={{ color: COLORS.blue }}>It understands what comes next.</span></p>
+
+        <div className="mx-auto mt-28 flex w-fit max-w-full items-center justify-center gap-4 rounded-full px-8 py-5 sm:px-10" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-6 w-6 shrink-0 text-white"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" /></svg>
+          <p className="text-center font-normal tracking-[0.24px] text-[15px] text-balance text-white">It doesn't just remember your past. <span style={{ color: "#8ab4f8" }}>It understands what comes next.</span></p>
         </div>
       </div>
     </section>
@@ -751,7 +829,7 @@ function LandingCommitmentSection() {
                     <span className="block tracking-[0] leading-[1.15] text-[clamp(24px,2.4vw,32px)]" style={{ color: COLORS.ink, fontWeight: isActive ? 500 : 400 }}>{i + 1}. {s.title}</span>
                     <span className={`grid transition-all duration-500 ease-google ${isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                       <span className="block overflow-hidden">
-                        <span className="mt-3 block max-w-[420px] text-[14px] leading-[1.6] tracking-[0.24px]" style={{ color: COLORS.slate }}>{s.copy}</span>
+                        <span className="mt-3 block max-w-[420px] text-[15px] leading-[1.6] tracking-[0.24px]" style={{ color: COLORS.slate }}>{s.copy}</span>
                       </span>
                     </span>
                   </span>
@@ -805,13 +883,21 @@ function LandingLanguageSection() {
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Visionary understands what you mean, in the language you think in.
         </p>
-        <div className="mt-14 lg:mt-20"><LGLanguageChips active={lang} onSelect={setLang} /></div>
-        <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
-          <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#4285F4", "#4285F4", "#4285F4"].map((c, i) => (
-              <span key={`${c}-${i}`} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
-            ))}
-          </div>
+        <div className="relative mt-14 lg:mt-20">
+          {/* a breath of Google color field behind the voice — the four bars
+              carry the four brand hues, our one full-color heritage nod */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[560px] w-[min(920px,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{ background: "radial-gradient(45% 45% at 50% 50%, rgba(66,133,244,0.12) 0%, rgba(66,133,244,0.05) 45%, transparent 72%)" }}
+          />
+          <LGLanguageChips active={lang} onSelect={setLang} />
+          <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
+            <div className="flex items-end justify-center gap-2" aria-hidden="true">
+              {["#4285F4", "#EA4335", "#FBBC04", "#34A853"].map((c, i) => (
+                <span key={`${c}-${i}`} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+              ))}
+            </div>
           <p aria-live="polite" lang={lang} className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
             <span key={`${lang}-${qIndex}`} className="hero-fade-up inline">{question}</span>
           </p>
@@ -827,6 +913,7 @@ function LandingLanguageSection() {
               <p className="mt-1 font-normal tracking-[0] leading-[19px] text-[13px]" style={{ color: COLORS.slate }}>Use voice or text in the way you're comfortable.</p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -916,22 +1003,29 @@ function LandingTrustSection() {
   );
 }
 
-/* 09 · CTA */
+/* 09 · CTA — the closer sits on a soft blue field that deepens toward the
+   top and breathes out at the bottom; one primary pill, one quiet path */
 function LandingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: "#e8f0fe" }}>
+    <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start today</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
         </p>
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
+          <Link to="/contact" className="inline-flex h-14 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-10 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+            Talk to our team
+          </Link>
         </div>
+        <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.slate }}>
+          Free to start. Private by design.
+        </p>
       </div>
     </section>
   );
@@ -940,8 +1034,8 @@ function LandingCTASection() {
 /* 10 · EXPLORE */
 const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
   return (
-    <Link to={`/${category.slug}`} data-card className="elevation-1 block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
-      <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
+    <Link to={`/${category.slug}`} data-card className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)]" style={{ borderColor: `${COLORS.ink}1A` }}>
+      <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>{category.chip}</p>
         <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{category.copy}</p>

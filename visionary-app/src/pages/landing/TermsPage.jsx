@@ -25,7 +25,7 @@ const COLORS = {
   white: "#ffffff",
   graphite: "#5f6368",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -245,7 +245,7 @@ export default function TermsPage() {
                   <div className="flex justify-center"><SpotIllustration subject="document" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
                   <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Terms of service</p>
                   <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                    Clear rules, written to be understood.
+                    Clear rules, written <span className="accent-gradient">to be understood.</span>
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
                     What you can expect from Visionary, and what we expect from the people who use it, without the obscure language.

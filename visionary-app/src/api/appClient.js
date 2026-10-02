@@ -290,12 +290,18 @@ const auth = {
     const userIndex = users.findIndex((u) => u.id === session.userId || u.email === session.email);
     if (userIndex < 0) throw new Error('User not found');
     if(options.expectedUserId!==undefined&&users[userIndex].id!==options.expectedUserId)throw new Error('The signed-in account changed. Your profile edits were not saved.');
+    if(options.expectedThemeColor!==undefined&&(users[userIndex].preferences?.theme_color||'blue')!==options.expectedThemeColor){const error=new Error('The account accent changed in another tab. Review the saved color before retrying.');error.name='AppearanceConflictError';throw error;}
     if(options.expectedProfileName!==undefined&&(users[userIndex].full_name||'')!==options.expectedProfileName){const error=new Error('Your display name changed since you opened it. Export your edits or load the latest saved name before retrying.');error.name='ProfileConflictError';throw error;}
     if(options.expectedProfileName!==undefined&&(typeof updates.full_name!=='string'||!updates.full_name.trim()||updates.full_name.trim().length>80))throw new Error('Enter a display name of 1 to 80 characters.');
 
     // Prevent overwriting sensitive credential fields via updateMe
     const { password, passwordHash, salt, id, email, createdAt, ...safeUpdates } = updates;
     if(options.expectedProfileName!==undefined)safeUpdates.full_name=safeUpdates.full_name.trim();
+    if(options.expectedThemeColor!==undefined){
+      const theme=safeUpdates.preferences?.theme_color;
+      if(!['blue','green','amber','red','purple','teal'].includes(theme))throw new Error('Choose a supported account accent.');
+      safeUpdates.preferences={...users[userIndex].preferences,theme_color:theme};
+    }
 
     users[userIndex] = { ...users[userIndex], ...safeUpdates };
     writeJson(USERS_KEY, users);

@@ -91,8 +91,9 @@ export default function LandingFAQ({
                     {faq.q}
                   </span>
                   <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#e8f0fe] sm:h-16 sm:w-16" style={{ color: "#121317" }}>
+                    {/* closed points down (open me), open points up (collapse me) */}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`h-6 w-6 transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
-                      <path d="M6 15l6-6 6 6" />
+                      <path d="M6 9l6 6 6-6" />
                     </svg>
                   </span>
                 </button>

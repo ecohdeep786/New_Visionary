@@ -84,7 +84,7 @@ const COLORS = {
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 
@@ -265,7 +265,7 @@ const OrgPromiseSection = React.memo(function OrgPromiseSection() {
         style={{ color: COLORS.ink }}
       >
         What if your whole organization could see understanding —{" "}
-        <span style={{ color: COLORS.blue }}>before it became a gap?</span>
+        <span className="accent-gradient">before it became a gap?</span>
       </h2>
     </section>
   );
@@ -828,7 +828,7 @@ function OrgTrustSection() {
 const OrgCTASection = React.memo(function OrgCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 rounded-t-[32px]" style={{ backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
@@ -857,6 +857,9 @@ const OrgCTASection = React.memo(function OrgCTASection() {
             Get started
           </Link>
         </div>
+        <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
+          Free to start. Private by design.
+        </p>
       </div>
     </section>
   );

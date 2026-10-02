@@ -1,3 +1,29 @@
+/* ═══ Apple × Google finish layer ═══ */
+/* Apple ships every page antialiased — the crispness you can feel before
+   you can name it. Un-layered so it wins over any base reset. */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Google's selection chip — the blue its marketing surfaces select with */
+::selection {
+  background: #d2e3fc;
+  color: #121317;
+}
+
+/* The one tagline gradient — Apple's gradient-accent signature carrying
+   Google's own blue ramp (#0b57d0 → #4285F4 → #7baaf7). Reserved for the
+   highest-emphasis accent per page: the hero tagline and the promise span.
+   Component language (chips, struggle words, cards) stays solid Google blue. */
+.accent-gradient {
+  background-image: linear-gradient(92deg, #0b57d0 0%, #4285f4 55%, #7baaf7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 @layer components {
   .public-frame {
     width: min(100% - 3rem, var(--container-standard));

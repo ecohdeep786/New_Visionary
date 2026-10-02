@@ -29,7 +29,7 @@ import imgOperations from "@/assets/organization-problem-3-1600w.webp";
 
 /* ═══ Tokens — careers-product dialect: Material geometry (8–12px cards,
    pill inputs/buttons), Material blue for actions and selection only ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = {
   ink: "#121317",
   graphite: "#3c4043",
@@ -199,7 +199,7 @@ function HeroCard({ idPrefix = "hero" }) {
   return (
     <form onSubmit={submit} noValidate>
       <h1 className="max-w-[520px] text-[36px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[44px] lg:text-[52px]">
-        Search for your place at Visionary.
+        Search for <span className="accent-gradient">your place</span> at Visionary.
       </h1>
       <div className="mt-8 space-y-5">
         <div>

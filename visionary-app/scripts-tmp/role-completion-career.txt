@@ -1,0 +1,14 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.inputValue: Timeout 90000ms exceeded.
+Call log:
+  - waiting for getByLabel('Capability or role target')
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\career-recovery-verify.mjs:34:200 {
+  log: [ "  - waiting for getByLabel('Capability or role target')" ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

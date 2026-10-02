@@ -14,7 +14,7 @@ import { RESPONSE_TIMES } from "@/data/legalMeta";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const PARTNERS_EMAIL = "partnerships@visionary.org.in";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
@@ -211,7 +211,7 @@ export default function PartnersPage() {
                 Visionary partnerships
               </p>
               <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
-                Better learning, <span className="text-[#0b57d0]">together.</span>
+                Better learning, <span className="accent-gradient">together.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
                 Education, technology, and local knowledge in one effort, measured by outcomes.

@@ -86,7 +86,7 @@ const COLORS = {
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 
@@ -265,7 +265,7 @@ const ProPromiseSection = React.memo(function ProPromiseSection() {
         style={{ color: COLORS.ink }}
       >
         What if every skill you learned actually{" "}
-        <span style={{ color: COLORS.blue }}>made it into your work?</span>
+        <span className="accent-gradient">made it into your work?</span>
       </h2>
     </section>
   );
@@ -854,7 +854,7 @@ function ProTrustSection() {
 const ProCTASection = React.memo(function ProCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="sticky bottom-0 isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="12-cta" className="sticky bottom-0 isolate px-6 py-24 lg:py-32 rounded-t-[32px]" style={{ backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
@@ -867,7 +867,7 @@ const ProCTASection = React.memo(function ProCTASection() {
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Understand it faster. Solve it with intelligence. Ship it and carry the lesson forward.
         </p>
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/register"
             className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
@@ -875,7 +875,16 @@ const ProCTASection = React.memo(function ProCTASection() {
           >
             Get started
           </Link>
+          <Link
+            to="/contact"
+            className="inline-flex h-14 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-10 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+          >
+            Talk to our team
+          </Link>
         </div>
+        <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
+          Free to start. Private by design.
+        </p>
       </div>
     </section>
   );

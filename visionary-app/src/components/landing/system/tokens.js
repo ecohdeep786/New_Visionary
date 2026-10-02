@@ -6,7 +6,7 @@
  */
 
 export const fontStack =
-  "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+  "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 export const color = {
   ink: "#121317",

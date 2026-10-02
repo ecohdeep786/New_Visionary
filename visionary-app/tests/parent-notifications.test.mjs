@@ -60,3 +60,42 @@ test('new guardian actions append ordered local event history without widening r
  workspace.markNotification(parent, view.history[0].id);
  assert.equal(getParentNotificationPreview(parent).history[0].read, true);
 });
+
+test('cancelled requests remain readable history in every preview language without report access',()=>{
+ workspace.requestRelationship(parent,'exam@visionary.test','guardian');
+ const request=workspace.visibleRelationships(parent).find(row=>row.to==='demo-exam'&&row.status==='pending');
+ workspace.changeRelationship(parent,request.id,'revoked');
+ // Imported cancellation records use a distinct status; the current cancellation command stores revoked.
+ const cancelled=JSON.parse(memory.get('visionary_workspace_v2'));
+ cancelled.relationships.find(row=>row.id===request.id).status='cancelled';
+ memory.set('visionary_workspace_v2',JSON.stringify(cancelled));
+ for(const notificationLocale of ['en','hi','bn']){
+  workspace.updatePreferences(parent,{notificationLocale});
+  const before=memory.get('visionary_workspace_v2');const view=getParentNotificationPreview(parent);
+  const row=view.connections.find(item=>item.childId==='demo-exam');
+  assert.equal(row.status,'cancelled');assert.equal(row.path,'/dashboard/child');assert.ok(row.text);
+  assert.equal(view.digest.some(item=>item.childId==='demo-exam'),false);assert.equal(view.digest.length,2);
+  assert.equal(view.history[0].text.includes('undefined'),false);assert.equal(memory.get('visionary_workspace_v2'),before);
+ }
+});
+
+test('unreadable expiry and unsupported legacy status close access without breaking other summaries or repairing originals',()=>{
+ for(const mode of ['expiry','legacy-status']){
+  const db=JSON.parse(memory.get('visionary_workspace_v2'));const row=db.relationships.find(item=>item.from==='demo-parent'&&item.to==='demo-minor-cbse');
+  row.status=mode==='expiry'?'active':'unsupported-import';row.expiresAt=mode==='expiry'?'not-a-date':undefined;
+  memory.set('visionary_workspace_v2',JSON.stringify(db));
+  for(const notificationLocale of ['en','hi','bn']){
+   workspace.updatePreferences(parent,{notificationLocale});const before=memory.get('visionary_workspace_v2');const view=getParentNotificationPreview(parent);
+   const closed=view.connections.find(item=>item.childId==='demo-minor-cbse');
+   assert.equal(closed.status,'unavailable');assert.equal(closed.path,'/dashboard/child');assert.ok(closed.text);
+   assert.equal(view.digest.some(item=>item.childId==='demo-minor-cbse'),false);assert.equal(view.digest.some(item=>item.childId==='demo-bengali'),true);
+   assert.equal(memory.get('visionary_workspace_v2'),before);
+  }
+ }
+});
+
+
+test('active connections without progress scope stay closed and are not mislabeled expired',()=>{
+ const db=JSON.parse(memory.get('visionary_workspace_v2'));db.relationships[0].scope=['shared-resources'];memory.set('visionary_workspace_v2',JSON.stringify(db));
+ for(const notificationLocale of ['en','hi','bn']){workspace.updatePreferences(parent,{notificationLocale});const before=memory.get('visionary_workspace_v2'),view=getParentNotificationPreview(parent);const row=view.connections.find(item=>item.childId==='demo-minor-cbse');assert.equal(row.status,'restricted');assert.equal(row.path,'/dashboard/child');assert.ok(row.text);assert.equal(view.digest.some(item=>item.childId===row.childId),false);assert.equal(memory.get('visionary_workspace_v2'),before);}
+});

@@ -22,7 +22,7 @@ import imgM12 from "@/assets/organization-problem-1-1600w.webp";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #4285F4/#0b57d0
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* Dual-row image marquee — the company-info-top pattern: rows circulating
    anticlockwise (top row drifts left, bottom row drifts right). Decorative. */
@@ -167,7 +167,7 @@ export default function CommunityPage() {
             <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
               <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
-                Communities and programs for everyone learning together.
+                Communities and programs for everyone <span className="accent-gradient">learning together.</span>
               </h1>
               <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.55] text-[#3c4043] sm:text-[22px]">
                 Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.
