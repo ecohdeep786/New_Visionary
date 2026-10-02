@@ -1,0 +1,1 @@
+PASS: 7/30/all period counts, private sourced timeline and exact resume links, application exclusion, keyboard search/empty reset, unreadable-source preservation and retry, 390/640 reflow and reduced-motion context. No real screen-reader/native zoom certification.

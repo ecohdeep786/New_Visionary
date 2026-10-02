@@ -1,3 +1,4 @@
+import {connectedContext} from './fixtures/connectedContext.mjs';
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
@@ -10,6 +11,7 @@ globalThis.window = { dispatchEvent() {} };
 globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
 let now;
 const ctx = (person = 'adult', role = 'student') => ({ personId: `demo-${person}`, workspaceId: `demo-${person}:${role}`, role, locale: 'en' });
+const connectedCtx=(person='adult',role='student')=>['student','teacher'].includes(role)?connectedContext(ctx(person,role)):ctx(person,role);
 const outcome = (id, kind = 'practice', correct = 1, extra = {}) => ({ id, kind, conceptId: 'sample:cube:concept', sessionId: 'session-one', correct, total: 1, verified: true, ...extra });
 function editWorkspace(fn) { const db = JSON.parse(storage.get('visionary_workspace_v2')); fn(db); storage.set('visionary_workspace_v2', JSON.stringify(db)); }
 beforeEach(() => {
@@ -112,8 +114,21 @@ test('parent sees only consent-scoped connected child summary, not events or pri
  assert.throws(() => mentor.getParentSummary(parent, child.personId), /connection/);
 });
 
+test('the thirty day shared evidence window retains older activity without changing consent', () => {
+ const child = ctx('minor-cbse'); const parent = ctx('parent', 'parent');
+ mentor.recordLearningOutcome(child, outcome('older-check', 'check'));
+ now = new Date('2026-10-10T12:00:00Z');
+ assert.equal(mentor.getParentSummary(parent, child.personId, 7).concepts.length, 0);
+ const monthly = mentor.getParentSummary(parent, child.personId, 30);
+ assert.equal(monthly.period, 'Last 30 days');
+ assert.equal(monthly.concepts[0].total, 1);
+ assert.throws(() => mentor.getParentSummary(parent, child.personId, 14), /supported report period/);
+ workspace.changeRelationship(parent, 'demo-parent:demo-minor-cbse', 'revoked');
+ assert.throws(() => mentor.getParentSummary(parent, child.personId, 30), /connection/);
+});
+
 test('teacher accesses assigned class aggregates only; personal evidence and revoked memberships are excluded', () => {
- const child = ctx('minor-cbse'); const teacher = ctx('teacher', 'teacher'); workspace.seedDemo('teacher');
+ const child = connectedCtx('minor-cbse'); const teacher = connectedCtx('teacher', 'teacher'); workspace.seedDemo('teacher');
  mentor.recordLearningOutcome(child, outcome('personal', 'practice', 0));
  mentor.recordLearningOutcome(child, outcome('class', 'check', 1, { classId: 'demo-class-cube' }));
  assert.deepEqual(mentor.getAssignedClasses(teacher).map(c => c.id), ['demo-class-cube']);
@@ -124,16 +139,54 @@ test('teacher accesses assigned class aggregates only; personal evidence and rev
  const memberships = JSON.parse(storage.get('visionary_entity_OrganizationInvite')); memberships.find(m => m.email === 'minor-cbse@visionary.test').status = 'revoked'; storage.set('visionary_entity_OrganizationInvite', JSON.stringify(memberships));
  assert.equal(mentor.getClassAggregate(teacher, 'demo-class-cube').concepts.length, 0);
  memberships.find(m => m.email === 'teacher@visionary.test').status = 'revoked'; storage.set('visionary_entity_OrganizationInvite', JSON.stringify(memberships));
- assert.throws(() => mentor.getClassAggregate(teacher, 'demo-class-cube'), /not assigned/);
+ assert.throws(() => mentor.getClassAggregate(teacher, 'demo-class-cube'), /no longer active/);
 });
 
 test('organization gets aggregate-only class evidence, never personal learner SCM or unrelated classes', () => {
- workspace.seedDemo('school-admin'); const organization = ctx('school-admin', 'organization'); const child = ctx('minor-cbse');
+ workspace.seedDemo('school-admin'); const organization = connectedCtx('school-admin', 'organization'); const child = connectedCtx('minor-cbse');
  mentor.recordLearningOutcome(child, outcome('personal', 'practice', 0)); mentor.recordLearningOutcome(child, outcome('class', 'check', 1, { classId: 'demo-class-cube' }));
- const result = mentor.getOrganizationAggregate(organization); assert.equal(result.classCount, 2); assert.equal(result.learnerCount, 2); assert.equal(result.concepts[0].correct, 1); assert.equal(result.concepts[0].total, 1);
+ const result = mentor.getOrganizationAggregate(organization); assert.equal(result.classCount, 2); assert.equal(result.learnerCount, 2); assert.equal(result.suppressed,true);assert.equal(result.pendingSubmissions,null);assert.deepEqual(result.concepts,[]);
+ const memberships=JSON.parse(storage.get('visionary_entity_OrganizationInvite'));
+ const enrollments=JSON.parse(storage.get('visionary_entity_Enrollment'));
+ for(const name of ['bengali','exam','college','adult']){
+  memberships.push({id:`member-${name}`,organization_email:'school-admin@visionary.test',email:`${name}@visionary.test`,role:'student',status:'active'});
+  enrollments.push({id:`enrollment-${name}`,class_id:'demo-class-cube',student_email:`${name}@visionary.test`,student_id:`demo-${name}`,status:'active'});
+ }
+ storage.set('visionary_entity_OrganizationInvite',JSON.stringify(memberships));storage.set('visionary_entity_Enrollment',JSON.stringify(enrollments));
+ for(const name of ['bengali','exam','college','adult'])mentor.recordLearningOutcome(connectedCtx(name),outcome(`class-${name}`,'check',1,{classId:'demo-class-cube'}));
+ const large=mentor.getOrganizationAggregate(organization);assert.equal(large.learnerCount,5);assert.equal(large.suppressed,false);assert.equal(large.concepts[0].learners,5);
  assert.ok(!JSON.stringify(result).includes('demo-minor-cbse')); assert.ok(!('evidence' in result));
  assert.throws(() => mentor.getStudentState(organization, child.personId), /private/);
  assert.throws(() => mentor.getClassAggregate(organization, 'demo-class-cube'), /assigned teachers/);
  assert.throws(() => mentor.getOrganizationAggregate(child), /organization/);
- workspace.seedDemo('company-admin'); assert.equal(mentor.getOrganizationAggregate(ctx('company-admin', 'organization')).classCount, 0);
+ workspace.seedDemo('company-admin'); assert.equal(mentor.getOrganizationAggregate(connectedCtx('company-admin', 'organization')).classCount, 0);
+});
+
+test('organization 7/30-day evidence windows retain small-group suppression and current operational counts', () => {
+ workspace.seedDemo('school-admin'); const organization = connectedCtx('school-admin', 'organization');
+ const memberships = JSON.parse(storage.get('visionary_entity_OrganizationInvite'));
+ const enrollments = JSON.parse(storage.get('visionary_entity_Enrollment'));
+ enrollments.push({ id: 'period-enrollment-bengali', class_id: 'demo-class-cube', student_email: 'bengali@visionary.test', student_id: 'demo-bengali', status: 'active' });
+ for (const name of ['exam', 'college', 'adult']) {
+  memberships.push({ id: `period-member-${name}`, organization_email: 'school-admin@visionary.test', email: `${name}@visionary.test`, role: 'student', status: 'active' });
+  enrollments.push({ id: `period-enrollment-${name}`, class_id: 'demo-class-cube', student_email: `${name}@visionary.test`, student_id: `demo-${name}`, status: 'active' });
+ }
+ storage.set('visionary_entity_OrganizationInvite', JSON.stringify(memberships));
+ storage.set('visionary_entity_Enrollment', JSON.stringify(enrollments));
+ now = new Date('2026-09-08T12:00:00Z');
+ for (const name of ['minor-cbse', 'bengali', 'exam', 'college', 'adult']) mentor.recordLearningOutcome(connectedCtx(name), outcome(`older-${name}`, 'check', 1, { classId: 'demo-class-cube' }));
+ now = new Date('2026-09-23T12:00:00Z');
+ const short = mentor.getOrganizationAggregate(organization, 7);
+ const long = mentor.getOrganizationAggregate(organization, 30);
+ assert.equal(short.learnerCount, 5);
+ assert.equal(short.periodContributors, null);
+ assert.deepEqual(short.concepts, []);
+ assert.equal(long.periodContributors, 5);
+ assert.equal(long.concepts[0].learners, 5);
+ assert.match(long.period, /30 days/);
+ mentor.recordLearningOutcome(connectedCtx('minor-cbse'), outcome('recent-one', 'check', 1, { classId: 'demo-class-cube' }));
+ assert.deepEqual(mentor.getOrganizationAggregate(organization, 7).concepts, [], 'one recent contributor stays suppressed');
+ for (const name of ['bengali', 'exam', 'college', 'adult']) mentor.recordLearningOutcome(connectedCtx(name), outcome(`recent-${name}`, 'check', 1, { classId: 'demo-class-cube' }));
+ assert.equal(mentor.getOrganizationAggregate(organization, 7).concepts[0].learners, 5);
+ assert.throws(() => mentor.getOrganizationAggregate(organization, 14), /supported organization period/);
 });

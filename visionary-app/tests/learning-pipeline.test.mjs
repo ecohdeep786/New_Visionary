@@ -1,8 +1,10 @@
+import {connectedContext} from './fixtures/connectedContext.mjs';
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import * as pipeline from '../src/services/learningPipelineService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
+import * as editorDraft from '../src/services/artifactEditorDraft.ts';
 import { getContentRepository, SAMPLE_SELECTION, configureContentRepository } from '../src/services/contentRepository.ts';
 import { configureTeachingInterface } from '../src/services/teachingInterface.ts';
 import { getHome } from '../src/services/homeService.ts';
@@ -26,6 +28,148 @@ async function startSample() {
  const concepts = await repo.getConcepts(topics[0].id);
  return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
 }
+
+async function startCubeSample() {
+ const request = ctx(); const syllabus = await pipeline.selectLearningSyllabus(request, SAMPLE_SELECTION);
+ const repo = getContentRepository(request); const topics = await repo.getTopics(syllabus.chapters[1].id);
+ const concepts = await repo.getConcepts(topics[0].id);
+ return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
+}
+
+test('fraction representation position persists without evidence; invalid and failed changes preserve it',async()=>{
+ const {request,unit,concept}=await startSample();assert.equal(concept.representations[0].numberLine.divisions,8);
+ const before=mentor.getStudentState(request);
+ pipeline.updateLearningRepresentation(request,unit.id,{point:6,mode:'model'});assert.equal(pipeline.getLearningUnit(request,unit.id).representation.point,6);assert.deepEqual(mentor.getStudentState(request),before);
+ for(const point of [-1,17,1.5])assert.throws(()=>pipeline.updateLearningRepresentation(request,unit.id,{point}),/valid number line/);
+ const original=localStorage.setItem;localStorage.setItem=(key,value)=>{if(key==='visionary_learning_pipeline_v1')throw Error('Full');original(key,value);};
+ try{assert.throws(()=>pipeline.updateLearningRepresentation(request,unit.id,{point:2}),/could not be saved/);}finally{localStorage.setItem=original;}
+ assert.equal(pipeline.getLearningUnit(request,unit.id).representation.point,6);assert.deepEqual(mentor.getStudentState(request),before);
+});
+
+test('cube entry points reuse one authored unit without importing old topic results as evidence', async () => {
+ const request = ctx();
+ const oldTopics = '[{"id":"old-cube","name":"Understanding cube volume","subject":"Geometry"}]';
+ localStorage.setItem('visionary_entity_Topic', oldTopics);
+ const first = await pipeline.openCubeLearningSample(request);
+ const again = await pipeline.openCubeLearningSample(request);
+ assert.equal(again.id, first.id);
+ assert.equal(first.conceptId, 'sample:cube:concept');
+ assert.equal(pipeline.getLearningWorkspace(request).selection.subject, 'Mathematics');
+ assert.equal(pipeline.getLearningWorkspace(request).units.length, 1);
+ assert.equal(mentor.getStudentState(request).concepts.length, 0);
+ assert.equal(localStorage.getItem('visionary_entity_Topic'), oldTopics);
+ await assert.rejects(pipeline.openCubeLearningSample(ctx('adult', 'parent')), /student workspace/);
+});
+
+test('authored cube criteria require written self review without claiming a grade', async () => {
+ const { request, unit } = await startCubeSample();
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, check.question.answerIndex);
+ const practice = await pipeline.nextLearningQuestion(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex);
+ const artifact = await pipeline.createLearningProject(request, unit.id);
+ assert.deepEqual(artifact.rubric.criteria.map(item => item.id), ['capacity', 'comparison', 'safety']);
+ assert.equal(artifact.rubric.sourceVersion, '2');
+ const candidate = { ...artifact, body: 'I compared two cube boxes and described my material.', milestones: [true, true, true], status: 'completed' };
+ assert.throws(() => pipeline.validateProjectCompletion(candidate), /every project criterion/);
+ assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 0);
+ candidate.rubric = { ...artifact.rubric, responses: Object.fromEntries(artifact.rubric.criteria.map(item => [item.id, `My evidence for ${item.id}.`])) };
+ assert.doesNotThrow(() => pipeline.validateProjectCompletion(candidate));
+ const saved = workspace.saveArtifact(request, candidate);
+ pipeline.recordProjectSave(request, saved);
+ assert.equal(mentor.getStudentState(request).concepts[0].applicationCount, 1);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'completed');
+});
+
+test('interrupted project edits recover only inside their workspace and can be discarded', () => {
+ const request = ctx();
+ const saved = workspace.saveArtifact(request, { title: 'Cube model', body: 'First version', status: 'draft' });
+ const edited = { ...saved, title: 'Better cube model', body: 'New unsaved reasoning', milestones: [true, false, false] };
+ editorDraft.saveArtifactEditorDraft(request, edited);
+ assert.equal(workspace.snapshot(request).artifacts.find(item => item.id === saved.id).body, 'First version');
+ const recovered = editorDraft.getArtifactEditorDraft(request, saved.id);
+ assert.equal(editorDraft.hasUnsavedArtifactEdits(saved, recovered), true);
+ assert.equal(editorDraft.recoverArtifactEditorDraft(saved, recovered).body, 'New unsaved reasoning');
+ workspace.seedDemo('minor-cbse');
+ assert.throws(() => editorDraft.getArtifactEditorDraft(ctx('minor-cbse'), saved.id), /unavailable in this workspace/);
+ editorDraft.clearArtifactEditorDraft(request, saved.id);
+ assert.equal(editorDraft.getArtifactEditorDraft(request, saved.id), null);
+});
+
+test('the cube view resumes in its learning unit and review preserves recorded evidence', async () => {
+ const { request, unit, concept } = await startCubeSample();
+ assert.equal(concept.representations[0].kind, 'cube');
+ const viewed = pipeline.updateLearningRepresentation(request, unit.id, { size: 5, rotation: 180 });
+ assert.deepEqual(viewed.representation, { mode: 'model', size: 5, rotation: 180 });
+ assert.deepEqual(pipeline.getLearningUnit(request, unit.id).representation, viewed.representation);
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ const wrongIndex = (check.question.answerIndex + 1) % check.question.options.length;
+ const answered = await pipeline.answerLearningQuestion(request, unit.id, wrongIndex);
+ assert.equal(answered.answer.correct, false);
+ assert.equal(answered.attempts.length, 1);
+ assert.equal(answered.attempts[0].question.id, check.question.id);
+ assert.equal(answered.attempts[0].selectedIndex, wrongIndex);
+ assert.equal(mentor.getStudentState(request).concepts[0].total, 1);
+ const reviewed = pipeline.reviewLearningExplanation(request, unit.id);
+ assert.equal(reviewed.stage, 'explain');
+ assert.deepEqual(reviewed.representation, viewed.representation);
+ assert.equal(mentor.getStudentState(request).concepts[0].total, 1);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).answer.id, answered.answer.id);
+ const retried = await pipeline.beginComprehension(request, unit.id);
+ assert.equal(retried.stage, 'check');
+ assert.equal(retried.answer, undefined);
+ assert.equal(retried.attempts.length, 1);
+ assert.deepEqual(retried.representation, viewed.representation);
+ const corrected = await pipeline.answerLearningQuestion(request, unit.id, retried.question.answerIndex);
+ assert.equal(corrected.checkPassed, true);
+ assert.equal(corrected.attempts.length, 2);
+ assert.notEqual(corrected.attempts[0].id, corrected.attempts[1].id);
+ assert.equal(mentor.getStudentState(request).concepts[0].total, 2);
+});
+
+test('review queue uses recorded evidence timing and a new review retains completed work', async () => {
+ const { request, unit } = await startSample();
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ const check = await pipeline.beginComprehension(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, check.question.answerIndex);
+ let queue = pipeline.getLearningReviewQueue(request);
+ assert.equal(queue.length, 1);
+ assert.equal(queue[0].due, false);
+ assert.equal(queue[0].recordedAnswers, 1);
+ assert.equal(queue[0].dueAt, '2026-09-30T12:00:00.000Z');
+ const practice = await pipeline.nextLearningQuestion(request, unit.id);
+ const practiced = await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex);
+ assert.equal(practiced.attempts.length, 2);
+ assert.deepEqual(practiced.attempts.map(item => item.kind), ['check', 'practice']);
+ assert.equal((await pipeline.answerLearningQuestion(request, unit.id, practice.question.answerIndex)).attempts.length, 2);
+ const artifact = await pipeline.createLearningProject(request, unit.id);
+ const completed = workspace.saveArtifact(request, { ...artifact, body: 'A completed model and reflection.', milestones: [true, true, true], status: 'completed' });
+ pipeline.recordProjectSave(request, completed);
+ workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-10-01T12:00:00Z') });
+ mentor.configureMentorClock(() => new Date('2026-10-01T12:00:00Z'));
+ queue = pipeline.getLearningReviewQueue(request);
+ assert.equal(queue[0].due, true);
+ assert.equal(queue[0].unit.stage, 'completed');
+ const reopened = await pipeline.startLearningUnit(request, unit.conceptId);
+ assert.notEqual(reopened.id, unit.id);
+ assert.equal(pipeline.getLearningUnit(request, unit.id).stage, 'completed');
+ assert.equal(pipeline.getLearningReviewQueue(request).length, 1);
+});
+
+test('an invalid or failed model-view save leaves the prior saved view intact', async () => {
+ const { request, unit } = await startCubeSample();
+ pipeline.updateLearningRepresentation(request, unit.id, { mode: 'text', size: 4, rotation: 90 });
+ const before = pipeline.getLearningUnit(request, unit.id).representation;
+ assert.throws(() => pipeline.updateLearningRepresentation(request, unit.id, { size: 9 }), /valid model view/);
+ const set = localStorage.setItem;
+ localStorage.setItem = (key, value) => { if (key === 'visionary_learning_pipeline_v1') throw Error('full'); set(key, value); };
+ try { assert.throws(() => pipeline.updateLearningRepresentation(request, unit.id, { mode: 'model' }), /could not be saved/); }
+ finally { localStorage.setItem = set; }
+ assert.deepEqual(pipeline.getLearningUnit(request, unit.id).representation, before);
+ assert.deepEqual(pipeline.updateLearningRepresentation(request, unit.id, { mode: 'model' }).representation, { ...before, mode: 'model' });
+});
 
 test('student Home → Learn → Ask → Practice → Build persists one connected activity and evidence', async () => {
  const { request, unit, concept } = await startSample();
@@ -143,7 +287,7 @@ test('wrong practice answer lowers difficulty and requests remediation without a
 
 test('class-started learning reaches only the assigned teacher aggregate', async () => {
  seedConnectedFixtures(localStorage, new Date('2026-09-23T12:00:00Z'));
- const learner=ctx('minor-cbse');
+ const learner=connectedContext(ctx('minor-cbse'));
  const selection={board:'CBSE',classLevel:'6',subject:'Geometry'};
  configureContentRepository({async getSyllabus(query){
   if(query.subject!=='Geometry')return null;
@@ -160,8 +304,8 @@ test('class-started learning reaches only the assigned teacher aggregate', async
  await pipeline.requestUnitTeaching(learner,unit.id,'explanation');
  const check=await pipeline.beginComprehension(learner,unit.id);
  await pipeline.answerLearningQuestion(learner,unit.id,check.question.answerIndex);
- assert.equal(mentor.getClassAggregate(ctx('teacher','teacher'),'demo-class-cube').concepts[0].correct,1);
- assert.equal(mentor.getClassAggregate(ctx('school-teacher','teacher'),'demo-class-fractions').concepts.some(item=>item.conceptId==='db:geometry:cube'),false);
+ assert.equal(mentor.getClassAggregate(connectedContext(ctx('teacher','teacher')),'demo-class-cube').concepts[0].correct,1);
+ assert.equal(mentor.getClassAggregate(connectedContext(ctx('school-teacher','teacher')),'demo-class-fractions').concepts.some(item=>item.conceptId==='db:geometry:cube'),false);
 });
 
 test('changing teaching language keeps the same session and localized authored check', async () => {
@@ -251,4 +395,29 @@ test('minor profiles cannot enter a professional journey through the service', a
  workspace.seedDemo('minor-cbse');
  const professional = ctx('minor-cbse', 'professional');
  assert.throws(() => pipeline.getLearningWorkspace(professional), /Professional journeys|access/);
+});
+
+test('unsubmitted learning selection resumes privately without producing scored evidence',async()=>{
+ const {request,unit}=await startSample();await pipeline.requestUnitTeaching(request,unit.id,'explanation');const question=await pipeline.beginComprehension(request,unit.id);const evidence=memory.get('visionary_mentor_v1');
+ const chosen=pipeline.saveLearningAnswerDraft(request,unit.id,1,JSON.stringify(question.question),question.practiceRound);assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'1');assert.equal(chosen.answer,undefined);assert.equal(chosen.attempts,undefined);assert.equal(memory.get('visionary_mentor_v1'),evidence);
+ await pipeline.answerLearningQuestion(request,unit.id,question.question.answerIndex,{version:JSON.stringify(question.question),round:question.practiceRound});assert.equal(pipeline.getLearningUnit(request,unit.id).answerDraft,undefined);
+});
+test('stale question or retry round cannot overwrite draft or record a graded answer',async()=>{
+ const {request,unit}=await startSample();await pipeline.requestUnitTeaching(request,unit.id,'explanation');const original=await pipeline.beginComprehension(request,unit.id);await pipeline.nextLearningQuestion(request,unit.id,false);
+ const bytes=memory.get('visionary_learning_pipeline_v1'),evidence=memory.get('visionary_mentor_v1');
+ assert.throws(()=>pipeline.saveLearningAnswerDraft(request,unit.id,0,JSON.stringify(original.question),original.practiceRound),/question changed/);
+ await assert.rejects(pipeline.answerLearningQuestion(request,unit.id,0,{version:JSON.stringify(original.question),round:original.practiceRound}),/not graded/);
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),bytes);assert.equal(memory.get('visionary_mentor_v1'),evidence);assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'');
+});
+test('failed draft write preserves old selection for retry and another owner cannot recover it',async()=>{
+ const {request,unit}=await startSample();await pipeline.requestUnitTeaching(request,unit.id,'explanation');const question=await pipeline.beginComprehension(request,unit.id);pipeline.saveLearningAnswerDraft(request,unit.id,0,JSON.stringify(question.question),question.practiceRound);
+ const set=localStorage.setItem;localStorage.setItem=(key,value)=>{if(key==='visionary_learning_pipeline_v1')throw Error('quota');set(key,value);};
+ try{assert.throws(()=>pipeline.saveLearningAnswerDraft(request,unit.id,1,JSON.stringify(question.question),question.practiceRound),/could not be saved/);}finally{localStorage.setItem=set;}
+ assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'0');pipeline.saveLearningAnswerDraft(request,unit.id,1,JSON.stringify(question.question),question.practiceRound);assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'1');assert.throws(()=>pipeline.getLearningUnit(ctx('professional','professional'),unit.id),/unavailable/);
+});
+test('malformed learning containers and ambiguous owned units cannot overwrite original work or emit new evidence',async()=>{
+ const {request,unit}=await startSample();const valid=JSON.parse(memory.get('visionary_learning_pipeline_v1'));const evidence=memory.get('visionary_mentor_v1');
+ const cases=[{version:1,spaces:[]},{version:1,spaces:{[request.workspaceId]:{units:{}}}},{version:1,spaces:{[request.workspaceId]:{units:[null]}}},{version:1,spaces:{[request.workspaceId]:{units:[unit,{...unit}]}}},{version:1,spaces:{[request.workspaceId]:{units:[unit],selection:{board:'Demo',classLevel:6,subject:'Mathematics'}}}}];
+ for(const value of cases){const original=JSON.stringify(value);memory.set('visionary_learning_pipeline_v1',original);assert.throws(()=>pipeline.getLearningWorkspace(request),/could not be read|incomplete or ambiguous/);await assert.rejects(pipeline.startLearningUnit(request,unit.conceptId),/could not be read|incomplete or ambiguous/);assert.equal(memory.get('visionary_learning_pipeline_v1'),original);assert.equal(memory.get('visionary_mentor_v1'),evidence);}
+ memory.set('visionary_learning_pipeline_v1',JSON.stringify(valid));assert.equal(pipeline.getLearningUnit(request,unit.id).id,unit.id);
 });

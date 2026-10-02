@@ -159,3 +159,31 @@ test('a crisis spoken aloud gets the same safety hard-stop as typed text', async
  assert.equal(getVoiceMode(), 'off');
 });
 
+test('a replaced or stopped recognition cannot deliver words or affect the next owner',()=>{
+ configureSpeechRuntime({SpeechRecognition:MockRecognition});const first=[],second=[];startListening({onFinal:text=>first.push(text)});const old=MockRecognition.created.at(-1);
+ startListening({onFinal:text=>second.push(text)});const current=MockRecognition.created.at(-1);old.say('old private question');old.onerror?.({error:'not-allowed'});old.onend?.();assert.equal(getVoiceMode(),'listening');assert.deepEqual(first,[]);assert.deepEqual(second,[]);
+ current.say('current question');assert.deepEqual(second,['current question']);stopListening();current.say('late question');current.onend?.();assert.deepEqual(second,['current question']);assert.equal(getVoiceMode(),'off');
+});
+
+test('continuous recognition delivers only new final results and ignores replayed result indexes',()=>{
+ configureSpeechRuntime({SpeechRecognition:MockRecognition});const heard=[];startListening({onFinal:text=>heard.push(text)});const item=MockRecognition.created.at(-1),result=text=>({0:{transcript:text},isFinal:true});
+ item.onresult({resultIndex:0,results:[result('first phrase')]});item.onresult({resultIndex:1,results:[result('first phrase'),result('second phrase')]});item.onresult({resultIndex:0,results:[result('first phrase'),result('second phrase')]});assert.deepEqual(heard,['first phrase','second phrase']);
+ item.onend();item.onresult({resultIndex:0,results:[result('new listening cycle')]});assert.deepEqual(heard,['first phrase','second phrase','new listening cycle']);
+});
+
+test('cancelled or superseded speech cannot restart recognition or complete an older session',()=>{
+ const synthesis=new MockSynthesis();configureSpeechRuntime({SpeechRecognition:MockRecognition,speechSynthesis:synthesis});let oldFinished=0,newFinished=0;startListening({});speak('old reply','en',()=>oldFinished++);const old=synthesis.utterances.at(-1);
+ cancelSpeech();assert.equal(getVoiceMode(),'listening');speak('new reply','en',()=>newFinished++);old.onend();assert.equal(getVoiceMode(),'speaking');assert.equal(oldFinished,0);
+ stopListening();cancelSpeech();synthesis.finish();assert.equal(getVoiceMode(),'off');assert.equal(newFinished,0);
+});
+
+test('recognition startup and device errors stop honestly and allow an explicit retry',()=>{
+ class FailingRecognition extends MockRecognition {start(){throw Error('Device lost');}}
+ configureSpeechRuntime({SpeechRecognition:FailingRecognition});assert.throws(()=>startListening(),/could not start/);assert.equal(getVoiceMode(),'off');
+ configureSpeechRuntime({SpeechRecognition:MockRecognition});const errors=[];startListening({onError:message=>errors.push(message)});const item=MockRecognition.created.at(-1);item.onerror({error:'audio-capture'});item.onend();assert.equal(getVoiceMode(),'off');assert.equal(item.started,false);assert.match(errors[0],/interrupted/);startListening({});assert.equal(getVoiceMode(),'listening');
+});
+
+test('a failed speech engine releases the suspended microphone and completes once',()=>{
+ const synthesis=new MockSynthesis();synthesis.speak=()=>{throw Error('Audio unavailable');};configureSpeechRuntime({SpeechRecognition:MockRecognition,speechSynthesis:synthesis});let completed=0;startListening({});const item=MockRecognition.created.at(-1);assert.equal(speak('reply','en',()=>completed++),false);assert.equal(getVoiceMode(),'listening');assert.equal(item.started,true);assert.equal(completed,1);
+});
+

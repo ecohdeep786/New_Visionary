@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Check, ChevronDown, Minus, Sparkles } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -22,7 +22,7 @@ const COLORS = {
   mist: "#dadce0",
   white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const PERSONA_IMAGES = {
   Student: studentImage,
   Teacher: teacherImage,
@@ -79,7 +79,7 @@ const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
         >
           {b === "monthly" ? "Monthly" : "Annual"}
           {b === "annual" && (
-            <span className="rounded-full bg-[#e6f4ea] px-2 py-0.5 text-[10px] font-medium tracking-[0.1px] text-[#137333]">
+            <span className="rounded-full bg-[#e6f4ea] px-2 py-0.5 text-[12px] font-medium tracking-[0.1px] text-[#137333]">
               2 months free
             </span>
           )}
@@ -101,7 +101,7 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
       }}
     >
       <div className="mb-2 flex h-6 items-center">
-        {plan.badge && <span className="rounded-full bg-[#e8f0fe] px-2.5 py-1 text-[11px] font-medium leading-none text-[#1967D2]">{plan.badge}</span>}
+        {plan.badge && <span className="rounded-full bg-[#e8f0fe] px-2.5 py-1 text-[12px] font-medium leading-none text-[#1967D2]">{plan.badge}</span>}
       </div>
       <h3 className="text-[26px] font-medium leading-[1.15] tracking-[-0.02em]" style={{ color: COLORS.ink }}>{plan.name}</h3>
       <p className="mt-2 min-h-[44px] font-normal leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
@@ -139,7 +139,7 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
         {plan.cta}
       </Link>
 
-      <p className="mt-7 border-t pt-6 text-[13px] font-medium" style={{ borderColor: "#e8eaed", color: COLORS.ink }}>What’s included</p>
+      <p className="mt-7 border-t pt-6 text-[13px] font-medium" style={{ borderColor: "#dadce0", color: COLORS.ink }}>What’s included</p>
       <ul className="mt-4 space-y-3">
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-3">
@@ -157,11 +157,11 @@ function PricingPlansSection() {
   const { ref, visible } = useRevealOnce();
   const [billing, setBilling] = useState("annual");
   return (
-    <section ref={ref} className="relative px-4 pb-20 pt-24 sm:px-6 lg:pb-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-4 pb-20 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto max-w-[1440px] text-center">
-          <h1 className="mx-auto max-w-[1000px] font-normal leading-[1.08] tracking-[-0.045em] text-[clamp(44px,5.4vw,68px)]" style={{ color: COLORS.ink }}>
-            Plans for <span style={{ color: COLORS.blue }}>every journey</span>.
+          <h1 className="mx-auto max-w-[1000px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+            Plans for <span className="accent-gradient">every journey</span>.
           </h1>
           <p className="mx-auto max-w-[760px] text-[17.5px] font-normal leading-[25px] text-[#5f6368]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
             Start free. Find the right fit for yourself, your family, or your organization.
@@ -187,19 +187,21 @@ function PricingPlansSection() {
 function PricingPersonaSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-20 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
         <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
-            <Link key={p.persona} to={p.to} className="group flex h-full flex-col overflow-hidden rounded-[24px] border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#4285F4] hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] border bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:border-[#4285F4] hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
                 <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{p.persona}</p>
+              <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>{p.persona}</p>
               <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[20px]" style={{ color: COLORS.ink }}>{p.plan}</p>
               <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[13px]" style={{ color: COLORS.grey }}>{p.note}</p>
-              <span className="mt-auto pt-6 font-normal tracking-[0] leading-[22px] text-[15px] group-hover:underline" style={{ color: COLORS.blue }}>See your page</span>
+              {/* google.com card curve — tint sweeps into the white corner and the card's arrow floats in it with breath */}
+              <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white"  />
+              <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
             </Link>
           ))}
         </div>
@@ -218,7 +220,7 @@ function PricingComparisonSection() {
   const { ref, visible } = useRevealOnce();
   return (
     
-    <section ref={ref} className="relative px-6 py-20 lg:py-24" style={{fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:py-24" style={{fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
         <p className="mx-auto mt-6 max-w-[1240px] text-right text-[12px] text-[#5f6368] md:hidden">Scroll to compare all plans →</p>
@@ -273,7 +275,7 @@ function PricingFAQSection() {
   const [open, setOpen] = useState(-1);
   const toggle = useCallback((i) => setOpen((cur) => (cur === i ? -1 : i)), []);
   return (
-    <section ref={ref} className="relative bg-white px-6 py-20 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32 lg:py-24" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
@@ -308,9 +310,9 @@ function PricingFAQSection() {
 function PricingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-20 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:py-24" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>Your journey is already happening. Start free.</h2>
+        <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <p className="mx-auto mt-5 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Begin with a question today. Upgrade only when Visionary has earned it.
         </p>

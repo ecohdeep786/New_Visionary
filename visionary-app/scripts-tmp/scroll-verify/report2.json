@@ -1,0 +1,252 @@
+[
+  {
+    "route": "/student",
+    "errors": [],
+    "stage": {
+      "scenes": 1,
+      "hasSticky": true,
+      "sectionH": 3586
+    },
+    "pin": {
+      "enter": {
+        "stickyTop": 88,
+        "activeDot": 0,
+        "word": "Every"
+      },
+      "mid": {
+        "stickyTop": 64,
+        "activeDot": 3,
+        "word": "Every"
+      },
+      "late": {
+        "stickyTop": -64,
+        "activeDot": 3,
+        "word": "Every"
+      }
+    },
+    "dotJump": {
+      "before": 3052,
+      "after": 3146
+    },
+    "scrub": {
+      "04-journey": {
+        "early": "meets your questions.",
+        "late": "opens what comes next."
+      },
+      "06-closing": {
+        "early": "adapting",
+        "late": "adapting"
+      },
+      "07-language": {
+        "early": "Integration by parts kab use k",
+        "late": "Integration by parts kab use k"
+      }
+    },
+    "mobile": {
+      "anySticky": false,
+      "scenes": 0,
+      "noOverflowX": true,
+      "culprit": null
+    }
+  },
+  {
+    "route": "/teacher",
+    "errors": [],
+    "stage": {
+      "scenes": 1,
+      "hasSticky": true,
+      "sectionH": 4396
+    },
+    "pin": {
+      "enter": {
+        "stickyTop": 88,
+        "activeDot": 0,
+        "word": "Every"
+      },
+      "mid": {
+        "stickyTop": 64,
+        "activeDot": 3,
+        "word": "Every"
+      },
+      "late": {
+        "stickyTop": -64,
+        "activeDot": 4,
+        "word": "Every"
+      }
+    },
+    "dotJump": {
+      "before": 3538,
+      "after": 3938
+    },
+    "scrub": {
+      "04-journey": {
+        "early": "meets your questions.",
+        "late": "opens what comes next."
+      },
+      "06-closing": {
+        "early": "supporting",
+        "late": "supporting"
+      },
+      "07-language": {
+        "early": "Agla lesson kaise behtar banau",
+        "late": "Agla lesson kaise behtar banau"
+      }
+    },
+    "mobile": {
+      "anySticky": false,
+      "scenes": 0,
+      "noOverflowX": true,
+      "culprit": null
+    }
+  },
+  {
+    "route": "/parent",
+    "errors": [],
+    "stage": {
+      "scenes": 1,
+      "hasSticky": true,
+      "sectionH": 4396
+    },
+    "pin": {
+      "enter": {
+        "stickyTop": 88,
+        "activeDot": 0,
+        "word": "Every"
+      },
+      "mid": {
+        "stickyTop": 64,
+        "activeDot": 3,
+        "word": "Every"
+      },
+      "late": {
+        "stickyTop": -64,
+        "activeDot": 4,
+        "word": "Every"
+      }
+    },
+    "dotJump": {
+      "before": 3538,
+      "after": 3938
+    },
+    "scrub": {
+      "04-journey": {
+        "early": "meets their questions.",
+        "late": "opens what comes next."
+      },
+      "06-closing": {
+        "early": "celebrating",
+        "late": "celebrating"
+      },
+      "07-language": {
+        "early": "Parent-teacher meeting se pehl",
+        "late": "Parent-teacher meeting se pehl"
+      }
+    },
+    "mobile": {
+      "anySticky": false,
+      "scenes": 0,
+      "noOverflowX": true,
+      "culprit": null
+    }
+  },
+  {
+    "route": "/professional",
+    "errors": [],
+    "stage": {
+      "scenes": 1,
+      "hasSticky": true,
+      "sectionH": 4396
+    },
+    "pin": {
+      "enter": {
+        "stickyTop": 88,
+        "activeDot": 0,
+        "word": "Every"
+      },
+      "mid": {
+        "stickyTop": 64,
+        "activeDot": 3,
+        "word": "Every"
+      },
+      "late": {
+        "stickyTop": -64,
+        "activeDot": 4,
+        "word": "Every"
+      }
+    },
+    "dotJump": {
+      "before": 3538,
+      "after": 3938
+    },
+    "scrub": {
+      "04-journey": {
+        "early": "meets your challenges.",
+        "late": "opens what comes next."
+      },
+      "06-closing": {
+        "early": "solving",
+        "late": "solving"
+      },
+      "07-language": {
+        "early": "Which skill should I learn for",
+        "late": "Which skill should I learn for"
+      }
+    },
+    "mobile": {
+      "anySticky": false,
+      "scenes": 0,
+      "noOverflowX": true,
+      "culprit": null
+    }
+  },
+  {
+    "route": "/organization",
+    "errors": [],
+    "stage": {
+      "scenes": 1,
+      "hasSticky": true,
+      "sectionH": 4396
+    },
+    "pin": {
+      "enter": {
+        "stickyTop": 88,
+        "activeDot": 0,
+        "word": "Every"
+      },
+      "mid": {
+        "stickyTop": 64,
+        "activeDot": 3,
+        "word": "Every"
+      },
+      "late": {
+        "stickyTop": -64,
+        "activeDot": 4,
+        "word": "Every"
+      }
+    },
+    "dotJump": {
+      "before": 3538,
+      "after": 3938
+    },
+    "scrub": {
+      "04-journey": {
+        "early": "Schools see it first",
+        "late": "Workplaces grow from it"
+      },
+      "06-closing": {
+        "early": "progress",
+        "late": "progress"
+      },
+      "07-language": {
+        "early": "Training ka impact kahan dikh ",
+        "late": "Training ka impact kahan dikh "
+      }
+    },
+    "mobile": {
+      "anySticky": false,
+      "scenes": 0,
+      "noOverflowX": true,
+      "culprit": null
+    }
+  }
+]

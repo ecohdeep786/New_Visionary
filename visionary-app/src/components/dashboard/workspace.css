@@ -326,6 +326,9 @@ body:has(.visionary-workspace) [role="dialog"] > h2{padding-right:28px;line-heig
 .v-workspace-empty-icon{display:grid;width:56px;height:56px;place-items:center;margin-bottom:13px;border:1px solid #d9e6fa;border-radius:18px;background:#f4f8ff;color:#0b57d2}
 @media(max-width:599px){.v-workspace-intro{min-height:170px;padding:22px 20px}.v-workspace-intro-art{position:absolute;right:-38px;top:-30px;width:135px;height:135px;opacity:.22}.v-workspace-intro-art span{width:64px;height:64px}.v-workspace-intro-copy{max-width:100%}.v-workspace-intro .v-title{font-size:27px}}
 .v-learning-stages{display:flex;flex-wrap:wrap;gap:8px}
+.v-representation{margin-top:24px;padding:20px;border:1px solid var(--v-border,#dadce0);border-radius:18px;background:#f8fbff}
+.v-representation .cube-stage{min-height:230px;height:auto}
+.v-representation [aria-pressed="true"]{border-color:#4285f4;background:#e8f0fd;color:#0b57d2;font-weight:600}
 .v-learning-step{display:inline-flex;align-items:center;gap:7px;min-height:34px;border:1px solid #dbe4f1;border-radius:999px;padding:4px 11px 4px 5px;background:#f8faff;color:#475467;font-size:12px;font-weight:500}
 .v-learning-step>span{display:grid;width:24px;height:24px;flex:none;place-items:center;border-radius:50%;background:#e7edf7;color:#475467;font-size:11px;font-weight:700}
 .v-learning-step[aria-current="step"]{border-color:#4285f4;background:#e8f0fd;color:#0b57d2;font-weight:700}

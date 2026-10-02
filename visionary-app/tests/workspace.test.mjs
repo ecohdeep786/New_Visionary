@@ -6,12 +6,30 @@ import { scoreExercises, cubeExercises } from "../src/lib/practiceExercises.js";
 import { safeReturnTo } from "../src/lib/authReturnTo.js";
 import { appClient } from "../src/api/appClient.js";
 import { bootstrapPerson,snapshot,saveResource } from '../src/services/workspaceService.ts';
-import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses } from '../src/services/classroomService.js';
+import { assignReviewedLesson,teacherLearners,teacherClasses,submitClassworkResponses,reviewClasswork } from '../src/services/classroomService.js';
+import { getReviewDraft, saveReviewDraft, clearReviewDraft } from '../src/services/reviewDraftService.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key,value) => memory.set(key,String(value)), removeItem: key => memory.delete(key) };
 globalThis.window = { dispatchEvent() {}, location: { origin: "http://localhost:5173", search: "" } };
 globalThis.CustomEvent ??= class CustomEvent { constructor(type) { this.type = type; } };
+
+test('teacher review drafts keep only the current attempt and survive a failed local write',()=>{
+  memory.clear();
+  const teacher={workspaceId:'teacher-space',role:'teacher'};
+  const other={workspaceId:'other-space',role:'teacher'};
+  saveReviewDraft(teacher,'assignment','submission',1,'8','Explain the units');
+  assert.deepEqual(getReviewDraft(teacher,'assignment','submission',1),{grade:'8',feedback:'Explain the units'});
+  assert.equal(getReviewDraft(teacher,'assignment','submission',2),null);
+  assert.equal(getReviewDraft(other,'assignment','submission',1),null);
+  const setItem=localStorage.setItem;
+  try {localStorage.setItem=()=>{throw new Error('Storage full');};assert.throws(()=>saveReviewDraft(teacher,'assignment','submission',1,'9','Changed feedback'),/could not be backed up/);}
+  finally {localStorage.setItem=setItem;}
+  assert.equal(getReviewDraft(teacher,'assignment','submission',1).feedback,'Explain the units');
+  clearReviewDraft(teacher,'assignment','submission');
+  assert.equal(getReviewDraft(teacher,'assignment','submission',1),null);
+  assert.throws(()=>getReviewDraft({...teacher,role:'student'},'assignment','submission',1),/teacher workspace/);
+});
 
 test('reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped',async()=>{
   memory.clear();
@@ -35,11 +53,29 @@ test('reviewed lesson → assignment → learner submission → returned feedbac
   await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[]}),/Answer every/);
   const submission=await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]});
   assert.equal((await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]})).id,submission.id);
+  await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'A different tab edited this answer.'}]}),/different response is already submitted/);
+  assert.equal((await appClient.entities.Submission.get(submission.id)).text,submission.text);
   assert.deepEqual(submission.responses,[{questionId:'check-1',text:'Three layers of nine unit cubes make 27.'}]);
   await assert.rejects(appClient.entities.Submission.update(submission.id,{grade:10,status:'graded'}));
   await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
   const learners=await teacherLearners(ctx);assert.equal(learners[0].pending,1);assert.match(learners[0].evidence[0].response,/Three layers of nine unit cubes make 27/);
-  await appClient.entities.Submission.update(submission.id,{grade:8,status:'graded',feedback:'Good model. Label the cubic units.',graded_date:new Date().toISOString()});
+  await assert.rejects(reviewClasswork(ctx,{submissionId:submission.id,status:'revision_requested'}),/Explain what/);
+  await reviewClasswork(ctx,{submissionId:submission.id,status:'revision_requested',feedback:'Label the cubic units.'});
+  await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');
+  await assert.rejects(appClient.entities.Submission.update(submission.id,{text:'Replace without preserving feedback',status:'submitted'}));
+  const setItem=localStorage.setItem;
+  try {
+    localStorage.setItem=(key,value)=>{if(key==='visionary_entity_Submission')throw new Error('Storage full');setItem(key,value);};
+    await assert.rejects(submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'A revised answer'}]}));
+    assert.equal((await appClient.entities.Submission.get(submission.id)).status,'revision_requested');
+  } finally { localStorage.setItem=setItem; }
+  const revised=await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:[{questionId:'check-1',text:'Three layers of nine unit cubes give 27 cubic units.'}]});
+  assert.equal(revised.id,submission.id);assert.equal(revised.attempt,2);assert.equal(revised.grade,null);assert.equal(revised.status,'submitted');
+  assert.equal(revised.revision_history[0].feedback,'Label the cubic units.');assert.equal(revised.revision_history[0].text,submission.text);
+  assert.equal((await submitClassworkResponses(learnerCtx,{assignmentId:assignment.id,responses:revised.responses})).revision_history.length,1);
+  await appClient.auth.loginViaEmailPassword(teacher.email,'Preview-test-123!');
+  await assert.rejects(reviewClasswork(ctx,{submissionId:submission.id,attempt:1,status:'graded',grade:10}),/newer response/);
+  await reviewClasswork(ctx,{submissionId:submission.id,attempt:2,status:'graded',grade:8,feedback:'Good model. Label the cubic units.'});
   await appClient.auth.loginViaEmailPassword(learner.email,'Preview-test-123!');assert.equal((await appClient.entities.Submission.get(submission.id)).feedback,'Good model. Label the cubic units.');
   assert.equal(snapshot({personId:learner.id,workspaceId:`${learner.id}:student`,role:'student',locale:'en'}).sessions.length,0);
   const outsider=await create('loop-outsider@visionary.test','teacher');assert.equal((await appClient.entities.Submission.list()).length,0);assert.equal((await appClient.entities.Enrollment.list()).length,0);

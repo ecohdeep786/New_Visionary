@@ -1,0 +1,132 @@
+[
+  {
+    "route": "/student",
+    "errors": [],
+    "stage": {
+      "sectionTop": 900,
+      "sectionHeight": 2288,
+      "hasSticky": false,
+      "wrapperH": 0,
+      "sceneKeys": 0
+    },
+    "reducedMotion": {
+      "scenes": 0,
+      "anySticky": false
+    },
+    "scrubScrolls": {
+      "04-journey": 3941,
+      "06-closing": 9226,
+      "07-language": 9917,
+      "10-journey-flow": 14069
+    },
+    "pageHeight": 18090,
+    "mobile": {
+      "anySticky": false,
+      "overflowX": true
+    }
+  },
+  {
+    "route": "/teacher",
+    "errors": [],
+    "stage": {
+      "sectionTop": 900,
+      "sectionHeight": 2796,
+      "hasSticky": false,
+      "wrapperH": 0,
+      "sceneKeys": 0
+    },
+    "reducedMotion": {
+      "scenes": 0,
+      "anySticky": false
+    },
+    "scrubScrolls": {
+      "04-journey": 4436,
+      "06-closing": 8785,
+      "07-language": 9518,
+      "10-journey-flow": 13730
+    },
+    "pageHeight": 17800,
+    "mobile": {
+      "anySticky": false,
+      "overflowX": true
+    }
+  },
+  {
+    "route": "/parent",
+    "errors": [],
+    "stage": {
+      "sectionTop": 900,
+      "sectionHeight": 2852,
+      "hasSticky": false,
+      "wrapperH": 0,
+      "sceneKeys": 0
+    },
+    "reducedMotion": {
+      "scenes": 0,
+      "anySticky": false
+    },
+    "scrubScrolls": {
+      "04-journey": 4492,
+      "06-closing": 9788,
+      "07-language": 10541,
+      "10-journey-flow": 14742
+    },
+    "pageHeight": 18774,
+    "mobile": {
+      "anySticky": false,
+      "overflowX": true
+    }
+  },
+  {
+    "route": "/professional",
+    "errors": [],
+    "stage": {
+      "sectionTop": 900,
+      "sectionHeight": 2852,
+      "hasSticky": false,
+      "wrapperH": 0,
+      "sceneKeys": 0
+    },
+    "reducedMotion": {
+      "scenes": 0,
+      "anySticky": false
+    },
+    "scrubScrolls": {
+      "04-journey": 4492,
+      "06-closing": 9863,
+      "07-language": 10615,
+      "10-journey-flow": 14802
+    },
+    "pageHeight": 18872,
+    "mobile": {
+      "anySticky": false,
+      "overflowX": true
+    }
+  },
+  {
+    "route": "/organization",
+    "errors": [],
+    "stage": {
+      "sectionTop": 900,
+      "sectionHeight": 2908,
+      "hasSticky": false,
+      "wrapperH": 0,
+      "sceneKeys": 0
+    },
+    "reducedMotion": {
+      "scenes": 0,
+      "anySticky": false
+    },
+    "scrubScrolls": {
+      "04-journey": 4653,
+      "06-closing": 9975,
+      "07-language": 10742,
+      "10-journey-flow": 15028
+    },
+    "pageHeight": 19059,
+    "mobile": {
+      "anySticky": false,
+      "overflowX": true
+    }
+  }
+]

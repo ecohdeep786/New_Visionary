@@ -1,0 +1,4 @@
+import {useWorkspace} from '@/hooks/useWorkspace';
+import {classworkTranslator} from '@/lib/classworkCopy';
+const labels={met:'Met', 'needs-work':'Needs work','not-assessed':'Not assessed'};
+export default function CriterionFeedback({criteria=[],feedback={}}){const {data}=useWorkspace();const locale=data?.preferences.interfaceLocale||'en',t=classworkTranslator(locale);const entries=criteria.filter(item=>feedback?.[item.id]);return entries.length?<section className="mt-4" lang={locale} aria-label={t('Teacher criterion feedback')}><h3 className="font-medium">{t('Teacher criterion feedback')}</h3>{entries.map(item=><div className="mt-3 text-sm" key={item.id}><p className="font-medium break-words">{item.label} · {t(labels[feedback[item.id].rating]||'Unknown rating')}</p><p className="mt-2 whitespace-pre-wrap break-words">{typeof feedback[item.id].note==='string'?feedback[item.id].note:t('Feedback unavailable')}</p></div>)}</section>:null;}

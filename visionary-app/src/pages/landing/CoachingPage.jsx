@@ -17,8 +17,9 @@ const COLORS = {
   lightGrey: "#9AA0A6",
   mist: "#dadce0",
   white: "#ffffff",
+  soft: "#F5F6F8",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ TYPE SCALE — exact pricing page match ═══
    Hero H1 / major H2 : clamp(36px,5vw,72px)
@@ -114,7 +115,8 @@ const HERO_WORDS = ["step by step.", "your way.", "from day one.", "together."];
 const USER_JOURNEY_STEPS = [
   {
     id: "signup",
-    n: "Step - 01",
+    n: "Step 01",
+    label: "Sign up",
     Icon: UserPlus,
     title: "Create your account.",
     do: "Sign up free with your email or Google account. Already on Visionary? Sign in and pick up where you left off.",
@@ -122,23 +124,26 @@ const USER_JOURNEY_STEPS = [
   },
   {
     id: "onboarding",
-    n: "Step - 02",
+    n: "Step 02",
+    label: "Start as yourself",
     Icon: Target,
     title: "Start as yourself.",
-    do: "Tell Visionary who you are and what you want to work on — it shapes everything around that from the first moment.",
-    micro: "Student · Teacher · Parent · Professional · Organization — one intelligence, shaped for you.",
+    do: "Tell Visionary who you are and what you want to work on. It shapes everything around that from the first moment.",
+    micro: "Student · Teacher · Parent · Professional · Organization: one intelligence, shaped for you.",
   },
   {
     id: "space",
-    n: "Step - 03",
+    n: "Step 03",
+    label: "Your space",
     Icon: Compass,
     title: "Step into your space.",
-    do: "Your personal space shows what matters to you — your progress, your questions, your next step. Always ready, always yours.",
-    micro: "Ask, practise, and continue — all from one space that knows you.",
+    do: "Your personal space shows what matters to you: your progress, your questions, your next step. Always ready, always yours.",
+    micro: "Ask, practise, and continue from one space that remembers your place.",
   },
   {
     id: "connected",
-    n: "Step - 04",
+    n: "Step 04",
+    label: "Stay connected",
     Icon: RefreshCw,
     title: "Stay connected.",
     do: "Your learning never resets. Visionary remembers your context, connects you to the people who matter, and keeps everything moving forward.",
@@ -148,18 +153,18 @@ const USER_JOURNEY_STEPS = [
 /* Step 01 — left column copy, synced with the right auth mock */
 const AUTH_STATES = {
   signup: {
-    tag: " Step - 01 · Sign up",
+    tag: "Step 01: sign up",
     title: "your account.",
     blue: "Create",
     do: "Sign up free with your email or Google account. No credit card required.",
     micro: "Takes less than 30 seconds. Your journey starts here.",
   },
   signin: {
-    tag: "Step - 01 · Sign in",
+    tag: "Step 01: sign in",
     title: "your account.",
     blue: "Sign in",
     do: "Already on Visionary? Sign in and pick up exactly where you left off.",
-    micro: "Your space, your progress, your context — all waiting for you.",
+    micro: "Your space, your progress, your context, all waiting for you.",
   },
 };
 
@@ -177,7 +182,7 @@ const SPACE_ANIMATIONS = [
   { role: "Teacher", text: "Today: 23 students ready · 5 need support · Lesson plan adapts" },
   { role: "Parent", text: "Today: Priya understood fractions · stuck on decimals · help tonight" },
   { role: "Professional", text: "Today: Architecture review → trade-offs → ship with confidence" },
-  { role: "Organization", text: "Today: 847 learners · 12 gaps found · 3 interventions ready" },
+  { role: "Organization", text: "Today: 847 learners · 12 gaps found · 3 next steps ready" },
 ];
 
 const ROLES = [
@@ -185,7 +190,7 @@ const ROLES = [
   { id: "teacher", tab: "Teacher", prompt: "How should I explain this?", ui: "Plan tomorrow's lesson for a mixed class.", outcome: "The lesson maps the gaps. You adapt before the bell rings." },
   { id: "parent", tab: "Parent", prompt: "How is Priya doing?", ui: "Show me this week in one view.", outcome: "You see where she's stuck. You help before the test." },
   { id: "professional", tab: "Professional", prompt: "How do I improve this?", ui: "Reason through this architecture with me.", outcome: "The trade-offs surface. You ship with confidence." },
-  { id: "organization", tab: "Organization", prompt: "Where does my team need help?", ui: "Show me learning signals across the cohort.", outcome: "You find the gap. You intervene before outcomes drop." },
+  { id: "organization", tab: "Organization", prompt: "Where does my team need help?", ui: "Show me progress across the cohort.", outcome: "You find the gap. You step in before results drop." },
 ];
 
 /* ═══ MOCK SHELL ═══ */
@@ -197,7 +202,7 @@ const MockShell = React.memo(function MockShell({ children, label }) {
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.blue }} />
-        <span className="ml-2 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ color: COLORS.lightGrey }}>{label}</span>
+        <span className="ml-2 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ color: COLORS.lightGrey }}>{label}</span>
       </div>
       <div className="p-6">{children}</div>
     </div>
@@ -231,7 +236,7 @@ function AuthMock({ state, onPause, onResume }) {
           key={`btn-${state}`}
           to={isSignIn ? "/login" : "/register"}
           aria-label={isSignIn ? "Sign in to Visionary" : "Create a free Visionary account"}
-          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
           style={{ backgroundColor: COLORS.blue }}
         >
           {isSignIn ? "Sign in" : "Create account"}
@@ -343,7 +348,7 @@ function HowHeroSection() {
     <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <h1 className="mx-auto max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-          How <span style={{ color: COLORS.blue }}>Visionary</span> works.
+          How <span className="accent-gradient">Visionary</span> works.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Understand, ask, practise, then build.
@@ -392,7 +397,7 @@ function HowJourneySection() {
     }
     return (
       <>
-        <BlueTag>{step.n} · {step.id}</BlueTag>
+        <BlueTag>{step.n} · {step.label}</BlueTag>
         <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
         <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{step.do}</p>
         <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>{step.micro}</p>
@@ -438,14 +443,14 @@ function HowJourneySection() {
 
 /* ═══ 05b · THE LEARNING LOOP — demonstrates the pedagogical invariant ═══ */
 const LOOP_STAGES = [
-  { id: "goal", label: "Goal", copy: "You set the goal — a subject, a skill, or a question you need answered.", Icon: Target },
+  { id: "goal", label: "Goal", copy: "You set the goal: a subject, a skill, or a question you need answered.", Icon: Target },
   { id: "check", label: "Check", copy: "Visionary checks what you already know, so it starts from where you actually are.", Icon: Compass },
-  { id: "teach", label: "Teach", copy: "It teaches the missing piece — in your language, at your pace, the way that clicks.", Icon: GraduationCap },
+  { id: "teach", label: "Teach", copy: "It teaches the missing piece: in your language, at your pace, the way that clicks.", Icon: GraduationCap },
   { id: "ask", label: "Ask", copy: "You ask anything, any time. Confusion is a feature of learning, not a failure.", Icon: MessageCircle },
   { id: "check-2", label: "Check again", copy: "A quick check confirms the idea landed before you move on.", Icon: CircleCheck },
-  { id: "practise", label: "Practise", copy: "Practice is drawn from what you just learned — short, focused, and adaptive.", Icon: RefreshCw },
-  { id: "build", label: "Build", copy: "You build something real with it — a project, a solution, an artifact of your own.", Icon: Hammer },
-  { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal — and the loop begins again.", Icon: Sparkles },
+  { id: "practise", label: "Practise", copy: "Practice comes from what you just learned: short, focused, and adaptive.", Icon: RefreshCw },
+  { id: "build", label: "Build", copy: "You build something real with it: a project, a solution, work of your own.", Icon: Hammer },
+  { id: "reflect", label: "Reflect", copy: "You reflect on what worked. That reflection feeds your next goal, and the loop begins again.", Icon: Sparkles },
 ];
 const LOOP_MS = 2600;
 
@@ -472,7 +477,7 @@ function HowLoopSection() {
           <span key={stage.id} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{stage.label.toLowerCase()}.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Every subject in Visionary moves through the same loop — from your goal to what you can build with it.
+          Every subject in Visionary moves through the same loop, from your goal to what you can build with it.
         </p>
 
         <div
@@ -575,7 +580,7 @@ function HowDifferentPeopleSection() {
               </div>
               <div className="mt-4 flex gap-2">
                 {["Understand", "Ask", "Try", "Continue"].map((m, i) => (
-                  <span key={m} className="rounded-full border px-3 py-1 text-[11px] tracking-[0.24px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.grey }}>{m}</span>
+                  <span key={m} className="rounded-full border px-3 py-1 text-[12px] tracking-[0.24px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.grey }}>{m}</span>
                 ))}
               </div>
               <p className="mt-5 text-[12px] tracking-[0]" style={{ color: COLORS.lightGrey }}>Same intelligence · shaped for {scenario.tab.toLowerCase()}</p>
@@ -591,7 +596,7 @@ function HowDifferentPeopleSection() {
 function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Get started</GreyTag>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>See it with your own question.</h2>

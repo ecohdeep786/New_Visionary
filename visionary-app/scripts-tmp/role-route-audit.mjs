@@ -1,0 +1,19 @@
+import {chromium} from 'playwright-core';
+import {navigationFor,secondaryNavigation} from '../src/lib/dashboardNavigation.js';
+import assert from 'node:assert/strict';
+const origin=process.env.VISIONARY_PREVIEW_ORIGIN||'http://127.0.0.1:4191';
+const browser=await chromium.launch({channel:'msedge',headless:true,args:['--no-proxy-server']});const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
+await context.addInitScript(()=>{
+ if(localStorage.getItem('visionary_workspace_v2'))return;const roles=['student','teacher','parent','professional','organization'];const user={id:'route-person',email:'person@route.test',full_name:'Fictional route learner',identity:'student',roles,age_band:'adult',onboarding_complete:true};
+ const empty=()=>({conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',voice:false,memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:new Date().toISOString().slice(0,10)},legacyImported:false});
+ localStorage.setItem('visionary_users',JSON.stringify([user]));localStorage.setItem('visionary_sessions',JSON.stringify([{token:'route',userId:user.id,email:user.email,expiresAt:Date.now()+86400000}]));localStorage.setItem('visionary_session_token','route');localStorage.setItem('visionary_workspace_v2',JSON.stringify({version:2,people:[{id:user.id,email:user.email,name:user.full_name,ageBand:'adult',roles}],workspaces:roles.map(role=>({id:'route-person:'+role,personId:user.id,role,name:'Personal'})),active:{'route-person':'route-person:student'},relationships:[],data:Object.fromEntries(roles.map(role=>['route-person:'+role,empty()]))}));
+});const page=await context.newPage();page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(120000);const errors=[];page.on('pageerror',error=>errors.push(String(error)));const findings=[];
+try{
+ await page.goto(origin+'/dashboard/home',{waitUntil:'networkidle'});
+ for(const role of ['student','teacher','parent','professional','organization']){
+  await page.evaluate(role=>{const db=JSON.parse(localStorage.getItem('visionary_workspace_v2'));db.active['route-person']='route-person:'+role;localStorage.setItem('visionary_workspace_v2',JSON.stringify(db));},role);
+  const paths=[...new Set([...navigationFor(role),...secondaryNavigation(role)].map(row=>row.to).concat(['/dashboard/profile','/dashboard/settings','/dashboard/support']))];
+  for(const path of paths){const before=errors.length;await page.goto(origin+path,{waitUntil:'networkidle'});const main=page.locator('main');await main.waitFor();await main.getByRole('heading',{level:1}).first().waitFor();const text=await main.innerText();const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);const headings=await main.getByRole('heading',{level:1}).count();findings.push({role,path,heading:headings,overflow,newErrors:errors.slice(before),excerpt:text.slice(0,160)});console.log(JSON.stringify(findings.at(-1)));}
+ }
+ const failures=findings.filter(row=>row.overflow||row.newErrors.length||row.heading!==1||row.excerpt.includes('Something went wrong'));assert.deepEqual(failures,[]);assert.equal(secondaryNavigation('parent').some(row=>row.key==='progress'),false);console.log('PASS five-role empty-route smoke audit. This checks route rendering and reflow, not full interaction/state/accessibility acceptance.');
+}finally{await browser.close();}

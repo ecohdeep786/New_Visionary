@@ -1,43 +1,28 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Plus, Users, Settings, BookOpen } from "lucide-react";
-import { useAuth } from "@/lib/AuthContext";
-import { useStudentData } from "@/hooks/useStudentData";
-import { appClient } from "@/api/appClient";
-import { learningLanguage } from "@/lib/productAccess";
-
-export default function Profile() {
-  const { user, updateUser } = useAuth();
-  const data = useStudentData();
-  const [name, setName] = useState(user?.full_name || "");
-  const [subject, setSubject] = useState("");
-  const [status, setStatus] = useState("");
-  const [busy, setBusy] = useState(false);
-  async function saveName(event) {
-    event.preventDefault(); setBusy(true); setStatus("");
-    try { await updateUser({ full_name: name.trim() }); setStatus("Profile saved."); }
-    catch (err) { setStatus(err.message || "Could not save your profile."); }
-    finally { setBusy(false); }
-  }
-  async function addSubject(event) {
-    event.preventDefault();
-    if (!subject.trim() || busy) return;
-    setBusy(true); setStatus("");
-    try {
-      const title = subject.trim();
-      if (data.subjects.some(s => s.name.toLowerCase() === title.toLowerCase())) throw new Error("This learning area is already in your workspace.");
-      await appClient.entities.Subject.create({ name: title, overall_mastery: 0, topics_mastered: 0, topics_total: 0 });
-      setSubject(""); await data.refresh(); setStatus("Learning area added. Open it in Learn to add your first topic.");
-    } catch (err) { setStatus(err.message || "Could not add this learning area."); }
-    finally { setBusy(false); }
-  }
-  return <div className="mx-auto max-w-[900px] space-y-6 p-5 sm:p-8">
-    <header><h1 className="text-2xl font-medium">Your profile</h1><p className="mt-2 text-sm text-[#5f6368]">One identity, wherever your learning takes you.</p></header>
-    <section className="rounded-2xl border border-[#dadce0] p-6"><div className="flex items-center gap-4"><div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#4285F4] text-2xl text-white">{(user?.full_name || user?.email || "V").charAt(0).toUpperCase()}</div><div className="min-w-0"><h2 className="truncate text-lg font-medium">{user?.full_name || "Your account"}</h2><p className="mt-1 break-all text-sm text-[#5f6368]">{user?.email}</p><p className="mt-2 text-xs capitalize text-[#4285F4]">{user?.identity === "student" && user?.education_stage === "professional" ? "Professional learner" : user?.identity} · {learningLanguage(user)}</p></div></div>
-      <form onSubmit={saveName} className="mt-6 grid gap-3 sm:flex sm:items-end"><label className="min-w-0 flex-1 text-sm font-medium">Display name<input required maxLength={80} value={name} onChange={e => setName(e.target.value)} className="mt-2 block min-h-11 w-full rounded-xl border border-[#5f6368] p-3 font-normal" /></label><button disabled={busy || !name.trim() || name.trim() === user?.full_name} className="min-h-11 rounded-full bg-[#4285F4] px-5 text-sm font-medium text-white disabled:opacity-40">Save profile</button></form>
-    </section>
-    <section className="rounded-2xl border border-[#dadce0] p-6"><h2 className="flex items-center gap-2 text-base font-medium"><BookOpen className="h-5 w-5 text-[#4285F4]" />Learning areas</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Subjects, skills, or interests—not courses to purchase. Add anything you want to understand or build with.</p><div className="mt-4 flex flex-wrap gap-2">{data.subjects.map(s => <Link key={s.id} to={"/dashboard/learn?subject=" + encodeURIComponent(s.name)} className="rounded-full bg-[#e8f0fd] px-4 py-2 text-sm text-[#4285F4]">{s.name}</Link>)}</div><form onSubmit={addSubject} className="mt-5 grid gap-3 sm:flex"><label className="sr-only" htmlFor="new-learning-area">New learning area</label><input id="new-learning-area" required maxLength={100} value={subject} onChange={e => setSubject(e.target.value)} placeholder="For example, robotics or storytelling" className="min-h-11 min-w-0 flex-1 rounded-xl border border-[#5f6368] p-3 text-sm" /><button disabled={busy || data.loading || !!data.error || !subject.trim()} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#dadce0] px-5 py-2 text-sm text-[#4285F4] disabled:opacity-40"><Plus className="h-4 w-4" />Add area</button></form></section>
-    {status && <p role="status" className="rounded-xl bg-[#ffffff] p-4 text-sm">{status}</p>}
-    <div className="grid gap-4 sm:grid-cols-2"><Link to="/dashboard/connections" className="rounded-2xl border border-[#dadce0] p-6"><Users className="mb-3 h-5 w-5 text-[#4285F4]" /><h2 className="text-base font-medium">Family & other connections</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Review requests and choose who can see shared progress.</p></Link><Link to="/dashboard/settings" className="rounded-2xl border border-[#dadce0] p-6"><Settings className="mb-3 h-5 w-5 text-[#4285F4]" /><h2 className="text-base font-medium">Language & appearance</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Set your learning language and workspace accent.</p></Link></div>
-  </div>;
+import {useEffect,useState} from 'react';
+import {Link} from 'react-router-dom';
+import {useAuth} from '@/lib/AuthContext';
+import {useWorkspace} from '@/hooks/useWorkspace';
+import {useStudentData} from '@/hooks/useStudentData';
+import {appClient} from '@/api/appClient';
+import {workspaceIdentity} from '@/services/workspaceService';
+import {getResourceEditorDraft,saveResourceEditorDraft,clearResourceEditorDraft} from '@/services/resourceEditorDraft';
+import {downloadText} from '@/lib/downloadText';
+import {profileText} from '@/lib/profileCopy';
+const KEY='new:account-profile';
+export default function Profile(){const scope=useWorkspace();if(scope.error)return <div className="v-page" role="alert">{scope.error}</div>;if(!scope.ctx||!scope.data)return <div className="v-page" role="status">Reading your profile…</div>;return <ProfileEditor key={scope.ctx.workspaceId} ctx={scope.ctx} preferences={scope.data.preferences}/>;}
+function ProfileEditor({ctx,preferences}){
+ const {user,updateUser,checkUserAuth}=useAuth();const data=useStudentData();const t=text=>profileText(preferences.interfaceLocale,text);
+ const [initial]=useState(()=>{try{const backup=getResourceEditorDraft(ctx,KEY);if(backup&&(!['string','undefined'].includes(typeof backup.baseRevision)||backup.draft.title.length>80||backup.draft.body.length>100))throw Error('Profile recovery is incomplete. Original edits were kept.');return {name:backup?.draft.title??user.full_name??'',subject:backup?.draft.body??'',baseName:backup?backup.baseRevision??'unknown':user.full_name||'',recovered:!!backup,blocked:false,error:''};}catch(error){return{name:user.full_name||'',subject:'',baseName:user.full_name||'',recovered:false,blocked:true,error:error.message};}});
+ const [name,setName]=useState(initial.name),[subject,setSubject]=useState(initial.subject),[baseName,setBaseName]=useState(initial.baseName),[recovered,setRecovered]=useState(initial.recovered),[blocked,setBlocked]=useState(initial.blocked),[error,setError]=useState(initial.error),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false);
+ const learningRole=['student','professional'].includes(ctx.role);const dirty=name!==baseName||!!subject;
+ useEffect(()=>{if(!dirty||blocked)return;try{saveResourceEditorDraft(ctx,KEY,{title:name,body:subject},baseName);}catch(cause){setError(cause.message);}},[name,subject,baseName,dirty,blocked,ctx.personId,ctx.workspaceId]);
+ function cleanup(){if(blocked)return false;try{clearResourceEditorDraft(ctx,KEY);setRecovered(false);return true;}catch{return false;}}
+ async function saveName(event){event.preventDefault();if(busy)return;setBusy(true);setError('');setNotice('');try{workspaceIdentity(ctx);const next=await updateUser({full_name:name.trim()},{expectedUserId:ctx.personId,expectedProfileName:baseName});setName(next.full_name);setBaseName(next.full_name);const clean=!subject&&cleanup();setNotice(t('Display name saved for this account on this device.')+(subject?' '+t('Your learning-area draft remains here.'):clean?'':' '+t('The earlier editor backup remains; export it before replacing it.')));}catch(cause){setError(cause.message);}finally{setBusy(false);}}
+ async function addSubject(event){event.preventDefault();if(busy||!subject.trim())return;setBusy(true);setError('');setNotice('');try{workspaceIdentity(ctx);if(!learningRole)throw Error('Use a student or professional workspace to add a learning area.');if(data.error)throw Error('Existing learning areas are unavailable. Retry reading them before adding another.');const title=subject.trim();if(data.subjects.some(row=>row.name.toLowerCase()===title.toLowerCase()))throw Error('This learning area is already in your workspace.');await appClient.entities.Subject.create({name:title,overall_mastery:0,topics_mastered:0,topics_total:0});setSubject('');if(name===baseName)cleanup();await data.refresh();setNotice(t('Learning area added. Open Learn to continue. No curriculum, activity or mastery was generated.'));}catch(cause){setError(cause.message);}finally{setBusy(false);}}
+ async function loadLatest(){setBusy(true);try{workspaceIdentity(ctx);const latest=await appClient.auth.me();workspaceIdentity(ctx);if(latest.id!==ctx.personId)throw Error('The signed-in account changed. Current edits were kept.');clearResourceEditorDraft(ctx,KEY);await checkUserAuth();setName(latest.full_name||'');setBaseName(latest.full_name||'');setSubject('');setRecovered(false);setBlocked(false);setError('');setNotice(t('Latest saved name loaded. Unfinished profile and learning-area edits were discarded.'));}catch(cause){setError(cause.message);}finally{setBusy(false);}}
+ function exportEdits(){try{workspaceIdentity(ctx);downloadText('profile-edits.json',JSON.stringify({displayName:name,learningArea:subject,loadedSavedName:baseName},null,2),'application/json');setNotice(t('Profile edits exported. This does not save your name or add a learning area.'));setError('');}catch(cause){setError(cause.message);}}
+ const language={en:'English',hi:'हिन्दी',bn:'বাংলা'}[preferences.locale]||'English';
+ return <div className="v-page"><header><h1 className="v-title">{t('Your profile')}</h1><p className="v-muted mt-2">{t('One account with separate workspaces and preferences.')}</p></header>{recovered&&<p className="v-notice" role="status">{t('Unfinished profile edits recovered from this workspace and tab. Review them before saving.')}</p>}<section className="v-card"><h2 className="text-lg font-medium">{t('Account display name')}</h2><p className="v-muted mt-2 break-all">{user.email}</p><p className="v-muted mt-2">{preferences.interfaceLocale==='en'||!['hi','bn'].includes(preferences.interfaceLocale)?ctx.role+' workspace':t(ctx.role)} · {t('Teaching language:')} <span lang={preferences.locale}>{language}</span></p><p className="v-muted mt-2">{t('Your display name applies to this account. Language and learning areas belong to the active workspace.')}</p><form className="mt-5 flex flex-wrap items-end gap-3" onSubmit={saveName}><label className="min-w-0 flex-1 text-sm">{t('Display name')}<input aria-label={t('Display name')} required maxLength={80} disabled={busy} className="v-field mt-2" value={name} onChange={event=>setName(event.target.value)}/></label><button className="v-button primary" disabled={busy||!name.trim()||name.trim()===baseName}>{busy?t('Saving…'):t('Save profile')}</button></form>{baseName!==(user.full_name||'')&&<section className="v-notice mt-4"><h3 className="font-medium">{t('A different display name is saved')}</h3><p className="mt-2 text-sm">{t('Current saved name:')} {user.full_name}. {t('Your edits remain here. Export them or explicitly load the latest saved name.')}</p></section>}</section>
+ {learningRole&&<section className="v-card"><h2 className="text-lg font-medium">{t('Learning areas')}</h2><p className="v-muted mt-2">{t('Add a subject, skill or interest. This creates a personal learning-area record; reviewed curriculum content remains separate.')}</p>{data.loading?<p className="v-muted mt-4" role="status">{t('Reading learning areas…')}</p>:data.error?<div className="v-notice v-error mt-4" role="alert">{t('Learning areas could not be read. Your draft remains here.')}<button className="v-button mt-3" onClick={()=>data.refresh()}>{t('Retry learning areas')}</button></div>:data.subjects.length?<ul className="mt-4 flex flex-wrap gap-2">{data.subjects.map(row=><li key={row.id}><Link className="v-button" to={'/dashboard/learn?subject='+encodeURIComponent(row.name)}>{row.name}</Link></li>)}</ul>:<p className="v-muted mt-4">{t('No personal learning areas yet.')}</p>}<form onSubmit={addSubject} className="mt-4 flex flex-wrap gap-3"><label className="min-w-0 flex-1 text-sm">{t('New learning area')}<input aria-label={t('New learning area')} required maxLength={100} disabled={busy} className="v-field mt-2" value={subject} onChange={event=>setSubject(event.target.value)}/></label><button className="v-button self-end" disabled={busy||data.loading||!!data.error||!subject.trim()}>{t('Add area')}</button></form></section>}
+ <div className="flex flex-wrap gap-3"><button className="v-button" disabled={busy} onClick={exportEdits}>{t('Export profile edits')}</button>{(dirty||recovered||blocked)&&<button className="v-button" disabled={busy} onClick={loadLatest}>{t('Discard edits and load saved profile')}</button>}</div>{error&&<p className="v-notice v-error" role="alert">{t(error)}</p>}{notice&&<p className="v-notice" role="status">{notice}</p>}<div className="flex flex-wrap gap-3"><Link className="v-button" to="/dashboard/connections">{t('Connections and requests')}</Link><Link className="v-button" to="/dashboard/settings">{t('Language and appearance settings')}</Link></div></div>;
 }

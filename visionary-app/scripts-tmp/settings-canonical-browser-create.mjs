@@ -1,0 +1,13 @@
+import fs from 'node:fs';let s=fs.readFileSync('scripts-tmp/professional-share-verify.mjs','utf8');s=s.slice(0,s.indexOf('const page=await context.newPage();'));
+s+=`const page=await context.newPage();page.setDefaultTimeout(90000);page.setDefaultNavigationTimeout(120000);const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+try{
+await page.goto(base+'/dashboard/settings',{waitUntil:'networkidle'});await page.getByLabel('Teaching language',{exact:true}).selectOption('hi');await page.getByLabel('Interface language',{exact:true}).selectOption('bn');
+assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('visionary_workspace_v2')).data['share-pro:professional'].preferences.locale),'hi');
+await page.goto(base+'/dashboard/personalization',{waitUntil:'networkidle'});assert.equal(await page.getByLabel('Teaching language',{exact:true}).inputValue(),'hi');assert.equal(await page.getByLabel('Interface language',{exact:true}).inputValue(),'bn');
+await page.goto(base+'/dashboard/settings',{waitUntil:'networkidle'});await page.getByRole('radio',{name:/green/i}).check();
+await page.evaluate(()=>{const old=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='visionary_users')throw Error('Fictional account failure');return old.call(this,key,value);};window.restoreAccountAppearance=()=>Storage.prototype.setItem=old;});await page.getByRole('button',{name:'Save account accent'}).click();await page.getByText('Account accent could not be saved. Your selection remains here for retry.').waitFor();assert.equal(await page.getByRole('radio',{name:/green/i}).isChecked(),true);
+await page.evaluate(()=>window.restoreAccountAppearance());await page.getByRole('button',{name:'Save account accent'}).click();await page.getByText('Account accent saved on this device.').waitFor();await page.reload({waitUntil:'networkidle'});assert.equal(await page.getByRole('radio',{name:/green/i}).isChecked(),true);assert.equal(await page.getByLabel('Teaching language',{exact:true}).inputValue(),'hi');assert.equal(await page.evaluate(()=>Object.hasOwn(JSON.parse(localStorage.getItem('visionary_users')).find(row=>row.id==='share-pro').preferences||{},'learning_language')),false);
+await page.setViewportSize({width:640,height:450});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);await page.screenshot({path:'docs/visionary/baseline/design-2026-09-27/settings-canonical-640.png'});assert.deepEqual(errors,[]);console.log('PASS Settings and Personalization share saved workspace language; account accent failure/retry/refresh preserves language; 640px reflow, zero page errors');
+}finally{await browser.close();}
+`;
+fs.writeFileSync('scripts-tmp/settings-canonical-verify.mjs',s);

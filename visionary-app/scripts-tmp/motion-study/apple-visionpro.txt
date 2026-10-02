@@ -1,0 +1,28 @@
+transition/animation vocabulary (top patterns):
+    230x  0.32s|color|cubic-bezier(0.4, 0, 0.6, 1)
+    109x  0.24s|opacity|ease
+     32x  0.32s|opacity|ease
+     25x  0.22s|opacity|ease
+     24x  0.1s|opacity|linear, ease
+     24x  0.2s|transform|linear, ease
+     23x  0.2s|opacity|ease
+     23x  0.18s|opacity|ease
+     22x  0.24s|opacity|cubic-bezier(0.4, 0, 0.6, 1)
+     20x  0.16s|opacity|ease
+     18x  0.1s|background-color|linear, linear, linear
+     18x  0.1s|color|linear, linear, linear
+     18x  0.1s|opacity|linear, linear, linear
+     12x  1s|color|ease
+     11x  0.24s|visibility|steps(1)
+     10x  0.02s|color|cubic-bezier(0.4, 0, 0.6, 1
+     10x  0.02s|background-color|cubic-bezier(0.4, 0, 0.6, 1
+     10x  0.02s|fill|cubic-bezier(0.4, 0, 0.6, 1)
+      9x  0.2s|opacity|ease-out
+      8x  0.14s|opacity|ease
+      7x  1s|background-color|ease
+      6x  ANIM globalnav-search-fade-and-slide|0.32s|1
+      4x  0.8s|color|ease-in-out
+      3x  0.12s|opacity|ease
+scroll-reveal: <H2> "Take a closer look." -> opacity 1->1 in 0ms, translateY 0px
+hover: no matching pill CTA found
+reduce-mode: h1 opacity=1 animation=none, below-fold opacity=1

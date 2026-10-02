@@ -1,0 +1,17 @@
+✔ primary: en/hi/bn reviewed sources retain exact scope, assignment and language (342.5914ms)
+✔ secondary: en/hi/bn reviewed sources retain exact scope, assignment and language (304.6101ms)
+✔ higher-secondary: en/hi/bn reviewed sources retain exact scope, assignment and language (133.1943ms)
+✔ competitive: en/hi/bn reviewed sources retain exact scope, assignment and language (254.1872ms)
+✔ vocational: en/hi/bn reviewed sources retain exact scope, assignment and language (221.8797ms)
+✔ higher-education: en/hi/bn reviewed sources retain exact scope, assignment and language (169.4532ms)
+✔ independent-adult: en/hi/bn reviewed sources retain exact scope, assignment and language (196.7008ms)
+✔ professional: en/hi/bn reviewed sources retain exact scope, assignment and language (817.8317ms)
+✔ employer-sponsored: en/hi/bn reviewed sources retain exact scope, assignment and language (1555.4529ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5409.5878

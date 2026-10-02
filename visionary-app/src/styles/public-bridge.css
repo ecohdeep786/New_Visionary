@@ -1,0 +1,107 @@
+/* Bridged public contract: canonical Google×Apple spacing and radii applied
+   to the legacy class/variable names the existing landing routes already use,
+   so convergence reaches every public route without rewriting each one. */
+
+:root {
+  --radius-card: 12px;
+  --radius-media: 12px;
+  --radius-overlay: 16px;
+  /* Mobile floor = Apple's measured 112px chapter rhythm; desktop caps at 128px */
+  --public-section-py: clamp(7rem, 9vw, 8rem);
+}
+
+/* Canonical section rhythm — heroes manage their own full-height layout */
+.public-section,
+section[data-section]:not([data-section="01-hero"]) {
+  padding-block: var(--public-section-py);
+}
+
+/* ── Type-scale convergence ─────────────────────────────────────────────
+   Retargets the legacy arbitrary-value display utilities to the canonical
+   Google×Apple scale (hero 80 / display 64 / statement 48 / product 36 /
+   closing 32) so every public page shares one type system. */
+
+.text-\[clamp\(36px\,5vw\,72px\)\],
+.text-\[clamp\(34px\,5vw\,72px\)\] {
+  font-size: clamp(32px, 4.45vw, 64px) !important;
+}
+
+.text-\[clamp\(28px\,2\.78vw\,40px\)\],
+.text-\[clamp\(28px\,2\.9vw\,40px\)\],
+.text-\[clamp\(28px\,2\.9vw\,42px\)\],
+.text-\[clamp\(28px\,3\.6vw\,42px\)\],
+.text-\[clamp\(28px\,3\.6vw\,46px\)\],
+.text-\[clamp\(30px\,4vw\,46px\)\],
+.text-\[clamp\(26px\,3\.4vw\,38px\)\],
+.text-\[clamp\(32px\,3\.3vw\,44px\)\],
+.text-\[clamp\(24px\,3vw\,34px\)\] {
+  font-size: clamp(24px, 2.5vw, 36px) !important;
+}
+
+/* compact card headings — land on the 28 step, keep the compact scale */
+.text-\[clamp\(20px\,2vw\,26px\)\] {
+  font-size: clamp(20px, 2vw, 28px) !important;
+}
+
+.text-\[clamp\(30px\,3\.8vw\,56px\)\],
+.text-\[clamp\(26px\,3\.4vw\,48px\)\] {
+  font-size: clamp(28px, 3.1vw, 48px) !important;
+}
+
+.text-\[clamp\(24px\,2\.78vw\,40px\)\] {
+  font-size: clamp(22px, 2.2vw, 32px) !important;
+}
+
+.text-\[clamp\(40px\,4\.5vw\,72px\)\] {
+  font-size: clamp(32px, 4vw, 56px) !important;
+}
+
+/* ── Body-size law ──────────────────────────────────────────────────────
+   Retires the in-between sizes: body 16, supporting 14, leads 18.
+   Fixed 18px (not the fluid lead token) because these runs pair with
+   fixed px leadings (25px/1.4/1.6) that a 20px top would overcrowd. */
+.text-\[15px\],
+.text-\[16\.5px\] { font-size: 16px !important; }
+.text-\[14\.5px\] { font-size: 14px !important; }
+.text-\[17px\],
+.text-\[17\.5px\] { font-size: 18px !important; }
+
+/* ── H2 step law ────────────────────────────────────────────────────────
+   Long-tail pages carry one-off h2 sizes (30–46px muddle). Snap any h2
+   carrying an off-scale size class to the two canonical tiers; !important
+   on the base class also beats its sm:/lg: variants. Canonical classes
+   (28/36/48 base, 3.8vw+ clamps) are untouched. */
+h2.text-\[30px\], h2.text-\[32px\], h2.text-\[34px\], h2.text-\[36px\],
+h2.text-\[38px\], h2.text-\[40px\], h2.text-\[42px\], h2.text-\[44px\],
+h2.text-\[46px\] {
+  font-size: clamp(24px, 2.5vw, 36px) !important;
+}
+
+h2.text-\[52px\], h2.text-\[56px\] {
+  font-size: clamp(32px, 4.45vw, 64px) !important;
+}
+
+.g-card {
+  border-radius: var(--radius-card);
+  background: #ffffff;
+}
+
+.rounded-\[14px\] { border-radius: var(--radius-media) !important; }
+.rounded-\[24px\] { border-radius: var(--radius-card) !important; }
+.rounded-\[28px\] { border-radius: var(--radius-media) !important; }
+.rounded-\[32px\] { border-radius: var(--radius-media) !important; }
+.rounded-\[48px\] { border-radius: var(--radius-media) !important; }
+.rounded-\[50px\] { border-radius: var(--radius-media) !important; }
+.rounded-\[60px\] { border-radius: var(--radius-media) !important; }
+
+/* Google×Apple chapter rhythm: major content bands breathe together */
+.hero-fade-up + [data-section],
+[data-section] + [data-section] {
+  margin-top: 0;
+}
+
+/* Flat utility surfaces — no decorative chrome, like Google legal cards */
+.g-card,
+.elevation-1 {
+  box-shadow: 0 1px 2px 0 rgba(18, 19, 23, 0.03), 0 1px 4px 0 rgba(18, 19, 23, 0.06);
+}

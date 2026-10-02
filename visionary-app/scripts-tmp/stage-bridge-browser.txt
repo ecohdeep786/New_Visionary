@@ -1,0 +1,4 @@
+promotion: summaryVisible=true errors=0
+learner: notice survives refresh, later learning work stays, Undo restores class 7
+parent: stage update, Undo status and revocation verified in the rendered report
+PASS 390px stage bridge disclosure → exact saved unit resume → postpone/current-profile refresh → fixture reevaluation → retained activity → Undo → parent summary/revocation; no page errors or overflow.

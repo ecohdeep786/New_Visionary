@@ -1,0 +1,14 @@
+
+> visionary-app@0.0.0 lint
+> eslint . --quiet
+
+
+C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\copyaudit\scan.js
+  84:53  error  Parsing error: Unterminated string constant
+
+C:\Users\Administrator\New_Visionary\visionary-app\src\components\landing\system\ui.jsx
+  3:17  error  'radius' is defined but never used  unused-imports/no-unused-imports
+
+✖ 2 problems (2 errors, 0 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

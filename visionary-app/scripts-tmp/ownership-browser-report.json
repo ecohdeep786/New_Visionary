@@ -1,0 +1,80 @@
+{
+  "sourcePersonId": "bridge-student",
+  "workspaces": [
+    {
+      "sourceWorkspaceId": "bridge-student:student",
+      "role": "student",
+      "counts": {
+        "conversations": 0,
+        "sessions": 0,
+        "artifacts": 0,
+        "resources": 0,
+        "contentGraphs": 2,
+        "provisionalConcepts": 0,
+        "conceptAliases": 0,
+        "dataGaps": 0,
+        "learningUnits": 2,
+        "evidence": 0,
+        "events": 0,
+        "memoryEntries": 0
+      }
+    },
+    {
+      "sourceWorkspaceId": "bridge-student:teacher",
+      "role": "teacher",
+      "counts": {
+        "conversations": 0,
+        "sessions": 0,
+        "artifacts": 0,
+        "resources": 0,
+        "contentGraphs": 0,
+        "provisionalConcepts": 0,
+        "conceptAliases": 0,
+        "dataGaps": 0,
+        "learningUnits": 0,
+        "evidence": 0,
+        "events": 0,
+        "memoryEntries": 0
+      }
+    }
+  ],
+  "connectedWorkspacesNeedingReview": 0,
+  "unassignedStoreSpaces": 0,
+  "relationshipsNeedingReconsent": 0,
+  "additionalStoresNeedingReview": [
+    "Unsaved project edits",
+    "Stage transition history",
+    "Stage profile editor drafts"
+  ],
+  "auxiliaryOwnership": [
+    {
+      "label": "Unsaved project edits",
+      "personalRecords": 1,
+      "connectedRecords": 0,
+      "unresolvedRecords": 0,
+      "unreadable": false,
+      "requiresReview": true
+    },
+    {
+      "label": "Stage transition history",
+      "personalRecords": 1,
+      "connectedRecords": 0,
+      "unresolvedRecords": 0,
+      "unreadable": false,
+      "requiresReview": true
+    },
+    {
+      "label": "Stage profile editor drafts",
+      "personalRecords": 1,
+      "connectedRecords": 0,
+      "unresolvedRecords": 0,
+      "unreadable": false,
+      "requiresReview": true
+    }
+  ],
+  "blockers": [
+    "Additional local stores require their own ownership and version review before mapping. Core workspace counts do not include these records."
+  ],
+  "readyForOwnerMapping": false,
+  "transferPerformed": false
+}

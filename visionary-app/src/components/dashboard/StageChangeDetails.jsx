@@ -1,0 +1,25 @@
+import CurriculumBridgePlan from './CurriculumBridgePlan';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {getStageContinuity} from '@/services/stageTransitionService';
+import {stageCopy} from '@/lib/stageCopy';
+
+const stageNames={school:'School',competitive:'Competitive preparation',vocational:'Vocational learning',higher_ed:'Higher education',professional:'Professional learning'};
+const label=(profile,t)=>[t(stageNames[profile.stage]||profile.stage||''),profile.classLevel,profile.board,profile.institution,profile.exam].filter(Boolean).join(' · ')||t('Not set');
+export default function StageChangeDetails({ctx,transition,locale='en'}) {
+ const t=stageCopy(locale);
+ const [details,setDetails]=useState(null),[error,setError]=useState('');
+ function load(){try{setDetails(getStageContinuity(ctx,transition.id));setError('');}catch(failure){setDetails(null);setError(failure.message);}}
+ return <details className="mt-4" lang={locale} onToggle={event=>{if(event.currentTarget.open)load();}}>
+  <summary className="cursor-pointer font-medium">{t('See what changed and your bridge plan')}</summary>
+  {error?<div role="alert" className="v-notice v-error mt-3"><span lang="en">{error}</span><button className="v-button mt-3" onClick={load}>{t('Retry stage details')}</button></div>:details&&<div className="mt-4 space-y-5">
+   <p className="v-muted">{t('Trigger:')} {t(transition.trigger||'Legacy notice; trigger not recorded')}. {transition.boundaryReasons?.length?<>{t('Confirmation needed:')} {transition.boundaryReasons.map(reason=>t(reason)).join(', ')}.</>:t(transition.policy==='AUTO'?'Eligible change; no required confirmation.':'Confirmation required.')}</p>
+   <dl className="text-sm"><dt className="font-medium">{t('Previous profile')}</dt><dd className="mt-1">{label(details.from,t)}</dd><dt className="mt-3 font-medium">{t('Proposed profile')}</dt><dd className="mt-1">{label(details.to,t)}</dd></dl>
+   <section><h3 className="font-medium">{t('Subjects')}</h3>{[['kept','Kept in your profile'],['added','Added to your profile'],['removed','Removed from your active profile']].map(([key,title])=><p className="v-muted mt-2" key={key}>{t(title)}: {details.subjects[key].join(', ')||t('None')}</p>)}<p className="v-muted mt-2">{t('Removing a subject from your profile keeps its saved activities available below.')}</p></section>
+   <section><h3 className="font-medium">{t('Bridge plan')}</h3><p className="v-muted mt-2">{t('Your stage profile changes separately from curriculum approval. Use the sourced guidance below to check available mappings. Saved results have not been relabelled as new-stage mastery.')}</p>{details.subjects.added.length>0&&<ul className="mt-3 list-disc space-y-2 pl-5">{details.subjects.added.map(subject=><li key={subject}>{t('Find reviewed content and prerequisite guidance for {subject} before starting its new-stage work.',{subject})}</li>)}</ul>}<p className="v-muted mt-3">{t('Continue saved activities at their exact position while the new mapping is unavailable. Review any due practice on its original source; your due dates are unchanged.')}</p><Link className="v-button mt-3" to="/dashboard/learn">{t('Open learning outline')}</Link><CurriculumBridgePlan ctx={ctx} transitionId={transition.id} locale={locale}/></section>
+   <section><h3 className="font-medium">{t('Saved learning · resume anytime')}</h3><p className="v-muted mt-2">{details.sourceSelection?<>{t('Current saved outline:')} {details.sourceSelection.board} · {details.sourceSelection.classLevel} · {details.sourceSelection.subject}.</>:t('No saved outline yet.')} {t('Individual activities may use earlier sources.')}</p>{details.activities.length?details.activities.map(item=><div className="mt-3 rounded-xl border border-slate-200 p-3" key={item.id}><p className="font-medium" lang={item.locale}>{item.title}</p><p className="v-muted mt-1">{t('Saved step:')} {t(item.stage)}{item.dueAt&&<> · {t('Review due')} {new Date(item.dueAt).toLocaleDateString(locale)}</>}</p><Link className="v-button mt-2" to={item.path}>{t('Resume saved activity')}<span className="sr-only">: {item.title}</span></Link></div>):<p className="v-muted mt-3">{t('No learning activities have been saved yet.')}</p>}</section>
+   <section><h3 className="font-medium">{t('Open classwork')}</h3><p className="v-muted mt-2">{t('Assigned content stays with its original class copy and deadline.')}</p>{details.classwork.length?details.classwork.map(item=><div className="mt-3" key={item.id}><p>{item.title} · {item.className}{item.dueAt&&<> · {t('Due')} {new Date(item.dueAt).toLocaleDateString(locale)}</>}</p><Link className="v-button mt-2" to={item.path}>{t('Open assigned copy')}<span className="sr-only">: {item.title}</span></Link></div>):<p className="v-muted mt-3">{t('No open classwork in this workspace.')}</p>}</section>
+   <p className="v-muted">{t('Preferences, private notes and saved projects are retained. This preview does not generate new curriculum or notify anyone outside existing sharing permissions.')}</p><button className="v-button" onClick={load}>{t('Refresh stage details')}</button>
+  </div>}
+ </details>;
+}

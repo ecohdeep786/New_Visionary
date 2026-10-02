@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
 
 const rise = (delay = 0) => ({
-  animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+  animation: "heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both",
   animationDelay: `${delay}ms`,
 });
 
@@ -38,14 +38,14 @@ export default function NewPersona({
   secondaryLabel = "See how it works",
 }) {
   const index = useCycle(words.length, wordMs);
-  /* EXACT display string used on every page from Landing → Organization */
+  /* Canonical Visionary display scale — Apple product-first rhythm */
   const display =
-    "block whitespace-nowrap font-medium tracking-[0] leading-[1] text-[clamp(40px,9.57vw,168px)]";
+    "block whitespace-nowrap font-medium tracking-[0] leading-[1.02] text-[clamp(48px,5.55vw,80px)]";
 
   return (
     <section
       data-section="01-hero"
-      className="relative overflow-hidden"
+      className="relative isolate overflow-hidden"
       style={{
         backgroundColor: heroBg,
         height: "calc(100svh - 64px)",
@@ -69,24 +69,31 @@ export default function NewPersona({
       </div>
 
       {/* content pinned to the bottom edge — nothing below it */}
-      <div className="relative mx-auto flex h-full w-full max-w-[1756px] flex-col justify-end px-6 pb-[7vh] sm:px-8 lg:px-10">
+      <div className="public-frame public-frame-wide relative flex h-full flex-col justify-end pb-[7vh]">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           {/* left: heading + sub — system type */}
           <div className="max-w-[980px]">
             <h1 className="m-0">
-              <span aria-hidden="true" className={display} style={{ color: "#121317" }}>
-                <span
-                  key={index}
-                  className="inline-block"
-                  style={{ animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both" }}
-                >
-                  {words[index]}
-                </span>
+              <span
+                aria-hidden="true"
+                className={display}
+                style={{ color: "#121317" }}
+              >
+              <span
+                key={index}
+                className="accent-gradient inline-block"
+                style={{
+                  animation:
+                    "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
+                }}
+              >
+                {words[index]}
+              </span>
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>
             <p
-              className="mt-[calc(clamp(40px,9.57vw,168px)*0.167)] max-w-[410px] font-normal tracking-[0] leading-[1.6] text-[clamp(15px,0.97vw,17px)]"
+              className="mt-[calc(clamp(48px,5.55vw,80px)*0.167)] max-w-[410px] font-normal tracking-[0] leading-[1.6] text-[clamp(16px,1.2vw,18px)]"
               style={{ color: "#121317", ...rise(140) }}
             >
               {sub}
@@ -94,20 +101,32 @@ export default function NewPersona({
           </div>
 
           {/* right: CTA pair, bottom-aligned like the Apple hero */}
-          <div className="flex flex-wrap items-center gap-3 lg:shrink-0 lg:pb-2" style={rise(260)}>
+          <div
+            className="flex flex-wrap items-center gap-3 lg:shrink-0 lg:pb-2"
+            style={rise(260)}
+          >
             <Link
               to={ctaTo}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             >
               {ctaLabel}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4"
+                aria-hidden="true"
+              >
                 <path d="M5 12h14" />
                 <path d="M13 6l6 6-6 6" />
               </svg>
             </Link>
             <Link
               to={secondaryTo}
-              className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             >
               {secondaryLabel}
             </Link>

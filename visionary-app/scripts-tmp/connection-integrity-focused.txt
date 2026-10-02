@@ -1,0 +1,14 @@
+✔ expiry projection distinguishes unreadable, expired and closed records without repairs (14.1515ms)
+✔ unreadable organization requests cannot grant membership; decline/cancel retain original expiry and record actions (18.9272ms)
+✔ personal and legacy acceptance reject unreadable dates while explicit revocation remains available (3.3994ms)
+✔ blank and non-string imported dates cannot expose child summaries or organization permissions (29.6529ms)
+✔ malformed billing request deadlines cannot activate a plan; explicit removal retains original bytes (55.8277ms)
+✔ legacy personal summary reads honor expiry even when the stored relationship says active (3.3736ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1119.6384

@@ -4,10 +4,21 @@
    constants below equal today's desktop px values at the 1440 endpoints. */
 :root {
   /* type scale (DIRECTOR canonical values; --fs-display matches the page h1/h2 scale 36→72px) */
-  --fs-display: clamp(2.25rem, 5vw, 4.5rem); /* exact match of the page h1/h2 clamp(36px,5vw,72px) */
-  --fs-h2: clamp(1.875rem, 4vw, 3.5rem); /* exact match of the section h2 clamp(30px,4vw,56px) */
+  --fs-hero: clamp(3rem, 5.55vw, 5rem);
+  --fs-display: clamp(2.5rem, 4.45vw, 4rem);
+  --fs-h2: clamp(2rem, 3vw, 3rem);
   --fs-h3: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
-  --fs-body: clamp(1rem, 0.95rem + 0.22vw, 1.15rem);
+  --fs-body: 1rem;
+  --fs-lead: clamp(1.125rem, 1rem + 0.22vw, 1.25rem);
+  --lh-display: 1.08;
+  --lh-body: 1.5;
+  --radius-control: 999px;
+  --radius-media: 12px;
+  --radius-surface: 12px;
+  --line-subtle: #dadce0;
+  --surface-soft: #f8f9fa;
+  --surface-blue: #e8f0fe;
+  --accent-blue: #0b57d0;
 
   /* ratio-locked intra-unit gaps (L1): gap = the heading's own size × its frozen desktop ratio */
   --gap-eyebrow-title: calc(var(--fs-h3) * 0.5);
@@ -18,6 +29,28 @@
   /* continuous breath (L2) */
   --breath-section: clamp(3.5rem, 1.8rem + 5.6vw, 7rem);
   --breath-controls: clamp(2.5rem, 1.4rem + 3.4vw, 4.5rem);
+
+  /* ─── Google×Apple convergence layer (Oct 2026 reference study) ─────────
+     Both references cap content near 87% of the viewport and grow gutters
+     with the screen (Google 72px @1280, Apple ~89px @1440; both 20-24px on
+     mobile). Wide shells (>1240px) must therefore carry --frame-x side
+     gutters instead of touching the viewport edge:
+       lg:px-[var(--frame-x)]  on every max-w-[1400px|1500px|1600px|1756px] shell */
+  --frame-x: clamp(1.5rem, 5vw, 5.5rem); /* 24px mobile → 72px @1440 → 88px cap */
+
+  /* container law — mirrors system/tokens.js; three widths, nothing else */
+  --container-standard: 1240px;
+  --container-wide: 1400px;
+  --container-hero: 1756px;
+
+  /* button law (Google: 16px/500, lh 1.5, tracking ≤0.25px; one size per role) */
+  --btn-fs: 1rem;
+  --btn-lh: 1.5;
+  --btn-track: 0.24px;
+
+  /* Indic floor: Devanagari/Gurmukhi stack matras above and below the x-line,
+     so display text in hi/pa keeps a taller line than the Latin 1.03–1.08 law */
+  --lh-indic: 1.32;
 }
 
 /* L1 cure (hat 03, day 2): a paragraph directly after a display heading is the
@@ -31,4 +64,20 @@ main h2 + p.mt-6 {
 /* eyebrow → h2 pairs keep their desktop 16px at 1440 but scale with the type */
 main p + h2.mt-4 {
   margin-top: var(--gap-eyebrow-title-display) !important;
+}
+
+/* Indic display floor — opt-in per element via lang attribute (the language
+   section sets lang={lang} on the live question). :root prefix (0-2-0) keeps
+   the floor above Tailwind's 0-1-0 leading utilities regardless of bundle
+   order; scoped to elements that declare the language so chips/captions
+   keep their compact leading. */
+:root [lang="hi"],
+:root [lang="pa"],
+:root [lang="mr"],
+:root [lang="bn"],
+:root [lang="ta"],
+:root [lang="te"],
+:root [lang="gu"],
+:root [lang="kn"] {
+  line-height: var(--lh-indic);
 }

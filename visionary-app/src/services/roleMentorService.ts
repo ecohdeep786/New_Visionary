@@ -1,5 +1,5 @@
 import type { RequestContext } from '../domain/workspace.ts';
-import { familyReports, getWorkspace, saveResource, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
+import { familyReports, getWorkspace, portfolioProjectVersion, saveResource, snapshot, visibleRelationships, workspaceIdentity } from './workspaceService.ts';
 import { getAssignedClasses, getClassAggregate, getOrganizationAggregate, getParentSummary, getStudentState } from './mentorStateService.ts';
 import { getTeachingInterface } from './teachingInterface.ts';
 import { getLearningWorkspace } from './learningPipelineService.ts';
@@ -68,11 +68,17 @@ export function getCareerPath(ctx: RequestContext) {
     .map(unit => ({ conceptId: unit.conceptId, title: unit.title, unitId: unit.id, activityStage: unit.stage, evidence: states.find(item => item.conceptId === unit.conceptId) ?? null }));
   const goal = data.resources.find(resource => resource.kind === 'goal' && resource.status !== 'archived') ?? null;
   return { goal, capabilities, target: capabilities.find(item => item.conceptId === goal?.conceptId) ?? null,
-    portfolio: data.artifacts.map(artifact => ({ id: artifact.id, title: artifact.title, conceptId: artifact.conceptId, status: artifact.status, visibility: artifact.visibility, updatedAt: artifact.updatedAt })) };
+    portfolio: data.artifacts.map(artifact => ({ id: artifact.id, title: artifact.title, conceptId: artifact.conceptId, status: artifact.status, visibility: artifact.visibility, updatedAt: artifact.updatedAt, review: artifact.status !== 'completed' ? 'Finish to review' : !artifact.portfolioReviews?.length ? 'Self-review needed' : artifact.portfolioReviews[0]?.projectVersion === portfolioProjectVersion(artifact) ? 'Self-reviewed' : 'Review outdated' })) };
 }
 
-export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string; conceptId?: string }) {
+export const careerTargetRevision = (goal: unknown) => JSON.stringify(goal ?? null);
+
+export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string; conceptId?: string }, expectedRevision?: string) {
   requireRole(ctx, 'professional');
+  const current = getCareerPath(ctx).goal;
+  if (expectedRevision !== undefined && (careerTargetRevision(current) !== expectedRevision || (current?.id ?? undefined) !== input.id)) {
+    throw new Error('Your career target changed in another tab. Your edits remain here. Export them or load the latest saved direction before continuing.');
+  }
   const saved = input.id ? snapshot(ctx).resources.find(resource => resource.id === input.id && resource.kind === 'goal') : null;
   if (input.id && !saved) throw new Error('This career target is not available in your workspace.');
   const conceptId = input.conceptId === undefined ? saved?.conceptId : input.conceptId || undefined;

@@ -1,0 +1,21 @@
+✔ browsers without speech support refuse honestly and every text path stays usable (21.1387ms)
+✔ a spoken turn follows the same teaching seam with voice input events and no transcript in events (5.0989ms)
+✔ the mentor speaks replies aloud, pauses the microphone, and resumes listening (0.9368ms)
+✔ speaking constructs a real utterance through the browser constructor (0.7309ms)
+✔ denied microphone access keeps an honest state, never restarts, and can be retried after permission (0.8743ms)
+✔ voice preference defaults on, is user-controlled, and legacy workspaces normalize to on (1.5085ms)
+✔ the Ask session control overrides the saved audio setting for the current session only (0.5783ms)
+✔ a crisis spoken aloud gets the same safety hard-stop as typed text (3.0166ms)
+✔ a replaced or stopped recognition cannot deliver words or affect the next owner (0.8102ms)
+✔ continuous recognition delivers only new final results and ignores replayed result indexes (1.4772ms)
+✔ cancelled or superseded speech cannot restart recognition or complete an older session (0.5116ms)
+✔ recognition startup and device errors stop honestly and allow an explicit retry (0.7279ms)
+✔ a failed speech engine releases the suspended microphone and completes once (0.4018ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 611.102

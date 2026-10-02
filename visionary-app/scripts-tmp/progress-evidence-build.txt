@@ -1,0 +1,168 @@
+
+> visionary-app@0.0.0 build
+> vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 2158 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                           1.24 kB │ gzip:   0.56 kB
+dist/assets/student-face-main-DoqtvA98.webp              13.56 kB
+dist/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+dist/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+dist/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+dist/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+dist/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+dist/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+dist/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+dist/assets/student-vocational-_PNEY47x.webp             26.42 kB
+dist/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+dist/assets/student-primary-BQqYJWen.webp                27.31 kB
+dist/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+dist/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+dist/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+dist/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+dist/assets/student-competitive-C7yma1PI.webp            34.73 kB
+dist/assets/problem-exam-DwRFru20.webp                   35.96 kB
+dist/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+dist/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+dist/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+dist/assets/problem-revision-CNcjooiB.webp               40.35 kB
+dist/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+dist/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+dist/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+dist/assets/student-higher-GPVJimQm.webp                 46.09 kB
+dist/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+dist/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+dist/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+dist/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+dist/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+dist/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+dist/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+dist/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+dist/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+dist/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+dist/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+dist/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+dist/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+dist/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+dist/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+dist/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+dist/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+dist/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+dist/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+dist/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+dist/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+dist/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+dist/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+dist/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+dist/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+dist/assets/index-cPsavMh8.css                          143.80 kB │ gzip:  25.34 kB
+dist/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+dist/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+dist/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+dist/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+dist/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+dist/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+dist/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+dist/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+dist/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+dist/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+dist/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+dist/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+dist/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+dist/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+dist/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+dist/assets/productAccess-DlhmNK8U.js                     0.21 kB │ gzip:   0.17 kB
+dist/assets/WorkspaceIntro-DOiStXCT.js                    0.60 kB │ gzip:   0.30 kB
+dist/assets/stagePresentation-_RQZclL2.js                 0.64 kB │ gzip:   0.38 kB
+dist/assets/CriterionFeedback-9r23MNev.js                 0.69 kB │ gzip:   0.41 kB
+dist/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+dist/assets/useStudentData-DkKcgOb2.js                    0.71 kB │ gzip:   0.46 kB
+dist/assets/useThemeColor-ClyYELt4.js                     0.78 kB │ gzip:   0.46 kB
+dist/assets/useWorkspace-D-9XMC0Y.js                      0.85 kB │ gzip:   0.47 kB
+dist/assets/VisionaryLogo-BffruXVx.js                     0.93 kB │ gzip:   0.61 kB
+dist/assets/PolicyTabs-BY0rRfNy.js                        1.13 kB │ gzip:   0.65 kB
+dist/assets/JourneyCatalogue-D7bZStVZ.js                  1.29 kB │ gzip:   0.68 kB
+dist/assets/resourceEditorDraft-DvLri_VD.js               1.59 kB │ gzip:   0.76 kB
+dist/assets/Breadcrumb-KmogUv2i.js                        1.80 kB │ gzip:   0.79 kB
+dist/assets/Support-D9SqFQ_K.js                           1.95 kB │ gzip:   1.02 kB
+dist/assets/dialog-C2h9jxyy.js                            1.99 kB │ gzip:   0.80 kB
+dist/assets/ForgotUserId-DLJB3K1v.js                      2.29 kB │ gzip:   1.02 kB
+dist/assets/ForgotPassword-CJNeMa3C.js                    2.32 kB │ gzip:   1.03 kB
+dist/assets/ResetPassword-DQXw59gr.js                     2.42 kB │ gzip:   1.07 kB
+dist/assets/CubeLearningEntry-DWMgbVrM.js                 2.72 kB │ gzip:   1.28 kB
+dist/assets/AuthLayout-DruGkaXX.js                        2.90 kB │ gzip:   0.89 kB
+dist/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+dist/assets/SocialAuthButtons-Ci8GfOnL.js                 3.12 kB │ gzip:   1.37 kB
+dist/assets/Learners-D9zSTe7B.js                          3.30 kB │ gzip:   1.46 kB
+dist/assets/curriculumBridgeService-CWP9H1S8.js           3.71 kB │ gzip:   1.55 kB
+dist/assets/LandingFAQ-D7ZOf-Wv.js                        4.04 kB │ gzip:   1.52 kB
+dist/assets/roleMentorService-DGOxymbw.js                 4.22 kB │ gzip:   1.81 kB
+dist/assets/Children-F49DCKDz.js                          4.38 kB │ gzip:   1.77 kB
+dist/assets/dailyPlanService-BHR8Duys.js                  4.84 kB │ gzip:   1.90 kB
+dist/assets/Profile-B2HAkO5U.js                           4.89 kB │ gzip:   1.84 kB
+dist/assets/ClassworkProjectSubmission-DKrIJab4.js        5.14 kB │ gzip:   2.18 kB
+dist/assets/Explore-c_nq_Av8.js                           5.46 kB │ gzip:   2.20 kB
+dist/assets/Cohorts-BJXEx5Lk.js                           6.13 kB │ gzip:   2.20 kB
+dist/assets/AuthUI-BWBZZtoP.js                            6.70 kB │ gzip:   2.11 kB
+dist/assets/Login-D7-Y0FWv.js                             7.42 kB │ gzip:   2.06 kB
+dist/assets/Plans-DKO7xEAE.js                             8.33 kB │ gzip:   3.02 kB
+dist/assets/CommunityTab-B9f2f-mN.js                      8.72 kB │ gzip:   3.14 kB
+dist/assets/LessonObjectivePreview-c7iyhUq2.js            8.78 kB │ gzip:   3.06 kB
+dist/assets/Practice-BGMbICOB.js                          9.17 kB │ gzip:   3.36 kB
+dist/assets/Register-CO-mtlRH.js                          9.36 kB │ gzip:   2.85 kB
+dist/assets/Settings-BvPZOiAn.js                         10.10 kB │ gzip:   3.64 kB
+dist/assets/TopicDetail-BV7rsJKD.js                      10.83 kB │ gzip:   3.79 kB
+dist/assets/Learn-CUXibUMD.js                            11.33 kB │ gzip:   3.99 kB
+dist/assets/Connections-H0rztwPA.js                      12.39 kB │ gzip:   4.40 kB
+dist/assets/TeacherHome-BNHTF0ma.js                      12.75 kB │ gzip:   4.57 kB
+dist/assets/stageTransitionService-DaTQmo6C.js           13.26 kB │ gzip:   4.48 kB
+dist/assets/OrganizationContent-DYC8oHNi.js              13.52 kB │ gzip:   4.42 kB
+dist/assets/SchoolPage-6_QYwDI_.js                       13.80 kB │ gzip:   4.51 kB
+dist/assets/AILearningPage-CxmA9bEz.js                   14.55 kB │ gzip:   4.31 kB
+dist/assets/CommunityPage-C-kA8tKO.js                    14.86 kB │ gzip:   4.58 kB
+dist/assets/mentorStateService-CYsJuabX.js               15.80 kB │ gzip:   5.58 kB
+dist/assets/ContactPage-C_3iaVyT.js                      15.84 kB │ gzip:   4.45 kB
+dist/assets/classroomService-Dv3Fef8i.js                 16.05 kB │ gzip:   5.31 kB
+dist/assets/SafetyPage-B9IyhrUH.js                       16.25 kB │ gzip:   4.64 kB
+dist/assets/DownloadPage-Dvd08gKi.js                     16.47 kB │ gzip:   4.52 kB
+dist/assets/learningPipelineService-Dj0ATgcN.js          17.22 kB │ gzip:   6.30 kB
+dist/assets/ClassworkStudy-CIxa725v.js                   17.37 kB │ gzip:   5.62 kB
+dist/assets/AccessibilityPage-D5jitLBZ.js                17.41 kB │ gzip:   4.99 kB
+dist/assets/contentRepository-CcU66udE.js                17.62 kB │ gzip:   5.80 kB
+dist/assets/ReferralPage-CWkGzw6w.js                     17.93 kB │ gzip:   5.09 kB
+dist/assets/UpdatesPage-BHqinJm-.js                      18.79 kB │ gzip:   5.06 kB
+dist/assets/AboutUsPage-CEL4YSl2.js                      19.76 kB │ gzip:   5.61 kB
+dist/assets/CareersPage-DdVtkfGS.js                      20.00 kB │ gzip:   5.89 kB
+dist/assets/StudentClasses-Oj1KHmCM.js                   20.30 kB │ gzip:   6.21 kB
+dist/assets/CookiesPage-B0revw5i.js                      21.62 kB │ gzip:   6.04 kB
+dist/assets/voiceService-B5ISpyge.js                     21.90 kB │ gzip:   7.27 kB
+dist/assets/LandingFooter-CX4_z7HP.js                    23.74 kB │ gzip:   5.54 kB
+dist/assets/CoachingPage-CuqMCJhP.js                     24.20 kB │ gzip:   6.64 kB
+dist/assets/PartnersPage-SOvf33Mg.js                     24.93 kB │ gzip:   6.91 kB
+dist/assets/RoleWorkspace-Bsu4-8US.js                    25.02 kB │ gzip:   7.55 kB
+dist/assets/TermsPage-Hd9UBEPy.js                        25.94 kB │ gzip:   7.30 kB
+dist/assets/ResearchNewsPage-Bo38EMlF.js                 26.17 kB │ gzip:   6.96 kB
+dist/assets/PersonaSections-DkzN-ctz.js                  26.22 kB │ gzip:   7.18 kB
+dist/assets/SecurityPage-B4h4Oh2x.js                     27.58 kB │ gzip:   6.88 kB
+dist/assets/PrivacyPage-BElYzpkR.js                      29.31 kB │ gzip:   7.83 kB
+dist/assets/ArtifactStudio-De9pryOI.js                   29.53 kB │ gzip:   8.66 kB
+dist/assets/SpotIllustration-BpbSW-yV.js                 32.27 kB │ gzip:   6.46 kB
+dist/assets/OrganizationPage-9eb0unuT.js                 32.93 kB │ gzip:   9.73 kB
+dist/assets/StudentPage-DHrtErvY.js                      34.06 kB │ gzip:   9.97 kB
+dist/assets/CollegePage-VHc8Wsqb.js                      34.19 kB │ gzip:  10.19 kB
+dist/assets/ParentPage-BhKWIQxK.js                       34.33 kB │ gzip:  10.14 kB
+dist/assets/TeacherPage-DbWNblY3.js                      35.32 kB │ gzip:  10.29 kB
+dist/assets/Onboarding-yfFCaLg3.js                       36.91 kB │ gzip:  10.75 kB
+dist/assets/DashboardHome-yl65QWup.js                    39.33 kB │ gzip:  11.37 kB
+dist/assets/Guide-BUD73UuK.js                            39.43 kB │ gzip:  12.41 kB
+dist/assets/DashboardLayout-J8RzxEoF.js                  41.34 kB │ gzip:  13.31 kB
+dist/assets/LearningWorkspace-BbV0hzxV.js                43.02 kB │ gzip:  12.31 kB
+dist/assets/Landing-BaoGIHvP.js                          45.94 kB │ gzip:  13.05 kB
+dist/assets/ClassDetail-DGWvU9u1.js                      47.22 kB │ gzip:  12.31 kB
+dist/assets/WorkspaceTools-CdeU2uFc.js                   99.77 kB │ gzip:  26.36 kB
+dist/assets/index-BF5x3uOH.js                           133.23 kB │ gzip:  41.19 kB
+dist/assets/vendor-BQanXB7N.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 58.86s

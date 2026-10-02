@@ -39,3 +39,24 @@ Fail writes `G# / reason / owner` in STATUS. Owner fixes → 07-QA reruns → ga
 | G12 | NOT PASSED | Exact session service resume passes, but Part W atomic transitions/Undo/remapping do not exist yet (01→04 next approved slice). |
 
 Route QA-H01–H04 to04 for narrowly scoped corrective work, preserve06 focus/semantics, then06 checks new language semantics and07 reruns. Main coordinator also investigates the observed composer/session mismatch before re-gating. No merge, release, full-wave completion or production-readiness approval.
+
+## 2026-10-02 — Stage/shared slice re-gate
+
+This records bounded current evidence; the full product gate remains OPEN. Master Part AA is still authoritative. Final test/build/browser evidence is in QA.md and CURRENT_PRODUCT_STATUS.md. No backend, release or AGI sign-off.
+
+| Gate | Current slice verdict and remaining scope |
+| --- | --- |
+| G1 | PASS — slice: stage review, language/accessibility settings, saved updates and role-specific Help have meaningful actions. |
+| G2 | PASS — bounded local Home: one priority, explained source/reason, optional stage guidance without a new supporting card; existing finite module set retained. Broader populated-stage fixtures remain required. |
+| G3 | PARTIAL: strict category/role/age policy and en/hi/bn shared controls verified. English stage editor, remaining role screens and real-source stage pedagogy remain open. |
+| G4 | NOT GLOBALLY PASSED: no connection policy changed; existing service lifecycle tests retained. This wave is not exhaustive paired-view acceptance. |
+| G5 | PASS — slice: this-device/unconnected status, optional guidance and source-language boundaries are explicit. No ability/model/AGI claim. |
+| G6 | PASS — slice: unknown-age permission and late age-policy boundary tests pass; no new billing, sharing or sponsorship permission. |
+| G7 | NOT PASSED: concurrent public work preserved; clean same-data public visual regression absent. |
+| G8 | PARTIAL: settings persistence/conflict/recovery, notification read/filter/empty/reset and Help permission projection verified. Full role/state matrix remains open. |
+| G9 | PARTIAL: 357 tests, lint/types/build, keyboard accent selection, language attributes and 320–1440px reflow pass. Native device speech, assistive-technology tasks and actual browser zoom remain open. |
+| G10 | PASS — slice: append-only evidence, derived-policy decision, backend seam and concrete remaining owner recorded. |
+| G11 | PASS — slice: inherited card/button/field grammar and local language captures retained; native-radio positioning is an accessibility correction. |
+| G12 | NOT GLOBALLY PASSED: final teaching response rejects changed stage/age policy; existing transition history remains intact. Full atomic audience/remapping/resume/undo matrix is not certified by this wave. |
+
+Next corrective owner: coordinator for G3/G8 and broader G4/G12; visual baseline owner for G7; accessibility/device acceptance owner for remaining G9. No whole-product merge/release verdict is inferred from bounded passes.

@@ -14,7 +14,7 @@ const COLORS = {
   ink: "#121317", surface: "#F5F6F8", blue: "#4285F4", grey: "#5f6368",
   lightGrey: "#9AA0A6", mist: "#dadce0", white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -62,7 +62,7 @@ const HELP_TOPICS = [
     articles: [
       { q: "I forgot my password.", a: "Use the reset link and we'll email you a secure way back in.", to: "/forgot-password" },
       { q: "How do I delete my data?", a: "One screen: see everything we remember, export it, or delete it. Instant, no email needed.", to: "/privacy" },
-      { q: "How do I sign in on a new device?", a: "Sign in with the same email — your journey syncs automatically.", to: "/download" },
+      { q: "How do I sign in on a new device?", a: "Sign in with the same email, and your journey syncs automatically.", to: "/download" },
     ],
   },
   {
@@ -70,8 +70,8 @@ const HELP_TOPICS = [
     keys: "lesson learn practise practice progress memory continuity understand",
     articles: [
       { q: "What is Practise mode?", a: "Visionary gives you a problem, sees where you stick, and hints without giving it away.", to: "/how-it-works" },
-      { q: "What does Visionary remember?", a: "What you understood, where you struggled, and what you built — never private conversations.", to: "/privacy" },
-      { q: "How does continuity work?", a: "Every lesson builds on the last — across devices, classes, and years.", to: "/student" },
+      { q: "What does Visionary remember?", a: "What you understood, where you struggled, and what you built. Never private conversations.", to: "/privacy" },
+      { q: "How does continuity work?", a: "Every lesson builds on the last, across devices, classes, and years.", to: "/student" },
     ],
   },
   {
@@ -79,22 +79,22 @@ const HELP_TOPICS = [
     keys: "teacher class classroom learner lesson adapt",
     articles: [
       { q: "How do I see who understood?", a: "Your class view shows clarity per learner and per concept, updated as they work.", to: "/teacher" },
-      { q: "Can I adapt a lesson mid-class?", a: "Yes — ask Visionary for another explanation level, example, or visual anytime.", to: "/teacher" },
+      { q: "Can I adapt a lesson mid-class?", a: "Yes. Ask Visionary for another explanation level, example, or visual anytime.", to: "/teacher" },
     ],
   },
   {
     id: "family", Icon: HeartHandshake, label: "Family & privacy", line: "Parent views, the Family plan, and what stays private.",
     keys: "parent child family plan privacy members",
     articles: [
-      { q: "What can parents see?", a: "Progress and support signals — never private conversations.", to: "/parent" },
+      { q: "What can parents see?", a: "Progress and support signals, never private conversations.", to: "/parent" },
       { q: "How does the Family plan work?", a: "Up to 6 members, each with completely private memory, one weekly digest.", to: "/pricing" },
     ],
   },
   {
-    id: "billing", Icon: CreditCard, label: "Billing & plans", line: "Start, Personal, Family — upgrades, downgrades, cancellation.",
+    id: "billing", Icon: CreditCard, label: "Billing & plans", line: "Start, Personal, Family: upgrades, downgrades, cancellation.",
     keys: "price plan billing cancel subscription payment discount invoice",
     articles: [
-      { q: "Can I start free?", a: "Yes — Start is free forever: 20 questions a day and core visual explanations.", to: "/pricing" },
+      { q: "Can I start free?", a: "Yes. Start is free forever: 20 questions a day and core visual explanations.", to: "/pricing" },
       { q: "How do I cancel or change my plan?", a: "Anytime. Upgrades apply immediately; downgrades at the next cycle. Nothing resets.", to: "/pricing" },
       { q: "Do you offer education discounts?", a: "Students and teachers with a valid institutional email get Personal at a discount.", to: "/pricing" },
     ],
@@ -103,7 +103,7 @@ const HELP_TOPICS = [
     id: "devices", Icon: Monitor, label: "Apps & devices", line: "Web, desktop, and mobile installs, sync, requirements.",
     keys: "download install app windows mac linux ios android sync device requirements",
     articles: [
-      { q: "Which devices are supported?", a: "Web, Windows, Mac, Linux, iOS, and Android — one account, all of them.", to: "/download" },
+      { q: "Which devices can I use?", a: "Web, Windows, Mac, Linux, iOS, and Android. One account, all of them.", to: "/download" },
       { q: "Does my journey sync across devices?", a: "Automatically and privately, on every signed-in device.", to: "/download" },
       { q: "What are the system requirements?", a: "Any modern browser for web; current OS versions for the apps.", to: "/download" },
     ],
@@ -113,7 +113,7 @@ const HELP_TOPICS = [
     keys: "safety report harmful urgent block family controls",
     articles: [
       { q: "How do I report content?", a: "Tap report on any answer. A human reviews every report.", mailto: "safety@visionary.org.in" },
-      { q: "Are answers age-appropriate?", a: "Yes — guidance follows the learner's age by default, with family controls available.", to: "/safety" },
+      { q: "Are answers age-appropriate?", a: "Yes. Guidance follows the learner's age by default, with family controls available.", to: "/safety" },
       { q: "How fast are urgent reports handled?", a: "Within 24 hours, every time.", mailto: "safety@visionary.org.in" },
     ],
   },
@@ -180,16 +180,16 @@ export default function SchoolPage() {
         <section ref={ref} className="relative px-6 pb-16 pt-24 lg:pt-28" style={{ backgroundColor: COLORS.white }}>
           <FadeReveal visible={visible}>
             <div className="mx-auto flex flex-col items-center text-center">
-              <span className="flex h-20 w-20 items-center justify-center rounded-[24px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+              <span className="flex h-20 w-20 items-center justify-center rounded-[24px] g-card" style={{ color: COLORS.blue }}>
                 <CircleHelp className="h-9 w-9" strokeWidth={1.8} />
               </span>
               <h1 className="mt-8 text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-                Find your answer.
+                Find <span className="accent-gradient">your answer.</span>
               </h1>
-              <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic — then reach us.</p>
+              <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic, then reach us.</p>
 
               {/* Search bar */}
-              <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+              <div className="mx-auto mt-10 flex h-14 w-full max-w-[760px] items-center gap-3 rounded-full border bg-white px-6 transition-colors focus-within:border-[#4285F4]">
                 <Search className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.lightGrey }} />
                 <input
                   value={q}
@@ -226,7 +226,7 @@ export default function SchoolPage() {
                 <ArrowLeft className="h-4 w-4" strokeWidth={1.8} /> All topics
               </button>
               <div className="mt-8 flex items-center gap-5">
-                <span className="flex h-14 w-14 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card" style={{ color: COLORS.blue }}>
                   <activeTopic.Icon className="h-6 w-6" strokeWidth={1.8} />
                 </span>
                 <div>
@@ -239,7 +239,7 @@ export default function SchoolPage() {
                   answers.map((a) => <AnswerItem key={a.q} a={a} />)
                 ) : (
                   <p className="font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
-                    No answers match here yet — email us below and we'll answer within one business day.
+                    No answers match here yet. Email us below and we'll answer within one business day.
                   </p>
                 )}
               </div>
@@ -253,9 +253,9 @@ export default function SchoolPage() {
                   <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {topics.map((t) => (
                       <button key={t.id} type="button" onClick={() => { setTopicId(t.id); setQ(""); }}
-                        className="group flex flex-col items-start rounded-[24px] border bg-white p-7 text-left transition-all hover:border-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist }}>
-                        <span className="flex h-14 w-14 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                        className="group flex flex-col items-start rounded-[24px] g-card p-7 text-left transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                       >
+                        <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card" style={{ color: COLORS.blue }}>
                           <t.Icon className="h-6 w-6" strokeWidth={1.8} />
                         </span>
                         <p className="mt-6 font-medium tracking-[0] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</p>
@@ -278,10 +278,10 @@ export default function SchoolPage() {
 
               {/* No results */}
               {noResults && (
-                <div className="mx-auto max-w-[760px] rounded-[24px] border bg-white p-10 text-center" style={{ borderColor: COLORS.mist }}>
+                <div className="mx-auto max-w-[760px] rounded-[24px] g-card bg-white p-10 text-center">
                   <p className="font-medium tracking-[0] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Nothing matches "{q}".</p>
                   <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
-                    Tell us what you need — a human answers within one business day.
+                    Tell us what you need. A human answers within one business day.
                   </p>
                   <a href="mailto:hello@visionary.org.in" className="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90" style={{ backgroundColor: COLORS.blue }}>
                     <Mail className="h-4 w-4" strokeWidth={1.8} /> Email us
@@ -294,7 +294,7 @@ export default function SchoolPage() {
 
         {/* ═══ CONTACT BAND (Apple support pattern) ═══ */}
         <section className="relative px-6 py-24" style={{ backgroundColor: COLORS.surface }}>
-          <div className="mx-auto max-w-[760px] rounded-[24px] border bg-white p-10 text-center" style={{ borderColor: COLORS.mist }}>
+          <div className="mx-auto max-w-[760px] rounded-[24px] g-card bg-white p-10 text-center">
             <p className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>Still stuck?</p>
             <p className="mx-auto mt-3 max-w-[560px] font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>
               We answer within one business day. Urgent safety reports are handled within 24 hours.

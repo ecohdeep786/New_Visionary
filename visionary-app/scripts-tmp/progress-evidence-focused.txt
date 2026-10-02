@@ -1,0 +1,16 @@
+✔ period history excludes drafts and unverified application from accuracy and keeps exact original activity (52.339ms)
+✔ multiple earlier sessions group a stable objective once but each timeline link resumes its own session (18.3637ms)
+✔ a period with no evidence distinguishes retained history from an entirely new workspace (3.9459ms)
+✔ unreadable source is partial, available earlier evidence remains visible and originals are preserved (1.3949ms)
+✔ duplicate or malformed evidence never becomes inflated or partially counted results (2.1068ms)
+✔ owner/workspace authorization and cancellation apply before exposing any timeline (2.2428ms)
+✔ same objective across source versions groups counts but preserves both original activity links and versions (53.7022ms)
+✔ malformed earlier sessions cannot leave partial counts, and missing units do not remove readable evidence (26.9782ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1001.2751

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 /* ── Shared classes ── */
 
 export const primaryBtnClass =
-  "w-full h-12 bg-[#4285F4] text-white rounded-full text-sm font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
+  "w-full h-12 bg-[#4285F4] text-white rounded-full text-base font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
 
 export const primaryBtnAutoClass =
-  "h-10 px-6 bg-[#4285F4] text-white rounded-full text-sm font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
+  "h-10 px-6 bg-[#4285F4] text-white rounded-full text-base font-medium hover:bg-[#3367d6] transition-colors disabled:opacity-60 flex items-center justify-center gap-2";
 
 export const outlineBtnClass =
-  "w-full h-12 bg-white text-[#4285F4] rounded-full text-sm font-medium border border-[#dadce0] hover:bg-[#121317]/5 hover:border-[#4285F4] transition-colors flex items-center justify-center gap-2";
+  "w-full h-12 bg-white text-[#4285F4] rounded-full text-base font-medium border border-[#dadce0] hover:bg-[#121317]/5 hover:border-[#4285F4] transition-colors flex items-center justify-center gap-2";
 
 /* ── Primitives ── */
 

@@ -12,7 +12,7 @@ import VisionaryLogo from "@/components/VisionaryLogo";
 import { CATEGORIES } from "@/data/landingCategories";
 
 /* ═══ Tokens ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = {
   ink: "#121317",
   graphite: "#3c4043",
@@ -25,11 +25,11 @@ const C = {
 
 /* Persona metadata */
 const CATEGORY_META = {
-  student: { Icon: GraduationCap, desc: "Learn with a companion that keeps your place." },
-  teacher: { Icon: Users, desc: "See every learner and teach in your language." },
-  parent: { Icon: HeartHandshake, desc: "Follow your child's journey with confidence." },
-  professional: { Icon: Briefcase, desc: "Grow the skills your work demands next." },
-  organization: { Icon: Building2, desc: "Build understanding that stays across your institution." },
+  student: { Icon: GraduationCap, desc: "Understand more and keep your place." },
+  teacher: { Icon: Users, desc: "See who needs another explanation." },
+  parent: { Icon: HeartHandshake, desc: "See where your child needs support." },
+  professional: { Icon: Briefcase, desc: "Turn what you know into useful work." },
+  organization: { Icon: Building2, desc: "Help teams carry knowledge forward." },
 };
 
 const FALLBACK_META = {
@@ -42,7 +42,7 @@ const metaFor = (cat) => CATEGORY_META[cat.slug] || FALLBACK_META;
 /* For organizations — 4 contexts inside /organization */
 const ORG_CONTEXTS = [
   { id: "schools", Icon: GraduationCap, title: "Schools", desc: "Roll out learning across K-12." },
-  { id: "colleges", Icon: BookOpen, title: "Colleges & Universities", desc: "Bring Visionary to higher education." },
+  { id: "colleges", Icon: BookOpen, title: "Colleges and universities", desc: "Bring Visionary to higher education." },
   { id: "coaching", Icon: UsersRound, title: "Coaching", desc: "Scale personalized coaching." },
   { id: "workplace", Icon: Briefcase, title: "Workplace learning", desc: "Grow skills across your workforce." },
 ];
@@ -64,24 +64,24 @@ const ABOUT_GROUPS = [
     items: [
       { id: "about", Icon: Sparkles, title: "About Visionary", desc: "Our mission, beliefs, company, and people.", to: "/about" },
       { id: "careers", Icon: Briefcase, title: "Careers", desc: "Help us make understanding last.", to: "/careers" },
-      { id: "research", Icon: Newspaper, title: "Research & News", desc: "News from Visionary, product updates, and research.", to: "/research" },
+      { id: "research", Icon: Newspaper, title: "Research and news", desc: "News from Visionary, product updates, and research.", to: "/research" },
       { id: "community", Icon: UsersRound, title: "Community", desc: "Learners, teachers, and parents growing together.", to: "/community" },
     ],
   },
   {
-    title: "Support & programs",
+    title: "Support and programs",
     items: [
-      { id: "contact", Icon: Mail, title: "Contact & Sales", desc: "Talk to us about schools, teams, and partnerships.", to: "/contact" },
-      { id: "partners", Icon: Handshake, title: "Find a Partner", desc: "Bring Visionary closer to your region or institution.", to: "/partners" },
+      { id: "contact", Icon: Mail, title: "Contact and sales", desc: "Talk to us about schools, teams, and partnerships.", to: "/contact" },
+      { id: "partners", Icon: Handshake, title: "Find a partner", desc: "Bring Visionary closer to your region or institution.", to: "/partners" },
       { id: "updates", Icon: Bell, title: "Sign up for updates", desc: "Product news, new languages, and launch updates.", to: "/updates" },
-      { id: "referral", Icon: Gift, title: "Referral Program", desc: "Invite people and grow with Visionary.", to: "/referral" },
+      { id: "referral", Icon: Gift, title: "Referral program", desc: "Invite people and grow with Visionary.", to: "/referral" },
     ],
   },
   {
-    title: "Trust & legal",
+    title: "Trust and legal",
     items: [
       { id: "safety", Icon: ShieldCheck, title: "Safety", desc: "Age-appropriate answers and human review.", to: "/safety" },
-      { id: "privacy", Icon: Lock, title: "Privacy Policy", desc: "Your memory is yours. Terms and Cookies included.", to: "/privacy" },
+      { id: "privacy", Icon: Lock, title: "Privacy policy", desc: "Your memory is yours.", to: "/privacy" },
       { id: "security", Icon: ShieldCheck, title: "Security", desc: "Protected end to end.", to: "/security" },
       { id: "accessibility", Icon: Accessibility, title: "Accessibility", desc: "Built for every learner, every device.", to: "/accessibility" },
     ],
@@ -90,7 +90,7 @@ const ABOUT_GROUPS = [
 
 /* Shared pill style */
 const pillLink = (active) =>
-  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[15px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[16px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
     active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
   }`;
 
@@ -196,9 +196,9 @@ export default function LandingNav() {
       >
         Skip to main content
       </a>
-      <div className="flex h-full w-full items-center justify-between px-6 lg:px-10">
+      <div className="public-frame public-frame-wide flex h-full items-center justify-between">
         {/* LEFT: logo + primary nav */}
-        <div className="flex min-w-0 items-center gap-4 lg:gap-6">
+        <div className="flex min-w-0 items-center gap-5 lg:gap-8">
           <Link
             to="/"
             aria-label="Visionary home"
@@ -497,10 +497,10 @@ export default function LandingNav() {
 
           <Link
             to="/register"
-            className="flex h-11 items-center rounded-full px-5 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+            className="flex h-11 items-center rounded-full px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
             style={{ backgroundColor: C.darkblue }}
           >
-            Get Started
+            Get started
           </Link>
 
           <button
@@ -647,7 +647,7 @@ export default function LandingNav() {
 
             {ABOUT_GROUPS.map((group) => (
               <div key={group.title} className="pb-3">
-                <p className="px-3 py-2 text-[11px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+                <p className="px-3 py-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
                   {group.title}
                 </p>
 
@@ -684,7 +684,7 @@ export default function LandingNav() {
             <Link
               to="/help"
               onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center gap-2 rounded-full border text-[15px] font-normal tracking-[0.24px]"
+              className="flex h-11 items-center justify-center gap-2 rounded-full border text-[16px] font-normal tracking-[0.24px]"
               style={{ borderColor: C.mist, color: C.ink }}
             >
               <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
@@ -694,7 +694,7 @@ export default function LandingNav() {
             <Link
               to="/login"
               onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center rounded-full border text-[15px] font-normal tracking-[0.24px]"
+              className="flex h-11 items-center justify-center rounded-full border text-[16px] font-normal tracking-[0.24px]"
               style={{ borderColor: C.mist, color: C.blue }}
             >
               Sign in
@@ -703,10 +703,10 @@ export default function LandingNav() {
             <Link
               to="/register"
               onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center rounded-full text-[15px] font-medium tracking-[0.24px] text-white"
+              className="flex h-11 items-center justify-center rounded-full text-[16px] font-medium tracking-[0.24px] text-white"
               style={{ backgroundColor: C.darkblue }}
             >
-              Get Started
+              Get started
             </Link>
           </div>
         </div>

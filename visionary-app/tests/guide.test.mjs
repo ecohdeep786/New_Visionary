@@ -62,11 +62,52 @@ test('parent summaries require active scoped consent and exclude private content
  service.changeRelationship(ctx('parent','parent'),'demo-parent:demo-minor-cbse','revoked');assert.equal(service.familyReports(ctx('parent','parent')).length,1);
  assert.throws(()=>service.changeRelationship(child,'demo-parent:demo-minor-cbse','active'),/no longer pending/);
 });
+test('returned classwork digest stays with the selected child and closes on revocation',()=>{
+ const parent=ctx('parent','parent');
+ localStorage.setItem('visionary_entity_Assignment',JSON.stringify([{id:'a-one',class_id:'c',title:'Volume reasoning',status:'archived'},{id:'a-two',class_id:'c',title:'Reading data'},{id:'a-three',class_id:'c',title:'Measure a box',due_date:'2026-09-17',status:'published'},{id:'closed',class_id:'c',title:'Closed due-date canary',due_date:'2026-09-17',status:'closed'}]));
+ localStorage.setItem('visionary_entity_Enrollment',JSON.stringify([{id:'enrolled-one',student_email:'minor-cbse@visionary.test',class_id:'c',status:'active'}]));
+ localStorage.setItem('visionary_entity_Submission',JSON.stringify([
+  {id:'one',assignment_id:'a-one',class_id:'c',student_email:'minor-cbse@visionary.test',status:'graded',graded_date:instant.toISOString(),text:'PRIVATE ANSWER',feedback:'PRIVATE FEEDBACK',grade:9},
+  {id:'two',assignment_id:'a-two',class_id:'c',student_email:'bengali@visionary.test',status:'graded',graded_date:instant.toISOString(),text:'OTHER PRIVATE ANSWER',feedback:'OTHER PRIVATE FEEDBACK',grade:7},
+ ]));
+ const first=service.familyClassworkDigest(parent,'demo-minor-cbse');
+ const second=service.familyClassworkDigest(parent,'demo-bengali');
+ assert.deepEqual(first.returned.map(row=>row.title),['Volume reasoning']);
+ assert.deepEqual(second.returned.map(row=>row.title),['Reading data']);
+ assert.deepEqual(first.upcoming.map(row=>row.title),['Measure a box']);
+ assert.deepEqual(second.upcoming,[]);
+ assert.ok(!JSON.stringify(first).includes('PRIVATE'));
+ assert.ok(!JSON.stringify(first).includes('grade'));
+ service.changeRelationship(parent,'demo-parent:demo-minor-cbse','revoked');
+ assert.throws(()=>service.familyClassworkDigest(parent,'demo-minor-cbse'),/no longer shared/);
+ assert.equal(service.familyClassworkDigest(parent,'demo-bengali').returned.length,1);
+ localStorage.setItem('visionary_entity_Submission','broken');
+ assert.throws(()=>service.familyClassworkDigest(parent,'demo-bengali'),/could not be read/);
+});
 test('report period filters out old activity and expired invitations cannot be accepted',()=>{
  const child=ctx('minor-cbse');const c=service.newConversation(child);service.startJourney(child,c.id,'cube');
- service.requestRelationship(ctx('adult','parent'),'professional@visionary.test','guardian');
+ service.requestRelationship(ctx('adult','parent'),'bengali@visionary.test','guardian');
  instant=new Date('2026-10-01T12:00:00Z');assert.equal(service.familyReports(ctx('parent','parent'))[0].objectives.length,0);
- const request=service.visibleRelationships(ctx('professional','professional'))[0];assert.throws(()=>service.changeRelationship(ctx('professional','professional'),request.id,'active'),/expired/);
+ const request=service.visibleRelationships(ctx('bengali','student')).find(r=>r.from==='demo-adult');assert.throws(()=>service.changeRelationship(ctx('bengali','student'),request.id,'active'),/expired/);
+});
+test('seven and thirty day parent report periods use the same consent boundary and source window',()=>{
+ const child=ctx('minor-cbse');const parent=ctx('parent','parent');
+ const conversation=service.newConversation(child);const session=service.startJourney(child,conversation.id,'cube');
+ service.updateSession(child,session.id,{stage:'completed',notes:'PRIVATE JOURNAL'});
+ localStorage.setItem('visionary_entity_Assignment',JSON.stringify([{id:'older',class_id:'class',title:'Older returned work'}]));
+ localStorage.setItem('visionary_entity_Enrollment','[]');
+ localStorage.setItem('visionary_entity_Submission',JSON.stringify([{id:'older-return',assignment_id:'older',class_id:'class',student_email:'minor-cbse@visionary.test',status:'graded',graded_date:instant.toISOString(),text:'PRIVATE ANSWER',grade:10}]));
+ instant=new Date('2026-10-01T12:00:00Z');
+ assert.equal(service.familyReports(parent,7)[0].completed,0);
+ assert.equal(service.familyReports(parent,30)[0].completed,1);
+ assert.equal(service.familyClassworkDigest(parent,'demo-minor-cbse',7).returned.length,0);
+ assert.equal(service.familyClassworkDigest(parent,'demo-minor-cbse',30).returned[0].title,'Older returned work');
+ assert.equal(JSON.stringify(service.familyReports(parent,30)).includes('PRIVATE JOURNAL'),false);
+ assert.equal(JSON.stringify(service.familyClassworkDigest(parent,'demo-minor-cbse',30)).includes('PRIVATE ANSWER'),false);
+ assert.throws(()=>service.familyReports(parent,14),/supported report period/);
+ service.changeRelationship(parent,'demo-parent:demo-minor-cbse','revoked');
+ assert.equal(service.familyReports(parent,30).some(report=>report.id==='demo-minor-cbse'),false);
+ assert.throws(()=>service.familyClassworkDigest(parent,'demo-minor-cbse',30),/no longer shared/);
 });
 test('account quotas span roles, never block saved activities, and reset daily',async()=>{
  service.setDemoUsage(ctx(),10);const c=service.newConversation(ctx('adult','teacher'));
@@ -117,6 +158,13 @@ test('sharing exposes only the confirmed artifact; revocation removes the receiv
  const a=service.saveArtifact(ctx(),{title:'Shared report',body:'Public to this connection'});service.saveArtifact(ctx(),{title:'Private report',body:'PRIVATE'});
  assert.equal(service.sharedArtifacts(recipient).length,0);service.shareArtifact(ctx(),a.id,recipient.personId);
  const received=service.sharedArtifacts(recipient);assert.equal(received.length,1);assert.ok(!JSON.stringify(received).includes('PRIVATE'));assert.ok(!('versions' in received[0]));
+ service.saveArtifact(ctx(),{id:a.id,title:'Revised report',body:'A new private revision'});
+ assert.equal(service.sharedArtifacts(recipient)[0].title,'Shared report');
+ assert.equal(service.sharedArtifacts(recipient)[0].body,'Public to this connection');
+ assert.throws(()=>service.shareArtifact(ctx(),a.id,recipient.personId,JSON.stringify([a.updatedAt,a.title,a.body])),/changed/);
+ const updated=service.snapshot(ctx()).artifacts.find(item=>item.id===a.id);
+ service.shareArtifact(ctx(),a.id,recipient.personId,JSON.stringify([updated.updatedAt,updated.title,updated.body]));
+ assert.equal(service.sharedArtifacts(recipient)[0].body,'A new private revision');
  service.stopSharingArtifact(ctx(),a.id);assert.equal(service.sharedArtifacts(recipient).length,0);assert.equal(service.snapshot(ctx()).artifacts.length,2);
 });
 test('class policies prevent roster browsing, self-grading and ownership transfers',()=>{

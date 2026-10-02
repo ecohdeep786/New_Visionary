@@ -1,380 +1,359 @@
-import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Accessibility as AccessibilityIcon,
-  ChevronRight,
-  Eye,
-  Keyboard,
-  Mic,
-  Volume2,
-  MessageCircle,
-  Smartphone,
-  Monitor,
-  UsersRound,
-  ArrowUpRight,
+  Accessibility as AccessibilityIcon, ArrowUpRight,
+  Lock, Monitor, Smartphone, Tablet, UsersRound,
 } from "lucide-react";
 
 import LandingNav from "@/components/landing/LandingNav";
-import PageHeading, { Accent } from "@/components/landing/PageHeading";
-import SpotIllustration from "@/components/landing/SpotIllustration";
+import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import ValuesStrip from "@/components/landing/ValuesStrip";
+import SpotIllustration from "@/components/landing/SpotIllustration";
 
-const FONT_FAMILY =
-  "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
-const COLORS = {
-  ink: "#121317",
-  surface: "#ffffff",
-  grey: "#5f6368",
-  lightGrey: "#9aa0a6",
-  mist: "#dadce0",
-  border: "#dadce0",
-  soft: "#ffffff",
-  blue: "#4285F4",
-  white: "#ffffff",
-};
+function Reveal({ children, className = "", delay = 0 }) {
+  return (
+    <div
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-[opacity,transform] duration-700 ease-google motion-reduce:transition-none ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
 
-const SECTIONS = [
-  { id: "why-accessibility", number: "01", title: "Why accessibility matters", summary: "Learning should not depend on having only one way to understand or participate." },
-  { id: "different-ways", number: "02", title: "Different ways to use Visionary", summary: "Different people need different ways to interact with the same intelligence." },
-  { id: "vision", number: "03", title: "Seeing and reading", summary: "Make information easier to read, focus on, and understand." },
-  { id: "voice", number: "04", title: "Speaking and listening", summary: "Voice can be another way to ask, answer, learn, and continue." },
-  { id: "navigation", number: "05", title: "Navigation and interaction", summary: "The interface should work with the ways people already navigate devices." },
-  { id: "across-devices", number: "06", title: "Across your devices", summary: "The experience should remain usable wherever your learning happens." },
-  { id: "building", number: "07", title: "What we are building", summary: "Accessibility is ongoing as Visionary becomes a larger product." },
-  { id: "feedback", number: "08", title: "Tell us what is missing", summary: "The people using Visionary should help shape how it becomes more accessible." },
-  { id: "contact", number: "09", title: "Contact", summary: "How to reach Visionary about accessibility." },
+function AnchorChip({ href, children }) {
+  return (
+    <a
+      href={href}
+      className="inline-flex min-h-9 items-center rounded-full border border-[#dadce0] bg-white px-4 text-[13px] font-medium text-[#5f6368] transition-colors hover:bg-[#f8f9fa] hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+    >
+      {children}
+    </a>
+  );
+}
+
+/* ═══ WHAT IS BUILT IN — the four interaction categories, each grounded in
+   behavior the product actually has ═══ */
+const CATEGORIES = [
+  {
+    id: "vision",
+    eyebrow: "Seeing and reading",
+    title: <>Make information easier <span className="text-[#0b57d0]">to read.</span></>,
+    intro: "Visual presentation decides whether information is easy to understand or difficult to reach.",
+    band: "bg-[#f8f9fa]",
+    cards: [
+      { title: "Clear structure", copy: "Information stays structured when people enlarge text, zoom the page, or change how they view it." },
+      { title: "Readable contrast", copy: "Clear hierarchy, readable typography, sufficient contrast, and meaningful labels throughout." },
+      { title: "Zoom & text scaling", copy: "Works with browser and operating-system features: zoom, text scaling, high contrast, and color preferences where available." },
+      { title: "Reduced motion", copy: "Movement respects the reduced-motion setting you already chose on your device." },
+    ],
+  },
+  {
+    id: "voice",
+    eyebrow: "Hearing and speaking",
+    title: <>Use your voice <span className="text-[#0b57d0]">or your ears.</span></>,
+    intro: "Voice can make interaction more natural for people who cannot, or prefer not to, rely on typing and reading alone.",
+    band: "bg-white",
+    cards: [
+      { title: "Ask with your voice", copy: "Voice interaction provides another path into a question, explanation, or learning activity." },
+      { title: "Hear information", copy: "Spoken output makes explanations easier to follow when reading is difficult or tiring." },
+      { title: "Keep the conversation going", copy: "A conversational interface reduces the need to translate a thought into a rigid interface action." },
+      { title: "Availability, honestly", copy: "Voice, audio, and caption availability can vary by device, browser, and language. Visionary identifies these options where they exist." },
+    ],
+  },
+  {
+    id: "motor",
+    eyebrow: "Motor and navigation",
+    title: <>Operated the way <span className="text-[#0b57d0]">you already do.</span></>,
+    intro: "An accessible interface is also an interface that can be operated predictably.",
+    band: "bg-[#f8f9fa]",
+    cards: [
+      { title: "Keyboard navigation", copy: "The experience supports keyboard interaction with a logical navigation order." },
+      { title: "Visible focus", copy: "Clear focus states show where you are, what changed, and what you can do next." },
+      { title: "Usable touch targets", copy: "Controls are sized and spaced for real hands on real screens." },
+      { title: "Your device's controls", copy: "Works with the input methods and assistive features built into a person's device." },
+    ],
+  },
+  {
+    id: "language",
+    eyebrow: "Language and understanding",
+    title: <>The same idea, <span className="text-[#0b57d0]">more than one way in.</span></>,
+    intro: "Understanding should not depend on one language, one format, or one interaction style.",
+    band: "bg-white",
+    cards: [
+      { title: "Three languages today", copy: "Language journeys run in English, Hindi, and Bengali, with more on the roadmap." },
+      { title: "Plain language", copy: "The interface favors clear, understandable wording over jargon." },
+      { title: "Human-reviewed answers", copy: "One tap on any answer flags it for human review, usually within 24 hours." },
+      { title: "Choice of mode", copy: "Read, hear, speak, or navigate: accessibility increases choice instead of forcing one style on everyone." },
+    ],
+  },
 ];
 
-function scrollToSection(id) {
-  const target = document.getElementById(id);
-  if (!target) return;
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
-  window.history.replaceState(null, "", `#${id}`);
-}
+/* ═══ RESOURCES — "Get started at your own pace" link rows ═══ */
+const RESOURCES = [
+  { to: "/help", label: "Help center", desc: "Guides for setup, classrooms, and every persona." },
+  { to: "/download", label: "Download Visionary", desc: "Web, desktop, and mobile: the platforms sync covers." },
+  { to: "/security", label: "Security and sync", desc: "How the Sync Encrypted ID protects what moves between devices." },
+  { to: "/privacy", label: "Privacy policy", desc: "What information is handled, why, and the choices you have." },
+];
 
-function SectionHeading({ number, title }) {
-  return (
-    <div className="mb-6">
-      <div className="mb-3 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.ink }}>{number}</div>
-      <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]" style={{ color: COLORS.ink }}>{title}</h2>
-    </div>
-  );
-}
-
-function Paragraph({ children }) {
-  return (
-    <p className="max-w-[760px] text-[16px] leading-[1.6] tracking-[0.005em]" style={{ color: COLORS.grey }}>{children}</p>
-  );
-}
-
-function FeatureCard({ icon: Icon, eyebrow, title, children }) {
-  return (
-    <div className="rounded-[22px] border bg-white p-6 sm:p-7" style={{ borderColor: COLORS.border }}>
-      <div className="flex h-11 w-11 items-center justify-center rounded-[15px] border" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
-        <Icon className="h-[19px] w-[19px]" strokeWidth={1.7} />
-      </div>
-      <div className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.lightGrey }}>{eyebrow}</div>
-      <h3 className="mt-1.5 text-[19px] font-normal leading-[1.3]" style={{ color: COLORS.ink }}>{title}</h3>
-      <div className="mt-3">
-        <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-      </div>
-    </div>
-  );
-}
-
-function Note({ children }) {
-  return (
-    <div className="mt-6 rounded-[18px] border bg-white px-5 py-5 sm:px-6" style={{ borderColor: COLORS.border }}>
-      <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
-    </div>
-  );
-}
+/* ═══ COMMITMENT — the reference's three-column promise ═══ */
+const COMMITMENT = [
+  {
+    Icon: AccessibilityIcon,
+    title: "Built in, not bolted on",
+    copy: "Accessibility is part of product decisions, interface design, engineering, testing, and research, not something added after the product is finished.",
+  },
+  {
+    Icon: UsersRound,
+    title: "Tested with people",
+    copy: "Accessibility becomes better when the people experiencing barriers have a meaningful role in identifying and solving them.",
+  },
+  {
+    Icon: Lock,
+    title: "Honest about limits",
+    copy: "We avoid accessibility claims the product cannot support, and we say plainly what we are still building.",
+  },
+];
 
 export default function AccessibilityPage() {
-  const [activeId, setActiveId] = useState("why-accessibility");
-  const [showMobileContents, setShowMobileContents] = useState(false);
-
-  const activeSection = useMemo(
-    () => SECTIONS.find((section) => section.id === activeId),
-    [activeId]
-  );
-
-  useEffect(() => {
-    const observers = [];
-    SECTIONS.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (!element) return;
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActiveId(section.id);
-          });
-        },
-        { rootMargin: "-18% 0px -65% 0px", threshold: 0.01 }
-      );
-      observer.observe(element);
-      observers.push(observer);
-    });
-    return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
-
-  useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (!hash || !SECTIONS.some((section) => section.id === hash)) return;
-    requestAnimationFrame(() => {
-      const element = document.getElementById(hash);
-      element?.scrollIntoView({ behavior: "auto", block: "start" });
-      setActiveId(hash);
-    });
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
       <LandingNav />
-            <main id="main">
-        <PageHeading page="Accessibility" eyebrow="Accessibility"
-          h1={<>Accessible by <Accent>design</Accent>.</>}
-          dek="Clear structure, keyboard access, readable contrast, and reduced motion."
-        >
-        </PageHeading>
+      <main id="main">
+        <Breadcrumb page="Accessibility" />
 
-        {/* STORY BAND — text + visual (Google 2-up statement pattern) */}
-        <section className="border-b" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-              <div className="max-w-[560px]">
-                <p className="text-[28px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[40px]" style={{ color: COLORS.ink }}>
-                  The goal is not to make everyone use Visionary the same way.
-                  <br className="hidden lg:block" />
-                  <span style={{ color: COLORS.ink }}>It is to give more people a way in.</span>
-                </p>
-                <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                  Accessibility is part of the product experience. It affects how information is presented, how people interact with Visionary, and how easily someone can keep going when the usual way of doing something does not work for them.
-                </p>
+        {/* HERO — the reference's centered statement + anchor chips */}
+        <section className="px-6 pb-12 pt-10 text-center sm:px-8 lg:px-10 lg:pb-14 lg:pt-16">
+          <Reveal className="mx-auto max-w-[900px]">
+            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Accessibility</p>
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
+              Help every learner learn <span className="accent-gradient">how they learn best.</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
+              One product, many ways in: vision, hearing, movement, thinking, and language on the device you have.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Link
+                to="/register"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              >
+                Explore what's built in
+              </Link>
+            </div>
+            <nav aria-label="On this page" className="mt-7 flex flex-wrap justify-center gap-2">
+              <AnchorChip href="#vision">Seeing and reading</AnchorChip>
+              <AnchorChip href="#voice">Hearing and speaking</AnchorChip>
+              <AnchorChip href="#motor">Motor and navigation</AnchorChip>
+              <AnchorChip href="#language">Language and understanding</AnchorChip>
+              <AnchorChip href="#sync">Sync &amp; devices</AnchorChip>
+            </nav>
+          </Reveal>
+        </section>
+
+        {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
+        <section className="border-y border-[#dadce0] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+          <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="max-w-[560px]">
+              <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317] sm:text-[36px]">
+                The goal is not to make everyone use Visionary the same way.{" "}
+                <span className="text-[#0b57d0]">It is to give more people a way in.</span>
+              </p>
+              <p className="mt-6 max-w-[560px] text-[16px] leading-[1.7] text-[#5f6368]">
+                Accessibility shapes the product experience. It changes how information appears, how people interact with Visionary, and how easily someone can keep going when the usual path does not work.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <SpotIllustration subject="accessibility" className="h-[220px] w-[220px]" title="The universal accessibility symbol inside a blue ring" />
+            </div>
+          </Reveal>
+        </section>
+
+        {/* FEATURE CATEGORIES — the reference's section + card-grid rhythm */}
+        {CATEGORIES.map((category) => (
+          <section
+            key={category.id}
+            id={category.id}
+            aria-labelledby={`${category.id}-title`}
+            className={`scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24 ${category.band}`}
+          >
+            <Reveal className="mx-auto max-w-[1240px]">
+              <div className="max-w-[720px]">
+                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">{category.eyebrow}</p>
+                <h2 id={`${category.id}-title`} className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">
+                  {category.title}
+                </h2>
+                <p className="mt-4 max-w-[620px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">{category.intro}</p>
               </div>
-              <div className="flex justify-center lg:justify-end">
-                <SpotIllustration subject="accessibility" className="h-[200px] w-[200px]" />
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {category.cards.map(({ title, copy }) => (
+                  <article key={title} className={`flex min-h-[190px] flex-col rounded-2xl g-card ${category.band === "bg-white" ? "" : "bg-white"} p-6`}>
+                    <h3 className="text-[16px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
+                    <p className="mt-2 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
+                  </article>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+        ))}
+
+        {/* SYNC SHOWPIECE — one person, every device, end to end encrypted */}
+        <section id="sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+          <Reveal className="mx-auto max-w-[1240px]">
+            <div className="grid items-center gap-10 rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+              <div>
+                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Sync &amp; devices</p>
+                <h2 id="sync-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
+                  One person. Every device. <span className="text-[#0b57d0]">Anywhere.</span>
+                </h2>
+                <p className="mt-5 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
+                  Sign in with your Sync Encrypted ID and your learning follows you, end to end encrypted. Your questions, progress, and memory arrive as they were, and only you can open them. Start on a school laptop, continue on a phone, finish on a home desktop.
+                </p>
+                <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#121317]/20 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#121317]">
+                  <Lock className="h-4 w-4 text-[#188038]" aria-hidden="true" />
+                  End to end encrypted. The key stays with you
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link
+                    to="/security"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  >
+                    How sync works
+                  </Link>
+                  <Link
+                    to="/dashboard/settings"
+                    className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  >
+                    Review your devices
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <div className="relative flex items-center justify-center gap-4 sm:gap-6">
+                  <span aria-hidden="true" className="absolute left-8 right-8 top-1/2 hidden -translate-y-1/2 border-t-2 border-dashed border-[#a8c7fa] sm:block" />
+                  {[
+                    { Icon: Monitor, label: "Computer" },
+                    { Icon: Tablet, label: "Tablet" },
+                    { Icon: Smartphone, label: "Phone" },
+                  ].map(({ Icon, label }) => (
+                    <div key={label} className="relative z-10 flex w-28 flex-col items-center gap-3 rounded-2xl g-card p-4 text-center shadow-[0_1px_3px_rgba(60,64,67,0.1)] sm:w-32">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
+                        <Icon className="h-6 w-6" strokeWidth={1.7} aria-hidden="true" />
+                      </span>
+                      <span className="text-[13px] font-medium text-[#121317]">{label}</span>
+                      <span className="flex items-center gap-1 text-[12px] font-medium text-[#188038]">
+                        <Lock className="h-3 w-3" aria-hidden="true" /> Encrypted
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 text-center text-[13px] leading-[1.6] text-[#5f6368]">
+                  One Sync Encrypted ID. The encryption stays with your account, not with the device.
+                </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </section>
 
-        {/* MOBILE CONTENTS */}
-        <section className="border-b lg:hidden" style={{ borderColor: COLORS.border }}>
-          <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
-            <button type="button" onClick={() => setShowMobileContents((value) => !value)} aria-expanded={showMobileContents}
-              className="flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-              <span>
-                <span className="block text-[12px] uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</span>
-                <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title}</span>
-              </span>
-              <ChevronRight className={`h-5 w-5 transition-transform duration-200 ${showMobileContents ? "rotate-90" : ""}`} strokeWidth={1.7} style={{ color: COLORS.grey }} />
-            </button>
-            {showMobileContents && (
-              <div className="pb-5">
-                <div className="overflow-hidden rounded-[18px] border" style={{ borderColor: COLORS.border }}>
-                  {SECTIONS.map((section) => {
-                    const active = activeId === section.id;
-                    return (
-                      <button key={section.id} type="button"
-                        onClick={() => { scrollToSection(section.id); setActiveId(section.id); setShowMobileContents(false); }}
-                        className="flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
-                        style={{ borderColor: COLORS.border, backgroundColor: active ? COLORS.soft : COLORS.white }}>
-                        <span className="mt-0.5 text-[12px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
-                        <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
+        {/* GET STARTED — the reference's own-pace resource split */}
+        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+          <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <div>
+              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Resources</p>
+              <h2 id="resources-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[40px]">
+                Start at your own pace.
+              </h2>
+              <p className="mt-4 max-w-[420px] text-[15px] leading-[1.75] text-[#5f6368]">
+                Move at your own speed. Every resource below is free to read, and the team answers every barrier report.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-2xl g-card">
+              {RESOURCES.map(({ to, label, desc }, i) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={`group flex items-center gap-4 bg-white px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset ${i < RESOURCES.length - 1 ? "border-b border-[#dadce0]" : ""}`}
+                >
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[15px] font-medium text-[#121317]">{label}</span>
+                    <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">{desc}</span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
+                </Link>
+              ))}
+              <a
+                href="mailto:accessibility@visionary.org.in"
+                className="group flex items-center gap-4 border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[15px] font-medium text-[#121317]">Tell us what is missing</span>
+                  <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier: accessibility@visionary.org.in</span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
+              </a>
+            </div>
+          </Reveal>
         </section>
 
-        {/* ACCESSIBILITY CONTENT */}
-        <section>
-          <div className="mx-auto max-w-[1240px] px-6 py-12 sm:px-8 lg:px-10 lg:py-20">
-            <div className="grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-20">
-              {/* DESKTOP CONTENTS */}
-              <aside className="hidden lg:block">
-                <div className="sticky top-24">
-                  <div className="mb-4 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Contents</div>
-                  <nav aria-label="Accessibility sections">
-                    <div className="space-y-1">
-                      {SECTIONS.map((section) => {
-                        const active = activeId === section.id;
-                        return (
-                          <button key={section.id} type="button" onClick={() => scrollToSection(section.id)}
-                            className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 hover:bg-[#121317]/5.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                            style={{ backgroundColor: active ? COLORS.soft : "transparent" }}>
-                            <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium" style={{ color: active ? COLORS.blue : COLORS.grey }}>{section.number}</span>
-                            <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.grey }}>{section.title}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </nav>
-                </div>
-              </aside>
-
-              {/* MAIN CONTENT */}
-              <div className="min-w-0">
-                <article className="divide-y divide-[#dadce0]">
-                  {/* 01 */}
-                  <section id="why-accessibility" className="scroll-mt-24 pb-14 sm:pb-16">
-                    <SectionHeading number="01" title="Why accessibility matters" />
-                    <Paragraph>Learning should not depend on having only one way to understand or participate.</Paragraph>
-                    <div className="mt-5"><Paragraph>Someone may prefer to listen instead of read. Someone else may need larger text, stronger contrast, keyboard navigation, or more time to process information. Another person may use a different device or input method entirely.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Visionary's goal is to make its learning experience flexible enough to accommodate different needs without making people feel like they are using a different product.</Paragraph></div>
-                    <Note>Accessibility is not a separate audience. It is part of building a product that more people can use.</Note>
-                  </section>
-
-                  {/* 02 */}
-                  <section id="different-ways" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="02" title="Different ways to use Visionary" />
-                    <Paragraph>The same idea can be reached in more than one way.</Paragraph>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <FeatureCard icon={Eye} eyebrow="See" title="Read and view">Information remains structured when people enlarge text, zoom the page, or adjust how they view it.</FeatureCard>
-                      <FeatureCard icon={Volume2} eyebrow="Hear" title="Listen and follow">Spoken explanations can provide another way to receive information and stay with an idea.</FeatureCard>
-                      <FeatureCard icon={Mic} eyebrow="Speak" title="Use your voice">Voice can be another way to ask questions, explain an idea, or interact with learning tools.</FeatureCard>
-                      <FeatureCard icon={Keyboard} eyebrow="Navigate" title="Use your controls">The experience supports keyboard navigation, visible focus, touch, and the controls built into a person’s device.</FeatureCard>
-                    </div>
-                  </section>
-
-                  {/* 03 */}
-                  <section id="vision" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="03" title="Seeing and reading" />
-                    <Paragraph>Visual presentation can change whether information is easy to understand or difficult to reach.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary uses clear hierarchy, readable typography, sufficient contrast, meaningful labels, and layouts that adapt as text size or display conditions change.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>The interface works with browser and operating-system features such as zoom, text scaling, high contrast, and color preferences where those features are available.</Paragraph></div>
-                    <Note>If a page becomes difficult to use with an assistive technology, tell us the device, browser, page, and task involved so we can reproduce the barrier.</Note>
-                  </section>
-
-                  {/* 04 */}
-                  <section id="voice" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="04" title="Speaking and listening" />
-                    <Paragraph>Voice can make interaction more natural for people who cannot, or simply prefer not to, rely on typing and reading alone.</Paragraph>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                      <FeatureCard icon={Mic} eyebrow="Input" title="Ask naturally">Voice interaction can provide another path into a question, explanation, or learning activity.</FeatureCard>
-                      <FeatureCard icon={MessageCircle} eyebrow="Conversation" title="Keep the conversation going">A conversational interface can reduce the need to translate a thought into a rigid interface action.</FeatureCard>
-                      <FeatureCard icon={Volume2} eyebrow="Output" title="Hear information">Spoken output can make explanations easier to follow in situations where reading is difficult or tiring.</FeatureCard>
-                      <FeatureCard icon={UsersRound} eyebrow="Choice" title="Use the mode that works">Accessibility increases choice instead of forcing one interaction style on everyone.</FeatureCard>
-                    </div>
-                    <Note>Voice, audio, and caption availability can vary by device, browser, language, and content. Visionary identifies these options where they are available.</Note>
-                  </section>
-
-                  {/* 05 */}
-                  <section id="navigation" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="05" title="Navigation and interaction" />
-                    <Paragraph>An accessible interface is also an interface that can be operated predictably.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary supports clear focus states, logical navigation order, understandable controls, usable touch targets, and keyboard interaction wherever applicable.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>Interactive content communicates what is happening, what changed, and what the user can do next.</Paragraph></div>
-                    <Note>Our review covers keyboard navigation, focus behavior, responsive layouts, zoom, reduced-motion preferences, semantic labels, and representative screen-reader paths.</Note>
-                  </section>
-
-                  {/* 06 */}
-                  <section id="across-devices" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="06" title="Across your devices" />
-                    <Paragraph>Learning does not always happen at the same desk.</Paragraph>
-                    <div className="mt-5"><Paragraph>Visionary's current product direction supports use across web, desktop, and mobile, so the same learning journey can move with the person using it.</Paragraph></div>
-                    <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                      <FeatureCard icon={Monitor} eyebrow="Web" title="In the browser">Open Visionary without requiring a separate desktop installation.</FeatureCard>
-                      <FeatureCard icon={Smartphone} eyebrow="Mobile" title="On smaller screens">The experience remains readable, tappable, and understandable on mobile devices.</FeatureCard>
-                      <FeatureCard icon={Monitor} eyebrow="Desktop" title="At your desk">Desktop experiences preserve the same underlying learning journey.</FeatureCard>
-                    </div>
-                    <Note>See the Download page for current platforms. Accessibility options may differ where an operating system or browser supplies the underlying control.</Note>
-                  </section>
-
-                  {/* 07 */}
-                  <section id="building" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="07" title="What we are building" />
-                    <Paragraph>Accessibility is not a checkbox that gets completed once.</Paragraph>
-                    <div className="mt-5"><Paragraph>As Visionary grows, accessibility should be part of product decisions, interface design, engineering, testing, and research—not something added after the product is finished.</Paragraph></div>
-                    <div className="mt-5"><Paragraph>That includes testing with real users, identifying barriers early, and improving the experience when a person tells us that something does not work for them.</Paragraph></div>
-                    <div className="mt-6 rounded-[22px] border p-6 sm:p-7">
-                      <div className="flex items-start gap-4">
-                        <AccessibilityIcon className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.6} style={{ color: COLORS.blue }} />
-                        <div>
-                          <h3 className="text-[19px] font-normal" style={{ color: COLORS.ink }}>Build with people, not assumptions.</h3>
-                          <p className="mt-3 max-w-[680px] text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                            Accessibility becomes better when the people experiencing barriers have a meaningful role in identifying and solving them.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* 08 */}
-                  <section id="feedback" className="scroll-mt-24 py-14 sm:py-16">
-                    <SectionHeading number="08" title="Tell us what is missing" />
-                    <Paragraph>You should not have to work around a product in silence.</Paragraph>
-                    <div className="mt-5"><Paragraph>Tell us when a page, control, explanation, interaction, or device experience creates a barrier. Specific details help us understand what happened and where it happened.</Paragraph></div>
-                    <div className="mt-6">
-                      <a href="mailto:accessibility@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                        style={{ color: COLORS.blue }}>
-                        accessibility@visionary.org.in
-                        <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
-                      </a>
-                    </div>
-                    <Note>Please describe the task you were trying to complete and the barrier you met. Avoid sending passwords, medical records, or other unnecessary sensitive information.</Note>
-                  </section>
-
-                  {/* 09 */}
-                  <section id="contact" className="scroll-mt-24 pt-14 sm:pt-16">
-                    <SectionHeading number="09" title="Contact" />
-                    <Paragraph>For accessibility questions, accessibility feedback, or barriers using Visionary, contact:</Paragraph>
-                    <div className="mt-6">
-                      <a href="mailto:accessibility@visionary.org.in"
-                        className="inline-flex items-center gap-2 text-[20px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                        style={{ color: COLORS.blue }}>
-                        accessibility@visionary.org.in
-                        <ArrowUpRight className="h-5 w-5" strokeWidth={1.7} />
-                      </a>
-                    </div>
-                    <div className="mt-6">
-                      <Link to="/help" className="inline-flex items-center gap-2 text-[15px] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
-                        Visit Help
-                        <ChevronRight className="h-4 w-4" strokeWidth={1.8} />
-                      </Link>
-                    </div>
-                  </section>
+        {/* COMMITMENT — the reference's three-column promise */}
+        <section aria-labelledby="commitment-title" className="border-t border-[#dadce0] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+          <Reveal className="mx-auto max-w-[1240px]">
+            <div className="mx-auto max-w-[720px] text-center">
+              <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
+                Our commitment.
+              </h2>
+              <p className="mx-auto mt-4 max-w-[560px] text-[15px] leading-[1.75] text-[#5f6368] sm:text-[16px]">
+                Accessibility is not a checkbox that gets completed once. We design, build, and test Visionary with accessibility as part of the work.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-4 md:grid-cols-3">
+              {COMMITMENT.map(({ Icon, title, copy }) => (
+                <article key={title} className="flex min-h-[220px] flex-col rounded-2xl g-card p-6 sm:p-7">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
+                    <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
+                  <p className="mt-2 text-[14px] leading-[1.7] text-[#5f6368]">{copy}</p>
                 </article>
+              ))}
+            </div>
+          </Reveal>
+        </section>
 
-                {/* CLOSING */}
-                <section className="mt-20 border-t border-[#dadce0] pt-14 sm:mt-24 sm:pt-16">
-                  <div className="max-w-[900px]">
-                    <div className="mb-5 text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>Accessibility</div>
-                    <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] sm:text-[48px]" style={{ color: COLORS.ink }}>
-                      Understanding should have
-                      <br />
-                      <span style={{ color: COLORS.blue }}>more than one way in.</span>
-                    </h2>
-                    <p className="mt-[calc(36px*0.499)] sm:mt-[calc(48px*0.499)] max-w-[720px] text-[17px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary is built around the idea that people learn differently. Accessibility is part of making that idea real.
-                    </p>
-                    <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <Link to="/download" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        See devices
-                      </Link>
-                      <Link to="/privacy" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        Privacy
-                      </Link>
-                      <Link to="/security" className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-[15px] hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
-                        Security
-                      </Link>
-                    </div>
-                  </div>
-                </section>
+        {/* CLOSING — the reference's blue DNA band */}
+        <section aria-labelledby="closing-title" className="px-6 pb-24 sm:px-8 lg:px-10">
+          <Reveal className="mx-auto max-w-[1240px]">
+            <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-16 text-center sm:px-12 lg:py-20">
+              <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#121317]">
+                Accessibility is part of <span className="text-[#0b57d0]">our design DNA.</span>
+              </h2>
+              <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.7] text-[#3c4043] sm:text-[16px]">
+                Visionary grows from the idea that people learn differently. Accessibility makes that idea real, and your feedback builds it.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="mailto:accessibility@visionary.org.in"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                >
+                  Email the accessibility team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+                <Link
+                  to="/how-it-works"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                >
+                  Explore the product
+                </Link>
               </div>
             </div>
-          </div>
+          </Reveal>
         </section>
+
       </main>
+      <ValuesStrip current="/accessibility" />
       <LandingFooter variant="quiet" />
     </div>
   );

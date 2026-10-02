@@ -25,7 +25,7 @@ const COLORS = {
   white: "#ffffff",
   graphite: "#5f6368",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -117,9 +117,9 @@ function Paragraph({ children }) {
 
 function BulletList({ items }) {
   return (
-    <ul className="mt-6 max-w-[760px] rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+    <ul className="mt-6 max-w-[760px] rounded-[16px] g-card p-6">
       {items.map((item, index) => (
-        <li key={index} className="flex items-start gap-3 py-1.5 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>
+        <li key={index} className="flex items-start gap-3 py-1.5 text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>
           <span aria-hidden="true" className="mt-[0.68em] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
           <span>{item}</span>
         </li>
@@ -130,7 +130,7 @@ function BulletList({ items }) {
 
 function Note({ children }) {
   return (
-    <div className="mt-6 max-w-[760px] rounded-[16px] border bg-[#f8f9fa] px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
+    <div className="mt-6 max-w-[760px] rounded-[16px] bg-[#f8f9fa] px-5 py-5 sm:px-6">
       <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>{children}</p>
     </div>
   );
@@ -138,7 +138,7 @@ function Note({ children }) {
 
 function LearnMoreRow({ to, label }) {
   return (
-    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
+    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
       {label}
       <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
     </Link>
@@ -216,17 +216,17 @@ export default function TermsPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
-                          <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                          <span className="mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                           <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                         </button>
                       );
                     })}
                   </div>
                 </nav>
-                <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                <div className="mt-8 border-t pt-6">
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
@@ -244,16 +244,16 @@ export default function TermsPage() {
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="document" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
                   <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Terms of service</p>
-                  <h1 className="mt-4 max-w-[720px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] sm:text-[48px] lg:text-[56px]" style={{ color: COLORS.ink }}>
-                    Clear rules, written to be understood.
+                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+                    Clear rules, written <span className="accent-gradient">to be understood.</span>
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-                    What you can expect from Visionary, and what we expect from the people who use it — without the obscure language.
+                    What you can expect from Visionary, and what we expect from the people who use it, without the obscure language.
                   </p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {TERMS_PROMISES.map((p) => (
-                      <span key={p} className="flex items-center gap-1.5 text-[13.5px] font-medium" style={{ color: COLORS.ink }}>
+                      <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
                         <ShieldCheck className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.navy }} aria-hidden="true" />
                         {p}
                       </span>
@@ -267,7 +267,7 @@ export default function TermsPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Questions about these Terms?</p>
-                      <p className="mt-0.5 text-[14.5px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
+                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
                       <a href="mailto:legal@visionary.org.in" className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
                         legal@visionary.org.in
                         <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
@@ -281,7 +281,7 @@ export default function TermsPage() {
                 </div>
 
                 {/* Mobile TOC */}
-                <div className="border-b pb-4 lg:hidden" style={{ borderColor: COLORS.mist }}>
+                <div className="border-b pb-4 lg:hidden">
                   <button
                     type="button"
                     onClick={() => setShowMobileContents((value) => !value)}
@@ -290,14 +290,14 @@ export default function TermsPage() {
                     className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     <span>
-                      <span className="block text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
                       <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
                   </button>
                   {showMobileContents && (
                     <div id="terms-mobile-contents" className="pt-4">
-                      <div className="overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                      <div className="overflow-hidden rounded-[16px] border">
                         {SECTIONS.map((section) => {
                           const active = activeId === section.id;
                           return (
@@ -309,7 +309,7 @@ export default function TermsPage() {
                               className="flex min-h-12 w-full items-start gap-4 border-b px-4 py-3 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                               style={{ borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white }}
                             >
-                              <span className="mt-0.5 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                              <span className="mt-0.5 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                               <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                             </button>
                           );
@@ -325,10 +325,13 @@ export default function TermsPage() {
                   <h2 id="terms-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] border bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6" style={{ borderColor: COLORS.mist }}>
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
-                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}<ArrowRight className="ml-auto h-4 w-4 shrink-0" style={{ color: COLORS.grey }} aria-hidden="true" /></span>
+                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
+                        {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
+                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
+                        <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                       </a>
                     ))}
                   </div>
@@ -392,7 +395,7 @@ export default function TermsPage() {
                   <div className="mt-5"><Paragraph>You must have the necessary rights and permissions to provide that content.</Paragraph></div>
                   <div className="mt-5"><Paragraph>When operating Visionary requires us to store, process, display, or transmit your content, you give Visionary the permissions reasonably necessary to provide those services.</Paragraph></div>
                   <div className="mt-5"><Paragraph>Your Privacy Policy explains separately how personal information and other data are handled.</Paragraph></div>
-                  <LearnMoreRow to="/privacy" label="Read the Privacy Policy" />
+                  <LearnMoreRow to="/privacy" label="Read the privacy policy" />
                 </section>
 
                 {/* 06 */}
@@ -415,7 +418,7 @@ export default function TermsPage() {
                   <Paragraph>Some Visionary features or services may require payment.</Paragraph>
                   <div className="mt-5"><Paragraph>Prices, billing periods, available features, renewal terms, refunds, and cancellation rules are described on the Pricing page or at the time of purchase.</Paragraph></div>
                   <div className="mt-5"><Paragraph>A subscription does not transfer ownership of Visionary or its underlying technology to you.</Paragraph></div>
-                  <Note>The published Terms must be kept consistent with the actual pricing, billing, refund, tax, and cancellation implementation.</Note>
+                  <Note>The published Terms must stay consistent with the actual pricing, billing, refund, tax, and cancellation implementation.</Note>
                   <LearnMoreRow to="/pricing" label="See the Pricing page" />
                 </section>
 
@@ -434,7 +437,7 @@ export default function TermsPage() {
                   <Paragraph>We may restrict, suspend, or terminate access when necessary to protect users, Visionary, or the integrity of the service.</Paragraph>
                   <BulletList items={[
                     "These Terms or applicable policies are seriously or repeatedly violated.",
-                    "The service is being used in a way that creates a safety, security, or legal risk.",
+                    "Use of the service creates a safety, security, or legal risk.",
                     "We are required to do so by law or legal process.",
                     "Your conduct causes harm or significant risk to another person, organization, or Visionary.",
                   ]} />
@@ -444,7 +447,7 @@ export default function TermsPage() {
                 {/* 10 */}
                 <section id="responsibility" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="10" title="Disclaimers and responsibility" />
-                  <Paragraph>Visionary is provided subject to applicable law.</Paragraph>
+                  <Paragraph>Visionary operates subject to applicable law.</Paragraph>
                   <div className="mt-5"><Paragraph>We do not promise that the service will always be uninterrupted, error-free, completely accurate, or available in every circumstance.</Paragraph></div>
                   <div className="mt-5"><Paragraph>You remain responsible for reviewing important information before relying on it, particularly where an incorrect result could materially affect a person or organization.</Paragraph></div>
                   <div className="mt-5"><Paragraph>Any limitation of liability, warranty disclaimer, indemnification provision, or related legal language will apply only to the extent permitted by applicable law.</Paragraph></div>
@@ -483,10 +486,10 @@ export default function TermsPage() {
         <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
-            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2" style={{ borderColor: COLORS.mist }}>
+            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
                 { term: "Visionary", def: "The learning workspace, its features, and the connected services described on this site." },
-                { term: "Workspace", def: "The learning environment you use in a browser — it holds the questions, practice, and projects from your sessions." },
+                { term: "Workspace", def: "The learning environment you use in a browser. It holds the questions, practice, and projects from your sessions." },
                 { term: "Content", def: "What you submit, upload, create, or share through Visionary, for which you stay responsible." },
                 { term: "Plans", def: "Paid feature sets with the prices, billing periods, renewal terms, refunds, and cancellation rules shown at purchase." },
                 { term: "Organization administrator", def: "A person authorized to accept these Terms and manage accounts on behalf of a school, company, or institution." },
@@ -494,7 +497,7 @@ export default function TermsPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -502,22 +505,25 @@ export default function TermsPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { to: "/privacy", label: "Privacy Policy", desc: "Your learning is personal.", Icon: Lock },
+                { to: "/privacy", label: "Privacy policy", desc: "Your learning is personal.", Icon: Lock },
                 { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
                 { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <Link key={to} to={to} className="group relative overflow-hidden rounded-[12px] g-card p-5 pb-14 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
-                  <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                  <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                  {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-white" />
+                  <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                 </Link>
               ))}
             </div>

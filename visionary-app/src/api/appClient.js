@@ -5,6 +5,8 @@
  */
 
 import { previewPolicy } from './previewPermissions.js';
+import {connectionStatus} from '../lib/connectionAvailability.js';
+import {curriculumPublicationRevision} from '../lib/curriculumPublication.js';
 const USERS_KEY = 'visionary_users';
 const SESSION_TOKEN_KEY = 'visionary_session_token';
 const SESSIONS_KEY = 'visionary_sessions';
@@ -280,16 +282,26 @@ const auth = {
     return sanitizeUser(users[userIndex]);
   },
 
-  async updateMe(updates) {
+  async updateMe(updates, options = {}) {
     const session = getCurrentSession();
     if (!session) throw new Error('Not signed in');
 
     const users = getUsers();
     const userIndex = users.findIndex((u) => u.id === session.userId || u.email === session.email);
     if (userIndex < 0) throw new Error('User not found');
+    if(options.expectedUserId!==undefined&&users[userIndex].id!==options.expectedUserId)throw new Error('The signed-in account changed. Your profile edits were not saved.');
+    if(options.expectedThemeColor!==undefined&&(users[userIndex].preferences?.theme_color||'blue')!==options.expectedThemeColor){const error=new Error('The account accent changed in another tab. Review the saved color before retrying.');error.name='AppearanceConflictError';throw error;}
+    if(options.expectedProfileName!==undefined&&(users[userIndex].full_name||'')!==options.expectedProfileName){const error=new Error('Your display name changed since you opened it. Export your edits or load the latest saved name before retrying.');error.name='ProfileConflictError';throw error;}
+    if(options.expectedProfileName!==undefined&&(typeof updates.full_name!=='string'||!updates.full_name.trim()||updates.full_name.trim().length>80))throw new Error('Enter a display name of 1 to 80 characters.');
 
     // Prevent overwriting sensitive credential fields via updateMe
     const { password, passwordHash, salt, id, email, createdAt, ...safeUpdates } = updates;
+    if(options.expectedProfileName!==undefined)safeUpdates.full_name=safeUpdates.full_name.trim();
+    if(options.expectedThemeColor!==undefined){
+      const theme=safeUpdates.preferences?.theme_color;
+      if(!['blue','green','amber','red','purple','teal'].includes(theme))throw new Error('Choose a supported account accent.');
+      safeUpdates.preferences={...users[userIndex].preferences,theme_color:theme};
+    }
 
     users[userIndex] = { ...users[userIndex], ...safeUpdates };
     writeJson(USERS_KEY, users);
@@ -313,7 +325,10 @@ const auth = {
 
 /* Personal account separation in the preview; production needs database rules. */
 const personalEntities = new Set(['Subject', 'Topic', 'Exam', 'StudyLog', 'Question', 'Bookmark', 'Project', 'PracticeSession']);
-const readEntities = (name) => readJson(`visionary_entity_${name}`, []);
+const readEntities = (name) => {
+  try {const raw=localStorage.getItem(`visionary_entity_${name}`);if(!raw)return [];const rows=JSON.parse(raw);if(!Array.isArray(rows)||rows.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw Error();return rows;}
+  catch {throw new Error(`${name} records could not be read. Saved records have not been replaced. Retry after reviewing the local data.`);}
+};
 const entityUser = () => {
   const user=getCurrentUser();if(!user)return null;
   const db=readJson('visionary_workspace_v2',null);
@@ -325,11 +340,14 @@ const visibleRecords = (name, ownerEmail) => {
   const currentUser = entityUser();
   if (name === 'User') return currentUser?[{id:currentUser.id,email:currentUser.email}]:[];
   if (!currentUser) return [];
-  if (!personalEntities.has(name)) return readEntities(name).filter(r=>previewPolicy(currentUser,readEntities).canRead(name,r));
+  if (!personalEntities.has(name)) {
+    const policy=previewPolicy(currentUser,readEntities);
+    return readEntities(name).filter(r=>policy.canRead(name,r)).map(r=>policy.projectRead(name,r));
+  }
   const owner = ownerEmail || currentUser.email;
   if (owner !== currentUser.email) {
     const shared = ['Subject', 'Topic', 'StudyLog'].includes(name) && currentUser.identity === 'parent' &&
-      readEntities('FamilyLink').some((link) => link.parent_email === currentUser.email && link.child_email === owner && link.status === 'active');
+      readEntities('FamilyLink').some((link) => link.parent_email === currentUser.email && link.child_email === owner && connectionStatus(link) === 'active');
     if (!shared) return [];
   }
   return readEntities(name).filter((record) => (record.owner_email || record.student_email) === owner&&
@@ -362,7 +380,7 @@ const entityStore = new Proxy({}, {
       if(name!=='Classroom'||!['student','professional'].includes(entityUser()?.identity))throw new Error('Use a learner workspace to join a class.');
       const normalized=String(code||'').trim().toUpperCase();if(!normalized)return null;
       const c=readEntities('Classroom').find(c=>c.join_code===normalized);
-      return c?{id:c.id,name:c.name,teacher_name:c.teacher_name,join_code:c.join_code}:null;
+      return c&&previewPolicy(entityUser(),readEntities).canJoinClass(c.id)?{id:c.id,name:c.name,teacher_name:c.teacher_name,join_code:c.join_code}:null;
     },
     async list(sort, limit) { return sortedRecords(visibleRecords(name), sort, limit); },
     async filter(filters = {}, sort, limit) {
@@ -372,18 +390,29 @@ const entityStore = new Proxy({}, {
     async get(id) { return visibleRecords(name).find((record) => record.id === id) || null; },
     async create(record) {
       const created = prepareRecord(name, record);
-      writeJson(`visionary_entity_${name}`, [...readEntities(name), created]);
+      const rows=readEntities(name);
+      if(name==='Submission'){
+        const existing=rows.find(row=>row.assignment_id===created.assignment_id&&row.class_id===created.class_id&&row.student_email===created.student_email);
+        if(existing){if(existing.text===created.text&&JSON.stringify(existing.responses||[])===JSON.stringify(created.responses||[])&&existing.status!=='revision_requested')return existing;throw new Error('A response is already saved for this assignment. Reopen it before submitting a different copy.');}
+      }
+      writeJson(`visionary_entity_${name}`, [...rows, created]);
       notifyChange();
       return created;
     },
     async bulkCreate(newRecords) {
       const created = newRecords.map((record) => prepareRecord(name, record));
-      writeJson(`visionary_entity_${name}`, [...readEntities(name), ...created]);
+      const rows=readEntities(name);
+      if(name==='Submission'){
+        const keys=new Set(rows.map(row=>JSON.stringify([row.class_id,row.assignment_id,row.student_email])));
+        for(const row of created){const key=JSON.stringify([row.class_id,row.assignment_id,row.student_email]);if(keys.has(key))throw new Error('A response is already saved for this assignment. No bulk submissions were added.');keys.add(key);}
+      }
+      writeJson(`visionary_entity_${name}`, [...rows, ...created]);
       notifyChange();
       return created;
     },
-    async update(id, updates) {
+    async update(id, updates, options = {}) {
       if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      if(name==='Classroom'&&Object.hasOwn(updates,'curriculum_publications')&&options.expectedCurriculumRevision!==curriculumPublicationRevision(readEntities(name).find(record=>record.id===id)?.curriculum_publications))throw new Error('The published curriculum changed. Review the latest copies before publishing.');
       if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'update',updates);
       const { id: ignoredId, owner_email: ignoredOwner, workspace_id: ignoredWorkspace, ...fields } = updates;
       const updated = readEntities(name).map((record) => record.id === id ? { ...record, ...fields } : record);

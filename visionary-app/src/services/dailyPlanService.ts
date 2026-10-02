@@ -90,7 +90,7 @@ export function getDailyPlan(ctx: RequestContext): DailyPlan {
   reason: 'The most recently updated unfinished learning unit in this workspace.', source: 'Saved learning activity', done: false,
  });
  const artifacts = [...snapshot(ctx).artifacts].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
- const project = artifacts.find(a => a.status !== 'completed' && a.learningSessionId !== openUnit?.id);
+ const project = artifacts.find(a => a.status !== 'completed' && (!openUnit || a.learningSessionId !== openUnit.id));
  if (project) steps.push({
   id: `build:${project.id}`, kind: 'build', title: project.title,
   detail: 'Your saved project remains in Build.',

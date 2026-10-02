@@ -1,0 +1,11 @@
+✔ profile save compares the loaded name and rejects stale tabs without replacing newer account fields (3.4708ms)
+✔ profile save remains bound to the original signed-in account after a session switch (0.839ms)
+✔ invalid and failed profile saves retain original account data for retry (1.6457ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 381.4937

@@ -1,0 +1,37 @@
+✔ versioned equivalent/archive/unresolved mappings preserve original activities, evidence and due stores (1454.1186ms)
+✔ mapping declarations reject ambiguity and incomplete review before replacing cached content (168.0061ms)
+✔ unknown legacy origins, wrong versions, absent languages and other owners remain unresolved (155.048ms)
+✔ changed source versions do not replace a pinned activity explanation or language (314.5621ms)
+✔ explicit bridge starts fresh on new source and retries resume without transferring original answers (128.1624ms)
+✔ postponement or cancellation during async bridge opening prevents persistence (249.1892ms)
+✔ aborted bridge opening retains all original learning bytes (81.0242ms)
+✔ fraction representation position persists without evidence; invalid and failed changes preserve it (32.2717ms)
+✔ cube entry points reuse one authored unit without importing old topic results as evidence (19.209ms)
+✔ authored cube criteria require written self review without claiming a grade (63.5209ms)
+✔ interrupted project edits recover only inside their workspace and can be discarded (2.9089ms)
+✔ the cube view resumes in its learning unit and review preserves recorded evidence (29.5915ms)
+✔ review queue uses recorded evidence timing and a new review retains completed work (38.2325ms)
+✔ an invalid or failed model-view save leaves the prior saved view intact (12.7235ms)
+✔ student Home → Learn → Ask → Practice → Build persists one connected activity and evidence (71.1709ms)
+✔ connected teaching records only a versioned response contract in Learn and Ask (24.4293ms)
+✔ a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events (38.6403ms)
+✔ a failed learning-unit write after project creation recovers the same artifact on retry (59.09ms)
+✔ wrong practice answer lowers difficulty and requests remediation without a generated local answer (34.0567ms)
+✔ class-started learning reaches only the assigned teacher aggregate (151.1126ms)
+✔ changing teaching language keeps the same session and localized authored check (33.9148ms)
+✔ changing to an unavailable language clears old teaching text without erasing the learning position (11.1477ms)
+✔ language change retrieves a newly available sourced variant without changing unit identity (43.5267ms)
+✔ a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback (18.3232ms)
+✔ official concept mapping resumes the provisional learning unit without splitting its progress (30.1171ms)
+✔ minor profiles cannot enter a professional journey through the service (0.9434ms)
+✔ unsubmitted learning selection resumes privately without producing scored evidence (29.653ms)
+✔ stale question or retry round cannot overwrite draft or record a graded answer (21.9616ms)
+✔ failed draft write preserves old selection for retry and another owner cannot recover it (31.8713ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6489.8871

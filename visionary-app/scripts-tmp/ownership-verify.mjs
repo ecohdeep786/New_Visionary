@@ -1,0 +1,53 @@
+import {chromium} from 'playwright-core';import assert from 'node:assert/strict';
+const browser=await chromium.launch({channel:'msedge',headless:true,args:['--no-proxy-server']});const context=await browser.newContext({viewport:{width:390,height:844}});
+await context.addInitScript(()=>{
+ if(localStorage.getItem('visionary_workspace_v2'))return;
+ const id='bridge-student',workspaceId=id+':student',selection={board:'Reviewed fixture',classLevel:'6',subject:'Mathematics'},source={provider:'Fictional reviewed source',sourceId:'fixture:6',version:'1'};
+ const user={id,email:'bridge@fixture.test',full_name:'Bridge learner',identity:'student',roles:['student'],age_band:'adult',onboarding_complete:true};
+ const graph=level=>{const key='fixture:'+level,ids=level==='6'?['old-a','old-b']:['new-a','new-b'];return{syllabus:{...selection,classLevel:level,id:key,status:'official',contentLocale:'en',availableLocales:['en'],provenance:level==='6'?source:{...source,sourceId:'fixture:7'},textbooks:[{id:key+':book',title:'Fictional source',chapterIds:[key+':chapter']}],chapters:[{id:key+':chapter',title:'Reviewed chapter',textbookId:key+':book',topicIds:[key+':topic'],status:'official'}]},topics:[{id:key+':topic',title:'Reviewed topic',chapterId:key+':chapter',conceptIds:ids,status:'official'}],concepts:ids.map(conceptId=>({id:conceptId,title:conceptId,topicId:key+':topic',status:'official',prerequisiteIds:conceptId==='new-b'?['new-a']:[],representations:[],locale:'en',availableLocales:['en'],explanation:'Fictional sourced explanation for bridge verification.'}))};};
+ const target=graph('7');target.continuityMappings=['old-a','old-b'].map((conceptId,index)=>({fromConceptId:conceptId,fromSelection:selection,fromSource:source,disposition:index?'archive':'equivalent',...(index?{}:{toConceptId:'new-a'}),reason:index?'Removed from this curriculum; original work remains accessible.':'Reviewed one-to-one objective continuity.',reviewedBy:'fixture-reviewer',reviewedAt:new Date().toISOString()}));
+ const from={board:selection.board,classLevel:'6',subjects:['Mathematics']},to={...from,classLevel:'7'};
+ localStorage.setItem('visionary_users',JSON.stringify([user]));localStorage.setItem('visionary_sessions',JSON.stringify([{token:'bridge-token',userId:id,email:user.email,expiresAt:Date.now()+86400000}]));localStorage.setItem('visionary_session_token','bridge-token');
+ localStorage.setItem('visionary_workspace_v2',JSON.stringify({version:2,people:[{id,email:user.email,name:user.full_name,ageBand:'adult',roles:['student'],learningContext:to}],workspaces:[{id:workspaceId,personId:id,role:'student',name:'Learning',lastPath:'/dashboard/home'}],active:{[id]:workspaceId},relationships:[],data:{[workspaceId]:{conversations:[],sessions:[],artifacts:[],resources:[],notifications:[],audit:[],preferences:{locale:'en',interfaceLocale:'en',voice:false,memory:true},subscription:{plan:'Free',state:'active',invoices:[],usage:0,usageDay:new Date().toISOString().slice(0,10)},legacyImported:false}}}));
+ localStorage.setItem('visionary_content_v1',JSON.stringify({version:1,spaces:{[workspaceId]:{graphs:[graph('6'),target],aliases:{},gaps:[]}}}));localStorage.setItem('visionary_learning_pipeline_v1',JSON.stringify({version:1,spaces:{[workspaceId]:{selection,syllabusId:'fixture:6',units:['old-a','old-b'].map(conceptId=>({id:'unit:'+conceptId,conceptId,title:conceptId,locale:'en',stage:'explain',checkPassed:false,difficulty:1,practiceRound:0,updatedAt:new Date().toISOString(),sourceContext:{selection,provenance:source}}))}}}));
+ localStorage.setItem('visionary_stage_transitions_v1',JSON.stringify({version:1,transitions:[{id:'bridge-transition',personId:id,from,to,state:'applied',policy:'AUTO',reason:'Fictional promotion',diff:{unitsKept:2,planStepsKept:2,openClassworkKept:0,dueDatesRetained:true},notifiedAt:new Date().toISOString(),appliedAt:new Date().toISOString()}]}));
+});
+const seedOwnership=()=>{
+ if(localStorage.getItem('ownership-fixture-seeded'))return;
+ const db=JSON.parse(localStorage.getItem('visionary_workspace_v2'));if(!db)return;
+ db.people.push({id:'foreign-owner',email:'foreign@fixture.test',roles:['teacher'],ageBand:'adult'});
+ db.workspaces.push({id:'foreign-owner:teacher',personId:'foreign-owner',role:'teacher'});
+ db.workspaces.push({id:'bridge-student:teacher',personId:'bridge-student',role:'teacher'});
+ db.data['bridge-student:teacher']=structuredClone(db.data['bridge-student:student']);
+ localStorage.setItem('visionary_workspace_v2',JSON.stringify(db));
+ localStorage.setItem('visionary_artifact_editor_v1',JSON.stringify({version:1,spaces:{'bridge-student:student':{a:{body:'secret draft'}},'foreign-owner:teacher':{b:{body:'foreign secret'}}}}));
+ localStorage.setItem('visionary_stage_editor_v1:bridge-student:teacher',JSON.stringify({version:1,personId:'bridge-student',base:'secret profile',fields:{institution:'secret institution'}}));
+ localStorage.setItem('visionary_review_drafts_v1:foreign-owner:teacher:a','{foreign malformed');
+ localStorage.setItem('ownership-fixture-seeded','true');
+};
+const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(String(error)));
+try{
+ await page.goto('http://127.0.0.1:4191/dashboard/privacy',{waitUntil:'networkidle'});
+ await page.evaluate(seedOwnership);await page.reload({waitUntil:'networkidle'});await page.getByRole('button',{name:'Review local data',exact:true}).click();
+ const section=page.locator('section').filter({has:page.getByRole('heading',{name:'What is saved on this device',exact:true})});
+ await section.getByRole('heading',{name:'Drafts and supporting records',exact:true}).waitFor();
+ const projects=section.locator('li').filter({has:page.getByRole('heading',{name:'Unsaved project edits',exact:true})});
+ assert.match(await projects.innerText(),/1 personal/);await section.getByRole('heading',{name:'Stage profile editor drafts',exact:true}).waitFor();
+ assert.equal(await section.getByRole('heading',{name:'Classroom review drafts',exact:true}).count(),0);
+ assert.equal((await section.innerText()).includes('secret'),false);
+ await page.evaluate(()=>window.dispatchEvent(new CustomEvent('visionary:v2-change')));await section.getByRole('alert').getByText(/Local data changed/).waitFor();await page.getByRole('button',{name:'Review local data',exact:true}).click();
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export ownership counts report',exact:true}).click();
+ const download=await downloadPromise;await download.saveAs('scripts-tmp/ownership-browser-report.json');
+ assert.equal((await import('node:fs')).readFileSync('scripts-tmp/ownership-browser-report.json','utf8').includes('secret'),false);
+ const report=await page.evaluate(()=>window.localStorage.getItem('visionary_artifact_editor_v1'));assert.ok(report.includes('secret draft'));
+ const other=await context.newPage();await other.goto('http://127.0.0.1:4191/dashboard/privacy',{waitUntil:'networkidle'});
+ await other.evaluate(()=>{const key='visionary_artifact_editor_v1',store=JSON.parse(localStorage.getItem(key));store.spaces['bridge-student:student'].c={body:'second secret'};localStorage.setItem(key,JSON.stringify(store));});
+ await section.getByRole('alert').getByText(/Local data changed/).waitFor();assert.equal(await section.getByRole('heading',{name:'Drafts and supporting records',exact:true}).count(),0);
+ await page.evaluate(seedOwnership);await page.reload({waitUntil:'networkidle'});await page.getByRole('button',{name:'Review local data',exact:true}).click();assert.match(await projects.innerText(),/2 personal/);
+ await other.evaluate(()=>localStorage.setItem('visionary_stage_transitions_v1','{unreadable original'));
+ await section.getByRole('alert').getByText(/Local data changed/).waitFor();await page.getByRole('button',{name:'Review local data',exact:true}).click();
+ await section.getByText(/Unreadable or incomplete records/).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('visionary_stage_transitions_v1')),'{unreadable original');
+ await section.getByRole('heading',{name:'Drafts and supporting records',exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:'docs/visionary/baseline/design-2026-09-27/local-ownership-review-390.png'});
+ assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ console.log('PASS 390px privacy inventory: owned cross-role draft counts, foreign review exclusion, counts-only export, real second-tab invalidation/review, unreadable original preservation, no page errors or horizontal overflow.');
+}catch(error){console.error(error);console.log(await page.locator('body').innerText({timeout:2000}).catch(()=>'Body unavailable'));throw error;}finally{await browser.close();}

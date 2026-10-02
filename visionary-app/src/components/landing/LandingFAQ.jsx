@@ -91,8 +91,9 @@ export default function LandingFAQ({
                     {faq.q}
                   </span>
                   <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#e8f0fe] sm:h-16 sm:w-16" style={{ color: "#121317" }}>
+                    {/* closed points down (open me), open points up (collapse me) */}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`h-6 w-6 transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
-                      <path d="M6 15l6-6 6 6" />
+                      <path d="M6 9l6 6 6-6" />
                     </svg>
                   </span>
                 </button>
@@ -104,7 +105,7 @@ export default function LandingFAQ({
                   className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-[1240px] pt-8 text-[15px] leading-[1.6]" style={{ color: "#121317" }}>{faq.a}</p>
+                    <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#121317" }}>{faq.a}</p>
                   </div>
                 </div>
               </div>

@@ -1,23 +1,29 @@
-import { useState, useEffect, useCallback } from "react";
+import AssignedCurriculumOutline from '@/components/dashboard/AssignedCurriculumOutline';
+import ClassCurriculum from '@/components/dashboard/ClassCurriculum';
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useWorkspace } from "@/hooks/useWorkspace";
-import { submitClassworkResponses } from "@/services/classroomService";
+import { submitClassworkResponses,classworkResponseText } from "@/services/classroomService";
 import CommunityTab from "@/components/dashboard/CommunityTab";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {downloadText} from '@/lib/downloadText';
+import ClassworkProjectSubmission from '@/components/dashboard/ClassworkProjectSubmission';
+import {readClassworkDrafts,saveClassworkDraft,classworkDraftRevision} from '@/services/classworkDraftService';
+import CriterionFeedback from '@/components/dashboard/CriterionFeedback';
 
 /**
  * Student-facing Classes page — the other half of the teacher–student connection.
  * Shows classes the student is enrolled in, lets them submit work to assignments,
  * and reveals grades + feedback as the teacher returns them. Graded work is
- * silently folded into the student's mastery map (see useStudentData).
+ * retained as classwork records; a grade does not establish concept mastery here.
  */
 export default function StudentClasses() {
   const { user } = useAuth();
-  const { ctx } = useWorkspace();
+  const { ctx,data } = useWorkspace();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
   const email = user?.email;
@@ -31,6 +37,7 @@ export default function StudentClasses() {
   const [openClassId, setOpenClassId] = useState(null);
   const [drafts, setDrafts] = useState({});
   const [draftError, setDraftError] = useState("");
+  const [draftStorageReadable,setDraftStorageReadable]=useState(false);
   const [busy, setBusy] = useState(false);
   const [showJoin, setShowJoin] = useState(false);
   const [joinCode, setJoinCode] = useState("");
@@ -38,21 +45,26 @@ export default function StudentClasses() {
   const [joining, setJoining] = useState(false);
   const [announcements, setAnnouncements] = useState([]);
   const [error, setError] = useState("");
+  const [loadError,setLoadError]=useState('');
+  const loadSequence=useRef(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [classTab, setClassTab] = useState("classwork");
+  const [classTab, setClassTab] = useState(() => searchParams.has('curriculum') ? 'outline' : 'classwork');
 
   const draftKey = user?.id ? `visionary_classwork_drafts_v1:${user.id}` : null;
+  const draftBases=useRef({});
   useEffect(() => {
-    if (!draftKey) { setDrafts({}); setDraftError(''); return; }
-    try { const saved = JSON.parse(localStorage.getItem(draftKey) || '{}'); setDrafts(saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {}); setDraftError(''); }
-    catch { setDrafts({}); setDraftError('Saved classwork drafts could not be read on this device. Existing records were not removed.'); }
-  }, [draftKey]);
+    setDraftStorageReadable(false);
+    if (!draftKey||!ctx) { setDrafts({}); setDraftError(''); return; }
+    try { const saved=readClassworkDrafts(ctx);draftBases.current=Object.fromEntries(Object.entries(saved).map(([id,row])=>[id,classworkDraftRevision(row)]));setDrafts(saved);setDraftStorageReadable(true);setDraftError(''); }
+    catch { setDrafts({}); setDraftError('Saved classwork drafts could not be read. Keep this page open and export your current response. Older saved records will not be replaced.'); }
+  }, [draftKey,ctx?.workspaceId]);
   const updateDraft = (assignmentId, value) => {
     const next = { ...drafts, [assignmentId]: value };
     if (value === null) delete next[assignmentId];
     setDrafts(next);
-    if (draftKey) try { localStorage.setItem(draftKey, JSON.stringify(next)); setDraftError(''); }
-    catch { setDraftError('Your classwork draft could not be saved on this device. Keep this page open and try again.'); }
+    if(!draftStorageReadable){setDraftError('Older classwork drafts remain unreadable and were not replaced. Your current edits stay on this page; export them before leaving.');return;}
+    if (draftKey) try {saveClassworkDraft(ctx,assignmentId,value,draftBases.current[assignmentId]||'null');draftBases.current[assignmentId]=classworkDraftRevision(value);setDraftError(''); }
+    catch(failure) { setDraftError(failure.message); }
   };
 
   useEffect(() => {
@@ -60,12 +72,14 @@ export default function StudentClasses() {
     if (searchParams.get("class")) setOpenClassId(searchParams.get("class"));
   }, [searchParams]);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (foreground=true) => {
+      const sequence=++loadSequence.current;
+      if(foreground!==false)setLoading(true);setLoadError('');
       if (!email) {
         setLoading(false);
         return;
       }
-      setError("");
+      if(foreground!==false)setError("");
       try {
         const [enr, allClasses, allAssignments, mySubs, allAnnouncements] = await Promise.all([
           base44.entities.Enrollment.filter({ student_email: email }),
@@ -74,36 +88,48 @@ export default function StudentClasses() {
           base44.entities.Submission.filter({ student_email: email }),
           base44.entities.Announcement.list(),
         ]);
+        if(sequence!==loadSequence.current)return;
         const classIds = new Set((enr || []).map((e) => e.class_id));
         setEnrollments(enr || []);
         setClasses((allClasses || []).filter((c) => classIds.has(c.id)));
         setAssignments((allAssignments || []).filter((a) => classIds.has(a.class_id)));
         setSubmissions(mySubs || []);
         setAnnouncements((allAnnouncements || []).filter((a) => classIds.has(a.class_id)).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)));
-      } catch { setError("We couldn’t load your classes. Please try again."); }
+      } catch {if(sequence!==loadSequence.current)return;setEnrollments([]);setClasses([]);setAssignments([]);setSubmissions([]);setAnnouncements([]);setLoadError("We couldn’t load your classes. Saved responses and drafts have not been replaced. Please retry.");}
       setLoading(false);
-  }, [email]);
+  }, [email,ctx?.workspaceId]);
   useEffect(() => {
     load();
-    window.addEventListener("visionary:workspace-change", load);
-    return () => window.removeEventListener("visionary:workspace-change", load);
+    const refresh=()=>load(false);
+    const timer=window.setInterval(()=>{if(document.visibilityState==='visible')refresh();},30000);
+    const events=['visionary:workspace-change','visionary:v2-change','storage'];
+    events.forEach(event=>window.addEventListener(event,refresh));
+    return () => {loadSequence.current++;window.clearInterval(timer);events.forEach(event=>window.removeEventListener(event,refresh));};
   }, [load]);
 
   const mySubFor = (assignmentId) => (submissions || []).find((s) => s.assignment_id === assignmentId);
+  const draftFor = (assignmentId) => {
+    const submission = mySubFor(assignmentId);
+    const saved = drafts[assignmentId];
+    if (submission?.status !== 'revision_requested') return saved || {};
+    if (saved?.revisionAttempt === (submission.attempt || 1)) return saved;
+    return { text: classworkResponseText(assignments.find(item=>item.id===assignmentId)||{},submission),selfReview:submission.self_review||{}, answers: Object.fromEntries((submission.responses || []).map(answer => [answer.questionId, answer.text])), revisionAttempt: submission.attempt || 1 };
+  };
 
   const submit = async (a) => {
     const checks = Array.isArray(a.checks) ? a.checks : [];
-    const responses = checks.map(check => ({ questionId: check.id, text: (drafts[a.id]?.answers?.[check.id] || '').trim() }));
-    const text = checks.length ? responses.map(response => response.text).join('\n') : (drafts[a.id]?.text || '').trim();
+    const draft = draftFor(a.id);
+    const responses = checks.map(check => ({ questionId: check.id, text: (draft.answers?.[check.id] || '').trim() }));
+    const text = checks.length ? responses.map(response => response.text).join('\n') : (draft.text || '').trim();
     if (!text || responses.some(response => !response.text) || busy) return;
     setBusy(true);
     setError("");
     try {
       const created = await submitClassworkResponses(ctx,{assignmentId:a.id,text,responses});
-      setSubmissions((p) => p.some(item=>item.id===created.id)?p:[created,...p]);
+      setSubmissions((p) => [created,...p.filter(item=>item.id!==created.id)]);
       updateDraft(a.id, null);
       window.dispatchEvent(new CustomEvent("visionary:workspace-change"));
-    } catch { setError("Your response wasn’t submitted. Your draft is still here; please try again."); }
+    } catch(failure) { setError(failure.message||"Your response wasn’t submitted. Your draft is still here; please try again."); }
     finally { setBusy(false); }
   };
 
@@ -177,14 +203,15 @@ export default function StudentClasses() {
       </div>
 
       {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{error} <button onClick={load} className="ml-2 font-medium underline">Retry</button></p>}
-      {draftError && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{draftError}</p>}
+      {loadError&&<p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]">{loadError} <button onClick={load} className="ml-2 font-medium underline">Retry class loading</button></p>}
+      {draftError && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"><p>{draftError}</p>{!draftStorageReadable&&draftKey&&<button className="v-button mt-3" onClick={()=>{try{downloadText('visionary-saved-classwork-drafts.txt',localStorage.getItem(draftKey)||'');}catch{setDraftError('Saved draft backup could not be read. Your current editor remains available.');}}}>Export saved drafts backup</button>}<button className="v-button mt-3" onClick={()=>{try{const saved=readClassworkDrafts(ctx);setDrafts(saved);draftBases.current=Object.fromEntries(Object.entries(saved).map(([id,row])=>[id,classworkDraftRevision(row)]));setDraftStorageReadable(true);setDraftError('');}catch(failure){setDraftError(failure.message);}}}>Discard current edits and load saved drafts</button></div>}
       {invitations.length > 0 && <section aria-label="Class invitations" className="rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5"><h2 className="font-medium text-[#121317]">Class invitations</h2><div className="mt-3 space-y-3">{invitations.map((c) => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#121317]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} invited you to join</p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#4285F4] px-5 text-sm font-medium text-white disabled:opacity-50">Accept class</button></div>)}</div></section>}
 
       {loading ? (
         <div className="flex justify-center py-16">
           <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
         </div>
-      ) : connectedClasses.length === 0 ? (
+      ) : loadError ? null : connectedClasses.length === 0 ? (
         <div className="flex flex-col items-center gap-5 py-16 text-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accent}15` }}>
             <GraduationCap className="w-8 h-8" style={{ color: accent }} />
@@ -212,9 +239,10 @@ export default function StudentClasses() {
             </div>
           </div>
 
-          <div className="flex gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#4285F4]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
+          <div className="flex flex-wrap gap-2 border-b border-[#dadce0]" aria-label="Class sections">{[["classwork", "Classwork"], ["outline", "Learning outline"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#4285F4]" : "border-transparent text-[#5f6368]"}`}>{label}</button>)}</div>
           {classTab === "stream" && <div className="space-y-4">{announcements.filter((a) => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]">Class updates from your teacher will appear here.</p></div> : announcements.filter((a) => a.class_id === openClassId).map((a) => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : "Class update"}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
 
+          {classTab === "outline" && <><ClassCurriculum key={'published:'+ctx?.workspaceId+':'+openClassId} classId={openClassId}/><AssignedCurriculumOutline key={ctx?.workspaceId+':'+openClassId} classId={openClassId}/></>}
           {classTab === "community" && <CommunityTab classId={openClassId} accent="#4285F4" />}
           {classTab === "classwork" && <div className="flex flex-col gap-4">
             {classAssignments.length === 0 ? (
@@ -227,6 +255,8 @@ export default function StudentClasses() {
                 const sub = mySubFor(a.id);
                 const graded = sub && sub.status === "graded";
                 const submitted = sub && sub.status === "submitted";
+                const revision = sub?.status === 'revision_requested';
+                const draft = draftFor(a.id);
                 return (
                   <div key={a.id} className="p-6 bg-white rounded-3xl border border-[#dadce0]/60 flex flex-col gap-4">
                     <div className="flex items-start gap-4">
@@ -235,6 +265,7 @@ export default function StudentClasses() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-[#121317]">{a.title}</p>
+                        <Link className="mt-2 inline-block text-sm font-medium text-blue-700 underline" to={`/dashboard/learn?assignment=${encodeURIComponent(a.id)}`}>Open class activity in Learn</Link>
                         <p className="text-xs text-[#5f6368] mt-0.5">
                           {a.points || 100} points{a.due_date ? ` · Due ${a.due_date}` : ""}
                         </p>
@@ -261,41 +292,45 @@ export default function StudentClasses() {
                       )}
                     </div>
 
+                    {revision && <div role="status" className="rounded-2xl bg-[#fef7e0] p-4 text-sm"><p className="font-medium">Revision requested · Attempt {sub.attempt || 1}</p><p className="mt-2 whitespace-pre-wrap">{sub.feedback}</p><CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={sub.criterion_feedback}/><p className="mt-2">Update your answers below and resubmit. Your previous response and feedback stay in the attempt history.</p></div>}
+                    {!!sub?.revision_history?.length && <details className="text-sm text-[#5f6368]"><summary className="cursor-pointer">Previous attempts and feedback ({sub.revision_history.length})</summary>{sub.revision_history.map((entry,index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium">Attempt {entry.attempt}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap">Feedback: {entry.feedback}</p><CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={entry.criterion_feedback}/></div>)}</details>}
                     {graded ? (
-                      <div className="pl-14 flex flex-col gap-2">
+                      <div className="sm:pl-14 flex flex-col gap-2">
                         {sub.feedback && (
                           <div className="p-4 rounded-2xl bg-[#ffffff]">
                             <p className="text-xs font-medium text-[#5f6368] mb-1">Teacher feedback</p>
                             <p className="text-sm text-[#5f6368] leading-relaxed">{sub.feedback}</p>
                           </div>
                         )}
-                        <p className="text-xs text-[#5f6368]">Returned by your teacher.</p>
+                        <CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={sub.criterion_feedback}/><p className="text-xs text-[#5f6368]">Returned by your teacher.</p>
+                        <details className="text-sm"><summary className="cursor-pointer font-medium">Your submitted copy</summary><p className="mt-3 whitespace-pre-wrap break-words">{sub.text}</p></details>
                       </div>
                     ) : submitted ? (
-                      <div className="pl-14">
+                      <div className="sm:pl-14">
                         <div className="p-4 rounded-2xl bg-[#ffffff] text-sm text-[#5f6368] whitespace-pre-wrap leading-relaxed">{sub.text}</div>
-                        <p className="text-xs text-[#5f6368] mt-2">Submitted — waiting for your teacher to review.</p>
+                        <CriterionFeedback criteria={a.objective_snapshot?.criteria} feedback={sub?.criterion_feedback}/><p className="text-xs text-[#5f6368] mt-2">Submitted — waiting for your teacher to review.</p>
                       </div>
-                    ) : (
-                      <div className="pl-14 flex flex-col gap-2">
-                        {Array.isArray(a.checks) && a.checks.length ? <div className="space-y-4">{a.checks.map((check,index) => <label key={check.id} className="block text-sm font-medium text-[#121317]">{index + 1}. {check.prompt}<textarea value={drafts[a.id]?.answers?.[check.id] || ''} onChange={event => updateDraft(a.id,{...drafts[a.id],answers:{...drafts[a.id]?.answers,[check.id]:event.target.value}})} placeholder="Explain in your own words…" rows={3} className="mt-2 w-full rounded-2xl border border-[#dadce0] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[#4285F4]" /></label>)}</div> : <textarea
-                          value={drafts[a.id]?.text || ""}
-                          onChange={(e) => updateDraft(a.id,{...drafts[a.id],text:e.target.value})}
+                    ) : ['closed','archived'].includes(a.status) ? <p role="status" className="rounded-xl bg-slate-50 p-4 text-sm">Submissions are closed. Your saved draft remains on this device. Your teacher can reopen the assignment.</p> : (
+                      <div className="sm:pl-14 flex flex-col gap-2">
+                        {Array.isArray(a.checks) && a.checks.length ? <div className="space-y-4">{a.checks.map((check,index) => <label key={check.id} className="block text-sm font-medium text-[#121317]">{index + 1}. {check.prompt}<textarea aria-label={`${index + 1}. ${check.prompt}`} value={draft.answers?.[check.id] || ''} onChange={event => updateDraft(a.id,{...draft,answers:{...draft.answers,[check.id]:event.target.value}})} placeholder="Explain in your own words…" rows={3} className="mt-2 w-full rounded-2xl border border-[#dadce0] p-4 text-sm font-normal leading-relaxed outline-none focus:border-[#4285F4]" /></label>)}</div> : <textarea
+                          value={draft.text || ""}
+                          onChange={(e) => updateDraft(a.id,{...draft,text:e.target.value})}
                           placeholder="Write your response…"
                           aria-label={`Your response to ${a.title}`}
                           rows={3}
                           className="w-full p-4 rounded-2xl border border-[#dadce0] text-sm text-[#121317] outline-none focus:border-[#4285F4] resize-none leading-relaxed"
                         />}
                         <p className="text-xs text-[#5f6368]">Drafts are kept on this device when storage is available. Your teacher reviews the response; it is not automatically scored.</p>
-                        <div className="flex justify-end">
-                          <button
+                        {!a.checks?.length&&<ClassworkProjectSubmission key={`${a.id}:${sub?.attempt||0}`} ctx={ctx} artifacts={data?.artifacts} assignment={{...a,revisionRequested:revision}} onSubmitted={saved=>{setSubmissions(previous=>[saved,...previous.filter(item=>item.id!==saved.id)]);window.dispatchEvent(new CustomEvent('visionary:workspace-change'));}}/>}
+                        {(draftError||error)&&<button className="v-button self-start" onClick={()=>downloadText(`visionary-classwork-${a.id}.txt`,Array.isArray(a.checks)&&a.checks.length?a.checks.map((check,index)=>`${index+1}. ${check.prompt}\n${draft.answers?.[check.id]||""}`).join("\n\n"):draft.text||"")}>Export current response</button>}<div className="flex justify-end">
+                          {a.objective_snapshot?.criteria?.length?<Link className="v-button primary" to={`/dashboard/learn?assignment=${encodeURIComponent(a.id)}`}>Review criteria and submit in Learn</Link>:<button
                             onClick={() => submit(a)}
-                            disabled={busy || (Array.isArray(a.checks) && a.checks.length ? a.checks.some(check => !(drafts[a.id]?.answers?.[check.id] || '').trim()) : !(drafts[a.id]?.text || '').trim())}
+                            disabled={busy || (Array.isArray(a.checks) && a.checks.length ? a.checks.some(check => !(draft.answers?.[check.id] || '').trim()) : !(draft.text || '').trim())}
                             className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium text-white disabled:opacity-50"
                             style={{ backgroundColor: accent }}
                           >
-                            <Send className="w-4 h-4" /> Submit
-                          </button>
+                            <Send className="w-4 h-4" /> {revision ? "Resubmit" : "Submit"}
+                          </button>}
                         </div>
                       </div>
                     )}

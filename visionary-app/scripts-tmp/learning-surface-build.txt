@@ -1,0 +1,166 @@
+vite v6.4.3 building for production...
+transforming...
+✓ 2174 modules transformed.
+rendering chunks...
+computing gzip size...
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/index.html                                           1.24 kB │ gzip:   0.56 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-primary-BQqYJWen.webp                27.31 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/index-DTahvAaJ.css                          140.16 kB │ gzip:  24.71 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/WorkspaceIntro-D_2Itdjy.js                    0.60 kB │ gzip:   0.30 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/stagePresentation-ai5PpFFm.js                 0.64 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/useStudentData-BqlyuFZR.js                    0.71 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/useThemeColor-B8UjRewP.js                     0.78 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/useWorkspace-Cz9MJIOm.js                      0.85 kB │ gzip:   0.47 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CriterionFeedback-3__jweX0.js                 0.88 kB │ gzip:   0.51 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/VisionaryLogo-dd2-p3BF.js                     0.93 kB │ gzip:   0.62 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/PolicyTabs-rSG64YQZ.js                        1.13 kB │ gzip:   0.65 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/JourneyCatalogue-DL2OROK4.js                  1.29 kB │ gzip:   0.68 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/resourceEditorDraft-Ih_jNOW9.js               1.59 kB │ gzip:   0.76 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Breadcrumb-DgT8lxod.js                        1.80 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ValuesStrip-BdmZMhAr.js                       1.82 kB │ gzip:   0.83 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/dialog-DpVx2ArM.js                            1.99 kB │ gzip:   0.80 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/LessonObjectivePreview-BNXNcSXn.js            2.25 kB │ gzip:   0.95 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ForgotUserId-ChflDYPR.js                      2.29 kB │ gzip:   1.02 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ForgotPassword-B4F6yshH.js                    2.32 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ResetPassword-BE3l8Ow-.js                     2.42 kB │ gzip:   1.07 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CubeLearningEntry-6Y4IH3tH.js                 2.72 kB │ gzip:   1.29 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/AuthLayout-Ds370uwz.js                        2.90 kB │ gzip:   0.89 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/SocialAuthButtons-B8Mu3c75.js                 3.12 kB │ gzip:   1.37 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Learners-D5kq_jgo.js                          3.30 kB │ gzip:   1.46 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/curriculumBridgeService-CRWZ0ggS.js           3.71 kB │ gzip:   1.55 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/LandingFAQ-94qqk6bK.js                        4.04 kB │ gzip:   1.52 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/roleMentorService-UECgYsnm.js                 4.22 kB │ gzip:   1.80 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Children-DLnAjKJg.js                          4.70 kB │ gzip:   1.88 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/dailyPlanService-Bqdl__Pm.js                  4.84 kB │ gzip:   1.90 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Support-BayzxOF7.js                           5.10 kB │ gzip:   2.25 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ClassworkProjectSubmission-1U8Ldogj.js        5.33 kB │ gzip:   2.28 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Explore-DNn0cZC6.js                           5.46 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Cohorts-DLbTnx7F.js                           6.13 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/AuthUI-4N0O3xRw.js                            6.70 kB │ gzip:   2.11 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Login-DnMQZFoX.js                             7.42 kB │ gzip:   2.06 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Plans-BVyO4CTv.js                             8.39 kB │ gzip:   3.05 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Practice-DnkWqqsr.js                          9.25 kB │ gzip:   3.40 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Register-CtcwkXYr.js                          9.36 kB │ gzip:   2.85 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Settings-qGMtIP7V.js                         10.15 kB │ gzip:   3.66 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/TopicDetail-DrCIszhb.js                      10.83 kB │ gzip:   3.79 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Learn-BtGzvbbr.js                            11.41 kB │ gzip:   4.02 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/TeacherHome-eWmyxC3J.js                      12.75 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Connections-C_pqQI7-.js                      12.76 kB │ gzip:   4.51 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/stageTransitionService-D3Tf02v0.js           13.26 kB │ gzip:   4.48 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/SchoolPage-BMxl6nfH.js                       13.80 kB │ gzip:   4.51 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/AILearningPage-B2uufwxf.js                   14.55 kB │ gzip:   4.29 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CommunityPage-C_NWyWW8.js                    14.86 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/mentorStateService-C7kuV0WA.js               15.78 kB │ gzip:   5.58 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ContactPage-Cv8IGvLw.js                      15.84 kB │ gzip:   4.45 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/classroomService-DePT2wS9.js                 16.05 kB │ gzip:   5.31 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/SafetyPage-CJ_KmoOY.js                       16.33 kB │ gzip:   4.66 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/DownloadPage-BAQ0YdE1.js                     16.47 kB │ gzip:   4.52 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/AccessibilityPage-BFhRe38J.js                17.50 kB │ gzip:   5.01 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/contentRepository-CRjBjC6_.js                17.62 kB │ gzip:   5.80 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/learningPipelineService-WEcfuOaB.js          17.86 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ReferralPage-CwIww4RJ.js                     17.93 kB │ gzip:   5.08 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/UpdatesPage-COS4o9aO.js                      18.79 kB │ gzip:   5.05 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/AboutUsPage-DVtgwxCc.js                      19.76 kB │ gzip:   5.62 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CareersPage-BsDUBJ76.js                      20.03 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Profile-DTPhqirV.js                          20.14 kB │ gzip:   5.21 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ClassworkStudy-D86p7RV8.js                   20.65 kB │ gzip:   6.38 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CookiesPage-fe9oUWh-.js                      21.62 kB │ gzip:   6.04 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/voiceService-CIgZKTa9.js                     21.90 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CoachingPage-CL7aLrQ-.js                     24.20 kB │ gzip:   6.64 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/LandingFooter-B7Qo1L_E.js                    24.44 kB │ gzip:   5.67 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/PartnersPage-DuqGHFQn.js                     24.93 kB │ gzip:   6.90 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/RoleWorkspace-Bu_bX1qn.js                    25.11 kB │ gzip:   7.59 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/TermsPage-DGyWlVAv.js                        25.94 kB │ gzip:   7.30 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/LearningRepresentation-CzFFPpYx.js           25.98 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ResearchNewsPage-Bf19B6t5.js                 26.23 kB │ gzip:   6.93 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/StudentClasses-DQVZ25br.js                   27.15 kB │ gzip:   8.29 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/classworkCopy-DkEjc3ly.js                    27.40 kB │ gzip:   6.20 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/SecurityPage-BNF8lDfr.js                     27.65 kB │ gzip:   6.91 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/OrganizationContent-BQUBFQ7E.js              28.29 kB │ gzip:   7.95 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/PrivacyPage-Bi-hsSBq.js                      29.38 kB │ gzip:   7.87 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ArtifactStudio-BDosPUsH.js                   29.53 kB │ gzip:   8.66 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/PersonaSections-COwH9jcn.js                  29.89 kB │ gzip:   8.15 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/SpotIllustration-K29JmLpg.js                 32.27 kB │ gzip:   6.46 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/OrganizationPage-CAlduPuE.js                 33.13 kB │ gzip:   9.77 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CommunityTab-VS3e-fzp.js                     34.10 kB │ gzip:  10.09 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/StudentPage-BIiuqSEv.js                      34.17 kB │ gzip:  10.00 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/CollegePage-DIY60pm_.js                      34.39 kB │ gzip:  10.23 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ParentPage-BJ1SWBwz.js                       34.63 kB │ gzip:  10.25 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/TeacherPage-DRY5wsSU.js                      35.40 kB │ gzip:  10.31 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Onboarding-CiYqI4vX.js                       36.91 kB │ gzip:  10.75 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/DashboardHome-BXODdIT7.js                    39.36 kB │ gzip:  11.39 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Guide-6q82Y61Z.js                            39.56 kB │ gzip:  12.45 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/LearningWorkspace-CfSCbDG0.js                44.99 kB │ gzip:  12.87 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/Landing-4qr-OSki.js                          45.94 kB │ gzip:  13.05 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/ClassDetail-B8WncrEu.js                      47.44 kB │ gzip:  12.40 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/DashboardLayout-BTQHTIDy.js                  53.90 kB │ gzip:  16.81 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/WorkspaceTools-eafdlx0V.js                  110.45 kB │ gzip:  29.51 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/index-D_xum45A.js                           144.34 kB │ gzip:  44.49 kB
+../../AppData/Local/Temp/visionary-learning-surface-20261002-1727/assets/vendor-BxCPPHXQ.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 13.38s

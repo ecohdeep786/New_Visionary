@@ -1,5 +1,6 @@
 import type { Database, RequestContext, Role, WorkspaceData } from '../domain/workspace.ts';
 import { workspaceIdentity } from './workspaceService.ts';
+import { inspectAuxiliaryOwnership, type AuxiliaryOwnershipReview } from './localAuxiliaryReview.ts';
 
 interface ContentSpace { graphs: { syllabus: { status: string }; concepts: { status: string }[] }[]; aliases: Record<string, string>; gaps: unknown[] }
 interface LearningSpace { units: unknown[] }
@@ -17,6 +18,8 @@ export interface LocalMigrationPreview {
  sourcePersonId: string; workspaces: LocalWorkspaceMigrationPreview[];
  connectedWorkspacesNeedingReview: number; unassignedStoreSpaces: number;
  relationshipsNeedingReconsent: number; blockers: string[];
+ additionalStoresNeedingReview: string[];
+ auxiliaryOwnership: AuxiliaryOwnershipReview[];
  readyForOwnerMapping: boolean; transferPerformed: false;
 }
 export interface ProposedTargetWorkspace { sourceWorkspaceId: string; targetWorkspaceId: string; role: Role }
@@ -89,6 +92,9 @@ export function inspectLocalMigration(ctx: RequestContext): LocalMigrationPrevie
  const workspaces: LocalWorkspaceMigrationPreview[] = [];
  let connectedWorkspacesNeedingReview = 0;
  const blockers: string[] = [];
+ const auxiliaryOwnership = inspectAuxiliaryOwnership(ctx, db);
+ const additionalStoresNeedingReview = auxiliaryOwnership.filter(row => row.requiresReview).map(row => row.label);
+ if(additionalStoresNeedingReview.length)blockers.push('Additional local stores require their own ownership and version review before mapping. Core workspace counts do not include these records.');
  for (const workspace of db.workspaces.filter(item => item.personId === ctx.personId)) {
   if (duplicateWorkspaceIds.has(workspace.id)) { blockers.push('A workspace identifier has conflicting owners and must be reviewed.'); continue; }
   // Organization membership is separate from personal ownership; it must be reviewed by the server.
@@ -108,7 +114,7 @@ export function inspectLocalMigration(ctx: RequestContext): LocalMigrationPrevie
  return {
   sourcePersonId: ctx.personId, workspaces, connectedWorkspacesNeedingReview, unassignedStoreSpaces,
   relationshipsNeedingReconsent: db.relationships.filter(row => row.from === ctx.personId || row.to === ctx.personId).length,
-  blockers, readyForOwnerMapping: blockers.length === 0, transferPerformed: false,
+  additionalStoresNeedingReview, auxiliaryOwnership, blockers, readyForOwnerMapping: blockers.length === 0, transferPerformed: false,
  };
 }
 

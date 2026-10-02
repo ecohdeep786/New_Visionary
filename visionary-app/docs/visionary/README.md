@@ -7,3 +7,5 @@ The v2.2 file is the single operative contract. Its text was preserved when the 
 Current work (2026-09-27): finish internal design and usability acceptance first (D-016), then complete and verify the browser-local five-role product before building the backend (D-015). M1 is implemented in the local preview; M2 has a stage-context regression corrected, with transaction/recovery and gate evidence still open. Start with the latest [STATUS.md](STATUS.md) and [QA.md](QA.md) entries, [current product status](CURRENT_PRODUCT_STATUS.md), and updated [launch sequence](AGI_LAUNCH_SEQUENCE.md). No prior wave is retrospectively certified by this summary.
 
 Only three living logs: STATUS, DECISIONS, QA. Product addenda and inventories are deliverables, not alternate status logs. D-016 authorizes the current internal design pass; preserve the strict `src/pages/landing` exclusion.
+
+The [local store inventory](LOCAL_STORE_INVENTORY.md) records ownership, versioned content delivery, editor backups and future cutover exclusions. It does not authorize deleting or transferring browser records.

@@ -1,0 +1,21 @@
+✔ teacher attaches a sourced objective without answer keys and assigns an immutable learner visual copy (223.5379ms)
+✔ source and teacher context are rechecked and provisional or unavailable objectives do not attach (184.6642ms)
+✔ same-clock lesson edits reject stale assignment and cannot replay a different saved objective (10.5234ms)
+✔ malformed objective writes and visual drafts preserve originals; changed assignment objective rejects submission (136.4355ms)
+✔ teacher review drafts keep only the current attempt and survive a failed local write (26.0427ms)
+✔ reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped (159.0438ms)
+✔ visiting the dashboard never creates a streak or changes inputs (1.5671ms)
+✔ grades are normalized against assignment points without write-side effects (23.2613ms)
+✔ priority sorting preserves high priority and real activity makes a streak (30.7764ms)
+✔ practice scoring cannot exceed its question count (0.4683ms)
+✔ auth returns only to internal dashboard paths (49.2702ms)
+✔ preview account isolation, consent, persistence, and idempotent onboarding (185.7695ms)
+✔ onboarding keeps a competitive goal without inventing exam subjects (39.4465ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5506.1383

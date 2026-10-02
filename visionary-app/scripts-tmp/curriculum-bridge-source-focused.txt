@@ -1,0 +1,31 @@
+✔ versioned equivalent/archive/unresolved mappings preserve original activities, evidence and due stores (3221.2755ms)
+✔ mapping declarations reject ambiguity and incomplete review before replacing cached content (883.6497ms)
+✔ unknown legacy origins, wrong versions, absent languages and other owners remain unresolved (4215.6939ms)
+✔ changed source versions do not replace a pinned activity explanation or language (1688.0108ms)
+✔ fraction representation position persists without evidence; invalid and failed changes preserve it (2787.9208ms)
+✔ cube entry points reuse one authored unit without importing old topic results as evidence (877.5963ms)
+✔ authored cube criteria require written self review without claiming a grade (1846.2519ms)
+✔ interrupted project edits recover only inside their workspace and can be discarded (791.1472ms)
+✔ the cube view resumes in its learning unit and review preserves recorded evidence (1363.6657ms)
+✔ review queue uses recorded evidence timing and a new review retains completed work (1874.6245ms)
+✔ an invalid or failed model-view save leaves the prior saved view intact (653.7497ms)
+✔ student Home → Learn → Ask → Practice → Build persists one connected activity and evidence (3619.2788ms)
+✔ connected teaching records only a versioned response contract in Learn and Ask (742.8105ms)
+✔ a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events (416.7227ms)
+✔ a failed learning-unit write after project creation recovers the same artifact on retry (4543.1692ms)
+✔ wrong practice answer lowers difficulty and requests remediation without a generated local answer (993.165ms)
+✔ class-started learning reaches only the assigned teacher aggregate (1349.9223ms)
+✔ changing teaching language keeps the same session and localized authored check (685.5977ms)
+✔ changing to an unavailable language clears old teaching text without erasing the learning position (338.2343ms)
+✔ language change retrieves a newly available sourced variant without changing unit identity (417.229ms)
+✔ a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback (151.7067ms)
+✔ official concept mapping resumes the provisional learning unit without splitting its progress (126.9065ms)
+✔ minor profiles cannot enter a professional journey through the service (1.8128ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75907.1702

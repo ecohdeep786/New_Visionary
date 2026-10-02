@@ -16,8 +16,21 @@ const learnerPage = await context.newPage();
 learnerPage.on('pageerror', error => errors.push(String(error)));
 await learnerPage.goto(`${base}/dashboard/connections`, { waitUntil: 'networkidle' });
 await learnerPage.getByText('Needs your approval').waitFor();
+await learnerPage.evaluate(() => {
+ const original = Storage.prototype.setItem;
+ let failOnce = true;
+ Storage.prototype.setItem = function(key, value) {
+  if (key === 'visionary_workspace_v2' && failOnce) { failOnce = false; throw new Error('Storage full'); }
+  return original.call(this, key, value);
+ };
+});
 await learnerPage.getByRole('button', { name: 'Accept' }).click();
-await learnerPage.getByText('Connected', { exact: true }).waitFor();
+await learnerPage.getByRole('alert').getByText(/could not be saved/).waitFor();
+await learnerPage.getByText('Needs your approval').waitFor();
+await learnerPage.getByRole('button', { name: 'Accept' }).click();
+await learnerPage.getByRole('button', { name: 'Disconnect' }).waitFor();
+await learnerPage.getByRole('button', { name: 'Disconnect' }).scrollIntoViewIfNeeded();
+if (await learnerPage.evaluate(() => document.documentElement.scrollWidth - innerWidth) > 1) throw new Error('Learner connections overflow at 390px');
 await learnerPage.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/learner-connections-mobile.png' });
 const acceptedState = await context.storageState();
 const parentContext = await browser.newContext({ storageState: acceptedState, viewport: { width: 390, height: 844 } });
@@ -26,8 +39,10 @@ const parentPage = await parentContext.newPage();
 parentPage.on('pageerror', error => errors.push(String(error)));
 await parentPage.goto(`${base}/dashboard/connections`, { waitUntil: 'networkidle' });
 await parentPage.getByRole('heading', { name: 'Closed history' }).waitFor();
-await parentPage.getByText('Closed · expired').waitFor();
-await parentPage.getByText('Connected', { exact: true }).waitFor();
+await parentPage.getByText('Expired', { exact: true }).waitFor();
+await parentPage.getByRole('button', { name: 'Disconnect' }).waitFor();
+await parentPage.getByRole('button', { name: 'Disconnect' }).scrollIntoViewIfNeeded();
+if (await parentPage.evaluate(() => document.documentElement.scrollWidth - innerWidth) > 1) throw new Error('Parent connections overflow at 390px');
 await parentPage.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/parent-connections-mobile.png' });
 await parentPage.goto(`${base}/dashboard/reports?child=demo-learner`, { waitUntil: 'networkidle' });
 await parentPage.getByRole('heading', { name: 'Aarav' }).waitFor();

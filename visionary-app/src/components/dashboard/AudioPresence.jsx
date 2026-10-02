@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { AudioLines, MessageCircle, Mic, MicOff, X } from 'lucide-react';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { useWorkspace } from '@/hooks/useWorkspace';
@@ -20,7 +21,6 @@ const STATUS_TEXT = {
   denied: 'Microphone access is blocked in the browser. Audio is unavailable until it is allowed.',
   unsupported: 'This browser does not support audio interaction. Text works everywhere.',
 };
-const SEND_SILENCE_MS = 1500;
 const GREETINGS = {
   en: 'I am your Intelligence — for you, always available.',
   hi: 'मैं आपकी बुद्धिमत्ता हूँ — हर समय, आपके लिए उपलब्ध।',
@@ -29,17 +29,20 @@ const GREETINGS = {
 
 export default function AudioPresence() {
   const { ctx, data } = useWorkspace();
+  const location = useLocation();
   const [mode, setMode] = useState(getVoiceMode());
   const [caption, setCaption] = useState('');
   const [notice, setNotice] = useState('');
   const [panelOpen, setPanelOpen] = useState(false);
   const [audioOverride, setAudioOverride] = useState(getSessionAudioOverride());
+  const [processing, setProcessing] = useState(false);
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const conversationRef = useRef(null);
   const busyRef = useRef(false);
-  const pendingRef = useRef('');
-  const sendTimer = useRef(null);
+  const voiceRevision = useRef(0);
+  const turnAbort = useRef(null);
+  const analyserRevision = useRef(0);
   const analyserRef = useRef(null);
   const streamRef = useRef(null);
   const audioCtxRef = useRef(null);
@@ -60,8 +63,8 @@ export default function AudioPresence() {
   useEffect(() => { reducedMotion.current = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false; }, []);
 
   useEffect(() => () => {
-    stopListening();
-    if (sendTimer.current) clearTimeout(sendTimer.current);
+    endVoiceSession();
+    setSessionAudioOverride(null);
     cancelAnimationFrame(frameRef.current);
     streamRef.current?.getTracks().forEach(track => track.stop());
     audioCtxRef.current?.close().catch(() => {});
@@ -69,21 +72,26 @@ export default function AudioPresence() {
 
   async function sendTurn(transcript) {
     const request = ctxRef.current;
-    if (!request || busyRef.current) { pendingRef.current = transcript; return; }
+    if (!request || busyRef.current || !transcript.trim()) return;
+    stopListening(); detachAnalyser();
+    const revision = voiceRevision.current;
+    const controller = new AbortController(); turnAbort.current = controller;
     busyRef.current = true;
+    setProcessing(true); setNotice('');
     try {
       if (!conversationRef.current) conversationRef.current = newConversation(request).id;
-      const response = await sendMentorTurn({ ...request }, conversationRef.current, transcript, 'voice');
-      if (response.text) speak(response.text, request.locale);
+      const response = await sendMentorTurn({ ...request, signal: controller.signal }, conversationRef.current, transcript, 'voice');
+      if (controller.signal.aborted || revision !== voiceRevision.current) return;
+      if (response.text && !speak(response.text, request.locale)) setNotice('The reply is saved in Ask. Spoken output is unavailable; you can read it by text.');
     } catch (error) {
       // Recoverable, never silent: the spoken words stay as a draft in the conversation
       // and the failure is announced; the transcript is not lost.
-      try { if (conversationRef.current) updateConversation(request, conversationRef.current, { draft: transcript }); } catch { /* storage full: the notice still shows */ }
-      setNotice(error.message || 'The spoken request could not be sent. Your words are saved in Ask.');
-      setTimeout(() => setNotice(current => (current === error.message ? '' : current)), 6000);
+      if (controller.signal.aborted || revision !== voiceRevision.current) return;
+      let saved = false;
+      try { if (conversationRef.current) { updateConversation(request, conversationRef.current, { draft: transcript }); saved = true; } } catch { /* Current words remain in the review field. */ }
+      setNotice(`${error.message || 'The spoken request could not be sent.'} ${saved ? 'Your words are saved in Ask.' : 'Keep or copy your words from the review field.'}`);
     } finally {
-      busyRef.current = false;
-      if (pendingRef.current) { const next = pendingRef.current; pendingRef.current = ''; sendTurn(next); }
+      if (revision === voiceRevision.current) { busyRef.current = false; setProcessing(false); turnAbort.current = null; }
     }
   }
 
@@ -101,13 +109,12 @@ export default function AudioPresence() {
 
   function queueSend(transcript) {
     setCaption(transcript);
-    if (sendTimer.current) clearTimeout(sendTimer.current);
-    sendTimer.current = setTimeout(() => { if (transcript.trim().length >= 3) sendTurn(transcript); }, SEND_SILENCE_MS);
   }
 
   function startVoiceSession(request) {
     try {
-      startListening({ lang: request.locale, onInterim: text => setCaption(text), onFinal: queueSend });
+      if (!request) return;
+      startListening({ lang: request.locale, onInterim: text => setCaption(text), onFinal: queueSend, onError: message => { detachAnalyser(); setNotice(message); } });
       attachAnalyser();
     } catch (error) {
       setNotice(error.message || 'Microphone unavailable. You can keep using text.');
@@ -118,8 +125,11 @@ export default function AudioPresence() {
     const next = !effective;
     setSessionAudioOverride(next);
     setAudioOverride(next);
-    if (next && ctxRef.current) startVoiceSession(ctxRef.current);
-    if (!next) { stopListening(); cancelSpeech(); detachAnalyser(); setCaption(''); }
+    if (!next) { endVoiceSession(); setProcessing(false); }
+  }
+  function beginListening() {
+    if (!effective) { setSessionAudioOverride(true); setAudioOverride(true); }
+    startVoiceSession(ctxRef.current);
   }
 
   function choosePresentation(next) {
@@ -129,51 +139,47 @@ export default function AudioPresence() {
   }
 
   async function attachAnalyser() {
+    const revision = ++analyserRevision.current;
+    let stream;
     try {
-      if (!navigator.mediaDevices?.getUserMedia) return;
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (!navigator.mediaDevices?.getUserMedia || getVoiceMode() !== 'listening') return;
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (revision !== analyserRevision.current || getVoiceMode() !== 'listening') { stream.getTracks().forEach(track => track.stop()); return; }
       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
       const source = audioContext.createMediaStreamSource(stream);
       const analyser = audioContext.createAnalyser();
       analyser.fftSize = 512;
       source.connect(analyser);
       streamRef.current = stream; audioCtxRef.current = audioContext; analyserRef.current = analyser;
-    } catch { analyserRef.current = null; }
+    } catch { stream?.getTracks().forEach(track => track.stop()); if (revision === analyserRevision.current) analyserRef.current = null; }
   }
   function detachAnalyser() {
+    analyserRevision.current++;
     streamRef.current?.getTracks().forEach(track => track.stop());
     audioCtxRef.current?.close().catch(() => {});
     streamRef.current = null; audioCtxRef.current = null; analyserRef.current = null;
     levelRef.current = 0; barsRef.current = [0.3, 0.3, 0.3, 0.3];
   }
 
-  // Activation: automatic — no button. If the microphone is already permitted, listening
-  // starts immediately; a first visit starts on the first interaction (browsers require
-  // a gesture before they will ask); a blocked microphone keeps the animation calm and honest.
+  function endVoiceSession() {
+    voiceRevision.current++; turnAbort.current?.abort(); turnAbort.current = null;
+    busyRef.current = false; stopListening(); cancelSpeech(); detachAnalyser();
+  }
+
+  // Audio preference enables replies; microphone capture always needs an explicit start.
+  // A route, language or workspace change terminates the current session and late work.
   useEffect(() => {
-    if (!ctx) return;
-    const capabilities = getVoiceCapabilities();
-    if (!capabilities.recognition) return;
-    if (!effective) return;
-    let cancelled = false;
-    const begin = () => {
-      if (cancelled || getVoiceMode() === 'listening' || getVoiceMode() === 'speaking') return;
-      startVoiceSession(ctx);
-    };
-    let cleanupGesture = () => {};
-    navigator.permissions?.query({ name: 'microphone' }).then(state => {
-      if (cancelled) return;
-      if (state.state === 'granted') begin();
-      else if (state.state === 'prompt') {
-        const onGesture = () => { window.removeEventListener('pointerdown', onGesture); window.removeEventListener('keydown', onGesture); cleanupGesture = () => {}; begin(); };
-        window.addEventListener('pointerdown', onGesture, { once: true });
-        window.addEventListener('keydown', onGesture, { once: true });
-        cleanupGesture = () => { window.removeEventListener('pointerdown', onGesture); window.removeEventListener('keydown', onGesture); };
-      }
-      state.onchange = () => { if (state.state === 'granted') begin(); };
-    }).catch(() => { if (!cancelled) begin(); });
-    return () => { cancelled = true; cleanupGesture(); stopListening(); detachAnalyser(); };
-  }, [ctx?.personId, ctx?.workspaceId, effective]);
+    endVoiceSession(); setProcessing(false); setCaption(''); setNotice('');
+    return endVoiceSession;
+  }, [ctx?.personId, ctx?.workspaceId, ctx?.locale, location.key]);
+  useEffect(() => { if (!effective) { endVoiceSession(); setProcessing(false); } }, [effective]);
+  useEffect(() => { conversationRef.current = null; }, [ctx?.personId, ctx?.workspaceId]);
+  useEffect(() => {
+    const stopHidden = () => { if (document.hidden) { endVoiceSession(); setProcessing(false); } };
+    const stopPage = () => endVoiceSession();
+    document.addEventListener('visibilitychange', stopHidden); window.addEventListener('pagehide', stopPage);
+    return () => { document.removeEventListener('visibilitychange', stopHidden); window.removeEventListener('pagehide', stopPage); };
+  }, []);
 
   // React to session-level audio changes from the Ask quick control.
   useEffect(() => {
@@ -326,7 +332,7 @@ export default function AudioPresence() {
     ? 'Audio interaction is off. The animation is only an availability indicator; the microphone is not active.'
     : capabilities.recognition || capabilities.synthesis ? STATUS_TEXT[mode] : STATUS_TEXT.unsupported;
   const shortStatus = !effective ? 'Audio off' : mode === 'listening' ? 'Listening' : mode === 'speaking' ? 'Speaking' : mode === 'denied' ? 'Microphone blocked' : capabilities.recognition ? 'Ready for voice' : 'Text available';
-  return <Popover open={panelOpen} onOpenChange={setPanelOpen}><PopoverTrigger asChild><button
+  return <Popover open={panelOpen} onOpenChange={open => { setPanelOpen(open); if (!open) { endVoiceSession(); setProcessing(false); } }}><PopoverTrigger asChild><button
     type="button"
     className={`v-audio-orb-button ${animation === 'girl' ? 'v-audio-girl' : 'v-audio-boy'}`}
     data-audio-state={!effective ? 'off' : mode}
@@ -337,14 +343,16 @@ export default function AudioPresence() {
     <span className="v-audio-glyph"><canvas ref={canvasRef} aria-hidden="true" /></span><span className="v-audio-name" aria-hidden="true">Guide</span>
     {!panelOpen && (notice || (caption && mode === 'listening')) && <span className="v-audio-caption" aria-hidden="true">{notice || caption}</span>}
     <span role="status" className="sr-only">{status}</span>
-  </button></PopoverTrigger><PopoverContent side="top" align="start" sideOffset={16} className="workspace-voice-panel" aria-labelledby="visionary-voice-title">
-    <div className="workspace-voice-panel-head"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Your voice presence</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
+  </button></PopoverTrigger><PopoverContent side="top" align="start" sideOffset={16} className="workspace-voice-panel" style={{maxHeight:'min(90dvh, var(--radix-popover-content-available-height))',overflowY:'auto'}} aria-labelledby="visionary-voice-title">
+    <div className="workspace-voice-panel-head sticky top-0 z-10 bg-white"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Your voice presence</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
     <span className={`workspace-voice-state state-${!effective ? 'off' : mode}`}><span aria-hidden="true" />{shortStatus}</span>
     <p className="workspace-voice-intro">Vision Boy and Vision Girl are two visual styles for the same Guide. Your learning and conversations stay together.</p>
+    <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'listening' || mode === 'speaking' || processing ? () => { endVoiceSession(); setProcessing(false); } : beginListening} disabled={!capabilities.recognition}>{mode === 'listening' || mode === 'speaking' || processing ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{!capabilities.recognition ? 'Voice input unavailable' : mode === 'listening' || mode === 'speaking' || processing ? 'Stop voice session' : mode === 'denied' ? 'Retry microphone' : 'Start listening'}</button><button className="v-button" disabled={!capabilities.recognition && !capabilities.synthesis} onClick={toggleAudio}>{effective ? 'Turn audio off' : 'Turn audio on'}</button><Link className="v-button" to="/dashboard/ask" state={{initialQuestion:caption}} onClick={() => { endVoiceSession(); setSessionAudioOverride(false); setAudioOverride(false); setProcessing(false); setPanelOpen(false); }}><MessageCircle size={17} aria-hidden="true" />Use text instead</Link></div>
     <div className={`workspace-voice-preview ${animation === 'girl' ? 'is-girl' : 'is-boy'} ${!effective ? 'is-off' : ''} ${mode === 'listening' && effective ? 'is-listening' : ''} ${mode === 'speaking' && effective ? 'is-speaking' : ''}`} aria-hidden="true"><span className="workspace-voice-preview-glow" /><span className="workspace-voice-preview-orb" /><span className="workspace-voice-preview-bars"><i /><i /><i /><i /></span></div>
-    <p className="workspace-voice-now" role="status">{caption && mode === 'listening' ? `Hearing: ${caption}` : status}</p>
+    <p className="workspace-voice-now" role="status">{processing ? 'Preparing your reply. Stop the session to cancel.' : caption && mode === 'listening' ? `Hearing: ${caption}` : status}</p>
+    {notice && <p className="v-notice" role="status">{notice}</p>}
+    {caption && <section className="mt-3"><label className="text-sm">Review spoken question<textarea aria-label="Review spoken question" className="v-field mt-2" value={caption} maxLength={6000} disabled={processing} onChange={event => setCaption(event.target.value)} /></label><p className="v-muted mt-2">Review or edit your words before sending. Speech is not sent automatically.</p><button className="v-button mt-3" disabled={processing || !caption.trim()} onClick={() => sendTurn(caption)}>{processing ? 'Preparing reply…' : 'Send spoken question'}</button></section>}
     <div className="workspace-voice-choices" role="group" aria-label="Visual presence"><button type="button" aria-pressed={animation === 'boy'} onClick={() => choosePresentation('boy')}><span className="workspace-voice-choice-mark is-boy" aria-hidden="true" />Vision Boy</button><button type="button" aria-pressed={animation === 'girl'} onClick={() => choosePresentation('girl')}><span className="workspace-voice-choice-mark is-girl" aria-hidden="true"><i /><i /><i /><i /></span>Vision Girl</button></div>
-    <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'denied' && effective ? () => startVoiceSession(ctxRef.current) : toggleAudio} disabled={!capabilities.recognition && !effective}>{mode === 'denied' && effective ? <Mic size={17} aria-hidden="true" /> : effective ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{mode === 'denied' && effective ? 'Retry microphone' : effective ? 'Turn audio off' : 'Turn audio on'}</button><Link className="v-button" to="/dashboard/ask" onClick={() => setPanelOpen(false)}><MessageCircle size={17} aria-hidden="true" />Use text instead</Link></div>
     <p className="workspace-voice-footnote"><AudioLines size={14} aria-hidden="true" />Voice uses this browser. Teaching AI is not connected in the local preview.</p>
   </PopoverContent></Popover>;
 }

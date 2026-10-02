@@ -1,0 +1,40 @@
+✔ owner settings are versioned, audited, idempotent and fail without partial changes (28.6919ms)
+✔ academic members read owner defaults but cannot alter them; analysts and revoked members are refused (5.2314ms)
+✔ malformed settings are retained and unsupported fields do not write (1.7405ms)
+✔ organization promotion audit excludes private profiles, foreign and unscoped transitions and reports unreadable history (43.405ms)
+✔ an adjacent class promotion applies automatically with notice, diff and retained work (34.6222ms)
+✔ class promotion preserves competitive stage and exam through postpone and undo (52.7158ms)
+✔ sign-in bootstrap keeps the active transition instead of restoring stale onboarding stage (10.1748ms)
+✔ postpone reverses the mapping and reevaluation re-applies after seven days (23.4947ms)
+✔ undo restores the exact prior mapping while work created since is retained (36.6168ms)
+✔ a consented parent sees a minimal class update, then Undo, and loses access on revocation (118.9319ms)
+✔ a postponed parent class update uses the postponement date and expires after seven days (60.4826ms)
+✔ organization aggregate stays class-scoped through stage change and drops revoked enrollment (28.8764ms)
+✔ a failed Undo notice write restores the active mapping so retry is safe (5.1015ms)
+✔ boundary jumps are CONFIRM: board change and a two-grade jump wait for the learner (26.5634ms)
+✔ identity is enforced: another account cannot propose, confirm, postpone or undo (8.1363ms)
+✔ an identical profile is refused and pending proposals do not stack (49.9755ms)
+✔ the teacher records a class promotion for every enrolled learner (93.4246ms)
+✔ teacher promotion validates the full roster before changing the first learner (3.3573ms)
+✔ teacher promotion restores the class profile if the notice write fails and retry succeeds once (30.6433ms)
+✔ teacher cannot automatically apply a nonadjacent class change (3.7153ms)
+✔ stage continuity keeps exact saved positions, source outline and review dates without new-stage mastery (122.5327ms)
+✔ stale confirmation and expired postponement cannot rewrite a newer profile (26.8196ms)
+✔ unreadable retained learning blocks a personal transition without swapping the profile (1.2083ms)
+✔ calendar events cannot bypass pending decisions and stable retries never reapply postponed work (5.4704ms)
+✔ evidence is suggestion-only and acceptance preserves pending boundaries and rollback (22.7989ms)
+✔ institution and education boundaries retain age permissions and exact institution on Undo (40.9233ms)
+✔ stale editor profile and spoofed teacher authority cannot overwrite current state (2.8656ms)
+✔ teacher promotion retry preserves the same postponed event and records authority only through its class service (55.89ms)
+✔ stage editor drafts resume their original profile revision and reject stale tab overwrites (7.0034ms)
+✔ failed and unreadable stage editor backups preserve saved bytes (3.3299ms)
+✔ organization Work scope cannot edit or back up the personal stage profile (187.038ms)
+✔ clearing established source, institution or education stage still requires confirmation (303.5985ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5503.2306

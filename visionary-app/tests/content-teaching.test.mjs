@@ -21,6 +21,20 @@ const officialGraph = (overrides = {}) => ({
 });
 const ready = (locale = 'en') => ({ status: 'ready', source: 'adapter', text: 'Adapter contract fixture — no answer-quality assertion.', locale, promptVersion: 'test-v1' });
 
+test('reviewed number-line and chart payloads validate before replacing saved content',async()=>{
+ memory.clear();configureMock({latency:0,fault:'none'});seedDemo('adult');configureContentRepository(null);
+ const repo=getContentRepository(ctx());await syllabus(repo);const before=memory.get(contentKey);
+ for(const representation of [
+  {id:'line',kind:'number-line',alternative:'Equal parts',numberLine:{minimum:0,maximum:1,divisions:0,initial:0}},
+  {id:'line',kind:'number-line',alternative:'Equal parts',numberLine:{minimum:1,maximum:0,divisions:8,initial:4}},
+  {id:'line',kind:'number-line',alternative:'Equal parts',numberLine:{minimum:0,maximum:1,divisions:8,initial:9}},
+  {id:'chart',kind:'diagram',alternative:'Sample data',series:[{label:'Week',value:20},{label:'Week',value:30}]},
+  {id:'chart',kind:'diagram',alternative:'Sample data',series:[{label:'A',value:-1},{label:'B',value:20}]},
+ ]){configureContentRepository({async getSyllabus(){return officialGraph({concepts:[officialConcept({representations:[representation]})]});}});await assert.rejects(syllabus(repo),/data is unavailable/);assert.equal(memory.get(contentKey),before);}
+ configureContentRepository({async getSyllabus(){return officialGraph({concepts:[officialConcept({representations:[{id:'line',kind:'number-line',alternative:'Eight equal parts',numberLine:{minimum:0,maximum:1,divisions:8,initial:4}},{id:'chart',kind:'diagram',alternative:'Recorded values',series:[{label:'A',value:0},{label:'B',value:20}]}]})]});}});
+ await syllabus(repo);const concepts=await repo.getConcepts('official:topic');assert.equal(concepts[0].representations[0].numberLine.divisions,8);assert.equal(concepts[0].representations[1].series[0].value,0);
+});
+
 beforeEach(() => {
  memory.clear(); configureContentRepository(null); configureTeachingInterface(null);
  configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-23T12:00:00Z') }); seedDemo('adult');
@@ -36,6 +50,39 @@ test('a database miss persists a numbered provisional hierarchy and one scoped g
  const gaps = await repository.getDataGaps(); assert.equal(gaps.length, 1); assert.equal(gaps[0].user_id, ctx().personId); assert.equal(gaps[0].subject, query.subject); assert.ok(gaps[0].timestamp);
  assert.deepEqual(await getContentRepository(ctx('minor-cbse')).getDataGaps(), []);
  assert.equal(await getContentRepository(ctx('minor-cbse')).getConcept(concepts[0].id), null);
+});
+
+test('content issues are local, workspace-scoped and retryable without duplicate reports', async () => {
+ configureContentRepository({ async getSyllabus() { return officialGraph(); } });
+ const repository = getContentRepository(ctx());
+ await syllabus(repository);
+ const first = await repository.reportIssue('official:concept', 'translation', 'hi');
+ assert.equal(first.locale, 'hi');
+ assert.equal(first.sourceVersion, source.version);
+ assert.equal(first.state, 'saved-locally');
+ assert.equal((await repository.reportIssue('official:concept', 'translation', 'hi')).id, first.id);
+ assert.deepEqual(await getContentRepository(ctx()).getContentIssues(), [first]);
+ const set = localStorage.setItem; localStorage.setItem = () => { throw Error('full'); };
+ try { await assert.rejects(repository.reportIssue('official:concept', 'question'), /could not be saved/); }
+ finally { localStorage.setItem = set; }
+ assert.deepEqual(await repository.getContentIssues(), [first]);
+ const retried = await repository.reportIssue('official:concept', 'question');
+ assert.notEqual(retried.id, first.id);
+ assert.equal((await repository.getContentIssues()).length, 2);
+ await assert.rejects(repository.reportIssue('official:concept', 'unknown'), /valid content issue/);
+ seedDemo('minor-cbse');
+ assert.deepEqual(await getContentRepository(ctx('minor-cbse')).getContentIssues(), []);
+ await assert.rejects(getContentRepository(ctx('minor-cbse')).reportIssue('official:concept', 'source'), /unavailable in your workspace/);
+});
+
+test('duplicate or incomplete project criteria cannot replace a saved curriculum', async () => {
+ const repository = getContentRepository(ctx());
+ configureContentRepository({ async getSyllabus() { return officialGraph({ concepts: [officialConcept({ project: { title: 'Apply', brief: 'Make an artifact.', criteria: [{ id: 'same', label: 'First', prompt: 'Show work.' }, { id: 'same', label: 'Second', prompt: 'Reflect.' }] } })] }); } });
+ await assert.rejects(syllabus(repository), /project criteria/);
+ assert.equal(memory.get(contentKey), undefined);
+ configureContentRepository({ async getSyllabus() { return officialGraph({ concepts: [officialConcept({ project: { title: 'Apply', brief: 'Make an artifact.', criteria: [{ id: 'evidence', label: '', prompt: 'Show work.' }] } })] }); } });
+ await assert.rejects(syllabus(repository), /project criteria/);
+ assert.equal(memory.get(contentKey), undefined);
 });
 
 test('new provisional object IDs never contain raw personal labels and remain deterministic', async () => {

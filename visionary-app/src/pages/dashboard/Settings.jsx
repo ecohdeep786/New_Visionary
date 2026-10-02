@@ -1,28 +1,26 @@
-import { useState } from "react";
-import { Check, Globe2, Palette, Shield, Save } from "lucide-react";
-import { Link } from "react-router-dom";
-import { googleColors } from "@/hooks/useThemeColor";
-import { useAuth } from "@/lib/AuthContext";
-import { learningLanguage } from "@/lib/productAccess";
+import {settingsCopy} from '@/lib/settingsCopy';
+import {appClient} from '@/api/appClient';
+import {useState} from 'react';
+import {Check,Palette,Save} from 'lucide-react';
+import {googleColors} from '@/hooks/useThemeColor';
+import {useAuth} from '@/lib/AuthContext';
+import {useWorkspace} from '@/hooks/useWorkspace';
+import WorkspaceTools from './WorkspaceTools';
+import OrganizationSettings from './OrganizationSettings';
 
-const languages = ["English", "Hindi", "Bengali", "Tamil", "Telugu", "Kannada", "Malayalam", "Marathi", "Gujarati", "Punjabi", "Urdu", "Odia", "Assamese"];
-export default function Settings() {
-  const { user, updateUser } = useAuth();
-  const [language, setLanguage] = useState(learningLanguage(user));
-  const [theme, setTheme] = useState(user?.preferences?.theme_color || "blue");
-  const [status, setStatus] = useState("");
-  const dirty = language !== learningLanguage(user) || theme !== (user?.preferences?.theme_color || "blue");
-  async function save(event) {
-    event.preventDefault(); setStatus("saving");
-    try { await updateUser({ preferences: { ...user?.preferences, learning_language: language.trim(), theme_color: theme } }); setStatus("saved"); }
-    catch { setStatus("error"); }
-  }
-  return <form onSubmit={save} className="mx-auto max-w-[900px] space-y-6 p-5 sm:p-8">
-    <header><h1 className="text-2xl font-medium">Settings</h1><p className="mt-2 text-sm text-[#5f6368]">Make this space feel like yours.</p></header>
-    <section className="rounded-2xl border border-[#dadce0] p-6"><h2 className="flex items-center gap-3 text-base font-medium"><Globe2 className="h-5 w-5 text-[#4285F4]" />Learn in the language you think in</h2><p className="mt-2 text-sm leading-6 text-[#5f6368]">Your preferred language travels with your questions and learning context. The interface is currently in English; AI translation becomes available when the model is connected.</p><label className="mt-5 block text-sm font-medium">Preferred learning language<input list="learning-languages" required maxLength={60} value={language} onChange={e => { setLanguage(e.target.value); setStatus(""); }} className="mt-2 block w-full max-w-sm rounded-xl border border-[#5f6368] p-3 font-normal" /></label><datalist id="learning-languages">{languages.map(l => <option key={l} value={l} />)}</datalist></section>
-    <section className="rounded-2xl border border-[#dadce0] p-6"><h2 className="flex items-center gap-3 text-base font-medium"><Palette className="h-5 w-5 text-[#4285F4]" />Workspace accent</h2><fieldset className="mt-5 flex flex-wrap gap-3"><legend className="sr-only">Choose an accent</legend>{googleColors.map(c => <label key={c.name} className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-sm capitalize ${theme === c.name ? "border-[#4285F4] bg-[#e8f0fd]" : "border-[#dadce0]"}`}><input type="radio" name="accent" value={c.name} checked={theme === c.name} onChange={() => { setTheme(c.name); setStatus(""); }} className="sr-only peer" /><span className="h-4 w-4 rounded-full peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2" style={{ background: c.accent }} />{c.name}{theme === c.name && <Check className="h-4 w-4" />}</label>)}</fieldset></section>
-    <section className="rounded-2xl border border-[#dadce0] bg-[#ffffff] p-6"><h2 className="flex items-center gap-3 text-base font-medium"><Shield className="h-5 w-5 text-[#4285F4]" />Your data and connections</h2><p className="mt-3 text-sm leading-6 text-[#5f6368]">This preview saves data in this browser, not a cloud database. Do not use sensitive or real student records. Private questions and project notes are not shared by connecting to a class or organization.</p><Link to="/dashboard/connections" className="mt-4 inline-block text-sm text-[#4285F4]">Manage sharing and connections</Link></section>
-    <div className="flex flex-wrap items-center gap-4"><button disabled={!dirty || !language.trim() || status === "saving"} className="inline-flex items-center gap-2 rounded-full bg-[#4285F4] px-5 py-2.5 text-sm font-medium text-white disabled:opacity-40"><Save className="h-4 w-4" />{status === "saving" ? "Saving…" : "Save changes"}</button>{status === "saved" && <p role="status" className="text-sm text-[#137333]">Settings saved.</p>}{status === "error" && <p role="alert" className="text-sm text-[#b3261e]">Could not save. Please try again.</p>}</div>
-  </form>;
+export default function Settings(){
+ const scope=useWorkspace();
+ if(scope.ctx?.role==='organization')return <OrganizationSettings key={scope.ctx.personId+':'+scope.ctx.workspaceId} scope={scope}/>;
+ return <><WorkspaceTools area="personalization"/><AccountAppearance key={scope.ctx?.personId} locale={scope.data?.preferences.interfaceLocale||'en'}/></>;
 }
-
+function AccountAppearance({locale}){
+ const t=settingsCopy(locale);
+ const {user,updateUser}=useAuth();
+ const [theme,setTheme]=useState(user?.preferences?.theme_color||'blue');
+ const [savedTheme,setSavedTheme]=useState(user?.preferences?.theme_color||'blue');
+ const [status,setStatus]=useState('');
+ const dirty=theme!==savedTheme;
+ async function save(event){event.preventDefault();if(status==='saving')return;setStatus('saving');try{await updateUser({preferences:{theme_color:theme}},{expectedUserId:user.id,expectedThemeColor:savedTheme});setSavedTheme(theme);setStatus('saved');}catch(cause){setStatus(cause.name==='AppearanceConflictError'?'conflict':'error');}}
+ async function reviewSaved(){try{const latest=await appClient.auth.me();if(latest.id!==user.id)throw Error();setSavedTheme(latest.preferences?.theme_color||'blue');setTheme(latest.preferences?.theme_color||'blue');setStatus('');}catch{setStatus('error');}}
+ return <form onSubmit={save} className="v-page" lang={locale}><section className="v-card"><h2 className="flex items-center gap-3 text-lg font-medium"><Palette size={20}/>{t("Account appearance")}</h2><p className="v-muted mt-2">{t("This account accent applies to supported learning views. Language and Guide preferences above apply to the current workspace.")}</p><fieldset className="mt-5 flex flex-wrap gap-3"><legend className="sr-only">{t("Choose an account accent")}</legend>{googleColors.map(color=><label key={color.name} className={`relative flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-sm capitalize ${theme===color.name?'border-[#4285F4] bg-[#e8f0fd]':'border-[#dadce0]'}`}><input type="radio" name="accent" value={color.name} checked={theme===color.name} onChange={()=>{setTheme(color.name);setStatus('');}} className="sr-only peer"/><span className="h-4 w-4 rounded-full peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2" style={{background:color.accent}}/>{t(color.name)}{theme===color.name&&<Check size={16}/>}</label>)}</fieldset><button className="v-button primary mt-5" disabled={!dirty||status==='saving'}><Save size={16}/>{status==='saving'?t('Saving…'):t('Save account accent')}</button>{status==='saved'&&<p role="status" className="v-notice mt-3">{t("Account accent saved on this device.")}</p>}{status==='conflict'&&<p role="alert" className="v-notice mt-3">{t('The account accent changed in another tab. Your choice is still here.')}<button type="button" className="v-button mt-3" onClick={reviewSaved}>{t('Use saved account accent')}</button></p>}{status==='error'&&<p role="alert" className="v-notice v-error mt-3">{t("Account accent could not be saved. Your selection remains here for retry.")}</p>}</section></form>;
+}

@@ -9,6 +9,8 @@ globalThis.localStorage = {
  getItem: key => memory.get(key) ?? null,
  setItem: (key, value) => { writes++; memory.set(key, String(value)); },
  removeItem: key => memory.delete(key),
+ key: index => [...memory.keys()][index] ?? null,
+ get length() { return memory.size; },
 };
 globalThis.window = { dispatchEvent() {} };
 globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
@@ -16,6 +18,15 @@ const ctx = (personId = 'demo-adult', role = 'student', signal) => ({ personId, 
 const edit = (key, change) => { const value = JSON.parse(memory.get(key)); change(value); memory.set(key, JSON.stringify(value)); };
 
 beforeEach(() => { memory.clear(); writes = 0; workspace.configureMock({ latency: 0, fault: 'none' }); workspace.seedDemo('adult'); });
+
+test('auxiliary project and organization stores cannot be silently omitted from a migration mapping',()=>{
+ memory.set('visionary_artifact_editor_v1',JSON.stringify({version:1,spaces:{}}));memory.set('visionary_organization_billing_v1','[]');
+ memory.set('visionary_classwork_drafts_v1:demo-adult',JSON.stringify({assignment:{text:'Private unfinished answer'}}));
+ const before=new Map(memory);const preview=inspectLocalMigration(ctx());
+ assert.deepEqual(preview.additionalStoresNeedingReview,['Classwork response drafts']);assert.equal(preview.readyForOwnerMapping,false);assert.equal(JSON.stringify(preview).includes('Private unfinished answer'),false);
+ assert.throws(()=>planLocalMigrationMapping(ctx(),'server-owner',preview.workspaces.map(row=>({sourceWorkspaceId:row.sourceWorkspaceId,targetWorkspaceId:row.sourceWorkspaceId,role:row.role}))),/unresolved/);
+ assert.deepEqual(memory,before);assert.equal(JSON.stringify(preview).includes('requestedBy'),false);
+});
 
 test('the preview includes only the current person’s owned roles and never writes or transfers data', () => {
  workspace.addRole('demo-adult', 'teacher');
@@ -114,4 +125,48 @@ test('unassigned records block a proposed mapping even when all personal roles h
  const source = inspectLocalMigration(ctx()).workspaces;
  memory.set('visionary_learning_pipeline_v1', JSON.stringify({ version: 1, spaces: { unassigned: { units: [{}] } } }));
  assert.throws(() => planLocalMigrationMapping(ctx(), 'server-person-1', source.map((item, index) => ({ sourceWorkspaceId: item.sourceWorkspaceId, targetWorkspaceId: `server-${index}`, role: item.role }))), /unresolved local records/);
+});
+
+test('supporting records are inventoried across owned roles without exposing private payloads', () => {
+ memory.set('visionary_artifact_editor_v1', JSON.stringify({version:1,spaces:{'demo-adult:student':{a:{body:'secret project'}},'demo-teacher:teacher':{b:{body:'foreign private'}}}}));
+ memory.set('visionary_resource_editor_v1', JSON.stringify({version:1,spaces:{'demo-adult:teacher':{a:{draft:{body:'secret lesson'}}}}}));
+ memory.set('visionary_review_drafts_v1:demo-adult:teacher:assignment', JSON.stringify({submission:{feedback:'secret feedback'}}));
+ memory.set('visionary_stage_editor_v1:demo-adult:professional', JSON.stringify({version:1,personId:'demo-adult',fields:{institution:'secret institution'},base:'secret profile'}));
+ memory.set('visionary_classwork_study_v1:demo-adult', JSON.stringify({'demo-adult:student':{a:{questionDraft:'secret doubt'}}}));
+ const before=new Map(memory),preview=inspectLocalMigration(ctx()),find=label=>preview.auxiliaryOwnership.find(row=>row.label===label);
+ assert.equal(find('Unsaved project edits').personalRecords,1);assert.equal(find('Unsaved resource edits').personalRecords,1);
+ assert.equal(find('Classroom review drafts').personalRecords,1);assert.equal(find('Stage profile editor drafts').personalRecords,1);
+ assert.equal(find('Private classroom Ask and rehearsal').personalRecords,1);assert.equal(preview.readyForOwnerMapping,false);
+ assert.equal(JSON.stringify(preview).includes('secret'),false);assert.equal(JSON.stringify(preview).includes('foreign private'),false);assert.deepEqual(memory,before);
+});
+
+test('empty stores and known foreign draft keys do not block or disclose another account', () => {
+ memory.set('visionary_artifact_editor_v1',JSON.stringify({version:1,spaces:{'demo-teacher:teacher':{secret:{body:'private'}}}}));
+ memory.set('visionary_review_drafts_v1:demo-teacher:teacher:assignment','{foreign malformed');
+ memory.set('visionary_stage_editor_v1:demo-teacher:teacher','{foreign malformed');
+ memory.set('visionary_organization_billing_v1','[]');
+ const preview=inspectLocalMigration(ctx());assert.equal(preview.readyForOwnerMapping,true);assert.deepEqual(preview.additionalStoresNeedingReview,[]);
+ assert.equal(JSON.stringify(preview).includes('Classroom review drafts'),false);assert.equal(JSON.stringify(preview).includes('secret'),false);
+});
+
+test('connected, unassigned and ambiguous records remain separate and block mapping', () => {
+ edit('visionary_workspace_v2',db=>{db.workspaces.push({id:'demo-adult:teacher:org:school',personId:'demo-adult',role:'teacher',organizationId:'school'});db.data['demo-adult:teacher:org:school']=structuredClone(db.data['demo-adult:teacher']);});
+ memory.set('visionary_resource_editor_v1',JSON.stringify({version:1,spaces:{'demo-adult:teacher:org:school':{a:{body:'school draft'}},unknown:{b:{body:'unowned text'}}}}));
+ memory.set('visionary_review_drafts_v1:demo-adult:teacher:org:school:a',JSON.stringify({s:{feedback:'ambiguous'}}));
+ memory.set('visionary_stage_editor_v1:unknown-stage',JSON.stringify({personId:'unknown'}));
+ memory.set('visionary_classwork_drafts_v1:demo-adult',JSON.stringify({assignment:{text:'Unknown school scope'}}));
+ const preview=inspectLocalMigration(ctx()),find=label=>preview.auxiliaryOwnership.find(row=>row.label===label);
+ assert.equal(find('Unsaved resource edits').connectedRecords,1);assert.equal(find('Unsaved resource edits').unresolvedRecords,1);
+ assert.equal(find('Classroom review drafts').unresolvedRecords,1);assert.equal(find('Classroom review drafts').personalRecords,0);
+ assert.equal(find('Stage profile editor drafts').unresolvedRecords,1);assert.equal(preview.readyForOwnerMapping,false);
+ assert.equal(find('Classwork response drafts').unresolvedRecords,1);assert.equal(find('Classwork response drafts').personalRecords,0);
+ assert.equal(JSON.stringify(preview).includes('school draft'),false);
+});
+
+test('unreadable auxiliary stores retain original bytes and cannot become ownership approval', () => {
+ memory.set('visionary_stage_transitions_v1','{broken');memory.set('visionary_daily_deferrals_v1',JSON.stringify({version:9,deferred:[]}));
+ memory.set('visionary_artifact_editor_v1',JSON.stringify({version:1,spaces:{'demo-adult:student':null}}));
+ const before=new Map(memory),preview=inspectLocalMigration(ctx());assert.equal(preview.readyForOwnerMapping,false);
+ assert.equal(preview.auxiliaryOwnership.filter(row=>row.unreadable).length,3);assert.deepEqual(memory,before);
+ assert.throws(()=>planLocalMigrationMapping(ctx(),'server-owner',[]),/unresolved/);
 });

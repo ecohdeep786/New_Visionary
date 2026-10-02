@@ -1,0 +1,51 @@
+const copy={
+ en:{title:'Help with your workspace',intro:'Choose a next step for the active workspace. Records in this preview are saved in this browser.',loading:'Reading workspace help…',restricted:'This section is outside your organization permission. The owner can review access.',
+  roles:{
+   student:['Start learning','Choose a sourced subject, chapter and objective. Explore, ask, practise and build. A personal learning-area name does not generate curriculum.','Open Learn'],
+   professional:['Connect learning to work','Set a career goal and save a project you can explain. Self-review is not a verified credential. Personal and company workspaces remain separate.','Open Career'],
+   teacher:['Prepare and assign','Review a sourced lesson and its criteria before explicitly assigning a fixed copy to your class. Learners choose what to submit; private study stays separate.','Open Prepare'],
+   parent:['Support your child','An accepted connection and sharing scope are required. Reports show permitted summaries, shared projects and classroom updates. Private questions, drafts and conversations remain private.','Open Reports'],
+   organization:['Review and deliver curriculum','A different authorized administrator reviews the saved template. Deliver the approved copy to an accepted teacher. The teacher can review their adaptation and explicitly publish a fixed class curriculum; delivery alone does not publish it.','Open Curriculum'],
+  },
+  common:[
+   ['Connections and access','Enrollment, active membership and accepted sharing scopes govern access. Expired or revoked permissions close access. A paid plan does not grant guardian permission.','Review connections'],
+   ['Teaching and interface languages','Settings saves separate language choices. Supported source copies keep their own language. Navigation, Progress, learning controls and shared preferences support English, Hindi and Bengali; some other screens and service errors remain English.','Open language settings'],
+   ['Voice and text','Start listening explicitly in Guide and review recognized words before Send. Stop or close Guide to end input. Text stays available when device input fails or permission is denied. Device recognition quality still requires acceptance testing.','Open Ask'],
+   ['Recover unfinished work','Reopen the same workspace and browser tab for supported editor drafts. If saving fails, keep the page open, export edits and retry. Review a newer saved version before replacing it. Local recovery is not cloud backup.','Review storage and export'],
+   ['Stored records','This browser stores the preview records. Clearing browser data can remove them. Privacy provides exports and supporting-record ownership review; this does not migrate data or certify server security.','Open Privacy'],
+   ['Connected services','Authored samples and local evidence rules work here. Model inference, cloud identity and storage, cross-device sync, production speech, payments and ad delivery are not connected. Frontend behavior does not demonstrate AGI capability.','Review plans and usage'],
+  ]},
+ hi:{title:'आपके कार्यक्षेत्र के लिए सहायता',intro:'सक्रिय कार्यक्षेत्र के लिए अगला कदम चुनें। इस पूर्वावलोकन के रिकॉर्ड इसी ब्राउज़र में सहेजे जाते हैं।',loading:'कार्य क्षेत्र की सहायता पढ़ी जा रही है…',restricted:'यह भाग आपके संगठन की अनुमति के बाहर है। स्वामी पहुँच की समीक्षा कर सकता है।',
+  roles:{
+   student:['सीखना शुरू करें','स्रोत सहित विषय, अध्याय और उद्देश्य चुनें। देखें, प्रश्न पूछें, अभ्यास करें और बनाएँ। निजी अध्ययन क्षेत्र का नाम पाठ्यक्रम नहीं बनाता।','अध्ययन खोलें'],
+   professional:['अध्ययन को काम से जोड़ें','करियर लक्ष्य चुनें और ऐसा प्रोजेक्ट सहेजें जिसे समझा सकें। स्व-समीक्षा सत्यापित प्रमाणपत्र नहीं है। निजी और कंपनी कार्यक्षेत्र अलग रहते हैं।','करियर खोलें'],
+   teacher:['तैयार करें और सौंपें','अपनी कक्षा को निश्चित प्रति सौंपने से पहले स्रोत सहित पाठ और मानदंड की समीक्षा करें। विद्यार्थी स्वयं तय करते हैं कि क्या जमा करना है; निजी अध्ययन अलग रहता है।','तैयारी खोलें'],
+   parent:['बच्चे की सहायता करें','स्वीकृत संबंध और साझा करने की अनुमति आवश्यक हैं। रिपोर्ट में अनुमत सारांश, साझा प्रोजेक्ट और कक्षा के अपडेट दिखते हैं। निजी प्रश्न, ड्राफ़्ट और बातचीत निजी रहते हैं।','रिपोर्ट खोलें'],
+   organization:['पाठ्यक्रम की समीक्षा और वितरण','दूसरा अधिकृत प्रशासक सहेजे गए टेम्पलेट की समीक्षा करता है। स्वीकृत प्रति जुड़े शिक्षक को दें। शिक्षक अपने अनुकूलन की समीक्षा कर स्पष्ट रूप से निश्चित कक्षा पाठ्यक्रम प्रकाशित कर सकता है; केवल वितरण से प्रकाशन नहीं होता।','पाठ्यक्रम खोलें'],
+  },
+  common:[
+   ['संबंध और पहुँच','नामांकन, सक्रिय सदस्यता और स्वीकृत साझा दायरे से पहुँच मिलती है। अनुमति समाप्त या वापस लेने पर पहुँच बंद होती है। भुगतान वाला प्लान अभिभावक की अनुमति नहीं देता।','संबंधों की समीक्षा करें'],
+   ['शिक्षण और इंटरफ़ेस की भाषा','सेटिंग्स में अलग भाषाएँ चुनी जा सकती हैं। स्रोत प्रतियों की अपनी भाषा रहती है। नेविगेशन, प्रगति, अध्ययन नियंत्रण और साझा प्राथमिकताएँ अंग्रेज़ी, हिन्दी और बांग्ला में हैं; कुछ अन्य स्क्रीन और सेवा त्रुटियाँ अंग्रेज़ी में रहती हैं।','भाषा सेटिंग्स खोलें'],
+   ['आवाज़ और पाठ','Guide में स्वयं सुनना शुरू करें और भेजने से पहले पहचाने गए शब्द जाँचें। रोकने या Guide बंद करने पर इनपुट रुकता है। उपकरण विफल होने या अनुमति न मिलने पर पाठ उपलब्ध रहता है। वास्तविक उपकरणों पर पहचान की गुणवत्ता की जाँच बाकी है।','प्रश्न पूछें'],
+   ['अधूरा काम वापस पाएँ','समर्थित संपादक ड्राफ़्ट उसी कार्यक्षेत्र और ब्राउज़र टैब में फिर खोलें। सहेजना विफल हो तो पेज खुला रखें, संपादन निर्यात करें और फिर प्रयास करें। बदलने से पहले नए सहेजे गए संस्करण को जाँचें। स्थानीय रिकवरी क्लाउड बैकअप नहीं है।','संग्रह और निर्यात देखें'],
+   ['सहेजे गए रिकॉर्ड','पूर्वावलोकन के रिकॉर्ड इस ब्राउज़र में रहते हैं। ब्राउज़र डेटा साफ़ करने पर वे हट सकते हैं। गोपनीयता में निर्यात और सहायक रिकॉर्ड के स्वामित्व की समीक्षा है; यह डेटा स्थानांतरण या सर्वर सुरक्षा का प्रमाण नहीं है।','गोपनीयता खोलें'],
+   ['जुड़ी सेवाएँ','लेखित नमूने और स्थानीय साक्ष्य नियम काम करते हैं। मॉडल, क्लाउड पहचान और संग्रह, उपकरणों के बीच सिंक, उत्पादन वाणी, भुगतान और विज्ञापन वितरण जुड़े नहीं हैं। फ़्रंटएंड का व्यवहार AGI क्षमता का प्रमाण नहीं है।','प्लान और उपयोग देखें'],
+  ]},
+ bn:{title:'আপনার কর্মক্ষেত্রের সাহায্য',intro:'সক্রিয় কর্মক্ষেত্রের জন্য পরের পদক্ষেপ বেছে নিন। এই প্রিভিউয়ের রেকর্ড এই ব্রাউজারে সংরক্ষিত থাকে।',loading:'কর্মক্ষেত্রের সাহায্য পড়া হচ্ছে…',restricted:'এই অংশ আপনার প্রতিষ্ঠানের অনুমতির বাইরে। মালিক প্রবেশাধিকার পর্যালোচনা করতে পারেন।',
+  roles:{
+   student:['শেখা শুরু করুন','উৎসসহ বিষয়, অধ্যায় ও উদ্দেশ্য বেছে নিন। দেখুন, প্রশ্ন করুন, অনুশীলন করুন ও তৈরি করুন। ব্যক্তিগত অধ্যয়নক্ষেত্রের নাম পাঠ্যক্রম তৈরি করে না।','শেখা খুলুন'],
+   professional:['শেখাকে কাজের সঙ্গে যুক্ত করুন','কর্মজীবনের লক্ষ্য বেছে নিন এবং ব্যাখ্যা করতে পারেন এমন প্রকল্প সংরক্ষণ করুন। নিজের পর্যালোচনা যাচাইকৃত সনদ নয়। ব্যক্তিগত ও কোম্পানির কর্মক্ষেত্র আলাদা থাকে।','কর্মজীবন খুলুন'],
+   teacher:['প্রস্তুত ও অর্পণ করুন','ক্লাসে নির্দিষ্ট অনুলিপি অর্পণের আগে উৎসসহ পাঠ ও মানদণ্ড পর্যালোচনা করুন। শিক্ষার্থীরা কী জমা দেবেন তা নিজেরা বেছে নেন; ব্যক্তিগত অধ্যয়ন আলাদা থাকে।','প্রস্তুতি খুলুন'],
+   parent:['সন্তানকে সাহায্য করুন','গৃহীত সংযোগ ও ভাগ করার অনুমতি প্রয়োজন। রিপোর্টে অনুমোদিত সারাংশ, ভাগ করা প্রকল্প ও ক্লাসের আপডেট দেখা যায়। ব্যক্তিগত প্রশ্ন, খসড়া ও কথোপকথন ব্যক্তিগত থাকে।','রিপোর্ট খুলুন'],
+   organization:['পাঠ্যক্রম পর্যালোচনা ও বিতরণ','অন্য অনুমোদিত প্রশাসক সংরক্ষিত টেমপ্লেট পর্যালোচনা করেন। গৃহীত শিক্ষককে অনুমোদিত অনুলিপি দিন। শিক্ষক নিজের অভিযোজন পর্যালোচনা করে স্পষ্টভাবে নির্দিষ্ট ক্লাস পাঠ্যক্রম প্রকাশ করতে পারেন; শুধু বিতরণ করলে প্রকাশ হয় না।','পাঠ্যক্রম খুলুন'],
+  },
+  common:[
+   ['সংযোগ ও প্রবেশাধিকার','নথিভুক্তি, সক্রিয় সদস্যপদ ও গৃহীত ভাগ করার পরিধি প্রবেশাধিকার নিয়ন্ত্রণ করে। মেয়াদ শেষ বা প্রত্যাহার হলে প্রবেশ বন্ধ হয়। অর্থপ্রদত্ত প্ল্যান অভিভাবকের অনুমতি দেয় না।','সংযোগ পর্যালোচনা করুন'],
+   ['শিক্ষণ ও ইন্টারফেসের ভাষা','সেটিংসে আলাদা ভাষা বেছে নেওয়া যায়। উৎস অনুলিপির নিজস্ব ভাষা থাকে। নেভিগেশন, অগ্রগতি, শেখার নিয়ন্ত্রণ ও সাধারণ পছন্দ ইংরেজি, হিন্দি ও বাংলায় আছে; কিছু অন্য স্ক্রিন ও পরিষেবার ত্রুটি ইংরেজিতে থাকে।','ভাষার সেটিংস খুলুন'],
+   ['কণ্ঠ ও পাঠ্য','Guide-এ নিজে শোনা শুরু করুন এবং পাঠানোর আগে শনাক্ত শব্দ দেখুন। থামালে বা Guide বন্ধ করলে ইনপুট শেষ হয়। ডিভাইস ব্যর্থ হলে বা অনুমতি না পেলে পাঠ্য থাকে। আসল ডিভাইসে শনাক্তকরণের মান যাচাই বাকি আছে।','প্রশ্ন করুন'],
+   ['অসমাপ্ত কাজ ফিরিয়ে আনুন','সমর্থিত সম্পাদকের খসড়া একই কর্মক্ষেত্র ও ব্রাউজার ট্যাবে আবার খুলুন। সংরক্ষণ ব্যর্থ হলে পেজ খোলা রাখুন, সম্পাদনা রপ্তানি করুন ও আবার চেষ্টা করুন। প্রতিস্থাপনের আগে নতুন সংরক্ষিত সংস্করণ দেখুন। স্থানীয় পুনরুদ্ধার ক্লাউড ব্যাকআপ নয়।','সংরক্ষণ ও রপ্তানি দেখুন'],
+   ['সংরক্ষিত রেকর্ড','প্রিভিউয়ের রেকর্ড এই ব্রাউজারে থাকে। ব্রাউজারের ডেটা মুছলে সেগুলি হারাতে পারে। গোপনীয়তায় রপ্তানি ও সহায়ক রেকর্ডের মালিকানা পর্যালোচনা আছে; এতে ডেটা স্থানান্তর বা সার্ভারের নিরাপত্তা প্রমাণ হয় না।','গোপনীয়তা খুলুন'],
+   ['যুক্ত পরিষেবা','লিখিত নমুনা ও স্থানীয় প্রমাণের নিয়ম কাজ করে। মডেল, ক্লাউড পরিচয় ও সংরক্ষণ, ডিভাইসের মধ্যে সিঙ্ক, উৎপাদনের কণ্ঠ, অর্থপ্রদান ও বিজ্ঞাপন বিতরণ যুক্ত নেই। ফ্রন্টএন্ডের আচরণ AGI সক্ষমতার প্রমাণ নয়।','প্ল্যান ও ব্যবহার দেখুন'],
+  ]},
+};
+export const supportCopy=locale=>copy[locale]||copy.en;

@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import HeroFanCards from "@/components/landing/HeroFanCards";
 
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ── Fan cards: every main category plus the sub-categories used on each
       category page. All sub-category cards redirect to their main category
       page — no separate sub-pages exist. ── */
 const FAN_GROUPS = [
-  { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher Secondary", "chemistry"], ["Competitive Exams", "flag"], ["Vocational & Skills", "build"], ["Higher Education", "research"], ["Learning on Your Own", "loop"]] },
-  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson Planning", "document"], ["In Class", "ask"], ["Checking Understanding", "practice"], ["Adapting", "compass"], ["Supporting Individuals", "handshake"], ["Growing", "growth"]] },
-  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early Years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher Secondary", "chemistry"]] },
-  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early Career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
-  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges & Universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
+  { to: "/student", label: "Students", subject: "student", tint: "#e8f0fe", subs: [["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"], ["Competitive exams", "flag"], ["Vocational and skills", "build"], ["Higher education", "research"], ["Learning on your own", "loop"]] },
+  { to: "/teacher", label: "Teachers", subject: "teacher", tint: "#e9f5ef", subs: [["Lesson planning", "document"], ["In class", "ask"], ["Checking understanding", "practice"], ["Adapting", "compass"], ["Supporting individuals", "handshake"], ["Growing", "growth"]] },
+  { to: "/parent", label: "Parents", subject: "parent", tint: "#fef3df", subs: [["Early years", "learn"], ["Primary", "math"], ["Secondary", "physics"], ["Higher secondary", "chemistry"]] },
+  { to: "/professional", label: "Professionals", subject: "briefcase", tint: "#f3edff", subs: [["Early career", "growth"], ["Mid-Level", "practice"], ["Senior", "compass"], ["Leadership", "handshake"], ["Specialist", "research"], ["Entrepreneur", "build"]] },
+  { to: "/organization", label: "Organizations", subject: "team", tint: "#fcebe8", subs: [["Schools", "student"], ["Colleges and universities", "research"], ["Coaching", "practice"], ["Workplace learning", "computerScience"]] },
 ];
 
 const STRIP_CARDS = FAN_GROUPS.flatMap((group) => [
@@ -48,11 +48,11 @@ export default function AboutUsHero() {
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
         <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">About Visionary</p>
         <div className="mx-auto mt-6 max-w-[1120px] text-center">
-          <h1 className="text-[clamp(32px,6vw,64px)] font-normal leading-[0.98] tracking-[-0.045em] text-[#202124]">
-            Helping people turn questions into <span className="text-[#0b57d0]">understanding.</span>
+          <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[64px] lg:text-[76px]">
+            Helping people turn questions into <span className="accent-gradient">understanding.</span>
           </h1>
           <p className="mx-auto mt-8 max-w-[760px] text-[20px] leading-[1.55] text-[#3c4043] sm:text-[24px]">
-            Visionary is a learning product for people who want to understand, practise, and apply what they learn—in class, at home, and at work.
+            A learning product for people who want to understand, practise, and apply what they learn.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link

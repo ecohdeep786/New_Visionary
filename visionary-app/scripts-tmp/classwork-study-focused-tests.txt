@@ -1,0 +1,13 @@
+✔ assigned Ask uses only scoped instructions/source and handles unavailable teaching and safety (187.666ms)
+✔ a delayed model reply closes on revoked class access and its packet excludes private study (28.5517ms)
+✔ authored rehearsal resumes, rejects stale questions and stores distinct retries without mastery or grades (65.1081ms)
+✔ study conflict, malformed stores and failed writes preserve originals and reject teacher access (92.9749ms)
+✔ assigned criterion reviews are mandatory, fixed across revision history, and exclude private rehearsal (58.5188ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1787.4928

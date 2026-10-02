@@ -1,4 +1,6 @@
 @import "./styles/rhythm.css";
+@import "./styles/public-system.css";
+@import "./styles/public-bridge.css";
 
 /* Google Fonts imports */
 
@@ -8,9 +10,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+/* The brand voices: Google Sans Flex (variable, opsz 16–144, wght 400–750)
+   leads every landing stack, Google Sans static carries legacy references.
+   Both are served by the Fonts API again (verified 200, Oct 2026).
+   DM Sans stays as the safety stand-in if gstatic is unreachable. */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@16..144,400..750&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap');
 
@@ -118,9 +124,9 @@
 
     --destructive-foreground: 0 0% 98%;
 
-    --border: 263 100% 53%;
+    --border: 220 13% 87%;
 
-    --input: 263 100% 53%;
+    --input: 220 13% 87%;
 
     --ring: 0 0% 100%;
 
@@ -305,7 +311,7 @@
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
-    font-family: 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -505,4 +511,16 @@ h3[id] {
     font-size: 10px;
     color: #555;
   }
+}
+/* ═══ g-card — the Google card surface, measured from about.google and the
+   careers marketing pages (2026-09-30): a FLAT tinted fill, no shadow, no
+   border, no hover elevation. The surface itself defines the card; radius
+   and padding come from the element's own utilities. Cards that must read
+   as white (on grey bands) override with bg-white explicitly. The notched
+   corner + nested link/button anatomy lives in the page markup, not here.
+   Hairline dividers inside lists stay as borders; chips, pills, and inputs
+   keep their deliberate outlines. ═══ */
+/* :where() = zero specificity, so bg-white / bg-[…] utilities always win */
+:where(.g-card) {
+  background-color: #f8f9fa;
 }

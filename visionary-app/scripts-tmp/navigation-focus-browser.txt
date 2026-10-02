@@ -1,0 +1,1 @@
+PASS keyboard search → Help/main focus, mobile drawer → Learn/main focus, open role-dialog focus retention, history focus, reduced-motion context and no errors/overflow. Native screen-reader/zoom acceptance remains open.

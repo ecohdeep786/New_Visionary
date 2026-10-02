@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Globe } from "lucide-react";
 
-const FONT = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#4285F4" };
 
 const FOOTER_LINK =
@@ -41,17 +41,17 @@ const FOOTER_SECTIONS = [
     ],
   },
   {
-    title: "Partners & Support",
+    title: "Partners and support",
     links: [
-      { label: "Help Center", to: "/help" },
-      { label: "Contact & Sales", to: "/contact" },
+      { label: "Help center", to: "/help" },
+      { label: "Contact sales", to: "/contact" },
       { label: "Partner program", to: "/partners" },
-      { label: "Find a Partner", to: "/partners" },
+      { label: "Find a partner", to: "/partners" },
       { label: "Sign up for updates", to: "/updates" },
     ],
   },
   {
-    title: "Trust & Legal",
+    title: "Trust and legal",
     links: [
       { label: "Safety", to: "/safety" },
       { label: "Privacy", to: "/privacy" },
@@ -85,7 +85,7 @@ export default function LandingFooter({ variant = "brand" }) {
   };
   return (
     <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: C.white, borderColor: C.mist }}>
-      <div className="w-full px-6 pt-12 lg:px-10">
+      <div className="public-frame public-frame-wide pt-16">
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: C.mist }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">
@@ -113,7 +113,7 @@ export default function LandingFooter({ variant = "brand" }) {
 
       {/* Hairline + legal band */}
       <div className={`border-t ${quiet ? "" : "mt-12"}`} style={{ borderColor: C.mist }}>
-        <div className="flex w-full flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row lg:px-10">
+        <div className="public-frame public-frame-wide flex flex-col items-center justify-between gap-4 py-8 md:flex-row">
           <p className="text-[12px] tracking-[0.24px]" style={{ color: C.slate }}>© {new Date().getFullYear()} Visionary. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <label className="flex items-center gap-1.5 text-[12px] tracking-[0.24px]" style={{ color: C.slate }}>

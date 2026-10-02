@@ -2,9 +2,10 @@ import type { Locale, RequestContext } from '../domain/workspace.ts';
 import type { ContentQuestion, RepresentationDescriptor } from './contentRepository.ts';
 import { validateContentQuestion } from './contentRepository.ts';
 import { workspaceIdentity } from './workspaceService.ts';
+import { getStagePresentation, type StagePresentation } from './stagePresentation.ts';
 
 export type TeachingMode = 'explanation' | 'practice' | 'feedback' | 'project';
-export interface PromptPacket { input: string; conceptId?: string; sessionId?: string; intent?: 'understand' | 'solve' | 'check' | 'plan' | 'build'; language?: Locale; difficulty?: number; context?: Record<string, unknown>; audience?: 'general' | 'adult'; promptVersion?: string }
+export interface PromptPacket { input: string; conceptId?: string; sessionId?: string; intent?: 'understand' | 'solve' | 'check' | 'plan' | 'build'; language?: Locale; difficulty?: number; context?: Record<string, unknown>; audience?: 'general' | 'adult'; promptVersion?: string; stagePresentation?: StagePresentation }
 export type TeachingResponse =
  | { status: 'ready'; source: 'adapter'; text: string; locale: Locale; promptVersion: string; question?: ContentQuestion; representations?: RepresentationDescriptor[] }
  | { status: 'not_connected'; source: 'not_connected'; text: string; locale?: Locale; question?: never; representations?: never; promptVersion?: never }
@@ -26,6 +27,11 @@ const ageText: Record<Locale, string> = {
  hi: 'यह गतिविधि इस आयु प्रोफ़ाइल के लिए उपलब्ध नहीं है। सामान्य सीखने की गतिविधि चुनें।',
  bn: 'এই বয়সের প্রোফাইলের জন্য এই কার্যকলাপটি উপলব্ধ নয়। সাধারণ শেখার কার্যকলাপ বেছে নিন।',
 };
+const unavailableText: Record<Locale, string> = {
+ en: 'Visionary Guide’s teaching service is not connected. Your workspace can keep your question and learning progress locally; no model answer has been generated.',
+ hi: 'Visionary Guide की शिक्षण सेवा जुड़ी नहीं है। आपका कार्यक्षेत्र आपके प्रश्न और सीखने की प्रगति को इस उपकरण पर रख सकता है; मॉडल से कोई उत्तर नहीं बनाया गया है।',
+ bn: 'Visionary Guide-এর শিক্ষণ পরিষেবা যুক্ত নেই। আপনার কর্মক্ষেত্র প্রশ্ন ও শেখার অগ্রগতি এই ডিভাইসে রাখতে পারে; মডেল থেকে কোনো উত্তর তৈরি করা হয়নি।',
+};
 function check(ctx: RequestContext) { if (ctx.signal?.aborted) throw new DOMException('Cancelled', 'AbortError'); return workspaceIdentity(ctx); }
 async function abortable<T>(request: Promise<T>, signal?: AbortSignal): Promise<T> {
  if (!signal) return request;
@@ -44,13 +50,19 @@ export function getTeachingInterface(ctx: RequestContext): TeachingInterface {
   if (hasSafetyConcern(packet.input) || hasSafetyConcern(contextText)) return { status: 'blocked', source: 'safety', text: safetyText[locale], locale };
   if (packet.audience === 'adult' && identity.person.ageBand !== 'adult') return { status: 'blocked', source: 'safety', text: ageText[locale], locale };
   const current = adapter;
-  if (!current) return { status: 'not_connected', source: 'not_connected', text: 'Visionary Guide’s teaching service is not connected. Your workspace can keep your question and learning progress locally; no model answer has been generated.' };
-  const result = await abortable(current.request(mode, structuredClone(packet), ctx), ctx.signal);
+  if (!current) return { status: 'not_connected', source: 'not_connected', text: unavailableText[locale], locale };
+  // Derive presentation from the authorized profile. Caller hints cannot override
+  // safety or impersonate another stage; no raw profile or ability score is added.
+  const outbound = structuredClone(packet);
+  outbound.stagePresentation = getStagePresentation(ctx);
+  const expectedPresentation = JSON.stringify(outbound.stagePresentation);
+  const result = await abortable(current.request(mode, outbound, ctx), ctx.signal);
   check(ctx);
+  if(JSON.stringify(getStagePresentation(ctx))!==expectedPresentation)throw new Error('Your learning stage or age profile changed during this request. Your saved work is unchanged. Please retry in the current stage.');
   if (!result || !['ready', 'not_connected', 'blocked'].includes(result.status) || !['adapter', 'not_connected', 'safety'].includes(result.source) || typeof result.text !== 'string' || !result.text.trim() || result.text.length > 12000) throw new Error('The teaching service returned an incomplete response. Your saved work is unchanged.');
   if (result.status === 'ready' && (result.source !== 'adapter' || result.locale !== locale || typeof result.promptVersion !== 'string' || !result.promptVersion.trim())) throw new Error('The teaching service returned an incomplete or wrong-language response. Your saved work is unchanged.');
   if ((result.status === 'not_connected' && result.source !== 'not_connected') || (result.status === 'blocked' && result.source !== 'safety')) throw new Error('The teaching service returned an inconsistent response. Your saved work is unchanged.');
-  if ((result.status === 'blocked' && result.locale !== locale) || (result.status === 'not_connected' && result.locale !== undefined && result.locale !== 'en')) throw new Error('The teaching service returned a wrong-language status. Your saved work is unchanged.');
+  if ((result.status === 'blocked' && result.locale !== locale) || (result.status === 'not_connected' && result.locale !== undefined && result.locale !== locale && result.locale !== 'en')) throw new Error('The teaching service returned a wrong-language status. Your saved work is unchanged.');
   if (result.question !== undefined) validateContentQuestion(result.question);
   if (result.representations !== undefined && (!Array.isArray(result.representations) || result.representations.length > 10 || result.representations.some(item => !item || typeof item.id !== 'string' || !item.id.trim() || typeof item.alternative !== 'string' || !item.alternative.trim() || (item.assetId !== undefined && typeof item.assetId !== 'string') || !['text', 'diagram', 'cube', 'number-line', 'scene'].includes(item.kind)))) throw new Error('The teaching service returned an incomplete representation. Your saved work is unchanged.');
   const untrusted = result as unknown as Record<string, unknown>;
@@ -60,7 +72,7 @@ export function getTeachingInterface(ctx: RequestContext): TeachingInterface {
   if (result.status === 'ready') return { status: 'ready', source: 'adapter', text: result.text, locale, promptVersion: result.promptVersion,
    ...(result.question ? { question: { id: result.question.id, prompt: result.question.prompt, options: [...result.question.options], answerIndex: result.question.answerIndex, source: result.question.source } } : {}),
    ...(result.representations ? { representations: result.representations.map(item => ({ id: item.id, kind: item.kind, alternative: item.alternative, ...(item.assetId ? { assetId: item.assetId } : {}) })) } : {}) };
-  return { status: result.status, source: result.source, text: result.text, locale: result.status === 'blocked' ? locale : 'en' } as TeachingResponse;
+  return { status: result.status, source: result.source, text: result.text, locale: result.status === 'blocked' ? locale : result.locale || 'en' } as TeachingResponse;
  }
  return { requestExplanation: p => request('explanation', p), requestPracticeQuestion: p => request('practice', p), requestFeedback: p => request('feedback', p), requestProjectGuidance: p => request('project', p) };
 }

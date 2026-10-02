@@ -1,3 +1,4 @@
+import {connectionStatus} from '../lib/connectionAvailability.js';
 import type { RequestContext } from '../domain/workspace.ts';
 import { workspaceIdentity } from './workspaceService.ts';
 import { emitInteractionEvent } from './mentorStateService.ts';
@@ -32,7 +33,7 @@ function rows(name: 'Classroom' | 'Enrollment' | 'OrganizationInvite'): LegacyRo
  try { const value = JSON.parse(localStorage.getItem(`visionary_entity_${name}`) || '[]'); if (!Array.isArray(value)) throw Error(); return value; }
  catch { throw new Error('Connection records are unavailable. Community access stays restricted until they can be read.'); }
 }
-function alive(row: LegacyRow) { return row.status === 'active' && (!row.expiresAt || new Date(String(row.expiresAt)).getTime() > clock().getTime()); }
+function alive(row: LegacyRow) { return connectionStatus({status:row.status,expiresAt:row.expiresAt},clock().getTime()) === 'active'; }
 function schoolMembership(email: string, organization: unknown) { return !organization || rows('OrganizationInvite').some(r => r.email === email && r.organization_email === organization && alive(r)); }
 function assertClassAccess(ctx: RequestContext, classId: string): 'student' | 'teacher' {
  const { person, workspace } = check(ctx);

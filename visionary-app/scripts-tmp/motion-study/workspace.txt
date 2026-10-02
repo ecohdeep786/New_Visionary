@@ -1,0 +1,28 @@
+transition/animation vocabulary (top patterns):
+     42x  0.24s|all|ease-in-out
+     34x  0.2s|color|ease
+     33x  0.2s|opacity|ease-out, ease-out
+     32x  0.2s|all|ease-out
+     32x  0.2s|visibility|ease-out, ease-out
+     21x  0.2s|background-color|ease, ease, ease
+     21x  0.2s|color|ease, ease, ease
+     21x  0.2s|box-shadow|ease, ease, ease
+     20x  0.3s|grid-template-rows|ease-out, ease-out, ease-out
+     20x  0.3s|margin-top|ease-out, ease-out, ease-out
+     20x  0.3s|opacity|ease-out, ease-out, ease-out
+     16x  0.2s|font-weight|ease-out, ease-out
+     16x  0.2s|font-size|ease-out, ease-out
+     12x  0.2s|color|cubic-bezier(0.215, 0.61, 0.355, 1)
+     11x  0.2s|background-color|ease, ease
+     11x  0.2s|color|ease, ease
+     10x  0.3s|all|cubic-bezier(0.17, 0.08, 0.83, 0.92)
+      6x  0.2s|box-shadow|ease, ease
+      6x  0.2s|border-color|ease, ease
+      4x  0.3s|transform|ease
+      2x  0.3s|transform|ease-in-out, ease-in-out
+      2x  0.3s|opacity|ease-in-out, ease-in-out
+      2x  0.15s|background-color|ease
+      2x  0.4s|grid-template-rows|ease-in-out, ease-in-out
+scroll-reveal: <H3> "Google Workspace includes:" -> opacity 1->1 in 0ms, translateY 0px
+hover: no matching pill CTA found
+reduce-mode: h1 opacity=1 animation=none, below-fold opacity=1

@@ -1,0 +1,12 @@
+✔ teacher attaches a sourced objective without answer keys and assigns an immutable learner visual copy (84.3961ms)
+✔ source and teacher context are rechecked and provisional or unavailable objectives do not attach (34.2341ms)
+✔ same-clock lesson edits reject stale assignment and cannot replay a different saved objective (8.2376ms)
+✔ malformed objective writes and visual drafts preserve originals; changed assignment objective rejects submission (49.8332ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 755.1114

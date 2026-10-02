@@ -25,7 +25,7 @@ const COLORS = {
   white: "#ffffff",
   graphite: "#5f6368",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -62,19 +62,19 @@ const AT_A_GLANCE = [
   {
     to: "#principles",
     label: "Know what we use",
-    text: "Essential cookies for sign-in and security — no ad networks, no cross-site tracking.",
+    text: "Essential cookies for sign-in and security. No ad networks, no cross-site tracking.",
     Icon: Cookie,
   },
   {
     to: "#types",
     label: "See each type",
-    text: "Session, preference, and optional analytics — what each one does, in one line.",
+    text: "Session, preference, and optional analytics: what each one does, in one line.",
     Icon: Globe,
   },
   {
     to: "#preferences",
     label: "Set your choices",
-    text: "Turn optional cookies on or off on this device and save — it takes one tap.",
+    text: "Turn optional cookies on or off on this device and save. It takes one tap.",
     Icon: Accessibility,
   },
 ];
@@ -119,7 +119,7 @@ function IconTile({ Icon }) {
 
 function LearnMoreRow({ to, label }) {
   return (
-    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
+    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
       {label}
       <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
     </Link>
@@ -220,17 +220,17 @@ export default function CookiesPage() {
                           type="button"
                           onClick={() => scrollToSection(section.id)}
                           aria-current={active ? "location" : undefined}
-                          className="group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                          className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
-                          <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                          <span className="mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                           <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                         </button>
                       );
                     })}
                   </div>
                 </nav>
-                <div className="mt-8 border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                <div className="mt-8 border-t pt-6">
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <p className="text-[13px] leading-[1.6]" style={{ color: COLORS.grey }}>
@@ -248,16 +248,16 @@ export default function CookiesPage() {
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="cookie" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
                   <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Cookie policy</p>
-                  <h1 className="mt-4 max-w-[720px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] sm:text-[48px] lg:text-[56px]" style={{ color: COLORS.ink }}>
-                    How we use cookies. And how you control them.
+                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+                    How we use cookies. And how <span className="accent-gradient">you control them.</span>
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
-                    The short version, then the full list. Only what's needed — nothing extra, nothing sold.
+                    The short version, then the full list. Only what's needed, nothing extra, nothing sold.
                   </p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {COOKIE_PROMISES.map((p) => (
-                      <span key={p} className="flex items-center gap-1.5 text-[13.5px] font-medium" style={{ color: COLORS.ink }}>
+                      <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
                         <ShieldCheck className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.navy }} aria-hidden="true" />
                         {p}
                       </span>
@@ -271,7 +271,7 @@ export default function CookiesPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Manage cookies on this device</p>
-                      <p className="mt-0.5 text-[14.5px]" style={{ color: COLORS.grey }}>Optional choices are saved in this browser only.</p>
+                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>Optional choices are saved in this browser only.</p>
                       <button type="button" onClick={() => scrollToSection("preferences")} className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
                         Set your cookie choices
                         <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
@@ -285,7 +285,7 @@ export default function CookiesPage() {
                 </div>
 
                 {/* Mobile TOC */}
-                <div className="border-b pb-4 lg:hidden" style={{ borderColor: COLORS.mist }}>
+                <div className="border-b pb-4 lg:hidden">
                   <button
                     type="button"
                     onClick={() => setShowMobileContents((value) => !value)}
@@ -294,14 +294,14 @@ export default function CookiesPage() {
                     className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     <span>
-                      <span className="block text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
                       <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
                   </button>
                   {showMobileContents && (
                     <div id="cookies-mobile-contents" className="pt-4">
-                      <div className="overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                      <div className="overflow-hidden rounded-[16px] border">
                         {SECTIONS.map((section) => {
                           const active = activeId === section.id;
                           return (
@@ -313,7 +313,7 @@ export default function CookiesPage() {
                               className="flex min-h-12 w-full items-start gap-4 border-b px-4 py-3 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                               style={{ borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white }}
                             >
-                              <span className="mt-0.5 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                              <span className="mt-0.5 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                               <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                             </button>
                           );
@@ -329,10 +329,13 @@ export default function CookiesPage() {
                   <h2 id="cookies-summary-title" className="mt-2 text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>The essentials, at a glance</h2>
                   <div className="mt-6 grid gap-4 md:grid-cols-3">
                     {AT_A_GLANCE.map(({ to, label, text, Icon }, index) => (
-                      <a key={to} href={to} className="group flex min-h-[174px] flex-col rounded-[20px] border bg-white p-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6" style={{ borderColor: COLORS.mist }}>
+                      <a key={to} href={to} className="group relative flex min-h-[174px] flex-col overflow-hidden rounded-[20px] g-card p-5 pb-16 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:p-6">
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e8f0fe]" style={{ color: COLORS.navy }}><Icon className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" /></span>
-                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}<ArrowRight className="ml-auto h-4 w-4 shrink-0" style={{ color: COLORS.grey }} aria-hidden="true" /></span>
+                        <span className="mt-5 flex items-center gap-2 text-[15px] font-medium" style={{ color: COLORS.ink }}><span className="text-[12px] font-normal tabular-nums" style={{ color: COLORS.grey }}>0{index + 1}</span>{label}</span>
                         <span className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</span>
+                        {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
+                        <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
+                        <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                       </a>
                     ))}
                   </div>
@@ -347,9 +350,9 @@ export default function CookiesPage() {
                   <Paragraph>
                     Cookies are small files a website saves in your browser. They let the site recognize your session, remember your choices, and keep things working the way you expect between visits.
                   </Paragraph>
-                  <div className="mt-8 max-w-[760px] rounded-[16px] border bg-[#f8f9fa] px-5 py-5 sm:px-6" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[760px] rounded-[16px] bg-[#f8f9fa] px-5 py-5 sm:px-6">
                     <p className="text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      Visionary uses them to keep you signed in and remember your preferences — never to follow you around the internet or sell what it learns.
+                      Visionary uses them to keep you signed in and remember your preferences, never to follow you around the internet or sell what it learns.
                     </p>
                   </div>
                 </section>
@@ -366,7 +369,7 @@ export default function CookiesPage() {
                       { Icon: Lock, title: "No advertising cookies.", text: "We don't use cookies to show you ads. Ever. There are no ad networks watching what you do here. Your attention is not for sale." },
                       { Icon: Globe, title: "Analytics with consent.", text: "If we use analytics cookies, we ask first. You can say no, and Visionary still works perfectly. We only measure what you explicitly allow." },
                     ].map(({ Icon, title, text }) => (
-                      <div key={title} className="rounded-[16px] border p-6" style={{ borderColor: COLORS.mist }}>
+                      <div key={title} className="rounded-[16px] g-card p-6">
                         <IconTile Icon={Icon} />
                         <h3 className="mt-5 text-[16px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
                         <p className="mt-2 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
@@ -381,14 +384,14 @@ export default function CookiesPage() {
                   <Paragraph>
                     Each type does one job. Here is the full list.
                   </Paragraph>
-                  <div className="mt-10 max-w-[880px] overflow-hidden rounded-[16px] border" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-10 max-w-[880px] overflow-hidden rounded-[16px] border">
                     {[
                       ["Session cookies", "Keep you signed in while you use Visionary. Deleted when you close your browser."],
                       ["Preference cookies", "Remember things like your language and theme so you don't have to set them every time."],
-                      ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent — and you can opt out anytime."],
+                      ["Analytics (optional)", "Help us understand what's working so we can improve. Only with your consent, and you can opt out anytime."],
                     ].map(([who, what], i, arr) => (
-                      <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`} style={{ borderColor: COLORS.mist }}>
-                        <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
+                      <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`}>
+                        <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
                         <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
                       </div>
                     ))}
@@ -401,8 +404,8 @@ export default function CookiesPage() {
                   <Paragraph>
                     Optional choices are saved in this browser. They do not change settings on your other devices.
                   </Paragraph>
-                  <div className="mt-8 max-w-[720px] rounded-[24px] border bg-white p-6 sm:p-8" style={{ borderColor: COLORS.mist }}>
-                    <div className="divide-y" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[720px] rounded-[24px] g-card p-6 sm:p-8">
+                    <div className="divide-y">
                       {preferenceRows.map((row) => (
                         <div key={row.label} className="flex items-center gap-5 py-5 first:pt-0">
                           <div className="min-w-0 flex-1">
@@ -436,20 +439,20 @@ export default function CookiesPage() {
                 <section id="managing" className="scroll-mt-24 py-14 sm:py-16">
                   <SectionHeading number="05" title="Managing cookies" />
                   <Paragraph>
-                    You control them, always. Clear them anytime from your browser or your Visionary settings — no emails, no waiting.
+                    You control them, always. Clear them anytime from your browser or your Visionary settings. No emails, no waiting.
                   </Paragraph>
-                  <div className="mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-10 max-w-[880px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Your cookie options.</p>
                     <ul className="mt-4 space-y-2.5">
                       {[
-                        "Essential cookies cannot be turned off — they're what make Visionary work.",
+                        "Essential cookies cannot be turned off. They're what make Visionary work.",
                         "Preference and analytics cookies are optional, and you can change your choices at any time from your Visionary settings (Settings → Privacy & cookies).",
                         "Clear or block cookies anytime from your browser's site settings.",
-                        "Optional choices apply to this device only — set them again on devices you use.",
+                        "Optional choices apply to this device only. Set them again on devices you use.",
                       ].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
-                          <span className="text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
+                          <span className="text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
                         </li>
                       ))}
                     </ul>
@@ -462,7 +465,7 @@ export default function CookiesPage() {
                   <Paragraph>
                     We're transparent about every cookie we use and why. If something isn't clear, reach out.
                   </Paragraph>
-                  <div className="mt-8 max-w-[640px] rounded-[16px] border p-6 sm:p-7" style={{ borderColor: COLORS.mist }}>
+                  <div className="mt-8 max-w-[640px] rounded-[16px] g-card p-6 sm:p-7">
                     <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>Write to the team</p>
                     <p className="mt-3">
                       <a href="mailto:hello@visionary.org.in?subject=Cookie%20question" className="inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
@@ -471,10 +474,10 @@ export default function CookiesPage() {
                       </a>
                     </p>
                     <p className="mt-3 text-[14px] leading-[1.7]" style={{ color: COLORS.grey }}>
-                      For how personal information is handled, read the Privacy Policy — it sits under the same tab bar as this page.
+                      For how personal information is handled, read the privacy policy. It sits under the same tab bar as this page.
                     </p>
                   </div>
-                  <LearnMoreRow to="/privacy" label="Read the Privacy Policy" />
+                  <LearnMoreRow to="/privacy" label="Read the privacy policy" />
                 </section>
               </article>
             </div>
@@ -485,18 +488,18 @@ export default function CookiesPage() {
         <section aria-labelledby="key-terms-title" className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 id="key-terms-title" className="text-[24px] font-normal tracking-[-0.02em] sm:text-[30px]" style={{ color: COLORS.ink }}>Key terms</h2>
-            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2" style={{ borderColor: COLORS.mist }}>
+            <div className="mt-8 grid gap-x-14 gap-y-8 border-t pt-10 sm:grid-cols-2">
               {[
                 { term: "Cookies", def: "Small files a website saves in your browser to recognize your session and remember your choices." },
                 { term: "Essential cookies", def: "The cookies required for sign-in, security, and core service behavior. They cannot be turned off." },
                 { term: "Preference cookies", def: "Cookies that remember choices such as language and appearance on the device you use." },
                 { term: "Analytics cookies", def: "Optional cookies that measure what works so we can improve. Used only with your consent." },
                 { term: "Browser storage", def: "Where cookies and on-device records live. Clearing your browser's site data removes them." },
-                { term: "Consent", def: "Your explicit yes before optional cookies are used — and your ability to say no without losing the product." },
+                { term: "Consent", def: "Your explicit yes before we use optional cookies, and your ability to say no without losing the product." },
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -504,22 +507,25 @@ export default function CookiesPage() {
         </section>
 
         {/* RELATED */}
-        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10" style={{ borderColor: COLORS.mist }}>
+        <section aria-label="Related policies" className="border-t px-6 py-20 sm:px-8 lg:px-10">
           <div className="mx-auto w-full max-w-[1240px]">
             <h2 className="text-[22px] font-normal leading-[1.3] tracking-[-0.01em]" style={{ color: COLORS.ink }}>Read them together</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { to: "/privacy", label: "Privacy Policy", desc: "Your learning is personal.", Icon: Lock },
+                { to: "/privacy", label: "Privacy policy", desc: "Your learning is personal.", Icon: Lock },
                 { to: "/terms", label: "Terms of service", desc: "Clear rules, written to be understood.", Icon: FileText },
                 { to: "/security", label: "Security", desc: "How your information is protected.", Icon: ShieldCheck },
                 { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: Accessibility },
               ].map(({ to, label, desc, Icon }) => (
-                <Link key={to} to={to} className="group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+                <Link key={to} to={to} className="group relative overflow-hidden rounded-[12px] g-card p-5 pb-14 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <div className="flex items-center gap-3">
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
-                  <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                  <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                  {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
+                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-white" />
+                  <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>
                 </Link>
               ))}
             </div>

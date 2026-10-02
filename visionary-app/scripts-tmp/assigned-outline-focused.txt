@@ -1,0 +1,16 @@
+✔ assigned outline orders chapters/objectives, separates source versions and omits content/answers/grades (46.8352ms)
+✔ malformed and ambiguous assigned sources are partial without overwriting originals (1.5046ms)
+✔ foreign class, closed enrollment and wrong role cannot read the outline (1.6253ms)
+✔ reviewed assigned practice projects no keys and private attempts cannot create grades or mastery (210.4999ms)
+✔ changed source pointers and corrupted banks fail without grading or repairing stored originals (44.1913ms)
+✔ later curriculum edits do not replace delivered questions; stale keys and revoked access reject private grading (31.3149ms)
+✔ a draft bank keeps an unselected answer key; editorial submission rejects it without a write (12.7753ms)
+✔ older reviewed assignment copies retain practice without inventing newly added chapter metadata (104.2787ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1613.4181

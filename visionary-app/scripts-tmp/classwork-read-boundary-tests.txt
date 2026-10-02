@@ -1,0 +1,12 @@
+✔ revocation during classwork reads cannot return the old source (163.9775ms)
+✔ workspace switch during classwork reads cancels the old source projection (189.8325ms)
+✔ changed content during classwork reads requires reopening; original draft is retained (128.0346ms)
+✔ aborted classwork reads do not expose content or create responses (271.783ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4227.8017

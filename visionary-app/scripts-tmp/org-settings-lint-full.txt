@@ -1,0 +1,10 @@
+
+> visionary-app@0.0.0 lint
+> eslint . --quiet
+
+
+C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\copyaudit\scan.js
+  84:53  error  Parsing error: Unterminated string constant
+
+✖ 1 problem (1 error, 0 warnings)
+

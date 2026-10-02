@@ -1,0 +1,12 @@
+✔ accent saves preserve other preferences, reject stale colors and account changes (3.7497ms)
+✔ profile save compares the loaded name and rejects stale tabs without replacing newer account fields (0.5475ms)
+✔ profile save remains bound to the original signed-in account after a session switch (1.5709ms)
+✔ invalid and failed profile saves retain original account data for retry (0.7861ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 691.6452

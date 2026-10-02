@@ -18,7 +18,7 @@ const COLORS = {
   mist: "#dadce0",
   white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -100,7 +100,7 @@ function DownloadHeroSection() {
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
-          Get <span style={{ color: COLORS.blue }}>Visionary</span> on every device.
+          Get <span className="accent-gradient">Visionary</span> on every device.
         </h1>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           On the phone, tablet or laptop you already own.
@@ -108,7 +108,7 @@ function DownloadHeroSection() {
 
         {/* The choice — Web or App */}
         <div className="mx-auto mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 sm:grid-cols-2">
-          <div className="flex flex-col rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+          <div className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-8 pb-20" style={{ borderColor: COLORS.mist }}>
             <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
               <Globe className="h-5 w-5" strokeWidth={1.8} />
             </span>
@@ -116,27 +116,30 @@ function DownloadHeroSection() {
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
               Full Visionary in your browser. Nothing to install, always up to date, works on any computer.
             </p>
+            {/* google.com card curve — tint sweeps into the corner and the card's action floats in it with breath */}
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <Link
               to="/register"
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
               style={{ backgroundColor: COLORS.blue }}
             >
               Open Visionary
             </Link>
           </div>
 
-          <div className="flex flex-col rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+          <div className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-8 pb-20" style={{ borderColor: COLORS.mist }}>
             <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
               <Download className="h-5 w-5" strokeWidth={1.8} />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
             <p className="mt-[calc(clamp(20px,2vw,26px)*0.6)] font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
-              Native apps for desktop and mobile — faster, offline-friendly, and synced to your account.
+              Native apps for desktop and mobile: faster, offline-friendly, and synced to your account.
             </p>
+            <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="mt-8 inline-flex h-12 items-center justify-center rounded-full border px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full border bg-white px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
               style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
             >
               See platforms
@@ -180,7 +183,7 @@ function DownloadPlatformsSection() {
                 }}
               >
                 {isRecommended && (
-                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
+                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
                     Recommended
                   </span>
                 )}
@@ -274,7 +277,7 @@ function DownloadNotifySection() {
               </div>
               {status === "error" && (
                 <p id="notify-error" role="alert" className="mt-3 text-left text-[13px] tracking-[0.24px]" style={{ color: "#EA4335" }}>
-                  Please enter a valid email address — we can't notify you without one.
+                  Please enter a valid email address. We can't notify you without one.
                 </p>
               )}
             </form>
@@ -301,7 +304,7 @@ function DownloadSyncSection() {
         on every other.
       </p>
       <p className={`mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px] transition-all duration-700 ease-google delay-100 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.grey }}>
-        Conversations, progress, and context sync across web, desktop, and mobile — automatically, and privately.
+        Conversations, progress, and context sync across web, desktop, and mobile, automatically and privately.
       </p>
     </section>
   );
@@ -349,7 +352,7 @@ function DownloadTrustBand() {
 function DownloadCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.

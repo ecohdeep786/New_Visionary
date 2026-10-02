@@ -1,3 +1,4 @@
+import {connectedContext} from './fixtures/connectedContext.mjs';
 import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
@@ -10,7 +11,7 @@ const memory = new Map();
 globalThis.localStorage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, String(value)), removeItem: key => memory.delete(key) };
 globalThis.window = { dispatchEvent() {} };
 globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
-const ctx = (person = 'adult', role = 'student') => ({ personId: `demo-${person}`, workspaceId: `demo-${person}:${role}`, role, locale: 'en' });
+const ctx = (person = 'adult', role = 'student') => { const base={personId:'demo-'+person,workspaceId:'demo-'+person+':'+role,role,locale:'en'};return ['minor-cbse','bengali','teacher','school-teacher'].includes(person)&&['student','teacher'].includes(role)?connectedContext(base,false):base; };
 const at = () => new Date('2026-09-23T12:00:00Z');
 beforeEach(() => {
  memory.clear();
