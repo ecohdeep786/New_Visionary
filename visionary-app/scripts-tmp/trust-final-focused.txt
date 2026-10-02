@@ -1,0 +1,23 @@
+✔ auxiliary project and organization stores cannot be silently omitted from a migration mapping (7.3876ms)
+✔ the preview includes only the current person’s owned roles and never writes or transfers data (20.2695ms)
+✔ scoped content, activity and evidence are counted while foreign data is excluded (1.1651ms)
+✔ unowned records and connected organization spaces require review instead of automatic assignment (1.2195ms)
+✔ mismatched learning-state owner and malformed store versions fail closed without changing saved data (1.5968ms)
+✔ duplicate workspace identifiers cannot be assigned to the current owner by guesswork (4.0825ms)
+✔ a forged workspace or cancelled preview cannot inspect another person’s migration (48.2254ms)
+✔ a proposed target map requires every role once and never becomes a transfer (5.5704ms)
+✔ unassigned records block a proposed mapping even when all personal roles have target IDs (2.823ms)
+✔ supporting records are inventoried across owned roles without exposing private payloads (1.212ms)
+✔ empty stores and known foreign draft keys do not block or disclose another account (1.3369ms)
+✔ connected, unassigned and ambiguous records remain separate and block mapping (1.1247ms)
+✔ unreadable auxiliary stores retain original bytes and cannot become ownership approval (1.2015ms)
+✔ missing and cross-workspace update IDs cannot be marked read or claim success (22.1242ms)
+✔ failed mark-read retains unread state and a successful retry is idempotent (9.7897ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2844.034

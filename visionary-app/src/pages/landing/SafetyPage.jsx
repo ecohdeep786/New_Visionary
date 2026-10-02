@@ -152,7 +152,7 @@ export default function SafetyPage() {
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0b57d2] text-white shadow-[0_2px_8px_rgba(11,87,210,0.3)]">
               <ShieldCheck className="h-7 w-7" strokeWidth={1.8} aria-hidden="true" />
             </span>
-            <h1 className="mt-7 text-[clamp(34px,5vw,54px)] font-normal leading-[1.08] tracking-[-0.04em] text-[#202124]">
+            <h1 className="mt-7 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
               Safe by design,<br />
               <span className="text-[#0b57d0]">for every learner.</span>
             </h1>
@@ -188,7 +188,7 @@ export default function SafetyPage() {
         </section>
 
         {/* BUILT-IN PROTECTIONS — the reference's alternating rows */}
-        <section id="protections" aria-labelledby="protections-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="protections" aria-labelledby="protections-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1080px]">
             <h2 id="protections-title" className="sr-only">Built-in protections</h2>
             <div className="grid gap-16 lg:gap-24">
@@ -211,7 +211,7 @@ export default function SafetyPage() {
         </section>
 
         {/* FAMILY CONTROLS — the reference's centered heading + action cards */}
-        <section id="family" aria-labelledby="family-title" className="scroll-mt-28 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="family" aria-labelledby="family-title" className="scroll-mt-28 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
               <h2 id="family-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#202124] sm:text-[44px]">
@@ -228,7 +228,7 @@ export default function SafetyPage() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
+                  <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   {/* google.com card curve — the section background sweeps into
@@ -242,7 +242,7 @@ export default function SafetyPage() {
         </section>
 
         {/* REPORTING & REVIEW — the reference's eyebrow cards */}
-        <section id="reporting" aria-labelledby="reporting-title" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="reporting" aria-labelledby="reporting-title" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
               <h2 id="reporting-title" className="text-[32px] font-normal leading-[1.18] tracking-[-0.03em] text-[#202124] sm:text-[44px]">
@@ -258,7 +258,7 @@ export default function SafetyPage() {
                   <span className="flex h-[120px] w-[120px] items-center justify-center rounded-[24px]" style={{ backgroundColor: tint }}>
                     <SpotIllustration subject={subject} className="h-[88px] w-[88px]" title={eyebrow} />
                   </span>
-                  <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
+                  <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{eyebrow}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.4] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />

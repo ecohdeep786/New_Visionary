@@ -94,7 +94,7 @@ export default function UpdatesPage() {
         <section className="px-6 pb-14 pt-10 sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">News &amp; updates</p>
-            <h1 className="mt-4 text-[clamp(34px,5.5vw,58px)] font-normal leading-[1.05] tracking-[-0.045em] text-[#202124]">
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
               What&rsquo;s <span className="text-[#0b57d0]">new</span> at Visionary.
             </h1>
             <p className="mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -123,8 +123,8 @@ export default function UpdatesPage() {
             <article className="relative grid items-center gap-8 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:p-12">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#202124]">Featured</span>
-                  <span className="inline-flex items-center rounded-[6px] bg-white/70 px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">Languages &amp; access</span>
+                  <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#202124]">Featured</span>
+                  <span className="inline-flex items-center rounded-[6px] bg-white/70 px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">Languages &amp; access</span>
                 </div>
                 <h2 id="featured-title" className="mt-5 text-[30px] font-normal leading-[1.15] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
                   One intelligence, every learner, in their language.
@@ -150,7 +150,7 @@ export default function UpdatesPage() {
         </section>
 
         {/* LATEST — filter chips + dated cards */}
-        <section id="latest" aria-labelledby="latest-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="latest" aria-labelledby="latest-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-[680px]">
@@ -188,7 +188,7 @@ export default function UpdatesPage() {
               {visibleUpdates.map((item) => (
                 <article key={item.title} className="group relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl g-card p-6">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center rounded-[6px] bg-[#f1f3f4] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
+                    <span className="inline-flex items-center rounded-[6px] bg-[#f1f3f4] px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">
                       {catLabel(item.cat)}
                     </span>
                     <span className="text-[12px] tracking-[0.01em] text-[#9aa0a6]">{item.date}</span>
@@ -234,7 +234,7 @@ export default function UpdatesPage() {
         </section>
 
         {/* CHOOSE YOUR UPDATES + SIGN UP — preserved mailto flow, restyled */}
-        <section id="signup" aria-labelledby="signup-title" className="scroll-mt-28 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="signup" aria-labelledby="signup-title" className="scroll-mt-28 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Stay in the loop</p>

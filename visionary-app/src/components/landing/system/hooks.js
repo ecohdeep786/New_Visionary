@@ -147,3 +147,17 @@ export function useHorizontalTrack() {
   }, []);
   return { trackRef, canPrev, canNext, scrollByCard, update };
 }
+
+/** Index state for a stage switcher: goTo(i) with wraparound and step(±1). */
+export function useStageIndex(total) {
+  const [index, setIndex] = useState(0);
+  const goTo = useCallback(
+    (i) => setIndex(((i % total) + total) % total),
+    [total]
+  );
+  const step = useCallback(
+    (d) => setIndex((i) => (i + d + total) % total),
+    [total]
+  );
+  return { index, goTo, step };
+}

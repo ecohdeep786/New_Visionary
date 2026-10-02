@@ -1,4 +1,6 @@
 @import "./styles/rhythm.css";
+@import "./styles/public-system.css";
+@import "./styles/public-bridge.css";
 
 /* Google Fonts imports */
 
@@ -305,7 +307,7 @@
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
-    font-family: 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -183,7 +183,7 @@ function DownloadPlatformsSection() {
                 }}
               >
                 {isRecommended && (
-                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
+                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
                     Recommended
                   </span>
                 )}
@@ -352,7 +352,7 @@ function DownloadTrustBand() {
 function DownloadCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.

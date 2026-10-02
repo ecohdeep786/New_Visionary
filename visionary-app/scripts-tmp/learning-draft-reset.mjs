@@ -1,0 +1,1 @@
+import fs from 'node:fs';const p='src/services/learningPipelineService.ts';let s=fs.readFileSync(p,'utf8').replaceAll('delete unit.answer;delete unit.question;', 'delete unit.answer;delete unit.answerDraft;delete unit.question;');s=s.replace('unit.answer={index,correct,id:eventId};','delete unit.answerDraft;unit.answer={index,correct,id:eventId};');fs.writeFileSync(p,s);

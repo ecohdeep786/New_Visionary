@@ -1,0 +1,21 @@
+✔ career creation rejects concurrent target and does not create a second goal (42.7526ms)
+✔ career revision protects capability and same-clock edits (61.7956ms)
+✔ career edits recover in their tab and stay separate from saved goals (83.6189ms)
+✔ failed career save retains saved target and editor recovery for retry (4.0913ms)
+✔ unsupported capability and nonprofessional actor do not change target (109.8166ms)
+✔ accepted professional invitation creates a separate work space and revocation returns to intact personal work (50.743ms)
+✔ five roles share scoped mentor services without exposing private student events (47.543ms)
+✔ teacher requests use the disconnected teaching seam and never create a model answer (17.2207ms)
+✔ published classwork is visible only to actively enrolled students (2.2358ms)
+✔ class learning context carries only an enrolled learner’s subject into Learn (2.2056ms)
+✔ professional target is personal and adult-only; guardian revocation closes the report (34.9022ms)
+✔ professional goal links only owned capability evidence and a private portfolio project (162.0137ms)
+✔ turning personalization off keeps retained memory visible to its owner for deletion (18.8309ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6001.2291

@@ -24,8 +24,8 @@ try {
  await page.getByRole('button', { name: 'Review this project' }).click();
  const dialog = page.getByRole('dialog', { name: 'Review your portfolio project' });
  for (let index = 0; index < 3; index++) {
-  await dialog.getByLabel('Your rating').nth(index).selectOption(index === 2 ? 'needs-work' : 'supported');
-  await dialog.getByLabel('Evidence note').nth(index).fill(`Section ${index + 1} explains my reasoning.`);
+  await dialog.locator('fieldset select').nth(index).selectOption(index === 2 ? 'needs-work' : 'supported');
+  await dialog.locator('fieldset textarea').nth(index).fill(`Section ${index + 1} explains my reasoning.`);
  }
  await dialog.getByLabel('What will you improve next?').fill('Check a second fictional source.');
  await dialog.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/professional-portfolio-criteria-390.png' });

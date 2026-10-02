@@ -375,7 +375,7 @@ to{opacity:1}
             {LANDING_HERO_LINEUP.map((p, i) => (
               <span
                 key={p.label}
-                className={`apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[10px] sm:block ${overlapCls(i)}`}
+                className={`apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[12px] sm:block ${overlapCls(i)}`}
                 style={{
                   width: LINEUP_WIDTHS[p.w],
                   color: COLORS.slate,
@@ -390,12 +390,12 @@ to{opacity:1}
         </div>
 
         {/* title → tagline → promise — the Apple/Google hero hierarchy at the
-            category display scale; vh caps keep shorter laptops whole */}
+            canonical display scale; vh caps keep shorter laptops whole */}
         <h1 className="m-0 mt-[max(28px,6vh)] lg:mt-[5.5vh]">
           <span
-            className="apple-anim block font-medium leading-[1.02] tracking-[0] text-[#121317]"
+            className="apple-anim block font-medium leading-[1.05] tracking-[0] text-[#121317]"
             style={{
-              fontSize: "clamp(40px, min(9.57vw, 15.5vh), 168px)",
+              fontSize: "clamp(48px, min(5.55vw, 11vh), 80px)",
               animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
               animationDelay: "560ms",
             }}
@@ -439,7 +439,7 @@ to{opacity:1}
         >
           <Link
             to="/register"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
           >
             Start free
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
@@ -449,7 +449,7 @@ to{opacity:1}
           </Link>
           <Link
             to="/how-it-works"
-            className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[15px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
           >
             See how it works
           </Link>
@@ -465,16 +465,16 @@ function LandingProblemSection() {
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
-    <section ref={ref} data-section="02-problem" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="02-problem" className="relative overflow-hidden bg-[#f8f9fa] py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
-          <div className="lg:col-span-5 lg:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Why Visionary exists</p>
+          <div className="lg:col-span-5 lg:pl-[var(--frame-x)]">
+            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Why Visionary exists</p>
             <h2 key={`h-${index}`} className="hero-fade-up mt-[calc(clamp(28px,2.78vw,40px)*0.857)] max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
             </h2>
           </div>
-          <div className="lg:col-span-7 lg:pr-[6%]">
+          <div className="lg:col-span-7 lg:pr-[var(--frame-x)]">
             <figure className="m-0">
               <div key={`m-${index}`} className="hero-fade-up [animation-delay:120ms] [animation-fill-mode:both]">
                 <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[16/9] w-full max-w-[640px] mx-auto rounded-[50px] object-cover" />
@@ -565,7 +565,7 @@ function LandingMeetSection() {
     <section ref={sectionRef} data-section="04-meet" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <div ref={headRef} className="px-6">
         <FadeReveal visible={visible}>
-          <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>Meet Visionary</p>
+          <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Meet Visionary</p>
           <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
             It <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
           </h2>
@@ -682,7 +682,7 @@ function LandingOneIntelligenceSection() {
                 </>
               ) : (
                 <>
-                  <span className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>{state.label}</span>
+                  <span className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>{state.label}</span>
                   <h3 className="mt-[calc(clamp(22px,2.6vw,34px)*0.909)] font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)]" style={{ color: COLORS.ink }}>{state.heading}</h3>
                   <p className="mt-[calc(clamp(22px,2.6vw,34px)*0.727)] font-normal tracking-[0.24px] leading-[1.5] text-[14px]" style={{ color: COLORS.slate }}>{state.body}</p>
                   <div className="mt-6 h-[2px] w-[240px] overflow-hidden rounded-full" style={{ backgroundColor: COLORS.mist }}>
@@ -777,12 +777,12 @@ const LGLanguageChips = React.memo(function LGLanguageChips({ active, onSelect }
     <div className="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Language selection">
       {LG_CHIPS.map((lang) => (
         <button key={lang.code} type="button" aria-pressed={active === lang.code} onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[10px] transition-colors ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[12px] transition-colors ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
           style={{ backgroundColor: active === lang.code ? COLORS.chipBg : "transparent", color: COLORS.ink, borderColor: active === lang.code ? "transparent" : `${COLORS.ink}40` }}>
           {lang.label}
         </button>
       ))}
-      <span className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>+20 languages</span>
+      <span className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>+20 languages</span>
     </div>
   );
 });
@@ -797,7 +797,7 @@ function LandingLanguageSection() {
   }, []);
   const question = LG_QUESTIONS[qIndex][lang];
   return (
-    <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-[#f8f9fa] px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
@@ -812,7 +812,7 @@ function LandingLanguageSection() {
               <span key={`${c}-${i}`} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
             ))}
           </div>
-          <p aria-live="polite" className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
+          <p aria-live="polite" lang={lang} className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
             <span key={`${lang}-${qIndex}`} className="hero-fade-up inline">{question}</span>
           </p>
           <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
@@ -899,14 +899,14 @@ function LandingTrustSection() {
           Your learning, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
         <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
-          <div className="lg:pl-[6.5%]">
+          <div className="lg:pl-[var(--frame-x)]">
             <h3 key={activeCard.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{activeCard.title}</h3>
             <div className="mt-12 flex gap-4">
               <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="left" /></button>
               <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="right" /></button>
             </div>
           </div>
-          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10 lg:pr-[6%]">
+          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10 lg:pr-[var(--frame-x)]">
             <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px]"><LXTrustCard card={activeCard} cardIndex={cardIndex} /></div>
             <div key={`b-${cardIndex}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={nextCard} cardIndex={(cardIndex + 1) % LX_TRUST_CARDS.length} /></div>
           </div>
@@ -920,7 +920,7 @@ function LandingTrustSection() {
 function LandingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
+    <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: "#e8f0fe" }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start today</p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
@@ -943,7 +943,7 @@ const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
     <Link to={`/${category.slug}`} data-card className="elevation-1 block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
       <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.slate }}>{category.chip}</p>
+        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>{category.chip}</p>
         <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{category.copy}</p>
         <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>Learn more</span>
       </div>
@@ -984,11 +984,11 @@ function LandingExploreSection() {
 function LandingFAQSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-[#f8f9fa] px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
         <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Questions, answered.</h2>
-        <div className="mx-auto mt-24 w-full max-w-[1400px]">
+        <div className="mx-auto mt-24 w-full max-w-[1240px]">
           <LandingFAQ faqs={FAQ_ITEMS} variant="hero" defaultOpen={0} />
         </div>
       </FadeReveal>

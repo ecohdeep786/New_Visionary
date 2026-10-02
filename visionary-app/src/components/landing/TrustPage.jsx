@@ -74,7 +74,7 @@ export function SectionHeading({ number, title, href, active, onClick }) {
     >
       {number && (
         <span
-          className="mt-0.5 w-6 shrink-0 text-[11px] font-medium"
+          className="mt-0.5 w-6 shrink-0 text-[12px] font-medium"
           style={{ color: isActive ? C.blue : C.slate }}
         >
           {number}

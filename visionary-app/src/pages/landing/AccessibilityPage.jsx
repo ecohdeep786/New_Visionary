@@ -130,7 +130,7 @@ export default function AccessibilityPage() {
         <section className="px-6 pb-12 pt-10 text-center sm:px-8 lg:px-10 lg:pb-14 lg:pt-16">
           <Reveal className="mx-auto max-w-[900px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Accessibility</p>
-            <h1 className="mt-4 text-[clamp(34px,5.5vw,58px)] font-normal leading-[1.05] tracking-[-0.045em] text-[#202124]">
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
               Help every learner learn <span className="text-[#0b57d0]">how they learn best.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -155,7 +155,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
-        <section className="border-y border-[#e8eaed] px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section className="border-y border-[#e8eaed] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[560px]">
               <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124] sm:text-[36px]">
@@ -244,7 +244,7 @@ export default function AccessibilityPage() {
                         <Icon className="h-6 w-6" strokeWidth={1.7} aria-hidden="true" />
                       </span>
                       <span className="text-[13px] font-medium text-[#202124]">{label}</span>
-                      <span className="flex items-center gap-1 text-[11px] font-medium text-[#188038]">
+                      <span className="flex items-center gap-1 text-[12px] font-medium text-[#188038]">
                         <Lock className="h-3 w-3" aria-hidden="true" /> Encrypted
                       </span>
                     </div>
@@ -279,7 +279,7 @@ export default function AccessibilityPage() {
                 >
                   <span className="min-w-0 flex-1">
                     <span className="block text-[15px] font-medium text-[#202124]">{label}</span>
-                    <span className="mt-0.5 block text-[13.5px] leading-[1.6] text-[#5f6368]">{desc}</span>
+                    <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">{desc}</span>
                   </span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
                 </Link>
@@ -290,7 +290,7 @@ export default function AccessibilityPage() {
               >
                 <span className="min-w-0 flex-1">
                   <span className="block text-[15px] font-medium text-[#202124]">Tell us what is missing</span>
-                  <span className="mt-0.5 block text-[13.5px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier: accessibility@visionary.org.in</span>
+                  <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier: accessibility@visionary.org.in</span>
                 </span>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
               </a>

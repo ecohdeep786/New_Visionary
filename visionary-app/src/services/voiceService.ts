@@ -10,7 +10,7 @@ export interface SpeechSynthesisLike { speak(utterance: SpeechUtteranceLike): vo
 export interface SpeechRecognitionLike {
  continuous: boolean; interimResults: boolean; lang: string; started: boolean;
  start(): void; stop(): void; abort(): void;
- onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }> }) => void) | null;
+ onresult: ((event: { resultIndex?: number; results: ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }> }) => void) | null;
  onerror: ((event: { error: string }) => void) | null;
  onend: (() => void) | null;
 }
@@ -42,67 +42,84 @@ let recognition: SpeechRecognitionLike | null = null;
 let intent = false; // the user asked for continuous listening
 let suspended = false; // recognition is paused because the mentor is speaking
 let denied = false; // sticky permission refusal; survives the onend that browsers fire after it
-let active: { lang: string; onFinal: (transcript: string) => void; onInterim: (text: string) => void } | null = null;
+let active: { lang: string; onFinal: (transcript: string) => void; onInterim: (text: string) => void; onError: (message: string) => void } | null = null;
+let speechRevision = 0;
+function resumeRecognition() {
+ if (!intent || !recognition) return;
+ try { recognition.start(); setMode('listening'); }
+ catch { const onError = active?.onError; stopListening(); onError?.('Voice input could not resume. Retry the microphone or use text.'); }
+}
 
 function openRecognition(lang: string) {
  const source = speech();
  const Ctor = source.SpeechRecognition || source.webkitSpeechRecognition;
  if (!Ctor) { setMode('unsupported'); return null; }
  const item = new Ctor();
+ const delivered = new Set<number>();
  item.continuous = true; item.interimResults = true; item.lang = lang;
  item.onresult = event => {
+  if (item !== recognition || !intent || suspended || denied) return;
   let interim = ''; let final = '';
-  for (let index = 0; index < event.results.length; index++) {
+  for (let index = event.resultIndex ?? 0; index < event.results.length; index++) {
    const result = event.results[index];
    const text = result[0]?.transcript || '';
-   if (result.isFinal) final += text; else interim += text;
+   if (result.isFinal) { if (!delivered.has(index)) { final += text; delivered.add(index); } } else interim += text;
   }
   if (final.trim()) active?.onFinal(final.trim().slice(0, 6000)); else if (interim.trim()) active?.onInterim(interim.trim().slice(0, 6000));
  };
  item.onerror = event => {
+  if (item !== recognition || !intent) return;
   if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
    // Release the microphone immediately; the sticky denied flag survives the onend that follows.
    denied = true; intent = false;
    try { recognition?.abort(); } catch { /* aborting an unset recognition is harmless */ }
    setMode('denied');
+   active?.onError('Microphone access is blocked. Allow it in the browser and retry, or use text.');
+  } else if (!['no-speech', 'aborted'].includes(event.error)) {
+   const onError = active?.onError;
+   stopListening();
+   onError?.('Voice input was interrupted. Retry the microphone or use text.');
   }
   // 'no-speech' and 'aborted' are ordinary silences; onend decides what happens next.
  };
  item.onend = () => {
+  if (item !== recognition) return;
+  delivered.clear();
   if (suspended || denied) return;
   if (!intent) { setMode('off'); return; }
-  try { recognition?.start(); } catch { /* already started; the next onend retries */ }
+  resumeRecognition();
  };
  return item;
 }
 
-export interface ListenOptions { lang?: Locale; onFinal?: (transcript: string) => void; onInterim?: (text: string) => void }
+export interface ListenOptions { lang?: Locale; onFinal?: (transcript: string) => void; onInterim?: (text: string) => void; onError?: (message: string) => void }
 /** One owner at a time: a new listener replaces the previous session. A retry after a
  * permission grant must always be possible; a still-denied mic re-denies via onerror. */
 export function startListening(options: ListenOptions = {}) {
+ stopListening(); cancelSpeech();
  const capabilities = getVoiceCapabilities();
  if (!capabilities.recognition) { setMode('unsupported'); throw new Error('This browser does not support voice input. You can keep using text.'); }
  denied = false;
  const lang = speechLocale(options.lang);
- active = { lang, onFinal: options.onFinal || (() => {}), onInterim: options.onInterim || (() => {}) };
- cancelSpeech();
- recognition?.abort();
+ active = { lang, onFinal: options.onFinal || (() => {}), onInterim: options.onInterim || (() => {}), onError: options.onError || (() => {}) };
  intent = true;
  recognition = openRecognition(lang) ?? null;
  if (!recognition) throw new Error('This browser does not support voice input. You can keep using text.');
- try { recognition.start(); } catch { /* a previous start is still settling; onend restarts */ }
+ try { recognition.start(); } catch { stopListening(); throw new Error('The microphone could not start. Retry voice input or use text.'); }
  setMode('listening');
 }
 export function stopListening() {
  intent = false; active = null;
- try { recognition?.stop(); } catch { /* stopping an unset recognition is harmless */ }
+ const previous = recognition; recognition = null; suspended = false;
+ try { previous?.abort(); } catch { /* An unavailable device is already released. */ }
  if (mode !== 'speaking') setMode('off');
 }
 /** Half-duplex: the microphone pauses while the mentor speaks, then resumes if still wanted. */
 export function speak(text: string, locale: Locale | undefined, onEnd?: () => void): boolean {
  const synthesis = speech().speechSynthesis;
  if (!synthesis || !text.trim()) { onEnd?.(); return false; }
- synthesis.cancel();
+ cancelSpeech();
+ const revision = ++speechRevision;
  const wasListening = intent;
  if (recognition) { suspended = true; try { recognition.stop(); } catch { /* already stopped */ } }
  const utterance: SpeechUtteranceLike = (() => {
@@ -111,21 +128,29 @@ export function speak(text: string, locale: Locale | undefined, onEnd?: () => vo
   return Ctor ? new Ctor(text) : { text, lang: '', onend: null, onerror: null };
  })();
  utterance.lang = speechLocale(locale);
+ let finished = false;
  const finish = () => {
+  if (finished || revision !== speechRevision) return;
+  finished = true;
   suspended = false;
-  if (intent && wasListening) { try { recognition?.start(); } catch { /* onend retries */ } setMode('listening'); }
-  else if (!intent) setMode('off');
+  if (intent && wasListening) resumeRecognition();
+  else if (!intent) setMode(denied ? 'denied' : 'off');
   onEnd?.();
  };
  utterance.onend = finish; utterance.onerror = finish;
- const voice = synthesis.getVoices().find(candidate => candidate.lang === utterance.lang) ||
-  synthesis.getVoices().find(candidate => candidate.lang.startsWith(utterance.lang.slice(0, 2)));
- if (voice) utterance.voice = voice;
- setMode('speaking');
- synthesis.speak(utterance);
- return true;
+ try {
+  const voices = synthesis.getVoices();
+  const voice = voices.find(candidate => candidate.lang === utterance.lang) || voices.find(candidate => candidate.lang.startsWith(utterance.lang.slice(0, 2)));
+  if (voice) utterance.voice = voice;
+  setMode('speaking'); synthesis.speak(utterance); return true;
+ } catch { finish(); return false; }
 }
-export function cancelSpeech() { speech().speechSynthesis?.cancel(); if (mode === 'speaking') setMode(intent ? 'listening' : 'off'); }
+export function cancelSpeech() {
+ speechRevision++;
+ try { speech().speechSynthesis?.cancel(); } catch { /* Cancellation remains locally effective if a device disappears. */ }
+ if (suspended && intent) { suspended = false; resumeRecognition(); }
+ if (mode === 'speaking') setMode(denied ? 'denied' : intent ? 'listening' : 'off');
+}
 
 // Session audio override: null follows the saved Audio Interaction preference (Settings);
 // true/false forces audio for the current session only (the quick Ask control) and

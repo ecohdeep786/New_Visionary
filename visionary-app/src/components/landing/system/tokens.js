@@ -14,28 +14,31 @@ export const color = {
   lightGrey: "#9AA0A6",
   blue: "#4285F4",
   deepBlue: "#0b57d0",
-  chipBg: "#D2E3FC",
+  chipBg: "#e8f0fe",
   track: "#f1f3f4",
   mist: "#dadce0",
-  surface: "#F5F6F8",
-  cardSurface: "#EEF1F6",
-  cardSurfaceAlt: "#E9EFFA",
+  surface: "#f8f9fa",
+  surfaceBlue: "#e8f0fe",
+  cardSurface: "#ffffff",
+  cardSurfaceAlt: "#f8f9fa",
   white: "#ffffff",
 };
 
 /** Corner-radius scale. Media and cards share 28/24; everything interactive is a pill. */
 export const radius = {
-  media: "28px",
-  card: "24px",
-  overlay: "20px",
+  media: "12px",
+  card: "12px",
+  overlay: "16px",
   pill: "9999px",
 };
 
 /** Type scale as clamp() strings for inline styles. */
 export const type = {
-  sectionHeading: "clamp(28px, 2.78vw, 40px)",
-  display: "clamp(36px, 5vw, 72px)",
-  body: "17.5px",
+  hero: "clamp(48px, 5.55vw, 80px)",
+  sectionHeading: "clamp(28px, 3vw, 48px)",
+  display: "clamp(40px, 4.45vw, 64px)",
+  body: "16px",
+  lead: "clamp(18px, 1.4vw, 20px)",
   cardBody: "14px",
 };
 

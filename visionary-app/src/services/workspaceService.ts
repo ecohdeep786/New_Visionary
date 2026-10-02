@@ -1,8 +1,11 @@
-import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, MasteryStage, Message, Person, Plan, RequestContext, Resource, Role, Session, Stage, Workspace, WorkspaceData } from '../domain/workspace.ts';
+import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, MasteryStage, Message, OrganizationSettings, Person, Plan, RequestContext, Resource, Role, Session, Stage, Workspace, WorkspaceData } from '../domain/workspace.ts';
 import { getJourney, matchJourney } from './journeys.ts';
 import { eligibleJourneys } from './journeyEligibility.ts';
 import {legacyRelationships,saveLegacyRelationship,legacyProgressSummary} from './legacyConnections.ts';
 import {organizationPolicy,organizationProfiles} from './organizationPolicy.js';
+import type {CurriculumTemplate} from '../domain/curriculumTemplate.ts';
+import {assertCurriculumTemplate,curriculumObjectiveSnapshot} from './curriculumTemplate.ts';
+import {connectionStatus} from '../lib/connectionAvailability.js';
 import {assignmentAcceptsResponses} from '../lib/assignmentAvailability.js';
 import {assertLessonObjective} from './lessonObjective.ts';
 
@@ -47,7 +50,7 @@ export function bootstrapPerson(user: {id:string;email:string;full_name?:string;
  if(changed)write(db);
  return {person,workspaces:available,active:db.active[person.id]};
 }
-export function addRole(personId:string,role:Role) {const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Sign in first.');if(person.ageBand!=='adult'&&role!=='student')throw new Error('An adult age confirmation is required before adding this role.');if(!person.roles.includes(role))person.roles.push(role);const workspace=addWorkspace(db,person,role);write(db);return workspace;}
+export function addRole(personId:string,role:Role) {if(typeof role!=='string'||!Object.prototype.hasOwnProperty.call(roleNames,role))throw new Error('Choose an available workspace role.');const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Sign in first.');if(person.ageBand!=='adult'&&role!=='student')throw new Error('An adult age confirmation is required before adding this role.');const existing=db.workspaces.find(w=>w.personId===personId&&w.role===role&&!w.organizationId);if(existing&&person.roles.includes(role))return structuredClone(existing);if(!person.roles.includes(role))person.roles.push(role);const workspace=addWorkspace(db,person,role);write(db);return workspace;}
 export function setAgeBand(personId:string,ageBand:Person['ageBand']){const db=read();const person=db.people.find(p=>p.id===personId);if(!person)throw new Error('Account not found.');person.ageBand=ageBand;write(db);}
 export function selectWorkspace(personId:string,workspaceId:string) {const db=read();const workspace=db.workspaces.find(w=>w.id===workspaceId&&w.personId===personId);if(!workspace)throw new Error('Workspace not available.');access(db,{personId,workspaceId,role:workspace.role,locale:'en'});db.active[personId]=workspaceId;write(db);}
 /** Minimal stage facts for an authorized teacher view of one learner (Gate 5 rules
@@ -59,7 +62,7 @@ export function stageProfileByEmail(email: string): { ageBand: Person['ageBand']
 }
 
 /** Part W: the learner's active stage mapping, written only through services. */
-type StageProfileInput = { board?: string; classLevel?: string; subjects?: string[]; stage?: string; exam?: string };
+type StageProfileInput = { board?: string; classLevel?: string; subjects?: string[]; stage?: string; institution?:string; exam?: string };
 function applyStageProfile(db: Database, ctx: RequestContext, profile: StageProfileInput, options?: { replace?: boolean }): void {
  const person = db.people.find(p => p.id === ctx.personId); if (!person) throw new Error('Sign in first.');
  const clean = {
@@ -67,13 +70,14 @@ function applyStageProfile(db: Database, ctx: RequestContext, profile: StageProf
   classLevel: profile.classLevel === undefined ? undefined : String(profile.classLevel).trim().slice(0, 100) || undefined,
   subjects: profile.subjects === undefined ? undefined : profile.subjects.map(s => String(s).trim().slice(0, 100)).filter(Boolean),
   stage: profile.stage === undefined ? undefined : String(profile.stage).trim().slice(0, 40) || undefined,
+  institution:profile.institution===undefined?undefined:String(profile.institution).trim().slice(0,100)||undefined,
   exam: profile.exam === undefined ? undefined : String(profile.exam).trim().slice(0, 60) || undefined,
  };
  const current = person.learningContext || { subjects: [] };
  // Replace mode (Part W restore) writes the exact mapping: absent fields are removed.
  person.learningContext = options?.replace
-  ? { board: clean.board, classLevel: clean.classLevel, subjects: clean.subjects || [], stage: clean.stage, exam: clean.exam }
-  : { board: clean.board ?? current.board, classLevel: clean.classLevel ?? current.classLevel, subjects: clean.subjects && clean.subjects.length ? clean.subjects : current.subjects || [], stage: clean.stage ?? current.stage, exam: clean.exam ?? current.exam };
+  ? { board: clean.board, classLevel: clean.classLevel, subjects: clean.subjects || [], stage: clean.stage, exam: clean.exam,institution:clean.institution }
+  : { board: clean.board ?? current.board, classLevel: clean.classLevel ?? current.classLevel, subjects: clean.subjects && clean.subjects.length ? clean.subjects : current.subjects || [], stage: clean.stage ?? current.stage, exam: clean.exam ?? current.exam,institution:clean.institution??current.institution };
  const data = access(db, ctx); record(data, 'Stage profile updated', ctx.workspaceId);
 }
 export function updateStageProfile(ctx: RequestContext, profile: StageProfileInput, options?: { replace?: boolean }): void {
@@ -99,7 +103,7 @@ function effectiveSubscription(db:Database,ctx:RequestContext){
  return sub;
 }
 function hasFamilyPlan(db:Database,personId:string){return db.workspaces.some(w=>{if(w.personId!==personId)return false;const sub=db.data[w.id]?.subscription;return sub?.plan==='Family'&&!(sub.state==='cancelled'&&sub.renewsAt&&new Date(sub.renewsAt)<=clock());});}
-export function familyInvitations(ctx:RequestContext){const db=read();access(db,ctx);return (db.familyInvitations||[]).filter(i=>i.owner===ctx.personId||i.member===ctx.personId).map(i=>({...i,name:db.people.find(p=>p.id===(i.owner===ctx.personId?i.member:i.owner))?.name||'Family member',expired:i.status==='pending'&&new Date(i.expiresAt)<=clock()}));}
+export function familyInvitations(ctx:RequestContext){const db=read();access(db,ctx);return (db.familyInvitations||[]).filter(i=>i.owner===ctx.personId||i.member===ctx.personId).map(i=>({...i,name:db.people.find(p=>p.id===(i.owner===ctx.personId?i.member:i.owner))?.name||'Family member',expired:i.status==='pending'&&connectionStatus(i,clock().getTime())==='expired',unavailable:i.status==='pending'&&(i.expiresAt==null||connectionStatus(i,clock().getTime())==='unavailable')}));}
 export function inviteFamily(ctx:RequestContext,email:string){
  const db=read();const data=access(db,ctx);if(!hasFamilyPlan(db,ctx.personId))throw new Error('An owned Family plan is required to invite members.');
  if(db.people.find(p=>p.id===ctx.personId)?.ageBand!=='adult')throw new Error('An adult account is required to manage billing.');
@@ -111,7 +115,7 @@ export function inviteFamily(ctx:RequestContext,email:string){
 export function changeFamilyInvitation(ctx:RequestContext,invitationId:string,status:'active'|'declined'|'revoked'){
  const db=read();const data=access(db,ctx);const i=db.familyInvitations?.find(i=>i.id===invitationId&&(i.owner===ctx.personId||i.member===ctx.personId));if(!i)throw new Error('Invitation not found.');
  if(status!=='revoked'&&(i.member!==ctx.personId||i.status!=='pending'))throw new Error('Only the invited member can answer a pending request.');
- if(status==='active'&&(new Date(i.expiresAt)<=clock()||!hasFamilyPlan(db,i.owner)))throw new Error('This invitation is expired or its Family plan is unavailable.');
+ if(status==='active'&&(i.expiresAt==null||connectionStatus(i,clock().getTime())!=='pending'||!hasFamilyPlan(db,i.owner)))throw new Error('This invitation expiry cannot be verified, has expired, or its Family plan is unavailable.');
  if(status==='active'&&db.familyInvitations?.some(other=>other.id!==i.id&&other.member===ctx.personId&&other.status==='active'))throw new Error('Leave your existing billing family before joining another.');
  i.status=status;record(data,`Family billing ${status}`,i.id);write(db);
 }
@@ -178,24 +182,25 @@ export function portfolioProjectVersion(artifact:Pick<Artifact,'title'|'body'|'s
  let hash=2166136261;for(let index=0;index<source.length;index++)hash=Math.imul(hash^source.charCodeAt(index),16777619);
  return `${source.length}:${(hash>>>0).toString(16)}`;
 }
-export function savePortfolioSelfReview(ctx:RequestContext,artifactId:string,expectedVersion:string,criteria:{id:string;rating:'needs-work'|'explained'|'supported';note:string}[],reflection:string){
+export const portfolioReviewRevision=(artifact:Pick<Artifact,'portfolioReviews'>)=>JSON.stringify(artifact.portfolioReviews||[]);
+export function savePortfolioSelfReview(ctx:RequestContext,artifactId:string,expectedVersion:string,criteria:{id:string;rating:'needs-work'|'explained'|'supported';note:string}[],reflection:string,expectedReviewRevision?:string){
  if(ctx.role!=='professional')throw new Error('Open your professional workspace to review a portfolio project.');
  const db=read();const data=access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId);
  if(person?.ageBand!=='adult')throw new Error('Portfolio review is available to adult professional profiles.');
  const artifact=data.artifacts.find(item=>item.id===artifactId);
  if(!artifact)throw new Error('This portfolio project is not in your workspace.');
  if(artifact.status!=='completed'||!artifact.body.trim())throw new Error('Complete the project and add your work before self-review.');
- if(portfolioProjectVersion(artifact)!==expectedVersion)throw new Error('This project changed. Save and review the current version.');
+ if(portfolioProjectVersion(artifact)!==expectedVersion||(expectedReviewRevision!==undefined&&portfolioReviewRevision(artifact)!==expectedReviewRevision)){const error=new Error('This project or self-review changed. Your review edits remain available. Export them or load the latest saved review before continuing.');error.name='PortfolioReviewConflictError';throw error;}
  if(!Array.isArray(criteria)||criteria.length!==portfolioReviewCriteria.length||new Set(criteria.map(item=>item?.id)).size!==criteria.length||criteria.some(item=>!item||!portfolioReviewCriteria.some(rule=>rule.id===item.id)||!['needs-work','explained','supported'].includes(item.rating)||typeof item.note!=='string'||!item.note.trim()||item.note.trim().length>500))throw new Error('Review each criterion with a rating and a note of up to 500 characters.');
  if(typeof reflection!=='string'||!reflection.trim()||reflection.trim().length>1000)throw new Error('Add a reflection of up to 1000 characters.');
  artifact.portfolioReviews=[{projectVersion:expectedVersion,criteria:criteria.map(item=>({id:item.id,rating:item.rating,note:item.note.trim()})),reflection:reflection.trim(),reviewedAt:now()},...(artifact.portfolioReviews||[])].slice(0,10);
  record(data,'Portfolio self-review saved',artifactId);write(db);return artifact;
 }
-function canShare(db:Database,from:string,to:string){return allRelationships(db).some(r=>r.status==='active'&&r.scope.includes('shared-resources')&&(!r.expiresAt||new Date(r.expiresAt)>clock())&&((r.from===from&&r.to===to)||(r.to===from&&r.from===to)));}
+function canShare(db:Database,from:string,to:string){return allRelationships(db).some(r=>connectionStatus(r,clock().getTime())==='active'&&r.scope.includes('shared-resources')&&((r.from===from&&r.to===to)||(r.to===from&&r.from===to)));}
 export function shareArtifact(ctx:RequestContext,artifactId:string,recipient:string,expectedVersion?:string){const db=read();const data=access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId)!;if(person.ageBand!=='adult')throw new Error('Sharing requires an approved adult or guardian workflow. This demo does not verify guardians.');if(!canShare(db,ctx.personId,recipient))throw new Error('Choose an accepted connection with shared-resource permission.');const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');if(expectedVersion&&JSON.stringify([a.updatedAt,a.title,a.body])!==expectedVersion)throw new Error('This project changed. Reopen the saved version before sharing.');if(!a.body.trim())throw new Error('Add project content before sharing.');a.visibility='shared';if(!a.sharedWith.includes(recipient))a.sharedWith.push(recipient);a.shares=(a.shares||[]).filter(share=>share.recipient!==recipient);a.shares.push({recipient,title:a.title,body:a.body,version:a.updatedAt,sharedAt:now()});record(data,'Artifact shared',artifactId);write(db);return a;}
 export function sharedArtifacts(ctx:RequestContext){const db=read();access(db,ctx);return db.workspaces.filter(w=>w.personId!==ctx.personId&&canShare(db,w.personId,ctx.personId)).flatMap(w=>(db.data[w.id]?.artifacts||[]).filter(a=>a.visibility==='shared'&&a.sharedWith.includes(ctx.personId)).map(a=>{const share=a.shares?.find(item=>item.recipient===ctx.personId);return {id:a.id,title:share?.title||a.title,body:share?.body||a.body,updatedAt:share?.sharedAt||a.updatedAt,sharedVersion:share?.version,from:db.people.find(p=>p.id===w.personId)?.name||'Connection'};}));}
 export function stopSharingArtifact(ctx:RequestContext,artifactId:string){const db=read();const data=access(db,ctx);const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='private';a.sharedWith=[];a.shares=[];record(data,'Artifact sharing stopped',a.id);write(db);}
-function activeGuardian(db:Database,parentId:string,learnerId:string){return allRelationships(db).find(r=>r.type==='guardian'&&r.from===parentId&&r.to===learnerId&&r.status==='active'&&r.scope.includes('progress-summary')&&(!r.expiresAt||new Date(r.expiresAt).getTime()>clock().getTime()));}
+function activeGuardian(db:Database,parentId:string,learnerId:string){return allRelationships(db).find(r=>r.type==='guardian'&&r.from===parentId&&r.to===learnerId&&connectionStatus(r,clock().getTime())==='active'&&r.scope.includes('progress-summary'));}
 /** A learner shares only a short, fixed project summary with one active parent. */
 export function shareParentProjectSummary(ctx:RequestContext,artifactId:string,parentId:string,summary:string,expectedVersion:string){
  if(ctx.role!=='student')throw new Error('Open the learner workspace to share a project summary.');
@@ -264,6 +269,7 @@ export function resourceRevision(resource:Resource){return JSON.stringify([resou
 export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']},expectedRevision?:string){
  const db=read();const data=resourceData(db,ctx);
  const current=data.resources.find(row=>row.id===patch.id);if(expectedRevision!==undefined&&(!current||resourceRevision(current)!==expectedRevision)){const error=new Error('This resource changed since you opened it. Your edits remain in the editor. Review the latest version or export your edits before continuing.');error.name='ResourceConflictError';throw error;}
+ if(Object.hasOwn(patch,'curriculumTemplate'))throw new Error('Use the curriculum review workflow to change structured curriculum.');
  if(patch.contentReview||data.resources.find(row=>row.id===patch.id)?.contentReview)throw new Error('Use the content review workflow to change this versioned resource.');
  if(Object.hasOwn(patch,'sourceSnapshot')&&JSON.stringify(patch.sourceSnapshot)!==JSON.stringify(data.resources.find(row=>row.id===patch.id)?.sourceSnapshot))throw new Error('The delivered source snapshot cannot be replaced in this editor.');
  if(!patch.title.trim())throw new Error('A title is required.');
@@ -283,14 +289,18 @@ function resourceData(db:Database,ctx:RequestContext){const own=access(db,ctx);i
 export function archiveResource(ctx:RequestContext,resourceId:string){const db=read();const data=resourceData(db,ctx);const resource=data.resources.find(r=>r.id===resourceId);if(!resource)throw new Error('Item not found.');if(resource.contentReview)throw new Error('Use the content review workflow to archive or restore this resource.');resource.status=resource.status==='archived'?'draft':'archived';record(data,resource.status,resourceId);write(db);}
 
 /** Versioned organization review is local editorial approval, not published curriculum. */
-export function saveOrganizationContent(ctx:RequestContext,input:{id?:string;title:string;body:string;source:string;language:Locale},expectedRevision?:number){
+export function saveOrganizationContent(ctx:RequestContext,input:{id?:string;title:string;body:string;source:string;language:Locale;kind?:'lesson'|'curriculum';curriculumTemplate?:CurriculumTemplate},expectedRevision?:number){
  const db=read();const data=resourceData(db,ctx);requireOrganizationPermission(ctx,'academic');
  if(typeof input.title!=='string'||!input.title.trim()||input.title.length>200||typeof input.body!=='string'||input.body.length>50000||typeof input.source!=='string'||input.source.length>2000||!['en','hi','bn'].includes(input.language))throw new Error('Add a title within 200 characters, content within 50,000 characters, a source within 2,000 characters, and a supported language.');
  let item=data.resources.find(row=>row.id===input.id);
+ const kind=input.kind||item?.kind||'lesson';if(!['lesson','curriculum'].includes(kind))throw new Error('Choose a content resource or curriculum template.');if(item&&item.kind!==kind)throw new Error('A reviewed resource cannot change its category. Create a separate sourced template.');
+ if(input.curriculumTemplate!==undefined){if(kind!=='curriculum')throw Error('Structured objectives belong to a curriculum template.');assertCurriculumTemplate(input.curriculumTemplate);}
+ if(item?.curriculumTemplate&&input.curriculumTemplate===undefined)throw Error('Retain the structured curriculum when saving this revision.');
  if(input.id&&(!item?.contentReview||item.contentReview.revision!==expectedRevision))throw new Error('This content version changed. Reopen the latest saved version; your edits remain here.');
  if(item&&!['draft','changes'].includes(item.status))throw new Error('Create a new draft revision before editing submitted, approved or archived content.');
- if(!item){item={id:id(),kind:'lesson',title:input.title.trim(),body:input.body,status:'draft',audience:'Organization',updatedAt:now(),contentReview:{revision:1,source:input.source.trim(),language:input.language,author:ctx.personId,history:[],versions:[]}};data.resources.unshift(item);}
- else{const review=item.contentReview!;review.versions.unshift({revision:review.revision,title:item.title,body:item.body,source:review.source,language:review.language});review.revision++;review.source=input.source.trim();review.language=input.language;review.author=ctx.personId;item.title=input.title.trim();item.body=input.body;item.status='draft';}
+ if(!item){item={id:id(),kind:kind as 'lesson'|'curriculum',title:input.title.trim(),body:input.body,status:'draft',audience:'Organization',updatedAt:now(),contentReview:{revision:1,source:input.source.trim(),language:input.language,author:ctx.personId,history:[],versions:[]}};data.resources.unshift(item);}
+ else{const review=item.contentReview!;review.versions.unshift({revision:review.revision,title:item.title,body:item.body,source:review.source,language:review.language,...(item.curriculumTemplate?{curriculumTemplate:structuredClone(item.curriculumTemplate)}:{})});review.revision++;review.source=input.source.trim();review.language=input.language;review.author=ctx.personId;item.title=input.title.trim();item.body=input.body;item.status='draft';}
+ if(input.curriculumTemplate!==undefined)item.curriculumTemplate=structuredClone(input.curriculumTemplate);
  item.updatedAt=now();item.contentReview!.history.push({action:'draft-saved',actor:ctx.personId,at:item.updatedAt,revision:item.contentReview!.revision,note:''});record(data,'Content draft saved',item.id,ctx.personId);write(db);return item;
 }
 export function changeOrganizationContent(ctx:RequestContext,resourceId:string,expectedRevision:number,action:'submit'|'request-changes'|'approve'|'archive'|'restore'|'revise',note='',checks?:{source:boolean;accuracy:boolean;language:boolean}){
@@ -299,6 +309,7 @@ export function changeOrganizationContent(ctx:RequestContext,resourceId:string,e
  if(typeof note!=='string'||note.length>2000)throw new Error('Keep review notes within 2,000 characters.');
  const transitions={submit:{from:['draft','changes'],to:'submitted'},'request-changes':{from:['submitted'],to:'changes'},approve:{from:['submitted'],to:'approved'},archive:{from:['draft','changes','approved'],to:'archived'},restore:{from:['archived'],to:'draft'},revise:{from:['approved'],to:'draft'}};
  const transition=transitions[action];if(!transition||!transition.from.includes(item.status))throw new Error('This review action is unavailable in the current content state.');
+ if(['submit','approve'].includes(action)&&item.curriculumTemplate)assertCurriculumTemplate(item.curriculumTemplate,true);
  if(action==='submit'&&(!item.body.trim()||!review.source.trim()))throw new Error('Add content and an exact source/version before submitting for review.');
  if(['approve','request-changes'].includes(action)&&review.author===ctx.personId)throw new Error('A different academic administrator must review this authored revision.');
  if(action==='request-changes'&&!note.trim())throw new Error('Explain the required changes for the author.');
@@ -310,8 +321,10 @@ export function deliverOrganizationContent(ctx:RequestContext,resourceId:string,
  if(!item||!review||item.status!=='approved'||review.revision!==expectedRevision)throw new Error('Choose the latest approved content revision before sharing.');
  const membership=readOrganizationInviteRows().find(row=>row.organization_email===policy.organizationEmail&&row.email===teacherEmail&&row.role==='teacher'&&inviteStatus(row)==='active');
  if(!membership)throw new Error('Choose an active accepted teacher in this organization.');
+ if(item.curriculumTemplate)assertCurriculumTemplate(item.curriculumTemplate,true);
  const deliveries=review.deliveries??=[];const existing=deliveries.find(row=>row.membershipId===membership.id&&row.revision===review.revision);if(existing)return existing;
- const delivery={id:id(),resourceId:item.id,membershipId:membership.id,teacherEmail,title:item.title,body:item.body,source:review.source,language:review.language,revision:review.revision,sharedAt:now(),sharedBy:ctx.personId};deliveries.push(delivery);record(data,'Approved content delivered',item.id,ctx.personId);write(db);return delivery;
+ if(!organizationSettingsValue(data).teacherDeliveryEnabled)throw new Error('New teacher deliveries are paused by the organization owner. Existing delivered copies remain available.');
+ const delivery={id:id(),resourceId:item.id,membershipId:membership.id,teacherEmail,title:item.title,body:item.body,source:review.source,language:review.language,revision:review.revision,sharedAt:now(),sharedBy:ctx.personId,...(item.curriculumTemplate?{curriculumTemplate:structuredClone(item.curriculumTemplate)}:{})};deliveries.push(delivery);record(data,'Approved content delivered',item.id,ctx.personId);write(db);return delivery;
 }
 /** Accepted teachers receive explicit fixed deliveries only, never the organization's full library. */
 export function teacherOrganizationContent(ctx:RequestContext){
@@ -321,15 +334,17 @@ export function teacherOrganizationContent(ctx:RequestContext){
  if(!membership)throw new Error('This organization teaching membership is no longer active.');
  const owner=db.people.find(row=>row.email===space.organizationId);const ownerSpace=db.workspaces.find(row=>row.personId===owner?.id&&row.role==='organization'&&!row.organizationId);
  const resources=ownerSpace?db.data[ownerSpace.id]?.resources||[]:[];
- return resources.flatMap(item=>(item.contentReview?.deliveries||[]).filter(row=>row.teacherEmail===teacher.email&&row.membershipId===membership.id).map(row=>({...row,organizationEmail:space.organizationId!,importedResourceId:db.data[ctx.workspaceId]?.resources.find(resource=>resource.sourceSnapshot?.deliveryId===row.id)?.id}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
+ return resources.flatMap(item=>(item.contentReview?.deliveries||[]).filter(row=>row.teacherEmail===teacher.email&&row.membershipId===membership.id).map(row=>{if(row.curriculumTemplate)assertCurriculumTemplate(row.curriculumTemplate,true);return {...row,organizationEmail:space.organizationId!,importedResourceId:db.data[ctx.workspaceId]?.resources.find(resource=>resource.sourceSnapshot?.deliveryId===row.id)?.id};})).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
 }
-export function importOrganizationContent(ctx:RequestContext,deliveryId:string){
+export function importOrganizationContent(ctx:RequestContext,deliveryId:string,objectiveId?:string){
  const delivery=teacherOrganizationContent(ctx).find(row=>row.id===deliveryId);if(!delivery)throw new Error('This delivered content is unavailable in your active teacher workspace.');
- const db=read();const data=access(db,ctx);const existing=data.resources.find(row=>row.sourceSnapshot?.deliveryId===delivery.id);if(existing)return existing;
- const resource:Resource={id:id(),title:delivery.title,body:delivery.body,kind:'lesson',status:'draft',audience:'Personal',updatedAt:now(),sourceSnapshot:{deliveryId:delivery.id,resourceId:delivery.resourceId,organizationEmail:delivery.organizationEmail,revision:delivery.revision,source:delivery.source,language:delivery.language,sharedAt:delivery.sharedAt}};
+ const objective=delivery.curriculumTemplate?curriculumObjectiveSnapshot(delivery.curriculumTemplate,objectiveId||'',delivery.language):undefined;
+ if(objectiveId&&!objective)throw Error('This delivery has no structured curriculum objective.');
+ const db=read();const data=access(db,ctx);const existing=data.resources.find(row=>row.sourceSnapshot?.deliveryId===delivery.id&&row.sourceSnapshot?.curriculumObjectiveId===objectiveId);if(existing)return existing;
+ const resource:Resource={id:id(),title:objective?delivery.title+' · '+objective.title:delivery.title,body:delivery.body,kind:'lesson',status:'draft',audience:'Personal',updatedAt:now(),sourceSnapshot:{deliveryId:delivery.id,resourceId:delivery.resourceId,organizationEmail:delivery.organizationEmail,revision:delivery.revision,source:delivery.source,language:delivery.language,sharedAt:delivery.sharedAt,...(objectiveId?{curriculumObjectiveId:objectiveId}:{})},...(objective?{objectiveSnapshot:objective}:{})};
  data.resources.unshift(resource);record(data,'Delivered content copied to teacher draft',resource.id,ctx.personId);write(db);return resource;
 }
-export function markNotification(ctx:RequestContext,notificationId:string){const db=read();const data=access(db,ctx);const n=data.notifications.find(n=>n.id===notificationId);if(n)n.read=true;write(db);}
+export function markNotification(ctx:RequestContext,notificationId:string){const db=read();const data=access(db,ctx);const n=data.notifications.find(n=>n.id===notificationId);if(!n)throw new Error('This update is no longer available in this workspace.');if(n.read)return;n.read=true;write(db);}
 export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'active'|'pending'|'failed'|'cancelled'){
  const db=read();const data=access(db,ctx);const selected=plans.find(p=>p.id===plan);if(!selected)throw new Error('Unknown plan.');
  const resume=outcome==='active'&&data.subscription.state==='cancelled'&&data.subscription.plan===plan&&new Date(data.subscription.renewsAt||0)>clock();
@@ -339,7 +354,7 @@ export function changeSubscription(ctx:RequestContext,plan:Plan['id'],outcome:'a
  for(const w of db.workspaces.filter(w=>w.personId===ctx.personId)){const target=db.data[w.id]!;target.subscription={...structuredClone(data.subscription),usage:target.subscription.usage,usageDay:target.subscription.usageDay};}
  record(data,`Demo subscription ${outcome}`,plan);write(db);
 }
-export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,status:['pending','active'].includes(r.status)&&r.expiresAt&&new Date(r.expiresAt)<=clock()?'expired':r.status,name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
+export function visibleRelationships(ctx:RequestContext){const db=read();access(db,ctx);return allRelationships(db).filter(r=>r.from===ctx.personId||r.to===ctx.personId).map(r=>({...r,status:connectionStatus(r,clock().getTime()),name:db.people.find(p=>p.id===(r.from===ctx.personId?r.to:r.from))?.name||'Connection'}));}
 type OrganizationInviteEvent = {action:'requested'|'accepted'|'declined'|'cancelled'|'revoked'|'permission-changed';actor:string;actorEmail:string;at:string;status:string;capability?:string;previousCapability?:string;readBy?:string[]};
 type OrganizationInviteRow = {id:string;organization_email:string;organization_name?:string;email:string;role:Role;status:string;capability?:string;expiresAt?:string;accepted_at?:string;createdAt?:string;history?:OrganizationInviteEvent[];historyComplete?:boolean};
 const ORGANIZATION_INVITES_KEY='visionary_entity_OrganizationInvite';
@@ -348,7 +363,7 @@ function readOrganizationInviteRows():OrganizationInviteRow[]{
  try{const rows=JSON.parse(localStorage.getItem(ORGANIZATION_INVITES_KEY)||'[]');if(!Array.isArray(rows))throw Error();return rows;}
  catch{throw new Error('Organization invitations could not be read on this device. Your saved records have not been changed.');}
 }
-function inviteStatus(row:OrganizationInviteRow){return ['pending','active'].includes(row.status)&&row.expiresAt&&new Date(row.expiresAt).getTime()<=clock().getTime()?'expired':row.status;}
+function inviteStatus(row:OrganizationInviteRow){return connectionStatus(row,clock().getTime());}
 function saveOrganizationInviteRows(rows:OrganizationInviteRow[]){
  try{localStorage.setItem(ORGANIZATION_INVITES_KEY,JSON.stringify(rows));}
  catch{throw new Error('The organization change could not be saved on this device. Try again.');}
@@ -357,6 +372,23 @@ function saveOrganizationInviteRows(rows:OrganizationInviteRow[]){
 function organizationActor(ctx:RequestContext){const db=read();access(db,ctx);const person=db.people.find(p=>p.id===ctx.personId);if(!person)throw new Error('Account unavailable.');return {person,workspace:db.workspaces.find(w=>w.id===ctx.workspaceId)!};}
 export function organizationAccess(ctx:RequestContext){const {person,workspace}=organizationActor(ctx);return organizationPolicy({email:person.email,identity:workspace.role,organization_id:workspace.organizationId},workspace.organizationId&&workspace.role==='organization'?readOrganizationInviteRows():[],clock().getTime());}
 export function requireOrganizationPermission(ctx:RequestContext,permission:string){const policy=organizationAccess(ctx);if(!policy.permissions.includes(permission))throw new Error('Your organization permission does not allow this action.');return policy;}
+function organizationSettingsValue(data:WorkspaceData):OrganizationSettings{
+ const value=data.organizationSettings;
+ if(!value)return {revision:0,kind:'school',contentLanguage:'en',teacherDeliveryEnabled:true};
+ if(!Number.isInteger(value.revision)||value.revision<1||!['school','coaching','company','ngo'].includes(value.kind)||!['en','hi','bn'].includes(value.contentLanguage)||typeof value.teacherDeliveryEnabled!=='boolean')throw new Error('Organization settings could not be read. Their original records were retained.');
+ return structuredClone(value);
+}
+export function getOrganizationSettings(ctx:RequestContext){const db=read();const data=resourceData(db,ctx);return organizationSettingsValue(data);}
+export function saveOrganizationSettings(ctx:RequestContext,input:Pick<OrganizationSettings,'kind'|'contentLanguage'|'teacherDeliveryEnabled'>,expectedRevision:number){
+ requireOrganizationPermission(ctx,'permissions');const db=read();const data=resourceData(db,ctx);const previous=organizationSettingsValue(data);
+ if(previous.revision!==expectedRevision)throw new Error('Organization settings changed. Your edits remain here. Review the latest settings before saving.');
+ if(!['school','coaching','company','ngo'].includes(input.kind)||!['en','hi','bn'].includes(input.contentLanguage)||typeof input.teacherDeliveryEnabled!=='boolean')throw new Error('Choose supported organization settings.');
+ if(previous.kind===input.kind&&previous.contentLanguage===input.contentLanguage&&previous.teacherDeliveryEnabled===input.teacherDeliveryEnabled)return previous;
+ const value={revision:previous.revision+1,kind:input.kind,contentLanguage:input.contentLanguage,teacherDeliveryEnabled:input.teacherDeliveryEnabled,updatedAt:now(),updatedBy:ctx.personId};
+ data.organizationSettings=value;
+ record(data,'Organization settings saved',JSON.stringify({revision:value.revision,before:{kind:previous.kind,contentLanguage:previous.contentLanguage,teacherDeliveryEnabled:previous.teacherDeliveryEnabled},after:{kind:value.kind,contentLanguage:value.contentLanguage,teacherDeliveryEnabled:value.teacherDeliveryEnabled}}),ctx.personId);
+ write(db);return value;
+}
 export function changeOrganizationCapability(ctx:RequestContext,inviteId:string,capability:string){
  requireOrganizationPermission(ctx,'permissions');const {person}=organizationActor(ctx);const rows=readOrganizationInviteRows();const invite=rows.find(row=>row.id===inviteId&&row.organization_email===person.email&&row.role==='organization');
  if(!invite||!['active','pending'].includes(inviteStatus(invite)))throw new Error('This administrative membership is unavailable.');
@@ -376,7 +408,7 @@ export function organizationAudit(ctx:RequestContext,days:7|30=30){
  const data=snapshot(ctx);const cutoff=clock().getTime()-days*86400000;
  const sharedAudit=resourceData(read(),ctx).audit;
  const workspaceAudit=[...sharedAudit,...data.audit].filter((row,index,rows)=>rows.findIndex(other=>other.id===row.id)===index);
- const entries:{id:string;source:'workspace'|'membership'|'classwork';action:string;target:string;actor:string|null;at:string;outcome:string}[]=workspaceAudit.map(row=>({id:`workspace:${row.id}`,source:'workspace',action:row.action,target:row.target,actor:row.actor||null,at:row.at,outcome:'Saved locally'}));
+ const entries:{id:string;source:'workspace'|'membership'|'classwork'|'transition';action:string;target:string;actor:string|null;at:string;outcome:string}[]=workspaceAudit.map(row=>({id:`workspace:${row.id}`,source:'workspace',action:row.action,target:row.target,actor:row.actor||null,at:row.at,outcome:'Saved locally'}));
  const unavailableSources:string[]=[];let importedWithoutHistory=0;
  try{for(const invite of organizationInvites(ctx).filter(row=>row.organization_email===policy.organizationEmail)){
   if(!invite.historyComplete)importedWithoutHistory++;
@@ -394,6 +426,18 @@ export function organizationAudit(ctx:RequestContext,days:7|30=30){
    }
   }
  }catch{unavailableSources.push('Classwork state history');}
+ try{
+  const store=JSON.parse(localStorage.getItem('visionary_stage_transitions_v1')||'{"version":1,"transitions":[]}');if(store.version!==1||!Array.isArray(store.transitions))throw Error();
+  const groups=new Map<string,{classId:string;level:string;actor:string;at:string;states:Record<string,number>}>();
+  for(const row of store.transitions){
+   // No ownership inference from an event ID, learner identity or current class membership.
+   if(row?.trigger!=='teacher-promotion'||row.classScope?.organizationEmail!==policy.organizationEmail)continue;
+   if(typeof row.classScope.classId!=='string'||typeof row.eventId!=='string'||typeof row.actor!=='string'||typeof row.notifiedAt!=='string'||!Number.isFinite(Date.parse(row.notifiedAt))||typeof row.to?.classLevel!=='string'||!['notified','applied','postponed','undone','awaiting-confirm','suggested','superseded'].includes(row.state))throw Error();
+   const key=JSON.stringify([row.classScope.classId,row.eventId,row.actor,row.to.classLevel]);const group=groups.get(key)||{classId:row.classScope.classId,level:row.to.classLevel,actor:row.actor,at:row.notifiedAt,states:{} as Record<string,number>};
+   group.states[row.state]=(group.states[row.state]||0)+1;if(row.notifiedAt<group.at)group.at=row.notifiedAt;groups.set(key,group);
+  }
+  for(const [key,group] of groups)entries.push({id:'transition:'+key,source:'transition',action:'Teacher promotion recorded',target:`Class ${group.classId} → level ${group.level}`,actor:group.actor,at:group.at,outcome:'Current notice states: '+Object.entries(group.states).map(([state,count])=>`${state}: ${count}`).join(', ')});
+ }catch{unavailableSources.push('Scoped promotion history');}
  return {entries:entries.filter(row=>Number.isFinite(new Date(row.at).getTime())&&new Date(row.at).getTime()>=cutoff).sort((a,b)=>b.at.localeCompare(a.at)||a.id.localeCompare(b.id)),unavailableSources,importedWithoutHistory,classworkWithoutHistory,period:`Last ${days} days`};
 }
 export function organizationUpdates(ctx:RequestContext){
@@ -437,11 +481,12 @@ export function changeOrganizationInvite(ctx:RequestContext,inviteId:string,stat
  const current=inviteStatus(row);
  if(status==='active'||status==='declined'){
   if(!member)throw new Error('Only the invited member can answer this request in the invited role.');
+  if(current==='unavailable'&&status==='active')throw new Error('This invitation has an unreadable expiry. Close it and request a new invitation.');
   if(current==='expired')throw new Error('This invitation expired. Request a new invitation.');
-  if(current!=='pending')throw new Error('This invitation is no longer pending.');
+  if(current!=='pending'&&!(status==='declined'&&current==='unavailable'&&row.status==='pending'))throw new Error('This invitation is no longer pending.');
  }else if(status==='cancelled'){
-  if(!organizer||current!=='pending')throw new Error('Only the organization can cancel a pending invitation.');
- }else if(current!=='active')throw new Error('Only an active membership can be disconnected.');
+  if(!organizer||(current!=='pending'&&!(current==='unavailable'&&row.status==='pending')))throw new Error('Only the organization can cancel a pending invitation.');
+ }else if(current!=='active'&&!(current==='unavailable'&&row.status==='active'))throw new Error('Only an active membership can be disconnected.');
  const at=now();row.status=status;if(status==='active'){row.accepted_at=at;delete row.expiresAt;}
  row.history=[...(Array.isArray(row.history)?row.history:[]),{action:status==='active'?'accepted':status,status,actor:ctx.personId,actorEmail:person.email,at}];
  saveOrganizationInviteRows(rows);return row;
@@ -458,7 +503,7 @@ export function requestRelationship(ctx:RequestContext,email:string,type:'guardi
  const person=db.people.find(p=>p.email.toLowerCase()===email.trim().toLowerCase());
  if(!person||person.id===ctx.personId)throw new Error('Choose another account available in this local demo.');
  if(type==='guardian'&&!person.roles.includes('student'))throw new Error('Choose a learner account for progress sharing.');
- if(allRelationships(db).some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&['active','pending'].includes(r.status)&&(!r.expiresAt||new Date(r.expiresAt)>clock())))throw new Error('This connection already exists.');
+ if(allRelationships(db).some(r=>r.from===ctx.personId&&r.to===person.id&&r.type===type&&['active','pending'].includes(connectionStatus(r,clock().getTime()))))throw new Error('This connection already exists.');
  const relationship={id:id(),from:ctx.personId,to:person.id,type,status:'pending' as const,scope:type==='guardian'?['progress-summary']:['shared-resources'],expiresAt:new Date(clock().getTime()+7*86400000).toISOString()};db.relationships.push(relationship);recordGuardianNotification(db,relationship,'requested');write(db);
 }
 export function renewGuardianRelationship(ctx:RequestContext,relationshipId:string){
@@ -466,7 +511,7 @@ export function renewGuardianRelationship(ctx:RequestContext,relationshipId:stri
  const db=read();access(db,ctx);
  const relationship=allRelationships(db).find(r=>r.id===relationshipId&&r.type==='guardian'&&r.from===ctx.personId);
  if(!relationship)throw new Error('This progress connection is unavailable.');
- const expired=relationship.expiresAt&&new Date(relationship.expiresAt)<=clock();
+ const expired=connectionStatus(relationship,clock().getTime())==='expired';
  if(!['declined','revoked'].includes(relationship.status)&&!expired)throw new Error('This progress connection is still open.');
  const learner=db.people.find(person=>person.id===relationship.to);
  if(!learner)throw new Error('This learner account is no longer available.');
@@ -477,7 +522,8 @@ export function changeRelationship(ctx:RequestContext,relationshipId:string,stat
  if(!r)throw new Error('Connection not found.');
  if(status!=='revoked'&&r.to!==ctx.personId)throw new Error('Only the recipient can answer a request.');
  if(status!=='revoked'&&r.status!=='pending')throw new Error('This request is no longer pending.');
- if(r.expiresAt&&new Date(r.expiresAt)<=clock()&&status==='active')throw new Error('This invitation expired. Request a new invitation.');
+ if(status==='active'&&connectionStatus(r,clock().getTime())==='unavailable')throw new Error('This invitation has an unreadable expiry. Close it and request a new invitation.');
+ if(connectionStatus(r,clock().getTime())==='expired'&&status==='active')throw new Error('This invitation expired. Request a new invitation.');
  if(status==='active'&&r.type==='guardian'&&ctx.role!=='student')throw new Error('Open the learner workspace to answer this request.');
  if(status==='active'&&r.id.startsWith('legacy:OrganizationInvite:')){
   const row=readOrganizationInviteRows().find(item=>`legacy:OrganizationInvite:${item.id}`===r.id);
@@ -495,7 +541,7 @@ export function familyReports(ctx:RequestContext,days:7|30=7){
  reportDays(days);if(ctx.role!=='parent')throw new Error('Parent workspace required.');
  const db=read();access(db,ctx);const cutoff=clock().getTime()-days*86400000;
  const seen=new Set<string>();
- return allRelationships(db).filter(r=>r.type==='guardian'&&r.from===ctx.personId&&r.status==='active'&&r.scope.includes('progress-summary')&&(!r.expiresAt||new Date(r.expiresAt).getTime()>clock().getTime())).filter(r=>{if(seen.has(r.to))return false;seen.add(r.to);return true;}).flatMap(r=>{
+ return allRelationships(db).filter(r=>r.type==='guardian'&&r.from===ctx.personId&&connectionStatus(r,clock().getTime())==='active'&&r.scope.includes('progress-summary')).filter(r=>{if(seen.has(r.to))return false;seen.add(r.to);return true;}).flatMap(r=>{
   const child=db.people.find(p=>p.id===r.to);if(!child)return [];
   const sessions=db.workspaces.filter(w=>w.personId===child.id&&w.role==='student').flatMap(w=>db.data[w.id]?.sessions||[]);
   const recent=sessions.filter(s=>new Date(s.updatedAt).getTime()>=cutoff);

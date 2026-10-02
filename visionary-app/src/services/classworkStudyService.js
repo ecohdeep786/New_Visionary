@@ -2,6 +2,7 @@ import {getClassworkActivity,classworkActivityRevision} from './classworkPlayerS
 import {getContentRepository} from './contentRepository.ts';
 import {getTeachingInterface,hasSafetyConcern} from './teachingInterface.ts';
 import {workspaceIdentity} from './workspaceService.ts';
+import {getAssignedCurriculumPracticeSource} from './curriculumPracticeSource.js';
 
 const record=value=>value&&typeof value==='object'&&!Array.isArray(value);
 const questionShape=q=>record(q)&&typeof q.id==='string'&&typeof q.prompt==='string'&&Array.isArray(q.options)&&q.options.length>=2&&q.options.every(option=>typeof option==='string');
@@ -27,6 +28,7 @@ export async function askClassworkQuestion(ctx,{assignmentId,question,topic='que
 }
 async function sourcePractice(ctx,assignmentId){
  const view=await getClassworkActivity(ctx,assignmentId);const objective=view.assignment.objective_snapshot;if(!objective)throw Error('This activity has no attached objective or authored practice. Ask your teacher for a reviewed source.');
+ if(objective.status==='reviewed'){const source=await getAssignedCurriculumPracticeSource(ctx,assignmentId);return {...source.activity,...state(ctx,source.activity.assignment),questions:source.questions};}
  const repo=getContentRepository({...ctx,locale:objective.locale});const selection=objective.selection;const syllabus=await repo.getSyllabus(selection.board,selection.classLevel,selection.subject);const concept=await repo.getConcept(objective.conceptId);
  if(!concept||concept.languageUnavailable||concept.locale!==objective.locale||JSON.stringify(syllabus.provenance)!==JSON.stringify(objective.provenance)||JSON.stringify(concept.provenance)!==JSON.stringify(objective.provenance)||(objective.criteria&&JSON.stringify(concept.project?.criteria)!==JSON.stringify(objective.criteria))||concept.explanation!==objective.explanation||JSON.stringify(concept.representations)!==JSON.stringify(objective.representations))throw Error('Practice for the exact assigned source and language is unavailable. The assigned copy and your study remain intact.');
  const questions=concept.practice||[];if(!questions.length)throw Error('No authored practice questions are available for this objective. No questions have been generated.');

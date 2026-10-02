@@ -1,0 +1,1 @@
+PASS Privacy canonical link/export/no permission write; valid acceptance, malformed legacy/v2 rejection, explicit decline/date retention, refresh and 390px reflow.

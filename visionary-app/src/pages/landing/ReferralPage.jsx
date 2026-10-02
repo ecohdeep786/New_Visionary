@@ -100,7 +100,7 @@ export default function ReferralPage() {
         <section className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Referral programme</p>
-            <h1 className="mt-4 text-[clamp(34px,5.5vw,58px)] font-normal leading-[1.05] tracking-[-0.045em] text-[#202124]">
+            <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
               Share a better way to <span className="text-[#0b57d0]">learn.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[640px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -140,7 +140,7 @@ export default function ReferralPage() {
         </section>
 
         {/* HOW IT WORKS — the reference's blue-circle steps */}
-        <section id="how" aria-labelledby="how-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="how" aria-labelledby="how-title" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Sending an invite</p>
@@ -177,7 +177,7 @@ export default function ReferralPage() {
 
         {/* POINT THEM WELL — the reference's "redeeming" block, mapped to
             honest destinations */}
-        <section aria-labelledby="point-title" className="border-y border-[#e8eaed] bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section aria-labelledby="point-title" className="border-y border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Pointing them well</p>
@@ -215,7 +215,7 @@ export default function ReferralPage() {
         </section>
 
         {/* THE LINK — the functional share card (preserved behavior) */}
-        <section id="share" aria-labelledby="share-title" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="share" aria-labelledby="share-title" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Ready to share?</p>
@@ -271,7 +271,7 @@ export default function ReferralPage() {
         </section>
 
         {/* HONESTY BAND — the reference's rates block, told straight */}
-        <section aria-labelledby="honest-title" className="bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-24">
+        <section aria-labelledby="honest-title" className="bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto flex max-w-[900px] flex-col items-center text-center">
             <h2 id="honest-title" className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124]">
               No points. No tracking. Just a good tool worth passing on.
@@ -290,7 +290,7 @@ export default function ReferralPage() {
         </section>
 
         {/* FAQ — the reference's split layout with expand-all */}
-        <section id="faq" aria-labelledby="faq-title" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="faq" aria-labelledby="faq-title" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Good to know</p>
@@ -339,7 +339,7 @@ export default function ReferralPage() {
         </section>
 
         {/* CLOSING — the reference's rounded card, pointed at honest next steps */}
-        <section aria-labelledby="closing-title" className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section aria-labelledby="closing-title" className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-14 text-center sm:px-12 lg:py-16">
               <h2 id="closing-title" className="mx-auto max-w-[680px] text-[clamp(28px,3.6vw,42px)] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124]">

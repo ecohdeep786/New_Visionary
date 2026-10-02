@@ -1,0 +1,1 @@
+PASS Bengali/Hindi shell navigation, English-key search, localized menu semantics, persisted interface language separate from teaching language, 320/390/1024 reflow and keyboard shortcut. Page content translation/native-language review remains open.

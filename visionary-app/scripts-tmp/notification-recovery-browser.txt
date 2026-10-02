@@ -1,0 +1,1 @@
+PASS 390px notification recovery: failed preference/read writes retain prior state, content opens without mark-read writes, read retry persists, unread-empty returns to history, parent mark-read failure/retry stays inline, no page errors or overflow.

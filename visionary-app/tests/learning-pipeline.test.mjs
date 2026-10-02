@@ -396,3 +396,28 @@ test('minor profiles cannot enter a professional journey through the service', a
  const professional = ctx('minor-cbse', 'professional');
  assert.throws(() => pipeline.getLearningWorkspace(professional), /Professional journeys|access/);
 });
+
+test('unsubmitted learning selection resumes privately without producing scored evidence',async()=>{
+ const {request,unit}=await startSample();await pipeline.requestUnitTeaching(request,unit.id,'explanation');const question=await pipeline.beginComprehension(request,unit.id);const evidence=memory.get('visionary_mentor_v1');
+ const chosen=pipeline.saveLearningAnswerDraft(request,unit.id,1,JSON.stringify(question.question),question.practiceRound);assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'1');assert.equal(chosen.answer,undefined);assert.equal(chosen.attempts,undefined);assert.equal(memory.get('visionary_mentor_v1'),evidence);
+ await pipeline.answerLearningQuestion(request,unit.id,question.question.answerIndex,{version:JSON.stringify(question.question),round:question.practiceRound});assert.equal(pipeline.getLearningUnit(request,unit.id).answerDraft,undefined);
+});
+test('stale question or retry round cannot overwrite draft or record a graded answer',async()=>{
+ const {request,unit}=await startSample();await pipeline.requestUnitTeaching(request,unit.id,'explanation');const original=await pipeline.beginComprehension(request,unit.id);await pipeline.nextLearningQuestion(request,unit.id,false);
+ const bytes=memory.get('visionary_learning_pipeline_v1'),evidence=memory.get('visionary_mentor_v1');
+ assert.throws(()=>pipeline.saveLearningAnswerDraft(request,unit.id,0,JSON.stringify(original.question),original.practiceRound),/question changed/);
+ await assert.rejects(pipeline.answerLearningQuestion(request,unit.id,0,{version:JSON.stringify(original.question),round:original.practiceRound}),/not graded/);
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),bytes);assert.equal(memory.get('visionary_mentor_v1'),evidence);assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'');
+});
+test('failed draft write preserves old selection for retry and another owner cannot recover it',async()=>{
+ const {request,unit}=await startSample();await pipeline.requestUnitTeaching(request,unit.id,'explanation');const question=await pipeline.beginComprehension(request,unit.id);pipeline.saveLearningAnswerDraft(request,unit.id,0,JSON.stringify(question.question),question.practiceRound);
+ const set=localStorage.setItem;localStorage.setItem=(key,value)=>{if(key==='visionary_learning_pipeline_v1')throw Error('quota');set(key,value);};
+ try{assert.throws(()=>pipeline.saveLearningAnswerDraft(request,unit.id,1,JSON.stringify(question.question),question.practiceRound),/could not be saved/);}finally{localStorage.setItem=set;}
+ assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'0');pipeline.saveLearningAnswerDraft(request,unit.id,1,JSON.stringify(question.question),question.practiceRound);assert.equal(pipeline.learningAnswerSelection(pipeline.getLearningUnit(request,unit.id)),'1');assert.throws(()=>pipeline.getLearningUnit(ctx('professional','professional'),unit.id),/unavailable/);
+});
+test('malformed learning containers and ambiguous owned units cannot overwrite original work or emit new evidence',async()=>{
+ const {request,unit}=await startSample();const valid=JSON.parse(memory.get('visionary_learning_pipeline_v1'));const evidence=memory.get('visionary_mentor_v1');
+ const cases=[{version:1,spaces:[]},{version:1,spaces:{[request.workspaceId]:{units:{}}}},{version:1,spaces:{[request.workspaceId]:{units:[null]}}},{version:1,spaces:{[request.workspaceId]:{units:[unit,{...unit}]}}},{version:1,spaces:{[request.workspaceId]:{units:[unit],selection:{board:'Demo',classLevel:6,subject:'Mathematics'}}}}];
+ for(const value of cases){const original=JSON.stringify(value);memory.set('visionary_learning_pipeline_v1',original);assert.throws(()=>pipeline.getLearningWorkspace(request),/could not be read|incomplete or ambiguous/);await assert.rejects(pipeline.startLearningUnit(request,unit.conceptId),/could not be read|incomplete or ambiguous/);assert.equal(memory.get('visionary_learning_pipeline_v1'),original);assert.equal(memory.get('visionary_mentor_v1'),evidence);}
+ memory.set('visionary_learning_pipeline_v1',JSON.stringify(valid));assert.equal(pipeline.getLearningUnit(request,unit.id).id,unit.id);
+});

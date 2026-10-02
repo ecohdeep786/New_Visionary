@@ -1,0 +1,1 @@
+import fs from 'node:fs';const p='src/pages/dashboard/ArtifactStudio.jsx';let s=fs.readFileSync(p,'utf8');s=s.replace('<ProfessionalPortfolioReview ctx={ctx}', '<ProfessionalPortfolioReview key={`${ctx.personId}:${ctx.workspaceId}:${draft.id}`} ctx={ctx}');fs.writeFileSync(p,s);

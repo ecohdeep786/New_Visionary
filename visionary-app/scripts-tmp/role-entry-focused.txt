@@ -1,0 +1,10 @@
+✔ role entry rejects unknown/prototype roles and adult-only roles for minors without changing records (4.5785ms)
+✔ failed role creation keeps original work; retry creates one separate workspace and existing retries need no write (2.0582ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 212.7328

@@ -1,0 +1,21 @@
+✔ organization source review requires a different author and retains versioned changes and review notes (32.7736ms)
+✔ content actions reject forged permission, bypasses and stale versions; archival retains content (12.4504ms)
+✔ failed content saves or review writes preserve the prior record and history for retry (4.3827ms)
+✔ approved deliveries are fixed, explicit, idempotent and become teacher-controlled unreviewed drafts (37.2837ms)
+✔ owner delivery pause blocks new copies by academic members and retains earlier copies and retries (8.3453ms)
+✔ closed or renewed teacher membership does not recover old deliveries; failed writes do not fabricate delivery or import (6.4354ms)
+✔ administrative profiles separate owner permissions, academic work, aggregates and billing (25.8837ms)
+✔ academic resources share the organization scope; analyst and billing cannot mutate or read them (10.1711ms)
+✔ failed permission changes preserve the previous profile and history; unknown imports fail closed (25.4687ms)
+✔ billing seat requests are scoped, retryable planning records and owner acknowledgement grants no membership (5.6814ms)
+✔ owner settings are versioned, audited, idempotent and fail without partial changes (32.0422ms)
+✔ academic members read owner defaults but cannot alter them; analysts and revoked members are refused (8.6407ms)
+✔ malformed settings are retained and unsupported fields do not write (1.8012ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1946.745

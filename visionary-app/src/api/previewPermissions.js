@@ -1,3 +1,4 @@
+import {connectionStatus} from '../lib/connectionAvailability.js';
 import {organizationPolicy} from '../services/organizationPolicy.js';
 import {assignmentAcceptsResponses} from '../lib/assignmentAvailability.js';
 import {validCriterionFeedback} from '../lib/classworkRubric.js';
@@ -8,7 +9,7 @@ export function previewPolicy(user, read) {
   const role=user?.identity;
   const policy=organizationPolicy(user,read('OrganizationInvite'));
   const inScope=c=>Boolean(c&&(user?.organization_id?c.organization_email===user.organization_id:!c.organization_email));
-  const activeMember=(organizationEmail, memberRole)=>read('OrganizationInvite').some(i=>i.organization_email===organizationEmail&&i.email===email&&i.role===memberRole&&i.status==='active'&&(!i.expiresAt||new Date(i.expiresAt).getTime()>Date.now()));
+  const activeMember=(organizationEmail, memberRole)=>read('OrganizationInvite').some(i=>i.organization_email===organizationEmail&&i.email===email&&i.role===memberRole&&connectionStatus(i)==='active');
   const ownsClass=c=>Boolean(inScope(c)&&(!c.organization_email||activeMember(c.organization_email,'teacher'))&&(c.teacher_email===email||c.teacher_id===user?.id||c.created_by_id===user?.id||c.created_by===email));
   const classroom=id=>read('Classroom').find(c=>c.id===id);
   const teacher=id=>role==='teacher'&&ownsClass(classroom(id));
@@ -37,7 +38,7 @@ export function previewPolicy(user, read) {
       if(operation==='create')allowed=r[from]===email&&r[to]!==email&&['pending','draft'].includes(r.status)&&
         (name!=='FamilyLink'||role==='parent')&&(name!=='OrganizationInvite'||role==='organization');
       else if(operation==='update')allowed=canRead(name,r)&&Object.keys(patch).every(k=>['status','accepted_at'].includes(k))&&
-        (patch.status==='active'||patch.status==='declined'?r[to]===email&&r.status==='pending': ['revoked','cancelled','removed'].includes(patch.status));
+        (patch.status==='active'||patch.status==='declined'?r[to]===email&&r.status==='pending'&&(patch.status!=='active'||connectionStatus(r)==='pending'): ['revoked','cancelled','removed'].includes(patch.status));
       // Membership changes use the scoped invitation service so state and
       // action history are saved together in the local preview record.
       if(name==='OrganizationInvite')allowed=false;

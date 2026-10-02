@@ -1,0 +1,39 @@
+✔ fraction representation position persists without evidence; invalid and failed changes preserve it (50.6723ms)
+✔ cube entry points reuse one authored unit without importing old topic results as evidence (50.9374ms)
+✔ authored cube criteria require written self review without claiming a grade (71.3765ms)
+✔ interrupted project edits recover only inside their workspace and can be discarded (20.6003ms)
+✔ the cube view resumes in its learning unit and review preserves recorded evidence (31.2651ms)
+✔ review queue uses recorded evidence timing and a new review retains completed work (50.035ms)
+✔ an invalid or failed model-view save leaves the prior saved view intact (5.7844ms)
+✔ student Home → Learn → Ask → Practice → Build persists one connected activity and evidence (170.5685ms)
+✔ connected teaching records only a versioned response contract in Learn and Ask (15.3128ms)
+✔ a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events (32.8241ms)
+✔ a failed learning-unit write after project creation recovers the same artifact on retry (19.0966ms)
+✔ wrong practice answer lowers difficulty and requests remediation without a generated local answer (20.6815ms)
+✔ class-started learning reaches only the assigned teacher aggregate (24.3018ms)
+✔ changing teaching language keeps the same session and localized authored check (11.8971ms)
+✔ changing to an unavailable language clears old teaching text without erasing the learning position (21.6764ms)
+✔ language change retrieves a newly available sourced variant without changing unit identity (9.9738ms)
+✔ a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback (12.8002ms)
+✔ official concept mapping resumes the provisional learning unit without splitting its progress (9.9999ms)
+✔ minor profiles cannot enter a professional journey through the service (0.8383ms)
+✔ unsubmitted learning selection resumes privately without producing scored evidence (9.7718ms)
+✔ stale question or retry round cannot overwrite draft or record a graded answer (21.3202ms)
+✔ failed draft write preserves old selection for retry and another owner cannot recover it (9.121ms)
+✔ malformed learning containers and ambiguous owned units cannot overwrite original work or emit new evidence (10.4881ms)
+✔ period history excludes drafts and unverified application from accuracy and keeps exact original activity (32.348ms)
+✔ multiple earlier sessions group a stable objective once but each timeline link resumes its own session (2.6615ms)
+✔ a period with no evidence distinguishes retained history from an entirely new workspace (7.2824ms)
+✔ unreadable source is partial, available earlier evidence remains visible and originals are preserved (1.258ms)
+✔ duplicate or malformed evidence never becomes inflated or partially counted results (9.2551ms)
+✔ owner/workspace authorization and cancellation apply before exposing any timeline (2.014ms)
+✔ same objective across source versions groups counts but preserves both original activity links and versions (2.5364ms)
+✔ malformed earlier sessions cannot leave partial counts, and missing units do not remove readable evidence (8.4837ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1915.1521

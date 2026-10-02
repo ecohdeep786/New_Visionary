@@ -1,0 +1,12 @@
+✔ reviewed assigned practice projects no keys and private attempts cannot create grades or mastery (182.0102ms)
+✔ changed source pointers and corrupted banks fail without grading or repairing stored originals (88.2602ms)
+✔ later curriculum edits do not replace delivered questions; stale keys and revoked access reject private grading (124.9225ms)
+✔ a draft bank keeps an unselected answer key; editorial submission rejects it without a write (5.0718ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1374.7959

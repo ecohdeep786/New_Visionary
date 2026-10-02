@@ -1,0 +1,1 @@
+PASS 390px privacy inventory: owned cross-role draft counts, foreign review exclusion, counts-only export, real second-tab invalidation/review, unreadable original preservation, no page errors or horizontal overflow.

@@ -1,0 +1,19 @@
+✔ organization source review requires a different author and retains versioned changes and review notes (12.793ms)
+✔ content actions reject forged permission, bypasses and stale versions; archival retains content (5.0768ms)
+✔ failed content saves or review writes preserve the prior record and history for retry (2.3966ms)
+✔ approved deliveries are fixed, explicit, idempotent and become teacher-controlled unreviewed drafts (25.2625ms)
+✔ owner delivery pause blocks new copies by academic members and retains earlier copies and retries (5.6022ms)
+✔ closed or renewed teacher membership does not recover old deliveries; failed writes do not fabricate delivery or import (14.008ms)
+✔ curriculum templates keep separate category and review/distribution lifecycle with old versions retained (4.0197ms)
+✔ owner settings are versioned, audited, idempotent and fail without partial changes (35.8529ms)
+✔ academic members read owner defaults but cannot alter them; analysts and revoked members are refused (15.9576ms)
+✔ malformed settings are retained and unsupported fields do not write (4.9806ms)
+✔ organization promotion audit excludes private profiles, foreign and unscoped transitions and reports unreadable history (44.2217ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 927.654

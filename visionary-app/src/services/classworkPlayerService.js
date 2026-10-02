@@ -2,7 +2,7 @@ import {appClient} from '../api/appClient.js';
 import {bootstrapPerson,snapshot} from './workspaceService.ts';
 import {submitClassworkResponses} from './classroomService.js';
 import {assertLessonObjective} from './lessonObjective.ts';
-export function classworkActivityRevision(assignment){return JSON.stringify([assignment.source_version,assignment.title,assignment.description,assignment.checks,assignment.points,assignment.objective_snapshot]);}
+export function classworkActivityRevision(assignment){return JSON.stringify([assignment.source_version,assignment.title,assignment.description,assignment.checks,assignment.points,assignment.objective_snapshot,...(assignment.source_provenance?.curriculumObjectiveId?[assignment.source_provenance]:[])]);}
 export async function getClassworkActivity(ctx,assignmentId){
  const account=await appClient.auth.me();if(account.id!==ctx.personId||!['student','professional'].includes(ctx.role))throw Error('Open your own learning workspace for this class activity.');
  snapshot(ctx);if(bootstrapPerson(account).active!==ctx.workspaceId)throw Error('Your workspace changed. Reopen this activity from your active classes.');

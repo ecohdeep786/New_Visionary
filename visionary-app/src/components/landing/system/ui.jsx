@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { color, radius, type } from "./tokens";
+import { color, type } from "./tokens";
 
 /**
  * Shared UI primitives for the public landing pages. Every page composes these
@@ -20,7 +20,7 @@ export function SectionShell({
   return (
     <section
       data-section={id}
-      className={`relative bg-white py-20 lg:py-28 ${className}`}
+      className={`public-section public-section-white relative ${className}`}
       style={style}
     >
       <div
@@ -85,7 +85,7 @@ export function SectionSub({ children, center = true, className = "" }) {
 /** Borderless elevated surface — the g-card anatomy from index.css. */
 export function GCard({ as: Tag = "div", className = "", children, ...rest }) {
   return (
-    <Tag className={`g-card rounded-[24px] bg-white ${className}`} {...rest}>
+    <Tag className={`g-card rounded-[var(--radius-card,12px)] bg-white ${className}`} {...rest}>
       {children}
     </Tag>
   );
@@ -100,12 +100,12 @@ export function PillButton({
   className = "",
 }) {
   const base =
-    "inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[15px] tracking-[0.24px] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
+    "public-action inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[16px] font-medium tracking-[0.24px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
   const styles = {
-    dark: "bg-[#121317] font-medium text-white hover:bg-black",
-    blue: "bg-[#0b57d0] font-medium text-white hover:bg-[#1765cc]",
+    dark: "bg-[#121317] text-white hover:bg-black",
+    blue: "bg-[#0b57d0] text-white hover:bg-[#1765cc]",
     outline:
-      "border border-[#dadce0] bg-white font-normal text-[#121317] hover:bg-[#F8F9FA]",
+      "border border-[#dadce0] bg-white text-[#121317] hover:bg-[#F8F9FA]",
   };
   return (
     <Link to={to} className={`${base} ${styles[variant]} ${className}`}>
@@ -155,23 +155,23 @@ export function TextLink({ to, children, className = "", onClick }) {
   );
 }
 
-/** 28px media frame for photography — the single media treatment. */
-export function MediaFrame({ src, alt, className = "", eager = false }) {
+/** 12px media frame for photography — the single media treatment. */
+export function MediaFrame({ src, alt, className = "", eager = false, rounded = true }) {
   return (
     <img
       src={src}
       alt={alt}
       loading={eager ? "eager" : "lazy"}
       decoding="async"
-      className={`w-full rounded-[28px] object-cover ${className}`}
+      className={`w-full object-cover ${rounded ? "rounded-[var(--radius-media,8px)]" : ""} ${className}`}
     />
   );
 }
 
-/** Google app-chip: tinted pill when active, hairline outline when not. */
+/** Chip using the canonical surface tint for the active state. */
 export function Chip({ children, active = false, onSelect, className = "" }) {
   const style = active
-    ? { backgroundColor: "#e8f0fe", color: "#0b57d0", fontWeight: 500 }
+    ? { backgroundColor: color.surfaceBlue, color: color.deepBlue, fontWeight: 500 }
     : { backgroundColor: color.white, color: color.slate, border: `1px solid ${color.mist}` };
   return (
     <button
@@ -324,8 +324,4 @@ export function Reveal({ visible, children, className = "" }) {
   );
 }
 
-export default React.memo(function SystemUI() {
-  return null;
-});
-
-export { radius };
+export const SECTION_RHYTHM_DESKTOP = "py-24 lg:py-32";

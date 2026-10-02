@@ -93,3 +93,60 @@ Teacher review drafts optionally carry the loaded `reviewRevision`. The current 
 
 
 2026-10-01 stage continuity: future transition operations require expected profile/transition versions, trusted action-window time, authoritative event precedence and an atomic profile/mapping/audience commit. Confirm and reversal must reject stale notices; later work remains accessible. Return reviewed per-objective mapping/archive reasons and a sourced prerequisite bridge plan separately from retained learning and original assignment deadlines. The new local continuity DTO reports mapping unavailable and preserves original source/position/review dates; it is not a completed curriculum remap or server transaction.
+
+
+2026-10-01 sourced bridge boundary: return approved one-to-one mappings tied to source concept/selection/provider/ID/version, exact target source and reviewer/review time/reason. Archive declarations need a reason and accessible original work. Verify review authority and source rights on the server; client `official` flags and review actor strings are only preview metadata. Enforce unambiguous target identity, active-stage revision and locale before starting new work. Preserve per-activity source context for event/outcome attribution, due dates and source-version resumption. Never infer an old origin or copy old answer correctness to a replacement source. A changed source opens a separate activity; guidance alone does not regrade or transfer mastery. No deployed API/server/model is added here.
+
+## 2026-10-01 — Stage trigger and profile-editor handoff
+
+Stage APIs must use authenticated actor/source authority, stable source event IDs, expected profile/notice revisions and trusted server time. Calendar/evidence events cannot override pending user decisions; inferred evidence is suggestion-only. Explicit suggestion acceptance follows boundary confirmation and cannot update account age, consent or safety permissions. Institution/stage changes need a separately validated policy; server ownership, guardian requirements and organization authority remain open. The preview teacher event key (class/level/year) is not a durable server event identity.
+
+Draft recovery is private person/workspace data with expected draft revision on saves/clears. Preserve malformed originals, export/recovery and current edits after conflicts. Commit stage/profile/history and superseded suggestion atomically in the server; browser rollback is only local recovery. Preserve institution in exact Undo/profile restoration. No backend or live model/scheduler is implemented by this slice.
+
+## 2026-10-01 — Auxiliary ownership inventory handoff
+
+The local inspector returns counts-only personal/connected/unresolved/unreadable classifications for supporting stores. Source ownership is separate from schema integrity, source rights, current classroom/organization authorization and transfer consent. Server cutover must validate every draft/source/attempt revision and exact membership before mapping; connected school/company/community/seat records need their own scope review. Reject ambiguous review-key ownership rather than parsing a guessed longest prefix. Empty validated stores create no record-transfer obligation. Never migrate malformed originals or assign unknown scopes automatically. Counts exports are reports, not backups or approved transfer manifests; no migration endpoint is implemented.
+
+Auxiliary classification correction: legacy response draft keys identify a person but omit workspace identity. Their counts are unresolved pending assignment/classroom reconciliation; they are not automatically classified as personal work. Counts-only reports remain read-only and do not approve schema/source integrity or transfer. Later server migration must resolve these exact assignment, enrollment and Work/personal scopes under current authorization.
+
+Notification read mutations require exact authenticated workspace/update ownership, current membership, idempotent read acknowledgments and rejected missing IDs. Preference failures must not report saved success. Opening authorized work must remain possible without first persisting read status. A read flag grants no consent or destination access. This frontend saves only local preferences and read flags; scheduling and delivery remain later service capabilities.
+
+2026-10-01 voice cutover: input requires explicit start and transcript confirmation. Use one scoped session generation, request cancellation, partial/final sequence IDs and deduplicated final delivery. Navigation, sign-out or workspace/language changes terminate recognition/output and abort pending responses. Discard old response/utterance completion after cancellation; release device streams that arrive late. Pending transcript text is private and reaches mentor/history only after user Send. Text fallback carries unsent words without automatic submission. Never equate saved audio-output preference with microphone permission or background capture. These are browser-local boundaries; later speech/model providers must preserve them under server authorization and native-device acceptance.
+
+
+### Career direction revision boundary (2026-10-01)
+Frontend saves carry the revision of the active career target, including an explicit no-target revision for first creation. A future service must atomically reject stale updates and concurrent first creation within the authenticated person/workspace; return a conflict with an authorized current version. Browser editor recovery is separate private local work, not shared content or a server goal. Backup/export failures do not grant company access. No credential, hiring prediction or independent reviewer is connected.
+
+
+### Portfolio self-review conflict boundary (2026-10-02)
+The frontend submits both the reviewed project version and expected self-review-history revision. A future API must atomically reject either mismatch within the authenticated adult professional workspace, including revoked company membership, without creating a review. Return an authorized latest version for explicit review/reload. Private local editor recovery is separate from saved self-review records; shared portfolio copies do not convey self-review notes or credential status. No independent reviewer or verification service is connected.
+
+
+### Organization settings boundary (2026-10-02)
+Owner-only settings mutation submits expected revision and approved fields. Future server authorization must resolve the authoritative organization owner and active administrative permission, atomically persist configuration and actor/before/after audit, and reject stale revisions without partial changes. Academic members consume owner defaults, not their own private workspace defaults. New content delivery must check the current pause policy; existing fixed delivery/import retries remain idempotent. A pause does not revoke existing copies or assignments. Organization type and source-language default do not grant personal-data, guardian, model, billing or retention permissions. Live domain/retention/model controls remain disconnected.
+
+
+### Bridge and unsubmitted answer boundary (2026-10-02)
+Explicit reviewed-objective start must revalidate active profile/transition and pinned source immediately before creating/resuming a unit. An async read cannot commit against a postponed, superseded or cancelled transition. Unsubmitted answer selections are private drafts keyed by objective/unit, exact question payload and retry round; they create no evidence. Grading must reject stale expected question/round atomically and keep prior attempts immutable. A new-source objective does not acquire original-source answers/mastery by mapping alone.
+
+
+### Scoped promotion audit boundary (2026-10-02)
+New authoritative teacher promotions must attest class/organization scope at the action time. Organization audit may project class/event/actual actor/action time and current notice-state counts under audit permission. Exclude private learner identities/profiles, personal transitions, foreign scopes and unscoped legacy records. Current state counts do not substitute for recorded undo/postpone actions. Future immutable server events must supply their own actors/times and reject fabricated client scope.
+
+
+2026-10-02 curriculum-template seam: organization content create accepts immutable lesson/curriculum kind. Both categories require source/version/language, author, optimistic revision and a different authorized reviewer. Delivery pins category/content/source to current accepted membership. Teacher import creates a private lesson-preparation draft with immutable sourceSnapshot; it is not automatic learner curriculum publication. Legacy OrganizationCurriculum entity notes remain read-only until explicit reviewed mapping. Server cutover must preserve original notes and drafts and authenticate editorial authority.
+
+
+2026-10-02 Progress report seam: authenticated owner/workspace/role and period must produce separately identified evidence sources, stable objective IDs, measured counts, application counts, original activity/source-version links and current all-history stage/review dates. Partial-source failure must not return invented zero totals or partial aggregates. No question/answer text, private messages or memory events belong in this summary. Period counts do not recalculate current mastery. Live adapter must preserve these semantics under server ownership and cancellation.
+
+
+2026-10-02 Profile saves carry expected authenticated account ID and loaded name/revision, reject stale changes before write and preserve unrelated account fields. Frontend recovery is per workspace/tab with export and explicit latest reload. Server replacement should use a proper profile revision rather than relying on display-name equality. Changing roles or accounts must not authorize a different-account response or mutation.
+
+
+2026-10-02 learning integrity: adapters must validate scope/collection/identity metadata before persistence, reject ambiguous duplicate activities, retain originals on unreadable data and expose retryable states. A current-view recovery export omits assessment keys and does not create an outcome. Server migration must separately validate full unit/source/question schema and cannot interpret container checks as source approval.
+
+
+2026-10-02 structured template seam: validate hierarchy IDs, source metadata, representation/rubric schema and acyclic prerequisite graph before write; require complete structure at review. Persist template with each optimistic revision/history and fixed accepted-teacher delivery. Teacher objective import is idempotent per delivery/objective and must return a private draft with exact reviewed-status source/section/version, prerequisite titles and criteria. Preserve narrative-only legacy templates. No editorial record establishes official source certification; publication and question-bank rights require separate authoritative services.
+
+
+2026-10-02 reviewed practice seam: authenticate the exact learner/Work/enrollment/assignment source and immutable delivery/objective, grade on the server, expose only prompt/options/opaque question token, require expected source/question/round revisions and preserve private attempt history. Keys currently exist only in browser-local editorial/grading records; this is not production key security. New editorial revisions must not rewrite old deliveries, private studies, responses or mastery. Missing bank returns explicit unavailable state, never generated exercises.

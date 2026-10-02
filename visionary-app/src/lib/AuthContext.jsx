@@ -60,8 +60,8 @@ export const AuthProvider = ({ children }) => {
     window.location.href = '/login';
   }, []);
 
-  const updateUser = useCallback(async (updates) => {
-    const updatedUser = await appClient.auth.updateMe(updates);
+  const updateUser = useCallback(async (updates,options) => {
+    const updatedUser = await appClient.auth.updateMe(updates,options);
     setUser(updatedUser);
     return updatedUser;
   }, []);

@@ -81,7 +81,7 @@ function ArrowLink({ to, children, className = "", style }) {
 }
 
 function MissionSection() {
-  return <section id="mission" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+  return <section id="mission" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Why Visionary exists</Eyebrow>
       <div className="mt-5 grid gap-9 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-20">
@@ -109,7 +109,7 @@ function MissionSection() {
 }
 
 function ImpactSection() {
-  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+  return <section className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-20">
         <div><Eyebrow>The difference we want to make</Eyebrow><h2 className="mt-5 max-w-[790px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">AI can make the next step clearer.</h2></div>
@@ -132,7 +132,7 @@ function ImpactSection() {
 }
 
 function RolesSection() {
-  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+  return <section className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div className="max-w-[760px]"><Eyebrow>For every perspective</Eyebrow><h2 className="mt-5 text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">Different people, one connected journey.</h2></div><p className="max-w-[360px] text-[16px] leading-[1.65] text-[#5f6368]">
             Find the experience that fits your work today. Visionary can keep growing with where you go next.
@@ -152,7 +152,7 @@ function RolesSection() {
 }
 
 function LifeJourneySection() {
-  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+  return <section className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
     <Reveal className="mx-auto max-w-[1240px]">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
         <div><Eyebrow>A life in motion</Eyebrow><h2 className="mt-5 max-w-[780px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">One journey, many beginnings.</h2></div>
@@ -174,7 +174,7 @@ function LifeJourneySection() {
 }
 
 function ExploreSection() {
-  return <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+  return <section className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
     <Reveal className="mx-auto max-w-[1240px]">
       <Eyebrow>Explore further</Eyebrow><h2 className="mt-5 max-w-[760px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] text-[#202124] sm:text-[48px]">The work around the product.</h2>
       <div className="mt-12 grid gap-5 sm:grid-cols-2">

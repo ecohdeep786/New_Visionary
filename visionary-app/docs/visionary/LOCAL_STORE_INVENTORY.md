@@ -54,3 +54,46 @@ Teacher review drafts optionally carry the loaded `reviewRevision`. The current 
 
 
 2026-10-01 stage continuity adds no namespace. It reads the existing stage/profile, learning, review and classwork stores within the current personal workspace. Source outline, steps and due dates stay unchanged; its explicit pending-mapping status is not evidence or a migrated curriculum. Stage notice mutations now compare the current profile/latest effective notice and refuse stale writes. Unreadable retained evidence blocks the profile swap.
+
+
+2026-10-01: existing content graphs optionally retain `continuityMappings` with exact from selection/provenance/concept, equivalent target or archive disposition, reason and review metadata. New pipeline units optionally retain `sourceContext` (selection plus provenance); original units are never guessed/backfilled. Bridge guidance uses current owned cached graphs, has no new namespace and creates no learning outcome. Explicitly starting a sourced objective creates/reuses a compatible source-version activity. Older-source work remains separate and recoverable. Migration must retain these source versions/review declarations and independently authenticate their authority.
+
+## 2026-10-01 — Stage editor drafts and trigger metadata
+
+`visionary_stage_editor_v1:<workspaceId>` stores version 1, personId, original clean profile revision and bounded stage field strings. Only a current personal student/professional workspace can read/write it. Optimistic draft revisions reject stale saves/clears; malformed original bytes are retained for explicit export. It is private recovery data, excluded from learning evidence, parent reports, teacher submissions and organization analytics. The migration inspector flags it for separate ownership review; no automatic migration occurs.
+
+Stage profiles now optionally retain institution. Stage records optionally retain trigger, stable eventId, actor and boundaryReasons, plus suggested/superseded states. Existing legacy notices remain usable without invented actor/trigger values. Accepted suggestions retain their history; ageBand and consent are separate and unchanged.
+
+## 2026-10-01 — Itemized auxiliary ownership review
+
+Privacy now inventories supporting records separately from core workspace counts: project/resource backups, response and review drafts, private classroom study, stage history/editor drafts, deferrals, community authorship and seat-request authorship. It classifies personal, connected and unresolved record counts with an unreadable marker. Known foreign account scopes are excluded, and empty validated stores no longer block merely by existing. Multiple matching review-key workspace prefixes remain unresolved rather than guessed. Supporting-record ownership is not full schema/source/permission approval; any nonempty or unreadable supporting store continues to block mapping.
+
+The review spans this person's owned roles, including stage drafts outside the active workspace. Unreadable originals remain untouched. Counts-only export re-inspects current records and excludes private question, answer, feedback and editor text. Changes in another tab invalidate the displayed preview and require a fresh review; errors remove stale counts. No record is transferred, merged, deleted or automatically repaired. Core export and entity/auth retirement remain separate future gates.
+
+Focused ownership regression: 13/13 pass. Final full-suite, build, typecheck, lint and production mobile evidence follow after completion. Broader auxiliary schema reconciliation and independent/server ownership verification remain open, along with the role/shared/frontend completion ledger. Preserve landing exclusion and founder-book-before-backend order.
+
+Auxiliary classification correction: legacy response draft keys identify a person but omit workspace identity. Their counts are unresolved pending assignment/classroom reconciliation; they are not automatically classified as personal work. Counts-only reports remain read-only and do not approve schema/source integrity or transfer. Later server migration must resolve these exact assignment, enrollment and Work/personal scopes under current authorization.
+
+
+2026-10-02 organization configuration: optional versioned organizationSettings lives in the organization owner's visionary_workspace_v2 WorkspaceData alongside its audit. It does not introduce a new namespace. Organization-settings draft recovery uses visionary_resource_editor_v1 with a new:organization-settings key scoped to the owned workspace/tab, already included in supporting ownership counts. This is not schema/migration approval.
+
+
+2026-10-02 reviewed curriculum uses Resource.kind=curriculum in the existing owner workspace. New curriculum recovery uses new:organization-curriculum in the existing resource-editor store; new lesson recovery retains new:organization-content. No new namespace. Earlier visionary_entity_OrganizationCurriculum records remain unchanged/read-only; preparing a template copies selected notes, without approval, ownership migration or removal.
+
+
+2026-10-02 Progress adds no namespace or persistence. It reads existing owned mentor evidence, pipeline source metadata and earlier workspace sessions. Interface language drives navigation/search/account/Progress labels; source titles retain content locale. The report neither migrates evidence across sources nor writes on review.
+
+
+2026-10-02 Profile editor uses new:account-profile in the existing workspace/tab-scoped resource-editor store. title holds the unsaved display name, body the unfinished learning area and baseRevision the originally loaded account name. It is private recovery, not a saved profile, a new area, learning evidence or a transfer approval.
+
+
+2026-10-02 connection integrity: derived unavailable/expired states are read-only, add no namespace and do not rewrite imported dates. Explicit lifecycle closures retain original expiry fields. Profile translations and activity-view downloads add no persistence. Existing source ownership/schema/migration gates remain open.
+
+
+2026-10-02 structured curriculum: optional CurriculumTemplate is stored within existing versioned Resource, earlier-version and approved-delivery snapshots in visionary_workspace_v2. It includes source selection/provenance, chapters/objectives/prerequisites/representations/criteria. Teacher copies retain only the chosen objective snapshot plus immutable delivery/objective identity. No new namespace or automatic graph migration/publication. Existing per-workspace/tab editor backups now retain the optional structure.
+
+
+2026-10-02 curriculum banks: optional practice questions/keys are kept only in existing organization template/revision/fixed-delivery records. Learner assignment objective snapshots omit keys; private rehearsal uses existing visionary_classwork_study_v1:<personId>, scoped again by workspace/assignment. Public question/attempt projections include no keys. No new namespace or automatic evidence/source migration.
+
+
+2026-10-02 assigned outline: optional sourceChapter and objectivePosition live in existing assigned objective snapshots. The reader stores nothing and exposes only authorized assignment/source headings, status and original links. Older copies retain their original metadata; their practice lookup ignores only absent new optional labels while comparing the original pinned source.

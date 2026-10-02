@@ -182,7 +182,7 @@ export default function ResearchNewsPage() {
               <SpotIllustration subject="loop" className="h-[112px] w-[150px] rounded-2xl border-4 border-white shadow-[0_12px_32px_rgba(0,0,0,0.2)]" />
             </div>
             <Reveal>
-              <h1 className="max-w-[1000px] text-[60px] font-normal leading-[1.02] tracking-[-0.045em] text-[#202124] sm:text-[88px] lg:text-[104px]">
+              <h1 className="max-w-[1000px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[64px] lg:text-[76px]">
                 <span className="block">One intelligence,</span>
                 <span className="block pl-[10%] sm:pl-[18%]">
                   every learner.
@@ -243,7 +243,7 @@ export default function ResearchNewsPage() {
           </Reveal>
         </section>
         {/* READ THE LATEST — real capabilities, really shipped */}
-        <section id="latest" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <section id="latest" className="scroll-mt-32 px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">Read the latest</h2>
@@ -277,7 +277,7 @@ export default function ResearchNewsPage() {
 
         {/* OUR RESEARCH DRIVES REAL UNDERSTANDING — three focus areas, each
             with its shipped capabilities and what comes next */}
-        <section id="areas" className="scroll-mt-32 border-t border-[#e8eaed] bg-[#f8f9fa] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <section id="areas" className="scroll-mt-32 border-t border-[#e8eaed] bg-[#f8f9fa] px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[760px] text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
@@ -312,7 +312,7 @@ export default function ResearchNewsPage() {
                           <SpotIllustration subject={item.subject} className="h-10 w-10" />
                         </span>
                         <div>
-                          <p className={`text-[11px] font-medium uppercase tracking-[0.12em] ${item.tag === "Next" ? "text-[#5f6368]" : "text-[#0b57d0]"}`}>{item.tag}</p>
+                          <p className={`text-[12px] font-medium uppercase tracking-[0.12em] ${item.tag === "Next" ? "text-[#5f6368]" : "text-[#0b57d0]"}`}>{item.tag}</p>
                           <h4 className="mt-1.5 text-[16px] font-medium leading-[1.4] text-[#202124]">{item.title}</h4>
                           <p className="mt-1 text-[14px] leading-[1.6] text-[#5f6368]">{item.detail}</p>
                         </div>
@@ -327,7 +327,7 @@ export default function ResearchNewsPage() {
 
         {/* PROJECTS — see our impact across other products (Google's
             "other projects" row) */}
-        <section id="projects" className="scroll-mt-32 border-t border-[#e8eaed] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <section id="projects" className="scroll-mt-32 border-t border-[#e8eaed] px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <h2 className="max-w-[560px] text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
@@ -373,7 +373,7 @@ export default function ResearchNewsPage() {
         </section>
 
         {/* ORIGIN — one question started it all, and the honest public record */}
-        <section id="origin" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <section id="origin" className="scroll-mt-32 px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
               <h2 className="text-[32px] font-normal leading-[1.15] tracking-[-0.03em] text-[#202124] sm:text-[42px]">
@@ -411,7 +411,7 @@ export default function ResearchNewsPage() {
         </section>
 
         {/* RESPONSIBLE — research at the heart, with our honest framing */}
-        <section className="border-t border-[#e8eaed] bg-[#f8f9fa] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <section className="border-t border-[#e8eaed] bg-[#f8f9fa] px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="overflow-hidden rounded-2xl">
               <img src={imgResponsible} alt="A learner reading closely to make sense of an idea" loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
@@ -432,7 +432,7 @@ export default function ResearchNewsPage() {
         </section>
 
         {/* FUTURE — help us shape it: community and careers */}
-        <section id="future" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+        <section id="future" className="scroll-mt-32 px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <h2 className="max-w-[700px] text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
               Help us shape the future.

@@ -159,7 +159,7 @@ function IconTile({ Icon }) {
 
 function LearnMoreRow({ to, label }) {
   return (
-    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
+    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
       {label}
       <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
     </Link>
@@ -241,7 +241,7 @@ export default function PrivacyPage() {
                           className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
-                          <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                          <span className="mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                           <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                         </button>
                       );
@@ -268,7 +268,7 @@ export default function PrivacyPage() {
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="shield" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
                   <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Privacy policy</p>
-                  <h1 className="mt-4 max-w-[720px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] sm:text-[48px] lg:text-[56px]" style={{ color: COLORS.ink }}>
+                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                     Your learning is personal. Privacy should be clear.
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
@@ -277,7 +277,7 @@ export default function PrivacyPage() {
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {PRIVACY_PROMISES.map((p) => (
-                      <span key={p} className="flex items-center gap-1.5 text-[13.5px] font-medium" style={{ color: COLORS.ink }}>
+                      <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
                         <ShieldCheck className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.navy }} aria-hidden="true" />
                         {p}
                       </span>
@@ -291,7 +291,7 @@ export default function PrivacyPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Review your data</p>
-                      <p className="mt-0.5 text-[14.5px]" style={{ color: COLORS.grey }}>Looking to see what is stored on this device?</p>
+                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>Looking to see what is stored on this device?</p>
                       <Link to="/dashboard/privacy" className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
                         Review data on this device
                         <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
@@ -314,7 +314,7 @@ export default function PrivacyPage() {
                     className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     <span>
-                      <span className="block text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
                       <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
@@ -333,7 +333,7 @@ export default function PrivacyPage() {
                               className="flex min-h-12 w-full items-start gap-4 border-b px-4 py-3 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                               style={{ borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white }}
                             >
-                              <span className="mt-0.5 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                              <span className="mt-0.5 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                               <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                             </button>
                           );
@@ -404,7 +404,7 @@ export default function PrivacyPage() {
                         <IconTile Icon={Icon} />
                         <div>
                           <h3 className="text-[17px] font-medium" style={{ color: COLORS.ink }}>{title}</h3>
-                          <p className="mt-1.5 max-w-[620px] text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
+                          <p className="mt-1.5 max-w-[620px] text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{text}</p>
                         </div>
                       </div>
                     ))}
@@ -426,7 +426,7 @@ export default function PrivacyPage() {
                       ["Service providers", "Trusted providers may process information only to operate, secure, support, or improve Visionary under appropriate contractual safeguards."],
                     ].map(([who, what], i, arr) => (
                       <div key={who} className={`px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`}>
-                        <p className="text-[14.5px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
+                        <p className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{who}</p>
                         <p className="mt-1 text-[14px] leading-[1.65]" style={{ color: COLORS.grey }}>{what}</p>
                       </div>
                     ))}
@@ -461,15 +461,15 @@ export default function PrivacyPage() {
                     ))}
                   </div>
                   <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                    <Link to="/dashboard/personalization" className="inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
+                    <Link to="/dashboard/personalization" className="inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
                       Change workspace preferences
                       <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                     </Link>
-                    <Link to="/cookies" className="inline-flex items-center gap-2 text-[14.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.grey }}>
+                    <Link to="/cookies" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.grey }}>
                       Read about cookies
                       <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                     </Link>
-                    <Link to="/security" className="inline-flex items-center gap-2 text-[14.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.grey }}>
+                    <Link to="/security" className="inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.grey }}>
                       Review security practices
                       <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
                     </Link>
@@ -528,7 +528,7 @@ export default function PrivacyPage() {
                       {["Review personal workspaces stored in this browser.", "Check whether a record is stored on-device or with your account.", "Ask the Grievance officer about access or deletion requests.", "Sign out of shared devices and review connected devices regularly."].map((t) => (
                         <li key={t} className="flex items-start gap-3">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
-                          <span className="text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
+                          <span className="text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>{t}</span>
                         </li>
                       ))}
                     </ul>
@@ -562,7 +562,7 @@ export default function PrivacyPage() {
                           <ChevronDown className={["h-4 w-4 shrink-0 transition-transform duration-200", openFaq === index ? "rotate-180" : ""].join(" ")} strokeWidth={1.8} style={{ color: COLORS.grey }} />
                         </button>
                         <div id={`privacy-faq-${index}`} role="region" aria-labelledby={`privacy-faq-trigger-${index}`} hidden={openFaq !== index}>
-                          <p className="pb-5 pr-8 text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{item.a}</p>
+                          <p className="pb-5 pr-8 text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{item.a}</p>
                         </div>
                       </div>
                     ))}
@@ -576,7 +576,7 @@ export default function PrivacyPage() {
                     For questions about this policy or to submit a privacy grievance, contact the named Grievance officer. Include enough detail to identify the request, but do not send passwords or other secrets by email.
                   </Paragraph>
                   <div className="mt-8 max-w-[640px] rounded-[16px] g-card p-6 sm:p-7">
-                    <p className="text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>
+                    <p className="text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>
                       {GRIEVANCE_OFFICER.role}: <strong style={{ color: COLORS.ink }}>{GRIEVANCE_OFFICER.name}</strong>
                     </p>
                     <p className="mt-3">
@@ -608,7 +608,7 @@ export default function PrivacyPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -631,7 +631,7 @@ export default function PrivacyPage() {
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
-                  <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                  <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
                   <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-[#e8f0fe]" />
                   <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>

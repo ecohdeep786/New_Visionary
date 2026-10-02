@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+const path='src/pages/dashboard/Profile.jsx';let s=fs.readFileSync(path,'utf8');
+s=s.replace("const KEY=", "import {profileText} from '@/lib/profileCopy';\nconst KEY=");
+s=s.replace("const {user,updateUser,checkUserAuth}=useAuth();const data=useStudentData();", "const {user,updateUser,checkUserAuth}=useAuth();const data=useStudentData();const t=text=>profileText(preferences.interfaceLocale,text);");
+const labels=['Your profile','One account with separate workspaces and preferences.','Unfinished profile edits recovered from this workspace and tab. Review them before saving.','Account display name','Your display name applies to this account. Language and learning areas belong to the active workspace.','Display name','A different display name is saved','Learning areas','Add a subject, skill or interest. This creates a personal learning-area record; reviewed curriculum content remains separate.','Reading learning areas…','Retry learning areas','No personal learning areas yet.','New learning area','Add area','Export profile edits','Discard edits and load saved profile','Connections and requests','Language and appearance settings'];
+for(const text of labels)s=s.replaceAll('>'+text+'<',">{t('"+text+"')}<");
+for(const text of ['Display name','New learning area'])s=s.replaceAll('aria-label="'+text+'"','aria-label={t(\''+text+'\')}');
+s=s.replace("{busy?'Saving…':'Save profile'}","{busy?t('Saving…'):t('Save profile')}");
+s=s.replace('{ctx.role} workspace · Teaching language:',"{preferences.interfaceLocale==='en'||!['hi','bn'].includes(preferences.interfaceLocale)?ctx.role+' workspace':t(ctx.role)} · {t('Teaching language:')}");
+s=s.replace('Current saved name: {user.full_name}. Your edits remain here. Export them or explicitly load the latest saved name.',"{t('Current saved name:')} {user.full_name}. {t('Your edits remain here. Export them or explicitly load the latest saved name.')}");
+s=s.replace('Learning areas could not be read. Your draft remains here.<button',"{t('Learning areas could not be read. Your draft remains here.')}<button");
+s=s.replace("setNotice('Display name saved for this account on this device.'+(subject?' Your learning-area draft remains here.':clean?'':' The earlier editor backup remains; export it before replacing it.'));","setNotice(t('Display name saved for this account on this device.')+(subject?' '+t('Your learning-area draft remains here.'):clean?'':' '+t('The earlier editor backup remains; export it before replacing it.')));");
+for(const text of ['Learning area added. Open Learn to continue. No curriculum, activity or mastery was generated.','Latest saved name loaded. Unfinished profile and learning-area edits were discarded.','Profile edits exported. This does not save your name or add a learning area.'])s=s.replace("setNotice('"+text+"')","setNotice(t('"+text+"'))");
+s=s.replace('role="alert">{error}</p>','role="alert">{t(error)}</p>');
+fs.writeFileSync(path,s);

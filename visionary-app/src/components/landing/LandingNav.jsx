@@ -90,7 +90,7 @@ const ABOUT_GROUPS = [
 
 /* Shared pill style */
 const pillLink = (active) =>
-  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[15px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[16px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
     active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
   }`;
 
@@ -196,9 +196,9 @@ export default function LandingNav() {
       >
         Skip to main content
       </a>
-      <div className="flex h-full w-full items-center justify-between px-6 lg:px-10">
+      <div className="public-frame public-frame-wide flex h-full items-center justify-between">
         {/* LEFT: logo + primary nav */}
-        <div className="flex min-w-0 items-center gap-4 lg:gap-6">
+        <div className="flex min-w-0 items-center gap-5 lg:gap-8">
           <Link
             to="/"
             aria-label="Visionary home"
@@ -497,7 +497,7 @@ export default function LandingNav() {
 
           <Link
             to="/register"
-            className="flex h-11 items-center rounded-full px-5 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+            className="flex h-11 items-center rounded-full px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
             style={{ backgroundColor: C.darkblue }}
           >
             Get started
@@ -647,7 +647,7 @@ export default function LandingNav() {
 
             {ABOUT_GROUPS.map((group) => (
               <div key={group.title} className="pb-3">
-                <p className="px-3 py-2 text-[11px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+                <p className="px-3 py-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
                   {group.title}
                 </p>
 
@@ -684,7 +684,7 @@ export default function LandingNav() {
             <Link
               to="/help"
               onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center gap-2 rounded-full border text-[15px] font-normal tracking-[0.24px]"
+              className="flex h-11 items-center justify-center gap-2 rounded-full border text-[16px] font-normal tracking-[0.24px]"
               style={{ borderColor: C.mist, color: C.ink }}
             >
               <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
@@ -694,7 +694,7 @@ export default function LandingNav() {
             <Link
               to="/login"
               onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center rounded-full border text-[15px] font-normal tracking-[0.24px]"
+              className="flex h-11 items-center justify-center rounded-full border text-[16px] font-normal tracking-[0.24px]"
               style={{ borderColor: C.mist, color: C.blue }}
             >
               Sign in
@@ -703,7 +703,7 @@ export default function LandingNav() {
             <Link
               to="/register"
               onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center rounded-full text-[15px] font-medium tracking-[0.24px] text-white"
+              className="flex h-11 items-center justify-center rounded-full text-[16px] font-medium tracking-[0.24px] text-white"
               style={{ backgroundColor: C.darkblue }}
             >
               Get started

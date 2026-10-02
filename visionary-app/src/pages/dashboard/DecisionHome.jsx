@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowRight, BookOpen, BriefcaseBusiness, Building2, GraduationCap, HeartHandshake, Sparkles } from 'lucide-react';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { getHome } from '@/services/homeService';
-import { getActiveTransitionNotice, postponeStageTransition, undoStageTransition, confirmStageTransition } from '@/services/stageTransitionService';
+import { getStageSuggestions, getActiveTransitionNotice, postponeStageTransition, undoStageTransition, confirmStageTransition } from '@/services/stageTransitionService';
 import { deferPlanStep } from '@/services/dailyPlanService';
 import { getStagePresentation } from '@/services/stagePresentation';
 import RoleMentorPanel from '@/components/dashboard/RoleMentorPanel';
@@ -56,9 +56,11 @@ export default function DecisionHome() {
     {planError&&<p role="alert" className="v-notice v-error">{planError} Your plan is unchanged. Try Not today again after checking browser storage.</p>}
     <div className="v-home-modules">{modules.map(module=><section className="v-home-module" key={module.id} aria-labelledby={`home-${module.id}`}><h2 id={`home-${module.id}`}>{module.title}</h2>{module.rows.map(row=><div className="v-home-row" key={row.id}><div><p className="v-home-row-title">{row.title}</p><p className="v-muted">{row.detail}</p></div><div className="flex items-center gap-2">{row.deferId&&<button type="button" className="v-button" onClick={()=>{try{deferPlanStep(ctx,row.deferId);setPlanError('');}catch(failure){setPlanError(failure.message||'This step could not be postponed.');}}}>Not today</button>}<Link className="v-button" to={row.action.path}>{row.action.label}<span className="sr-only">: {row.title}</span></Link></div></div>)}</section>)}</div>
     {ctx.role==='student'&&<section className="v-home-module" aria-labelledby="home-memory"><h2 id="home-memory">Things I remember about you</h2><p className="v-muted">Only from your saved activity this week. These are observations, not an AI assessment.</p>{observations?.length?<ul className="mt-3 space-y-2">{observations.map(item=><li key={item.id} className="text-sm">{item.text}</li>)}</ul>:<p className="v-muted mt-3">{memoryEnabled?'No weekly observations yet. Start a learning unit or practice step to build your own history.':'Learning memory is off for this workspace. You can change it in Personalization.'}</p>}<Link className="v-button mt-4" to="/dashboard/privacy">View or clear memory</Link></section>}
-    <RoleMentorPanel ctx={ctx}/>
+    {['student','professional'].includes(ctx.role)&&<StageSuggestionEntry ctx={ctx}/>}<RoleMentorPanel ctx={ctx}/>
     <section className="v-home-module" aria-labelledby="home-guide"><div className="v-home-row"><div><h2 id="home-guide">Need help along the way?</h2><p className="v-muted">Ask a question or continue a saved conversation.</p></div><Link className="v-button" to="/dashboard/ask"><Sparkles size={18} aria-hidden="true"/>Ask Visionary Guide</Link></div></section>
     {setupNote && <p className="v-home-empty">{setupNote}</p>}
     <p className="v-muted">Local preview · Saved on this device. No live model or cloud sync.</p>
   </div>;
 }
+
+function StageSuggestionEntry({ctx}){let count=0;try{count=getStageSuggestions(ctx).length;}catch{return null;}return count>0?<section className="v-home-module"><h2 className="font-medium">Stage suggestions · not applied</h2><p className="v-muted mt-2">{count} suggestions to review. Your current stage is unchanged; evidence alone never moves you to a new stage.</p><Link className="v-button mt-3" to="/dashboard/personalization">Review stage suggestions</Link></section>:null;}

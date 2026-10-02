@@ -1,0 +1,1 @@
+import fs from 'node:fs';const p='src/services/workspaceService.ts';let s=fs.readFileSync(p,'utf8').replace('at:row.notifiedAt,states:{}}','at:row.notifiedAt,states:{} as Record<string,number>}');fs.writeFileSync(p,s);

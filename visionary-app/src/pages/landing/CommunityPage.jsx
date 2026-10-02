@@ -166,7 +166,7 @@ export default function CommunityPage() {
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
             <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
-              <h1 className="text-[clamp(32px,5.5vw,60px)] font-normal leading-[1.02] tracking-[-0.045em] text-[#202124]">
+              <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[64px] lg:text-[76px]">
                 Communities and programs for everyone learning together.
               </h1>
               <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.55] text-[#3c4043] sm:text-[22px]">
@@ -204,7 +204,7 @@ export default function CommunityPage() {
 
         {/* FIND A COMMUNITY — the reference's alternating label + program-card
             areas, with playful accent strokes beside the heading */}
-        <section className="px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="relative mx-auto max-w-[720px] text-center">
             <svg aria-hidden="true" viewBox="0 0 120 60" className="absolute -right-16 -top-8 hidden h-14 w-28 lg:block">
               <path d="M8 50 C 40 12, 78 8, 112 22" fill="none" stroke="#1a73e8" strokeWidth="5" strokeLinecap="round" />
@@ -246,7 +246,7 @@ export default function CommunityPage() {
         </section>
 
         {/* MORE WAYS TO ENGAGE */}
-        <section id="more" className="scroll-mt-36 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="more" className="scroll-mt-36 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
@@ -275,7 +275,7 @@ export default function CommunityPage() {
         </section>
 
         {/* FAQ — the reference's accordion with circular controls */}
-        <section id="faq" className="scroll-mt-36 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="faq" className="scroll-mt-36 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[840px]">
             <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
               Have questions? We've got answers.
@@ -285,7 +285,7 @@ export default function CommunityPage() {
         </section>
 
         {/* CLOSING CTA */}
-        <section className="border-t border-[#e8eaed] px-6 py-20 text-center sm:px-8 lg:px-10 lg:py-28">
+        <section className="border-t border-[#e8eaed] px-6 py-24 lg:py-32 text-center sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[720px]">
             <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
               Bring your class together.

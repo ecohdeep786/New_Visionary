@@ -55,6 +55,14 @@ test('approved deliveries are fixed, explicit, idempotent and become teacher-con
  assert.equal(workspace.organizationAudit(owner).entries.find(row=>row.action==='Approved content delivered').actor,owner.personId);
 });
 
+test('owner delivery pause blocks new copies by academic members and retains earlier copies and retries',()=>{
+ const teacher=acceptedTeacher();const item=draft();workspace.changeOrganizationContent(owner,item.id,1,'submit');workspace.changeOrganizationContent(reviewer,item.id,1,'approve','Checked',approved);
+ const settings={kind:'school',contentLanguage:'bn',teacherDeliveryEnabled:false};workspace.saveOrganizationSettings(owner,settings,0);
+ const original=store.get('visionary_workspace_v2');assert.throws(()=>workspace.deliverOrganizationContent(reviewer,item.id,1,'teacher@visionary.test'),/paused/);assert.equal(store.get('visionary_workspace_v2'),original);assert.deepEqual(workspace.teacherOrganizationContent(teacher.ctx),[]);
+ workspace.saveOrganizationSettings(owner,{...settings,teacherDeliveryEnabled:true},1);const delivery=workspace.deliverOrganizationContent(reviewer,item.id,1,'teacher@visionary.test');const copy=workspace.importOrganizationContent(teacher.ctx,delivery.id);
+ workspace.saveOrganizationSettings(owner,settings,2);assert.equal(workspace.deliverOrganizationContent(reviewer,item.id,1,'teacher@visionary.test').id,delivery.id);assert.equal(workspace.teacherOrganizationContent(teacher.ctx)[0].id,delivery.id);assert.equal(workspace.snapshot(teacher.ctx).resources.find(row=>row.id===copy.id).body,'Authored example');
+});
+
 test('closed or renewed teacher membership does not recover old deliveries; failed writes do not fabricate delivery or import',()=>{
  const teacher=acceptedTeacher();const item=draft();workspace.changeOrganizationContent(owner,item.id,1,'submit');workspace.changeOrganizationContent(reviewer,item.id,1,'approve','Checked',approved);
  const before=store.get('visionary_workspace_v2');const set=localStorage.setItem;localStorage.setItem=()=>{throw Error('Full');};
@@ -63,4 +71,13 @@ test('closed or renewed teacher membership does not recover old deliveries; fail
  try{assert.throws(()=>workspace.importOrganizationContent(teacher.ctx,delivery.id),/saved/);assert.equal(store.get('visionary_workspace_v2'),delivered);}finally{localStorage.setItem=set;}
  workspace.changeOrganizationInvite(owner,teacher.membership.id,'revoked');assert.throws(()=>workspace.teacherOrganizationContent(teacher.ctx),/no longer active/);assert.throws(()=>workspace.deliverOrganizationContent(owner,item.id,1,'teacher@visionary.test'),/active accepted teacher/);
  const renewed=acceptedTeacher();assert.deepEqual(workspace.teacherOrganizationContent(renewed.ctx),[]);assert.throws(()=>workspace.importOrganizationContent(renewed.ctx,delivery.id),/unavailable/);
+});
+
+test('curriculum templates keep separate category and review/distribution lifecycle with old versions retained',()=>{
+ const teacher=acceptedTeacher();const item=workspace.saveOrganizationContent(owner,{kind:'curriculum',title:'Mathematics scope template',body:'Group: Class 6\nObjective fraction-1: compare equal parts.\nPrerequisite: identify a whole.\nSource section: page 12.',source:'Fictional curriculum source v1',language:'bn'});
+ assert.equal(item.kind,'curriculum');assert.throws(()=>workspace.saveOrganizationContent(owner,{...item,kind:'lesson',source:'Different',language:'en'},1),/category/);
+ workspace.changeOrganizationContent(owner,item.id,1,'submit');assert.throws(()=>workspace.changeOrganizationContent(owner,item.id,1,'approve','Checked',approved),/different academic/);workspace.changeOrganizationContent(reviewer,item.id,1,'approve','Mapped objectives and source sections checked.',approved);
+ const delivery=workspace.deliverOrganizationContent(owner,item.id,1,'teacher@visionary.test');const imported=workspace.importOrganizationContent(teacher.ctx,delivery.id);assert.equal(imported.status,'draft');assert.equal(imported.kind,'lesson');assert.equal(imported.sourceSnapshot.revision,1);assert.match(imported.body,/fraction-1/);
+ workspace.changeOrganizationContent(owner,item.id,1,'revise');workspace.saveOrganizationContent(owner,{...item,kind:'curriculum',body:'Changed objectives, draft v2',source:'Fictional curriculum source v2',language:'en'},1);
+ const newest=workspace.snapshot(owner).resources.find(row=>row.id===item.id);assert.equal(newest.kind,'curriculum');assert.match(newest.contentReview.versions[0].body,/fraction-1/);assert.equal(workspace.teacherOrganizationContent(teacher.ctx)[0].body,delivery.body);assert.equal(workspace.snapshot(teacher.ctx).resources.find(row=>row.id===imported.id).sourceSnapshot.language,'bn');
 });

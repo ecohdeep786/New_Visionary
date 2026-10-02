@@ -202,7 +202,7 @@ const MockShell = React.memo(function MockShell({ children, label }) {
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.blue }} />
-        <span className="ml-2 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ color: COLORS.lightGrey }}>{label}</span>
+        <span className="ml-2 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ color: COLORS.lightGrey }}>{label}</span>
       </div>
       <div className="p-6">{children}</div>
     </div>
@@ -236,7 +236,7 @@ function AuthMock({ state, onPause, onResume }) {
           key={`btn-${state}`}
           to={isSignIn ? "/login" : "/register"}
           aria-label={isSignIn ? "Sign in to Visionary" : "Create a free Visionary account"}
-          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+          className="hero-fade-up mt-6 flex w-full items-center justify-center rounded-full py-3 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
           style={{ backgroundColor: COLORS.blue }}
         >
           {isSignIn ? "Sign in" : "Create account"}
@@ -580,7 +580,7 @@ function HowDifferentPeopleSection() {
               </div>
               <div className="mt-4 flex gap-2">
                 {["Understand", "Ask", "Try", "Continue"].map((m, i) => (
-                  <span key={m} className="rounded-full border px-3 py-1 text-[11px] tracking-[0.24px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.grey }}>{m}</span>
+                  <span key={m} className="rounded-full border px-3 py-1 text-[12px] tracking-[0.24px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.grey }}>{m}</span>
                 ))}
               </div>
               <p className="mt-5 text-[12px] tracking-[0]" style={{ color: COLORS.lightGrey }}>Same intelligence · shaped for {scenario.tab.toLowerCase()}</p>
@@ -596,7 +596,7 @@ function HowDifferentPeopleSection() {
 function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Get started</GreyTag>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>See it with your own question.</h2>

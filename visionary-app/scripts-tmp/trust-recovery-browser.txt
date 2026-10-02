@@ -1,0 +1,1 @@
+PASS 390px shared trust recovery: failed language/checkbox/reset writes retain saved preferences, successful retry persists after refresh, animation retained, learning records unchanged, export failure/retry has inline feedback, no page errors or overflow.

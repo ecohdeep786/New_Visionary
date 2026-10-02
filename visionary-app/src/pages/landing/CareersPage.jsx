@@ -198,7 +198,7 @@ function HeroCard({ idPrefix = "hero" }) {
 
   return (
     <form onSubmit={submit} noValidate>
-      <h1 className="max-w-[420px] text-[32px] font-normal leading-[1.2] tracking-[-0.025em] text-[#202124] sm:text-[40px]">
+      <h1 className="max-w-[520px] text-[36px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[44px] lg:text-[52px]">
         Search for your place at Visionary.
       </h1>
       <div className="mt-8 space-y-5">
@@ -354,7 +354,7 @@ export default function CareersPage() {
                 </div>
                 <div className="mx-auto max-w-[820px] text-center">
                   <p className="mt-14 text-[13px] font-medium uppercase tracking-[0.18em] text-[#5f6368]">How we hire</p>
-                  <h2 className="mt-5 text-[38px] font-normal leading-[1.1] tracking-[-0.035em] text-[#202124] sm:text-[52px]">
+                  <h2 className="mt-5 text-[36px] font-normal leading-[1.1] tracking-[-0.035em] text-[#202124] sm:text-[48px]">
                     How to prepare for our hiring process
                   </h2>
                   <p className="mx-auto mt-6 max-w-[640px] text-[16px] leading-[1.65] text-[#5f6368] sm:text-[17px]">
@@ -374,7 +374,7 @@ export default function CareersPage() {
             </section>
 
             {/* OPEN ROLES — the jobs hub, honestly empty */}
-            <section id="roles" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+            <section id="roles" className="scroll-mt-32 px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[48px]">
@@ -407,7 +407,7 @@ export default function CareersPage() {
             </section>
 
             {/* CONTACT — fair process, accessibility, and how to reach us */}
-            <section id="contact" className="scroll-mt-32 border-t border-[#dadce0] px-4 py-20 sm:px-6 lg:px-10 lg:py-24">
+            <section id="contact" className="scroll-mt-32 border-t border-[#dadce0] px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-24">
               <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
                 <div>
                   <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#202124] sm:text-[38px]">

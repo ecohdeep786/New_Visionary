@@ -71,8 +71,14 @@ export function getCareerPath(ctx: RequestContext) {
     portfolio: data.artifacts.map(artifact => ({ id: artifact.id, title: artifact.title, conceptId: artifact.conceptId, status: artifact.status, visibility: artifact.visibility, updatedAt: artifact.updatedAt, review: artifact.status !== 'completed' ? 'Finish to review' : !artifact.portfolioReviews?.length ? 'Self-review needed' : artifact.portfolioReviews[0]?.projectVersion === portfolioProjectVersion(artifact) ? 'Self-reviewed' : 'Review outdated' })) };
 }
 
-export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string; conceptId?: string }) {
+export const careerTargetRevision = (goal: unknown) => JSON.stringify(goal ?? null);
+
+export function saveCareerTarget(ctx: RequestContext, input: { title: string; body: string; id?: string; conceptId?: string }, expectedRevision?: string) {
   requireRole(ctx, 'professional');
+  const current = getCareerPath(ctx).goal;
+  if (expectedRevision !== undefined && (careerTargetRevision(current) !== expectedRevision || (current?.id ?? undefined) !== input.id)) {
+    throw new Error('Your career target changed in another tab. Your edits remain here. Export them or load the latest saved direction before continuing.');
+  }
   const saved = input.id ? snapshot(ctx).resources.find(resource => resource.id === input.id && resource.kind === 'goal') : null;
   if (input.id && !saved) throw new Error('This career target is not available in your workspace.');
   const conceptId = input.conceptId === undefined ? saved?.conceptId : input.conceptId || undefined;

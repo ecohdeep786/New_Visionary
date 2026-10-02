@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useState } from "react";
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain, TrendingUp, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
@@ -41,6 +41,26 @@ import studentmeet from "@/assets/student-hero-main-2400w.webp";
 import teachermeet from "@/assets/teacher-face-main.webp";
 import parentmeet from "@/assets/parent-face-main.webp";
 import promeet from "@/assets/pro-face-main-2400w.webp";
+import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
+import {
+  StruggleHeading,
+  StruggleCluster,
+  CarouselDots,
+  JourneyCarousel,
+  JourneyModal,
+  IntelligenceCopy,
+  IntelligenceVisual,
+  LanguageChips,
+  StageDropdown,
+  ContinuityCard,
+  AchievementAccordion,
+  JourneyCategoryCard,
+  TrustCard,
+  ExploreCard,
+  ChevronIcon,
+  VoiceIcon,
+  FadeReveal,
+} from "@/components/landing/persona/PersonaSections";
 
 const EXPLORE_CAT_IMG = [studentmeet, teachermeet, parentmeet, promeet];
 
@@ -68,114 +88,24 @@ const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 
-function UseCycleIndex(total, intervalMs) {
-  const [index, setIndex] = useState(0);
-  const goTo = useCallback((i) => setIndex(((i % total) + total) % total), [total]);
-  useEffect(() => {
-    if (!intervalMs || intervalMs <= 0) return undefined;
-    const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);
-    return () => clearInterval(id);
-  }, [total, intervalMs, index]);
-  return { index, goTo };
-}
 
-function UseRevealOnce(rootMargin = "0px 0px -10% 0px") {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const hasRevealed = useRef(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (hasRevealed.current) { setVisible(true); return undefined; }
-    if (!node) return undefined;
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasRevealed.current) {
-          setVisible(true);
-          hasRevealed.current = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0, rootMargin }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [rootMargin]);
-  return { ref, visible };
-}
 
-function UseRevealContinuous(rootMargin = "-40% 0px -10% 0px") {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return undefined;
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0, rootMargin });
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [rootMargin]);
-  return { ref, visible };
-}
 
-function UseActiveStep(total) {
-  const nodes = useRef([]);
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return undefined;
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const i = Number(entry.target.dataset.step);
-          if (!isNaN(i)) setActive(i);
-        }
-      }),
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    );
-    nodes.current.slice(0, total).forEach((n) => n && observer.observe(n));
-    return () => observer.disconnect();
-  }, [total]);
-  const setStepRef = useCallback((i) => (node) => { nodes.current[i] = node; }, []);
-  return { active, setStepRef };
-}
 
-function UseScrollTrack() {
-  const trackRef = useRef(null);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
-  const update = useCallback(() => {
-    const t = trackRef.current;
-    if (!t) return;
-    setCanPrev(t.scrollLeft > 4);
-    setCanNext(t.scrollLeft < t.scrollWidth - t.clientWidth - 4);
-  }, []);
-  useEffect(() => {
-    update();
-    window.addEventListener("resize", update, { passive: true });
-    return () => window.removeEventListener("resize", update);
-  }, [update]);
-  const scrollByCard = useCallback((dir) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelector("[data-card]");
-    if (!card) return;
-    const gap = parseFloat(getComputedStyle(t).columnGap) || 0;
-    t.scrollBy({ left: dir * (card.getBoundingClientRect().width + gap), behavior: "smooth" });
-  }, []);
-  return { trackRef, canPrev, canNext, scrollByCard, update };
-}
 
-function UseStageIndex(total) {
-  const [index, setIndex] = useState(0);
-  const goTo = useCallback((i) => setIndex(((i % total) + total) % total), [total]);
-  const step = useCallback((d) => setIndex((i) => (i + d + total) % total), [total]);
-  return { index, goTo, step };
-}
+
+
+
+
+
+
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 
 const ORG_HERO_WORDS = ["Leading.", "to scale."];
 const HERO_WORD_MS = 2800;
+
+const STRUGGLE_LINES = ["Every","organization","wonders","about"];
 
 const SLIDES = [
   { word: "adoption", quote: "We rolled out three learning tools. Nobody knows if anyone is learning.", image: orgProblem1, alt: "Leader facing low tool adoption" },
@@ -247,6 +177,8 @@ const JOURNEY_CATEGORIES = ["Student", "Teacher", "Parent", "Professional", "Org
 const TRUST_WORDS = ["people.", "data.", "trust."];
 const TRUST_WORD_MS = 6000;
 
+const TRUST_CARD_IMAGE = "https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png";
+
 const TRUST_CARDS = [
   { title: "Private by design.", copy: "Your people and their learning data. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
   { title: "Built for institutions.", copy: "Designed for responsible use across learners, teachers, teams, and leaders.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
@@ -262,31 +194,11 @@ const EXPLORE_CATEGORIES = [
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
 
-const ChevronIcon = React.memo(function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`${className} ${direction === "left" ? "rotate-180" : ""}`}>
-      <path d="M9 6l6 6-6 6" />
-    </svg>
-  );
-});
 
-const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }) {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>
-      <path d="M25 7l-5 9 6 4-5 9 3 3-2 7" />
-      <path d="M31 19c2.5 2.5 2.5 7.5 0 10" />
-      <path d="M35.5 15.5c4.5 4.5 4.5 12 0 16.5" />
-    </svg>
-  );
-});
 
-const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
-  return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
-      {children}
-    </div>
-  );
-});
+
+
+
 
 /* ═══════════════════════ 01 · HERO ═══════════════════════ */
 
@@ -304,131 +216,13 @@ const OrgHeroSection = React.memo(() => (
 
 /* ═══════════════════════ 02 · STRUGGLE ═══════════════════════ */
 
-const STRUGGLE_WORD_STYLE = `
-@keyframes struggleWordIn {
-  from {
-    opacity: 0;
-    transform: translate3d(-18px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-`;
-
-const STRUGGLE_IMAGE_STYLE = `
-@keyframes struggleImageIn {
-  from {
-    opacity: 0;
-    transform: scale(1.015);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`;
-
-const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {
-  return (
-    <h2
-      className="font-medium tracking-[0] leading-[1.15] text-[clamp(28px,2.78vw,40px)] lg:leading-[1.08]"
-      style={{ color: COLORS.ink }}
-    >
-      <span className="block">Every</span>
-      <span className="block">organization</span>
-      <span className="block">wonders</span>
-      <span className="block">about</span>
-      <span className="block overflow-hidden whitespace-nowrap">
-        <span
-          key={slideKey}
-          className="inline-block animate-[struggleWordIn_0.65s_cubic-bezier(0.22,1,0.36,1)_both]"
-          style={{ color: COLORS.blue }}
-        >
-          {word}
-        </span>
-      </span>
-    </h2>
-  );
-});
-
-const STRUGGLE_MAIN_POSITIONS = ["center 30%"];
-const STRUGGLE_SATELLITES = [];
-
-const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey }) {
-  return (
-    <figure className="m-0 w-full">
-      <style>
-        {STRUGGLE_WORD_STYLE}
-        {STRUGGLE_IMAGE_STYLE}
-      </style>
-
-      <div className="relative mx-auto w-full max-w-[520px]">
-        {/* circle wrapper — exactly circle-sized, centered in the column */}
-        <div className="relative mx-auto w-[86%] max-w-[400px]">
-          {/* hand-drawn arrow — lives in the gap BETWEEN heading and circle */}
-          <svg
-            viewBox="0 0 220 120"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-[136px] top-1/2 z-10 hidden h-[72px] w-[120px] -translate-y-1/2 lg:block"
-            style={{ color: COLORS.ink }}
-          >
-            <path d="M6 66 C 60 86, 140 84, 198 52" />
-            <path d="M198 52 l-16 2" />
-            <path d="M198 52 l-6 14" />
-          </svg>
-
-          <div className="aspect-square w-full overflow-hidden rounded-full">
-            <img
-              key={`main-${slideKey}`}
-              src={slide.image}
-              alt={slide.alt}
-              loading="eager"
-              decoding="async"
-              className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
-              style={{ objectPosition: STRUGGLE_MAIN_POSITIONS[slideKey % STRUGGLE_MAIN_POSITIONS.length] }}
-            />
-          </div>
-        </div>
-
-        {/* quote — centered under the circle */}
-        <figcaption
-          key={`quote-${slideKey}`}
-          aria-live="polite"
-          className="hero-fade-up mx-auto mt-8 max-w-[520px] px-4 text-center font-normal tracking-[0] leading-[1.4] text-[clamp(16px,1.39vw,20px)] [animation-delay:120ms] [animation-fill-mode:both] sm:px-0"
-          style={{ color: COLORS.ink }}
-        >
-          {slide.quote}
-        </figcaption>
-      </div>
-    </figure>
-  );
-});
 
 
-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
-  return (
-    <div className="flex items-center gap-2" role="group" aria-label="Organization learning challenges">
-      {Array.from({ length: total }, (_, i) => (
-        <button
-          key={i}
-          type="button"
-          aria-label={`Go to challenge ${i + 1}`}
-          aria-pressed={i === active}
-          onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
-        />
-      ))}
-    </div>
-  );
-});
+
+
+
+
+
 
 
 function OrgStruggleSection() {
@@ -441,11 +235,11 @@ function OrgStruggleSection() {
       <FadeReveal visible={visible}>
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
           <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
+            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
               The problem
             </p>
             <div className="mt-6">
-              <StruggleHeading word={slide.word} slideKey={index} />
+              <StruggleHeading word={slide.word} slideKey={index} lines={STRUGGLE_LINES} />
             </div>
           </div>
 
@@ -455,7 +249,7 @@ function OrgStruggleSection() {
         </div>
 
         <div className="mt-12 flex justify-center px-6 lg:mt-14">
-          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} />
+          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} label="Organization learning challenges" />
         </div>
       </FadeReveal>
     </section>
@@ -543,199 +337,9 @@ const JOURNEY_MODALS = {
   },
 };
 
-const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, trackRef, onScroll, canPrev, canNext, scrollByCard }) {
-  const ALIGN = "max(1.5rem, calc(50% - 40rem))";
 
-  return (
-    <div className="mt-16 lg:mt-20">
-      <div
-        ref={trackRef}
-        onScroll={onScroll}
-        style={{ paddingLeft: ALIGN, paddingRight: "max(1.5rem, 6%)", scrollPaddingLeft: ALIGN }}
-        className="flex snap-x snap-mandatory gap-12 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {stages.map((stage) => {
-          const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
-          return (
-            <article key={stage.title} id={stage.id} data-card className="w-[85%] shrink-0 snap-start scroll-mt-24 sm:w-[440px] lg:w-[700px] xl:w-[780px]">
-              <button
-                type="button"
-                onClick={() => onOpen(stage)}
-                aria-label={`Open details for ${stage.title}`}
-                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
-              >
-                <img
-                  src={stage.image}
-                  alt={stage.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
-                />
-                {/* stage icon pill — the missing icon layer */}
-                <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-                <span className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </span>
-              </button>
-              <h3 className="mt-[calc(clamp(28px,2.9vw,40px)*1.714)] text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-[calc(clamp(28px,2.9vw,40px)*0.714)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
-              <p className="mx-auto mt-4 max-w-[640px] text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[11px]" style={{ color: COLORS.grey }}>{stage.connected}</p>
-            </article>
-          );
-        })}
-      </div>
-      <div className="mt-12 flex justify-end px-6 lg:mt-16 lg:pr-[9%]">
-        <div className="inline-flex items-center gap-10 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.cardSurface }}>
-          <button type="button" aria-label="Previous stages" disabled={!canPrev} onClick={() => scrollByCard(-1)} className={`transition-colors ${canPrev ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canPrev ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="left" />
-          </button>
-          <button type="button" aria-label="Next stages" disabled={!canNext} onClick={() => scrollByCard(1)} className={`transition-colors ${canNext ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canNext ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="right" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-});
 
-const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
-  const closeRef = useRef(null);
-  useEffect(() => {
-    const previouslyFocused = document.activeElement;
-    closeRef.current?.focus();
-        const onKey = (e) => {
-      if (e.key === "Escape") { onClose(); return; }
-      if (e.key !== "Tab") return;
-      const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
-      if (!dialog) return;
-      const focusables = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-      previouslyFocused?.focus?.();
-    };
-  }, [onClose]);
 
-  const content = JOURNEY_MODALS[stage.title];
-  const meta = STAGE_META[stage.title] || STAGE_META["Schools"];
-  if (!content) return null;
-  const secondary = content.primary.to === "/how-it-works"
-    ? { label: "Start free", to: "/register" }
-    : { label: "See how it works", to: "/how-it-works" };
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8 sm:px-6" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
-      <button
-        type="button"
-        tabIndex={-1}
-        aria-label="Close dialog"
-        onClick={onClose}
-        className="absolute inset-0 h-full w-full cursor-default bg-[#121317]/60"
-      />
-
-      <div
-        className="relative max-h-[88vh] w-full max-w-[1080px] overflow-y-auto rounded-[28px] bg-white p-6 sm:p-10 lg:p-14"
-        style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}
-      >
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
-
-        <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-          {stage.title}
-        </p>
-
-        <h3 id="journey-modal-title" className="mt-[calc(clamp(30px,3.8vw,56px)*0.4)] max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
-          {content.top}
-          <br />
-          <span style={{ color: COLORS.blue }}>{content.accent}</span>
-        </h3>
-
-        <div className="relative mt-8 overflow-hidden rounded-[24px]">
-          <img src={stage.image} alt={stage.alt} className="aspect-[21/9] w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#121317]/60 via-[#121317]/20 to-transparent p-5">
-            <span
-              className="inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em]"
-              style={{ color: COLORS.ink }}
-            >
-              <meta.Icon className="h-3.5 w-3.5" strokeWidth={1.8} style={{ color: COLORS.blue }} />
-              Visionary for {stage.title}
-            </span>
-          </div>
-        </div>
-
-        <p className="mt-7 max-w-[680px] font-normal tracking-[0] leading-[1.65] text-[15px] sm:text-[16px]" style={{ color: COLORS.grey }}>
-          {content.intro}
-        </p>
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <Link
-            to={content.primary.to}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
-          >
-            {content.primary.label}
-            <ChevronIcon className="h-4 w-4" />
-          </Link>
-          <Link
-            to={secondary.to}
-            className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-            style={{ borderColor: "#DADCE0", color: COLORS.ink }}
-          >
-            {secondary.label}
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-          {content.blocks.map((b) => (
-            <div key={b.t} className="border-t pt-6" style={{ borderColor: "#DADCE0" }}>
-              <div className="flex items-start gap-4">
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: "#DADCE0", color: COLORS.blue }}
-                >
-                  <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
-                </span>
-                <div className="min-w-0">
-                  <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
-                    <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
-                  </p>
-                  <Link
-                    to={b.to}
-                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                    style={{ color: COLORS.blue }}
-                  >
-                    {b.l}
-                    <ChevronIcon className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-});
 
 function OrgJourneySection() {
   const { ref, visible } = UseRevealOnce();
@@ -778,7 +382,7 @@ function OrgJourneySection() {
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
         {/* header — eyebrow / heading / one-line sub */}
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>
           Your institution, your journey
         </p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -827,8 +431,9 @@ function OrgJourneySection() {
         canPrev={canPrev}
         canNext={canNext}
         scrollByCard={scrollByCard}
+        iconMap={JOURNEY_STAGE_ICONS}
       />
-      {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} />}
+      {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Schools" secondaryLabel="Start free" />}
     </section>
   );
 }
@@ -837,34 +442,9 @@ function OrgJourneySection() {
 
 const INTELLIGENCE_IMG = [primaryStudent, secondaryStudent, competitiveStudent, higherStudent];
 
-const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
-  return (
-    <div key={step.title} className="hero-fade-up max-w-[460px]">
-      <h3 className="whitespace-pre-line font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-        {step.title}
-      </h3>
-      <p className="mt-[calc(clamp(28px,2.78vw,40px)*1.429)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
-        {step.copy}
-      </p>
-    </div>
-  );
-});
 
-const IntelligenceVisual = React.memo(function IntelligenceVisual({ step, index, setStepRef }) {
-  return (
-    <figure ref={setStepRef(index)} data-step={index} className="m-0">
-      <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[60px] lg:mx-0 lg:max-w-none">
-        <img
-          src={INTELLIGENCE_IMG[index % INTELLIGENCE_IMG.length]}
-          alt={step.title}
-          loading="lazy"
-          decoding="async"
-          className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]"
-        />
-      </div>
-    </figure>
-  );
-});
+
+
 
 function OrgIntelligenceSection() {
   const { ref: headRef, visible } = UseRevealOnce();
@@ -875,7 +455,7 @@ function OrgIntelligenceSection() {
   return (
     <section ref={headRef} data-section="05-intelligence" className="relative isolate [overflow-x:clip] bg-white rounded-t-[32px]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
           The intelligence behind your organization
         </p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -897,7 +477,7 @@ function OrgIntelligenceSection() {
         <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
           {INTELLIGENCE_STEPS.map((s, i) => (
             <div key={s.title}>
-              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} />
+              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} image={INTELLIGENCE_IMG[i % INTELLIGENCE_IMG.length]} />
               <div className="mt-10 lg:hidden">
                 <IntelligenceCopy step={s} />
               </div>
@@ -932,31 +512,7 @@ const OrgClosingSection = React.memo(function OrgClosingSection() {
 
 /* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
 
-const LanguageChips = React.memo(function LanguageChips({ active, onSelect }) {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Language selection">
-      {LANGUAGE_CHIPS.map((lang) => (
-        <button
-          key={lang.code}
-          type="button"
-          aria-pressed={active === lang.code}
-          onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 uppercase tracking-[0] leading-[14px] text-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
-          style={{
-            backgroundColor: active === lang.code ? COLORS.chipBg : "transparent",
-            color: COLORS.ink,
-            borderColor: active === lang.code ? "transparent" : `${COLORS.ink}40`,
-          }}
-        >
-          {lang.label}
-        </button>
-      ))}
-      <span className="ml-1 font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-        +20 languages
-      </span>
-    </div>
-  );
-});
+
 
 function OrgLanguageSection() {
   const { ref, visible } = UseRevealOnce();
@@ -970,7 +526,7 @@ function OrgLanguageSection() {
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Every language</p>
+        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your organization.<br />In every language.
         </h2>
@@ -980,7 +536,7 @@ function OrgLanguageSection() {
 
         {/* Breath 1 — control first */}
         <div className="mt-14 lg:mt-20">
-          <LanguageChips active={lang} onSelect={setLang} />
+          <LanguageChips active={lang} onSelect={setLang} chips={LANGUAGE_CHIPS} />
         </div>
 
         {/* Breath 2 — FLAT Google voice surface: no card, no border, type on the page */}
@@ -1031,92 +587,11 @@ function OrgLanguageSection() {
 
 /* ═══════════════════════ 08 · CONTINUITY ═══════════════════════ */
 
-const StageDropdown = React.memo(function StageDropdown({ stages, active, onSelect }) {
-  const [open, setOpen] = useState(false);
-  const rootRef = useRef(null);
-  useEffect(() => {
-    if (!open) return undefined;
-    const onOutside = (e) => { if (!rootRef.current?.contains(e.target)) setOpen(false); };
-    document.addEventListener("mousedown", onOutside);
-    return () => document.removeEventListener("mousedown", onOutside);
-  }, [open]);
 
-  return (
-    <div ref={rootRef} className="relative inline-block">
-      <button
-        type="button"
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-3 rounded-full border px-8 py-3 font-normal tracking-[0] leading-[20px] text-[15px] transition-colors hover:bg-[#121317]/5"
-        style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
-      >
-        {stages[active].name}
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
-        >
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </button>
-      {open && (
-        <ul role="listbox" aria-label="Choose a stage" className="elevation-2 absolute left-1/2 z-20 mt-3 w-60 -translate-x-1/2 overflow-hidden rounded-[20px] bg-white py-2">
-          {stages.map((s, i) => (
-            <li key={s.name}>
-              <button
-                type="button"
-                role="option"
-                aria-selected={i === active}
-                onClick={() => { onSelect(i); setOpen(false); }}
-                className={`block w-full px-5 py-2.5 text-left text-[14px] tracking-[0] transition-colors ${i === active ? "bg-[#D2E3FC] font-medium" : "font-normal hover:bg-[#121317]/5"}`}
-                style={{ color: COLORS.ink }}
-              >
-                {s.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-});
 
 const CATEGORY_SECTION_IMG = [primaryStudent, secondaryStudent, competitiveStudent, vocationStudent, higherStudent];
 
-const ContinuityCard = React.memo(function ContinuityCard({ index, label, caption, text, imgClass = "", className = "" }) {
-  return (
-    <div className={className}>
-      <p className="mb-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>
-        {label}
-      </p>
-      <div className="relative overflow-hidden rounded-[48px]">
-        <img
-          src={CATEGORY_SECTION_IMG[index % CATEGORY_SECTION_IMG.length]}
-          alt={`${label}: ${text}`}
-          loading="lazy"
-          decoding="async"
-          className={`h-[320px] w-full object-cover sm:h-[420px] ${imgClass}`}
-        />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
-        <div className="absolute inset-0 flex items-center justify-center px-4">
-          <span key={text} className="hero-fade-up text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)]">
-            {text}
-          </span>
-        </div>
-      </div>
-      <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>
-        {caption}
-      </p>
-    </div>
-  );
-});
 
 function OrgContinuitySection() {
   const { ref, visible } = UseRevealOnce();
@@ -1126,7 +601,7 @@ function OrgContinuitySection() {
   return (
     <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
           Keep the record
         </p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -1139,9 +614,9 @@ function OrgContinuitySection() {
           <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
         </div>
         <div className="mt-14 grid grid-cols-1 gap-16 px-6 lg:mt-20 lg:grid-cols-3 lg:gap-12 lg:px-0">
-          <ContinuityCard index={index} label="Previous" caption="What came before" text={stage.previous} imgClass="lg:h-[400px]" className="lg:-ml-[6vw]" />
-          <ContinuityCard index={index} label="Now" caption="What's happening now" text={stage.now} imgClass="lg:h-[600px]" className="lg:mt-[100px]" />
-          <ContinuityCard index={index} label="Next" caption="What comes next" text={stage.next} imgClass="lg:h-[370px]" className="lg:-mr-[6vw] lg:mt-[20px]" />
+          <ContinuityCard images={CATEGORY_SECTION_IMG} index={index} label="Previous" caption="What came before" text={stage.previous} imgClass="lg:h-[400px]" className="lg:-ml-[6vw]" />
+          <ContinuityCard images={CATEGORY_SECTION_IMG} index={index} label="Now" caption="What's happening now" text={stage.now} imgClass="lg:h-[600px]" className="lg:mt-[100px]" />
+          <ContinuityCard images={CATEGORY_SECTION_IMG} index={index} label="Next" caption="What comes next" text={stage.next} imgClass="lg:h-[370px]" className="lg:-mr-[6vw] lg:mt-[20px]" />
         </div>
         <div className="mt-14 flex justify-center gap-4 lg:mt-20">
           <button
@@ -1182,42 +657,7 @@ const ACHIEVEMENT_META = [
   { Icon: TrendingUp },    /* Improve */
 ];
 
-const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, open, onToggle }) {
-  return (
-    <div>
-      {tabs.map((tab, i) => {
-        const Meta = ACHIEVEMENT_META[i] || ACHIEVEMENT_META[0];
-        const isOpen = open === i;
-        return (
-          <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
 
-            <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start gap-7 text-left">
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-white transition-colors"
-                style={{ borderColor: isOpen ? COLORS.blue : `${COLORS.ink}26`, color: isOpen ? COLORS.blue : COLORS.grey }}
-              >
-                <Meta.Icon className="h-4 w-4" strokeWidth={1.8} />
-              </span>
-              <h3 className="max-w-[460px] flex-1 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-                {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
-              </h3>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: COLORS.grey }}>
-                <path d="M6 15l6-6 6 6" />
-              </svg>
-            </button>
-            <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-              <div className="overflow-hidden">
-                <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
-                  {tab.copy}
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-});
 
 
 function OrgAchievementSection() {
@@ -1234,15 +674,15 @@ function OrgAchievementSection() {
   return (
     <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your organization can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Connected learning, stronger results for everyone you serve.
         </p>
 
         {/* Breath 2 — accordion + image, balanced columns */}
-        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 lg:mt-28 lg:grid-cols-2 lg:items-center lg:gap-24 lg:px-0">
-          <AchievementAccordion tabs={ACHIEVEMENT_TABS} open={open} onToggle={toggle} />
+        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 lg:mt-28 lg:grid-cols-2 lg:items-center lg:gap-24 lg:px-[var(--frame-x)]">
+          <AchievementAccordion meta={ACHIEVEMENT_META} tabs={ACHIEVEMENT_TABS} open={open} onToggle={toggle} />
           <div key={active} className="hero-fade-up overflow-hidden rounded-[48px]">
             <img
               src={ACHIEVEMENT_IMAGE[active]}
@@ -1269,31 +709,7 @@ const JOURNEY_FLOW_ICONS = {
   "Organization": Building2,
 };
 
-const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "" }) {
-  const Icon = JOURNEY_FLOW_ICONS[text] || Sparkles;
-  return (
-    <div className={`relative overflow-hidden rounded-[48px] ${className}`}>
-      <img
-        src={CATEGORY_SECTION_IMG[index % CATEGORY_SECTION_IMG.length]}
-        alt={text}
-        loading="lazy"
-        decoding="async"
-        className="aspect-[20/19] w-full object-cover"
-      />
-      {/* scrim — guarantees white type contrast on any photo */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
-      {/* stage icon pill — consistency with journey cards */}
-      <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-      </span>
-      <div className="absolute inset-0 flex items-center justify-center px-4">
-        <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
-          {text}
-        </span>
-      </div>
-    </div>
-  );
-});
+
 
 function OrgJourneyFlowSection() {
   const { ref, visible } = UseRevealOnce();
@@ -1304,7 +720,7 @@ function OrgJourneyFlowSection() {
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Individual journeys.<br />Shared intelligence.
         </h2>
@@ -1316,7 +732,7 @@ function OrgJourneyFlowSection() {
         <div className="mx-auto mt-14 grid w-full max-w-[1900px] grid-cols-1 items-center gap-16 px-6 lg:mt-28 lg:grid-cols-[7fr_5fr] lg:gap-24 lg:pl-[10%] lg:pr-12">
           {/* cascade: card → connector → card (in-flow, never overlapping) */}
           <div className="relative">
-            <JourneyCategoryCard index={index} text={first} className="mx-auto max-w-[430px] lg:mx-0" />
+            <JourneyCategoryCard iconMap={JOURNEY_FLOW_ICONS} images={CATEGORY_SECTION_IMG} index={index} text={first} className="mx-auto max-w-[430px] lg:mx-0" />
             <div className="flex justify-start py-2 pl-[16%] lg:py-3 lg:pl-[20%]">
               <svg
                 viewBox="0 0 220 260"
@@ -1333,7 +749,7 @@ function OrgJourneyFlowSection() {
                 <path d="M188 232 l-19 6 M188 232 l-14 -14" />
               </svg>
             </div>
-            <JourneyCategoryCard index={index + 1} text={second} className="ml-[10%] max-w-[430px] lg:ml-[28%]" />
+            <JourneyCategoryCard iconMap={JOURNEY_FLOW_ICONS} images={CATEGORY_SECTION_IMG} index={index + 1} text={second} className="ml-[10%] max-w-[430px] lg:ml-[28%]" />
           </div>
 
           {/* closing column — statement + action, balanced against the cascade */}
@@ -1359,26 +775,7 @@ function OrgJourneyFlowSection() {
 /* ═══════════════════════ 11 · TRUST ═══════════════════════ */
 /* words now map 1:1 to cards — heading narrates the visible card */
 
-const TrustCard = React.memo(function TrustCard({ card }) {
-  return (
-    <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
-      <img src="https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png" alt={card.title} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
-      {/* white chip guarantees copy contrast on any image */}
-      <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
-        <div className="rounded-[20px] bg-white/95 p-5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
-            <card.Icon className="h-5 w-5" strokeWidth={1.8} />
-          </span>
-          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
-          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
-            {card.link}
-            <ChevronIcon className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-});
+
 
 function OrgTrustSection() {
   const { ref, visible } = UseRevealOnce();
@@ -1390,7 +787,7 @@ function OrgTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Trust and safety</p>
+        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
@@ -1401,7 +798,7 @@ function OrgTrustSection() {
 
         {/* Breath 2 — narrative column + preview cards */}
         <div className="mx-auto mt-14 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-20 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
-          <div className="lg:pl-2">
+          <div className="lg:pl-[var(--frame-x)]">
             <h3 key={active.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {active.title}
             </h3>
@@ -1419,8 +816,8 @@ function OrgTrustSection() {
           </div>
 
           <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} /></div>
-            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
+            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} image={TRUST_CARD_IMAGE} /></div>
+            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} image={TRUST_CARD_IMAGE} /></div>
           </div>
         </div>
       </FadeReveal>
@@ -1437,7 +834,7 @@ const OrgCTASection = React.memo(function OrgCTASection() {
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
+        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
           Begin today
         </p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
@@ -1469,29 +866,7 @@ const OrgCTASection = React.memo(function OrgCTASection() {
 
 /* ═══════════════════════ 13 · EXPLORE ═══════════════════════ */
 
-const ExploreCard = React.memo(function ExploreCard({ index, category }) {
-  return (
-    <Link
-      to={`/${category.slug}`}
-      data-card
-      className="elevation-1 block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white sm:w-[320px]"
-      style={{ borderColor: `${COLORS.ink}1A` }}
-    >
-      <img src={EXPLORE_CAT_IMG[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-      <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          {category.chip}
-        </p>
-        <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
-          {category.copy}
-        </p>
-        <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
-          Learn more
-        </span>
-      </div>
-    </Link>
-  );
-});
+
 
 function OrgExploreSection() {
   const { ref, visible } = UseRevealOnce();
@@ -1510,7 +885,7 @@ function OrgExploreSection() {
             className="flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:gap-12 lg:pl-[calc(6.5%_+_480px)] lg:pr-6"
           >
             {EXPLORE_CATEGORIES.map((c, index) => (
-              <ExploreCard index={index} key={c.slug} category={c} />
+              <ExploreCard index={index} key={c.slug} category={c} images={EXPLORE_CAT_IMG} />
             ))}
           </div>
           <button

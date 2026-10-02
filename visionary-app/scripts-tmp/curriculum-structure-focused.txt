@@ -1,0 +1,13 @@
+✔ unfinished structure saves privately but submission requires complete references, teaching and criteria (32.9531ms)
+✔ cycles, duplicate identities, orphan prerequisites and invalid representations reject without replacing saved drafts (3.7364ms)
+✔ reviewed delivery pins structure and distinct objective drafts through later edits, retry and revocation (25.3474ms)
+✔ authored snapshots carry explicit reviewed status and source section; malformed types cannot masquerade as curriculum (0.9903ms)
+✔ corrupted delivered curriculum is unavailable without rewriting the source or importing a partial objective (23.6568ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 815.3395

@@ -1,6 +1,7 @@
+import OrganizationCurriculum from './OrganizationCurriculum';
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, BookOpen, CheckCircle2, GraduationCap, LibraryBig, Plus, Send, UserPlus, Users, X } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, CheckCircle2, GraduationCap, Send, UserPlus, Users } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
@@ -100,54 +101,6 @@ function ParentChildWorkspace({ user, accent }) {
   </div>;
 }
 
-function CurriculumWorkspace({ user, updateUser, accent }) {
-  const [name, setName] = useState(user?.curriculum_name || "");
-  const [board, setBoard] = useState(user?.org_board || user?.board || "");
-  const [status, setStatus] = useState("idle");
-  const [items, setItems] = useState([]);
-  const [subject, setSubject] = useState("");
-  const [group, setGroup] = useState("");
-  const [objectives, setObjectives] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
-  const load = useCallback(async () => {
-    setError("");
-    try { setItems((await base44.entities.OrganizationCurriculum.filter({ organization_email: user.email })).filter((item) => item.status !== "archived")); }
-    catch { setError("Curriculum items couldn’t be loaded."); }
-    finally { setLoading(false); }
-  }, [user.email]);
-  useEffect(() => { load(); }, [load]);
-  const saveContext = async (event) => {
-    event.preventDefault();
-    setStatus("saving");
-    try { await updateUser({ curriculum_name: name.trim(), org_board: board.trim() }); setStatus("saved"); announceChange(); }
-    catch { setStatus("error"); }
-  };
-  const addItem = async (event) => {
-    event.preventDefault();
-    if (saving || !subject.trim() || !group.trim()) return;
-    setNotice("");
-    if (items.some((item) => normalize(item.subject) === normalize(subject) && normalize(item.group) === normalize(group))) { setNotice("This subject and year group already have a curriculum draft."); return; }
-    setSaving(true);
-    try { await base44.entities.OrganizationCurriculum.create({ organization_email: user.email, subject: subject.trim(), group: group.trim(), objectives: objectives.trim(), status: "draft" }); setSubject(""); setGroup(""); setObjectives(""); setNotice("Curriculum draft added."); await load(); announceChange(); }
-    catch { setNotice("This curriculum draft couldn’t be saved. Please try again."); }
-    finally { setSaving(false); }
-  };
-  const archiveItem = async (item) => {
-    setSaving(true);
-    try { await base44.entities.OrganizationCurriculum.update(item.id, { status: "archived" }); await load(); announceChange(); setNotice("Curriculum draft removed from this list."); }
-    catch { setNotice("We couldn’t remove this draft. Please try again."); }
-    finally { setSaving(false); }
-  };
-  return <div className={pageClass}>
-    <WorkspaceHeader eyebrow="Organization" title="Curriculum" description="Organize your teaching framework, subjects, and learning objectives in one place." />
-    <form onSubmit={saveContext} className="rounded-2xl border border-[#dadce0] bg-white p-6"><div className="flex items-center gap-3"><LibraryBig className="h-5 w-5" style={{ color: accent }} /><h2 className="text-base font-medium text-[#121317]">Curriculum framework</h2></div><div className="mt-6 grid gap-5 sm:grid-cols-2"><label className="text-sm font-medium text-[#121317]">Curriculum name<input required maxLength={120} value={name} onChange={(event) => { setName(event.target.value); setStatus("idle"); }} placeholder="e.g. Secondary curriculum 2026" className={inputClass} /></label><label className="text-sm font-medium text-[#121317]">Board or framework<input required maxLength={120} value={board} onChange={(event) => { setBoard(event.target.value); setStatus("idle"); }} placeholder="e.g. CBSE" className={inputClass} /></label></div><div className="mt-6 flex flex-wrap items-center gap-4"><button type="submit" disabled={status === "saving" || !name.trim() || !board.trim()} className={primaryClass} style={{ backgroundColor: accent }}>{status === "saving" ? "Saving…" : "Save framework"}</button>{status === "saved" && <span className="text-sm text-[#137333]" role="status">Framework saved.</span>}{status === "error" && <span className="text-sm text-[#b3261e]" role="alert">Couldn’t save. Try again.</span>}</div></form>
-    <section className="rounded-2xl border border-[#dadce0] bg-white p-6"><h2 className="text-base font-medium text-[#121317]">Add a subject draft</h2><p className="mt-1 text-sm text-[#5f6368]">Plan the scope here. Drafts do not publish assignments or change classrooms.</p><form onSubmit={addItem} className="mt-5 grid gap-4 sm:grid-cols-2"><label className="text-sm font-medium text-[#121317]">Subject<input required maxLength={100} value={subject} onChange={(event) => setSubject(event.target.value)} placeholder="e.g. Mathematics" className={inputClass} /></label><label className="text-sm font-medium text-[#121317]">Year or learner group<input required maxLength={100} value={group} onChange={(event) => setGroup(event.target.value)} placeholder="e.g. Grade 10" className={inputClass} /></label><label className="text-sm font-medium text-[#121317] sm:col-span-2">Learning objectives <span className="font-normal text-[#5f6368]">(optional)</span><textarea maxLength={2000} rows={3} value={objectives} onChange={(event) => setObjectives(event.target.value)} placeholder="What should learners understand or be able to do?" className={inputClass + " h-auto py-3"} /></label><div className="sm:col-span-2"><button type="submit" disabled={saving || loading || !!error || !subject.trim() || !group.trim()} className={primaryClass} style={{ backgroundColor: accent }}><Plus className="h-4 w-4" />{saving ? "Saving…" : "Add subject"}</button>{notice && <p className="mt-3 text-sm text-[#5f6368]" role="status">{notice}</p>}</div></form></section>
-    <section><h2 className="mb-4 text-lg font-medium text-[#121317]">Subject drafts</h2><LoadState loading={loading} error={error} retry={load} />{!loading && !error && (items.length === 0 ? <EmptyWorkspace icon={BookOpen} title="Your curriculum starts here" description="Add a subject and learner group above, then capture the objectives your team will teach." /> : <div className="grid gap-4 sm:grid-cols-2">{items.map((item) => <article key={item.id} className="rounded-2xl border border-[#dadce0] bg-white p-5"><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-medium text-[#5f6368]">{item.group} · Draft</p><h3 className="mt-2 text-base font-medium text-[#121317]">{item.subject}</h3></div><button type="button" disabled={saving} onClick={() => archiveItem(item)} aria-label={"Remove " + item.subject + ", " + item.group + " draft"} className="rounded-full p-2 text-[#5f6368] hover:bg-[#dadce0] disabled:opacity-50"><X className="h-4 w-4" /></button></div><p className="mt-4 whitespace-pre-wrap break-words text-sm leading-relaxed text-[#5f6368]">{item.objectives || "No learning objectives added."}</p></article>)}</div>)}</section>
-  </div>;
-}
 
 function MetricsWorkspace({ user, area, accent }) {
   const [data, setData] = useState({ classes: [], people: [], assignments: [], enrollments: [] });
@@ -182,7 +135,7 @@ function MetricsWorkspace({ user, area, accent }) {
 }
 
 export default function RoleWorkspace({ area }) {
-  const { user, updateUser } = useAuth();
+  const { user } = useAuth();
   const {ctx}=useWorkspace();
   const themeColor = useThemeColor();
   const role = user?.identity;
@@ -190,7 +143,7 @@ export default function RoleWorkspace({ area }) {
   if (area === "people" && role === "organization") return <Connections />;
   const policy=role==='organization'&&ctx?organizationAccess(ctx):null;
   const organizationUser=policy?{...user,email:policy.organizationEmail}:user;
-  if (area === "curriculum" && role === "organization") return <CurriculumWorkspace user={organizationUser} updateUser={updateUser} accent={themeColor.accent} />;
+  if (area === "curriculum" && role === "organization") return <OrganizationCurriculum key={ctx?.personId+':'+ctx?.workspaceId}/>;
   if (area === "analytics" && role === "organization") return policy.permissions.includes('academic')?<MetricsWorkspace user={organizationUser} area={area} accent={themeColor.accent} />:<div className="v-page"><h1 className="v-title">Aggregate insights</h1><OrganizationEvidencePanel/></div>;
   if (area === "insights" && role === "teacher") return <MetricsWorkspace user={user} area={area} accent={themeColor.accent} />;
   return <div className={pageClass}><EmptyWorkspace icon={BookOpen} title="This workspace is not available" description="Choose a section that matches your Visionary role." action={<Link to="/dashboard/home" className="text-sm font-medium text-[#4285F4] hover:underline">Return to dashboard</Link>} /></div>;

@@ -48,7 +48,7 @@ function Reveal({ children, className = "", delay = 0 }) {
 /* The outlined label chip from the reference's access-levels grid */
 function AccessChip({ children }) {
   return (
-    <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-[#202124]">
+    <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.12em] text-[#202124]">
       {children}
     </span>
   );
@@ -210,7 +210,7 @@ export default function PartnersPage() {
               <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">
                 Visionary partnerships
               </p>
-              <h1 className="mt-4 text-[clamp(34px,5.5vw,58px)] font-normal leading-[1.05] tracking-[-0.045em] text-[#202124]">
+              <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#202124]">
                 Better learning, <span className="text-[#0b57d0]">together.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -253,7 +253,7 @@ export default function PartnersPage() {
         </section>
 
         {/* WHAT IS A VISIONARY PARTNERSHIP? — the reference's carousel */}
-        <section id="what" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="what" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
@@ -271,7 +271,7 @@ export default function PartnersPage() {
 
         {/* WHO WE PARTNER WITH — the reference's 2×2 access-levels grid
             on a soft arc backdrop */}
-        <section id="who" className="relative scroll-mt-28 overflow-hidden px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="who" className="relative scroll-mt-28 overflow-hidden px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 top-0 h-[420px]"
@@ -305,7 +305,7 @@ export default function PartnersPage() {
         </section>
 
         {/* WHAT A PARTNERSHIP INCLUDES — the reference's benefit columns */}
-        <section id="includes" className="scroll-mt-28 bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="includes" className="scroll-mt-28 bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
@@ -338,7 +338,7 @@ export default function PartnersPage() {
 
         {/* ENGAGEMENT DEPTH — the reference's tier table, honestly framed:
             depth is agreed together, not purchased */}
-        <section id="depth" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="depth" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
               <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#e8f0fe] text-[#0b57d0]">
@@ -374,7 +374,7 @@ export default function PartnersPage() {
                     </th>
                     {DEPTH_TIERS.map((tier) => (
                       <th key={tier} scope="col" className="px-4 py-4 text-center">
-                        <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.1em] text-[#202124]">
+                        <span className="inline-flex items-center rounded-[6px] border border-[#dadce0] bg-white px-2.5 py-1 text-[12px] font-medium uppercase tracking-[0.1em] text-[#202124]">
                           {tier}
                         </span>
                       </th>
@@ -408,7 +408,7 @@ export default function PartnersPage() {
         </section>
 
         {/* HOW A PARTNERSHIP BEGINS — the four-step journey */}
-        <section id="journey" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="journey" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">The process</p>
@@ -435,7 +435,7 @@ export default function PartnersPage() {
         </section>
 
         {/* STATEMENT BAND — the reference's grey call-to-decision band */}
-        <section className="bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-24">
+        <section className="bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto flex max-w-[1000px] flex-col items-center text-center">
             <h2 className="text-[clamp(26px,3.4vw,38px)] font-normal leading-[1.25] tracking-[-0.025em] text-[#202124]">
               If your organization works with learners, in a classroom, a system, or a region, we want to understand your context.
@@ -459,7 +459,7 @@ export default function PartnersPage() {
 
         {/* TAKE THE NEXT STEP — the reference's light-blue support card,
             for organizations seeking help rather than partnership */}
-        <section id="support" className="scroll-mt-28 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="support" className="scroll-mt-28 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="relative grid items-center gap-10 overflow-hidden rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
               <div>
@@ -492,7 +492,7 @@ export default function PartnersPage() {
         </section>
 
         {/* FREQUENTLY ASKED QUESTIONS — the reference's expand-all accordion */}
-        <section id="faq" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="faq" className="scroll-mt-28 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[840px]">
             <div className="text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">

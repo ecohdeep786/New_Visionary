@@ -1,0 +1,15 @@
+✔ review drafts recover per tab without creating evidence or a saved review (11.2063ms)
+✔ same-project concurrent reviews reject stale history and preserve latest review (1.8829ms)
+✔ project edits reject recovered review without removing its draft (1.4959ms)
+✔ failed saves keep draft and history for retry; cleanup failure leaves saved review (2.1118ms)
+✔ malformed backups and unauthorized recovery retain original bytes (1.7329ms)
+✔ criterion review is a versioned self-assessment and later project edits mark it outdated (14.0437ms)
+✔ review rejects incomplete work, forged role, missing criteria and failed local writes (26.7432ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4652.664

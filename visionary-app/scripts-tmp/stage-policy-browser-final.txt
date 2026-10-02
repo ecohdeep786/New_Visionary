@@ -1,0 +1,1 @@
+PASS stage editor refresh recovery → institution confirmation → current profile unchanged before Confirm → stale profile rejection/current export/discard reload → Home evidence suggestion unchanged until explicit acceptance; original learning/age retained; no errors or mobile overflow.

@@ -48,7 +48,7 @@ export default function AboutUsHero() {
       <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
         <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">About Visionary</p>
         <div className="mx-auto mt-6 max-w-[1120px] text-center">
-          <h1 className="text-[clamp(32px,6vw,64px)] font-normal leading-[0.98] tracking-[-0.045em] text-[#202124]">
+          <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[64px] lg:text-[76px]">
             Helping people turn questions into <span className="text-[#0b57d0]">understanding.</span>
           </h1>
           <p className="mx-auto mt-8 max-w-[760px] text-[20px] leading-[1.55] text-[#3c4043] sm:text-[24px]">

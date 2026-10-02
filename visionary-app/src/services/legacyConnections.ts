@@ -7,7 +7,7 @@ export function legacyRelationships(db:Database):Relationship[]{
  const personId=(email:unknown)=>db.people.find(p=>p.email===email)?.id||String(users.find(p=>p.email===email)?.id||`email:${email}`);
  return Object.entries(sources).flatMap(([name,schema])=>{
   const rows:Row[]=JSON.parse(localStorage.getItem(`visionary_entity_${name}`)||'[]');
-  return rows.filter(r=>r[schema.from]&&r[schema.to]).map(r=>({id:`legacy:${name}:${r.id}`,from:personId(r[schema.from]),to:personId(r[schema.to]),type:schema.type,scope:[...schema.scope],status:(['pending','active','declined','expired','revoked'].includes(String(r.status))?r.status:'revoked') as Relationship['status'],expiresAt:r.expiresAt?String(r.expiresAt):undefined}));
+  return rows.filter(r=>r[schema.from]&&r[schema.to]).map(r=>({id:`legacy:${name}:${r.id}`,from:personId(r[schema.from]),to:personId(r[schema.to]),type:schema.type,scope:[...schema.scope],status:(['pending','active','declined','expired','revoked'].includes(String(r.status))?r.status:'revoked') as Relationship['status'],expiresAt:r.expiresAt as string|undefined}));
  });
 }
 export function saveLegacyRelationship(id:string,status:Relationship['status']){

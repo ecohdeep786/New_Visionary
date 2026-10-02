@@ -97,7 +97,7 @@ export function AboutHero({ eyebrow, titleParts, intro }) {
 export function AboutContentSection({ id, eyebrow, heading, headingAccent, body, cards, rows, bg = "white", children }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} id={id} className="relative scroll-mt-44 bg-white px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id={id} className="relative scroll-mt-44 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         {eyebrow && <GreyTag className="text-center">{eyebrow}</GreyTag>}
         {heading && (
@@ -149,7 +149,7 @@ export function AboutContentSection({ id, eyebrow, heading, headingAccent, body,
 export function AboutCTA({ title, titleAccent, desc, primaryLabel = "Get started", primaryTo = "/register", secondaryLabel, secondaryTo }) {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-28 lg:py-36" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           {title} {titleAccent && <span style={{ color: COLORS.ink }}>{titleAccent}</span>}

@@ -12,13 +12,15 @@ import { getStudentClasswork } from './mentorStateService.ts';
 // prior mapping while retaining every piece of work created since — history is never
 // deleted to obtain snapshot equality. Evidence inference alone is suggestion-only.
 export interface StageProfile {
-  board?: string; classLevel?: string; subjects?: string[]; stage?: string; exam?: string;
+  board?: string; classLevel?: string; subjects?: string[]; stage?: string; exam?: string; institution?:string;
 }
 export interface StageTransition {
   id: string; personId: string;
   from: StageProfile; to: StageProfile;
   policy: 'AUTO' | 'CONFIRM';
-  state: 'notified' | 'applied' | 'postponed' | 'undone' | 'awaiting-confirm';
+  state: 'notified' | 'applied' | 'postponed' | 'undone' | 'awaiting-confirm' | 'suggested' | 'superseded';
+  trigger?:'teacher-promotion'|'self-confirmation'|'user-declared'|'calendar'|'evidence'; eventId?:string; actor?:string; boundaryReasons?:string[];
+  classScope?:{classId:string;organizationEmail?:string};
   reason: string;
   diff: { unitsKept: number; planStepsKept: number; openClassworkKept: number; dueDatesRetained: boolean };
   notifiedAt: string; appliedAt?: string; postponedAt?: string; postponedUntil?: string; undoneAt?: string;
@@ -58,10 +60,11 @@ function cleanProfile(profile: StageProfile): StageProfile {
   subjects: Array.isArray(profile.subjects) ? profile.subjects.map(s => String(s).trim().slice(0, 100)).filter(Boolean) : [],
   stage: profile.stage?.trim().slice(0, 40) || undefined,
   exam: profile.exam?.trim().slice(0, 60) || undefined,
+  institution:profile.institution?.trim().slice(0,100)||undefined,
  };
 }
 function sameProfile(a: StageProfile, b: StageProfile) {
- return (a.board || '') === (b.board || '') && (a.classLevel || '') === (b.classLevel || '') && (a.subjects || []).join('|') === (b.subjects || []).join('|') && (a.stage || '') === (b.stage || '') && (a.exam || '') === (b.exam || '');
+ return (a.board || '') === (b.board || '') && (a.classLevel || '') === (b.classLevel || '') && JSON.stringify(a.subjects||[])===JSON.stringify(b.subjects||[]) && (a.stage || '') === (b.stage || '') && (a.exam || '') === (b.exam || '') && (a.institution||'')===(b.institution||'');
 }
 function classDistance(fromLevel?: string, toLevel?: string): number {
  const from = Number(String(fromLevel || '').replace(/\D/g, '')); const to = Number(String(toLevel || '').replace(/\D/g, ''));
@@ -77,35 +80,46 @@ function captureEvidence(ctx: RequestContext, profile: StageProfile, strict = fa
 }
 function assertCanPropose(ctx: RequestContext) {
  check(ctx);
+ if (workspaceIdentity(ctx).workspace.organizationId) throw new Error('Stage transitions belong to a personal learning workspace.');
  if (ctx.role === 'student' || ctx.role === 'professional') {
   return 'self';
  }
  throw new Error('Stage transitions belong to a personal learning workspace.');
 }
 /** Propose a stage change: AUTO applies immediately with notice + diff; boundary jumps await confirmation. */
-export function proposeStageTransition(ctx: RequestContext, next: StageProfile, reason: string): StageTransition {
+export function proposeStageTransition(ctx: RequestContext, next: StageProfile, reason: string, event:{trigger?:'self-confirmation'|'user-declared'|'calendar'|'evidence';eventId?:string;expectedProfile?:string}={}): StageTransition {
  assertCanPropose(ctx);
  const identity = workspaceIdentity(ctx);
  const from = cleanProfile(identity.person.learningContext || { subjects: [] });
  const to = cleanProfile({ ...from, ...next });
- if (sameProfile(from, to)) throw new Error('This stage profile is already the active one.');
+ const trigger=event.trigger||'user-declared';
+ if(!['self-confirmation','user-declared','calendar','evidence'].includes(trigger))throw Error('This stage trigger is not available to a personal workspace.');
+ if(event.expectedProfile!==undefined&&event.expectedProfile!==JSON.stringify(from))throw Error('Your stage profile changed. Reload the current profile before saving; your edits are retained.');
+ if(event.eventId!==undefined&&(typeof event.eventId!=='string'||!event.eventId.trim()||event.eventId.length>160))throw Error('Use a valid stage event identifier.');
+ if(['calendar','evidence'].includes(trigger)&&!event.eventId)throw Error('This stage trigger requires a stable event identifier.');
  const store = read();
- // One active transition per person: a new proposal supersedes a postponed/notified one.
- store.transitions = store.transitions.filter(t => !(t.personId === ctx.personId && (t.state === 'notified' || t.state === 'postponed' || t.state === 'awaiting-confirm')));
+ const prior=event.eventId?store.transitions.find(item=>item.personId===ctx.personId&&item.trigger===trigger&&item.eventId===event.eventId):undefined;
+ if(prior){if(!sameProfile(prior.to,to))throw Error('This stage event identifier already belongs to another profile.');return structuredClone(prior);}
+ if (sameProfile(from, to)) throw new Error('This stage profile is already the active one.');
+ const latest=store.transitions.filter(item=>item.personId===ctx.personId&&!['suggested','superseded'].includes(item.state)).at(-1);
+ if(trigger==='calendar'&&latest&&(['postponed','awaiting-confirm'].includes(latest.state)||latest.state==='applied'&&clock().getTime()-Date.parse(latest.appliedAt||'')<=UNDO_WINDOW_MS))throw Error('An existing stage decision takes priority. Calendar reevaluation cannot bypass its postponement or confirmation.');
+ if(trigger!=='evidence')for(const item of store.transitions.filter(item=>item.personId===ctx.personId&&['notified','postponed','awaiting-confirm'].includes(item.state)))item.state='superseded';
  const evidence = captureEvidence(ctx, from, true);
- const boardJump = (from.board || '') !== (to.board || '') && Boolean(from.board) && Boolean(to.board);
+ const boardJump = (from.board || '') !== (to.board || '') && Boolean(from.board);
  const distance = classDistance(from.classLevel, to.classLevel);
- const policy: StageTransition['policy'] = boardJump || distance > 1 ? 'CONFIRM' : 'AUTO';
+ const boundaryReasons=[...(boardJump?['Board change']:[]),...((from.institution||'')!==(to.institution||'')&&Boolean(from.institution)?['Institution change']:[]),...(distance>1?['More than one class level']:[]),...((from.stage&&from.stage!==to.stage)||identity.person.ageBand!=='adult'&&['higher_ed','professional'].includes(to.stage||'')?['Education stage change']:[])];
+ const policy: StageTransition['policy'] = boundaryReasons.length ? 'CONFIRM' : 'AUTO';
  const diff = { unitsKept: evidence.units, planStepsKept: evidence.planSteps, openClassworkKept: evidence.openClasswork, dueDatesRetained: true };
- const transition: StageTransition = { id: crypto.randomUUID(), personId: ctx.personId, from, to, policy, state: policy === 'AUTO' ? 'applied' : 'awaiting-confirm', reason: String(reason || '').trim().slice(0, 200) || 'Stage profile updated', diff, notifiedAt: clock().toISOString(), appliedAt: policy === 'AUTO' ? clock().toISOString() : undefined };
+ const transition: StageTransition = { id: crypto.randomUUID(), personId: ctx.personId, from, to, policy, state: trigger==='evidence'?'suggested':policy === 'AUTO' ? 'applied' : 'awaiting-confirm',trigger,eventId:event.eventId,actor:ctx.personId,boundaryReasons, reason: String(reason || '').trim().slice(0, 200) || 'Stage profile updated', diff, notifiedAt: clock().toISOString(), appliedAt: trigger!=='evidence'&&policy === 'AUTO' ? clock().toISOString() : undefined };
+ if(trigger==='self-confirmation'&&event.eventId?.startsWith('suggestion:')){const suggestion=store.transitions.find(item=>item.id===event.eventId!.slice(11)&&item.personId===ctx.personId&&item.state==='suggested');if(suggestion)suggestion.state='superseded';}
  store.transitions.push(transition);
- if (policy === 'AUTO') writeWithProfile(ctx, store, to, from);
+ if (trigger!=='evidence'&&policy === 'AUTO') writeWithProfile(ctx, store, to, from);
  else write(store);
  return transition;
 }
 function requireCurrentTransition(ctx: RequestContext, store: TransitionStore, transition: StageTransition, expected: StageProfile) {
  assertCanPropose(ctx);
- const latest=store.transitions.filter(item=>item.personId===ctx.personId&&item.state!=='undone').at(-1);
+ const latest=store.transitions.filter(item=>item.personId===ctx.personId&&!['undone','superseded','suggested'].includes(item.state)).at(-1);
  const current=cleanProfile(workspaceIdentity(ctx).person.learningContext||{subjects:[]});
  if(latest?.id!==transition.id||!sameProfile(current,expected))throw Error('Your stage changed after this notice. Refresh Home before changing it; your saved work is retained.');
 }
@@ -173,6 +187,7 @@ export function proposeClassPromotion(ctx: RequestContext, classId: string, next
  if (!classroom) throw new Error('This class does not exist.');
  const identity = workspaceIdentity(ctx);
  const owned = (classroom.teacher_email === identity.person.email || classroom.teacher_id === identity.person.id || classroom.created_by_id === identity.person.id || classroom.created_by === identity.person.email);
+ if((identity.workspace.organizationId||'')!==String(classroom.organization_email||''))throw Error('Open the matching class workspace before recording a promotion.');
  if (!owned) throw new Error('Only the assigned teacher can record a promotion for this class.');
  if (!level.match(/^[0-9]{1,2}$/)) throw new Error('Enter the class level learners are moving to, for example 8.');
  const promoted: Array<{ personId: string; name: string }> = []; const skipped: Array<{ personId: string; reason: string }> = [];
@@ -189,17 +204,20 @@ export function proposeClassPromotion(ctx: RequestContext, classId: string, next
   seen.add(learnerId);
   const learnerCtx: RequestContext = { ...ctx, personId: learnerId, workspaceId: `${learnerId}:student`, role: 'student' };
   const learner = workspaceIdentity(learnerCtx).person;
+  const eventId=`${classId}:${level}:${clock().getUTCFullYear()}`;
+  if(store.transitions.some(item=>item.personId===learnerId&&item.trigger==='teacher-promotion'&&item.eventId===eventId)){skipped.push({personId:learnerId,reason:'This promotion event was already recorded; retained notice and reversal are unchanged'});continue;}
   const current = cleanProfile(learner.learningContext || { subjects: [] });
   const currentLevel = Number(String(current.classLevel || '').match(/\d+/)?.[0]);
   if (currentLevel === Number(level)) { skipped.push({ personId: learnerId, reason: 'already in ' + level }); continue; }
   if (!currentLevel || Number(level) - currentLevel !== 1) { skipped.push({ personId: learnerId, reason: 'not an adjacent promotion; learner confirmation is required' }); continue; }
   const to = { ...current, classLevel: level };
   const evidence = captureEvidence(learnerCtx, current, true);
-  const transition: StageTransition = { id: crypto.randomUUID(), personId: learnerId, from: current, to, policy: 'AUTO', state: 'applied', reason: String(reason || '').trim().slice(0, 200) || `Class promotion to ${level} recorded by the teacher`, diff: { unitsKept: evidence.units, planStepsKept: evidence.planSteps, openClassworkKept: evidence.openClasswork, dueDatesRetained: true }, notifiedAt: clock().toISOString(), appliedAt: clock().toISOString() };
+  const transition: StageTransition = { id: crypto.randomUUID(), personId: learnerId, from: current, to, policy: 'AUTO', state: 'applied',trigger:'teacher-promotion',eventId,actor:ctx.personId,classScope:{classId,...(identity.workspace.organizationId?{organizationEmail:identity.workspace.organizationId}:{})}, reason: String(reason || '').trim().slice(0, 200) || `Class promotion to ${level} recorded by the teacher`, diff: { unitsKept: evidence.units, planStepsKept: evidence.planSteps, openClassworkKept: evidence.openClasswork, dueDatesRetained: true }, notifiedAt: clock().toISOString(), appliedAt: clock().toISOString() };
   changes.push({ ctx: learnerCtx, from: current, to, transition, name: learner.name });
  }
  if (changes.length) {
   updateStageProfilesBatch(changes.map(({ ctx: learnerCtx, to }) => ({ ctx: learnerCtx, profile: to })));
+  for(const item of store.transitions.filter(item=>changes.some(change=>change.ctx.personId===item.personId)&&['notified','postponed','awaiting-confirm'].includes(item.state)))item.state='superseded';
   store.transitions.push(...changes.map(change => change.transition));
   try { write(store); }
   catch (error) {
@@ -218,7 +236,7 @@ export function proposeClassPromotion(ctx: RequestContext, classId: string, next
 export function getActiveTransitionNotice(ctx: RequestContext): StageTransition | null {
  check(ctx);
  const store = read(); const now = clock().getTime();
- const transition = store.transitions.filter(t => t.personId === ctx.personId).at(-1);
+ const transition = store.transitions.filter(t => t.personId === ctx.personId&&!['suggested','superseded'].includes(t.state)).at(-1);
  if (!transition) return null;
  if (transition.state === 'postponed' && transition.postponedUntil && new Date(transition.postponedUntil).getTime() <= now) {
   // Reevaluation due: the postponed change re-applies itself (D-012), unless the
@@ -252,3 +270,7 @@ export function getParentStageInsight(ctx: RequestContext, childId: string, days
  if (current.classLevel !== (state === 'applied' ? transition.to.classLevel : transition.from.classLevel)) return null;
  return { state, from: transition.from.classLevel!, to: transition.to.classLevel!, at };
 }
+
+export function getStageSuggestions(ctx:RequestContext){assertCanPropose(ctx);return structuredClone(read().transitions.filter(item=>item.personId===ctx.personId&&item.state==='suggested'));}
+export function respondStageSuggestion(ctx:RequestContext,id:string,accept:boolean){assertCanPropose(ctx);const store=read(),item=store.transitions.find(item=>item.id===id&&item.personId===ctx.personId&&item.state==='suggested');if(!item)throw Error('This stage suggestion is unavailable.');if(accept){const current=cleanProfile(workspaceIdentity(ctx).person.learningContext||{subjects:[]});if(!sameProfile(current,item.from))throw Error('Your stage changed after this suggestion. Review the current profile instead.');return proposeStageTransition(ctx,item.to,'You reviewed a stage suggestion',{trigger:'self-confirmation',eventId:'suggestion:'+item.id});}item.state='superseded';write(store);return null;}
+export function getStageProfile(ctx:RequestContext){assertCanPropose(ctx);return cleanProfile(workspaceIdentity(ctx).person.learningContext||{subjects:[]});}

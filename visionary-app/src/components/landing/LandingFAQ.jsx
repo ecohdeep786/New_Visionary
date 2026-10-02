@@ -104,7 +104,7 @@ export default function LandingFAQ({
                   className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-[1240px] pt-8 text-[15px] leading-[1.6]" style={{ color: "#121317" }}>{faq.a}</p>
+                    <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#121317" }}>{faq.a}</p>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,1 @@
+PASS Profile canonical teaching language, name/area refresh recovery, failed account save/export, real other-tab name conflict/no overwrite, explicit latest reload/retry, learning-area creation/duplicate draft preservation; zero errors/overflow at 390px.

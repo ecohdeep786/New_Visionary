@@ -119,7 +119,7 @@ function BulletList({ items }) {
   return (
     <ul className="mt-6 max-w-[760px] rounded-[16px] g-card p-6">
       {items.map((item, index) => (
-        <li key={index} className="flex items-start gap-3 py-1.5 text-[14.5px] leading-[1.65]" style={{ color: COLORS.grey }}>
+        <li key={index} className="flex items-start gap-3 py-1.5 text-[15px] leading-[1.65]" style={{ color: COLORS.grey }}>
           <span aria-hidden="true" className="mt-[0.68em] h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS.navy }} />
           <span>{item}</span>
         </li>
@@ -138,7 +138,7 @@ function Note({ children }) {
 
 function LearnMoreRow({ to, label }) {
   return (
-    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
+    <Link to={to} className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
       {label}
       <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
     </Link>
@@ -219,7 +219,7 @@ export default function TermsPage() {
                           className="group flex w-full items-start gap-3 rounded-full px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                           style={{ backgroundColor: active ? COLORS.canvas : "transparent" }}
                         >
-                          <span className="mt-0.5 w-6 shrink-0 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                          <span className="mt-0.5 w-6 shrink-0 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                           <span className="text-[13px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                         </button>
                       );
@@ -244,7 +244,7 @@ export default function TermsPage() {
                 <div className="pb-12 pt-2">
                   <div className="flex justify-center"><SpotIllustration subject="document" className="h-28 w-28 lg:h-36 lg:w-36" /></div>
                   <p className="mt-10 text-[12px] font-medium uppercase tracking-[0.15em]" style={{ color: COLORS.grey }}>Terms of service</p>
-                  <h1 className="mt-4 max-w-[720px] text-[36px] font-normal leading-[1.12] tracking-[-0.035em] sm:text-[48px] lg:text-[56px]" style={{ color: COLORS.ink }}>
+                  <h1 className="mt-4 max-w-[720px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
                     Clear rules, written to be understood.
                   </h1>
                   <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] sm:text-[18px]" style={{ color: COLORS.grey }}>
@@ -253,7 +253,7 @@ export default function TermsPage() {
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {TERMS_PROMISES.map((p) => (
-                      <span key={p} className="flex items-center gap-1.5 text-[13.5px] font-medium" style={{ color: COLORS.ink }}>
+                      <span key={p} className="flex items-center gap-1.5 text-[14px] font-medium" style={{ color: COLORS.ink }}>
                         <ShieldCheck className="h-4 w-4" strokeWidth={1.8} style={{ color: COLORS.navy }} aria-hidden="true" />
                         {p}
                       </span>
@@ -267,7 +267,7 @@ export default function TermsPage() {
                     </span>
                     <div>
                       <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>Questions about these Terms?</p>
-                      <p className="mt-0.5 text-[14.5px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
+                      <p className="mt-0.5 text-[15px]" style={{ color: COLORS.grey }}>The team reads every message about how these rules apply.</p>
                       <a href="mailto:legal@visionary.org.in" className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] font-medium hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm" style={{ color: COLORS.navy }}>
                         legal@visionary.org.in
                         <ArrowRight className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
@@ -290,7 +290,7 @@ export default function TermsPage() {
                     className="flex min-h-[64px] w-full items-center justify-between gap-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     <span>
-                      <span className="block text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
+                      <span className="block text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>In this policy</span>
                       <span className="mt-1 block text-[15px]" style={{ color: COLORS.ink }}>{activeSection?.title ?? "Choose a section"}</span>
                     </span>
                     <ChevronDown className={`h-5 w-5 shrink-0 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`} strokeWidth={1.8} style={{ color: COLORS.grey }} aria-hidden="true" />
@@ -309,7 +309,7 @@ export default function TermsPage() {
                               className="flex min-h-12 w-full items-start gap-4 border-b px-4 py-3 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                               style={{ borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white }}
                             >
-                              <span className="mt-0.5 text-[11px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
+                              <span className="mt-0.5 text-[12px] font-medium tabular-nums" style={{ color: active ? COLORS.navy : COLORS.grey }}>{section.number}</span>
                               <span className="text-[14px] leading-[1.45]" style={{ color: active ? COLORS.ink : COLORS.graphite }}>{section.title}</span>
                             </button>
                           );
@@ -497,7 +497,7 @@ export default function TermsPage() {
               ].map(({ term, def }) => (
                 <div key={term}>
                   <p className="text-[16px] font-medium" style={{ color: COLORS.ink }}>{term}</p>
-                  <p className="mt-1.5 max-w-[520px] text-[14.5px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
+                  <p className="mt-1.5 max-w-[520px] text-[15px] leading-[1.7]" style={{ color: COLORS.grey }}>{def}</p>
                 </div>
               ))}
             </div>
@@ -520,7 +520,7 @@ export default function TermsPage() {
                     <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} style={{ color: COLORS.navy }} />
                     <span className="text-[15px] font-medium" style={{ color: COLORS.ink }}>{label}</span>
                   </div>
-                  <p className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
+                  <p className="mt-2 text-[14px] leading-[1.6]" style={{ color: COLORS.grey }}>{desc}</p>
                   {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
                   <div aria-hidden="true" className="absolute bottom-0 right-0 h-[52px] w-[84px] rounded-tl-[14px] bg-white" />
                   <div className="absolute bottom-2.5 right-2.5 flex h-7 w-7 items-center justify-center"><ArrowRight className="h-[18px] w-[18px] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.navy }} aria-hidden="true" /></div>

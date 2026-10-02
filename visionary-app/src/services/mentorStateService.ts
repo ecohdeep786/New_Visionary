@@ -1,3 +1,4 @@
+import {connectionStatus} from '../lib/connectionAvailability.js';
 import type { Database, Locale, MasteryStage, RequestContext, Role } from '../domain/workspace.ts';
 import { reportDays, snapshot, visibleRelationships, workspaceIdentity,requireOrganizationPermission } from './workspaceService.ts';
 import { getContentRepository, type ContentConcept } from './contentRepository.ts';
@@ -63,7 +64,7 @@ function rows(name: 'Classroom' | 'Enrollment' | 'OrganizationInvite' | 'Submiss
  try { const value = JSON.parse(localStorage.getItem(`visionary_entity_${name}`) || '[]'); if (!Array.isArray(value)) throw Error(); return value; }
  catch { throw new Error('Connection records are unavailable. Access remains restricted until they can be read.'); }
 }
-function alive(row: LegacyRow) { return row.status === 'active' && (!row.expiresAt || new Date(String(row.expiresAt)).getTime() > clock().getTime()); }
+function alive(row: LegacyRow) { return connectionStatus({status:row.status,expiresAt:row.expiresAt},clock().getTime()) === 'active'; }
 function schoolMembership(email: string, organization: unknown, role?: Role) { return !organization || rows('OrganizationInvite').some(r => r.email === email && r.organization_email === organization && (!role || r.role === role) && alive(r)); }
 function classesFor(ctx: RequestContext) {
  const { person, workspace } = check(ctx);
@@ -132,6 +133,17 @@ function conceptsFor(evidence: Evidence[]): ConceptState[] {
 export function getStudentState(ctx: RequestContext, studentId = ctx.personId): StudentState {
  check(ctx); if (studentId !== ctx.personId) throw new Error('Individual learning state is private. Use an authorized summary.');
  const target = space(read(), ctx); return { studentId, workspaceId: ctx.workspaceId, concepts: conceptsFor(target.evidence), updatedAt: target.evidence.at(-1)?.at };
+}
+/** Owner-only evidence projection. It contains no question, answer text or memory events. */
+export function getLearningEvidenceHistory(ctx:RequestContext) {
+ check(ctx);
+ if(!['student','professional','teacher'].includes(ctx.role))throw Error('Use your own learning workspace to read evidence.');
+ const evidence=space(read(),ctx).evidence;const ids=new Set<string>();
+ for(const row of evidence){
+  if(!row||typeof row.id!=='string'||!row.id||ids.has(row.id)||typeof row.conceptId!=='string'||typeof row.sessionId!=='string'||!['check','practice','application'].includes(row.kind)||!Number.isInteger(row.correct)||!Number.isInteger(row.total)||row.correct<0||row.total<0||row.correct>row.total||typeof row.verified!=='boolean'||!Number.isFinite(Date.parse(row.at)))throw Error('Saved learning evidence is incomplete. Original records were kept.');
+  ids.add(row.id);
+ }
+ return evidence.map(row=>({id:row.id,conceptId:row.conceptId,sessionId:row.sessionId,kind:row.kind,correct:row.correct,total:row.total,verified:row.verified,at:row.at}));
 }
 export function recordLearningOutcome(ctx: RequestContext, input: LearningOutcome) {
  check(ctx); if (ctx.role === 'parent' || ctx.role === 'organization') throw new Error('Use a personal learning workspace to record learning.');

@@ -112,7 +112,7 @@ function ResourceCard({ Icon, label, title, to }) {
       <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1a73e8] text-[#1a73e8]">
         <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
       </span>
-      <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{label}</p>
+      <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{label}</p>
       <h4 className="mt-1.5 max-w-[220px] text-[16px] font-medium leading-[1.4] text-[#202124]">{title}</h4>
       {/* google.com card curve — tint sweeps into the corner and the card's arrow floats in it with breath */}
       <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
@@ -137,7 +137,7 @@ export default function ContactPage() {
             outlined Help center pill */}
         <section className="px-6 pb-14 pt-10 text-center sm:px-8 lg:px-10 lg:pb-16 lg:pt-16">
           <Reveal className="mx-auto max-w-[880px]">
-            <h1 className="text-[clamp(34px,5.5vw,58px)] font-normal leading-[1.05] tracking-[-0.045em] text-[#202124]">
+            <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#202124] sm:text-[64px] lg:text-[76px]">
               Guidance to get you going on Visionary
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
@@ -189,7 +189,7 @@ export default function ContactPage() {
         </section>
 
         {/* YOUR QUESTIONS ANSWERED — FAQ with expand-all and show-more */}
-        <section id="faq" className="scroll-mt-32 border-t border-[#e8eaed] px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="faq" className="scroll-mt-32 border-t border-[#e8eaed] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[840px]">
             <div className="text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#202124] sm:text-[46px]">
@@ -219,7 +219,7 @@ export default function ContactPage() {
         </section>
 
         {/* STILL NEED HELP? — the grey band */}
-        <section className="bg-[#f8f9fa] px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section className="bg-[#f8f9fa] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto flex max-w-[1240px] flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-[40px] font-normal leading-[1.08] tracking-[-0.035em] text-[#202124] sm:text-[52px]">
@@ -239,7 +239,7 @@ export default function ContactPage() {
         </section>
 
         {/* CONTACT ROUTES — the real mailboxes */}
-        <section id="routes" className="scroll-mt-32 px-6 py-20 sm:px-8 lg:px-10 lg:py-28">
+        <section id="routes" className="scroll-mt-32 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="max-w-[680px]">
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Contact routes</p>
@@ -252,7 +252,7 @@ export default function ContactPage() {
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1a73e8] text-[#1a73e8]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{category}</p>
+                  <p className="mt-5 text-[12px] font-medium uppercase tracking-[0.12em] text-[#5f6368]">{category}</p>
                   <h3 className="mt-1.5 text-[17px] font-medium leading-[1.35] text-[#202124]">{title}</h3>
                   <p className="mt-2 flex-1 text-[14px] leading-[1.6] text-[#5f6368]">{description}</p>
                   <EmailLink email={email} subject={subject} className="mt-4">{email}</EmailLink>
@@ -263,7 +263,7 @@ export default function ContactPage() {
         </section>
 
         {/* PRIVACY GRIEVANCE — the formal DPDP route */}
-        <section id="grievance" className="scroll-mt-32 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-20 sm:px-8 lg:px-10 lg:py-24">
+        <section id="grievance" className="scroll-mt-32 border-t border-[#e8eaed] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Privacy grievance</p>
@@ -280,7 +280,7 @@ export default function ContactPage() {
         </section>
 
         {/* BEFORE YOU SEND — honest email hygiene */}
-        <section className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section className="px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-2 md:gap-12">
             <div>
               <h2 className="text-[20px] font-medium text-[#202124]">Before you send</h2>
