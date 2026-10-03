@@ -1,7 +1,18 @@
-import {Link} from 'react-router-dom';
-import {organizationAccess} from '@/services/workspaceService';
-const actions={members:['People','/dashboard/people'],academic:['Cohorts and classes','/dashboard/cohorts'],analytics:['Aggregate insights','/dashboard/analytics'],audit:['Local audit','/dashboard/audit'],billing:['Seats and billing','/dashboard/subscription']};
-export default function OrganizationAccessHome({ctx}){
- const policy=organizationAccess(ctx);
- return <div className="v-page"><header><h1 className="v-title">Your organization workspace</h1><p className="v-muted mt-2 break-all">{policy.organizationEmail}</p></header><section className="v-card"><h2 className="text-lg font-medium">{policy.label}</h2><p className="v-muted mt-2">Your owner assigns this permission. Changes take effect in this local preview; personal workspaces remain separate.</p>{!policy.profile&&<p className="v-notice mt-4">Ask the organization owner to assign an administrative permission before continuing.</p>}</section><section className="grid gap-4 sm:grid-cols-2">{Object.entries(actions).filter(([permission])=>policy.permissions.includes(permission)).map(([permission,[label,path]])=><Link key={permission} to={path} className="v-card text-sm font-medium underline">{label}</Link>)}</section><p className="v-muted">Private learner questions, personal notes and learning transcripts are excluded from administrative access. These device-local permissions require server enforcement before launch.</p></div>;
+import { organizationCopy } from '@/lib/organizationCopy';
+import { Link } from 'react-router-dom';
+import { organizationAccess } from '@/services/workspaceService';
+const actions = {
+  members: ['People', '/dashboard/people'],
+  academic: ['Cohorts and classes', '/dashboard/cohorts'],
+  analytics: ['Aggregate insights', '/dashboard/analytics'],
+  audit: ['Local audit', '/dashboard/audit'],
+  billing: ['Seats and billing', '/dashboard/subscription']
+};
+export default function OrganizationAccessHome({
+  ctx,
+  locale = 'en'
+}) {
+  const t = (key, params) => organizationCopy(locale, key, params);
+  const policy = organizationAccess(ctx);
+  return <div className="v-page" lang={locale}><header><h1 className="v-title">{t("Your organization workspace")}</h1><p className="v-muted mt-2 break-all">{policy.organizationEmail}</p></header><section className="v-card"><h2 className="text-lg font-medium">{t(policy.label)}</h2><p className="v-muted mt-2">{t("Your owner assigns this permission. Changes take effect in this local preview; personal workspaces remain separate.")}</p>{!policy.profile && <p className="v-notice mt-4">{t("Ask the organization owner to assign an administrative permission before continuing.")}</p>}</section><section className="grid gap-4 sm:grid-cols-2">{Object.entries(actions).filter(([permission]) => policy.permissions.includes(permission)).map(([permission, [label, path]]) => <Link key={permission} to={path} className="v-card text-sm font-medium underline">{t(label)}</Link>)}</section><p className="v-muted">{t("Private learner questions, personal notes and learning transcripts are excluded from administrative access. These device-local permissions require server enforcement before launch.")}</p></div>;
 }

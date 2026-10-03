@@ -90,10 +90,13 @@ const ABOUT_GROUPS = [
 
 const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
 
-/* Shared pill style — compact 40px control on the 56px bar */
-const pillLink = (active) =>
-  `flex h-10 items-center whitespace-nowrap rounded-full border px-3.5 text-[15px] font-normal tracking-[0.24px] transition-colors ${FOCUS_RING} ${
-    active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
+/* Apple-state nav item — quiet borderless text at rest; the selected page's
+   item resolves to the brand black at Medium weight. */
+const navLink = (active) =>
+  `flex h-10 items-center whitespace-nowrap rounded-full px-3 text-[14px] transition-colors duration-200 ${FOCUS_RING} ${
+    active
+      ? "font-medium text-[#121317]"
+      : "font-normal text-[#3c4043]/90 hover:text-[#121317]"
   }`;
 
 /* Icon-only button */
@@ -103,7 +106,6 @@ const iconBtn = (active = false) =>
   }`;
 
 /* Megamenu tile — one anatomy for every menu item */
-const MEGA_PANEL = "rounded-[16px] border bg-white/95 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-md";
 const MEGA_TILE = "flex items-start gap-3.5 rounded-[12px] p-2.5 transition-colors hover:bg-[#f8f9fa]";
 
 function MegaTile({ to, onClick, Icon, title, desc, active, compact }) {
@@ -264,16 +266,20 @@ export default function LandingNav() {
     setOpenMega((cur) => (cur === key ? null : key));
   };
 
-  const megaTrigger = (key) =>
-    `${pillLink(openMega === key)} justify-center gap-1.5`;
+  const megaTrigger = (key, pageActive = false) =>
+    `${navLink(openMega === key || pageActive)} justify-center gap-1.5`;
+
+  /* the selected page marks its nav item black — menu triggers included */
+  const aboutPaths = ABOUT_GROUPS.flatMap((g) => g.items.map((i) => i.to));
+  const pageActive = {
+    who: !!activeCategory,
+    org: pathname === "/organization",
+    download: pathname === "/download",
+    about: aboutPaths.includes(pathname),
+  };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 h-14 transition-all duration-200 ${
-        scrolled ? "border-b bg-white/90 backdrop-blur-md" : "border-b border-transparent bg-white"
-      }`}
-      style={{ fontFamily: FONT, borderColor: scrolled ? C.mist : "transparent" }}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 h-14" style={{ fontFamily: FONT }}>
       {/* Skip link — first focusable element, Google/US-WAG convention */}
       <a
         href="#main"
@@ -281,7 +287,18 @@ export default function LandingNav() {
       >
         Skip to main content
       </a>
-      <div className="public-frame public-frame-wide flex h-full items-center justify-between">
+      {/* the Apple-state bar: invisible at rest, and on scroll a straight
+          full-width glass strip — no corners, no border. The frosted layer
+          is an inner element on purpose (a backdrop-filter on the header
+          itself would become the containing block for the fixed flyout
+          panels below). */}
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 -z-10 transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] ${
+          scrolled ? "bg-white/90 backdrop-blur-xl" : "bg-transparent"
+        }`}
+      />
+        <div className="public-frame relative flex h-full items-center justify-between">
         {/* LEFT: logo + primary nav */}
         <div className="flex min-w-0 items-center gap-4 lg:gap-6">
           <Link
@@ -306,21 +323,21 @@ export default function LandingNav() {
                 aria-expanded={openMega === "who"}
                 aria-controls="mega-who"
                 onClick={() => toggleMega("who")}
-                className={`${megaTrigger("who")} min-w-0`}
-                style={{ color: C.ink }}
+                className={`${megaTrigger("who", pageActive.who)} min-w-0`}
               >
                 {activeCategory ? activeCategory.label : "Who you are"}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "who" ? "rotate-180" : ""}`} />
               </button>
 
               {openMega === "who" && (
-                <div id="mega-who" className="absolute left-0 top-full w-[min(680px,calc(100vw-32px))] pt-2.5">
-                  <div className={MEGA_PANEL}>
-                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-who" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
+                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#dadce0]/70">
+                    <div className="px-6 py-9 sm:px-8">
+                    <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       One intelligence, every learner.
                     </p>
 
-                    <div className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    <div className="mt-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
                       {CATEGORIES.map((cat) => {
                         const { Icon, desc } = metaFor(cat);
                         return (
@@ -336,13 +353,14 @@ export default function LandingNav() {
                         );
                       })}
                     </div>
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
             {/* HOW IT WORKS */}
-            <Link to="/how-it-works" className={pillLink(pathname === "/how-it-works")} style={{ color: C.ink }}>
+            <Link to="/how-it-works" className={navLink(pathname === "/how-it-works")}>
               How it works
             </Link>
 
@@ -359,24 +377,24 @@ export default function LandingNav() {
                 aria-expanded={openMega === "org"}
                 aria-controls="mega-org"
                 onClick={() => toggleMega("org")}
-                className={megaTrigger("org")}
-                style={{ color: C.ink }}
+                className={megaTrigger("org", pageActive.org)}
               >
                 For organizations
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "org" ? "rotate-180" : ""}`} />
               </button>
 
               {openMega === "org" && (
-                <div id="mega-org" className="absolute left-1/2 top-full w-[min(560px,calc(100vw-32px))] -translate-x-1/2 pt-2.5">
-                  <div className={MEGA_PANEL}>
-                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-org" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
+                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#dadce0]/70">
+                    <div className="px-6 py-9 sm:px-8">
+                    <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       For organizations
                     </p>
-                    <p className="mt-0.5 text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>
+                    <p className="mt-1 text-[14px] tracking-[0.24px]" style={{ color: C.slate }}>
                       Bring Visionary to your institution.
                     </p>
 
-                    <div className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    <div className="mt-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-4">
                       {ORG_CONTEXTS.map((ctx) => (
                         <MegaTile
                           key={ctx.id}
@@ -388,13 +406,14 @@ export default function LandingNav() {
                         />
                       ))}
                     </div>
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
             {/* PRICING */}
-            <Link to="/pricing" className={pillLink(pathname === "/pricing")} style={{ color: C.ink }}>
+            <Link to="/pricing" className={navLink(pathname === "/pricing")}>
               Pricing
             </Link>
 
@@ -411,24 +430,24 @@ export default function LandingNav() {
                 aria-expanded={openMega === "download"}
                 aria-controls="mega-download"
                 onClick={() => toggleMega("download")}
-                className={megaTrigger("download")}
-                style={{ color: C.ink }}
+                className={megaTrigger("download", pageActive.download)}
               >
                 Download
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "download" ? "rotate-180" : ""}`} />
               </button>
 
               {openMega === "download" && (
-                <div id="mega-download" className="absolute left-1/2 top-full w-[min(680px,calc(100vw-32px))] -translate-x-1/2 pt-2.5">
-                  <div className={MEGA_PANEL}>
-                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-download" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
+                  <div className="mega-sheet pointer-events-auto w-full max-w-[1240px] rounded-[24px] border border-[#dadce0]/70">
+                    <div className="px-6 py-9 sm:px-8">
+                    <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       Download Visionary
                     </p>
-                    <p className="mt-0.5 text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>
+                    <p className="mt-1 text-[14px] tracking-[0.24px]" style={{ color: C.slate }}>
                       Available on every device you use.
                     </p>
 
-                    <div className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    <div className="mt-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
                       {DOWNLOAD_PLATFORMS.map((p) => (
                         <MegaTile
                           key={p.id}
@@ -439,6 +458,7 @@ export default function LandingNav() {
                           desc={p.desc}
                         />
                       ))}
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -458,27 +478,27 @@ export default function LandingNav() {
                 aria-expanded={openMega === "about"}
                 aria-controls="mega-about"
                 onClick={() => toggleMega("about")}
-                className={megaTrigger("about")}
-                style={{ color: C.ink }}
+                className={megaTrigger("about", pageActive.about)}
               >
                 About
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openMega === "about" ? "rotate-180" : ""}`} />
               </button>
 
               {openMega === "about" && (
-                <div id="mega-about" className="absolute right-0 top-full w-[min(760px,calc(100vw-32px))] pt-2.5">
-                  <div className={`${MEGA_PANEL} max-h-[calc(100dvh-88px)] overflow-y-auto`}>
-                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-about" className="pointer-events-none fixed inset-x-0 top-[64px] z-10 flex justify-center px-3">
+                  <div className="mega-sheet pointer-events-auto max-h-[calc(100dvh-100px)] w-full max-w-[1240px] overflow-y-auto rounded-[24px] border border-[#dadce0]/70">
+                    <div className="px-6 py-9 sm:px-8">
+                    <p className="text-[24px] font-medium tracking-[-0.01em] leading-[1.15]" style={{ color: C.ink }}>
                       About Visionary
                     </p>
-                    <p className="mt-0.5 text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>
+                    <p className="mt-1 text-[14px] tracking-[0.24px]" style={{ color: C.slate }}>
                       Company, support, programs, trust, and legal information.
                     </p>
 
-                    <div className="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
                       {ABOUT_GROUPS.map((group) => (
                         <div key={group.title}>
-                          <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+                          <p className="mb-2 text-[12px] font-medium tracking-[0.24px]" style={{ color: C.slate }}>
                             {group.title}
                           </p>
 
@@ -499,6 +519,7 @@ export default function LandingNav() {
                         </div>
                       ))}
                     </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -506,27 +527,31 @@ export default function LandingNav() {
           </nav>
         </div>
 
-        {/* RIGHT: utilities */}
-        <div className="flex items-center gap-1.5">
+        {/* RIGHT: utilities — roomy gap so the cluster breathes like
+            Apple's icon cluster instead of hugging the edge */}
+        <div className="flex items-center gap-2">
           <Link
             to="/help"
-            className={`${pillLink(pathname === "/help")} hidden gap-1.5 xl:flex`}
-            style={{ color: C.ink }}
+            className={`${navLink(pathname === "/help")} hidden gap-1.5 xl:flex`}
           >
-            <CircleHelp className="h-5 w-5" strokeWidth={1.8} />
+            <CircleHelp className="h-[18px] w-[18px]" strokeWidth={1.8} />
             Help
           </Link>
 
-          <Link to="/login" className={`${pillLink(false)} hidden sm:flex`} style={{ color: C.blue }}>
+          <Link to="/login" className={`${navLink(false)} hidden sm:flex`} style={{ color: C.blue }}>
             Sign in
           </Link>
 
           <Link
             to="/register"
-            className={`flex h-10 items-center rounded-full px-4 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] ${FOCUS_RING}`}
-            style={{ backgroundColor: C.darkblue }}
+            className={`btn-premium btn-premium-blue ml-2 flex h-10 items-center gap-1.5 rounded-full text-[14px] font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${FOCUS_RING}`}
+            style={{ backgroundColor: C.darkblue, paddingLeft: 18, paddingRight: 18 }}
           >
             Get started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow h-3.5 w-3.5" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
           </Link>
 
           <button
@@ -543,12 +568,22 @@ export default function LandingNav() {
         </div>
       </div>
 
-      {/* MOBILE DRAWER — a first-class responsive state: compact utility row on
-          top, separated sections, safe-area padding, focus moved inside */}
+      {/* flyout scrim — dims and blocks the page behind an open panel */}
+      {openMega && (
+        <div
+          aria-hidden="true"
+          className="mega-scrim fixed inset-x-0 bottom-0 top-14"
+          onClick={() => setOpenMega(null)}
+        />
+      )}
+
+      {/* MOBILE DRAWER — a first-class responsive state: a floating rounded
+          panel under the bar, compact utility row on top, separated sections,
+          safe-area padding, focus moved inside */}
       {mobileOpen && (
         <div
           ref={drawerRef}
-          className="safe-b max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t bg-white px-5 pb-8 pt-4 lg:hidden"
+          className="safe-b relative mx-3 mt-2 max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-[24px] border bg-white px-5 pb-8 pt-4 lg:hidden"
           style={{ borderColor: C.mist }}
         >
           {/* Compact top utility row */}

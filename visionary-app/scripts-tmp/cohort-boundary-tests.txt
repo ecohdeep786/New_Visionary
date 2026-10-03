@@ -1,0 +1,14 @@
+✔ class creation derives ownership from active space, rejects stale context and preserves personal classes after revocation (22.0493ms)
+✔ join-code discovery and direct enrollment require matching active organization membership (8.1405ms)
+✔ failed class save is retryable and expired imported members cannot enter a cohort (3.8179ms)
+✔ organization cohorts accept only current own roster and classes, never private learner state (39.2237ms)
+✔ cohort save rechecks membership after an asynchronous roster read (14.7279ms)
+✔ cohort concurrent changes and archive reject a stale editor without overwriting either record (3.7774ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 800.3015

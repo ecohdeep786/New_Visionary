@@ -60,3 +60,22 @@ This records bounded current evidence; the full product gate remains OPEN. Maste
 | G12 | NOT GLOBALLY PASSED: final teaching response rejects changed stage/age policy; existing transition history remains intact. Full atomic audience/remapping/resume/undo matrix is not certified by this wave. |
 
 Next corrective owner: coordinator for G3/G8 and broader G4/G12; visual baseline owner for G7; accessibility/device acceptance owner for remaining G9. No whole-product merge/release verdict is inferred from bounded passes.
+
+## 2026-10-03 — Role/project/privacy bounded re-gate
+
+G1/G5/G6/G10/G11 PASS for touched controls: meaningful stage/role/project/privacy actions, explicit local/unconnected claims, exact consent and source-version boundaries, preserved design grammar and attributed evidence. G2 unchanged finite Home priority/modules; transition controls remain in the existing module. G3/G8 PARTIAL: en/hi/bn stage, updates, career/review, Build and Privacy controls now verified, including relevant read/write/conflict/revocation states; remaining parent/teacher/organization screens and full product matrix are open. G4/G12 PARTIAL: paired project summaries, sponsor revocation, stage Undo/Confirm/Postpone and existing full service tests pass; exhaustive cross-role source/audience reconciliation is not certified. G9 PARTIAL: 360 tests/lint/types/build, reduced-motion and 320–1440 reflow pass; actual zoom, native speech and assistive-technology tasks remain open. G7 NOT PASSED: concurrent public work preserved; clean same-data public baseline absent. Whole product gate remains OPEN. Next owner: coordinator continues remaining parent/teacher/organization frontend work; visual/device owners supply outstanding G7/G9 evidence. Backend remains later.
+
+## 2026-10-03 — Parent/organization bounded re-gate
+
+G1/G5/G6/G10/G11 PASS within touched parent/governance journeys: usable permitted controls, explicit deterministic/unconnected claims, current consent and organization capabilities, inherited design and concrete evidence. G3/G8 PARTIAL expanded en/hi/bn coverage and partial/read/write/recovery/withdrawal states. G4/G12 PARTIAL expanded paired permission and concurrent-edit evidence; full cross-role/source/legacy coverage remains open. G9 PARTIAL362 service tests/build/lint/types,74 routes and tested320–1440 reflow pass; native assistive technology, actual zoom and speech remain open. G7 remains NOT PASSED pending clean same-data public baseline. Whole frontend gate OPEN; backend remains later.
+
+2026-10-03 Cohort bounded update: G3/G8 now include en/hi/bn cohort recovery/write/conflict/read/roster-removal controls. G4/G12 include in-flight membership withdrawal and concurrent archive/edit rejection. G9 evidence increases to363 full service tests/6 focused boundaries plus final lint/types/build/three-language reduced-motion reflow. These bounded passes do not close broader teacher/org/source/legacy/native/public gates; whole frontend gate remains OPEN.
+
+## 2026-10-03 — Teacher bounded re-gate
+
+G1/G5/G6/G10/G11 pass within the touched teacher workflows: meaningful controls, explicit sample/unconnected scope, preserved source versions and current class/enrollment permissions, inherited design and reproducible evidence. G3/G8 remain PARTIAL with expanded en/hi/bn teacher authoring/evidence/header and recovery/withdrawal coverage. G4/G12 remain PARTIAL with reviewed assignment fixed-copy, source language, two-tab notes, delivery/adaptation and complete revision-return-parent-digest evidence. G9 remains PARTIAL:363 tests/lint/types/build, reduced-motion320–1440 reflow pass; stubbed clipboard is not native acceptance. G7 public baseline remains open. Remaining class-tab/org/shared/source/legacy/native matrix prevents whole frontend sign-off. Backend remains later.
+
+
+### 2026-10-03 — Class-tab evidence update
+
+Teacher class Stream/People/Classwork/Insights/review/promotion/community local flows pass in en/hi/bn. Shared summary excludes invalid grades, distinguishes real zero, deduplicates concept coverage and makes no mastery claim. Failed source recovery, failed-write draft retention, reported-post moderation and promotion rollback/retry pass. Final class snapshot: visionary-class-tabs-final4-20261003;366 tests and74 route checks pass, plus build/lint/types and teacher–learner–parent review regression. Whole frontend gate remains OPEN; broader organization/shared/legacy/native acceptance still required.

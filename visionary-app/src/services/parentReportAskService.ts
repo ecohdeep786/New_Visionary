@@ -30,9 +30,10 @@ export function answerParentReportQuestion(ctx: RequestContext, childId: string,
   ? 'Try a short, low-pressure review: ask your child to explain one recent idea using an example of their choosing. Listen first, then ask what they would like to practice.'
   : 'Invite your child to choose one topic they enjoyed recently and show you how it works. If they prefer, ask what they would like to explore next.';
  const normalized = question.toLowerCase();
- const answer = /teacher|school|class/.test(normalized) ? teacherQuestion
-  : /activity|home|practice|support|help/.test(normalized) ? activity
-   : /evidence|progress|mean|week|learn|doing/.test(normalized) ? evidence
+ const kind = /teacher|school|class|शिक्षक|विद्यालय|कक्षा|শিক্ষক|স্কুল|শ্রেণি/.test(normalized) ? 'teacher'
+  : /activity|home|practice|support|help|गतिविधि|घर|अभ्यास|सहायता|मदद|কার্যকলাপ|বাড়ি|অনুশীলন|সহায়/.test(normalized) ? 'activity'
+   : /evidence|progress|mean|week|learn|doing|साक्ष्य|प्रगति|मतलब|सप्ताह|सीख|প্রমাণ|অগ্রগতি|মানে|সপ্তাহ|শেখা/.test(normalized) ? 'evidence' : 'unsupported';
+ const answer = kind === 'teacher' ? teacherQuestion : kind === 'activity' ? activity : kind === 'evidence' ? evidence
     : 'I can explain the shared evidence, suggest a question for the teacher, or suggest a home activity. Choose one of those topics to continue.';
- return { name: view.name, period: view.period, answer, evidence, teacherQuestion, activity, source: `Active progress-summary sharing · last ${days} days · saved local records` };
+ return { name: view.name, period: view.period, kind, counts: { correct, recorded, concepts: view.concepts.length, days }, answer, evidence, teacherQuestion, activity, source: `Active progress-summary sharing · last ${days} days · saved local records` };
 }

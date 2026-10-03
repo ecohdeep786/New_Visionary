@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { teacherCopy } from '@/lib/teacherCopy';
+import { useWorkspace } from '@/hooks/useWorkspace';
+import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams, Link, Navigate } from "react-router-dom";
 import { Home, ChevronRight, Copy, Check } from "lucide-react";
 import { base44 } from "@/api/base44Client";
@@ -11,72 +13,125 @@ import InsightsTab from "@/components/dashboard/teacher/tabs/InsightsTab";
 import ClassPromotion from "@/components/dashboard/ClassPromotion";
 import CommunityTab from "@/components/dashboard/CommunityTab";
 import ClassCurriculum from '@/components/dashboard/ClassCurriculum';
-
-const TABS = [
-  { id: "stream", label: "Stream" },
-  { id: "classwork", label: "Classwork" },
-  { id: "curriculum", label: "Curriculum" },
-  { id: "people", label: "People" },
-  { id: "insights", label: "Insights" },
-  { id: "community", label: "Community" },
-];
-
+const TABS = [{
+  id: "stream",
+  label: "Stream"
+}, {
+  id: "classwork",
+  label: "Classwork"
+}, {
+  id: "curriculum",
+  label: "Curriculum"
+}, {
+  id: "people",
+  label: "People"
+}, {
+  id: "insights",
+  label: "Insights"
+}, {
+  id: "community",
+  label: "Community"
+}];
 export default function ClassDetail() {
-  const { classId } = useParams();
+  const scope = useWorkspace();
+  const {
+    classId
+  } = useParams();
+  return <ClassDetailContent key={scope.ctx?.personId + ':' + scope.ctx?.workspaceId + ':' + classId} scope={scope} />;
+}
+function ClassDetailContent({
+  scope
+}) {
+  const {
+    classId
+  } = useParams();
+  const {
+    data: workspaceData,
+    ctx,
+    revision
+  } = scope;
+  const locale = workspaceData?.preferences.interfaceLocale || 'en';
+  const copy = teacherCopy(locale);
+  const [retry, setRetry] = useState(0);
+  const mounted = useRef(true);
+  const firstRead = useRef(true);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
   const [searchParams] = useSearchParams();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
   const [classroom, setClassroom] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState(() => searchParams.has('curriculum') ? 'curriculum' : 'stream');
-  const { user } = useAuth();
+  const {
+    user
+  } = useAuth();
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
-
   useEffect(() => {
-    (async () => {
+    let current = true;
+    if (firstRead.current) {
       setLoading(true);
-      setError("");
+      firstRead.current = false;
+    }
+    setError('');
+    (async () => {
       try {
         const c = await base44.entities.Classroom.get(classId);
+        if (!current) return;
         const ownsClass = c && (c.teacher_email === user?.email || c.teacher_id === user?.id || c.created_by_id === user?.id || c.created_by === user?.email);
         setClassroom(ownsClass ? c : null);
-      } catch { setError("We couldn’t load this class. Return to your classes and try again."); }
-      setLoading(false);
+        setCopied(false);
+      } catch {
+        if (current) {
+          setClassroom(null);
+          setError('We couldn’t load this class. Return to your classes and try again.');
+        }
+      } finally {
+        if (current) setLoading(false);
+      }
     })();
-  }, [classId, user?.email, user?.id]);
-
+    return () => {
+      current = false;
+    };
+  }, [classId, user?.email, user?.id, ctx?.workspaceId, revision, retry]);
   const copyCode = async () => {
-    try { await navigator.clipboard.writeText(classroom.join_code); setCopied(true); }
-    catch { setError("Copy is unavailable. Select the class code and copy it manually."); }
+    try {
+      const latest = await base44.entities.Classroom.get(classId);
+      if (!mounted.current) return;
+      if (!latest || !(latest.teacher_email === user?.email || latest.teacher_id === user?.id || latest.created_by_id === user?.id || latest.created_by === user?.email)) {
+        setClassroom(null);
+        throw Error('Class unavailable');
+      }
+      if (typeof latest.join_code !== 'string' || !latest.join_code.trim()) throw Error('Class code unavailable');
+      await navigator.clipboard.writeText(latest.join_code);
+      if (mounted.current) setCopied(true);
+    } catch {
+      if (mounted.current) setError("Copy is unavailable. Select the class code and copy it manually.");
+    }
   };
-
-  if (user?.identity === "student") return <Navigate to={"/dashboard/classes?class=" + classId} replace />;
+  if (ctx?.role === 'student' || ctx?.role === 'professional') return <Navigate to={"/dashboard/classes?class=" + classId} replace />;
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{ borderTopColor: accent }} />
-      </div>
-    );
+    return <div className="flex items-center justify-center min-h-[400px]" lang={locale} role="status" aria-label={copy('Loading classes…')}>
+        <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
+        borderTopColor: accent
+      }} />
+      </div>;
   }
-
   if (!classroom) {
-    return (
-      <div className="flex flex-col items-center gap-4 py-20 text-center">
-        <p className="text-sm text-[#5f6368]">{error || "This class isn’t available in your teaching workspace."}</p>
-        <Link to="/dashboard/classes" className="text-sm font-medium hover:underline" style={{ color: accent }}>
-          Back to classes
-        </Link>
-      </div>
-    );
+    return <div className="flex flex-col items-center gap-4 py-20 text-center" lang={locale}>
+        <h1 className="v-title">{copy('Class unavailable')}</h1><p className="text-sm text-[#5f6368]" role="alert">{copy(error || "This class isn’t available in your teaching workspace.")}</p><button className="v-button" onClick={() => setRetry(value => value + 1)}>{copy('Retry')}</button>
+        <Link to="/dashboard/classes" className="text-sm font-medium hover:underline" style={{
+        color: accent
+      }}>{copy("Back to classes")}</Link>
+      </div>;
   }
-
   const color = classroom.color || accent;
-
-  return (
-    <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
+  return <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full" lang={locale}>
       <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
-        <Link to="/dashboard/classes" aria-label="Back to your classes" className="flex items-center hover:text-[#121317] transition-colors">
+        <Link to="/dashboard/classes" aria-label={copy("Back to your classes")} className="flex items-center hover:text-[#121317] transition-colors">
           <Home className="w-4 h-4" />
         </Link>
         <ChevronRight className="w-3.5 h-3.5 text-[#5f6368]" />
@@ -84,44 +139,43 @@ export default function ClassDetail() {
       </nav>
 
       <div className="rounded-3xl overflow-hidden">
-        <div className="flex flex-wrap items-start justify-between gap-6 p-6 sm:p-8 lg:p-10" style={{ backgroundColor: color }}>
+        <div className="flex flex-wrap items-start justify-between gap-6 p-6 sm:p-8 lg:p-10" style={{
+        backgroundColor: color
+      }}>
           <div>
             <h1 className="text-[28px] lg:text-[32px] font-medium text-white tracking-tight leading-tight">
               {classroom.name}
             </h1>
             {classroom.section && <p className="text-white/85 text-base mt-1">{classroom.section}</p>}
-            {classroom.room && <p className="text-white/70 text-sm mt-1">Room {classroom.room}</p>}
+            {classroom.room && <p className="text-white/70 text-sm mt-1">{copy('Room {room}', {
+              room: classroom.room
+            })}</p>}
           </div>
-          {classroom.join_code && <div className="rounded-xl border border-white/30 bg-white/10 px-4 py-3"><p className="text-[11px] font-medium uppercase tracking-wide text-white/90">Share this class code</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide text-white">{classroom.join_code}</p><button onClick={copyCode} aria-label={copied ? "Class code copied" : "Copy class code"} className="rounded-full p-2 text-white hover:bg-white/20">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs text-white">Copied</p>}</div>}
+          {classroom.join_code && <div className="rounded-xl border border-white/30 bg-white/10 px-4 py-3"><p className="text-[11px] font-medium uppercase tracking-wide text-white/90">{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide text-white">{classroom.join_code}</p><button onClick={copyCode} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-white hover:bg-white/20">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs text-white">{copy("Copied")}</p>}</div>}
         </div>
       </div>
-      {error && <p role="alert" className="text-sm text-[#b3261e]">{error}</p>}
-      <ClassPromotion classId={classId} accent={accent} />
+      {error && <p role="alert" className="text-sm text-[#b3261e]">{copy(error)}</p>}
+      <ClassPromotion locale={locale} classId={classId} accent={accent} />
 
       <div className="flex flex-wrap items-center gap-1 border-b border-[#dadce0]/60">
-        {TABS.map((t) => {
-          const active = tab === t.id;
-          return (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              aria-pressed={active}
-              className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap"
-              style={{ color: active ? accent : "#5f6368" }}
-            >
-              {t.label}
-              {active && <span className="absolute left-3 right-3 bottom-0 h-[3px] rounded-full" style={{ backgroundColor: accent }} />}
-            </button>
-          );
-        })}
+        {TABS.map(t => {
+        const active = tab === t.id;
+        return <button key={t.id} onClick={() => setTab(t.id)} aria-pressed={active} className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap" style={{
+          color: active ? accent : "#5f6368"
+        }}>
+              {copy(t.label)}
+              {active && <span className="absolute left-3 right-3 bottom-0 h-[3px] rounded-full" style={{
+            backgroundColor: accent
+          }} />}
+            </button>;
+      })}
       </div>
 
-      {tab === "stream" && <StreamTab classId={classId} classroom={classroom} accent={accent} />}
-      {tab === "classwork" && <ClassworkTab classId={classId} classroom={classroom} accent={accent} />}
-      {tab === "curriculum" && <ClassCurriculum key={classId} classId={classId}/>}
-      {tab === "people" && <PeopleTab classId={classId} classroom={classroom} accent={accent} />}
-      {tab === "insights" && <InsightsTab classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "stream" && <StreamTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "classwork" && <ClassworkTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "curriculum" && <ClassCurriculum key={classId} classId={classId} />}
+      {tab === "people" && <PeopleTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
+      {tab === "insights" && <InsightsTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
   {tab === "community" && <CommunityTab classId={classId} accent={accent} />}
-    </div>
-  );
+    </div>;
 }

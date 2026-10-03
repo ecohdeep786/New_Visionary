@@ -1,6 +1,7 @@
 @import "./styles/rhythm.css";
 @import "./styles/public-system.css";
 @import "./styles/public-bridge.css";
+@import "./styles/premium.css";
 
 /* Google Fonts imports */
 
@@ -311,6 +312,10 @@
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
+    /* White canvas — the public nav is transparent at rest, so the body
+       tint shows through as a grey band behind it. Pages set their own
+       surfaces; the document base is white. */
+    background-color: #ffffff;
     font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;

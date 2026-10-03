@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import {parse} from '@babel/parser';
+import traverseModule from '@babel/traverse';
+import generateModule from '@babel/generator';
+import * as types from '@babel/types';
+const path='src/pages/dashboard/OrganizationSettings.jsx';let source=fs.readFileSync(path,'utf8');
+source="import {organizationCopy} from '@/lib/organizationCopy';\n"+source;
+source=source.replace(' const {ctx,revision}=scope;'," const {ctx,revision}=scope;const locale=scope.data?.preferences.interfaceLocale||'en';const t=(key,params)=>organizationCopy(locale,key,params);");
+source=source.replace('{kinds[view.value.kind]} · Revision {view.value.revision} · This device only',"{t(kinds[view.value.kind])} · {t('Revision {revision} · This device only',{revision:view.value.revision})}");
+source=source.replace("Saved: {kinds[view.value.kind]} · {languages[view.value.contentLanguage]} · New deliveries {view.value.teacherDeliveryEnabled?'enabled':'paused'}","{t('Saved: {kind} · {language} · New deliveries {state}',{kind:t(kinds[view.value.kind]),language:languages[view.value.contentLanguage],state:t(view.value.teacherDeliveryEnabled?'Enabled':'Paused')})}");
+source=source.replace('{error} Current fields remain available to export.',"<span lang=\"en\">{error}</span> {t('Current fields remain available to export.')}");
+source=source.replace('{scope.error||view.error}', '<span lang="en">{scope.error||view.error}</span>').replace('<Link className="v-button" to="/dashboard/home">Return to your workspace</Link>',"<button className=\"v-button\" onClick={scope.refresh}>{t('Retry')}</button>{draft&&<button className=\"v-button\" onClick={exportEdits}>{t('Export settings edits')}</button>}<Link className=\"v-button\" to=\"/dashboard/home\">Return to your workspace</Link>");
+source=source.replace('{notice}</p>','{t(notice)}</p>').replace('<DialogContent>','<DialogContent lang={locale}>');
+source=source.replaceAll('{kinds[view.value.kind]}','{t(kinds[view.value.kind])}').replaceAll('{kinds[draft.kind]}','{t(kinds[draft.kind])}');
+source=source.replaceAll("{view.value.teacherDeliveryEnabled?'Enabled':'Paused'}","{t(view.value.teacherDeliveryEnabled?'Enabled':'Paused')}").replaceAll("{draft.teacherDeliveryEnabled?'Enabled':'Paused'}","{t(draft.teacherDeliveryEnabled?'Enabled':'Paused')}");
+// Only organization-kind option labels are translated; source-language autonyms and option values stay unchanged.
+source=source.replace('Object.entries(kinds).map(([value,label])=><option key={value} value={value}>{label}</option>)','Object.entries(kinds).map(([value,label])=><option key={value} value={value}>{t(label)}</option>)');
+const ast=parse(source,{sourceType:'module',plugins:['jsx']});
+traverseModule.default(ast,{JSXText(path){const key=path.node.value.trim();if(key&&/[A-Za-z]/.test(key))path.replaceWith(types.jsxExpressionContainer(types.callExpression(types.identifier('t'),[types.stringLiteral(key)])));}});
+source=generateModule.default(ast).code.replaceAll('<div className="v-page">','<div className="v-page" lang={locale}>');
+fs.writeFileSync(path,source+'\n');

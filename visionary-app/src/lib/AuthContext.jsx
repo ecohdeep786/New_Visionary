@@ -21,6 +21,11 @@ export const AuthProvider = ({ children }) => {
     window.addEventListener('storage', refresh);
     return () => { window.removeEventListener('visionary:v2-change', refresh); window.removeEventListener('visionary:workspace-change', refresh); window.removeEventListener('storage', refresh); };
   }, [user]);
+  const retryWorkspace = () => {
+    if (!user || !user.onboarding_complete) return;
+    try { setWorkspaceState(bootstrapPerson(user)); setWorkspaceError(''); }
+    catch (error) { setWorkspaceError(error.message); }
+  };
   const activeWorkspace = workspaceState?.workspaces.find(w => w.id === workspaceState.active);
   const switchWorkspace = (workspaceId) => { queryClientInstance.cancelQueries(); queryClientInstance.clear(); selectStoredWorkspace(user.id, workspaceId); };
   const addRole = (role) => { const workspace = addStoredRole(user.id, role); switchWorkspace(workspace.id); };
@@ -74,6 +79,7 @@ export const AuthProvider = ({ children }) => {
       workspaces: workspaceState?.workspaces || [],
       activeWorkspace,
       workspaceError,
+      retryWorkspace,
       switchWorkspace,
       addRole,
       setAgeBand: (ageBand) => setStoredAgeBand(user.id, ageBand),

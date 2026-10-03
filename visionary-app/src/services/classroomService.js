@@ -154,11 +154,17 @@ export async function reviewClasswork(ctx,{submissionId,attempt=1,status,grade,f
 export async function organizationRoster(ctx){
  const account=await appClient.auth.me();if(account.id!==ctx.personId||ctx.role!=='organization')throw new Error('Open your organization workspace first.');snapshot(ctx);
  const policy=requireOrganizationPermission(ctx,'academic');
- const members=organizationInvites(ctx).filter(invite=>invite.status==='active');
  const classes=await appClient.entities.Classroom.filter({organization_email:policy.organizationEmail});
+ const latestAccount=await appClient.auth.me();
+ if(latestAccount.id!==ctx.personId)throw new Error('Your account changed. Reopen the roster in your current organization workspace.');
+ const current=bootstrapPerson(latestAccount);
+ if(current.active!==ctx.workspaceId)throw new Error('Your workspace changed. Reopen the roster in your active organization workspace.');
+ const latestPolicy=requireOrganizationPermission(ctx,'academic');
+ if(latestPolicy.organizationEmail!==policy.organizationEmail)throw new Error('Your organization access changed. Refresh the roster.');
+ const members=organizationInvites(ctx).filter(invite=>invite.status==='active');
  return {members:members.map(m=>({id:m.id,email:m.email,role:m.role})),classes:classes.map(c=>({id:c.id,name:c.name,teacher:c.teacher_name||c.teacher_email}))};
 }
-export async function saveCohort(ctx,draft){
+export async function saveCohort(ctx,draft,expectedRevision=draft.id?resourceRevision(draft):undefined){
  const roster=await organizationRoster(ctx);
  if(draft.id&&!snapshot(ctx).resources.some(resource=>resource.id===draft.id&&resource.kind==='cohort'))throw new Error('This cohort is not available in your organization workspace.');
  if(!Array.isArray(draft.members||[])||!Array.isArray(draft.classIds||[])||
@@ -166,5 +172,5 @@ export async function saveCohort(ctx,draft){
  const members=[...new Set(draft.members||[])];const classIds=[...new Set(draft.classIds||[])];
  if(members.some(email=>!roster.members.some(m=>m.email===email)))throw new Error('A selected member is no longer connected. Refresh the roster.');
  if(classIds.some(id=>!roster.classes.some(c=>c.id===id)))throw new Error('A selected class is no longer linked to this organization.');
- return saveResource(ctx,{id:draft.id,title:draft.title,body:draft.body,kind:'cohort',status:draft.status||'draft',audience:'Organization',members,classIds});
+ return saveResource(ctx,{id:draft.id,title:draft.title,body:draft.body,kind:'cohort',status:draft.status||'draft',audience:'Organization',members,classIds},expectedRevision);
 }

@@ -1,40 +1,23 @@
-import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { useWorkspace } from '@/hooks/useWorkspace';
-import { answerParentReportQuestion, getParentReportAsk } from '@/services/parentReportAskService';
-
-const prompts = ['What does this evidence mean?', 'What could I ask their teacher?', 'What support activity can we try at home?'];
-
-export default function ParentReportAsk() {
- const { ctx, error: loadError } = useWorkspace();
- const [params] = useSearchParams();
- const childId = params.get('child') || '';
- const days = params.get('period') === '30' ? 30 : 7;
- const [question, setQuestion] = useState(prompts[0]);
- const [answer, setAnswer] = useState(null);
- const [, setRevision] = useState(0);
- useEffect(() => {
-  const refresh = () => { setAnswer(null); setRevision(value => value + 1); };
-  window.addEventListener('visionary:v2-change', refresh);
-  window.addEventListener('storage', refresh);
-  window.addEventListener('focus', refresh);
-  return () => { window.removeEventListener('visionary:v2-change', refresh); window.removeEventListener('storage', refresh); window.removeEventListener('focus', refresh); };
- }, []);
- useEffect(() => { setQuestion(prompts[0]); setAnswer(null); }, [childId]);
- if (loadError) return <div className="v-page" role="alert">{loadError}</div>;
- if (!ctx) return <div className="v-page" role="status">Opening your report…</div>;
- let report;
- let permissionError = '';
- try { report = getParentReportAsk(ctx, childId, days); } catch (error) { permissionError = error.message; }
- if (permissionError) return <div className="v-page"><section className="v-card" role="alert"><h1 className="v-title">Shared report unavailable</h1><p className="v-muted mt-3">{permissionError}</p><Link className="v-button mt-5" to="/dashboard/connections">Review connections</Link></section></div>;
- function ask(event) {
-  event.preventDefault();
-  try { setAnswer({ ...answerParentReportQuestion(ctx, childId, question, days), childId, days, personId: ctx.personId, workspaceId: ctx.workspaceId }); }
-  catch { setAnswer(null); setRevision(value => value + 1); }
- }
- return <div className="v-page"><header><p className="v-muted">Parent workspace · shared report</p><h1 className="v-title">Ask about {report.name}’s learning</h1><p className="v-muted mt-2">{report.period} · Guidance from consented summary counts. Private conversations, answers, grades and drafts are excluded.</p></header>
-  <section className="v-card"><h2 className="text-lg font-medium">What would help you support them?</h2><div className="mt-4 flex flex-wrap gap-2">{prompts.map(prompt => <button type="button" className="v-button" key={prompt} onClick={() => { setQuestion(prompt); setAnswer(null); }}>{prompt}</button>)}</div><form onSubmit={ask} className="mt-5"><label className="text-sm" htmlFor="parent-report-question">Your question</label><textarea id="parent-report-question" className="v-field mt-2" rows={3} maxLength={500} value={question} onChange={event => setQuestion(event.target.value)} /><p className="v-muted mt-2">This local helper covers these three topics using only the selected child’s currently shared summary. Other questions need a connected teaching service. Your question and its reply are not saved.</p><button className="v-button primary mt-4" disabled={!question.trim()}>Get guidance</button></form></section>
-  {answer?.childId === childId && answer?.days === days && answer?.personId === ctx.personId && answer?.workspaceId === ctx.workspaceId && <section className="v-card" aria-live="polite"><h2 className="text-lg font-medium">From {answer.name}’s shared report</h2><p className="mt-3 text-base leading-7">{answer.answer}</p><details className="mt-4 text-sm"><summary className="cursor-pointer">Evidence and other ways to help</summary><p className="mt-3">{answer.evidence}</p><p className="mt-3">{answer.teacherQuestion}</p><p className="mt-3">{answer.activity}</p></details><p className="v-muted mt-4">{answer.source}. This is a local guide, not an AI assessment or teacher instruction.</p></section>}
-  <Link className="v-button" to={`/dashboard/reports?child=${encodeURIComponent(childId)}&period=${days}`}>Return to shared report</Link>
- </div>;
+import {useEffect,useState} from 'react';
+import {Link,useSearchParams} from 'react-router-dom';
+import {useWorkspace} from '@/hooks/useWorkspace';
+import {answerParentReportQuestion,getParentReportAsk} from '@/services/parentReportAskService';
+import {parentCopy} from '@/lib/parentCopy';
+const prompts=['What does this evidence mean?','What could I ask their teacher?','What support activity can we try at home?'];
+export default function ParentReportAsk(){const scope=useWorkspace();return <ParentReportAskContent key={`${scope.ctx?.personId}:${scope.ctx?.workspaceId}`} scope={scope}/>;}
+function ParentReportAskContent({scope}){
+ const {ctx,data,error:loadError,refresh}=scope,locale=data?.preferences.interfaceLocale||'en',t=parentCopy(locale);
+ const [params]=useSearchParams();const childId=params.get('child')||'',days=params.get('period')==='30'?30:7;
+ const [question,setQuestion]=useState(()=>t(prompts[0])),[answer,setAnswer]=useState(null),[askError,setAskError]=useState('');const [,setRevision]=useState(0);
+ useEffect(()=>{const invalidate=()=>{setAnswer(null);setAskError('');setRevision(value=>value+1);};const events=['visionary:v2-change','visionary:workspace-change','visionary:mentor-change','visionary:learning-change','storage','focus'];events.forEach(event=>window.addEventListener(event,invalidate));return()=>events.forEach(event=>window.removeEventListener(event,invalidate));},[]);
+ useEffect(()=>{setQuestion(t(prompts[0]));setAnswer(null);setAskError('');},[childId]);
+ function retry(){refresh();setRevision(value=>value+1);}
+ if(loadError)return <div className="v-page" lang={locale}><h1 className="v-title">{t('Shared report unavailable')}</h1><p className="v-notice v-error" role="alert" lang="en">{loadError}</p><button className="v-button mt-4" onClick={retry}>{t('Retry report')}</button></div>;
+ if(!ctx)return <div className="v-page" role="status" lang={locale}>{t('Opening your report…')}</div>;
+ let report,permissionError='';try{report=getParentReportAsk(ctx,childId,days);}catch(error){permissionError=error.message;}
+ if(permissionError)return <div className="v-page" lang={locale}><section className="v-card"><h1 className="v-title">{t('Shared report unavailable')}</h1><p className="v-notice v-error mt-3" role="alert" lang="en">{permissionError}</p><div className="mt-5 flex flex-wrap gap-3"><button className="v-button" onClick={retry}>{t('Retry report')}</button><Link className="v-button" to="/dashboard/connections">{t('Review connections')}</Link></div></section></div>;
+ function ask(event){event.preventDefault();try{setAnswer({...answerParentReportQuestion(ctx,childId,question,days),childId,days,personId:ctx.personId,workspaceId:ctx.workspaceId});setAskError('');}catch(error){setAnswer(null);setAskError(error.message);setRevision(value=>value+1);}}
+ const evidence=answer?(answer.counts.recorded?t('{correct} of {recorded} recorded check answers were correct across {concepts} concepts in the last {days} days. This is limited activity evidence, not a measure of ability or a diagnosis.',answer.counts):t('No guided check answers were shared in the last {days} days. That means there is no recent recorded evidence here, not that your child knows nothing.',{days})):'';
+ const guidance=answer?(answer.kind==='evidence'?evidence:answer.kind==='teacher'?t(answer.teacherQuestion):answer.kind==='activity'?t(answer.activity):t(answer.answer)):'';
+ return <div className="v-page" lang={locale}><header><p className="v-muted">{t('Parent workspace · shared report')}</p><h1 className="v-title">{t('Ask about {name}’s learning',{name:report.name})}</h1><p className="v-muted mt-2">{t('Last {days} days',{days})} · {t('Guidance from consented summary counts. Private conversations, answers, grades and drafts are excluded.')}</p></header><section className="v-card"><h2 className="text-lg font-medium">{t('What would help you support them?')}</h2><div className="mt-4 flex flex-wrap gap-2">{prompts.map(prompt=><button type="button" className="v-button" key={prompt} onClick={()=>{setQuestion(t(prompt));setAnswer(null);setAskError('');}}>{t(prompt)}</button>)}</div><form onSubmit={ask} className="mt-5"><label className="text-sm" htmlFor="parent-report-question">{t('Your question')}</label><textarea id="parent-report-question" className="v-field mt-2" rows={3} maxLength={500} value={question} onChange={event=>setQuestion(event.target.value)}/><p className="v-muted mt-2">{t('This local helper covers these three topics using only the selected child’s currently shared summary. Other questions need a connected teaching service. Your question and its reply are not saved.')}</p><button className="v-button primary mt-4" disabled={!question.trim()}>{t('Get guidance')}</button></form>{askError&&<p className="v-notice v-error mt-4" role="alert" lang="en">{askError}</p>}</section>{answer?.childId===childId&&answer?.days===days&&answer?.personId===ctx.personId&&answer?.workspaceId===ctx.workspaceId&&<section className="v-card" aria-live="polite"><h2 className="text-lg font-medium">{t('From {name}’s shared report',{name:answer.name})}</h2><p className="mt-3 text-base leading-7">{guidance}</p><details className="mt-4 text-sm"><summary className="cursor-pointer">{t('Evidence and other ways to help')}</summary><p className="mt-3">{evidence}</p><p className="mt-3">{t(answer.teacherQuestion)}</p><p className="mt-3">{t(answer.activity)}</p></details><p className="v-muted mt-4">{t('Active progress-summary sharing · last {days} days · saved local records',{days})}. {t('This is a local guide, not an AI assessment or teacher instruction.')}</p></section>}<Link className="v-button" to={`/dashboard/reports?child=${encodeURIComponent(childId)}&period=${days}`}>{t('Return to shared report')}</Link></div>;
 }

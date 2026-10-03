@@ -1,0 +1,17 @@
+warning: in the working copy of 'visionary-app/src/components/dashboard/AssignLesson.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/ClassPromotion.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/CommunityTab.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/DashboardLayout.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/LessonChecksEditor.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/LessonObjectivePicker.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/LocalDataPreview.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/ParentClassworkDigest.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/ParentProjectSharing.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/ProjectCriteria.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/TeacherContentInbox.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/AssignmentGrader.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/tabs/ClassworkTab.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/tabs/InsightsTab.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/tabs/KnowledgeHeatmap.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/tabs/PeopleTab.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/tabs/StreamTab.jsx', LF will be replaced by CRLF the next time Git touches it

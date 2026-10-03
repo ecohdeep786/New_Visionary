@@ -1,135 +1,22 @@
-import { Grid3x3 } from "lucide-react";
+import { Grid3x3 } from 'lucide-react';
+import { summarizeClassAssessment } from '@/lib/classAssessment';
+import { classTabCopy } from '@/lib/classTabCopy';
 
-/**
- * Knowledge Heatmap — Visionary's teacher moat.
- * A student × concept matrix where each cell is colored by that student's
- * live mastery of that concept (avg of their graded submissions on
- * assignments tagged with that concept). This is the instructional insight
- * Google Classroom can't surface.
- */
-export default function KnowledgeHeatmap({ submissions, assignments, accent }) {
-  // assignment -> topics
-  const aMap = {};
-  (assignments || []).forEach((a) => (aMap[a.id] = a.topics || []));
-
-  // ordered concept list (first appearance)
-  const concepts = [];
-  (assignments || []).forEach((a) =>
-    (a.topics || []).forEach((t) => {
-      if (!concepts.includes(t)) concepts.push(t);
-    })
-  );
-
-  // students with per-concept grade buckets
-  const studentMap = {};
-  (submissions || [])
-    .filter((s) => s.status === "graded")
-    .forEach((s) => {
-      const key = s.student_id || s.student_email || s.id;
-      const name = s.student_name || s.student_email || "Student";
-      if (!studentMap[key]) studentMap[key] = { name, concepts: {} };
-      (aMap[s.assignment_id] || []).forEach((c) => {
-        if (!studentMap[key].concepts[c]) studentMap[key].concepts[c] = [];
-        const points = Number(assignments.find(a => a.id === s.assignment_id)?.points) || 100;
-        studentMap[key].concepts[c].push(Math.max(0, Math.min(100, Number(s.grade || 0) / points * 100)));
-      });
-    });
-  const students = Object.values(studentMap);
-
-  const cellGrade = (stu, c) => {
-    const g = stu.concepts[c];
-    if (!g || !g.length) return null;
-    return Math.round(g.reduce((x, y) => x + y, 0) / g.length);
-  };
-  const colorFor = (v) => {
-    if (v === null) return "#dadce0";
-    if (v >= 70) return "#34a853";
-    if (v >= 40) return accent;
-    return "#ea4335";
-  };
-
-  return (
-    <div className="bg-white rounded-3xl border border-[#dadce0]/60 p-6">
-      <div className="flex items-center gap-2 mb-1">
-        <Grid3x3 className="w-5 h-5" style={{ color: accent }} />
-        <h3 className="text-sm font-medium text-[#121317]">Knowledge heatmap</h3>
+export default function KnowledgeHeatmap({ submissions = [], assignments = [], summary: provided, accent, locale = 'en' }) {
+  const copy = classTabCopy(locale);
+  const { concepts, students } = provided || summarizeClassAssessment(assignments, submissions);
+  const colorFor = value => value === null ? '#f1f3f4' : value >= 70 ? '#e6f4ea' : value >= 40 ? '#e8f0fe' : '#fce8e6';
+  return <section className="rounded-3xl border border-[#dadce0]/60 bg-white p-6">
+    <h3 className="mb-1 flex items-center gap-2 text-sm font-medium text-[#121317]"><Grid3x3 aria-hidden="true" className="h-5 w-5" style={{ color: accent }} />{copy('Recorded score heatmap')}</h3>
+    <p className="mb-6 text-xs text-[#5f6368]">{copy('Recorded assignment scores by concept. Use these alongside conversations and practice to decide what support helps.')}</p>
+    {!concepts.length || !students.length ? <p className="py-10 text-center text-sm text-[#5f6368]">{copy('The heatmap fills in once you tag concepts on assignments and return graded work.')}</p> : <>
+      <div tabIndex={0} role="region" aria-label={copy('Recorded score heatmap')} className="overflow-x-auto rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4285F4]">
+        <table className="min-w-full border-separate border-spacing-1"><caption className="sr-only">{copy('Recorded assignment scores by concept. Use these alongside conversations and practice to decide what support helps.')}</caption>
+          <thead><tr><th scope="col" className="sticky left-0 z-10 whitespace-nowrap bg-white px-2 py-1.5 text-left text-xs font-medium text-[#5f6368]">{copy('Student')}</th>{concepts.map(topic => <th scope="col" key={topic} className="min-w-16 whitespace-nowrap px-2 py-1.5 text-xs font-medium text-[#5f6368]">{topic}</th>)}</tr></thead>
+          <tbody>{students.map(student => <tr key={student.id}><th scope="row" className="sticky left-0 z-10 whitespace-nowrap bg-white px-2 py-1.5 text-left text-sm font-normal text-[#5f6368]">{student.name || copy('Student')}</th>{concepts.map(topic => { const value = Object.hasOwn(student.concepts, topic) ? student.concepts[topic] : null; return <td key={topic} className="px-0.5 py-0.5"><div className="flex h-9 min-w-[56px] items-center justify-center rounded-lg text-xs font-medium" style={{ backgroundColor: colorFor(value), color: '#121317' }} title={value === null ? copy('No valid graded evidence') : `${value}%`}>{value === null ? '—' : `${value}%`}</div></td>; })}</tr>)}</tbody>
+        </table>
       </div>
-      <p className="text-xs text-[#5f6368] mb-6">
-        Recorded assignment scores by concept. Use these alongside conversations and practice to decide what support helps.
-      </p>
-
-      {concepts.length === 0 || students.length === 0 ? (
-        <div className="flex flex-col items-center gap-3 py-10 text-center">
-          <Grid3x3 className="w-10 h-10 text-[#dadce0]" />
-          <p className="text-sm text-[#5f6368] max-w-sm">
-            The heatmap fills in once you tag concepts on assignments and return graded work.
-          </p>
-        </div>
-      ) : (
-        <>
-          <div className="overflow-x-auto -mx-2 px-2">
-            <table className="border-separate border-spacing-1 min-w-full">
-              <thead>
-                <tr>
-                  <th className="sticky left-0 bg-white z-10 text-left text-xs font-medium text-[#5f6368] px-2 py-1.5 whitespace-nowrap">
-                    Student
-                  </th>
-                  {concepts.map((c) => (
-                    <th
-                      key={c}
-                      className="text-xs font-medium text-[#5f6368] px-2 py-1.5 whitespace-nowrap"
-                      style={{ minWidth: 64 }}
-                    >
-                      {c}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((stu, i) => (
-                  <tr key={i}>
-                    <td className="sticky left-0 bg-white z-10 text-sm text-[#5f6368] px-2 py-1.5 whitespace-nowrap">
-                      {stu.name}
-                    </td>
-                    {concepts.map((c) => {
-                      const v = cellGrade(stu, c);
-                      return (
-                        <td key={c} className="px-0.5 py-0.5">
-                          <div
-                            className="h-9 min-w-[56px] rounded-lg flex items-center justify-center text-xs font-medium"
-                            style={{
-                              backgroundColor: colorFor(v),
-                              color: v === null ? "#5f6368" : "#fff",
-                            }}
-                            title={v === null ? "No graded work yet" : `${v}%`}
-                          >
-                            {v === null ? "—" : `${v}`}
-                          </div>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Legend */}
-          <div className="flex flex-wrap items-center gap-4 mt-5">
-            {[
-              { label: "Mastered 70%+", color: "#34a853" },
-              { label: "Developing 40–69%", color: accent },
-              { label: "Needs review <40%", color: "#ea4335" },
-              { label: "Not yet graded", color: "#dadce0" },
-            ].map((l) => (
-              <div key={l.label} className="flex items-center gap-1.5">
-                <span className="w-3.5 h-3.5 rounded" style={{ backgroundColor: l.color }} />
-                <span className="text-xs text-[#5f6368]">{l.label}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
+      <div className="mt-5 flex flex-wrap items-center gap-4">{[['Score 70%+', '#34a853'], ['Score 40–69%', accent], ['Score below 40%', '#ea4335'], ['No valid graded evidence', '#dadce0']].map(([label, color]) => <div key={label} className="flex items-center gap-1.5"><span aria-hidden="true" className="h-3.5 w-3.5 rounded" style={{ backgroundColor: color }} /><span className="text-xs text-[#5f6368]">{copy(label)}</span></div>)}</div>
+    </>}
+  </section>;
 }

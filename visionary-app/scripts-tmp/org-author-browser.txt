@@ -1,0 +1,72 @@
+TimeoutError: locator.inputValue: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Source language', { exact: true })[22m
+
+Skip to content
+Active workspace
+Owner · Personal
++ Add a role
+O
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+Reviewed curriculum templates
+
+Author, review and retain source versions before use.
+
+New curriculum template
+
+Map the intended learner group, source sections, objectives and prerequisite sequence in each template. Approved fixed copies reach only chosen accepted teachers; teachers review their own preparation and classroom assignment. Approval records an editorial review on this device. It does not publish a learner curriculum, generate learning activities or verify source rights. Teachers control classroom assignments.
+
+Search content
+Content state
+all
+draft
+submitted
+changes
+approved
+archived
+Content versions
+
+Start with one sourced content draft.
+
+Earlier subject drafts · unreviewed
+Home
+People
+Cohorts
+Curriculum
+More
+Create content draft
+
+Edits stay here if saving fails. A different academic administrator reviews each authored revision.
+
+Local draft · Organization audience
+
+Content title
+Content and learning objective
+Source and exact version
+Source language
+English
+हिन्दी
+বাংলা
+Chapters and objectives
+
+Add structured source references, teaching and review criteria for objective-by-objective teacher preparation. Earlier narrative templates remain usable.
+
+Add curriculum structure
+Export current content edits
+Save content draft
+Discard unsaved edits and close
+Close
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.inputValue: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByLabel('Source language', { exact: true })
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\org-author-verify.mjs:4:594 {
+  log: [ "  - waiting for getByLabel('Source language', { exact: true })" ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

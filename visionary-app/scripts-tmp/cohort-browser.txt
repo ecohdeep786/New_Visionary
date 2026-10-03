@@ -1,0 +1,16 @@
+PASS en: cohort draft recovery, two-tab conflict/export/reload, quota retry, revoked member fail-closed/removal, 320–1440px, no page errors.
+PASS hi: cohort draft recovery, two-tab conflict/export/reload, quota retry, revoked member fail-closed/removal, 320–1440px, no page errors.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.innerText: Timeout 20000ms exceeded.
+Call log:
+  - waiting for locator('body')
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\cohort-editor-verify.mjs:28:55 {
+  log: [ "  - waiting for locator('body')" ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

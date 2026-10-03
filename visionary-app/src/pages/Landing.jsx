@@ -1,18 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import professionalHero from "@/assets/hero-cutouts/professional-800w.webp";
-import teacherHero from "@/assets/hero-cutouts/teacher-800w.webp";
-import studentHero from "@/assets/hero-cutouts/student-800w.webp";
-import parentHero from "@/assets/hero-cutouts/parent-800w.webp";
-import orgHero from "@/assets/hero-cutouts/organization-800w.webp";
-import professionalHero480 from "@/assets/hero-cutouts/professional-480w.webp";
-import teacherHero480 from "@/assets/hero-cutouts/teacher-480w.webp";
-import studentHero480 from "@/assets/hero-cutouts/student-480w.webp";
-import parentHero480 from "@/assets/hero-cutouts/parent-480w.webp";
-import orgHero480 from "@/assets/hero-cutouts/organization-480w.webp";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import LandingFAQ from "@/components/landing/LandingFAQ";
+import PersonaHero from "@/components/landing/NewPersona";
 import studentmeet from "@/assets/student-hero-main-1600w.webp"
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp"
 import parentmeet from "@/assets/parent-hero-main-1600w.webp"
@@ -268,216 +259,54 @@ const FAQ_ITEMS = [
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
 
-/* 01 · HERO — the universal front door, product-first. Analyzed against
-   Apple's iPhone 18 Pro hero ("iPhone 18 Pro" / "Pro further." / links) and
-   Google's Store + Workspace heroes (name / short tagline / one CTA): tiny
-   word counts, a clear title→tagline hierarchy, and the product visual as
-   the largest element on screen. So: the five journeys stand together as
-   one family on top (the lead visual), then a single-line title, a true
-   sub-heading, the one-sentence promise, and the CTA pair — no eyebrow, no
-   decoration. The cast is at REST after its entrance (a floating product is
-   a moving product), all rhythm is bounded px/clamp — no raw vh — and the
-   mobile hero keeps its natural height so the next chapter peeks in.
-   Non-interactive — the Meet Visionary section owns per-category navigation. */
+/* 01 · HERO — the universal front door, on the one hero law. The persona
+   heroes are full-viewport photography on white — that is the bar. The
+   universal page answers with the Apple homepage anatomy: the cycling
+   headline, the promise, and the CTA pair at the top center on white, and
+   the five personas standing together beneath as alpha cutouts rising from
+   the fold — no tiles, no scrims, one studio photograph. Sizing comes from
+   measured alpha boxes in NewPersona (CAST_METRICS). Per-category navigation
+   stays with the Meet Visionary section — the hero is non-interactive, like
+   Apple's. */
 
-/* One shared cast unit: the row is 3.84 × u wide (0.62u + 0.8u + u + 0.8u +
-   0.62u), so it can never exceed ~69vw at any viewport — the 320px floor is
-   safe by construction, and the 34vh cap keeps short laptops whole. */
-const CAST_UNIT = "clamp(56px, min(18vw, 34vh), 380px)";
+/* The family, as alpha cutouts on the page's own white (the persona hero
+   photography with the studio background removed) — so the landing stages
+   them as one unbroken lineup, the way Apple stages a product family. */
+import proCut480 from "@/assets/hero-cutouts/professional-480w.webp";
+import proCut800 from "@/assets/hero-cutouts/professional-800w.webp";
+import teacherCut480 from "@/assets/hero-cutouts/teacher-480w.webp";
+import teacherCut800 from "@/assets/hero-cutouts/teacher-800w.webp";
+import studentCut480 from "@/assets/hero-cutouts/student-480w.webp";
+import studentCut800 from "@/assets/hero-cutouts/student-800w.webp";
+import parentCut480 from "@/assets/hero-cutouts/parent-480w.webp";
+import parentCut800 from "@/assets/hero-cutouts/parent-800w.webp";
+import orgCut480 from "@/assets/hero-cutouts/organization-480w.webp";
+import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
 
-const LINEUP_WIDTHS = {
-  outer: `calc(${CAST_UNIT} * 0.62)`,
-  mid: `calc(${CAST_UNIT} * 0.8)`,
-  center: CAST_UNIT,
-};
+/* The universal sentence, in the persona grammar: the product names itself,
+   then the cycle carries every journey — student, teacher, parent,
+   professional, organization. */
+const LANDING_HERO_WORDS = ["One Intelligence.", "to learn.", "to teach.", "to help.", "to build.", "to lead."];
 
+const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
-  { label: "Professional", src: professionalHero, src480: professionalHero480, w: "outer" },
-  { label: "Teacher", src: teacherHero, src480: teacherHero480, w: "mid" },
-  { label: "Student", src: studentHero, src480: studentHero480, w: "center" },
-  { label: "Parent", src: parentHero, src480: parentHero480, w: "mid" },
-  { label: "Organization", src: orgHero, src480: orgHero480, w: "outer" },
+  { label: "Professional", src: proCut800, srcSet: cutSet(proCut480, proCut800) },
+  { label: "Teacher", src: teacherCut800, srcSet: cutSet(teacherCut480, teacherCut800) },
+  { label: "Student", src: studentCut800, srcSet: cutSet(studentCut480, studentCut800) },
+  { label: "Parent", src: parentCut800, srcSet: cutSet(parentCut480, parentCut800) },
+  { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800) },
 ];
-
-/* the cast overlaps slightly on desktop — one group, not five cards */
-const overlapCls = (i) => (i > 0 ? "lg:-ml-6 xl:-ml-8" : "");
 
 const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
-    <section
-      data-section="01-hero"
-      className="relative flex flex-col overflow-hidden bg-white lg:min-h-[calc(100svh-56px)]"
-      style={{ fontFamily: FONT_FAMILY, marginTop: 56 }}
-    >
-      {/* Apple-style entrance: the product lands first with a soft blur-rise,
-          then the words resolve in — the launch-tile sequence. After landing,
-          the family keeps a barely-there levitation and the ground shadow
-          breathes with it. Devices that report reduced motion (many Windows
-          installs ship with client-area animations off) still get a calm
-          staggered crossfade — visible, just without movement. */}
-      <style>
-        {`@keyframes appleRise{
-from{opacity:0;transform:translateY(30px) scale(0.96);filter:blur(10px)}
-to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-}
-@keyframes appleTextIn{
-from{opacity:0;transform:translateY(16px);filter:blur(8px)}
-to{opacity:1;transform:translateY(0);filter:blur(0)}
-}
-@keyframes appleFloat{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-7px)}
-}
-@keyframes appleFadeIn{
-from{opacity:0}
-to{opacity:1}
-}
-@media (prefers-reduced-motion: reduce){
-.apple-anim{animation-name:appleFadeIn !important;animation-duration:0.7s !important;animation-timing-function:ease-out !important;animation-iteration-count:1 !important}
-.apple-float{animation:none !important}
-}`}
-      </style>
-
-      {/* the stage — white. The cutouts' baked mist fades dissolve them into
-          it, so the cast stands in light without any atmosphere layer. */}
-
-      <div
-        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 pt-12 pb-12 text-center sm:px-8 lg:pt-20 lg:pb-16"
-      >
-        {/* the five journeys — one cast, standing together in the light.
-            The figures are background-free cutouts with a baked mist fade,
-            so they can share a stage and overlap like a family portrait. */}
-        <div className="relative flex w-full flex-col items-center">
-          {/* portraits — stepped heights, bottom-aligned on one ground line;
-              after the entrance the whole row levitates almost imperceptibly */}
-          <div
-            className="apple-float relative z-10 flex items-end justify-center gap-0 sm:gap-3 lg:gap-4"
-            style={{ animation: "appleFloat 7s ease-in-out 2.6s infinite" }}
-          >
-            {LANDING_HERO_LINEUP.map((p, i) => (
-              <div
-                key={p.label}
-                className={`apple-anim relative ${overlapCls(i)}`}
-                style={{
-                  width: LINEUP_WIDTHS[p.w],
-                  zIndex: p.w === "center" ? 30 : p.w === "mid" ? 20 : 10,
-                  animation: "appleRise 1.1s cubic-bezier(0.16,1,0.3,1) both",
-                  animationDelay: `${100 + i * 80}ms`,
-                }}
-              >
-                <img
-                  src={p.src}
-                  srcSet={`${p.src480} 480w, ${p.src} 800w`}
-                  sizes="(max-width: 767px) 30vw, 320px"
-                  alt=""
-                  aria-hidden="true"
-                  loading="eager"
-                  decoding="async"
-                  draggable="false"
-                  className="h-auto w-full select-none"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* contact shadow — tight and quiet, like a product shot */}
-          <div
-            aria-hidden="true"
-            className="apple-anim relative z-10 -mt-1.5 h-[11px] w-[min(1280px,94%)] rounded-[100%]"
-            style={{
-              backgroundColor: "rgba(31,35,45,0.12)",
-              filter: "blur(9px)",
-              animation: "appleRise 1s cubic-bezier(0.16,1,0.3,1) both",
-              animationDelay: "480ms",
-            }}
-          />
-
-          {/* labels — identification only, never links (Meet section navigates) */}
-          <div className="mt-3 flex items-start justify-center gap-1.5 sm:gap-3 lg:gap-4">
-            {LANDING_HERO_LINEUP.map((p, i) => (
-              <span
-                key={p.label}
-                className={`apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[12px] sm:block ${overlapCls(i)}`}
-                style={{
-                  width: LINEUP_WIDTHS[p.w],
-                  color: COLORS.slate,
-                  animation: "appleTextIn 0.9s cubic-bezier(0.16,1,0.3,1) both",
-                  animationDelay: "600ms",
-                }}
-              >
-                {p.label}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* title → tagline → promise — the Apple/Google hero hierarchy at the
-            canonical display scale; bounded clamps keep shorter laptops whole */}
-        <h1 className="m-0 mt-10 lg:mt-14">
-          <span
-            className="apple-anim block font-medium leading-[1.05] tracking-[0] text-[#121317]"
-            style={{
-              fontSize: "clamp(48px, min(5.55vw, 11vh), 80px)",
-              animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-              animationDelay: "560ms",
-            }}
-          >
-            One Intelligence.
-          </span>
-          <span
-            className="apple-anim accent-gradient block font-medium leading-[1.2] tracking-[0]"
-            style={{
-              fontSize: "clamp(22px, min(2.6vw, 4.2vh), 40px)",
-              marginTop: "clamp(10px, 1.4vw, 20px)",
-              animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-              animationDelay: "660ms",
-            }}
-          >
-            Built around you.
-          </span>
-        </h1>
-
-        {/* promise — Google writing style: plain, personal, one breath */}
-        <p
-          className="apple-anim mx-auto mt-4 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[17px] lg:text-[18px]"
-          style={{
-            color: COLORS.slate,
-            animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-            animationDelay: "760ms",
-          }}
-        >
-          Visionary carries your context across learning, teaching,
-          work, and life.
-        </p>
-
-        {/* CTA pair — same pills as every category hero; on ≤390px they stack
-            full-width on purpose instead of squeezing side by side */}
-        <div
-          className="apple-anim mt-8 flex flex-wrap items-center justify-center gap-3 lg:mt-10 max-[390px]:w-full max-[390px]:flex-col"
-          style={{
-            animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-            animationDelay: "860ms",
-          }}
-        >
-          <Link
-            to="/register"
-            className="inline-flex h-12 w-full max-w-[320px] items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:max-w-none"
-          >
-            Start free
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="M13 6l6 6-6 6" />
-            </svg>
-          </Link>
-          <Link
-            to="/how-it-works"
-            className="inline-flex h-12 w-full max-w-[320px] items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:max-w-none"
-          >
-            See how it works
-          </Link>
-        </div>
-      </div>
-    </section>
+    <PersonaHero
+      words={LANDING_HERO_WORDS}
+      srSentence="One Intelligence. To learn. To teach. To help. To build. To lead."
+      sub="Visionary carries your context across learning, teaching, work, and life."
+      cast={LANDING_HERO_LINEUP}
+      ctaLabel="Start free"
+      minDisplay={36}
+    />
   );
 });
 
@@ -632,7 +461,11 @@ function LandingMeetSection() {
           </p>
         </FadeReveal>
       </div>
-      <div className="sticky top-14 z-30 bg-white px-4 py-5 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
+      {/* the tab strip pins just below the floating capsule nav (8px top
+          gap + 56px bar = 64px, plus an 8px breath) */}
+      {/* the tab strip pins just below the straight glass bar (56px bar,
+          plus an 8px breath) */}
+      <div className="sticky top-[64px] z-30 bg-white px-4 py-5 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-24 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
           <div className="sticky top-28 flex h-[calc(100svh-136px)] items-center">

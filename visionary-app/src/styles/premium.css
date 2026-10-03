@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Premium interaction layer — the Tier-1 bar measured fresh from
+   apple.com product pages and the Google Store / DeepMind showcases
+   (Oct 2026 research pass, no inherited memory).
+
+   Laws that live here so every public page inherits them:
+   1. Physical buttons — press depth, hover bloom, arrow nudge.
+   2. Bento surfaces — hairline borders, lift-on-hover, image zoom.
+   3. Dark cinematic scene — the one dark chapter a page is allowed.
+   4. Motion tokens — the easings every transition shares.
+   5. Apple flyout sheet — full-bleed menu under the nav bar + page scrim.
+
+   Everything respects the global prefers-reduced-motion contract.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Apple's resolve-out curve plus a spring with weight — the two easings
+     every premium transition on the public site shares. */
+  --ease-out-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.22, 1.4, 0.36, 1);
+  --ease-google: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Dark cinematic scene tokens */
+  --scene-ink: #0a0d14;
+  --scene-ink-soft: rgba(245, 247, 250, 0.72);
+  --scene-hairline: rgba(255, 255, 255, 0.1);
+}
+
+/* ── 1 · Buttons that feel physical ───────────────────────────────────────
+   Not a restyle — an interaction contract. Weight lifts on hover, presses
+   back on touch, and the trailing arrow leans forward. Attach to any
+   existing pill; the pill's own colors stay authoritative. */
+.btn-premium {
+  transition:
+    transform 0.5s var(--ease-out-apple),
+    box-shadow 0.5s var(--ease-out-apple),
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  will-change: transform;
+}
+.btn-premium:hover {
+  transform: translateY(-1.5px);
+}
+.btn-premium:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: 0.12s;
+}
+.btn-premium-dark:hover {
+  box-shadow:
+    0 12px 28px rgba(18, 19, 23, 0.2),
+    0 2px 8px rgba(18, 19, 23, 0.1);
+}
+.btn-premium-blue:hover {
+  box-shadow:
+    0 12px 30px rgba(11, 87, 208, 0.3),
+    0 2px 8px rgba(11, 87, 208, 0.16);
+}
+.btn-premium-ghost:hover {
+  box-shadow: 0 8px 22px rgba(60, 64, 67, 0.1);
+}
+/* the trailing arrow leans into the action */
+.btn-arrow {
+  transition: transform 0.45s var(--ease-out-apple);
+}
+.btn-premium:hover .btn-arrow,
+.group:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ── 2 · Bento surfaces — Google's modular grid, Apple's restraint ────────
+   A hairline skin, not a shadowed card: the surface stays flat until the
+   pointer arrives, then it lifts like a physical tile. */
+.bento-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(18, 19, 23, 0.08);
+  border-radius: 24px;
+  background: #ffffff;
+  transition:
+    transform 0.6s var(--ease-out-apple),
+    box-shadow 0.6s var(--ease-out-apple),
+    border-color 0.3s ease;
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(66, 133, 244, 0.3);
+  box-shadow:
+    0 20px 48px rgba(60, 64, 67, 0.14),
+    0 2px 10px rgba(60, 64, 67, 0.08);
+}
+
+/* ── 3 · The dark cinematic chapter ───────────────────────────────────────
+   Apple stages its AI and camera chapters on near-black; one dark scene per
+   page is the rhythm. Blue-tinted ink, frosted text, hairline chrome. */
+.scene-dark {
+  background-color: var(--scene-ink);
+  color: #f5f7fa;
+}
+.scene-dark .text-frost {
+  color: var(--scene-ink-soft);
+}
+/* the accent gradient re-balanced for dark: brighter stops so the phrase
+   glows instead of sinking into the ink */
+.accent-gradient-on-dark {
+  background-image: linear-gradient(
+    92deg,
+    #8ab4f8 0%,
+    #a5c8ff 38%,
+    #c8b6ff 72%,
+    #78d9ff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── 4 · Motion tokens ──────────────────────────────────────────────────── */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ── 5 · Flyout panel (Apple × Google hybrid) ────────────────────────────
+   The menu drops as a floating rounded panel under the capsule nav: frosted
+   white, one hairline border, no card shadow — the same flat-surface law as
+   the site's g-card system. A quiet scrim dims the page behind it. */
+.mega-scrim {
+  background: rgba(18, 19, 23, 0.24);
+  animation: megaScrimIn 0.4s var(--ease-out-apple) both;
+}
+.mega-sheet {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: saturate(1.8) blur(24px);
+  -webkit-backdrop-filter: saturate(1.8) blur(24px);
+  animation: megaSheetIn 0.42s var(--ease-out-apple) both;
+}
+@keyframes megaScrimIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes megaSheetIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Reduced motion: the physical layer switches off, not down ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  .btn-premium,
+  .btn-premium:active,
+  .btn-arrow,
+  .bento-card,
+  .bento-card:hover,
+  .mega-sheet,
+  .mega-scrim {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

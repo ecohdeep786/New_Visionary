@@ -1,0 +1,180 @@
+vite v6.4.3 building for production...
+
+(!) outDir C:\Users\Administrator\AppData\Local\Temp\visionary-parent-journey-final4-20261003 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+✓ 2190 modules transformed.
+rendering chunks...
+computing gzip size...
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/index.html                                           1.24 kB │ gzip:   0.56 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-480w-BFU4hG5P.webp              19.80 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-480w-9MPWY5k8.webp              21.10 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-480w-DvXRjz_O.webp                   23.51 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-480w-Bj3euxWy.webp                   24.79 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-primary-BQqYJWen.webp                27.31 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-480w-D_jhGVlf.webp                    31.19 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/index-CK8H-08l.css                          146.07 kB │ gzip:  25.86 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/WorkspaceIntro-D_2Itdjy.js                    0.60 kB │ gzip:   0.30 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/useStudentData-BzUFvpgt.js                    0.71 kB │ gzip:   0.45 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/useThemeColor-DWCFz2wP.js                     0.78 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/useWorkspace-DmI4_yGk.js                      0.88 kB │ gzip:   0.49 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CriterionFeedback-gDGfJ6t9.js                 0.88 kB │ gzip:   0.51 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/VisionaryLogo-qT1nXpIS.js                     0.94 kB │ gzip:   0.62 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/PolicyTabs-rSG64YQZ.js                        1.13 kB │ gzip:   0.65 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/JourneyCatalogue-CuTXdN_-.js                  1.29 kB │ gzip:   0.67 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/resourceEditorDraft-Dwq0rL0j.js               1.59 kB │ gzip:   0.76 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Breadcrumb-DgT8lxod.js                        1.80 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/dialog-Bmm993zj.js                            2.12 kB │ gzip:   0.90 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ValuesStrip-Bsy3j2Ep.js                       2.16 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/LessonObjectivePreview-BOqXKcpW.js            2.25 kB │ gzip:   0.94 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ForgotUserId-DhrDlEHt.js                      2.29 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ForgotPassword-CHHC7qrm.js                    2.32 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ResetPassword-Ub4y1T3J.js                     2.42 kB │ gzip:   1.07 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CubeLearningEntry-B9EKJ7N1.js                 2.72 kB │ gzip:   1.29 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/AuthLayout-DKzDmvrL.js                        2.90 kB │ gzip:   0.89 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/SocialAuthButtons-K3HM6tmW.js                 3.12 kB │ gzip:   1.37 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Learners-BuoQ9tsn.js                          3.30 kB │ gzip:   1.46 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/stagePresentation-CjnO5ZWs.js                 3.33 kB │ gzip:   1.15 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/curriculumBridgeService-CLMBW9at.js           3.71 kB │ gzip:   1.55 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/LandingFAQ-9gd_9ZxM.js                        4.04 kB │ gzip:   1.53 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/roleMentorService-CKwJYSbf.js                 4.22 kB │ gzip:   1.80 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/dailyPlanService-BG5chUz3.js                  4.84 kB │ gzip:   1.89 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ClassworkProjectSubmission-B9ohfSgY.js        5.33 kB │ gzip:   2.27 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Explore-D0x2_2tS.js                           5.46 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/hooks-wjliB79M.js                             5.68 kB │ gzip:   2.28 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Children-D0n4ZCbl.js                          5.80 kB │ gzip:   2.15 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Cohorts-DlD7DHkY.js                           6.13 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/AuthUI-4N0O3xRw.js                            6.70 kB │ gzip:   2.11 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Login-DrzAryJP.js                             7.42 kB │ gzip:   2.06 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Plans-hciRL23n.js                             8.39 kB │ gzip:   3.04 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Practice-Cwu6S3iq.js                          9.25 kB │ gzip:   3.39 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Register-B2EmHpyE.js                          9.36 kB │ gzip:   2.85 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/TopicDetail-C67UXkHu.js                      10.83 kB │ gzip:   3.79 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Settings-YSGISYpy.js                         10.97 kB │ gzip:   3.94 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Learn-CduG-F5M.js                            11.41 kB │ gzip:   4.01 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/TeacherHome-BsLFD_Xs.js                      12.75 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Connections-D6dFBfaN.js                      12.76 kB │ gzip:   4.50 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/stageTransitionService-BZt3NBL9.js           13.26 kB │ gzip:   4.48 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/SchoolPage-gXziA_tG.js                       13.87 kB │ gzip:   4.53 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/AILearningPage-DH8dZr8V.js                   14.57 kB │ gzip:   4.32 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CommunityPage-Bc7ri5nk.js                    14.93 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/mentorStateService-Dmfpsagu.js               15.78 kB │ gzip:   5.58 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ContactPage-N8OhqkjD.js                      15.91 kB │ gzip:   4.47 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/classroomService-CQQY-aG1.js                 16.05 kB │ gzip:   5.31 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/SafetyPage-q65n3kok.js                       16.34 kB │ gzip:   4.67 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/DownloadPage-CfcicKZB.js                     16.49 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/AccessibilityPage-Bg3a0Rmg.js                17.51 kB │ gzip:   5.02 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/contentRepository-C4lpLMk9.js                17.62 kB │ gzip:   5.80 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ReferralPage-CHW3pLjG.js                     17.94 kB │ gzip:   5.10 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/learningPipelineService-BjyPY8bk.js          18.63 kB │ gzip:   6.71 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/UpdatesPage-BMWiQflC.js                      18.80 kB │ gzip:   5.06 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Support-fgAgUE7X.js                          19.31 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/AboutUsPage-CZCeNF5A.js                      19.78 kB │ gzip:   5.63 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CareersPage-DOa6ZmJM.js                      20.10 kB │ gzip:   5.91 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Profile-Bzjvqb_b.js                          20.14 kB │ gzip:   5.21 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ClassworkStudy-CNv6VK6I.js                   20.62 kB │ gzip:   6.37 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CookiesPage-CBgN05nm.js                      21.69 kB │ gzip:   6.06 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/voiceService-De_79I67.js                     21.90 kB │ gzip:   7.26 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/PersonaSections-BMWz8-L3.js                  23.02 kB │ gzip:   6.51 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/LandingFooter-bA9gx_eO.js                    23.22 kB │ gzip:   6.07 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CoachingPage-CzWudIvH.js                     24.22 kB │ gzip:   6.65 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/PartnersPage-DGh4iQj5.js                     24.94 kB │ gzip:   6.91 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/RoleWorkspace-DLHb_3ll.js                    25.11 kB │ gzip:   7.58 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/LearningRepresentation-CsNGaPSu.js           25.98 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/TermsPage-DAacGviB.js                        26.01 kB │ gzip:   7.32 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ResearchNewsPage-CqA6CE1K.js                 26.29 kB │ gzip:   6.94 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/StudentClasses-YC0KzRSi.js                   27.15 kB │ gzip:   8.29 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/classworkCopy-DkEjc3ly.js                    27.40 kB │ gzip:   6.20 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/SecurityPage-Dt1Vl10I.js                     27.72 kB │ gzip:   6.94 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/OrganizationContent-CoCyutOv.js              28.29 kB │ gzip:   7.95 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/privacyCopy-DZop0AUd.js                      28.74 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/professionalCopy-DupQB2pj.js                 28.77 kB │ gzip:   7.12 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/PrivacyPage-CEkrRTUp.js                      29.45 kB │ gzip:   7.89 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/stageCopy-BiyhUTuL.js                        31.18 kB │ gzip:   7.22 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/SpotIllustration-K29JmLpg.js                 32.27 kB │ gzip:   6.46 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/OrganizationPage-DbDVCvo0.js                 33.10 kB │ gzip:   9.77 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CommunityTab-CwxkyeF8.js                     34.10 kB │ gzip:  10.08 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/StudentPage-B_LbJJiw.js                      34.55 kB │ gzip:  10.09 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ParentPage-feVksF5Z.js                       35.01 kB │ gzip:  10.32 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/TeacherPage-BLTXsUd2.js                      35.81 kB │ gzip:  10.40 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Onboarding-BJhxA8IZ.js                       36.91 kB │ gzip:  10.75 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Guide-pyMIctpf.js                            41.76 kB │ gzip:  13.19 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/DashboardHome-DjMUHUv8.js                    44.27 kB │ gzip:  13.14 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/LearningWorkspace-BCN_bz3F.js                44.99 kB │ gzip:  12.87 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ClassDetail-u5dmn3y-.js                      47.44 kB │ gzip:  12.40 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/Landing-Cg4F3_yt.js                          51.10 kB │ gzip:  14.36 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/CollegePage-DlGz3kGf.js                      54.12 kB │ gzip:  14.39 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/DashboardLayout-BHJgtwSa.js                  54.64 kB │ gzip:  17.06 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/ArtifactStudio-jO_wyUoW.js                   64.38 kB │ gzip:  16.23 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/parentCopy-CoMGlb0J.js                       67.68 kB │ gzip:  14.99 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/WorkspaceTools-Roln3YM6.js                  106.31 kB │ gzip:  27.90 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/index-BaomsyoP.js                           145.23 kB │ gzip:  44.77 kB
+../../AppData/Local/Temp/visionary-parent-journey-final4-20261003/assets/vendor-BxCPPHXQ.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 18.98s

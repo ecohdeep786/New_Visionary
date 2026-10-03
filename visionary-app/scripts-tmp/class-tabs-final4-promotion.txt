@@ -1,0 +1,3 @@
+PASS en: promotion failed notice write rolls back learner stage and retains form; retry publishes localized result with original reason and class 8.
+PASS hi: promotion failed notice write rolls back learner stage and retains form; retry publishes localized result with original reason and class 8.
+PASS bn: promotion failed notice write rolls back learner stage and retains form; retry publishes localized result with original reason and class 8.
