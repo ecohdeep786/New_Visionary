@@ -4,6 +4,11 @@ import teacherHero from "@/assets/hero-cutouts/teacher-800w.webp";
 import studentHero from "@/assets/hero-cutouts/student-800w.webp";
 import parentHero from "@/assets/hero-cutouts/parent-800w.webp";
 import orgHero from "@/assets/hero-cutouts/organization-800w.webp";
+import professionalHero480 from "@/assets/hero-cutouts/professional-480w.webp";
+import teacherHero480 from "@/assets/hero-cutouts/teacher-480w.webp";
+import studentHero480 from "@/assets/hero-cutouts/student-480w.webp";
+import parentHero480 from "@/assets/hero-cutouts/parent-480w.webp";
+import orgHero480 from "@/assets/hero-cutouts/organization-480w.webp";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -44,6 +49,19 @@ const COLORS = {
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return undefined;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
+  return reduced;
+}
+
 function useCycleIndex(total, intervalMs) {
   const [index, setIndex] = useState(0);
   const goTo = useCallback((i) => setIndex(((i % total) + total) % total), [total]);
@@ -126,16 +144,15 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Carousel slides">
+    <div className="flex items-center gap-2" role="group" aria-label="Carousel slides">
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
+          aria-pressed={i === active}
           aria-label={`Go to slide ${i + 1}`}
-          aria-selected={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -258,21 +275,28 @@ const FAQ_ITEMS = [
    the largest element on screen. So: the five journeys stand together as
    one family on top (the lead visual), then a single-line title, a true
    sub-heading, the one-sentence promise, and the CTA pair — no eyebrow, no
-   decoration. All vertical rhythm is vh-clamped so every device keeps the
-   same proportional breathing space. Non-interactive — the Meet Visionary
-   section owns per-category navigation. */
+   decoration. The cast is at REST after its entrance (a floating product is
+   a moving product), all rhythm is bounded px/clamp — no raw vh — and the
+   mobile hero keeps its natural height so the next chapter peeks in.
+   Non-interactive — the Meet Visionary section owns per-category navigation. */
+
+/* One shared cast unit: the row is 3.84 × u wide (0.62u + 0.8u + u + 0.8u +
+   0.62u), so it can never exceed ~69vw at any viewport — the 320px floor is
+   safe by construction, and the 34vh cap keeps short laptops whole. */
+const CAST_UNIT = "clamp(56px, min(18vw, 34vh), 380px)";
+
 const LINEUP_WIDTHS = {
-  outer: "clamp(54px, min(23vh, 12.3vw), 240px)",
-  mid: "clamp(70px, min(29vh, 15.5vw), 300px)",
-  center: "clamp(88px, min(34vh, 19vw), 380px)",
+  outer: `calc(${CAST_UNIT} * 0.62)`,
+  mid: `calc(${CAST_UNIT} * 0.8)`,
+  center: CAST_UNIT,
 };
 
 const LANDING_HERO_LINEUP = [
-  { label: "Professional", src: professionalHero, w: "outer" },
-  { label: "Teacher", src: teacherHero, w: "mid" },
-  { label: "Student", src: studentHero, w: "center" },
-  { label: "Parent", src: parentHero, w: "mid" },
-  { label: "Organization", src: orgHero, w: "outer" },
+  { label: "Professional", src: professionalHero, src480: professionalHero480, w: "outer" },
+  { label: "Teacher", src: teacherHero, src480: teacherHero480, w: "mid" },
+  { label: "Student", src: studentHero, src480: studentHero480, w: "center" },
+  { label: "Parent", src: parentHero, src480: parentHero480, w: "mid" },
+  { label: "Organization", src: orgHero, src480: orgHero480, w: "outer" },
 ];
 
 /* the cast overlaps slightly on desktop — one group, not five cards */
@@ -282,13 +306,13 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
     <section
       data-section="01-hero"
-      className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-white"
-      style={{ fontFamily: FONT_FAMILY, marginTop: 64 }}
+      className="relative flex flex-col overflow-hidden bg-white lg:min-h-[calc(100svh-56px)]"
+      style={{ fontFamily: FONT_FAMILY, marginTop: 56 }}
     >
       {/* Apple-style entrance: the product lands first with a soft blur-rise,
           then the words resolve in — the launch-tile sequence. After landing,
           the family keeps a barely-there levitation and the ground shadow
-          breathes with it. Devices that report reduced-motion (many Windows
+          breathes with it. Devices that report reduced motion (many Windows
           installs ship with client-area animations off) still get a calm
           staggered crossfade — visible, just without movement. */}
       <style>
@@ -304,10 +328,6 @@ to{opacity:1;transform:translateY(0);filter:blur(0)}
 0%,100%{transform:translateY(0)}
 50%{transform:translateY(-7px)}
 }
-@keyframes appleShadowSwell{
-0%,100%{transform:scaleX(1)}
-50%{transform:scaleX(0.96)}
-}
 @keyframes appleFadeIn{
 from{opacity:0}
 to{opacity:1}
@@ -322,7 +342,7 @@ to{opacity:1}
           it, so the cast stands in light without any atmosphere layer. */}
 
       <div
-        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 pt-14 pb-12 text-center sm:px-8 lg:pt-[min(8.5vh,110px)] lg:pb-[4.5vh]"
+        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 pt-12 pb-12 text-center sm:px-8 lg:pt-20 lg:pb-16"
       >
         {/* the five journeys — one cast, standing together in the light.
             The figures are background-free cutouts with a baked mist fade,
@@ -347,6 +367,8 @@ to{opacity:1}
               >
                 <img
                   src={p.src}
+                  srcSet={`${p.src480} 480w, ${p.src} 800w`}
+                  sizes="(max-width: 767px) 30vw, 320px"
                   alt=""
                   aria-hidden="true"
                   loading="eager"
@@ -390,8 +412,8 @@ to{opacity:1}
         </div>
 
         {/* title → tagline → promise — the Apple/Google hero hierarchy at the
-            canonical display scale; vh caps keep shorter laptops whole */}
-        <h1 className="m-0 mt-[max(28px,6vh)] lg:mt-[5.5vh]">
+            canonical display scale; bounded clamps keep shorter laptops whole */}
+        <h1 className="m-0 mt-10 lg:mt-14">
           <span
             className="apple-anim block font-medium leading-[1.05] tracking-[0] text-[#121317]"
             style={{
@@ -406,7 +428,7 @@ to{opacity:1}
             className="apple-anim accent-gradient block font-medium leading-[1.2] tracking-[0]"
             style={{
               fontSize: "clamp(22px, min(2.6vw, 4.2vh), 40px)",
-              marginTop: "clamp(10px, 1.6vh, 22px)",
+              marginTop: "clamp(10px, 1.4vw, 20px)",
               animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
               animationDelay: "660ms",
             }}
@@ -417,7 +439,7 @@ to{opacity:1}
 
         {/* promise — Google writing style: plain, personal, one breath */}
         <p
-          className="apple-anim mx-auto mt-3 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[17px] lg:text-[18px]"
+          className="apple-anim mx-auto mt-4 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[17px] lg:text-[18px]"
           style={{
             color: COLORS.slate,
             animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
@@ -428,9 +450,10 @@ to{opacity:1}
           work, and life.
         </p>
 
-        {/* CTA pair — same pills as every category hero */}
+        {/* CTA pair — same pills as every category hero; on ≤390px they stack
+            full-width on purpose instead of squeezing side by side */}
         <div
-          className="apple-anim mt-[max(24px,3.5vh)] flex flex-wrap items-center justify-center gap-3 lg:mt-[3vh]"
+          className="apple-anim mt-8 flex flex-wrap items-center justify-center gap-3 lg:mt-10 max-[390px]:w-full max-[390px]:flex-col"
           style={{
             animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
             animationDelay: "860ms",
@@ -438,7 +461,7 @@ to{opacity:1}
         >
           <Link
             to="/register"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 w-full max-w-[320px] items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:max-w-none"
           >
             Start free
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
@@ -448,7 +471,7 @@ to{opacity:1}
           </Link>
           <Link
             to="/how-it-works"
-            className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 w-full max-w-[320px] items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:max-w-none"
           >
             See how it works
           </Link>
@@ -466,6 +489,7 @@ function LandingProblemSection() {
   return (
     <section ref={ref} data-section="02-problem" className="relative overflow-hidden bg-[#f8f9fa] py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
+        <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
         <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
           <div className="lg:col-span-5 lg:pl-[var(--frame-x)]">
             <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Why Visionary exists</p>
@@ -479,9 +503,9 @@ function LandingProblemSection() {
                 {/* the source photography is portrait-first; a 16:9 centre crop
                     decapitated it — 4:3 with an upper-third bias keeps every
                     face whole like a product shot should */}
-                <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full max-w-[640px] mx-auto rounded-[50px] object-cover object-[50%_28%] sm:aspect-[16/10]" />
+                <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full max-w-[640px] mx-auto rounded-[var(--radius-media)] object-cover object-[50%_28%] sm:aspect-[16/10]" />
               </div>
-              <figcaption key={`q-${index}`} aria-live="polite" className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center [animation-delay:200ms] [animation-fill-mode:both]">
+              <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center [animation-delay:200ms] [animation-fill-mode:both]">
                 <p className="font-medium tracking-[0] leading-[20px] text-[16px]" style={{ color: COLORS.ink }}>{slide.persona}</p>
                 <p className="mt-2 font-normal tracking-[0] leading-[1.27] text-[clamp(16px,1.39vw,20px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
               </figcaption>
@@ -507,7 +531,9 @@ const LandingPromiseSection = React.memo(function LandingPromiseSection() {
   );
 });
 
-/* 04 · MEET */
+/* 04 · MEET — Google's modular product section: one sticky tablist with the
+   full ARIA tabs pattern (arrow keys, roving tabindex, aria-controls), one
+   scroll-driven story column, and the rotating word/phrase tickers. */
 const MeetHeading = React.memo(function MeetHeading({ section, index }) {
   const blue = section.blues[index % section.blues.length];
   return (
@@ -529,15 +555,44 @@ const MeetHeading = React.memo(function MeetHeading({ section, index }) {
 });
 
 const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
+  const tabRefs = useRef([]);
+  const onKeyDown = (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    const dir = e.key === "ArrowRight" ? 1 : -1;
+    const next = (active + dir + MEET_SECTIONS.length) % MEET_SECTIONS.length;
+    onSelect(next);
+    tabRefs.current[next]?.focus();
+  };
   return (
-    <div className="mx-auto flex h-[52px] w-full max-w-[900px] items-stretch overflow-hidden rounded-[90px] border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="Audiences">
-      {MEET_SECTIONS.map((s, i) => (
-        <button key={s.id} type="button" role="tab" aria-selected={active === i} onClick={() => onSelect(i)}
-          className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === i ? "font-medium" : "font-normal hover:bg-[#ffffff]"}`}
-          style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}>
-          {s.tab}
-        </button>
-      ))}
+    <div className="mx-auto w-full max-w-[900px]">
+      {/* the strip scrolls horizontally on small screens — discovery stays
+          horizontal, never a squeezed desktop row */}
+      <div
+        className="flex h-[52px] w-full items-stretch overflow-x-auto rounded-[90px] border bg-white p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{ borderColor: COLORS.mist }}
+        role="tablist"
+        aria-label="Audiences"
+        onKeyDown={onKeyDown}
+      >
+        {MEET_SECTIONS.map((s, i) => (
+          <button
+            key={s.id}
+            ref={(n) => { tabRefs.current[i] = n; }}
+            type="button"
+            role="tab"
+            id={`meet-tab-${s.id}`}
+            aria-selected={active === i}
+            aria-controls={`meet-panel-${s.id}`}
+            tabIndex={active === i ? 0 : -1}
+            onClick={() => onSelect(i)}
+            className={`flex h-full min-w-[104px] flex-none items-center justify-center rounded-[90px] px-4 text-[12px] tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#4285F4] sm:min-w-0 sm:flex-1 sm:text-[14px] ${active === i ? "font-medium" : "font-normal"}`}
+            style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}
+          >
+            {s.tab}
+          </button>
+        ))}
+      </div>
     </div>
   );
 });
@@ -577,18 +632,18 @@ function LandingMeetSection() {
           </p>
         </FadeReveal>
       </div>
-      <div className="sticky top-16 z-30 bg-white px-6 py-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-60 lg:px-0 lg:pt-24">
+      <div className="sticky top-14 z-30 bg-white px-4 py-5 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-24 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
-          <div className="sticky top-[140px] flex h-[calc(100vh-160px)] items-center">
+          <div className="sticky top-28 flex h-[calc(100svh-136px)] items-center">
             <div key={active} className="hero-fade-up"><MeetCopy section={MEET_SECTIONS[active]} /></div>
           </div>
         </div>
-        <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
+        <div className="flex flex-col gap-32 lg:gap-56 lg:py-24">
           {MEET_SECTIONS.map((s, i) => (
             <div key={s.id}>
-              <figure ref={setStepRef(i)} data-step={i} className="m-0">
-                <div className="mx-auto w-full max-w-[440px] overflow-hidden border border-[#121317]/30 rounded-[50px] lg:mx-0 lg:max-w-none">
+              <figure ref={setStepRef(i)} data-step={i} id={`meet-panel-${s.id}`} aria-labelledby={`meet-tab-${s.id}`} className="m-0">
+                <div className="mx-auto w-full max-w-[440px] overflow-hidden border border-[#121317]/30 rounded-[var(--radius-media)] lg:mx-0 lg:max-w-none">
                   <img src={MEET_IMG[i]} alt={s.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]" />
                 </div>
               </figure>
@@ -601,211 +656,110 @@ function LandingMeetSection() {
   );
 }
 
-/* 05 · ONE INTELLIGENCE — the dark keynote chapter. Apple alternates its
-   product pages between light and black "scenes"; this is our black scene,
-   and it is where the product shows itself: a quiet glass window running
-   Visionary, its memory rows advancing with the four phases. On desktop the
-   stage holds in place while scroll position advances the phases; mobile and
-   reduced motion keep the autonomous cycle. */
-
-/* the window's memory rows — labels mirror the promise copy of each phase,
-   bars are skeleton lines, the last row carries the phase's new light */
-const OI_WINDOW_ROWS = [
-  [["What you understood", 84], ["Where you struggled", 58], ["What you tried", 38]],
-  [["Where you were", 72], ["What you've done", 52], ["What makes sense next", 88]],
-  [["Each lesson", 64], ["Each project", 46], ["Each decision", 80]],
-  [["What you learn", 56], ["What you teach", 44], ["What you can do tomorrow", 92]],
-];
-
-const OIWindow = React.memo(function OIWindow({ phase, finale }) {
-  const rows = OI_WINDOW_ROWS[Math.min(phase, 3)];
-  return (
-    <div
-      className="w-[min(420px,84vw)] overflow-hidden rounded-[26px] border bg-[#1b1e23]/80 shadow-[0_40px_90px_-24px_rgba(0,0,0,0.85)] backdrop-blur-md"
-      style={{ borderColor: "rgba(138,180,248,0.22)" }}
-      aria-hidden="true"
-    >
-      {/* title bar — three quiet dots and the product's name */}
-      <div className="flex h-11 items-center border-b px-5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-        {["left", "mid", "right"].map((pos) => (
-          <span key={pos} className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.2)", marginRight: pos === "right" ? 0 : 6 }} />
-        ))}
-        <span className="ml-3 text-[12px] font-medium tracking-[0.24px]" style={{ color: "rgba(255,255,255,0.6)" }}>Visionary</span>
-      </div>
-      {/* body — the phase's memory taking shape */}
-      <div className="flex min-h-[196px] flex-col justify-center gap-[18px] px-7 py-7 sm:min-h-[212px]">
-        {finale ? (
-          <div className="flex flex-col items-center gap-4 py-4" style={{ animation: "oiFade 800ms cubic-bezier(0.22,1,0.36,1) both" }}>
-            <VMark className="h-8 w-auto" color="#ffffff" />
-            <p className="text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: "rgba(255,255,255,0.55)" }}>Always with you</p>
-          </div>
-        ) : (
-          rows.map(([label, width], i) => (
-            <div key={label} className="flex items-center gap-3" style={{ animation: "oiFade 700ms cubic-bezier(0.22,1,0.36,1) both", animationDelay: `${120 + i * 110}ms` }}>
-              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: i === 2 ? COLORS.blue : "rgba(255,255,255,0.3)" }} />
-              <span className="w-[132px] shrink-0 text-left text-[12px] leading-[16px] tracking-[0.2px] sm:w-[168px] sm:text-[12.5px]" style={{ color: "rgba(255,255,255,0.62)" }}>{label}</span>
-              <span className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.09)" }}>
-                <span
-                  className="block h-full rounded-full"
-                  style={{
-                    width: `${width}%`,
-                    backgroundColor: i === 2 ? COLORS.blue : "rgba(255,255,255,0.34)",
-                    animation: `oiGrow 900ms cubic-bezier(0.22,1,0.36,1) ${240 + i * 110}ms both`,
-                  }}
-                />
-              </span>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
-  );
-});
-
+/* 05 · ONE INTELLIGENCE — the orbit chapter. White stage, two quiet dashed
+   rings around the phase story, and the numbered rail carrying the sequence.
+   The phase cycle advances on its own cadence; the rail numbers are buttons,
+   so selecting one takes over the story. */
 function LandingOneIntelligenceSection() {
   const { ref, visible } = useRevealOnce();
+  const reduced = usePrefersReducedMotion();
   const [phase, setPhase] = useState(0);
-  const [scrollDriven, setScrollDriven] = useState(false);
-  const runwayRef = useRef(null);
-
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setScrollDriven(desktop.matches && !reduce.matches);
-    update();
-    desktop.addEventListener("change", update);
-    reduce.addEventListener("change", update);
-    return () => {
-      desktop.removeEventListener("change", update);
-      reduce.removeEventListener("change", update);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (scrollDriven) return undefined;
-    const id = setTimeout(() => setPhase((p) => (p + 1) % 5), OI_PHASE_MS[Math.min(phase, 4)]);
+    /* Reduced motion: no auto-advance — the user drives the phase. */
+    if (reduced) return undefined;
+    const id = setTimeout(() => setPhase((p) => (p + 1) % 5), OI_PHASE_MS[phase]);
     return () => clearTimeout(id);
-  }, [phase, scrollDriven]);
-
-  useEffect(() => {
-    if (!scrollDriven) return undefined;
-    let raf = 0;
-    const measure = () => {
-      const run = runwayRef.current;
-      if (!run) return;
-      const rect = run.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-      setPhase(progress >= 0.96 ? 4 : Math.min(3, Math.floor(progress / 0.24)));
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(measure);
-    };
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, [scrollDriven]);
-
+  }, [phase, reduced]);
+  const goTo = (i) => setPhase(i);
   const finale = phase === 4;
   const state = OI_STATES[Math.min(phase, 3)];
   return (
-    <section ref={ref} data-section="05-one-intelligence" className="relative [overflow-x:clip] bg-[#121317] py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes oiGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"}</style>
+    <section ref={ref} data-section="05-one-intelligence" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+      <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}"}</style>
       <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.lightGrey }}>One Intelligence</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)] text-white">
-          What you <span style={{ color: "#8ab4f8" }}>understand</span> today
+        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every tomorrow</p>
+        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+          What you <span style={{ color: COLORS.blue }}>understand</span> today
           <br className="hidden md:block" /> makes tomorrow easier.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: "#bdc1c6" }}>
+        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Every lesson, conversation, project, and breakthrough becomes part of what comes next.
         </p>
-
-        {/* phase chip — the scene's title card */}
-        <div className="mt-14 flex justify-center lg:mt-20" aria-live="polite">
-          {!finale && (
-            <span key={`chip-${phase}`} className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink, animation: "oiFade 700ms cubic-bezier(0.22,1,0.36,1) both" }}>{state.label}</span>
-          )}
-        </div>
-
-        <div ref={runwayRef} className={scrollDriven ? "relative lg:h-[300vh]" : "relative"}>
-          <div className={scrollDriven ? "lg:sticky lg:top-[9vh] flex justify-center lg:min-h-[78vh] lg:items-center" : undefined}>
-            {/* the stage — rings, glow, and the product itself */}
-            <div className={`relative mx-auto mt-14 h-[min(480px,92vw)] w-[min(480px,92vw)] sm:h-[560px] sm:w-[560px] lg:mt-6 lg:h-[640px] lg:w-[640px]`}>
-              <div
-                aria-hidden="true"
-                className="absolute inset-[-14%] -z-10 rounded-full"
-                style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.3) 0%, rgba(66,133,244,0.1) 45%, transparent 70%)" }}
-              />
-              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
-                <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(138,180,248,0.5)" strokeWidth="0.3" strokeDasharray="4 5" />
-              </svg>
-              <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
-                <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(138,180,248,0.3)" strokeWidth="0.35" strokeDasharray="4 5" />
-              </svg>
-              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                <OIWindow phase={phase} finale={finale} />
-              </div>
-
-              {/* the 1-2-3-4 walk straddling the stage's ground line */}
-              <div className="absolute bottom-0 left-1/2 z-20 w-[min(680px,94vw)] -translate-x-1/2 translate-y-1/2 px-2 sm:px-6">
-                <div className="flex items-start justify-between">
-                  {OI_STEP_LABELS.map((label, i) => (
-                    <React.Fragment key={label}>
-                      <div className="flex w-16 flex-col items-center gap-3 sm:w-20">
-                        {phase >= i ? (
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full text-[28px] font-medium transition-colors duration-700" style={{ backgroundColor: COLORS.blue, color: COLORS.white }}>{i + 1}</span>
-                        ) : (
-                          <span className="flex h-12 w-12 items-center justify-center text-[28px] font-normal leading-none transition-colors duration-700" style={{ color: "rgba(255,255,255,0.38)" }}>{i + 1}</span>
-                        )}
-                        <span className="text-[12px] font-normal uppercase tracking-[0.43px] transition-colors duration-700" style={{ color: phase >= i ? "#8ab4f8" : "rgba(255,255,255,0.38)" }}>{label}</span>
-                      </div>
-                      {i < 3 && <div className="mx-1 mt-6 h-[2px] flex-1 transition-colors duration-700" style={{ backgroundColor: phase > i ? COLORS.blue : "rgba(255,255,255,0.15)" }} />}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
+        <div className="relative mx-auto mt-32 h-[min(440px,88vw)] w-[min(440px,88vw)] sm:h-[540px] sm:w-[540px] lg:h-[640px] lg:w-[640px]">
+          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
+            <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.35" strokeDasharray="4 5" />
+          </svg>
+          <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
+            <circle cx="50" cy="50" r="49" fill="none" stroke={COLORS.ring} strokeWidth="0.4" strokeDasharray="4 5" />
+          </svg>
+          <div className="absolute inset-0 z-10 flex items-center justify-center">
+            <div key={phase} aria-live="polite" className="flex w-full max-w-[340px] flex-col items-center px-4 text-center" style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>
+              {finale ? (
+                <>
+                  <VMark className="h-10 w-auto" />
+                  <h3 className="mt-[calc(clamp(20px,2.4vw,30px)*1)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2.4vw,30px)]" style={{ color: COLORS.ink }}>One Intelligence, Always stay with you.</h3>
+                </>
+              ) : (
+                <>
+                  <span className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[10px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink }}>{state.label}</span>
+                  <h3 className="mt-[calc(clamp(22px,2.6vw,34px)*0.909)] font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)]" style={{ color: COLORS.ink }}>{state.heading}</h3>
+                  <p className="mt-[calc(clamp(22px,2.6vw,34px)*0.727)] font-normal tracking-[0.24px] leading-[1.5] text-[14px]" style={{ color: COLORS.slate }}>{state.body}</p>
+                  <div className="mt-6 h-[2px] w-[min(240px,60vw)] overflow-hidden rounded-full" style={{ backgroundColor: COLORS.mist }}>
+                    <div className="h-full transition-all duration-700" style={{ width: `${((Math.min(phase, 3) + 1) / 4) * 100}%`, backgroundColor: COLORS.blue }} />
+                  </div>
+                </>
+              )}
             </div>
           </div>
-
-          {/* the words under the shot — Apple puts the visual first, the copy beneath */}
-          <div className="mx-auto mt-[130px] max-w-[620px] text-center sm:mt-[140px] lg:mt-[150px]">
-            {finale ? (
-              <h3 key="finale" className="font-medium tracking-[0] leading-[1.15] text-[clamp(24px,2.8vw,38px)] text-white" style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>One intelligence. Always with you.</h3>
-            ) : (
-              <div key={phase} style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>
-                <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)] text-white">{state.heading}</h3>
-                <p className="mx-auto mt-4 max-w-[520px] font-normal tracking-[0.24px] leading-[1.5] text-[15.5px]" style={{ color: "#bdc1c6" }}>{state.body}</p>
-                <div className="mx-auto mt-7 h-[2px] w-[240px] overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.14)" }}>
-                  <div className="h-full transition-all duration-700" style={{ width: `${((Math.min(phase, 3) + 1) / 4) * 100}%`, backgroundColor: COLORS.blue }} />
-                </div>
-              </div>
-            )}
+          <div className="absolute bottom-0 left-1/2 z-20 w-[min(680px,92vw)] -translate-x-1/2 translate-y-1/2 bg-white px-2 sm:px-6">
+            <div className="flex items-start justify-between" role="group" aria-label="One Intelligence phases">
+              {OI_STEP_LABELS.map((label, i) => (
+                <React.Fragment key={label}>
+                  <button
+                    type="button"
+                    onClick={() => goTo(i)}
+                    aria-pressed={phase === i}
+                    aria-label={`${label} (phase ${i + 1})`}
+                    className="flex w-14 flex-col items-center gap-3 rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] sm:w-20"
+                  >
+                    {phase >= i ? (
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full text-[24px] font-medium transition-colors duration-700 sm:h-12 sm:w-12 sm:text-[28px]" style={{ backgroundColor: COLORS.blue, color: COLORS.white }}>{i + 1}</span>
+                    ) : (
+                      <span className="flex h-11 w-11 items-center justify-center text-[24px] font-normal leading-none transition-colors duration-700 sm:h-12 sm:w-12 sm:text-[28px]" style={{ color: COLORS.lightGrey }}>{i + 1}</span>
+                    )}
+                    <span className="text-center text-[11px] font-normal uppercase tracking-[0.43px] transition-colors duration-700 sm:text-[12px]" style={{ color: phase >= i ? COLORS.blue : COLORS.lightGrey }}>{label}</span>
+                  </button>
+                  {i < 3 && <div aria-hidden="true" className="mx-1 mt-5 h-[2px] flex-1 transition-colors duration-700 sm:mt-6" style={{ backgroundColor: phase > i ? COLORS.blue : COLORS.mist }} />}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
         </div>
-
-        <div className="mx-auto mt-28 flex w-fit max-w-full items-center justify-center gap-4 rounded-full px-8 py-5 sm:px-10" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-6 w-6 shrink-0 text-white"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" /></svg>
-          <p className="text-center font-normal tracking-[0.24px] text-[15px] text-balance text-white">It doesn't just remember your past. <span style={{ color: "#8ab4f8" }}>It understands what comes next.</span></p>
+        <div className="mx-auto mt-24 flex w-fit max-w-full items-center justify-center gap-3 rounded-full px-5 py-4 sm:gap-4 sm:px-8 sm:py-5" style={{ backgroundColor: COLORS.surface }}>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" style={{ color: COLORS.ink }}><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" /></svg>
+          <p className="text-center font-normal tracking-[0.24px] text-[14px] sm:text-[15px]" style={{ color: COLORS.ink }}>It doesn't just remember your past. <span style={{ color: COLORS.blue }}>It understands what comes next.</span></p>
         </div>
       </div>
     </section>
   );
 }
 
-/* 06 · COMMITMENT */
+/* 06 · COMMITMENT — the fill rail fills on the active step and advances the
+   story on its own cadence; clicking a row takes over. The advance runs on a
+   timer (not the animation-end event) so reduced-motion users — whose fill
+   completes instantly — get a click-driven story instead of a runaway loop. */
 function LandingCommitmentSection() {
+  const reduced = usePrefersReducedMotion();
   const { ref, visible } = useRevealOnce();
   const [active, setActive] = useState(0);
   const [runId, setRunId] = useState(0);
   const select = (i) => { setActive(i); setRunId((r) => r + 1); };
-  const next = () => { setActive((a) => (a + 1) % COMMITMENT_STEPS.length); setRunId((r) => r + 1); };
+  const next = useCallback(() => { setActive((a) => (a + 1) % COMMITMENT_STEPS.length); setRunId((r) => r + 1); }, []);
+  useEffect(() => {
+    if (reduced) return undefined;
+    const id = setTimeout(next, CM_FILL_MS);
+    return () => clearTimeout(id);
+  }, [next, active, runId, reduced]);
   const step = COMMITMENT_STEPS[active];
   return (
     <section ref={ref} data-section="06-commitment" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
@@ -823,7 +777,13 @@ function LandingCommitmentSection() {
               return (
                 <button key={s.title} type="button" onClick={() => select(i)} aria-expanded={isActive} className="flex items-start gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                   <span className={`relative w-[4px] shrink-0 overflow-hidden rounded-full transition-all duration-700 ease-google ${isActive ? "h-[96px]" : "mt-1 h-[28px]"}`} style={{ backgroundColor: COLORS.track }}>
-                    {isActive && <span key={`fill-${active}-${runId}`} className="absolute inset-0 origin-top rounded-full" style={{ backgroundColor: COLORS.blue, transform: "scaleY(0)", animation: `cmFill ${CM_FILL_MS}ms linear forwards` }} onAnimationEnd={next} />}
+                    {isActive && (
+                      <span
+                        key={`fill-${active}-${runId}`}
+                        className="absolute inset-0 origin-top rounded-full"
+                        style={{ backgroundColor: COLORS.blue, transform: reduced ? "scaleY(1)" : "scaleY(0)", animation: reduced ? undefined : `cmFill ${CM_FILL_MS}ms linear forwards` }}
+                      />
+                    )}
                   </span>
                   <span className="flex-1">
                     <span className="block tracking-[0] leading-[1.15] text-[clamp(24px,2.4vw,32px)]" style={{ color: COLORS.ink, fontWeight: isActive ? 500 : 400 }}>{i + 1}. {s.title}</span>
@@ -837,8 +797,8 @@ function LandingCommitmentSection() {
               );
             })}
           </div>
-          <div key={`${active}-${runId}`} className="hero-fade-up">
-            <img src={step.image} alt={step.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-[48px] object-cover lg:aspect-[5/4]" />
+          <div key={`${active}-${runId}`} className="hero-fade-up" aria-live="polite">
+            <img src={step.image} alt={step.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-[var(--radius-media)] object-cover lg:aspect-[5/4]" />
           </div>
         </div>
         <p className="mx-auto mt-28 max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
@@ -855,7 +815,7 @@ const LGLanguageChips = React.memo(function LGLanguageChips({ active, onSelect }
     <div className="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Language selection">
       {LG_CHIPS.map((lang) => (
         <button key={lang.code} type="button" aria-pressed={active === lang.code} onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[12px] transition-colors ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
           style={{ backgroundColor: active === lang.code ? COLORS.chipBg : "transparent", color: COLORS.ink, borderColor: active === lang.code ? "transparent" : `${COLORS.ink}40` }}>
           {lang.label}
         </button>
@@ -867,12 +827,8 @@ const LGLanguageChips = React.memo(function LGLanguageChips({ active, onSelect }
 
 function LandingLanguageSection() {
   const { ref, visible } = useRevealOnce();
+  const { index: qIndex } = useCycleIndex(LG_QUESTIONS.length, LG_QUESTION_MS);
   const [lang, setLang] = useState("hi");
-  const [qIndex, setQIndex] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setQIndex((i) => (i + 1) % LG_QUESTIONS.length), LG_QUESTION_MS);
-    return () => clearInterval(id);
-  }, []);
   const question = LG_QUESTIONS[qIndex][lang];
   return (
     <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-[#f8f9fa] px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
@@ -924,10 +880,12 @@ function LandingLanguageSection() {
 const LXTrustCard = React.memo(function LXTrustCard({ card, cardIndex }) {
   const img = LX_TRUST_IMG[cardIndex % LX_TRUST_IMG.length];
   return (
-    <div className="relative w-full max-w-[780px] overflow-hidden rounded-[32px]">
+    <div className="relative w-full max-w-[780px] overflow-hidden rounded-[var(--radius-media)]">
       <img src={img} alt={card.alt} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
-      <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
-        <div className="rounded-[20px] bg-white/95 p-5">
+      {/* the copy panel sits on the photo on wide screens; on phones it drops
+          below the photo so it never occludes the image it describes */}
+      <div className="mt-4 px-4 sm:absolute sm:left-8 sm:top-8 sm:mt-0 sm:max-w-[320px] sm:px-0">
+        <div className="rounded-[var(--radius-overlay)] bg-white/95 p-4 sm:p-5">
           <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
             <card.Icon className="h-5 w-5" strokeWidth={1.8} />
           </span>
@@ -978,24 +936,26 @@ function LandingTrustSection() {
   return (
     <section ref={ref} data-section="08-trust" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Trust and safety</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          Your <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[wordIndex]}</span>
-        </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Your learning, conversations, ideas, and progress are personal. Visionary keeps it that way.
-        </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
-          <div className="lg:pl-[var(--frame-x)]">
-            <h3 key={activeCard.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{activeCard.title}</h3>
-            <div className="mt-12 flex gap-4">
-              <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="left" /></button>
-              <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="right" /></button>
+        <div>
+          <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Trust and safety</p>
+          <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+            Your <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[wordIndex]}</span>
+          </h2>
+          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+            Your learning, conversations, ideas, and progress are personal. Visionary keeps it that way.
+          </p>
+          <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-[var(--frame-x)]">
+            <div>
+              <h3 key={activeCard.title} aria-live="polite" className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{activeCard.title}</h3>
+              <div className="mt-12 flex gap-4">
+                <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="left" /></button>
+                <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="right" /></button>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10 lg:pr-[var(--frame-x)]">
-            <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px]"><LXTrustCard card={activeCard} cardIndex={cardIndex} /></div>
-            <div key={`b-${cardIndex}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={nextCard} cardIndex={(cardIndex + 1) % LX_TRUST_CARDS.length} /></div>
+            <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
+              <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px]"><LXTrustCard card={activeCard} cardIndex={cardIndex} /></div>
+              <div key={`b-${cardIndex}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={nextCard} cardIndex={(cardIndex + 1) % LX_TRUST_CARDS.length} /></div>
+            </div>
           </div>
         </div>
       </FadeReveal>
@@ -1016,10 +976,10 @@ function LandingCTASection() {
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]" style={{ backgroundColor: COLORS.blue }}>
             Get started
           </Link>
-          <Link to="/contact" className="inline-flex h-14 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-10 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+          <Link to="/contact" className="inline-flex h-12 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-8 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Talk to our team
           </Link>
         </div>
@@ -1034,11 +994,11 @@ function LandingCTASection() {
 /* 10 · EXPLORE */
 const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
   return (
-    <Link to={`/${category.slug}`} data-card className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)]" style={{ borderColor: `${COLORS.ink}1A` }}>
+    <Link to={`/${category.slug}`} data-card className="elevation-1 group block w-[240px] shrink-0 snap-start overflow-hidden rounded-[var(--radius-card)] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-[260px]" style={{ borderColor: `${COLORS.ink}1A` }}>
       <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
         <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>{category.chip}</p>
-        <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{category.copy}</p>
+        <p className="mt-3 font-normal tracking-[0] leading-[1.5] text-[15px]" style={{ color: COLORS.ink }}>{category.copy}</p>
         <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>Learn more</span>
       </div>
     </Link>
@@ -1051,22 +1011,32 @@ function LandingExploreSection() {
   return (
     <section ref={ref} data-section="10-explore" className="relative bg-white py-16 lg:py-20 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <div className="flex items-center justify-between gap-6 px-6 lg:pl-[6.5%] lg:pr-[6%]">
+        <div className="flex items-center justify-between gap-6 px-6 lg:px-[var(--frame-x)]">
           <h2 className="font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>Explore Visionary</h2>
           <div className="flex items-center gap-3">
-            <button type="button" aria-label="Previous categories" onClick={() => scrollByCard(-1)}
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${canPrev ? "opacity-100" : "pointer-events-none opacity-40"}`}
+            <button type="button" aria-label="Previous categories" disabled={!canPrev} onClick={() => scrollByCard(-1)}
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 ${canPrev ? "opacity-100" : "opacity-40"}`}
               style={{ borderColor: `${COLORS.ink}1A`, color: COLORS.ink, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
               <ChevronIcon direction="left" />
             </button>
-            <button type="button" aria-label="Next categories" onClick={() => scrollByCard(1)}
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${canNext ? "opacity-100" : "pointer-events-none opacity-40"}`}
+            <button type="button" aria-label="Next categories" disabled={!canNext} onClick={() => scrollByCard(1)}
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-40 ${canNext ? "opacity-100" : "opacity-40"}`}
               style={{ borderColor: `${COLORS.ink}1A`, color: COLORS.ink, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
               <ChevronIcon direction="right" />
             </button>
           </div>
         </div>
-        <div ref={trackRef} onScroll={update} className="mt-16 flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mt-20 lg:gap-12 lg:pl-[6.5%] lg:pr-6">
+        {/* the track is a keyboard-reachable scroll region, so horizontal
+            discovery works without a pointer; the first card aligns with the
+            page gutter and the next card peeks in as the scroll affordance */}
+        <div
+          ref={trackRef}
+          onScroll={update}
+          tabIndex={0}
+          role="region"
+          aria-label="Explore Visionary by audience"
+          className="mt-16 flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#4285F4] [&::-webkit-scrollbar]:hidden lg:mt-20 lg:gap-12 lg:pl-[var(--frame-x)] lg:pr-6"
+        >
           {LX_EXPLORE_CATEGORIES.map((c, i) => <LXExploreCard key={c.slug} category={c} image={MEET_IMG[i % MEET_IMG.length]} />)}
         </div>
       </FadeReveal>
