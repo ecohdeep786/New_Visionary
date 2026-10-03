@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 /**
  * Cycles an index through `total` slides every `intervalMs`. Pass a falsy
  * interval to pause the rotation. Returns the index plus a manual goTo().
+ * Reduced motion: auto-rotation is suppressed so the user drives the cycle.
  */
 export function useCycleIndex(total, intervalMs) {
   const [index, setIndex] = useState(0);
@@ -10,11 +11,19 @@ export function useCycleIndex(total, intervalMs) {
     (i) => setIndex(((i % total) + total) % total),
     [total]
   );
+
+  const prefersReduced =
+    typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   useEffect(() => {
     if (!intervalMs || intervalMs <= 0) return undefined;
+    /* Users who asked for less motion keep the first frame until they choose to advance. */
+    if (prefersReduced) return undefined;
     const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);
     return () => clearInterval(id);
-  }, [total, intervalMs, index]);
+  }, [total, intervalMs, index, prefersReduced]);
   return { index, goTo };
 }
 
