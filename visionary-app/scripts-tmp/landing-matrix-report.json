@@ -1,0 +1,483 @@
+{
+  "320": {
+    "hero": {
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=329 left=225",
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297"
+      ]
+    },
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-meet",
+      "05-one-intelligence",
+      "06-commitment",
+      "07-language",
+      "08-trust",
+      "09-cta",
+      "10-explore",
+      "11-faq"
+    ],
+    "02-problem": {
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=329 left=225",
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297"
+      ]
+    },
+    "04-meet": {
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=329 left=225",
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297"
+      ]
+    },
+    "05-one-intelligence": {
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=329 left=225",
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297"
+      ]
+    },
+    "10-explore": {
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=329 left=225",
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297"
+      ]
+    },
+    "drawerOverflow": {
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=329 left=225",
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297"
+      ]
+    },
+    "nav": {
+      "primaryNavVisible": false,
+      "burgerVisible": true
+    },
+    "errors": []
+  },
+  "390": {
+    "hero": {
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297",
+        "span.mt-4.font-normal.tracking-[0] right=434 left=350"
+      ]
+    },
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-meet",
+      "05-one-intelligence",
+      "06-commitment",
+      "07-language",
+      "08-trust",
+      "09-cta",
+      "10-explore",
+      "11-faq"
+    ],
+    "02-problem": {
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297",
+        "span.mt-4.font-normal.tracking-[0] right=434 left=350"
+      ]
+    },
+    "04-meet": {
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297",
+        "span.mt-4.font-normal.tracking-[0] right=434 left=350"
+      ]
+    },
+    "05-one-intelligence": {
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297",
+        "span.mt-4.font-normal.tracking-[0] right=434 left=350"
+      ]
+    },
+    "10-explore": {
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297",
+        "span.mt-4.font-normal.tracking-[0] right=434 left=350"
+      ]
+    },
+    "drawerOverflow": {
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": false,
+      "offenders": [
+        "button.flex.h-full.min-w-[104px] right=435 left=329",
+        "button.flex.h-full.min-w-[104px] right=546 left=435",
+        "a.elevation-1.group.block right=512 left=272",
+        "img.aspect-[4/3].w-full.object-cover right=511 left=273",
+        "div.flex.flex-col.items-center right=511 left=273",
+        "p.font-normal.uppercase.tracking-[0] right=420 left=364",
+        "p.mt-3.font-normal.tracking-[0] right=487 left=297",
+        "span.mt-4.font-normal.tracking-[0] right=434 left=350"
+      ]
+    },
+    "nav": {
+      "primaryNavVisible": false,
+      "burgerVisible": true
+    },
+    "errors": []
+  },
+  "768": {
+    "hero": {
+      "vw": 768,
+      "scrollW": 768,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=844 left=584",
+        "img.aspect-[4/3].w-full.object-cover right=843 left=585",
+        "div.flex.flex-col.items-center right=843 left=585",
+        "p.mt-3.font-normal.tracking-[0] right=819 left=609",
+        "a.elevation-1.group.block right=1136 left=876",
+        "img.aspect-[4/3].w-full.object-cover right=1135 left=877",
+        "div.flex.flex-col.items-center right=1135 left=877",
+        "p.font-normal.uppercase.tracking-[0] right=1052 left=960"
+      ]
+    },
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-meet",
+      "05-one-intelligence",
+      "06-commitment",
+      "07-language",
+      "08-trust",
+      "09-cta",
+      "10-explore",
+      "11-faq"
+    ],
+    "02-problem": {
+      "vw": 768,
+      "scrollW": 768,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=844 left=584",
+        "img.aspect-[4/3].w-full.object-cover right=843 left=585",
+        "div.flex.flex-col.items-center right=843 left=585",
+        "p.mt-3.font-normal.tracking-[0] right=819 left=609",
+        "a.elevation-1.group.block right=1136 left=876",
+        "img.aspect-[4/3].w-full.object-cover right=1135 left=877",
+        "div.flex.flex-col.items-center right=1135 left=877",
+        "p.font-normal.uppercase.tracking-[0] right=1052 left=960"
+      ]
+    },
+    "04-meet": {
+      "vw": 768,
+      "scrollW": 768,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=844 left=584",
+        "img.aspect-[4/3].w-full.object-cover right=843 left=585",
+        "div.flex.flex-col.items-center right=843 left=585",
+        "p.mt-3.font-normal.tracking-[0] right=819 left=609",
+        "a.elevation-1.group.block right=1136 left=876",
+        "img.aspect-[4/3].w-full.object-cover right=1135 left=877",
+        "div.flex.flex-col.items-center right=1135 left=877",
+        "p.font-normal.uppercase.tracking-[0] right=1052 left=960"
+      ]
+    },
+    "05-one-intelligence": {
+      "vw": 768,
+      "scrollW": 768,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=844 left=584",
+        "img.aspect-[4/3].w-full.object-cover right=843 left=585",
+        "div.flex.flex-col.items-center right=843 left=585",
+        "p.mt-3.font-normal.tracking-[0] right=819 left=609",
+        "a.elevation-1.group.block right=1136 left=876",
+        "img.aspect-[4/3].w-full.object-cover right=1135 left=877",
+        "div.flex.flex-col.items-center right=1135 left=877",
+        "p.font-normal.uppercase.tracking-[0] right=1052 left=960"
+      ]
+    },
+    "10-explore": {
+      "vw": 768,
+      "scrollW": 768,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=844 left=584",
+        "img.aspect-[4/3].w-full.object-cover right=843 left=585",
+        "div.flex.flex-col.items-center right=843 left=585",
+        "p.mt-3.font-normal.tracking-[0] right=819 left=609",
+        "a.elevation-1.group.block right=1136 left=876",
+        "img.aspect-[4/3].w-full.object-cover right=1135 left=877",
+        "div.flex.flex-col.items-center right=1135 left=877",
+        "p.font-normal.uppercase.tracking-[0] right=1052 left=960"
+      ]
+    },
+    "nav": {
+      "primaryNavVisible": false,
+      "burgerVisible": true
+    },
+    "errors": []
+  },
+  "1280": {
+    "hero": {
+      "vw": 1280,
+      "scrollW": 1280,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.font-normal.uppercase.tracking-[0] right=1409 left=1315",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257",
+        "span.mt-4.font-normal.tracking-[0] right=1404 left=1320"
+      ]
+    },
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-meet",
+      "05-one-intelligence",
+      "06-commitment",
+      "07-language",
+      "08-trust",
+      "09-cta",
+      "10-explore",
+      "11-faq"
+    ],
+    "02-problem": {
+      "vw": 1280,
+      "scrollW": 1280,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.font-normal.uppercase.tracking-[0] right=1409 left=1315",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257",
+        "span.mt-4.font-normal.tracking-[0] right=1404 left=1320"
+      ]
+    },
+    "04-meet": {
+      "vw": 1280,
+      "scrollW": 1280,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.font-normal.uppercase.tracking-[0] right=1409 left=1315",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257",
+        "span.mt-4.font-normal.tracking-[0] right=1404 left=1320"
+      ]
+    },
+    "05-one-intelligence": {
+      "vw": 1280,
+      "scrollW": 1280,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.font-normal.uppercase.tracking-[0] right=1409 left=1315",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257",
+        "span.mt-4.font-normal.tracking-[0] right=1404 left=1320"
+      ]
+    },
+    "10-explore": {
+      "vw": 1280,
+      "scrollW": 1280,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.font-normal.uppercase.tracking-[0] right=1409 left=1315",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257",
+        "span.mt-4.font-normal.tracking-[0] right=1404 left=1320"
+      ]
+    },
+    "nav": {
+      "primaryNavVisible": true,
+      "burgerVisible": false
+    },
+    "errors": []
+  },
+  "1440": {
+    "hero": {
+      "vw": 1440,
+      "scrollW": 1440,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257"
+      ]
+    },
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-meet",
+      "05-one-intelligence",
+      "06-commitment",
+      "07-language",
+      "08-trust",
+      "09-cta",
+      "10-explore",
+      "11-faq"
+    ],
+    "02-problem": {
+      "vw": 1440,
+      "scrollW": 1440,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257"
+      ]
+    },
+    "04-meet": {
+      "vw": 1440,
+      "scrollW": 1440,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257"
+      ]
+    },
+    "05-one-intelligence": {
+      "vw": 1440,
+      "scrollW": 1440,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257"
+      ]
+    },
+    "10-explore": {
+      "vw": 1440,
+      "scrollW": 1440,
+      "overflow": false,
+      "offenders": [
+        "a.elevation-1.group.block right=1492 left=1232",
+        "img.aspect-[4/3].w-full.object-cover right=1491 left=1233",
+        "div.flex.flex-col.items-center right=1491 left=1233",
+        "p.mt-3.font-normal.tracking-[0] right=1467 left=1257"
+      ]
+    },
+    "nav": {
+      "primaryNavVisible": true,
+      "burgerVisible": false
+    },
+    "errors": []
+  },
+  "reducedMotion": {
+    "oiPhaseStable": true,
+    "phaseA": 0,
+    "phaseB": 0,
+    "commitmentStable": true
+  }
+}

@@ -142,6 +142,13 @@ const TEACHER_LEARNER_STEPS = [
   { title: "Grow your craft, not just your syllabus.", copy: "See what works, and carry it into the next class, year, and decade." },
 ];
 
+/* Photography per step — the framed-photo anatomy shared with the landing
+   and the Organization page, using the same positive classroom scenes the
+   journey and category sections carry (never the struggle shots, whose
+   expressions belong to the problem chapter, and never the window/art
+   fallback). */
+const TEACHER_INTEL_IMG = [secondaryStudent, primaryStudent, competitiveStudent];
+
 const TEACHER_KEEPS_WORDS = ["teaching", "adapting", "supporting"];
 
 const LANGUAGE_CHIPS = [
@@ -445,7 +452,7 @@ function TeacherJourneySection() {
                   className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   style={active
                     ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
-                    : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
+                    : { backgroundColor: "#f5f5f7", borderColor: "transparent", color: COLORS.ink }}
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.8} />
                   {stage.title}
@@ -535,14 +542,14 @@ function TeacherIntelligenceSection() {
       {/* Pinned-scroll — re-renders with the active tab's steps */}
       <div key={tab} className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
-          <div className="sticky top-16 flex h-[calc(100vh-2rem)] items-center">
+          <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
             <IntelligenceCopy step={current} />
           </div>
         </div>
         <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
           {activeSteps.map((s, i) => (
             <div key={s.title}>
-              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} />
+              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} image={TEACHER_INTEL_IMG[i % TEACHER_INTEL_IMG.length]} />
               <div className="mt-10 lg:hidden">
                 <IntelligenceCopy step={s} />
               </div>

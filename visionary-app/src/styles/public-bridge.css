@@ -6,8 +6,8 @@
   --radius-card: 12px;
   --radius-media: 12px;
   --radius-overlay: 16px;
-  /* Mobile floor = Apple's measured 112px chapter rhythm; desktop caps at 128px */
-  --public-section-py: clamp(7rem, 9vw, 8rem);
+  /* Google's mobile rhythm (72px floor) rising to the shared 128px desktop cap */
+  --public-section-py: clamp(4.5rem, 9vw, 8rem);
 }
 
 /* Canonical section rhythm — heroes manage their own full-height layout */
@@ -104,4 +104,81 @@ h2.text-\[52px\], h2.text-\[56px\] {
 .g-card,
 .elevation-1 {
   box-shadow: 0 1px 2px 0 rgba(18, 19, 23, 0.03), 0 1px 4px 0 rgba(18, 19, 23, 0.06);
+}
+
+/* ── Narrow-screen law (320–480px) ───────────────────────────────────────
+   The narrow band is a designed state, not a squeezed desktop: chapter
+   padding tightens to a 64–72px band, long display lines wrap safely, and
+   no landing section may push the document wider than the viewport. */
+@media (max-width: 480px) {
+  section[data-section] {
+    padding-block: clamp(4rem, 16vw, 4.5rem);
+  }
+
+  section[data-section] h2,
+  section[data-section] h3 {
+    overflow-wrap: break-word;
+  }
+}
+
+main {
+  overflow-x: clip;
+}
+
+/* ── Apple typography pass (Oct 2026) ────────────────────────────────────
+   Measured from apple.com @1440 (iphone, education, watch):
+   hero 80px ls-0.015em lh1.05 · section 64px ls-0.009em lh1.06 · body
+   17px lh1.47 near-ink · and never an uppercase kicker. Tracking/leading
+   land here (not in JSX) so every page inherits the bar without touching
+   its markup. Font weight stays on each page's own utility (500/400) —
+   the brand reads Medium, not Apple's Semibold. */
+
+/* display + section tiers — Apple's tracking curve */
+.text-\[clamp\(48px\,5\.55vw\,80px\)\] {
+  letter-spacing: -0.015em !important;
+  line-height: 1.05 !important;
+}
+
+.text-\[clamp\(36px\,5vw\,72px\)\],
+.text-\[clamp\(34px\,5vw\,72px\)\] {
+  letter-spacing: -0.009em !important;
+  line-height: 1.06 !important;
+}
+
+/* statement / card-title tier (36px after the scale convergence) */
+.text-\[clamp\(28px\,2\.78vw\,40px\)\],
+.text-\[clamp\(28px\,2\.9vw\,40px\)\],
+.text-\[clamp\(28px\,2\.9vw\,42px\)\],
+.text-\[clamp\(28px\,3\.6vw\,42px\)\],
+.text-\[clamp\(28px\,3\.6vw\,46px\)\],
+.text-\[clamp\(30px\,4vw\,46px\)\],
+.text-\[clamp\(26px\,3\.4vw\,38px\)\],
+.text-\[clamp\(32px\,3\.3vw\,44px\)\],
+.text-\[clamp\(24px\,3vw\,34px\)\] {
+  letter-spacing: -0.002em !important;
+}
+
+/* Apple has no uppercase kickers — eyebrow <p>s become quiet sentence-case
+   lead-ins at body size (their grey stays: Apple's own label ink). */
+main p.uppercase {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+}
+
+/* Lead paragraphs that opt into the grey step up to Apple's near-ink body.
+   React serialises the inline hex as rgb(), so match the computed channel
+   form; this keeps ink-coloured card copy untouched. */
+main p[style*="95, 99, 104"].text-\[17\.5px\],
+main p[style*="95, 99, 104"].text-\[17px\],
+main p[style*="5f6368"].text-\[17\.5px\],
+main p[style*="5f6368"].text-\[17px\] {
+  color: #3c4043 !important;
+}
+
+/* smallest metadata — nothing below 14px on an Apple page */
+.text-\[13px\] {
+  font-size: 14px !important;
 }

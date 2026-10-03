@@ -17,8 +17,15 @@ function useCycle(total, ms) {
   return index;
 }
 
-/* Scrim fades the photo into the page color behind the text zone */
+/* Scrim fades the photo into the page color behind the text zone.
+   Desktop: short and light — only a narrow blend at the bottom edge, since
+   a taller wash read as smoke over the photo. Below lg the photo is
+   full-bleed object-cover BEHIND the headline, so the taller protective
+   gradient stays there. */
 const scrim = (c) => ({
+  background: `linear-gradient(to top, ${c} 0%, ${c}E6 10%, ${c}59 22%, ${c}14 32%, ${c}00 42%)`,
+});
+const scrimProtective = (c) => ({
   background: `linear-gradient(to top, ${c} 0%, ${c}F2 14%, ${c}B3 30%, ${c}33 46%, ${c}00 62%)`,
 });
 
@@ -48,9 +55,9 @@ export default function NewPersona({
       className="relative isolate overflow-hidden"
       style={{
         backgroundColor: heroBg,
-        height: "calc(100svh - 64px)",
+        height: "calc(100svh - 56px)",
         minHeight: 620,
-        marginTop: 64,
+        marginTop: 56,
       }}
     >
       {/* full-bleed photo — anchored TOP so the head is never cropped */}
@@ -65,7 +72,8 @@ export default function NewPersona({
           className="h-full w-full object-cover lg:object-contain"
           style={{ objectPosition: "50% 0%" }}
         />
-        <div className="absolute inset-0" style={scrim(heroBg)} />
+        <div className="absolute inset-0 hidden lg:block" style={scrim(heroBg)} />
+        <div className="absolute inset-0 lg:hidden" style={scrimProtective(heroBg)} />
       </div>
 
       {/* content pinned to the bottom edge — nothing below it */}

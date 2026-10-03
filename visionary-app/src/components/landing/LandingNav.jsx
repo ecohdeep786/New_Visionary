@@ -20,7 +20,7 @@ const C = {
   mist: "#dadce0",
   canvas: "#f8f9fa",
   blue: "#4285F4",
-  darkblue:"#0b57d2",
+  darkblue: "#0b57d2",
 };
 
 /* Persona metadata */
@@ -88,21 +88,57 @@ const ABOUT_GROUPS = [
   },
 ];
 
-/* Shared pill style */
+const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
+
+/* Shared pill style — compact 40px control on the 56px bar */
 const pillLink = (active) =>
-  `flex h-11 items-center whitespace-nowrap rounded-full border px-4 text-[16px] font-normal tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+  `flex h-10 items-center whitespace-nowrap rounded-full border px-3.5 text-[15px] font-normal tracking-[0.24px] transition-colors ${FOCUS_RING} ${
     active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
   }`;
 
 /* Icon-only button */
 const iconBtn = (active = false) =>
-  `flex h-11 w-11 items-center justify-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+  `flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${FOCUS_RING} ${
     active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
   }`;
+
+/* Megamenu tile — one anatomy for every menu item */
+const MEGA_PANEL = "rounded-[16px] border bg-white/95 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-md";
+const MEGA_TILE = "flex items-start gap-3.5 rounded-[12px] p-2.5 transition-colors hover:bg-[#f8f9fa]";
+
+function MegaTile({ to, onClick, Icon, title, desc, active, compact }) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      aria-current={active ? "page" : undefined}
+      className={`${MEGA_TILE} ${FOCUS_RING} ${active ? "bg-[#f8f9fa]" : ""}`}
+    >
+      <span
+        className={`flex shrink-0 items-center justify-center rounded-[12px] border bg-white ${compact ? "h-9 w-9" : "h-10 w-10"}`}
+        style={{ borderColor: C.mist, color: C.blue }}
+      >
+        <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
+      </span>
+      <span className="min-w-0">
+        <span className={`block font-medium leading-[20px] ${compact ? "text-[14px]" : "text-[15px]"}`} style={{ color: C.ink }}>
+          {title}
+        </span>
+        <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
+          {desc}
+        </span>
+      </span>
+    </Link>
+  );
+}
 
 function isAboutPath(pathname) {
   return ABOUT_GROUPS.some((group) => group.items.some((item) => item.to === pathname));
 }
+
+/* Hover intent: a drive-by across the bar must not throw menus open */
+const HOVER_OPEN_MS = 120;
+const HOVER_CLOSE_MS = 220;
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -121,6 +157,11 @@ export default function LandingNav() {
     about: aboutRef,
   };
 
+  const openTimer = useRef(null);
+  const closeTimer = useRef(null);
+  const drawerRef = useRef(null);
+  const menuBtnRef = useRef(null);
+
   const { pathname } = useLocation();
   const activeCategory = CATEGORIES.find((cat) => cat.path === pathname);
 
@@ -132,7 +173,32 @@ export default function LandingNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Close on outside click / Escape */
+  /* Close megamenus when the viewport drops below the desktop breakpoint */
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth < 1024) setOpenMega(null);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => () => {
+    clearTimeout(openTimer.current);
+    clearTimeout(closeTimer.current);
+  }, []);
+
+  const requestOpen = (key) => {
+    clearTimeout(closeTimer.current);
+    clearTimeout(openTimer.current);
+    openTimer.current = setTimeout(() => setOpenMega(key), HOVER_OPEN_MS);
+  };
+
+  const requestClose = () => {
+    clearTimeout(openTimer.current);
+    closeTimer.current = setTimeout(() => setOpenMega(null), HOVER_CLOSE_MS);
+  };
+
+  /* Escape closes megamenu */
   useEffect(() => {
     if (!openMega) return undefined;
 
@@ -154,12 +220,15 @@ export default function LandingNav() {
     };
   }, [openMega]);
 
-  /* Escape closes mobile drawer */
+  /* Escape closes the drawer and returns focus to its trigger */
   useEffect(() => {
     if (!mobileOpen) return undefined;
 
     const onKey = (e) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        menuBtnRef.current?.focus();
+      }
     };
 
     window.addEventListener("keydown", onKey);
@@ -172,19 +241,35 @@ export default function LandingNav() {
     setMobileOpen(false);
   }, [pathname]);
 
-  /* Lock body scroll only while mobile drawer is open */
+  /* Lock body scroll and move focus into the drawer while it is open */
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) {
+      const raf = requestAnimationFrame(() => {
+        drawerRef.current?.querySelector("a")?.focus({ preventScroll: true });
+      });
+      return () => {
+        cancelAnimationFrame(raf);
+        document.body.style.overflow = "";
+      };
+    }
     return () => {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
-  const toggleMega = (key) => setOpenMega((cur) => (cur === key ? null : key));
+  const toggleMega = (key) => {
+    clearTimeout(openTimer.current);
+    clearTimeout(closeTimer.current);
+    setOpenMega((cur) => (cur === key ? null : key));
+  };
+
+  const megaTrigger = (key) =>
+    `${pillLink(openMega === key)} justify-center gap-1.5`;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 h-16 transition-all duration-200 ${
+      className={`fixed inset-x-0 top-0 z-50 h-14 transition-all duration-200 ${
         scrolled ? "border-b bg-white/90 backdrop-blur-md" : "border-b border-transparent bg-white"
       }`}
       style={{ fontFamily: FONT, borderColor: scrolled ? C.mist : "transparent" }}
@@ -192,35 +277,36 @@ export default function LandingNav() {
       {/* Skip link — first focusable element, Google/US-WAG convention */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#121317] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2.5 focus:z-[60] focus:inline-flex focus:h-10 focus:items-center focus:rounded-full focus:bg-[#121317] focus:px-5 focus:text-[14px] focus:font-medium focus:text-white"
       >
         Skip to main content
       </a>
       <div className="public-frame public-frame-wide flex h-full items-center justify-between">
         {/* LEFT: logo + primary nav */}
-        <div className="flex min-w-0 items-center gap-5 lg:gap-8">
+        <div className="flex min-w-0 items-center gap-4 lg:gap-6">
           <Link
             to="/"
             aria-label="Visionary home"
-            className="shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+            className={`shrink-0 rounded-full ${FOCUS_RING}`}
           >
             <VisionaryLogo />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
             {/* WHO YOU ARE */}
             <div
               ref={whoRef}
               className="relative"
-              onMouseEnter={() => setOpenMega("who")}
-              onMouseLeave={() => setOpenMega((cur) => (cur === "who" ? null : cur))}
+              onMouseEnter={() => requestOpen("who")}
+              onMouseLeave={requestClose}
             >
               <button
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={openMega === "who"}
+                aria-controls="mega-who"
                 onClick={() => toggleMega("who")}
-                className={`${pillLink(openMega === "who" || Boolean(activeCategory))} min-w-[148px] justify-center gap-1.5 whitespace-nowrap`}
+                className={`${megaTrigger("who")} min-w-0`}
                 style={{ color: C.ink }}
               >
                 {activeCategory ? activeCategory.label : "Who you are"}
@@ -228,42 +314,25 @@ export default function LandingNav() {
               </button>
 
               {openMega === "who" && (
-                <div className="absolute left-0 top-full w-[min(760px,calc(100vw-32px))] pt-3">
-                  <div className="rounded-[24px] border bg-white/95 p-8 backdrop-blur-md" style={{ borderColor: C.mist }}>
-                    <p className="text-[20px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-who" className="absolute left-0 top-full w-[min(680px,calc(100vw-32px))] pt-2.5">
+                  <div className={MEGA_PANEL}>
+                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
                       One intelligence, every learner.
                     </p>
 
-                    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                       {CATEGORIES.map((cat) => {
                         const { Icon, desc } = metaFor(cat);
-                        const isActive = cat.path === pathname;
-
                         return (
-                          <Link
+                          <MegaTile
                             key={cat.path}
                             to={cat.path}
                             onClick={() => setOpenMega(null)}
-                            className={`flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
-                              isActive ? "bg-[#f8f9fa]" : ""
-                            }`}
-                          >
-                            <span
-                              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] border bg-white"
-                              style={{ borderColor: C.mist, color: C.blue }}
-                            >
-                              <Icon className="h-5 w-5" strokeWidth={1.8} />
-                            </span>
-
-                            <span>
-                              <span className="block text-[16px] font-medium tracking-[0.1px]" style={{ color: C.ink }}>
-                                {cat.label}
-                              </span>
-                              <span className="mt-1 block text-[14px] leading-[20px] tracking-[0.24px]" style={{ color: C.slate }}>
-                                {desc}
-                              </span>
-                            </span>
-                          </Link>
+                            Icon={Icon}
+                            title={cat.label}
+                            desc={desc}
+                            active={cat.path === pathname}
+                          />
                         );
                       })}
                     </div>
@@ -281,15 +350,16 @@ export default function LandingNav() {
             <div
               ref={orgRef}
               className="relative"
-              onMouseEnter={() => setOpenMega("org")}
-              onMouseLeave={() => setOpenMega((cur) => (cur === "org" ? null : cur))}
+              onMouseEnter={() => requestOpen("org")}
+              onMouseLeave={requestClose}
             >
               <button
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={openMega === "org"}
+                aria-controls="mega-org"
                 onClick={() => toggleMega("org")}
-                className={`${pillLink(openMega === "org" || pathname === "/organization")} gap-1.5`}
+                className={megaTrigger("org")}
                 style={{ color: C.ink }}
               >
                 For organizations
@@ -297,39 +367,25 @@ export default function LandingNav() {
               </button>
 
               {openMega === "org" && (
-                <div className="absolute left-1/2 top-full w-[min(640px,calc(100vw-32px))] -translate-x-1/2 pt-3">
-                  <div className="rounded-[24px] border bg-white/95 p-8 backdrop-blur-md" style={{ borderColor: C.mist }}>
-                    <p className="text-[20px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-org" className="absolute left-1/2 top-full w-[min(560px,calc(100vw-32px))] -translate-x-1/2 pt-2.5">
+                  <div className={MEGA_PANEL}>
+                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
                       For organizations
                     </p>
-                    <p className="mt-1 text-[14px] tracking-[0.24px]" style={{ color: C.slate }}>
+                    <p className="mt-0.5 text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>
                       Bring Visionary to your institution.
                     </p>
 
-                    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                       {ORG_CONTEXTS.map((ctx) => (
-                        <Link
+                        <MegaTile
                           key={ctx.id}
                           to={`/organization#${ctx.id}`}
                           onClick={() => setOpenMega(null)}
-                          className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        >
-                          <span
-                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] border bg-white"
-                            style={{ borderColor: C.mist, color: C.blue }}
-                          >
-                            <ctx.Icon className="h-5 w-5" strokeWidth={1.8} />
-                          </span>
-
-                          <span>
-                            <span className="block text-[16px] font-medium tracking-[0.1px]" style={{ color: C.ink }}>
-                              {ctx.title}
-                            </span>
-                            <span className="mt-1 block text-[14px] leading-[20px] tracking-[0.24px]" style={{ color: C.slate }}>
-                              {ctx.desc}
-                            </span>
-                          </span>
-                        </Link>
+                          Icon={ctx.Icon}
+                          title={ctx.title}
+                          desc={ctx.desc}
+                        />
                       ))}
                     </div>
                   </div>
@@ -346,15 +402,16 @@ export default function LandingNav() {
             <div
               ref={downloadRef}
               className="relative"
-              onMouseEnter={() => setOpenMega("download")}
-              onMouseLeave={() => setOpenMega((cur) => (cur === "download" ? null : cur))}
+              onMouseEnter={() => requestOpen("download")}
+              onMouseLeave={requestClose}
             >
               <button
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={openMega === "download"}
+                aria-controls="mega-download"
                 onClick={() => toggleMega("download")}
-                className={`${pillLink(openMega === "download" || pathname === "/download")} gap-1.5`}
+                className={megaTrigger("download")}
                 style={{ color: C.ink }}
               >
                 Download
@@ -362,39 +419,25 @@ export default function LandingNav() {
               </button>
 
               {openMega === "download" && (
-                <div className="absolute left-1/2 top-full w-[min(760px,calc(100vw-32px))] -translate-x-1/2 pt-3">
-                  <div className="rounded-[24px] border bg-white/95 p-8 backdrop-blur-md" style={{ borderColor: C.mist }}>
-                    <p className="text-[20px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-download" className="absolute left-1/2 top-full w-[min(680px,calc(100vw-32px))] -translate-x-1/2 pt-2.5">
+                  <div className={MEGA_PANEL}>
+                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
                       Download Visionary
                     </p>
-                    <p className="mt-1 text-[14px] tracking-[0.24px]" style={{ color: C.slate }}>
+                    <p className="mt-0.5 text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>
                       Available on every device you use.
                     </p>
 
-                    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                       {DOWNLOAD_PLATFORMS.map((p) => (
-                        <Link
+                        <MegaTile
                           key={p.id}
                           to={`/download#${p.id}`}
                           onClick={() => setOpenMega(null)}
-                          className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                        >
-                          <span
-                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] border bg-white"
-                            style={{ borderColor: C.mist, color: C.blue }}
-                          >
-                            <p.Icon className="h-5 w-5" strokeWidth={1.8} />
-                          </span>
-
-                          <span>
-                            <span className="block text-[16px] font-medium tracking-[0.1px]" style={{ color: C.ink }}>
-                              {p.title}
-                            </span>
-                            <span className="mt-1 block text-[14px] leading-[20px] tracking-[0.24px]" style={{ color: C.slate }}>
-                              {p.desc}
-                            </span>
-                          </span>
-                        </Link>
+                          Icon={p.Icon}
+                          title={p.title}
+                          desc={p.desc}
+                        />
                       ))}
                     </div>
                   </div>
@@ -406,15 +449,16 @@ export default function LandingNav() {
             <div
               ref={aboutRef}
               className="relative"
-              onMouseEnter={() => setOpenMega("about")}
-              onMouseLeave={() => setOpenMega((cur) => (cur === "about" ? null : cur))}
+              onMouseEnter={() => requestOpen("about")}
+              onMouseLeave={requestClose}
             >
               <button
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={openMega === "about"}
+                aria-controls="mega-about"
                 onClick={() => toggleMega("about")}
-                className={`${pillLink(openMega === "about" || isAboutPath(pathname))} gap-1.5`}
+                className={megaTrigger("about")}
                 style={{ color: C.ink }}
               >
                 About
@@ -422,53 +466,35 @@ export default function LandingNav() {
               </button>
 
               {openMega === "about" && (
-                <div className="absolute right-0 top-full w-[min(860px,calc(100vw-32px))] pt-3">
-                  <div className="max-h-[calc(100dvh-96px)] overflow-y-auto rounded-[24px] border bg-white/95 p-8 backdrop-blur-md" style={{ borderColor: C.mist }}>
-                    <p className="text-[20px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
+                <div id="mega-about" className="absolute right-0 top-full w-[min(760px,calc(100vw-32px))] pt-2.5">
+                  <div className={`${MEGA_PANEL} max-h-[calc(100dvh-88px)] overflow-y-auto`}>
+                    <p className="text-[16px] font-medium tracking-[-0.12px]" style={{ color: C.ink }}>
                       About Visionary
                     </p>
-                    <p className="mt-1 text-[14px] tracking-[0.24px]" style={{ color: C.slate }}>
+                    <p className="mt-0.5 text-[13px] tracking-[0.24px]" style={{ color: C.slate }}>
                       Company, support, programs, trust, and legal information.
                     </p>
 
-                    <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+                    <div className="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-3">
                       {ABOUT_GROUPS.map((group) => (
                         <div key={group.title}>
-                          <p className="mb-3 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
+                          <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
                             {group.title}
                           </p>
 
-                          <div className="space-y-2">
-                            {group.items.map((item) => {
-                              const active = pathname === item.to;
-
-                              return (
-                                <Link
-                                  key={item.id}
-                                  to={item.to}
-                                  onClick={() => setOpenMega(null)}
-                                  className={`flex items-start gap-3 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
-                                    active ? "bg-[#f8f9fa]" : ""
-                                  }`}
-                                >
-                                  <span
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border bg-white"
-                                    style={{ borderColor: C.mist, color: C.blue }}
-                                  >
-                                    <item.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                                  </span>
-
-                                  <span>
-                                    <span className="block text-[15px] font-medium leading-[20px]" style={{ color: C.ink }}>
-                                      {item.title}
-                                    </span>
-                                    <span className="mt-0.5 block text-[13px] leading-[18px] tracking-[0.2px]" style={{ color: C.slate }}>
-                                      {item.desc}
-                                    </span>
-                                  </span>
-                                </Link>
-                              );
-                            })}
+                          <div className="space-y-1">
+                            {group.items.map((item) => (
+                              <MegaTile
+                                key={item.id}
+                                to={item.to}
+                                onClick={() => setOpenMega(null)}
+                                Icon={item.Icon}
+                                title={item.title}
+                                desc={item.desc}
+                                active={pathname === item.to}
+                                compact
+                              />
+                            ))}
                           </div>
                         </div>
                       ))}
@@ -481,10 +507,10 @@ export default function LandingNav() {
         </div>
 
         {/* RIGHT: utilities */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <Link
             to="/help"
-            className={`${pillLink(pathname === "/help")} hidden gap-1.5 sm:flex`}
+            className={`${pillLink(pathname === "/help")} hidden gap-1.5 xl:flex`}
             style={{ color: C.ink }}
           >
             <CircleHelp className="h-5 w-5" strokeWidth={1.8} />
@@ -497,18 +523,19 @@ export default function LandingNav() {
 
           <Link
             to="/register"
-            className="flex h-11 items-center rounded-full px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
+            className={`flex h-10 items-center rounded-full px-4 text-[15px] font-medium tracking-[0.24px] text-white transition-all hover:opacity-90 active:scale-[0.98] ${FOCUS_RING}`}
             style={{ backgroundColor: C.darkblue }}
           >
             Get started
           </Link>
 
           <button
+            ref={menuBtnRef}
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((o) => !o)}
-            className={iconBtn(false) + " xl:hidden"}
+            className={iconBtn(false) + " lg:hidden"}
             style={{ color: C.graphite }}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -516,9 +543,43 @@ export default function LandingNav() {
         </div>
       </div>
 
-      {/* MOBILE DRAWER */}
+      {/* MOBILE DRAWER — a first-class responsive state: compact utility row on
+          top, separated sections, safe-area padding, focus moved inside */}
       {mobileOpen && (
-        <div className="safe-b max-h-[calc(100dvh-4rem)] overflow-y-auto border-t bg-white px-6 pb-8 pt-4 xl:hidden" style={{ borderColor: C.mist }}>
+        <div
+          ref={drawerRef}
+          className="safe-b max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t bg-white px-5 pb-8 pt-4 lg:hidden"
+          style={{ borderColor: C.mist }}
+        >
+          {/* Compact top utility row */}
+          <div className="grid grid-cols-3 gap-2 border-b pb-4" style={{ borderColor: C.mist }}>
+            <Link
+              to="/help"
+              onClick={() => setMobileOpen(false)}
+              className={`flex h-10 items-center justify-center gap-1.5 rounded-full border text-[14px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
+              style={{ borderColor: C.mist, color: C.ink }}
+            >
+              <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
+              Help
+            </Link>
+            <Link
+              to="/login"
+              onClick={() => setMobileOpen(false)}
+              className={`flex h-10 items-center justify-center rounded-full border text-[14px] font-normal tracking-[0.24px] ${FOCUS_RING}`}
+              style={{ borderColor: C.mist, color: C.blue }}
+            >
+              Sign in
+            </Link>
+            <Link
+              to="/register"
+              onClick={() => setMobileOpen(false)}
+              className={`flex h-10 items-center justify-center rounded-full text-[14px] font-medium tracking-[0.24px] text-white ${FOCUS_RING}`}
+              style={{ backgroundColor: C.darkblue }}
+            >
+              Get started
+            </Link>
+          </div>
+
           {/* WHO YOU ARE */}
           <div className="py-2">
             <p className="mb-2 text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
@@ -533,13 +594,14 @@ export default function LandingNav() {
                   key={cat.path}
                   to={cat.path}
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa]"
+                  aria-current={cat.path === pathname ? "page" : undefined}
+                  className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING} ${cat.path === pathname ? "bg-[#f8f9fa]" : ""}`}
                 >
                   <span
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] border bg-white"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
                     style={{ borderColor: C.mist, color: C.blue }}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={1.8} />
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                   </span>
 
                   <span>
@@ -559,7 +621,8 @@ export default function LandingNav() {
           <Link
             to="/how-it-works"
             onClick={() => setMobileOpen(false)}
-            className="block border-t py-3 text-[15px] tracking-[0.24px]"
+            aria-current={pathname === "/how-it-works" ? "page" : undefined}
+            className={`block border-t py-3.5 text-[15px] tracking-[0.24px] ${FOCUS_RING}`}
             style={{ borderColor: C.mist, color: C.ink }}
           >
             How it works
@@ -576,13 +639,13 @@ export default function LandingNav() {
                 key={ctx.id}
                 to={`/organization#${ctx.id}`}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa]"
+                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING}`}
               >
                 <span
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] border bg-white"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
                   style={{ borderColor: C.mist, color: C.blue }}
                 >
-                  <ctx.Icon className="h-5 w-5" strokeWidth={1.8} />
+                  <ctx.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                 </span>
 
                 <span>
@@ -601,7 +664,8 @@ export default function LandingNav() {
           <Link
             to="/pricing"
             onClick={() => setMobileOpen(false)}
-            className="block border-t py-3 text-[15px] tracking-[0.24px]"
+            aria-current={pathname === "/pricing" ? "page" : undefined}
+            className={`block border-t py-3.5 text-[15px] tracking-[0.24px] ${FOCUS_RING}`}
             style={{ borderColor: C.mist, color: C.ink }}
           >
             Pricing
@@ -618,13 +682,13 @@ export default function LandingNav() {
                 key={p.id}
                 to={`/download#${p.id}`}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa]"
+                className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING}`}
               >
                 <span
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] border bg-white"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
                   style={{ borderColor: C.mist, color: C.blue }}
                 >
-                  <p.Icon className="h-5 w-5" strokeWidth={1.8} />
+                  <p.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                 </span>
 
                 <span>
@@ -656,13 +720,14 @@ export default function LandingNav() {
                     key={item.id}
                     to={item.to}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-start gap-4 rounded-[16px] p-3 transition-colors hover:bg-[#f8f9fa]"
+                    aria-current={pathname === item.to ? "page" : undefined}
+                    className={`flex items-start gap-4 rounded-[12px] p-3 transition-colors hover:bg-[#f8f9fa] ${FOCUS_RING}`}
                   >
                     <span
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] border bg-white"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
                       style={{ borderColor: C.mist, color: C.blue }}
                     >
-                      <item.Icon className="h-5 w-5" strokeWidth={1.8} />
+                      <item.Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
                     </span>
 
                     <span>
@@ -677,37 +742,6 @@ export default function LandingNav() {
                 ))}
               </div>
             ))}
-          </div>
-
-          {/* Utility actions */}
-          <div className="mt-4 flex flex-col gap-3 border-t pt-5" style={{ borderColor: C.mist }}>
-            <Link
-              to="/help"
-              onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center gap-2 rounded-full border text-[16px] font-normal tracking-[0.24px]"
-              style={{ borderColor: C.mist, color: C.ink }}
-            >
-              <CircleHelp className="h-4 w-4" strokeWidth={1.8} />
-              Get help
-            </Link>
-
-            <Link
-              to="/login"
-              onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center rounded-full border text-[16px] font-normal tracking-[0.24px]"
-              style={{ borderColor: C.mist, color: C.blue }}
-            >
-              Sign in
-            </Link>
-
-            <Link
-              to="/register"
-              onClick={() => setMobileOpen(false)}
-              className="flex h-11 items-center justify-center rounded-full text-[16px] font-medium tracking-[0.24px] text-white"
-              style={{ backgroundColor: C.darkblue }}
-            >
-              Get started
-            </Link>
           </div>
         </div>
       )}

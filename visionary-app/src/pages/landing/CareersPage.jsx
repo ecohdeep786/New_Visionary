@@ -135,7 +135,7 @@ const RAIL_ITEMS = [
 function CareersRail({ active }) {
   return (
     <nav aria-label="Careers sections" className="hidden w-[96px] shrink-0 border-r lg:block" style={{ borderColor: C.line }}>
-      <div className="sticky top-16 flex h-[calc(100vh-4rem)] flex-col items-center gap-2 overflow-y-auto px-3.5 pt-6">
+      <div className="sticky top-14 flex h-[calc(100vh-4rem)] flex-col items-center gap-2 overflow-y-auto px-3.5 pt-6">
         {RAIL_ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.id;
@@ -157,7 +157,7 @@ function CareersRail({ active }) {
 
 function MobileRail({ active }) {
   return (
-    <nav aria-label="Careers sections" className="sticky top-16 z-40 border-b bg-white lg:hidden" style={{ borderColor: C.line }}>
+    <nav aria-label="Careers sections" className="sticky top-14 z-40 border-b bg-white lg:hidden" style={{ borderColor: C.line }}>
       <div className="flex gap-1 overflow-x-auto px-3 py-2">
         {RAIL_ITEMS.map((item) => {
           const Icon = item.icon;

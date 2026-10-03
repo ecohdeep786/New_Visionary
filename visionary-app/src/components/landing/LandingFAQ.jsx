@@ -87,7 +87,7 @@ export default function LandingFAQ({
                   onClick={() => toggle(index)}
                   className="flex w-full items-center justify-between gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 >
-                  <span className="font-normal leading-[1.15] text-[clamp(22px,2.4vw,34px)]" style={{ color: "#121317" }}>
+                  <span className="font-normal leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: "#121317" }}>
                     {faq.q}
                   </span>
                   <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#e8f0fe] sm:h-16 sm:w-16" style={{ color: "#121317" }}>
@@ -101,8 +101,9 @@ export default function LandingFAQ({
                   id={answerId}
                   role="region"
                   aria-labelledby={triggerId}
-                  aria-hidden={!open}
-                  className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                  /* visibility (not display) keeps the grid-rows animation while
+                     removing the closed answer from the a11y tree and selection */
+                  className={`grid transition-all duration-500 ease-google ${open ? "grid-rows-[1fr] opacity-100 visible" : "grid-rows-[0fr] opacity-0 invisible"}`}
                 >
                   <div className="overflow-hidden">
                     <p className="max-w-[1240px] pt-8 text-[16px] leading-[1.6]" style={{ color: "#121317" }}>{faq.a}</p>

@@ -409,7 +409,7 @@ function HowJourneySection() {
     <section ref={headRef} className="relative bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-60 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
-          <div className="sticky top-16 flex h-[calc(100dvh-4rem)] items-center">
+          <div className="sticky top-14 flex h-[calc(100dvh-4rem)] items-center">
             <div
               key={current.id === "signup" ? `signup-${authState}` : current.id}
               className="hero-fade-up max-w-[460px]"
