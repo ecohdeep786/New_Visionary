@@ -30,7 +30,8 @@ main > section[data-section="10-journey-flow"] {
 }
 
 main > section[data-section="05-intelligence"],
-main > section[data-section="05-one-intelligence"] {
+main > section[data-section="05-one-intelligence"],
+main > section[data-section="06-journey"] {
   background: var(--scene-ink, #0a0d14) !important;
   color: #f5f7fa;
 }
@@ -40,17 +41,22 @@ main > section[data-section="05-intelligence"] h2,
 main > section[data-section="05-intelligence"] h3,
 main > section[data-section="05-one-intelligence"] p,
 main > section[data-section="05-one-intelligence"] h2,
-main > section[data-section="05-one-intelligence"] h3 {
+main > section[data-section="05-one-intelligence"] h3,
+main > section[data-section="06-journey"] p,
+main > section[data-section="06-journey"] h2,
+main > section[data-section="06-journey"] h3 {
   color: inherit !important;
 }
 
 main > section[data-section="05-intelligence"] p,
-main > section[data-section="05-one-intelligence"] p {
+main > section[data-section="05-one-intelligence"] p,
+main > section[data-section="06-journey"] p {
   color: var(--scene-ink-soft, rgba(245, 247, 250, 0.72)) !important;
 }
 
 main > section[data-section="05-intelligence"] img,
-main > section[data-section="05-one-intelligence"] img {
+main > section[data-section="05-one-intelligence"] img,
+main > section[data-section="06-journey"] img {
   border-color: rgba(255, 255, 255, 0.14) !important;
 }
 

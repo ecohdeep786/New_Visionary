@@ -64,6 +64,7 @@ test('parent summaries require active scoped consent and exclude private content
 });
 test('returned classwork digest stays with the selected child and closes on revocation',()=>{
  const parent=ctx('parent','parent');
+ localStorage.setItem('visionary_entity_Classroom',JSON.stringify([{id:'c',name:'Independent class'}]));
  localStorage.setItem('visionary_entity_Assignment',JSON.stringify([{id:'a-one',class_id:'c',title:'Volume reasoning',status:'archived'},{id:'a-two',class_id:'c',title:'Reading data'},{id:'a-three',class_id:'c',title:'Measure a box',due_date:'2026-09-17',status:'published'},{id:'closed',class_id:'c',title:'Closed due-date canary',due_date:'2026-09-17',status:'closed'}]));
  localStorage.setItem('visionary_entity_Enrollment',JSON.stringify([{id:'enrolled-one',student_email:'minor-cbse@visionary.test',class_id:'c',status:'active'}]));
  localStorage.setItem('visionary_entity_Submission',JSON.stringify([

@@ -1,0 +1,3 @@
+PASS en: expired Work teacher membership hides Work editor; exact private backup/source/assignment bytes retained; renewed access and explicit Work return recover/export draft; assignment write failure retains choices; retry creates one reviewed fixed copy.
+PASS hi: expired Work teacher membership hides Work editor; exact private backup/source/assignment bytes retained; renewed access and explicit Work return recover/export draft; assignment write failure retains choices; retry creates one reviewed fixed copy.
+PASS bn: expired Work teacher membership hides Work editor; exact private backup/source/assignment bytes retained; renewed access and explicit Work return recover/export draft; assignment write failure retains choices; retry creates one reviewed fixed copy.

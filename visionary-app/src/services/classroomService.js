@@ -4,9 +4,18 @@ import {getContentRepository} from './contentRepository.ts';
 import {assertLessonObjective} from './lessonObjective.ts';
 import {validCriterionFeedback,classworkReviewRevision} from '../lib/classworkRubric.js';
 import {classworkProjectText} from '../lib/classworkProject.js';
+import {classworkActivityRevision} from '../lib/classworkSource.js';
 import {assignmentAcceptsResponses} from '../lib/assignmentAvailability.js';
 import {tierForPerson} from './stagePresentation.ts';
 
+async function learnerContext(ctx){
+ const account=await appClient.auth.me();
+ if(!account||account.id!==ctx.personId||!['student','professional'].includes(ctx.role))throw new Error('Open your own learning workspace before submitting classwork.');
+ snapshot(ctx);
+ if(bootstrapPerson(account).active!==ctx.workspaceId)throw new Error('Your workspace changed. Reopen classwork in your active learning workspace.');
+ return account;
+}
+const commandContext=ctx=>({personId:ctx.personId,workspaceId:ctx.workspaceId,role:ctx.role});
 async function teacherContext(ctx){
   const account=await appClient.auth.me();
   if(account.id!==ctx.personId||ctx.role!=='teacher')throw new Error('Open your teacher workspace first.');
@@ -72,19 +81,24 @@ export async function assignReviewedLesson(ctx,{resourceId,classId,dueDate,point
   if(!Number.isFinite(Number(points))||Number(points)<1||Number(points)>10000)throw new Error('Choose a point total between 1 and 10,000.');
   if(resource.checks!==undefined&&(!Array.isArray(resource.checks)||resource.checks.length>10||resource.checks.some(check=>!check||typeof check.id!=='string'||typeof check.prompt!=='string'||!check.prompt.trim())))throw new Error('Review the lesson questions before assigning.');
   const existing=await appClient.entities.Assignment.filter({class_id:classId,source_resource_id:resourceId,source_version:resource.updatedAt});
+  const latestClassroom=await appClient.entities.Classroom.get(classId);
+  const currentAccount=await teacherContext(ctx);
+  if(!latestClassroom||!ownsClass(currentAccount,latestClassroom))throw new Error('This class is not available in your active teacher workspace.');
+  const currentResource=snapshot(ctx).resources.find(row=>row.id===resourceId&&row.kind==='lesson');
+  if(!currentResource||JSON.stringify(currentResource)!==JSON.stringify(resource))throw new Error('This lesson changed before assignment. Reopen it and review the saved version.');
   const assignedRevision=JSON.stringify([resource.updatedAt,resource.title,resource.body,resource.checks||[],resource.objectiveSnapshot||null,resource.sourceSnapshot||null]);
   const replay=existing.find(item=>item.source_revision===assignedRevision||!item.source_revision&&JSON.stringify([item.title,item.description,item.checks||[],item.objective_snapshot||null,item.source_provenance||null])===JSON.stringify([resource.title,resource.body,resource.checks||[],resource.objectiveSnapshot||null,resource.sourceSnapshot||null]));if(replay)return replay;
-  return appClient.entities.Assignment.create({class_id:classId,teacher_id:ctx.personId,teacher_email:classroom.teacher_email,title:resource.title,description:resource.body,
-    points:Number(points),due_date:dueDate||undefined,subject:classroom.subject||'',topics:[],checks:(resource.checks||[]).map(check=>({id:check.id,prompt:check.prompt})),source_resource_id:resourceId,source_version:resource.updatedAt,source_revision:assignedRevision,...(resource.objectiveSnapshot?{objective_snapshot:structuredClone(resource.objectiveSnapshot)}:{}),...(resource.sourceSnapshot?{source_provenance:{...resource.sourceSnapshot}}:{}),status:'published',state_history:[{from:'new',to:'published',actor:account.email,at:new Date().toISOString()}]});
+  return appClient.entities.Assignment.create({class_id:classId,teacher_id:ctx.personId,teacher_email:latestClassroom.teacher_email,title:resource.title,description:resource.body,
+    points:Number(points),due_date:dueDate||undefined,subject:latestClassroom.subject||'',topics:[],checks:(resource.checks||[]).map(check=>({id:check.id,prompt:check.prompt})),source_resource_id:resourceId,source_version:resource.updatedAt,source_revision:assignedRevision,...(resource.objectiveSnapshot?{objective_snapshot:structuredClone(resource.objectiveSnapshot)}:{}),...(resource.sourceSnapshot?{source_provenance:{...resource.sourceSnapshot}}:{}),status:'published',state_history:[{from:'new',to:'published',actor:currentAccount.email,at:new Date().toISOString()}]},{expectedContext:commandContext(ctx),expectedResource:{workspaceId:ctx.workspaceId,id:resourceId,revision:JSON.stringify(resource)}});
 }
 export function classworkCriterionText(criteria,selfReview){if(!criteria.length)return '';if(!selfReview||typeof selfReview!=='object'||Array.isArray(selfReview)||criteria.some(item=>typeof selfReview[item.id]!=='string'||!selfReview[item.id].trim()||selfReview[item.id].length>2000)||Object.keys(selfReview).some(key=>!criteria.some(item=>item.id===key)))throw Error('Complete each assigned criterion review in Learn before submitting.');return `\n\nAssigned criterion self-review\n${criteria.map(item=>`${item.label}: ${item.prompt}\n${selfReview[item.id].trim()}`).join('\n\n')}`;}
 export function classworkResponseText(assignment,submission){const text=submission?.text||'';try{const suffix=classworkCriterionText(assignment.objective_snapshot?.criteria||[],submission?.self_review||{});return suffix&&text.endsWith(suffix)?text.slice(0,-suffix.length):text;}catch{return text;}}
-export async function submitClassworkResponses(ctx,{assignmentId,text='',responses=[],selfReview={}}){
- const account=await appClient.auth.me();
- if(!account||account.id!==ctx.personId||!['student','professional'].includes(ctx.role))throw new Error('Open your own learning workspace before submitting classwork.');
- snapshot(ctx);
+export async function submitClassworkResponses(ctx,{assignmentId,text='',responses=[],selfReview={},expectedRevision}){
+ const account=await learnerContext(ctx);
  const assignment=await appClient.entities.Assignment.get(assignmentId);
  if(!assignmentAcceptsResponses(assignment))throw new Error('This assignment is not open for submissions in your class.');
+ const sourceRevision=classworkActivityRevision(assignment);
+ if(expectedRevision!==undefined&&expectedRevision!==sourceRevision)throw Error('The assigned content changed. Your response remains here. Export it, then reopen the latest activity before submitting.');
  const enrollment=(await appClient.entities.Enrollment.filter({class_id:assignment.class_id,student_email:account.email})).find(item=>item.status==='active');
  if(!enrollment)throw new Error('Join this class before submitting work.');
  const checks=Array.isArray(assignment.checks)?assignment.checks:[];
@@ -100,19 +114,22 @@ export async function submitClassworkResponses(ctx,{assignmentId,text='',respons
  if(assignment.objective_snapshot)assertLessonObjective(assignment.objective_snapshot);
  content+=classworkCriterionText(criteria,selfReview);if(content.length>50000)throw Error('Keep the response and criterion review within 50,000 characters.');
  const existing=await appClient.entities.Submission.filter({assignment_id:assignmentId,student_email:account.email});
+ const currentAssignment=await appClient.entities.Assignment.get(assignmentId);
+ if(!assignmentAcceptsResponses(currentAssignment))throw Error('This assignment is not open for submissions in your class.');
+ if(currentAssignment.class_id!==assignment.class_id||classworkActivityRevision(currentAssignment)!==sourceRevision)throw Error('The assigned content changed. Your response remains here. Export it, then reopen the latest activity before submitting.');
+ await learnerContext(ctx);
  if(existing.length){
   const previous=existing[0];
   if(previous.status!=='revision_requested'){if(previous.text!==content||JSON.stringify(previous.responses||[])!==JSON.stringify(answers))throw new Error('A different response is already submitted. Your current draft was not submitted or used to replace it. Review the saved response or export these edits.');return previous;}
   return appClient.entities.Submission.update(previous.id,{text:content,responses:answers,self_review:review,criterion_feedback:{},status:'submitted',grade:null,feedback:'',graded_date:null,
    submitted_date:new Date().toISOString(),attempt:(previous.attempt||1)+1,
-   revision_history:[...(previous.revision_history||[]),{text:previous.text,responses:previous.responses||[],self_review:previous.self_review||{},criterion_feedback:previous.criterion_feedback||{},feedback:previous.feedback||'',submitted_date:previous.submitted_date,graded_date:previous.graded_date,attempt:previous.attempt||1}]});
+   revision_history:[...(previous.revision_history||[]),{text:previous.text,responses:previous.responses||[],self_review:previous.self_review||{},criterion_feedback:previous.criterion_feedback||{},feedback:previous.feedback||'',submitted_date:previous.submitted_date,graded_date:previous.graded_date,attempt:previous.attempt||1}]},{expectedAssignmentRevision:sourceRevision,expectedReviewRevision:classworkReviewRevision(previous),expectedContext:commandContext(ctx)});
  }
  return appClient.entities.Submission.create({assignment_id:assignment.id,class_id:assignment.class_id,teacher_id:assignment.teacher_id||assignment.created_by_id,teacher_email:assignment.teacher_email,
-  student_id:account.id,student_name:account.full_name||account.email.split('@')[0],student_email:account.email,text:content,self_review:review,...(answers.length?{responses:answers}:{}),status:'submitted',submitted_date:new Date().toISOString().slice(0,10)});
+  student_id:account.id,student_name:account.full_name||account.email.split('@')[0],student_email:account.email,text:content,self_review:review,...(answers.length?{responses:answers}:{}),status:'submitted',submitted_date:new Date().toISOString().slice(0,10)},{expectedAssignmentRevision:sourceRevision,expectedContext:commandContext(ctx)});
 }
 export async function submitClassworkProject(ctx,{assignmentId,artifactId,expectedRevision,expectedObjectiveRevision}){
- const account=await appClient.auth.me();
- if(account.id!==ctx.personId||!['student','professional'].includes(ctx.role))throw new Error('Open your own learning workspace before submitting a project.');
+ await learnerContext(ctx);
  const assignment=await appClient.entities.Assignment.get(assignmentId);
  if(!assignment)throw new Error('This assignment is no longer available.');
  if(expectedObjectiveRevision!==undefined&&JSON.stringify(assignment.objective_snapshot||null)!==expectedObjectiveRevision)throw Error('The assigned objective or rubric changed. Preview the current classroom copy before submitting.');
@@ -122,7 +139,7 @@ export async function submitClassworkProject(ctx,{assignmentId,artifactId,expect
  if(!expectedRevision||artifactRevision(artifact)!==expectedRevision)throw new Error('This project changed. Preview the current saved copy before submitting.');
  const criteria=assignment.objective_snapshot?.criteria||[];
  if(criteria.length&&(artifact.conceptId!==assignment.objective_snapshot.conceptId||artifact.rubric?.sourceVersion!==assignment.objective_snapshot.provenance.version||artifact.rubric?.sourceProvider!==assignment.objective_snapshot.provenance.provider))throw Error('This project does not match the assigned objective and rubric source. Respond and review the assigned criteria in Learn.');
- return submitClassworkResponses(ctx,{assignmentId,text:classworkProjectText(artifact),selfReview:Object.fromEntries(criteria.map(item=>[item.id,artifact.rubric?.responses?.[item.id]]))});
+ return submitClassworkResponses(ctx,{assignmentId,expectedRevision:classworkActivityRevision(assignment),text:classworkProjectText(artifact),selfReview:Object.fromEntries(criteria.map(item=>[item.id,artifact.rubric?.responses?.[item.id]]))});
 }
 export async function changeAssignmentState(ctx,{assignmentId,expectedStatus,nextStatus}){
  const account=await teacherContext(ctx);const assignment=await appClient.entities.Assignment.get(assignmentId);
@@ -132,7 +149,7 @@ export async function changeAssignmentState(ctx,{assignmentId,expectedStatus,nex
  const allowed={draft:['published','archived'],scheduled:['published','draft','closed','archived'],published:['closed','archived'],closed:['published','archived'],archived:['closed']};
  if(!allowed[current]?.includes(nextStatus))throw new Error('Choose an available assignment action.');
  if(nextStatus==='published'&&(!assignment.title?.trim()||!Number.isFinite(Number(assignment.points))||Number(assignment.points)<1))throw new Error('Review the assignment title and point total before publishing.');
- return appClient.entities.Assignment.update(assignmentId,{status:nextStatus,state_history:[...(assignment.state_history||[]),{from:current,to:nextStatus,actor:account.email,at:new Date().toISOString()}]});
+ return appClient.entities.Assignment.update(assignmentId,{status:nextStatus,state_history:[...(assignment.state_history||[]),{from:current,to:nextStatus,actor:account.email,at:new Date().toISOString()}]},{expectedContext:commandContext(ctx),expectedAssignmentStateRevision:JSON.stringify([current,assignment.state_history||[]])});
 }
 export async function reviewClasswork(ctx,{submissionId,attempt=1,status,grade,feedback='',criterionFeedback={},expectedReviewRevision}){
  await teacherContext(ctx);
@@ -149,7 +166,7 @@ export async function reviewClasswork(ctx,{submissionId,attempt=1,status,grade,f
  if(status==='graded'&&(grade===''||grade==null||!Number.isFinite(Number(grade))||Number(grade)<0||Number(grade)>(assignment?.points||100)))throw new Error('Enter a grade within the assignment point range.');
  const latest=await appClient.entities.Submission.get(submissionId);
  if(!latest||classworkReviewRevision(latest)!==classworkReviewRevision(submission))throw Error('This review changed while saving. Export your edits, then load the latest review.');
- return appClient.entities.Submission.update(submissionId,{status,grade:status==='graded'?Number(grade):null,feedback:feedback.trim(),criterion_feedback:structuredClone(criterionFeedback),graded_date:new Date().toISOString()});
+ return appClient.entities.Submission.update(submissionId,{status,grade:status==='graded'?Number(grade):null,feedback:feedback.trim(),criterion_feedback:structuredClone(criterionFeedback),graded_date:new Date().toISOString()},{expectedReviewRevision:classworkReviewRevision(submission),expectedContext:commandContext(ctx)});
 }
 export async function organizationRoster(ctx){
  const account=await appClient.auth.me();if(account.id!==ctx.personId||ctx.role!=='organization')throw new Error('Open your organization workspace first.');snapshot(ctx);

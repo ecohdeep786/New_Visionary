@@ -24,7 +24,9 @@ const languageNames = {
 };
 export default function LearningWorkspace(props) {
   const [params] = useSearchParams();
-  return !props.unitIdOverride && params.get('bridgeTransition') ? <BridgeObjectiveEntry transitionId={params.get('bridgeTransition')} conceptId={params.get('bridgeConcept')} /> : !props.unitIdOverride && params.get('assignment') ? props.practice ? <ClassworkStudy assignmentId={params.get('assignment')} mode="practice" /> : <ClassworkLearningPlayer assignmentId={params.get('assignment')} /> : <CurriculumLearningWorkspace {...props} />;
+  const {ctx} = useWorkspace();
+  const activityKey = `${ctx?.personId}:${ctx?.workspaceId}:${props.unitIdOverride || params.get('unit') || ''}:${params.get('chapter') || ''}:${params.get('fromClass') || ''}:${Boolean(props.practice)}`;
+  return !props.unitIdOverride && params.get('bridgeTransition') ? <BridgeObjectiveEntry transitionId={params.get('bridgeTransition')} conceptId={params.get('bridgeConcept')} /> : !props.unitIdOverride && params.get('assignment') ? props.practice ? <ClassworkStudy assignmentId={params.get('assignment')} mode="practice" /> : <ClassworkLearningPlayer assignmentId={params.get('assignment')} /> : <CurriculumLearningWorkspace key={activityKey} {...props} />;
 }
 function BridgeObjectiveEntry({
   transitionId,
@@ -102,10 +104,19 @@ function CurriculumLearningWorkspace({
   unitIdOverride
 }) {
   const {
-    ctx,
+    ctx: baseContext,
     data,
     error: workspaceError
   } = useWorkspace();
+  const requests = useRef(new AbortController());
+  useEffect(() => {
+    const controller = new AbortController();
+    requests.current = controller;
+    return () => controller.abort();
+  }, []);
+  // Read the mounted controller when an action begins, including Strict Mode's
+  // effect replay. An unmounted activity never receives a replacement controller.
+  const ctx = baseContext ? {...baseContext, get signal() {return requests.current.signal;}} : null;
   const locale = data?.preferences.interfaceLocale || 'en';
   const copy = learningCopy(locale);
   const {
@@ -132,6 +143,9 @@ function CurriculumLearningWorkspace({
   const [classContext, setClassContext] = useState(null);
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState('');
+  const [activityConflict, setActivityConflict] = useState(false);
+  const [sourceConflict, setSourceConflict] = useState(false);
+  const [sourceExportError, setSourceExportError] = useState('');
   const [answer, setAnswer] = useState('');
   const [rename, setRename] = useState('');
   const [contentRetry, setContentRetry] = useState(0);
@@ -143,6 +157,9 @@ function CurriculumLearningWorkspace({
     let live = true;
     if (!ctx) return;
     setError('');
+    setActivityConflict(false);
+    setSourceConflict(false);
+    setSourceExportError('');
     setBusy(true);
     setUnit(null);
     setConcept(null);
@@ -153,12 +170,12 @@ function CurriculumLearningWorkspace({
     (async () => {
       if (unitId) {
         const saved = flushLearningOutcome(ctx, unitId);
+        if (live) setUnit(saved);
         const repo = getContentRepository({
           ...ctx,
           locale: saved.locale
         });
         const content = await repo.getConcept(saved.conceptId);
-        if (live) setUnit(saved);
         if (content) assertLearningSource(saved, content);
         if (live) {
           setConcept(content);
@@ -223,7 +240,7 @@ function CurriculumLearningWorkspace({
         }
       }
     })().catch(e => {
-      if (live) setError(e.message);
+      if (live) {setError(e.message);setSourceConflict(e.name === 'LearningSourceConflictError');}
     }).finally(() => {
       if (live) {
         setBusy(false);
@@ -241,6 +258,8 @@ function CurriculumLearningWorkspace({
       await work();
     } catch (e) {
       setError(e.message);
+      setActivityConflict(e.name === 'LearningUnitConflictError');
+      setSourceConflict(e.name === 'LearningSourceConflictError');
     } finally {
       setBusy(false);
     }
@@ -291,10 +310,14 @@ function CurriculumLearningWorkspace({
     setUnit(next);
     setConcept(translated);
   }
+  function exportSavedActivity() {
+    const savedActivity=getLearningUnit(ctx,unitId);downloadText('saved-activity-view.json',JSON.stringify({title:savedActivity.title,stage:savedActivity.stage,source:savedActivity.sourceContext,locale:savedActivity.locale,explanation:savedActivity.explanation,representation:savedActivity.representation,question:savedActivity.question?{id:savedActivity.question.id,prompt:savedActivity.question.prompt,options:savedActivity.question.options}:undefined,selectedIndex:learningAnswerSelection(savedActivity),attempts:savedActivity.attempts?.map(attempt=>({id:attempt.id,kind:attempt.kind,prompt:attempt.question.prompt,selectedIndex:attempt.selectedIndex,correct:attempt.correct,at:attempt.at}))},null,2),'application/json');
+  }
   if (workspaceError || !ctx) return <div className="v-page" role={workspaceError ? 'alert' : 'status'} lang={locale}>{workspaceError || copy('Opening your learning workspace…')}</div>;
   if (renderedWorkspaceId !== ctx.workspaceId) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening this workspace\u2026")}</div>;
   if (unitId && unit?.id !== unitId && busy) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Restoring your saved learning activity\u2026")}</div>;
   if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening your learning outline\u2026")}</div>;
+  if (activityConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved activity changed')}</h1><p className="v-notice" role="alert">{copy('A newer version of this activity is saved. Reload it to continue with the latest language, view and recorded answers.')}</p><button className="v-button primary mt-4" onClick={() => setContentRetry(value => value + 1)}>{copy('Retry saved learning')}</button></div>;
   const professional = ctx.role === 'professional';
   let state, saved, reviewQueue;
   try {
@@ -332,13 +355,16 @@ function CurriculumLearningWorkspace({
   }).toString();
   const outlineUrl = `/dashboard/learn${outlineQuery ? `?${outlineQuery}` : ''}`;
   const chapterConcepts = topics.flatMap(topic => topic.concepts);
+  if (sourceConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved source changed')}</h1><p className="v-notice" role="alert">{copy('Your original activity is kept. Open the learning outline to start a separate activity from the current reviewed source.')}</p><div className="mt-4 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy('Open learning outline')}</Link><button className="v-button" onClick={() => {
+    setSourceExportError('');try {exportSavedActivity();}catch(failure){setSourceExportError(failure.message);}
+  }}>{copy('Export current activity view')}</button></div>{sourceExportError && <p className="v-notice v-error mt-4" role="alert" lang="en">{sourceExportError}</p>}</div>;
   const startedConcepts = chapterConcepts.filter(item => saved.some(activity => activity.conceptId === item.id)).length;
   const nextConcept = chapterConcepts.find(item => saved.some(activity => activity.conceptId === item.id && activity.stage !== 'completed')) || chapterConcepts.find(item => !saved.some(activity => activity.conceptId === item.id)) || chapterConcepts[0];
   const chapterIndex = unit ? chapterConcepts.findIndex(item => item.id === unit.conceptId) : -1;
   const followingConcept = chapterIndex >= 0 ? chapterConcepts.slice(chapterIndex + 1).find(item => !saved.some(activity => activity.conceptId === item.id && activity.stage === 'completed')) : null;
   const status = <>{busy && <p role="status" className="v-muted">{copy("Saving your place\u2026")}</p>}{error && <div role="alert" className="v-notice v-error"><span lang="en">{error}</span> {copy('Your saved work is kept.')} {!unitId && (chapterId || fromClassId) && <button className="v-button ml-3" onClick={() => setParams({})}>{copy("Open my outline")}</button>}</div>}</>;
   if (unitId && !unit && !busy) return <div className="v-page" lang={locale}><h1 className="v-title">{copy("Learning activity unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("Open your outline to choose an available concept. This link did not create or score an activity.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry activity")}</button></div></div>;
-  if (unitId && unit && !concept && !busy) return <div className="v-page" lang={locale}><p className="v-home-eyebrow">{copy("Saved learning activity")}</p><h1 className="v-title mt-2">{copy("Teaching content unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("This activity is still saved locally. No check, practice or mastery result was added while the content was unavailable.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask about this activity")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry content")}</button></div></div>;
+  if (unitId && unit && !concept && !busy) return <div className="v-page" lang={locale}><p className="v-home-eyebrow">{copy("Saved learning activity")}</p><h1 className="v-title mt-2">{copy("Teaching content unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("This activity is still saved locally. No check, practice or mastery result was added while the content was unavailable.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask about this activity")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry content")}</button><button className="v-button" onClick={() => {try {exportSavedActivity();}catch(failure){setError(failure.message);}}}>{copy("Export current activity view")}</button></div></div>;
   if (unit && concept) return <div className="v-page" lang={locale}>
   <header><Link className="v-button" to={outlineUrl}><ArrowLeft size={16} />{copy("Learning outline")}</Link><p className="v-home-eyebrow mt-5">{concept.status === 'sample' ? copy("Authored sample \xB7 Not official curriculum") : concept.status === 'provisional' ? copy("Provisional learning outline") : concept.provenance ? copy('Sourced curriculum · {provider} · version {version}', {
           provider: concept.provenance.provider,

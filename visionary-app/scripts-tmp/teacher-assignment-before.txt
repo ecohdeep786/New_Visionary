@@ -1,0 +1,60 @@
+✖ lesson changes during assignment lookup reject instead of publishing the earlier preview (51.4333ms)
+✖ lesson changes at assignment commit retain the newer source and original fixed class copies (9.9333ms)
+✖ a pending assignment close cannot replace a newer archive or its state history (64.5345ms)
+✖ expired teacher membership at assignment commit denies publication (31.2291ms)
+✖ failed assignment storage keeps source and fixed copies and allows explicit retry (29.7513ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 772.5289
+
+✖ failing tests:
+
+test at tests\teacher-assignment-boundary.test.mjs:18:1
+✖ lesson changes during assignment lookup reject instead of publishing the earlier preview (51.4333ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:19:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\teacher-assignment-boundary.test.mjs:23:1
+✖ lesson changes at assignment commit retain the newer source and original fixed class copies (9.9333ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:24:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests\teacher-assignment-boundary.test.mjs:28:1
+✖ a pending assignment close cannot replace a newer archive or its state history (64.5345ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:29:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests\teacher-assignment-boundary.test.mjs:33:1
+✖ expired teacher membership at assignment commit denies publication (31.2291ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:34:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests\teacher-assignment-boundary.test.mjs:38:1
+✖ failed assignment storage keeps source and fixed copies and allows explicit retry (29.7513ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:39:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

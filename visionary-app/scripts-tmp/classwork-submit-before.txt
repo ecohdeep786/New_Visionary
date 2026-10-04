@@ -1,0 +1,88 @@
+✖ first submission rejects assignment content changed at commit (248.6339ms)
+✖ revised submission rejects assignment content changed at commit (100.8721ms)
+✖ assignment content changed during response lookup cannot be submitted from the older displayed source (122.3216ms)
+✖ pending learner revision cannot discard newer teacher revision feedback (62.5978ms)
+✔ withdrawn enrollment at submission commit denies the write (17.4101ms)
+✔ a failed submission write retains original revision history and supports an explicit retry (43.3386ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 2
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1669.4008
+
+✖ failing tests:
+
+test at tests\classwork-submit-boundary.test.mjs:20:36
+✖ first submission rejects assignment content changed at commit (248.6339ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:17:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:22:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /assigned content changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-submit-boundary.test.mjs:20:36
+✖ revised submission rejects assignment content changed at commit (100.8721ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:17:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:22:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /assigned content changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-submit-boundary.test.mjs:25:1
+✖ assignment content changed during response lookup cannot be submitted from the older displayed source (122.3216ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:17:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:27:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /assigned content changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-submit-boundary.test.mjs:30:1
+✖ pending learner revision cannot discard newer teacher revision feedback (62.5978ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /review changed/. Input:
+  
+  'Error: This action is not permitted in your active workspace.'
+  
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:17:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:32:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: This action is not permitted in your active workspace.
+        at Object.assertWrite (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/api/previewPermissions.js:81:23)
+        at Object.update (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/api/appClient.js:418:79)
+        at Object.update (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:16:209)
+        at async waitForActual (node:assert:646:5)
+        at async strict.rejects (node:assert:769:25)
+        at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:17:6)
+        at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-submit-boundary.test.mjs:32:2)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /review changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

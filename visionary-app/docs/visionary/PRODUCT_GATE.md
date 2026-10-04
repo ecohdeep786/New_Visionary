@@ -91,3 +91,58 @@ G9 remains PARTIAL:368 service tests, current-tree build/lint/both types,222 loc
 ### 2026-10-04 — Portfolio retained-history re-gate
 
 G1/G5/G8 pass for this bounded slice: the project remains usable, malformed assessments are disclosed and explicit recovery preserves source/history and edits. G9 automated slice passes369 service tests, whole-tree build/lint/types, en/hi/bn production recovery, review conflict and sponsored-workspace revocation. G10 handoff is recorded in STATUS/QA/D-027/current status. Other gates retain their previous verdicts; G7 public baseline and G9 native/task-based acceptance remain open, as do the broader source/role-state requirements. Full frontend merge/release acceptance remains OPEN. Backend remains deferred under D-015.
+
+
+### 2026-10-04 — Learner goals and parent history/workspace re-gate
+
+G1/G3/G4/G5/G8 pass for this bounded slice: learner-only purpose, multilingual controls, private draft versus approved fixed-copy distinction, current consent/source checks, conflict/error recovery and transparent personal/Work boundary. G9 automated slice passes372 tests, whole-tree build/lint/both types, three-language recovery and Work/personal journeys plus paired parent sharing and320–1440 reflow. G10 evidence/handoff and D-028/D-029 are recorded. G11 preserves existing v-card/dialog/control inheritance; Hindi dialog inspected. Other global verdicts remain unchanged: G7 clean public continuity and G9 native/task-based acceptance are open, along with wider source/state requirements. Full frontend release acceptance remains OPEN. Backend remains deferred under D-015.
+
+
+### 2026-10-04 — Saved learning response re-gate
+
+G5/G8 pass for this bounded continuation: obsolete responses preserve current owned work/evidence and explicit multilingual recovery removes stale assessment controls. G9 automated slice passes375 tests, whole-tree build/lint/types, three-language production learning and separate source-mode deferred-adapter conflict journeys. G10 handoff/evidence is recorded in D-030, QA/STATUS/current status. No wider gate is certified: G7 public baseline and G9 native/task-based acceptance, together with broader source/state requirements, remain OPEN. Backend remains deferred under D-015.
+
+
+### 2026-10-04 — Activity navigation cancellation re-gate
+
+G3/G5/G8 pass for this bounded slice: request ownership follows the active activity/workspace, navigation cancels old teaching, and no old response enters the new view. G9 automated slice passes376 service tests, build/lint/both types, three-language production learning regression and separate source-mode deferred navigation/workspace/conflict cases. G10 evidence and ordered next execution are recorded in D-031, QA/STATUS and FRONTEND_ACCEPTANCE_MATRIX.md. Remaining global source/state/native/device/public-baseline gates stay OPEN. Backend remains deferred.
+
+
+### 2026-10-04 — Category/source fidelity re-gate
+
+G3/G5/G8 pass for this bounded source-version continuation: scoped service workflows, honest language/source availability, preserved original records, explicit separate continuation and recoverable private export. G9 automated slice passes389 full tests, final build/lint/both type checks as documented, en/hi/bn production recovery/learning regression and retained source-mode navigation regression. G10/D-032 and ordered acceptance evidence are recorded. G11 inherits existing internal controls; Hindi recovery inspected. Wider G3/G4/G8/G9/G12 source/state and G7 public continuity verdicts are not upgraded to whole-product passes. Full frontend acceptance remains OPEN; backend stays deferred.
+
+
+### 2026-10-04 — Provisional mapping and withdrawal re-gate
+
+G4/G5/G8 pass for this bounded continuation: mappings retain unique owned identity and newer saved work; unreadable/missing targets do not overwrite records; withdrawal removes exploration while fixed assignments survive. G9 automated slice passes393 tests, build/lint/both types, three-language mapping/source recovery, English bridge and paired local publication withdrawal/restoration. G10 handoff is recorded in D-033, QA/STATUS/current status and acceptance matrix. Full G3/G4/G8/G9/G12 matrices and G7 public continuity retain OPEN verdicts. No backend or whole-product acceptance.
+
+
+### 2026-10-04 — Teacher review commit re-gate
+
+G4/G5/G8 pass for this bounded continuation: commit-time revision checks preserve current response/history and current policy denies revoked teacher saves; private draft export and explicit reload remain available. G9 automated slice passes396 tests, build/lint/both types and English production revision/conflict/recovery/parent digest/revocation. G10/D-034 handoff is recorded. Wider linked-role/source/state/native/device and G7 public-baseline gates remain OPEN; no frontend-wide or backend acceptance.
+
+
+### 2026-10-04 — Learner submission boundary re-gate
+
+G4/G5/G8 pass for this bounded continuation: submission commits preserve displayed source and current teacher feedback, revoked class access hides source while keeping owned draft export, and failed writes preserve history for explicit retry. G9 automated slice passes402 tests, final build/lint/both types, en/hi/bn recovery and English paired Learn/project revision/lifecycle journeys. G10/D-035 handoff recorded. Wider membership/workspace/role-state, native/device and G7 public-continuity matrices retain OPEN verdicts; no frontend-wide or backend acceptance.
+
+
+### 2026-10-04 — Classwork context and pending-route re-gate
+
+G3/G4/G5/G8 pass for this bounded continuation: commands/replays follow the current account/workspace/role; membership state denials retain originals; pending destination loading removes the prior activity while preserving its private draft. G9 automated slice passes409 tests,31 focused, final build/lint/both types and source-mode/production en/hi/bn handoffs, three-language recovery and English project lifecycle regression. G10/D-036 evidence recorded. Wider rendered Work membership/state, role/category, native/device and G7 public continuity gates remain OPEN. No whole-frontend or backend acceptance.
+
+
+### 2026-10-04 — Teacher Work/assignment re-gate
+
+G3/G4/G5/G8 pass for this bounded continuation: expiry hides Work content while retaining scoped private drafts; renewed access restores through explicit return; checked source/context and current lifecycle history reject stale writes; failed assignment storage preserves choices and copies. G9 automated slice passes414 tests,28 focused, build/full lint/both types, harness lint, en/hi/bn Work recovery and teacher controls, plus paired publication regression. G10/D-037 handoff recorded. Wider role/category/source/native/device, organization delivery/publication failure-state and G7 public continuity gates remain OPEN. No whole-frontend/backend/AGI acceptance.
+
+
+### 2026-10-04 — Organization delivery/publication re-gate
+
+G3/G4/G5/G8 pass for this bounded continuation: curriculum replays recheck current access, publication commit preserves its checked delivery, expiry hides Work review, and failed organization delivery/publication/withdrawal retains originals and explicit choices. G9 slice passes421 tests,16 focused, build/full lint/both types/harness lint, en/hi/bn rendered recovery and paired curriculum regression. G10/D-038 evidence recorded. Wider role/category/source/native/device and G7 public baseline retain OPEN verdicts; no whole-frontend/backend/AGI acceptance.
+
+
+### 2026-10-04 — Parent classwork access re-gate
+
+G3/G4/G5/G8 pass for this bounded continuation: upcoming parent items follow actual current learner access, missing classrooms cannot offer due work, historical consented summaries remain separate, and failed guardian operations preserve records for explicit retry/new acceptance. G9 slice passes428 tests,35 focused, build/full lint/both types/harness lint, en/hi/bn parent recovery and English goal/project regressions. G10/D-039 evidence recorded. Wider role/source/category/governance/native/device and G7 public continuity retain OPEN verdicts. No whole-frontend/backend/AGI acceptance.

@@ -1,0 +1,60 @@
+✖ lesson changes during assignment lookup reject instead of publishing the earlier preview (139.9131ms)
+✖ lesson changes at assignment commit retain the newer source and original fixed class copies (81.8492ms)
+✖ a pending assignment close cannot replace a newer archive or its state history (102.9776ms)
+✔ expired teacher membership at assignment commit denies publication (481.1287ms)
+✔ failed assignment storage keeps source and fixed copies and allows explicit retry (615.3364ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 2
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2805.3274
+
+✖ failing tests:
+
+test at tests\teacher-assignment-boundary.test.mjs:18:1
+✖ lesson changes during assignment lookup reject instead of publishing the earlier preview (139.9131ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:16:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:20:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /lesson changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\teacher-assignment-boundary.test.mjs:23:1
+✖ lesson changes at assignment commit retain the newer source and original fixed class copies (81.8492ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:16:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:25:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /lesson changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\teacher-assignment-boundary.test.mjs:28:1
+✖ a pending assignment close cannot replace a newer archive or its state history (102.9776ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:16:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:30:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /assignment state changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

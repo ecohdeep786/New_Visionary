@@ -32,6 +32,23 @@ test('goal edit conflicts and malformed parent copies preserve originals until e
  workspace.stopParentGoalSummary(learner,goal.id,parent.personId);assert.deepEqual(workspace.familyGoalSummaries(parent,learner.personId),[]);
 });
 
+test('Work goal and project sharing cannot report success outside the personal parent projection', () => {
+ localStorage.setItem('visionary_entity_OrganizationInvite',JSON.stringify([{id:'work-student',email:'minor-cbse@visionary.test',organization_email:'school-admin@visionary.test',organization_name:'Example School',role:'student',status:'active'}]));
+ const identity=workspace.bootstrapPerson({id:learner.personId,email:'minor-cbse@visionary.test',identity:'student',age_band:'minor'});
+ const space=identity.workspaces.find(row=>row.organizationId);assert.ok(space);
+ const work={...learner,workspaceId:space.id};
+ const goal=workspace.saveLearnerGoal(work,{title:'Work goal',body:'WORK_PRIVATE_NOTES'});
+ const artifact=workspace.saveArtifact(work,{title:'Work project',body:'WORK_PRIVATE_DOCUMENT',status:'completed'});
+ const original=memory.get('visionary_workspace_v2');
+ assert.throws(()=>workspace.shareParentGoalSummary(work,goal.id,parent.personId,'Work summary',version(goal)),/personal learner workspace/);
+ assert.throws(()=>workspace.shareParentProjectSummary(work,artifact.id,parent.personId,'Work project summary',version(artifact)),/personal learner workspace/);
+ assert.equal(memory.get('visionary_workspace_v2'),original);
+ assert.deepEqual(workspace.familyGoalSummaries(parent,learner.personId),[]);
+ assert.deepEqual(workspace.familyProjectSummaries(parent,learner.personId),[]);
+ assert.equal(workspace.snapshot(work).resources[0].body,'WORK_PRIVATE_NOTES');
+ assert.equal(workspace.snapshot(work).artifacts[0].body,'WORK_PRIVATE_DOCUMENT');
+});
+
 beforeEach(() => {
  memory.clear();
  workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-23T12:00:00Z') });

@@ -1,0 +1,39 @@
+✔ pending first response cannot save after a switch to another permitted learner role (190.4035ms)
+✔ pending revision cannot save after a switch to another permitted learner role (282.7965ms)
+✔ a request from an inactive learner workspace rejects before saving (587.4011ms)
+✔ idempotent replay cannot return the previous learner response after account handoff (318.0244ms)
+✔ pending Work membership at commit denies a learner submission (122.0818ms)
+✔ expired Work membership at commit denies a learner submission (101.4084ms)
+✔ revoked Work membership at commit denies a learner submission (59.859ms)
+✔ explicit project copy stays fixed through private edits, teacher revision and resubmission (660.5944ms)
+✔ stale, incomplete, foreign and question-assignment project copies reject before writes (8.4762ms)
+✔ failed classroom save preserves the completed project and permits explicit retry (235.2864ms)
+✔ concurrent project submissions create one fixed response and bulk duplicates preserve originals (233.3996ms)
+✔ assignment close, archive and restore preserve submitted copies and deny new writes until reopened (704.2917ms)
+✔ drafts stay teacher-only and a failed publish retains the draft and its history (78.8305ms)
+✔ scheduled access uses the saved instant, rejects early writes and supports cancellation or publish now (250.066ms)
+✔ class player resumes the assigned copy, refuses a changed source and closes after enrollment removal (26.1972ms)
+✔ shared class drafts reject stale same-assignment writes and merge unrelated assignments (65.9009ms)
+✔ shared draft read and save failures preserve original bytes and reject malformed answer maps (8.1905ms)
+✔ a competing teacher review at commit cannot be overwritten by an older draft (121.9575ms)
+✔ a newer learner attempt at commit cannot receive feedback for the older attempt (60.9471ms)
+✔ teacher membership revoked at commit denies the save and retains the learner response (113.2583ms)
+✔ assigned Ask uses only scoped instructions/source and handles unavailable teaching and safety (304.1118ms)
+✔ a delayed model reply closes on revoked class access and its packet excludes private study (379.2218ms)
+✔ authored rehearsal resumes, rejects stale questions and stores distinct retries without mastery or grades (1767.242ms)
+✔ study conflict, malformed stores and failed writes preserve originals and reject teacher access (104.885ms)
+✔ assigned criterion reviews are mandatory, fixed across revision history, and exclude private rehearsal (142.4881ms)
+✔ first submission rejects assignment content changed at commit (157.2703ms)
+✔ revised submission rejects assignment content changed at commit (186.2093ms)
+✔ assignment content changed during response lookup cannot be submitted from the older displayed source (428.5453ms)
+✔ pending learner revision cannot discard newer teacher revision feedback (257.4492ms)
+✔ withdrawn enrollment at submission commit denies the write (157.0274ms)
+✔ a failed submission write retains original revision history and supports an explicit retry (96.0653ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17097.3863

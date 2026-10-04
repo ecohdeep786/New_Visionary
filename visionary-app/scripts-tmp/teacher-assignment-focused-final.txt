@@ -1,0 +1,36 @@
+✔ full publication exposes unassigned chapters without keys, editorial notes, submissions or mastery (130.4858ms)
+✔ new delivery appends a separate fixed copy and never rewrites the earlier source or assignment (135.4118ms)
+✔ failed publication preserves class bytes and retries once; direct overwrites and stale writes are refused (53.6038ms)
+✔ invited or closed learners, foreign roles, stale workspaces and revoked teachers cannot receive or publish curriculum (61.0484ms)
+✔ unreadable publication and cyclic prerequisites are rejected without byte repair or partial publication (205.6286ms)
+✔ membership or workspace changes during asynchronous reads cancel the curriculum projection (39.4569ms)
+✔ withdrawal and restore retain fixed copies and assigned work while removing learner exploration (184.5125ms)
+✔ availability changes reject forged actors or altered source content and preserve bytes on storage failure (100.9208ms)
+✔ a copy withdrawn during an asynchronous read never returns stale source content (110.4423ms)
+✔ explicit project copy stays fixed through private edits, teacher revision and resubmission (136.5367ms)
+✔ stale, incomplete, foreign and question-assignment project copies reject before writes (9.8829ms)
+✔ failed classroom save preserves the completed project and permits explicit retry (10.8157ms)
+✔ concurrent project submissions create one fixed response and bulk duplicates preserve originals (28.8582ms)
+✔ assignment close, archive and restore preserve submitted copies and deny new writes until reopened (126.3041ms)
+✔ drafts stay teacher-only and a failed publish retains the draft and its history (38.4301ms)
+✔ scheduled access uses the saved instant, rejects early writes and supports cancellation or publish now (22.4439ms)
+✔ class player resumes the assigned copy, refuses a changed source and closes after enrollment removal (6.0677ms)
+✔ shared class drafts reject stale same-assignment writes and merge unrelated assignments (2.2102ms)
+✔ shared draft read and save failures preserve original bytes and reject malformed answer maps (2.1974ms)
+✔ teacher attaches a sourced objective without answer keys and assigns an immutable learner visual copy (325.214ms)
+✔ source and teacher context are rechecked and provisional or unavailable objectives do not attach (34.7321ms)
+✔ same-clock lesson edits reject stale assignment and cannot replay a different saved objective (7.4446ms)
+✔ malformed objective writes and visual drafts preserve originals; changed assignment objective rejects submission (24.7417ms)
+✔ lesson changes during assignment lookup reject instead of publishing the earlier preview (109.2795ms)
+✔ lesson changes at assignment commit retain the newer source and original fixed class copies (24.7086ms)
+✔ a pending assignment close cannot replace a newer archive or its state history (75.2579ms)
+✔ expired teacher membership at assignment commit denies publication (14.8035ms)
+✔ failed assignment storage keeps source and fixed copies and allows explicit retry (34.9009ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7027.9041

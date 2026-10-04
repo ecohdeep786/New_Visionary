@@ -1,0 +1,48 @@
+✔ late teaching cannot overwrite a newer saved language or representation (43.8498ms)
+✔ late practice response cannot erase a recorded answer or create repeated evidence (187.8903ms)
+✔ late remediation preserves the recorded incorrect answer and newer model view (1070.177ms)
+✔ leaving a learning activity cancels a delayed adapter without saving its response (173.0184ms)
+✔ fraction representation position persists without evidence; invalid and failed changes preserve it (740.0464ms)
+✔ cube entry points reuse one authored unit without importing old topic results as evidence (499.8673ms)
+✔ authored cube criteria require written self review without claiming a grade (2722.769ms)
+✔ interrupted project edits recover only inside their workspace and can be discarded (961.3508ms)
+✔ the cube view resumes in its learning unit and review preserves recorded evidence (2930.6867ms)
+✔ review queue uses recorded evidence timing and a new review retains completed work (3438.2321ms)
+✔ an invalid or failed model-view save leaves the prior saved view intact (1181.3243ms)
+✔ student Home → Learn → Ask → Practice → Build persists one connected activity and evidence (7777.4405ms)
+✔ connected teaching records only a versioned response contract in Learn and Ask (727.8062ms)
+✔ a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events (7487.4677ms)
+✔ a failed learning-unit write after project creation recovers the same artifact on retry (1064.5032ms)
+✔ wrong practice answer lowers difficulty and requests remediation without a generated local answer (2426.1063ms)
+✔ class-started learning reaches only the assigned teacher aggregate (2787.1966ms)
+✔ changing teaching language keeps the same session and localized authored check (818.9365ms)
+✔ changing to an unavailable language clears old teaching text without erasing the learning position (335.6137ms)
+✔ language change retrieves a newly available sourced variant without changing unit identity (373.8138ms)
+✔ a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback (10.3593ms)
+✔ official concept mapping resumes the provisional learning unit without splitting its progress (54.2688ms)
+✔ minor profiles cannot enter a professional journey through the service (0.8167ms)
+✔ unsubmitted learning selection resumes privately without producing scored evidence (682.4059ms)
+✔ stale question or retry round cannot overwrite draft or record a graded answer (580.1477ms)
+✔ failed draft write preserves old selection for retry and another owner cannot recover it (331.5049ms)
+✔ malformed learning containers and ambiguous owned units cannot overwrite original work or emit new evidence (110.2516ms)
+✔ a changed source cannot create a project under an older learning unit (6858.8319ms)
+✔ a changed source cannot erase the saved check or selection before retry fails (4293.0074ms)
+✔ source replacement during teaching cannot attach old teaching to an obsolete activity (2727.6391ms)
+✔ a changed source cannot grade a previously displayed unanswered question (2063.5533ms)
+✔ primary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (11212.2903ms)
+✔ secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (11359.5905ms)
+✔ higher-secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (5593.6152ms)
+✔ competitive: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (288.3827ms)
+✔ vocational: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (150.9123ms)
+✔ higher-education: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (298.2637ms)
+✔ independent-adult: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (194.7994ms)
+✔ professional: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (188.3837ms)
+✔ employer-sponsored: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (182.6777ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100281.6862

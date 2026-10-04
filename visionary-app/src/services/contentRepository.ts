@@ -55,7 +55,12 @@ function write(db: ContentStore, ctx: RequestContext) {
  try { localStorage.setItem(KEY, JSON.stringify(db)); } catch { throw new Error('Curriculum changes could not be saved on this device. Your previous records are unchanged.'); }
  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('visionary:content-change'));
 }
-function space(db: ContentStore, ctx: RequestContext) { return db.spaces[ctx.workspaceId] ??= { graphs: [], aliases: {}, gaps: [] }; }
+function space(db: ContentStore, ctx: RequestContext) {
+ const own=db.spaces[ctx.workspaceId] ??= {graphs:[],aliases:{},gaps:[]};
+ const aliases=own.aliases;
+ if(!aliases||typeof aliases!=='object'||Array.isArray(aliases)||Object.entries(aliases).some(([from,to])=>!from.trim()||typeof to!=='string'||!to.trim())||new Set(Object.values(aliases)).size!==Object.keys(aliases).length)throw Error('Saved curriculum mappings are incomplete or ambiguous. Original records were kept; restore a valid saved copy before retrying.');
+ return own;
+}
 function contentIssues(own: ContentStore['spaces'][string]): ContentIssue[] {
  const issues = own.issues;
  if (issues === undefined) return [];
@@ -229,6 +234,7 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
   },
   async mapProvisional(provisionalId, officialId) {
    check(ctx); const db = read(); const previous = conceptFrom(db, provisionalId); let next = conceptFrom(db, officialId);
+   const originalAliases=JSON.stringify(space(db,ctx).aliases);
    if (!next && adapter?.getConcept) {
     next = await abortable(adapter.getConcept(officialId, ctx), ctx.signal) ?? undefined;
     if (next && (!validProvenance(next.provenance) || !validLocales(next.availableLocales) || !next.locale || !next.availableLocales.includes(next.locale))) throw new Error('Connected concept needs a source version and explicit language availability.');
@@ -237,7 +243,14 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
    if (!previous || previous.status !== 'provisional' || !next || next.status !== 'official' || !eligible(ctx, next)) throw new Error('Both an owned provisional concept and an available official concept are required.');
    validateConcept(next); if (next.id !== officialId) throw new Error('The official concept does not match the requested identifier.');
    // Only an alias is added: progress, sessions and artifacts retain their original IDs.
-   const fresh = read(); space(fresh, ctx).aliases[provisionalId] = officialId; write(fresh, ctx);
+   const fresh = read();const current=space(fresh,ctx);
+   if(JSON.stringify(current.aliases)!==originalAliases||JSON.stringify(conceptFrom(fresh,provisionalId))!==JSON.stringify(previous))throw Error('This curriculum mapping or provisional activity changed while loading. Original records were kept; reload before retrying.');
+   if(current.aliases[provisionalId]&&current.aliases[provisionalId]!==officialId)throw Error('This provisional activity is already mapped to another reviewed concept. Keep its mapping and review a separate activity.');
+   if(Object.entries(current.aliases).some(([from,to])=>from!==provisionalId&&to===officialId))throw Error('This official concept is already mapped to another provisional activity. Review the existing mapping before continuing.');
+   const savedTarget=conceptFrom(fresh,officialId),originalTarget=conceptFrom(db,officialId);
+   if(JSON.stringify(savedTarget)!==JSON.stringify(originalTarget))throw Error('The reviewed mapping target changed while loading. Original records were kept; reload before retrying.');
+   if(current.aliases[provisionalId]===officialId)return;
+   current.aliases[provisionalId] = officialId; write(fresh, ctx);
   },
   async getDataGaps() { check(ctx); return structuredClone(space(read(), ctx).gaps); },
   async getContentIssues() { check(ctx); return structuredClone(contentIssues(space(read(), ctx))); },

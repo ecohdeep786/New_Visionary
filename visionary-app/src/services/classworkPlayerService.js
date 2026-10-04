@@ -2,7 +2,8 @@ import {appClient} from '../api/appClient.js';
 import {bootstrapPerson,snapshot} from './workspaceService.ts';
 import {submitClassworkResponses} from './classroomService.js';
 import {assertLessonObjective} from './lessonObjective.ts';
-export function classworkActivityRevision(assignment){return JSON.stringify([assignment.source_version,assignment.title,assignment.description,assignment.checks,assignment.points,assignment.objective_snapshot,...(assignment.source_provenance?.curriculumObjectiveId?[assignment.source_provenance]:[])]);}
+import {classworkActivityRevision} from '../lib/classworkSource.js';
+export {classworkActivityRevision} from '../lib/classworkSource.js';
 export async function getClassworkActivity(ctx,assignmentId){
  if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');
  const account=await appClient.auth.me();if(account.id!==ctx.personId||!['student','professional'].includes(ctx.role))throw Error('Open your own learning workspace for this class activity.');
@@ -26,5 +27,5 @@ export async function getClassworkActivity(ctx,assignmentId){
 }
 export async function submitClassworkActivity(ctx,{assignmentId,expectedRevision,text,responses,selfReview}){
  const view=await getClassworkActivity(ctx,assignmentId);if(classworkActivityRevision(view.assignment)!==expectedRevision)throw Error('The assigned content changed. Your response remains here. Export it, then reopen the latest activity before submitting.');
- return submitClassworkResponses(ctx,{assignmentId,text,responses,selfReview});
+ return submitClassworkResponses(ctx,{assignmentId,expectedRevision,text,responses,selfReview});
 }

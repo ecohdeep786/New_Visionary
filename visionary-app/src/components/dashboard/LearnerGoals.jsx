@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Dialog,DialogContent,DialogDescription,DialogTitle} from '@/components/ui/dialog';
-import {saveLearnerGoal,shareParentGoalSummary,stopParentGoalSummary,visibleRelationships,snapshot,resourceRevision} from '@/services/workspaceService';
+import {saveLearnerGoal,shareParentGoalSummary,stopParentGoalSummary,visibleRelationships,snapshot,resourceRevision,workspaceIdentity} from '@/services/workspaceService';
 import {getResourceEditorDraft,saveResourceEditorDraft,clearResourceEditorDraft} from '@/services/resourceEditorDraft';
 import {assertParentSummaryHistory} from '@/services/parentSummaryIntegrity';
 import {learnerGoalCopy} from '@/lib/learnerGoalCopy';
@@ -16,14 +16,14 @@ function GoalWorkspace({ctx,locale='en'}){
  const [draft,setDraft]=useState(null),[base,setBase]=useState(''),[backupError,setBackupError]=useState(''),[backupBlocked,setBackupBlocked]=useState(false),[recovered,setRecovered]=useState(false);
  const [selectedId,setSelectedId]=useState(''),[recipient,setRecipient]=useState(''),[summary,setSummary]=useState(''),[summaryBase,setSummaryBase]=useState(''),[summaryBackupError,setSummaryBackupError]=useState(''),[summaryBlocked,setSummaryBlocked]=useState(false),[summaryRecovered,setSummaryRecovered]=useState(false);
  const [notice,setNotice]=useState(''),[failed,setFailed]=useState(false);const [,setRetry]=useState(0);
- let goals=[],connections=[],readError='',connectionError='';
- try{const rows=snapshot(ctx).resources;if(!Array.isArray(rows))throw Error('Saved goals are unavailable.');goals=rows.filter(row=>row?.kind==='goal'&&row.status!=='archived');goals.forEach(readableGoal);}catch(error){readError=error.message;goals=[];}
+ let goals=[],connections=[],readError='',connectionError='',work=false;
+ try{work=Boolean(workspaceIdentity(ctx).workspace.organizationId);const rows=snapshot(ctx).resources;if(!Array.isArray(rows))throw Error('Saved goals are unavailable.');goals=rows.filter(row=>row?.kind==='goal'&&row.status!=='archived');goals.forEach(readableGoal);}catch(error){readError=error.message;goals=[];}
  try{connections=visibleRelationships(ctx).filter(row=>row.type==='guardian'&&row.to===ctx.personId);}catch(error){connectionError=error.message;}
  const parents=connections.filter(row=>row.status==='active'&&row.scope.includes('progress-summary'));
  const parent=parents.find(row=>row.from===recipient),selected=goals.find(goal=>goal.id===selectedId);
  const historyError=goal=>{try{assertParentSummaryHistory(goal.parentSummaries);return '';}catch(error){return error.message;}};
  const conflict=draft?.id&&(!goals.find(goal=>goal.id===draft.id)||base!==resourceRevision(goals.find(goal=>goal.id===draft.id)));
- const sharingError=connectionError||readError||(selected&&historyError(selected));
+ const sharingError=connectionError||readError||(work?'Parent summaries are available from your personal learner workspace. Work projects and goals remain here.':selected&&historyError(selected));
  const sharingConflict=selected&&summaryBase!==goalVersion(selected);
  function failure(error){setNotice(error.message);setFailed(true);}
  function openEditor(goal){
@@ -50,7 +50,8 @@ function GoalWorkspace({ctx,locale='en'}){
  const alert=notice?<p role={failed?'alert':'status'} lang={failed?'en':locale} className={'v-notice mt-4'+(failed?' v-error':'')}>{failed?notice:t(notice)}</p>:null;
  return <section className="v-card" aria-labelledby="learning-goals-title" lang={locale}>
   <div className="flex flex-wrap items-start justify-between gap-3"><div><h2 id="learning-goals-title" className="text-lg font-medium">{t('My learning goals')}</h2><p className="v-muted mt-2">{t('Save what you want to work toward. Private notes stay in your learner workspace.')}</p></div><button className="v-button primary" disabled={Boolean(readError)} onClick={()=>openEditor()}>{t('Add a goal')}</button></div>
-  {readError?<div className="v-notice v-error mt-4" role="alert"><p>{t('Goal records are unavailable. Original records and current edits are retained.')}</p><button className="v-button mt-3" onClick={()=>setRetry(n=>n+1)}>{t('Retry goals')}</button></div>:goals.length?goals.map(goal=><div className="v-list-row" key={goal.id}><div className="min-w-0"><h3 className="text-sm font-medium">{goal.title}</h3><p className="v-muted">{t(goal.body?'Private notes saved':'No private notes')} · {t(historyError(goal)?'Summary history unavailable':goal.parentSummaries?.length?'A parent summary was approved':'Not shared with a parent')}</p></div><div className="flex flex-wrap gap-2"><button className="v-button" onClick={()=>openEditor(goal)}>{t('Edit')}<span className="sr-only">: {goal.title}</span></button><button className="v-button" onClick={()=>openSharing(goal)}>{t('Parent sharing')}<span className="sr-only">: {goal.title}</span></button></div></div>):<p className="v-muted mt-4">{t('No goal saved yet. Start with one concrete outcome you can revisit.')}</p>}
+  {readError?<div className="v-notice v-error mt-4" role="alert"><p>{t('Goal records are unavailable. Original records and current edits are retained.')}</p><button className="v-button mt-3" onClick={()=>setRetry(n=>n+1)}>{t('Retry goals')}</button></div>:goals.length?goals.map(goal=><div className="v-list-row" key={goal.id}><div className="min-w-0"><h3 className="text-sm font-medium">{goal.title}</h3><p className="v-muted">{t(goal.body?'Private notes saved':'No private notes')} · {t(historyError(goal)?'Summary history unavailable':goal.parentSummaries?.length?'A parent summary was approved':'Not shared with a parent')}</p></div><div className="flex flex-wrap gap-2"><button className="v-button" onClick={()=>openEditor(goal)}>{t('Edit')}<span className="sr-only">: {goal.title}</span></button><button className="v-button disabled:opacity-50" disabled={work} onClick={()=>openSharing(goal)}>{t('Parent sharing')}<span className="sr-only">: {goal.title}</span></button></div></div>):<p className="v-muted mt-4">{t('No goal saved yet. Start with one concrete outcome you can revisit.')}</p>}
+  {work&&<p className="v-notice mt-4">{t('Parent summaries are available from your personal learner workspace. Work projects and goals remain here.')}</p>}
   {!draft&&!selectedId&&alert}
   <Dialog open={!!draft} onOpenChange={open=>{if(!open)setDraft(null);}}><DialogContent lang={locale} className="max-h-[85dvh] overflow-y-auto bg-white"><DialogTitle>{t(draft?.id?'Edit learning goal':'Add a learning goal')}</DialogTitle><DialogDescription>{t('The goal and notes are private. Sharing a short parent summary is a separate action after saving.')}</DialogDescription>{draft&&<>
    {recovered&&<p className="v-notice" role="status">{t('Unsaved goal edits recovered. Save to keep them.')}</p>}

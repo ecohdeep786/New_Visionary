@@ -206,9 +206,13 @@ export function sharedArtifacts(ctx:RequestContext){const db=read();access(db,ct
 export function stopSharingArtifact(ctx:RequestContext,artifactId:string){const db=read();const data=access(db,ctx);const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='private';a.sharedWith=[];a.shares=[];record(data,'Artifact sharing stopped',a.id);write(db);}
 function activeGuardian(db:Database,parentId:string,learnerId:string){return allRelationships(db).find(r=>r.type==='guardian'&&r.from===parentId&&r.to===learnerId&&connectionStatus(r,clock().getTime())==='active'&&r.scope.includes('progress-summary'));}
 /** A learner shares only a short, fixed project summary with one active parent. */
+function requirePersonalParentShare(db:Database,ctx:RequestContext){
+ if(db.workspaces.find(workspace=>workspace.id===ctx.workspaceId)?.organizationId)throw Error('Parent summaries are available from your personal learner workspace. Work projects and goals remain here.');
+}
 export function shareParentProjectSummary(ctx:RequestContext,artifactId:string,parentId:string,summary:string,expectedVersion:string){
  if(ctx.role!=='student')throw new Error('Open the learner workspace to share a project summary.');
  const db=read();const data=access(db,ctx);
+ requirePersonalParentShare(db,ctx);
  const relationship=activeGuardian(db,parentId,ctx.personId);
  if(!relationship)throw new Error('Progress sharing with this parent is no longer active.');
  const artifact=data.artifacts.find(a=>a.id===artifactId);
@@ -247,7 +251,7 @@ export function saveLearnerGoal(ctx:RequestContext,input:{id?:string;title:strin
 }
 export function shareParentGoalSummary(ctx:RequestContext,goalId:string,parentId:string,summary:string,expectedVersion:string){
  if(ctx.role!=='student')throw new Error('Open the learner workspace to share a learning goal.');
- const db=read();const data=access(db,ctx);const relationship=activeGuardian(db,parentId,ctx.personId);
+ const db=read();const data=access(db,ctx);requirePersonalParentShare(db,ctx);const relationship=activeGuardian(db,parentId,ctx.personId);
  if(!relationship)throw new Error('Progress sharing with this parent is no longer active.');
  const goal=data.resources.find(resource=>resource.id===goalId&&resource.kind==='goal');
  if(!goal||goal.status==='archived')throw new Error('This learning goal is unavailable.');
@@ -573,7 +577,16 @@ export function familyClassworkDigest(ctx:RequestContext,childId:string,days:7|3
   const assignment=assignments.find(item=>item.id===row.assignment_id&&item.class_id===row.class_id);
   return {id:String(row.id),title:typeof assignment?.title==='string'?assignment.title:'Class activity',date:String(row.graded_date).slice(0,10)};
  }).sort((a,b)=>b.date.localeCompare(a.date));
- const enrolledIds=new Set(enrollments.filter(row=>row.student_email===person.email&&row.status==='active').map(row=>row.class_id));
+ const classrooms=rows('Classroom');
+ const memberships=readOrganizationInviteRows();
+ const enrolledIds=new Set(enrollments.filter(row=>{
+  if(row.student_email!==person.email||row.status!=='active')return false;
+  const classroom=classrooms.find(item=>item.id===row.class_id);
+  if(!classroom)return false;
+  if(classroom.organization_email===undefined||classroom.organization_email==='')return true;
+  if(typeof classroom.organization_email!=='string')throw Error('Classwork updates could not be read on this device. Try again.');
+  return memberships.some(member=>member.email===person.email&&member.organization_email===classroom.organization_email&&['student','professional'].includes(member.role)&&person.roles.includes(member.role as Role)&&inviteStatus(member)==='active');
+ }).map(row=>row.class_id));
  const today=clock().toISOString().slice(0,10);const through=new Date(clock().getTime()+7*86400000).toISOString().slice(0,10);
  const upcoming=assignments.filter(row=>enrolledIds.has(row.class_id)&&assignmentAcceptsResponses(row,clock().getTime())&&typeof row.due_date==='string'&&row.due_date>=today&&row.due_date<=through&&
    !submissions.some(item=>item.assignment_id===row.id&&item.student_email===person.email)).map(row=>({id:String(row.id),title:typeof row.title==='string'?row.title:'Class activity',dueDate:String(row.due_date)})).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));

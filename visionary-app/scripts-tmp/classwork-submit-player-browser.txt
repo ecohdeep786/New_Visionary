@@ -1,0 +1,56 @@
+Skip to content
+Active workspace
+Personal · student
++ Add a role
+P
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+Your classes
+
+Assignments, feedback, and class updates in one place
+
+Join class
+All classes
+Player class
+
+Mathematics
+
+Explore Mathematics in Learn
+Classwork
+Learning outline
+Updates
+Community
+
+Explain equal parts
+
+Open class activity in Learn
+
+10 points
+
+Divide a whole into equally sized parts. Describe one eighth.
+
+1. Explain equal parts
+
+Drafts are kept on this device when storage is available. Your teacher reviews the response; it is not automatically scored.
+
+Submit
+Home
+Learn
+Ask
+Practice
+More
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:4243/dashboard/learn?assignment=player-assignment", waiting until "networkidle"
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\classwork-submit-player-verify.mjs:8:341 {
+  log: [
+    '  - navigating to "http://127.0.0.1:4243/dashboard/learn?assignment=player-assignment", waiting until "networkidle"'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

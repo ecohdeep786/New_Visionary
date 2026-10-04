@@ -1,0 +1,76 @@
+✖ pending first response cannot save after a switch to another permitted learner role (462.393ms)
+✖ pending revision cannot save after a switch to another permitted learner role (233.1509ms)
+✖ a request from an inactive learner workspace rejects before saving (465.1862ms)
+✖ idempotent replay cannot return the previous learner response after account handoff (15.0495ms)
+✔ pending Work membership at commit denies a learner submission (83.395ms)
+✔ expired Work membership at commit denies a learner submission (92.689ms)
+✔ revoked Work membership at commit denies a learner submission (85.434ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 3
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4318.1492
+
+✖ failing tests:
+
+test at tests\classwork-handoff.test.mjs:24:35
+✖ pending first response cannot save after a switch to another permitted learner role (462.393ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:22:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:26:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /workspace changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-handoff.test.mjs:24:35
+✖ pending revision cannot save after a switch to another permitted learner role (233.1509ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:22:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:26:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /workspace changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-handoff.test.mjs:30:1
+✖ a request from an inactive learner workspace rejects before saving (465.1862ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:32:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /workspace changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-handoff.test.mjs:35:1
+✖ idempotent replay cannot return the previous learner response after account handoff (15.0495ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:22:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-handoff.test.mjs:41:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /own learning workspace|workspace changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

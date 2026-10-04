@@ -173,15 +173,19 @@ export default function NewPersona({
      fade-up for a pure crossfade, so the rotation stays and the movement
      goes. */
   const index = useCycle(words.length, wordMs);
-  /* Canonical Visionary display scale — Apple product-first rhythm */
+  /* Canonical Visionary display scale — Apple product-first rhythm, with
+     the measured apple.com hero tracking (80px tier: -0.015em / lh 1.05) */
   const displaySize = `clamp(${minDisplay}px, 5.55vw, 80px)`;
-  const display = `block whitespace-nowrap font-medium tracking-[0] leading-[1.02]`;
+  const display = `block whitespace-nowrap font-medium tracking-[-0.015em] leading-[1.05]`;
 
   if (cast) {
     return (
       <section
         data-section="01-hero"
-        className="cast-stage relative isolate flex flex-col overflow-hidden"
+        /* Pinned stage — the landing-only cast hero sticks to the viewport
+           and the story glides over it on frosted glass (the Vision Pro page
+           anatomy). Default persona heroes scroll away naturally. */
+        className="cast-stage sticky top-0 z-0 isolate flex flex-col overflow-hidden"
         style={{
           backgroundColor: heroBg,
           height: "calc(100svh - 56px)",
@@ -215,17 +219,22 @@ export default function NewPersona({
               {sub}
             </p>
           </div>
+          {/* the hero pair — full buttons. This is the product's front door;
+              the same shared pills the persona heroes wear, so one button
+              system carries every hero. */}
           <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
           {/* the audience row — desktop only; on phones the five journeys
-              are one tap away in the nav, and the front door stays quiet */}
+              are one tap away in the nav, and the front door stays quiet.
+              Apple's utility-link treatment: quiet blue at rest, underline
+              on hover. */}
           {audiences.length > 0 && (
-            <nav className="mt-6 hidden max-w-[680px] flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-[#121317]/10 pt-4 lg:flex" aria-label="Explore Visionary by audience">
-              <span className="text-[13px] font-normal tracking-[0.12px] text-[#5f6368]">For</span>
+            <nav className="mt-7 hidden max-w-[720px] flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-[#121317]/10 pt-4 lg:flex" aria-label="Explore Visionary by audience">
+              <span className="text-[15px] font-normal tracking-[0.12px] text-[#5f6368]">For</span>
               {audiences.map((audience) => (
                 <Link
                   key={audience.label}
                   to={audience.to}
-                  className="rounded-full px-1 text-[14px] font-medium tracking-[0.12px] text-[#121317] underline decoration-[#4285F4]/40 underline-offset-4 transition-colors hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="text-[15px] font-normal tracking-[0.12px] text-[#4285F4] underline-offset-4 decoration-[#4285F4]/50 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   {audience.label}
                 </Link>

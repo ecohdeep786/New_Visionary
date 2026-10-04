@@ -1,0 +1,116 @@
+✖ parent upcoming Work classwork excludes pending learner membership without rewriting classwork (153.3691ms)
+✖ parent upcoming Work classwork excludes revoked learner membership without rewriting classwork (136.344ms)
+✖ parent upcoming Work classwork excludes expired learner membership without rewriting classwork (140.9892ms)
+✖ parent upcoming Work classwork excludes unreadable learner membership without rewriting classwork (12.7843ms)
+✔ failed guardian stop preserves consent, notifications and child records; explicit retry stops only that child (27.7413ms)
+✔ failed guardian renewal and acceptance preserve bytes and require an explicitly accepted new request (16.816ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 2
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1287.6445
+
+✖ failing tests:
+
+test at tests\parent-classwork-boundary.test.mjs:9:66
+✖ parent upcoming Work classwork excludes pending learner membership without rewriting classwork (153.3691ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     dueDate: '2026-10-06',
+  +     id: '5b8ddefe-9854-437f-9b68-f0384adb6034',
+  +     title: 'Reviewed fractions · Equal intervals'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/parent-classwork-boundary.test.mjs:12:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: '5b8ddefe-9854-437f-9b68-f0384adb6034', title: 'Reviewed fractions · Equal intervals', dueDate: '2026-10-06' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\parent-classwork-boundary.test.mjs:9:66
+✖ parent upcoming Work classwork excludes revoked learner membership without rewriting classwork (136.344ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     dueDate: '2026-10-06',
+  +     id: 'f512d6e4-075a-4fb7-8d05-dcd52e9661f3',
+  +     title: 'Reviewed fractions · Equal intervals'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/parent-classwork-boundary.test.mjs:12:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: 'f512d6e4-075a-4fb7-8d05-dcd52e9661f3', title: 'Reviewed fractions · Equal intervals', dueDate: '2026-10-06' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\parent-classwork-boundary.test.mjs:9:66
+✖ parent upcoming Work classwork excludes expired learner membership without rewriting classwork (140.9892ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     dueDate: '2026-10-06',
+  +     id: '1d369382-31c7-467e-b352-51cdbd4cc8cd',
+  +     title: 'Reviewed fractions · Equal intervals'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/parent-classwork-boundary.test.mjs:12:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: '1d369382-31c7-467e-b352-51cdbd4cc8cd', title: 'Reviewed fractions · Equal intervals', dueDate: '2026-10-06' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\parent-classwork-boundary.test.mjs:9:66
+✖ parent upcoming Work classwork excludes unreadable learner membership without rewriting classwork (12.7843ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     dueDate: '2026-10-06',
+  +     id: '22f26f6d-0f79-46e9-8fa7-1fb1c3c31858',
+  +     title: 'Reviewed fractions · Equal intervals'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/parent-classwork-boundary.test.mjs:12:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: '22f26f6d-0f79-46e9-8fa7-1fb1c3c31858', title: 'Reviewed fractions · Equal intervals', dueDate: '2026-10-06' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,52 @@
+Skip to content
+Active workspace
+Personal · My learning
+Personal · Professional
++ Add a role
+L
+Microphone idle. Text is always available.
+Back to classwork
+
+Independent class fixture · Teacher-authored activity
+
+Draft recovery fixture
+
+10 points . Saved on this device. Your teacher reviews written responses; this activity does not automatically score understanding or establish mastery.
+
+Ask about this assignment
+Rehearse this objective
+1. Understand
+2. Respond
+3. Review
+Review the copy your teacher will receive
+
+Submitting sends this response to your class teacher. Private learning notes and project drafts are excluded. An earlier attempt stays in the response history.
+
+Explain equal parts
+
+Original student response en
+
+Edit response
+Submit to teacher
+Export current response
+Home
+Learn
+Ask
+Practice
+More
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('status').filter({ hasText: 'openingWorkspace' }) to be visible
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\classwork-handoff-verify.mjs:35:271 {
+  log: [
+    "  - waiting for getByRole('status').filter({ hasText: 'openingWorkspace' }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

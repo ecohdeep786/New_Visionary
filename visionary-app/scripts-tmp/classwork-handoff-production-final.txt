@@ -1,0 +1,3 @@
+PASS en: production pending Home chunk shows localized current-workspace loading and excludes prior draft; original response retained; return and explicit submission succeed; 320–1440px reflow.
+PASS hi: production pending Home chunk shows localized current-workspace loading and excludes prior draft; original response retained; return and explicit submission succeed; 320–1440px reflow.
+PASS bn: production pending Home chunk shows localized current-workspace loading and excludes prior draft; original response retained; return and explicit submission succeed; 320–1440px reflow.

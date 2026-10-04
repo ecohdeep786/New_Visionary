@@ -9,6 +9,7 @@ import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useWorkspace } from "@/hooks/useWorkspace";
 import { submitClassworkResponses, classworkResponseText } from "@/services/classroomService";
+import { classworkActivityRevision } from '@/lib/classworkSource';
 import CommunityTab from "@/components/dashboard/CommunityTab";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -189,6 +190,7 @@ export default function StudentClasses() {
     try {
       const created = await submitClassworkResponses(ctx, {
         assignmentId: a.id,
+        expectedRevision: classworkActivityRevision(a),
         text,
         responses
       });

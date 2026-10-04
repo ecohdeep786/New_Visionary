@@ -1,0 +1,70 @@
+✖ mapping a second provisional activity cannot make an official target ambiguous (11.5473ms)
+✖ late mapping cannot replace the reviewed alias saved while target lookup was pending (4.0364ms)
+✖ malformed retained aliases cannot be treated as valid mappings or silently replaced (89.1782ms)
+✖ a provisional rename during remote mapping lookup preserves the newer saved activity (27.3877ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1476.4891
+
+✖ failing tests:
+
+test at tests\content-teaching.test.mjs:124:1
+✖ mapping a second provisional activity cannot make an official target ambiguous (11.5473ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/content-teaching.test.mjs:128:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /mapping|mapped/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\content-teaching.test.mjs:131:1
+✖ late mapping cannot replace the reviewed alias saved while target lookup was pending (4.0364ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/content-teaching.test.mjs:136:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /changed|mapped/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\content-teaching.test.mjs:139:1
+✖ malformed retained aliases cannot be treated as valid mappings or silently replaced (89.1782ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/content-teaching.test.mjs:142:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /mapping/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\content-teaching.test.mjs:147:1
+✖ a provisional rename during remote mapping lookup preserves the newer saved activity (27.3877ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/content-teaching.test.mjs:151:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

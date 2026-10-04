@@ -1,0 +1,132 @@
+TimeoutError: locator.click: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Save draft', exact: true })[22m
+[2m    - locator resolved to <button class="v-button primary">…</button>[22m
+
+Skip to content
+Active workspace
+Personal · teacher
++ Add a role
+D
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+Prepare a lesson
+
+Start with an objective. Shape the explanation, then review it before sharing.
+
+New lesson
+Organization preparation inbox
+
+Explicit approved copies for your active Work membership. Personal preparation stays separate. A copy creates no learner evidence or assignment.
+
+No delivered content in this workspace. In Work, an academic administrator can share an approved revision with you.
+
+Start from a curated journey
+
+Understand cube volume
+
+Editable demo outline
+
+Make sense of fractions
+
+Editable demo outline
+
+Turn data into a decision
+
+Editable demo outline
+
+Search saved items
+
+Controlled lesson
+
+draft · Personal
+
+Home
+Prepare
+Classes
+Learners
+More
+Edit lesson
+
+Review objectives, content, misconceptions, checks, language, and sources before assigning.
+
+Title
+Outline and notes
+Attach a curriculum objective
+
+Choose sourced content, preview it, then review and save your lesson before assigning. The existing Sample mathematics activities are demonstrations. A real book has not been processed.
+
+Board or source
+Class or level
+Subject
+Objective language
+English
+हिन्दी
+বাংলা
+Load sourced objectives
+Learning objective: Make sense of fractions
+
+Authored sample · Mathematics · English · Visionary authored samples · version 2
+
+Assigned objective source
+
+A fraction describes equal parts of one whole. The denominator counts the equal parts; the numerator counts the selected parts. Two quarters and one half occupy the same length on a number line.
+
+See the idea another way
+
+This exploration view stays on this page. It does not create a saved attempt or learning evidence.
+
+Interactive number line
+Read description
+0
+1/8
+2/8
+3/8
+4/8
+5/8
+6/8
+7/8
+1
+Selected equal parts: 4 of 8
+
+4/8 = 1/2 = 0.5
+
+A fraction describes equal parts of one whole. The denominator counts the equal parts; the numerator counts the selected parts. Two quarters and one half occupy the same length on a number line.
+
+Reset number line
+Remove attached objective
+
+Attaching or removing an objective returns this lesson to draft for your review. Teacher questions remain separate written-response prompts.
+
+Check understanding
+
+Write up to ten short-answer questions. Learners respond in their own words; you review their work.
+
+Add question
+Question 1
+Status
+draft
+reviewed
+archived
+Audience
+Save draft
+Preview as learner
+Export
+Close
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Save draft', exact: true })
+    - locator resolved to <button class="v-button primary">…</button>
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\teacher-controls-verify.mjs:12:580 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Save draft', exact: true })",
+    '    - locator resolved to <button class="v-button primary">…</button>'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

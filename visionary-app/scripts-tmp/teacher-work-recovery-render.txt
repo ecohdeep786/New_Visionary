@@ -1,0 +1,122 @@
+PASS en: expired Work teacher membership hides Work editor; exact private backup/source/assignment bytes retained; renewed access and explicit Work return recover/export draft; assignment write failure retains choices; retry creates one reviewed fixed copy.
+Skip to content
+सक्रिय कार्यक्षेत्र
+निजी · Teacher
+कार्य · Fictional school · Teacher
++ भूमिका जोड़ें
+T
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+पाठ तैयार करें
+
+उद्देश्य से शुरू करें। व्याख्या तैयार करें और साझा करने से पहले समीक्षा करें।
+
+नया पाठ
+संगठन से तैयारी सामग्री
+
+आपकी सक्रिय कार्य सदस्यता के लिए अनुमोदित प्रतियाँ। निजी तैयारी अलग रहती है। प्रति से शिक्षार्थी का रिकॉर्ड या कार्य नहीं बनता।
+
+Reviewed fractions · स्रोत संशोधन 1
+
+Fictional book version 1 · en
+
+वितरित सामग्री देखें
+
+एक समीक्षित उद्देश्य चुनें। हर तैयारी प्रति वितरण का यह संशोधन रखती है; शिक्षार्थी का पाठ्यक्रम प्रकाशित नहीं होता।
+
+उद्देश्य तैयार करें: Equal intervalsउद्देश्य तैयार करें: Locate a fraction
+चुनी हुई अध्ययन यात्रा से शुरू करें
+
+Understand cube volume
+
+संपादन योग्य नमूना रूपरेखा
+
+Make sense of fractions
+
+संपादन योग्य नमूना रूपरेखा
+
+Turn data into a decision
+
+संपादन योग्य नमूना रूपरेखा
+
+सहेजी वस्तुएँ खोजें
+
+Work boundary lesson
+
+समीक्षित · Class
+
+Reviewed fractions · Equal intervals
+
+समीक्षित · Personal
+
+होम
+तैयारी
+कक्षाएँ
+विद्यार्थी
+और
+पाठ बदलें
+
+सौंपने से पहले उद्देश्य, सामग्री, गलत धारणाएँ, प्रश्न, भाषा और स्रोत देखें।
+
+शीर्षक
+रूपरेखा और नोट्स
+पाठ्यक्रम का उद्देश्य जोड़ें
+
+स्रोत वाली सामग्री चुनें और पूर्वावलोकन करें, फिर सौंपने से पहले पाठ की समीक्षा कर सहेजें। नमूना गणित गतिविधियाँ केवल प्रदर्शन हैं। वास्तविक पुस्तक संसाधित नहीं हुई है।
+
+बोर्ड या स्रोत
+कक्षा या स्तर
+विषय
+उद्देश्य की भाषा
+English
+हिन्दी
+বাংলা
+स्रोत वाले उद्देश्य पढ़ें
+
+उद्देश्य जोड़ने या हटाने पर पाठ समीक्षा के लिए ड्राफ़्ट बनता है। शिक्षक के प्रश्न अलग लिखित उत्तर वाले प्रश्न रहते हैं।
+
+समझ की जाँच करें
+
+अधिकतम दस संक्षिप्त प्रश्न लिखें। शिक्षार्थी अपने शब्दों में उत्तर देंगे; आप कार्य की समीक्षा करेंगे।
+
+प्रश्न जोड़ें
+प्रश्न 1
+स्थिति
+ड्राफ़्ट
+समीक्षित
+संग्रह में
+दर्शक
+ड्राफ़्ट सहेजें
+शिक्षार्थी के रूप में देखें
+निर्यात करें
+समीक्षित पाठ सौंपें
+बंद करें
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /^Work boundary lesson/ })
+    - locator resolved to <button class="min-w-0 flex-1 text-left">…</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - performing click action
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\teacher-work-recovery-verify.mjs:9:139 {
+  log: [
+    "  - waiting for getByRole('button', { name: /^Work boundary lesson/ })",
+    '    - locator resolved to <button class="min-w-0 flex-1 text-left">…</button>',
+    '  - attempting click action',
+    '    - waiting for element to be visible, enabled and stable',
+    '    - element is visible, enabled and stable',
+    '    - scrolling into view if needed',
+    '    - done scrolling',
+    '    - performing click action'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

@@ -26,6 +26,13 @@ function write(db:Store,ctx:RequestContext){guard(ctx);try{localStorage.setItem(
 function save(ctx:RequestContext,unit:LearningUnit){const db=read();const data=own(db,ctx);const index=data.units.findIndex(u=>u.id===unit.id);unit.updatedAt=now();if(index<0)data.units.push(unit);else data.units[index]=unit;write(db,ctx);return structuredClone(unit);}
 export function getLearningWorkspace(ctx:RequestContext){return structuredClone(own(read(),ctx));}
 export function getLearningUnit(ctx:RequestContext,id:string){const unit=getLearningWorkspace(ctx).units.find(u=>u.id===id);if(!unit)throw Error('This learning activity is unavailable in this workspace.');return unit;}
+/** An awaited response must not replace work saved by another tab or action. */
+function assertCurrentLearningUnit(ctx:RequestContext,expected:LearningUnit){
+ if(JSON.stringify(getLearningUnit(ctx,expected.id))!==JSON.stringify(expected)){
+  const error=new Error('This learning activity changed while the request was loading. Your latest saved work was kept. Reload the activity before retrying.');
+  error.name='LearningUnitConflictError';throw error;
+ }
+}
 export function learningAnswerSelection(unit:LearningUnit){
  if(unit.answer)return String(unit.answer.index);
  const draft=unit.answerDraft;
@@ -82,7 +89,12 @@ export async function startLearningUnit(ctx:RequestContext,conceptId:string,clas
 }
 export function assertLearningSource(unit:LearningUnit,concept:ContentConcept){
  const prior=unit.sourceContext?.provenance,current=concept.provenance;
- if(prior&&(!current||prior.provider!==current.provider||prior.sourceId!==current.sourceId||prior.version!==current.version))throw Error('The source version for this saved activity changed. Its original work is retained; open a reviewed new activity instead of replacing its source.');
+ if(prior&&(!current||prior.provider!==current.provider||prior.sourceId!==current.sourceId||prior.version!==current.version)){const error=new Error('The source version for this saved activity changed. Its original work is retained; open a reviewed new activity instead of replacing its source.');error.name='LearningSourceConflictError';throw error;}
+}
+async function currentLearningSource(ctx:RequestContext,unit:LearningUnit){
+ const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);
+ if(!concept)throw Error('Content unavailable. Your position remains saved.');
+ assertLearningSource(unit,concept);assertCurrentLearningUnit(ctx,unit);return concept;
 }
 export async function updateLearningLanguage(ctx:RequestContext,id:string,locale:Locale){
  const unit=getLearningUnit(ctx,id);if(unit.locale===locale)return unit;
@@ -91,6 +103,7 @@ export async function updateLearningLanguage(ctx:RequestContext,id:string,locale
  if(concept?.languageUnavailable){const selected=unit.sourceContext?.selection||getLearningWorkspace(ctx).selection;if(selected){await repository.getSyllabus(selected.board,selected.classLevel,selected.subject);concept=await repository.getConcept(unit.conceptId);}}
  guard(ctx);if(!concept)throw Error('This teaching language is not available for the saved concept. Your position remains unchanged.');
  assertLearningSource(unit,concept);
+ assertCurrentLearningUnit(ctx,unit);
  unit.locale=locale;
  // A connected response belongs to its original language. Do not relabel it as a translation.
  if(concept.explanation)unit.explanation=concept.explanation;else delete unit.explanation;
@@ -99,39 +112,42 @@ export async function updateLearningLanguage(ctx:RequestContext,id:string,locale
  return save(ctx,unit);
 }
 export async function requestUnitTeaching(ctx:RequestContext,id:string,mode:TeachingMode){
- const unit=getLearningUnit(ctx,id);const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);if(!concept)throw Error('Content unavailable. Your position remains saved.');assertLearningSource(unit,concept);
+ const unit=getLearningUnit(ctx,id);const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);if(!concept)throw Error('Content unavailable. Your position remains saved.');assertLearningSource(unit,concept);assertCurrentLearningUnit(ctx,unit);
  const started=Date.now();const api=getTeachingInterface(ctx);
  const packet={input:concept.title,conceptId:unit.conceptId,sessionId:id,language:unit.locale,difficulty:unit.difficulty,audience:concept.audience,context:{stage:unit.stage,source:concept.status}};
  const app=mode==='practice'?'PRACTICE':mode==='project'?'BUILD':'LEARN';
  const pedagogy=mode==='practice'?'practice':mode==='project'?'application':mode==='feedback'?'reflection':'explanation';
  emitInteractionEvent(ctx,{app,action:'request',sessionId:id,conceptId:unit.conceptId,language:unit.locale,pedagogy,...curriculumFields(ctx,unit)});
  const response=await (mode==='practice'?api.requestPracticeQuestion(packet):mode==='feedback'?api.requestFeedback(packet):mode==='project'?api.requestProjectGuidance(packet):api.requestExplanation(packet));
- guard(ctx);unit.response=response;
+ guard(ctx);await currentLearningSource(ctx,unit);unit.response=response;
  if(mode==='explanation'&&response.status!=='blocked')unit.explanation=response.status==='ready'?response.text:concept.explanation;
  if(mode==='practice'&&response.status!=='blocked')unit.question=response.question||(unit.stage==='check'?concept.check:concept.practice?.[Math.min(unit.difficulty-1,Math.max(0,(concept.practice?.length||1)-1))]);
  save(ctx,unit);emitInteractionEvent(ctx,{app,action:'response',sessionId:id,conceptId:unit.conceptId,language:unit.locale,latency:Date.now()-started,responseStatus:response.status,promptVersion:response.status==='ready'?response.promptVersion:undefined,pedagogy,...curriculumFields(ctx,unit)});return unit;
 }
-export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
+export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');await currentLearningSource(ctx,unit);if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 /** An outbox retains a scored local answer if the separate cognition adapter cannot write. */
 export function flushLearningOutcome(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.pending){recordLearningOutcome(ctx,unit.pending);delete unit.pending;save(ctx,unit);}return unit;}
 export async function answerLearningQuestion(ctx:RequestContext,id:string,index:number,expectedQuestion?:{version:string;round:number}){
  let unit=flushLearningOutcome(ctx,id);if(!['check','practice'].includes(unit.stage)||!unit.question||unit.response?.status==='blocked')throw Error('Open an available comprehension or practice question first.');
  if(expectedQuestion&&(expectedQuestion.version!==JSON.stringify(unit.question)||expectedQuestion.round!==unit.practiceRound))throw Error('This question changed. Your selection was not graded. Reload the saved activity before continuing.');
  if(!Number.isInteger(index)||!unit.question.options[index])throw Error('Choose one answer.');if(unit.answer)return unit;
+ await currentLearningSource(ctx,unit);
  const correct=index===unit.question.answerIndex;const eventId=`${id}:${unit.stage}:${unit.practiceRound}:${unit.question.id}`;
  delete unit.answerDraft;unit.answer={index,correct,id:eventId};unit.checkPassed=unit.checkPassed||(unit.stage==='check'&&correct);unit.practicePassed=unit.practicePassed||(unit.stage==='practice'&&correct);unit.difficulty=Math.max(1,Math.min(5,unit.difficulty+(correct?1:-1)));
  if(!unit.attempts?.some(item=>item.id===eventId))unit.attempts=[...(unit.attempts||[]),{id:eventId,kind:unit.stage==='check'?'check':'practice',question:unit.question,selectedIndex:index,correct,at:now(),locale:unit.locale}];
  unit.pending={id:eventId,conceptId:unit.conceptId,kind:unit.stage==='check'?'check':'practice',correct:correct?1:0,total:1,verified:true,sessionId:id,language:unit.locale,classId:unit.classId,...curriculumFields(ctx,unit)};
  save(ctx,unit);unit=flushLearningOutcome(ctx,id);
- if(!correct){const response=await getTeachingInterface(ctx).requestExplanation({input:'Re-explain this concept after an incorrect check.',conceptId:unit.conceptId,sessionId:id,language:unit.locale,difficulty:unit.difficulty});unit.response=response;save(ctx,unit);}
+ if(!correct){const response=await getTeachingInterface(ctx).requestExplanation({input:'Re-explain this concept after an incorrect check.',conceptId:unit.conceptId,sessionId:id,language:unit.locale,difficulty:unit.difficulty});await currentLearningSource(ctx,unit);unit.response=response;save(ctx,unit);}
  return unit;
 }
-export async function nextLearningQuestion(ctx:RequestContext,id:string,practice=true){const unit=flushLearningOutcome(ctx,id);if(practice&&!unit.checkPassed)throw Error('Complete the comprehension check before practice. You can revisit the explanation at any time.');unit.stage=practice?'practice':'check';unit.practiceRound++;delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
+export async function nextLearningQuestion(ctx:RequestContext,id:string,practice=true){const unit=flushLearningOutcome(ctx,id);if(practice&&!unit.checkPassed)throw Error('Complete the comprehension check before practice. You can revisit the explanation at any time.');await currentLearningSource(ctx,unit);unit.stage=practice?'practice':'check';unit.practiceRound++;delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 export async function createLearningProject(ctx:RequestContext,id:string){
  const unit=flushLearningOutcome(ctx,id);if(!unit.checkPassed||!unit.practicePassed)throw Error('Complete a comprehension check and practice step before starting the guided project. Blank projects remain available in Build.');
  const artifacts=snapshot(ctx).artifacts;const existing=artifacts.find(a=>a.id===unit.artifactId)||artifacts.find(a=>a.learningSessionId===id&&a.conceptId===unit.conceptId);
  if(existing){if(unit.artifactId!==existing.id||!['build','completed'].includes(unit.stage)){unit.artifactId=existing.id;if(unit.stage!=='completed')unit.stage='build';save(ctx,unit);}emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return existing;}
  const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);if(!concept)throw Error('Project context unavailable.');
+ assertLearningSource(unit,concept);
+ assertCurrentLearningUnit(ctx,unit);
  const rubric=concept.project?.criteria?.length?{criteria:concept.project.criteria,responses:{},locale:unit.locale,sourceProvider:concept.provenance?.provider,sourceVersion:concept.provenance?.version}:undefined;
  const artifact=saveArtifact(ctx,{title:concept.project?.title||`Apply: ${concept.title}`,body:'',projectBrief:concept.project?.brief||'Define an outcome, create an artifact, and describe the evidence. Guidance is not connected yet.',conceptId:unit.conceptId,learningSessionId:id,rubric});
  unit.artifactId=artifact.id;unit.stage='build';save(ctx,unit);emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return artifact;

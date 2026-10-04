@@ -763,3 +763,72 @@ Known coding defects identified in this continuation are closed. Whole frontend 
 Reproduced and corrected malformed portfolio self-review history crashing the whole project screen. Shared history validation prevents unreadable records from being rendered, overwritten by a new review or counted as valid self-assessment. Localized retry refreshes only review metadata; authored work and current editor text remain available for editing/export. Invalid saved dates disclose unavailable. New service regression and three-language production history recovery, existing two-tab review recovery and sponsored-workspace revocation pass;369 service tests, whole-tree production build, full lint and both types pass. Evidence in QA.md and scripts-tmp/portfolio-history-*.txt. Public landing work preserved; backend deferred.
 
 G7/G9 global acceptance remains OPEN: stable public baseline and task-based native/assistive-technology/device/actual-zoom evidence are still required. The broader real-source/category/role-state matrix is not certified by these bounded fixtures. Next owner: coordinator continues reproduced legacy/state defects; human/native-language and device reviewers execute the documented acceptance cases. No book request, release or AGI certification.
+
+
+### 2026-10-04 — Learner goals and parent fixed-copy recovery completed
+
+Progress goals now have en/hi/bn controls, private workspace/tab drafts, reload and quota recovery, export/latest reconciliation, expected-revision conflict protection, pending summary recovery and exact approval preview. Non-learner roles no longer receive learner goal actions. Malformed retained parent goal/project summaries stay unavailable instead of crashing the page, being overwritten or falsely appearing unshared; source retry and invalid-date disclosure are implemented. Work goal/project parent-summary creation no longer reports false success outside the existing personal parent projection. Work records remain scoped and personal work remains separate.
+
+372/372 tests, whole-tree production build, full lint and both types pass. Final three-language goal/recovery and Work/personal boundary journeys, three non-learner action-exclusion checks and paired personal goal/project sharing regressions pass. Hindi dialog inspected; final snapshot visionary-learner-goals-boundary-20261004. Evidence in QA.md and learner-goal-boundary-*.txt/paired-*.txt. D-028/D-029 and store/backend seam notes record the contract. Public work preserved; backend deferred.
+
+Full frontend acceptance remains OPEN under the wider source/role-state matrix, native/device/assistive-technology/actual-zoom and clean public-baseline requirements. Next owner: coordinator verifies remaining concrete states and fixes reproduced defects; language/device reviewers perform their documented acceptance cases. No founder-book request or AGI certification.
+
+
+### 2026-10-04 — Learning response concurrency continuation
+
+Delayed source/teaching responses now preserve newer saved activity instead of restoring older language/view or erasing answers. Wrong-answer remediation retains recorded outcomes and project creation checks the saved unit after source retrieval. A localized conflict screen requires explicit reload before continuing assessment. D-030 records the boundary.
+
+375/375 service tests, production build, full lint and both types pass. English/Hindi/Bengali production learning journeys and separate deferred-adapter two-tab recovery checks pass, including exact saved-byte preservation and320–1440 reflow. Evidence and harness limitations are in QA.md and learning-conflict-*.txt. Public source and unrelated edits preserved; backend deferred. Full frontend acceptance remains OPEN under the existing broader source/state/native/device/public-baseline gates.
+
+
+### 2026-10-04 — Step-by-step frontend acceptance: navigation boundary
+
+Fixed a reproduced pending-teaching navigation leak. Curriculum requests now cancel when leaving their activity/workspace instead of saving or rendering an old response in the current journey. Three-language concept navigation, real workspace selection and latest-saved conflict recovery pass. All376 tests, focused27 tests, build, full lint and both type checks pass; three-language production learning recovery also passes. QA.md/D-031 record exact evidence and fixture limits.
+
+FRONTEND_ACCEPTANCE_MATRIX.md records eight ordered steps. Next engineering step: wider category journeys and source reconciliation, followed by remaining linked-role/professional/governance cases. Native-language/device/accessibility and clean public continuity acceptance remain OPEN. No whole-product or AGI completion, no backend implementation.
+
+
+### 2026-10-04 — Next frontend step: category workflows and source fidelity
+
+Fixed three reproduced changed-source failures and added pre-grade source verification. Old activity/question/selection/evidence are retained; new guided projects and delayed responses cannot mix source versions. The localized recovery view supports private export, export failure/retry, reload and separate current-source continuation. D-032 records the contract.
+
+Nine category service workflows with three requested-language scenarios each pass, including employer-sponsored Work ownership. Full389 tests and focused40 tests pass. Final production build/lint/JS types and earlier unchanged domain types pass; final en/hi/bn source recovery and existing learning regression pass, as does deferred navigation regression. Evidence: QA.md and learning-source-*.txt; final snapshot visionary-learning-source-final-20261004.
+
+FRONTEND_ACCEPTANCE_MATRIX.md records the added bounded evidence for Steps2/3. Remaining rendered category breadth, withdrawn/mapped/legacy source reconciliation and linked-role state matrix are next engineering acceptance work. Native-language/device/accessibility and clean public continuity remain OPEN. Public/unrelated changes preserved; backend deferred.
+
+
+### 2026-10-04 — Mapping, legacy target and withdrawn publication continuation
+
+Corrected duplicate/late/malformed provisional mappings and concurrent rename loss. Original records remain unavailable/exportable until explicit valid-source retry; saved activities no longer appear falsely absent when their mapping source fails.393 tests, focused60 tests, whole-tree build/lint/both types, en/hi/bn production mapping/source recovery, English reviewed bridge and expanded paired teacher withdrawal/learner exploration/fixed-assignment/restoration regression pass. Evidence: QA.md/D-033 and curriculum-mapping-*.txt.
+
+The next engineering acceptance step is the wider linked-role permission/recovery matrix, preserving existing organization→teacher→learner→parent boundaries. Wider rendered categories, legacy/source reconciliation, native/device/accessibility and clean public continuity remain OPEN. Full frontend acceptance is not certified. Public/unrelated work preserved; backend deferred.
+
+
+### 2026-10-04 — Teacher review write-boundary continuation
+
+Completed D-034: stale pending review saves preserve newer teacher feedback and learner attempts at the entity commit boundary.396 tests,17 focused, build/full lint/both types pass; English production draft/conflict/export/latest/revision/return/parent-scope/revocation journey passes on visionary-classwork-review-20261004. QA.md records exact fixture and harness correction. Continue Step4 wider linked-role access/failed-write states, then remaining native/device/public-baseline gates. Full frontend acceptance OPEN; public frontend preserved; no backend work.
+
+
+### 2026-10-04 — Learner submission boundary continuation
+
+Completed D-035: Classes/Learn/project submissions retain their checked assignment source through the local commit boundary; resubmission preserves newer teacher feedback. Already-open revoked activities retain workspace-scoped private draft export including criterion notes.402 tests,24 final focused, build/full lint/both types pass. en/hi/bn source/access/quota/retry production recovery and English paired Learn/project revision/lifecycle journeys pass on visionary-classwork-submit-final-20261004. QA.md records fixtures and the second-tab harness correction. Continue Step4 membership/workspace-handoff and wider role-state/failed-write cases. Full frontend acceptance remains OPEN; no public or backend edits.
+
+
+### 2026-10-04 — Classwork workspace/account handoff continuation
+
+Completed D-036: active learner context checks protect idempotent reads; expected command context protects learner writes and teacher returns at commit. Seven service fixtures cover permitted-role switches, inactive caller, account takeover and pending/expired/revoked Work memberships. The internal shell removes old activity during destination-module loading with localized scoped loading.409 tests,31 focused, final build/full lint/both types and new harness lint pass. en/hi/bn controlled source-mode pending-save and production delayed-destination journeys pass; final three-language recovery and English saved-project lifecycle regressions pass. Snapshot visionary-classwork-handoff-final-20261004. QA.md records initial development load timeout and the separately reproduced retained-view defect. Continue Step4 rendered Work expiry/recovery and teacher/organization boundary cases. Full frontend acceptance OPEN; no public/backend changes.
+
+
+### 2026-10-04 — Teacher Work recovery and assignment boundary continuation
+
+Completed D-037: pending assignment creation preserves its checked reviewed source and originating scope; lifecycle writes retain newer state/history; publication commands carry originating context.414 tests,28 focused, production build/full lint/both types and harness lint pass. Production en/hi/bn Work expiry/explicit recovery/export/quota/retry and teacher controls pass; paired publication withdrawal/restoration regression passes with documented language/local-snapshot limits. Snapshot visionary-teacher-assignment-20261004. QA.md distinguishes corrected fixture setup and inactive-tab harness failures from three reproduced stale writes. Next: wider Step4 organization delivery/publication failed-write and membership states, then remaining category/native/device/public-baseline gates. Full frontend acceptance remains OPEN; public/backend work preserved.
+
+
+### 2026-10-04 — Organization delivery/publication recovery continuation
+
+Completed D-038: curriculum replay checks current actor/workspace/membership after asynchronous lookup, and publication commits validate the checked fixed delivery. Three reproduced gaps fixed; existing pending/revoked/expired access and failed delivery protections retained.421 tests,16 focused, build/full lint/both types and final harness lint pass. Production en/hi/bn approved delivery quota/retry/replay, reviewed-preview expiry/explicit return, publication/withdrawal quota retention/retry/restore pass. Paired teacher withdrawal/learner exploration/fixed-assignment/restoration regression passes on visionary-publication-boundary-20261004. QA.md records exact local fixtures and intermediate guard-wiring failure. Continue wider linked-role failure states and rendered category journeys. Full frontend acceptance OPEN; no public/backend changes.
+
+
+### 2026-10-04 — Parent due-date access and guardian recovery continuation
+
+Completed D-039: upcoming parent Work classwork now follows current child enrollment/class/membership, excluding orphaned classes and pending/revoked/expired/unreadable memberships. Historical returned summaries remain separately consented and scoped.428 tests,35 focused, build/full lint/both types and harness lint pass. Production en/hi/bn Work membership projection/restoration, second-child isolation, guardian stop/renew/accept quota retention/explicit retry/new consent and open Ask expiry pass on visionary-parent-classwork-boundary-20261004. Existing English paired goal/project sharing regressions pass. QA.md records the route-persistence harness correction and fixture/source limits. Continue restricted governance and rendered category journeys plus remaining wider role/state/native/device/public-baseline acceptance. Full frontend acceptance OPEN; public/backend work preserved.

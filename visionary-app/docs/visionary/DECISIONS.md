@@ -109,3 +109,71 @@ Retained portfolio self-reviews are validated before rendering or adding assessm
 Learning-goal controls belong to student workspaces and use en/hi/bn interface labels. Authored titles, private notes and approved summary text remain unchanged. Editor recovery uses the existing resource-editor store and tab/workspace ownership: new:learner-goal for an unsaved goal, the resource ID for an existing goal, and new:learner-goal-share:<goalId> for a pending summary/recipient. Private drafts are not published to parents. Save uses an expected resource revision for existing goals; stale edits remain exportable until the learner explicitly loads the saved goal. A newer source version cannot be confirmed through an older summary preview.
 
 Parent goal/project fixed-copy history is validated before projection or mutation. Malformed history is retained and disclosed; it cannot be silently replaced, counted as no sharing or rendered as a valid fixed copy. Explicit retry rechecks authorization and source records while retaining current edits. Guardian identity, relationship ID and active progress-summary scope still determine access. Invalid stored dates display unavailable. Existing personal-workspace summary projection and D-015/D-016 remain operative; this is no backend or whole-product sign-off.
+
+
+### D-029 — 2026-10-04: Parent fixed-copy actions follow the existing personal-workspace projection
+
+A reproduced Work goal write returned success while familyGoalSummaries projected an empty result from the personal learner workspace. Parent-summary creation for Work goals/projects now rejects before mutation and the UI explains the existing personal-workspace boundary. Work records are retained; they are not copied into personal space or widened into parent access. Personal goal/project confirmation and assigned-classwork summary permissions retain their existing behavior. This implements the current Part F partition and projection, without inventing an organization-to-parent sharing contract. Future broader Work summaries require explicit source/workspace policy and connected backend authorization.
+
+
+### D-030 — 2026-10-04: Awaited teaching preserves newer saved activity
+
+Learning responses compare the owned activity with the snapshot taken before awaiting source or teaching data. A changed saved activity rejects the stale result before replacing language, representation, question, attempts or recorded answer. The same boundary covers language retrieval, delayed wrong-answer remediation and project creation. Scored answers/outcomes already saved before remediation remain recorded once. The internal learning UI exposes a localized explicit reload and removes stale assessment controls until the latest activity is opened. This is local optimistic concurrency, not backend transaction or model acceptance. D-015 remains operative.
+
+
+### D-031 — 2026-10-04: Learning navigation owns its pending requests
+
+The rendered curriculum workspace is keyed by person/workspace, activity, chapter, connected class and Learn/Practice mode. Its mounted request controller is aborted when that context is left; source and teaching services receive the cancellation signal. A delayed response from the previous activity cannot save teaching or replace the current view after concept navigation or a workspace switch. The controller is renewed on effect setup for React Strict Mode replay. Existing saved activity and scored outcomes are retained; cancellation is not a delete or rollback of already committed work. No backend transaction or device acceptance is implied.
+
+
+### D-032 — 2026-10-04: Saved learning retains its original reviewed source
+
+A saved activity carries a source provider/identity/version. Before starting or retrying a check, grading an unanswered question or creating a new guided project, the pipeline verifies that the available concept still matches that source and that the saved unit has not changed while awaiting it. Teaching/remediation responses recheck the source after delivery. A mismatched source rejects through LearningSourceConflictError. Already committed answer/outcome records are retained, not rolled back; retrying an already recorded answer remains idempotent. Existing owned projects remain accessible with their original rubric.
+
+The internal UI removes source-dependent assessment/project controls and offers localized original-work retention, a private current-activity export and return to the learning outline. Export retains original source/explanation/view/selection and recorded attempt summaries, omitting authored answer keys; a failed export preserves records and exposes retryable feedback. Starting from the current source creates a separate activity instead of rewriting the older activity. No curriculum equivalence, backend transaction or real-model quality is inferred.
+
+
+### D-033 — 2026-10-04: Provisional aliases remain unambiguous and preserve newer mappings
+
+Saved curriculum aliases are a workspace-owned object of nonempty source/target IDs with one provisional activity per official target. Malformed or duplicate target aliases are unavailable, not silently normalized or overwritten. Mapping validates the owned provisional concept and available official target, then rechecks aliases, provisional content and cached target after awaited lookup. Concurrent mapping/rename/target changes reject before mutation. An existing mapping cannot be silently reassigned; the identical mapping is idempotent. Reviewed curriculum-bridge equivalence/archive declarations remain a separate contract.
+
+A saved unit is restored in the UI before loading its source. Unreadable mapping data or a missing legacy target therefore presents saved teaching unavailable, retains owned work for private export and permits explicit source retry. It does not falsely claim that the saved activity is absent. Export continues to omit authored answer keys. Fixed assignments remain independent of published-curriculum exploration withdrawal; restoring a publication preserves its source and history. No backend/live-sync or automatic migration is introduced.
+
+### D-034 — 2026-10-04: Teacher feedback checks the expected response at commit
+
+Returning feedback carries the originally reviewed submission revision through the entity update. The browser-local write boundary compares it with the current response before any mutation, alongside current workspace policy. A competing teacher return or newer learner attempt cannot receive an older review's feedback. The earlier read checks remain; they cannot replace the final write check when an adapter delays delivery. A conflict leaves the submission and revision history untouched and uses the existing retained teacher draft, private export and explicit latest-review recovery controls. No backend transaction or live synchronization is claimed.
+
+
+### D-035 — 2026-10-04: Learner submissions preserve the displayed assignment and latest feedback
+
+Classes and Learn carry the displayed assignment revision into submission validation; saved-project submission carries its checked assignment revision into the same service. The service rechecks the source after response lookup, and the local create/update boundary compares the expected assignment revision before writing. Resubmission also compares the previous submission review revision so newer teacher feedback cannot be silently cleared or omitted from attempt history. The shared classworkSource helper preserves the existing serialized revision format used by private study; no saved-study migration is introduced.
+
+When an already-open activity becomes unavailable after enrollment withdrawal, its owned draft remains exportable without the assignment projection. Export retains response and current criterion notes; it does not restore revoked source access. The export control is restricted to the workspace that restored the draft. Storage-write rejection keeps the original response history and current private draft for explicit retry. No backend transaction, real synchronization or full linked-role acceptance is claimed.
+
+
+### D-036 — 2026-10-04: Classwork commands and pending routes retain their originating scope
+
+Learner submission/project validation requires the currently authenticated person and active learner workspace. Submission rechecks this context after awaited reads, including before returning an idempotent saved response. Learner creation/resubmission and teacher return carry expectedContext (personId,workspaceId,role) as command options; the local Submission write boundary compares current identity/workspace/role before mutation, independently of existing membership/enrollment policy. Context options are not saved record fields. A permitted alternative learner role does not authorize a command started in the previous workspace. Existing pending/expired/revoked Work membership denial remains enforced.
+
+The internal shell has a localized Suspense boundary keyed by person, workspace and route. When the destination lazy module is pending, it renders current-workspace loading instead of retaining the previous activity in view. Original owned drafts remain in their existing recovery store and resume through an explicit return to the original workspace. No public routing changes, draft migration, backend transaction or real-device acceptance is introduced.
+
+
+### D-037 — 2026-10-04: Reviewed assignment and publication commands retain their checked scope
+
+Assignment creation rechecks the current teacher, class ownership and complete saved lesson after awaited lookup, before replay or creation. The local write boundary compares the checked lesson snapshot and originating person/workspace/role before writing a fixed assignment. This guard is command metadata, not a saved record field or resource revision migration. Assignment lifecycle updates compare the checked status plus complete state history at commit so a pending close cannot replace a newer archive. Classroom publication and withdrawal/restore commands carry the same originating context alongside their existing expected publication revision.
+
+Expired Work access removes the teacher editor and returns to the personal workspace while retaining the existing workspace/tab-scoped private backup. Renewed membership permits an explicit return, recovery/export and save. Failed assignment writes retain class/date/point choices and existing fixed copies for explicit retry. Organization delivery stays synchronous and retains its existing membership/source/owner-policy checks. No backend transaction, synchronization or full linked-role acceptance is implied.
+
+
+### D-038 — 2026-10-04: Curriculum replays and publication commits recheck access and delivery
+
+After asynchronous class/enrollment reads, curriculum context rechecks the authenticated person, active workspace and membership. Existing-copy and same-state availability replays therefore cannot return the earlier authorized projection after account handoff or Work membership revocation. Pending publication commands carry the checked delivered-source snapshot to the local Classroom update; the write boundary compares the currently retained delivery before mutation. Comparison omits derived organization/inbox-import projection metadata but includes the fixed delivery source/template/version and recipient identity. Existing publication revision serialization is unchanged.
+
+Removing/changing a delivery before a pending publication commits rejects without replacing the classroom or existing assignments. Later organization editorial changes do not rewrite prior deliveries, published copies or fixed assignments. Synchronous organization delivery continues to preserve originals on failed storage, retain accepted-recipient selection and support explicit idempotent retry. Publication and withdrawal write failures retain the reviewed dialog/confirmation for explicit retry. Access loss hides the reviewed Work preview; access restoration requires explicit workspace return and review. No backend authorization, transaction or synchronization is implemented.
+
+
+### D-039 — 2026-10-04: Parent upcoming classwork follows current learner class access
+
+An upcoming parent due-date summary requires the selected child's active enrollment and a retained classroom. For a Work class, the child's corresponding learner role must have current accepted organization membership; pending, revoked, expired or unreadable membership cannot offer upcoming Work items. Missing classrooms are not treated as independent classes. No classwork, enrollment, membership or private learner record is rewritten by this projection.
+
+Returned-work history remains a separate consented historical summary, exposing only title/date within the selected period. Loss of current Work membership removes upcoming requirements without deleting that history or granting access to answers, grades or feedback. Parent progress consent remains necessary for either summary. Restored accepted membership makes the current due item available again; guardian renewal remains a new pending request requiring explicit learner acceptance. Failed stop/renew/accept writes retain records and notification history for explicit retry. No automatic repair, server authorization or real synchronization is introduced.

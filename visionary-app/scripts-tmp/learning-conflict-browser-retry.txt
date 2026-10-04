@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('heading', { name: 'Saved activity changed', exact: true }) to be visible
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\learning-response-conflict-verify.mjs:33:80 {
+  log: [
+    "  - waiting for getByRole('heading', { name: 'Saved activity changed', exact: true }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

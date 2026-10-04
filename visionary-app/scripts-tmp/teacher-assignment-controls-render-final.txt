@@ -1,0 +1,3 @@
+PASS en: localized questions/assignment read retry/write retention/fixed source, learner evidence and live withdrawal, class read recovery/ownership withdrawal, 320–1440px, no page errors.
+PASS hi: localized questions/assignment read retry/write retention/fixed source, learner evidence and live withdrawal, class read recovery/ownership withdrawal, 320–1440px, no page errors.
+PASS bn: localized questions/assignment read retry/write retention/fixed source, learner evidence and live withdrawal, class read recovery/ownership withdrawal, 320–1440px, no page errors.

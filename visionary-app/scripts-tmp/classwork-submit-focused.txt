@@ -1,0 +1,39 @@
+✔ explicit project copy stays fixed through private edits, teacher revision and resubmission (188.1474ms)
+✔ stale, incomplete, foreign and question-assignment project copies reject before writes (6.9235ms)
+✔ failed classroom save preserves the completed project and permits explicit retry (20.3895ms)
+✔ concurrent project submissions create one fixed response and bulk duplicates preserve originals (37.7178ms)
+✔ assignment close, archive and restore preserve submitted copies and deny new writes until reopened (122.9344ms)
+✔ drafts stay teacher-only and a failed publish retains the draft and its history (180.4187ms)
+✔ scheduled access uses the saved instant, rejects early writes and supports cancellation or publish now (3.3982ms)
+✔ class player resumes the assigned copy, refuses a changed source and closes after enrollment removal (4.7283ms)
+✔ shared class drafts reject stale same-assignment writes and merge unrelated assignments (179.7188ms)
+✔ shared draft read and save failures preserve original bytes and reject malformed answer maps (36.5341ms)
+✔ revocation during classwork reads cannot return the old source (122.993ms)
+✔ workspace switch during classwork reads cancels the old source projection (64.748ms)
+✔ changed content during classwork reads requires reopening; original draft is retained (148.515ms)
+✔ aborted classwork reads do not expose content or create responses (137.3431ms)
+✔ a competing teacher review at commit cannot be overwritten by an older draft (124.496ms)
+✔ a newer learner attempt at commit cannot receive feedback for the older attempt (85.7497ms)
+✔ teacher membership revoked at commit denies the save and retains the learner response (14.1169ms)
+✔ first submission rejects assignment content changed at commit (117.6837ms)
+✔ revised submission rejects assignment content changed at commit (119.5688ms)
+✔ assignment content changed during response lookup cannot be submitted from the older displayed source (194.605ms)
+✔ pending learner revision cannot discard newer teacher revision feedback (281.5924ms)
+✔ withdrawn enrollment at submission commit denies the write (22.0645ms)
+✔ a failed submission write retains original revision history and supports an explicit retry (91.4867ms)
+✔ teacher return requires valid complete criterion feedback and revision history preserves earlier ratings (311.8901ms)
+✔ incomplete criterion review drafts restore per attempt and preserve originals after failed writes (1.289ms)
+✔ source-matched project criterion preview equals submitted copy and rejects a stale assigned rubric (10.2086ms)
+✔ same-attempt teacher review conflicts retain saved feedback and draft revision across refresh (21.0994ms)
+✔ teacher attaches a sourced objective without answer keys and assigns an immutable learner visual copy (173.313ms)
+✔ source and teacher context are rechecked and provisional or unavailable objectives do not attach (46.9512ms)
+✔ same-clock lesson edits reject stale assignment and cannot replay a different saved objective (5.5759ms)
+✔ malformed objective writes and visual drafts preserve originals; changed assignment objective rejects submission (28.7972ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18478.2477
