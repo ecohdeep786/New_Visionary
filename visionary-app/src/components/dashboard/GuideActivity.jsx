@@ -27,8 +27,10 @@ export default function GuideActivity({
     try {
       updateSession(ctx, session.id, patch);
       setError('');
+      return true;
     } catch (e) {
       setError(e.message);
+      return false;
     }
   }
   function advance() {
@@ -82,14 +84,14 @@ export default function GuideActivity({
           locale: e.target.value
         })}><option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option></select></label><label className="text-xs text-[#5f6368]">{copy("Representation")}<select aria-label={copy("Representation")} className="v-field mt-1" value={session.representation} onChange={e => update({
           representation: e.target.value
-        })}><option value="interactive">{copy("Interactive")}</option><option value="text">Text alternative</option></select></label></div>
+        })}><option value="interactive">{copy("Interactive")}</option><option value="text">{copy("Text alternative")}</option></select></label></div>
   <ol aria-label={copy("Learning stages")} className="flex flex-wrap gap-2">{stages.map((s, i) => <li key={s} aria-current={s === stage ? 'step' : undefined} className={`rounded-full px-2.5 py-1 text-xs ${s === stage ? 'bg-[#3367d6] text-white' : 'bg-white text-[#5f6368]'}`}>{i + 1}. {s === 'diagnosing' ? copy("Start") : copy(s[0].toUpperCase() + s.slice(1))}</li>)}</ol>
   {session.interrupted && <div className="v-notice"><p>{copy("Your activity is paused while you ask. Your position and controls are saved.")}</p><button className="v-button mt-2" onClick={() => update({
         interrupted: false
       })}>{copy("That makes sense \xB7 Resume")}</button></div>}
   <section className="v-card" lang={locale}><h3 className="mb-4 text-lg font-medium" lang={locale}>{copy(stageLabels[stage])}</h3>
    {stage === 'diagnosing' && <><p className="v-muted" lang={session.locale}>{journey.objective}</p><p className="mt-4 text-sm" lang={locale}>{copy("Think about an example you already know. You can begin without a diagnostic score.")}</p><button onClick={advance} className="v-button primary mt-5">{copy("Start exploring")}<ArrowRight size={16} /></button></>}
-   {(stage === 'explaining' || stage === 'remediating') && <><p className="whitespace-pre-wrap text-base leading-8" lang={session.locale}>{journey.explanation}</p>{preferences.bilingual && session.locale !== 'en' && <details className="mt-4 text-sm" lang={locale}><summary className="cursor-pointer">{copy("English source explanation")}</summary><p className="mt-3 leading-7">{getJourney(session.journeyId, 'en').explanation}</p></details>}<p className="v-muted mt-5" lang={locale}>{copy("Read at your own pace. This text is also the accessible alternative to the visual activity.")}</p>{stage === 'remediating' && <button className="v-button mt-4" onClick={() => update({
+   {(stage === 'explaining' || stage === 'remediating') && <><p className="whitespace-pre-wrap text-base leading-8" lang={session.locale}>{journey.explanation}</p>{preferences.bilingual && session.locale !== 'en' && <details className="mt-4 text-sm" lang={locale}><summary className="cursor-pointer">{copy("English source explanation")}</summary><p className="mt-3 leading-7" lang="en">{getJourney(session.journeyId, 'en').explanation}</p></details>}<p className="v-muted mt-5" lang={locale}>{copy("Read at your own pace. This text is also the accessible alternative to the visual activity.")}</p>{stage === 'remediating' && <button className="v-button mt-4" onClick={() => update({
           stage: 'checking'
         })}>{copy("Try the check again")}</button>}</>}
    {stage === 'exploring' && <><p className="v-muted mb-5" lang={session.locale}>{journey.exploration}</p>{session.representation === 'text' ? <p className="text-base leading-8" lang={session.locale}>{journey.explanation}</p> : session.journeyId === 'cube' ? <>
@@ -132,7 +134,7 @@ export default function GuideActivity({
    {isQuestion && question && <><p className="mb-3 text-xs text-[#5f6368]">{session.position + 1} / {journey.questions.length}</p><fieldset><legend className="mb-4 text-base font-medium leading-7" lang={session.locale}>{question.prompt}</legend><div className="space-y-3">{question.options.map((option, i) => <label key={option} className="flex min-h-12 items-center gap-3 rounded-xl border p-3 text-sm"><input type="radio" name="activity-answer" value={i} checked={answer === String(i)} onChange={e => {
                 setAnswer(e.target.value);
                 setFeedback(null);
-              }} />{option}</label>)}</div></fieldset><button className="v-button primary mt-5" disabled={!answer} onClick={respond}>{copy("Check my answer")}</button>{feedback && <div className="v-notice mt-4" role="status"><p className="font-medium" lang={locale}>{feedback.correct ? copy("That\u2019s right.") : copy("Let\u2019s look at the reasoning.")}</p><p className="mt-2">{feedback.explanation}</p><button className="v-button mt-3" onClick={advance}>{feedback.correct ? copy("Continue") : copy("Continue with this explanation")}</button>{!feedback.correct && <button className="v-button ml-2 mt-3" onClick={() => {
+              }} /><span lang={session.locale}>{option}</span></label>)}</div></fieldset><button className="v-button primary mt-5" disabled={!answer} onClick={respond}>{copy("Check my answer")}</button>{feedback && <div className="v-notice mt-4" role="status"><p className="font-medium" lang={locale}>{feedback.correct ? copy("That\u2019s right.") : copy("Let\u2019s look at the reasoning.")}</p><p className="mt-2" lang={session.locale}>{feedback.explanation}</p><button className="v-button mt-3" onClick={advance}>{feedback.correct ? copy("Continue") : copy("Continue with this explanation")}</button>{!feedback.correct && <button className="v-button ml-2 mt-3" onClick={() => {
             setFeedback(null);
             update({
               stage: 'remediating'
@@ -153,7 +155,7 @@ export default function GuideActivity({
    {stage === 'reflecting' && <><label className="text-sm" lang={locale}>{copy("How confident do you feel? (Your own assessment)")}<select aria-label={copy("How confident do you feel? (Your own assessment)")} className="v-field mt-3" value={session.confidence ?? ''} onChange={e => update({
             confidence: Number(e.target.value)
           })}><option value="" disabled>{copy("Choose or skip")}</option><option value="25">{copy("I need more support")}</option><option value="50">{copy("I\u2019m beginning to understand")}</option><option value="75">{copy("I can explain it")}</option><option value="100">{copy("I can apply it independently")}</option></select></label><p className="v-muted mt-4" lang={locale}>{copy("This self-report is separate from your answers. Review this idea again tomorrow to check what you remember.")}</p></>}
-   {stage === 'completed' && <><CheckCircle2 className="mb-4 text-[#137333]" /><p className="text-base" lang={locale}>{copy("Activity completed. Evidence stage:")}<strong>{mastery(session.evidence, true)}</strong>.</p><p className="v-muted mt-3" lang={locale}>{copy("Completing a lesson is not the same as mastery. Varied application and delayed recall build stronger evidence.")}</p><Link className="v-button mt-5" to="/dashboard/progress">{copy("View evidence")}</Link><button className="v-button ml-2 mt-3" onClick={() => {
+   {stage === 'completed' && <><CheckCircle2 className="mb-4 text-[#137333]" /><p className="text-base" lang={locale}>{copy("Activity completed. Evidence stage:")}<strong>{copy(mastery(session.evidence, true))}</strong>.</p><p className="v-muted mt-3" lang={locale}>{copy("Completing a lesson is not the same as mastery. Varied application and delayed recall build stronger evidence.")}</p><Link className="v-button mt-5" to="/dashboard/progress">{copy("View evidence")}</Link><button className="v-button ml-2 mt-3" onClick={() => {
           try {
             beginReview(ctx, session.id);
           } catch (e) {
@@ -168,10 +170,7 @@ export default function GuideActivity({
         notes: e.target.value
       })} placeholder={copy("Keep a thought, example, or question\u2026")} /></label>
   <div className="flex flex-wrap items-center justify-between gap-3"><button className="v-button" onClick={() => {
-        update({
-          interrupted: true
-        });
-        onAsk();
+        if(update({interrupted:true}))onAsk();
       }}><MessageCircle size={16} />{copy("Ask Visionary")}</button><span className="text-xs text-[#5f6368]">{copy("Saved on this device")}</span></div>{error && <p role="alert" className="v-notice v-error" lang="en">{error}</p>}
  </div>;
 }

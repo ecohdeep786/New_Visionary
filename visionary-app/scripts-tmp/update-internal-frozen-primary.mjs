@@ -1,0 +1,1 @@
+import fs from'node:fs';const root='C:/Users/Administrator/AppData/Local/Temp/visionary-internal-frozen-20261004';for(const name of ['src/pages/dashboard/Plans.jsx','src/components/dashboard/teacher/CreateClassModal.jsx','src/pages/dashboard/role/TeacherHome.jsx','src/pages/dashboard/RoleWorkspace.jsx'])fs.copyFileSync(name,root+'/'+name);

@@ -386,5 +386,7 @@ const entries=[["Chapters and objectives","अध्याय और उद्�
   "মূল নোট রাখা হয়েছে। উৎস/সংস্করণ পর্যালোচনা নেই; অনুমোদিত পাঠ্যক্রম হিসেবে পাঠানো যাবে না। উপরে উৎসসহ নতুন নমুনায় পর্যালোচিত উদ্দেশ্য যোগ করুন।"
  ]
 ];
+entries.push(['Saved organization content unavailable','सहेजी संगठन सामग्री उपलब्ध नहीं है','সংরক্ষিত প্রতিষ্ঠানের বিষয়বস্তু অনুপলব্ধ'],['Original source records and your editor backup remain on this device. No review or delivery was recorded.','मूल स्रोत रिकॉर्ड और आपका संपादक बैकअप इस डिवाइस पर हैं। कोई समीक्षा या वितरण दर्ज नहीं हुआ।','মূল উৎসের রেকর্ড ও সম্পাদকের ব্যাকআপ এই ডিভাইসে আছে। পর্যালোচনা বা বিতরণ নথিভুক্ত হয়নি।'],['Retry saved content','सहेजी सामग्री फिर खोलें','সংরক্ষিত বিষয়বস্তু আবার খুলুন']);
+entries.push(['Open','खोलें','খুলুন'],['Version','संस्करण','সংস্করণ'],['Retained representation','मूल प्रस्तुति बरकरार','মূল উপস্থাপনা রাখা হয়েছে']);
 const map=Object.fromEntries(entries.map(([en,hi,bn])=>[en,{en,hi,bn}]));
 export const organizationAuthorCopy=locale=>(key,params={})=>(map[key]?.[locale]||teacherCopy(locale)(key)).replace(/\{(\w+)\}/g,(match,name)=>String(params[name]??match));

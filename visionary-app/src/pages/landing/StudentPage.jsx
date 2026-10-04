@@ -215,7 +215,7 @@ const EXPLORE_CATEGORIES = [
 const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
-    srSentence="Learning, to mastery."
+    srSentence="Learning, to master, to build."
     sub="Every concept you understand becomes the foundation for the next."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"

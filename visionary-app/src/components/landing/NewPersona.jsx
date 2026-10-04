@@ -13,13 +13,19 @@ function useCycle(total, ms) {
 }
 
 /* The shared CTA pair — one source for every hero, so the pills stay
-   identical across the universal and persona pages. */
-const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, secondaryLabel }) {
+   identical across the universal and persona pages. `align="baseline"`
+   right-aligns the pair on the wordmark's baseline (the Vision Pro
+   product-page anatomy); the default centers under the copy. */
+const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, secondaryLabel, align = "center" }) {
+  const alignment =
+    align === "baseline"
+      ? "flex flex-wrap items-center justify-center gap-3 lg:justify-end"
+      : "mt-9 flex flex-wrap items-center justify-center gap-3";
   return (
-    <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+    <div className={alignment}>
       <Link
         to={ctaTo}
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
       >
         {ctaLabel}
         <svg
@@ -38,7 +44,7 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
       </Link>
       <Link
         to={secondaryTo}
-        className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+        className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-5 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
       >
         {secondaryLabel}
       </Link>
@@ -110,6 +116,12 @@ const CAST_CSS = `
 .cast-copy{margin-top:auto;margin-bottom:auto}
 @media (min-width:1024px){.cast-copy{margin-bottom:calc(var(--cast-h) + clamp(48px, 8svh, 96px))}}
 .cast-slot-0{z-index:10}.cast-slot-2{z-index:30}.cast-slot-4{z-index:10}.cast-slot-1,.cast-slot-3{z-index:20}
+.persona-floor{position:absolute;inset-inline:0;bottom:0;height:68%;pointer-events:none;
+background:linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.3) 68%, rgba(255,255,255,0.06) 88%, rgba(255,255,255,0) 100%)}
+@media (min-width:1024px){
+.persona-floor{height:40%;
+background:linear-gradient(to top, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.32) 48%, rgba(255,255,255,0) 100%), radial-gradient(62% 95% at 14% 100%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 68%)}
+}
 @media (min-width:1024px){
 .cast-slot-1{margin-left:calc(var(--cast-h)*0.1200)}
 .cast-slot-2{margin-left:calc(var(--cast-h)*0.3459)}
@@ -137,27 +149,30 @@ export default function NewPersona({
   wordMs = 2800,
   srSentence,
   sub,
+  audiences = [],
   img,
   alt,
   /* Matches the photo's own background (#ffffff, sampled from image edges) so
-     the contained photo blends seamlessly into the hero — Apple-style. */
+     the stage blends seamlessly into the page — Apple-style. */
   heroBg = "#ffffff",
   ctaTo = "/register",
   ctaLabel = "Start learning free",
   secondaryTo = "/how-it-works",
   secondaryLabel = "See how it works",
-  /* Panorama-cast mode: the five full-resolution hero photographs composed
-     as one continuous full-bleed scene — the persona-hero bar applied to the
-     whole family. Used by the main landing hero so every hero on the site
-     follows one law: full-viewport photography, bottom-pinned words. */
+  /* Panorama-cast mode: the five alpha cutouts composed as one continuous
+     family stage on the landing page. */
   cast,
   /* The canonical display minimum is 48px; the universal lead fragment is
      longer than any persona lead ("One Intelligence."), so the landing drops
      the floor to keep 390px screens on one line. */
   minDisplay = 48,
 }) {
-  /* Cast mode speaks once — a static headline, no word cycle. */
-  const index = useCycle(cast ? 1 : words.length, cast ? 0 : wordMs);
+  /* Personas speak in the landing grammar: the cycling fragment carries the
+     journey. The word cycle always runs — it is content rotation, not
+     decoration. Under prefers-reduced-motion the shared CSS swaps the
+     fade-up for a pure crossfade, so the rotation stays and the movement
+     goes. */
+  const index = useCycle(words.length, wordMs);
   /* Canonical Visionary display scale — Apple product-first rhythm */
   const displaySize = `clamp(${minDisplay}px, 5.55vw, 80px)`;
   const display = `block whitespace-nowrap font-medium tracking-[0] leading-[1.02]`;
@@ -179,7 +194,9 @@ export default function NewPersona({
         {/* the words — static "One Intelligence." pulled down to the family:
             margin-top:auto sinks the stack toward the heads (a breath above
             them on desktop, centered above the row on smaller screens) */}
-        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex w-full flex-col items-center pt-[clamp(48px,11svh,120px)] text-center">
+        {/* public-frame carries the canonical gutters — w-full would override
+            them and push the tagline against the screen edges */}
+        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center pt-[clamp(64px,15svh,150px)] text-center">
           <div className="max-w-[980px]">
             <h1 className="m-0">
               <span
@@ -193,12 +210,28 @@ export default function NewPersona({
             </h1>
             <p
               className="mx-auto max-w-[620px] font-normal tracking-[0] leading-[1.6] text-[clamp(16px,1.2vw,18px)]"
-              style={{ color: "#121317", marginTop: `calc(${displaySize} * 0.167)` }}
+              style={{ color: "#121317", marginTop: `calc(${displaySize} * 0.24)` }}
             >
               {sub}
             </p>
           </div>
           <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
+          {/* the audience row — desktop only; on phones the five journeys
+              are one tap away in the nav, and the front door stays quiet */}
+          {audiences.length > 0 && (
+            <nav className="mt-6 hidden max-w-[680px] flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-[#121317]/10 pt-4 lg:flex" aria-label="Explore Visionary by audience">
+              <span className="text-[13px] font-normal tracking-[0.12px] text-[#5f6368]">For</span>
+              {audiences.map((audience) => (
+                <Link
+                  key={audience.label}
+                  to={audience.to}
+                  className="rounded-full px-1 text-[14px] font-medium tracking-[0.12px] text-[#121317] underline decoration-[#4285F4]/40 underline-offset-4 transition-colors hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                >
+                  {audience.label}
+                </Link>
+              ))}
+            </nav>
+          )}
         </div>
 
         {/* the family — five alpha cutouts on the page's own white, rising
@@ -255,6 +288,12 @@ export default function NewPersona({
     );
   }
 
+  /* The persona product-page stage — the Vision Pro anatomy with the site's
+     signature heading. The studio photograph fits the stage centered,
+     bottom-anchored at the fold (the family-stage law), and the cycling
+     accent-gradient headline — the landing heading's color and fade-up
+     animation — pins to the bottom left, the CTA pair on the baseline
+     right. No scrims, no frames. */
   return (
     <section
       data-section="01-hero"
@@ -262,58 +301,56 @@ export default function NewPersona({
       style={{
         backgroundColor: heroBg,
         height: "calc(100svh - 56px)",
-        minHeight: 620,
+        minHeight: 640,
         marginTop: 56,
       }}
     >
-      {/* the words — top center, the Vision Pro anatomy: the journey speaks
-          first, the CTA pair follows, and the subject stands beneath on the
-          white stage — the same system as the landing's family stage */}
-      <div className="public-frame public-frame-wide relative z-10 mx-auto flex w-full flex-col items-center pt-[clamp(48px,11svh,120px)] text-center">
-        <div className="max-w-[980px]">
-          <h1 className="m-0">
-            <span
-              aria-hidden="true"
-              className={display}
-              style={{ color: "#121317", fontSize: displaySize }}
-            >
-              <span
-                key={index}
-                className="apple-anim accent-gradient inline-block"
-                style={{
-                  animation:
-                    "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both",
-                }}
-              >
-                {words[index]}
-              </span>
-            </span>
-            <span className="sr-only">{srSentence}</span>
-          </h1>
-          <p
-            className="mx-auto max-w-[620px] font-normal tracking-[0] leading-[1.6] text-[clamp(16px,1.2vw,18px)]"
-            style={{ color: "#121317", marginTop: `calc(${displaySize} * 0.167)` }}
-          >
-            {sub}
-          </p>
-        </div>
-        <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
-      </div>
-
-      {/* the subject — the persona photograph contained on the white stage,
-          bottom-anchored at the fold the way the family stands on the
-          landing; no scrims, the photo blends into the page */}
-      <div className="relative mt-5 min-h-0 flex-1">
+      <style>{CAST_CSS}</style>
+      {/* the subject — the whole photograph, always. Phones and tablets:
+              the full image in flow at the section's bottom, feet on the
+              fold, nothing cropped. Desktop: the same contain fit as a
+              full-bleed stage behind the bottom-left words. */}
+      <div className="relative order-last min-h-0 flex-1 lg:absolute lg:inset-0 lg:z-0">
         <img
           src={img}
           srcSet={HERO_SRCSETS[img]}
           sizes={HERO_SIZES}
           alt={alt}
           loading="eager"
+          fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-contain"
+          draggable="false"
+          className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
           style={{ objectPosition: "50% 100%" }}
         />
+      </div>
+
+      {/* the studio floor — desktop only; with the whole image in flow below
+          the copy on phones and tablets, nothing overlaps there */}
+      <div aria-hidden="true" className="persona-floor hidden lg:block" />
+
+      {/* the words — the persona grammar: one fragment at a time. "Learning,"
+              alone, then "to master.", then "to build." — each in the landing
+              gradient, fading up on every change. Content sits above the
+              stage on phones and tablets; pinned bottom left on the desktop
+              stage with the CTA pair on the baseline right. */}
+      <div className="relative z-10 order-first flex w-full flex-col items-center gap-8 px-6 pt-[clamp(12px,2.5svh,40px)] pb-[clamp(28px,5svh,64px)] text-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-auto lg:flex-row lg:items-end lg:justify-between lg:gap-16 lg:px-[max(1.5rem,var(--frame-x))] lg:pb-[clamp(40px,7svh,88px)] lg:pt-0 lg:text-left">
+        <div className="max-w-[860px]">
+            <h1 className="m-0 font-medium tracking-[0] leading-[1.05]" style={{ fontSize: displaySize }}>
+              <span
+                key={index}
+                className="apple-anim accent-gradient inline-block"
+                style={{ animation: "heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both" }}
+              >
+                {words[index]}
+              </span>
+              <span className="sr-only">{srSentence}</span>
+            </h1>
+            <p className="text-balance mt-4 max-w-[560px] font-medium tracking-[0] leading-[1.4] text-[clamp(18px,1.4vw,24px)] lg:mx-0" style={{ color: "#121317" }}>
+              {sub}
+            </p>
+          </div>
+          <HeroCtas align="baseline" ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
       </div>
     </section>
   );

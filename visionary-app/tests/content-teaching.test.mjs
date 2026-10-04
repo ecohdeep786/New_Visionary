@@ -297,3 +297,21 @@ test('connected teaching requires matching language and version, and saves only 
  assert.equal('internalRubric' in response.question, false);
  assert.equal('serverMetadata' in response.representations[0], false);
 });
+
+test('unreadable auxiliary issue records preserve bytes, leave source content accessible and recover without duplicate reports', async () => {
+ configureContentRepository({ async getSyllabus() { return officialGraph(); } });
+ const repository = getContentRepository(ctx()); await syllabus(repository);
+ const issue = await repository.reportIssue('official:concept', 'source');
+ const saved = memory.get(contentKey);
+ for (const issues of [null, {}, [null], [{...issue,kind:'unknown'}], [{...issue,createdAt:'invalid'}], [issue,issue], [{...issue,sourceVersion:42}]]) {
+  const db = JSON.parse(saved); db.spaces[ctx().workspaceId].issues = issues;
+  const unreadable = JSON.stringify(db); memory.set(contentKey, unreadable);
+  await assert.rejects(repository.getContentIssues(), /issue reports could not be read/);
+  await assert.rejects(repository.reportIssue('official:concept', 'question'), /issue reports could not be read/);
+  assert.equal(memory.get(contentKey), unreadable);
+  assert.equal((await repository.getConcept('official:concept')).id, 'official:concept');
+ }
+ memory.set(contentKey, saved);
+ assert.equal((await repository.reportIssue('official:concept', 'source')).id, issue.id);
+ assert.deepEqual(await repository.getContentIssues(), [issue]);
+});

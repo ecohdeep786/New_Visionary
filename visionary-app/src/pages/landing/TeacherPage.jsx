@@ -203,7 +203,7 @@ const EXPLORE_CATEGORIES = [
 const TeacherHeroSection = React.memo(() => (
   <PersonaHero
     words={TEACHER_HERO_WORDS}
-    srSentence="Teaching, to reach every learner."
+    srSentence="Teaching, to grow, to reach."
     sub="One class, many minds. See who is with you before the next bell."
     img={teacherHero}
     alt="A teacher presenting at a whiteboard"

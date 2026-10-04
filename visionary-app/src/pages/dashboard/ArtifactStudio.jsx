@@ -215,7 +215,7 @@ const [params] = useSearchParams();
         }} />{t(label)}</label>)}<label className="mt-5 block max-w-sm text-sm">{t("Project status")}<select className="v-field mt-2" aria-label={t('Project status')} value={draft.status} onChange={e => setDraft({
           ...draft,
           status: e.target.value
-        })}><option value="draft">{t("Draft")}</option><option value="in-progress">{t("In progress")}</option><option value="completed">{t("Completed")}</option></select></label></section>{ctx.role === 'professional' && <ProfessionalPortfolioReview key={`${ctx.personId}:${ctx.workspaceId}:${draft.id}`} ctx={ctx} artifact={draft} locale={data.preferences.interfaceLocale || 'en'} onPrepare={save} onChange={(saved, message) => {
+        })}><option value="draft">{t("Draft")}</option><option value="in-progress">{t("In progress")}</option><option value="completed">{t("Completed")}</option></select></label></section>{ctx.role === 'professional' && <ProfessionalPortfolioReview key={`${ctx.personId}:${ctx.workspaceId}:${draft.id}`} ctx={ctx} artifact={draft} locale={data.preferences.interfaceLocale || 'en'} onPrepare={save} onHistoryRefresh={portfolioReviews => setDraft(current => ({...current, portfolioReviews}))} onChange={(saved, message) => {
       setDraft(saved);
       setBaseRevision(artifactRevision(saved));
       setNotice(message);
@@ -257,7 +257,7 @@ const [params] = useSearchParams();
               message: e.message
             });
           }
-        }}>{t("Confirm sharing")}</button>{notice && <p role={noticeFailed?"alert":"status"} lang={noticeLocale} className={noticeFailed?"v-notice v-error":"v-muted"}>{noticeText}</p>}</DialogContent></Dialog><ParentProjectSharing locale={locale} ctx={ctx} artifact={draft} open={parentSharing} onOpenChange={setParentSharing} onChange={(saved, message) => {
+        }}>{t("Confirm sharing")}</button>{notice && <p role={noticeFailed?"alert":"status"} lang={noticeLocale} className={noticeFailed?"v-notice v-error":"v-muted"}>{noticeText}</p>}</DialogContent></Dialog><ParentProjectSharing locale={locale} ctx={ctx} artifact={draft} open={parentSharing} onOpenChange={setParentSharing} onHistoryRefresh={parentSummaries=>setDraft(current=>({...current,parentSummaries}))} onChange={(saved, message) => {
       setDraft(saved);
       setBaseRevision(artifactRevision(saved));
       setNotice(message);

@@ -56,6 +56,22 @@ function write(db: ContentStore, ctx: RequestContext) {
  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('visionary:content-change'));
 }
 function space(db: ContentStore, ctx: RequestContext) { return db.spaces[ctx.workspaceId] ??= { graphs: [], aliases: {}, gaps: [] }; }
+function contentIssues(own: ContentStore['spaces'][string]): ContentIssue[] {
+ const issues = own.issues;
+ if (issues === undefined) return [];
+ const ids = new Set<string>();
+ if (!Array.isArray(issues) || issues.some(item => {
+  if (!item || typeof item.id !== 'string' || !item.id || ids.has(item.id)) return true;
+  ids.add(item.id);
+  return typeof item.conceptId !== 'string' || !item.conceptId ||
+   !['explanation', 'question', 'representation', 'translation', 'source'].includes(item.kind) ||
+   !['en', 'hi', 'bn'].includes(item.locale) || item.state !== 'saved-locally' ||
+   typeof item.createdAt !== 'string' || !Number.isFinite(Date.parse(item.createdAt)) ||
+   (item.sourceId !== undefined && (typeof item.sourceId !== 'string' || !item.sourceId)) ||
+   (item.sourceVersion !== undefined && (typeof item.sourceVersion !== 'string' || !item.sourceVersion));
+ })) throw new Error('Saved issue reports could not be read. Existing reports have not been changed.');
+ return issues;
+}
 function selection(board: string, classLevel: string, subject: string): ContentSelection { return { board: board.trim().slice(0, 100) || 'Not specified', classLevel: classLevel.trim().slice(0, 100) || 'Not specified', subject: subject.trim().slice(0, 100) || 'My subject' }; }
 function same(a: ContentSelection, b: ContentSelection) { return a.board === b.board && a.classLevel === b.classLevel && a.subject === b.subject; }
 // An opaque stable key avoids leaking free-form selection labels through object IDs.
@@ -224,13 +240,13 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
    const fresh = read(); space(fresh, ctx).aliases[provisionalId] = officialId; write(fresh, ctx);
   },
   async getDataGaps() { check(ctx); return structuredClone(space(read(), ctx).gaps); },
-  async getContentIssues() { check(ctx); return structuredClone(space(read(), ctx).issues ?? []); },
+  async getContentIssues() { check(ctx); return structuredClone(contentIssues(space(read(), ctx))); },
   async reportIssue(conceptId, kind, locale = ctx.locale) {
    check(ctx);
    if (!['explanation', 'question', 'representation', 'translation', 'source'].includes(kind) || !['en', 'hi', 'bn'].includes(locale)) throw new Error('Choose a valid content issue and teaching language.');
    const concept = await getContentRepository({ ...ctx, locale }).getConcept(conceptId);
    check(ctx); if (!concept) throw new Error('This concept is unavailable in your workspace. Your report was not saved.');
-   const db = read(); const own = space(db, ctx); const issues = own.issues ?? [];
+   const db = read(); const own = space(db, ctx); const issues = contentIssues(own);
    const previous = issues.find(item => item.conceptId === conceptId && item.kind === kind && item.locale === locale && item.sourceId === concept.provenance?.sourceId && item.sourceVersion === concept.provenance?.version);
    if (previous) return structuredClone(previous);
    const issue: ContentIssue = { id: crypto.randomUUID(), conceptId, kind, locale, sourceId: concept.provenance?.sourceId, sourceVersion: concept.provenance?.version, createdAt: new Date().toISOString(), state: 'saved-locally' };

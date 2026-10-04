@@ -1,5 +1,6 @@
+import { primaryWorkspaceCopy } from '@/lib/primaryWorkspaceCopy';
 import OrganizationCurriculum from './OrganizationCurriculum';
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BarChart3, BookOpen, CheckCircle2, GraduationCap, Send, UserPlus, Users } from "lucide-react";
 import { base44 } from "@/api/base44Client";
@@ -18,16 +19,19 @@ const announceChange = () => window.dispatchEvent(new CustomEvent("visionary:wor
 const normalize = (value) => value?.trim().toLowerCase() || "";
 
 function WorkspaceHeader({ eyebrow, title, description, action }) {
-  return <header className="flex flex-col gap-5 border-b border-[#dadce0] pb-7 sm:flex-row sm:items-end sm:justify-between"><div className="max-w-2xl"><p className="text-sm font-medium text-[#5f6368]">{eyebrow}</p><h1 className="mt-2 text-[30px] font-medium tracking-tight text-[#121317]">{title}</h1><p className="mt-2 text-base leading-relaxed text-[#5f6368]">{description}</p></div>{action}</header>;
+ const {data}=useWorkspace();const copy=primaryWorkspaceCopy(data?.preferences.interfaceLocale||'en');
+  return <header className="flex flex-col gap-5 border-b border-[#dadce0] pb-7 sm:flex-row sm:items-end sm:justify-between"><div className="max-w-2xl"><p className="text-sm font-medium text-[#5f6368]">{copy(eyebrow)}</p><h1 className="mt-2 text-[30px] font-medium tracking-tight text-[#121317]">{copy(title)}</h1><p className="mt-2 text-base leading-relaxed text-[#5f6368]">{copy(description)}</p></div>{action}</header>;
 }
 
 function EmptyWorkspace({ icon: Icon, title, description, action }) {
-  return <div className="flex min-h-[240px] flex-col items-center justify-center rounded-2xl border border-dashed border-[#5f6368] bg-[#ffffff] px-6 py-10 text-center"><div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-white"><Icon className="h-6 w-6 text-[#5f6368]" /></div><h2 className="text-lg font-medium text-[#121317]">{title}</h2><p className="mt-2 max-w-md text-sm leading-relaxed text-[#5f6368]">{description}</p>{action && <div className="mt-6">{action}</div>}</div>;
+ const {data}=useWorkspace();const copy=primaryWorkspaceCopy(data?.preferences.interfaceLocale||'en');
+  return <div className="flex min-h-[240px] flex-col items-center justify-center rounded-2xl border border-dashed border-[#5f6368] bg-[#ffffff] px-6 py-10 text-center"><div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-white"><Icon className="h-6 w-6 text-[#5f6368]" /></div><h2 className="text-lg font-medium text-[#121317]">{copy(title)}</h2><p className="mt-2 max-w-md text-sm leading-relaxed text-[#5f6368]">{copy(description)}</p>{action && <div className="mt-6">{action}</div>}</div>;
 }
 
 function LoadState({ loading, error, retry }) {
-  if (loading) return <p className="py-6 text-sm text-[#5f6368]" role="status">Loading your workspace…</p>;
-  if (error) return <div className="rounded-xl border border-[#5f6368] bg-[#fce8e6] p-4 text-sm text-[#b3261e]" role="alert">{error}<button type="button" onClick={retry} className="ml-3 font-medium underline">Try again</button></div>;
+ const {data}=useWorkspace();const copy=primaryWorkspaceCopy(data?.preferences.interfaceLocale||'en');
+  if (loading) return <p className="py-6 text-sm text-[#5f6368]" role="status">{copy("Loading your workspace…")}</p>;
+  if (error) return <div className="rounded-xl border border-[#5f6368] bg-[#fce8e6] p-4 text-sm text-[#b3261e]" role="alert">{copy(error)}<button type="button" onClick={retry} className="ml-3 font-medium underline">{copy("Try again")}</button></div>;
   return null;
 }
 
@@ -103,34 +107,37 @@ function ParentChildWorkspace({ user, accent }) {
 
 
 function MetricsWorkspace({ user, area, accent }) {
+  const {ctx,revision,data:workspaceData}=useWorkspace();const copy=primaryWorkspaceCopy(workspaceData?.preferences.interfaceLocale||'en');const sequenceRef=useRef(0);
   const [data, setData] = useState({ classes: [], people: [], assignments: [], enrollments: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const teaching = area === "insights";
   const load = useCallback(async () => {
-    setError("");
+    const sequence=++sequenceRef.current;setLoading(true);setData({classes:[],people:[],assignments:[],enrollments:[]});setError("");
     try {
       const classes = await base44.entities.Classroom.filter(teaching ? { teacher_email: user.email } : { organization_email: user.email });
+      if(sequence!==sequenceRef.current)return;
       const [assignmentsByClass, enrollmentsByClass, people] = await Promise.all([
         Promise.all(classes.map((classroom) => base44.entities.Assignment.filter({ class_id: classroom.id }))),
         Promise.all(classes.map((classroom) => base44.entities.Enrollment.filter({ class_id: classroom.id }))),
         teaching ? Promise.resolve([]) : base44.entities.OrganizationInvite.filter({ organization_email: user.email }),
       ]);
+      if(sequence!==sequenceRef.current)return;
       setData({ classes, assignments: assignmentsByClass.flat(), enrollments: enrollmentsByClass.flat().filter((entry) => entry.status === "active"), people: people.filter((person) => person.status === "active") });
-    } catch { setError("Your report couldn’t be loaded. Please try again."); }
-    finally { setLoading(false); }
-  }, [teaching, user.email]);
+    } catch { if(sequence!==sequenceRef.current)return;setError("Your report couldn’t be loaded. Please try again."); }
+    finally { if(sequence===sequenceRef.current)setLoading(false); }
+  }, [teaching, user.email,ctx?.personId,ctx?.workspaceId,revision]);
   useEffect(() => {
     load();
     window.addEventListener("visionary:workspace-change", load);
-    return () => window.removeEventListener("visionary:workspace-change", load);
+    return () => {sequenceRef.current++;window.removeEventListener("visionary:workspace-change", load);};
   }, [load]);
   const studentCount = new Set(data.enrollments.map((entry) => entry.student_email).filter(Boolean)).size;
   const metrics = [{ label: teaching ? "Your classes" : "Linked classes", value: data.classes.length, icon: BookOpen }, { label: teaching ? "Connected students" : "Connected people", value: teaching ? studentCount : data.people.length, icon: Users }, { label: "Class assignments", value: data.assignments.length, icon: CheckCircle2 }];
   return <div className={pageClass}>
     <WorkspaceHeader eyebrow={teaching ? "Teaching" : "Organization"} title={teaching ? "Teaching insights" : "Institution analytics"} description={teaching ? "An overview of your classes, connected learners, and teaching workload." : "A focused view of your institution’s roster and explicitly linked classrooms."} />
     <LoadState loading={loading} error={error} retry={load} />
-    {!loading && !error && <><div className="grid gap-4 sm:grid-cols-3">{metrics.map((metric) => { const Icon = metric.icon; return <div key={metric.label} className="rounded-2xl border border-[#dadce0] bg-white p-6"><Icon className="h-5 w-5" style={{ color: accent }} /><p className="mt-5 text-3xl font-medium text-[#121317]">{metric.value}</p><p className="mt-1 text-sm text-[#5f6368]">{metric.label}</p></div>; })}</div>{!teaching && <OrganizationEvidencePanel/>}{data.classes.length > 0 ? <section><h2 className="mb-4 text-lg font-medium text-[#121317]">Class overview</h2><div className="overflow-x-auto rounded-2xl border border-[#dadce0]"><table className="w-full min-w-[480px] text-left text-sm"><thead className="bg-[#ffffff] text-[#5f6368]"><tr><th className="px-5 py-4 font-medium">Class</th><th className="px-5 py-4 font-medium">Students</th><th className="px-5 py-4 font-medium">Assignments</th></tr></thead><tbody>{data.classes.map((classroom) => <tr key={classroom.id} className="border-t border-[#dadce0]"><td className="px-5 py-4 font-medium text-[#121317]">{classroom.name || classroom.title || "Untitled class"}</td><td className="px-5 py-4 text-[#5f6368]">{data.enrollments.filter((entry) => entry.class_id === classroom.id).length}</td><td className="px-5 py-4 text-[#5f6368]">{data.assignments.filter((item) => item.class_id === classroom.id).length}</td></tr>)}</tbody></table></div></section> : <EmptyWorkspace icon={BarChart3} title={teaching ? "Insights start with a class" : "No linked classrooms yet"} description={teaching ? "Create a class and share its join code. Learner and assignment totals appear here as you teach." : "Roster drafts do not create classroom access. Only classes explicitly linked to your institution will contribute to this report."} action={<Link to={teaching ? "/dashboard/home" : "/dashboard/people"} className={primaryClass} style={{ backgroundColor: accent }}>{teaching ? "Go to classes" : "Manage people"}<ArrowRight className="h-4 w-4" /></Link>} />}</>}
+    {!loading && !error && <><div className="grid gap-4 sm:grid-cols-3">{metrics.map((metric) => { const Icon = metric.icon; return <div key={metric.label} className="rounded-2xl border border-[#dadce0] bg-white p-6"><Icon className="h-5 w-5" style={{ color: accent }} /><p className="mt-5 text-3xl font-medium text-[#121317]">{metric.value}</p><p className="mt-1 text-sm text-[#5f6368]">{copy(metric.label)}</p></div>; })}</div>{!teaching && <OrganizationEvidencePanel/>}{data.classes.length > 0 ? <section><h2 className="mb-4 text-lg font-medium text-[#121317]">{copy("Class overview")}</h2><div tabIndex={0} role="region" aria-label={copy("Class overview")} className="overflow-x-auto rounded-2xl border border-[#dadce0]"><table className="w-full min-w-[480px] text-left text-sm"><thead className="bg-[#ffffff] text-[#5f6368]"><tr><th className="px-5 py-4 font-medium">{copy("Class")}</th><th className="px-5 py-4 font-medium">{copy("Students")}</th><th className="px-5 py-4 font-medium">{copy("Assignments")}</th></tr></thead><tbody>{data.classes.map((classroom) => <tr key={classroom.id} className="border-t border-[#dadce0]"><td className="px-5 py-4 font-medium text-[#121317]">{classroom.name || classroom.title || "Untitled class"}</td><td className="px-5 py-4 text-[#5f6368]">{new Set(data.enrollments.filter((entry) => entry.class_id === classroom.id).map(entry=>entry.student_email).filter(Boolean)).size}</td><td className="px-5 py-4 text-[#5f6368]">{data.assignments.filter((item) => item.class_id === classroom.id).length}</td></tr>)}</tbody></table></div></section> : <EmptyWorkspace icon={BarChart3} title={teaching ? "Insights start with a class" : "No linked classrooms yet"} description={teaching ? "Create a class and share its join code. Learner and assignment totals appear here as you teach." : "Roster drafts do not create classroom access. Only classes explicitly linked to your institution will contribute to this report."} action={<Link to={teaching ? "/dashboard/classes" : "/dashboard/people"} className={primaryClass} style={{ backgroundColor: accent }}>{copy(teaching ? "Go to classes" : "Manage people")}<ArrowRight className="h-4 w-4" /></Link>} />}</>}
   </div>;
 }
 
@@ -144,7 +151,7 @@ export default function RoleWorkspace({ area }) {
   const policy=role==='organization'&&ctx?organizationAccess(ctx):null;
   const organizationUser=policy?{...user,email:policy.organizationEmail}:user;
   if (area === "curriculum" && role === "organization") return <OrganizationCurriculum key={ctx?.personId+':'+ctx?.workspaceId}/>;
-  if (area === "analytics" && role === "organization") return policy.permissions.includes('academic')?<MetricsWorkspace user={organizationUser} area={area} accent={themeColor.accent} />:<div className="v-page"><h1 className="v-title">Aggregate insights</h1><OrganizationEvidencePanel/></div>;
+  if (area === "analytics" && role === "organization") return policy.permissions.includes('academic')?<MetricsWorkspace key={ctx?.personId+':'+ctx?.workspaceId} user={organizationUser} area={area} accent={themeColor.accent} />:<div className="v-page"><h1 className="v-title">Aggregate insights</h1><OrganizationEvidencePanel/></div>;
   if (area === "insights" && role === "teacher") return <MetricsWorkspace user={user} area={area} accent={themeColor.accent} />;
   return <div className={pageClass}><EmptyWorkspace icon={BookOpen} title="This workspace is not available" description="Choose a section that matches your Visionary role." action={<Link to="/dashboard/home" className="text-sm font-medium text-[#4285F4] hover:underline">Return to dashboard</Link>} /></div>;
 }

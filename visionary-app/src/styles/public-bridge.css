@@ -14,6 +14,44 @@
 .public-section,
 section[data-section]:not([data-section="01-hero"]) {
   padding-block: var(--public-section-py);
+  border-radius: 0 !important;
+}
+
+/* Apple chapter contract: sections read as one continuous product story.
+   Separation comes from whitespace and a quiet surface change, never stacked cards. */
+main > section[data-section]:not([data-section="01-hero"]) {
+  border-top: 1px solid rgba(18, 19, 23, 0.045);
+}
+
+main > section[data-section="03-promise"],
+main > section[data-section="06-closing"],
+main > section[data-section="10-journey-flow"] {
+  border-top-color: transparent;
+}
+
+main > section[data-section="05-intelligence"],
+main > section[data-section="05-one-intelligence"] {
+  background: var(--scene-ink, #0a0d14) !important;
+  color: #f5f7fa;
+}
+
+main > section[data-section="05-intelligence"] p,
+main > section[data-section="05-intelligence"] h2,
+main > section[data-section="05-intelligence"] h3,
+main > section[data-section="05-one-intelligence"] p,
+main > section[data-section="05-one-intelligence"] h2,
+main > section[data-section="05-one-intelligence"] h3 {
+  color: inherit !important;
+}
+
+main > section[data-section="05-intelligence"] p,
+main > section[data-section="05-one-intelligence"] p {
+  color: var(--scene-ink-soft, rgba(245, 247, 250, 0.72)) !important;
+}
+
+main > section[data-section="05-intelligence"] img,
+main > section[data-section="05-one-intelligence"] img {
+  border-color: rgba(255, 255, 255, 0.14) !important;
 }
 
 /* ── Type-scale convergence ─────────────────────────────────────────────
@@ -113,6 +151,7 @@ h2.text-\[52px\], h2.text-\[56px\] {
 @media (max-width: 480px) {
   section[data-section] {
     padding-block: clamp(4rem, 16vw, 4.5rem);
+    border-radius: 0 !important;
   }
 
   section[data-section] h2,

@@ -132,7 +132,7 @@ const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey })
 
 const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, label }) {
   return (
-    <div className="flex items-center gap-2" role="group" aria-label="aria-label={label}">
+    <div className="flex items-center gap-2" role="group" aria-label={label}>
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
@@ -157,7 +157,7 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
         ref={trackRef}
         onScroll={onScroll}
         style={{ paddingLeft: ALIGN, paddingRight: "max(1.5rem, 6%)", scrollPaddingLeft: ALIGN }}
-        className="flex snap-x snap-mandatory gap-12 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory gap-8 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {stages.map((stage) => {
           const Icon = iconMap[stage.title] || Sparkles;
@@ -167,14 +167,14 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                 type="button"
                 onClick={() => onOpen(stage)}
                 aria-label={`Open details for ${stage.title}`}
-                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+                className="group relative block w-full overflow-hidden rounded-[var(--radius-media)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
               >
                 <img
                   src={stage.image}
                   alt={stage.alt}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
+                  className="aspect-[16/9] w-full rounded-[var(--radius-media)] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
                 />
                 {/* stage icon pill — the missing icon layer */}
                 <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
@@ -250,7 +250,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
       />
 
       <div
-        className="relative max-h-[88vh] w-full max-w-[1080px] overflow-y-auto rounded-[28px] bg-white p-6 sm:p-10 lg:p-14"
+        className="relative max-h-[88vh] w-full max-w-[1080px] overflow-y-auto rounded-[var(--radius-media)] bg-white p-6 sm:p-10 lg:p-14"
         style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}
       >
         <button

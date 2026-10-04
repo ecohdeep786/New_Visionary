@@ -79,3 +79,15 @@ G1/G5/G6/G10/G11 pass within the touched teacher workflows: meaningful controls,
 ### 2026-10-03 — Class-tab evidence update
 
 Teacher class Stream/People/Classwork/Insights/review/promotion/community local flows pass in en/hi/bn. Shared summary excludes invalid grades, distinguishes real zero, deduplicates concept coverage and makes no mastery claim. Failed source recovery, failed-write draft retention, reported-post moderation and promotion rollback/retry pass. Final class snapshot: visionary-class-tabs-final4-20261003;366 tests and74 route checks pass, plus build/lint/types and teacher–learner–parent review regression. Whole frontend gate remains OPEN; broader organization/shared/legacy/native acceptance still required.
+
+
+## 2026-10-04 — Primary/organization/shared bounded re-gate
+
+G1/G5/G6/G10/G11 pass for the implemented local slices: meaningful primary controls, explicit simulated/unconnected behavior, source/role/status and consent boundaries, preserved design with readable class banners, and concrete decision/store/backend/evidence handoffs. G2 is unchanged: finite Home priorities and existing permanent work areas. G3/G8 remain PARTIAL globally, with en/hi/bn primary, teacher, organization, Guide/learning/previous-lesson controls and demonstrated read/write/reload/conflict/revocation/legacy recovery added. G4/G12 remain PARTIAL globally; paired organization delivery, learner/teacher/parent revision-return-digest/revocation, owned Ask handoff and unique learner counts are verified, but complete source/stage/audience/legacy reconciliation is not inferred.
+
+G9 remains PARTIAL:368 service tests, current-tree build/lint/both types,222 localized role routes and demonstrated320–1440px/reduced-motion/keyboard recovery pass. Actual browser zoom, physical assistive technology, native audio/clipboard and native-speaker review remain unverified. G7 remains NOT PASSED: public work was untouched but concurrently edited; no clean same-data public visual baseline exists. Whole frontend sign-off and merge/release readiness remain OPEN under Part AA. The current corrective owners are the coordinator for the remaining source/state matrix, native-language/accessibility/device acceptance owner for G3/G9, and separate public-baseline owner for G7. D-015/D-016 still defer book rehearsal and backend until the frontend gate is accepted.
+
+
+### 2026-10-04 — Portfolio retained-history re-gate
+
+G1/G5/G8 pass for this bounded slice: the project remains usable, malformed assessments are disclosed and explicit recovery preserves source/history and edits. G9 automated slice passes369 service tests, whole-tree build/lint/types, en/hi/bn production recovery, review conflict and sponsored-workspace revocation. G10 handoff is recorded in STATUS/QA/D-027/current status. Other gates retain their previous verdicts; G7 public baseline and G9 native/task-based acceptance remain open, as do the broader source/role-state requirements. Full frontend merge/release acceptance remains OPEN. Backend remains deferred under D-015.

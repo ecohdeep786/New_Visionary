@@ -287,6 +287,13 @@ import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
    then the cycle carries every journey — student, teacher, parent,
    professional, organization. */
 const LANDING_HERO_WORDS = ["One Intelligence.", "to learn.", "to teach.", "to help.", "to build.", "to lead."];
+const LANDING_HERO_AUDIENCES = [
+  { label: "Students", to: "/student" },
+  { label: "Teachers", to: "/teacher" },
+  { label: "Parents", to: "/parent" },
+  { label: "Professionals", to: "/professional" },
+  { label: "Organizations", to: "/organization" },
+];
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
@@ -302,9 +309,11 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
     <PersonaHero
       words={LANDING_HERO_WORDS}
       srSentence="One Intelligence. To learn. To teach. To help. To build. To lead."
-      sub="Visionary carries your context across learning, teaching, work, and life."
+      sub="One connected intelligence for every way you learn, teach, work, and grow."
       cast={LANDING_HERO_LINEUP}
+      audiences={LANDING_HERO_AUDIENCES}
       ctaLabel="Start free"
+      secondaryLabel="See how it works"
       minDisplay={36}
     />
   );

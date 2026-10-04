@@ -1,0 +1,3 @@
+PASS en: previous lesson/source retention, bookmark read/retry/write, question recovery/quota/reload/exact Ask handoff, focus/Escape/one heading, synthetic browser-output stop, localized cube lab/reflow. Native audio is not certified.
+PASS hi: previous lesson/source retention, bookmark read/retry/write, question recovery/quota/reload/exact Ask handoff, focus/Escape/one heading, synthetic browser-output stop, localized cube lab/reflow. Native audio is not certified.
+PASS bn: previous lesson/source retention, bookmark read/retry/write, question recovery/quota/reload/exact Ask handoff, focus/Escape/one heading, synthetic browser-output stop, localized cube lab/reflow. Native audio is not certified.

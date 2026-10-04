@@ -171,3 +171,16 @@ Teaching cutover addendum: revalidate stage/age policy at response time as well 
 ### 2026-10-03 — Class-tab frontend continuity
 
 D-023 adds one validated recorded-score summary, localized class controls and teacher moderation of reported posts. Preserve absent-versus-zero grades, positive original point totals, assignment/learner scope, unique authored topic coverage and fixed source text. Fetch failure must hide stale evidence without replacing records; retry must preserve composer/review inputs. Model analysis remains unconnected. Reported posts stay hidden for learners during direct teacher removal; removed posts are not restored via the reported-post action. Browser-local tests are not backend or production authorization acceptance.
+
+
+### 2026-10-04 — Editorial/issue/earlier-question frontend seam
+
+Preserve independent interface/teaching/source locales and immutable reviewed/delivered versions. Validate editorial resource identity, revisions, authors, history and retained versions before mutations; unreadable records must not be silently repaired or overwritten. Validate scoped issue collections independently so auxiliary failures do not erase source concepts. Server cutover must preserve exact-source/category/language dedup, current authorization before and after pending work, raw-data recovery and appropriate cancellation.
+
+Earlier questions can remain in their original owned entity store while an explicit Open in Ask copies the exact text into a private conversation draft. This is user-controlled resume, not automatic submission, source migration or consent expansion. Existing resource-editor recovery keys are private to their workspace/tab. Native browser-output lifecycle and fallback remain frontend responsibilities; no connected model, backend implementation or founder-book processing was added.
+
+
+2026-10-04 primary UI seams: server subscription commands must return current entitlement independently of failed/pending checkout, atomic cancellation/resume and validated invoice metadata, with idempotency and authoritative account ownership. The client preview rejects unreadable metadata and retains drafts/errors; it never collects payment details. Connections keep status/role enums and current authority distinct from localized labels. Class summaries must return unique authorized learners, while counts remain unavailable on failed reads. Class creation and practice writes require final authenticated workspace checks; private unsaved class-form backups are recovery data, not automatic server imports.
+
+
+2026-10-04 learner goal seam: existing-goal edits require an expected resource revision and conflict response without replacing the client draft. Pending parent summary edits are private client recovery metadata, never an approved share. Confirm/revoke must atomically recheck the authenticated learner, owned source/version and active guardian relationship/scope; retained fixed-copy fields require validation before projection or mutation. Restore unreadable originals explicitly, without silent repair. Keep the existing personal-workspace parent projection and consent renewal isolation. A cleanup failure after a successful save/share must not be represented as loss of the completed write.

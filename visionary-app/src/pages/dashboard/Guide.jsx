@@ -281,7 +281,7 @@ function GuideConversation() {
             })} onClick={event => {
               deleteTrigger.current = event.currentTarget;
               setDeleting(c.id);
-            }}>{copy("Delete")}</button></div>) : <p className="v-muted">{copy("Your first conversation will appear here.")}</p>}</DialogContent></Dialog><Dialog open={!!deleting} onOpenChange={() => setDeleting(null)}><DialogContent onCloseAutoFocus={event => {
+            }}>{copy("Delete")}</button></div>) : <p className="v-muted">{copy("Your first conversation will appear here.")}</p>}</DialogContent></Dialog><Dialog open={!!deleting} onOpenChange={() => setDeleting(null)}><DialogContent lang={locale} onCloseAutoFocus={event => {
           event.preventDefault();
           (deleteTrigger.current?.isConnected ? deleteTrigger.current : historyTitle.current)?.focus();
         }}><DialogTitle>{copy("Delete this conversation?")}</DialogTitle>{error && <p role="alert" className="v-notice v-error" lang="en">{error}</p>}<DialogDescription>{copy("This removes its local messages and linked lesson session. Projects you saved in Build remain available.")}</DialogDescription><button className="v-button" onClick={() => setDeleting(null)}>{copy("Keep conversation")}</button><button className="v-button" onClick={() => {

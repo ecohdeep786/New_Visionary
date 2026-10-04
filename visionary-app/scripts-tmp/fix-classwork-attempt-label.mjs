@@ -1,0 +1,4 @@
+import fs from'node:fs';const edit=(p,fn)=>fs.writeFileSync(p,fn(fs.readFileSync(p,'utf8').replaceAll('\r\n','\n')));
+edit('src/pages/dashboard/StudentClasses.jsx',s=>s.replace(' {copy("Previous attempts and feedback (")} {sub.revision_history.length})', ' {copy("Previous attempts and feedback ({count})",{count:sub.revision_history.length})} ').replace("copy('{count} assignments', {", "copy(count===1?'{count} assignment':'{count} assignments', {"));
+edit('src/lib/primaryWorkspaceCopy.js',s=>s.replace('const messages=', "rows.push(['Previous attempts and feedback ({count})','पिछले प्रयास और प्रतिक्रिया ({count})','আগের চেষ্টা ও মতামত ({count})'],['{count} assignment','{count} कार्य','{count} কাজ']);\nconst messages="));
+const root='C:/Users/Administrator/AppData/Local/Temp/visionary-internal-frozen-20261004';for(const p of ['src/pages/dashboard/StudentClasses.jsx','src/lib/primaryWorkspaceCopy.js'])fs.copyFileSync(p,root+'/'+p);

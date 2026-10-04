@@ -1,0 +1,3 @@
+PASS en: malformed editorial titles/history/version arrays/revisions/duplicate versions hide mutation controls, preserve source bytes and retained drafts, and recover explicitly.
+PASS hi: malformed editorial titles/history/version arrays/revisions/duplicate versions hide mutation controls, preserve source bytes and retained drafts, and recover explicitly.
+PASS bn: malformed editorial titles/history/version arrays/revisions/duplicate versions hide mutation controls, preserve source bytes and retained drafts, and recover explicitly.

@@ -1,0 +1,3 @@
+import fs from'node:fs';const edit=(p,fn)=>fs.writeFileSync(p,fn(fs.readFileSync(p,'utf8').replaceAll('\r\n','\n')));
+edit('scripts-tmp/org-delivery-locales-verify.mjs',s=>"import { primaryWorkspaceCopy } from '../src/lib/primaryWorkspaceCopy.js';\n"+s.replace("name: 'Disconnect',", "name: primaryWorkspaceCopy(locale)('Disconnect'),").replace("page.getByText('Connection updated.',", "page.getByText(primaryWorkspaceCopy(locale)('Connection updated.'),"));
+edit('src/pages/dashboard/OrganizationContent.jsx',s=>s.replace('<span className="text-sm">Open</span>', '<span className="text-sm">{copy("Open")}</span>'));

@@ -1,3 +1,4 @@
+import { primaryWorkspaceCopy } from '../src/lib/primaryWorkspaceCopy.js';
 import { organizationAuthorCopy } from '../src/lib/organizationAuthorCopy.js';
 import { chromium } from 'playwright-core';
 import assert from 'node:assert/strict';
@@ -284,10 +285,10 @@ for (const locale of ['en', 'hi', 'bn']) {
       })
     });
     await row.getByRole('button', {
-      name: 'Disconnect',
+      name: primaryWorkspaceCopy(locale)('Disconnect'),
       exact: true
     }).click();
-    await page.getByText('Connection updated.', {
+    await page.getByText(primaryWorkspaceCopy(locale)('Connection updated.'), {
       exact: true
     }).waitFor();
     await enter('teacher', '/dashboard/prepare');

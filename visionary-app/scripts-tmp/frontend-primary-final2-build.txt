@@ -1,0 +1,31 @@
+vite v6.4.3 building for production...
+
+(!) outDir C:\Users\Administrator\AppData\Local\Temp\visionary-primary-final2-20261004 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+✓ 1850 modules transformed.
+✗ Build failed in 20.96s
+error during build:
+[vite:esbuild] Transform failed with 1 error:
+C:/Users/Administrator/New_Visionary/visionary-app/src/components/landing/NewPersona.jsx:49:13: ERROR: Unterminated regular expression
+file: C:/Users/Administrator/New_Visionary/visionary-app/src/components/landing/NewPersona.jsx:49:13
+
+Unterminated regular expression
+47 |        >
+48 |          {secondaryLabel}
+49 |        </Link>
+   |               ^
+50 |      </div>
+51 |    );
+
+    at failureErrorWithLog (C:\Users\Administrator\New_Visionary\visionary-app\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\Administrator\New_Visionary\visionary-app\node_modules\esbuild\lib\main.js:736:50
+    at responseCallbacks.<computed> (C:\Users\Administrator\New_Visionary\visionary-app\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\Administrator\New_Visionary\visionary-app\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\Administrator\New_Visionary\visionary-app\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:509:28)
+    at addChunk (node:internal/streams/readable:563:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)
+    at Readable.push (node:internal/streams/readable:394:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)

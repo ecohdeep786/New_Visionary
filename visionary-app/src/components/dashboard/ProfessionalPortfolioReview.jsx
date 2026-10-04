@@ -1,4 +1,6 @@
 import { professionalCopy } from '@/lib/professionalCopy';
+import { learningDate } from '@/lib/learningCopy';
+import { assertPortfolioReviewHistory } from '@/services/portfolioReviewIntegrity';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { portfolioProjectVersion, portfolioReviewRevision, portfolioReviewCriteria, savePortfolioSelfReview, snapshot } from '@/services/workspaceService';
@@ -9,6 +11,7 @@ export default function ProfessionalPortfolioReview({
   artifact,
   onPrepare,
   onChange,
+  onHistoryRefresh,
   locale = 'en'
 }) {
   const t = professionalCopy(locale);
@@ -20,11 +23,14 @@ export default function ProfessionalPortfolioReview({
   const [recovered, setRecovered] = useState(false);
   const [conflict, setConflict] = useState(false);
   const version = portfolioProjectVersion(artifact);
-  const latest = artifact.portfolioReviews?.[0];
+  let historyError = '';
+  try { assertPortfolioReviewHistory(artifact); } catch (failure) { historyError = failure.message; }
+  const latest = historyError ? null : artifact.portfolioReviews?.[0];
   const current = latest?.projectVersion === version;
   function savedArtifact() {
     const saved = snapshot(ctx).artifacts.find(item => item.id === artifact.id);
     if (!saved) throw Error('This portfolio project is unavailable in your workspace.');
+    assertPortfolioReviewHistory(saved);
     return saved;
   }
   function fromSaved(saved) {
@@ -43,8 +49,9 @@ export default function ProfessionalPortfolioReview({
     };
   }
   function openReview() {
-    if (!onPrepare()) return;
     try {
+      savedArtifact();
+      if (!onPrepare()) return;
       const saved = savedArtifact();
       let restored = null;
       setError('');
@@ -117,13 +124,22 @@ export default function ProfessionalPortfolioReview({
       if (failure.name === 'PortfolioReviewConflictError') setConflict(true);
     }
   }
+  if (historyError) return <section className="v-card" lang={locale} aria-labelledby="portfolio-review-title">
+    <h2 id="portfolio-review-title" className="text-lg font-medium">{t('Portfolio self-review')}</h2>
+    <p className="v-notice v-error mt-3" role="alert">{t('Saved self-reviews are unavailable. Your project and review edits are retained. Retry after restoring the original records.')}</p>
+    <button className="v-button mt-3" onClick={() => {
+      try { onHistoryRefresh(savedArtifact().portfolioReviews); setError(''); }
+      catch (failure) { setError(failure.message); }
+    }}>{t('Retry self-review history')}</button>
+    {error && <p className="v-notice v-error mt-3" lang="en" role="alert">{error}</p>}
+  </section>;
   return <section className="v-card" aria-labelledby="portfolio-review-title" lang={locale}>
   <h2 id="portfolio-review-title" className="text-lg font-medium">{t("Portfolio self-review")}</h2>
   <p className="v-muted mt-2">{t("Check how clearly this artifact explains its purpose, evidence and limits. Your ratings stay in this workspace and do not establish mastery.")}</p>
   <p className="v-muted mt-2">{t("Independent reviewer feedback and verified credentials are not connected. A self-review is not an employer endorsement.")}</p>
-  {artifact.status !== 'completed' || !artifact.body.trim() ? <p className="v-notice mt-4">{t("Complete the project and add your work before reviewing it.")}</p> : <><p className="v-muted mt-3" role="status">{current ? `${t('Self-reviewed')} ${new Date(latest.reviewedAt).toLocaleDateString(locale)} · ${t('Current saved work')}` : latest ? t("Your last self-review is outdated after project changes.") : t("No self-review saved yet.")}</p><button className="v-button mt-4" onClick={openReview}>{current ? t("Review again") : t("Review this project")}</button></>}
+  {artifact.status !== 'completed' || !artifact.body.trim() ? <p className="v-notice mt-4">{t("Complete the project and add your work before reviewing it.")}</p> : <><p className="v-muted mt-3" role="status">{current ? `${t('Self-reviewed')} ${learningDate(latest.reviewedAt, locale)} · ${t('Current saved work')}` : latest ? t("Your last self-review is outdated after project changes.") : t("No self-review saved yet.")}</p><button className="v-button mt-4" onClick={openReview}>{current ? t("Review again") : t("Review this project")}</button></>}
   {!open && error && <p role="alert" lang="en" className="v-notice v-error mt-3">{error}</p>}
-  {artifact.portfolioReviews?.length > 0 && <details className="mt-4"><summary className="cursor-pointer text-sm font-medium">{t("Saved self-review history")} ({artifact.portfolioReviews.length})</summary><p className="v-muted mt-3">{t("Up to ten saved self-reviews are retained in this workspace. These are your assessments of the saved work at that time.")}</p><ol className="mt-3 grid gap-3">{artifact.portfolioReviews.map((review, index) => <li key={`${review.reviewedAt}:${index}`} className="v-card"><details><summary className="cursor-pointer text-sm">{t("Self-review")} {artifact.portfolioReviews.length - index} · {new Date(review.reviewedAt).toLocaleDateString(locale)} · {review.projectVersion === version ? t("Matches current project") : t("Earlier project version")}</summary><dl className="mt-3 grid gap-3">{review.criteria.map(row => <div key={row.id}><dt className="text-sm font-medium">{t(portfolioReviewCriteria.find(rule => rule.id === row.id)?.label || row.id)} · {row.rating === 'supported' ? t("Supported by evidence") : row.rating === 'explained' ? t("Explained") : t("Needs more work")}</dt><dd className="v-muted mt-1 whitespace-pre-wrap break-words">{row.note}</dd></div>)}</dl><p className="mt-3 text-sm font-medium">{t("Next improvement")}</p><p className="v-muted mt-1 whitespace-pre-wrap break-words">{review.reflection}</p></details></li>)}</ol></details>}
+  {artifact.portfolioReviews?.length > 0 && <details className="mt-4"><summary className="cursor-pointer text-sm font-medium">{t("Saved self-review history")} ({artifact.portfolioReviews.length})</summary><p className="v-muted mt-3">{t("Up to ten saved self-reviews are retained in this workspace. These are your assessments of the saved work at that time.")}</p><ol className="mt-3 grid gap-3">{artifact.portfolioReviews.map((review, index) => <li key={`${review.reviewedAt}:${index}`} className="v-card"><details><summary className="cursor-pointer text-sm">{t("Self-review")} {artifact.portfolioReviews.length - index} · {learningDate(review.reviewedAt, locale)} · {review.projectVersion === version ? t("Matches current project") : t("Earlier project version")}</summary><dl className="mt-3 grid gap-3">{review.criteria.map(row => <div key={row.id}><dt className="text-sm font-medium">{t(portfolioReviewCriteria.find(rule => rule.id === row.id)?.label || row.id)} · {row.rating === 'supported' ? t("Supported by evidence") : row.rating === 'explained' ? t("Explained") : t("Needs more work")}</dt><dd className="v-muted mt-1 whitespace-pre-wrap break-words">{row.note}</dd></div>)}</dl><p className="mt-3 text-sm font-medium">{t("Next improvement")}</p><p className="v-muted mt-1 whitespace-pre-wrap break-words">{review.reflection}</p></details></li>)}</ol></details>}
   <Dialog open={open} onOpenChange={setOpen}><DialogContent className="max-h-[85dvh] overflow-y-auto bg-white" lang={locale}><DialogTitle>{t("Review your portfolio project")}</DialogTitle><DialogDescription>{t("Rate each criterion and point to evidence in your own work. Closing keeps backed-up edits on this device. This is a self-review; no teacher or model has evaluated it.")}</DialogDescription>
    {draft && <><p className="text-sm font-medium">{draft.title}</p>
     {recovered && <p className="v-notice" role="status">{t("Unsaved self-review recovered. Save it to add a review to this project.")}</p>}

@@ -192,7 +192,7 @@ const EXPLORE_CATEGORIES = [
 const ParentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
-    srSentence="Parenting, to see what is happening."
+    srSentence="Parenting, to see, to help."
     sub="Know what your child is learning before the report card."
     img={parentHero}
     alt="A parent helping a child with homework"

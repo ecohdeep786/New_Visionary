@@ -81,3 +81,31 @@ Teacher learner queries recompute on workspace changes and hide cached evidence 
 ### D-023 — 2026-10-03: Recorded class assessment and localized class controls
 
 Use one validated summary for concept assessment and the learner heatmap. Missing grades are unavailable evidence, never invented zero; genuine zero is valid. Each assignment counts once per authored topic. Score bands do not establish mastery. AI class analysis is explicitly unconnected and class refresh reads recorded work without an automatic model call. Failed source reads hide stale evidence, preserve stored originals and offer Retry. Interface localization preserves authored text, source revisions and protocol values. Teachers may remove reported posts directly without first restoring learner visibility; existing class authority and privacy checks apply. Full frontend acceptance remains open.
+
+
+### D-024 — 2026-10-04: Interface controls retain editorial and teaching source identity
+
+Organization authoring/delivery, Guide, learning outlines/attempt history/prerequisites/issues and previous-topic controls use the active interface locale. Authored text, teaching/source locale, protocol values, numerical evidence and approved source versions remain independent. Changing interface language does not translate or replace an authored revision, question bank or learner response. Malformed editorial records are unavailable for mutation; malformed issue history does not replace original bytes or hide otherwise readable source concepts. All reconciliation is explicit; no automatic migration or ownership transfer is introduced. D-015/D-016 remain operative.
+
+### D-025 — 2026-10-04: Earlier questions resume through the owned Ask draft contract
+
+Previous-topic/question recovery uses new:legacy-topic:<subject> and new:legacy-question:<topicId> in the existing tab/workspace-scoped resource-editor store. A completed local question write clears its backup when possible and deduplicates exact source/topic/question retries. Opening it in Ask passes the exact saved text through location state; Ask retains it as an owned draft, without submission or a model answer. Focus mode removes the secondary reading column while retaining shell navigation and a main heading. Native output stops on hidden/pagehide/navigation; synthetic tests verify cancellation and late callback guards, not speech quality. Earlier blue controls use the existing accessible blue tone; the internal teal accent is darkened for normal text/white-button contrast.
+
+
+### D-026 — 2026-10-04: Primary workspace recovery keeps current scope and recorded identities
+
+Plans, Connections and class overviews translate display labels only. Billing retains explicit simulated/no-payment semantics; failed checkout/cancellation retains the dialog and prior bytes. Invalid billing metadata cannot enable a mutation; original records require explicit recovery. Teacher summaries distinguish unique learners from enrollment records and hide stale/failed data. Class banners preserve stored colors while choosing a contrasting foreground.
+
+New teacher class edits use new:teacher-class in the existing private workspace/tab resource-editor store. Recovery validates the form rather than silently replacing corrupt backups; export is available. Source text and protocol values are never translated in persistence. In-flight creation and subsequent prior-practice steps cannot update another active workspace's UI. Native/assistive-technology acceptance and real-source/book review remain explicit gates; no backend start or whole-product certification is inferred from automated passes.
+
+
+### D-027 — 2026-10-04: Unreadable portfolio assessment history is isolated from project editing
+
+Retained portfolio self-reviews are validated before rendering or adding assessments. Unknown ratings, duplicate/missing criterion identities and malformed history are unavailable, not silently repaired or presented as valid self-assessment. The project remains editable and exportable. Explicit history retry reads the authorized saved artifact and updates only review metadata, preserving current project edits and review backups. Invalid date strings display unavailable rather than Invalid Date. Career summaries disclose unavailable history. Interface recovery is en/hi/bn; authored notes, reflections and persisted enums remain unchanged. D-015/D-016 and the frontend acceptance gates remain operative.
+
+
+### D-028 — 2026-10-04: Learner goals retain private drafts and consent-bound fixed summaries
+
+Learning-goal controls belong to student workspaces and use en/hi/bn interface labels. Authored titles, private notes and approved summary text remain unchanged. Editor recovery uses the existing resource-editor store and tab/workspace ownership: new:learner-goal for an unsaved goal, the resource ID for an existing goal, and new:learner-goal-share:<goalId> for a pending summary/recipient. Private drafts are not published to parents. Save uses an expected resource revision for existing goals; stale edits remain exportable until the learner explicitly loads the saved goal. A newer source version cannot be confirmed through an older summary preview.
+
+Parent goal/project fixed-copy history is validated before projection or mutation. Malformed history is retained and disclosed; it cannot be silently replaced, counted as no sharing or rendered as a valid fixed copy. Explicit retry rechecks authorization and source records while retaining current edits. Guardian identity, relationship ID and active progress-summary scope still determine access. Invalid stored dates display unavailable. Existing personal-workspace summary projection and D-015/D-016 remain operative; this is no backend or whole-product sign-off.

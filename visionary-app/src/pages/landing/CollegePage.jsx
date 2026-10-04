@@ -199,7 +199,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 const ProHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
-    srSentence="Learning, to apply what you learn."
+    srSentence="Building, to apply, to grow."
     sub="Turn what you learn into work that ships — skills, solutions, and projects that compound with your career."
     img={proHero}
     alt="A professional writing notes beside a laptop"

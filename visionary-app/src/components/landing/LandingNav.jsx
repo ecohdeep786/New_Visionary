@@ -542,10 +542,19 @@ export default function LandingNav() {
             Sign in
           </Link>
 
+          {/* the nav CTA stays quiet while the page hero's own start button
+              is on screen, and fades in once the page scrolls — one start
+              action in view at a time */}
           <Link
             to="/register"
-            className={`btn-premium btn-premium-blue ml-2 flex h-10 items-center gap-1.5 rounded-full text-[14px] font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${FOCUS_RING}`}
+            className={`btn-premium btn-premium-blue ml-2 flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full text-[14px] font-medium text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${FOCUS_RING} ${
+              scrolled
+                ? "visible translate-y-0 opacity-100"
+                : "pointer-events-none invisible -translate-y-1 opacity-0"
+            }`}
             style={{ backgroundColor: C.darkblue, paddingLeft: 18, paddingRight: 18 }}
+            tabIndex={scrolled ? 0 : -1}
+            aria-hidden={scrolled ? undefined : "true"}
           >
             Get started
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-arrow h-3.5 w-3.5" aria-hidden="true">

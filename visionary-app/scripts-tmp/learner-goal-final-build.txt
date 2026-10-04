@@ -1,0 +1,191 @@
+vite v6.4.3 building for production...
+
+(!) outDir C:\Users\Administrator\AppData\Local\Temp\visionary-learner-goals-final-20261004 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+✓ 2205 modules transformed.
+rendering chunks...
+computing gzip size...
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/index.html                                           1.24 kB │ gzip:   0.56 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-480w-BFU4hG5P.webp              19.80 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-480w-9MPWY5k8.webp              21.10 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-480w-DvXRjz_O.webp                   23.51 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-480w-Bj3euxWy.webp                   24.79 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-primary-BQqYJWen.webp                27.31 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-480w-D_jhGVlf.webp                    31.19 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/index-D9hvIxON.css                          146.76 kB │ gzip:  26.02 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/classColors-Da5fg3Na.js                       0.27 kB │ gzip:   0.24 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/WorkspaceIntro-DSW8qrAd.js                    0.60 kB │ gzip:   0.30 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/useStudentData-BMDzDkB4.js                    0.71 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/useThemeColor-CHwcG9HL.js                     0.78 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/useWorkspace-C1OkKy0Y.js                      0.88 kB │ gzip:   0.49 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CriterionFeedback-BntlubBq.js                 0.88 kB │ gzip:   0.52 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/VisionaryLogo-rnhA5dsz.js                     0.94 kB │ gzip:   0.62 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/PolicyTabs-Fwd7aGGh.js                        1.13 kB │ gzip:   0.65 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/JourneyCatalogue-B8OGXqEP.js                  1.49 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/resourceEditorDraft-BEG79aG0.js               1.59 kB │ gzip:   0.76 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Breadcrumb-C271KHNj.js                        1.80 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/dialog-BZjDRQC4.js                            2.12 kB │ gzip:   0.90 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ValuesStrip-lx2BrYCp.js                       2.16 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/LessonObjectivePreview-Bj1tqJWP.js            2.25 kB │ gzip:   0.94 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ForgotUserId-BDp5ePmW.js                      2.29 kB │ gzip:   1.02 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ForgotPassword-CDMeXfwQ.js                    2.32 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/hooks-DkpSqtxN.js                             2.41 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ResetPassword-CTEihkDp.js                     2.42 kB │ gzip:   1.07 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/AuthLayout-C3F4Lgc0.js                        2.90 kB │ gzip:   0.89 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/SocialAuthButtons-DPBU1vsm.js                 3.12 kB │ gzip:   1.37 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/stagePresentation-CGJQcmNn.js                 3.33 kB │ gzip:   1.15 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CubeLearningEntry-5xKdFAgt.js                 3.35 kB │ gzip:   1.54 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/curriculumBridgeService-VWbukvQo.js           3.71 kB │ gzip:   1.56 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Learners-qONXL5EC.js                          4.00 kB │ gzip:   1.69 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/LandingFAQ-D077DAco.js                        4.04 kB │ gzip:   1.53 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/roleMentorService-DhqYOYiS.js                 4.30 kB │ gzip:   1.85 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/dailyPlanService-COL2t8XD.js                  4.84 kB │ gzip:   1.90 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ClassworkProjectSubmission-boAp4pd7.js        5.33 kB │ gzip:   2.27 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Children-BSRjqiOc.js                          5.84 kB │ gzip:   2.18 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Explore-CnMidg7D.js                           6.16 kB │ gzip:   2.49 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/AuthUI-CwMwYTQh.js                            6.70 kB │ gzip:   2.11 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Login-fuq0-k5O.js                             7.42 kB │ gzip:   2.06 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/NewPersona-vAXcFqls.js                        8.85 kB │ gzip:   3.03 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Register-C7a98CQD.js                          9.36 kB │ gzip:   2.85 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Practice-DncjdPdB.js                         10.11 kB │ gzip:   3.74 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Plans-fYtvEo0g.js                            10.70 kB │ gzip:   3.67 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Settings-B30Vqirg.js                         11.74 kB │ gzip:   4.16 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Learn-y9hKp83V.js                            13.20 kB │ gzip:   4.65 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/stageTransitionService-BIAJFk0N.js           13.26 kB │ gzip:   4.48 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/TopicDetail-DxATC4N4.js                      13.66 kB │ gzip:   4.76 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/SchoolPage-mhT7m5jw.js                       13.87 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Connections-C3MzT0oR.js                      13.94 kB │ gzip:   4.88 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/AILearningPage-Bp4JJvlU.js                   14.57 kB │ gzip:   4.32 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CommunityPage-GbYIZxOC.js                    14.93 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/TeacherHome-6ALCb3fN.js                      15.78 kB │ gzip:   5.63 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/mentorStateService-DS3FOWX3.js               15.78 kB │ gzip:   5.58 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ContactPage-CHrIlAdq.js                      15.91 kB │ gzip:   4.47 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/SafetyPage-DUceXqTM.js                       16.34 kB │ gzip:   4.68 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/classroomService-BigpEeHc.js                 16.47 kB │ gzip:   5.39 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/DownloadPage-Ce1fNWuS.js                     16.49 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/roleNotificationCopy-BQvgtKgL.js             16.61 kB │ gzip:   4.28 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/AccessibilityPage-B7NNZJDW.js                17.51 kB │ gzip:   5.02 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ReferralPage-Bz1jq_Ej.js                     17.94 kB │ gzip:   5.10 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Cohorts-CIQoHvvy.js                          18.11 kB │ gzip:   5.51 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/contentRepository-Bz-bSJA0.js                18.28 kB │ gzip:   5.95 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/learningPipelineService-Dx4uA4ff.js          18.63 kB │ gzip:   6.72 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/UpdatesPage-BuxNnMJR.js                      18.80 kB │ gzip:   5.06 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Support-CyZ0t5Vy.js                          19.31 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/AboutUsPage-BTH993j0.js                      19.78 kB │ gzip:   5.63 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CareersPage-HFhqyytr.js                      20.10 kB │ gzip:   5.91 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Profile-RQX2fhpg.js                          20.14 kB │ gzip:   5.21 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ClassworkStudy-DeX7DlrE.js                   20.78 kB │ gzip:   6.43 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CookiesPage-BG55dLRz.js                      21.69 kB │ gzip:   6.06 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/voiceService-DBwXNhrT.js                     21.90 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/PersonaSections-EEm9JWVV.js                  23.04 kB │ gzip:   6.52 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/LandingFooter-DA3dvXLC.js                    24.03 kB │ gzip:   6.22 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CoachingPage-CYJNbVUF.js                     24.22 kB │ gzip:   6.65 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/PartnersPage-DU7hffch.js                     24.94 kB │ gzip:   6.91 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/LearningRepresentation-DNJ8mrUB.js           25.98 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/TermsPage-BWr2vU8V.js                        26.01 kB │ gzip:   7.32 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/RoleWorkspace--RkdbpHR.js                    26.27 kB │ gzip:   7.95 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ResearchNewsPage-CvZog4LL.js                 26.29 kB │ gzip:   6.94 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/classworkCopy-DkEjc3ly.js                    27.40 kB │ gzip:   6.20 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/legacyLearningCopy-D1bPMqYo.js               27.54 kB │ gzip:   7.21 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/SecurityPage-CgrpMbqp.js                     27.72 kB │ gzip:   6.93 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organizationCopy-DIh_3D8U.js                 27.96 kB │ gzip:   6.86 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/teacherCopy-FCC-36LR.js                      28.27 kB │ gzip:   7.24 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/guideCopy-Bg9UZRyN.js                        28.46 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/privacyCopy-DZop0AUd.js                      28.74 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/PrivacyPage-ry_NsrKY.js                      29.45 kB │ gzip:   7.89 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/StudentClasses-fV8-X1Qf.js                   29.48 kB │ gzip:   8.91 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/OrganizationContent-C6X05VXh.js              30.73 kB │ gzip:   8.57 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/stageCopy-BiyhUTuL.js                        31.18 kB │ gzip:   7.22 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/SpotIllustration-9oNNy3fH.js                 32.27 kB │ gzip:   6.46 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/OrganizationPage-81uq7rhJ.js                 33.13 kB │ gzip:   9.79 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/classTabCopy-dIwigdM2.js                     34.09 kB │ gzip:   8.41 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ArtifactStudio-ChsGxr4D.js                   34.09 kB │ gzip:   9.79 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/StudentPage-DIqpaZ3i.js                      34.60 kB │ gzip:  10.10 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CommunityTab-FoVkSQ38.js                     34.69 kB │ gzip:  10.26 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ParentPage-Bte6BtKh.js                       35.04 kB │ gzip:  10.33 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/TeacherPage-DJvcs78J.js                      35.85 kB │ gzip:  10.41 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Onboarding-kuOwc4pk.js                       36.91 kB │ gzip:  10.75 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/organizationAuthorCopy-BHJoFpK1.js           38.89 kB │ gzip:   8.64 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/learningCopy-pYTCYT2Y.js                     40.10 kB │ gzip:   9.28 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Guide-CZGAbMgq.js                            43.69 kB │ gzip:  13.67 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/DashboardHome-BLMWbQqM.js                    44.46 kB │ gzip:  13.23 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/Landing-BJlzzngG.js                          44.76 kB │ gzip:  12.84 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/LearningWorkspace-CBcqjSQ-.js                48.18 kB │ gzip:  13.66 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/ClassDetail-BMG1UFTl.js                      50.18 kB │ gzip:  13.35 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/parentCopy-DXr-8sdI.js                       51.14 kB │ gzip:  11.77 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/CollegePage-DCNjAkNp.js                      54.16 kB │ gzip:  14.41 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/primaryWorkspaceCopy-BolZ8DGR.js             54.87 kB │ gzip:  13.20 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/DashboardLayout-DCE8Kios.js                  55.09 kB │ gzip:  17.19 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/learnerGoalCopy-D3x8hsR_.js                  72.55 kB │ gzip:  15.15 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/WorkspaceTools-B5clgNFp.js                  113.14 kB │ gzip:  29.46 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/index-_hryJxld.js                           148.71 kB │ gzip:  45.72 kB
+../../AppData/Local/Temp/visionary-learner-goals-final-20261004/assets/vendor-B6QVRD5b.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 4m 59s

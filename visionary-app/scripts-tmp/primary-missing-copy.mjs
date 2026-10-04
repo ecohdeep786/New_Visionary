@@ -1,0 +1,1 @@
+import fs from 'node:fs';import{legacyLearningCopy}from'../src/lib/legacyLearningCopy.js';const keys=JSON.parse(fs.readFileSync('scripts-tmp/primary-interface-keys.json'));console.log(keys.filter(k=>legacyLearningCopy('hi')(k)===k).join('\n'));

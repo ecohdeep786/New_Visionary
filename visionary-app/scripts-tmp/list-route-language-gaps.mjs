@@ -1,0 +1,1 @@
+import fs from 'node:fs';for(const line of fs.readFileSync('scripts-tmp/frontend-20261004-routes-hi.txt','utf8').split(/\r?\n/)){try{const row=JSON.parse(line);const first=row.excerpt.split('\n')[0];if(/^[A-Za-z]/.test(first))console.log(row.role+' '+row.path+' '+first);}catch{}}

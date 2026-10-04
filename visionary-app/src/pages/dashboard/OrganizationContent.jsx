@@ -1,3 +1,4 @@
+import {assertOrganizationContentRecord} from '@/services/organizationContentIntegrity';
 import { organizationAuthorCopy } from '@/lib/organizationAuthorCopy';
 import CurriculumTemplateEditor, { CurriculumTemplatePreview } from '@/components/dashboard/CurriculumTemplateEditor';
 import { downloadText } from '@/lib/downloadText';
@@ -37,7 +38,7 @@ export default function OrganizationContent({
   });
   const [recovered, setRecovered] = useState(false),
     [backupBlocked, setBackupBlocked] = useState(false);
-  const all = data.resources.filter(row => row.kind === kind);
+  let all=[],integrityError='';try{if(!Array.isArray(data.resources))throw Error('Saved organization resources could not be read. Original records were kept.');all=data.resources.filter(row=>row?.kind===kind);all.forEach(assertOrganizationContentRecord);}catch(error){all=[];integrityError=error.message;}
   const rows = all.filter(row => (filter === 'all' || row.status === filter) && row.title.toLowerCase().includes(query.toLowerCase()));
   const latest = draft?.id ? all.find(row => row.id === draft.id) : null;
   const state = latest?.status || 'draft';
@@ -58,7 +59,7 @@ export default function OrganizationContent({
     }
   }, [draft, unsaved, note, checks, ctx.personId, ctx.workspaceId, backupBlocked]);
   useEffect(() => {
-    if (seed) open(null, true, seed);
+    if (seed && !integrityError) open(null, true, seed);
   }, [seed?.nonce]);
   function open(row, restore = true, prefill) {
     let defaultLanguage = 'en';
@@ -176,10 +177,11 @@ export default function OrganizationContent({
       action: copy(labels[action])
     }));
   }
+  if(integrityError)return <div lang={locale} className="v-page"><h1 className="v-title">{copy('Saved organization content unavailable')}</h1><p role="alert" className="v-notice v-error" lang="en">{integrityError}</p><p className="v-muted mt-3">{copy('Original source records and your editor backup remain on this device. No review or delivery was recorded.')}</p><button type="button" className="v-button mt-4" onClick={()=>window.dispatchEvent(new Event('visionary:workspace-change'))}>{copy('Retry saved content')}</button></div>;
   return <div lang={locale} className="v-page"><header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{kind === 'curriculum' ? copy("Reviewed curriculum templates") : copy("Organization content")}</h1><p className="v-muted mt-2">{copy("Author, review and retain source versions before use.")}</p></div><button className="v-button primary" onClick={() => open(null)}>{kind === 'curriculum' ? copy("New curriculum template") : copy("New content draft")}</button></header><p className="v-notice">{kind === 'curriculum' ? copy("Map the intended learner group, source sections, objectives and prerequisite sequence in each template. Approved fixed copies reach only chosen accepted teachers; teachers review their own preparation and classroom assignment. ") : ''}{copy("Approval records an editorial review on this device. It does not publish a learner curriculum, generate learning activities or verify source rights. Teachers control classroom assignments.")}</p><div className="flex flex-wrap gap-4"><label className="min-w-0 flex-1 text-sm">{copy("Search content")}<input className="v-field mt-2" value={query} onChange={event => setQuery(event.target.value)} /></label><label className="text-sm">{copy("Content state")}<select aria-label={copy("Content state")} className="v-field mt-2" value={filter} onChange={event => setFilter(event.target.value)}>{['all', 'draft', 'submitted', 'changes', 'approved', 'archived'].map(value => <option key={value} value={value}>{copy(value)}</option>)}</select></label></div><section className="v-card"><h2 className="text-lg font-medium">{copy("Content versions")}</h2>{rows.length ? rows.map(row => <button key={row.id} className="v-list-row w-full text-left" onClick={() => open(row)}><div><h3 className="text-sm font-medium">{row.title}</h3><p className="v-muted">{row.contentReview ? copy('Revision {revision} · {state}', {
               revision: row.contentReview.revision,
               state: copy(row.status)
-            }) : copy("Earlier resource \xB7 review history unavailable")}</p></div><span className="text-sm">Open</span></button>) : <div className="py-6"><p className="text-sm">{query || filter !== 'all' ? copy("No matching content.") : copy("Start with one sourced content draft.")}</p>{(query || filter !== 'all') && <button className="v-button mt-3" onClick={() => {
+            }) : copy("Earlier resource \xB7 review history unavailable")}</p></div><span className="text-sm">{copy("Open")}</span></button>) : <div className="py-6"><p className="text-sm">{query || filter !== 'all' ? copy("No matching content.") : copy("Start with one sourced content draft.")}</p>{(query || filter !== 'all') && <button className="v-button mt-3" onClick={() => {
           setQuery('');
           setFilter('all');
         }}>{copy("Clear filters")}</button>}</div>}</section>

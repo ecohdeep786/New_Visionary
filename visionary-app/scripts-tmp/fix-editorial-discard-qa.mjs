@@ -1,0 +1,1 @@
+import fs from 'node:fs';const p='scripts-tmp/editorial-integrity-verify.mjs';let s=fs.readFileSync(p,'utf8').replace("await page.keyboard.press('Escape');await page.waitForFunction", "await page.getByRole('button',{name:c('Discard unsaved edits and close'),exact:true}).click();await page.waitForFunction");fs.writeFileSync(p,s);

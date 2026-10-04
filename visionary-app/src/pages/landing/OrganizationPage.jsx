@@ -102,7 +102,7 @@ const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sa
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 
-const ORG_HERO_WORDS = ["Leading.", "to scale."];
+const ORG_HERO_WORDS = ["Leading.", "to scale.", "to last."];
 const HERO_WORD_MS = 2800;
 
 const STRUGGLE_LINES = ["Every","organization","wonders","about"];
@@ -203,7 +203,7 @@ const EXPLORE_CATEGORIES = [
 const OrgHeroSection = React.memo(() => (
   <PersonaHero
     words={ORG_HERO_WORDS}
-    srSentence="One intelligence, to scale understanding."
+    srSentence="Leading, to scale, to last."
     sub="One intelligence across every classroom, team, and program. Understanding stays inside your institution."
     img={orgHero}
     alt="A leader reviewing team progress on a tablet"
