@@ -7,8 +7,34 @@ import {downloadText} from '@/lib/downloadText';
 
 export default function ClassworkStudy({assignmentId,mode}){
  const {ctx,data,error:workspaceError}=useWorkspace();const locale=data?.preferences.interfaceLocale||'en',t=classworkTranslator(locale);const [view,setView]=useState(null);const [question,setQuestion]=useState('');const [reply,setReply]=useState(null);const [choice,setChoice]=useState('');const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [retry,setRetry]=useState(0);const owner=useRef(null);const operation=useRef(0);const abort=useRef(null);
- useEffect(()=>{if(!ctx)return;owner.current=ctx.workspaceId;setQuestion('');let live=true;const load=()=>{const current=++operation.current;abort.current?.abort();setView(null);setReply(null);setError('');setBusy(true);(mode==='practice'?getClassworkPractice(ctx,assignmentId):getClassworkStudy(ctx,assignmentId)).then(next=>{if(live&&current===operation.current){setView({...next,workspaceId:ctx.workspaceId});setQuestion(next.study.questionDraft);setChoice('');}}).catch(failure=>{if(live&&current===operation.current)setError(failure.message);}).finally(()=>{if(live&&current===operation.current)setBusy(false);});};load();const refresh=()=>{abort.current?.abort();setReply(null);getClassworkStudy(ctx,assignmentId).then(next=>{if(live)setView(current=>current?{...current,assignment:next.assignment,classroom:next.classroom}:current);}).catch(failure=>{if(live){operation.current++;setBusy(false);setView(null);setError(failure.message);}});};window.addEventListener('storage',refresh);window.addEventListener('visionary:workspace-change',refresh);return()=>{live=false;operation.current++;abort.current?.abort();window.removeEventListener('storage',refresh);window.removeEventListener('visionary:workspace-change',refresh);};},[ctx?.workspaceId,assignmentId,mode,retry]);
- async function run(work){const current=++operation.current;setBusy(true);setError('');try{const result=await work();if(current===operation.current)return result;}catch(failure){if(current===operation.current)setError(failure.name==='AbortError'?t("Guidance stopped. Your question remains here."):failure.message);}finally{if(current===operation.current)setBusy(false);}}
+ const currentView=useRef(null);currentView.current=view;
+ useEffect(()=>{
+  if(!ctx)return;
+  owner.current=ctx.workspaceId;setQuestion('');let live=true,refreshRevision=0;
+  const load=()=>{
+   const current=++operation.current;abort.current?.abort();abort.current=new AbortController();
+   const request={...ctx,signal:abort.current.signal};setView(null);setReply(null);setError('');setBusy(true);
+   (mode==='practice'?getClassworkPractice(request,assignmentId):getClassworkStudy(request,assignmentId)).then(next=>{
+    if(live&&current===operation.current){setView({...next,workspaceId:ctx.workspaceId});setQuestion(next.study.questionDraft);setChoice('');}
+   }).catch(failure=>{if(live&&current===operation.current)setError(failure.message);}).finally(()=>{if(live&&current===operation.current)setBusy(false);});
+  };
+  load();
+  const refresh=()=>{
+   const refreshToken=++refreshRevision;
+   if(!currentView.current){load();return;}
+   abort.current?.abort();setReply(null);
+   getClassworkStudy(ctx,assignmentId).then(next=>{
+    if(!live||refreshToken!==refreshRevision)return;
+    if(currentView.current&&next.study.sourceRevision!==currentView.current.study.sourceRevision){
+     operation.current++;setBusy(false);setView(null);setError(t('The assigned source changed. Your private study is retained. Reopen the current source before continuing.'));return;
+    }
+    setView(current=>current?{...current,assignment:next.assignment,classroom:next.classroom}:current);
+   }).catch(failure=>{if(live&&refreshToken===refreshRevision){operation.current++;setBusy(false);setView(null);setError(failure.message);}});
+  };
+  window.addEventListener('storage',refresh);window.addEventListener('visionary:workspace-change',refresh);
+  return()=>{live=false;operation.current++;abort.current?.abort();window.removeEventListener('storage',refresh);window.removeEventListener('visionary:workspace-change',refresh);};
+ },[ctx?.workspaceId,assignmentId,mode,retry]);
+ async function run(work){const current=++operation.current;setBusy(true);setError('');try{const result=await work();if(current===operation.current)return result;}catch(failure){if(current===operation.current){if(failure.name==='ClassworkPracticeSourceConflictError'){setView(null);setReply(null);}setError(failure.name==='AbortError'?t("Guidance stopped. Your question remains here."):t(failure.message));}}finally{if(current===operation.current)setBusy(false);}}
  async function saveQuestion(){const result=await run(()=>saveClassworkStudyQuestion(ctx,{assignmentId,expectedRevision:view.revision,question}));if(result)setView(current=>({...current,...result}));}
  async function ask(topic='question'){setReply(null);const input=question.trim()||(topic==='instructions'?t("Help me review the assigned instructions."):t("Help me review the assigned explanation."));abort.current=new AbortController();const result=await run(async()=>{const saved=await saveClassworkStudyQuestion(ctx,{assignmentId,expectedRevision:view.revision,question:input});const reply=await askClassworkQuestion({...ctx,signal:abort.current.signal},{assignmentId,question:input,topic});return {saved,reply};});if(result){setView(current=>({...current,...result.saved}));setQuestion(input);setReply(result.reply);}}
  async function answer(){const result=await run(()=>answerClassworkPractice(ctx,{assignmentId,expectedRevision:view.revision,expectedQuestionRevision:view.questionRevision,expectedRound:view.study.round,index:Number(choice)}));if(result)setView(current=>({...current,...result}));}

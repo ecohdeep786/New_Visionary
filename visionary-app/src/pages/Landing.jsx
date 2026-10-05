@@ -11,7 +11,9 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import teacherSlide from "@/assets/teacher-hero-main-1600w.webp";
 import parentSlide from "@/assets/parent-hero-main-1600w.webp";
-import proSlide from "@/assets/pro-face-main-1600w.webp";
+import teacherProblem from "@/assets/teacher-problem-1.webp";
+import problemrevision from "@/assets/problem-revision.webp";
+import proProblem from "@/assets/professional-problem-2.webp";
 import cmAdapt from "@/assets/student-primary.webp";
 import cmGrow from "@/assets/student-secondary.webp";
 import cmCreate from "@/assets/student-vocational.webp";
@@ -149,22 +151,12 @@ function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
   );
 }
 
-function VoiceIcon({ className = "h-9 w-9", style }) {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>
-      <path d="M25 7l-5 9 6 4-5 9 3 3-2 7" />
-      <path d="M31 19c2.5 2.5 2.5 7.5 0 10" />
-      <path d="M35.5 15.5c4.5 4.5 4.5 12 0 16.5" />
-    </svg>
-  );
-}
-
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
+  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem, alt: "Teacher looking overwhelmed after class" },
+  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: problemrevision, alt: "Parent reviewing a child's progress" },
   { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I have all the articles. I still can't turn them into the work.", image: proSlide, alt: "Professional applying knowledge at work" },
+  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I read every article. I still can't turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
 const PROBLEM_MS = 4200;
 
@@ -273,7 +265,12 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
 
 /* 02 · PROBLEM — the first chapter slides over the pinned hero on the
    house frosted glass. The Apple chapter anatomy: one centered statement,
-   one cinematic image, one voice — nothing else on the stage. */
+   one cinematic subject, one voice — nothing else on the stage. The
+   photography is studio-white, so it renders unframed on the page's own
+   white (the hero's language): the subject stands on the section floor,
+   edge-to-edge breathing, no card, no crop. All four subjects stay mounted
+   and crossfade — a keyed <img> remount refetched and flashed an empty
+   frame on every slide advance, worst on slow phones. */
 function LandingProblemSection() {
   const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
   const { ref, visible } = useRevealContinuous();
@@ -282,49 +279,121 @@ function LandingProblemSection() {
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
+        {/* the section's own --public-section-py (bridge contract) provides the
+            chapter's opening/closing breath — no inner padding here */}
         <div className="px-6">
           <p className="text-center uppercase" style={{ color: COLORS.slate }}>Why Visionary exists</p>
-          <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[calc(clamp(30px,3.8vw,56px)*0.6)] max-w-[900px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
+          <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
             {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
           </h2>
         </div>
         <figure className="m-0">
-          <div key={`m-${index}`} className="hero-fade-up mx-auto mt-[clamp(32px,4vw,56px)] w-full max-w-[880px] px-6 [animation-delay:120ms] [animation-fill-mode:both]">
-            {/* Apple chapter-media sizing: a height-capped framed rectangle —
-                the whole chapter reads within one viewport. The hairline is
-                Apple's own #d2d2d7 token (measured live on apple.com). The
-                portrait-first photography needs the upper-third bias to keep
-                every face whole in the tighter crop. */}
-            <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="h-[clamp(260px,40svh,420px)] w-full rounded-[var(--radius-media)] border border-[#d2d2d7] object-cover object-[50%_28%]" />
+          {/* the chapter stage — one-viewport comprehension: statement, subject,
+              persona, quote all land inside the first screen, the way Apple's
+              compact chapters read in a single glance */}
+          <div className="relative mt-[clamp(24px,2.2vw,32px)] h-[clamp(280px,40svh,340px)] sm:h-[clamp(300px,36svh,340px)]">
+            {PROBLEM_SLIDES.map((s, i) => (
+              <img
+                key={s.alt}
+                src={s.image}
+                alt={i === index ? s.alt : ""}
+                aria-hidden={i !== index}
+                loading="eager"
+                decoding="async"
+                draggable="false"
+                style={{
+                  /* the studio photos' subjects touch their canvas edges;
+                     unframed, those cuts would read as hard lines — dissolve
+                     them into the page's own white (the hero's floor recipe).
+                     The img element is sized to the painted square (h-full
+                     w-auto, centered) so the mask tracks the photo, not the
+                     full-bleed band. */
+                  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+                  WebkitMaskComposite: "source-in",
+                  maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+                  maskComposite: "intersect",
+                }}
+                className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ease-google motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
           </div>
-          <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-8 w-full max-w-[640px] px-6 text-center [animation-delay:200ms] [animation-fill-mode:both]">
-            <p className="font-medium tracking-[0] leading-[20px] text-[16px]" style={{ color: COLORS.ink }}>{slide.persona}</p>
-            <p className="mt-2 font-normal tracking-[0] leading-[1.4] text-[clamp(17px,1.46vw,21px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
+          <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-[clamp(16px,2vw,24px)] w-full max-w-[640px] px-6 text-center [animation-delay:80ms] [animation-fill-mode:both]">
+            <p className="font-medium tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.slate }}>{slide.persona}</p>
+            {/* the reserved two-line slot keeps the dots from jumping when a
+                shorter quote occupies one line */}
+            <p className="mt-2.5 flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
           </figcaption>
         </figure>
-        <div className="mt-10 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
+        <div className="mt-6 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
       </FadeReveal>
     </section>
   );
 }
 
-/* 03 · PROMISE — the thesis, introduced: it fades up in the hero's own
-   grammar the moment it enters the viewport. */
-const LandingPromiseSection = React.memo(function LandingPromiseSection() {
-  const { ref, visible } = useRevealContinuous();
+/* 03 · PROMISE — not a staying section: the turn of the story. After the
+   problem's empathy, the page speaks once — the what-if — and the line is
+   scroll-linked cinema: it fades up and settles as the reader enters, holds
+   center stage for a beat, then drifts up and dissolves as the product
+   chapter arrives. Reduced motion reads it as a static statement. */
+function LandingPromiseSection() {
+  const reduced = usePrefersReducedMotion();
+  const ref = useRef(null);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    if (reduced) return undefined;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const node = ref.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      setProgress(total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [reduced]);
+
+  const copy = (
+    <h2 className="mx-auto max-w-[1080px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,5vw,72px)]" style={{ color: COLORS.ink }}>
+      What if your intelligence never forgot{" "}
+      <span className="accent-gradient">where you were?</span>
+    </h2>
+  );
+
+  if (reduced) {
+    return (
+      <section data-section="03-promise" className="relative z-10 bg-white px-6 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+        <div className="py-[clamp(16px,3.4vw,48px)]">{copy}</div>
+      </section>
+    );
+  }
+
+  /* scroll phases — in: 0→0.3, hold: 0.3→0.7, out: 0.7→1 */
+  const clamp01 = (v) => Math.min(1, Math.max(0, v));
+  const fadeIn = clamp01(progress / 0.3);
+  const fadeOut = 1 - clamp01((progress - 0.7) / 0.3);
+  const opacity = Math.min(fadeIn, fadeOut);
+  const translateY = (1 - fadeIn) * 30 - (1 - fadeOut) * 24;
+  const scale = 0.965 + 0.035 * Math.min(fadeIn, fadeOut);
+
   return (
-    <section ref={ref} data-section="03-promise" className="relative z-10 overflow-hidden px-6" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
-      {/* the typographic reset — a statement band breathes deeper than a
-          standard chapter, the way Apple's thesis lines stand alone */}
-      <div className="py-[clamp(16px,3.4vw,48px)]">
-        <h2 className={`mx-auto max-w-[1080px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,5vw,72px)] ${visible ? "hero-fade-up" : "opacity-0"}`} style={{ color: COLORS.ink }}>
-          What if your intelligence never forgot{" "}
-          <span className="accent-gradient">where you were?</span>
-        </h2>
+    <section ref={ref} data-section="03-promise" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY, height: "200vh" }}>
+      <div className="sticky top-0 flex h-[100svh] items-center justify-center px-6">
+        <div style={{ opacity, transform: `translateY(${translateY}px) scale(${scale})`, willChange: "opacity, transform" }}>
+          {copy}
+        </div>
       </div>
     </section>
   );
-});
+}
 
 /* 04 · MEET — the product, for whom: one frosted tablist pinned under the
    nav (the glass motif carried through the page), one scroll-driven story
@@ -332,7 +401,7 @@ const LandingPromiseSection = React.memo(function LandingPromiseSection() {
 const MeetHeading = React.memo(function MeetHeading({ section, index }) {
   const blue = section.blues[index % section.blues.length];
   return (
-    <h3 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
+    <h3 className="font-medium tracking-[-0.009em] leading-[1.12] text-[clamp(28px,3.1vw,48px)]" style={{ color: COLORS.ink }}>
       {section.leadBlue ? (
         <>
           <span key={`l-${index}`} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{section.leadBlue[index % section.leadBlue.length]}</span>{" "}
@@ -395,12 +464,19 @@ const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
 const MeetCopy = React.memo(function MeetCopy({ section }) {
   const { index } = useCycleIndex(section.blues.length, 3000);
   return (
-    <div className="max-w-[520px]">
+    <div className="max-w-[560px]">
       <MeetHeading section={section} index={index} />
-      <p className="mt-8 font-normal tracking-[0] leading-[1.6] text-[15.5px] lg:text-[16px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
-      <Link to={section.to} className="mt-10 inline-flex items-center gap-1.5 text-[16px] font-normal text-[#4285F4] transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+      <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[17px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
+      {/* the audience CTA — the page's one black pill system, compact tier */}
+      <Link
+        to={section.to}
+        className="mt-8 inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-6 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+      >
         {section.link}
-        <ChevronIcon className="h-4 w-4" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="M13 6l6 6-6 6" />
+        </svg>
       </Link>
     </div>
   );
@@ -423,36 +499,59 @@ function LandingMeetSection() {
     <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <div className="px-6">
         <FadeReveal visible={visible}>
-          <p className="text-center uppercase" style={{ color: COLORS.slate }}>Meet Visionary</p>
-          <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-            It <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
+          {/* Apple's header rhythm: the kicker sits tight above the headline
+             (~12px), the subhead tight below (~16px) — one thought, not three
+             floating rows */}
+          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Meet Visionary</p>
+          {/* the reserved slot: phrases only wrap below sm (desktop always
+              fits one line) — 2.7em covers two lines at the browser's real
+              1.32 line metrics, so the page never jumps when the word cycles */}
+          <h2 className="mt-3 flex min-h-[2.7em] items-center justify-center text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)] sm:min-h-0" style={{ color: COLORS.ink }}>
+            <span>
+              It{" "}
+              <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
+            </span>
           </h2>
-          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+          <p className="mx-auto mt-4 max-w-[720px] text-center font-normal tracking-[0] leading-[1.55] text-[18px]" style={{ color: COLORS.slate }}>
             Visionary continues your journey instead of restarting it.
           </p>
         </FadeReveal>
       </div>
-      {/* the frosted tab band pins just below the straight glass bar (56px
-          bar + 8px breath) — the same sheet the story arrived on */}
-      <div className="glass sticky top-[64px] z-30 border-b border-[#121317]/10 px-4 py-5 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
-      {/* the story grid rides the same choreography (opacity only — the
-          sticky copy column inside must keep its pin). Panels are compact —
-          a 4:3 framed image per audience, one breath between rows — so a tab
-          click lands its row without a long scroll. */}
+      {/* the local sub-nav — Apple's product-page pattern: a frosted band that
+          pins under the nav and scrolls the reader to each audience chapter.
+          One clear breath (36px) between the intro stack and the band, so the
+          control reads as the chapter's navigator, not a fourth text row. */}
+      <div className="glass sticky top-[56px] z-30 mt-9 px-4 py-4 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
       <FadeSoft visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-20 pt-12 lg:grid-cols-[5fr_6fr] lg:gap-24 lg:px-0 lg:pt-16">
+        {/* the audience chapters — one composed section per tab: copy on the
+            left (heading, subheading, button), portrait on the right. The
+            left column pins and swaps with the active tab while the portraits
+            scroll — the story rides the reader's scroll. Portraits render
+            unframed at their natural square with the page-wide floor
+            dissolve, so five chapters read as one continuous studio story. */}
+        <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-y-14 px-6 pb-28 pt-14 sm:px-10 lg:grid-cols-[5fr_6fr] lg:gap-x-36 lg:px-10">
           <div className="hidden lg:block">
             <div className="sticky top-40 flex h-[calc(100svh-200px)] items-center">
               <div key={active} className="hero-fade-up"><MeetCopy section={MEET_SECTIONS[active]} /></div>
             </div>
           </div>
-          <div className="flex flex-col gap-24 lg:gap-40 lg:py-12">
+          <div className="flex flex-col lg:py-8">
             {MEET_SECTIONS.map((s, i) => (
-              <div key={s.id}>
-                <figure ref={setStepRef(i)} data-step={i} id={`meet-panel-${s.id}`} aria-labelledby={`meet-tab-${s.id}`} className="m-0">
-                  <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[var(--radius-media)] border border-[#d2d2d7] lg:mx-0 lg:max-w-none">
-                    <img src={MEET_IMG[i]} alt={s.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-                  </div>
+              <div key={s.id} className={i > 0 ? "mt-24 lg:mt-40" : ""}>
+                <figure ref={setStepRef(i)} data-step={i} id={`meet-panel-${s.id}`} aria-labelledby={`meet-tab-${s.id}`} className="m-0 flex justify-center">
+                  <img
+                    src={MEET_IMG[i]}
+                    alt={s.alt}
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                    style={{
+                      /* the page-wide floor dissolve — same as hero and problem */
+                      WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
+                      maskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
+                    }}
+                    className="h-auto w-full max-w-[440px] select-none"
+                  />
                 </figure>
                 <div className="mt-10 lg:hidden"><MeetCopy section={s} /></div>
               </div>
@@ -472,12 +571,12 @@ const LGLanguageChips = React.memo(function LGLanguageChips({ active, onSelect }
     <div className="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Language selection">
       {LG_CHIPS.map((lang) => (
         <button key={lang.code} type="button" aria-pressed={active === lang.code} onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 font-normal tracking-[0] leading-[20px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
           style={{ backgroundColor: active === lang.code ? COLORS.chipBg : "transparent", color: COLORS.ink, borderColor: active === lang.code ? "transparent" : `${COLORS.ink}40` }}>
           {lang.label}
         </button>
       ))}
-      <span className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>+20 languages</span>
+      <span className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.graphite }}>+20 languages</span>
     </div>
   );
 });
@@ -491,42 +590,41 @@ function LandingLanguageSection() {
     <section ref={ref} data-section="07-language" className="relative z-10 overflow-hidden bg-[#f8f9fa] px-6" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center uppercase" style={{ color: COLORS.slate }}>Every language</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        {/* the meet header rhythm — kicker 12px above the display line, the
+            support 16px below; the kicker names the faculty, the statement
+            names the promise, no word repeats */}
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>In your voice</p>
+        <h2 className="mt-3 text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
+        <p className="mx-auto mt-4 max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Visionary understands what you mean, in the language you think in.
         </p>
-        <div className="relative mt-14 lg:mt-20">
-          {/* a breath of Google color field behind the voice — the four bars
-              carry the four brand hues, our one full-color heritage nod */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[560px] w-[min(920px,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{ background: "radial-gradient(45% 45% at 50% 50%, rgba(66,133,244,0.12) 0%, rgba(66,133,244,0.05) 45%, transparent 72%)" }}
-          />
+        {/* the chapter's control row — the picker swaps the question's script
+            live; 36px breath before controls (the confirmed rhythm law) */}
+        <div className="mt-9">
           <LGLanguageChips active={lang} onSelect={setLang} />
-          <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
-            <div className="flex items-end justify-center gap-2" aria-hidden="true">
-              {["#4285F4", "#EA4335", "#FBBC04", "#34A853"].map((c, i) => (
-                <span key={`${c}-${i}`} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
-              ))}
-            </div>
-            <p aria-live="polite" lang={lang} className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
-              <span key={`${lang}-${qIndex}`} className="hero-fade-up inline">{question}</span>
-            </p>
-            <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-              Listening in {LG_CHIPS.find((c) => c.code === lang)?.label || lang} · understood in every language
-            </p>
+        </div>
+        {/* the stage — one composed demo: the four brand hues listening, the
+            question in the chosen script, the quiet legend. The field stays
+            clean — no haze behind text, no floating widget, the way an Apple
+            feature chapter holds its stage. */}
+        <div className="mx-auto mt-12 w-full max-w-[860px] sm:mt-16">
+          <div className="flex items-end justify-center gap-2" aria-hidden="true">
+            {["#4285F4", "#EA4335", "#FBBC04", "#34A853"].map((c, i) => (
+              <span key={`${c}-${i}`} className="h-10 w-2 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+            ))}
           </div>
-          <div className="mt-14 flex justify-center lg:mt-20">
-            <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
-              <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
-              <div>
-                <p className="font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>Speak your way</p>
-                <p className="mt-1 font-normal tracking-[0] leading-[19px] text-[13px]" style={{ color: COLORS.slate }}>Use voice or text in the way you're comfortable.</p>
-              </div>
-            </div>
-          </div>
+          {/* the reserved slot (2.7em ≥ two lines at the browser's real
+              1.32 line metrics) keeps the voice bars, chips, and caption
+              from jumping when a longer question wraps */}
+          <p aria-live="polite" lang={lang} className="mx-auto mt-7 flex min-h-[2.7em] max-w-[760px] items-center justify-center text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
+            <span key={`${lang}-${qIndex}`} className="hero-fade-up inline">{question}</span>
+          </p>
+          <p className="mt-5 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+            Listening in {LG_CHIPS.find((c) => c.code === lang)?.label || lang} · understood in every language
+          </p>
+          <p className="mt-1 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+            Use voice or text in the way you're comfortable.
+          </p>
         </div>
       </div>
     </section>
@@ -711,8 +809,18 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main">
         <LandingHeroSection />
-        {/* the glass sheet — the hero's first cover, the nav's own frost */}
-        <div aria-hidden="true" className="glass relative z-10 h-[clamp(140px,24svh,280px)] border-b border-[#121317]/10" />
+        {/* the glass sheet — the hero's first cover. The frost fades in from
+            its leading edge (mask), so the sheet never slices the pinned
+            headline mid-glyph: the family and copy dissolve into white the
+            way the hero's own floor dissolves them. */}
+        <div
+          aria-hidden="true"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#121317]/10"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+          }}
+        />
         <LandingProblemSection />
         <LandingPromiseSection />
         <LandingMeetSection />

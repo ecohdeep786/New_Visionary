@@ -1,0 +1,101 @@
+Skip to content
+Active workspace
+Personal · teacher
++ Add a role
+D
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+Prepare a lesson
+
+Start with an objective. Shape the explanation, then review it before sharing.
+
+New lesson
+
+Saved to this workspace.
+
+Organization preparation inbox
+
+Explicit approved copies for your active Work membership. Personal preparation stays separate. A copy creates no learner evidence or assignment.
+
+No delivered content in this workspace. In Work, an academic administrator can share an approved revision with you.
+
+Start from a curated journey
+
+Understand cube volume
+
+Editable demo outline
+
+Make sense of fractions
+
+Editable demo outline
+
+Turn data into a decision
+
+Editable demo outline
+
+Search saved items
+
+Explain volume
+
+reviewed · Personal
+
+Home
+Prepare
+Classes
+Learners
+More
+Edit lesson
+
+Review objectives, content, misconceptions, checks, language, and sources before assigning.
+
+Title
+Outline and notes
+Attach a curriculum objective
+
+Choose sourced content, preview it, then review and save your lesson before assigning. The existing Sample mathematics activities are demonstrations. A real book has not been processed.
+
+Board or source
+Class or level
+Subject
+Objective language
+English
+हिन्दी
+বাংলা
+Load sourced objectives
+
+Attaching or removing an objective returns this lesson to draft for your review. Teacher questions remain separate written-response prompts.
+
+Check understanding
+
+Write up to ten short-answer questions. Learners respond in their own words; you review their work.
+
+Add question
+Question 1
+Status
+draft
+reviewed
+archived
+Audience
+Save draft
+Preview as learner
+Export
+Assign reviewed lesson
+
+Assigned. A reviewed copy is now available to this class. Later lesson edits do not change this copy.
+
+Close
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByText('Assigned. A reviewed copy is now available', { exact: true }) to be visible
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\linked-role-languages-verify.mjs:25:447 {
+  log: [
+    "  - waiting for getByText('Assigned. A reviewed copy is now available', { exact: true }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

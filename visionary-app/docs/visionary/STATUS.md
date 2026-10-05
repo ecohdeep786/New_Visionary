@@ -832,3 +832,51 @@ Completed D-038: curriculum replay checks current actor/workspace/membership aft
 ### 2026-10-04 — Parent due-date access and guardian recovery continuation
 
 Completed D-039: upcoming parent Work classwork now follows current child enrollment/class/membership, excluding orphaned classes and pending/revoked/expired/unreadable memberships. Historical returned summaries remain separately consented and scoped.428 tests,35 focused, build/full lint/both types and harness lint pass. Production en/hi/bn Work membership projection/restoration, second-child isolation, guardian stop/renew/accept quota retention/explicit retry/new consent and open Ask expiry pass on visionary-parent-classwork-boundary-20261004. Existing English paired goal/project sharing regressions pass. QA.md records the route-persistence harness correction and fixture/source limits. Continue restricted governance and rendered category journeys plus remaining wider role/state/native/device/public-baseline acceptance. Full frontend acceptance OPEN; public/backend work preserved.
+
+### 2026-10-05 — Restricted governance draft access (D-040)
+
+Completed two reproduced restricted-governance defects. Administrative profiles now require an own, string key in the supported profile registry; inherited keys (__proto__, constructor, toString), arrays and coerced objects fail closed. Organization resource-editor backup read/write/cleanup requires current academic permission, including new drafts. Downgrade denies access without changing backups; restored academic access recovers the exact edits.
+
+Files: organizationPolicy.js, resourceEditorDraft.ts, organization-permissions.test.mjs, scripts-tmp/governance-continuation-verify.mjs. Before: both new regressions failed. After: 13 focused tests and 430/430 full tests pass; full lint, both type checks, production build and harness lint pass. Production en/hi/bn academic draft → analyst/billing/inherited-key denial → exact restored draft/save passes at 320/390/768/1440px without page errors. Screenshots under scripts-tmp/governance-*.png; Hindi editor and Bengali denial visually inspected. No layout pattern replacement.
+
+Open for next: full rendered category/source and linked-role matrix, native language and real-device/assistive-technology/zoom acceptance, stable public-baseline verification and G1–G12 re-gate. Full frontend acceptance remains OPEN. Public source untouched; no backend or founder-book request. This is browser-local permission enforcement, not server authorization.
+
+### 2026-10-05 — Category journeys and asynchronous practice recovery (D-041)
+
+Done: 27 rendered learning-to-project journeys pass across nine learner categories and en/hi/bn interfaces. Three reproduced post-hash practice gaps are fixed: withdrawn enrollment, changed assigned source and cancelled navigation cannot expose an obsolete question. Preparation also returns the latest private-question revision and rejects a competing rehearsal round. The practice screen cancels obsolete loads, ignores obsolete refresh results, hides an old question when the source changes, and exposes explicit localized retry while retaining private work.
+
+Files: classworkStudyService.js, ClassworkStudy.jsx, classworkCopy.js, classwork-practice-boundary.test.mjs; production harnesses/evidence under scripts-tmp; FRONTEND_REVIEW_WORKSHEET.md. No layout pattern replacement, data migration or backend work. Existing concurrent public edits were preserved.
+
+QA: 435/435 full tests, five focused boundary tests and 13 initial focused study/curriculum tests pass. Both type checks, final full lint retry, final whole-tree production build and harness lint pass. Production practice boundary and existing keyboard/source/Ask/rehearsal/criterion/withdrawal regression pass in all three interfaces. All 222 role routes pass (74/language). An isolated pre/post internal-patch public comparison passes 18 first-headline viewport captures with zero changed pixels and no page errors. QA.md records the synthetic-source/snapshot limits and harness/machine-memory corrections.
+
+Open for next: actual native-speaker/device/screen-reader/browser-zoom review using FRONTEND_REVIEW_WORKSHEET.md, broader real-source/legacy/linked-role acceptance and final G1–G12 owner sign-off. Automation does not establish curriculum quality or production authorization. Whole frontend acceptance remains OPEN; no founder-book request, backend or release declaration.
+
+### 2026-10-05 — D-042 source and legacy recovery
+
+Done: incomplete explicitly retained source context is rejected before learning mutations; conflicting concept selection/provenance cannot silently resume or create an unpinned activity. Original records are preserved. Legacy activities without the source field and same-source authored language variants remain usable. Unreadable activity metadata retains measured progress while declaring resume links unavailable.
+
+QA: 441/441 full service tests and 27 focused tests pass. Nine learner categories × en/hi/bn now include source-context corruption, ambiguous cached-source denial, exact-byte preservation and explicit restoration. Six production Edge recovery cases pass retry/reload, control exclusion, source export without answer key, valid-source retry and 320–1440px reflow. Build and both type checks pass; full lint result is recorded below. Evidence: scripts-tmp/source-integrity-* and QA.md. Concurrent public landing changes remain preserved.
+
+Next: wider linked-role/source acceptance plus native-language, screen-reader, actual zoom, microphone/audio/clipboard/device and final visual owner review in FRONTEND_REVIEW_WORKSHEET.md. These bounded source fixes do not close overall frontend acceptance or authorize backend commencement.
+
+D-042 final checks: full lint passes (scripts-tmp/source-integrity-lint-final.txt), production build and both type checks pass, full suite 441/441 and focused 27/27 pass.
+
+### 2026-10-05 — D-043 linked-role private practice continuation
+
+Done: reproduced changed-key/options and removed-delivery grading defects fixed. Preparing and grading rehearsal now recheck current source and saved round after hashing. The retained reviewed delivery is validated again after the final asynchronous authorization read. Source conflicts remove obsolete controls; original private study/question stays exportable. Storage failure retains the selected answer for explicit retry; identical competing-answer replay returns one attempt. No teacher submission, grade or mastery is created by private practice.
+
+QA: 24 focused tests pass. Twelve school-minor/employer-sponsored Work × en/hi/bn cases cover held grading hash, key change/delivery removal, exact retained bytes, backup without keys, source restore/retry, quota failure/selected answer/one-attempt retry, reload and four widths. The paired teacher assignment → learner revision → teacher return → scoped parent digest/revocation regression passes. Final rebuilt matrix and whole-tree check results are appended below. Source and harness details in QA.md and scripts-tmp/practice-answer-*.
+
+Open: broader source/linked-role acceptance and native-language, physical accessibility/zoom/voice/audio/clipboard/device and final visual owner review in FRONTEND_REVIEW_WORKSHEET.md. No public redesign, backend commencement or whole-frontend acceptance is declared.
+
+D-043 final validation: 450/450 full tests, 24/24 focused, all 12 rebuilt production recovery cases, production build, both type checks, full lint and git diff --check pass. Evidence: scripts-tmp/practice-answer-full-tests.txt, focused-final.txt, complete-render.txt, build-final.txt, types-final.txt and lint-final.txt (all with practice-answer- prefix). Wider frontend acceptance remains OPEN.
+
+### 2026-10-05 — D-044 teacher review recovery and linked-role languages
+
+Done: teacher review-draft read/write/cleanup now checks owned workspace, accepted Work access and cancellation. Complete retained draft collections are validated before mutation; malformed originals remain unchanged. Existing specific criterion/revision errors and optional legacy fields are preserved. Review export checks current workspace access, reports download failure separately, retains current grade/feedback and review conflict, and supports explicit retry.
+
+Evidence: all three en/hi/bn personal linked-role journeys pass author/review/assign → learner failed submission/retry → teacher persisted feedback/revision failed-write retry → learner revision/reload → teacher conflict/failed export/export/latest/return failed-write retry → returned history → parent private-field exclusion/second-child/reload/consent revocation. Nine Work review cases pass pending/revoked/expired membership × en/hi/bn, malformed backup retention/restoration, dialog removal, unchanged draft/submission, explicit renewed Work return and quota/current-edit export/revision. Final specific-error refinement is followed by a rebuilt Work rerun. All 25 focused tests pass. Final whole-tree totals are appended below; see QA.md and linked-role-/review-draft- evidence.
+
+Open: wider linked-role/source fixture acceptance, native English/Hindi/Bengali review, physical screen-reader/zoom/voice/audio/clipboard/device tasks and final visual owner sign-off. Public changes remain untouched. No backend commencement or whole-product acceptance.
+
+D-044 final validation: 459/459 full tests, 25/25 focused, all three linked-role language journeys, all nine rebuilt Work review recovery cases, production build, both type checks, full lint and git diff --check pass. Evidence: scripts-tmp/linked-role-full-tests-final.txt, linked-role-types-final.txt, linked-role-lint-final.txt, linked-role-build-final.txt, linked-role-languages-final.txt, review-draft-focused-final.txt and review-draft-work-render-final.txt. Overall frontend acceptance remains OPEN.

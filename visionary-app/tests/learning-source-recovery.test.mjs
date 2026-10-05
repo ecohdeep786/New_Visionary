@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import * as pipeline from '../src/services/learningPipelineService.ts';
 import * as mentor from '../src/services/mentorStateService.ts';
-import {configureContentRepository} from '../src/services/contentRepository.ts';
+import {configureContentRepository, getContentRepository} from '../src/services/contentRepository.ts';
 import { configureTeachingInterface } from '../src/services/teachingInterface.ts';
 import {seedConnectedFixtures} from '../src/api/demoFixtures.js';
 
@@ -24,8 +24,39 @@ async function sourcedActivity(request=ctx(),selection={board:'Reviewed fixture'
  let version='1';const graph=()=>({syllabus:{...selection,id:'source:syllabus',status:'official',contentLocale:'en',availableLocales:['en'],provenance:{provider:'Synthetic source',sourceId:'source:book',version},textbooks:[{id:'source:book',title:'Fixture book',chapterIds:['source:chapter']}],chapters:[{id:'source:chapter',title:'Fixture chapter',textbookId:'source:book',topicIds:['source:topic'],status:'official'}]},topics:[{id:'source:topic',title:'Fixture topic',chapterId:'source:chapter',conceptIds:['source:concept'],status:'official'}],concepts:[{id:'source:concept',title:'Fixture concept',topicId:'source:topic',status:'official',locale:'en',availableLocales:['en'],prerequisiteIds:[],representations:[],explanation:'Version '+version+' explanation',check:{id:'check',prompt:'Choose the authored option',options:['A','B'],answerIndex:0,source:'database'},practice:[{id:'practice',prompt:'Choose again',options:['A','B'],answerIndex:0,source:'database'}],project:{title:'Version '+version+' project',brief:'Retain the source version',criteria:[{id:'evidence',label:'Evidence',prompt:'Describe your work'}]}}]});
  configureContentRepository({async getSyllabus(){return graph();}});
  await pipeline.selectLearningSyllabus(request,selection);const unit=await pipeline.startLearningUnit(request,'source:concept');
- return {request,unit,async replace(){version='2';await pipeline.selectLearningSyllabus(request,selection);}};
+ return {request,unit,graph,async replace(){version='2';await pipeline.selectLearningSyllabus(request,selection);}};
 }
+
+test('incomplete retained source context blocks learning without replacing original records',async()=>{
+ for(const sourceContext of [null,[],{}, {selection:null,provenance:null},{selection:{board:'A',classLevel:'7',subject:'B'},provenance:{provider:'P',sourceId:'S',version:''}}]){
+  const f=await sourcedActivity();const db=JSON.parse(memory.get('visionary_learning_pipeline_v1'));
+  db.spaces[f.request.workspaceId].units[0].sourceContext=sourceContext;memory.set('visionary_learning_pipeline_v1',JSON.stringify(db));
+  const original=memory.get('visionary_learning_pipeline_v1'),work=memory.get('visionary_workspace_v2');
+  await assert.rejects(pipeline.requestUnitTeaching(f.request,f.unit.id,'explanation'),/incomplete or ambiguous/);
+  assert.equal(memory.get('visionary_learning_pipeline_v1'),original);assert.equal(memory.get('visionary_workspace_v2'),work);
+  memory.delete('visionary_learning_pipeline_v1');
+ }
+});
+test('legacy activities without source context remain readable',async()=>{
+ const f=await sourcedActivity();const db=JSON.parse(memory.get('visionary_learning_pipeline_v1'));delete db.spaces[f.request.workspaceId].units[0].sourceContext;
+ memory.set('visionary_learning_pipeline_v1',JSON.stringify(db));assert.equal((await pipeline.requestUnitTeaching(f.request,f.unit.id,'explanation')).explanation,'Version 1 explanation');
+});
+for(const conflict of ['selection','provenance'])test(`conflicting cached concept ${conflict} cannot start an unpinned activity`,async()=>{
+ const f=await sourcedActivity(),db=JSON.parse(memory.get('visionary_content_v1')),other=f.graph();other.syllabus.id='other:syllabus';
+ if(conflict==='selection')other.syllabus.subject='Another course';else other.syllabus.provenance.sourceId='other:book';
+ db.spaces[f.request.workspaceId].graphs.push(other);memory.set('visionary_content_v1',JSON.stringify(db));
+ const original=memory.get('visionary_learning_pipeline_v1'),content=memory.get('visionary_content_v1');
+ await assert.rejects(getContentRepository(f.request).getConcept('source:concept'),/ambiguous curriculum source/);
+ await assert.rejects(pipeline.startLearningUnit(f.request,'source:concept'),/ambiguous curriculum source/);
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),original);assert.equal(memory.get('visionary_content_v1'),content);
+});
+test('same-source language variants keep their authored language and source pin',async()=>{
+ const f=await sourcedActivity(),db=JSON.parse(memory.get('visionary_content_v1')),variant=f.graph();
+ variant.syllabus.contentLocale='hi';variant.syllabus.availableLocales=['en','hi'];variant.concepts[0].locale='hi';variant.concepts[0].availableLocales=['en','hi'];variant.concepts[0].explanation='Authored Hindi fixture';
+ db.spaces[f.request.workspaceId].graphs.push(variant);memory.set('visionary_content_v1',JSON.stringify(db));
+ const unit=await pipeline.updateLearningLanguage(f.request,f.unit.id,'hi');assert.equal(unit.sourceContext.provenance.sourceId,'source:book');
+ assert.equal((await pipeline.requestUnitTeaching({...f.request,locale:'hi'},unit.id,'explanation')).explanation,'Authored Hindi fixture');
+});
 test('a changed source cannot create a project under an older learning unit',async()=>{
  const f=await sourcedActivity();await pipeline.requestUnitTeaching(f.request,f.unit.id,'explanation');let check=await pipeline.beginComprehension(f.request,f.unit.id);await pipeline.answerLearningQuestion(f.request,f.unit.id,check.question.answerIndex);check=await pipeline.nextLearningQuestion(f.request,f.unit.id);await pipeline.answerLearningQuestion(f.request,f.unit.id,check.question.answerIndex);
  await f.replace();const learning=memory.get('visionary_learning_pipeline_v1'),work=memory.get('visionary_workspace_v2');
@@ -61,6 +92,14 @@ for(const [category,persona,level] of [['primary','minor-cbse','3'],['secondary'
    const artifact=await pipeline.createLearningProject(request,f.unit.id);const candidate={...artifact,body:'Authored fixture application',milestones:artifact.milestones.map(()=>true),status:'completed',rubric:{...artifact.rubric,responses:{evidence:'My criterion evidence'}}};pipeline.validateProjectCompletion(candidate);const saved=workspace.saveArtifact(request,candidate);pipeline.recordProjectSave(request,saved);
    assert.equal(pipeline.getLearningUnit(request,f.unit.id).stage,'completed');assert.equal(mentor.getStudentState(request).concepts[0].applicationCount,1);assert.equal(pipeline.getLearningUnit(request,f.unit.id).attempts.length,3);
    await f.replace();const original=JSON.stringify(pipeline.getLearningUnit(request,f.unit.id));const fresh=await pipeline.startLearningUnit(request,'source:concept');assert.notEqual(fresh.id,f.unit.id);assert.equal(fresh.sourceContext.provenance.version,'2');assert.equal(JSON.stringify(pipeline.getLearningUnit(request,f.unit.id)),original);assert.equal(fresh.checkPassed,false);
+   const validLearning=memory.get('visionary_learning_pipeline_v1'),broken=JSON.parse(validLearning);broken.spaces[request.workspaceId].units.find(unit=>unit.id===fresh.id).sourceContext=null;
+   memory.set('visionary_learning_pipeline_v1',JSON.stringify(broken));const brokenBytes=memory.get('visionary_learning_pipeline_v1');
+   await assert.rejects(pipeline.requestUnitTeaching(request,fresh.id,'explanation'),/incomplete or ambiguous/);assert.equal(memory.get('visionary_learning_pipeline_v1'),brokenBytes);
+   memory.set('visionary_learning_pipeline_v1',validLearning);
+   const validContent=memory.get('visionary_content_v1'),ambiguous=JSON.parse(validContent),other=structuredClone(ambiguous.spaces[request.workspaceId].graphs[0]);other.syllabus.id='other:syllabus';other.syllabus.subject='Another category source';ambiguous.spaces[request.workspaceId].graphs.push(other);
+   memory.set('visionary_content_v1',JSON.stringify(ambiguous));const ambiguousBytes=memory.get('visionary_content_v1');
+   await assert.rejects(pipeline.startLearningUnit(request,'source:concept'),/ambiguous curriculum source/);assert.equal(memory.get('visionary_learning_pipeline_v1'),validLearning);assert.equal(memory.get('visionary_content_v1'),ambiguousBytes);
+   memory.set('visionary_content_v1',validContent);assert.equal((await pipeline.startLearningUnit(request,'source:concept')).id,fresh.id);
    const foreign={...request,workspaceId:request.workspaceId+'-foreign'};assert.throws(()=>pipeline.getLearningUnit(foreign,f.unit.id),/access/);
   }
  });

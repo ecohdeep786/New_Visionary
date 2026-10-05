@@ -8,6 +8,7 @@ import { base44 } from "@/api/base44Client";
 import { useWorkspace } from "@/hooks/useWorkspace";
 import { reviewClasswork } from "@/services/classroomService";
 import { getReviewDraft, saveReviewDraft, clearReviewDraft } from "@/services/reviewDraftService";
+import { workspaceIdentity } from "@/services/workspaceService";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 /**
@@ -32,11 +33,13 @@ export default function AssignmentGrader({
   const [busyId, setBusyId] = useState(null);
   const [reload, setReload] = useState(0);
   const [error, setError] = useState("");
+  const [exportError, setExportError] = useState('');
   useEffect(() => {
     let active = true;
     setLoading(true);
     setSubmissions([]);
     setError('');
+    setExportError('');
     setLoadFailed(false);
     (async () => {
       try {
@@ -122,6 +125,21 @@ export default function AssignmentGrader({
     }
     setBusyId(null);
   };
+  const exportCurrentReview = () => {
+    try {
+      workspaceIdentity(ctx);
+      downloadText('visionary-current-review-edits.json', JSON.stringify(submissions.map(s => ({
+        id: s.id,
+        attempt: s.attempt,
+        grade: s.grade,
+        feedback: s.feedback,
+        criterionFeedback: s.criterion_feedback
+      })), null, 2));
+      setExportError('');
+    } catch (failure) {
+      setExportError(failure.message);
+    }
+  };
   return <Dialog open onOpenChange={open => {
     if (!open && !busyId) onClose();
   }}>
@@ -135,13 +153,7 @@ export default function AssignmentGrader({
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
-          {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"><p lang="en">{error}</p><button disabled={!!busyId} className="v-button mt-3" onClick={() => downloadText('visionary-current-review-edits.json', JSON.stringify(submissions.map(s => ({
-            id: s.id,
-            attempt: s.attempt,
-            grade: s.grade,
-            feedback: s.feedback,
-            criterionFeedback: s.criterion_feedback
-          })), null, 2))}>{copy("Export current review edits")}</button><button disabled={!!busyId} className="v-button mt-3" onClick={async () => {
+          {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"><p lang="en">{error}</p>{exportError && <p lang="en" className="mt-2">{exportError}</p>}<button disabled={!!busyId} className="v-button mt-3" onClick={exportCurrentReview}>{copy("Export current review edits")}</button><button disabled={!!busyId} className="v-button mt-3" onClick={async () => {
             try {
               for (const s of submissions) clearReviewDraft(ctx, assignment.id, s.id);
               setReload(value => value + 1);

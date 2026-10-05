@@ -1,10 +1,10 @@
 import type {RequestContext} from '../domain/workspace.ts';
-import {snapshot} from './workspaceService.ts';
+import {snapshot,requireOrganizationPermission} from './workspaceService.ts';
 interface Backup {draft:Record<string,unknown>;baseRevision?:string;savedAt:string}
 interface Store {version:1;spaces:Record<string,Record<string,Backup>>}
 const KEY='visionary_resource_editor_v1';
 function read():Store{try{const value=JSON.parse(localStorage.getItem(KEY)||'{"version":1,"spaces":{}}');if(value.version!==1||!value.spaces||typeof value.spaces!=='object'||Array.isArray(value.spaces))throw Error();return value;}catch{throw Error('Resource editor backups could not be read. Saved resources were not changed.');}}
-function owned(ctx:RequestContext,key:string){const data=snapshot(ctx);if(!key.startsWith('new:')&&!data.resources.some(row=>row.id===key))throw Error('This resource is unavailable in your workspace.');}
+function owned(ctx:RequestContext,key:string){const data=snapshot(ctx);if(ctx.role==='organization')requireOrganizationPermission(ctx,'academic');if(!key.startsWith('new:')&&!data.resources.some(row=>row.id===key))throw Error('This resource is unavailable in your workspace.');}
 function tabKey(key:string){try{if(typeof sessionStorage!=='undefined'){let tab=sessionStorage.getItem('visionary_resource_editor_tab');if(!tab){tab=crypto.randomUUID();sessionStorage.setItem('visionary_resource_editor_tab',tab);}return `${key}:tab:${tab}`;}}catch{/* A single device backup is available when tab storage is denied. */}return key;}
 function write(store:Store){try{localStorage.setItem(KEY,JSON.stringify(store));}catch{throw Error('Resource edits could not be backed up. Keep this editor open and save or export your work.');}}
 export function saveResourceEditorDraft(ctx:RequestContext,key:string,draft:Record<string,unknown>,baseRevision?:string){owned(ctx,key);if(!draft||typeof draft.title!=='string'||typeof draft.body!=='string')throw Error('This editor draft is incomplete.');const store=read();(store.spaces[ctx.workspaceId]??={})[tabKey(key)]={draft:structuredClone(draft),baseRevision,savedAt:new Date().toISOString()};write(store);}

@@ -25,7 +25,7 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
     <div className={alignment}>
       <Link
         to={ctaTo}
-        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
+        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
       >
         {ctaLabel}
         <svg
@@ -87,11 +87,12 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
    alpha-weighted centroids sit on one even pitch P, and each seam's margin
    is ml = P − (r_prev + l_next), the distances from each centroid to its
    subject-box edges. Per tier (fractions of Hc), with ml for slots 1-4:
-     desktop  P 1.1082 → ml .1200 .3459 .1724 .2029   span 5.17·Hc
-     tablet   P 0.9800 → ml −.0082 .2177 .0442 .0747  span 4.66·Hc
-     phone    P 0.8800 → ml −.1082 .1177 −.0558 −.0253 span 4.26·Hc
+     desktop  P 1.1082 → ml .1200 .3459 .1724 .2029   span 5.17·Hc, framed gutters
+     tablet   P 0.8400 → ml −.1482 .0777 −.0958 −.0653 span 4.10·Hc, full-bleed
+     phone    P 0.7150 → ml −.2732 −.0473 −.2208 −.1903 span 3.60·Hc, full-bleed
    On tablets and phones the pitch closes below the seam sums, so shoulders
-   overlap a few px — a group huddling closer, center figure in front. */
+   overlap — a group huddling closer, center figure in front — and the row
+   runs edge-to-edge, the keynote-stage crop. */
 const CAST_METRICS = {
   Professional: { canvasH: 1.0814, slotH: 0.88, slotW: 0.7814, offX: -0.2419 },
   Teacher: { canvasH: 1.0851, slotH: 0.94, slotW: 0.9776, offX: 0 },
@@ -103,18 +104,22 @@ const CAST_FALLBACK = { canvasH: 1, slotH: 1, slotW: 0.8, offX: 0 };
 
 /* Stage height: the painted subject row never exceeds the frame at any
    width — the budget divides the gutter-trimmed viewport by each tier's
-   centroid-pitch span. All five figures render on every device. The copy
-   block is pulled down to the family (margin-top:auto; the desktop override
-   sits it a breath above the heads, smaller screens center it in the space
-   above the row). */
+   centroid-pitch span. On phones and tablets the row runs edge-to-edge (the
+   Apple mobile keynote crop — outer figures bleed off the screen edges) and
+   the pitch closes so the family earns real presence; desktop keeps its
+   framed gutters. The copy block rides the persona-page mobile anatomy:
+   top-biased under the nav on phones and tablets (margin-bottom:auto), so
+   the read is nav → headline → CTAs → family at the fold — never a dead
+   white band above the fold line. Desktop anchors the copy a breath above
+   the heads (margin-top:auto; margin-bottom to the family). */
 const CAST_CSS = `
 @keyframes figIn{from{opacity:0;transform:translateY(5%) scale(0.988)}to{opacity:1;transform:none}}
 @keyframes appleFadeIn{from{opacity:0}to{opacity:1}}
-.cast-stage{--cast-h:min(40svh, clamp(64px, calc((100vw - clamp(32px, 8vw, 240px)) / 4.26), 330px))}
-@media (min-width:640px){.cast-stage{--cast-h:min(40svh, clamp(120px, calc((100vw - clamp(64px, 10vw, 400px)) / 4.66), 340px))}}
+.cast-stage{--cast-h:min(46svh, calc(100vw / 3.6))}
+@media (min-width:640px){.cast-stage{--cast-h:min(46svh, calc(100vw / 4.1))}}
 @media (min-width:1024px){.cast-stage{--cast-h:min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px))}}
-.cast-copy{margin-top:auto;margin-bottom:auto}
-@media (min-width:1024px){.cast-copy{margin-bottom:calc(var(--cast-h) + clamp(48px, 8svh, 96px))}}
+.cast-copy{margin-top:0;margin-bottom:auto}
+@media (min-width:1024px){.cast-copy{margin-top:auto;margin-bottom:calc(var(--cast-h) + clamp(48px, 8svh, 96px))}}
 .cast-slot-0{z-index:10}.cast-slot-2{z-index:30}.cast-slot-4{z-index:10}.cast-slot-1,.cast-slot-3{z-index:20}
 .persona-floor{position:absolute;inset-inline:0;bottom:0;height:68%;pointer-events:none;
 background:linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.3) 68%, rgba(255,255,255,0.06) 88%, rgba(255,255,255,0) 100%)}
@@ -129,16 +134,16 @@ background:linear-gradient(to top, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0
 .cast-slot-4{margin-left:calc(var(--cast-h)*0.2029)}
 }
 @media (min-width:640px) and (max-width:1023.9px){
-.cast-slot-1{margin-left:calc(var(--cast-h)*-0.0082)}
-.cast-slot-2{margin-left:calc(var(--cast-h)*0.2177)}
-.cast-slot-3{margin-left:calc(var(--cast-h)*0.0442)}
-.cast-slot-4{margin-left:calc(var(--cast-h)*0.0747)}
+.cast-slot-1{margin-left:calc(var(--cast-h)*-0.1482)}
+.cast-slot-2{margin-left:calc(var(--cast-h)*0.0777)}
+.cast-slot-3{margin-left:calc(var(--cast-h)*-0.0958)}
+.cast-slot-4{margin-left:calc(var(--cast-h)*-0.0653)}
 }
 @media (max-width:639.9px){
-.cast-slot-1{margin-left:calc(var(--cast-h)*-0.1082)}
-.cast-slot-2{margin-left:calc(var(--cast-h)*0.1177)}
-.cast-slot-3{margin-left:calc(var(--cast-h)*-0.0558)}
-.cast-slot-4{margin-left:calc(var(--cast-h)*-0.0253)}
+.cast-slot-1{margin-left:calc(var(--cast-h)*-0.2732)}
+.cast-slot-2{margin-left:calc(var(--cast-h)*-0.0473)}
+.cast-slot-3{margin-left:calc(var(--cast-h)*-0.2208)}
+.cast-slot-4{margin-left:calc(var(--cast-h)*-0.1903)}
 }
 @media (prefers-reduced-motion: reduce){
 .apple-anim{animation-name:appleFadeIn !important;animation-duration:0.7s !important;animation-timing-function:ease-out !important;animation-iteration-count:1 !important}
@@ -195,12 +200,13 @@ export default function NewPersona({
       >
         <style>{CAST_CSS}</style>
 
-        {/* the words — static "One Intelligence." pulled down to the family:
-            margin-top:auto sinks the stack toward the heads (a breath above
-            them on desktop, centered above the row on smaller screens) */}
+        {/* the words — static "One Intelligence." Top-biased on phones and
+            tablets (the persona-page mobile anatomy: nav → headline → CTAs →
+            family at the fold); on desktop margin-top:auto sinks the stack
+            toward the heads, a breath above them */}
         {/* public-frame carries the canonical gutters — w-full would override
             them and push the tagline against the screen edges */}
-        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center pt-[clamp(64px,15svh,150px)] text-center">
+        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center pt-[clamp(20px,4svh,48px)] text-center lg:pt-[clamp(64px,15svh,150px)]">
           <div className="max-w-[980px]">
             <h1 className="m-0">
               <span

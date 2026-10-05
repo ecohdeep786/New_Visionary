@@ -1,25 +1,31 @@
+import {workspaceIdentity} from './workspaceService.ts';
 const prefix = 'visionary_review_drafts_v1:';
 const validCriteria=value=>value&&typeof value==='object'&&!Array.isArray(value)&&Object.values(value).every(item=>item&&Object.keys(item).every(key=>['rating','note'].includes(key))&&typeof item==='object'&&!Array.isArray(item)&&['','met','needs-work','not-assessed'].includes(item.rating)&&typeof item.note==='string'&&item.note.length<=2000);
 
 function key(ctx, assignmentId) {
   if (ctx?.role !== 'teacher' || !ctx.workspaceId || !assignmentId) throw new Error('Open your teacher workspace to review classwork.');
+  if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');
+  workspaceIdentity(ctx);
   return `${prefix}${ctx.workspaceId}:${assignmentId}`;
 }
 function read(ctx, assignmentId) {
   const raw = localStorage.getItem(key(ctx, assignmentId));
   if (!raw) return {};
+  let value;
   try {
-    const value = JSON.parse(raw);
+    value = JSON.parse(raw);
     if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error();
-    return value;
   } catch { throw new Error('Saved review drafts could not be read on this device. Submitted work is unchanged.'); }
+  for(const draft of Object.values(value)){
+    if(!draft||typeof draft!=='object'||Array.isArray(draft)||!Number.isInteger(draft.attempt)||draft.attempt<1||typeof draft.grade!=='string'||typeof draft.feedback!=='string'||draft.feedback.length>5000)throw Error('This saved review draft is incomplete. Submitted work is unchanged.');
+    if(draft.criterionFeedback!==undefined&&!validCriteria(draft.criterionFeedback))throw Error('Saved criterion feedback is incomplete. Submitted work is unchanged.');
+    if(draft.reviewRevision!==undefined&&typeof draft.reviewRevision!=='string')throw Error('Saved review revision is incomplete. Submitted work is unchanged.');
+  }
+  return value;
 }
 export function getReviewDraft(ctx, assignmentId, submissionId, attempt) {
   const draft = read(ctx, assignmentId)[submissionId];
   if (!draft || draft.attempt !== attempt) return null;
-  if (typeof draft.grade !== 'string' || typeof draft.feedback !== 'string') throw new Error('This saved review draft is incomplete. Submitted work is unchanged.');
-  if(draft.criterionFeedback!==undefined&&!validCriteria(draft.criterionFeedback))throw Error('Saved criterion feedback is incomplete. Submitted work is unchanged.');
-  if(draft.reviewRevision!==undefined&&typeof draft.reviewRevision!=='string')throw Error('Saved review revision is incomplete. Submitted work is unchanged.');
   return { grade: draft.grade, feedback: draft.feedback,...(draft.reviewRevision!==undefined?{reviewRevision:draft.reviewRevision}:{}),...(draft.criterionFeedback!==undefined?{criterionFeedback:draft.criterionFeedback}:{}) };
 }
 export function saveReviewDraft(ctx, assignmentId, submissionId, attempt, grade, feedback,criterionFeedback,reviewRevision) {

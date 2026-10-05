@@ -1,0 +1,29 @@
+✔ a competing teacher review at commit cannot be overwritten by an older draft (501.9948ms)
+✔ a newer learner attempt at commit cannot receive feedback for the older attempt (299.2913ms)
+✔ teacher membership revoked at commit denies the save and retains the learner response (41.9857ms)
+✔ a foreign person cannot read, overwrite or clear another teacher workspace draft (95.9813ms)
+✔ pending Work membership denies review draft operations and preserves restored recovery (52.0262ms)
+✔ revoked Work membership denies review draft operations and preserves restored recovery (27.2294ms)
+✔ expired Work membership denies review draft operations and preserves restored recovery (35.8042ms)
+✔ malformed retained review row null cannot be silently replaced or cleared (26.15ms)
+✔ malformed retained review row {"attempt":1,"grade":8,"feedback":"Unreadable"} cannot be silently replaced or cleared (14.5712ms)
+✔ malformed retained review row {"attempt":0,"grade":"8","feedback":"Unreadable"} cannot be silently replaced or cleared (41.4733ms)
+✔ an unreadable sibling review draft cannot be silently carried through a new write (26.7324ms)
+✔ cancelled review draft commands cannot read, write or clear retained feedback (31.0213ms)
+✔ teacher review drafts keep only the current attempt and survive a failed local write (6.1128ms)
+✔ reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped (94.7767ms)
+✔ visiting the dashboard never creates a streak or changes inputs (1.0207ms)
+✔ grades are normalized against assignment points without write-side effects (0.5167ms)
+✔ priority sorting preserves high priority and real activity makes a streak (26.6634ms)
+✔ practice scoring cannot exceed its question count (0.3641ms)
+✔ auth returns only to internal dashboard paths (0.6618ms)
+✔ preview account isolation, consent, persistence, and idempotent onboarding (94.1071ms)
+✔ onboarding keeps a competitive goal without inventing exam subjects (2.688ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11637.3936

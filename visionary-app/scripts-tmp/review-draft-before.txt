@@ -1,0 +1,145 @@
+✖ a foreign person cannot read, overwrite or clear another teacher workspace draft (93.9359ms)
+✖ pending Work membership denies review draft operations and preserves restored recovery (37.4442ms)
+✖ revoked Work membership denies review draft operations and preserves restored recovery (20.92ms)
+✖ expired Work membership denies review draft operations and preserves restored recovery (42.3212ms)
+✖ malformed retained review row null cannot be silently replaced or cleared (76.6452ms)
+✖ malformed retained review row {"attempt":1,"grade":8,"feedback":"Unreadable"} cannot be silently replaced or cleared (41.0016ms)
+✖ malformed retained review row {"attempt":0,"grade":"8","feedback":"Unreadable"} cannot be silently replaced or cleared (65.4925ms)
+✖ an unreadable sibling review draft cannot be silently carried through a new write (23.9339ms)
+✖ cancelled review draft commands cannot read, write or clear retained feedback (38.9655ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2693.4311
+
+✖ failing tests:
+
+test at tests\review-draft-boundary.test.mjs:10:1
+✖ a foreign person cannot read, overwrite or clear another teacher workspace draft (93.9359ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:12:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /access|workspace/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:15:53
+✖ pending Work membership denies review draft operations and preserves restored recovery (37.4442ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:18:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /connection|active/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:15:53
+✖ revoked Work membership denies review draft operations and preserves restored recovery (20.92ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:18:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /connection|active/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:15:53
+✖ expired Work membership denies review draft operations and preserves restored recovery (42.3212ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:18:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /connection|active/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:21:118
+✖ malformed retained review row null cannot be silently replaced or cleared (76.6452ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:23:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /incomplete|could not be read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:21:118
+✖ malformed retained review row {"attempt":1,"grade":8,"feedback":"Unreadable"} cannot be silently replaced or cleared (41.0016ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:23:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /incomplete|could not be read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:21:118
+✖ malformed retained review row {"attempt":0,"grade":"8","feedback":"Unreadable"} cannot be silently replaced or cleared (65.4925ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:23:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /incomplete|could not be read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:25:1
+✖ an unreadable sibling review draft cannot be silently carried through a new write (23.9339ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:27:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /incomplete|could not be read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\review-draft-boundary.test.mjs:29:1
+✖ cancelled review draft commands cannot read, write or clear retained feedback (38.9655ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (AbortError).
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/review-draft-boundary.test.mjs:31:49)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'AbortError' },
+    operator: 'throws',
+    diff: 'simple'
+  }
