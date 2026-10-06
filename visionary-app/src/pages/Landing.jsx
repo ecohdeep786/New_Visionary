@@ -18,7 +18,7 @@ import cmAdapt from "@/assets/student-primary.webp";
 import cmGrow from "@/assets/student-secondary.webp";
 import cmCreate from "@/assets/student-vocational.webp";
 import cmContinue from "@/assets/student-higher.webp";
-import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
+import { ShieldCheck, HeartHandshake, Scale, Play, Pause } from "lucide-react";
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
 const COLORS = {
@@ -194,7 +194,7 @@ const JOURNEY_STEPS = [
   { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: cmCreate, alt: "Person building a real project" },
   { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: cmContinue, alt: "Learner continuing their journey" },
 ];
-const JOURNEY_FILL_MS = 4000;
+const JOURNEY_CARD_MS = 5000;
 
 const LX_TRUST_WORDS = ["information.", "privacy.", "progress."];
 const LX_TRUST_IMG = [cmContinue, teacherSlide, parentSlide];
@@ -231,13 +231,6 @@ import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
    then the cycle carries every journey — student, teacher, parent,
    professional, organization. */
 const LANDING_HERO_WORDS = ["One Intelligence.", "to learn.", "to teach.", "to help.", "to build.", "to lead."];
-const LANDING_HERO_AUDIENCES = [
-  { label: "Students", to: "/student" },
-  { label: "Teachers", to: "/teacher" },
-  { label: "Parents", to: "/parent" },
-  { label: "Professionals", to: "/professional" },
-  { label: "Organizations", to: "/organization" },
-];
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
@@ -255,9 +248,9 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       srSentence="One Intelligence. To learn. To teach. To help. To build. To lead."
       sub="One connected intelligence for every way you learn, teach, work, and grow."
       cast={LANDING_HERO_LINEUP}
-      audiences={LANDING_HERO_AUDIENCES}
       ctaLabel="Start free"
-      secondaryLabel="See how it works"
+      /* the front door carries a single pill — the persona heroes keep their pair */
+      secondaryLabel={null}
       minDisplay={36}
     />
   );
@@ -282,7 +275,7 @@ function LandingProblemSection() {
         {/* the section's own --public-section-py (bridge contract) provides the
             chapter's opening/closing breath — no inner padding here */}
         <div className="px-6">
-          <p className="text-center uppercase" style={{ color: COLORS.slate }}>Why Visionary exists</p>
+          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Why Visionary exists</p>
           <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
             {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
           </h2>
@@ -631,66 +624,102 @@ function LandingLanguageSection() {
   );
 }
 
-/* 06 · THE JOURNEY — the page's one dark cinematic chapter. The fill rail
-   fills on the active step and advances the story on its own cadence;
-   clicking a row takes over. The advance runs on a timer (not the
-   animation-end event) so reduced-motion users — whose fill completes
-   instantly — get a click-driven story instead of a runaway loop. Text
-   colors are set explicitly: the scene-ink contract only restyles p/h2/h3. */
+/* 06 · THE JOURNEY — Apple's media-card gallery (the iPhone family page's
+   card slide): one story card at a time with the next card peeking at the
+   viewport edge, a dot nav for direct jumps, and a play/pause control for
+   the auto-advance. It lives on the page's own light field — Apple runs
+   card galleries on light; black is reserved for technology deep-dives,
+   and this chapter is a human story. Captions travel under each card, the
+   way Apple's gallery captions do. Reduced motion reads it click-driven. */
 function LandingJourneySection() {
   const reduced = usePrefersReducedMotion();
   const { ref, visible } = useRevealContinuous();
+  const trackRef = useRef(null);
+  const lockRef = useRef(0);
+  const rafRef = useRef(0);
   const [active, setActive] = useState(0);
-  const [runId, setRunId] = useState(0);
-  const select = (i) => { setActive(i); setRunId((r) => r + 1); };
-  const next = useCallback(() => { setActive((a) => (a + 1) % JOURNEY_STEPS.length); setRunId((r) => r + 1); }, []);
+  const [playing, setPlaying] = useState(true);
+
+  const stepTo = useCallback((i) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const first = track.children[0];
+    const unit = track.children[1] ? track.children[1].offsetLeft - first.offsetLeft : first.offsetWidth;
+    const clamped = Math.min(JOURNEY_STEPS.length - 1, Math.max(0, i));
+    setActive(clamped);
+    /* the lock keeps the scroll listener from re-deriving intermediate
+       indices (and jittering the dot pill) while the smooth scroll runs */
+    lockRef.current = Date.now() + 700;
+    track.scrollTo({ left: clamped * unit, behavior: reduced ? "auto" : "smooth" });
+  }, [reduced]);
+
   useEffect(() => {
-    if (reduced) return undefined;
-    const id = setTimeout(next, JOURNEY_FILL_MS);
-    return () => clearTimeout(id);
-  }, [next, active, runId, reduced]);
-  const step = JOURNEY_STEPS[active];
+    if (!playing || reduced) return undefined;
+    const id = setInterval(() => stepTo((active + 1) % JOURNEY_STEPS.length), JOURNEY_CARD_MS);
+    return () => clearInterval(id);
+  }, [playing, reduced, active, stepTo]);
+
+  /* swiping the track by hand keeps the dots honest */
+  const onScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const track = trackRef.current;
+      if (!track || !track.children[1] || Date.now() < lockRef.current) return;
+      const unit = track.children[1].offsetLeft - track.children[0].offsetLeft || 1;
+      setActive(Math.min(JOURNEY_STEPS.length - 1, Math.max(0, Math.round(track.scrollLeft / unit))));
+    });
+  }, []);
+  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
+
   return (
-    <section ref={ref} data-section="06-journey" className="relative z-10 overflow-hidden" style={{ fontFamily: FONT_FAMILY }}>
-      <style>{"@keyframes cmFill{from{transform:scaleY(0)}to{transform:scaleY(1)}}"}</style>
-      <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center uppercase">The journey</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]">You keep changing.<br />Visionary keeps learning with you.</h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]">
-          New questions bring new work. Visionary helps you carry what you learn into the next step.
-        </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div className="flex flex-col gap-10">
-            {JOURNEY_STEPS.map((s, i) => {
-              const isActive = i === active;
-              return (
-                <button key={s.title} type="button" onClick={() => select(i)} aria-expanded={isActive} className="flex items-start gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                  <span className={`relative w-[4px] shrink-0 overflow-hidden rounded-full transition-all duration-700 ease-google ${isActive ? "h-[96px]" : "mt-1 h-[28px]"}`} style={{ backgroundColor: "rgba(245,247,250,0.18)" }}>
-                    {isActive && (
-                      <span
-                        key={`fill-${active}-${runId}`}
-                        className="absolute inset-0 origin-top rounded-full"
-                        style={{ backgroundColor: COLORS.blue, transform: reduced ? "scaleY(1)" : "scaleY(0)", animation: reduced ? undefined : `cmFill ${JOURNEY_FILL_MS}ms linear forwards` }}
-                      />
-                    )}
-                  </span>
-                  <span className="flex-1">
-                    <span className="block tracking-[0] leading-[1.15] text-[clamp(24px,2.4vw,32px)]" style={{ color: isActive ? "#f5f7fa" : "rgba(245,247,250,0.55)", fontWeight: isActive ? 500 : 400 }}>{i + 1}. {s.title}</span>
-                    <span className={`grid transition-all duration-500 ease-google ${isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                      <span className="block overflow-hidden">
-                        <span className="mt-3 block max-w-[420px] text-[15px] leading-[1.6] tracking-[0.24px]" style={{ color: "rgba(245,247,250,0.72)" }}>{s.copy}</span>
-                      </span>
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-          <div key={`${active}-${runId}`} className="hero-fade-up" aria-live="polite">
-            <img src={step.image} alt={step.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-[var(--radius-media)] border object-cover lg:aspect-[5/4]" />
+    <section ref={ref} data-section="06-journey" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+      <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+        <div className="px-6">
+          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>The journey</p>
+          <h2 className="mt-3 text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Life changes. <span style={{ color: COLORS.blue }}>Visionary keeps pace.</span></h2>
+          <p className="mx-auto mt-4 max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]" style={{ color: COLORS.slate }}>
+            New questions bring new work. Visionary helps you carry what you learn into the next step.
+          </p>
+        </div>
+        {/* the card slide — the track bleeds to the viewport edge so the next
+            card peeks, inviting the reader on (the Apple gallery signature) */}
+        <div ref={trackRef} onScroll={onScroll} role="group" aria-roledescription="carousel" aria-label="The journey, one step at a time"
+          className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden">
+          {JOURNEY_STEPS.map((s, i) => (
+            <figure key={s.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${JOURNEY_STEPS.length}: ${s.title}`}
+              className="m-0 aspect-[0.55] w-[78%] flex-none snap-start overflow-hidden rounded-[var(--radius-media)] sm:w-[46%] lg:aspect-[1.83] lg:w-[68%] lg:max-w-[1100px]">
+              <img src={s.image} alt={s.alt} loading="eager" decoding="async" draggable="false"
+                className="h-full w-full select-none object-cover" />
+            </figure>
+          ))}
+        </div>
+        {/* the caption layer — Apple's media-card-gallery-captions: the
+            active card's heading and support sit BELOW the media, centered
+            in a 640px measure, and swap as the story advances. The cards
+            carry no surface of their own — the media IS the card. */}
+        <div aria-live="polite" className="mx-auto mt-8 max-w-[640px] px-6 text-center sm:mt-10">
+          <div key={active} className="hero-fade-up">
+            <p className="font-medium tracking-[-0.002em] leading-[1.2] text-[clamp(24px,2.2vw,32px)]" style={{ color: COLORS.ink }}>{JOURNEY_STEPS[active].title}</p>
+            <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[17px]" style={{ color: COLORS.graphite }}>{JOURNEY_STEPS[active].copy}</p>
           </div>
         </div>
-        <h3 className="mx-auto mt-28 max-w-[1400px] text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,2.78vw,40px)]">
+        {/* the gallery controls — dot nav + play/pause, the media-card
+            gallery anatomy (the active dot pill IS Apple's dotnav) */}
+        <div className="mt-8 flex items-center justify-center gap-5 px-6">
+          <CarouselDots total={JOURNEY_STEPS.length} active={active} onSelect={stepTo} />
+          <button
+            type="button"
+            aria-label={playing ? "Pause the journey" : "Play the journey"}
+            aria-pressed={!playing}
+            onClick={() => setPlaying((v) => !v)}
+            className="flex h-11 w-11 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+          >
+            {playing ? <Pause className="h-4 w-4" strokeWidth={2} /> : <Play className="h-4 w-4 translate-x-[1px]" strokeWidth={2} />}
+          </button>
+        </div>
+        <h3 className="mx-auto mt-24 max-w-[1400px] px-6 text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
           Built for who you are. Ready for <span style={{ color: COLORS.blue }}>who you become.</span>
         </h3>
       </div>
@@ -703,11 +732,15 @@ function LandingJourneySection() {
    counter beside the photo cards, each with its white contrast chip. */
 const LXTrustCard = React.memo(function LXTrustCard({ card, image }) {
   return (
-    <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[var(--radius-media)] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
+    <div className="elevation-1 relative w-full shrink-0 overflow-hidden rounded-[var(--radius-media)] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
       <img src={image} alt={card.alt} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
-      {/* the white chip guarantees copy contrast on any image */}
-      <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
-        <div className="rounded-[20px] bg-white/95 p-5">
+      {/* the solid white chip guarantees copy contrast on any image. On
+          phones it stacks below the photo (an overlay would swallow the
+          small card); from sm up it anchors bottom-left — every trust
+          photo carries its faces in the upper frame, so the chip never
+          covers them. */}
+      <div className="px-5 pb-5 sm:absolute sm:bottom-8 sm:left-8 sm:max-w-[320px] sm:px-0 sm:pb-0">
+        <div className="elevation-1 rounded-[20px] bg-white p-5">
           <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
             <card.Icon className="h-5 w-5" strokeWidth={1.8} />
           </span>
@@ -731,16 +764,16 @@ function LandingTrustSection() {
   return (
     <section ref={ref} data-section="08-trust" className="relative z-10 isolate bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center uppercase" style={{ color: COLORS.slate }}>Trust and safety</p>
-        <h2 className="px-6 text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Trust and safety</p>
+        <h2 className="mt-3 px-6 text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[index]}</span>
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px] text-balance" style={{ color: COLORS.slate }}>
           Your learning, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
-        <div className="mx-auto mt-14 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-20 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
-          <div className="lg:pl-[var(--frame-x)]">
+        <div className="mx-auto mt-14 grid w-full max-w-[1600px] grid-cols-1 gap-16 px-6 lg:mt-20 lg:grid-cols-[4fr_8fr] lg:gap-24">
+          <div className="flex flex-col justify-center lg:pl-[var(--frame-x)]">
             <h3 key={active.title} className="hero-fade-up max-w-[460px] font-medium tracking-[-0.002em] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {active.title}
             </h3>
@@ -757,8 +790,8 @@ function LandingTrustSection() {
             </div>
           </div>
           <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><LXTrustCard card={active} image={LX_TRUST_IMG[index % LX_TRUST_IMG.length]} /></div>
-            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={next} image={LX_TRUST_IMG[(index + 1) % LX_TRUST_IMG.length]} /></div>
+            <div key={`a-${index}`} className="hero-fade-up w-full 2xl:max-w-[780px]"><LXTrustCard card={active} image={LX_TRUST_IMG[index % LX_TRUST_IMG.length]} /></div>
+            <div key={`b-${index}`} className="hero-fade-up hidden w-full 2xl:max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={next} image={LX_TRUST_IMG[(index + 1) % LX_TRUST_IMG.length]} /></div>
           </div>
         </div>
       </FadeReveal>
@@ -773,9 +806,9 @@ function LandingCTASection() {
   return (
     <section ref={ref} data-section="09-cta" className="relative z-10 px-6" style={{ fontFamily: FONT_FAMILY, backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start today</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <p className="text-[15px] font-normal" style={{ color: COLORS.slate }}>Start today</p>
+        <h2 className="mt-3 font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
+        <p className="mx-auto mt-4 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">

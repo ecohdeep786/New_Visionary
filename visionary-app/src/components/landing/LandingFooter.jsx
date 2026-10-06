@@ -89,7 +89,7 @@ export default function LandingFooter({ variant = "brand" }) {
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: C.mist }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">
-              <h4 className="mb-4 text-[12px] font-medium uppercase tracking-[0.43px]" style={{ color: C.ink }}>{section.title}</h4>
+              <h4 className="mb-4 text-[12px] font-medium tracking-[0.24px]" style={{ color: C.ink }}>{section.title}</h4>
               <ul className="space-y-1">
                 {section.links.map((link) => (
                   <li key={link.label}>

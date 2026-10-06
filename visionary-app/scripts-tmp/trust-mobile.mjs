@@ -1,0 +1,13 @@
+import puppeteer from "puppeteer";
+const browser = await puppeteer.launch({ headless: "new" });
+const p = await browser.newPage();
+await p.setViewport({ width: 390, height: 844, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
+await p.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "no-preference" }]);
+await p.goto("http://localhost:5199/", { waitUntil: "domcontentloaded", timeout: 60000 });
+await p.waitForSelector('section[data-section="08-trust"]', { timeout: 30000 });
+await new Promise((r) => setTimeout(r, 4500));
+await p.evaluate(() => document.querySelector('[data-section="08-trust"]').scrollIntoView({ behavior: "instant", block: "start" }));
+await new Promise((r) => setTimeout(r, 1000));
+await p.screenshot({ path: "scripts-tmp/shots/sweep-verify/trust-mobile.png", captureBeyondViewport: false });
+console.log("mobile trust shot done");
+await browser.close();

@@ -42,12 +42,14 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
           <path d="M13 6l6 6-6 6" />
         </svg>
       </Link>
-      <Link
-        to={secondaryTo}
-        className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-5 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
-      >
-        {secondaryLabel}
-      </Link>
+      {secondaryLabel && (
+        <Link
+          to={secondaryTo}
+          className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-5 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
+        >
+          {secondaryLabel}
+        </Link>
+      )}
     </div>
   );
 });
@@ -107,19 +109,22 @@ const CAST_FALLBACK = { canvasH: 1, slotH: 1, slotW: 0.8, offX: 0 };
    centroid-pitch span. On phones and tablets the row runs edge-to-edge (the
    Apple mobile keynote crop — outer figures bleed off the screen edges) and
    the pitch closes so the family earns real presence; desktop keeps its
-   framed gutters. The copy block rides the persona-page mobile anatomy:
-   top-biased under the nav on phones and tablets (margin-bottom:auto), so
-   the read is nav → headline → CTAs → family at the fold — never a dead
-   white band above the fold line. Desktop anchors the copy a breath above
-   the heads (margin-top:auto; margin-bottom to the family). */
+   framed gutters. The copy block — headline, sub, and the front-door CTA —
+   centers in the free stage ABOVE the family, on every device: an in-flow
+   spacer reserves the family's tallest visible zone (the student's painted
+   head tops out at 0.875·1.13·H ≈ 0.99·H above the fold) plus a breathing
+   gap, and the copy's auto margins balance the remaining space around it.
+   Dead-centering in the whole hero instead read as a dead void at the top
+   with the CTA sitting on the figures' heads on large/tall screens
+   (1536×864, 1920×1080). A real box reserves the zone — container padding
+   can lose a cascade fight (the bridge pads section[data-section] too). */
 const CAST_CSS = `
 @keyframes figIn{from{opacity:0;transform:translateY(5%) scale(0.988)}to{opacity:1;transform:none}}
 @keyframes appleFadeIn{from{opacity:0}to{opacity:1}}
 .cast-stage{--cast-h:min(46svh, calc(100vw / 3.6))}
 @media (min-width:640px){.cast-stage{--cast-h:min(46svh, calc(100vw / 4.1))}}
 @media (min-width:1024px){.cast-stage{--cast-h:min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px))}}
-.cast-copy{margin-top:0;margin-bottom:auto}
-@media (min-width:1024px){.cast-copy{margin-top:auto;margin-bottom:calc(var(--cast-h) + clamp(48px, 8svh, 96px))}}
+.cast-copy{margin-top:auto;margin-bottom:auto}
 .cast-slot-0{z-index:10}.cast-slot-2{z-index:30}.cast-slot-4{z-index:10}.cast-slot-1,.cast-slot-3{z-index:20}
 .persona-floor{position:absolute;inset-inline:0;bottom:0;height:68%;pointer-events:none;
 background:linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.3) 68%, rgba(255,255,255,0.06) 88%, rgba(255,255,255,0) 100%)}
@@ -154,7 +159,6 @@ export default function NewPersona({
   wordMs = 2800,
   srSentence,
   sub,
-  audiences = [],
   img,
   alt,
   /* Matches the photo's own background (#ffffff, sampled from image edges) so
@@ -200,13 +204,12 @@ export default function NewPersona({
       >
         <style>{CAST_CSS}</style>
 
-        {/* the words — static "One Intelligence." Top-biased on phones and
-            tablets (the persona-page mobile anatomy: nav → headline → CTAs →
-            family at the fold); on desktop margin-top:auto sinks the stack
-            toward the heads, a breath above them */}
+        {/* the words — static "One Intelligence." Centered mid-stage on every
+            device: auto margins balance the copy between the nav and the
+            bottom-anchored family, one composition at every width */}
         {/* public-frame carries the canonical gutters — w-full would override
             them and push the tagline against the screen edges */}
-        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center pt-[clamp(20px,4svh,48px)] text-center lg:pt-[clamp(64px,15svh,150px)]">
+        <div className="cast-copy public-frame public-frame-wide relative z-10 mx-auto flex flex-col items-center text-center">
           <div className="max-w-[980px]">
             <h1 className="m-0">
               <span
@@ -229,25 +232,14 @@ export default function NewPersona({
               the same shared pills the persona heroes wear, so one button
               system carries every hero. */}
           <HeroCtas ctaTo={ctaTo} ctaLabel={ctaLabel} secondaryTo={secondaryTo} secondaryLabel={secondaryLabel} />
-          {/* the audience row — desktop only; on phones the five journeys
-              are one tap away in the nav, and the front door stays quiet.
-              Apple's utility-link treatment: quiet blue at rest, underline
-              on hover. */}
-          {audiences.length > 0 && (
-            <nav className="mt-7 hidden max-w-[720px] flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-[#121317]/10 pt-4 lg:flex" aria-label="Explore Visionary by audience">
-              <span className="text-[15px] font-normal tracking-[0.12px] text-[#5f6368]">For</span>
-              {audiences.map((audience) => (
-                <Link
-                  key={audience.label}
-                  to={audience.to}
-                  className="text-[15px] font-normal tracking-[0.12px] text-[#4285F4] underline-offset-4 decoration-[#4285F4]/50 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                >
-                  {audience.label}
-                </Link>
-              ))}
-            </nav>
-          )}
         </div>
+
+        {/* the family's floor reserve, in flow — the copy's auto margins
+            balance the free stage above it, so the title card centers
+            between the nav and the figures and never lands on their heads
+            (the student's painted head tops out at ≈0.99·H above the fold;
+            the clamp is the guaranteed breath on the shortest stages). */}
+        <div aria-hidden="true" className="shrink-0" style={{ height: "calc(var(--cast-h) * 0.99 + clamp(24px, 3svh, 48px))" }} />
 
         {/* the family — five alpha cutouts on the page's own white, rising
             from the fold on every device. Slots carry the measured subject

@@ -6,8 +6,11 @@
   --radius-card: 12px;
   --radius-media: 12px;
   --radius-overlay: 16px;
-  /* Google's mobile rhythm (72px floor) rising to the shared 128px desktop cap */
-  --public-section-py: clamp(4.5rem, 9vw, 8rem);
+  /* Google's mobile rhythm (72px floor) rising to Apple's 144px chapter breath
+     (measured live on apple.com: 144-160px per chapter ≈ 16% of a 900-tall
+     viewport). min(10vw, 16svh) keeps wide-but-short laptops (1366×768) at
+     their verified rhythm so the problem chapter's one-viewport law holds. */
+  --public-section-py: clamp(4.5rem, min(10vw, 16svh), 9rem);
 }
 
 /* Canonical section rhythm — heroes manage their own full-height layout */
@@ -30,8 +33,7 @@ main > section[data-section="10-journey-flow"] {
 }
 
 main > section[data-section="05-intelligence"],
-main > section[data-section="05-one-intelligence"],
-main > section[data-section="06-journey"] {
+main > section[data-section="05-one-intelligence"] {
   background: var(--scene-ink, #0a0d14) !important;
   color: #f5f7fa;
 }
@@ -41,33 +43,30 @@ main > section[data-section="05-intelligence"] h2,
 main > section[data-section="05-intelligence"] h3,
 main > section[data-section="05-one-intelligence"] p,
 main > section[data-section="05-one-intelligence"] h2,
-main > section[data-section="05-one-intelligence"] h3,
-main > section[data-section="06-journey"] p,
-main > section[data-section="06-journey"] h2,
-main > section[data-section="06-journey"] h3 {
+main > section[data-section="05-one-intelligence"] h3 {
   color: inherit !important;
 }
 
 main > section[data-section="05-intelligence"] p,
-main > section[data-section="05-one-intelligence"] p,
-main > section[data-section="06-journey"] p {
+main > section[data-section="05-one-intelligence"] p {
   color: var(--scene-ink-soft, rgba(245, 247, 250, 0.72)) !important;
 }
 
 main > section[data-section="05-intelligence"] img,
-main > section[data-section="05-one-intelligence"] img,
-main > section[data-section="06-journey"] img {
+main > section[data-section="05-one-intelligence"] img {
   border-color: rgba(255, 255, 255, 0.14) !important;
 }
 
 /* ── Type-scale convergence ─────────────────────────────────────────────
    Retargets the legacy arbitrary-value display utilities to the canonical
-   Google×Apple scale (hero 80 / display 64 / statement 48 / product 36 /
-   closing 32) so every public page shares one type system. */
+   Google×Apple scale (hero 80 / display 56 / statement 48 / product 36 /
+   closing 32) so every public page shares one type system. Display sits at
+   Apple's measured chapter-statement tier (56px: "Take a closer look.",
+   "Get the highlights."), not above it. */
 
 .text-\[clamp\(36px\,5vw\,72px\)\],
 .text-\[clamp\(34px\,5vw\,72px\)\] {
-  font-size: clamp(32px, 4.45vw, 64px) !important;
+  font-size: clamp(32px, 3.9vw, 56px) !important;
 }
 
 .text-\[clamp\(28px\,2\.78vw\,40px\)\],
