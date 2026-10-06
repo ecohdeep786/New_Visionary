@@ -32,6 +32,15 @@ main > section[data-section="10-journey-flow"] {
   border-top-color: transparent;
 }
 
+/* the journey chapter continues the language chapter's white field (07 is
+   white too) — 07's bottom padding plus a half-breath here gives the
+   statement its own space above without reading as a new chapter. No
+   hairline. !important beats the (0,2,1) base border/padding rule. */
+main > section[data-section="06-journey"] {
+  border-top-color: transparent !important;
+  padding-block-start: clamp(2.25rem, min(5vw, 8svh), 4.5rem) !important;
+}
+
 main > section[data-section="05-intelligence"],
 main > section[data-section="05-one-intelligence"] {
   background: var(--scene-ink, #0a0d14) !important;

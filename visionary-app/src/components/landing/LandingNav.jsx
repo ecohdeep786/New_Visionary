@@ -90,19 +90,19 @@ const ABOUT_GROUPS = [
 
 const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
 
-/* Apple-state nav item — quiet borderless text at rest; the selected page's
-   item resolves to the brand black at Medium weight. */
+/* Apple-state nav item — ink at 75% at rest (Apple's global-nav gray),
+   resolving to full ink on hover; the selected page's item sits at Medium */
 const navLink = (active) =>
   `flex h-10 items-center whitespace-nowrap rounded-full px-3 text-[14px] transition-colors duration-200 ${FOCUS_RING} ${
     active
       ? "font-medium text-[#121317]"
-      : "font-normal text-[#3c4043]/90 hover:text-[#121317]"
+      : "font-normal text-[#121317]/75 hover:text-[#121317]"
   }`;
 
-/* Icon-only button */
+/* Icon-only button — borderless, a quiet gray wash on hover */
 const iconBtn = (active = false) =>
-  `flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${FOCUS_RING} ${
-    active ? "border-[#dadce0] bg-white" : "border-transparent hover:border-[#dadce0]"
+  `flex h-10 w-10 items-center justify-center rounded-full transition-colors ${FOCUS_RING} ${
+    active ? "bg-[#121317]/5" : "hover:bg-[#121317]/5"
   }`;
 
 /* Megamenu tile — one anatomy for every menu item */
@@ -287,15 +287,15 @@ export default function LandingNav() {
       >
         Skip to main content
       </a>
-      {/* the Apple-state bar: invisible at rest, and on scroll a straight
-          full-width glass strip — no corners, no border. The frosted layer
-          is an inner element on purpose (a backdrop-filter on the header
-          itself would become the containing block for the fixed flyout
-          panels below). */}
+      {/* the Apple-state bar: always a frosted strip — translucent white,
+          saturate + 20px blur, hairline beneath — deepening one step once
+          the page scrolls. The frosted layer is an inner element on purpose
+          (a backdrop-filter on the header itself would become the containing
+          block for the fixed flyout panels below). */}
       <div
         aria-hidden="true"
-        className={`absolute inset-0 -z-10 transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] ${
-          scrolled ? "bg-white/90 backdrop-blur-xl" : "bg-transparent"
+        className={`absolute inset-0 -z-10 border-b backdrop-blur-[20px] backdrop-saturate-150 transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] ${
+          scrolled ? "border-[#121317]/10 bg-white/90" : "border-[#121317]/[0.06] bg-[rgba(251,251,253,0.8)]"
         }`}
       />
         <div className="public-frame relative flex h-full items-center justify-between">
@@ -538,21 +538,21 @@ export default function LandingNav() {
             Help
           </Link>
 
-          <Link to="/login" className={`${navLink(false)} hidden sm:flex`} style={{ color: C.blue }}>
+          <Link to="/login" className={`${navLink(false)} hidden sm:flex`}>
             Sign in
           </Link>
 
           {/* the nav CTA stays quiet while the page hero's own start button
               is on screen, and fades in once the page scrolls — one start
-              action in view at a time */}
+              action in view at a time. Apple-black, the product's action
+              color, matching every primary pill on the page. */}
           <Link
             to="/register"
-            className={`btn-premium btn-premium-blue ml-2 flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full text-[14px] font-medium text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${FOCUS_RING} ${
+            className={`ml-2 flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#121317] px-[18px] text-[14px] font-medium text-white transition-all duration-500 [transition-timing-function:var(--ease-out-apple)] hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${FOCUS_RING} ${
               scrolled
                 ? "visible translate-y-0 opacity-100"
                 : "pointer-events-none invisible -translate-y-1 opacity-0"
             }`}
-            style={{ backgroundColor: C.darkblue, paddingLeft: 18, paddingRight: 18 }}
             tabIndex={scrolled ? 0 : -1}
             aria-hidden={scrolled ? undefined : "true"}
           >
