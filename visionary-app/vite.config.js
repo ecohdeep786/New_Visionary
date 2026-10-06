@@ -33,6 +33,14 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     headers: securityHeaders,
+    watch: {
+      // Rename-on-save editors race chokidar's fs.watch on Windows: the
+      // watch lands on a file mid-replace and the server dies with EBUSY.
+      // Polling sidesteps fs.watch entirely — reliable on Windows.
+      usePolling: true,
+      interval: 300,
+      ignored: ['**/*.TMP', '**/*.tmp', '**/*.tmpdir/**', '**/~*'],
+    },
   },
   preview: {
     headers: productionSecurityHeaders,

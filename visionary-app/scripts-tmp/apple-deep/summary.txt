@@ -1,0 +1,723 @@
+﻿
+════════ iphone ════════
+── phone (390px, scrollH 31325)
+  nav: {"h":48,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    48px/w600 · ls:-0.1em lh:1.08 · n=1 · "iPhone"
+    32px/w600 · ls:0.1em lh:1.13 · n=2 · "iPhone Duo" | "iPhone 18 Pro"
+    28px/w600 · ls:0.2em lh:1.14 · n=7 · "Switch to iPhone." | "Explore the lineup." | "Why Apple is the best" | "Why Apple is the bestplace to shop iPhone."
+    21px/w600 · ls:0.2em lh:1.19 · n=25 · "Switching from Android to iPhone is simple." | "iPhone holds its value longer than other smartph" | "Picture your best photos and videos." | "Helpful in all the right places."
+    20px/w600 · ls:-0.4em lh:1.47 · n=5 · "New" | "iPhone Air" | "iPhone 17" | "iPhone 17e"
+  body:
+    17px · lh:1.47 w:600 · n=10 · rgb(29, 29, 31) · "Apple Vision Pro for Enterprise" | "iPhone Duo
+
+Hello, hello.
+
+Learn more
+View prici"
+    14px · lh:1.43 w:400 · n=13 · rgb(29, 29, 31) · "Lease a new iPhone with low monthly payments for" | "The largest display of any iPhone. Foldable. Pos"
+    21px · lh:1.19 w:600 · n=7 · rgb(29, 29, 31) / rgba(255, 255, 255, 0.92) · "Switching from Android to iPhone is simple." | "iPhone holds its value longer than other smartph"
+  sections (padT/padB, count, max h, bg):
+    56px/56px · n=6 · maxH=1110 · rgb(245, 245, 247) / rgba(0, 0, 0, 0) / rgb(250, 250, 252)
+    16px/196px · n=1 · maxH=722 · rgba(0, 0, 0, 0)
+    17px/11px · n=1 · maxH=24473 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    grid cols:"321.25px 321.25px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"400px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"260px 260px 260px 260px 260px 260px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"260px 260px 260px 260px 260px 260px 260p" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    flex cols:"none" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×22
+    grid cols:"260px" gap:normal radius:0 itemPad:24px 24px 0px bg:rgba(0, 0, 0, 0) ×15
+    grid cols:"260px 260px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Learn more" 14px/w400 px:21px/21px h:42 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "iPhone and Mac" 21px/w600 px:0px/0px h:46 r:0 bg:rgba(0, 0, 0, 0) color:rgb(29, 29, 31)
+    "Shop and Learn" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Wallet" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Account" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Entertainment" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Store" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Business" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Education" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Healthcare" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Government" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Values" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "About Apple" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+── desktop-lg (1068px, scrollH 17115)
+  nav: {"h":44,"bg":"rgb(250, 250, 252)","blur":"none","fontSize":"17px"}
+  headings:
+    64px/w600 · ls:-0.6em lh:1.06 · n=1 · "iPhone"
+    48px/w600 · ls:-0.1em lh:1.08 · n=9 · "iPhone Duo" | "iPhone 18 Pro" | "Switch to iPhone." | "Explore the lineup."
+    24px/w600 · ls:0.2em lh:1.17 · n=23 · "Switching from Android to iPhone is simple." | "iPhone holds its value longer than other smartph" | "Picture your best photos and videos." | "Helpful in all the right places."
+    20px/w600 · ls:-0.4em lh:1.47 · n=6 · "New" | "iPhone Air" | "iPhone 17" | "iPhone 17e"
+    26px/w600 · ls:-0.4em lh:1.24 · n=1 · "Discover how easy it is to switch."
+  body:
+    17px · lh:1.47 w:400 · n=22 · rgb(29, 29, 31) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "iPhone Duo
+
+Hello, hello.
+
+Learn more
+View prici"
+    14px · lh:1.43 w:400 · n=1 · rgb(29, 29, 31) · "Lease a new iPhone with low monthly payments for"
+    24px · lh:1.17 w:600 · n=7 · rgb(29, 29, 31) / rgba(255, 255, 255, 0.92) · "Switching from Android to iPhone is simple." | "iPhone holds its value longer than other smartph"
+  sections (padT/padB, count, max h, bg):
+    96px/0px · n=3 · maxH=996 · rgb(245, 245, 247) / rgba(0, 0, 0, 0)
+    96px/96px · n=3 · maxH=1317 · rgb(245, 245, 247) / rgba(0, 0, 0, 0) / rgb(250, 250, 252)
+    32px/206px · n=1 · maxH=896 · rgba(0, 0, 0, 0)
+    17px/11px · n=1 · maxH=9257 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×32
+    flex cols:"none" gap:normal radius:20 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"934.5px 934.5px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"934px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"344px 344px 344px 344px 344px 344px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"344px 344px 344px 344px 344px 344px 344p" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"344px" gap:normal radius:0 itemPad:28px 28px 0px bg:rgba(0, 0, 0, 0) ×15
+    grid cols:"457.25px 457.25px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Learn more" 14px/w400 px:21px/21px h:42 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Explore All iPhone" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone Duo" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 18 Pro" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone Air" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 17" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 17e" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 16" 24px/w600 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+── desktop-xl (1440px, scrollH 16958)
+  nav: {"h":44,"bg":"rgb(250, 250, 252)","blur":"none","fontSize":"17px"}
+  headings:
+    80px/w600 · ls:-1.2em lh:1.05 · n=1 · "iPhone"
+    56px/w600 · ls:-0.3em lh:1.07 · n=9 · "iPhone Duo" | "iPhone 18 Pro" | "Switch to iPhone." | "Explore the lineup."
+    28px/w600 · ls:0.2em lh:1.14 · n=24 · "Switching from Android to iPhone is simple." | "iPhone holds its value longer than other smartph" | "Picture your best photos and videos." | "Helpful in all the right places."
+    20px/w600 · ls:-0.4em lh:1.47 · n=5 · "New" | "iPhone Air" | "iPhone 17" | "iPhone 17e"
+    26px/w600 · ls:-0.4em lh:1.24 · n=1 · "Discover how easy it is to switch."
+  body:
+    17px · lh:1.47 w:400 · n=22 · rgb(29, 29, 31) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "iPhone Duo
+
+Hello, hello.
+
+Learn more
+View prici"
+    14px · lh:1.43 w:400 · n=1 · rgb(29, 29, 31) · "Lease a new iPhone with low monthly payments for"
+    28px · lh:1.14 w:600 · n=7 · rgb(29, 29, 31) / rgba(255, 255, 255, 0.92) · "Switching from Android to iPhone is simple." | "iPhone holds its value longer than other smartph"
+  sections (padT/padB, count, max h, bg):
+    112px/0px · n=3 · maxH=1007 · rgb(245, 245, 247) / rgba(0, 0, 0, 0)
+    112px/112px · n=3 · maxH=1116 · rgb(245, 245, 247) / rgba(0, 0, 0, 0) / rgb(250, 250, 252)
+    60px/0px · n=1 · maxH=367 · rgba(0, 0, 0, 0)
+    24px/216px · n=1 · maxH=950 · rgba(0, 0, 0, 0)
+    17px/11px · n=1 · maxH=9257 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×35
+    flex cols:"none" gap:normal radius:20 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"1260px 1260px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"1260px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"372px 372px 372px 372px 372px 372px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"372px 372px 372px 372px 372px 372px 372p" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"372px" gap:normal radius:0 itemPad:32px 32px 0px bg:rgba(0, 0, 0, 0) ×15
+    grid cols:"620px 620px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "iPhone and Mac" 28px/w600 px:0px/0px h:60 r:0 bg:rgba(0, 0, 0, 0) color:rgb(29, 29, 31)
+    "Explore All iPhone" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone Duo" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 18 Pro" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone Air" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 17" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 17e" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+    "iPhone 16" 28px/w600 px:0px/0px h:34 r:0 bg:rgba(0, 0, 0, 0) color:rgb(51, 51, 54)
+
+════════ airpods ════════
+── phone (390px, scrollH 13456)
+  nav: {"h":48,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "AirPods"
+    40px/w600 · ls:nullem lh:1.1 · n=2 · "AirPods 5" | "AirPods Pro 3"
+    26px/w600 · ls:-0.4em lh:1.47 · n=1 · "AirPods Max 2"
+    32px/w600 · ls:0.1em lh:1.13 · n=3 · "Compare AirPods models" | "Get to know AirPods." | "Apple Music"
+    21px/w600 · ls:0.2em lh:1.19 · n=5 · "Control what you hear. And what you don’t." | "Easily communicate across languages." | "Track your heart rate and calories burned during" | "Keep in touch"
+    19px/w600 · ls:0.2em lh:1.21 · n=4 · "Fast delivery or pickup" | "Pay monthly at 0% APR" | "Get help buying" | "Make them yours"
+  body:
+    17px · lh:1.47 w:600 · n=5 · rgb(29, 29, 31) · "Apple Vision Pro for Enterprise" | "Heart rate sensing unavailable"
+    14px · lh:1.43 w:400 · n=23 · rgb(29, 29, 31) / rgb(245, 245, 247) · "Get 3 months of Apple Music free with your AirPo" | "Discover the magic of
+Active Noise Cancellation."
+    21px · lh:1.19 w:600 · n=2 · rgb(29, 29, 31) · "Control what you hear. And what you don’t." | "Easily communicate across languages."
+  sections (padT/padB, count, max h, bg):
+    10px/10px · n=2 · maxH=580 · rgba(0, 0, 0, 0)
+    20px/10px · n=1 · maxH=590 · rgba(0, 0, 0, 0)
+    105px/100px · n=1 · maxH=3656 · rgba(0, 0, 0, 0)
+    76px/90px · n=1 · maxH=806 · rgb(255, 255, 255)
+    86px/146px · n=1 · maxH=706 · rgb(250, 250, 252)
+    0px/0px · n=1 · maxH=932 · rgba(0, 0, 0, 0)
+    17px/11px · n=1 · maxH=4573 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 0px 30px bg:rgba(0, 0, 0, 0) ×9
+    grid cols:"165.625px 165.625px" gap:38px radius:0 itemPad:0px 0px 25px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"260px 260px 260px 260px 260px" gap:24px radius:18 itemPad:0px bg:rgb(245, 245, 247) ×1
+    grid cols:"212px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×5
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Learn more" 14px/w400 px:15px/15px h:36 r:980 bg:rgb(255, 255, 255) color:rgb(0, 0, 0) border:rgba(0, 0, 0, 0)
+    "Buy" 14px/w400 px:15px/15px h:36 r:980 bg:rgba(0, 0, 0, 0) color:rgb(245, 245, 247) border:rgb(245, 245, 247)
+    "Shop and Learn" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Wallet" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Account" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Entertainment" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Store" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Business" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Education" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Healthcare" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Government" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Values" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "About Apple" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+── desktop-lg (1068px, scrollH 8587)
+  nav: {"h":44,"bg":"rgb(250, 250, 252)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "AirPods"
+    48px/w600 · ls:-0.1em lh:1.08 · n=2 · "AirPods 5" | "AirPods Pro 3"
+    21px/w600 · ls:0.2em lh:1.19 · n=3 · "Discover the magic of Active Noise Cancellation." | "The world’s best in-ear Active Noise Cancellatio" | "Listening. Remastered."
+    26px/w600 · ls:-0.4em lh:1.47 · n=1 · "AirPods Max 2"
+    64px/w600 · ls:-0.6em lh:1.06 · n=2 · "Compare AirPods models" | "Get to know AirPods."
+    28px/w600 · ls:0.2em lh:1.14 · n=5 · "Control what you hear. And what you don’t." | "Easily communicate across languages." | "Track your heart rate and calories burned during" | "Keep in touch"
+    40px/w600 · ls:nullem lh:1.1 · n=1 · "Apple Music"
+    19px/w600 · ls:0.2em lh:1.21 · n=4 · "Fast delivery or pickup" | "Pay monthly at 0% APR" | "Get help buying" | "Make them yours"
+  body:
+    17px · lh:1.47 w:400 · n=5 · rgb(29, 29, 31) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "Heart rate sensing unavailable"
+    14px · lh:1.43 w:400 · n=21 · rgb(29, 29, 31) · "Get 3 months of Apple Music free with your AirPo" | "Discover the magic of
+Active Noise Cancellation."
+    21px · lh:1.19 w:600 · n=2 · rgb(245, 245, 247) / rgb(29, 29, 31) · "Discover the magic of Active Noise Cancellation." | "The world’s best in-ear Active Noise Cancellatio"
+    28px · lh:1.14 w:600 · n=2 · rgb(29, 29, 31) · "Control what you hear. And what you don’t." | "Easily communicate across languages."
+  sections (padT/padB, count, max h, bg):
+    15px/15px · n=2 · maxH=584 · rgba(0, 0, 0, 0)
+    24px/15px · n=1 · maxH=593 · rgba(0, 0, 0, 0)
+    75px/120px · n=1 · maxH=2207 · rgba(0, 0, 0, 0)
+    130px/120px · n=1 · maxH=1082 · rgb(255, 255, 255)
+    36px/36px · n=1 · maxH=347 · rgb(250, 250, 252)
+    0px/0px · n=1 · maxH=319 · rgba(0, 0, 0, 0)
+    17px/11px · n=1 · maxH=1949 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×21
+    grid cols:"none" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"185px 185px 185px 193px" gap:53px radius:0 itemPad:0px 0px 25px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"344px 344px 344px 344px 344px" gap:24px radius:18 itemPad:0px bg:rgb(245, 245, 247) ×1
+    grid cols:"288px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×5
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Learn more" 14px/w400 px:15px/15px h:36 r:980 bg:rgb(255, 255, 255) color:rgb(0, 0, 0) border:rgba(0, 0, 0, 0)
+    "Buy" 14px/w400 px:15px/15px h:36 r:980 bg:rgba(0, 0, 0, 0) color:rgb(245, 245, 247) border:rgb(245, 245, 247)
+── desktop-xl (1440px, scrollH 9361)
+  nav: {"h":44,"bg":"rgb(250, 250, 252)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "AirPods"
+    80px/w600 · ls:-1.2em lh:1.05 · n=2 · "AirPods 5" | "AirPods Pro 3"
+    21px/w600 · ls:0.2em lh:1.19 · n=3 · "Discover the magic of Active Noise Cancellation." | "The world’s best in-ear Active Noise Cancellatio" | "Listening. Remastered."
+    26px/w600 · ls:-0.4em lh:1.47 · n=1 · "AirPods Max 2"
+    64px/w600 · ls:-0.6em lh:1.06 · n=2 · "Compare AirPods models" | "Get to know AirPods."
+    28px/w600 · ls:0.2em lh:1.14 · n=5 · "Control what you hear. And what you don’t." | "Easily communicate across languages." | "Track your heart rate and calories burned during" | "Keep in touch"
+    48px/w600 · ls:-0.1em lh:1.08 · n=1 · "Apple Music"
+    19px/w600 · ls:0.2em lh:1.21 · n=4 · "Fast delivery or pickup" | "Pay monthly at 0% APR" | "Get help buying" | "Make them yours"
+  body:
+    17px · lh:1.47 w:400 · n=5 · rgb(29, 29, 31) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "Heart rate sensing unavailable"
+    14px · lh:1.43 w:400 · n=21 · rgb(29, 29, 31) · "Get 3 months of Apple Music free with your AirPo" | "Discover the magic of
+Active Noise Cancellation."
+    21px · lh:1.19 w:600 · n=2 · rgb(245, 245, 247) / rgb(29, 29, 31) · "Discover the magic of Active Noise Cancellation." | "The world’s best in-ear Active Noise Cancellatio"
+    28px · lh:1.14 w:600 · n=2 · rgb(29, 29, 31) · "Control what you hear. And what you don’t." | "Easily communicate across languages."
+  sections (padT/padB, count, max h, bg):
+    15px/15px · n=2 · maxH=786 · rgba(0, 0, 0, 0)
+    30px/15px · n=1 · maxH=801 · rgba(0, 0, 0, 0)
+    100px/150px · n=1 · maxH=2099 · rgba(0, 0, 0, 0)
+    150px/150px · n=1 · maxH=1184 · rgb(255, 255, 255)
+    64px/90px · n=1 · maxH=515 · rgb(250, 250, 252)
+    0px/0px · n=1 · maxH=319 · rgba(0, 0, 0, 0)
+    17px/11px · n=1 · maxH=1949 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×21
+    grid cols:"none" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"209.5px 209.5px 209.5px 209.5px" gap:53px radius:0 itemPad:0px 0px 25px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"372px 372px 372px 372px 372px" gap:24px radius:18 itemPad:0px bg:rgb(245, 245, 247) ×1
+    grid cols:"308px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×5
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Learn more" 14px/w400 px:15px/15px h:36 r:980 bg:rgb(255, 255, 255) color:rgb(0, 0, 0) border:rgba(0, 0, 0, 0)
+    "Buy" 14px/w400 px:15px/15px h:36 r:980 bg:rgba(0, 0, 0, 0) color:rgb(245, 245, 247) border:rgb(245, 245, 247)
+
+════════ visionpro ════════
+── phone (390px, scrollH 22650)
+  nav: {"h":48,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "Apple Vision Pro"
+    28px/w700 · ls:0.2em lh:1.14 · n=3 · "Apple Vision Pro" | "So you can work, watch," | "The era of spatial"
+    32px/w600 · ls:0.1em lh:1.25 · n=3 · "Take a closer look." | "Explore" | "An exciting new platform."
+    19px/w700 · ls:0.2em lh:1.21 · n=8 · "Entertainment" | "Productivity" | "Photos and Videos" | "Connection"
+    40px/w700 · ls:nullem lh:1.1 · n=8 · "The ultimate theater." | "A workspace with infinite space." | "Be in the moment." | "Share quality time."
+    21px/w600 · ls:0.2em lh:1.19 · n=2 · "Pushing boundaries from the inside out." | "Our values lead the way."
+    21px/w700 · ls:0.2em lh:1.19 · n=4 · "More pixels than a 4K TV. For each eye." | "Our most advanced Spatial Audio system ever." | "Responsive, precision eye tracking." | "A sophisticated sensor array."
+    32px/w700 · ls:0.1em lh:1.25 · n=1 · "Revolutionary dual‑chip performance. Now powered"
+  body:
+    17px · lh:1.47 w:600 · n=24 · rgb(29, 29, 31) / rgb(134, 134, 139) · "Apple Vision Pro for Enterprise" | "Apple Vision Pro is the result of decades of hig"
+    28px · lh:1.14 w:700 · n=3 · rgb(29, 29, 31) · "Apple Vision Pro
+seamlessly blends
+digital conte" | "So you can work, watch,
+relive memories, and
+con"
+    40px · lh:1.1 w:700 · n=3 · rgb(29, 29, 31) · "The ultimate theater.
+Wherever you are." | "A workspace with infinite space."
+  sections (padT/padB, count, max h, bg):
+    0px/0px · n=6 · maxH=8059 · rgb(245, 245, 247) / rgba(0, 0, 0, 0) / rgb(255, 255, 255)
+    110px/0px · n=1 · maxH=5094 · rgba(0, 0, 0, 0)
+    110px/25px · n=1 · maxH=1285 · rgba(0, 0, 0, 0)
+    96px/80px · n=1 · maxH=571 · rgb(245, 245, 247)
+    110px/104px · n=1 · maxH=837 · rgb(245, 245, 247)
+    17px/11px · n=1 · maxH=1642 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 0px 38px bg:rgba(0, 0, 0, 0) ×4
+    grid cols:"280px 280px 280px 280px 280px 280px 280p" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"280px 280px 280px 280px 280px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×3
+    grid cols:"280px 280px 280px 280px 280px 280px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"280px 280px 280px 280px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"280px 280px 280px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"390px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    flex cols:"none" gap:34px radius:0 itemPad:30px 0px 0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "Book a demo" 14px/w400 px:17px/17px h:36 r:980 bg:rgba(0, 0, 0, 0) color:rgb(29, 29, 31) border:rgb(29, 29, 31)
+    "Buy" 14px/w400 px:15px/14px h:36 r:980 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Shop and Learn" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Wallet" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Account" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Entertainment" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Store" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Business" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Education" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Healthcare" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Government" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Values" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "About Apple" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+── desktop-lg (1068px, scrollH 28877)
+  nav: {"h":44,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "Apple Vision Pro"
+    24px/w600 · ls:0.2em lh:1.17 · n=1 · "New powerful M5 chip and comfortable Dual Knit B"
+    40px/w600 · ls:nullem lh:1.1 · n=3 · "Apple Vision Pro seamlessly" | "So you can work, watch," | "The era of spatial"
+    48px/w600 · ls:-0.1em lh:1.08 · n=1 · "Take a closer look."
+    19px/w700 · ls:0.2em lh:1.21 · n=8 · "Entertainment" | "Productivity" | "Photos and Videos" | "Connection"
+    64px/w700 · ls:-0.6em lh:1.06 · n=8 · "The ultimate theater." | "A workspace with infinite space." | "Be in the moment." | "Share quality time."
+    19px/w600 · ls:0.2em lh:1.21 · n=2 · "Pushing boundaries from the inside out." | "Our values lead the way."
+    24px/w700 · ls:0.2em lh:1.17 · n=5 · "More pixels than a 4K TV. For each eye." | "Our most advanced Spatial Audio system ever." | "Responsive, precision eye tracking." | "A sophisticated sensor array."
+    32px/w600 · ls:0.1em lh:1.13 · n=2 · "Explore" | "An exciting new platform."
+  body:
+    17px · lh:1.47 w:400 · n=23 · rgb(29, 29, 31) / rgb(134, 134, 139) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "Apple Vision Pro is the result of decades of hig"
+    40px · lh:1.1 w:600 · n=3 · rgb(29, 29, 31) · "Apple Vision Pro seamlessly
+blends digital conte" | "So you can work, watch,
+relive memories, and
+con"
+    14px · lh:1.29 w:600 · n=4 · rgb(232, 232, 237) / rgb(134, 134, 139) · "Stream Wolfs on Apple TV with a subscription" | "PlayStation VR2 Sense controller sold separately"
+  sections (padT/padB, count, max h, bg):
+    0px/0px · n=6 · maxH=11941 · rgb(245, 245, 247) / rgba(0, 0, 0, 0) / rgb(255, 255, 255)
+    130px/0px · n=1 · maxH=6447 · rgba(0, 0, 0, 0)
+    130px/10px · n=1 · maxH=1362 · rgba(0, 0, 0, 0)
+    90px/88px · n=1 · maxH=470 · rgb(245, 245, 247)
+    78px/76px · n=1 · maxH=574 · rgb(245, 245, 247)
+    17px/11px · n=1 · maxH=794 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×21
+    grid cols:"692px 692px 692px 692px 336px 336px 336p" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"692px 692px 692px 692px 692px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"692px 692px 692px 336px 692px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"692px 692px 692px 692px 692px 692px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"692px 336px 692px 692px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"692px 692px 692px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"692px 692px 692px 336px 692px 692px 692p" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"1068px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×4
+    grid cols:"692px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Book a demo" 17px/w400 px:21px/21px h:44 r:980 bg:rgba(0, 0, 0, 0) color:rgb(29, 29, 31) border:rgb(29, 29, 31)
+    "Buy" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+── desktop-xl (1440px, scrollH 32702)
+  nav: {"h":44,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "Apple Vision Pro"
+    28px/w600 · ls:0.2em lh:1.14 · n=1 · "New powerful M5 chip and comfortable Dual Knit B"
+    48px/w600 · ls:-0.1em lh:1.08 · n=3 · "Apple Vision Pro seamlessly" | "So you can work, watch, relive" | "The era of spatial computing is here."
+    56px/w600 · ls:-0.3em lh:1.07 · n=3 · "Take a closer look." | "Explore" | "An exciting new platform."
+    24px/w700 · ls:0.2em lh:1.17 · n=8 · "Entertainment" | "Productivity" | "Photos and Videos" | "Connection"
+    80px/w700 · ls:-1.2em lh:1.05 · n=8 · "The ultimate theater." | "A workspace with infinite space." | "Be in the moment." | "Share quality time."
+    24px/w600 · ls:0.2em lh:1.33 · n=2 · "Pushing boundaries from the inside out." | "Our values lead the way."
+    32px/w700 · ls:0.1em lh:1.13 · n=5 · "More pixels than a 4K TV. For each eye." | "Our most advanced Spatial Audio system ever." | "Responsive, precision eye tracking." | "A sophisticated sensor array."
+  body:
+    17px · lh:1.47 w:400 · n=22 · rgb(29, 29, 31) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "Apple Vision Pro is the result of decades of hig"
+    14px · lh:1.29 w:600 · n=4 · rgb(232, 232, 237) / rgb(134, 134, 139) · "Stream Wolfs on Apple TV with a subscription" | "PlayStation VR2 Sense controller sold separately"
+    21px · lh:1.38 w:600 · n=4 · rgb(134, 134, 139) · "Transform any room into your own personal theate" | "Apple Vision Pro gives you limitless space to do"
+  sections (padT/padB, count, max h, bg):
+    0px/0px · n=6 · maxH=13118 · rgb(245, 245, 247) / rgba(0, 0, 0, 0) / rgb(255, 255, 255)
+    180px/0px · n=2 · maxH=7788 · rgba(0, 0, 0, 0)
+    160px/164px · n=1 · maxH=764 · rgb(245, 245, 247)
+    146px/164px · n=1 · maxH=883 · rgb(245, 245, 247)
+    17px/11px · n=1 · maxH=794 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×21
+    grid cols:"820px 820px 820px 820px 400px 400px 400p" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"820px 820px 820px 820px 980px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"820px 820px 820px 400px 980px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"820px 820px 820px 820px 820px 980px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"820px 400px 820px 980px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"820px 820px 980px" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"820px 820px 820px 400px 820px 820px 820p" gap:20px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"1440px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×4
+    grid cols:"980px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Book a demo" 17px/w400 px:21px/21px h:44 r:980 bg:rgba(0, 0, 0, 0) color:rgb(29, 29, 31) border:rgb(29, 29, 31)
+    "Buy" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Shop" 24px/w400 px:0px/0px h:29 r:0 bg:rgba(0, 0, 0, 0) color:rgb(0, 102, 204)
+
+════════ education ════════
+── phone (390px, scrollH 7975)
+  nav: {"h":48,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "Apple Education"
+    40px/w600 · ls:nullem lh:1.1 · n=1 · "Designed for"
+    21px/w600 · ls:-0.2em lh:1.29 · n=12 · "Imagine what’s possible with Apple Education." | "Empower learning that starts with agency." | "Learning without limits." | "Take higher education even higher."
+    48px/w600 · ls:-0.1em lh:1.08 · n=1 · "Education that’s a grade ahead."
+    28px/w600 · ls:0.2em lh:1.14 · n=4 · "Intuitive devices" | "Versatile tools that enable expression." | "An investment that’s built to last." | "A partnership that ignites bright ideas."
+    32px/w600 · ls:0.1em lh:1.13 · n=6 · "From grade school to grad school." | "Real stories. Real impact." | "How to Buy." | "Our values lead the way."
+  body:
+    17px · lh:1.47 w:600 · n=18 · rgb(29, 29, 31) / rgb(245, 245, 247) / rgb(110, 110, 115) · "Apple Vision Pro for Enterprise" | "Intuitive devices
+built to engage.
+Redefine what"
+    14px · lh:1.43 w:400 · n=6 · rgb(245, 245, 247) / rgb(29, 29, 31) · "Explore the positive student outcomes K–12 teach" | "Imagine what’s possible with Apple Education.
+Wa"
+    21px · lh:1.19 w:600 · n=5 · rgba(255, 255, 255, 0.92) · "Take higher education even higher." | "Industry-ready from day one. With Apple."
+    19px · lh:1.42 w:400 · n=1 · rgb(29, 29, 31) · "Invest in success by bringing Apple to your inst"
+  sections (padT/padB, count, max h, bg):
+    112px/112px · n=3 · maxH=632 · rgb(0, 0, 0) / rgb(250, 248, 246) / rgb(250, 250, 252)
+    0px/0px · n=1 · maxH=613 · rgb(255, 255, 255)
+    96px/96px · n=1 · maxH=942 · rgb(255, 255, 255)
+    100px/112px · n=1 · maxH=2660 · rgb(250, 248, 246)
+    112px/0px · n=1 · maxH=661 · rgb(255, 255, 255)
+    17px/11px · n=1 · maxH=394 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    grid cols:"341.25px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    flex cols:"none" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×12
+    grid cols:"341.234px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"260px 260px 260px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"260px" gap:normal radius:0 itemPad:24px 24px 0px bg:rgba(0, 0, 0, 0) ×7
+    grid cols:"260px 260px 260px 260px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(245, 245, 247) color:rgb(0, 0, 0) border:rgba(0, 0, 0, 0)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Shop and Learn" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Wallet" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Account" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Entertainment" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Store" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Business" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Education" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Healthcare" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Government" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Values" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "About Apple" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+── desktop-lg (1068px, scrollH 7169)
+  nav: {"h":44,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "Apple Education"
+    48px/w600 · ls:-0.1em lh:1.08 · n=1 · "Designed for"
+    26px/w600 · ls:-0.4em lh:1.24 · n=2 · "Imagine what’s possible with Apple Education." | "Empower learning that starts with agency."
+    64px/w600 · ls:-0.6em lh:1.06 · n=1 · "Education that’s a grade ahead."
+    32px/w600 · ls:0.1em lh:1.13 · n=4 · "Intuitive devices" | "Versatile tools that enable expression." | "An investment" | "A partnership that ignites bright ideas."
+    40px/w600 · ls:nullem lh:1.1 · n=6 · "From grade school to grad school." | "Real stories. Real impact." | "How to Buy." | "Our values lead the way."
+    24px/w600 · ls:0.2em lh:1.17 · n=10 · "Learning without limits." | "Take higher education even higher." | "Major. In any field." | "Industry-ready from day one. With Apple."
+  body:
+    17px · lh:1.47 w:400 · n=23 · rgb(29, 29, 31) / rgb(245, 245, 247) / rgb(110, 110, 115) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "Imagine what’s possible with Apple Education.
+Wa"
+    14px · lh:1.43 w:400 · n=1 · rgb(245, 245, 247) · "Explore the positive student outcomes K–12 teach"
+    24px · lh:1.17 w:600 · n=5 · rgba(255, 255, 255, 0.92) · "Take higher education even higher." | "Industry-ready from day one. With Apple."
+    21px · lh:1.38 w:400 · n=1 · rgb(29, 29, 31) · "Invest in success by bringing Apple to your inst"
+  sections (padT/padB, count, max h, bg):
+    120px/120px · n=3 · maxH=678 · rgb(0, 0, 0) / rgb(250, 248, 246) / rgb(250, 250, 252)
+    0px/0px · n=2 · maxH=1254 · rgb(255, 255, 255)
+    96px/96px · n=1 · maxH=582 · rgb(255, 255, 255)
+    100px/120px · n=1 · maxH=1816 · rgb(250, 248, 246)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×23
+    grid cols:"457.25px 457.25px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"457.234px 457.25px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"344px 344px 344px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"344px" gap:normal radius:0 itemPad:28px 28px 0px bg:rgba(0, 0, 0, 0) ×3
+    grid cols:"643px 643px 643px 643px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"643px" gap:normal radius:0 itemPad:28px 28px 0px bg:rgba(0, 0, 0, 0) ×4
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(245, 245, 247) color:rgb(0, 0, 0) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+── desktop-xl (1440px, scrollH 7757)
+  nav: {"h":44,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "Apple Education"
+    64px/w600 · ls:-0.6em lh:1.06 · n=1 · "Designed for"
+    26px/w600 · ls:-0.4em lh:1.24 · n=2 · "Imagine what’s possible with Apple Education." | "Empower learning that starts with agency."
+    80px/w600 · ls:-1.2em lh:1.05 · n=1 · "Education that’s a grade ahead."
+    48px/w600 · ls:-0.1em lh:1.08 · n=10 · "Intuitive devices" | "Versatile tools that" | "An investment" | "A partnership that ignites bright ideas."
+    28px/w600 · ls:0.2em lh:1.14 · n=10 · "Learning without limits." | "Take higher education even higher." | "Major. In any field." | "Industry-ready from day one. With Apple."
+    21px/w600 · ls:0.2em lh:1.19 · n=3 · "Contact us." | "Buy online." | "Explore pricing."
+  body:
+    17px · lh:1.47 w:400 · n=20 · rgb(29, 29, 31) / rgb(245, 245, 247) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "Imagine what’s possible with Apple Education.
+Wa"
+    14px · lh:1.43 w:400 · n=1 · rgb(245, 245, 247) · "Explore the positive student outcomes K–12 teach"
+    28px · lh:1.14 w:600 · n=5 · rgba(255, 255, 255, 0.92) · "Take higher education even higher." | "Industry-ready from day one. With Apple."
+    21px · lh:1.38 w:400 · n=4 · rgb(29, 29, 31) / rgb(110, 110, 115) · "Invest in success by bringing Apple to your inst" | "Talk with the Apple Education team about bringin"
+  sections (padT/padB, count, max h, bg):
+    144px/144px · n=3 · maxH=771 · rgb(0, 0, 0) / rgb(250, 248, 246) / rgb(250, 250, 252)
+    0px/0px · n=2 · maxH=1254 · rgb(255, 255, 255)
+    0px/80px · n=1 · maxH=615 · rgb(255, 255, 255)
+    100px/144px · n=1 · maxH=1985 · rgb(250, 248, 246)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×23
+    grid cols:"620px 620px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"619.984px 620px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"406.656px 406.672px 406.656px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"406.656px" gap:normal radius:0 itemPad:32px 32px 0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"406.672px" gap:normal radius:0 itemPad:32px 32px 0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"696px 696px 696px 696px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"696px" gap:normal radius:0 itemPad:32px 32px 0px bg:rgba(0, 0, 0, 0) ×4
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(245, 245, 247) color:rgb(0, 0, 0) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(255, 255, 255, 0.8)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+
+════════ edu-k12 ════════
+── phone (390px, scrollH 10490)
+  nav: {"h":48,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "K–12 Education"
+    26px/w600 · ls:-0.4em lh:1.47 · n=5 · "Learning" | "Designed to Engage" | "Designed for Expression" | "Designed to Last"
+    32px/w600 · ls:0.1em lh:1.13 · n=5 · "Get the highlights." | "How to Buy." | "Curated apps that are classroom ready." | "How to Buy."
+    40px/w600 · ls:nullem lh:1.1 · n=4 · "Top marks for" | "Creative tools." | "A smart investment," | "Your team,"
+    21px/w600 · ls:-0.2em lh:1.29 · n=4 · "Bring app development to any classroom." | "Grow confidence with professional learning." | "Streamlined deployment. Seamless management." | "Curated apps that are classroom ready."
+  body:
+    17px · lh:1.47 w:600 · n=15 · rgb(29, 29, 31) · "Apple Vision Pro for Enterprise" | "MacBook Neo. 
+
+Meet the new Mac on campus. MacBo"
+    19px · lh:1.42 w:600 · n=3 · rgb(245, 245, 247) / rgb(29, 29, 31) · "Apple technology helps every kind of learner rea" | "With Mac and iPad, engagement comes naturally wi"
+    14px · lh:1.43 w:600 · n=12 · rgb(110, 110, 115) · "Meet the new Mac on campus. MacBook Neo delivers" | "Explore the positive student outcomes K–12 teach"
+  sections (padT/padB, count, max h, bg):
+    112px/0px · n=5 · maxH=2111 · rgb(250, 248, 246) / rgba(0, 0, 0, 0)
+    0px/0px · n=1 · maxH=730 · rgb(0, 0, 0)
+    112px/112px · n=1 · maxH=1464 · rgb(250, 248, 246)
+    17px/11px · n=1 · maxH=394 · rgba(0, 0, 0, 0)
+  tiles (top 10):
+    grid cols:"260px 260px 260px 260px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×2
+    grid cols:"260px 260px 260px 260px 260px 260px 260p" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    flex cols:"none" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×6
+    grid cols:"10.0938px 10.0938px 10.0938px 10.0938px " gap:40px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"239px" gap:10px radius:16 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"260px 260px 260px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"260px" gap:normal radius:0 itemPad:24px 24px 0px bg:rgba(0, 0, 0, 0) ×3
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Designed to
+Engage" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed for
+Expression" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Last" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Ignite" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgb(0, 0, 0)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "Shop and Learn" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Wallet" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Account" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Entertainment" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "Apple Store" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Business" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Education" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+    "For Healthcare" 12px/w400 px:0px/0px h:36 r:0 bg:rgb(245, 245, 247) color:rgba(0, 0, 0, 0.88)
+── desktop-lg (1068px, scrollH 11221)
+  nav: {"h":44,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "K–12 Education"
+    26px/w600 · ls:-0.4em lh:1.47 · n=6 · "Learning" | "Designed to Engage" | "Designed for Expression" | "Bring app development to any classroom."
+    40px/w600 · ls:nullem lh:1.1 · n=4 · "Get the highlights." | "How to Buy." | "How to Buy." | "Hello. Let’s build a custom plan around your ins"
+    48px/w600 · ls:-0.1em lh:1.08 · n=4 · "Top marks for" | "Creative tools." | "A smart investment," | "Your team,"
+    24px/w600 · ls:0.2em lh:1.17 · n=3 · "Grow confidence with professional learning." | "Streamlined deployment. Seamless management." | "Curated apps that are classroom ready."
+    21px/w600 · ls:0.2em lh:1.19 · n=12 · "Learning Center." | "Apple Teacher." | "Forum." | "Apple Learning Coach."
+    64px/w600 · ls:-0.6em lh:1.06 · n=1 · "Curated apps that are classroom ready."
+  body:
+    17px · lh:1.47 w:400 · n=27 · rgb(29, 29, 31) / rgb(110, 110, 115) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "MacBook Neo. 
+
+Meet the new Mac on campus. MacBo"
+    21px · lh:1.38 w:600 · n=3 · rgb(245, 245, 247) / rgb(29, 29, 31) · "Apple technology helps every kind of learner rea" | "With Mac and iPad, engagement comes naturally wi"
+  sections (padT/padB, count, max h, bg):
+    120px/0px · n=4 · maxH=2612 · rgb(250, 248, 246)
+    0px/0px · n=2 · maxH=750 · rgb(0, 0, 0) / rgba(0, 0, 0, 0)
+    120px/120px · n=1 · maxH=1655 · rgb(250, 248, 246)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×17
+    flex cols:"none" gap:10px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"644px 644px 644px 644px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"644px 344px 644px 644px 644px 644px 644p" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"644px 344px 644px 644px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"59.5312px 59.5312px 59.5312px 59.5312px " gap:40px radius:0 itemPad:0px 14px 0px 0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"267px 386px 267px" gap:normal radius:16 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"344px 344px 344px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"344px" gap:normal radius:0 itemPad:28px 28px 0px bg:rgba(0, 0, 0, 0) ×3
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Engage" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed for
+Expression" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Last" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Ignite" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgb(0, 0, 0)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+── desktop-xl (1440px, scrollH 12061)
+  nav: {"h":44,"bg":"rgba(0, 0, 0, 0)","blur":"none","fontSize":"17px"}
+  headings:
+    34px/w600 · ls:-0.4em lh:1.47 · n=1 · "K–12 Education"
+    26px/w600 · ls:-0.4em lh:1.47 · n=6 · "Learning" | "Designed to Engage" | "Designed for Expression" | "Bring app development to any classroom."
+    48px/w600 · ls:-0.1em lh:1.08 · n=4 · "Get the highlights." | "How to Buy." | "How to Buy." | "Hello. Let’s build a custom plan around your ins"
+    64px/w600 · ls:-0.6em lh:1.06 · n=4 · "Top marks for" | "Creative tools." | "A smart investment," | "Your team,"
+    28px/w600 · ls:0.2em lh:1.14 · n=3 · "Grow confidence with professional learning." | "Streamlined deployment. Seamless management." | "Curated apps that are classroom ready."
+    21px/w600 · ls:0.2em lh:1.19 · n=15 · "Learning Center." | "Apple Teacher." | "Forum." | "Apple Learning Coach."
+    80px/w600 · ls:-1.2em lh:1.05 · n=1 · "Curated apps that are classroom ready."
+  body:
+    17px · lh:1.47 w:400 · n=27 · rgb(29, 29, 31) / rgb(110, 110, 115) · "Store
+Mac
+iPad
+iPhone
+Watch
+Vision
+AirPods
+TV & " | "MacBook Neo. 
+
+Meet the new Mac on campus. MacBo"
+    21px · lh:1.38 w:600 · n=3 · rgb(245, 245, 247) / rgb(29, 29, 31) · "Apple technology helps every kind of learner rea" | "With Mac and iPad, engagement comes naturally wi"
+  sections (padT/padB, count, max h, bg):
+    144px/0px · n=4 · maxH=2720 · rgb(250, 248, 246)
+    0px/0px · n=2 · maxH=910 · rgb(0, 0, 0) / rgba(0, 0, 0, 0)
+    144px/144px · n=1 · maxH=2015 · rgb(250, 248, 246)
+  tiles (top 10):
+    flex cols:"none" gap:normal radius:0 itemPad:0px 88px 0px 0px bg:rgba(0, 0, 0, 0) ×17
+    flex cols:"none" gap:10px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"116px" gap:normal radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"696px 696px 696px 696px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"696px 372px 696px 696px 696px 696px 696p" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"696px 372px 696px 696px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"86.6562px 86.6562px 86.6562px 86.6562px " gap:40px radius:0 itemPad:0px 14px 0px 0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"364px 526px 364px" gap:normal radius:30 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"406.656px 406.672px 406.656px" gap:24px radius:0 itemPad:0px bg:rgba(0, 0, 0, 0) ×1
+    grid cols:"406.656px" gap:normal radius:0 itemPad:32px 32px 0px bg:rgba(0, 0, 0, 0) ×2
+  buttons:
+    "Continue" 14px/w400 px:15px/15px h:36 r:8 bg:rgb(29, 29, 31) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)
+    "TV & Home" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Entertainment" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Accessories" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Support" 12px/w400 px:8px/8px h:44 r:0 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Engage" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed for
+Expression" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Last" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgba(0, 0, 0, 0.8)
+    "Designed to
+Ignite" 14px/w400 px:0px/0px h:54 r:999 bg:rgba(0, 0, 0, 0) color:rgb(0, 0, 0)
+    "Learn more" 17px/w400 px:21px/21px h:44 r:980 bg:rgb(0, 113, 227) color:rgb(255, 255, 255) border:rgba(0, 0, 0, 0)

@@ -84,9 +84,11 @@ export default function LandingFooter({ variant = "brand" }) {
     document.documentElement.lang = code;
   };
   return (
-    <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: C.white, borderColor: C.mist }}>
+    /* Apple's global footer surface: #F5F5F7, hairline seams, quiet 12px
+       links — the page ends in air, not a logo. */
+    <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
       <div className="public-frame public-frame-wide pt-16">
-        <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: C.mist }}>
+        <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="pt-10">
               <h4 className="mb-4 text-[12px] font-medium tracking-[0.24px]" style={{ color: C.ink }}>{section.title}</h4>
@@ -112,7 +114,7 @@ export default function LandingFooter({ variant = "brand" }) {
       </div>
 
       {/* Hairline + legal band */}
-      <div className={`border-t ${quiet ? "" : "mt-12"}`} style={{ borderColor: C.mist }}>
+      <div className={`border-t ${quiet ? "" : "mt-12"}`} style={{ borderColor: "#d2d2d7" }}>
         <div className="public-frame public-frame-wide flex flex-col items-center justify-between gap-4 py-8 md:flex-row">
           <p className="text-[12px] tracking-[0.24px]" style={{ color: C.slate }}>© {new Date().getFullYear()} Visionary. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">

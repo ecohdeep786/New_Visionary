@@ -26,6 +26,13 @@
   --scene-hairline: rgba(255, 255, 255, 0.1);
 }
 
+  /* Apple's resolve-out curve — exposed as a named utility so landing reveals
+     don't trip Tailwind's arbitrary-value ambiguity warnings and the curve
+     ships from one source (this property). */
+  .ease-apple {
+    transition-timing-function: var(--ease-out-apple);
+  }
+
 /* ── 1 · Buttons that feel physical ───────────────────────────────────────
    Not a restyle — an interaction contract. Weight lifts on hover, presses
    back on touch, and the trailing arrow leans forward. Attach to any

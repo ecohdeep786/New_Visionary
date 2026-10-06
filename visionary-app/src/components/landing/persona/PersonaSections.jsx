@@ -186,8 +186,8 @@ const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, tr
                   </svg>
                 </span>
               </button>
-              <h3 className="mt-[calc(clamp(28px,2.9vw,40px)*1.714)] text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-[calc(clamp(28px,2.9vw,40px)*0.714)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
+              <h3 className="mt-5 text-center font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>{stage.title}</h3>
+              <p className="mx-auto mt-3 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
             </article>
           );
         })}
@@ -555,7 +555,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
               >
                 <Meta.Icon className="h-4 w-4" strokeWidth={1.8} />
               </span>
-              <h3 className="max-w-[460px] flex-1 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>
                 {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
               </h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: COLORS.grey }}>
