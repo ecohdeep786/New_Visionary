@@ -1,3 +1,6 @@
+import {assertOrganizationContentRecord} from './organizationContentIntegrity.ts';
+import {assertPortfolioReviewHistory} from './portfolioReviewIntegrity.ts';
+import {assertParentSummaryHistory} from './parentSummaryIntegrity.ts';
 import type { Artifact, Conversation, Database, Evidence, GuideBlock, Locale, MasteryStage, Message, OrganizationSettings, Person, Plan, RequestContext, Resource, Role, Session, Stage, Workspace, WorkspaceData } from '../domain/workspace.ts';
 import { getJourney, matchJourney } from './journeys.ts';
 import { eligibleJourneys } from './journeyEligibility.ts';
@@ -189,6 +192,7 @@ export function savePortfolioSelfReview(ctx:RequestContext,artifactId:string,exp
  if(person?.ageBand!=='adult')throw new Error('Portfolio review is available to adult professional profiles.');
  const artifact=data.artifacts.find(item=>item.id===artifactId);
  if(!artifact)throw new Error('This portfolio project is not in your workspace.');
+ assertPortfolioReviewHistory(artifact);
  if(artifact.status!=='completed'||!artifact.body.trim())throw new Error('Complete the project and add your work before self-review.');
  if(portfolioProjectVersion(artifact)!==expectedVersion||(expectedReviewRevision!==undefined&&portfolioReviewRevision(artifact)!==expectedReviewRevision)){const error=new Error('This project or self-review changed. Your review edits remain available. Export them or load the latest saved review before continuing.');error.name='PortfolioReviewConflictError';throw error;}
  if(!Array.isArray(criteria)||criteria.length!==portfolioReviewCriteria.length||new Set(criteria.map(item=>item?.id)).size!==criteria.length||criteria.some(item=>!item||!portfolioReviewCriteria.some(rule=>rule.id===item.id)||!['needs-work','explained','supported'].includes(item.rating)||typeof item.note!=='string'||!item.note.trim()||item.note.trim().length>500))throw new Error('Review each criterion with a rating and a note of up to 500 characters.');
@@ -202,15 +206,20 @@ export function sharedArtifacts(ctx:RequestContext){const db=read();access(db,ct
 export function stopSharingArtifact(ctx:RequestContext,artifactId:string){const db=read();const data=access(db,ctx);const a=data.artifacts.find(a=>a.id===artifactId);if(!a)throw new Error('Project not found.');a.visibility='private';a.sharedWith=[];a.shares=[];record(data,'Artifact sharing stopped',a.id);write(db);}
 function activeGuardian(db:Database,parentId:string,learnerId:string){return allRelationships(db).find(r=>r.type==='guardian'&&r.from===parentId&&r.to===learnerId&&connectionStatus(r,clock().getTime())==='active'&&r.scope.includes('progress-summary'));}
 /** A learner shares only a short, fixed project summary with one active parent. */
+function requirePersonalParentShare(db:Database,ctx:RequestContext){
+ if(db.workspaces.find(workspace=>workspace.id===ctx.workspaceId)?.organizationId)throw Error('Parent summaries are available from your personal learner workspace. Work projects and goals remain here.');
+}
 export function shareParentProjectSummary(ctx:RequestContext,artifactId:string,parentId:string,summary:string,expectedVersion:string){
  if(ctx.role!=='student')throw new Error('Open the learner workspace to share a project summary.');
  const db=read();const data=access(db,ctx);
+ requirePersonalParentShare(db,ctx);
  const relationship=activeGuardian(db,parentId,ctx.personId);
  if(!relationship)throw new Error('Progress sharing with this parent is no longer active.');
  const artifact=data.artifacts.find(a=>a.id===artifactId);
  if(!artifact)throw new Error('Project not found.');
  if(artifact.status!=='completed')throw new Error('Complete the project before sharing a summary.');
  if(JSON.stringify([artifact.updatedAt,artifact.title,artifact.body,artifact.status])!==expectedVersion)throw new Error('This project changed. Review the saved version before sharing.');
+ assertParentSummaryHistory(artifact.parentSummaries);
  const clean=summary.trim();if(!clean||clean.length>500)throw new Error('Write a project summary of up to 500 characters.');
  artifact.parentSummaries=(artifact.parentSummaries||[]).filter(share=>share.recipient!==parentId);
  artifact.parentSummaries.push({recipient:parentId,relationshipId:relationship.id,title:artifact.title,summary:clean,version:artifact.updatedAt,sharedAt:now()});
@@ -220,6 +229,7 @@ export function stopParentProjectSummary(ctx:RequestContext,artifactId:string,pa
  if(ctx.role!=='student')throw new Error('Open the learner workspace to stop sharing.');
  const db=read();const data=access(db,ctx);const artifact=data.artifacts.find(a=>a.id===artifactId);
  if(!artifact)throw new Error('Project not found.');
+ assertParentSummaryHistory(artifact.parentSummaries);
  artifact.parentSummaries=(artifact.parentSummaries||[]).filter(share=>share.recipient!==parentId);
  record(data,'Parent project summary stopped',artifactId);write(db);return artifact;
 }
@@ -229,23 +239,24 @@ export function familyProjectSummaries(ctx:RequestContext,childId:string){
  const relationship=activeGuardian(db,ctx.personId,childId);
  if(!relationship)throw new Error('This child’s project summaries are no longer shared.');
  const learnerWorkspace=db.workspaces.find(w=>w.personId===childId&&w.role==='student'&&!w.organizationId);
- return (learnerWorkspace?db.data[learnerWorkspace.id]?.artifacts||[]:[]).flatMap(artifact=>(artifact.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:artifact.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
+ return (learnerWorkspace?db.data[learnerWorkspace.id]?.artifacts||[]:[]).flatMap(artifact=>{assertParentSummaryHistory(artifact.parentSummaries);return (artifact.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:artifact.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}));}).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
 }
-export function saveLearnerGoal(ctx:RequestContext,input:{id?:string;title:string;body:string}){
+export function saveLearnerGoal(ctx:RequestContext,input:{id?:string;title:string;body:string},expectedRevision?:string){
  if(ctx.role!=='student')throw new Error('Open the learner workspace to save a learning goal.');
  const db=read();const data=access(db,ctx);
  if(input.id&&!data.resources.some(resource=>resource.id===input.id&&resource.kind==='goal'))throw new Error('This learning goal is not in your workspace.');
  if(!input.title.trim()||input.title.trim().length>160)throw new Error('Give your goal a title of up to 160 characters.');
  if(input.body.length>6000)throw new Error('Keep private goal notes within 6000 characters.');
- return saveResource(ctx,{id:input.id,title:input.title.trim(),body:input.body,kind:'goal',status:'draft',audience:'Personal'});
+ return saveResource(ctx,{id:input.id,title:input.title.trim(),body:input.body,kind:'goal',status:'draft',audience:'Personal'},expectedRevision);
 }
 export function shareParentGoalSummary(ctx:RequestContext,goalId:string,parentId:string,summary:string,expectedVersion:string){
  if(ctx.role!=='student')throw new Error('Open the learner workspace to share a learning goal.');
- const db=read();const data=access(db,ctx);const relationship=activeGuardian(db,parentId,ctx.personId);
+ const db=read();const data=access(db,ctx);requirePersonalParentShare(db,ctx);const relationship=activeGuardian(db,parentId,ctx.personId);
  if(!relationship)throw new Error('Progress sharing with this parent is no longer active.');
  const goal=data.resources.find(resource=>resource.id===goalId&&resource.kind==='goal');
  if(!goal||goal.status==='archived')throw new Error('This learning goal is unavailable.');
  if(JSON.stringify([goal.updatedAt,goal.title,goal.body,goal.status])!==expectedVersion)throw new Error('This goal changed. Review the saved version before sharing.');
+ assertParentSummaryHistory(goal.parentSummaries);
  const clean=summary.trim();if(!clean||clean.length>500)throw new Error('Write a goal summary of up to 500 characters.');
  goal.parentSummaries=(goal.parentSummaries||[]).filter(share=>share.recipient!==parentId);
  goal.parentSummaries.push({recipient:parentId,relationshipId:relationship.id,title:goal.title,summary:clean,version:goal.updatedAt,sharedAt:now()});
@@ -255,6 +266,7 @@ export function stopParentGoalSummary(ctx:RequestContext,goalId:string,parentId:
  if(ctx.role!=='student')throw new Error('Open the learner workspace to stop sharing.');
  const db=read();const data=access(db,ctx);const goal=data.resources.find(resource=>resource.id===goalId&&resource.kind==='goal');
  if(!goal)throw new Error('Learning goal not found.');
+ assertParentSummaryHistory(goal.parentSummaries);
  goal.parentSummaries=(goal.parentSummaries||[]).filter(share=>share.recipient!==parentId);
  record(data,'Parent learning goal stopped',goalId);write(db);return goal;
 }
@@ -263,7 +275,7 @@ export function familyGoalSummaries(ctx:RequestContext,childId:string){
  const db=read();access(db,ctx);const relationship=activeGuardian(db,ctx.personId,childId);
  if(!relationship)throw new Error('This child’s goal summaries are no longer shared.');
  const learnerWorkspace=db.workspaces.find(w=>w.personId===childId&&w.role==='student'&&!w.organizationId);
- return (learnerWorkspace?db.data[learnerWorkspace.id]?.resources||[]:[]).filter(goal=>goal.kind==='goal'&&goal.status!=='archived').flatMap(goal=>(goal.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:goal.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}))).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
+ return (learnerWorkspace?db.data[learnerWorkspace.id]?.resources||[]:[]).filter(goal=>goal.kind==='goal'&&goal.status!=='archived').flatMap(goal=>{assertParentSummaryHistory(goal.parentSummaries);return (goal.parentSummaries||[]).filter(share=>share.recipient===ctx.personId&&share.relationshipId===relationship.id).map(share=>({id:goal.id,title:share.title,summary:share.summary,version:share.version,sharedAt:share.sharedAt}));}).sort((a,b)=>b.sharedAt.localeCompare(a.sharedAt));
 }
 export function resourceRevision(resource:Resource){return JSON.stringify([resource.updatedAt,resource.title,resource.body,resource.status,resource.audience,resource.checks,resource.members,resource.classIds,resource.objectiveSnapshot]);}
 export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:string;body:string;kind:Resource['kind']},expectedRevision?:string){
@@ -285,14 +297,14 @@ export function saveResource(ctx:RequestContext,patch:Partial<Resource>&{title:s
  Object.assign(resource,patch,{id:resource.id,updatedAt:now(),...(ctx.role==='organization'?{audience:'Organization'}:{}),...(patch.checks?{checks:patch.checks.map(check=>({id:check.id,prompt:check.prompt.trim()}))}:{})});
  record(data,`${resource.kind} saved`,resource.id);write(db);return resource;
 }
-function resourceData(db:Database,ctx:RequestContext){const own=access(db,ctx);if(ctx.role!=='organization')return own;const policy=requireOrganizationPermission(ctx,'academic');const owner=db.people.find(person=>person.email===policy.organizationEmail);const space=db.workspaces.find(workspace=>workspace.personId===owner?.id&&workspace.role==='organization'&&!workspace.organizationId);if(!space||!db.data[space.id])throw new Error('The organization resource workspace is unavailable.');return db.data[space.id]!;}
+function resourceData(db:Database,ctx:RequestContext){const own=access(db,ctx);if(ctx.role!=='organization')return own;const policy=requireOrganizationPermission(ctx,'academic');const owner=db.people.find(person=>person.email===policy.organizationEmail);const space=db.workspaces.find(workspace=>workspace.personId===owner?.id&&workspace.role==='organization'&&!workspace.organizationId);if(!space||!db.data[space.id])throw new Error('The organization resource workspace is unavailable.');const data=db.data[space.id]!;if(!Array.isArray(data.resources))throw Error('Saved organization resources could not be read. Original records were kept.');return data;}
 export function archiveResource(ctx:RequestContext,resourceId:string){const db=read();const data=resourceData(db,ctx);const resource=data.resources.find(r=>r.id===resourceId);if(!resource)throw new Error('Item not found.');if(resource.contentReview)throw new Error('Use the content review workflow to archive or restore this resource.');resource.status=resource.status==='archived'?'draft':'archived';record(data,resource.status,resourceId);write(db);}
 
 /** Versioned organization review is local editorial approval, not published curriculum. */
 export function saveOrganizationContent(ctx:RequestContext,input:{id?:string;title:string;body:string;source:string;language:Locale;kind?:'lesson'|'curriculum';curriculumTemplate?:CurriculumTemplate},expectedRevision?:number){
  const db=read();const data=resourceData(db,ctx);requireOrganizationPermission(ctx,'academic');
  if(typeof input.title!=='string'||!input.title.trim()||input.title.length>200||typeof input.body!=='string'||input.body.length>50000||typeof input.source!=='string'||input.source.length>2000||!['en','hi','bn'].includes(input.language))throw new Error('Add a title within 200 characters, content within 50,000 characters, a source within 2,000 characters, and a supported language.');
- let item=data.resources.find(row=>row.id===input.id);
+ let item=data.resources.find(row=>row.id===input.id);if(item)assertOrganizationContentRecord(item);
  const kind=input.kind||item?.kind||'lesson';if(!['lesson','curriculum'].includes(kind))throw new Error('Choose a content resource or curriculum template.');if(item&&item.kind!==kind)throw new Error('A reviewed resource cannot change its category. Create a separate sourced template.');
  if(input.curriculumTemplate!==undefined){if(kind!=='curriculum')throw Error('Structured objectives belong to a curriculum template.');assertCurriculumTemplate(input.curriculumTemplate);}
  if(item?.curriculumTemplate&&input.curriculumTemplate===undefined)throw Error('Retain the structured curriculum when saving this revision.');
@@ -304,7 +316,7 @@ export function saveOrganizationContent(ctx:RequestContext,input:{id?:string;tit
  item.updatedAt=now();item.contentReview!.history.push({action:'draft-saved',actor:ctx.personId,at:item.updatedAt,revision:item.contentReview!.revision,note:''});record(data,'Content draft saved',item.id,ctx.personId);write(db);return item;
 }
 export function changeOrganizationContent(ctx:RequestContext,resourceId:string,expectedRevision:number,action:'submit'|'request-changes'|'approve'|'archive'|'restore'|'revise',note='',checks?:{source:boolean;accuracy:boolean;language:boolean}){
- const db=read();const data=resourceData(db,ctx);requireOrganizationPermission(ctx,'academic');const item=data.resources.find(row=>row.id===resourceId);const review=item?.contentReview;
+ const db=read();const data=resourceData(db,ctx);requireOrganizationPermission(ctx,'academic');const item=data.resources.find(row=>row.id===resourceId);const review=item?.contentReview;if(item)assertOrganizationContentRecord(item);
  if(!item||!review||review.revision!==expectedRevision)throw new Error('This content version is unavailable or changed. Reopen the latest saved version.');
  if(typeof note!=='string'||note.length>2000)throw new Error('Keep review notes within 2,000 characters.');
  const transitions={submit:{from:['draft','changes'],to:'submitted'},'request-changes':{from:['submitted'],to:'changes'},approve:{from:['submitted'],to:'approved'},archive:{from:['draft','changes','approved'],to:'archived'},restore:{from:['archived'],to:'draft'},revise:{from:['approved'],to:'draft'}};
@@ -317,7 +329,7 @@ export function changeOrganizationContent(ctx:RequestContext,resourceId:string,e
  item.status=transition.to;item.updatedAt=now();review.history.push({action,actor:ctx.personId,at:item.updatedAt,revision:review.revision,note:note.trim(),...(action==='approve'?{checks:{source:true,accuracy:true,language:true}}:{})});record(data,`Content ${action}`,item.id,ctx.personId);write(db);return item;
 }
 export function deliverOrganizationContent(ctx:RequestContext,resourceId:string,expectedRevision:number,teacherEmail:string){
- const db=read();const data=resourceData(db,ctx);const policy=requireOrganizationPermission(ctx,'academic');const item=data.resources.find(row=>row.id===resourceId);const review=item?.contentReview;
+ const db=read();const data=resourceData(db,ctx);const policy=requireOrganizationPermission(ctx,'academic');const item=data.resources.find(row=>row.id===resourceId);const review=item?.contentReview;if(item)assertOrganizationContentRecord(item);
  if(!item||!review||item.status!=='approved'||review.revision!==expectedRevision)throw new Error('Choose the latest approved content revision before sharing.');
  const membership=readOrganizationInviteRows().find(row=>row.organization_email===policy.organizationEmail&&row.email===teacherEmail&&row.role==='teacher'&&inviteStatus(row)==='active');
  if(!membership)throw new Error('Choose an active accepted teacher in this organization.');
@@ -565,7 +577,16 @@ export function familyClassworkDigest(ctx:RequestContext,childId:string,days:7|3
   const assignment=assignments.find(item=>item.id===row.assignment_id&&item.class_id===row.class_id);
   return {id:String(row.id),title:typeof assignment?.title==='string'?assignment.title:'Class activity',date:String(row.graded_date).slice(0,10)};
  }).sort((a,b)=>b.date.localeCompare(a.date));
- const enrolledIds=new Set(enrollments.filter(row=>row.student_email===person.email&&row.status==='active').map(row=>row.class_id));
+ const classrooms=rows('Classroom');
+ const memberships=readOrganizationInviteRows();
+ const enrolledIds=new Set(enrollments.filter(row=>{
+  if(row.student_email!==person.email||row.status!=='active')return false;
+  const classroom=classrooms.find(item=>item.id===row.class_id);
+  if(!classroom)return false;
+  if(classroom.organization_email===undefined||classroom.organization_email==='')return true;
+  if(typeof classroom.organization_email!=='string')throw Error('Classwork updates could not be read on this device. Try again.');
+  return memberships.some(member=>member.email===person.email&&member.organization_email===classroom.organization_email&&['student','professional'].includes(member.role)&&person.roles.includes(member.role as Role)&&inviteStatus(member)==='active');
+ }).map(row=>row.class_id));
  const today=clock().toISOString().slice(0,10);const through=new Date(clock().getTime()+7*86400000).toISOString().slice(0,10);
  const upcoming=assignments.filter(row=>enrolledIds.has(row.class_id)&&assignmentAcceptsResponses(row,clock().getTime())&&typeof row.due_date==='string'&&row.due_date>=today&&row.due_date<=through&&
    !submissions.some(item=>item.assignment_id===row.id&&item.student_email===person.email)).map(row=>({id:String(row.id),title:typeof row.title==='string'?row.title:'Class activity',dueDate:String(row.due_date)})).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));

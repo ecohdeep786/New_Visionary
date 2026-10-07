@@ -96,7 +96,10 @@ try {
  await enter('sponsor-pro', '/dashboard/career');
  await page.getByText('Your personal professional space').waitFor();
  assert.equal(await page.getByLabel('Capability or role target').inputValue(), 'Personal data career');
- assert.equal(await page.getByRole('combobox', { name: 'Active workspace' }).count(), 0);
+ const remainingOptions=await page.getByRole('combobox',{name:'Active workspace'}).locator('option').evaluateAll(options=>options.map(option=>option.value));
+ assert.ok(remainingOptions.includes('sponsor-pro:professional'));
+ assert.equal(remainingOptions.includes('sponsor-pro:professional:org:company@sponsor.test'),false);
+ assert.equal(await page.getByText('WORK_ONLY_GOAL',{exact:true}).count(),0);
  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
  assert.deepEqual(errors, []);
  console.log('Professional sponsored journey: audited invite, accept, separate personal/work goals, switch, revoke and personal recovery passed at 390px.');

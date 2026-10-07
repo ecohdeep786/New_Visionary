@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
@@ -6,7 +6,6 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main-2400w.webp";
 import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
-import useSheetStack from "@/components/landing/system/useSheetStack";
 import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
 
 /**
@@ -39,16 +38,13 @@ import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
 import parentmeet from "@/assets/parent-hero-main-2400w.webp";
 import promeet from "@/assets/pro-face-main-2400w.webp";
 import orgmeet from "@/assets/org-face-main-2400w.webp";
-import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
+import { useCycleIndex as UseCycleIndex, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
 import {
-  StruggleHeading,
-  StruggleCluster,
-  CarouselDots,
-  JourneyCarousel,
+  StruggleChapter,
+  JourneyGallery,
   JourneyModal,
   IntelligenceCopy,
   IntelligenceVisual,
-  LanguageChips,
   StageDropdown,
   ContinuityCard,
   AchievementAccordion,
@@ -56,7 +52,6 @@ import {
   TrustCard,
   ExploreCard,
   ChevronIcon,
-  VoiceIcon,
   FadeReveal,
 } from "@/components/landing/persona/PersonaSections";
 
@@ -64,9 +59,11 @@ const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
 
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
- * 01 hero · 02 struggle · 03 promise · 04 journey · 05 intelligence ·
+ * 01 hero · 02 struggle · 04 journey · 05 intelligence ·
  * 06 closing · 07 language · 08 continuity · 09 achievement ·
  * 10 journey-flow · 11 trust · 12 cta · 13 explore
+ * (03 retired — the promise/question beat; keys keep their historical
+ * numbers so bridge CSS and probes stay stable)
  * ═══════════════════════════════════════════════════════════════════ */
 
 /* ── DESIGN TOKENS ── */
@@ -83,6 +80,33 @@ const COLORS = {
   cardSurfaceAlt: "#E9EFFA",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
+
+/* Reduced motion — the dial and carousels read click-driven / instant under it */
+function UsePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return undefined;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return reduced;
+}
+
+/* The scroll slide is retired on this page — every section renders present
+   the moment you arrive, no translate-and-fade stack on scroll. These
+   keep the reveal hooks' signature so the section code doesn't change. */
+function UseRevealOnce() {
+  const ref = useRef(null);
+  return { ref, visible: true };
+}
+
+function UseRevealContinuous() {
+  const ref = useRef(null);
+  return { ref, visible: true };
+}
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 
@@ -145,6 +169,10 @@ const INTELLIGENCE_STEPS = [
   { title: "Practice what you're learning.", copy: "Visionary keeps teaching, listening, adapting, and encouraging until understanding becomes confidence." },
   { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
 ];
+
+/* Photography per step — the framed-photo anatomy shared with the landing
+   and the Organization page (never the window/art fallback). */
+const INTELLIGENCE_IMG = [higherStudent, secondaryStudent, competitiveStudent, vocationStudent];
 
 const KEEPS_WORDS = ["teaching", "listening", "adapting"];
 
@@ -211,7 +239,7 @@ const EXPLORE_CATEGORIES = [
 const StudentHeroSection = React.memo(() => (
   <PersonaHero
     words={HERO_WORDS}
-    srSentence="Learning, to mastery."
+    srSentence="Learning, to master, to build."
     sub="Every concept you understand becomes the foundation for the next."
     img={studentHero}
     alt="A student smiling while carrying a new laptop"
@@ -233,54 +261,44 @@ const StudentHeroSection = React.memo(() => (
 function StudentStruggleSection() {
   const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
   const { ref, visible } = UseRevealContinuous();
-  const slide = SLIDES[index];
 
   return (
-    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-24 lg:py-32">
+    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
-          <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
-              The problem
-            </p>
-            <div className="mt-6">
-              <StruggleHeading word={slide.word} slideKey={index} lines={STRUGGLE_LINES} />
-            </div>
-          </div>
-
-          <div className="relative w-full lg:col-span-7 lg:pr-[2%] xl:pr-[4%]">
-            <StruggleCluster slide={slide} slideKey={index} />
-          </div>
-        </div>
-
-        <div className="mt-12 flex justify-center px-6 lg:mt-14">
-          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} label="Student learning challenges" />
-        </div>
+        {/* the bridge's compact band (02-struggle) carries the chapter breath */
+        }
+        <StruggleChapter
+          slides={SLIDES}
+          index={index}
+          goTo={goTo}
+          lines={STRUGGLE_LINES}
+          label="Student learning challenges"
+        />
       </FadeReveal>
     </section>
   );
 }
 
-/* ═══════════════════════ 03 · PROMISE ═══════════════════════ */
-
-const StudentPromiseSection = React.memo(function StudentPromiseSection() {
-  const { ref, visible } = UseRevealOnce();
-  return (
-    <section ref={ref} data-section="03-promise" className="relative isolate overflow-hidden px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
-      <h2
-        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-        style={{ color: COLORS.ink }}
-      >
-        What if it never forgot{" "}
-        <span className="accent-gradient">where you left off?</span>
-      </h2>
-    </section>
-  );
-});
-
 /* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
+/* The turn from the problem chapter lands directly here: the struggle ends
+   in a first-person quote, and this chapter answers it with the product —
+   "Learning that moves with you." No promise/question beat between them:
+   the hero already carries the promise (…becomes the foundation for the
+   next), and a "what if" with no antecedent reads as a fragment. Apple
+   turns with statements, not rhetorical questions. */
 
-/* Icons per journey stage — reuses icons already imported in this file */
+const JOURNEY_STAGES = [
+  { title: "Primary", statement: "Build the basics. Build them right.", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Secondary and higher secondary", statement: "One place for every subject.", copy: "When lessons get difficult, understanding keeps up through every chapter and every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Competitive exams", statement: "Prepare for the exam. Not just the syllabus.", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational and skills", statement: "Learn by doing. Skills that work.", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
+  { title: "Higher education", statement: "Go deeper. Build further.", copy: "Turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
+  { title: "Learning on your own", statement: "Your pace. Your path.", copy: "Start with what you want to understand. The path takes shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
+];
+
+const JOURNEY_CATEGORIES = ["Primary", "Secondary and higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
+
+/* Icons per journey-flow card (10 · JOURNEY FLOW) */
 const JOURNEY_STAGE_ICONS = {
   "Primary": Sparkles,
   "Secondary": BookOpen,
@@ -292,17 +310,6 @@ const JOURNEY_STAGE_ICONS = {
   "Learning on your own": Clock,
   "Independent learning": Clock,
 };
-
-const JOURNEY_STAGES = [
-  { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
-  { title: "Secondary and higher secondary", copy: "When lessons get difficult, understanding keeps up through every chapter and every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
-  { title: "Competitive exams", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
-  { title: "Vocational and skills", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
-  { title: "Higher education", copy: "Turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
-  { title: "Learning on your own", copy: "Start with what you want to understand. The path takes shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
-];
-
-const JOURNEY_CATEGORIES = ["Primary", "Secondary and higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
 
 const STAGE_META = {
   "Primary": { Icon: GraduationCap },
@@ -390,94 +397,29 @@ function StudentJourneySection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
-  const [activeStage, setActiveStage] = useState(0);
-  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
-
-  /* scroll → active chip */
-  const handleScroll = useCallback(() => {
-    update();
-    const t = trackRef.current;
-    if (!t) return;
-    const cards = Array.from(t.querySelectorAll("[data-card]"));
-    if (!cards.length) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    let best = 0;
-    let bestDist = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(card.getBoundingClientRect().left - tLeft - align);
-      if (d < bestDist) { bestDist = d; best = i; }
-    });
-    setActiveStage(best);
-  }, [update, trackRef]);
-
-  /* chip → scroll track */
-  const goToStage = useCallback((i) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelectorAll("[data-card]")[i];
-    if (!card) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    t.scrollTo({ left: t.scrollLeft + (card.getBoundingClientRect().left - tLeft) - align, behavior: "smooth" });
-    setActiveStage(i);
-  }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <FadeReveal visible={visible}>
-        {/* header — eyebrow / heading / one-line sub */}
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>
-          Your learning, your journey
-        </p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Learning that
-          <br className="hidden md:block" />{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
-        </h2>
-        <p
-          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
-          style={{ color: COLORS.grey }}
-        >
-          Wherever you begin, Visionary helps your learning move forward from there.
-        </p>
-
-        {/* stage rail — even beat under the header */}
-        <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Learning stages">
-            {JOURNEY_STAGES.map((stage, i) => {
-              const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
-              const active = i === activeStage;
-              return (
-                <button
-                  key={stage.title}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => goToStage(i)}
-                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                  style={active
-                    ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
-                    : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
-                >
-                  <Icon className="h-4 w-4" strokeWidth={1.8} />
-                  {stage.title}
-                </button>
-              );
-            })}
-          </div>
+        {/* header — Apple's card-chapter treatment (education: "From grade
+            school to grad school."): statement LEFT-aligned at the measured
+            gutter, and the gallery's track carries the same gutter so the
+            first card starts exactly at the heading's left edge — one spine. */}
+        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+          <h2 className="min-h-[3.15em] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)] md:min-h-0" style={{ color: COLORS.ink }}>
+            Learning that
+            <br className="hidden md:block" />{" "}
+            <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+          </h2>
+          <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]"
+            style={{ color: COLORS.grey }}
+          >
+            Wherever you begin, Visionary helps your learning move forward from there.
+          </p>
         </div>
       </FadeReveal>
 
-      <JourneyCarousel
-        stages={JOURNEY_STAGES}
-        onOpen={setOpenStage}
-        trackRef={trackRef}
-        onScroll={handleScroll}
-        canPrev={canPrev}
-        canNext={canNext}
-        scrollByCard={scrollByCard}
-        iconMap={JOURNEY_STAGE_ICONS}
-      />
+      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Learning stages" />
       {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Primary" secondaryLabel="Start free" />}
     </section>
   );
@@ -498,29 +440,29 @@ function StudentIntelligenceSection() {
   return (
     <section ref={headRef} className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
           The intelligence behind your learning
         </p>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <h2 className="mt-3 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           One intelligence.{" "}
           <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
             {INTELLIGENCE_WORDS[wordIndex]}
           </span>
         </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
+        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: 16 }}>
           From the first question to the moment you can use what you've learned.
         </p>
       </FadeReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
-          <div className="sticky top-16 flex h-[calc(100vh-2rem)] items-center">
+          <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
             <IntelligenceCopy step={current} />
           </div>
         </div>
         <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
           {INTELLIGENCE_STEPS.map((s, i) => (
             <div key={s.title}>
-              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} />
+              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} image={INTELLIGENCE_IMG[i % INTELLIGENCE_IMG.length]} />
               <div className="mt-10 lg:hidden">
                 <IntelligenceCopy step={s} />
               </div>
@@ -554,74 +496,90 @@ const StudentClosingSection = React.memo(function StudentClosingSection() {
 });
 
 /* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
-/* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
+/* The voice dial — the landing's canonical language chapter: six wordless
+   language dots glide one step per beat on a hairline ring, the language
+   landing at 12 o'clock speaks its own subject question at the center,
+   name as a quiet caption, the brand hues listening beneath. */
 
+const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onSelect, reduced }) {
+  const stepDeg = 360 / LANGUAGE_CHIPS.length;
+  /* dots laid out counterclockwise so each advance spins the ring clockwise
+     and still lands the active language at 12 o'clock */
+  const rotation = activeIndex * stepDeg;
+  return (
+    <>
+      {/* the orbit track */}
+      <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
+        <circle cx="50" cy="50" r="49.75" fill="none" stroke={COLORS.ink} strokeOpacity="0.1" strokeWidth="0.25" />
+      </svg>
+      {/* the rotating dot ring */}
+      <div className="absolute inset-0 transition-transform ease-google" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }}>
+        {LANGUAGE_CHIPS.map((c, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <div key={c.code} className="absolute inset-0" style={{ transform: `rotate(${-i * stepDeg}deg)` }}>
+              <button type="button" aria-pressed={isActive} aria-label={`Show ${c.label}`}
+                onClick={() => onSelect(i)}
+                className="absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ boxShadow: isActive ? "0 0 0 6px rgba(18,19,23,0.06)" : "none" }}>
+                <span className="block rounded-full transition-all duration-300"
+                  style={{ width: isActive ? 11 : 7, height: isActive ? 11 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}38` }} />
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+});
 
 function StudentLanguageSection() {
+  const reduced = UsePrefersReducedMotion();
   const { ref, visible } = UseRevealOnce();
-  const [lang, setLang] = useState("hi");
-  const { index } = UseCycleIndex(LANGUAGE_QUESTIONS.length, QUESTION_MS);
-  const question = LANGUAGE_QUESTIONS[index][lang];
-  const activeLabel = LANGUAGE_CHIPS.find((c) => c.code === lang)?.label || lang;
+  const { index, goTo } = UseCycleIndex(LANGUAGE_CHIPS.length, QUESTION_MS);
+  const active = LANGUAGE_CHIPS[index];
+  /* the language at the reading position speaks its own subject question
+     (5 subject lines tour across 6 languages, so the bank wraps) */
+  const question = LANGUAGE_QUESTIONS[index % LANGUAGE_QUESTIONS.length][active.code];
 
   return (
     <section ref={ref} data-section="07-language" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <FadeReveal visible={visible}>
         {/* header unit — tight */}
-        <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Every language</p>
-        <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Every language</p>
+        <h2 className="mt-3 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           The words can change.<br />Understanding shouldn't.
         </h2>
-        <p className="mx-auto max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
-          Ask, learn, and practice in the language you think in.
-        </p>
 
-        {/* Breath 1 — control first */}
-        <div className="mt-14 lg:mt-20">
-          <LanguageChips active={lang} onSelect={setLang} chips={LANGUAGE_CHIPS} />
-        </div>
-
-        {/* Breath 2 — FLAT Google voice surface: no card, no border, type on the page */}
-        <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
-          {/* Assistant-signature four-color voice indicator */}
-          <div className="flex items-end justify-center gap-2" aria-hidden="true">
-            {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
-              <span
-                key={c}
-                className="h-8 w-1.5 rounded-full"
-                style={{
-                  backgroundColor: c,
-                  transformOrigin: "center",
-                  animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite`,
-                }}
-              />
-            ))}
+        {/* the voice dial — dots ride the ring while the chosen language's
+            question holds the center; 36px breath before the stage */}
+        <div className="mx-auto mt-9 w-full max-w-[460px] sm:mt-14">
+          <div className="relative aspect-square w-full" role="group" aria-label="Language selection">
+            <StudentOrbitDots activeIndex={index} onSelect={goTo} reduced={reduced} />
+            {/* the center — the speaking language's name, its question at
+                statement scale, the brand hues listening beneath. The fixed
+                inscribed region is sized for the worst-wrapping script. */}
+            <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
+              <span key={`name-${index}`} className="hero-fade-up text-[11px] font-medium uppercase tracking-[0.14em]" style={{ color: COLORS.grey }}>{active.label}</span>
+              <p aria-live="polite" lang={active.code} className="mt-3 flex items-center justify-center text-center font-medium tracking-[-0.014em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: COLORS.ink }}>
+                <span key={index} className="hero-fade-up">{question}</span>
+              </p>
+              <div className="mt-4 flex items-end justify-center gap-1.5" aria-hidden="true">
+                {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
+                  <span key={`${c}-${i}`} className="h-5 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+                ))}
+              </div>
+            </div>
           </div>
-
-          {/* the utterance — plain ink type, keyed fade on change */}
-          <p
-            aria-live="polite"
-            className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.6] text-[clamp(26px,3.4vw,48px)]"
-            style={{ color: COLORS.blue }}
-          >
-            <span key={`${lang}-${index}`} className="hero-fade-up inline">{question}</span>
-          </p>
-
-          {/* state line — the only chrome */}
-          <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            Listening in {activeLabel} · understood in every language
-          </p>
         </div>
-
-        {/* Breath 3 — helper chip, Google-style surface pill */}
-        <div className="mt-14 flex justify-center lg:mt-20">
-          <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
-            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
-            <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
-              Think your way: voice or text, in the language you're comfortable with.
-            </p>
-          </div>
+        <div className="mx-auto mt-6 w-full max-w-[860px] sm:mt-7">
+          <p className="text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+            Listening in {active.label} · understood in every language
+          </p>
+          <p className="mt-1 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+            Use voice or text in the way you're comfortable.
+          </p>
         </div>
       </FadeReveal>
     </section>
@@ -644,13 +602,13 @@ function StudentContinuitySection() {
   return (
     <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
+        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
           Keep your place
         </p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
           What you learn stays with you.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-4 max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           What you understand becomes part of what comes next. You never start over.
         </p>
         <div className="mt-14 flex justify-center lg:mt-20">
@@ -666,8 +624,8 @@ function StudentContinuitySection() {
             type="button"
             aria-label="Previous stage"
             onClick={() => step(-1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5"
-            style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]"
+            style={{ color: COLORS.ink }}
           >
             <ChevronIcon direction="left" />
           </button>
@@ -675,8 +633,8 @@ function StudentContinuitySection() {
             type="button"
             aria-label="Next stage"
             onClick={() => step(1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5"
-            style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]"
+            style={{ color: COLORS.ink }}
           >
             <ChevronIcon direction="right" />
           </button>
@@ -716,9 +674,9 @@ function StudentAchievementSection() {
   return (
     <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve.</h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your achievement</p>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>See what you can achieve.</h2>
+        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Turn understanding into results, skills, and progress you can see.
         </p>
 
@@ -755,11 +713,11 @@ function StudentJourneyFlowSection() {
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your journey</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your journey</p>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
           New stage.<br />Same intelligence.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           As your goals change, Visionary is the place to continue.
         </p>
 
@@ -830,12 +788,12 @@ function StudentTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Trust and safety</p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Trust and safety</p>
+        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
           Your{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
 
@@ -845,11 +803,11 @@ function StudentTrustSection() {
             <h3 key={active.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
               {active.title}
             </h3>
-            <div className="mt-10 flex items-center gap-4 lg:ml-24">
-              <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+            <div className="mt-10 flex items-center gap-3">
+              <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]" style={{ color: COLORS.ink }}>
                 <ChevronIcon direction="left" />
               </button>
-              <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+              <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]" style={{ color: COLORS.ink }}>
                 <ChevronIcon direction="right" />
               </button>
               <span className="ml-2 font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
@@ -869,34 +827,39 @@ function StudentTrustSection() {
 }
 
 /* ═══════════════════════ 12 · CTA ═══════════════════════ */
+/* The closer bookends the hero — the statement on the page's own white
+   field, one Apple-black primary pill with the arrow, one quiet path. */
 
 const StudentCTASection = React.memo(function StudentCTASection() {
   const { ref, visible } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 rounded-t-[32px]" style={{ backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
+    <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
       <div
         className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       >
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
+        <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
           Begin today
         </p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+        <h2 className="mt-3 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your learning starts with where you are.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+        <p className="mx-auto mt-4 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Ask your first question. Start building from what you know.
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
+            className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
           >
             Get started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-4 w-4">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
           </Link>
           <Link
             to="/contact"
-            className="inline-flex h-14 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-10 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-7 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors duration-200 hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
           >
             Talk to our team
           </Link>
@@ -951,14 +914,14 @@ function StudentExploreSection() {
 /* ═══════════════════════ PAGE ═══════════════════════ */
 
 export default function StudentPage() {
-  useSheetStack();
+  /* the sheet-stack pin is retired here — the page scrolls as one plain
+     document, every section in natural flow */
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <main id="main">
         <StudentHeroSection />
         <StudentStruggleSection />
-        <StudentPromiseSection />
         <StudentJourneySection />
         <StudentIntelligenceSection />
         <StudentClosingSection />

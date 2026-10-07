@@ -1,0 +1,62 @@
+✖ published-copy replay rejects an account handoff during class lookup (39.9226ms)
+✖ same-state publication replay rejects teacher membership revoked during class lookup (25.9568ms)
+✖ publication commit rejects a delivered source removed after the final service read (18.7428ms)
+✔ pending teacher membership denies a pending curriculum publication (14.405ms)
+✔ revoked teacher membership denies a pending curriculum publication (15.772ms)
+✔ expired teacher membership denies a pending curriculum publication (22.1681ms)
+✔ failed organization delivery retains prior fixed copies and retries exactly once (58.8069ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 4
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1060.865
+
+✖ failing tests:
+
+test at tests\publication-boundary.test.mjs:15:1
+✖ published-copy replay rejects an account handoff during class lookup (39.9226ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:13:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:17:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /active.*workspace|teaching workspace/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\publication-boundary.test.mjs:20:1
+✖ same-state publication replay rejects teacher membership revoked during class lookup (25.9568ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:13:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:22:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /active|access|workspace/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\publication-boundary.test.mjs:25:1
+✖ publication commit rejects a delivered source removed after the final service read (18.7428ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:13:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:27:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /reviewed source changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

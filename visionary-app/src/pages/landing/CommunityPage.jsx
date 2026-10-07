@@ -189,7 +189,7 @@ export default function CommunityPage() {
         </section>
 
         {/* ANCHOR CHIPS — the reference's pill nav under the hero */}
-        <nav aria-label="Community sections" className="sticky top-16 z-30 border-b border-[#dadce0] bg-white/95 backdrop-blur">
+        <nav aria-label="Community sections" className="sticky top-14 z-30 border-b border-[#dadce0] bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1240px] items-center gap-2 overflow-x-auto px-4 py-3 sm:px-8 lg:justify-center lg:px-10">
             {ANCHORS.map((anchor) => (
               <a key={anchor.id} href={`#${anchor.id}`}

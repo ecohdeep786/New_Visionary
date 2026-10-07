@@ -1,0 +1,184 @@
+vite v6.4.3 building for production...
+
+(!) outDir C:\Users\Administrator\AppData\Local\Temp\visionary-class-tabs-final4-20261003 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+✓ 2195 modules transformed.
+rendering chunks...
+computing gzip size...
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/index.html                                           1.24 kB │ gzip:   0.56 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-480w-BFU4hG5P.webp              19.80 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-480w-9MPWY5k8.webp              21.10 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-480w-DvXRjz_O.webp                   23.51 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-480w-Bj3euxWy.webp                   24.79 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-primary-BQqYJWen.webp                27.31 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-480w-D_jhGVlf.webp                    31.19 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/index-1-URy_Rm.css                          144.76 kB │ gzip:  25.69 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/WorkspaceIntro-DSW8qrAd.js                    0.60 kB │ gzip:   0.30 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/useStudentData-Cg1cbCO3.js                    0.71 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/useThemeColor-DPig1r3q.js                     0.78 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/useWorkspace-BNtOuRDy.js                      0.88 kB │ gzip:   0.49 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CriterionFeedback-_l2g4vLX.js                 0.88 kB │ gzip:   0.51 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/VisionaryLogo-rnhA5dsz.js                     0.94 kB │ gzip:   0.62 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/PolicyTabs-Fwd7aGGh.js                        1.13 kB │ gzip:   0.65 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/JourneyCatalogue-DEsPUVwo.js                  1.29 kB │ gzip:   0.67 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/resourceEditorDraft-BLuqpAdL.js               1.59 kB │ gzip:   0.76 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Breadcrumb-C271KHNj.js                        1.80 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/dialog-DGrroQh6.js                            2.12 kB │ gzip:   0.90 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ValuesStrip-lx2BrYCp.js                       2.16 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/LessonObjectivePreview-BmQtiGa7.js            2.25 kB │ gzip:   0.94 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ForgotUserId-BDp5ePmW.js                      2.29 kB │ gzip:   1.02 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ForgotPassword-rDOmiKfb.js                    2.32 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/hooks-DkpSqtxN.js                             2.41 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ResetPassword-BSZVeYOd.js                     2.42 kB │ gzip:   1.07 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CubeLearningEntry-DzweOD4O.js                 2.72 kB │ gzip:   1.29 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/AuthLayout-C3F4Lgc0.js                        2.90 kB │ gzip:   0.89 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/SocialAuthButtons-DUviycKx.js                 3.12 kB │ gzip:   1.37 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/stagePresentation-D7o2xC2P.js                 3.33 kB │ gzip:   1.15 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/curriculumBridgeService-NGvjNimK.js           3.71 kB │ gzip:   1.56 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Learners-DH7ewsw0.js                          4.00 kB │ gzip:   1.69 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/LandingFAQ-D077DAco.js                        4.04 kB │ gzip:   1.53 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/roleMentorService-CLWvW5q3.js                 4.22 kB │ gzip:   1.81 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/dailyPlanService-BcH4otdy.js                  4.84 kB │ gzip:   1.90 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ClassworkProjectSubmission-DTHnsb9i.js        5.33 kB │ gzip:   2.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Explore-Lj7a3Z-P.js                           5.46 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Children-CaO_3zH3.js                          5.84 kB │ gzip:   2.18 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/AuthUI-CwMwYTQh.js                            6.70 kB │ gzip:   2.11 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Login-ZAM1hBYA.js                             7.42 kB │ gzip:   2.06 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Plans-BGDoR65W.js                             8.39 kB │ gzip:   3.04 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Practice-CfMongca.js                          9.25 kB │ gzip:   3.39 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Register-CAXqbC45.js                          9.36 kB │ gzip:   2.85 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/NewPersona-DuC9ByjS.js                        9.38 kB │ gzip:   2.79 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/TopicDetail-DNR-H5qj.js                      10.83 kB │ gzip:   3.79 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Learn-C1ogD0HF.js                            11.41 kB │ gzip:   4.02 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Settings-CBpMUlYr.js                         11.60 kB │ gzip:   4.10 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/TeacherHome-Dirlnuaa.js                      12.75 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Connections-Ch1x72nn.js                      12.76 kB │ gzip:   4.51 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/stageTransitionService-BCCIJzuS.js           13.26 kB │ gzip:   4.48 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/SchoolPage-3P4OxOVa.js                       13.87 kB │ gzip:   4.53 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/AILearningPage-e6l0QZbn.js                   14.57 kB │ gzip:   4.31 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CommunityPage-CpXx7xCn.js                    14.93 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/mentorStateService-IMKhFBpF.js               15.78 kB │ gzip:   5.58 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ContactPage-BZze13sY.js                      15.91 kB │ gzip:   4.47 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/SafetyPage-74oJxqwv.js                       16.34 kB │ gzip:   4.67 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/classroomService-DwkdXmIq.js                 16.47 kB │ gzip:   5.40 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/DownloadPage-B7BS4NtQ.js                     16.49 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/roleNotificationCopy-BQvgtKgL.js             16.61 kB │ gzip:   4.28 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/AccessibilityPage-CvUUOxuK.js                17.51 kB │ gzip:   5.02 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/contentRepository-CwhSDQ3s.js                17.62 kB │ gzip:   5.80 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ReferralPage-RFDvFpNN.js                     17.94 kB │ gzip:   5.09 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Cohorts-De26tH-D.js                          18.11 kB │ gzip:   5.51 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/learningPipelineService-8Dvc-6Hd.js          18.63 kB │ gzip:   6.71 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/UpdatesPage-Cswe5q4Z.js                      18.80 kB │ gzip:   5.06 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Support-CFTMCOOE.js                          19.31 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/AboutUsPage-CNc4Eflm.js                      19.78 kB │ gzip:   5.63 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CareersPage-Cr5Byk9i.js                      20.10 kB │ gzip:   5.91 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Profile-CFqLGNnz.js                          20.14 kB │ gzip:   5.21 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ClassworkStudy-D1EgDd5M.js                   20.62 kB │ gzip:   6.36 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CookiesPage-D6oRlP_B.js                      21.69 kB │ gzip:   6.06 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/voiceService-_kJEdaaA.js                     21.90 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/PersonaSections-DW0jj2vT.js                  23.02 kB │ gzip:   6.51 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/LandingFooter-DlWooxpY.js                    23.78 kB │ gzip:   6.16 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CoachingPage-us_9sTOc.js                     24.22 kB │ gzip:   6.65 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/PartnersPage-BR1SwHhH.js                     24.94 kB │ gzip:   6.91 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/RoleWorkspace-BYq0dGou.js                    25.11 kB │ gzip:   7.58 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/LearningRepresentation-UCK8jWsq.js           25.98 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/TermsPage-DrdotiKp.js                        26.01 kB │ gzip:   7.32 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ResearchNewsPage-Bq5xTo5A.js                 26.29 kB │ gzip:   6.94 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/StudentClasses-KGXv4GeC.js                   27.26 kB │ gzip:   8.35 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/classworkCopy-DkEjc3ly.js                    27.40 kB │ gzip:   6.20 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/SecurityPage-BYX48X3W.js                     27.72 kB │ gzip:   6.93 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/organizationCopy-DIh_3D8U.js                 27.96 kB │ gzip:   6.86 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/teacherCopy-FCC-36LR.js                      28.27 kB │ gzip:   7.24 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/OrganizationContent-DsC9fFkA.js              28.29 kB │ gzip:   7.95 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/privacyCopy-DZop0AUd.js                      28.74 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/professionalCopy-Br0Z1E1q.js                 28.77 kB │ gzip:   7.12 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/PrivacyPage-abN6GFxa.js                      29.45 kB │ gzip:   7.88 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/stageCopy-BiyhUTuL.js                        31.18 kB │ gzip:   7.22 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/SpotIllustration-9oNNy3fH.js                 32.27 kB │ gzip:   6.46 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/OrganizationPage-CyU9JGcc.js                 33.14 kB │ gzip:   9.79 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/StudentPage-kwCC2wUu.js                      34.59 kB │ gzip:  10.10 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ParentPage-ufZrXOa4.js                       35.05 kB │ gzip:  10.33 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/TeacherPage-Bkmar7z6.js                      35.85 kB │ gzip:  10.41 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Onboarding-QYmNrHXe.js                       36.91 kB │ gzip:  10.75 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Guide-B2QHhuk-.js                            41.97 kB │ gzip:  13.27 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/DashboardHome-DeAJuSM_.js                    44.31 kB │ gzip:  13.16 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/Landing-DQXakpxA.js                          44.51 kB │ gzip:  12.75 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/LearningWorkspace-CTT1hdKc.js                44.99 kB │ gzip:  12.87 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ClassDetail-DKSBNap8.js                      50.14 kB │ gzip:  13.33 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/parentCopy-DXr-8sdI.js                       51.14 kB │ gzip:  11.77 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CollegePage-WApN9f8e.js                      54.16 kB │ gzip:  14.41 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/DashboardLayout-C6Q6WLdL.js                  55.09 kB │ gzip:  17.18 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/ArtifactStudio-Cp2XyIB1.js                   64.49 kB │ gzip:  16.29 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/CommunityTab-ffEyCWJW.js                     68.73 kB │ gzip:  18.37 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/WorkspaceTools-BdYijtDB.js                  108.09 kB │ gzip:  28.22 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/index-D-LSf1Gt.js                           145.49 kB │ gzip:  44.87 kB
+../../AppData/Local/Temp/visionary-class-tabs-final4-20261003/assets/vendor-B6QVRD5b.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 32.27s

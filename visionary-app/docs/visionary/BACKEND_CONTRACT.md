@@ -160,3 +160,64 @@ Teaching PromptPacket adds a service-derived stagePresentation policy: category,
 Account accent mutation carries expected account and loaded accent. Reject account/color mismatch before writes and preserve unrelated current preferences. Local equality comparison demonstrates conflict handling; the server replacement needs an authenticated account revision and atomic field mutation. UI keeps the selected color on failure and offers explicit saved-color review, never silent replacement or unconditional overwrite.
 
 Teaching cutover addendum: revalidate stage/age policy at response time as well as request time. A response produced under a superseded age safety or presentation policy cannot be committed to the current activity. Preserve drafts and offer an explicit current-stage retry; do not reinterpret the old response as new-stage content. Server enforcement must compare authenticated authoritative profile revisions, not client payload assertions.
+
+2026-10-03 Role/project/privacy seam: family status projection must preserve original connection records, support cancelled/unreadable/unknown closed states, and distinguish restricted progress summaries from expiry. Only current consent/scope authorizes report URLs. Client retry is an explicit new authorized read, never a repair or bypass. Preserve exact project/source revisions, fixed recipient copies and parent summary-only disclosure on every server write; recheck latest consent and account/workspace ownership. Memory deletion removes retained observations while preserving required events/evidence, and ownership review exports scoped counts without private document, answer, feedback or summary text. Interface localization does not translate authored/user content. Local behaviors are contract requirements for future backend implementation, not server enforcement today.
+
+2026-10-03 Parent/organization seam: return stable parent guidance topic kind and measured authorized report counts independently of display language; recheck live child consent per request and invalidate withdrawn answers. Partial-source failures cannot become measured zero. Authenticated recovery is a new authorized read, not permission expansion or automatic repair. Organization acknowledgement is planning only. Preserve original source language and audit attribution. Cohort updates must compare the captured resource version after asynchronous roster/access checks; stale writes, including archive reversal, fail without overwriting either version. Enforce all scopes/versions/seat activation/retention on the later backend.
+
+2026-10-03 Teacher continuation seam: separate interface and authored objective/source language. Preserve copied assignment revisions after author edits. Roster/evidence reads must recheck current enrollment and active workspace; revoked evidence and class code/header are removed from the client. Assignment read/write failures retain owned options and expose authorized retry. Class code is returned only by a current authorized read. Generation-guarded UI reads are not server authorization; enforce every teacher/class/source/version/recipient transaction on the later backend.
+
+
+### 2026-10-03 — Class-tab frontend continuity
+
+D-023 adds one validated recorded-score summary, localized class controls and teacher moderation of reported posts. Preserve absent-versus-zero grades, positive original point totals, assignment/learner scope, unique authored topic coverage and fixed source text. Fetch failure must hide stale evidence without replacing records; retry must preserve composer/review inputs. Model analysis remains unconnected. Reported posts stay hidden for learners during direct teacher removal; removed posts are not restored via the reported-post action. Browser-local tests are not backend or production authorization acceptance.
+
+
+### 2026-10-04 — Editorial/issue/earlier-question frontend seam
+
+Preserve independent interface/teaching/source locales and immutable reviewed/delivered versions. Validate editorial resource identity, revisions, authors, history and retained versions before mutations; unreadable records must not be silently repaired or overwritten. Validate scoped issue collections independently so auxiliary failures do not erase source concepts. Server cutover must preserve exact-source/category/language dedup, current authorization before and after pending work, raw-data recovery and appropriate cancellation.
+
+Earlier questions can remain in their original owned entity store while an explicit Open in Ask copies the exact text into a private conversation draft. This is user-controlled resume, not automatic submission, source migration or consent expansion. Existing resource-editor recovery keys are private to their workspace/tab. Native browser-output lifecycle and fallback remain frontend responsibilities; no connected model, backend implementation or founder-book processing was added.
+
+
+2026-10-04 primary UI seams: server subscription commands must return current entitlement independently of failed/pending checkout, atomic cancellation/resume and validated invoice metadata, with idempotency and authoritative account ownership. The client preview rejects unreadable metadata and retains drafts/errors; it never collects payment details. Connections keep status/role enums and current authority distinct from localized labels. Class summaries must return unique authorized learners, while counts remain unavailable on failed reads. Class creation and practice writes require final authenticated workspace checks; private unsaved class-form backups are recovery data, not automatic server imports.
+
+
+2026-10-04 learner goal seam: existing-goal edits require an expected resource revision and conflict response without replacing the client draft. Pending parent summary edits are private client recovery metadata, never an approved share. Confirm/revoke must atomically recheck the authenticated learner, owned source/version and active guardian relationship/scope; retained fixed-copy fields require validation before projection or mutation. Restore unreadable originals explicitly, without silent repair. Keep the existing personal-workspace parent projection and consent renewal isolation. A cleanup failure after a successful save/share must not be represented as loss of the completed write.
+
+
+Parent fixed-copy creation currently supports the personal learner workspace. The frontend must not report a successful Work summary that the authorized parent projection cannot receive. Work goal/project writes are rejected before mutation; Work artifacts and drafts stay scoped. Broader organization-to-parent summaries require an explicit workspace-aware audience contract rather than copying Work data into the personal workspace. Assigned-classwork digests keep their existing permitted source path.
+
+
+### 2026-10-04 — Curriculum alias conflict seam (D-033)
+
+Browser-local curriculum aliases remain in visionary_content_v1 spaces[workspaceId].aliases; no new store or migration is added. The future mapping API must authorize both owned provisional activity and reviewed target, enforce one-to-one target mapping within the workspace, and use an expected mapping/source revision to reject stale writes. A matching retry is idempotent; a different mapping needs reviewed reconciliation rather than silent reassignment. Malformed retained aliases require explicit recovery/migration, not automatic deletion. Published source withdrawal and immutable existing assignment availability are separate capabilities. Current frontend conflict checks and snapshot-transfer QA are not server authorization, transactions or synchronization.
+
+### 2026-10-04 — Teacher review commit seam (D-034)
+
+The review command must atomically authorize the current teacher/workspace/membership and compare the expected submission revision and learner attempt before writing feedback, grade, criterion ratings and return time. Conflict returns the current authorized revision without changing learner text, self-review or attempt history; the client retains its private review draft for export or explicit reload. The local preview passes expectedReviewRevision at the entity write boundary. Delayed-adapter service fixtures prove rejection after the last read, not a server transaction or real multi-device synchronization.
+
+
+### 2026-10-04 — Learner submission source/feedback seam (D-035)
+
+Submission creation/resubmission must atomically authorize the current learner/workspace/enrollment and assignment availability, compare the checked assignment revision and, for a revised attempt, compare the expected previous response/review revision. A changed source or newer teacher feedback must reject without replacing response, feedback or attempt history; retry remains idempotent. The preview carries expectedAssignmentRevision into Submission create/update and expectedReviewRevision into resubmission. Existing private-study source revision serialization is preserved. Private response/criterion drafts and access-loss exports remain client recovery data, not revoked-source projections or automatic server imports. Current local tests do not establish a backend transaction or live synchronization.
+
+
+### 2026-10-04 — Classwork command context seam (D-036)
+
+Expected command context is an originating person/workspace/role token, separate from submission fields. The server must authenticate the current actor, authorize membership/enrollment/assignment access, and reject a context change before creation/resubmission/teacher return. It must also prevent an idempotent replay from returning a prior actor's response after identity handoff. Combine context checks with expected source/review revision comparisons in the same authoritative operation; client-supplied IDs do not establish authorization. Frontend scoped route loading and private draft recovery remain client responsibilities. Current preview checks and deferred-module/adapter fixtures are not server isolation or real synchronization.
+
+
+### 2026-10-04 — Reviewed assignment and lifecycle seam (D-037)
+
+The assignment command must atomically authorize the current teacher/workspace/membership and class ownership, compare the reviewed lesson version/content/provenance, and create or replay its immutable class copy. A changed source rejects before creation or replay. Lifecycle changes must compare the expected status plus state-history revision before writing; conflicts preserve the newer state/history. Publication/withdrawal/restore must combine originating context, current membership/class policy and expected publication revision in one authoritative operation. Preview options expectedResource, expectedAssignmentStateRevision and expectedContext are command metadata rather than persisted fields. Retained private editor drafts and explicit workspace recovery remain client responsibilities. Local guards and controlled expiry/quota fixtures are not server authorization or transactions.
+
+
+### 2026-10-04 — Curriculum replay and delivered-source seam (D-038)
+
+Curriculum read/replay operations must authorize the current authenticated person/workspace/membership after asynchronous lookup before returning a copy, including same-state/idempotent results. Publication must atomically combine current teacher/class policy, originating context, expected publication revision and the checked delivered-source identity/version/template/recipient snapshot. An unavailable/changed delivery rejects without writing a class copy or rewriting fixed assignments. Derived inbox import metadata is not source identity. Existing fixed deliveries and published/assigned copies remain separate from later editorial revisions. Delivery creation must preserve existing copies on failure and be idempotent for the same accepted membership/revision. Client retained review/recipient/confirmation and explicit retry are recovery state, not server authority. Local preview guards and snapshot-transfer QA are not server transactions or synchronization.
+
+
+### 2026-10-04 — Parent upcoming classwork access seam (D-039)
+
+The parent digest must authorize current selected-child progress consent and compute upcoming items from current active enrollment, a retained classroom and accepted nonexpired learner membership for Work classes. An orphaned enrollment or pending/revoked/unreadable membership must not imply an upcoming obligation. Returned title/date history remains a separately consented historical summary; current class withdrawal does not authorize answers, grades or feedback, or erase historical records. Guardian stop/renew/accept operations must save state and notifications together, reject failure without partial records and require fresh learner acceptance for renewal. Current local read joins and quota fixtures do not establish server authorization, transactions or synchronization.

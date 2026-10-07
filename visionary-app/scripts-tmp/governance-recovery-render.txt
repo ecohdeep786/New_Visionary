@@ -1,0 +1,82 @@
+Skip to content
+Active workspace
+Owner · My organization
+Work · Fictional school · Organization admin
++ Add a role
+C
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+Organization content
+
+Author, review and retain source versions before use.
+
+New content draft
+
+Approval records an editorial review on this device. It does not publish a learner curriculum, generate learning activities or verify source rights. Teachers control classroom assignments.
+
+Search content
+Content state
+all
+draft
+submitted
+changes
+approved
+archived
+Content versions
+Private academic draft en
+
+Revision 1 · draft
+
+Open
+Home
+People
+Cohorts
+Curriculum
+More
+Review content version
+
+Edits stay here if saving fails. A different academic administrator reviews each authored revision.
+
+Revision 1 · draft · Organization audience
+
+Content title
+Content and learning objective
+Source and exact version
+Source language
+English
+हिन्दी
+বাংলা
+Export current content edits
+Save content draft
+Review saved revision
+
+Actions apply to the saved revision. Save edits before submission. Review notes do not become learner evidence.
+
+Review note
+Submit saved revision
+Archive saved content
+Review history and earlier versions
+Discard edits and load latest saved version
+
+Draft saved. Submit the saved revision when it is ready.
+
+Close
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '{"id":"08f0e7e9-7b15-4390-be01-2fb78e75164b","kind":"curriculum","title":"Reviewed fractions","body":"PRIVATE_EDITORIAL_NOTES","status":"approved","audience":"Organization","updatedAt":"2026-10-04T17:57:35.128Z","contentReview":{"revision":1,"source":"Fictional book version 1","language":"en","author":"demo-school-admin","history":[{"action":"draft-saved","actor":"demo-school-admin","at":"2026-10-04T17:57:35.125Z","revision":1,"note":""},{"action":"submit","actor":"demo-school-admin","at":"2026-10-04T17:57:35.127Z","revision":1,"note":""},{"action":"approve","actor":"demo-company-admin","at":"2026-10-04T17:57:35.128Z","revision":1,"note":"PRIVATE_REVIEW_NOTES","checks":{"source":true,"accuracy":true,"language":true}}],"versions":[],"deliveries":[{"id":"d91789c2-2738-4b2b-bdcc-37425711886c","resourceId":"08f0e7e9-7b15-4390-be01-2fb78e75164b","membershipId":"976f979e-fd11-47fa-9d52-25bf8a7c5a7d","teacherEmail":"teacher@visionary.test","title":"Reviewed fractions","body":"PRIVATE_EDITORIAL_NOTES","source":"Fictional book version 1","language":"en","revision":1,"sharedAt":"2026-10-04T17:57:35.129Z","sharedBy":"demo-company-admin","curriculumTemplate":{"schemaVersion":1,"selection":{"board":"Fictional framework","classLevel":"6","subject":"Mathematics"},"provenance":{"provider":"Fictional provider","sourceId":"book-fixture","version":"1"},"chapters":[{"id":"chapter","title":"Fractions","sourceSection":"Pages 1–4","objectives":[{"id":"first","title":"Equal intervals","explanation":"Divide the whole into equal intervals.","prerequisiteIds":[],"representations":[{"id":"line","kind":"number-line","alternative":"One half lies halfway from zero to one.","numberLine":{"minimum":0,"maximum":1,"divisions":8,"initial":4}}],"criteria":[{"id":"parts","label":"Equal parts","prompt":"Explain equal parts."}],"practice":[{"id":"question","prompt":"Which is the midpoint?","options":["One half","One quarter"],"answerIndex":0}]},{"id":"second","title":"Locate a fraction","explanation":"Four of eight equal intervals reach one half.","prerequisiteIds":["first"],"representations":[],"criteria":[{"id":"locate","label":"Locate","prompt":"Explain the location."}]}]}]}}]},"curriculumTemplate":{"schemaVersion":1,"selection":{"board":"Fictional framework","classLevel":"6","subject":"Mathematics"},"provenance":{"provider":"Fictional provider","sourceId":"book-fixture","version":"1"},"chapters":[{"id":"chapter","title":"Fractions","sourceSection":"Pages 1–4","objectives":[{"id":"first","title":"Equal intervals","explanation":"Divide the whole into equal intervals.","prerequisiteIds":[],"representations":[{"id":"line","kind":"number-line","alternative":"One half lies halfway from zero to one.","numberLine":{"minimum":0,"maximum":1,"divisions":8,"initial":4}}],"criteria":[{"id":"parts","label":"Equal parts","prompt":"Explain equal parts."}],"practice":[{"id":"question","prompt":"Which is the midpoint?","options":["One half","One quarter"],"answerIndex":0}]},{"id":"second","title":"Locate a fraction","explanation":"Four of eight equal intervals reach one half.","prerequisiteIds":["first"],"representations":[],"criteria":[{"id":"locate","label":"Locate","prompt":"Explain the location."}]}]}]}}'
+- '{"id":"08f0e7e9-7b15-4390-be01-2fb78e75164b","kind":"curriculum","title":"Reviewed fractions","body":"PRIVATE_EDITORIAL_NOTES","status":"draft","audience":"Organization","updatedAt":"2026-10-04T17:57:35.125Z","contentReview":{"revision":1,"source":"Fictional book version 1","language":"en","author":"demo-school-admin","history":[{"action":"draft-saved","actor":"demo-school-admin","at":"2026-10-04T17:57:35.125Z","revision":1,"note":""}],"versions":[]},"curriculumTemplate":{"schemaVersion":1,"selection":{"board":"Fictional framework","classLevel":"6","subject":"Mathematics"},"provenance":{"provider":"Fictional provider","sourceId":"book-fixture","version":"1"},"chapters":[{"id":"chapter","title":"Fractions","sourceSection":"Pages 1–4","objectives":[{"id":"first","title":"Equal intervals","explanation":"Divide the whole into equal intervals.","prerequisiteIds":[],"representations":[{"id":"line","kind":"number-line","alternative":"One half lies halfway from zero to one.","numberLine":{"minimum":0,"maximum":1,"divisions":8,"initial":4}}],"criteria":[{"id":"parts","label":"Equal parts","prompt":"Explain equal parts."}],"practice":[{"id":"question","prompt":"Which is the midpoint?","options":["One half","One quarter"],"answerIndex":0}]},{"id":"second","title":"Locate a fraction","explanation":"Four of eight equal intervals reach one half.","prerequisiteIds":["first"],"representations":[],"criteria":[{"id":"locate","label":"Locate","prompt":"Explain the location."}]}]}]}}'
+
+    at file:///C:/Users/Administrator/New_Visionary/visionary-app/scripts-tmp/governance-recovery-verify.mjs:13:1395 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '{"id":"08f0e7e9-7b15-4390-be01-2fb78e75164b","kind":"curriculum","title":"Reviewed fractions","body":"PRIVATE_EDITORIAL_NOTES","status":"approved","audience":"Organization","updatedAt":"2026-10-04T17:57:35.128Z","contentReview":{"revision":1,"source":"Fictional book version 1","language":"en","author":"demo-school-admin","history":[{"action":"draft-saved","actor":"demo-school-admin","at":"2026-10-04T17:57:35.125Z","revision":1,"note":""},{"action":"submit","actor":"demo-school-admin","at":"2026-10-04T17:57:35.127Z","revision":1,"note":""},{"action":"approve","actor":"demo-company-admin","at":"2026-10-04T17:57:35.128Z","revision":1,"note":"PRIVATE_REVIEW_NOTES","checks":{"source":true,"accuracy":true,"language":true}}],"versions":[],"deliveries":[{"id":"d91789c2-2738-4b2b-bdcc-37425711886c","resourceId":"08f0e7e9-7b15-4390-be01-2fb78e75164b","membershipId":"976f979e-fd11-47fa-9d52-25bf8a7c5a7d","teacherEmail":"teacher@visionary.test","title":"Reviewed fractions","body":"PRIVATE_EDITORIAL_NOTES","source":"Fictional book version 1","language":"en","revision":1,"sharedAt":"2026-10-04T17:57:35.129Z","sharedBy":"demo-company-admin","curriculumTemplate":{"schemaVersion":1,"selection":{"board":"Fictional framework","classLevel":"6","subject":"Mathematics"},"provenance":{"provider":"Fictional provider","sourceId":"book-fixture","version":"1"},"chapters":[{"id":"chapter","title":"Fractions","sourceSection":"Pages 1–4","objectives":[{"id":"first","title":"Equal intervals","explanation":"Divide the whole into equal intervals.","prerequisiteIds":[],"representations":[{"id":"line","kind":"number-line","alternative":"One half lies halfway from zero to one.","numberLine":{"minimum":0,"maximum":1,"divisions":8,"initial":4}}],"criteria":[{"id":"parts","label":"Equal parts","prompt":"Explain equal parts."}],"practice":[{"id":"question","prompt":"Which is the midpoint?","options":["One half","One quarter"],"answerIndex":0}]},{"id":"second","title":"Locate a fraction","explanation":"Four of eight equal intervals reach one half.","prerequisiteIds":["first"],"representations":[],"criteria":[{"id":"locate","label":"Locate","prompt":"Explain the location."}]}]}]}}]},"curriculumTemplate":{"schemaVersion":1,"selection":{"board":"Fictional framework","classLevel":"6","subject":"Mathematics"},"provenance":{"provider":"Fictional provider","sourceId":"book-fixture","version":"1"},"chapters":[{"id":"chapter","title":"Fractions","sourceSection":"Pages 1–4","objectives":[{"id":"first","title":"Equal intervals","explanation":"Divide the whole into equal intervals.","prerequisiteIds":[],"representations":[{"id":"line","kind":"number-line","alternative":"One half lies halfway from zero to one.","numberLine":{"minimum":0,"maximum":1,"divisions":8,"initial":4}}],"criteria":[{"id":"parts","label":"Equal parts","prompt":"Explain equal parts."}],"practice":[{"id":"question","prompt":"Which is the midpoint?","options":["One half","One quarter"],"answerIndex":0}]},{"id":"second","title":"Locate a fraction","explanation":"Four of eight equal intervals reach one half.","prerequisiteIds":["first"],"representations":[],"criteria":[{"id":"locate","label":"Locate","prompt":"Explain the location."}]}]}]}}',
+  expected: '{"id":"08f0e7e9-7b15-4390-be01-2fb78e75164b","kind":"curriculum","title":"Reviewed fractions","body":"PRIVATE_EDITORIAL_NOTES","status":"draft","audience":"Organization","updatedAt":"2026-10-04T17:57:35.125Z","contentReview":{"revision":1,"source":"Fictional book version 1","language":"en","author":"demo-school-admin","history":[{"action":"draft-saved","actor":"demo-school-admin","at":"2026-10-04T17:57:35.125Z","revision":1,"note":""}],"versions":[]},"curriculumTemplate":{"schemaVersion":1,"selection":{"board":"Fictional framework","classLevel":"6","subject":"Mathematics"},"provenance":{"provider":"Fictional provider","sourceId":"book-fixture","version":"1"},"chapters":[{"id":"chapter","title":"Fractions","sourceSection":"Pages 1–4","objectives":[{"id":"first","title":"Equal intervals","explanation":"Divide the whole into equal intervals.","prerequisiteIds":[],"representations":[{"id":"line","kind":"number-line","alternative":"One half lies halfway from zero to one.","numberLine":{"minimum":0,"maximum":1,"divisions":8,"initial":4}}],"criteria":[{"id":"parts","label":"Equal parts","prompt":"Explain equal parts."}],"practice":[{"id":"question","prompt":"Which is the midpoint?","options":["One half","One quarter"],"answerIndex":0}]},{"id":"second","title":"Locate a fraction","explanation":"Four of eight equal intervals reach one half.","prerequisiteIds":["first"],"representations":[],"criteria":[{"id":"locate","label":"Locate","prompt":"Explain the location."}]}]}]}}',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

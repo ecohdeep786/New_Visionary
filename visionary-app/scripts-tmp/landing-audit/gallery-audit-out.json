@@ -1,0 +1,18 @@
+
+===== student journey @1440 =====
+{"cardW":592,"cardWPct":41,"cardH":333,"h2Left":90,"h2Size":"56px","cardLeft":-522,"firstCardAlignsWithH2":false,"controlWidths":[56],"pillH":56,"dotCount":12,"spineDelta":-612}
+autoplay: dot 7 -> 8 (expect +1)
+paused: dot 8 -> 8 (expect same)
+modal: {"kicker":{"text":"Primary","size":"16px","transform":"none"},"h3Size":"56px","primaryBg":"rgb(18, 19, 23)"}
+
+===== student journey @1280 =====
+{"cardW":526,"cardWPct":41,"cardH":296,"h2Left":80,"h2Size":"49.92px","cardLeft":-466,"firstCardAlignsWithH2":false,"controlWidths":[56],"pillH":56,"dotCount":12,"spineDelta":-546}
+
+===== student journey @768 =====
+{"cardW":461,"cardWPct":60,"cardH":259,"h2Left":24,"h2Size":"32px","cardLeft":-457,"firstCardAlignsWithH2":false,"controlWidths":[56],"pillH":56,"dotCount":12,"spineDelta":-481}
+
+===== student journey @390 =====
+{"cardW":294,"cardWPct":75,"cardH":165,"h2Left":24,"h2Size":"32px","cardLeft":-290,"firstCardAlignsWithH2":false,"controlWidths":[48],"pillH":48,"dotCount":12,"spineDelta":-314}
+teacher shot done
+
+DONE

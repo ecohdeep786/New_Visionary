@@ -1,0 +1,3 @@
+PASS en: structured curriculum/practice source independence, reload recovery, failed-write retention, two-tab conflict/export/latest, independent review, legacy retry, 320–1440px.
+PASS hi: structured curriculum/practice source independence, reload recovery, failed-write retention, two-tab conflict/export/latest, independent review, legacy retry, 320–1440px.
+PASS bn: structured curriculum/practice source independence, reload recovery, failed-write retention, two-tab conflict/export/latest, independent review, legacy retry, 320–1440px.

@@ -1,0 +1,27 @@
+TimeoutError: locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Retry class loading', exact: true }) to be visible[22m
+
+Skip to content
+Something went wrong
+
+Visionary encountered an unexpected state. Your session and data remain safe.
+
+Try again
+Go to home
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Retry class loading', exact: true }) to be visible
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\primary-workspace-legacy-final-verify.mjs:7:4285 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Retry class loading', exact: true }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

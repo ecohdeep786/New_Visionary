@@ -3,6 +3,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 /**
  * Cycles an index through `total` slides every `intervalMs`. Pass a falsy
  * interval to pause the rotation. Returns the index plus a manual goTo().
+ * Auto-rotation must not gate on prefers-reduced-motion: environments that
+ * report reduce without user intent (RDP/VM sessions, headless captures)
+ * froze every persona ticker while the hero kept running. Motion itself is
+ * already neutralised by the global reduced-motion CSS — swaps render
+ * instantly, so only the text content advances.
  */
 export function useCycleIndex(total, intervalMs) {
   const [index, setIndex] = useState(0);
@@ -10,6 +15,7 @@ export function useCycleIndex(total, intervalMs) {
     (i) => setIndex(((i % total) + total) % total),
     [total]
   );
+
   useEffect(() => {
     if (!intervalMs || intervalMs <= 0) return undefined;
     const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);

@@ -1,0 +1,30 @@
+✔ reviewed number-line and chart payloads validate before replacing saved content (61.3093ms)
+✔ a database miss persists a numbered provisional hierarchy and one scoped gap without invented teaching content (4.4162ms)
+✔ content issues are local, workspace-scoped and retryable without duplicate reports (54.0566ms)
+✔ duplicate or incomplete project criteria cannot replace a saved curriculum (60.39ms)
+✔ new provisional object IDs never contain raw personal labels and remain deterministic (21.2869ms)
+✔ renaming owned provisional nodes survives reload and failed writes retain the prior name (29.3681ms)
+✔ official arrival maps a provisional concept without changing its progress/session identifier (34.6893ms)
+✔ existing owned legacy IDs are reused rather than rewritten (1.9199ms)
+✔ sample concepts are available after syllabus retrieval and resolve English, Hindi and Bengali independently (8.88ms)
+✔ adult content is rejected for minors and unauthorized workspace identities fail before content access (2.4076ms)
+✔ invalid remote content cannot replace saved curriculum and unsuccessful writes leave no phantom graph (7.2829ms)
+✔ connected curriculum requires a source version and explicit concept-language availability (23.8016ms)
+✔ a source-language outline cannot masquerade as translated teaching; localized graph versions coexist (46.4213ms)
+✔ content requests cancel promptly, including adapters that ignore the cancellation signal (6.7425ms)
+✔ unconnected teaching returns an honest status for all modes and creates no generated answer or storage record (31.3573ms)
+✔ the teaching seam forwards all four modes and cloned packets without interpreting answer quality (4.0972ms)
+✔ English, Hindi and Bengali crisis input or context stops before an adapter can receive it (1.7007ms)
+✔ minor and unknown age profiles cannot request adult teaching or leak through forged context (1.421ms)
+✔ teaching cancellation rejects promptly and never substitutes a local answer (1.221ms)
+✔ teaching validates question/representation payloads before UI consumption (33.719ms)
+✔ connected teaching requires matching language and version, and saves only contract fields (21.5106ms)
+✔ unreadable auxiliary issue records preserve bytes, leave source content accessible and recover without duplicate reports (62.8614ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2399.9773

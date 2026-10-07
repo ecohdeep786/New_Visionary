@@ -1,0 +1,72 @@
+[
+ {
+  "route": "/",
+  "rootMounted": true,
+  "sections": 8,
+  "bodyChars": 5156,
+  "title": "Visionary — Learn, ask, practice, and bu",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ {
+  "route": "/student",
+  "rootMounted": true,
+  "sections": 0,
+  "bodyChars": 191,
+  "title": "Visionary for students | Learn at your p",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "console: The above error occurred in the <JourneyGallery2> component:\n\n    at JourneyGallery2 (http://localhost:5231/src/components/landing/persona/P"
+  ]
+ },
+ {
+  "route": "/teacher",
+  "rootMounted": true,
+  "sections": 0,
+  "bodyChars": 191,
+  "title": "Visionary for teachers | Prepare and tea",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "console: The above error occurred in the <JourneyGallery2> component:\n\n    at JourneyGallery2 (http://localhost:5231/src/components/landing/persona/P"
+  ]
+ },
+ {
+  "route": "/parent",
+  "rootMounted": true,
+  "sections": 0,
+  "bodyChars": 191,
+  "title": "Visionary for parents | Follow their pro",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "console: The above error occurred in the <JourneyGallery2> component:\n\n    at JourneyGallery2 (http://localhost:5231/src/components/landing/persona/P"
+  ]
+ },
+ {
+  "route": "/organization",
+  "rootMounted": true,
+  "sections": 0,
+  "bodyChars": 191,
+  "title": "Visionary for organizations | Teach at s",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "pageerror: ReferenceError: useCallback is not defined",
+   "console: The above error occurred in the <JourneyGallery2> component:\n\n    at JourneyGallery2 (http://localhost:5231/src/components/landing/persona/P"
+  ]
+ },
+ {
+  "route": "/college",
+  "rootMounted": true,
+  "sections": 0,
+  "bodyChars": 97,
+  "title": "Page not found | Visionary",
+  "errors": []
+ }
+]

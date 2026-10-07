@@ -1,0 +1,191 @@
+vite v6.4.3 building for production...
+
+(!) outDir C:\Users\Administrator\AppData\Local\Temp\visionary-primary-frozen2-output-20261004 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+✓ 2202 modules transformed.
+rendering chunks...
+computing gzip size...
+../visionary-primary-frozen2-output-20261004/index.html                                           1.24 kB │ gzip:   0.56 kB
+../visionary-primary-frozen2-output-20261004/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../visionary-primary-frozen2-output-20261004/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-480w-BFU4hG5P.webp              19.80 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-480w-9MPWY5k8.webp              21.10 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-480w-DvXRjz_O.webp                   23.51 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-800w-D0JJBCK9.webp              23.52 kB
+../visionary-primary-frozen2-output-20261004/assets/student-480w-Bj3euxWy.webp                   24.79 kB
+../visionary-primary-frozen2-output-20261004/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../visionary-primary-frozen2-output-20261004/assets/student-primary-BQqYJWen.webp                27.31 kB
+../visionary-primary-frozen2-output-20261004/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-800w-BXrnJSl8.webp              30.94 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-480w-D_jhGVlf.webp                    31.19 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-800w-rK-eR3Pv.webp                   31.85 kB
+../visionary-primary-frozen2-output-20261004/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../visionary-primary-frozen2-output-20261004/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../visionary-primary-frozen2-output-20261004/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../visionary-primary-frozen2-output-20261004/assets/student-800w-DtjnvTKH.webp                   39.21 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../visionary-primary-frozen2-output-20261004/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../visionary-primary-frozen2-output-20261004/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-800w-B5ivxEln.webp                    48.81 kB
+../visionary-primary-frozen2-output-20261004/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../visionary-primary-frozen2-output-20261004/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../visionary-primary-frozen2-output-20261004/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../visionary-primary-frozen2-output-20261004/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../visionary-primary-frozen2-output-20261004/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../visionary-primary-frozen2-output-20261004/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../visionary-primary-frozen2-output-20261004/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../visionary-primary-frozen2-output-20261004/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../visionary-primary-frozen2-output-20261004/assets/index-CtcrpGuA.css                          146.27 kB │ gzip:  25.92 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../visionary-primary-frozen2-output-20261004/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../visionary-primary-frozen2-output-20261004/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../visionary-primary-frozen2-output-20261004/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../visionary-primary-frozen2-output-20261004/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../visionary-primary-frozen2-output-20261004/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../visionary-primary-frozen2-output-20261004/assets/classColors-Da5fg3Na.js                       0.27 kB │ gzip:   0.24 kB
+../visionary-primary-frozen2-output-20261004/assets/WorkspaceIntro-DSW8qrAd.js                    0.60 kB │ gzip:   0.30 kB
+../visionary-primary-frozen2-output-20261004/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../visionary-primary-frozen2-output-20261004/assets/useStudentData-Snl3z4CD.js                    0.71 kB │ gzip:   0.46 kB
+../visionary-primary-frozen2-output-20261004/assets/useThemeColor-BvbmijTS.js                     0.78 kB │ gzip:   0.46 kB
+../visionary-primary-frozen2-output-20261004/assets/useWorkspace-BaZnw9fq.js                      0.88 kB │ gzip:   0.49 kB
+../visionary-primary-frozen2-output-20261004/assets/CriterionFeedback-CMiFTMfM.js                 0.88 kB │ gzip:   0.51 kB
+../visionary-primary-frozen2-output-20261004/assets/VisionaryLogo-rnhA5dsz.js                     0.94 kB │ gzip:   0.62 kB
+../visionary-primary-frozen2-output-20261004/assets/PolicyTabs-Fwd7aGGh.js                        1.13 kB │ gzip:   0.65 kB
+../visionary-primary-frozen2-output-20261004/assets/JourneyCatalogue-DzMlQkXN.js                  1.49 kB │ gzip:   0.79 kB
+../visionary-primary-frozen2-output-20261004/assets/resourceEditorDraft-Z3bC0xui.js               1.59 kB │ gzip:   0.76 kB
+../visionary-primary-frozen2-output-20261004/assets/Breadcrumb-C271KHNj.js                        1.80 kB │ gzip:   0.79 kB
+../visionary-primary-frozen2-output-20261004/assets/dialog-D-Pym07P.js                            2.12 kB │ gzip:   0.90 kB
+../visionary-primary-frozen2-output-20261004/assets/ValuesStrip-lx2BrYCp.js                       2.16 kB │ gzip:   1.01 kB
+../visionary-primary-frozen2-output-20261004/assets/LessonObjectivePreview-y7d2k57c.js            2.25 kB │ gzip:   0.94 kB
+../visionary-primary-frozen2-output-20261004/assets/ForgotUserId-BDp5ePmW.js                      2.29 kB │ gzip:   1.02 kB
+../visionary-primary-frozen2-output-20261004/assets/ForgotPassword-C-8tOQJM.js                    2.32 kB │ gzip:   1.03 kB
+../visionary-primary-frozen2-output-20261004/assets/hooks-DkpSqtxN.js                             2.41 kB │ gzip:   1.01 kB
+../visionary-primary-frozen2-output-20261004/assets/ResetPassword-CM03TcTa.js                     2.42 kB │ gzip:   1.07 kB
+../visionary-primary-frozen2-output-20261004/assets/AuthLayout-C3F4Lgc0.js                        2.90 kB │ gzip:   0.89 kB
+../visionary-primary-frozen2-output-20261004/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../visionary-primary-frozen2-output-20261004/assets/SocialAuthButtons-r1V9hD8P.js                 3.12 kB │ gzip:   1.37 kB
+../visionary-primary-frozen2-output-20261004/assets/stagePresentation-Wc4e6p25.js                 3.33 kB │ gzip:   1.15 kB
+../visionary-primary-frozen2-output-20261004/assets/CubeLearningEntry-DsQlNiSU.js                 3.35 kB │ gzip:   1.54 kB
+../visionary-primary-frozen2-output-20261004/assets/curriculumBridgeService-DI52os1V.js           3.71 kB │ gzip:   1.56 kB
+../visionary-primary-frozen2-output-20261004/assets/Learners-C5Sp1UHp.js                          4.00 kB │ gzip:   1.69 kB
+../visionary-primary-frozen2-output-20261004/assets/LandingFAQ-D077DAco.js                        4.04 kB │ gzip:   1.53 kB
+../visionary-primary-frozen2-output-20261004/assets/roleMentorService-B95rcDdF.js                 4.22 kB │ gzip:   1.81 kB
+../visionary-primary-frozen2-output-20261004/assets/dailyPlanService-DrbRupsT.js                  4.84 kB │ gzip:   1.90 kB
+../visionary-primary-frozen2-output-20261004/assets/ClassworkProjectSubmission-BDHKyoSS.js        5.33 kB │ gzip:   2.27 kB
+../visionary-primary-frozen2-output-20261004/assets/Children-BrFFpZLd.js                          5.84 kB │ gzip:   2.18 kB
+../visionary-primary-frozen2-output-20261004/assets/Explore-DOElLlys.js                           6.16 kB │ gzip:   2.49 kB
+../visionary-primary-frozen2-output-20261004/assets/AuthUI-CwMwYTQh.js                            6.70 kB │ gzip:   2.11 kB
+../visionary-primary-frozen2-output-20261004/assets/Login-BDFVIj_c.js                             7.42 kB │ gzip:   2.06 kB
+../visionary-primary-frozen2-output-20261004/assets/NewPersona-B9APK70g.js                        7.92 kB │ gzip:   2.72 kB
+../visionary-primary-frozen2-output-20261004/assets/Register-DYHh5eyX.js                          9.36 kB │ gzip:   2.85 kB
+../visionary-primary-frozen2-output-20261004/assets/Practice-BO3tPuio.js                         10.11 kB │ gzip:   3.74 kB
+../visionary-primary-frozen2-output-20261004/assets/Plans-C1GwklRB.js                            10.70 kB │ gzip:   3.67 kB
+../visionary-primary-frozen2-output-20261004/assets/Settings-BWWBiEX2.js                         11.64 kB │ gzip:   4.12 kB
+../visionary-primary-frozen2-output-20261004/assets/Learn-CUB4HbjO.js                            13.20 kB │ gzip:   4.64 kB
+../visionary-primary-frozen2-output-20261004/assets/stageTransitionService-Dmmkdx3-.js           13.26 kB │ gzip:   4.48 kB
+../visionary-primary-frozen2-output-20261004/assets/TopicDetail-DEI7LQOT.js                      13.66 kB │ gzip:   4.76 kB
+../visionary-primary-frozen2-output-20261004/assets/SchoolPage-3P4OxOVa.js                       13.87 kB │ gzip:   4.53 kB
+../visionary-primary-frozen2-output-20261004/assets/Connections-iSQed73n.js                      13.90 kB │ gzip:   4.87 kB
+../visionary-primary-frozen2-output-20261004/assets/AILearningPage-DfYs1KHY.js                   14.57 kB │ gzip:   4.31 kB
+../visionary-primary-frozen2-output-20261004/assets/CommunityPage-CpXx7xCn.js                    14.93 kB │ gzip:   4.57 kB
+../visionary-primary-frozen2-output-20261004/assets/TeacherHome-CENpMxfn.js                      15.78 kB │ gzip:   5.62 kB
+../visionary-primary-frozen2-output-20261004/assets/mentorStateService-BbB4z2S8.js               15.78 kB │ gzip:   5.58 kB
+../visionary-primary-frozen2-output-20261004/assets/ContactPage-BZze13sY.js                      15.91 kB │ gzip:   4.47 kB
+../visionary-primary-frozen2-output-20261004/assets/SafetyPage-74oJxqwv.js                       16.34 kB │ gzip:   4.67 kB
+../visionary-primary-frozen2-output-20261004/assets/classroomService-zgePewGe.js                 16.47 kB │ gzip:   5.40 kB
+../visionary-primary-frozen2-output-20261004/assets/DownloadPage-B7BS4NtQ.js                     16.49 kB │ gzip:   4.54 kB
+../visionary-primary-frozen2-output-20261004/assets/roleNotificationCopy-BQvgtKgL.js             16.61 kB │ gzip:   4.28 kB
+../visionary-primary-frozen2-output-20261004/assets/AccessibilityPage-CvUUOxuK.js                17.51 kB │ gzip:   5.02 kB
+../visionary-primary-frozen2-output-20261004/assets/ReferralPage-RFDvFpNN.js                     17.94 kB │ gzip:   5.09 kB
+../visionary-primary-frozen2-output-20261004/assets/Cohorts-DgcebfCa.js                          18.11 kB │ gzip:   5.51 kB
+../visionary-primary-frozen2-output-20261004/assets/contentRepository-sds2iLHY.js                18.28 kB │ gzip:   5.96 kB
+../visionary-primary-frozen2-output-20261004/assets/learningPipelineService-W-iW_amU.js          18.63 kB │ gzip:   6.72 kB
+../visionary-primary-frozen2-output-20261004/assets/UpdatesPage-Cswe5q4Z.js                      18.80 kB │ gzip:   5.06 kB
+../visionary-primary-frozen2-output-20261004/assets/Support-9Zcdpacj.js                          19.31 kB │ gzip:   5.89 kB
+../visionary-primary-frozen2-output-20261004/assets/AboutUsPage-sqDuxON4.js                      19.78 kB │ gzip:   5.63 kB
+../visionary-primary-frozen2-output-20261004/assets/CareersPage-Bb5Vvl3i.js                      20.10 kB │ gzip:   5.91 kB
+../visionary-primary-frozen2-output-20261004/assets/Profile-DuvrWsun.js                          20.14 kB │ gzip:   5.21 kB
+../visionary-primary-frozen2-output-20261004/assets/ClassworkStudy-CloBr_-N.js                   20.78 kB │ gzip:   6.43 kB
+../visionary-primary-frozen2-output-20261004/assets/CookiesPage-D6oRlP_B.js                      21.69 kB │ gzip:   6.06 kB
+../visionary-primary-frozen2-output-20261004/assets/voiceService-DfeTWG3X.js                     21.90 kB │ gzip:   7.27 kB
+../visionary-primary-frozen2-output-20261004/assets/PersonaSections-EEm9JWVV.js                  23.04 kB │ gzip:   6.52 kB
+../visionary-primary-frozen2-output-20261004/assets/LandingFooter-DlWooxpY.js                    23.78 kB │ gzip:   6.16 kB
+../visionary-primary-frozen2-output-20261004/assets/CoachingPage-us_9sTOc.js                     24.22 kB │ gzip:   6.65 kB
+../visionary-primary-frozen2-output-20261004/assets/PartnersPage-BR1SwHhH.js                     24.94 kB │ gzip:   6.91 kB
+../visionary-primary-frozen2-output-20261004/assets/LearningRepresentation-D8kk5ahI.js           25.98 kB │ gzip:   7.61 kB
+../visionary-primary-frozen2-output-20261004/assets/TermsPage-DrdotiKp.js                        26.01 kB │ gzip:   7.32 kB
+../visionary-primary-frozen2-output-20261004/assets/RoleWorkspace-Dn761WBl.js                    26.27 kB │ gzip:   7.94 kB
+../visionary-primary-frozen2-output-20261004/assets/ResearchNewsPage-wnZAlsXs.js                 26.29 kB │ gzip:   6.94 kB
+../visionary-primary-frozen2-output-20261004/assets/classworkCopy-DkEjc3ly.js                    27.40 kB │ gzip:   6.20 kB
+../visionary-primary-frozen2-output-20261004/assets/legacyLearningCopy-_TquZqVA.js               27.54 kB │ gzip:   7.21 kB
+../visionary-primary-frozen2-output-20261004/assets/SecurityPage-BYX48X3W.js                     27.72 kB │ gzip:   6.93 kB
+../visionary-primary-frozen2-output-20261004/assets/organizationCopy-DIh_3D8U.js                 27.96 kB │ gzip:   6.86 kB
+../visionary-primary-frozen2-output-20261004/assets/StudentClasses-CMQRlwbU.js                   28.24 kB │ gzip:   8.59 kB
+../visionary-primary-frozen2-output-20261004/assets/guideCopy-CwQidl8x.js                        28.26 kB │ gzip:   7.54 kB
+../visionary-primary-frozen2-output-20261004/assets/teacherCopy-FCC-36LR.js                      28.27 kB │ gzip:   7.24 kB
+../visionary-primary-frozen2-output-20261004/assets/privacyCopy-DZop0AUd.js                      28.74 kB │ gzip:   7.27 kB
+../visionary-primary-frozen2-output-20261004/assets/professionalCopy-Br0Z1E1q.js                 28.77 kB │ gzip:   7.12 kB
+../visionary-primary-frozen2-output-20261004/assets/PrivacyPage-abN6GFxa.js                      29.45 kB │ gzip:   7.88 kB
+../visionary-primary-frozen2-output-20261004/assets/OrganizationContent-BOhvkPOo.js              30.72 kB │ gzip:   8.57 kB
+../visionary-primary-frozen2-output-20261004/assets/stageCopy-BiyhUTuL.js                        31.18 kB │ gzip:   7.22 kB
+../visionary-primary-frozen2-output-20261004/assets/SpotIllustration-9oNNy3fH.js                 32.27 kB │ gzip:   6.46 kB
+../visionary-primary-frozen2-output-20261004/assets/OrganizationPage-BRaloMOx.js                 33.10 kB │ gzip:   9.77 kB
+../visionary-primary-frozen2-output-20261004/assets/classTabCopy-dIwigdM2.js                     34.09 kB │ gzip:   8.41 kB
+../visionary-primary-frozen2-output-20261004/assets/StudentPage-Bwo3b_Nd.js                      34.54 kB │ gzip:  10.08 kB
+../visionary-primary-frozen2-output-20261004/assets/CommunityTab-CwP4h-4n.js                     34.69 kB │ gzip:  10.26 kB
+../visionary-primary-frozen2-output-20261004/assets/ParentPage-a5T92jME.js                       35.00 kB │ gzip:  10.31 kB
+../visionary-primary-frozen2-output-20261004/assets/TeacherPage-DhxLoWcW.js                      35.80 kB │ gzip:  10.39 kB
+../visionary-primary-frozen2-output-20261004/assets/Onboarding-5c-Aqs1T.js                       36.91 kB │ gzip:  10.75 kB
+../visionary-primary-frozen2-output-20261004/assets/organizationAuthorCopy-D9LH6alI.js           38.62 kB │ gzip:   8.57 kB
+../visionary-primary-frozen2-output-20261004/assets/learningCopy-yAE5l0zB.js                     40.10 kB │ gzip:   9.28 kB
+../visionary-primary-frozen2-output-20261004/assets/Guide-D_D57-ZY.js                            43.68 kB │ gzip:  13.65 kB
+../visionary-primary-frozen2-output-20261004/assets/DashboardHome-DwN88Gq_.js                    44.46 kB │ gzip:  13.22 kB
+../visionary-primary-frozen2-output-20261004/assets/Landing-BJJQcoBG.js                          44.76 kB │ gzip:  12.84 kB
+../visionary-primary-frozen2-output-20261004/assets/LearningWorkspace-BP104x0C.js                48.18 kB │ gzip:  13.66 kB
+../visionary-primary-frozen2-output-20261004/assets/ClassDetail-DspL_4Tf.js                      50.18 kB │ gzip:  13.34 kB
+../visionary-primary-frozen2-output-20261004/assets/primaryWorkspaceCopy-DROvPFlt.js             51.08 kB │ gzip:  12.61 kB
+../visionary-primary-frozen2-output-20261004/assets/parentCopy-DXr-8sdI.js                       51.14 kB │ gzip:  11.77 kB
+../visionary-primary-frozen2-output-20261004/assets/CollegePage-BDwHlKs4.js                      54.11 kB │ gzip:  14.38 kB
+../visionary-primary-frozen2-output-20261004/assets/DashboardLayout-BVoLQb_X.js                  55.09 kB │ gzip:  17.18 kB
+../visionary-primary-frozen2-output-20261004/assets/ArtifactStudio-C1Oe9inA.js                   64.54 kB │ gzip:  16.31 kB
+../visionary-primary-frozen2-output-20261004/assets/WorkspaceTools-CMilE4vB.js                  108.14 kB │ gzip:  28.24 kB
+../visionary-primary-frozen2-output-20261004/assets/index-B47Qhcz_.js                           147.46 kB │ gzip:  45.37 kB
+../visionary-primary-frozen2-output-20261004/assets/vendor-B6QVRD5b.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 32.50s

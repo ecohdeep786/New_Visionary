@@ -1,0 +1,24 @@
+✔ full publication exposes unassigned chapters without keys, editorial notes, submissions or mastery (114.2869ms)
+✔ new delivery appends a separate fixed copy and never rewrites the earlier source or assignment (79.1933ms)
+✔ failed publication preserves class bytes and retries once; direct overwrites and stale writes are refused (31.4225ms)
+✔ invited or closed learners, foreign roles, stale workspaces and revoked teachers cannot receive or publish curriculum (52.0107ms)
+✔ unreadable publication and cyclic prerequisites are rejected without byte repair or partial publication (51.354ms)
+✔ membership or workspace changes during asynchronous reads cancel the curriculum projection (20.0358ms)
+✔ withdrawal and restore retain fixed copies and assigned work while removing learner exploration (42.2188ms)
+✔ availability changes reject forged actors or altered source content and preserve bytes on storage failure (220.1002ms)
+✔ a copy withdrawn during an asynchronous read never returns stale source content (807.6366ms)
+✔ published-copy replay rejects an account handoff during class lookup (47.6824ms)
+✔ same-state publication replay rejects teacher membership revoked during class lookup (23.5279ms)
+✔ publication commit rejects a delivered source removed after the final service read (15.7953ms)
+✔ pending teacher membership denies a pending curriculum publication (48.0793ms)
+✔ revoked teacher membership denies a pending curriculum publication (14.8257ms)
+✔ expired teacher membership denies a pending curriculum publication (21.3314ms)
+✔ failed organization delivery retains prior fixed copies and retries exactly once (36.5639ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2601.7225

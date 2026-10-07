@@ -2,6 +2,7 @@ import test, { beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import { getCareerPath } from '../src/services/roleMentorService.ts';
+import { assertPortfolioReviewHistory } from '../src/services/portfolioReviewIntegrity.ts';
 
 const memory = new Map();
 let failWrite = false;
@@ -11,6 +12,27 @@ globalThis.CustomEvent ??= class { constructor(type) { this.type = type; } };
 const pro = { personId: 'demo-professional', workspaceId: 'demo-professional:professional', role: 'professional', locale: 'en' };
 const parent = { personId: 'demo-parent', workspaceId: 'demo-parent:parent', role: 'parent', locale: 'en' };
 const criteria = workspace.portfolioReviewCriteria.map(rule => ({ id: rule.id, rating: 'explained', note: `Evidence for ${rule.label}` }));
+
+test('unreadable retained self-reviews reject new assessments without rewriting originals', () => {
+ const artifact = workspace.saveArtifact(pro, { title: 'Retained work', body: 'Source evidence', status: 'completed' });
+ const version = workspace.portfolioProjectVersion(artifact);
+ workspace.savePortfolioSelfReview(pro, artifact.id, version, criteria, 'Original reflection');
+ const original = memory.get('visionary_workspace_v2');
+ const valid = workspace.snapshot(pro).artifacts[0].portfolioReviews;
+ for (const history of ['broken', null, [null], [{ ...valid[0], criteria: null }], [{ ...valid[0], criteria: [criteria[0], criteria[0], criteria[2]] }], [{ ...valid[0], criteria: criteria.map(row => ({ ...row, rating: 'verified' })) }], [{ ...valid[0], reflection: {} }]]) {
+  const db = JSON.parse(original);
+  db.data[pro.workspaceId].artifacts[0].portfolioReviews = history;
+  memory.set('visionary_workspace_v2', JSON.stringify(db));
+  const bytes = memory.get('visionary_workspace_v2');
+  assert.equal(getCareerPath(pro).portfolio[0].review, 'Self-review history unavailable');
+  assert.throws(() => workspace.savePortfolioSelfReview(pro, artifact.id, version, criteria, 'Replacement'), /Original records were kept/);
+  assert.equal(memory.get('visionary_workspace_v2'), bytes);
+ }
+ memory.set('visionary_workspace_v2', original);
+ assert.doesNotThrow(() => assertPortfolioReviewHistory({ portfolioReviews: valid }));
+ workspace.savePortfolioSelfReview(pro, artifact.id, version, criteria, 'Recovered next step');
+ assert.equal(workspace.snapshot(pro).artifacts[0].portfolioReviews.length, 2);
+});
 
 beforeEach(() => {
  memory.clear(); failWrite = false;

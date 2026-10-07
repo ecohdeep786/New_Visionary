@@ -1,0 +1,152 @@
+TimeoutError: locator.click: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Save content draft', exact: true })[22m
+[2m    - locator resolved to <button class="v-button primary">Save content draft</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+
+Skip to content
+Active workspace
+Owner · Personal
++ Add a role
+O
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+Reviewed curriculum templates
+
+Author, review and retain source versions before use.
+
+New curriculum template
+
+Map the intended learner group, source sections, objectives and prerequisite sequence in each template. Approved fixed copies reach only chosen accepted teachers; teachers review their own preparation and classroom assignment. Approval records an editorial review on this device. It does not publish a learner curriculum, generate learning activities or verify source rights. Teachers control classroom assignments.
+
+Search content
+Content state
+all
+draft
+submitted
+changes
+approved
+archived
+Content versions
+AUTHORED_CURRICULUM
+
+Revision 2 · draft
+
+Open
+Earlier subject drafts · unreviewed
+Home
+People
+Cohorts
+Curriculum
+More
+Review content version
+
+Edits stay here if saving fails. A different academic administrator reviews each authored revision.
+
+Revision 2 · draft · Organization audience
+
+Content title
+Content and learning objective
+Source and exact version
+Source language
+English
+हिन्दी
+বাংলা
+Chapters and objectives
+
+Author only reviewed source content. Saving preserves unfinished structure; submission requires source metadata, chapter references, complete teaching and at least one criterion per objective. No book conversion or new 3D asset is generated.
+
+Curriculum board or framework
+Curriculum class or level
+Curriculum subject
+Curriculum source provider
+Curriculum source identifier
+Curriculum source version
+Chapter 1
+Chapter title
+Source section or pages
+Objective 1
+Objective title
+Authored teaching explanation
+Prerequisite objectives
+
+No other objectives yet.
+
+Authored representations
+
+Cube and number-line views use existing interactive components. Their explanation and text alternative must match this objective.
+
+Add representation
+Objective review criteria
+Criterion label
+Criterion review prompt
+Remove criterion
+Add review criterion
+Authored private practice
+
+Optional exercises with reviewed answer keys. Rehearsal stays private, does not set class grades or mastery, and uses this fixed delivered revision. Questions are written here, not generated from a book.
+
+Practice question 1
+Practice prompt
+Answer option 1
+Answer option 2
+Answer option 3
+Answer option 4
+Reviewed correct option
+Choose the reviewed correct option
+Option 1: AUTHORED_OPTION_1
+Option 2: AUTHORED_OPTION_2
+Option 3: AUTHORED_OPTION_3
+Option 4: AUTHORED_OPTION_4
+Add answer option
+Remove last option
+Remove practice question
+Add practice question
+Remove objective
+Add objective
+Remove chapter
+Add chapter
+Export current content edits
+Save content draft
+Review saved revision
+
+Actions apply to the saved revision. Save edits before submission. Review notes do not become learner evidence.
+
+Review note
+Submit saved revision
+Archive saved content
+Review history and earlier versions
+Discard edits and load latest saved version
+Discard unsaved edits and close
+
+Draft saved. Submit the saved revision when it is ready.
+
+Close
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Save content draft', exact: true })
+    - locator resolved to <button class="v-button primary">Save content draft</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\org-author-verify.mjs:6:689 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Save content draft', exact: true })",
+    '    - locator resolved to <button class="v-button primary">Save content draft</button>',
+    '  - attempting click action',
+    '    - waiting for element to be visible, enabled and stable',
+    '    - element is visible, enabled and stable',
+    '    - scrolling into view if needed'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

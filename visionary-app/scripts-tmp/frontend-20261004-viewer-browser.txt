@@ -1,0 +1,63 @@
+PASS en: previous lesson/source retention, bookmark read/retry/write, question recovery/quota/reload/exact Ask handoff, focus/Escape/one heading, synthetic browser-output stop, localized cube lab/reflow. Native audio is not certified.
+TimeoutError: locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('img', { name: '6 इकाई भुजा और 216 घन इकाई आयतन वाला घन, 35 डिग्री घूमा है।', exact: true }) to be visible[22m
+
+Skip to content
+सक्रिय कार्यक्षेत्र
+निजी · Learner
++ भूमिका जोड़ें
+A
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+पिछले विषयों पर लौटें
+
+पिछली इंटरैक्टिव प्रयोगशाला · ज्यामिति
+
+छोटा बदलाव। एक और आयाम।
+
+घन की भुजा दोगुनी होने पर क्या आयतन भी दोगुना होता है? स्लाइडर बदलें और कारण खोजें।
+
+6
+6
+6
+6
+6
+6
+भुजा की लंबाई 
+6 units
+घन घुमाएँ 
+35°
+
+आयतन = भुजा × भुजा × भुजा
+
+6 × 6 × 6 = 216
+
+घन इकाई
+
+घन तीन दिशाओं में बढ़ता है। भुजा दोगुनी करने पर आयतन 2 × 2 × 2 = 8 गुना होता है।
+
+दृश्य रीसेट करें
+मेरे अध्ययन में जोड़ें
+इस विचार के बारे में पूछें
+इस विचार से बनाएँ
+होम
+सीखें
+पूछें
+अभ्यास
+और
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('img', { name: '6 इकाई भुजा और 216 घन इकाई आयतन वाला घन, 35 डिग्री घूमा है।', exact: true }) to be visible
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\previous-viewer-verify.mjs:6:302 {
+  log: [
+    "  - waiting for getByRole('img', { name: '6 इकाई भुजा और 216 घन इकाई आयतन वाला घन, 35 डिग्री घूमा है।', exact: true }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

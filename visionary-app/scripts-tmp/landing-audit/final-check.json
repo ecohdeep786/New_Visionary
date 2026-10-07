@@ -1,0 +1,1605 @@
+{
+  "320": {
+    "vw": 320,
+    "docH": 8061,
+    "overflows": [
+      "IMG.absolute select-none right:75",
+      "IMG.absolute select-none right:331",
+      "BUTTON.flex h-full min-w-[104px] flex-none item right:329",
+      "BUTTON.flex h-full min-w-[104px] flex-none item right:445",
+      "BUTTON.flex h-full min-w-[104px] flex-none item right:566",
+      "DIV.absolute inset-0 right:346",
+      "DIV.absolute inset-0 right:346",
+      "DIV.absolute inset-0 right:346"
+    ],
+    "sections": [
+      {
+        "key": "01-hero",
+        "padT": "64px",
+        "padB": "64px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgb(218, 220, 226) 0px",
+        "h2": null,
+        "h2Size": null,
+        "h2Track": null,
+        "h2Lh": null,
+        "kickerGap": null,
+        "firstGap": 175,
+        "lastGap": -13
+      },
+      {
+        "key": "02-problem",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Teaching everyone is possible. Reaching ever",
+        "h2Size": 28,
+        "h2Track": "-0.252px",
+        "h2Lh": "29.68px",
+        "kickerGap": 38,
+        "firstGap": 56,
+        "lastGap": 56
+      },
+      {
+        "key": "03-promise",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "What if your intelligence never forgot where",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": null,
+        "firstGap": 57,
+        "lastGap": 56
+      },
+      {
+        "key": "04-meet",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "It remembers.",
+        "h2Size": 40,
+        "h2Track": "-0.36px",
+        "h2Lh": "42.4px",
+        "kickerGap": 12,
+        "firstGap": 81,
+        "lastGap": 80
+      },
+      {
+        "key": "07-language",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Every language.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 81,
+        "lastGap": 80
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": 32,
+        "h2Track": "normal",
+        "h2Lh": "35.2px",
+        "kickerGap": -358,
+        "firstGap": 1,
+        "lastGap": 80
+      },
+      {
+        "key": "08-trust",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your information.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 81,
+        "lastGap": 80
+      },
+      {
+        "key": "09-cta",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your next step starts here.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 81,
+        "lastGap": 80
+      }
+    ],
+    "journey": [
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 212,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 212,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 212,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 212,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      }
+    ],
+    "trust": [
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 272
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 272
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 272
+      }
+    ],
+    "btns": [
+      {
+        "t": "Explore student learning",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Get started",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Talk to our team",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "borderTop": "rgb(210, 210, 215)"
+    },
+    "meetKickerGap": 12,
+    "meet": {
+      "stripCenterX": 160,
+      "containerCenterX": 160,
+      "centerDelta": 0,
+      "rows": [
+        {
+          "copyCx": 160,
+          "imgCx": 160,
+          "top": 2363,
+          "bottom": 2913,
+          "gapAbove": 96,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": -2913,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        }
+      ]
+    },
+    "journeyHeaderLeft": 24,
+    "journeyTrackLeftPad": 24,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 24,
+    "journeyLeftDelta": 0
+  },
+  "390": {
+    "vw": 390,
+    "docH": 8416,
+    "overflows": [
+      "IMG.absolute select-none right:91",
+      "IMG.absolute select-none right:403",
+      "BUTTON.flex h-full min-w-[104px] flex-none item right:445",
+      "BUTTON.flex h-full min-w-[104px] flex-none item right:566",
+      "DIV.absolute inset-0 transition-transform ea right:429",
+      "DIV.absolute inset-0 right:429",
+      "DIV.absolute inset-0 right:429",
+      "DIV.absolute inset-0 right:429"
+    ],
+    "sections": [
+      {
+        "key": "01-hero",
+        "padT": "64px",
+        "padB": "64px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgb(218, 220, 226) 0px",
+        "h2": null,
+        "h2Size": null,
+        "h2Track": null,
+        "h2Lh": null,
+        "kickerGap": null,
+        "firstGap": 237,
+        "lastGap": -15
+      },
+      {
+        "key": "02-problem",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Seeing progress is easy. Knowing how to help",
+        "h2Size": 28,
+        "h2Track": "-0.252px",
+        "h2Lh": "29.68px",
+        "kickerGap": 38,
+        "firstGap": 56,
+        "lastGap": 56
+      },
+      {
+        "key": "03-promise",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "What if your intelligence never forgot where",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": null,
+        "firstGap": 57,
+        "lastGap": 56
+      },
+      {
+        "key": "04-meet",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "It remembers.",
+        "h2Size": 40,
+        "h2Track": "-0.36px",
+        "h2Lh": "42.4px",
+        "kickerGap": 12,
+        "firstGap": 95,
+        "lastGap": 94
+      },
+      {
+        "key": "07-language",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Every language.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 95,
+        "lastGap": 94
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": 32,
+        "h2Track": "normal",
+        "h2Lh": "35.2px",
+        "kickerGap": -364,
+        "firstGap": 1,
+        "lastGap": 94
+      },
+      {
+        "key": "08-trust",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your privacy.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 95,
+        "lastGap": 94
+      },
+      {
+        "key": "09-cta",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your next step starts here.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 95,
+        "lastGap": 94
+      }
+    ],
+    "journey": [
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 267,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 267,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 267,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 267,
+        "capBelowImage": true,
+        "capPad": "24px 24px 28px"
+      }
+    ],
+    "trust": [
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 342
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 342
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 342
+      }
+    ],
+    "btns": [
+      {
+        "t": "Explore student learning",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Get started",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Talk to our team",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "borderTop": "rgb(210, 210, 215)"
+    },
+    "meetKickerGap": 12,
+    "meet": {
+      "stripCenterX": 195,
+      "containerCenterX": 195,
+      "centerDelta": 0,
+      "rows": [
+        {
+          "copyCx": 195,
+          "imgCx": 195,
+          "top": 2554,
+          "bottom": 3144,
+          "gapAbove": 96,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": -3144,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        }
+      ]
+    },
+    "journeyHeaderLeft": 24,
+    "journeyTrackLeftPad": 24,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 24,
+    "journeyLeftDelta": 0
+  },
+  "768": {
+    "vw": 768,
+    "docH": 8805,
+    "overflows": [
+      "IMG.absolute select-none right:158",
+      "IMG.absolute select-none right:791",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:4",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:4",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:4",
+      "P.font-semibold tracking-[0.007em] leading right:-28",
+      "P.mt-2 font-normal leading-[1.47] text-[cl right:-28",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:1058"
+    ],
+    "sections": [
+      {
+        "key": "01-hero",
+        "padT": "0px",
+        "padB": "0px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgb(218, 220, 226) 0px",
+        "h2": null,
+        "h2Size": null,
+        "h2Track": null,
+        "h2Lh": null,
+        "kickerGap": null,
+        "firstGap": 294,
+        "lastGap": -26
+      },
+      {
+        "key": "02-problem",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Seeing progress is easy. Knowing how to help",
+        "h2Size": 31,
+        "h2Track": "-0.27648px",
+        "h2Lh": "32.5632px",
+        "kickerGap": 38,
+        "firstGap": 56,
+        "lastGap": 56
+      },
+      {
+        "key": "03-promise",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "What if your intelligence never forgot where",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": null,
+        "firstGap": 57,
+        "lastGap": 56
+      },
+      {
+        "key": "04-meet",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "It remembers.",
+        "h2Size": 46,
+        "h2Track": "-0.41472px",
+        "h2Lh": "48.8448px",
+        "kickerGap": 12,
+        "firstGap": 97,
+        "lastGap": 96
+      },
+      {
+        "key": "07-language",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Every language.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 97,
+        "lastGap": 84
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": 32,
+        "h2Track": "normal",
+        "h2Lh": "35.2px",
+        "kickerGap": -352,
+        "firstGap": 1,
+        "lastGap": 96
+      },
+      {
+        "key": "08-trust",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your privacy.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 97,
+        "lastGap": 96
+      },
+      {
+        "key": "09-cta",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your next step starts here.",
+        "h2Size": 32,
+        "h2Track": "-0.288px",
+        "h2Lh": "33.92px",
+        "kickerGap": 12,
+        "firstGap": 97,
+        "lastGap": 96
+      }
+    ],
+    "journey": [
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 331,
+        "capBelowImage": true,
+        "capPad": "24px 32px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 331,
+        "capBelowImage": true,
+        "capPad": "24px 32px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 331,
+        "capBelowImage": true,
+        "capPad": "24px 32px 28px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 331,
+        "capBelowImage": true,
+        "capPad": "24px 32px 28px"
+      }
+    ],
+    "trust": [
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 720
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 720
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 720
+      }
+    ],
+    "btns": [
+      {
+        "t": "Explore student learning",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Get started",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Talk to our team",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "borderTop": "rgb(210, 210, 215)"
+    },
+    "meetKickerGap": 12,
+    "meet": {
+      "stripCenterX": 384,
+      "containerCenterX": 384,
+      "centerDelta": 0,
+      "rows": [
+        {
+          "copyCx": 384,
+          "imgCx": 384,
+          "top": 2631,
+          "bottom": 3254,
+          "gapAbove": 96,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": -3254,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        },
+        {
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
+          "rowGap": "normal"
+        }
+      ]
+    },
+    "journeyHeaderLeft": 24,
+    "journeyTrackLeftPad": 24,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 24,
+    "journeyLeftDelta": 0
+  },
+  "1024": {
+    "vw": 1024,
+    "docH": 8997,
+    "overflows": [
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:44",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:44",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:44",
+      "P.font-semibold tracking-[0.007em] leading right:4",
+      "P.mt-2 font-normal leading-[1.47] text-[cl right:4",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:1087",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:1087",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:1087"
+    ],
+    "sections": [
+      {
+        "key": "01-hero",
+        "padT": "0px",
+        "padB": "0px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgb(218, 220, 226) 0px",
+        "h2": null,
+        "h2Size": null,
+        "h2Track": null,
+        "h2Lh": null,
+        "kickerGap": null,
+        "firstGap": 231,
+        "lastGap": -25
+      },
+      {
+        "key": "02-problem",
+        "padT": "71.68px",
+        "padB": "71.68px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Seeing progress is easy. Knowing how to help",
+        "h2Size": 41,
+        "h2Track": "-0.36864px",
+        "h2Lh": "43.4176px",
+        "kickerGap": 42,
+        "firstGap": 72,
+        "lastGap": 72
+      },
+      {
+        "key": "03-promise",
+        "padT": "71.68px",
+        "padB": "71.68px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "What if your intelligence never forgot where",
+        "h2Size": 40,
+        "h2Track": "-0.359424px",
+        "h2Lh": "42.3322px",
+        "kickerGap": null,
+        "firstGap": 73,
+        "lastGap": 72
+      },
+      {
+        "key": "04-meet",
+        "padT": "102.4px",
+        "padB": "102.4px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "It remembers.",
+        "h2Size": 61,
+        "h2Track": "-0.55296px",
+        "h2Lh": "65.1264px",
+        "kickerGap": 12,
+        "firstGap": 103,
+        "lastGap": 102
+      },
+      {
+        "key": "07-language",
+        "padT": "102.4px",
+        "padB": "102.4px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Every language.",
+        "h2Size": 40,
+        "h2Track": "-0.359424px",
+        "h2Lh": "42.3322px",
+        "kickerGap": 12,
+        "firstGap": 103,
+        "lastGap": 90
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "102.4px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": 32,
+        "h2Track": "normal",
+        "h2Lh": "35.2px",
+        "kickerGap": -415,
+        "firstGap": 1,
+        "lastGap": 102
+      },
+      {
+        "key": "08-trust",
+        "padT": "102.4px",
+        "padB": "102.4px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your privacy.",
+        "h2Size": 40,
+        "h2Track": "-0.359424px",
+        "h2Lh": "42.3322px",
+        "kickerGap": 12,
+        "firstGap": 103,
+        "lastGap": 102
+      },
+      {
+        "key": "09-cta",
+        "padT": "102.4px",
+        "padB": "102.4px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your next step starts here.",
+        "h2Size": 40,
+        "h2Track": "-0.359424px",
+        "h2Lh": "42.3322px",
+        "kickerGap": 12,
+        "firstGap": 103,
+        "lastGap": 102
+      }
+    ],
+    "journey": [
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 502,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 502,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 502,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 502,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      }
+    ],
+    "trust": [
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 299
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 299
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 299
+      }
+    ],
+    "btns": [
+      {
+        "t": "Explore student learning",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore teaching tools",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore parent support",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore professional wor",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore organization lea",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Get started",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Talk to our team",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "borderTop": "rgb(210, 210, 215)"
+    },
+    "meetKickerGap": 12,
+    "meet": {
+      "stripCenterX": 512,
+      "containerCenterX": 512,
+      "centerDelta": 0,
+      "rows": [
+        {
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 2692,
+          "bottom": 3092,
+          "gapAbove": 112,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 3092,
+          "bottom": 3636,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 3636,
+          "bottom": 4180,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 4180,
+          "bottom": 4724,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 4724,
+          "bottom": 5268,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        }
+      ]
+    },
+    "journeyHeaderLeft": 64,
+    "journeyTrackLeftPad": 64,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 64,
+    "journeyLeftDelta": 0
+  },
+  "1440": {
+    "vw": 1440,
+    "docH": 10019,
+    "overflows": [
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:1521",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:1521",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:1521",
+      "P.font-semibold tracking-[0.007em] leading right:1481",
+      "P.mt-2 font-normal leading-[1.47] text-[cl right:1481",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:2247",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:2247",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:2247"
+    ],
+    "sections": [
+      {
+        "key": "01-hero",
+        "padT": "0px",
+        "padB": "0px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgb(218, 220, 226) 0px",
+        "h2": null,
+        "h2Size": null,
+        "h2Track": null,
+        "h2Lh": null,
+        "kickerGap": null,
+        "firstGap": 180,
+        "lastGap": -35
+      },
+      {
+        "key": "02-problem",
+        "padT": "90px",
+        "padB": "90px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Teaching everyone is possible. Reaching ever",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 48,
+        "firstGap": 90,
+        "lastGap": 90
+      },
+      {
+        "key": "03-promise",
+        "padT": "90px",
+        "padB": "90px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "What if your intelligence never forgot where",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": null,
+        "firstGap": 91,
+        "lastGap": 90
+      },
+      {
+        "key": "04-meet",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "It remembers.",
+        "h2Size": 64,
+        "h2Track": "-0.576px",
+        "h2Lh": "67.84px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 144
+      },
+      {
+        "key": "07-language",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Every language.",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 132
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": 40,
+        "h2Track": "normal",
+        "h2Lh": "44px",
+        "kickerGap": -534,
+        "firstGap": 1,
+        "lastGap": 144
+      },
+      {
+        "key": "08-trust",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your privacy.",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 144
+      },
+      {
+        "key": "09-cta",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your next step starts here.",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 144
+      }
+    ],
+    "journey": [
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 706,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 706,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 706,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 706,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      }
+    ],
+    "trust": [
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 371
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 371
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 371
+      }
+    ],
+    "btns": [
+      {
+        "t": "Explore student learning",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore teaching tools",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore parent support",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore professional wor",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore organization lea",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Get started",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Talk to our team",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "borderTop": "rgb(210, 210, 215)"
+    },
+    "meetKickerGap": 12,
+    "meet": {
+      "stripCenterX": 720,
+      "containerCenterX": 720,
+      "centerDelta": 0,
+      "rows": [
+        {
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 3076,
+          "bottom": 3492,
+          "gapAbove": 112,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 3492,
+          "bottom": 4052,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 4052,
+          "bottom": 4612,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 4612,
+          "bottom": 5172,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 5172,
+          "bottom": 5732,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        }
+      ]
+    },
+    "journeyHeaderLeft": 90,
+    "journeyTrackLeftPad": 90,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 90,
+    "journeyLeftDelta": 0
+  },
+  "1920": {
+    "vw": 1920,
+    "docH": 10446,
+    "overflows": [
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:2650",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:2650",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:2650",
+      "P.font-semibold tracking-[0.007em] leading right:2610",
+      "P.mt-2 font-normal leading-[1.47] text-[cl right:2610",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:3510",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:3510",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:3510"
+    ],
+    "sections": [
+      {
+        "key": "01-hero",
+        "padT": "0px",
+        "padB": "0px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgb(218, 220, 226) 0px",
+        "h2": null,
+        "h2Size": null,
+        "h2Track": null,
+        "h2Lh": null,
+        "kickerGap": null,
+        "firstGap": 226,
+        "lastGap": -46
+      },
+      {
+        "key": "02-problem",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Teaching everyone is possible. Reaching ever",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 48,
+        "firstGap": 96,
+        "lastGap": 96
+      },
+      {
+        "key": "03-promise",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "What if your intelligence never forgot where",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": null,
+        "firstGap": 97,
+        "lastGap": 96
+      },
+      {
+        "key": "04-meet",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "It remembers.",
+        "h2Size": 64,
+        "h2Track": "-0.576px",
+        "h2Lh": "67.84px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 144
+      },
+      {
+        "key": "07-language",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Every language.",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 132
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": 40,
+        "h2Track": "normal",
+        "h2Lh": "44px",
+        "kickerGap": -610,
+        "firstGap": 1,
+        "lastGap": 144
+      },
+      {
+        "key": "08-trust",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your information.",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 144
+      },
+      {
+        "key": "09-cta",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(245, 245, 247)",
+        "borderTop": "rgba(0, 0, 0, 0) 1px",
+        "h2": "Your next step starts here.",
+        "h2Size": 56,
+        "h2Track": "-0.504px",
+        "h2Lh": "59.36px",
+        "kickerGap": 12,
+        "firstGap": 145,
+        "lastGap": 144
+      }
+    ],
+    "journey": [
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 840,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 840,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 840,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(245, 245, 247)",
+        "w": 840,
+        "capBelowImage": true,
+        "capPad": "28px 40px 32px"
+      }
+    ],
+    "trust": [
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 371
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 371
+      },
+      {
+        "radius": "18px",
+        "bg": "rgb(255, 255, 255)",
+        "w": 371
+      }
+    ],
+    "btns": [
+      {
+        "t": "Explore student learning",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore teaching tools",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore parent support",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore professional wor",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Explore organization lea",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Get started",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      },
+      {
+        "t": "Talk to our team",
+        "h": 44,
+        "fs": 17,
+        "radius": "9999px"
+      }
+    ],
+    "footer": {
+      "bg": "rgb(245, 245, 247)",
+      "borderTop": "rgb(210, 210, 215)"
+    },
+    "meetKickerGap": 12,
+    "meet": {
+      "stripCenterX": 960,
+      "containerCenterX": 960,
+      "centerDelta": 0,
+      "rows": [
+        {
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 3419,
+          "bottom": 3835,
+          "gapAbove": 112,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 3835,
+          "bottom": 4395,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 4395,
+          "bottom": 4955,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 4955,
+          "bottom": 5515,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        },
+        {
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 5515,
+          "bottom": 6075,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
+        }
+      ]
+    },
+    "journeyHeaderLeft": 90,
+    "journeyTrackLeftPad": 90,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 90,
+    "journeyLeftDelta": 0
+  },
+  "targets": {
+    "section-pad-phone": "96–112px",
+    "section-pad-desktop": "112–144px",
+    "junction-desktop": "~224–310px air between chapters",
+    "junction-phone": "~192–224px",
+    "h2-meet-desktop": "64px chapter tier",
+    "h2-statements-desktop": "56px",
+    "h2-journey": "40px desktop / 32px phone",
+    "h2-journey-tracking": "-0.002em",
+    "card-radius": "18px",
+    "card-bg": "#F5F5F7 tiles / white cards on band",
+    "card-gap": "20–24px",
+    "btn-height": "44px",
+    "btn-font": "17px",
+    "trust-band": "#F5F5F7 section",
+    "footer-bg": "#F5F5F7",
+    "no-hairline": "transparent border-top on landing sections",
+    "no-h-overflow": "no element wider than viewport"
+  }
+}

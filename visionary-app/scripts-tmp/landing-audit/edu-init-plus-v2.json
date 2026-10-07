@@ -1,0 +1,68 @@
+[
+ {
+  "aria": "",
+  "w": 36,
+  "d": "M14.8 11.75 v11.9",
+  "cls": "play-pause"
+ },
+ {
+  "aria": "Previous educators story",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-previous"
+ },
+ {
+  "aria": "Next educators story",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-next"
+ },
+ {
+  "aria": "",
+  "w": 36,
+  "d": "M14.8 11.75 v11.9",
+  "cls": "play-pause"
+ },
+ {
+  "aria": "Previous opportunities story",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-previous"
+ },
+ {
+  "aria": "Next opportunities story",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-next"
+ },
+ {
+  "aria": "",
+  "w": 36,
+  "d": "M14.8 11.75 v11.9",
+  "cls": "play-pause"
+ },
+ {
+  "aria": "Previous equity story",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-previous"
+ },
+ {
+  "aria": "Next equity story",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-next"
+ },
+ {
+  "aria": "Previous",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-previous"
+ },
+ {
+  "aria": "Next",
+  "w": 36,
+  "d": "",
+  "cls": "paddlenav-arrow paddlenav-arrow-next"
+ }
+]

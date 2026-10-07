@@ -60,6 +60,22 @@ test('community events carry no post text and stay scoped to each workspace', ()
  assert.equal(JSON.stringify(teacherEvents).includes('A private question'), false);
 });
 
+test('the assigned teacher can remove a reported post without restoring learner visibility', () => {
+ const student = ctx('minor-cbse', 'student');
+ const teacher = ctx('teacher', 'teacher');
+ const posted = postToClassCommunity(student, 'demo-class-cube', 'Reported authored text');
+ reportCommunityPost(student, 'demo-class-cube', posted.id);
+ assert.equal(getClassCommunity(teacher, 'demo-class-cube').posts.find(post => post.id === posted.id)?.status, 'flagged');
+ const before = localStorage.getItem('visionary_community_v1');
+ assert.throws(() => removeCommunityPost(student, 'demo-class-cube', posted.id), /assigned teacher/);
+ assert.equal(localStorage.getItem('visionary_community_v1'), before);
+ removeCommunityPost(teacher, 'demo-class-cube', posted.id);
+ assert.equal(getClassCommunity(student, 'demo-class-cube').posts.some(post => post.id === posted.id), false);
+ assert.equal(getClassCommunity(teacher, 'demo-class-cube').posts.some(post => post.id === posted.id), false);
+ assert.throws(() => restoreCommunityPost(teacher, 'demo-class-cube', posted.id), /not waiting for review/);
+ assert.equal(JSON.stringify(mentor.getInteractionEvents(teacher)).includes('Reported authored text'), false);
+});
+
 test('community trust edges: rate limits, learner reporting and teacher restore', () => {
  const student = ctx('minor-cbse', 'student');
  const teacher = ctx('teacher', 'teacher');

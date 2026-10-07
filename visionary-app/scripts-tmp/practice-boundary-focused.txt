@@ -1,0 +1,21 @@
+✔ practice preparation rejects withdrawn enrollment during question hashing (398.9515ms)
+✔ practice preparation rejects changed source during question hashing (1559.1396ms)
+✔ practice preparation rejects cancelled navigation during question hashing (1691.2946ms)
+✔ assigned Ask uses only scoped instructions/source and handles unavailable teaching and safety (667.8474ms)
+✔ a delayed model reply closes on revoked class access and its packet excludes private study (690.7362ms)
+✔ authored rehearsal resumes, rejects stale questions and stores distinct retries without mastery or grades (2204.0082ms)
+✔ study conflict, malformed stores and failed writes preserve originals and reject teacher access (15.1821ms)
+✔ assigned criterion reviews are mandatory, fixed across revision history, and exclude private rehearsal (57.963ms)
+✔ reviewed assigned practice projects no keys and private attempts cannot create grades or mastery (5040.4256ms)
+✔ changed source pointers and corrupted banks fail without grading or repairing stored originals (749.101ms)
+✔ later curriculum edits do not replace delivered questions; stale keys and revoked access reject private grading (3063.1733ms)
+✔ a draft bank keeps an unselected answer key; editorial submission rejects it without a write (159.6104ms)
+✔ older reviewed assignment copies retain practice without inventing newly added chapter metadata (746.9921ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36939.0108

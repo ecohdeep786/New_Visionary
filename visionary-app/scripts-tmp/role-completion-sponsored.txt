@@ -2,17 +2,15 @@ node:internal/modules/run_main:107
     triggerUncaughtException(
     ^
 
-AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4198/dashboard/career
+Call log:
+  - navigating to "http://127.0.0.1:4198/dashboard/career", waiting until "networkidle"
 
-1 !== 0
-
-    at file:///C:/Users/Administrator/New_Visionary/visionary-app/scripts-tmp/professional-sponsored-verify.mjs:99:9 {
-  generatedMessage: true,
-  code: 'ERR_ASSERTION',
-  actual: 1,
-  expected: 0,
-  operator: 'strictEqual',
-  diff: 'simple'
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\professional-sponsored-verify.mjs:24:13 {
+  log: [
+    '  - navigating to "http://127.0.0.1:4198/dashboard/career", waiting until "networkidle"'
+  ],
+  name: 'Error'
 }
 
 Node.js v24.19.0

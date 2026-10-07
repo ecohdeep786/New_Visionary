@@ -1,0 +1,1 @@
+PASS: newer review conflict → retained draft export → explicit latest recovery; reviewed assignment → submission → persisted teacher feedback draft → revision → resubmit → return → scoped parent digest → revocation; zero page errors or mobile overflow.

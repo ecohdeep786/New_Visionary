@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 
@@ -23,116 +23,83 @@ const COLORS = {
   white: "#ffffff",
 };
 
-/** Struggle-circle crop positions and keyframes, identical on every page. */
-const STRUGGLE_MAIN_POSITIONS = ["center 30%"];
+/* The problem chapter on every persona page — one anatomy shared with the
+   landing's approved problem chapter (02-problem): centered kicker, one
+   balanced statement with the page's rotating accent word, then an unframed
+   studio-white subject standing on the page's own white. No circle crop, no
+   doodle arrow, no card: the photography dissolves at its edges via mask
+   gradients (the hero's floor recipe) and all four subjects stay mounted,
+   crossfading in place — a keyed <img> remount flashes an empty frame on
+   slow phones. Chapter breath comes from the bridge's compact band
+   (02-struggle), never from inner padding. */
+const STRUGGLE_MASK = {
+  WebkitMaskImage:
+    "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+  WebkitMaskComposite: "source-in",
+  maskImage:
+    "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+  maskComposite: "intersect",
+};
 
-const STRUGGLE_WORD_STYLE = `
-@keyframes struggleWordIn {
-  from {
-    opacity: 0;
-    transform: translate3d(-18px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-`;
-const STRUGGLE_IMAGE_STYLE = `
-@keyframes struggleImageIn {
-  from {
-    opacity: 0;
-    transform: scale(1.015);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`;
-
-const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey, lines }) {
+const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goTo, lines, label, kicker = "The problem" }) {
+  const slide = slides[index];
   return (
-    <h2
-      className="font-medium tracking-[0] leading-[1.15] text-[clamp(28px,2.78vw,40px)] lg:leading-[1.08]"
-      style={{ color: COLORS.ink }}
-    >
-      {lines.map((line) => (
-        <span key={line} className="block">
-          {line}
-        </span>
-      ))}
-      <span className="block overflow-hidden whitespace-nowrap">
-        <span
-          key={slideKey}
-          className="inline-block animate-[struggleWordIn_0.65s_cubic-bezier(0.22,1,0.36,1)_both]"
-          style={{ color: COLORS.blue }}
-        >
-          {word}
-        </span>
-      </span>
-    </h2>
-  );
-});
-
-const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey }) {
-  return (
-    <figure className="m-0 w-full">
-      <style>
-        {STRUGGLE_WORD_STYLE}
-        {STRUGGLE_IMAGE_STYLE}
-      </style>
-
-      <div className="relative mx-auto w-full max-w-[520px]">
-        {/* circle wrapper — exactly circle-sized, centered in the column */}
-        <div className="relative mx-auto w-[86%] max-w-[400px]">
-          {/* hand-drawn arrow — lives in the gap BETWEEN heading and circle */}
-          <svg
-            viewBox="0 0 220 120"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-[136px] top-1/2 z-10 hidden h-[72px] w-[120px] -translate-y-1/2 lg:block"
-            style={{ color: COLORS.ink }}
-          >
-            <path d="M6 66 C 60 86, 140 84, 198 52" />
-            <path d="M198 52 l-16 2" />
-            <path d="M198 52 l-6 14" />
-          </svg>
-
-          <div className="aspect-square w-full overflow-hidden rounded-full">
-            <img
-              key={`main-${slideKey}`}
-              src={slide.image}
-              alt={slide.alt}
-              loading="eager"
-              decoding="async"
-              className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
-              style={{ objectPosition: STRUGGLE_MAIN_POSITIONS[slideKey % STRUGGLE_MAIN_POSITIONS.length] }}
-            />
-          </div>
-        </div>
-
-        {/* quote — centered under the circle */}
-        <figcaption
-          key={`quote-${slideKey}`}
-          aria-live="polite"
-          className="hero-fade-up mx-auto mt-8 max-w-[520px] px-4 text-center font-normal tracking-[0] leading-[1.4] text-[clamp(16px,1.39vw,20px)] [animation-delay:120ms] [animation-fill-mode:both] sm:px-0"
+    <>
+      <p className="sr-only">{label}</p>
+      <div className="px-6">
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
+          {kicker}
+        </p>
+        <h2
+          key={`h-${index}`}
+          className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,4vw,56px)]"
           style={{ color: COLORS.ink }}
         >
-          {slide.quote}
-        </figcaption>
+          {lines.join(" ")} <span style={{ color: COLORS.blue }}>{slide.word}</span>.
+        </h2>
       </div>
-    </figure>
+      <figure className="m-0">
+        <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
+          {slides.map((s, i) => (
+            <img
+              key={s.alt}
+              src={s.image}
+              alt={i === index ? s.alt : ""}
+              aria-hidden={i !== index}
+              loading="eager"
+              decoding="async"
+              draggable="false"
+              style={STRUGGLE_MASK}
+              className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ease-apple motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
+            />
+          ))}
+        </div>
+        <figcaption
+          key={`q-${index}`}
+          aria-live="polite"
+          className="hero-fade-up mx-auto mt-[clamp(16px,2.4vw,32px)] w-full max-w-[640px] px-6 text-center [animation-delay:80ms] [animation-fill-mode:both]"
+        >
+          {/* the reserved two-line slot keeps the dots from jumping when a
+              shorter quote occupies one line */}
+          <p className="flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>
+            {slide.quote}
+          </p>
+        </figcaption>
+      </figure>
+      <div className="mt-8 flex justify-center">
+        <CarouselDots total={slides.length} active={index} onSelect={goTo} label={label} />
+      </div>
+    </>
   );
 });
 
-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, label }) {
+const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, label, tone = "ink" }) {
+  /* tone "pill" — the AirPods highlights dotnav (same treatment as the
+     landing journey): uniform warm-gray dots riding inside the section's
+     light pill, the active one stretching into a 48×8 rounded bar */
+  const pill = tone === "pill";
   return (
-    <div className="flex items-center gap-2" role="group" aria-label="aria-label={label}">
+    <div className={`flex items-center ${pill ? "gap-4" : "gap-2"}`} role="group" aria-label={label}>
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
@@ -140,78 +107,184 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-label={`Go to challenge ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
     </div>
   );
 });
 
-const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, trackRef, onScroll, canPrev, canNext, scrollByCard, iconMap }) {
-  const ALIGN = "max(1.5rem, calc(50% - 40rem))";
+const JOURNEY_GALLERY_MS = 5000;
+
+
+
+
+/* The journey gallery on persona pages — one anatomy site-wide, rebuilt to
+   Apple's education-initiative story-card grammar (the "Equipping today's
+   learners…" chapter, measured live): cards at 68% of the viewport (980px
+   @1440), 30px radius, the story headline INSIDE the card bottom-left at
+   48px/600 white over Apple's exact bottom smoke (transparent to
+   rgba(0,0,0,0.7) across the lower ~43%), a bare 36px white plus glyph
+   bottom-right, and the whole card as the button that opens the stage's
+   story modal. The controls are Apple's bare 36px glyph row 25px under
+   the card: play/pause left, prev/next right, no dots. Auto-advances
+   every 5s (opening a card pauses the tour; reduced motion steps
+   instantly). The track shares the header's gutter so the statement and
+   the first card sit on one spine, with the next card peeking at the
+   viewport edge. */
+const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label }) {
+  const trackRef = useRef(null);
+  const lockRef = useRef(0);
+  const rafRef = useRef(0);
+  const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(true);
+
+  const stepTo = useCallback((i) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const first = track.children[0];
+    const unit = track.children[1] ? track.children[1].offsetLeft - first.offsetLeft : first.offsetWidth;
+    const clamped = Math.min(stages.length - 1, Math.max(0, i));
+    setActive(clamped);
+    lockRef.current = Date.now() + 700;
+    track.scrollTo({ left: clamped * unit, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }, [stages.length]);
+
+  useEffect(() => {
+    if (!playing) return undefined;
+    const id = setInterval(() => stepTo((active + 1) % stages.length), JOURNEY_GALLERY_MS);
+    return () => clearInterval(id);
+  }, [playing, active, stepTo, stages.length]);
+
+  const onScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const track = trackRef.current;
+      if (!track || !track.children[1] || Date.now() < lockRef.current) return;
+      const unit = track.children[1].offsetLeft - track.children[0].offsetLeft || 1;
+      setActive(Math.min(stages.length - 1, Math.max(0, Math.round(track.scrollLeft / unit))));
+    });
+  }, [stages.length]);
+  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
+
+  const openStage = (stage) => {
+    setPlaying(false);
+    onOpen(stage);
+  };
 
   return (
-    <div className="mt-16 lg:mt-20">
+    <div>
       <div
         ref={trackRef}
         onScroll={onScroll}
-        style={{ paddingLeft: ALIGN, paddingRight: "max(1.5rem, 6%)", scrollPaddingLeft: ALIGN }}
-        className="flex snap-x snap-mandatory gap-12 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label={label}
+        className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden"
       >
-        {stages.map((stage) => {
-          const Icon = iconMap[stage.title] || Sparkles;
-          return (
-            <article key={stage.title} id={stage.id} data-card className="w-[85%] shrink-0 snap-start scroll-mt-24 sm:w-[440px] lg:w-[700px] xl:w-[780px]">
-              <button
-                type="button"
-                onClick={() => onOpen(stage)}
-                aria-label={`Open details for ${stage.title}`}
-                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
-              >
-                <img
-                  src={stage.image}
-                  alt={stage.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
-                />
-                {/* stage icon pill — the missing icon layer */}
-                <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-                <span className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </span>
-              </button>
-              <h3 className="mt-[calc(clamp(28px,2.9vw,40px)*1.714)] text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-[calc(clamp(28px,2.9vw,40px)*0.714)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
-            </article>
-          );
-        })}
+        {stages.map((stage, i) => (
+          <figure key={stage.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
+            className="relative m-0 w-[86vw] flex-none snap-start sm:w-[76vw] lg:w-[68vw]">
+            <button
+              type="button"
+              onClick={() => openStage(stage)}
+              aria-label={`Open details for ${stage.title}`}
+              className="group relative block w-full overflow-hidden rounded-[30px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+            >
+              <img
+                src={stage.image}
+                alt={stage.alt}
+                loading="eager"
+                decoding="async"
+                draggable="false"
+                className="aspect-[4/3] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02] sm:aspect-[1.9]"
+              />
+              {/* Apple's exact bottom smoke (measured on the education-initiative
+                  story cards): transparent to rgba(0,0,0,0.7) across the lower
+                  ~43% of the card, so the bottom-left statement reads on any
+                  stock photo without a full-card veil */}
+              <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
+              {/* the story headline — inside the card, bottom-left, 48px/600
+                  white (measured: lh 52px, inset 36px, up to ~673px wide) */}
+              <span className="absolute bottom-0 left-0 block max-w-[72%] p-6 text-left sm:p-9">
+                <span key={stage.statement} className="block font-semibold tracking-[-0.01em] leading-[1.08] text-[clamp(22px,3.34vw,48px)] text-white">{stage.statement || stage.title}</span>
+              </span>
+              {/* the bare plus glyph — Apple's story-card affordance: no
+                  circle, no pill, just the white 36px + over the smoke */}
+              <span className="absolute bottom-6 right-6 block h-9 w-9 text-white sm:bottom-6 sm:right-6">
+                <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" className="h-9 w-9" aria-hidden="true">
+                  <path d="M18 8v20M8 18h20" />
+                </svg>
+              </span>
+            </button>
+          </figure>
+        ))}
       </div>
-      <div className="mt-12 flex justify-end px-6 lg:mt-16 lg:pr-[9%]">
-        <div className="inline-flex items-center gap-10 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.cardSurface }}>
-          <button type="button" aria-label="Previous stages" disabled={!canPrev} onClick={() => scrollByCard(-1)} className={`transition-colors ${canPrev ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canPrev ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="left" />
+      {/* the controls — Apple's bare 36px glyph row 25px under the cards:
+          play/pause at the track's left edge, prev/next chevrons at the
+          right edge; no dots on this gallery */}
+      <div className="mt-6 flex items-center justify-between px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+        <button
+          type="button"
+          aria-label={playing ? "Pause the journey" : "Play the journey"}
+          aria-pressed={!playing}
+          onClick={() => setPlaying((v) => !v)}
+          className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+        >
+          {playing ? (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
+              <rect x="6.5" y="5" width="4" height="14" rx="1.2" />
+              <rect x="13.5" y="5" width="4" height="14" rx="1.2" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px] translate-x-[1px]" aria-hidden="true">
+              <path d="M8 5.5c0-.9 1-1.5 1.8-1l9.6 5.6c.8.5.8 1.7 0 2.2l-9.6 5.6c-.8.5-1.8-.1-1.8-1V5.5z" />
+            </svg>
+          )}
+        </button>
+        <div className="flex items-center gap-5">
+          <button
+            type="button"
+            aria-label={`Previous ${label}`}
+            disabled={active === 0}
+            onClick={() => stepTo(active - 1)}
+            className={`flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+          >
+            <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
           </button>
-          <button type="button" aria-label="Next stages" disabled={!canNext} onClick={() => scrollByCard(1)} className={`transition-colors ${canNext ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canNext ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="right" />
+          <button
+            type="button"
+            aria-label={`Next ${label}`}
+            disabled={active === stages.length - 1}
+            onClick={() => stepTo(active + 1)}
+            className={`flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+          >
+            <ChevronIcon className="h-[18px] w-[18px]" />
           </button>
         </div>
       </div>
+      <p aria-live="polite" className="sr-only">{`${stages[active].title}. ${stages[active].copy}`}</p>
     </div>
   );
 });
 
+
+/* The stage's story popup — Apple's modal-story anatomy (measured on the
+   education-initiative card click-through): a full-screen WHITE blur
+   curtain (rgba(255,255,255,0.48) over blur(20px)), the white panel inset
+   16px at radius 30px, the media full-bleed at the panel's top edge with
+   the stage chip over its own smoke, then the story zone: 48px/600
+   heading, 17px body, the canonical black primary pill, and the feature
+   blocks. Close is Apple's bare glyph over the media. Escape and the
+   backdrop close it; focus is trapped and restored. */
 const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, stageMeta, fallbackKey, secondaryLabel }) {
   const closeRef = useRef(null);
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
-        const onKey = (e) => {
+    const onKey = (e) => {
       if (e.key === "Escape") { onClose(); return; }
       if (e.key !== "Tab") return;
       const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
@@ -240,114 +313,117 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
     : { label: "See how it works", to: "/how-it-works" };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8 sm:px-6" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-[rgba(255,255,255,0.48)] backdrop-blur-[20px] p-4" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
       <button
         type="button"
         tabIndex={-1}
         aria-label="Close dialog"
         onClick={onClose}
-        className="absolute inset-0 h-full w-full cursor-default bg-[#121317]/60"
+        className="fixed inset-0 h-full w-full cursor-default"
       />
 
       <div
-        className="relative max-h-[88vh] w-full max-w-[1080px] overflow-y-auto rounded-[28px] bg-white p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto my-4 max-h-[calc(100vh-32px)] w-full max-w-[1080px] overflow-hidden rounded-[30px] bg-white"
         style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}
       >
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
+        <div className="max-h-[calc(100vh-32px)] overflow-y-auto">
+          {/* the close — Apple's bare modal glyph, top-right over the media */}
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
 
-        <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-          {stage.title}
-        </p>
-
-        <h3 id="journey-modal-title" className="mt-[calc(clamp(30px,3.8vw,56px)*0.4)] max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
-          {content.top}
-          <br />
-          <span style={{ color: COLORS.blue }}>{content.accent}</span>
-        </h3>
-
-        <div className="relative mt-8 overflow-hidden rounded-[24px]">
-          <img src={stage.image} alt={stage.alt} className="aspect-[21/9] w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#121317]/60 via-[#121317]/20 to-transparent p-5">
+          {/* media full-bleed to the panel's top/side edges (Apple's story
+              modal carries the film edge-to-edge; the stage chip rides
+              bottom-left over its own smoke) */}
+          <div className="relative">
+            <img src={stage.image} alt={stage.alt} className="aspect-[16/9] w-full object-cover" />
+            <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
             <span
-              className="inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[12px] font-medium uppercase tracking-[0.12em]"
+              className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[13px] font-medium tracking-[0] sm:left-9"
               style={{ color: COLORS.ink }}
             >
               <meta.Icon className="h-3.5 w-3.5" strokeWidth={1.8} style={{ color: COLORS.blue }} />
               Visionary for {stage.title}
             </span>
           </div>
-        </div>
 
-        <p className="mt-7 max-w-[680px] font-normal tracking-[0] leading-[1.65] text-[15px] sm:text-[16px]" style={{ color: COLORS.grey }}>
-          {content.intro}
-        </p>
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <Link
-            to={content.primary.to}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
-          >
-            {content.primary.label}
-            <ChevronIcon className="h-4 w-4" />
-          </Link>
-          <Link
-            to={secondary.to}
-            className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-            style={{ borderColor: COLORS.mist, color: COLORS.ink }}
-          >
-            {secondary.label}
-          </Link>
-        </div>
+          {/* the story zone — Apple's measured breath, text inset from the
+              panel edges; heading at the 48/600 story tier, body 17px */}
+          <div className="px-6 pb-12 pt-10 sm:px-12 sm:pb-14 lg:px-16 lg:pb-[72px] lg:pt-14">
+            <h3 id="journey-modal-title" className="max-w-[760px] font-semibold tracking-[-0.01em] leading-[1.08] text-[clamp(28px,3.34vw,48px)]" style={{ color: COLORS.ink }}>
+              {content.top}
+              <br />
+              <span style={{ color: COLORS.blue }}>{content.accent}</span>
+            </h3>
 
-        <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-          {content.blocks.map((b) => (
-            <div key={b.t} className="border-t pt-6" style={{ borderColor: COLORS.mist }}>
-              <div className="flex items-start gap-4">
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: COLORS.mist, color: COLORS.blue }}
-                >
-                  <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
-                </span>
-                <div className="min-w-0">
-                  <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
-                    <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
-                  </p>
-                  <Link
-                    to={b.to}
-                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                    style={{ color: COLORS.blue }}
-                  >
-                    {b.l}
-                    <ChevronIcon className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
+            <p className="mt-6 max-w-[680px] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>
+              {content.intro}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                to={content.primary.to}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#121317] px-6 text-[14px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              >
+                {content.primary.label}
+                <ChevronIcon className="h-4 w-4" />
+              </Link>
+              <Link
+                to={secondary.to}
+                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                style={{ borderColor: COLORS.mist, color: COLORS.ink }}
+              >
+                {secondary.label}
+              </Link>
             </div>
-          ))}
+
+            <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+              {content.blocks.map((b) => (
+                <div key={b.t} className="border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                  <div className="flex items-start gap-4">
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
+                      style={{ borderColor: COLORS.mist, color: COLORS.blue }}
+                    >
+                      <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
+                        <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
+                      </p>
+                      <Link
+                        to={b.to}
+                        className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                        style={{ color: COLORS.blue }}
+                      >
+                        {b.l}
+                        <ChevronIcon className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 });
-
 const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
   return (
     <div key={step.title} className="hero-fade-up max-w-[460px]">
-      <h3 className="whitespace-pre-line font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+      <h3 className="whitespace-pre-line font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>
         {step.title}
       </h3>
-      <p className="mt-[calc(clamp(28px,2.78vw,40px)*1.429)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
         {step.copy}
       </p>
     </div>
@@ -401,64 +477,17 @@ const IntelligenceArt = React.memo(function IntelligenceArt({ label, variant = 0
   );
 });
 
-/* The product window — the persona pages' product shot. The same dark glass
-   window as the landing's One Intelligence stage, one ability lighting up per
-   step so the product visibly grows as you scroll. Used only when a step has
-   no photograph; photography stays photography. */
-const PERSONA_WINDOW_ABILITIES = [
-  "Understands where you are",
-  "Remembers what you tried",
-  "Adapts to your pace",
-  "Builds from what you know",
-];
-
-const PersonaWindow = React.memo(function PersonaWindow({ step }) {
-  const active = ((step % PERSONA_WINDOW_ABILITIES.length) + PERSONA_WINDOW_ABILITIES.length) % PERSONA_WINDOW_ABILITIES.length;
-  return (
-    <div className="relative w-[min(420px,88vw)]">
-      <style>{"@keyframes pwSpin{to{transform:rotate(360deg)}}@keyframes pwRowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}"}</style>
-      <div
-        aria-hidden="true"
-        className="absolute inset-[-16%] -z-10 rounded-full"
-        style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.14) 0%, rgba(66,133,244,0.05) 45%, transparent 72%)" }}
-      />
-      <svg viewBox="0 0 100 100" className="absolute inset-[-11%] h-[122%] w-[122%]" style={{ animation: "pwSpin 70s linear infinite" }} aria-hidden="true">
-        <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(66,133,244,0.3)" strokeWidth="0.3" strokeDasharray="4 5" />
-      </svg>
-      <div
-        className="relative overflow-hidden rounded-[26px] border bg-[#1b1e23] shadow-[0_36px_80px_-28px_rgba(18,19,23,0.55)]"
-        style={{ borderColor: "rgba(66,133,244,0.24)" }}
-        aria-hidden="true"
-      >
-        <div className="flex h-11 items-center border-b px-5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-          {["a", "b", "c"].map((d, i) => (
-            <span key={d} className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.2)", marginRight: i === 2 ? 0 : 6 }} />
-          ))}
-          <span className="ml-3 text-[12px] font-medium tracking-[0.24px]" style={{ color: "rgba(255,255,255,0.6)" }}>Visionary</span>
-        </div>
-        <div key={step} className="flex min-h-[188px] flex-col justify-center gap-[18px] px-7 py-7">
-          {PERSONA_WINDOW_ABILITIES.map((label, i) => (
-            <div key={label} className="flex items-center gap-3" style={{ animation: `pwRowIn 600ms cubic-bezier(0.22,1,0.36,1) ${i * 70}ms both` }}>
-              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: i === active ? COLORS.blue : "rgba(255,255,255,0.28)" }} />
-              <span className="min-w-0 flex-1 text-left text-[13px] leading-[17px] tracking-[0.2px]" style={{ color: i === active ? "#ffffff" : "rgba(255,255,255,0.6)" }}>{label}</span>
-              <span className="h-1.5 w-16 shrink-0 overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.09)" }}>
-                <span className="block h-full rounded-full" style={{ width: i <= active ? "100%" : "18%", backgroundColor: i <= active ? COLORS.blue : "rgba(255,255,255,0.3)" }} />
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-});
-
+/* The product moment on persona pages is photography, matching the landing
+   and Organization anatomy. When a step has no photograph (or an http(s)
+   placeholder), the light ring-and-V IntelligenceArt stands in — never a
+   dark product-window card. */
 const IntelligenceVisual = React.memo(function IntelligenceVisual({ step, index, setStepRef, image }) {
   const showArt = !image || isExternalSrc(image);
   return (
     <figure ref={setStepRef(index)} data-step={index} className="m-0">
       {showArt ? (
         <div className="mx-auto flex aspect-[4/3] w-full max-w-[440px] items-center justify-center lg:aspect-[15/16] lg:mx-0 lg:max-w-none">
-          <PersonaWindow step={index} />
+          <IntelligenceArt label={step.title} variant={index} className="aspect-[4/3] w-full lg:aspect-[15/16]" />
         </div>
       ) : (
         <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-[60px] lg:mx-0 lg:max-w-none">
@@ -484,7 +513,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect, chip
           type="button"
           aria-pressed={active === lang.code}
           onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 uppercase tracking-[0] leading-[14px] text-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
+          className={`rounded-full px-5 py-2 tracking-[0] leading-[20px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${active === lang.code ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`}
           style={{
             backgroundColor: active === lang.code ? COLORS.chipBg : "transparent",
             color: COLORS.ink,
@@ -494,7 +523,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect, chip
           {lang.label}
         </button>
       ))}
-      <span className="ml-1 font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
+      <span className="ml-1 font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
         +20 languages
       </span>
     </div>
@@ -602,7 +631,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
               >
                 <Meta.Icon className="h-4 w-4" strokeWidth={1.8} />
               </span>
-              <h3 className="max-w-[460px] flex-1 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>
                 {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
               </h3>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: COLORS.grey }}>
@@ -685,7 +714,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
     >
       <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
+        <p className="font-medium tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
           {category.chip}
         </p>
         <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
@@ -726,10 +755,9 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 export {
-  StruggleHeading,
-  StruggleCluster,
+  StruggleChapter,
   CarouselDots,
-  JourneyCarousel,
+  JourneyGallery,
   JourneyModal,
   IntelligenceCopy,
   IntelligenceVisual,

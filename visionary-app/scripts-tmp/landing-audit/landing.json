@@ -1,0 +1,602 @@
+{
+  "320": {
+    "sections": [
+      {
+        "i": 0,
+        "key": "01-hero",
+        "top": 56,
+        "h": 644
+      },
+      {
+        "i": 1,
+        "key": "div-1",
+        "top": 700,
+        "h": 210
+      },
+      {
+        "i": 2,
+        "key": "02-problem",
+        "top": 910,
+        "h": 732
+      },
+      {
+        "i": 3,
+        "key": "03-promise",
+        "top": 1642,
+        "h": 249
+      },
+      {
+        "i": 4,
+        "key": "04-meet",
+        "top": 1891,
+        "h": 2863
+      },
+      {
+        "i": 5,
+        "key": "07-language",
+        "top": 4753,
+        "h": 715
+      },
+      {
+        "i": 6,
+        "key": "06-journey",
+        "top": 5468,
+        "h": 835
+      },
+      {
+        "i": 7,
+        "key": "08-trust",
+        "top": 6303,
+        "h": 1630
+      },
+      {
+        "i": 8,
+        "key": "09-cta",
+        "top": 7933,
+        "h": 549
+      }
+    ],
+    "metrics": [
+      {
+        "key": "01-hero",
+        "padT": "64px",
+        "padB": "64px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": null,
+        "h2Size": null,
+        "h2Lh": null,
+        "h2Track": null,
+        "h2W": null
+      },
+      {
+        "key": "02-problem",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Accessing knowledge is easy. Applying it isn't.",
+        "h2Size": "28px",
+        "h2Lh": "29.68px",
+        "h2Track": "-0.252px",
+        "h2W": "500"
+      },
+      {
+        "key": "03-promise",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "What if your intelligence never forgot where you were?",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "04-meet",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "It grows with you.",
+        "h2Size": "40px",
+        "h2Lh": "42.4px",
+        "h2Track": "-0.36px",
+        "h2W": "500"
+      },
+      {
+        "key": "07-language",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Every language.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": "32px",
+        "h2Lh": "35.2px",
+        "h2Track": "-0.064px",
+        "h2W": "500"
+      },
+      {
+        "key": "08-trust",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(245, 245, 247)",
+        "h2": "Your progress.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "09-cta",
+        "padT": "80px",
+        "padB": "80px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Your next step starts here.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      }
+    ],
+    "docH": 10624,
+    "errors": []
+  },
+  "390": {
+    "sections": [
+      {
+        "i": 0,
+        "key": "01-hero",
+        "top": 56,
+        "h": 788
+      },
+      {
+        "i": 1,
+        "key": "div-1",
+        "top": 844,
+        "h": 253
+      },
+      {
+        "i": 2,
+        "key": "02-problem",
+        "top": 1097,
+        "h": 762
+      },
+      {
+        "i": 3,
+        "key": "03-promise",
+        "top": 1859,
+        "h": 215
+      },
+      {
+        "i": 4,
+        "key": "04-meet",
+        "top": 2074,
+        "h": 2925
+      },
+      {
+        "i": 5,
+        "key": "07-language",
+        "top": 4998,
+        "h": 758
+      },
+      {
+        "i": 6,
+        "key": "06-journey",
+        "top": 5756,
+        "h": 854
+      },
+      {
+        "i": 7,
+        "key": "08-trust",
+        "top": 6610,
+        "h": 1744
+      },
+      {
+        "i": 8,
+        "key": "09-cta",
+        "top": 8354,
+        "h": 551
+      }
+    ],
+    "metrics": [
+      {
+        "key": "01-hero",
+        "padT": "64px",
+        "padB": "64px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": null,
+        "h2Size": null,
+        "h2Lh": null,
+        "h2Track": null,
+        "h2W": null
+      },
+      {
+        "key": "02-problem",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Seeing progress is easy. Knowing how to help isn't.",
+        "h2Size": "28px",
+        "h2Lh": "29.68px",
+        "h2Track": "-0.252px",
+        "h2W": "500"
+      },
+      {
+        "key": "03-promise",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "What if your intelligence never forgot where you were?",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "04-meet",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "It remembers.",
+        "h2Size": "40px",
+        "h2Lh": "42.4px",
+        "h2Track": "-0.36px",
+        "h2W": "500"
+      },
+      {
+        "key": "07-language",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Every language.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": "32px",
+        "h2Lh": "35.2px",
+        "h2Track": "-0.064px",
+        "h2W": "500"
+      },
+      {
+        "key": "08-trust",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(245, 245, 247)",
+        "h2": "Your privacy.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "09-cta",
+        "padT": "93.6px",
+        "padB": "93.6px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Your next step starts here.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      }
+    ],
+    "docH": 11203,
+    "errors": []
+  },
+  "734": {
+    "sections": [
+      {
+        "i": 0,
+        "key": "01-hero",
+        "top": 56,
+        "h": 844
+      },
+      {
+        "i": 1,
+        "key": "div-1",
+        "top": 900,
+        "h": 270
+      },
+      {
+        "i": 2,
+        "key": "02-problem",
+        "top": 1170,
+        "h": 675
+      },
+      {
+        "i": 3,
+        "key": "03-promise",
+        "top": 1845,
+        "h": 181
+      },
+      {
+        "i": 4,
+        "key": "04-meet",
+        "top": 2026,
+        "h": 2717
+      },
+      {
+        "i": 5,
+        "key": "07-language",
+        "top": 4743,
+        "h": 885
+      },
+      {
+        "i": 6,
+        "key": "06-journey",
+        "top": 5628,
+        "h": 803
+      },
+      {
+        "i": 7,
+        "key": "08-trust",
+        "top": 6430,
+        "h": 2310
+      },
+      {
+        "i": 8,
+        "key": "09-cta",
+        "top": 8740,
+        "h": 441
+      }
+    ],
+    "metrics": [
+      {
+        "key": "01-hero",
+        "padT": "0px",
+        "padB": "0px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": null,
+        "h2Size": null,
+        "h2Lh": null,
+        "h2Track": null,
+        "h2W": null
+      },
+      {
+        "key": "02-problem",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Seeing progress is easy. Knowing how to help isn't.",
+        "h2Size": "29.36px",
+        "h2Lh": "31.1216px",
+        "h2Track": "-0.26424px",
+        "h2W": "500"
+      },
+      {
+        "key": "03-promise",
+        "padT": "56px",
+        "padB": "56px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "What if your intelligence never forgot where you were?",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "04-meet",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "It grows with you.",
+        "h2Size": "44.04px",
+        "h2Lh": "46.6824px",
+        "h2Track": "-0.39636px",
+        "h2W": "500"
+      },
+      {
+        "key": "07-language",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Every language.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": "32px",
+        "h2Lh": "35.2px",
+        "h2Track": "-0.064px",
+        "h2W": "500"
+      },
+      {
+        "key": "08-trust",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(245, 245, 247)",
+        "h2": "Your progress.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      },
+      {
+        "key": "09-cta",
+        "padT": "96px",
+        "padB": "96px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Your next step starts here.",
+        "h2Size": "32px",
+        "h2Lh": "33.92px",
+        "h2Track": "-0.288px",
+        "h2W": "500"
+      }
+    ],
+    "docH": 11329,
+    "errors": []
+  },
+  "1440": {
+    "sections": [
+      {
+        "i": 0,
+        "key": "01-hero",
+        "top": 56,
+        "h": 844
+      },
+      {
+        "i": 1,
+        "key": "div-1",
+        "top": 900,
+        "h": 270
+      },
+      {
+        "i": 2,
+        "key": "02-problem",
+        "top": 1170,
+        "h": 1097
+      },
+      {
+        "i": 3,
+        "key": "03-promise",
+        "top": 2267,
+        "h": 300
+      },
+      {
+        "i": 4,
+        "key": "04-meet",
+        "top": 2567,
+        "h": 2822
+      },
+      {
+        "i": 5,
+        "key": "07-language",
+        "top": 5389,
+        "h": 1032
+      },
+      {
+        "i": 6,
+        "key": "06-journey",
+        "top": 6421,
+        "h": 1039
+      },
+      {
+        "i": 7,
+        "key": "08-trust",
+        "top": 7460,
+        "h": 967
+      },
+      {
+        "i": 8,
+        "key": "09-cta",
+        "top": 8427,
+        "h": 562
+      }
+    ],
+    "metrics": [
+      {
+        "key": "01-hero",
+        "padT": "0px",
+        "padB": "0px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": null,
+        "h2Size": null,
+        "h2Lh": null,
+        "h2Track": null,
+        "h2W": null
+      },
+      {
+        "key": "02-problem",
+        "padT": "90px",
+        "padB": "90px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Seeing progress is easy. Knowing how to help isn't.",
+        "h2Size": "56px",
+        "h2Lh": "59.36px",
+        "h2Track": "-0.504px",
+        "h2W": "500"
+      },
+      {
+        "key": "03-promise",
+        "padT": "90px",
+        "padB": "90px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "What if your intelligence never forgot where you were?",
+        "h2Size": "56px",
+        "h2Lh": "59.36px",
+        "h2Track": "-0.504px",
+        "h2W": "500"
+      },
+      {
+        "key": "04-meet",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "It remembers.",
+        "h2Size": "64px",
+        "h2Lh": "67.84px",
+        "h2Track": "-0.576px",
+        "h2W": "500"
+      },
+      {
+        "key": "07-language",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Every language.",
+        "h2Size": "56px",
+        "h2Lh": "59.36px",
+        "h2Track": "-0.504px",
+        "h2W": "500"
+      },
+      {
+        "key": "06-journey",
+        "padT": "0px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Life changes. Visionary keeps pace.",
+        "h2Size": "40px",
+        "h2Lh": "44px",
+        "h2Track": "-0.08px",
+        "h2W": "500"
+      },
+      {
+        "key": "08-trust",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(245, 245, 247)",
+        "h2": "Your privacy.",
+        "h2Size": "56px",
+        "h2Lh": "59.36px",
+        "h2Track": "-0.504px",
+        "h2W": "500"
+      },
+      {
+        "key": "09-cta",
+        "padT": "144px",
+        "padB": "144px",
+        "bg": "rgb(255, 255, 255)",
+        "h2": "Your next step starts here.",
+        "h2Size": "56px",
+        "h2Lh": "59.36px",
+        "h2Track": "-0.504px",
+        "h2W": "500"
+      }
+    ],
+    "docH": 10410,
+    "errors": []
+  }
+}

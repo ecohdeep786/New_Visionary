@@ -7,7 +7,7 @@ export const googleColors = [
   { name: "amber", accent: "#8a5700", light: "#ffffff" },
   { name: "red", accent: "#b3261e", light: "#fce8e6" },
   { name: "purple", accent: "#7627bb", light: "#f3e8fd" },
-  { name: "teal", accent: "#00897b", light: "#e0f2f1" },
+  { name: "teal", accent: "#00796b", light: "#e0f2f1" },
 ];
 
 const ThemeColorContext = createContext(googleColors[0]);

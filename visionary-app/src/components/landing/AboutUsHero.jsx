@@ -57,7 +57,7 @@ export default function AboutUsHero() {
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
               to="/how-it-works"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b57d0] px-7 text-[15px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium text-white transition-colors duration-200 hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
             >
               See how it works
             </Link>

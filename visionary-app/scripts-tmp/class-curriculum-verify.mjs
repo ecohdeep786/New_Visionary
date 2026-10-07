@@ -2,7 +2,7 @@ import {chromium} from 'playwright-core';
 import assert from 'node:assert/strict';
 import {storage,fixture,reset} from '../tests/fixtures/classCurriculum.mjs';
 reset();const f=await fixture();
-const initial=Object.fromEntries(storage);const origin='http://127.0.0.1:4191';
+const initial=Object.fromEntries(storage);const origin=process.env.VISIONARY_PREVIEW_ORIGIN||'http://127.0.0.1:4191';
 const browser=await chromium.launch({channel:'msedge',headless:true,args:['--no-proxy-server']});
 const context=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
 await context.addInitScript(values=>{if(localStorage.getItem('visionary_session_token'))return;for(const [key,value] of Object.entries(values))localStorage.setItem(key,value);},initial);
@@ -61,6 +61,14 @@ try{
  await learner.getByRole('button',{name:'Explore objective: Equal intervals',exact:true}).click();
  await learner.getByRole('link',{name:/Open original assignment:/}).click();await learner.getByRole('heading',{name:'Learning objective: Equal intervals',exact:true}).waitFor();
  assert.equal(await learner.evaluate(()=>localStorage.getItem('visionary_entity_Submission')),null);assert.equal(await learner.evaluate(()=>localStorage.getItem('visionary_mentor_v1')),null);
+ const originalAssignmentPath=learner.url(),assignmentBytes=await learner.evaluate(()=>localStorage.getItem('visionary_entity_Assignment'));
+ await page.getByRole('button',{name:'Withdraw this copy',exact:true}).click();await page.getByLabel('I reviewed the effect on this class and its existing assignments.',{exact:true}).check();await page.getByRole('dialog').getByRole('button',{name:'Withdraw this copy',exact:true}).click();await page.getByRole('dialog').waitFor({state:'hidden'});
+ const withdrawnClasses=await page.evaluate(()=>localStorage.getItem('visionary_entity_Classroom'));
+ // Transfer the actual teacher-written local source snapshot to the separately authenticated learner fixture.
+ await learner.evaluate(value=>localStorage.setItem('visionary_entity_Classroom',value),withdrawnClasses);
+ await learner.goto(origin+'/dashboard/classes?class='+f.classroom.id+'&curriculum='+published[0].id,{waitUntil:'networkidle'});assert.equal(await learner.getByRole('button',{name:'Explore objective: Locate a fraction',exact:true}).count(),0);assert.equal(await learner.getByText('Four of eight equal intervals reach one half.',{exact:true}).count(),0);assert.equal(await learner.evaluate(()=>localStorage.getItem('visionary_entity_Assignment')),assignmentBytes);
+ await learner.goto(originalAssignmentPath,{waitUntil:'networkidle'});await learner.getByRole('heading',{name:'Learning objective: Equal intervals',exact:true}).waitFor();assert.equal(await learner.evaluate(()=>localStorage.getItem('visionary_entity_Assignment')),assignmentBytes);
+ await page.getByRole('button',{name:'Restore this copy',exact:true}).click();await page.getByLabel('I reviewed the effect on this class and its existing assignments.',{exact:true}).check();await page.getByRole('dialog').getByRole('button',{name:'Restore this copy',exact:true}).click();await page.getByRole('dialog').waitFor({state:'hidden'});const restoredClasses=await page.evaluate(()=>localStorage.getItem('visionary_entity_Classroom'));await learner.evaluate(value=>localStorage.setItem('visionary_entity_Classroom',value),restoredClasses);
  for(const [locale,title,label] of [['hi','प्रकाशित कक्षा पाठ्यक्रम','अध्याय या उद्देश्य खोजें'],['bn','প্রকাশিত শ্রেণির পাঠ্যক্রম','অধ্যায় বা উদ্দেশ্য খুঁজুন']]){
   await learner.evaluate(({workspaceId,locale})=>{const db=JSON.parse(localStorage.getItem('visionary_workspace_v2'));db.data[workspaceId].preferences.interfaceLocale=locale;localStorage.setItem('visionary_workspace_v2',JSON.stringify(db));},{workspaceId:f.learner.workspaceId,locale});
   await learner.goto(origin+'/dashboard/classes?class='+f.classroom.id+'&curriculum='+published[0].id,{waitUntil:'networkidle'});await learner.getByRole('heading',{name:title,exact:true}).waitFor();await learner.getByLabel(label,{exact:true}).fill('no-match');assert.equal(await learner.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
@@ -68,5 +76,5 @@ try{
  await learner.evaluate(()=>{const rows=JSON.parse(localStorage.getItem('visionary_entity_Enrollment'));rows[0].status='left';localStorage.setItem('visionary_entity_Enrollment',JSON.stringify(rows));});
  await learner.reload({waitUntil:'networkidle'});assert.equal(await learner.getByRole('heading',{name:'Locate a fraction',exact:true}).count(),0);
  assert.deepEqual(errors,[]);
- console.log('PASS reviewed class publication, explicit review, failed-save retry, key/notes exclusion, interactive alternative, learner unassigned exploration and refresh, original assignment link, 320/390/768/1440 reflow, Hindi/Bengali publication labels and closed-enrollment denial; no submissions or mastery.');
+ console.log('PASS reviewed class publication, explicit review, failed-save retry, key/notes exclusion, interactive alternative, learner unassigned exploration and refresh, original assignment link, 320/390/768/1440 reflow, teacher withdrawal snapshot removes learner exploration while original fixed assignment survives, teacher restoration, Hindi/Bengali publication labels and closed-enrollment denial; no submissions or mastery.');
 }catch(error){console.log(await page.locator('body').innerText());throw error;}finally{await browser.close();}

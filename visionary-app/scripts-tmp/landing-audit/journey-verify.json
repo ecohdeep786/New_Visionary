@@ -1,0 +1,164 @@
+{
+  "w320": {
+    "viewport": 320,
+    "bg": "rgb(245, 245, 247)",
+    "h2": {
+      "fs": 40,
+      "t_em": -11.2,
+      "leading": 1.06,
+      "tracking_px": -448,
+      "left": 24,
+      "w": 272
+    },
+    "sub": {
+      "fs": 20,
+      "t_em": 2.56,
+      "left": 24,
+      "w": 272,
+      "gapFromH2": 13
+    },
+    "bandMaxW": 980,
+    "bandCenterMinusH2Center": 0,
+    "appleRef": {
+      "h2_fs": 64,
+      "h2_t_em": -0.028,
+      "band_maxW": 980,
+      "bg": "rgb(245, 245, 247)"
+    }
+  },
+  "w390": {
+    "viewport": 390,
+    "bg": "rgb(245, 245, 247)",
+    "h2": {
+      "fs": 40,
+      "t_em": -11.2,
+      "leading": 1.06,
+      "tracking_px": -448,
+      "left": 24,
+      "w": 342
+    },
+    "sub": {
+      "fs": 20,
+      "t_em": 2.56,
+      "left": 24,
+      "w": 342,
+      "gapFromH2": 13
+    },
+    "bandMaxW": 980,
+    "bandCenterMinusH2Center": 0,
+    "appleRef": {
+      "h2_fs": 64,
+      "h2_t_em": -0.028,
+      "band_maxW": 980,
+      "bg": "rgb(245, 245, 247)"
+    }
+  },
+  "w768": {
+    "viewport": 768,
+    "bg": "rgb(245, 245, 247)",
+    "h2": {
+      "fs": 40,
+      "t_em": -11.2,
+      "leading": 1.06,
+      "tracking_px": -448,
+      "left": 40,
+      "w": 688
+    },
+    "sub": {
+      "fs": 20,
+      "t_em": 2.56,
+      "left": 40,
+      "w": 688,
+      "gapFromH2": 13
+    },
+    "bandMaxW": 980,
+    "bandCenterMinusH2Center": 0,
+    "appleRef": {
+      "h2_fs": 64,
+      "h2_t_em": -0.028,
+      "band_maxW": 980,
+      "bg": "rgb(245, 245, 247)"
+    }
+  },
+  "w1024": {
+    "viewport": 1024,
+    "bg": "rgb(245, 245, 247)",
+    "h2": {
+      "fs": 50,
+      "t_em": -14.0493,
+      "leading": 1.0600007971938774,
+      "tracking_px": -705,
+      "left": 70,
+      "w": 884
+    },
+    "sub": {
+      "fs": 23,
+      "t_em": 2.88358,
+      "left": 70,
+      "w": 720,
+      "gapFromH2": 15
+    },
+    "bandMaxW": 980,
+    "bandCenterMinusH2Center": 0,
+    "appleRef": {
+      "h2_fs": 56,
+      "h2_t_em": -0.028,
+      "band_maxW": 980,
+      "bg": "rgb(245, 245, 247)"
+    }
+  },
+  "w1440": {
+    "viewport": 1440,
+    "bg": "rgb(245, 245, 247)",
+    "h2": {
+      "fs": 64,
+      "t_em": -17.92,
+      "leading": 1.06,
+      "tracking_px": -1147,
+      "left": 278,
+      "w": 884
+    },
+    "sub": {
+      "fs": 32,
+      "t_em": 4.05504,
+      "left": 278,
+      "w": 720,
+      "gapFromH2": 21
+    },
+    "bandMaxW": 980,
+    "bandCenterMinusH2Center": 0,
+    "appleRef": {
+      "h2_fs": 56,
+      "h2_t_em": -0.028,
+      "band_maxW": 980,
+      "bg": "rgb(245, 245, 247)"
+    }
+  },
+  "w1920": {
+    "viewport": 1920,
+    "bg": "rgb(245, 245, 247)",
+    "h2": {
+      "fs": 64,
+      "t_em": -17.92,
+      "leading": 1.06,
+      "tracking_px": -1147,
+      "left": 518,
+      "w": 884
+    },
+    "sub": {
+      "fs": 32,
+      "t_em": 4.096,
+      "left": 518,
+      "w": 720,
+      "gapFromH2": 21
+    },
+    "bandMaxW": 980,
+    "bandCenterMinusH2Center": 0,
+    "appleRef": {
+      "h2_fs": 56,
+      "h2_t_em": -0.028,
+      "band_maxW": 980,
+      "bg": "rgb(245, 245, 247)"
+    }
+  }
+}

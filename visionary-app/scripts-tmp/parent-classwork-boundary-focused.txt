@@ -1,0 +1,43 @@
+✔ one person has five isolated workspaces; forged role and person contexts fail (41.1945ms)
+✔ curated journeys contain complete localized questions and explanations (1.0031ms)
+✔ conversation cancellation and service failures retain the saved draft (24.1474ms)
+✔ unsupported questions stay saved with an honest fallback, not fabricated understanding (16.9723ms)
+✔ interruption, language, answers and model controls survive resume (27.6799ms)
+✔ practice counts are idempotent; a new delayed review produces separate retrieval evidence (57.2571ms)
+✔ a single grade never establishes mastery or self-reported confidence (8.4607ms)
+✔ parent summaries require active scoped consent and exclude private content (8.735ms)
+✔ returned classwork digest stays with the selected child and closes on revocation (8.3191ms)
+✔ report period filters out old activity and expired invitations cannot be accepted (4.5812ms)
+✔ seven and thirty day parent report periods use the same consent boundary and source window (7.8391ms)
+✔ account quotas span roles, never block saved activities, and reset daily (27.4639ms)
+✔ mock checkout propagates across roles; resume creates no charge; expiry preserves content (5.6309ms)
+✔ storage write failure does not acknowledge or destroy a saved document (1.1554ms)
+✔ family billing grants entitlement only after acceptance and never creates guardian access (2.3425ms)
+✔ organization workspaces isolate drafts and lose access on removal without deleting personal work (2.6674ms)
+✔ legacy accepted guardians use the same report permission boundary and revocation path (1.204ms)
+✔ sharing exposes only the confirmed artifact; revocation removes the received view (34.2909ms)
+✔ class policies prevent roster browsing, self-grading and ownership transfers (1.6837ms)
+✔ parent upcoming Work classwork excludes pending learner membership without rewriting classwork (36.8727ms)
+✔ parent upcoming Work classwork excludes revoked learner membership without rewriting classwork (13.0836ms)
+✔ parent upcoming Work classwork excludes expired learner membership without rewriting classwork (32.9398ms)
+✔ parent upcoming Work classwork excludes unreadable learner membership without rewriting classwork (24.6651ms)
+✔ failed guardian stop preserves consent, notifications and child records; explicit retry stops only that child (28.491ms)
+✔ failed guardian renewal and acceptance preserve bytes and require an explicitly accepted new request (35.462ms)
+✔ orphaned active enrollment cannot offer an upcoming class without its source classroom (34.0664ms)
+✔ manual parent preview is localized, consent scoped and contains no private learner record (15.9453ms)
+✔ revocation immediately removes digest and report action for only the affected child (1.8779ms)
+✔ new guardian actions append ordered local event history without widening report access (4.8869ms)
+✔ cancelled requests remain readable history in every preview language without report access (3.7339ms)
+✔ unreadable expiry and unsupported legacy status close access without breaking other summaries or repairing originals (4.7743ms)
+✔ active connections without progress scope stay closed and are not mislabeled expired (2.162ms)
+✔ report Ask uses the selected child and permitted summary without retaining conversation or private work (13.4264ms)
+✔ forged selection and revoked consent fail closed for every answer (2.664ms)
+✔ Hindi and Bengali report topics stay deterministic and permission scoped without retaining the question (6.3302ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2971.425

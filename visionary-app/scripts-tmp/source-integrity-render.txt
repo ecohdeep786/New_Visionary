@@ -1,0 +1,6 @@
+PASS en/incomplete: original bytes retained through retry/reload; no stale answer/build controls; explicit restore/retry; 320–1440 reflow.
+PASS en/ambiguous: original bytes retained through retry/reload; no stale answer/build controls; explicit restore/retry; 320–1440 reflow; source export excludes answer key.
+PASS hi/incomplete: original bytes retained through retry/reload; no stale answer/build controls; explicit restore/retry; 320–1440 reflow.
+PASS hi/ambiguous: original bytes retained through retry/reload; no stale answer/build controls; explicit restore/retry; 320–1440 reflow; source export excludes answer key.
+PASS bn/incomplete: original bytes retained through retry/reload; no stale answer/build controls; explicit restore/retry; 320–1440 reflow.
+PASS bn/ambiguous: original bytes retained through retry/reload; no stale answer/build controls; explicit restore/retry; 320–1440 reflow; source export excludes answer key.

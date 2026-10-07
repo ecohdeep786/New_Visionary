@@ -45,3 +45,9 @@ export function validCurriculumPublicationUpdate(previous,next){
  }
  return changed===1;
 }
+
+/** Compare the delivered source independently of teacher inbox projection metadata. */
+export function deliveredCurriculumRevision(delivery){
+ const {organizationEmail:ignoredOrganization,importedResourceId:ignoredImport,...source}=delivery;
+ return JSON.stringify(source);
+}

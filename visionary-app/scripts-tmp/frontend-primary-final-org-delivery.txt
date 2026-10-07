@@ -1,0 +1,80 @@
+390px reviewed organization delivery → accepted teacher Work inbox → private reviewed adaptation → source/edit isolation → revocation passed.
+Skip to content
+सक्रिय कार्यक्षेत्र
+स्वामी · Personal
++ भूमिका जोड़ें
+O
+Audio interaction is off. The animation is only an availability indicator; the microphone is not active.
+लोग और संपर्क
+
+स्थानीय आमंत्रण संभालें और देखें किसने स्वीकार या अस्वीकार किया या पहुँच खोई।
+
+किसी को संगठन में आमंत्रित करें
+Visionary खाते का ईमेल 
+कार्यक्षेत्र की भूमिका 
+शिक्षक
+विद्यार्थी / निजी शिक्षार्थी
+पेशेवर / टीम सदस्य
+अभिभावक
+संगठन प्रशासन
+संपर्क का अनुरोध करें
+स्पष्ट सीमाओं के साथ संपर्क
+
+अनुरोध स्वीकार करना आवश्यक है। संगठन सदस्यता से निजी प्रश्न या प्रोजेक्ट नोट नहीं मिलते। कक्षा कार्य शिक्षक को साझा होता है; परिवार की प्रगति के लिए अलग अनुमति चाहिए।
+
+अनुरोध
+
+इस भाग में संगठन के संपर्क अभी नहीं हैं।
+
+जुड़ा
+admin@delivery.test
+
+दायरा: संगठन सदस्यता · संगठन · academic-admin · अनुमति: आमंत्रित सदस्य
+
+जुड़ा
+स्थानीय कार्रवाई का इतिहास
+admin@delivery.test की अनुमति
+Choose permission
+Organization administrator
+Academic administrator
+Analyst
+Billing administrator
+
+Only the owner can assign or change administrative permissions. Ownership is not transferable here.
+
+संपर्क हटाएँ
+teacher@delivery.test
+
+दायरा: संगठन सदस्यता · शिक्षक · अनुमति: आमंत्रित सदस्य
+
+जुड़ा
+स्थानीय कार्रवाई का इतिहास
+संपर्क हटाएँ
+बंद संपर्कों का इतिहास
+
+इस भाग में संगठन के संपर्क अभी नहीं हैं।
+
+स्थानीय प्रिव्यू: इस ब्राउज़र के खातों के बीच संपर्क काम करते हैं। क्लाउड आमंत्रण, सत्यापित पहुँच नियम और उपकरणों के बीच सिंक अभी सक्रिय नहीं हैं।
+
+होम
+सदस्य
+समूह
+पाठ्यक्रम
+और
+[]
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 20000ms exceeded.
+Call log:
+  - waiting for locator('article').filter({ has: getByRole('heading', { name: 'teacher@delivery.test', exact: true }) }).getByRole('button', { name: 'Disconnect', exact: true })
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\org-delivery-locales-verify.mjs:289:8 {
+  log: [
+    "  - waiting for locator('article').filter({ has: getByRole('heading', { name: 'teacher@delivery.test', exact: true }) }).getByRole('button', { name: 'Disconnect', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

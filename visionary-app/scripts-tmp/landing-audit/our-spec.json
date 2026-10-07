@@ -1,0 +1,130 @@
+{
+  "sections": [
+    {
+      "key": "01-hero",
+      "h": 894,
+      "top": 56,
+      "padBlock": {
+        "pt": 0,
+        "pb": 0
+      },
+      "hLeft": 426,
+      "hFs": 16,
+      "hT": null,
+      "copyLeft": 426,
+      "copyFs": 17,
+      "imgs": 5
+    },
+    {
+      "key": "02-problem",
+      "h": 1136,
+      "top": 1235,
+      "padBlock": {
+        "pt": 95,
+        "pb": 95
+      },
+      "hLeft": 230,
+      "hFs": 56,
+      "hT": -0.504,
+      "copyLeft": 24,
+      "copyFs": 16,
+      "imgs": 4
+    },
+    {
+      "key": "03-promise",
+      "h": 310,
+      "top": 2371,
+      "padBlock": {
+        "pt": 95,
+        "pb": 95
+      },
+      "hLeft": 230,
+      "hFs": 56,
+      "hT": -0.504,
+      "copyLeft": null,
+      "copyFs": null,
+      "imgs": 0
+    },
+    {
+      "key": "04-meet",
+      "h": 874,
+      "top": 2681,
+      "padBlock": {
+        "pt": 144,
+        "pb": 144
+      },
+      "hLeft": 24,
+      "hFs": 64,
+      "hT": -0.576,
+      "copyLeft": 24,
+      "copyFs": 16,
+      "imgs": 5
+    },
+    {
+      "key": "06-journey",
+      "h": 1000,
+      "top": 3555,
+      "padBlock": {
+        "pt": 0,
+        "pb": 144
+      },
+      "hLeft": 90,
+      "hFs": 40,
+      "hT": null,
+      "copyLeft": 130,
+      "copyFs": 20,
+      "imgs": 4
+    },
+    {
+      "key": "07-language",
+      "h": 1032,
+      "top": 4555,
+      "padBlock": {
+        "pt": 144,
+        "pb": 144
+      },
+      "hLeft": 24,
+      "hFs": 56,
+      "hT": -0.504,
+      "copyLeft": 24,
+      "copyFs": 16,
+      "imgs": 0
+    },
+    {
+      "key": "08-trust",
+      "h": 967,
+      "top": 5587,
+      "padBlock": {
+        "pt": 144,
+        "pb": 144
+      },
+      "hLeft": 0,
+      "hFs": 56,
+      "hT": -0.504,
+      "copyLeft": 0,
+      "copyFs": 16,
+      "imgs": 3
+    },
+    {
+      "key": "09-cta",
+      "h": 562,
+      "top": 6553,
+      "padBlock": {
+        "pt": 144,
+        "pb": 144
+      },
+      "hLeft": 24,
+      "hFs": 56,
+      "hT": -0.504,
+      "copyLeft": 24,
+      "copyFs": 16,
+      "imgs": 0
+    }
+  ],
+  "meetStrip": {
+    "w": 1260,
+    "left": 90
+  },
+  "journeyHeaderLeft": 90,
+  "journeyTrackLeft": 0
+}

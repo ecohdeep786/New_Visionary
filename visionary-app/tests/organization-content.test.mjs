@@ -81,3 +81,15 @@ test('curriculum templates keep separate category and review/distribution lifecy
  workspace.changeOrganizationContent(owner,item.id,1,'revise');workspace.saveOrganizationContent(owner,{...item,kind:'curriculum',body:'Changed objectives, draft v2',source:'Fictional curriculum source v2',language:'en'},1);
  const newest=workspace.snapshot(owner).resources.find(row=>row.id===item.id);assert.equal(newest.kind,'curriculum');assert.match(newest.contentReview.versions[0].body,/fraction-1/);assert.equal(workspace.teacherOrganizationContent(teacher.ctx)[0].body,delivery.body);assert.equal(workspace.snapshot(teacher.ctx).resources.find(row=>row.id===imported.id).sourceSnapshot.language,'bn');
 });
+
+test('ambiguous imported editorial metadata cannot be saved, reviewed or delivered and keeps original bytes',()=>{
+ const item=draft();const original=store.get('visionary_workspace_v2');
+ for(const patch of [{title:null},{body:{}},{contentReview:{...item.contentReview,history:null}},{contentReview:{...item.contentReview,versions:[{revision:1,title:'Earlier',body:'Body',source:'Source',language:'en'}]}},{contentReview:{...item.contentReview,revision:0}},{contentReview:{...item.contentReview,author:''}},{contentReview:{...item.contentReview,language:'unknown'}}]){
+  const db=JSON.parse(original);const row=db.data[owner.workspaceId].resources.find(row=>row.id===item.id);Object.assign(row,patch);const malformed=JSON.stringify(db);store.set('visionary_workspace_v2',malformed);
+  assert.throws(()=>workspace.saveOrganizationContent(owner,{id:item.id,title:'Edited',body:'Edited',source:'Source',language:'en'},1),/incomplete or ambiguous/);
+  assert.throws(()=>workspace.changeOrganizationContent(reviewer,item.id,1,'approve','Review',approved),/incomplete or ambiguous/);
+  assert.throws(()=>workspace.deliverOrganizationContent(owner,item.id,1,'teacher@visionary.test'),/incomplete or ambiguous/);
+  assert.equal(store.get('visionary_workspace_v2'),malformed);
+ }
+ store.set('visionary_workspace_v2',original);workspace.changeOrganizationContent(owner,item.id,1,'submit');assert.equal(workspace.snapshot(owner).resources.find(row=>row.id===item.id).status,'submitted');
+});

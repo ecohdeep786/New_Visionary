@@ -1,29 +1,24 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import professionalHero from "@/assets/hero-cutouts/professional-800w.webp";
-import teacherHero from "@/assets/hero-cutouts/teacher-800w.webp";
-import studentHero from "@/assets/hero-cutouts/student-800w.webp";
-import parentHero from "@/assets/hero-cutouts/parent-800w.webp";
-import orgHero from "@/assets/hero-cutouts/organization-800w.webp";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
-import LandingFAQ from "@/components/landing/LandingFAQ";
-import studentmeet from "@/assets/student-hero-main-1600w.webp"
-import teachermeet from "@/assets/teacher-hero-main-1600w.webp"
-import parentmeet from "@/assets/parent-hero-main-1600w.webp"
-import promeet from "@/assets/pro-face-main-1600w.webp"
-import orgmeet from "@/assets/org-face-main-1600w.webp"
+import PersonaHero from "@/components/landing/NewPersona";
+import studentmeet from "@/assets/student-hero-main-1600w.webp";
+import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
+import parentmeet from "@/assets/parent-hero-main-1600w.webp";
+import promeet from "@/assets/pro-face-main-1600w.webp";
+import orgmeet from "@/assets/org-face-main-1600w.webp";
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import teacherSlide from "@/assets/teacher-hero-main-1600w.webp";
 import parentSlide from "@/assets/parent-hero-main-1600w.webp";
-import proSlide from "@/assets/pro-face-main-1600w.webp";
+import teacherProblem from "@/assets/teacher-problem-1.webp";
+import problemrevision from "@/assets/problem-revision.webp";
+import proProblem from "@/assets/professional-problem-2.webp";
 import cmAdapt from "@/assets/student-primary.webp";
 import cmGrow from "@/assets/student-secondary.webp";
 import cmCreate from "@/assets/student-vocational.webp";
 import cmContinue from "@/assets/student-higher.webp";
-import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
-
-
+import { ShieldCheck, HeartHandshake, Scale, Play, Pause } from "lucide-react";
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
 const COLORS = {
@@ -36,14 +31,24 @@ const COLORS = {
   white: "#ffffff",
   blue: "#4285F4",
   chipBg: "#D2E3FC",
-  ring: "rgba(66,133,244,0.4)",
   track: "rgba(69,71,77,0.15)",
-  line: "rgba(18,19,23,0.26)",
-  circle: "rgba(18,19,23,0.06)",
 };
 const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return undefined;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
+  return reduced;
+}
+
 function useCycleIndex(total, intervalMs) {
   const [index, setIndex] = useState(0);
   const goTo = useCallback((i) => setIndex(((i % total) + total) % total), [total]);
@@ -55,42 +60,28 @@ function useCycleIndex(total, intervalMs) {
   return { index, goTo };
 }
 
-function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
+/* The section choreography — content fades up when its chapter enters the
+   viewport band and fades back down as it leaves (the wipe-out). Under
+   prefers-reduced-motion the story stays present: no hiding. */
+function useRevealContinuous(rootMargin = "-40% 0px -10% 0px") {
   const ref = useRef(null);
+  const reduced = usePrefersReducedMotion();
   const [visible, setVisible] = useState(false);
-  const hasRevealed = useRef(false);
   useEffect(() => {
     const node = ref.current;
-    if (hasRevealed.current) { setVisible(true); return undefined; }
+    if (reduced) { setVisible(true); return undefined; }
     if (!node) { setVisible(true); return undefined; }
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); hasRevealed.current = true; return undefined; }
+    if (typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
+    /* IO can batch queued entries in one callback — entries[0] may be stale,
+       so the LATEST entry always wins (this is what makes the exit wipe
+       actually land after a fast scroll). */
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasRevealed.current) {
-          setVisible(true);
-          hasRevealed.current = true;
-          observer.disconnect();
-        }
-      },
+      (entries) => setVisible(entries[entries.length - 1].isIntersecting),
       { threshold: 0, rootMargin }
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [rootMargin]);
-  return { ref, visible };
-}
-
-function useRevealContinuous(rootMargin = "-40% 0px -10% 0px") {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) { setVisible(true); return undefined; }
-    if (typeof IntersectionObserver === "undefined") { setVisible(true); return undefined; }
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0, rootMargin });
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [rootMargin]);
+  }, [rootMargin, reduced]);
   return { ref, visible };
 }
 
@@ -99,6 +90,9 @@ function useActiveStep(total) {
   const [active, setActive] = useState(0);
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return undefined;
+    /* the observer fires on SCROLL so the tabs follow the reader; clicking a
+       tab calls setActive directly (see scrollToRow) so the new panel is
+       revealed immediately instead of racing the scroll */
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -112,31 +106,55 @@ function useActiveStep(total) {
     return () => observer.disconnect();
   }, [total]);
   const setStepRef = useCallback((i) => (node) => { nodes.current[i] = node; }, []);
-  return { active, setStepRef };
+  const scrollToStep = useCallback((i) => {
+    setActive(i);
+    /* single-panel tab set: swapping the visible chapter is enough — the
+       sticky tab strip stays anchored and the new panel renders below it.
+       No page scroll (Apple's product tabs don't yank the reader down on
+       a chapter switch). */
+  }, []);
+  return { active, setStepRef, scrollToStep };
 }
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
+/* Every landing reveal rides Apple's resolve-out curve
+   cubic-bezier(0.16,1,0.3,1) — the deceleration you feel on apple.com's
+   own scroll reveals (the --ease-out-apple token in premium.css). */
+const EASE_APPLE = "ease-apple";
+
 const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
   return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
+    <div className={`transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
       {children}
     </div>
   );
 });
 
-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
+/* Opacity-only reveal — for wrappers that contain sticky children, where a
+   transform would interfere with the pin. */
+const FadeSoft = React.memo(function FadeSoft({ visible, children, className = "" }) {
   return (
-    <div className="flex items-center gap-2" role="tablist" aria-label="Carousel slides">
+    <div className={`transition-opacity duration-700 ${EASE_APPLE} ${visible ? "opacity-100" : "opacity-0"} ${className}`}>
+      {children}
+    </div>
+  );
+});
+
+const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, tone = "ink" }) {
+  /* tone "pill" — the AirPods highlights dotnav: uniform warm-gray dots inside
+     the light pill, the active one stretching into a 48×8 rounded bar */
+  const pill = tone === "pill";
+  return (
+    <div className={`flex items-center ${pill ? "gap-4" : "gap-2"}`} role="group" aria-label="Carousel slides">
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
           type="button"
-          role="tab"
+          aria-pressed={i === active}
           aria-label={`Go to slide ${i + 1}`}
-          aria-selected={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
     </div>
@@ -151,32 +169,12 @@ function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
   );
 }
 
-function VoiceIcon({ className = "h-9 w-9", style }) {
-  return (
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>
-      <path d="M25 7l-5 9 6 4-5 9 3 3-2 7" />
-      <path d="M31 19c2.5 2.5 2.5 7.5 0 10" />
-      <path d="M35.5 15.5c4.5 4.5 4.5 12 0 16.5" />
-    </svg>
-  );
-}
-
-function VMark({ className = "h-10 w-auto", color = COLORS.ink }) {
-  return (
-    <svg viewBox="1.5 6 60 44.5" className={className} fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g transform="translate(0,64) scale(0.1,-0.1)" fill={color} stroke="none">
-        <path d="M49 551 c-16 -16 -29 -40 -29 -53 0 -14 42 -98 93 -187 l92 -163 6 38 c13 76 99 118 159 77 33 -22 44 -41 50 -83 5 -33 9 -28 98 128 60 105 92 172 92 192 0 34 -28 67 -66 76 -41 10 -72 -22 -149 -154 -38 -66 -72 -123 -75 -126 -4 -3 -41 55 -83 128 -95 164 -128 186 -188 127z" />
-      </g>
-    </svg>
-  );
-}
-
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
+  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem, alt: "Teacher looking overwhelmed after class" },
+  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: problemrevision, alt: "Parent reviewing a child's progress" },
   { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I have all the articles. I still can't turn them into the work.", image: proSlide, alt: "Professional applying knowledge at work" },
+  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I read every article. I still can't turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
 const PROBLEM_MS = 4200;
 
@@ -192,15 +190,6 @@ const MEET_SECTIONS = [
   { id: "organization", tab: "Organization", leadBlack: "See", midBlack: "what your people are", blues: ["learning.", "building."], copy: "Give teams a shared view of learning across people, projects, and time.", link: "Explore organization learning", to: "/organization", alt: "Leader reviewing team progress on a tablet" },
 ];
 
-const OI_STATES = [
-  { label: "Remember", heading: "It remembers more than what you said.", body: "It remembers what you understood, where you struggled, what you tried, and what changed along the way." },
-  { label: "Understand", heading: "You never have to start over.", body: "When you return, Visionary already knows where you were, what you've done, and what makes sense to do next." },
-  { label: "Continue", heading: "It learns from what you do.", body: "Each lesson, practice, project, and decision gives the next step more context." },
-  { label: "Grow", heading: "Understanding grows.", body: "What you learn, teach, and build today becomes the foundation for what you can do tomorrow." },
-];
-const OI_STEP_LABELS = ["Remember", "Understand", "Continue", "Grow"];
-const OI_PHASE_MS = [3000, 3000, 3000, 4000, 4500];
-
 const LG_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
@@ -215,303 +204,175 @@ const LG_QUESTIONS = [
   { hi: "Mera bachcha kahan madad chahta hai?", en: "Where does my child need support?", bn: "আমার সন্তানের কোথায় সাহায্য দরকার?", ta: "என் குழந்தைக்கு எங்கே உதவி தேவை?", kn: "ನನ್ನ ಮಗುವಿಗೆ ಎಲ್ಲಿ ಸಹಾಯ ಬೇಕು?", pa: "ਮੇਰੇ ਬੱਚੇ ਨੂੰ ਕਿੱਥੇ ਮਦਦ ਚਾਹੀਦੀ ਹੈ?" },
   { hi: "Is project ke liye kaunsi skill chahiye?", en: "Which skill does this project need?", bn: "এই প্রজেক্টের জন্য কোন দক্ষতা লাগবে?", ta: "இந்தத் திட்டத்திற்கு எந்தத் திறன் தேவை?", kn: "ಈ ಯೋಜನೆಗೆ ಯಾವ ಕೌಶಲ್ಯ ಬೇಕು?", pa: "ਇਸ ਪ੍ਰੋਜੈਕਟ ਲਈ ਕਿਹੜਾ ਹੁਨਰ ਚਾਹੀਦਾ ਹੈ?" },
 ];
-const LG_QUESTION_MS = 3200;
+const LG_RING_MS = 3600;
 
-const COMMITMENT_STEPS = [
-  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: cmAdapt, alt: "Child learning with a tablet outdoors" },
-  { title: "Grow", copy: "When you know more, you should be able to go further.", image: cmGrow, alt: "Student growing their skills" },
-  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: cmCreate, alt: "Person building a real project" },
-  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: cmContinue, alt: "Learner continuing their journey" },
+const JOURNEY_STEPS = [
+  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: cmAdapt, alt: "Child learning with a tablet outdoors", tone: "light" },
+  { title: "Grow", copy: "When you know more, you should be able to go further.", image: cmGrow, alt: "Student growing their skills", tone: "light" },
+  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: cmCreate, alt: "Person building a real project", tone: "light" },
+  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: cmContinue, alt: "Learner continuing their journey", tone: "dark" },
 ];
-const CM_FILL_MS = 4000;
+const JOURNEY_CARD_MS = 5000;
 
 const LX_TRUST_WORDS = ["information.", "privacy.", "progress."];
+const LX_TRUST_IMG = [cmContinue, teacherSlide, parentSlide];
+const TRUST_WORD_MS = 3600;
 const LX_TRUST_CARDS = [
   { title: "Your data stays yours.", copy: "You choose what Visionary remembers and how you use it.", alt: "Person working privately on a laptop", Icon: ShieldCheck, to: "/privacy", link: "Read our privacy approach" },
   { title: "Safe to grow with.", copy: "Age-aware guidance and human review help keep learning on track.", alt: "Shield protecting a learner's journey", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
   { title: "Built with care.", copy: "Visionary helps people learn, work, and create.", alt: "Responsibly built intelligence illustration", Icon: Scale, to: "/terms", link: "Read our commitments" },
 ];
-const LX_TRUST_IMG = [cmContinue, teacherSlide, parentSlide];
-const LX_EXPLORE_CATEGORIES = [
-  { slug: "student", chip: "Student", copy: "Understand lessons, practise ideas, and build with confidence.", alt: "Student learning with a laptop" },
-  { slug: "teacher", chip: "Teacher", copy: "Plan lessons, check understanding, and teach the next idea.", alt: "Teacher working on a laptop in a classroom" },
-  { slug: "parent", chip: "Parent", copy: "See progress clearly and know when to help.", alt: "Parent helping a child at a desk" },
-  { slug: "professional", chip: "Professional", copy: "Turn what you learn into work you can use.", alt: "Professional discussing work with a tablet" },
-  { slug: "organization", chip: "Organization", copy: "Help teams share context across projects.", alt: "Leader talking at an organization table" },
-];
-
-const FAQ_ITEMS = [
-  { q: "What is Visionary?", a: "Visionary brings explanations, practice, an AI mentor, and project tools into one place for learning and work." },
-  { q: "Who is Visionary for?", a: "Students, teachers, parents, professionals, and organizations can each use a journey shaped around their work." },
-  { q: "What can Visionary remember?", a: "It can remember what you understood, where you struggled, and what you tried, so you can continue when you return." },
-  { q: "How does Visionary use my information?", a: "Visionary uses your information to support your journey. It does not sell your information, and you stay in control." },
-  { q: "Can I use Visionary in my own language?", a: "Yes. You can ask, learn, and practise in 20+ languages while keeping your context connected." },
-  { q: "Is Visionary suitable for children?", a: "Yes. Age-aware guidance, strong protections, and human review help make Visionary safe to grow with." },
-];
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
 
-/* 01 · HERO — the universal front door, product-first. Analyzed against
-   Apple's iPhone 18 Pro hero ("iPhone 18 Pro" / "Pro further." / links) and
-   Google's Store + Workspace heroes (name / short tagline / one CTA): tiny
-   word counts, a clear title→tagline hierarchy, and the product visual as
-   the largest element on screen. So: the five journeys stand together as
-   one family on top (the lead visual), then a single-line title, a true
-   sub-heading, the one-sentence promise, and the CTA pair — no eyebrow, no
-   decoration. All vertical rhythm is vh-clamped so every device keeps the
-   same proportional breathing space. Non-interactive — the Meet Visionary
-   section owns per-category navigation. */
-const LINEUP_WIDTHS = {
-  outer: "clamp(54px, min(23vh, 12.3vw), 240px)",
-  mid: "clamp(70px, min(29vh, 15.5vw), 300px)",
-  center: "clamp(88px, min(34vh, 19vw), 380px)",
-};
+/* 01 · HERO — the universal front door, on the one hero law: the static
+   "One Intelligence." headline, the promise, the CTA pair, and the five
+   personas as alpha cutouts rising from the fold. The section pins to the
+   viewport (sticky, in NewPersona's cast branch) so the story can glide
+   over it on frosted glass — the Vision Pro page anatomy. */
 
+/* The family, as alpha cutouts on the page's own white (the persona hero
+   photography with the studio background removed) — so the landing stages
+   them as one unbroken lineup, the way Apple stages a product family. */
+import proCut480 from "@/assets/hero-cutouts/professional-480w.webp";
+import proCut800 from "@/assets/hero-cutouts/professional-800w.webp";
+import teacherCut480 from "@/assets/hero-cutouts/teacher-480w.webp";
+import teacherCut800 from "@/assets/hero-cutouts/teacher-800w.webp";
+import studentCut480 from "@/assets/hero-cutouts/student-480w.webp";
+import studentCut800 from "@/assets/hero-cutouts/student-800w.webp";
+import parentCut480 from "@/assets/hero-cutouts/parent-480w.webp";
+import parentCut800 from "@/assets/hero-cutouts/parent-800w.webp";
+import orgCut480 from "@/assets/hero-cutouts/organization-480w.webp";
+import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
+
+/* The universal sentence, in the persona grammar: the product names itself,
+   then the cycle carries every journey — student, teacher, parent,
+   professional, organization. */
+const LANDING_HERO_WORDS = ["One Intelligence.", "to learn.", "to teach.", "to help.", "to build.", "to lead."];
+
+const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
-  { label: "Professional", src: professionalHero, w: "outer" },
-  { label: "Teacher", src: teacherHero, w: "mid" },
-  { label: "Student", src: studentHero, w: "center" },
-  { label: "Parent", src: parentHero, w: "mid" },
-  { label: "Organization", src: orgHero, w: "outer" },
+  { label: "Professional", src: proCut800, srcSet: cutSet(proCut480, proCut800) },
+  { label: "Teacher", src: teacherCut800, srcSet: cutSet(teacherCut480, teacherCut800) },
+  { label: "Student", src: studentCut800, srcSet: cutSet(studentCut480, studentCut800) },
+  { label: "Parent", src: parentCut800, srcSet: cutSet(parentCut480, parentCut800) },
+  { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800) },
 ];
-
-/* the cast overlaps slightly on desktop — one group, not five cards */
-const overlapCls = (i) => (i > 0 ? "lg:-ml-6 xl:-ml-8" : "");
 
 const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
-    <section
-      data-section="01-hero"
-      className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-white"
-      style={{ fontFamily: FONT_FAMILY, marginTop: 64 }}
-    >
-      {/* Apple-style entrance: the product lands first with a soft blur-rise,
-          then the words resolve in — the launch-tile sequence. After landing,
-          the family keeps a barely-there levitation and the ground shadow
-          breathes with it. Devices that report reduced-motion (many Windows
-          installs ship with client-area animations off) still get a calm
-          staggered crossfade — visible, just without movement. */}
-      <style>
-        {`@keyframes appleRise{
-from{opacity:0;transform:translateY(30px) scale(0.96);filter:blur(10px)}
-to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-}
-@keyframes appleTextIn{
-from{opacity:0;transform:translateY(16px);filter:blur(8px)}
-to{opacity:1;transform:translateY(0);filter:blur(0)}
-}
-@keyframes appleFloat{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-7px)}
-}
-@keyframes appleShadowSwell{
-0%,100%{transform:scaleX(1)}
-50%{transform:scaleX(0.96)}
-}
-@keyframes appleFadeIn{
-from{opacity:0}
-to{opacity:1}
-}
-@media (prefers-reduced-motion: reduce){
-.apple-anim{animation-name:appleFadeIn !important;animation-duration:0.7s !important;animation-timing-function:ease-out !important;animation-iteration-count:1 !important}
-.apple-float{animation:none !important}
-}`}
-      </style>
-
-      {/* the stage — white. The cutouts' baked mist fades dissolve them into
-          it, so the cast stands in light without any atmosphere layer. */}
-
-      <div
-        className="relative mx-auto flex w-full max-w-[1756px] flex-1 flex-col items-center justify-center px-6 pt-14 pb-12 text-center sm:px-8 lg:pt-[min(8.5vh,110px)] lg:pb-[4.5vh]"
-      >
-        {/* the five journeys — one cast, standing together in the light.
-            The figures are background-free cutouts with a baked mist fade,
-            so they can share a stage and overlap like a family portrait. */}
-        <div className="relative flex w-full flex-col items-center">
-          {/* portraits — stepped heights, bottom-aligned on one ground line;
-              after the entrance the whole row levitates almost imperceptibly */}
-          <div
-            className="apple-float relative z-10 flex items-end justify-center gap-0 sm:gap-3 lg:gap-4"
-            style={{ animation: "appleFloat 7s ease-in-out 2.6s infinite" }}
-          >
-            {LANDING_HERO_LINEUP.map((p, i) => (
-              <div
-                key={p.label}
-                className={`apple-anim relative ${overlapCls(i)}`}
-                style={{
-                  width: LINEUP_WIDTHS[p.w],
-                  zIndex: p.w === "center" ? 30 : p.w === "mid" ? 20 : 10,
-                  animation: "appleRise 1.1s cubic-bezier(0.16,1,0.3,1) both",
-                  animationDelay: `${100 + i * 80}ms`,
-                }}
-              >
-                <img
-                  src={p.src}
-                  alt=""
-                  aria-hidden="true"
-                  loading="eager"
-                  decoding="async"
-                  draggable="false"
-                  className="h-auto w-full select-none"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* contact shadow — tight and quiet, like a product shot */}
-          <div
-            aria-hidden="true"
-            className="apple-anim relative z-10 -mt-1.5 h-[11px] w-[min(1280px,94%)] rounded-[100%]"
-            style={{
-              backgroundColor: "rgba(31,35,45,0.12)",
-              filter: "blur(9px)",
-              animation: "appleRise 1s cubic-bezier(0.16,1,0.3,1) both",
-              animationDelay: "480ms",
-            }}
-          />
-
-          {/* labels — identification only, never links (Meet section navigates) */}
-          <div className="mt-3 flex items-start justify-center gap-1.5 sm:gap-3 lg:gap-4">
-            {LANDING_HERO_LINEUP.map((p, i) => (
-              <span
-                key={p.label}
-                className={`apple-anim hidden font-normal uppercase tracking-[0.14em] leading-[14px] text-[12px] sm:block ${overlapCls(i)}`}
-                style={{
-                  width: LINEUP_WIDTHS[p.w],
-                  color: COLORS.slate,
-                  animation: "appleTextIn 0.9s cubic-bezier(0.16,1,0.3,1) both",
-                  animationDelay: "600ms",
-                }}
-              >
-                {p.label}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* title → tagline → promise — the Apple/Google hero hierarchy at the
-            canonical display scale; vh caps keep shorter laptops whole */}
-        <h1 className="m-0 mt-[max(28px,6vh)] lg:mt-[5.5vh]">
-          <span
-            className="apple-anim block font-medium leading-[1.05] tracking-[0] text-[#121317]"
-            style={{
-              fontSize: "clamp(48px, min(5.55vw, 11vh), 80px)",
-              animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-              animationDelay: "560ms",
-            }}
-          >
-            One Intelligence.
-          </span>
-          <span
-            className="apple-anim accent-gradient block font-medium leading-[1.2] tracking-[0]"
-            style={{
-              fontSize: "clamp(22px, min(2.6vw, 4.2vh), 40px)",
-              marginTop: "clamp(10px, 1.6vh, 22px)",
-              animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-              animationDelay: "660ms",
-            }}
-          >
-            Built around you.
-          </span>
-        </h1>
-
-        {/* promise — Google writing style: plain, personal, one breath */}
-        <p
-          className="apple-anim mx-auto mt-3 max-w-[680px] font-normal tracking-[0] leading-[1.55] text-[17px] lg:text-[18px]"
-          style={{
-            color: COLORS.slate,
-            animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-            animationDelay: "760ms",
-          }}
-        >
-          Visionary carries your context across learning, teaching,
-          work, and life.
-        </p>
-
-        {/* CTA pair — same pills as every category hero */}
-        <div
-          className="apple-anim mt-[max(24px,3.5vh)] flex flex-wrap items-center justify-center gap-3 lg:mt-[3vh]"
-          style={{
-            animation: "appleTextIn 1s cubic-bezier(0.16,1,0.3,1) both",
-            animationDelay: "860ms",
-          }}
-        >
-          <Link
-            to="/register"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#121317] px-7 text-[16px] font-medium tracking-[0.24px] text-white transition-transform duration-200 hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-          >
-            Start free
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="M13 6l6 6-6 6" />
-            </svg>
-          </Link>
-          <Link
-            to="/how-it-works"
-            className="inline-flex h-12 items-center justify-center rounded-full border border-[#dadce0] bg-white px-7 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-          >
-            See how it works
-          </Link>
-        </div>
-      </div>
-    </section>
+    <PersonaHero
+      words={LANDING_HERO_WORDS}
+      srSentence="One Intelligence. To learn. To teach. To help. To build. To lead."
+      sub="One connected intelligence for every way you learn, teach, work, and grow."
+      cast={LANDING_HERO_LINEUP}
+      ctaLabel="Start free"
+      /* the front door carries a single pill — the persona heroes keep their pair */
+      secondaryLabel={null}
+      minDisplay={36}
+    />
   );
 });
 
-/* 02 · PROBLEM */
+/* 02 · PROBLEM — the first chapter slides over the pinned hero on the
+   house frosted glass. The Apple chapter anatomy: one centered statement,
+   one cinematic subject, one voice — nothing else on the stage. The
+   photography is studio-white, so it renders unframed on the page's own
+   white (the hero's language): the subject stands on the section floor,
+   edge-to-edge breathing, no card, no crop. All four subjects stay mounted
+   and crossfade — a keyed <img> remount refetched and flashed an empty
+   frame on every slide advance, worst on slow phones. */
 function LandingProblemSection() {
   const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
-    <section ref={ref} data-section="02-problem" className="relative overflow-hidden bg-[#f8f9fa] py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1756px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-0">
-          <div className="lg:col-span-5 lg:pl-[var(--frame-x)]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Why Visionary exists</p>
-            <h2 key={`h-${index}`} className="hero-fade-up mt-[calc(clamp(28px,2.78vw,40px)*0.857)] max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-              {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
-            </h2>
-          </div>
-          <div className="lg:col-span-7 lg:pr-[var(--frame-x)]">
-            <figure className="m-0">
-              <div key={`m-${index}`} className="hero-fade-up [animation-delay:120ms] [animation-fill-mode:both]">
-                {/* the source photography is portrait-first; a 16:9 centre crop
-                    decapitated it — 4:3 with an upper-third bias keeps every
-                    face whole like a product shot should */}
-                <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full max-w-[640px] mx-auto rounded-[50px] object-cover object-[50%_28%] sm:aspect-[16/10]" />
-              </div>
-              <figcaption key={`q-${index}`} aria-live="polite" className="hero-fade-up mx-auto mt-10 w-full max-w-[560px] text-center [animation-delay:200ms] [animation-fill-mode:both]">
-                <p className="font-medium tracking-[0] leading-[20px] text-[16px]" style={{ color: COLORS.ink }}>{slide.persona}</p>
-                <p className="mt-2 font-normal tracking-[0] leading-[1.27] text-[clamp(16px,1.39vw,20px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
-              </figcaption>
-            </figure>
-          </div>
+        <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
+        {/* the section's own compact-band override (bridge: 02-problem) provides
+            the chapter's opening/closing breath — no inner padding here */}
+        <div className="px-6">
+          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Why Visionary exists</p>
+          <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,4vw,56px)]" style={{ color: COLORS.ink }}>
+            {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
+          </h2>
         </div>
-        <div className="mt-14 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
+        <figure className="m-0">
+          {/* the chapter stage — one-glance comprehension: statement, subject,
+              persona, quote all land inside ~1.2 viewports, the way Apple's
+              compact chapters read. The statement→stage drop opens to 65px on
+              desktop (Apple's product-shot drop), and the stage itself scales
+              WITH the device: it tracks the smaller of 44vw / 58svh so the
+              subject earns real presence on large screens while the phone
+              stage stays a full-bleed crop. */}
+          <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
+            {PROBLEM_SLIDES.map((s, i) => (
+              <img
+                key={s.alt}
+                src={s.image}
+                alt={i === index ? s.alt : ""}
+                aria-hidden={i !== index}
+                loading="eager"
+                decoding="async"
+                draggable="false"
+                style={{
+                  /* the studio photos' subjects touch their canvas edges;
+                     unframed, those cuts would read as hard lines — dissolve
+                     them into the page's own white (the hero's floor recipe).
+                     The img element is sized to the painted square (h-full
+                     w-auto, centered) so the mask tracks the photo, not the
+                     full-bleed band. */
+                  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+                  WebkitMaskComposite: "source-in",
+                  maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+                  maskComposite: "intersect",
+                }}
+                className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ${EASE_APPLE} motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
+          </div>
+          <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-[clamp(16px,2.4vw,32px)] w-full max-w-[640px] px-6 text-center [animation-delay:80ms] [animation-fill-mode:both]">
+            <p className="font-medium tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.slate }}>{slide.persona}</p>
+            {/* the reserved two-line slot keeps the dots from jumping when a
+                shorter quote occupies one line */}
+            <p className="mt-2.5 flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
+          </figcaption>
+        </figure>
+        <div className="mt-8 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
       </FadeReveal>
     </section>
   );
 }
 
-/* 03 · PROMISE */
-const LandingPromiseSection = React.memo(function LandingPromiseSection() {
-  const { ref, visible } = useRevealOnce();
+/* 03 · PROMISE — not a section: a sentence. The turn of the story — the
+   page speaks the what-if once, and the line behaves like Apple's intro
+   beats: it fades up as the reader arrives, holds for the beat, then fades
+   back down and lets go as the product chapter (meet) arrives. It rides
+   the same reveal band every other chapter uses, so it genuinely appears
+   and disappears with the scroll — no pinned 200vh cinema, no staying. */
+function LandingPromiseSection() {
+  const { ref, visible } = useRevealContinuous();
   return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundColor: COLORS.white }}>
-      <h2 className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
-        What if your intelligence never forgot{" "}
-        <span className="accent-gradient">where you were?</span>
-      </h2>
+    <section ref={ref} data-section="03-promise" className="relative z-10 bg-white px-6 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        <h2 className="mx-auto max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,5vw,72px)]" style={{ color: COLORS.ink }}>
+          What if your intelligence never forgot{" "}
+          <span className="accent-gradient">where you were?</span>
+        </h2>
+      </FadeReveal>
     </section>
   );
-});
+}
 
-/* 04 · MEET */
+/* 04 · MEET — the product, for whom: one frosted tablist pinned under the
+   nav (the glass motif carried through the page), one scroll-driven story
+   column, and the rotating word/phrase tickers. */
 const MeetHeading = React.memo(function MeetHeading({ section, index }) {
   const blue = section.blues[index % section.blues.length];
   return (
-    <h3 className="font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+    /* Apple's 48px section-header tier: -0.002em tracking, 1.08 leading */
+    <h3 className="font-medium tracking-[-0.002em] leading-[1.08] text-[clamp(28px,3.1vw,48px)]" style={{ color: COLORS.ink }}>
       {section.leadBlue ? (
         <>
           <span key={`l-${index}`} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{section.leadBlue[index % section.leadBlue.length]}</span>{" "}
@@ -529,15 +390,67 @@ const MeetHeading = React.memo(function MeetHeading({ section, index }) {
 });
 
 const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
+  const tabRefs = useRef([]);
+  const stripRef = useRef(null);
+  /* Apple/Google segmented behavior on narrow screens: the chosen chip
+     slides to the center of the strip. Deterministic scrollTo math instead
+     of scrollIntoView — the page often smooth-scrolls at the same moment
+     (tab click → chapter), and browsers cancel scrollIntoView's own smooth
+     scroll mid-flight. Fired on click AND when the scroll-sync steps the
+     active chip, so the chip always leads the eye. */
+  const centerTab = useCallback((i) => {
+    const strip = stripRef.current;
+    const btn = tabRefs.current[i];
+    if (!strip || !btn || strip.scrollWidth <= strip.clientWidth) return;
+    /* Apple/Google segmented rule: the strip only moves when the chosen
+       chip is off-screen — a chip already in view stays put (no wiggle). */
+    const srect = strip.getBoundingClientRect();
+    const brect = btn.getBoundingClientRect();
+    if (brect.left >= srect.left && brect.right <= srect.right) return;
+    const target = btn.offsetLeft - (strip.clientWidth - btn.offsetWidth) / 2;
+    strip.scrollTo({ left: Math.max(0, Math.min(target, strip.scrollWidth - strip.clientWidth)), behavior: "smooth" });
+  }, []);
+  useEffect(() => { centerTab(active); }, [active, centerTab]);
+  const onKeyDown = (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    const dir = e.key === "ArrowRight" ? 1 : -1;
+    const next = (active + dir + MEET_SECTIONS.length) % MEET_SECTIONS.length;
+    onSelect(next);
+    tabRefs.current[next]?.focus();
+  };
   return (
-    <div className="mx-auto flex h-[52px] w-full max-w-[900px] items-stretch overflow-hidden rounded-[90px] border bg-white p-0" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="Audiences">
-      {MEET_SECTIONS.map((s, i) => (
-        <button key={s.id} type="button" role="tab" aria-selected={active === i} onClick={() => onSelect(i)}
-          className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${active === i ? "font-medium" : "font-normal hover:bg-[#ffffff]"}`}
-          style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}>
-          {s.tab}
-        </button>
-      ))}
+    <div className="mx-auto w-full max-w-[1260px]">
+      {/* the strip scrolls horizontally on small screens — discovery stays
+          horizontal, never a squeezed desktop row. Width matches Apple's
+          measured product localnav (1260px @1440) so the pill reads as the
+          row's navigator, not a lonely narrow band. */}
+      <div
+        ref={stripRef}
+        className="flex h-[52px] w-full items-stretch overflow-x-auto rounded-[90px] border bg-white p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{ borderColor: COLORS.mist }}
+        role="tablist"
+        aria-label="Audiences"
+        onKeyDown={onKeyDown}
+      >
+        {MEET_SECTIONS.map((s, i) => (
+          <button
+            key={s.id}
+            ref={(n) => { tabRefs.current[i] = n; }}
+            type="button"
+            role="tab"
+            id={`meet-tab-${s.id}`}
+            aria-selected={active === i}
+            aria-controls={`meet-panel-${s.id}`}
+            tabIndex={active === i ? 0 : -1}
+            onClick={() => { onSelect(i); centerTab(i); }}
+            className={`flex h-full min-w-[104px] flex-none items-center justify-center rounded-[90px] px-4 text-[13px] tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#4285F4] sm:min-w-0 sm:flex-1 sm:text-[14px] ${active === i ? "font-medium" : "font-normal"}`}
+            style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}
+          >
+            {s.tab}
+          </button>
+        ))}
+      </div>
     </div>
   );
 });
@@ -545,11 +458,20 @@ const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
 const MeetCopy = React.memo(function MeetCopy({ section }) {
   const { index } = useCycleIndex(section.blues.length, 3000);
   return (
-    <div className="max-w-[460px]">
+    <div className="max-w-[560px]">
       <MeetHeading section={section} index={index} />
-      <p className="mt-8 font-normal tracking-[0] leading-[1.6] text-[15.5px] lg:text-[16px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
-      <Link to={section.to} className="mt-10 inline-flex h-10 items-center justify-center rounded-full border border-[#dadce0] px-6 text-[14px] font-normal tracking-[0.24px] text-[#4285F4] transition-colors hover:border-[#4285F4] hover:bg-[#4285F4] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+      <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[17px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
+      {/* the audience CTA — Apple's pill spec: 44px tall, 17px label, 24px
+          side padding (measured "Buy"/"Learn more" buttons) */}
+      <Link
+        to={section.to}
+        className="mt-8 inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-6 text-[1.0625rem] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+      >
         {section.link}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="M13 6l6 6-6 6" />
+        </svg>
       </Link>
     </div>
   );
@@ -557,469 +479,379 @@ const MeetCopy = React.memo(function MeetCopy({ section }) {
 
 function LandingMeetSection() {
   const { index: wordIndex } = useCycleIndex(MEET_WORDS.length, MEET_WORD_MS);
-  const { ref: headRef, visible } = useRevealOnce();
-  const { active, setStepRef } = useActiveStep(MEET_SECTIONS.length);
+  /* the reveal ref rides the SECTION, not the header: the grid runs several
+     viewports deep, and keying the state to the header would wipe the story
+     while the reader is still inside it */
+  const { ref: revealRef, visible } = useRevealContinuous();
+  const { active, setStepRef, scrollToStep } = useActiveStep(MEET_SECTIONS.length);
   const sectionRef = useRef(null);
-  const scrollToRow = (i) => {
-    const rows = sectionRef.current?.querySelectorAll("[data-step]");
-    rows?.[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
+  const setSectionRef = (n) => { sectionRef.current = n; revealRef.current = n; };
+  const scrollToRow = useCallback((i) => { scrollToStep(i); }, [scrollToStep]);
   return (
-    <section ref={sectionRef} data-section="04-meet" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
-      <div ref={headRef} className="px-6">
+    <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+      <div className="px-6">
         <FadeReveal visible={visible}>
-          <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Meet Visionary</p>
-          <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-            It <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
+          {/* Apple's header rhythm: the kicker sits tight above the headline
+             (~12px), the subhead tight below (~16px) — one thought, not three
+             floating rows */}
+          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Meet Visionary</p>
+          {/* the reserved slot: phrases only wrap below sm (desktop always
+              fits one line) — 2.7em covers two lines at the browser's real
+              1.32 line metrics, so the page never jumps when the word cycles */}
+          {/* Apple's 64px chapter-statement tier ("Get to know AirPods."):
+              64px from 1068px up, easing to 40px on phones — the product
+              chapter outranks the 56px story statements around it. */}
+          <h2 className="mt-3 flex min-h-[2.7em] items-center justify-center text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(40px,6vw,64px)] sm:min-h-0" style={{ color: COLORS.ink }}>
+            <span>
+              It{" "}
+              <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
+            </span>
           </h2>
-          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+          <p className="mx-auto mt-4 max-w-[720px] text-center font-normal tracking-[0] leading-[1.55] text-[18px]" style={{ color: COLORS.slate }}>
             Visionary continues your journey instead of restarting it.
           </p>
         </FadeReveal>
       </div>
-      <div className="sticky top-16 z-30 bg-white px-6 py-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-60 lg:px-0 lg:pt-24">
-        <div className="hidden lg:block">
-          <div className="sticky top-[140px] flex h-[calc(100vh-160px)] items-center">
-            <div key={active} className="hero-fade-up"><MeetCopy section={MEET_SECTIONS[active]} /></div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
+      {/* the local sub-nav — Apple's product-page pattern: a frosted band that
+          pins under the nav and scrolls the reader to each audience chapter.
+          The band earns room to read: after the strip, a full breath
+          (48px mobile / 80px desktop — Apple's localnav→first-chapter gap
+          measured on /iphone-15-pro-max) lets the first row land without
+          pressing against the control, so the rectangle reads as the
+          chapter's navigator, not a crowbar. */}
+      <div className="glass sticky top-[56px] z-30 mt-9 px-4 py-4 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
+      <FadeSoft visible={visible}>
+        {/* the audience chapters — Apple's chapter-row anatomy: each row is
+            ONE composed object (copy + portrait) hanging centered under the
+            1260px strip above it, not two islands pinned to a 980px gutter.
+            Desktop: copy left / portrait right as a centered group — copy
+            block 560px wide, 64px between (Apple's measured copy→media gap),
+            the whole pair centered at max-w 1040px so it reads as a single
+            gesture under the pill. Rows breathe on the premium ladder
+            (48px mobile / 144px desktop). Phones: the copy leads and the
+            portrait follows beneath it with even rhythm (48px step), exactly
+            how an Apple product chapter reads top-to-bottom. The pinned tab
+            band drives the rows: whichever chapter the reader is inside
+            lights its chip, and the rows carry the step markers the band
+            watches. */}
+        <div className="mx-auto grid w-full max-w-[1260px] grid-cols-1 gap-y-14 px-4 pt-20 sm:px-10 sm:pt-20 lg:gap-y-0 lg:px-0 lg:pt-24">
           {MEET_SECTIONS.map((s, i) => (
-            <div key={s.id}>
-              <figure ref={setStepRef(i)} data-step={i} className="m-0">
-                <div className="mx-auto w-full max-w-[440px] overflow-hidden border border-[#121317]/30 rounded-[50px] lg:mx-0 lg:max-w-none">
-                  <img src={MEET_IMG[i]} alt={s.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover lg:aspect-[15/16]" />
-                </div>
+            <div
+              key={s.id}
+              ref={setStepRef(i)}
+              data-step={i}
+              id={`meet-panel-${s.id}`}
+              role="tabpanel"
+              aria-labelledby={`meet-tab-${s.id}`}
+              aria-hidden={i !== active}
+              tabIndex={i === active ? 0 : -1}
+              hidden={i !== active}
+              style={i !== active ? { display: "none" } : undefined}
+              className={`mx-auto lg:grid lg:max-w-[1040px] lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center lg:gap-x-16 ${i > 0 ? "lg:pt-36" : ""}`}
+            >
+              <div>
+                <MeetCopy section={s} />
+              </div>
+              <figure className="m-0 mt-12 flex justify-center lg:mt-0 lg:justify-end">
+                <img
+                  src={MEET_IMG[i]}
+                  alt={s.alt}
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                  style={{
+                    /* the page-wide floor dissolve — same as hero and problem */
+                    WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
+                    maskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
+                  }}
+                  className="h-auto w-full max-w-[360px] select-none sm:max-w-[420px] lg:max-w-[460px]"
+                />
               </figure>
-              <div className="mt-10 lg:hidden"><MeetCopy section={s} /></div>
             </div>
           ))}
         </div>
-      </div>
+      </FadeSoft>
     </section>
   );
 }
 
-/* 05 · ONE INTELLIGENCE — the dark keynote chapter. Apple alternates its
-   product pages between light and black "scenes"; this is our black scene,
-   and it is where the product shows itself: a quiet glass window running
-   Visionary, its memory rows advancing with the four phases. On desktop the
-   stage holds in place while scroll position advances the phases; mobile and
-   reduced motion keep the autonomous cycle. */
-
-/* the window's memory rows — labels mirror the promise copy of each phase,
-   bars are skeleton lines, the last row carries the phase's new light */
-const OI_WINDOW_ROWS = [
-  [["What you understood", 84], ["Where you struggled", 58], ["What you tried", 38]],
-  [["Where you were", 72], ["What you've done", 52], ["What makes sense next", 88]],
-  [["Each lesson", 64], ["Each project", 46], ["Each decision", 80]],
-  [["What you learn", 56], ["What you teach", 44], ["What you can do tomorrow", 92]],
-];
-
-const OIWindow = React.memo(function OIWindow({ phase, finale }) {
-  const rows = OI_WINDOW_ROWS[Math.min(phase, 3)];
+/* 07 · LANGUAGE — the voice dial. A hairline ring carries six wordless
+   language dots gliding one step per beat; the language landing at 12
+   o'clock speaks its own question at the center — name as a quiet caption,
+   the question at statement scale in ink, the brand hues listening beneath.
+   No orbiting ornament: anything that can freeze mid-motion reads as a
+   defect under reduced motion. Dots jump on click; reduced motion keeps
+   the tour but steps it instantly. */
+const LGOrbitDots = React.memo(function LGOrbitDots({ activeIndex, onSelect, reduced }) {
+  const stepDeg = 360 / LG_CHIPS.length;
+  /* dots are laid out counterclockwise so each advance spins the ring
+     clockwise and still lands the active language at 12 o'clock */
+  const rotation = activeIndex * stepDeg;
   return (
-    <div
-      className="w-[min(420px,84vw)] overflow-hidden rounded-[26px] border bg-[#1b1e23]/80 shadow-[0_40px_90px_-24px_rgba(0,0,0,0.85)] backdrop-blur-md"
-      style={{ borderColor: "rgba(138,180,248,0.22)" }}
-      aria-hidden="true"
-    >
-      {/* title bar — three quiet dots and the product's name */}
-      <div className="flex h-11 items-center border-b px-5" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-        {["left", "mid", "right"].map((pos) => (
-          <span key={pos} className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.2)", marginRight: pos === "right" ? 0 : 6 }} />
-        ))}
-        <span className="ml-3 text-[12px] font-medium tracking-[0.24px]" style={{ color: "rgba(255,255,255,0.6)" }}>Visionary</span>
-      </div>
-      {/* body — the phase's memory taking shape */}
-      <div className="flex min-h-[196px] flex-col justify-center gap-[18px] px-7 py-7 sm:min-h-[212px]">
-        {finale ? (
-          <div className="flex flex-col items-center gap-4 py-4" style={{ animation: "oiFade 800ms cubic-bezier(0.22,1,0.36,1) both" }}>
-            <VMark className="h-8 w-auto" color="#ffffff" />
-            <p className="text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: "rgba(255,255,255,0.55)" }}>Always with you</p>
-          </div>
-        ) : (
-          rows.map(([label, width], i) => (
-            <div key={label} className="flex items-center gap-3" style={{ animation: "oiFade 700ms cubic-bezier(0.22,1,0.36,1) both", animationDelay: `${120 + i * 110}ms` }}>
-              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: i === 2 ? COLORS.blue : "rgba(255,255,255,0.3)" }} />
-              <span className="w-[132px] shrink-0 text-left text-[12px] leading-[16px] tracking-[0.2px] sm:w-[168px] sm:text-[12.5px]" style={{ color: "rgba(255,255,255,0.62)" }}>{label}</span>
-              <span className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.09)" }}>
-                <span
-                  className="block h-full rounded-full"
-                  style={{
-                    width: `${width}%`,
-                    backgroundColor: i === 2 ? COLORS.blue : "rgba(255,255,255,0.34)",
-                    animation: `oiGrow 900ms cubic-bezier(0.22,1,0.36,1) ${240 + i * 110}ms both`,
-                  }}
-                />
-              </span>
+    <>
+      {/* the orbit track */}
+      <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
+        <circle cx="50" cy="50" r="49.75" fill="none" stroke={COLORS.ink} strokeOpacity="0.1" strokeWidth="0.25" />
+      </svg>
+      {/* the rotating dot ring */}
+      <div className={`absolute inset-0 transition-transform ${EASE_APPLE}`} style={{ transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }}>
+        {LG_CHIPS.map((c, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <div key={c.code} className="absolute inset-0" style={{ transform: `rotate(${-i * stepDeg}deg)` }}>
+              <button type="button" aria-pressed={isActive} aria-label={`Show ${c.label}`}
+                onClick={() => onSelect(i)}
+                className="absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ boxShadow: isActive ? "0 0 0 6px rgba(18,19,23,0.06)" : "none" }}>
+                <span className="block rounded-full transition-all duration-300"
+                  style={{ width: isActive ? 11 : 7, height: isActive ? 11 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}38` }} />
+              </button>
             </div>
-          ))
-        )}
+          );
+        })}
       </div>
-    </div>
-  );
-});
-
-function LandingOneIntelligenceSection() {
-  const { ref, visible } = useRevealOnce();
-  const [phase, setPhase] = useState(0);
-  const [scrollDriven, setScrollDriven] = useState(false);
-  const runwayRef = useRef(null);
-
-  useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setScrollDriven(desktop.matches && !reduce.matches);
-    update();
-    desktop.addEventListener("change", update);
-    reduce.addEventListener("change", update);
-    return () => {
-      desktop.removeEventListener("change", update);
-      reduce.removeEventListener("change", update);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (scrollDriven) return undefined;
-    const id = setTimeout(() => setPhase((p) => (p + 1) % 5), OI_PHASE_MS[Math.min(phase, 4)]);
-    return () => clearTimeout(id);
-  }, [phase, scrollDriven]);
-
-  useEffect(() => {
-    if (!scrollDriven) return undefined;
-    let raf = 0;
-    const measure = () => {
-      const run = runwayRef.current;
-      if (!run) return;
-      const rect = run.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-      setPhase(progress >= 0.96 ? 4 : Math.min(3, Math.floor(progress / 0.24)));
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(measure);
-    };
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, [scrollDriven]);
-
-  const finale = phase === 4;
-  const state = OI_STATES[Math.min(phase, 3)];
-  return (
-    <section ref={ref} data-section="05-one-intelligence" className="relative [overflow-x:clip] bg-[#121317] py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <style>{"@keyframes oiSpin{to{transform:rotate(360deg)}}@keyframes oiFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes oiGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}"}</style>
-      <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.lightGrey }}>One Intelligence</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)] text-white">
-          What you <span style={{ color: "#8ab4f8" }}>understand</span> today
-          <br className="hidden md:block" /> makes tomorrow easier.
-        </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[25px] text-[17.5px]" style={{ color: "#bdc1c6" }}>
-          Every lesson, conversation, project, and breakthrough becomes part of what comes next.
-        </p>
-
-        {/* phase chip — the scene's title card */}
-        <div className="mt-14 flex justify-center lg:mt-20" aria-live="polite">
-          {!finale && (
-            <span key={`chip-${phase}`} className="rounded-full px-4 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.chipBg, color: COLORS.ink, animation: "oiFade 700ms cubic-bezier(0.22,1,0.36,1) both" }}>{state.label}</span>
-          )}
-        </div>
-
-        <div ref={runwayRef} className={scrollDriven ? "relative lg:h-[300vh]" : "relative"}>
-          <div className={scrollDriven ? "lg:sticky lg:top-[9vh] flex justify-center lg:min-h-[78vh] lg:items-center" : undefined}>
-            {/* the stage — rings, glow, and the product itself */}
-            <div className={`relative mx-auto mt-14 h-[min(480px,92vw)] w-[min(480px,92vw)] sm:h-[560px] sm:w-[560px] lg:mt-6 lg:h-[640px] lg:w-[640px]`}>
-              <div
-                aria-hidden="true"
-                className="absolute inset-[-14%] -z-10 rounded-full"
-                style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.3) 0%, rgba(66,133,244,0.1) 45%, transparent 70%)" }}
-              />
-              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" style={{ animation: "oiSpin 60s linear infinite" }} aria-hidden="true">
-                <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(138,180,248,0.5)" strokeWidth="0.3" strokeDasharray="4 5" />
-              </svg>
-              <svg viewBox="0 0 100 100" className="absolute inset-[13%] h-[74%] w-[74%]" style={{ animation: "oiSpin 90s linear infinite reverse" }} aria-hidden="true">
-                <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(138,180,248,0.3)" strokeWidth="0.35" strokeDasharray="4 5" />
-              </svg>
-              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                <OIWindow phase={phase} finale={finale} />
-              </div>
-
-              {/* the 1-2-3-4 walk straddling the stage's ground line */}
-              <div className="absolute bottom-0 left-1/2 z-20 w-[min(680px,94vw)] -translate-x-1/2 translate-y-1/2 px-2 sm:px-6">
-                <div className="flex items-start justify-between">
-                  {OI_STEP_LABELS.map((label, i) => (
-                    <React.Fragment key={label}>
-                      <div className="flex w-16 flex-col items-center gap-3 sm:w-20">
-                        {phase >= i ? (
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full text-[28px] font-medium transition-colors duration-700" style={{ backgroundColor: COLORS.blue, color: COLORS.white }}>{i + 1}</span>
-                        ) : (
-                          <span className="flex h-12 w-12 items-center justify-center text-[28px] font-normal leading-none transition-colors duration-700" style={{ color: "rgba(255,255,255,0.38)" }}>{i + 1}</span>
-                        )}
-                        <span className="text-[12px] font-normal uppercase tracking-[0.43px] transition-colors duration-700" style={{ color: phase >= i ? "#8ab4f8" : "rgba(255,255,255,0.38)" }}>{label}</span>
-                      </div>
-                      {i < 3 && <div className="mx-1 mt-6 h-[2px] flex-1 transition-colors duration-700" style={{ backgroundColor: phase > i ? COLORS.blue : "rgba(255,255,255,0.15)" }} />}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* the words under the shot — Apple puts the visual first, the copy beneath */}
-          <div className="mx-auto mt-[130px] max-w-[620px] text-center sm:mt-[140px] lg:mt-[150px]">
-            {finale ? (
-              <h3 key="finale" className="font-medium tracking-[0] leading-[1.15] text-[clamp(24px,2.8vw,38px)] text-white" style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>One intelligence. Always with you.</h3>
-            ) : (
-              <div key={phase} style={{ animation: "oiFade 900ms cubic-bezier(0.22,1,0.36,1) both" }}>
-                <h3 className="font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.6vw,34px)] text-white">{state.heading}</h3>
-                <p className="mx-auto mt-4 max-w-[520px] font-normal tracking-[0.24px] leading-[1.5] text-[15.5px]" style={{ color: "#bdc1c6" }}>{state.body}</p>
-                <div className="mx-auto mt-7 h-[2px] w-[240px] overflow-hidden rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.14)" }}>
-                  <div className="h-full transition-all duration-700" style={{ width: `${((Math.min(phase, 3) + 1) / 4) * 100}%`, backgroundColor: COLORS.blue }} />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="mx-auto mt-28 flex w-fit max-w-full items-center justify-center gap-4 rounded-full px-8 py-5 sm:px-10" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-6 w-6 shrink-0 text-white"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" /></svg>
-          <p className="text-center font-normal tracking-[0.24px] text-[15px] text-balance text-white">It doesn't just remember your past. <span style={{ color: "#8ab4f8" }}>It understands what comes next.</span></p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* 06 · COMMITMENT */
-function LandingCommitmentSection() {
-  const { ref, visible } = useRevealOnce();
-  const [active, setActive] = useState(0);
-  const [runId, setRunId] = useState(0);
-  const select = (i) => { setActive(i); setRunId((r) => r + 1); };
-  const next = () => { setActive((a) => (a + 1) % COMMITMENT_STEPS.length); setRunId((r) => r + 1); };
-  const step = COMMITMENT_STEPS[active];
-  return (
-    <section ref={ref} data-section="06-commitment" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <style>{"@keyframes cmFill{from{transform:scaleY(0)}to{transform:scaleY(1)}}"}</style>
-      <div className={`px-6 transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Our commitment</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>You keep changing.<br />Visionary keeps learning with you.</h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] text-center font-normal tracking-[0.27px] leading-[1.6] text-[16px]" style={{ color: COLORS.slate }}>
-          New questions bring new work. Visionary helps you carry what you learn into the next step.
-        </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div className="flex flex-col gap-10">
-            {COMMITMENT_STEPS.map((s, i) => {
-              const isActive = i === active;
-              return (
-                <button key={s.title} type="button" onClick={() => select(i)} aria-expanded={isActive} className="flex items-start gap-6 rounded-[8px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                  <span className={`relative w-[4px] shrink-0 overflow-hidden rounded-full transition-all duration-700 ease-google ${isActive ? "h-[96px]" : "mt-1 h-[28px]"}`} style={{ backgroundColor: COLORS.track }}>
-                    {isActive && <span key={`fill-${active}-${runId}`} className="absolute inset-0 origin-top rounded-full" style={{ backgroundColor: COLORS.blue, transform: "scaleY(0)", animation: `cmFill ${CM_FILL_MS}ms linear forwards` }} onAnimationEnd={next} />}
-                  </span>
-                  <span className="flex-1">
-                    <span className="block tracking-[0] leading-[1.15] text-[clamp(24px,2.4vw,32px)]" style={{ color: COLORS.ink, fontWeight: isActive ? 500 : 400 }}>{i + 1}. {s.title}</span>
-                    <span className={`grid transition-all duration-500 ease-google ${isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                      <span className="block overflow-hidden">
-                        <span className="mt-3 block max-w-[420px] text-[15px] leading-[1.6] tracking-[0.24px]" style={{ color: COLORS.slate }}>{s.copy}</span>
-                      </span>
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-          <div key={`${active}-${runId}`} className="hero-fade-up">
-            <img src={step.image} alt={step.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-[48px] object-cover lg:aspect-[5/4]" />
-          </div>
-        </div>
-        <p className="mx-auto mt-28 max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-          Built for who you are. Ready for <span style={{ color: COLORS.blue }}>who you become.</span>
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* 07 · LANGUAGE */
-const LGLanguageChips = React.memo(function LGLanguageChips({ active, onSelect }) {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Language selection">
-      {LG_CHIPS.map((lang) => (
-        <button key={lang.code} type="button" aria-pressed={active === lang.code} onClick={() => onSelect(lang.code)}
-          className={`rounded-full px-5 py-2 font-normal uppercase tracking-[0] leading-[14px] text-[12px] transition-colors ${active === lang.code ? "" : "border hover:bg-[#121317]/5"}`}
-          style={{ backgroundColor: active === lang.code ? COLORS.chipBg : "transparent", color: COLORS.ink, borderColor: active === lang.code ? "transparent" : `${COLORS.ink}40` }}>
-          {lang.label}
-        </button>
-      ))}
-      <span className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>+20 languages</span>
-    </div>
+    </>
   );
 });
 
 function LandingLanguageSection() {
-  const { ref, visible } = useRevealOnce();
-  const [lang, setLang] = useState("hi");
-  const [qIndex, setQIndex] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setQIndex((i) => (i + 1) % LG_QUESTIONS.length), LG_QUESTION_MS);
-    return () => clearInterval(id);
-  }, []);
-  const question = LG_QUESTIONS[qIndex][lang];
+  const reduced = usePrefersReducedMotion();
+  const { ref, visible } = useRevealContinuous();
+  const { index, goTo } = useCycleIndex(LG_CHIPS.length, LG_RING_MS);
+  const active = LG_CHIPS[index];
+  /* each language tours with its own question — the dot at the reading
+     position and the script at the center always belong to each other
+     (LG_QUESTIONS holds 4 lines for 6 languages, so the tour wraps) */
+  const question = LG_QUESTIONS[index % LG_QUESTIONS.length][active.code];
   return (
-    <section ref={ref} data-section="07-language" className="relative overflow-hidden bg-[#f8f9fa] px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="07-language" className="relative z-10 overflow-hidden bg-white px-6" style={{ fontFamily: FONT_FAMILY }}>
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
-      <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Every language</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[700px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
-          Visionary understands what you mean, in the language you think in.
-        </p>
-        <div className="relative mt-14 lg:mt-20">
-          {/* a breath of Google color field behind the voice — the four bars
-              carry the four brand hues, our one full-color heritage nod */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[560px] w-[min(920px,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{ background: "radial-gradient(45% 45% at 50% 50%, rgba(66,133,244,0.12) 0%, rgba(66,133,244,0.05) 45%, transparent 72%)" }}
-          />
-          <LGLanguageChips active={lang} onSelect={setLang} />
-          <div className="mx-auto mt-16 w-full max-w-[860px] lg:mt-24">
-            <div className="flex items-end justify-center gap-2" aria-hidden="true">
-              {["#4285F4", "#EA4335", "#FBBC04", "#34A853"].map((c, i) => (
-                <span key={`${c}-${i}`} className="h-8 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
-              ))}
-            </div>
-          <p aria-live="polite" lang={lang} className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.25] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.blue }}>
-            <span key={`${lang}-${qIndex}`} className="hero-fade-up inline">{question}</span>
-          </p>
-          <p className="mt-6 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            Listening in {LG_CHIPS.find((c) => c.code === lang)?.label || lang} · understood in every language
-          </p>
-        </div>
-        <div className="mt-14 flex justify-center lg:mt-20">
-          <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
-            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
-            <div>
-              <p className="font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>Speak your way</p>
-              <p className="mt-1 font-normal tracking-[0] leading-[19px] text-[13px]" style={{ color: COLORS.slate }}>Use voice or text in the way you're comfortable.</p>
+      <div className={`transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+        {/* the meet header rhythm — the kicker names the faculty, the
+            statement names the promise, no word repeats */}
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>In your voice</p>
+        <h2 className="mt-3 text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Every language.<br /><span style={{ color: COLORS.blue }}>One understanding.</span></h2>
+        {/* the voice dial — dots ride the ring while the chosen language's
+            question holds the center; 36px breath before the stage (the
+            confirmed rhythm law) */}
+        <div className="mx-auto mt-9 w-full max-w-[460px] sm:mt-14">
+          <div className="relative aspect-square w-full" role="group" aria-label="Language selection">
+            <LGOrbitDots activeIndex={index} onSelect={goTo} reduced={reduced} />
+            {/* the center — the speaking language's name, its question at
+                statement scale, the brand hues listening beneath. The fixed
+                inscribed region is sized for the worst-wrapping script, so
+                nothing inside can ever crowd the ring. */}
+            <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
+              <span key={`name-${index}`} className="hero-fade-up text-[11px] font-medium uppercase tracking-[0.14em]" style={{ color: COLORS.slate }}>{active.label}</span>
+              <p aria-live="polite" lang={active.code} className="mt-3 flex items-center justify-center text-center font-medium tracking-[-0.014em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: COLORS.ink }}>
+                <span key={index} className="hero-fade-up">{question}</span>
+              </p>
+              <div className="mt-4 flex items-end justify-center gap-1.5" aria-hidden="true">
+                {["#4285F4", "#EA4335", "#FBBC04", "#34A853"].map((c, i) => (
+                  <span key={`${c}-${i}`} className="h-5 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <div className="mx-auto mt-6 w-full max-w-[860px] sm:mt-7">
+          <p className="text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.slate }}>
+            Listening in {active.label} · understood in every language
+          </p>
+          <p className="mt-1 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.slate }}>
+            +20 more languages · use voice or text in the way you're comfortable.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-/* 08 · TRUST */
-const LXTrustCard = React.memo(function LXTrustCard({ card, cardIndex }) {
-  const img = LX_TRUST_IMG[cardIndex % LX_TRUST_IMG.length];
+/* 06 · THE JOURNEY — Apple's education-initiative chapter anatomy: a left-aligned
+   statement on the 40px highlights tier (32px on phones) that sits on Apple's
+   measured content frame, then a VERTICAL stack of full-bleed story cards.
+   Apple ed-initiative renders these as centered 980px media cards (border-
+   radius 30px) with a one-line caption overlaid on the image — NOT a horizontal
+   carousel, NOT text-below-photo. The reader scrolls down through the journey
+   (no autoplay, no carousel chrome); each card lands full-bleed and the eye
+   rests on the next. Caption lives ON the media (bottom-left), dark media
+   flips to white type. This is how an Apple premium story steps: one beat,
+   then a breath, then the next — the reader paces it, it does not pace itself. */
+function LandingJourneySection() {
+  const reduced = usePrefersReducedMotion();
+  const { ref, visible } = useRevealContinuous();
+  const trackRef = useRef(null);
+  const lockRef = useRef(0);
+  const rafRef = useRef(0);
+  const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(true);
+
+  const stepTo = useCallback((i) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const first = track.children[0];
+    const unit = track.children[1] ? track.children[1].offsetLeft - first.offsetLeft : first.offsetWidth;
+    const clamped = Math.min(JOURNEY_STEPS.length - 1, Math.max(0, i));
+    setActive(clamped);
+    /* the lock keeps the scroll listener from re-deriving intermediate
+       indices (and jittering the dot pill) while the smooth scroll runs */
+    lockRef.current = Date.now() + 700;
+    track.scrollTo({ left: clamped * unit, behavior: reduced ? "auto" : "smooth" });
+  }, [reduced]);
+
+  useEffect(() => {
+    if (!playing) return undefined;
+    const id = setInterval(() => stepTo((active + 1) % JOURNEY_STEPS.length), JOURNEY_CARD_MS);
+    return () => clearInterval(id);
+  }, [playing, active, stepTo]);
+
+  /* swiping the track by hand keeps the dots honest */
+  const onScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const track = trackRef.current;
+      if (!track || !track.children[1] || Date.now() < lockRef.current) return;
+      const unit = track.children[1].offsetLeft - track.children[0].offsetLeft || 1;
+      setActive(Math.min(JOURNEY_STEPS.length - 1, Math.max(0, Math.round(track.scrollLeft / unit))));
+    });
+  }, []);
+  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
+
   return (
-    <div className="relative w-full max-w-[780px] overflow-hidden rounded-[32px]">
-      <img src={img} alt={card.alt} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
-      <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
-        <div className="rounded-[20px] bg-white/95 p-5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
-            <card.Icon className="h-5 w-5" strokeWidth={1.8} />
-          </span>
-          <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
-          <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
-            {card.link}
-            <ChevronIcon className="h-3.5 w-3.5" />
-          </Link>
+    <section ref={ref} data-section="06-journey" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+      <div className={`transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+        {/* the header — Apple's "Get the highlights." treatment: the statement
+            alone, LEFT-aligned, on the 40px highlights tier (32px on phones).
+            From lg it sits on Apple's measured page gutter (left: 90px @1440,
+            6.25vw — measured live on /education/k12/) instead of hugging the
+            viewport edge, and the first card of the slide starts EXACTLY at
+            the heading's left edge — the track carries the same gutter, so
+            heading and cards share one spine. Apple's 40px tier carries zero
+            tracking (measured Oct 2026). */}
+        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+          <h2 className="font-medium tracking-[0] leading-[1.1] text-[clamp(32px,2.78vw,40px)]" style={{ color: COLORS.ink }}>Life changes. Visionary keeps pace.</h2>
         </div>
+        {/* the card slide — the track bleeds to the viewport edge so the next
+            card peeks, inviting the reader on (the Apple gallery signature) */}
+        <div ref={trackRef} onScroll={onScroll} role="group" aria-roledescription="carousel" aria-label="The journey, one step at a time"
+          className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden">
+          {JOURNEY_STEPS.map((s, i) => (
+              <figure key={s.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${JOURNEY_STEPS.length}: ${s.title}`}
+                className="relative m-0 flex w-[78%] flex-none snap-start flex-col overflow-hidden rounded-[18px] bg-[#F5F5F7] sm:w-[46%] lg:w-[56%] lg:max-w-[840px]">
+                <img src={s.image} alt={s.alt} loading="eager" decoding="async" draggable="false"
+                  className="aspect-[4/3] w-full flex-none select-none object-cover sm:aspect-[16/10] lg:aspect-[16/8.5]" />
+                {/* the on-card caption — a padded block UNDER the media on every
+                    device (Apple's line-up tile anatomy: flush-top photo, text
+                    below). The active card's block fades up as the story
+                    advances. The support copy stays in the sr-only live region. */}
+                <figcaption className={`flex flex-col px-6 pb-7 pt-6 text-left sm:px-8 lg:px-10 lg:pb-8 lg:pt-7 ${i === active ? "hero-fade-up" : ""}`}>
+                  <p className="font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(19px,1.4vw,24px)] text-[rgba(18,19,23,0.92)]">{s.title}</p>
+                  <p className="mt-2 font-normal leading-[1.47] text-[clamp(14px,1vw,17px)] text-[rgba(18,19,23,0.68)]">{s.copy}</p>
+                </figcaption>
+              </figure>
+          ))}
+        </div>
+        {/* the gallery controls — Apple's media-card gallery cluster: the
+            #E8E8ED pill around the dot nav beside the 56px play/pause circle */}
+        <div className="mt-12 flex items-center justify-center gap-4 px-6 sm:mt-16">
+          <div className="flex h-12 items-center rounded-full bg-[#E8E8ED] px-4 sm:h-14">
+            <CarouselDots total={JOURNEY_STEPS.length} active={active} onSelect={stepTo} tone="pill" />
+          </div>
+          <button
+            type="button"
+            aria-label={playing ? "Pause the journey" : "Play the journey"}
+            aria-pressed={!playing}
+            onClick={() => setPlaying((v) => !v)}
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:h-14 sm:w-14"
+            style={{ color: COLORS.ink }}
+          >
+            {playing ? <Pause className="h-[18px] w-[18px]" strokeWidth={2.4} /> : <Play className="h-[18px] w-[18px] translate-x-[1px] fill-current" strokeWidth={2.4} />}
+          </button>
+        </div>
+        <p aria-live="polite" className="sr-only">{`${JOURNEY_STEPS[active].title}. ${JOURNEY_STEPS[active].copy}`}</p>
+        <h3 className="mx-auto mt-24 max-w-[1400px] px-6 text-balance text-center font-medium tracking-[0] leading-[1.1] text-[clamp(32px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+          Built for who you are. Ready for <span style={{ color: COLORS.blue }}>who you become.</span>
+        </h3>
+      </div>
+    </section>
+  );
+}
+
+/* 08 · TRUST — Apple's values-band anatomy: the rotating word headline over
+   a quiet #F5F5F7 band, then three STATIC white tiles (the measured Apple
+   tile: 18px radius, flush-top photo, padded text block below, 20–24px
+   gaps). No carousel chrome — Apple's tiles sit still and let the reader
+   move. */
+const LXTrustCard = React.memo(function LXTrustCard({ card, image }) {
+  return (
+    <div className="flex w-full flex-col overflow-hidden rounded-[18px] bg-white">
+      <img src={image} alt={card.alt} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover" />
+      {/* the caption lives in its own padded block below the media — Apple's
+          line-up tile anatomy; the tile itself carries the surface, so no
+          contrast chip or shadow is needed */}
+      <div className="flex flex-1 flex-col px-7 pb-8 pt-6">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
+          <card.Icon className="h-5 w-5" strokeWidth={1.8} />
+        </span>
+        <h3 className="mt-4 font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(21px,1.7vw,24px)]" style={{ color: COLORS.ink }}>{card.title}</h3>
+        <p className="mt-2 font-normal tracking-[0] leading-[1.47] text-[clamp(14px,1vw,16px)]" style={{ color: COLORS.graphite }}>{card.copy}</p>
+        <Link to={card.to} className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+          {card.link}
+          <ChevronIcon className="h-3.5 w-3.5" />
+        </Link>
       </div>
     </div>
   );
 });
 
-function useLXScrollTrack() {
-  const trackRef = useRef(null);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
-  const update = useCallback(() => {
-    const t = trackRef.current;
-    if (!t) return;
-    setCanPrev(t.scrollLeft > 4);
-    setCanNext(t.scrollLeft < t.scrollWidth - t.clientWidth - 4);
-  }, []);
-  useEffect(() => {
-    update();
-    window.addEventListener("resize", update, { passive: true });
-    return () => window.removeEventListener("resize", update);
-  }, [update]);
-  const scrollByCard = useCallback((dir) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelector("[data-card]");
-    if (!card) return;
-    const gap = parseFloat(getComputedStyle(t).columnGap) || 0;
-    t.scrollBy({ left: dir * (card.getBoundingClientRect().width + gap), behavior: "smooth" });
-  }, []);
-  return { trackRef, canPrev, canNext, scrollByCard, update };
-}
-
 function LandingTrustSection() {
-  const { ref, visible } = useRevealOnce();
-  const { index: wordIndex } = useCycleIndex(LX_TRUST_WORDS.length, 3000);
-  const [cardIndex, setCardIndex] = useState(0);
-  const stepCards = useCallback((d) => setCardIndex((i) => (i + d + LX_TRUST_CARDS.length) % LX_TRUST_CARDS.length), []);
-  const activeCard = LX_TRUST_CARDS[cardIndex];
-  const nextCard = LX_TRUST_CARDS[(cardIndex + 1) % LX_TRUST_CARDS.length];
+  const { ref, visible } = useRevealContinuous();
+  const { index } = useCycleIndex(LX_TRUST_CARDS.length, TRUST_WORD_MS);
   return (
-    <section ref={ref} data-section="08-trust" className="relative overflow-hidden bg-white py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="08-trust" className="relative z-10 isolate bg-[#F5F5F7] [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
-        <p className="px-6 text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Trust and safety</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          Your <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[wordIndex]}</span>
+        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.slate }}>Trust and safety</p>
+        <h2 className="mt-3 px-6 text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+          Your{" "}
+          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{LX_TRUST_WORDS[index]}</span>
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+        <p className="mx-auto mt-4 max-w-[620px] px-6 text-center font-normal tracking-[0] leading-[22px] text-[15px] text-balance" style={{ color: COLORS.slate }}>
           Your learning, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
-        <div className="mx-auto mt-24 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-32 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
-          <div className="lg:pl-[var(--frame-x)]">
-            <h3 key={activeCard.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{activeCard.title}</h3>
-            <div className="mt-12 flex gap-4">
-              <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="left" /></button>
-              <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-12 w-12 items-center justify-center rounded-full border bg-white transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}><ChevronIcon direction="right" /></button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10 lg:pr-[var(--frame-x)]">
-            <div key={`a-${cardIndex}`} className="hero-fade-up w-full max-w-[780px]"><LXTrustCard card={activeCard} cardIndex={cardIndex} /></div>
-            <div key={`b-${cardIndex}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><LXTrustCard card={nextCard} cardIndex={(cardIndex + 1) % LX_TRUST_CARDS.length} /></div>
-          </div>
+        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-5 px-6 lg:mt-16 lg:grid-cols-3 lg:gap-6 lg:px-10">
+          {LX_TRUST_CARDS.map((card, i) => (
+            <LXTrustCard key={card.title} card={card} image={LX_TRUST_IMG[i]} />
+          ))}
         </div>
       </FadeReveal>
     </section>
   );
 }
 
-/* 09 · CTA — the closer sits on a soft blue field that deepens toward the
-   top and breathes out at the bottom; one primary pill, one quiet path */
+/* 09 · CTA — the closer bookends the hero: the statement on the page's own
+   white field, one Apple-black primary pill with the arrow, one quiet path,
+   and the reassurance line beneath. No colored field — the black pill is
+   the finish, the way the page opened. */
 function LandingCTASection() {
-  const { ref, visible } = useRevealOnce();
+  const { ref, visible } = useRevealContinuous();
   return (
-    <section ref={ref} data-section="09-cta" className="relative px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY, backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
-      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <p className="font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>Start today</p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
+    <section ref={ref} data-section="09-cta" className="relative z-10 bg-[#f5f5f7] px-6" style={{ fontFamily: FONT_FAMILY }}>
+      <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
+        <p className="text-[15px] font-normal" style={{ color: COLORS.slate }}>Start today</p>
+        <h2 className="mt-3 font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>Your next step starts here.</h2>
+        <p className="mx-auto mt-4 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.slate }}>
           Ask a question. Explore an idea. Start learning. Visionary is ready when you are.
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+          <Link to="/register" className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[1.0625rem] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-4 w-4">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
           </Link>
-          <Link to="/contact" className="inline-flex h-14 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-10 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+          <Link to="/contact" className="inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-7 font-normal tracking-[0.24px] text-[1.0625rem] text-[#121317] transition-colors duration-200 hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Talk to our team
           </Link>
         </div>
@@ -1031,84 +863,44 @@ function LandingCTASection() {
   );
 }
 
-/* 10 · EXPLORE */
-const LXExploreCard = React.memo(function LXExploreCard({ category, image }) {
-  return (
-    <Link to={`/${category.slug}`} data-card className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)]" style={{ borderColor: `${COLORS.ink}1A` }}>
-      <img src={image} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
-      <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>{category.chip}</p>
-        <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{category.copy}</p>
-        <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>Learn more</span>
-      </div>
-    </Link>
-  );
-});
-
-function LandingExploreSection() {
-  const { ref, visible } = useRevealOnce();
-  const { trackRef, canPrev, canNext, scrollByCard, update } = useLXScrollTrack();
-  return (
-    <section ref={ref} data-section="10-explore" className="relative bg-white py-16 lg:py-20 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <div className="flex items-center justify-between gap-6 px-6 lg:pl-[6.5%] lg:pr-[6%]">
-          <h2 className="font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>Explore Visionary</h2>
-          <div className="flex items-center gap-3">
-            <button type="button" aria-label="Previous categories" onClick={() => scrollByCard(-1)}
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${canPrev ? "opacity-100" : "pointer-events-none opacity-40"}`}
-              style={{ borderColor: `${COLORS.ink}1A`, color: COLORS.ink, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
-              <ChevronIcon direction="left" />
-            </button>
-            <button type="button" aria-label="Next categories" onClick={() => scrollByCard(1)}
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${canNext ? "opacity-100" : "pointer-events-none opacity-40"}`}
-              style={{ borderColor: `${COLORS.ink}1A`, color: COLORS.ink, boxShadow: "0 8px 24px rgba(60,64,67,0.08)" }}>
-              <ChevronIcon direction="right" />
-            </button>
-          </div>
-        </div>
-        <div ref={trackRef} onScroll={update} className="mt-16 flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mt-20 lg:gap-12 lg:pl-[6.5%] lg:pr-6">
-          {LX_EXPLORE_CATEGORIES.map((c, i) => <LXExploreCard key={c.slug} category={c} image={MEET_IMG[i % MEET_IMG.length]} />)}
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* 11 · FAQ */
-function LandingFAQSection() {
-  const { ref, visible } = useRevealOnce();
-  return (
-    <section ref={ref} data-section="11-faq" className="relative overflow-hidden bg-[#f8f9fa] px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible}>
-        <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.slate }}>FAQ</p>
-        <h2 className="mx-auto max-w-[1100px] text-center font-medium tracking-[0] leading-[1.08] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-title-sub-display)" }}>Questions, answered.</h2>
-        <div className="mx-auto mt-24 w-full max-w-[1240px]">
-          <LandingFAQ faqs={FAQ_ITEMS} variant="hero" defaultOpen={0} />
-        </div>
-      </FadeReveal>
-    </section>
-  );
-}
-
-/* ═══════════════════════ PAGE ═══════════════════════ */
+/* ═══════════════════════ PAGE ═══════════════════════
+   The Vision Pro anatomy: the family stage pins to the viewport, the story
+   glides over it on frosted glass (problem), the thesis fades up
+   (promise), the product meets its five audiences (meet), the language
+   chapter, the journey on the one dark scene, trust, and the blue closer.
+   Sections stay direct children of main — the bridge's chapter contract
+   (hairlines, transparent joins, the dark scene) keys on that shape — each
+   carrying z-10 above the pinned hero. Routing lives in the nav and the
+   hero's audience row; depth lives on the pages those links open. */
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="page-landing min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <LandingNav />
       <main id="main">
         <LandingHeroSection />
+        {/* the glass sheet — the hero's first cover. The frost fades in from
+            its leading edge (mask), so the sheet never slices the pinned
+            headline mid-glyph: the family and copy dissolve into white the
+            way the hero's own floor dissolves them. */}
+        <div
+          aria-hidden="true"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#121317]/10"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+          }}
+        />
         <LandingProblemSection />
         <LandingPromiseSection />
         <LandingMeetSection />
-        <LandingOneIntelligenceSection />
-        <LandingCommitmentSection />
+        <LandingJourneySection />
         <LandingLanguageSection />
         <LandingTrustSection />
         <LandingCTASection />
-        <LandingExploreSection />
-        <LandingFAQSection />
       </main>
-      <LandingFooter />
+      {/* quiet variant: Apple's footer ends the page in air — no giant
+          wordmark — the story itself is the signature */}
+      <LandingFooter variant="quiet" />
     </div>
   );
 }

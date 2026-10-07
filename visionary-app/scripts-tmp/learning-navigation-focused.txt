@@ -1,0 +1,35 @@
+✔ late teaching cannot overwrite a newer saved language or representation (126.9675ms)
+✔ late practice response cannot erase a recorded answer or create repeated evidence (74.4829ms)
+✔ late remediation preserves the recorded incorrect answer and newer model view (15.3799ms)
+✔ leaving a learning activity cancels a delayed adapter without saving its response (8.9455ms)
+✔ fraction representation position persists without evidence; invalid and failed changes preserve it (5.7729ms)
+✔ cube entry points reuse one authored unit without importing old topic results as evidence (42.3825ms)
+✔ authored cube criteria require written self review without claiming a grade (37.1504ms)
+✔ interrupted project edits recover only inside their workspace and can be discarded (2.5368ms)
+✔ the cube view resumes in its learning unit and review preserves recorded evidence (21.45ms)
+✔ review queue uses recorded evidence timing and a new review retains completed work (54.9222ms)
+✔ an invalid or failed model-view save leaves the prior saved view intact (6.4308ms)
+✔ student Home → Learn → Ask → Practice → Build persists one connected activity and evidence (105.8109ms)
+✔ connected teaching records only a versioned response contract in Learn and Ask (13.5281ms)
+✔ a failed unit-stage write after project completion can be retried without duplicate evidence or L7 events (23.995ms)
+✔ a failed learning-unit write after project creation recovers the same artifact on retry (49.9172ms)
+✔ wrong practice answer lowers difficulty and requests remediation without a generated local answer (52.9476ms)
+✔ class-started learning reaches only the assigned teacher aggregate (134.3757ms)
+✔ changing teaching language keeps the same session and localized authored check (35.0469ms)
+✔ changing to an unavailable language clears old teaching text without erasing the learning position (16.0975ms)
+✔ language change retrieves a newly available sourced variant without changing unit identity (14.4106ms)
+✔ a missing syllabus retains provisional position, flags the gap, and offers an honest Ask fallback (17.3881ms)
+✔ official concept mapping resumes the provisional learning unit without splitting its progress (19.5162ms)
+✔ minor profiles cannot enter a professional journey through the service (0.9781ms)
+✔ unsubmitted learning selection resumes privately without producing scored evidence (21.6357ms)
+✔ stale question or retry round cannot overwrite draft or record a graded answer (46.2611ms)
+✔ failed draft write preserves old selection for retry and another owner cannot recover it (15.1248ms)
+✔ malformed learning containers and ambiguous owned units cannot overwrite original work or emit new evidence (6.505ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2292.3219

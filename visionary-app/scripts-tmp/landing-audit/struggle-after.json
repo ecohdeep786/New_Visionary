@@ -1,0 +1,1325 @@
+
+===== student @1440 landed=false =====
+{
+ "section": {
+  "padTop": 90,
+  "padBottom": 90,
+  "h": 1067
+ },
+ "vw": 1440,
+ "vh": 900,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Student learning challenges",
+   "topInSection": 90,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 91,
+   "h": 24,
+   "wPct": 97,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every student struggles with r",
+   "topInSection": 139,
+   "h": 119,
+   "wPct": 68,
+   "size": 56,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "I understood it in class. I fo",
+   "topInSection": 323,
+   "h": 615,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "I understood it in class. I fo",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "I understood it in class. I fo",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 41,
+   "size": 21,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 1089
+}
+
+===== student @1280 landed=false =====
+{
+ "section": {
+  "padTop": 80,
+  "padBottom": 80,
+  "h": 910
+ },
+ "vw": 1280,
+ "vh": 800,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Student learning challenges",
+   "topInSection": 80,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 81,
+   "h": 24,
+   "wPct": 96,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every student struggles with r",
+   "topInSection": 128,
+   "h": 54,
+   "wPct": 77,
+   "size": 51.2,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "I understood it in class. I fo",
+   "topInSection": 240,
+   "h": 550,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 240,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 240,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 240,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 240,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "I understood it in class. I fo",
+   "topInSection": 735,
+   "h": 56,
+   "wPct": 50,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "I understood it in class. I fo",
+   "topInSection": 735,
+   "h": 56,
+   "wPct": 46,
+   "size": 19.2,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 942
+}
+
+===== student @768 landed=false =====
+{
+ "section": {
+  "padTop": 56,
+  "padBottom": 56,
+  "h": 664
+ },
+ "vw": 768,
+ "vh": 1024,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Student learning challenges",
+   "topInSection": 56,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 57,
+   "h": 24,
+   "wPct": 94,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every student struggles with r",
+   "topInSection": 95,
+   "h": 33,
+   "wPct": 94,
+   "size": 30.7,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "I understood it in class. I fo",
+   "topInSection": 162,
+   "h": 406,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "I understood it in class. I fo",
+   "topInSection": 518,
+   "h": 49,
+   "wPct": 83,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "I understood it in class. I fo",
+   "topInSection": 518,
+   "h": 49,
+   "wPct": 77,
+   "size": 17,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 720
+}
+
+===== student @390 landed=false =====
+{
+ "section": {
+  "padTop": 56,
+  "padBottom": 56,
+  "h": 702
+ },
+ "vw": 390,
+ "vh": 844,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Student learning challenges",
+   "topInSection": 56,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 57,
+   "h": 24,
+   "wPct": 88,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every student struggles with r",
+   "topInSection": 95,
+   "h": 59,
+   "wPct": 88,
+   "size": 28,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "I understood it in class. I fo",
+   "topInSection": 186,
+   "h": 420,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "I understood it in class. I fo",
+   "topInSection": 557,
+   "h": 49,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "I understood it in class. I fo",
+   "topInSection": 557,
+   "h": 49,
+   "wPct": 88,
+   "size": 17,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 758
+}
+
+===== landing @1440 landed=false =====
+{
+ "section": {
+  "padTop": 90,
+  "padBottom": 90,
+  "h": 1097
+ },
+ "vw": 1440,
+ "vh": 900,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Stories from a teacher, a pare",
+   "topInSection": 90,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "Why Visionary exists",
+   "topInSection": 91,
+   "h": 24,
+   "wPct": 97,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Seeing progress is easy. Knowi",
+   "topInSection": 139,
+   "h": 119,
+   "wPct": 68,
+   "size": 56,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "A parentThe report card says f",
+   "topInSection": 323,
+   "h": 645,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "A parentThe report card says f",
+   "topInSection": 877,
+   "h": 91,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "A parent",
+   "topInSection": 877,
+   "h": 20,
+   "wPct": 41,
+   "size": 16,
+   "weight": "500",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "p",
+   "text": "The report card says fine. I s",
+   "topInSection": 907,
+   "h": 61,
+   "wPct": 41,
+   "size": 21,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 1119
+}
+
+===== landing @1280 landed=false =====
+{
+ "section": {
+  "padTop": 80,
+  "padBottom": 80,
+  "h": 995
+ },
+ "vw": 1280,
+ "vh": 800,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Stories from a teacher, a pare",
+   "topInSection": 80,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "Why Visionary exists",
+   "topInSection": 81,
+   "h": 24,
+   "wPct": 96,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Seeing progress is easy. Knowi",
+   "topInSection": 128,
+   "h": 109,
+   "wPct": 77,
+   "size": 51.2,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "A parentThe report card says f",
+   "topInSection": 294,
+   "h": 580,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 294,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 294,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 294,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 294,
+   "h": 464,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "A parentThe report card says f",
+   "topInSection": 789,
+   "h": 86,
+   "wPct": 50,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "A parent",
+   "topInSection": 789,
+   "h": 20,
+   "wPct": 46,
+   "size": 16,
+   "weight": "500",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "p",
+   "text": "The report card says fine. I s",
+   "topInSection": 819,
+   "h": 56,
+   "wPct": 46,
+   "size": 19.2,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 1027
+}
+
+===== landing @768 landed=false =====
+{
+ "section": {
+  "padTop": 56,
+  "padBottom": 56,
+  "h": 694
+ },
+ "vw": 768,
+ "vh": 1024,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Stories from a teacher, a pare",
+   "topInSection": 56,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "Why Visionary exists",
+   "topInSection": 57,
+   "h": 24,
+   "wPct": 94,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Seeing progress is easy. Knowi",
+   "topInSection": 95,
+   "h": 33,
+   "wPct": 94,
+   "size": 30.7,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "A parentThe report card says f",
+   "topInSection": 162,
+   "h": 436,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 162,
+   "h": 338,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "A parentThe report card says f",
+   "topInSection": 518,
+   "h": 79,
+   "wPct": 83,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "A parent",
+   "topInSection": 518,
+   "h": 20,
+   "wPct": 77,
+   "size": 16,
+   "weight": "500",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "p",
+   "text": "The report card says fine. I s",
+   "topInSection": 548,
+   "h": 49,
+   "wPct": 77,
+   "size": 17,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 750
+}
+
+===== landing @390 landed=false =====
+{
+ "section": {
+  "padTop": 56,
+  "padBottom": 56,
+  "h": 732
+ },
+ "vw": 390,
+ "vh": 844,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Stories from a teacher, a pare",
+   "topInSection": 56,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "Why Visionary exists",
+   "topInSection": 57,
+   "h": 24,
+   "wPct": 88,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Seeing progress is easy. Knowi",
+   "topInSection": 95,
+   "h": 59,
+   "wPct": 88,
+   "size": 28,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "A parentThe report card says f",
+   "topInSection": 186,
+   "h": 450,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 186,
+   "h": 354,
+   "wPct": 91,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "A parentThe report card says f",
+   "topInSection": 557,
+   "h": 79,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "A parent",
+   "topInSection": 557,
+   "h": 20,
+   "wPct": 88,
+   "size": 16,
+   "weight": "500",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "p",
+   "text": "The report card says fine. I s",
+   "topInSection": 587,
+   "h": 49,
+   "wPct": 88,
+   "size": 17,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 788
+}
+
+===== teacher @1440 landed=false =====
+{
+ "section": {
+  "padTop": 90,
+  "padBottom": 90,
+  "h": 1067
+ },
+ "vw": 1440,
+ "vh": 900,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Teacher challenges",
+   "topInSection": 90,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 91,
+   "h": 24,
+   "wPct": 97,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every teacher wonders about en",
+   "topInSection": 139,
+   "h": 119,
+   "wPct": 68,
+   "size": 56,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "I can see the eyes glaze over.",
+   "topInSection": 323,
+   "h": 615,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "I can see the eyes glaze over.",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "I can see the eyes glaze over.",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 41,
+   "size": 21,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 1089
+}
+
+===== parent @1440 landed=false =====
+{
+ "section": {
+  "padTop": 90,
+  "padBottom": 90,
+  "h": 1067
+ },
+ "vw": 1440,
+ "vh": 900,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Parent concerns",
+   "topInSection": 90,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 91,
+   "h": 24,
+   "wPct": 97,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every parent wonders about hom",
+   "topInSection": 139,
+   "h": 119,
+   "wPct": 68,
+   "size": 56,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "We fight over homework every n",
+   "topInSection": 323,
+   "h": 615,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "We fight over homework every n",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "We fight over homework every n",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 41,
+   "size": 21,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 1089
+}
+
+===== organization @1440 landed=false =====
+{
+ "section": {
+  "padTop": 90,
+  "padBottom": 90,
+  "h": 1067
+ },
+ "vw": 1440,
+ "vh": 900,
+ "parts": [
+  {
+   "tag": "p",
+   "text": "Organization learning challeng",
+   "topInSection": 90,
+   "h": 1,
+   "wPct": 0,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "The problem",
+   "topInSection": 91,
+   "h": 24,
+   "wPct": 97,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(95, 99, 104)"
+  },
+  {
+   "tag": "h2",
+   "text": "Every organization wonders abo",
+   "topInSection": 139,
+   "h": 119,
+   "wPct": 68,
+   "size": 56,
+   "weight": "500",
+   "color": "rgb(18, 19, 23)"
+  },
+  {
+   "tag": "figure",
+   "text": "Every department reports green",
+   "topInSection": 323,
+   "h": 615,
+   "wPct": 100,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "img",
+   "text": "",
+   "topInSection": 323,
+   "h": 522,
+   "wPct": 36,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "figcaption",
+   "text": "Every department reports green",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 44,
+   "size": 16,
+   "weight": "400",
+   "color": "rgb(31, 31, 31)"
+  },
+  {
+   "tag": "p",
+   "text": "Every department reports green",
+   "topInSection": 877,
+   "h": 61,
+   "wPct": 41,
+   "size": 21,
+   "weight": "400",
+   "color": "rgb(18, 19, 23)"
+  }
+ ],
+ "quoteBottomInVp": 1089
+}
+DONE

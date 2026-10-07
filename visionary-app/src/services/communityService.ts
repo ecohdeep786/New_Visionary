@@ -99,7 +99,7 @@ export function restoreCommunityPost(ctx: RequestContext, classId: string, postI
 export function removeCommunityPost(ctx: RequestContext, classId: string, postId: string): void {
  if (assertClassAccess(ctx, classId) !== 'teacher') throw new Error('Only the assigned teacher can remove a community post.');
  const store = read(); const post = store.posts.find(p => p.id === postId && p.classId === classId);
- if (!post || post.status !== 'visible') throw new Error('This post is not available for moderation.');
+ if (!post || !['visible', 'flagged'].includes(post.status)) throw new Error('This post is not available for moderation.');
  post.status = 'removed'; post.removedById = ctx.personId; write(store, ctx);
  emitInteractionEvent(ctx, { app: 'COMMUNITY', action: 'remove', sessionId: classId, language: ctx.locale });
 }

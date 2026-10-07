@@ -1,6 +1,7 @@
 @import "./styles/rhythm.css";
 @import "./styles/public-system.css";
 @import "./styles/public-bridge.css";
+@import "./styles/premium.css";
 
 /* Google Fonts imports */
 
@@ -311,6 +312,10 @@
     margin: 0;
     padding: 0;
     @apply bg-background text-foreground;
+    /* White canvas — the public nav is transparent at rest, so the body
+       tint shows through as a grey band behind it. Pages set their own
+       surfaces; the document base is white. */
+    background-color: #ffffff;
     font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
@@ -382,8 +387,8 @@
   /* Apple-style smooth scrolling */
   html {
     scroll-behavior: smooth;
-    /* anchor targets (e.g. /organization#schools) never hide under the fixed 64px nav */
-    scroll-padding-top: 88px;
+    /* anchor targets (e.g. /organization#schools) never hide under the fixed 56px nav */
+    scroll-padding-top: 80px;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
@@ -474,7 +479,7 @@ section[id],
 h1[id],
 h2[id],
 h3[id] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 80px;
 }
 
 /* Print: strip chrome, keep content legible — legal pages print cleanly */

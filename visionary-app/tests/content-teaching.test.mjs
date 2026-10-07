@@ -121,6 +121,36 @@ test('official arrival maps a provisional concept without changing its progress/
  assert.equal((await syllabus(repository)).id, supplied.id, 'disconnecting the adapter retains the previously received official graph');
 });
 
+test('mapping a second provisional activity cannot make an official target ambiguous',async()=>{
+ const repo=getContentRepository(ctx());const first=await syllabus(repo);const a=(await repo.getConcepts((await repo.getTopics(first.chapters[0].id))[0].id))[0];
+ const second=await syllabus(repo,{...query,subject:'Another subject'});const b=(await repo.getConcepts((await repo.getTopics(second.chapters[0].id))[0].id))[0];
+ configureContentRepository({async getSyllabus(){return officialGraph();}});await syllabus(repo);await repo.mapProvisional(a.id,'official:concept');const before=memory.get(contentKey);
+ await assert.rejects(repo.mapProvisional(b.id,'official:concept'),/mapping|mapped/);assert.equal(memory.get(contentKey),before);assert.equal(await repo.resolveProgressId('official:concept'),a.id);
+});
+
+test('late mapping cannot replace the reviewed alias saved while target lookup was pending',async()=>{
+ const repo=getContentRepository(ctx());const previous=await syllabus(repo);const concept=(await repo.getConcepts((await repo.getTopics(previous.chapters[0].id))[0].id))[0];
+ configureContentRepository({async getSyllabus(){return officialGraph();}});await syllabus(repo);
+ let release,started;const waiting=new Promise(resolve=>{started=resolve;});configureContentRepository({async getSyllabus(){return null;},async getConcept(){started();return new Promise(resolve=>{release=()=>resolve(officialConcept({id:'official:other'}));});}});
+ const pending=repo.mapProvisional(concept.id,'official:other');await waiting;await repo.mapProvisional(concept.id,'official:concept');const before=memory.get(contentKey);release();
+ await assert.rejects(pending,/changed|mapped/);assert.equal(memory.get(contentKey),before);assert.equal((await repo.getConcept(concept.id)).officialId,'official:concept');
+});
+
+test('malformed retained aliases cannot be treated as valid mappings or silently replaced',async()=>{
+ const repo=getContentRepository(ctx());await syllabus(repo);const valid=memory.get(contentKey);
+ for(const aliases of [[],null,{'legacy':' '},{a:'same',b:'same'}]){const db=JSON.parse(valid);db.spaces[ctx().workspaceId].aliases=aliases;memory.set(contentKey,JSON.stringify(db));const before=memory.get(contentKey);
+  await assert.rejects(repo.resolveProgressId('same'),/mapping/);assert.equal(memory.get(contentKey),before);
+ }
+ memory.set(contentKey,valid);assert.equal(await repo.resolveProgressId('same'),'same');
+});
+
+test('a provisional rename during remote mapping lookup preserves the newer saved activity',async()=>{
+ const repo=getContentRepository(ctx());const previous=await syllabus(repo);const concept=(await repo.getConcepts((await repo.getTopics(previous.chapters[0].id))[0].id))[0];
+ let release,started;const waiting=new Promise(resolve=>{started=resolve;});configureContentRepository({async getSyllabus(){return null;},async getConcept(){started();return new Promise(resolve=>{release=()=>resolve(officialConcept());});}});
+ const pending=repo.mapProvisional(concept.id,'official:concept');await waiting;await repo.renameProvisional(concept.id,'Newer saved title');const before=memory.get(contentKey);release();
+ await assert.rejects(pending,/changed/);assert.equal(memory.get(contentKey),before);
+});
+
 test('existing owned legacy IDs are reused rather than rewritten', async () => {
  const repository = getContentRepository(ctx()); const result = await syllabus(repository); const db = JSON.parse(memory.get(contentKey));
  const oldId = `provisional:${encodeURIComponent(JSON.stringify(query))}`;
@@ -296,4 +326,22 @@ test('connected teaching requires matching language and version, and saves only 
  assert.equal('privateServerToken' in response, false);
  assert.equal('internalRubric' in response.question, false);
  assert.equal('serverMetadata' in response.representations[0], false);
+});
+
+test('unreadable auxiliary issue records preserve bytes, leave source content accessible and recover without duplicate reports', async () => {
+ configureContentRepository({ async getSyllabus() { return officialGraph(); } });
+ const repository = getContentRepository(ctx()); await syllabus(repository);
+ const issue = await repository.reportIssue('official:concept', 'source');
+ const saved = memory.get(contentKey);
+ for (const issues of [null, {}, [null], [{...issue,kind:'unknown'}], [{...issue,createdAt:'invalid'}], [issue,issue], [{...issue,sourceVersion:42}]]) {
+  const db = JSON.parse(saved); db.spaces[ctx().workspaceId].issues = issues;
+  const unreadable = JSON.stringify(db); memory.set(contentKey, unreadable);
+  await assert.rejects(repository.getContentIssues(), /issue reports could not be read/);
+  await assert.rejects(repository.reportIssue('official:concept', 'question'), /issue reports could not be read/);
+  assert.equal(memory.get(contentKey), unreadable);
+  assert.equal((await repository.getConcept('official:concept')).id, 'official:concept');
+ }
+ memory.set(contentKey, saved);
+ assert.equal((await repository.reportIssue('official:concept', 'source')).id, issue.id);
+ assert.deepEqual(await repository.getContentIssues(), [issue]);
 });

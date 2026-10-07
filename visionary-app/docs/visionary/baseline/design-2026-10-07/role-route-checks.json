@@ -1,0 +1,946 @@
+[
+  {
+    "role": "organization",
+    "path": "/dashboard/home",
+    "width": 320,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/home",
+    "width": 1440,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/people",
+    "width": 320,
+    "heading": "People & connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/people",
+    "width": 1440,
+    "heading": "People & connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/cohorts",
+    "width": 320,
+    "heading": "Cohorts",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/cohorts",
+    "width": 1440,
+    "heading": "Cohorts",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/curriculum",
+    "width": 320,
+    "heading": "Reviewed curriculum templates",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/curriculum",
+    "width": 1440,
+    "heading": "Reviewed curriculum templates",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/analytics",
+    "width": 320,
+    "heading": "Institution analytics",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/analytics",
+    "width": 1440,
+    "heading": "Institution analytics",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/library",
+    "width": 320,
+    "heading": "Organization content",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/library",
+    "width": 1440,
+    "heading": "Organization content",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/audit",
+    "width": 320,
+    "heading": "Organization audit",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/audit",
+    "width": 1440,
+    "heading": "Organization audit",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/notifications",
+    "width": 320,
+    "heading": "Organization updates",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/notifications",
+    "width": 1440,
+    "heading": "Organization updates",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/personalization",
+    "width": 320,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/personalization",
+    "width": 1440,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/privacy",
+    "width": 320,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/privacy",
+    "width": 1440,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/subscription",
+    "width": 320,
+    "heading": "Organization seats and billing",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "organization",
+    "path": "/dashboard/subscription",
+    "width": 1440,
+    "heading": "Organization seats and billing",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/home",
+    "width": 320,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/home",
+    "width": 1440,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/learn",
+    "width": 320,
+    "heading": "Your learning outline",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/learn",
+    "width": 1440,
+    "heading": "Your learning outline",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/ask",
+    "width": 320,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/practice",
+    "width": 320,
+    "heading": "Your next practice",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/practice",
+    "width": 1440,
+    "heading": "Your next practice",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/build",
+    "width": 320,
+    "heading": "Build something of your own",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/build",
+    "width": 1440,
+    "heading": "Build something of your own",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/classes",
+    "width": 320,
+    "heading": " Your classes ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/classes",
+    "width": 1440,
+    "heading": " Your classes ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/connections",
+    "width": 320,
+    "heading": "Connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/connections",
+    "width": 1440,
+    "heading": "Connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/progress",
+    "width": 320,
+    "heading": "Your learning evidence",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/progress",
+    "width": 1440,
+    "heading": "Your learning evidence",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/notifications",
+    "width": 320,
+    "heading": "Notifications",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/notifications",
+    "width": 1440,
+    "heading": "Notifications",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/personalization",
+    "width": 320,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/personalization",
+    "width": 1440,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/privacy",
+    "width": 320,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/privacy",
+    "width": 1440,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/subscription",
+    "width": 320,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "student",
+    "path": "/dashboard/subscription",
+    "width": 1440,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/home",
+    "width": 320,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/home",
+    "width": 1440,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/prepare",
+    "width": 320,
+    "heading": "Prepare a lesson",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/prepare",
+    "width": 1440,
+    "heading": "Prepare a lesson",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/classes",
+    "width": 320,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/classes",
+    "width": 1440,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/learners",
+    "width": 320,
+    "heading": "Learners",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/learners",
+    "width": 1440,
+    "heading": "Learners",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/insights",
+    "width": 320,
+    "heading": "Teaching insights",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/insights",
+    "width": 1440,
+    "heading": "Teaching insights",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/ask",
+    "width": 320,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/growth",
+    "width": 320,
+    "heading": "Teacher Growth",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/growth",
+    "width": 1440,
+    "heading": "Teacher Growth",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/library",
+    "width": 320,
+    "heading": "Your library",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/library",
+    "width": 1440,
+    "heading": "Your library",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/build",
+    "width": 320,
+    "heading": "Build something of your own",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/build",
+    "width": 1440,
+    "heading": "Build something of your own",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/progress",
+    "width": 320,
+    "heading": "Your learning evidence",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/progress",
+    "width": 1440,
+    "heading": "Your learning evidence",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/notifications",
+    "width": 320,
+    "heading": "Notifications",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/notifications",
+    "width": 1440,
+    "heading": "Notifications",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/personalization",
+    "width": 320,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/personalization",
+    "width": 1440,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/privacy",
+    "width": 320,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/privacy",
+    "width": 1440,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/subscription",
+    "width": 320,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "teacher",
+    "path": "/dashboard/subscription",
+    "width": 1440,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/home",
+    "width": 320,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/home",
+    "width": 1440,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/child",
+    "width": 320,
+    "heading": "Your children",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/child",
+    "width": 1440,
+    "heading": "Your children",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/reports",
+    "width": 320,
+    "heading": "Their learning, in context",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/reports",
+    "width": 1440,
+    "heading": "Their learning, in context",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/connections",
+    "width": 320,
+    "heading": "Connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/connections",
+    "width": 1440,
+    "heading": "Connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/ask",
+    "width": 320,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/notifications",
+    "width": 320,
+    "heading": "Family updates",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/notifications",
+    "width": 1440,
+    "heading": "Family updates",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/personalization",
+    "width": 320,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/personalization",
+    "width": 1440,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/privacy",
+    "width": 320,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/privacy",
+    "width": 1440,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/subscription",
+    "width": 320,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "parent",
+    "path": "/dashboard/subscription",
+    "width": 1440,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/home",
+    "width": 320,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/home",
+    "width": 1440,
+    "heading": "Welcome back, School.",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/learn",
+    "width": 320,
+    "heading": "Your learning outline",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/learn",
+    "width": 1440,
+    "heading": "Your learning outline",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/ask",
+    "width": 320,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "heading": "Visionary Guide",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/practice",
+    "width": 320,
+    "heading": "Your next practice",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/practice",
+    "width": 1440,
+    "heading": "Your next practice",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/build",
+    "width": 320,
+    "heading": "Build something of your own",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/build",
+    "width": 1440,
+    "heading": "Build something of your own",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/career",
+    "width": 320,
+    "heading": "Your next capability",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/career",
+    "width": 1440,
+    "heading": "Your next capability",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/classes",
+    "width": 320,
+    "heading": " Your classes ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/classes",
+    "width": 1440,
+    "heading": " Your classes ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/connections",
+    "width": 320,
+    "heading": "Connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/connections",
+    "width": 1440,
+    "heading": "Connections",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/progress",
+    "width": 320,
+    "heading": "Your learning evidence",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/progress",
+    "width": 1440,
+    "heading": "Your learning evidence",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/notifications",
+    "width": 320,
+    "heading": "Notifications",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/notifications",
+    "width": 1440,
+    "heading": "Notifications",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/personalization",
+    "width": 320,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/personalization",
+    "width": 1440,
+    "heading": "Make Guide work for you",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/privacy",
+    "width": 320,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/privacy",
+    "width": 1440,
+    "heading": "Privacy & consent",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/subscription",
+    "width": 320,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  },
+  {
+    "role": "professional",
+    "path": "/dashboard/subscription",
+    "width": 1440,
+    "heading": " Plans & usage ",
+    "mainOverflow": false,
+    "overflow": false
+  }
+]

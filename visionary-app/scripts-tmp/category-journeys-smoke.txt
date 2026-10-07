@@ -1,0 +1,2 @@
+PASS primary en: actual source outline/concept, stage-foundational, unavailable language to explicit English, unsupported diagram text alternative, retained answer/reload, incorrect check/retry/correct/practice, criterion project/save/reload/return, exact fixture source and workspace, reflow/no page errors.
+Completed 1 rendered category journeys.

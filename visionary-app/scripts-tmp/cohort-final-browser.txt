@@ -1,0 +1,3 @@
+PASS en: cohort draft recovery, two-tab conflict/export/reload, quota retry, revoked member fail-closed/removal, 320–1440px, no page errors.
+PASS hi: cohort draft recovery, two-tab conflict/export/reload, quota retry, revoked member fail-closed/removal, 320–1440px, no page errors.
+PASS bn: cohort draft recovery, two-tab conflict/export/reload, quota retry, revoked member fail-closed/removal, 320–1440px, no page errors.

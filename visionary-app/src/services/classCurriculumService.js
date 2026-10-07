@@ -1,11 +1,11 @@
 import {appClient} from '../api/appClient.js';
 import {bootstrapPerson,workspaceIdentity,teacherOrganizationContent} from './workspaceService.ts';
 import {assertCurriculumTemplate,curriculumObjectiveSnapshot} from './curriculumTemplate.ts';
-import {assertCurriculumPublications,curriculumPublicationRevision} from '../lib/curriculumPublication.js';
+import {assertCurriculumPublications,curriculumPublicationRevision,deliveredCurriculumRevision} from '../lib/curriculumPublication.js';
 
 async function classContext(ctx,classId,teacherOnly=false){
  const account=await appClient.auth.me();const {workspace}=workspaceIdentity(ctx);
- if(account.id!==ctx.personId||bootstrapPerson(account).active!==ctx.workspaceId||!(teacherOnly?['teacher']:['teacher','student','professional']).includes(ctx.role))throw Error('Open your active learning or teaching workspace to review this curriculum.');
+ if(!account||account.id!==ctx.personId||bootstrapPerson(account).active!==ctx.workspaceId||!(teacherOnly?['teacher']:['teacher','student','professional']).includes(ctx.role))throw Error('Open your active learning or teaching workspace to review this curriculum.');
  const classroom=await appClient.entities.Classroom.get(classId);
  if(!classroom||classroom.organization_email!==workspace.organizationId)throw Error('This class curriculum is unavailable in your active workspace.');
  if(ctx.role==='teacher'){
@@ -14,6 +14,8 @@ async function classContext(ctx,classId,teacherOnly=false){
   const enrolled=await appClient.entities.Enrollment.filter({class_id:classId,student_email:account.email,status:'active'});
   if(!enrolled.length)throw Error('This class curriculum is no longer connected to your learning workspace.');
  }
+ const currentAccount=await appClient.auth.me();workspaceIdentity(ctx);
+ if(!currentAccount||currentAccount.id!==ctx.personId||bootstrapPerson(currentAccount).active!==ctx.workspaceId)throw Error('Open your active learning or teaching workspace to review this curriculum.');
  if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');
  return classroom;
 }
@@ -33,7 +35,7 @@ export async function changeClassCurriculumPublication(ctx,{classId,publicationI
  const row=rows.find(copy=>copy.id===publicationId);if(!row)throw Error('This published copy is unavailable.');if(row.status===nextStatus)return row;
  const next={...row,status:nextStatus,stateHistory:[...row.stateHistory,{from:row.status,to:nextStatus,at:new Date().toISOString(),actor:ctx.personId}]};
  await classContext(ctx,classId,true);
- await appClient.entities.Classroom.update(classId,{curriculum_publications:rows.map(copy=>copy.id===row.id?next:copy)},{expectedCurriculumRevision:expectedRevision});return next;
+ await appClient.entities.Classroom.update(classId,{curriculum_publications:rows.map(copy=>copy.id===row.id?next:copy)},{expectedCurriculumRevision:expectedRevision,expectedContext:{personId:ctx.personId,workspaceId:ctx.workspaceId,role:ctx.role}});return next;
 }
 
 /** Explicit publication of a fixed, reviewed delivery; never bulk-creates assignments or evidence. */
@@ -49,7 +51,7 @@ export async function publishClassCurriculum(ctx,{classId,deliveryId,expectedRev
  if(curriculumPublicationRevision(classroom.curriculum_publications)!==expectedRevision)throw Error('The published curriculum changed. Review the latest copies before publishing.');
  const latestDelivery=teacherOrganizationContent(ctx).find(row=>row.id===deliveryId);
  if(!latestDelivery||JSON.stringify(latestDelivery)!==JSON.stringify(delivery))throw Error('The reviewed source changed. Review this delivery again before publishing.');
- await appClient.entities.Classroom.update(classId,{curriculum_publications:[...rows,publication]},{expectedCurriculumRevision:expectedRevision});
+ await appClient.entities.Classroom.update(classId,{curriculum_publications:[...rows,publication]},{expectedCurriculumRevision:expectedRevision,expectedContext:{personId:ctx.personId,workspaceId:ctx.workspaceId,role:ctx.role},expectedDelivery:{organizationEmail:delivery.organizationEmail,resourceId:delivery.resourceId,deliveryId:delivery.id,revision:deliveredCurriculumRevision(delivery)}});
  return publication;
 }
 

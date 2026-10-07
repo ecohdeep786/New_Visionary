@@ -1,0 +1,18 @@
+# Frontend human and device acceptance
+
+This worksheet completes the review that automation cannot establish. It does not grant production or backend readiness. Use fictional accounts and the current browser-local preview. The operative requirements remain VISIONARY_MASTER_v2.2.md and FRONTEND_ACCEPTANCE_MATRIX.md. Record actual results in QA.md; never mark a task passed from a screenshot or a service-test count alone.
+
+For each review, record reviewer, date, build/snapshot, browser/device, assistive technology, interface language, authored teaching language, role/workspace, task, expected behavior, actual result and evidence. An unavailable reviewer/device is OPEN, not N/A or PASS.
+
+| Review | Concrete task | Required outcome |
+| --- | --- | --- |
+| Native English/Hindi/Bengali | Complete source selection → explanation → incorrect check → retry → practice → criterion project → save/reload/return. Review student, teacher, parent, professional and organization controls. | Meaning is clear; labels and errors are accurate; no truncation or script collision; authored English remains visibly English when the interface changes; unavailable-language fallback is explicit. |
+| Keyboard | Complete a learning activity, change representation, open/close a dialog, switch workspaces, recover a failed save, and review a class response without a pointer. | Logical focus order; visible focus; operable controls; Escape and focus return work; no focus trap outside a dialog; no draft loss. |
+| Screen reader | Complete the same activity and hear a wrong-answer result, save failure, source withdrawal and successful retry; inspect chart-table alternatives. | Headings/landmarks identify the current job; controls have meaningful names; status/error changes are announced; source/interface language changes are pronounced appropriately; no private content from the former workspace remains available. |
+| Actual browser zoom | Use the browser's own zoom control at 200% on desktop through learning, project editing, teacher review, parent report and governance recovery. | Text and controls remain available; actions can be reached; reading does not require horizontal page scrolling; dialogs fit or scroll correctly. Viewport resizing alone cannot pass this task. |
+| Real microphone | Allow and deny permission; start/stop recognition; inspect and edit the transcript before sending; navigate and sign out during recognition. | Permission denial has a usable text fallback; transcript is reviewed explicitly; stop/navigation/sign-out ends recording; no late transcript enters a different account/workspace. |
+| Real audio | Play/pause an explanation; test unavailable audio and the device's accessibility settings. | No automatic microphone or audio start; understandable audio; visible state; readable transcript/text fallback; navigation stops the former activity. |
+| Real clipboard/download | Copy a class code, deny clipboard access, export a retained draft, and open the resulting file on the device. | Copy success reflects an actual copy; failure offers usable text; exports preserve the user's edits and disclose their local/private scope. |
+| Final visual continuity | Review public/onboarding/internal screens at the approved same-data baseline and multiple widths. | Inherited tokens, typography, controls and layout are consistent; separately maintained public changes are reviewed by their owner rather than reverted by the internal pass. |
+
+Automated scenarios use bounded synthetic sources. Their successful learning loops do not certify real curriculum quality, a connected model, cloud authentication, payments or backend authorization. After actual frontend acceptance, follow the documented founder-book rehearsal and backend sequence.

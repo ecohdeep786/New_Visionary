@@ -1,0 +1,3 @@
+PASS en: malformed/ambiguous mappings and unavailable legacy target disclosed; original content/activity bytes retained; private export excludes answer key; explicit restored-source retry resumes; 320–1440 reflow.
+PASS hi: malformed/ambiguous mappings and unavailable legacy target disclosed; original content/activity bytes retained; private export excludes answer key; explicit restored-source retry resumes; 320–1440 reflow.
+PASS bn: malformed/ambiguous mappings and unavailable legacy target disclosed; original content/activity bytes retained; private export excludes answer key; explicit restored-source retry resumes; 320–1440 reflow.

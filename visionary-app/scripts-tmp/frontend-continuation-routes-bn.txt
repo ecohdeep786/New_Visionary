@@ -1,0 +1,2 @@
+{"role":"student","path":"/dashboard/home","heading":1,"overflow":false,"newErrors":[],"excerpt":"Personal\n\nWelcome back, Fictional.\n\nSharing is always scoped\n\nSaved on this device\nস্বাধীন অধ্যয়ন\n\nNext for you\n\nChoose something to understand\n\nBegin with one"}
+{"role":"student","path":"/dashboard/learn","heading":1,"overflow":false,"newErrors":[],"excerpt":"অন্বেষণ করুন ও বুঝুন\n\nআপনার শেখার রূপরেখা\n\nবিষয় থেকে অধ্যায়, ধারণা, যাচাই ও প্রকল্প হয়—প্রতিটি ধাপে আপনার অবস্থান রাখা হয়।\n\nবিষয় বাছুন\nবিষয় (ঐচ্ছিক)\nবোর্ড"}

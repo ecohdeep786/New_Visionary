@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.inputValue: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('dialog', { name: 'Add a learning goal', exact: true }).getByLabel('Private notes', { exact: true })
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\learner-goal-diagnose.mjs:34:287 {
+  log: [
+    "  - waiting for getByRole('dialog', { name: 'Add a learning goal', exact: true }).getByLabel('Private notes', { exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

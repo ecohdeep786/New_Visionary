@@ -1,0 +1,3 @@
+PASS en: real workspace selector during pending submission rejects late commit; prior draft retained; professional Home excludes old response; return and explicit retry create one student response.
+PASS hi: real workspace selector during pending submission rejects late commit; prior draft retained; professional Home excludes old response; return and explicit retry create one student response.
+PASS bn: real workspace selector during pending submission rejects late commit; prior draft retained; professional Home excludes old response; return and explicit retry create one student response.

@@ -1,0 +1,83 @@
+✔ full publication exposes unassigned chapters without keys, editorial notes, submissions or mastery (204.1813ms)
+✔ new delivery appends a separate fixed copy and never rewrites the earlier source or assignment (225.1943ms)
+✔ failed publication preserves class bytes and retries once; direct overwrites and stale writes are refused (195.2087ms)
+✔ invited or closed learners, foreign roles, stale workspaces and revoked teachers cannot receive or publish curriculum (88.7642ms)
+✔ unreadable publication and cyclic prerequisites are rejected without byte repair or partial publication (316.9825ms)
+✔ membership or workspace changes during asynchronous reads cancel the curriculum projection (58.4825ms)
+✔ withdrawal and restore retain fixed copies and assigned work while removing learner exploration (451.7433ms)
+✔ availability changes reject forged actors or altered source content and preserve bytes on storage failure (218.6692ms)
+✔ a copy withdrawn during an asynchronous read never returns stale source content (127.1104ms)
+✔ explicit project copy stays fixed through private edits, teacher revision and resubmission (124.7584ms)
+✔ stale, incomplete, foreign and question-assignment project copies reject before writes (59.2347ms)
+✔ failed classroom save preserves the completed project and permits explicit retry (66.1531ms)
+✔ concurrent project submissions create one fixed response and bulk duplicates preserve originals (466.2098ms)
+✔ assignment close, archive and restore preserve submitted copies and deny new writes until reopened (222.9054ms)
+✔ drafts stay teacher-only and a failed publish retains the draft and its history (245.961ms)
+✔ scheduled access uses the saved instant, rejects early writes and supports cancellation or publish now (32.5206ms)
+✔ class player resumes the assigned copy, refuses a changed source and closes after enrollment removal (161.6754ms)
+✔ shared class drafts reject stale same-assignment writes and merge unrelated assignments (57.7536ms)
+✔ shared draft read and save failures preserve original bytes and reject malformed answer maps (59.2253ms)
+✔ teacher attaches a sourced objective without answer keys and assigns an immutable learner visual copy (87.9591ms)
+✔ source and teacher context are rechecked and provisional or unavailable objectives do not attach (90.4477ms)
+✔ same-clock lesson edits reject stale assignment and cannot replay a different saved objective (5.8073ms)
+✔ malformed objective writes and visual drafts preserve originals; changed assignment objective rejects submission (11.1899ms)
+✖ lesson changes during assignment lookup reject instead of publishing the earlier preview (115.3312ms)
+✖ lesson changes at assignment commit retain the newer source and original fixed class copies (22.8972ms)
+✖ a pending assignment close cannot replace a newer archive or its state history (70.7729ms)
+✖ expired teacher membership at assignment commit denies publication (26.0154ms)
+✖ failed assignment storage keeps source and fixed copies and allows explicit retry (56.5673ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 23
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11621.5706
+
+✖ failing tests:
+
+test at tests\teacher-assignment-boundary.test.mjs:18:1
+✖ lesson changes during assignment lookup reject instead of publishing the earlier preview (115.3312ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:19:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests\teacher-assignment-boundary.test.mjs:23:1
+✖ lesson changes at assignment commit retain the newer source and original fixed class copies (22.8972ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:24:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests\teacher-assignment-boundary.test.mjs:28:1
+✖ a pending assignment close cannot replace a newer archive or its state history (70.7729ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:29:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests\teacher-assignment-boundary.test.mjs:33:1
+✖ expired teacher membership at assignment commit denies publication (26.0154ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:34:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests\teacher-assignment-boundary.test.mjs:38:1
+✖ failed assignment storage keeps source and fixed copies and allows explicit retry (56.5673ms)
+  Error: The delivered source snapshot cannot be replaced in this editor.
+      at saveResource (file:///C:/Users/Administrator/New_Visionary/visionary-app/src/services/workspaceService.ts:286:165)
+      at setup (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:10:17)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/teacher-assignment-boundary.test.mjs:39:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

@@ -6,7 +6,9 @@
 
 import { previewPolicy } from './previewPermissions.js';
 import {connectionStatus} from '../lib/connectionAvailability.js';
-import {curriculumPublicationRevision} from '../lib/curriculumPublication.js';
+import {curriculumPublicationRevision,deliveredCurriculumRevision} from '../lib/curriculumPublication.js';
+import {classworkReviewRevision} from '../lib/classworkRubric.js';
+import {classworkActivityRevision} from '../lib/classworkSource.js';
 const USERS_KEY = 'visionary_users';
 const SESSION_TOKEN_KEY = 'visionary_session_token';
 const SESSIONS_KEY = 'visionary_sessions';
@@ -336,6 +338,37 @@ const entityUser = () => {
   return {...user,identity:workspace?.role||user.identity,workspace_id:workspace?.id,organization_id:workspace?.organizationId};
 };
 const notifyChange = () => window.dispatchEvent(new CustomEvent('visionary:workspace-change'));
+const assertCommandContext = (options) => {
+  const expected=options.expectedContext;
+  if(!expected)return;
+  const current=entityUser();
+  if(!current||current.id!==expected.personId||current.workspace_id!==expected.workspaceId||current.identity!==expected.role)throw new Error('Your workspace changed. Reopen classwork in your active workspace. Your edits remain here.');
+};
+const assertReviewedResource = (options) => {
+  const expected=options.expectedResource;
+  if(!expected)return;
+  const db=readJson('visionary_workspace_v2',null);
+  const resources=db?.data?.[expected.workspaceId]?.resources;
+  const resource=Array.isArray(resources)?resources.find(row=>row.id===expected.id):null;
+  if(!resource||JSON.stringify(resource)!==expected.revision)throw new Error('This lesson changed before assignment. Reopen it and review the saved version.');
+};
+const assertDeliveredCurriculum = (options) => {
+  const expected=options.expectedDelivery;
+  if(!expected)return;
+  const db=readJson('visionary_workspace_v2',null);
+  const owner=db?.people?.find(person=>person.email===expected.organizationEmail);
+  const space=db?.workspaces?.find(row=>row.personId===owner?.id&&row.role==='organization'&&!row.organizationId);
+  const resources=space?db?.data?.[space.id]?.resources:null;
+  const resource=Array.isArray(resources)?resources.find(row=>row.id===expected.resourceId):null;
+  const deliveries=resource?.contentReview?.deliveries;
+  const delivery=Array.isArray(deliveries)?deliveries.find(row=>row.id===expected.deliveryId):null;
+  if(entityUser()?.organization_id!==expected.organizationEmail||!delivery||deliveredCurriculumRevision(delivery)!==expected.revision)throw new Error('The reviewed source changed. Review this delivery again before publishing.');
+};
+const assertSubmissionSource = (record, options) => {
+  if(options.expectedAssignmentRevision===undefined)return;
+  const assignment=readEntities('Assignment').find(row=>row.id===record.assignment_id&&row.class_id===record.class_id);
+  if(!assignment||classworkActivityRevision(assignment)!==options.expectedAssignmentRevision)throw new Error('The assigned content changed. Your response remains here. Export it, then reopen the latest activity before submitting.');
+};
 const visibleRecords = (name, ownerEmail) => {
   const currentUser = entityUser();
   if (name === 'User') return currentUser?[{id:currentUser.id,email:currentUser.email}]:[];
@@ -388,8 +421,11 @@ const entityStore = new Proxy({}, {
         Object.entries(filters).every(([key, value]) => record[key] === value)), sort, limit);
     },
     async get(id) { return visibleRecords(name).find((record) => record.id === id) || null; },
-    async create(record) {
+    async create(record, options = {}) {
+      if(['Submission','Assignment','Classroom'].includes(name))assertCommandContext(options);
       const created = prepareRecord(name, record);
+      if(name==='Assignment')assertReviewedResource(options);
+      if(name==='Submission')assertSubmissionSource(created,options);
       const rows=readEntities(name);
       if(name==='Submission'){
         const existing=rows.find(row=>row.assignment_id===created.assignment_id&&row.class_id===created.class_id&&row.student_email===created.student_email);
@@ -411,7 +447,12 @@ const entityStore = new Proxy({}, {
       return created;
     },
     async update(id, updates, options = {}) {
+      if(['Submission','Assignment','Classroom'].includes(name))assertCommandContext(options);
       if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
+      if(name==='Assignment'&&options.expectedAssignmentStateRevision!==undefined){const current=readEntities(name).find(row=>row.id===id);if(JSON.stringify([current.status||'published',current.state_history||[]])!==options.expectedAssignmentStateRevision)throw new Error('The assignment state changed. Reload classwork before trying again.');}
+      if(name==='Submission')assertSubmissionSource(readEntities(name).find(record=>record.id===id),options);
+      if(name==='Submission'&&options.expectedReviewRevision!==undefined&&options.expectedReviewRevision!==classworkReviewRevision(readEntities(name).find(record=>record.id===id)))throw new Error('This review changed while saving. Export your edits, then load the latest review.');
+      if(name==='Classroom')assertDeliveredCurriculum(options);
       if(name==='Classroom'&&Object.hasOwn(updates,'curriculum_publications')&&options.expectedCurriculumRevision!==curriculumPublicationRevision(readEntities(name).find(record=>record.id===id)?.curriculum_publications))throw new Error('The published curriculum changed. Review the latest copies before publishing.');
       if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'update',updates);
       const { id: ignoredId, owner_email: ignoredOwner, workspace_id: ignoredWorkspace, ...fields } = updates;

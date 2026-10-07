@@ -1,0 +1,19 @@
+{
+ "state": {
+  "sections": 0,
+  "bodyChars": 191,
+  "bodySample": "Skip to contentSomething went wrongVisionary encountered an unexpected state. Your session and data remain safe.Try againGo to homeDiagnostic detailsReferenceError: useCallback is not defined",
+  "suspenseEls": [],
+  "mainHTML": "<div class=\"w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]\"><div class=\"mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#fce8e6] text-red-600\"><svg class=\"h-7 w-7\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\"><path stroke-line"
+ },
+ "events": [
+  "debug: [vite] connecting...",
+  "debug: [vite] connected.",
+  "info: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+  "warn: <link rel=preload> has an invalid `href` value",
+  "error: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If yo",
+  "PAGEERROR: ReferenceError: useCallback is not defined",
+  "error: The above error occurred in the <JourneyGallery2> component:\n\n    at JourneyGallery2 (http://localhost:5231/src/components/landing/persona/PersonaSections.jsx:181:74)\n    at sectio",
+  "error: [Visionary Resilience Diagnostic]: ReferenceError: useCallback is not defined [object Object]"
+ ]
+}

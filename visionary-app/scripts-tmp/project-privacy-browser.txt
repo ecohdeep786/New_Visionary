@@ -1,0 +1,3 @@
+PASS en: project edit/reload, versions and localized close, fixed sharing/private later edits, exact parent summary/revocation, failed save/retry, ownership export privacy, memory confirmation/clear/reload, 320–1440 reflow
+PASS hi: project edit/reload, versions and localized close, fixed sharing/private later edits, exact parent summary/revocation, failed save/retry, ownership export privacy, memory confirmation/clear/reload, 320–1440 reflow
+PASS bn: project edit/reload, versions and localized close, fixed sharing/private later edits, exact parent summary/revocation, failed save/retry, ownership export privacy, memory confirmation/clear/reload, 320–1440 reflow

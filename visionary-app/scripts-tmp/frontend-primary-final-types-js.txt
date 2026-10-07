@@ -1,0 +1,5 @@
+src/components/landing/NewPersona.jsx(25,7): error TS2657: JSX expressions must have one parent element.
+src/components/landing/NewPersona.jsx(50,5): error TS1128: Declaration or statement expected.
+src/components/landing/NewPersona.jsx(51,3): error TS1109: Expression expected.
+src/components/landing/NewPersona.jsx(52,1): error TS1128: Declaration or statement expected.
+src/components/landing/NewPersona.jsx(52,2): error TS1128: Declaration or statement expected.

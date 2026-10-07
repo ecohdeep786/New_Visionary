@@ -1,0 +1,398 @@
+{
+  "w320": {
+    "viewport": 320,
+    "ordered": true,
+    "overflowCount": 0,
+    "sections": [
+      {
+        "k": "01-hero",
+        "top": 56,
+        "h": 644,
+        "bottom": 700
+      },
+      {
+        "k": "02-problem",
+        "top": 910,
+        "h": 707,
+        "bottom": 1617
+      },
+      {
+        "k": "03-promise",
+        "top": 1617,
+        "h": 249,
+        "bottom": 1866
+      },
+      {
+        "k": "04-meet",
+        "top": 1866,
+        "h": 1127,
+        "bottom": 2993
+      },
+      {
+        "k": "06-journey",
+        "top": 2993,
+        "h": 407,
+        "bottom": 3399
+      },
+      {
+        "k": "07-language",
+        "top": 3399,
+        "h": 715,
+        "bottom": 4114
+      },
+      {
+        "k": "08-trust",
+        "top": 4114,
+        "h": 1630,
+        "bottom": 5744
+      },
+      {
+        "k": "09-cta",
+        "top": 5744,
+        "h": 549,
+        "bottom": 6293
+      }
+    ],
+    "meet": {
+      "panelCount": 5,
+      "visiblePanelCount": 1
+    },
+    "journey": {
+      "h2Fs": 40,
+      "h2Track": -11.2,
+      "h2MaxW": 272
+    },
+    "bodyH": 7577,
+    "docH": 7633
+  },
+  "w390": {
+    "viewport": 390,
+    "ordered": true,
+    "overflowCount": 0,
+    "sections": [
+      {
+        "k": "01-hero",
+        "top": 56,
+        "h": 788,
+        "bottom": 844
+      },
+      {
+        "k": "02-problem",
+        "top": 1097,
+        "h": 732,
+        "bottom": 1829
+      },
+      {
+        "k": "03-promise",
+        "top": 1829,
+        "h": 215,
+        "bottom": 2044
+      },
+      {
+        "k": "04-meet",
+        "top": 2044,
+        "h": 1194,
+        "bottom": 3238
+      },
+      {
+        "k": "06-journey",
+        "top": 3238,
+        "h": 420,
+        "bottom": 3658
+      },
+      {
+        "k": "07-language",
+        "top": 3658,
+        "h": 758,
+        "bottom": 4416
+      },
+      {
+        "k": "08-trust",
+        "top": 4416,
+        "h": 1744,
+        "bottom": 6160
+      },
+      {
+        "k": "09-cta",
+        "top": 6160,
+        "h": 551,
+        "bottom": 6711
+      }
+    ],
+    "meet": {
+      "panelCount": 5,
+      "visiblePanelCount": 1
+    },
+    "journey": {
+      "h2Fs": 40,
+      "h2Track": -11.2,
+      "h2MaxW": 342
+    },
+    "bodyH": 7927,
+    "docH": 7983
+  },
+  "w768": {
+    "viewport": 768,
+    "ordered": true,
+    "overflowCount": 0,
+    "sections": [
+      {
+        "k": "01-hero",
+        "top": 56,
+        "h": 968,
+        "bottom": 1024
+      },
+      {
+        "k": "02-problem",
+        "top": 1331,
+        "h": 694,
+        "bottom": 2025
+      },
+      {
+        "k": "03-promise",
+        "top": 2025,
+        "h": 181,
+        "bottom": 2206
+      },
+      {
+        "k": "04-meet",
+        "top": 2206,
+        "h": 1145,
+        "bottom": 3350
+      },
+      {
+        "k": "06-journey",
+        "top": 3350,
+        "h": 429,
+        "bottom": 3779
+      },
+      {
+        "k": "07-language",
+        "top": 3779,
+        "h": 885,
+        "bottom": 4664
+      },
+      {
+        "k": "08-trust",
+        "top": 4664,
+        "h": 2373,
+        "bottom": 7037
+      },
+      {
+        "k": "09-cta",
+        "top": 7037,
+        "h": 441,
+        "bottom": 7478
+      }
+    ],
+    "meet": {
+      "panelCount": 5,
+      "visiblePanelCount": 1
+    },
+    "journey": {
+      "h2Fs": 40,
+      "h2Track": -11.2,
+      "h2MaxW": 688
+    },
+    "bodyH": 8365,
+    "docH": 8421
+  },
+  "w1024": {
+    "viewport": 1024,
+    "ordered": true,
+    "overflowCount": 0,
+    "sections": [
+      {
+        "k": "01-hero",
+        "top": 56,
+        "h": 712,
+        "bottom": 768
+      },
+      {
+        "k": "02-problem",
+        "top": 998,
+        "h": 866,
+        "bottom": 1864
+      },
+      {
+        "k": "03-promise",
+        "top": 1864,
+        "h": 187,
+        "bottom": 2051
+      },
+      {
+        "k": "04-meet",
+        "top": 2051,
+        "h": 967,
+        "bottom": 3017
+      },
+      {
+        "k": "06-journey",
+        "top": 3017,
+        "h": 518,
+        "bottom": 3536
+      },
+      {
+        "k": "07-language",
+        "top": 3536,
+        "h": 914,
+        "bottom": 4450
+      },
+      {
+        "k": "08-trust",
+        "top": 4450,
+        "h": 817,
+        "bottom": 5267
+      },
+      {
+        "k": "09-cta",
+        "top": 5267,
+        "h": 462,
+        "bottom": 5729
+      }
+    ],
+    "meet": {
+      "panelCount": 5,
+      "visiblePanelCount": 1
+    },
+    "journey": {
+      "h2Fs": 50,
+      "h2Track": -14.049,
+      "h2MaxW": 884
+    },
+    "bodyH": 6255,
+    "docH": 6311
+  },
+  "w1440": {
+    "viewport": 1440,
+    "ordered": true,
+    "overflowCount": 0,
+    "sections": [
+      {
+        "k": "01-hero",
+        "top": 56,
+        "h": 844,
+        "bottom": 900
+      },
+      {
+        "k": "02-problem",
+        "top": 1170,
+        "h": 1097,
+        "bottom": 2267
+      },
+      {
+        "k": "03-promise",
+        "top": 2267,
+        "h": 300,
+        "bottom": 2567
+      },
+      {
+        "k": "04-meet",
+        "top": 2567,
+        "h": 1069,
+        "bottom": 3636
+      },
+      {
+        "k": "06-journey",
+        "top": 3636,
+        "h": 605,
+        "bottom": 4240
+      },
+      {
+        "k": "07-language",
+        "top": 4240,
+        "h": 1032,
+        "bottom": 5272
+      },
+      {
+        "k": "08-trust",
+        "top": 5272,
+        "h": 967,
+        "bottom": 6239
+      },
+      {
+        "k": "09-cta",
+        "top": 6239,
+        "h": 562,
+        "bottom": 6801
+      }
+    ],
+    "meet": {
+      "panelCount": 5,
+      "visiblePanelCount": 1
+    },
+    "journey": {
+      "h2Fs": 64,
+      "h2Track": -17.92,
+      "h2MaxW": 884
+    },
+    "bodyH": 7327,
+    "docH": 7383
+  },
+  "w1920": {
+    "viewport": 1920,
+    "ordered": true,
+    "overflowCount": 0,
+    "sections": [
+      {
+        "k": "01-hero",
+        "top": 56,
+        "h": 1024,
+        "bottom": 1080
+      },
+      {
+        "k": "02-problem",
+        "top": 1404,
+        "h": 1195,
+        "bottom": 2599
+      },
+      {
+        "k": "03-promise",
+        "top": 2599,
+        "h": 312,
+        "bottom": 2910
+      },
+      {
+        "k": "04-meet",
+        "top": 2910,
+        "h": 1069,
+        "bottom": 3979
+      },
+      {
+        "k": "06-journey",
+        "top": 3979,
+        "h": 605,
+        "bottom": 4584
+      },
+      {
+        "k": "07-language",
+        "top": 4584,
+        "h": 1032,
+        "bottom": 5616
+      },
+      {
+        "k": "08-trust",
+        "top": 5616,
+        "h": 971,
+        "bottom": 6587
+      },
+      {
+        "k": "09-cta",
+        "top": 6587,
+        "h": 562,
+        "bottom": 7150
+      }
+    ],
+    "meet": {
+      "panelCount": 5,
+      "visiblePanelCount": 1
+    },
+    "journey": {
+      "h2Fs": 64,
+      "h2Track": -17.92,
+      "h2MaxW": 884
+    },
+    "bodyH": 7676,
+    "docH": 7732
+  }
+}

@@ -1,0 +1,15 @@
+PASS en student: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS en teacher: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS en parent: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS en professional: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS en organization: excluded Guide route stays permission-denied without conversation controls.
+PASS hi student: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS hi teacher: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS hi parent: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS hi professional: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS hi organization: excluded Guide route stays permission-denied without conversation controls.
+PASS bn student: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS bn teacher: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS bn parent: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS bn professional: Guide draft/material/source retention, unconnected response, unreadable learning recovery, failed delete preservation, localized history focus and 320–1440 reflow.
+PASS bn organization: excluded Guide route stays permission-denied without conversation controls.

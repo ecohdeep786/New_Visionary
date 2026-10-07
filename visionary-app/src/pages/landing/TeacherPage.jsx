@@ -41,10 +41,8 @@ import promeet from "@/assets/pro-face-main-2400w.webp";
 import orgmeet from "@/assets/org-face-main-2400w.webp";
 import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
 import {
-  StruggleHeading,
-  StruggleCluster,
-  CarouselDots,
-  JourneyCarousel,
+  StruggleChapter,
+  JourneyGallery,
   JourneyModal,
   IntelligenceCopy,
   IntelligenceVisual,
@@ -142,6 +140,13 @@ const TEACHER_LEARNER_STEPS = [
   { title: "Grow your craft, not just your syllabus.", copy: "See what works, and carry it into the next class, year, and decade." },
 ];
 
+/* Photography per step — the framed-photo anatomy shared with the landing
+   and the Organization page, using the same positive classroom scenes the
+   journey and category sections carry (never the struggle shots, whose
+   expressions belong to the problem chapter, and never the window/art
+   fallback). */
+const TEACHER_INTEL_IMG = [secondaryStudent, primaryStudent, competitiveStudent];
+
 const TEACHER_KEEPS_WORDS = ["teaching", "adapting", "supporting"];
 
 const LANGUAGE_CHIPS = [
@@ -196,7 +201,7 @@ const EXPLORE_CATEGORIES = [
 const TeacherHeroSection = React.memo(() => (
   <PersonaHero
     words={TEACHER_HERO_WORDS}
-    srSentence="Teaching, to reach every learner."
+    srSentence="Teaching, to grow, to reach."
     sub="One class, many minds. See who is with you before the next bell."
     img={teacherHero}
     alt="A teacher presenting at a whiteboard"
@@ -218,29 +223,19 @@ const TeacherHeroSection = React.memo(() => (
 function TeacherStruggleSection() {
   const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
   const { ref, visible } = UseRevealContinuous();
-  const slide = SLIDES[index];
 
   return (
-    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-24 lg:py-32">
+    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
-          <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
-              The problem
-            </p>
-            <div className="mt-6">
-              <StruggleHeading word={slide.word} slideKey={index} lines={STRUGGLE_LINES} />
-            </div>
-          </div>
-
-          <div className="relative w-full lg:col-span-7 lg:pr-[2%] xl:pr-[4%]">
-            <StruggleCluster slide={slide} slideKey={index} />
-          </div>
-        </div>
-
-        <div className="mt-12 flex justify-center px-6 lg:mt-14">
-          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} label="Teacher challenges" />
-        </div>
+        {/* the bridge's compact band (02-struggle) carries the chapter breath */
+        }
+        <StruggleChapter
+          slides={SLIDES}
+          index={index}
+          goTo={goTo}
+          lines={STRUGGLE_LINES}
+          label="Teacher challenges"
+        />
       </FadeReveal>
     </section>
   );
@@ -284,12 +279,12 @@ const JOURNEY_STAGE_ICONS = {
 };
 
 const JOURNEY_STAGES = [
-  { title: "Lesson planning", copy: "Start from what your class already knows, and build the lesson on top of it.", image: teacherHeroContent, alt: "Teacher planning a lesson at a desk" },
-  { title: "In class", copy: "Explain it visually, hear the questions, and teach it another way when you need to.", image: secondaryStudent, alt: "Teacher presenting at a whiteboard" },
-  { title: "Checking understanding", copy: "See who got it and who needs another explanation, before the exam tells you.", image: primaryStudent, alt: "Teacher checking student work" },
-  { title: "Adapting", copy: "Change the pace, the example, or the grouping the moment your class needs it.", image: higherStudent, alt: "Teacher adapting a lesson in real time" },
-  { title: "Supporting individuals", copy: "Reach the quiet ones, the fast ones, and the ones who never raise their hand.", image: vocationStudent, alt: "Teacher supporting an individual student" },
-  { title: "Growing", copy: "Turn this year's teaching into next year's craft. Every lesson builds on the last.", image: competitiveStudent, alt: "Teacher reflecting and growing" },
+  { title: "Lesson planning", statement: "Plan the lesson. From where they are.", copy: "Start from what your class already knows, and build the lesson on top of it.", image: teacherHeroContent, alt: "Teacher planning a lesson at a desk" },
+  { title: "In class", statement: "Teach it. Another way, any time.", copy: "Explain it visually, hear the questions, and teach it another way when you need to.", image: secondaryStudent, alt: "Teacher presenting at a whiteboard" },
+  { title: "Checking understanding", statement: "Know who's with you. Before the exam does.", copy: "See who got it and who needs another explanation, before the exam tells you.", image: primaryStudent, alt: "Teacher checking student work" },
+  { title: "Adapting", statement: "Change the pace. Not the standard.", copy: "Change the pace, the example, or the grouping the moment your class needs it.", image: higherStudent, alt: "Teacher adapting a lesson in real time" },
+  { title: "Supporting individuals", statement: "Reach every learner. Even the quiet ones.", copy: "Reach the quiet ones, the fast ones, and the ones who never raise their hand.", image: vocationStudent, alt: "Teacher supporting an individual student" },
+  { title: "Growing", statement: "This year's teaching, next year's craft.", copy: "Turn this year's teaching into next year's craft. Every lesson builds on the last.", image: competitiveStudent, alt: "Teacher reflecting and growing" },
 ];
 
 const STAGE_META = {
@@ -378,94 +373,27 @@ function TeacherJourneySection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
-  const [activeStage, setActiveStage] = useState(0);
-  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
-
-  /* scroll → active chip */
-  const handleScroll = useCallback(() => {
-    update();
-    const t = trackRef.current;
-    if (!t) return;
-    const cards = Array.from(t.querySelectorAll("[data-card]"));
-    if (!cards.length) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    let best = 0;
-    let bestDist = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(card.getBoundingClientRect().left - tLeft - align);
-      if (d < bestDist) { bestDist = d; best = i; }
-    });
-    setActiveStage(best);
-  }, [update, trackRef]);
-
-  /* chip → scroll track */
-  const goToStage = useCallback((i) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelectorAll("[data-card]")[i];
-    if (!card) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    t.scrollTo({ left: t.scrollLeft + (card.getBoundingClientRect().left - tLeft) - align, behavior: "smooth" });
-    setActiveStage(i);
-  }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <FadeReveal visible={visible}>
-        {/* header — eyebrow / heading / one-line sub */}
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>
-          Your teaching, your journey
-        </p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          What happens when teaching
-          <br className="hidden md:block" />{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
-        </h2>
-        <p
-          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
-          style={{ color: COLORS.grey }}
-        >
-          Wherever your class begins, Visionary helps your teaching move forward from there.
-        </p>
-
-        {/* stage rail — even beat under the header */}
-        <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Teaching stages">
-            {JOURNEY_STAGES.map((stage, i) => {
-              const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
-              const active = i === activeStage;
-              return (
-                <button
-                  key={stage.title}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => goToStage(i)}
-                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                  style={active
-                    ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
-                    : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
-                >
-                  <Icon className="h-4 w-4" strokeWidth={1.8} />
-                  {stage.title}
-                </button>
-              );
-            })}
-          </div>
+        {/* header — Apple's card-chapter treatment (education: "From grade
+            school to grad school."): statement LEFT-aligned at the measured
+            gutter, and the gallery's track carries the same gutter so the
+            first card starts exactly at the heading's left edge — one spine. */}
+        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+          <h2 className="min-h-[3.15em] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)] md:min-h-0" style={{ color: COLORS.ink }}>
+            What happens when teaching
+            <br className="hidden md:block" />{" "}
+            <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+          </h2>
+          <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            Wherever your class begins, Visionary helps your teaching move forward from there.
+          </p>
         </div>
       </FadeReveal>
 
-      <JourneyCarousel
-        stages={JOURNEY_STAGES}
-        onOpen={setOpenStage}
-        trackRef={trackRef}
-        onScroll={handleScroll}
-        canPrev={canPrev}
-        canNext={canNext}
-        scrollByCard={scrollByCard}
-        iconMap={JOURNEY_STAGE_ICONS}
-      />
+      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Teaching stages" />
       {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Lesson planning" secondaryLabel="Start free" />}
     </section>
   );
@@ -535,14 +463,14 @@ function TeacherIntelligenceSection() {
       {/* Pinned-scroll — re-renders with the active tab's steps */}
       <div key={tab} className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
-          <div className="sticky top-16 flex h-[calc(100vh-2rem)] items-center">
+          <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
             <IntelligenceCopy step={current} />
           </div>
         </div>
         <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
           {activeSteps.map((s, i) => (
             <div key={s.title}>
-              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} />
+              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} image={TEACHER_INTEL_IMG[i % TEACHER_INTEL_IMG.length]} />
               <div className="mt-10 lg:hidden">
                 <IntelligenceCopy step={s} />
               </div>

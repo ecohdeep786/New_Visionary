@@ -1,0 +1,3 @@
+PASS en: changed source rejected; withdrawn access retains export; failed write preserves draft; explicit retry creates one response; 320–1440px reflow.
+PASS hi: changed source rejected; withdrawn access retains export; failed write preserves draft; explicit retry creates one response; 320–1440px reflow.
+PASS bn: changed source rejected; withdrawn access retains export; failed write preserves draft; explicit retry creates one response; 320–1440px reflow.

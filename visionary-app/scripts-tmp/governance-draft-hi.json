@@ -1,0 +1,13 @@
+{
+  "kind": "lesson",
+  "title": "Private academic draft hi",
+  "body": "Retained academic notes hi",
+  "source": "Synthetic governance source v1",
+  "language": "en",
+  "reviewNote": "",
+  "checks": {
+    "source": false,
+    "accuracy": false,
+    "language": false
+  }
+}

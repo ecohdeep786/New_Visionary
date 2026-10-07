@@ -1,0 +1,60 @@
+[
+ {
+  "route": "/",
+  "rootMounted": true,
+  "sections": 8,
+  "bodyChars": 5157,
+  "title": "Visionary — Learn, ask, practice, and bu",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ {
+  "route": "/student",
+  "rootMounted": true,
+  "sections": 11,
+  "bodyChars": 5895,
+  "title": "Visionary for students | Learn at your p",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ {
+  "route": "/teacher",
+  "rootMounted": true,
+  "sections": 13,
+  "bodyChars": 6129,
+  "title": "Visionary for teachers | Prepare and tea",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ {
+  "route": "/parent",
+  "rootMounted": true,
+  "sections": 13,
+  "bodyChars": 6178,
+  "title": "Visionary for parents | Follow their pro",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ {
+  "route": "/organization",
+  "rootMounted": true,
+  "sections": 13,
+  "bodyChars": 6431,
+  "title": "Visionary for organizations | Teach at s",
+  "errors": [
+   "console: Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, s"
+  ]
+ },
+ {
+  "route": "/college",
+  "rootMounted": true,
+  "sections": 0,
+  "bodyChars": 97,
+  "title": "Page not found | Visionary",
+  "errors": []
+ }
+]

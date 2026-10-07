@@ -1,3 +1,5 @@
+import { useWorkspace } from '@/hooks/useWorkspace';
+import { primaryWorkspaceCopy } from '@/lib/primaryWorkspaceCopy';
 import { Sparkles } from "lucide-react";
 
 /**
@@ -5,11 +7,12 @@ import { Sparkles } from "lucide-react";
  * Mirrors the student AITeacherHero pattern but adapts the message per role.
  */
 export default function RoleGreeting({ userName = "there", role = "student", subtitle = "", accent = "#4285F4", children }) {
+  const {data}=useWorkspace();const copy=primaryWorkspaceCopy(data?.preferences.interfaceLocale||'en');
   const greetings = {
-    student: `Hello, ${userName}.`,
-    teacher: `Welcome back, ${userName}.`,
-    organization: `Good day, ${userName}.`,
-    parent: `Hi ${userName}.`,
+    student: copy('Hello, {name}.',{name:userName}),
+    teacher: copy('Welcome back, {name}.',{name:userName}),
+    organization: copy('Good day, {name}.',{name:userName}),
+    parent: copy('Hi {name}.',{name:userName}),
   };
   const defaultSubtitles = {
     student: "Here's what your learning looks like today.",
@@ -29,7 +32,7 @@ export default function RoleGreeting({ userName = "there", role = "student", sub
             {greetings[role] || greetings.student}
           </h1>
           <p className="text-base text-[#5f6368] mt-2 leading-relaxed">
-            {subtitle || defaultSubtitles[role]}
+            {copy(subtitle || defaultSubtitles[role])}
           </p>
           {children}
         </div>

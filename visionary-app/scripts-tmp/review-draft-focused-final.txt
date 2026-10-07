@@ -1,0 +1,33 @@
+✔ a competing teacher review at commit cannot be overwritten by an older draft (52.1994ms)
+✔ a newer learner attempt at commit cannot receive feedback for the older attempt (24.9322ms)
+✔ teacher membership revoked at commit denies the save and retains the learner response (15.1511ms)
+✔ teacher return requires valid complete criterion feedback and revision history preserves earlier ratings (87.6518ms)
+✔ incomplete criterion review drafts restore per attempt and preserve originals after failed writes (1.5277ms)
+✔ source-matched project criterion preview equals submitted copy and rejects a stale assigned rubric (54.4128ms)
+✔ same-attempt teacher review conflicts retain saved feedback and draft revision across refresh (120.1104ms)
+✔ a foreign person cannot read, overwrite or clear another teacher workspace draft (36.5977ms)
+✔ pending Work membership denies review draft operations and preserves restored recovery (31.0744ms)
+✔ revoked Work membership denies review draft operations and preserves restored recovery (34.6824ms)
+✔ expired Work membership denies review draft operations and preserves restored recovery (35.6063ms)
+✔ malformed retained review row null cannot be silently replaced or cleared (67.6681ms)
+✔ malformed retained review row {"attempt":1,"grade":8,"feedback":"Unreadable"} cannot be silently replaced or cleared (40.0364ms)
+✔ malformed retained review row {"attempt":0,"grade":"8","feedback":"Unreadable"} cannot be silently replaced or cleared (14.717ms)
+✔ an unreadable sibling review draft cannot be silently carried through a new write (45.9418ms)
+✔ cancelled review draft commands cannot read, write or clear retained feedback (50.8424ms)
+✔ teacher review drafts keep only the current attempt and survive a failed local write (5.4184ms)
+✔ reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped (37.5395ms)
+✔ visiting the dashboard never creates a streak or changes inputs (0.9322ms)
+✔ grades are normalized against assignment points without write-side effects (0.5435ms)
+✔ priority sorting preserves high priority and real activity makes a streak (26.4948ms)
+✔ practice scoring cannot exceed its question count (0.4477ms)
+✔ auth returns only to internal dashboard paths (0.7676ms)
+✔ preview account isolation, consent, persistence, and idempotent onboarding (47.8389ms)
+✔ onboarding keeps a competitive goal without inventing exam subjects (1.8156ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3675.5945

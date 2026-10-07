@@ -1,0 +1,175 @@
+vite v6.4.3 building for production...
+
+(!) outDir C:\Users\Administrator\AppData\Local\Temp\visionary-shared-guide-final2-20261003 is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+✓ 2187 modules transformed.
+rendering chunks...
+computing gzip size...
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/index.html                                           1.24 kB │ gzip:   0.56 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-face-main-DoqtvA98.webp              13.56 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-face-main-CEDKiAU5.webp         15.27 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professional-face-main-CcOGu1-a.webp         16.92 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/parent-face-main-BMe2a4GN.webp               18.78 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/pro-face-main-800w-L-lLm0pa.webp             19.48 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-face-main-BHeVQuUj.webp              19.59 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-understanding-BE6_yKUU.webp          22.14 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-vocational-_PNEY47x.webp             26.42 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-hero-main-800w-B8vG214W.webp         26.65 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-primary-BQqYJWen.webp                27.31 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/org-face-main-800w-JiErpLtT.webp             27.44 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-problem-4-Br1y1CzJ.webp              31.33 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-competitive-C7yma1PI.webp            34.73 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-exam-DwRFru20.webp                   35.96 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-hero-main-800w-By7WsjvD.webp         36.83 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-secondary-mk8-E8LQ.webp              37.83 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-revision-CNcjooiB.webp               40.35 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-problem-3-GCMotAVT.webp              41.10 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-problem-2-DFPvorFX.webp              41.56 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/parent-hero-main-800w-BQ8DZFZv.webp          45.77 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-higher-GPVJimQm.webp                 46.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/achievenment-achieve-DPNshon2.webp           46.73 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-practice-GrnLlIXr.webp               47.61 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/pro-face-main-1600w-DYl-whd4.webp            51.27 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-problem-1-B2wUT38N.webp              52.93 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-hero-main-1600w-Mj5cIkD5.webp        73.03 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/achivenment-build-CUZQOlua.webp              73.45 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-3-1600w-CmpmEA-E.webp   73.45 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professional-problem-3-1600w-B91CTsh9.webp   73.46 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professional-problem-4-1600w-D2nl-bVT.webp   83.47 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professional-problem-2-1600w-tdUqbs8k.webp   88.21 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/org-face-main-1600w-fEc56NPX.webp            88.27 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/pro-face-main-2400w-CzbaL9uQ.webp            89.38 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-5-1600w-PHwRkwRq.webp   94.96 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professional-problem-1-1600w-C67rKhjb.webp   97.93 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-4-1600w-f0XLKrhj.webp   99.40 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-hero-main-1600w-DJyYftzY.webp       113.18 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-hero-main-2400w-WoXB85ub.webp       129.19 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/parent-hero-main-1600w-BIML2qa5.webp        129.62 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-2-1600w-B5jBmPPM.webp  148.41 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/org-face-main-2400w-BShWNGIT.webp           176.47 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-1-1600w-BZMuyMeD.webp  181.85 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-hero-main-2400w-CkOHZvhT.webp       210.08 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/parent-hero-main-2400w-CbXjOuPp.webp        231.06 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/DashboardLayout-CnSgBRd6.css                 29.61 kB │ gzip:   6.49 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/index-C5P7fNVP.css                          144.62 kB │ gzip:  25.64 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-revision-uBur3Zfo.js                  0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-exam-K9LVEdF9.js                      0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-higher-BIFo1DxN.js                    0.06 kB │ gzip:   0.08 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-practice-WSAOZM8h.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/parent-face-main-Dj39CZB4.js                  0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-problem-2-CtNEbzvX.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacher-face-main-gKkL3mcf.js                 0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-vocational-iiEPn2kB.js                0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-competitive-DmK6oalo.js               0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/problem-understanding-DMptr-Rq.js             0.07 kB │ gzip:   0.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professional-problem-1-1600w-M8l9B8FQ.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-1-1600w-BbPdxTvj.js      0.08 kB │ gzip:   0.10 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/student-secondary-BLo1SHNT.js                 0.12 kB │ gzip:   0.11 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organization-problem-3-1600w-B2trc3PC.js      0.13 kB │ gzip:   0.12 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/downloadText-DQRUxPCv.js                      0.20 kB │ gzip:   0.18 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/WorkspaceIntro-DSW8qrAd.js                    0.60 kB │ gzip:   0.30 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/legalMeta-BUKNODst.js                         0.71 kB │ gzip:   0.38 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/useStudentData-DCUssCLJ.js                    0.72 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/useThemeColor-B99VprNl.js                     0.78 kB │ gzip:   0.46 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/useWorkspace-Cp5UeqPL.js                      0.88 kB │ gzip:   0.49 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CriterionFeedback-t3F6aZxl.js                 0.88 kB │ gzip:   0.52 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/VisionaryLogo-rnhA5dsz.js                     0.94 kB │ gzip:   0.62 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/PolicyTabs-Fwd7aGGh.js                        1.13 kB │ gzip:   0.65 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/JourneyCatalogue-Dm0oMcLv.js                  1.29 kB │ gzip:   0.68 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/resourceEditorDraft-BZB4-wBG.js               1.59 kB │ gzip:   0.76 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Breadcrumb-C271KHNj.js                        1.80 kB │ gzip:   0.79 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/dialog-D9nbnwOj.js                            2.12 kB │ gzip:   0.90 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ValuesStrip-lx2BrYCp.js                       2.16 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/LessonObjectivePreview-BYSPFOy8.js            2.25 kB │ gzip:   0.94 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ForgotUserId-BDp5ePmW.js                      2.29 kB │ gzip:   1.02 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ForgotPassword-CzqPgfbh.js                    2.31 kB │ gzip:   1.03 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/hooks-DkpSqtxN.js                             2.41 kB │ gzip:   1.01 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ResetPassword-B-T25WDN.js                     2.42 kB │ gzip:   1.07 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CubeLearningEntry-DPfp2W5D.js                 2.72 kB │ gzip:   1.29 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/AuthLayout-C3F4Lgc0.js                        2.90 kB │ gzip:   0.89 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/learningMetrics-CV7An8UM.js                   3.03 kB │ gzip:   1.28 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/SocialAuthButtons-D3Ehdwvk.js                 3.12 kB │ gzip:   1.37 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/stagePresentation-dp0CZYLW.js                 3.33 kB │ gzip:   1.16 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/curriculumBridgeService-BeGsZgJ0.js           3.71 kB │ gzip:   1.56 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Learners-DIiciMdz.js                          4.00 kB │ gzip:   1.69 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/LandingFAQ-D077DAco.js                        4.04 kB │ gzip:   1.53 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/roleMentorService-B2gi9RE7.js                 4.22 kB │ gzip:   1.81 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/dailyPlanService-BzOo1nUH.js                  4.84 kB │ gzip:   1.90 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ClassworkProjectSubmission-yJACGXaf.js        5.33 kB │ gzip:   2.27 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Explore-BzyrmqHH.js                           5.46 kB │ gzip:   2.20 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Children-CWTn6BBk.js                          5.84 kB │ gzip:   2.18 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/AuthUI-CwMwYTQh.js                            6.70 kB │ gzip:   2.11 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/NewPersona-BOddWaye.js                        7.23 kB │ gzip:   2.14 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Login-Cmczle2j.js                             7.42 kB │ gzip:   2.06 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Plans-DlLkz18-.js                             8.39 kB │ gzip:   3.05 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Register-BZPq4sJN.js                          9.36 kB │ gzip:   2.85 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Practice-BXmbznLi.js                          9.36 kB │ gzip:   3.45 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/TopicDetail-C4Ee6E0d.js                      10.83 kB │ gzip:   3.79 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Learn-pvKR_TEK.js                            11.53 kB │ gzip:   4.07 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Settings-vwGd8YIH.js                         11.65 kB │ gzip:   4.12 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/TeacherHome-DssiEqv8.js                      12.75 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Connections-C1i-rsO7.js                      12.76 kB │ gzip:   4.51 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/stageTransitionService-BYUdKBOE.js           13.26 kB │ gzip:   4.48 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/SchoolPage-3P4OxOVa.js                       13.87 kB │ gzip:   4.53 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/AILearningPage-B8NPZ3Vl.js                   14.57 kB │ gzip:   4.32 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CommunityPage-CpXx7xCn.js                    14.93 kB │ gzip:   4.57 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/mentorStateService-0bFuNyLu.js               15.78 kB │ gzip:   5.58 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ContactPage-BZze13sY.js                      15.91 kB │ gzip:   4.47 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/SafetyPage-74oJxqwv.js                       16.34 kB │ gzip:   4.67 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/classroomService-Ds1OrBsr.js                 16.47 kB │ gzip:   5.40 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/DownloadPage-B7BS4NtQ.js                     16.49 kB │ gzip:   4.54 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/roleNotificationCopy-BQvgtKgL.js             16.61 kB │ gzip:   4.28 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/AccessibilityPage-CvUUOxuK.js                17.51 kB │ gzip:   5.02 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/contentRepository-DwWaZqE9.js                17.62 kB │ gzip:   5.80 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ReferralPage-RFDvFpNN.js                     17.94 kB │ gzip:   5.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Cohorts-CdBNU4dI.js                          18.12 kB │ gzip:   5.51 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/learningPipelineService-D5_vSEKx.js          18.63 kB │ gzip:   6.72 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/UpdatesPage-Cswe5q4Z.js                      18.80 kB │ gzip:   5.06 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Support-D_fku-ku.js                          19.31 kB │ gzip:   5.89 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/AboutUsPage-BScwftID.js                      19.78 kB │ gzip:   5.63 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CareersPage-6R5T_Zto.js                      20.10 kB │ gzip:   5.91 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Profile-CeMtXHdw.js                          20.14 kB │ gzip:   5.21 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CookiesPage-D6oRlP_B.js                      21.69 kB │ gzip:   6.06 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/voiceService-FcbpDaxI.js                     21.90 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/PersonaSections-DW0jj2vT.js                  23.02 kB │ gzip:   6.51 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/LandingFooter-DlWooxpY.js                    23.78 kB │ gzip:   6.16 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CoachingPage-us_9sTOc.js                     24.22 kB │ gzip:   6.65 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/PartnersPage-BR1SwHhH.js                     24.94 kB │ gzip:   6.91 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/RoleWorkspace-T0fobq71.js                    25.41 kB │ gzip:   7.72 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/LearningRepresentation-D6scwRLI.js           25.98 kB │ gzip:   7.61 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/TermsPage-DrdotiKp.js                        26.01 kB │ gzip:   7.32 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ResearchNewsPage-D4i0vbaQ.js                 26.29 kB │ gzip:   6.94 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/StudentClasses-VWM2JoSC.js                   27.26 kB │ gzip:   8.34 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/SecurityPage-BYX48X3W.js                     27.72 kB │ gzip:   6.93 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organizationCopy-DIh_3D8U.js                 27.96 kB │ gzip:   6.86 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/teacherCopy-FCC-36LR.js                      28.27 kB │ gzip:   7.24 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/privacyCopy-DZop0AUd.js                      28.74 kB │ gzip:   7.27 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/professionalCopy-Br0Z1E1q.js                 28.77 kB │ gzip:   7.12 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/PrivacyPage-abN6GFxa.js                      29.45 kB │ gzip:   7.88 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/OrganizationContent-BEIs1uSP.js              29.97 kB │ gzip:   8.37 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/stageCopy-BiyhUTuL.js                        31.18 kB │ gzip:   7.22 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/SpotIllustration-9oNNy3fH.js                 32.27 kB │ gzip:   6.46 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/OrganizationPage-T5QgTMkP.js                 33.13 kB │ gzip:   9.78 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/StudentPage-Bcj5Z2I7.js                      34.59 kB │ gzip:  10.09 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CommunityTab-DiD7ECxI.js                     34.69 kB │ gzip:  10.26 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ParentPage-CIDro5Vl.js                       35.04 kB │ gzip:  10.32 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/TeacherPage-Bl6ixa9M.js                      35.85 kB │ gzip:  10.41 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Onboarding-Ci313BJ0.js                       36.91 kB │ gzip:  10.75 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/organizationAuthorCopy-gTWttgeY.js           37.58 kB │ gzip:   8.40 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Guide-DP6BqmqK.js                            43.38 kB │ gzip:  13.58 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/Landing-CZj1rn_v.js                          44.15 kB │ gzip:  12.62 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/DashboardHome-BEW1IJR2.js                    44.39 kB │ gzip:  13.20 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/LearningWorkspace-MmC5aDjn.js                45.99 kB │ gzip:  13.21 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ClassworkStudy-Dm4Gczo5.js                   48.35 kB │ gzip:  13.73 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ClassDetail-BwAEtOYv.js                      50.14 kB │ gzip:  13.34 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/parentCopy-DXr-8sdI.js                       51.14 kB │ gzip:  11.77 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/CollegePage-AgpzP3D-.js                      54.16 kB │ gzip:  14.40 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/DashboardLayout-Bw9OoN9p.js                  55.09 kB │ gzip:  17.19 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/classworkCopy-B6Z7sZC3.js                    61.48 kB │ gzip:  13.69 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/ArtifactStudio-Cb-Sc4nX.js                   64.54 kB │ gzip:  16.31 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/WorkspaceTools-CJoJh9Ny.js                  108.14 kB │ gzip:  28.25 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/index-DYMG5pS7.js                           145.58 kB │ gzip:  44.88 kB
+../../AppData/Local/Temp/visionary-shared-guide-final2-20261003/assets/vendor-B6QVRD5b.js                          525.17 kB │ gzip: 162.34 kB
+✓ built in 26.79s

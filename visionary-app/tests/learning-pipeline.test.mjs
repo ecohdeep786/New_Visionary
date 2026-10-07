@@ -36,6 +36,65 @@ async function startCubeSample() {
  return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
 }
 
+test('late teaching cannot overwrite a newer saved language or representation',async()=>{
+ const {request,unit}=await startCubeSample();
+ let release,started;
+ const waiting=new Promise(resolve=>{started=resolve;});
+ configureTeachingInterface({async request(_mode,packet){started();return new Promise(resolve=>{release=()=>resolve({status:'ready',source:'adapter',text:'Delayed original-language fixture',locale:packet.language,promptVersion:'delayed-1'});});}});
+ const pending=pipeline.requestUnitTeaching(request,unit.id,'explanation');await waiting;
+ await pipeline.updateLearningLanguage(request,unit.id,'hi');
+ pipeline.updateLearningRepresentation(request,unit.id,{rotation:90,size:5});
+ const latest=memory.get('visionary_learning_pipeline_v1');release();
+ await assert.rejects(pending,error=>error.name==='LearningUnitConflictError');
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),latest);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).locale,'hi');
+ assert.equal(pipeline.getLearningUnit(request,unit.id).representation.rotation,90);
+});
+
+test('late practice response cannot erase a recorded answer or create repeated evidence',async()=>{
+ const {request,unit}=await startSample();
+ await pipeline.requestUnitTeaching(request,unit.id,'explanation');
+ const check=await pipeline.beginComprehension(request,unit.id);
+ let release,started;const waiting=new Promise(resolve=>{started=resolve;});
+ configureTeachingInterface({async request(_mode,packet){started();return new Promise(resolve=>{release=()=>resolve({status:'ready',source:'adapter',text:'Delayed practice fixture',locale:packet.language,promptVersion:'delayed-2',question:check.question});});}});
+ const pending=pipeline.requestUnitTeaching(request,unit.id,'practice');await waiting;
+ await pipeline.answerLearningQuestion(request,unit.id,check.question.answerIndex);
+ const latest=memory.get('visionary_learning_pipeline_v1'),evidence=mentor.getStudentState(request);
+ release();await assert.rejects(pending,error=>error.name==='LearningUnitConflictError');
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),latest);
+ assert.deepEqual(mentor.getStudentState(request),evidence);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).attempts.length,1);
+});
+
+test('late remediation preserves the recorded incorrect answer and newer model view',async()=>{
+ const {request,unit}=await startCubeSample();
+ await pipeline.requestUnitTeaching(request,unit.id,'explanation');
+ const check=await pipeline.beginComprehension(request,unit.id);
+ let release,started;const waiting=new Promise(resolve=>{started=resolve;});
+ configureTeachingInterface({async request(_mode,packet){started();return new Promise(resolve=>{release=()=>resolve({status:'ready',source:'adapter',text:'Delayed remediation fixture',locale:packet.language,promptVersion:'delayed-3'});});}});
+ const pending=pipeline.answerLearningQuestion(request,unit.id,(check.question.answerIndex+1)%check.question.options.length);await waiting;
+ pipeline.updateLearningRepresentation(request,unit.id,{rotation:180});
+ const latest=memory.get('visionary_learning_pipeline_v1'),evidence=mentor.getStudentState(request);
+ release();await assert.rejects(pending,error=>error.name==='LearningUnitConflictError');
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),latest);
+ assert.deepEqual(mentor.getStudentState(request),evidence);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).answer.correct,false);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).attempts.length,1);
+});
+
+test('leaving a learning activity cancels a delayed adapter without saving its response',async()=>{
+ const {request,unit}=await startSample();const controller=new AbortController();
+ let release,started;const waiting=new Promise(resolve=>{started=resolve;});
+ configureTeachingInterface({async request(_mode,packet){started();return new Promise(resolve=>{release=()=>resolve({status:'ready',source:'adapter',text:'Cancelled navigation fixture',locale:packet.language,promptVersion:'cancelled-1'});});}});
+ const before=memory.get('visionary_learning_pipeline_v1');
+ const pending=pipeline.requestUnitTeaching({...request,signal:controller.signal},unit.id,'explanation');await waiting;
+ controller.abort();await assert.rejects(pending,{name:'AbortError'});
+ release();await Promise.resolve();await Promise.resolve();
+ assert.equal(memory.get('visionary_learning_pipeline_v1'),before);
+ assert.equal(pipeline.getLearningUnit(request,unit.id).response,undefined);
+ assert.equal(mentor.getStudentState(request).concepts.length,0);
+});
+
 test('fraction representation position persists without evidence; invalid and failed changes preserve it',async()=>{
  const {request,unit,concept}=await startSample();assert.equal(concept.representations[0].numberLine.divisions,8);
  const before=mentor.getStudentState(request);

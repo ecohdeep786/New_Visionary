@@ -1,0 +1,3 @@
+PASS en: seat write retention/reload/acknowledgement/read retry, audit filters, analyst navigation and denied billing, 320–1440px, no page errors.
+PASS hi: seat write retention/reload/acknowledgement/read retry, audit filters, analyst navigation and denied billing, 320–1440px, no page errors.
+PASS bn: seat write retention/reload/acknowledgement/read retry, audit filters, analyst navigation and denied billing, 320–1440px, no page errors.

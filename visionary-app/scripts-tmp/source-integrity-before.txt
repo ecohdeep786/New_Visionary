@@ -1,0 +1,89 @@
+✖ incomplete retained source context blocks learning without replacing original records (29.2396ms)
+✔ legacy activities without source context remain readable (17.799ms)
+✖ conflicting cached concept selection cannot start an unpinned activity (12.8072ms)
+✖ conflicting cached concept provenance cannot start an unpinned activity (5.0306ms)
+✖ same-source language variants keep their authored language and source pin (15.5101ms)
+✔ a changed source cannot create a project under an older learning unit (123.3166ms)
+✔ a changed source cannot erase the saved check or selection before retry fails (14.1505ms)
+✔ source replacement during teaching cannot attach old teaching to an obsolete activity (9.4983ms)
+✔ a changed source cannot grade a previously displayed unanswered question (24.8957ms)
+✔ primary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (132.7596ms)
+✔ secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (125.8841ms)
+✔ higher-secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (165.2411ms)
+✔ competitive: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (110.0106ms)
+✔ vocational: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (110.9062ms)
+✔ higher-education: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (97.1906ms)
+✔ independent-adult: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (99.3509ms)
+✔ professional: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (112.5977ms)
+✔ employer-sponsored: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (113.6762ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 14
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1816.4742
+
+✖ failing tests:
+
+test at tests\learning-source-recovery.test.mjs:30:1
+✖ incomplete retained source context blocks learning without replacing original records (29.2396ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/learning-source-recovery.test.mjs:35:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /incomplete or ambiguous/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\learning-source-recovery.test.mjs:44:50
+✖ conflicting cached concept selection cannot start an unpinned activity (12.8072ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/learning-source-recovery.test.mjs:49:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /ambiguous curriculum source/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\learning-source-recovery.test.mjs:44:50
+✖ conflicting cached concept provenance cannot start an unpinned activity (5.0306ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/learning-source-recovery.test.mjs:49:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /ambiguous curriculum source/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\learning-source-recovery.test.mjs:53:1
+✖ same-source language variants keep their authored language and source pin (15.5101ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Version 1 explanation'
+  - 'Authored Hindi fixture'
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/learning-source-recovery.test.mjs:58:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Version 1 explanation',
+    expected: 'Authored Hindi fixture',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

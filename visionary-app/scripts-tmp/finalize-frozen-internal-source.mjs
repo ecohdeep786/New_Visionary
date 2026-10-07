@@ -1,0 +1,1 @@
+import fs from'node:fs';const root='C:/Users/Administrator/AppData/Local/Temp/visionary-internal-frozen-20261004';for(const dir of ['src/pages/dashboard','src/components/dashboard','src/lib','src/hooks','src/services'])fs.cpSync(dir,root+'/'+dir,{recursive:true});

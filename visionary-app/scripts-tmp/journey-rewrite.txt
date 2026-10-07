@@ -1,0 +1,42 @@
+function LandingJourneySection() {
+  const { ref, visible } = useRevealContinuous();
+  return (
+    <section ref={ref} data-section="06-journey" className="relative z-10 bg-white px-6 py-20 sm:py-24 lg:py-28" style={{ fontFamily: FONT_FAMILY }}>
+      <FadeReveal visible={visible}>
+        {/* the header — Apple's "Get the highlights." anatomy: the statement
+            alone, LEFT-aligned on Apple's measured content frame (left:230
+            / 980px band at 1440, 90px at tablet, 24px mobile) at the 40px
+            highlights tier (32px on phones) with zero tracking (measured
+            Oct 2026 on /in/education-initiative). One thought, not a
+            header/sub/dates triple. */}
+        <h2 className="max-w-[980px] text-left font-medium tracking-[0] leading-[1.1] text-[clamp(32px,2.78vw,40px)]" style={{ color: COLORS.ink }}>Life changes. Visionary keeps pace.</h2>
+      </FadeReveal>
+      {/* the story cards — Apple's education-initiative chapter anatomy: a
+          vertical stack of FULL-BLEED 980×516 media cards (border-radius 30px
+          desktop / 16px mobile), caption overlaid bottom-left on the image.
+          No autoplay, no carousel chrome — the reader paces it by scrolling,
+          one beat then a breath then the next. Dark media flips to white
+          type (Apple's line-up card reading). Cards sit centered in the 980px
+          content band, which shares the header's spine. */}
+      <div className="mt-14 flex flex-col items-center gap-12 sm:mt-16 sm:gap-14 lg:mt-20 lg:max-w-[980px] lg:gap-16 lg:self-center">
+        {JOURNEY_STEPS.map((s) => (
+          <figure key={s.title} className="relative m-0 w-full overflow-hidden rounded-[16px] lg:rounded-[30px]">
+            <img src={s.image} alt={s.alt} loading="lazy" decoding="async" draggable="false"
+              className="block w-full object-cover"
+              style={{ aspectRatio: "980/516" }} />
+            {/* on-media caption — bottom-left, flush to the card's own padding */}
+            <figcaption className={`absolute bottom-6 left-6 flex flex-col gap-1.5 sm:bottom-8 sm:left-8 ${s.tone === "dark" ? "text-white" : "text-[rgba(18,19,23,0.92)]"}`}>
+              <p className="font-semibold leading-[1.14] text-[clamp(19px,1.4vw,24px)]">{s.title}</p>
+              <p className="max-w-[56vw] font-normal leading-[1.47] text-[clamp(14px,1.05vw,17px)] opacity-90">{s.copy}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      {/* the closer — Apple's page-coda treatment: a centered statement that
+          answers the journey, sitting in the same 980px band */}
+      <h3 className="mx-auto mt-24 max-w-[980px] text-center font-medium tracking-[0] leading-[1.1] text-[clamp(32px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+        Built for who you are. Ready for <span style={{ color: COLORS.blue }}>who you become.</span>
+      </h3>
+    </section>
+  );
+}

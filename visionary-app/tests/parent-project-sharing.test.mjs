@@ -69,3 +69,23 @@ test('unfinished project cannot be summarized and no other parent can read a chi
  const stranger = { personId: 'demo-teacher', workspaceId: 'demo-teacher:teacher', role: 'parent', locale: 'en' };
  assert.throws(() => workspace.familyProjectSummaries(stranger, learner.personId));
 });
+
+test('malformed fixed summaries cannot be read or replaced and keep original bytes', () => {
+ const saved = project();
+ workspace.shareParentProjectSummary(learner, saved.id, parent.personId, 'Original approved summary', version(saved));
+ const original = memory.get('visionary_workspace_v2');
+ const valid = workspace.snapshot(learner).artifacts[0].parentSummaries;
+ for (const history of [null, 'broken', [null], [{...valid[0], summary: {private:'not text'}}], [{...valid[0], relationshipId: null}], [valid[0], valid[0]]]) {
+  const db = JSON.parse(original);
+  db.data[learner.workspaceId].artifacts[0].parentSummaries = history;
+  const raw = JSON.stringify(db);memory.set('visionary_workspace_v2', raw);
+  assert.throws(()=>workspace.familyProjectSummaries(parent,learner.personId),/Original records were kept/);
+  assert.throws(()=>workspace.shareParentProjectSummary(learner,saved.id,parent.personId,'Replacement',version(saved)),/Original records were kept/);
+  assert.throws(()=>workspace.stopParentProjectSummary(learner,saved.id,parent.personId),/Original records were kept/);
+  assert.equal(memory.get('visionary_workspace_v2'),raw);
+ }
+ memory.set('visionary_workspace_v2',original);
+ assert.equal(workspace.familyProjectSummaries(parent,learner.personId)[0].summary,'Original approved summary');
+ workspace.stopParentProjectSummary(learner,saved.id,parent.personId);
+ assert.deepEqual(workspace.familyProjectSummaries(parent,learner.personId),[]);
+});

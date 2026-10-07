@@ -41,3 +41,10 @@ test('forged selection and revoked consent fail closed for every answer', () => 
  assert.throws(() => answerParentReportQuestion(parent, learner.personId, 'Help me'), /no longer shared/);
  assert.equal(getParentReportAsk(parent, 'demo-bengali').childId, 'demo-bengali');
 });
+
+
+test('Hindi and Bengali report topics stay deterministic and permission scoped without retaining the question',()=>{
+ const examples=[['teacher','मैं उनके शिक्षक से क्या पूछ सकता हूँ?'],['teacher','তাঁর শিক্ষককে কী জিজ্ঞাসা করতে পারি?'],['activity','हम घर पर कौन सी सहायता गतिविधि कर सकते हैं?'],['activity','বাড়িতে কী সহায়ক কার্যকলাপ চেষ্টা করতে পারি?'],['evidence','इस साक्ष्य का क्या मतलब है?'],['evidence','এই প্রমাণের মানে কী?']];
+ const before=Object.fromEntries(memory);for(const [kind,question] of examples){const view=answerParentReportQuestion(parent,learner.personId,question,30);assert.equal(view.kind,kind);assert.deepEqual(view.counts,{correct:0,recorded:0,concepts:0,days:30});assert.equal(view.answer,kind==='teacher'?view.teacherQuestion:kind==='activity'?view.activity:view.evidence);assert.deepEqual(Object.fromEntries(memory),before);}
+ const connection=workspace.visibleRelationships(parent).find(row=>row.to===learner.personId);workspace.changeRelationship(parent,connection.id,'revoked');for(const [,question] of examples)assert.throws(()=>answerParentReportQuestion(parent,learner.personId,question),/no longer shared/);
+});

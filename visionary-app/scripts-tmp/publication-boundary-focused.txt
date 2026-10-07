@@ -1,0 +1,41 @@
+✔ full publication exposes unassigned chapters without keys, editorial notes, submissions or mastery (47.3809ms)
+✔ new delivery appends a separate fixed copy and never rewrites the earlier source or assignment (85.574ms)
+✔ failed publication preserves class bytes and retries once; direct overwrites and stale writes are refused (26.0519ms)
+✔ invited or closed learners, foreign roles, stale workspaces and revoked teachers cannot receive or publish curriculum (147.0579ms)
+✔ unreadable publication and cyclic prerequisites are rejected without byte repair or partial publication (42.3448ms)
+✔ membership or workspace changes during asynchronous reads cancel the curriculum projection (39.6177ms)
+✔ withdrawal and restore retain fixed copies and assigned work while removing learner exploration (375.8037ms)
+✔ availability changes reject forged actors or altered source content and preserve bytes on storage failure (50.7081ms)
+✔ a copy withdrawn during an asynchronous read never returns stale source content (37.2754ms)
+✔ published-copy replay rejects an account handoff during class lookup (81.7117ms)
+✔ same-state publication replay rejects teacher membership revoked during class lookup (90.2402ms)
+✖ publication commit rejects a delivered source removed after the final service read (44.5203ms)
+✔ pending teacher membership denies a pending curriculum publication (16.2208ms)
+✔ revoked teacher membership denies a pending curriculum publication (41.4671ms)
+✔ expired teacher membership denies a pending curriculum publication (71.7185ms)
+✔ failed organization delivery retains prior fixed copies and retries exactly once (46.3406ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3906.6608
+
+✖ failing tests:
+
+test at tests\publication-boundary.test.mjs:25:1
+✖ publication commit rejects a delivered source removed after the final service read (44.5203ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async during (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:13:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/publication-boundary.test.mjs:27:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /reviewed source changed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { appClient } from '../src/api/appClient.js';
-import { bootstrapPerson, saveResource, snapshot } from '../src/services/workspaceService.ts';
+import { bootstrapPerson, saveResource, snapshot, resourceRevision, archiveResource } from '../src/services/workspaceService.ts';
 import { organizationRoster, saveCohort } from '../src/services/classroomService.js';
 
 const memory = new Map();
@@ -36,4 +36,42 @@ test('organization cohorts accept only current own roster and classes, never pri
  localStorage.setItem('visionary_entity_OrganizationInvite', JSON.stringify([{ ...member, status: 'removed' }, unrelated]));
  await assert.rejects(saveCohort(ctx, { ...cohort }), /no longer connected/);
  assert.equal(snapshot(ctx).resources.find(item => item.id === cohort.id).members[0], member.email, 'prior saved cohort is preserved after revocation');
+});
+
+test('cohort save rechecks membership after an asynchronous roster read', async () => {
+ memory.clear();const email='cohort-pending@visionary.test';
+ await appClient.auth.register({email,password:'Preview-test-123!'});await appClient.auth.verifyOtp({email});
+ const admin=await appClient.auth.updateMe({identity:'organization',onboarding_complete:true});const person=bootstrapPerson(admin);
+ const ctx={personId:admin.id,workspaceId:person.active,role:'organization',locale:'en'};
+ const member={id:'pending-member',organization_email:email,email:'teacher@pending.test',role:'teacher',status:'active'};
+ localStorage.setItem('visionary_entity_OrganizationInvite',JSON.stringify([member]));
+ const original=appClient.entities;
+ let release;let started;const entered=new Promise(resolve=>started=resolve);
+ appClient.entities=new Proxy(original,{get(target,name){const api=Reflect.get(target,name);return name==='Classroom'?{...api,filter:async(...args)=>{const rows=await api.filter(...args);started();await new Promise(resolve=>release=resolve);return rows;}}:api;}});
+ try{const pending=saveCohort(ctx,{title:'Pending cohort',body:'Retained local edit',members:[member.email],classIds:[]});await entered;
+  localStorage.setItem('visionary_entity_OrganizationInvite',JSON.stringify([{...member,status:'removed'}]));const before=localStorage.getItem('visionary_workspace_v2');release();
+  await assert.rejects(pending,/no longer connected/);assert.equal(localStorage.getItem('visionary_workspace_v2'),before);
+ }finally{appClient.entities=original;}
+});
+
+test('cohort concurrent changes and archive reject a stale editor without overwriting either record', async () => {
+ memory.clear();
+ const email='cohort-conflict@visionary.test';
+ await appClient.auth.register({email,password:'Preview-test-123!'});
+ await appClient.auth.verifyOtp({email});
+ const admin=await appClient.auth.updateMe({identity:'organization',onboarding_complete:true});
+ const person=bootstrapPerson(admin);
+ const ctx={personId:admin.id,workspaceId:person.active,role:'organization',locale:'en'};
+ const original=await saveCohort(ctx,{title:'Initial team',body:'Initial purpose',members:[],classIds:[]});
+ const base=resourceRevision(original);
+ const latest=await saveCohort(ctx,{...original,title:'Other tab team'},base);
+ const before=localStorage.getItem('visionary_workspace_v2');
+ await assert.rejects(saveCohort(ctx,{...original,body:'Retained unsaved purpose'},base),error=>error.name==='ResourceConflictError');
+ assert.equal(localStorage.getItem('visionary_workspace_v2'),before);
+ assert.equal(snapshot(ctx).resources.find(row=>row.id===original.id).title,'Other tab team');
+ archiveResource(ctx,original.id);
+ const archived=localStorage.getItem('visionary_workspace_v2');
+ await assert.rejects(saveCohort(ctx,{...latest,body:'Stale attempt after archive'},resourceRevision(latest)),error=>error.name==='ResourceConflictError');
+ assert.equal(localStorage.getItem('visionary_workspace_v2'),archived);
+ assert.equal(snapshot(ctx).resources.find(row=>row.id===original.id).status,'archived');
 });

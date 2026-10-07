@@ -1,0 +1,42 @@
+TimeoutError: locator.click: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Save content draft', exact: true })[22m
+[2m    - locator resolved to <button class="v-button primary">Save content draft</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+[2m    - element is visible, enabled and stable[22m
+[2m    - scrolling into view if needed[22m
+[2m    - done scrolling[22m
+[2m    - performing click action[22m
+
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Save content draft', exact: true })
+    - locator resolved to <button class="v-button primary">Save content draft</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - performing click action
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\org-author-verify.mjs:6:689 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Save content draft', exact: true })",
+    '    - locator resolved to <button class="v-button primary">Save content draft</button>',
+    '  - attempting click action',
+    '    - waiting for element to be visible, enabled and stable',
+    '    - element is visible, enabled and stable',
+    '    - scrolling into view if needed',
+    '    - done scrolling',
+    '    - performing click action'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

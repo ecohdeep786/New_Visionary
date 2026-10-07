@@ -1,0 +1,26 @@
+✔ incomplete retained source context blocks learning without replacing original records (311.3316ms)
+✔ legacy activities without source context remain readable (50.3693ms)
+✔ conflicting cached concept selection cannot start an unpinned activity (6.0472ms)
+✔ conflicting cached concept provenance cannot start an unpinned activity (4.6776ms)
+✔ same-source language variants keep their authored language and source pin (66.0192ms)
+✔ a changed source cannot create a project under an older learning unit (113.8425ms)
+✔ a changed source cannot erase the saved check or selection before retry fails (11.9484ms)
+✔ source replacement during teaching cannot attach old teaching to an obsolete activity (10.2031ms)
+✔ a changed source cannot grade a previously displayed unanswered question (20.3051ms)
+✔ primary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (377.437ms)
+✔ secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (332.3622ms)
+✔ higher-secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (302.3308ms)
+✔ competitive: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (222.5092ms)
+✔ vocational: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (150.5899ms)
+✔ higher-education: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (259.3882ms)
+✔ independent-adult: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (3210.5411ms)
+✔ professional: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (132.292ms)
+✔ employer-sponsored: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (115.3476ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6183.8286

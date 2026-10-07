@@ -1,0 +1,16 @@
+✔ organization source review requires a different author and retains versioned changes and review notes (21.979ms)
+✔ content actions reject forged permission, bypasses and stale versions; archival retains content (7.7398ms)
+✔ failed content saves or review writes preserve the prior record and history for retry (4.572ms)
+✔ approved deliveries are fixed, explicit, idempotent and become teacher-controlled unreviewed drafts (32.2589ms)
+✔ owner delivery pause blocks new copies by academic members and retains earlier copies and retries (17.4422ms)
+✔ closed or renewed teacher membership does not recover old deliveries; failed writes do not fabricate delivery or import (6.8726ms)
+✔ curriculum templates keep separate category and review/distribution lifecycle with old versions retained (28.2586ms)
+✔ ambiguous imported editorial metadata cannot be saved, reviewed or delivered and keeps original bytes (16.9544ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 619.3832

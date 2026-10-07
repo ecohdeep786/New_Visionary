@@ -6,24 +6,104 @@
   --radius-card: 12px;
   --radius-media: 12px;
   --radius-overlay: 16px;
-  /* Mobile floor = Apple's measured 112px chapter rhythm; desktop caps at 128px */
-  --public-section-py: clamp(7rem, 9vw, 8rem);
+  /* Apple's chapter rhythm measured live (Oct 2026): section padding sits
+     at 96–112px on phones and 112–144px on desktop across /iphone/,
+     /airpods/, /apple-vision-pro/, and /education/; adjacent chapters meet
+     at ~192–288px of air. The 96px phone floor replaces the earlier 72px
+     Google floor; min(10vw, 16svh) keeps wide-but-short laptops
+     (1366×768) at their verified rhythm. */
+  --public-section-py: clamp(6rem, min(10vw, 16svh), 9rem);
 }
 
 /* Canonical section rhythm — heroes manage their own full-height layout */
 .public-section,
 section[data-section]:not([data-section="01-hero"]) {
   padding-block: var(--public-section-py);
+  border-radius: 0 !important;
+}
+
+/* Apple chapter contract: sections read as one continuous product story.
+   Separation comes from whitespace and a quiet surface change, never stacked
+   cards and never hairline seams — Apple's pages carry no border between
+   chapters (measured Oct 2026). */
+main > section[data-section]:not([data-section="01-hero"]) {
+  border-top: 1px solid rgba(18, 19, 23, 0.045);
+}
+
+main > section[data-section="02-problem"],
+main > section[data-section="02-struggle"],
+main > section[data-section="04-journey"],
+main > section[data-section="03-promise"],
+main > section[data-section="04-meet"],
+main > section[data-section="07-language"],
+main > section[data-section="08-trust"],
+main > section[data-section="09-cta"],
+main > section[data-section="06-closing"],
+main > section[data-section="10-journey-flow"] {
+  /* !important: the base rule's :not() chain scores (0,2,2) against this
+     list's (0,1,2) — without it Apple's hairline-free seams never land. */
+  border-top-color: transparent !important;
+}
+
+/* the journey chapter continues the language chapter's white field (07 is
+   white too) — 07's bottom padding is the whole breath; adding more above
+   the statement would read as a new chapter. No hairline. !important beats
+   the (0,2,1) base border/padding rule. */
+main > section[data-section="06-journey"] {
+  border-top-color: transparent !important;
+  padding-block-start: 0 !important;
+}
+
+/* The problem chapter is a one-glance scene, not a full chapter, and the
+   landing's promise is a sentence, not a section — both carry Apple's
+   compact-band rhythm (measured Oct 2026): a tighter 56–90px band lets the
+   statement + subject + caption sit inside ~1.2 viewports on desktop while
+   the phone chapter stays compact. 02-struggle is the same chapter on the
+   persona pages (student/teacher/parent/organization share one anatomy);
+   03-promise is scoped to .page-landing because persona pages keep their
+   own full promise chapter. !important beats the (0,2,1) base rule and the
+   narrow-screen rule alike. */
+main > section[data-section="02-problem"],
+main > section[data-section="02-struggle"],
+.page-landing main > section[data-section="03-promise"] {
+  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
+main > section[data-section="05-intelligence"],
+main > section[data-section="05-one-intelligence"] {
+  background: var(--scene-ink, #0a0d14) !important;
+  color: #f5f7fa;
+}
+
+main > section[data-section="05-intelligence"] p,
+main > section[data-section="05-intelligence"] h2,
+main > section[data-section="05-intelligence"] h3,
+main > section[data-section="05-one-intelligence"] p,
+main > section[data-section="05-one-intelligence"] h2,
+main > section[data-section="05-one-intelligence"] h3 {
+  color: inherit !important;
+}
+
+main > section[data-section="05-intelligence"] p,
+main > section[data-section="05-one-intelligence"] p {
+  color: var(--scene-ink-soft, rgba(245, 247, 250, 0.72)) !important;
+}
+
+main > section[data-section="05-intelligence"] img,
+main > section[data-section="05-one-intelligence"] img {
+  border-color: rgba(255, 255, 255, 0.14) !important;
 }
 
 /* ── Type-scale convergence ─────────────────────────────────────────────
    Retargets the legacy arbitrary-value display utilities to the canonical
-   Google×Apple scale (hero 80 / display 64 / statement 48 / product 36 /
-   closing 32) so every public page shares one type system. */
+   Google×Apple scale (hero 80 / display 56 / statement 48 / product 36 /
+   closing 32) so every public page shares one type system. Display sits at
+   Apple's measured chapter-statement tier (56px: "Take a closer look.",
+   "Get the highlights."), not above it. */
 
 .text-\[clamp\(36px\,5vw\,72px\)\],
 .text-\[clamp\(34px\,5vw\,72px\)\] {
-  font-size: clamp(32px, 4.45vw, 64px) !important;
+  font-size: clamp(32px, 3.9vw, 56px) !important;
 }
 
 .text-\[clamp\(28px\,2\.78vw\,40px\)\],
@@ -104,4 +184,89 @@ h2.text-\[52px\], h2.text-\[56px\] {
 .g-card,
 .elevation-1 {
   box-shadow: 0 1px 2px 0 rgba(18, 19, 23, 0.03), 0 1px 4px 0 rgba(18, 19, 23, 0.06);
+}
+
+/* ── Narrow-screen law (320–480px) ───────────────────────────────────────
+   The narrow band is a designed state, not a squeezed desktop: chapter
+   padding tightens to Apple's measured phone band (80–104px), long display
+   lines wrap safely, and no landing section may push the document wider
+   than the viewport. The hero keeps its own exact padding — it is the one
+   calibrated composition that must not drift. */
+@media (max-width: 480px) {
+  section[data-section]:not([data-section="01-hero"]) {
+    padding-block: clamp(5rem, 24vw, 6.5rem);
+    border-radius: 0 !important;
+  }
+
+  section[data-section="01-hero"] {
+    padding-block: clamp(4rem, 16vw, 4.5rem);
+    border-radius: 0 !important;
+  }
+
+  section[data-section] h2,
+  section[data-section] h3 {
+    overflow-wrap: break-word;
+  }
+}
+
+main {
+  overflow-x: clip;
+}
+
+/* ── Apple typography pass (Oct 2026) ────────────────────────────────────
+   Measured from apple.com @1440 (iphone, education, watch):
+   hero 80px ls-0.015em lh1.05 · section 64px ls-0.009em lh1.06 · body
+   17px lh1.47 near-ink · and never an uppercase kicker. Tracking/leading
+   land here (not in JSX) so every page inherits the bar without touching
+   its markup. Font weight stays on each page's own utility (500/400) —
+   the brand reads Medium, not Apple's Semibold. */
+
+/* display + section tiers — Apple's tracking curve */
+.text-\[clamp\(48px\,5\.55vw\,80px\)\] {
+  letter-spacing: -0.015em !important;
+  line-height: 1.05 !important;
+}
+
+.text-\[clamp\(36px\,5vw\,72px\)\],
+.text-\[clamp\(34px\,5vw\,72px\)\] {
+  letter-spacing: -0.009em !important;
+  line-height: 1.06 !important;
+}
+
+/* statement / card-title tier (36px after the scale convergence) */
+.text-\[clamp\(28px\,2\.78vw\,40px\)\],
+.text-\[clamp\(28px\,2\.9vw\,40px\)\],
+.text-\[clamp\(28px\,2\.9vw\,42px\)\],
+.text-\[clamp\(28px\,3\.6vw\,42px\)\],
+.text-\[clamp\(28px\,3\.6vw\,46px\)\],
+.text-\[clamp\(30px\,4vw\,46px\)\],
+.text-\[clamp\(26px\,3\.4vw\,38px\)\],
+.text-\[clamp\(32px\,3\.3vw\,44px\)\],
+.text-\[clamp\(24px\,3vw\,34px\)\] {
+  letter-spacing: -0.002em !important;
+}
+
+/* Apple has no uppercase kickers — eyebrow <p>s become quiet sentence-case
+   lead-ins at body size (their grey stays: Apple's own label ink). */
+main p.uppercase {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+}
+
+/* Lead paragraphs that opt into the grey step up to Apple's near-ink body.
+   React serialises the inline hex as rgb(), so match the computed channel
+   form; this keeps ink-coloured card copy untouched. */
+main p[style*="95, 99, 104"].text-\[17\.5px\],
+main p[style*="95, 99, 104"].text-\[17px\],
+main p[style*="5f6368"].text-\[17\.5px\],
+main p[style*="5f6368"].text-\[17px\] {
+  color: #3c4043 !important;
+}
+
+/* smallest metadata — nothing below 14px on an Apple page */
+.text-\[13px\] {
+  font-size: 14px !important;
 }

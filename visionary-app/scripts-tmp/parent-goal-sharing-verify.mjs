@@ -37,7 +37,7 @@ try {
  assert.equal(await dialog.getByText('PRIVATE_GOAL_NOTES').count(), 0);
  await dialog.screenshot({ path: 'docs/visionary/baseline/design-2026-09-27/parent-goal-share-preview-390.png' });
  await dialog.getByRole('button', { name: 'Confirm goal sharing' }).click();
- await page.getByRole('status').getByText(/Goal summary shared with Anika/).waitFor();
+ await page.getByRole('status').getByText(/Goal summary shared\./).waitFor();
  await page.evaluate(() => localStorage.setItem('visionary_session_token', 'goal-parent'));
  await page.goto(`${base}/dashboard/reports?child=goal-learner`, { waitUntil: 'networkidle' });
  await page.getByRole('heading', { name: 'Test my bridge model' }).waitFor();
