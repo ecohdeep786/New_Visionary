@@ -111,7 +111,7 @@ function probe() {
   // (the "centered as the rectangle" check), gap from strip-bottom to first
   // row top, inter-row gaps, and per-row copy/image centering.
   const strip = document.querySelector('[data-section="04-meet"] [role="tablist"]');
-  const rowsContainer = document.querySelector('[data-section="04-meet"] .max-w-\\[980px\\]');
+  const rowsContainer = document.querySelector('[data-section="04-meet"] div.grid.w-full');
   const center = (el) => { const r = el.getBoundingClientRect(); return { cx: Math.round(r.left + r.width / 2), t: Math.round(r.top + window.scrollY), b: Math.round(r.bottom + window.scrollY) }; };
   const rows = [];
   if (rowsContainer) {
@@ -120,9 +120,9 @@ function probe() {
     const stepEls = rowsContainer.querySelectorAll('[data-step]');
     stepEls.forEach((row, idx) => {
       const copy = row.querySelector("div");
-      const img = row.querySelector("img");
+      const img = row.querySelector("figure img") || row.querySelector("img");
       const rt = center(row);
-      const prevBottom = idx === 0 ? stripBottom : rows[idx - 1].top;
+      const prevBottom = idx === 0 ? stripBottom : rows[idx - 1].bottom;
       rows.push({
         copyCx: copy ? center(copy).cx : null, imgCx: img ? center(img).cx : null,
         top: rt.t, bottom: rt.b,
@@ -132,11 +132,16 @@ function probe() {
     });
   }
 
-  // Journey alignment: header left vs first card left
+  // Journey alignment: header left vs first card left (structural spine check)
   const journeyHeader = document.querySelector('[data-section="06-journey"] h2');
-  const journeyFirstCard = document.querySelector('[data-section="06-journey"] figure');
+  const journeyTrack = document.querySelector('[data-section="06-journey"] [role="group"][aria-label*="journey"]');
+  // read the LEFT PADDING (the spine) rather than the scrolled card's offset
+  const trackLeftPad = journeyTrack ? parseInt(getComputedStyle(journeyTrack).paddingLeft) : null;
+  const journeyFirstCard = journeyTrack ? journeyTrack.querySelector("figure") : null;
   const jhLeft = journeyHeader ? Math.round(journeyHeader.getBoundingClientRect().left) : null;
-  const jfLeft = journeyFirstCard ? Math.round(journeyFirstCard.getBoundingClientRect().left) : null;
+  const trackRect = journeyTrack ? journeyTrack.getBoundingClientRect() : null;
+  const trackLeftEdge = trackRect ? Math.round(trackRect.left) : null;
+  const firstCardRestLeft = journeyFirstCard ? Math.round(trackRect.left + trackLeftPad) : null; // where card[0] *rests*
 
   return {
     vw,
@@ -155,8 +160,10 @@ function probe() {
       rows,
     },
     journeyHeaderLeft: jhLeft,
-    journeyCardLeft: jfLeft,
-    journeyLeftDelta: jhLeft !== null && jfLeft !== null ? Math.round(jhLeft - jfLeft) : null,
+    journeyTrackLeftPad: trackLeftPad,
+    journeyTrackLeftEdge: trackLeftEdge,
+    journeyCardRestLeft: firstCardRestLeft,
+    journeyLeftDelta: jhLeft !== null && firstCardRestLeft !== null ? Math.round(jhLeft - firstCardRestLeft) : null,
   };
 }
 

@@ -31,6 +31,8 @@ main > section[data-section]:not([data-section="01-hero"]) {
 }
 
 main > section[data-section="02-problem"],
+main > section[data-section="02-struggle"],
+main > section[data-section="04-journey"],
 main > section[data-section="03-promise"],
 main > section[data-section="04-meet"],
 main > section[data-section="07-language"],
@@ -56,11 +58,13 @@ main > section[data-section="06-journey"] {
    landing's promise is a sentence, not a section — both carry Apple's
    compact-band rhythm (measured Oct 2026): a tighter 56–90px band lets the
    statement + subject + caption sit inside ~1.2 viewports on desktop while
-   the phone chapter stays compact. 02-problem is landing-only; 03-promise
-   is scoped to .page-landing because persona pages keep their own full
-   promise chapter. !important beats the (0,2,1) base rule and the
+   the phone chapter stays compact. 02-struggle is the same chapter on the
+   persona pages (student/teacher/parent/organization share one anatomy);
+   03-promise is scoped to .page-landing because persona pages keep their
+   own full promise chapter. !important beats the (0,2,1) base rule and the
    narrow-screen rule alike. */
 main > section[data-section="02-problem"],
+main > section[data-section="02-struggle"],
 .page-landing main > section[data-section="03-promise"] {
   padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
 }

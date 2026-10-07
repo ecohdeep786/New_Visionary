@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain, TrendingUp, Zap } from "lucide-react";
+import { Eye, RefreshCw, Globe2, UsersRound, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain, TrendingUp, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
@@ -43,10 +43,8 @@ import parentmeet from "@/assets/parent-face-main.webp";
 import promeet from "@/assets/pro-face-main-2400w.webp";
 import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
 import {
-  StruggleHeading,
-  StruggleCluster,
-  CarouselDots,
-  JourneyCarousel,
+  StruggleChapter,
+  JourneyGallery,
   JourneyModal,
   IntelligenceCopy,
   IntelligenceVisual,
@@ -126,10 +124,10 @@ const JOURNEY_WORDS = ["Visionary adapts to each.", "Schools see it first", "Col
 
 /* The four nav sub-sections — anchored for /organization#schools etc. */
 const JOURNEY_STAGES = [
-  { id: "schools", title: "Schools", copy: "Connect students, teachers, parents, and school leaders around the same learning picture.", connected: "Students, teachers, parents, and leaders", image: primaryStudent, alt: "School learning environment" },
-  { id: "colleges", title: "Colleges and universities", copy: "Help departments, faculty, and students understand progress across programs, skills, and outcomes.", connected: "Students, faculty, departments, and placement", image: higherStudent, alt: "University campus learning" },
-  { id: "coaching", title: "Coaching", copy: "Scale personalized support across batches, mentors, learners, and parent conversations.", connected: "Learners, mentors, parents, and coaches", image: competitiveStudent, alt: "Coaching institute classroom" },
-  { id: "workplace", title: "Workplace learning", copy: "Help teams build real skills, apply learning to work, and see capability grow over time.", connected: "Professionals, managers, teams, and learning leads", image: proFace, alt: "Workplace learning session" },
+  { id: "schools", title: "Schools", statement: "One school. One picture.", copy: "Connect students, teachers, parents, and school leaders around the same learning picture.", connected: "Students, teachers, parents, and leaders", image: primaryStudent, alt: "School learning environment" },
+  { id: "colleges", title: "Colleges and universities", statement: "Departments connected. Outcomes visible.", copy: "Help departments, faculty, and students understand progress across programs, skills, and outcomes.", connected: "Students, faculty, departments, and placement", image: higherStudent, alt: "University campus learning" },
+  { id: "coaching", title: "Coaching", statement: "Scale the support. Keep it personal.", copy: "Scale personalized support across batches, mentors, learners, and parent conversations.", connected: "Learners, mentors, parents, and coaches", image: competitiveStudent, alt: "Coaching institute classroom" },
+  { id: "workplace", title: "Workplace learning", statement: "Real skills. Visible capability.", copy: "Help teams build real skills, apply learning to work, and see capability grow over time.", connected: "Professionals, managers, teams, and learning leads", image: proFace, alt: "Workplace learning session" },
 ];
 
 const INTELLIGENCE_WORDS = ["People connected.", "Progress connected.", "Support connected.", "Outcomes connected."];
@@ -226,29 +224,19 @@ const OrgHeroSection = React.memo(() => (
 function OrgStruggleSection() {
   const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
   const { ref, visible } = UseRevealContinuous();
-  const slide = SLIDES[index];
 
   return (
-    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-24 lg:py-32">
+    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
       <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
-          <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
-              The problem
-            </p>
-            <div className="mt-6">
-              <StruggleHeading word={slide.word} slideKey={index} lines={STRUGGLE_LINES} />
-            </div>
-          </div>
-
-          <div className="relative w-full lg:col-span-7 lg:pr-[2%] xl:pr-[4%]">
-            <StruggleCluster slide={slide} slideKey={index} />
-          </div>
-        </div>
-
-        <div className="mt-12 flex justify-center px-6 lg:mt-14">
-          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} label="Organization learning challenges" />
-        </div>
+        {/* the bridge's compact band (02-struggle) carries the chapter breath */
+        }
+        <StruggleChapter
+          slides={SLIDES}
+          index={index}
+          goTo={goTo}
+          lines={STRUGGLE_LINES}
+          label="Organization learning challenges"
+        />
       </FadeReveal>
     </section>
   );
@@ -272,14 +260,6 @@ const OrgPromiseSection = React.memo(function OrgPromiseSection() {
 });
 
 /* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
-
-/* Icons per journey stage — reuses icons already imported in this file */
-const JOURNEY_STAGE_ICONS = {
-  "Schools": GraduationCap,
-  "Colleges and universities": BookOpen,
-  "Coaching": Target,
-  "Workplace learning": Building2,
-};
 
 const STAGE_META = {
   "Schools": { Icon: GraduationCap },
@@ -343,94 +323,30 @@ function OrgJourneySection() {
   const { ref, visible } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
-  const [activeStage, setActiveStage] = useState(0);
-  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
-
-  /* scroll → active chip */
-  const handleScroll = useCallback(() => {
-    update();
-    const t = trackRef.current;
-    if (!t) return;
-    const cards = Array.from(t.querySelectorAll("[data-card]"));
-    if (!cards.length) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    let best = 0;
-    let bestDist = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(card.getBoundingClientRect().left - tLeft - align);
-      if (d < bestDist) { bestDist = d; best = i; }
-    });
-    setActiveStage(best);
-  }, [update, trackRef]);
-
-  /* chip → scroll track */
-  const goToStage = useCallback((i) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelectorAll("[data-card]")[i];
-    if (!card) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    t.scrollTo({ left: t.scrollLeft + (card.getBoundingClientRect().left - tLeft) - align, behavior: "smooth" });
-    setActiveStage(i);
-  }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
       <FadeReveal visible={visible}>
-        {/* header — eyebrow / heading / one-line sub */}
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.ink }}>
-          Your institution, your journey
-        </p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          Every organization learns differently.
-          <br className="hidden md:block" />{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
-        </h2>
-        <p
-          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
-          style={{ color: COLORS.grey }}
-        >
-          One intelligence, shaped to the way your institution teaches, trains, and grows.
-        </p>
-
-        {/* stage rail — even beat under the header */}
-        <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Organization contexts">
-            {JOURNEY_STAGES.map((stage, i) => {
-              const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
-              const active = i === activeStage;
-              return (
-                <button
-                  key={stage.title}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => goToStage(i)}
-                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                  style={active
-                    ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
-                    : { backgroundColor: "#f5f5f7", borderColor: "transparent", color: COLORS.ink }}
-                >
-                  <Icon className="h-4 w-4" strokeWidth={1.8} />
-                  {stage.title}
-                </button>
-              );
-            })}
-          </div>
+        {/* header — Apple's card-chapter treatment (education: "From grade
+            school to grad school."): statement LEFT-aligned at the measured
+            gutter, and the gallery's track carries the same gutter so the
+            first card starts exactly at the heading's left edge — one spine. */}
+        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+          <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
+            Your institution, your journey
+          </p>
+          <h2 className="mt-3 min-h-[3.1em] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)] md:min-h-0" style={{ color: COLORS.ink }}>
+            Every organization learns differently.
+            <br className="hidden md:block" />{" "}
+            <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+          </h2>
+          <p className="mt-4 max-w-[560px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            One intelligence, shaped to the way your institution teaches, trains, and grows.
+          </p>
         </div>
       </FadeReveal>
 
-      <JourneyCarousel
-        stages={JOURNEY_STAGES}
-        onOpen={setOpenStage}
-        trackRef={trackRef}
-        onScroll={handleScroll}
-        canPrev={canPrev}
-        canNext={canNext}
-        scrollByCard={scrollByCard}
-        iconMap={JOURNEY_STAGE_ICONS}
-      />
+      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Organization contexts" />
       {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Schools" secondaryLabel="Start free" />}
     </section>
   );

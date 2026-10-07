@@ -90,6 +90,9 @@ function useActiveStep(total) {
   const [active, setActive] = useState(0);
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return undefined;
+    /* the observer fires on SCROLL so the tabs follow the reader; clicking a
+       tab calls setActive directly (see scrollToRow) so the new panel is
+       revealed immediately instead of racing the scroll */
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -103,7 +106,14 @@ function useActiveStep(total) {
     return () => observer.disconnect();
   }, [total]);
   const setStepRef = useCallback((i) => (node) => { nodes.current[i] = node; }, []);
-  return { active, setStepRef };
+  const scrollToStep = useCallback((i) => {
+    setActive(i);
+    /* single-panel tab set: swapping the visible chapter is enough — the
+       sticky tab strip stays anchored and the new panel renders below it.
+       No page scroll (Apple's product tabs don't yank the reader down on
+       a chapter switch). */
+  }, []);
+  return { active, setStepRef, scrollToStep };
 }
 
 /* ═══════════════════════ SHARED VIEWS ═══════════════════════ */
@@ -410,9 +420,11 @@ const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
     tabRefs.current[next]?.focus();
   };
   return (
-    <div className="mx-auto w-full max-w-[900px]">
+    <div className="mx-auto w-full max-w-[1260px]">
       {/* the strip scrolls horizontally on small screens — discovery stays
-          horizontal, never a squeezed desktop row */}
+          horizontal, never a squeezed desktop row. Width matches Apple's
+          measured product localnav (1260px @1440) so the pill reads as the
+          row's navigator, not a lonely narrow band. */}
       <div
         ref={stripRef}
         className="flex h-[52px] w-full items-stretch overflow-x-auto rounded-[90px] border bg-white p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -471,13 +483,10 @@ function LandingMeetSection() {
      viewports deep, and keying the state to the header would wipe the story
      while the reader is still inside it */
   const { ref: revealRef, visible } = useRevealContinuous();
-  const { active, setStepRef } = useActiveStep(MEET_SECTIONS.length);
+  const { active, setStepRef, scrollToStep } = useActiveStep(MEET_SECTIONS.length);
   const sectionRef = useRef(null);
   const setSectionRef = (n) => { sectionRef.current = n; revealRef.current = n; };
-  const scrollToRow = (i) => {
-    const rows = sectionRef.current?.querySelectorAll("[data-step]");
-    rows?.[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
+  const scrollToRow = useCallback((i) => { scrollToStep(i); }, [scrollToStep]);
   return (
     <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <div className="px-6">
@@ -512,19 +521,20 @@ function LandingMeetSection() {
           chapter's navigator, not a crowbar. */}
       <div className="glass sticky top-[56px] z-30 mt-9 px-4 py-4 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
       <FadeSoft visible={visible}>
-        {/* the audience chapters — Apple's chapter-row anatomy: one composed
-            row per audience. The rows ride the SAME centered axis as the tab
-            rectangle above them (980 container − 40px gutters = the strip's
-            exact 900px), so the composition hangs centered under the pill
-            like Apple's product chapters hang under their localnav. Desktop:
-            copy left / portrait right, CENTERED on one axis, 80px apart (the
-            measured Apple copy→media gap); rows breathe on the premium ladder
-            (96px mobile / 144px desktop). Phones: the copy leads and the
-            portrait follows beneath it, exactly how an Apple product chapter
-            reads top-to-bottom. The pinned tab band drives the rows: whichever
-            chapter the reader is inside lights its chip, and the rows carry
-            the step markers the band watches. */}
-        <div className="mx-auto grid w-full max-w-[980px] grid-cols-1 gap-y-20 px-4 pt-12 sm:px-10 sm:pt-14 lg:gap-y-0 lg:px-10 lg:pt-20">
+        {/* the audience chapters — Apple's chapter-row anatomy: each row is
+            ONE composed object (copy + portrait) hanging centered under the
+            1260px strip above it, not two islands pinned to a 980px gutter.
+            Desktop: copy left / portrait right as a centered group — copy
+            block 560px wide, 64px between (Apple's measured copy→media gap),
+            the whole pair centered at max-w 1040px so it reads as a single
+            gesture under the pill. Rows breathe on the premium ladder
+            (48px mobile / 144px desktop). Phones: the copy leads and the
+            portrait follows beneath it with even rhythm (48px step), exactly
+            how an Apple product chapter reads top-to-bottom. The pinned tab
+            band drives the rows: whichever chapter the reader is inside
+            lights its chip, and the rows carry the step markers the band
+            watches. */}
+        <div className="mx-auto grid w-full max-w-[1260px] grid-cols-1 gap-y-14 px-4 pt-20 sm:px-10 sm:pt-20 lg:gap-y-0 lg:px-0 lg:pt-24">
           {MEET_SECTIONS.map((s, i) => (
             <div
               key={s.id}
@@ -533,12 +543,16 @@ function LandingMeetSection() {
               id={`meet-panel-${s.id}`}
               role="tabpanel"
               aria-labelledby={`meet-tab-${s.id}`}
-              className={`lg:grid lg:grid-cols-[5fr_6fr] lg:items-center lg:gap-x-20 ${i > 0 ? "lg:pt-32" : ""}`}
+              aria-hidden={i !== active}
+              tabIndex={i === active ? 0 : -1}
+              hidden={i !== active}
+              style={i !== active ? { display: "none" } : undefined}
+              className={`mx-auto lg:grid lg:max-w-[1040px] lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center lg:gap-x-16 ${i > 0 ? "lg:pt-36" : ""}`}
             >
               <div>
                 <MeetCopy section={s} />
               </div>
-              <figure className="m-0 mt-12 flex justify-center lg:mt-0">
+              <figure className="m-0 mt-12 flex justify-center lg:mt-0 lg:justify-end">
                 <img
                   src={MEET_IMG[i]}
                   alt={s.alt}
@@ -550,7 +564,7 @@ function LandingMeetSection() {
                     WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
                     maskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
                   }}
-                  className="h-auto w-full max-w-[400px] select-none lg:max-w-[520px]"
+                  className="h-auto w-full max-w-[360px] select-none sm:max-w-[420px] lg:max-w-[460px]"
                 />
               </figure>
             </div>
@@ -653,19 +667,16 @@ function LandingLanguageSection() {
   );
 }
 
-/* 06 · THE JOURNEY — Apple's highlights gallery (the AirPods Pro page's
-   "Get the highlights." card slide), flowing straight out of the language
-   chapter's white field (no kicker, no sub — the statement alone sits
-   left-aligned at the 56 statement tier, the way "Get the highlights."
-   follows the hero film). One story card at a time with the next card
-   peeking at the viewport edge, and the caption living ON the card: a
-   semibold line over its support line, bare on the media, bottom-center
-   where every photo stays clean (dark media flips to white type). Below
-   the card, the controls are Apple's exact gallery cluster: the light-gray
-   pill (#E8E8ED) around the dot nav — uniform rgba(29,29,31,.6) dots, the
-   active one stretching into a 48×8 bar — beside a 56px gray play/pause
-   circle. Reduced motion keeps the tour but steps it instantly — the
-   play/pause control still stops and resumes it. */
+/* 06 · THE JOURNEY — Apple's education-initiative chapter anatomy: a left-aligned
+   statement on the 40px highlights tier (32px on phones) that sits on Apple's
+   measured content frame, then a VERTICAL stack of full-bleed story cards.
+   Apple ed-initiative renders these as centered 980px media cards (border-
+   radius 30px) with a one-line caption overlaid on the image — NOT a horizontal
+   carousel, NOT text-below-photo. The reader scrolls down through the journey
+   (no autoplay, no carousel chrome); each card lands full-bleed and the eye
+   rests on the next. Caption lives ON the media (bottom-left), dark media
+   flips to white type. This is how an Apple premium story steps: one beat,
+   then a breath, then the next — the reader paces it, it does not pace itself. */
 function LandingJourneySection() {
   const reduced = usePrefersReducedMotion();
   const { ref, visible } = useRevealContinuous();
@@ -882,8 +893,8 @@ export default function LandingPage() {
         <LandingProblemSection />
         <LandingPromiseSection />
         <LandingMeetSection />
-        <LandingLanguageSection />
         <LandingJourneySection />
+        <LandingLanguageSection />
         <LandingTrustSection />
         <LandingCTASection />
       </main>

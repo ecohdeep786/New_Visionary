@@ -10,7 +10,7 @@ for (const t of ["320", "390", "768", "1024", "1440", "1920"]) {
   console.log(`  promise : pad ${prom.padT}/${prom.padB}`);
   console.log(`  meet    : pad ${meet.padT}/${meet.padB}  h2 ${meet.h2Size}px  stripCx:${m.meet.stripCenterX} contCx:${m.meet.containerCenterX} delta:${m.meet.centerDelta}`);
   console.log(`    rows:${JSON.stringify(m.meet.rows)}`);
-  console.log(`  journey : pad ${jour.padT}/${jour.padB}  h2 ${jour.h2Size}px  hdrL:${m.journeyHeaderLeft} cardL:${m.journeyCardLeft} delta:${m.journeyLeftDelta}`);
+  console.log(`  journey : pad ${jour.padT}/${jour.padB}  h2 ${jour.h2Size}px  hdrL:${m.journeyHeaderLeft} trackPad:${m.journeyTrackLeftPad} cardRest:${m.journeyCardRestLeft} delta:${m.journeyLeftDelta}`);
   console.log(`  trust   : pad ${tr.padT}/${tr.padB}  tiles:${JSON.stringify(tr.tiles)}`);
   console.log(`  cta     : pad ${cta.padT}/${cta.padB}  h2 ${cta.h2Size}px  btns:${JSON.stringify(m.btns)}`);
   console.log(`  overflows: ${m.overflows.length}  docH: ${m.docH}`);

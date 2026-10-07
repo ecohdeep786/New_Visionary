@@ -23,116 +23,83 @@ const COLORS = {
   white: "#ffffff",
 };
 
-/** Struggle-circle crop positions and keyframes, identical on every page. */
-const STRUGGLE_MAIN_POSITIONS = ["center 30%"];
+/* The problem chapter on every persona page — one anatomy shared with the
+   landing's approved problem chapter (02-problem): centered kicker, one
+   balanced statement with the page's rotating accent word, then an unframed
+   studio-white subject standing on the page's own white. No circle crop, no
+   doodle arrow, no card: the photography dissolves at its edges via mask
+   gradients (the hero's floor recipe) and all four subjects stay mounted,
+   crossfading in place — a keyed <img> remount flashes an empty frame on
+   slow phones. Chapter breath comes from the bridge's compact band
+   (02-struggle), never from inner padding. */
+const STRUGGLE_MASK = {
+  WebkitMaskImage:
+    "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+  WebkitMaskComposite: "source-in",
+  maskImage:
+    "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+  maskComposite: "intersect",
+};
 
-const STRUGGLE_WORD_STYLE = `
-@keyframes struggleWordIn {
-  from {
-    opacity: 0;
-    transform: translate3d(-18px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-`;
-const STRUGGLE_IMAGE_STYLE = `
-@keyframes struggleImageIn {
-  from {
-    opacity: 0;
-    transform: scale(1.015);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`;
-
-const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey, lines }) {
+const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goTo, lines, label, kicker = "The problem" }) {
+  const slide = slides[index];
   return (
-    <h2
-      className="font-medium tracking-[0] leading-[1.15] text-[clamp(28px,2.78vw,40px)] lg:leading-[1.08]"
-      style={{ color: COLORS.ink }}
-    >
-      {lines.map((line) => (
-        <span key={line} className="block">
-          {line}
-        </span>
-      ))}
-      <span className="block overflow-hidden whitespace-nowrap">
-        <span
-          key={slideKey}
-          className="inline-block animate-[struggleWordIn_0.65s_cubic-bezier(0.22,1,0.36,1)_both]"
-          style={{ color: COLORS.blue }}
-        >
-          {word}
-        </span>
-      </span>
-    </h2>
-  );
-});
-
-const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey }) {
-  return (
-    <figure className="m-0 w-full">
-      <style>
-        {STRUGGLE_WORD_STYLE}
-        {STRUGGLE_IMAGE_STYLE}
-      </style>
-
-      <div className="relative mx-auto w-full max-w-[520px]">
-        {/* circle wrapper — exactly circle-sized, centered in the column */}
-        <div className="relative mx-auto w-[86%] max-w-[400px]">
-          {/* hand-drawn arrow — lives in the gap BETWEEN heading and circle */}
-          <svg
-            viewBox="0 0 220 120"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-[136px] top-1/2 z-10 hidden h-[72px] w-[120px] -translate-y-1/2 lg:block"
-            style={{ color: COLORS.ink }}
-          >
-            <path d="M6 66 C 60 86, 140 84, 198 52" />
-            <path d="M198 52 l-16 2" />
-            <path d="M198 52 l-6 14" />
-          </svg>
-
-          <div className="aspect-square w-full overflow-hidden rounded-full">
-            <img
-              key={`main-${slideKey}`}
-              src={slide.image}
-              alt={slide.alt}
-              loading="eager"
-              decoding="async"
-              className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
-              style={{ objectPosition: STRUGGLE_MAIN_POSITIONS[slideKey % STRUGGLE_MAIN_POSITIONS.length] }}
-            />
-          </div>
-        </div>
-
-        {/* quote — centered under the circle */}
-        <figcaption
-          key={`quote-${slideKey}`}
-          aria-live="polite"
-          className="hero-fade-up mx-auto mt-8 max-w-[520px] px-4 text-center font-normal tracking-[0] leading-[1.4] text-[clamp(16px,1.39vw,20px)] [animation-delay:120ms] [animation-fill-mode:both] sm:px-0"
+    <>
+      <p className="sr-only">{label}</p>
+      <div className="px-6">
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
+          {kicker}
+        </p>
+        <h2
+          key={`h-${index}`}
+          className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,4vw,56px)]"
           style={{ color: COLORS.ink }}
         >
-          {slide.quote}
-        </figcaption>
+          {lines.join(" ")} <span style={{ color: COLORS.blue }}>{slide.word}</span>.
+        </h2>
       </div>
-    </figure>
+      <figure className="m-0">
+        <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
+          {slides.map((s, i) => (
+            <img
+              key={s.alt}
+              src={s.image}
+              alt={i === index ? s.alt : ""}
+              aria-hidden={i !== index}
+              loading="eager"
+              decoding="async"
+              draggable="false"
+              style={STRUGGLE_MASK}
+              className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ease-apple motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
+            />
+          ))}
+        </div>
+        <figcaption
+          key={`q-${index}`}
+          aria-live="polite"
+          className="hero-fade-up mx-auto mt-[clamp(16px,2.4vw,32px)] w-full max-w-[640px] px-6 text-center [animation-delay:80ms] [animation-fill-mode:both]"
+        >
+          {/* the reserved two-line slot keeps the dots from jumping when a
+              shorter quote occupies one line */}
+          <p className="flex min-h-[2.9em] items-center justify-center font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>
+            {slide.quote}
+          </p>
+        </figcaption>
+      </figure>
+      <div className="mt-8 flex justify-center">
+        <CarouselDots total={slides.length} active={index} onSelect={goTo} label={label} />
+      </div>
+    </>
   );
 });
 
-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, label }) {
+const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect, label, tone = "ink" }) {
+  /* tone "pill" — the AirPods highlights dotnav (same treatment as the
+     landing journey): uniform warm-gray dots riding inside the section's
+     light pill, the active one stretching into a 48×8 rounded bar */
+  const pill = tone === "pill";
   return (
-    <div className="flex items-center gap-2" role="group" aria-label={label}>
+    <div className={`flex items-center ${pill ? "gap-4" : "gap-2"}`} role="group" aria-label={label}>
       {Array.from({ length: total }, (_, i) => (
         <button
           key={i}
@@ -140,68 +107,141 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-label={`Go to challenge ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
+          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
     </div>
   );
 });
 
-const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, trackRef, onScroll, canPrev, canNext, scrollByCard, iconMap }) {
-  const ALIGN = "max(1.5rem, calc(50% - 40rem))";
+const JOURNEY_GALLERY_MS = 5000;
+
+/* The journey gallery on persona pages — one anatomy site-wide. The cards
+   follow Apple Education's category-card grammar ("From grade school to grad
+   school."): the category kicker and its statement live ON the photo,
+   top-left over a legibility veil, and a small white chevron circle
+   bottom-right is the details affordance (the whole card opens the stage's
+   details). The controls are the landing journey's gallery cluster: the
+   #E8E8ED pill around the dot nav beside the play/pause circle, auto-
+   advancing every 5s (opening a card pauses the tour). The track shares the
+   header's measured gutter (left: 90px @1440, 6.25vw) so the statement and
+   the first card sit on one spine, and the next card peeks at the viewport
+   edge. Reduced motion keeps the tour but steps it instantly — the
+   play/pause control still stops and resumes it. */
+const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label }) {
+  const trackRef = useRef(null);
+  const lockRef = useRef(0);
+  const rafRef = useRef(0);
+  const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(true);
+
+  const stepTo = useCallback((i) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const first = track.children[0];
+    const unit = track.children[1] ? track.children[1].offsetLeft - first.offsetLeft : first.offsetWidth;
+    const clamped = Math.min(stages.length - 1, Math.max(0, i));
+    setActive(clamped);
+    /* the lock keeps the scroll listener from re-deriving intermediate
+       indices (and jittering the dot pill) while the smooth scroll runs */
+    lockRef.current = Date.now() + 700;
+    track.scrollTo({ left: clamped * unit, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }, [stages.length]);
+
+  useEffect(() => {
+    if (!playing) return undefined;
+    const id = setInterval(() => stepTo((active + 1) % stages.length), JOURNEY_GALLERY_MS);
+    return () => clearInterval(id);
+  }, [playing, active, stepTo, stages.length]);
+
+  /* swiping the track by hand keeps the dots honest */
+  const onScroll = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const track = trackRef.current;
+      if (!track || !track.children[1] || Date.now() < lockRef.current) return;
+      const unit = track.children[1].offsetLeft - track.children[0].offsetLeft || 1;
+      setActive(Math.min(stages.length - 1, Math.max(0, Math.round(track.scrollLeft / unit))));
+    });
+  }, [stages.length]);
+  useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
+
+  const openStage = (stage) => {
+    setPlaying(false);
+    onOpen(stage);
+  };
 
   return (
-    <div className="mt-16 lg:mt-20">
+    <div>
       <div
         ref={trackRef}
         onScroll={onScroll}
-        style={{ paddingLeft: ALIGN, paddingRight: "max(1.5rem, 6%)", scrollPaddingLeft: ALIGN }}
-        className="flex snap-x snap-mandatory gap-8 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label={label}
+        className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden"
       >
-        {stages.map((stage) => {
-          const Icon = iconMap[stage.title] || Sparkles;
-          return (
-            <article key={stage.title} id={stage.id} data-card className="w-[85%] shrink-0 snap-start scroll-mt-24 sm:w-[440px] lg:w-[700px] xl:w-[780px]">
-              <button
-                type="button"
-                onClick={() => onOpen(stage)}
-                aria-label={`Open details for ${stage.title}`}
-                className="group relative block w-full overflow-hidden rounded-[var(--radius-media)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
-              >
-                <img
-                  src={stage.image}
-                  alt={stage.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/9] w-full rounded-[var(--radius-media)] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
-                />
-                {/* stage icon pill — the missing icon layer */}
-                <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-                <span className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </span>
-              </button>
-              <h3 className="mt-5 text-center font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-3 max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
-            </article>
-          );
-        })}
+        {stages.map((stage, i) => (
+          <figure key={stage.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
+            className="relative m-0 w-[86%] flex-none snap-start sm:w-[64%] lg:w-[47%]">
+            <button
+              type="button"
+              onClick={() => openStage(stage)}
+              aria-label={`Open details for ${stage.title}`}
+              className="group relative block w-full overflow-hidden rounded-[var(--radius-media)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+            >
+              <img
+                src={stage.image}
+                alt={stage.alt}
+                loading="eager"
+                decoding="async"
+                draggable="false"
+                className="aspect-[16/9] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
+              />
+              {/* legibility veil for the on-card type (education pre-grades
+                  its media; ours is stock, so the top-left carries its own
+                  quiet gradient — the ContinuityCard recipe) */}
+              <span className="absolute inset-0 bg-gradient-to-br from-[#121317]/60 via-[#121317]/20 to-transparent" aria-hidden="true" />
+              <span className="absolute left-0 top-0 block max-w-[80%] p-6 text-left sm:p-7 lg:p-8">
+                <span className="block font-semibold tracking-[0] leading-[1.2] text-[17px] text-white">{stage.title}</span>
+                <span key={stage.statement} className="mt-2 block font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(20px,1.8vw,26px)] text-white">{stage.statement || stage.title}</span>
+              </span>
+              <span className="absolute bottom-5 right-5 flex h-10 w-10 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
+                <ChevronIcon className="h-4 w-4" />
+              </span>
+            </button>
+          </figure>
+        ))}
       </div>
-      <div className="mt-12 flex justify-end px-6 lg:mt-16 lg:pr-[9%]">
-        <div className="inline-flex items-center gap-10 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.cardSurface }}>
-          <button type="button" aria-label="Previous stages" disabled={!canPrev} onClick={() => scrollByCard(-1)} className={`transition-colors ${canPrev ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canPrev ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="left" />
-          </button>
-          <button type="button" aria-label="Next stages" disabled={!canNext} onClick={() => scrollByCard(1)} className={`transition-colors ${canNext ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canNext ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="right" />
-          </button>
+      {/* the gallery controls — the landing journey's cluster: the #E8E8ED
+          pill around the dot nav beside the play/pause circle */}
+      <div className="mt-12 flex items-center justify-center gap-4 px-6 sm:mt-16">
+        <div className="flex h-12 items-center rounded-full bg-[#E8E8ED] px-4 sm:h-14">
+          <CarouselDots total={stages.length} active={active} onSelect={stepTo} label={label} tone="pill" />
         </div>
+        <button
+          type="button"
+          aria-label={playing ? "Pause the journey" : "Play the journey"}
+          aria-pressed={!playing}
+          onClick={() => setPlaying((v) => !v)}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:h-14 sm:w-14"
+          style={{ color: COLORS.ink }}
+        >
+          {playing ? (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
+              <rect x="7" y="5.5" width="3.4" height="13" rx="1.1" />
+              <rect x="13.6" y="5.5" width="3.4" height="13" rx="1.1" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px] translate-x-[1px]" aria-hidden="true">
+              <path d="M8.5 5.9c0-.8.9-1.3 1.6-.9l8.2 5.1c.7.4.7 1.4 0 1.8l-8.2 5.1c-.7.5-1.6 0-1.6-.9V5.9z" />
+            </svg>
+          )}
+        </button>
       </div>
+      <p aria-live="polite" className="sr-only">{`${stages[active].title}. ${stages[active].copy}`}</p>
     </div>
   );
 });
@@ -265,11 +305,11 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
           </svg>
         </button>
 
-        <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
+        <p className="text-[15px] font-normal tracking-[0]" style={{ color: COLORS.grey }}>
           {stage.title}
         </p>
 
-        <h3 id="journey-modal-title" className="mt-[calc(clamp(30px,3.8vw,56px)*0.4)] max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
+        <h3 id="journey-modal-title" className="mt-3 max-w-[860px] font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.9vw,56px)]" style={{ color: COLORS.ink }}>
           {content.top}
           <br />
           <span style={{ color: COLORS.blue }}>{content.accent}</span>
@@ -291,11 +331,12 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
         <p className="mt-7 max-w-[680px] font-normal tracking-[0] leading-[1.65] text-[15px] sm:text-[16px]" style={{ color: COLORS.grey }}>
           {content.intro}
         </p>
-        <div className="mt-5 flex flex-wrap items-center gap-3">
+        <div className="mt-7 flex flex-wrap items-center gap-3">
+          {/* the primary action carries the canonical Apple-black pill — the
+              same system as the hero and closer CTAs (blue is links/accents) */}
           <Link
             to={content.primary.to}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#121317] px-6 text-[14px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
           >
             {content.primary.label}
             <ChevronIcon className="h-4 w-4" />
@@ -344,10 +385,10 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
 const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
   return (
     <div key={step.title} className="hero-fade-up max-w-[460px]">
-      <h3 className="whitespace-pre-line font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+      <h3 className="whitespace-pre-line font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>
         {step.title}
       </h3>
-      <p className="mt-[calc(clamp(28px,2.78vw,40px)*1.429)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
         {step.copy}
       </p>
     </div>
@@ -679,10 +720,9 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 });
 
 export {
-  StruggleHeading,
-  StruggleCluster,
+  StruggleChapter,
   CarouselDots,
-  JourneyCarousel,
+  JourneyGallery,
   JourneyModal,
   IntelligenceCopy,
   IntelligenceVisual,

@@ -1,0 +1,2304 @@
+
+===== vision-pro @1440 =====
+{
+ "vw": 1440,
+ "pageH": 31852,
+ "chapters": [
+  {
+   "h": 1800,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": -842,
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 34,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Apple Vision Pro",
+     "wPct": 88
+    },
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "New powerful M5 chip and comfortable Dual Kn",
+     "wPct": 48
+    }
+   ],
+   "media": [
+    {
+     "wPct": 66,
+     "h": 949
+    }
+   ]
+  },
+  {
+   "h": 1291,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": null,
+   "heads": [],
+   "media": []
+  },
+  {
+   "h": 2109,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": -1132,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Take a closer look.",
+     "wPct": 57
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 880
+    },
+    {
+     "wPct": 100,
+     "h": 880
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 57,
+     "h": 530
+    }
+   ]
+  },
+  {
+   "h": 13078,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 281,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 24,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Entertainment",
+     "wPct": 68
+    },
+    {
+     "tag": "h2",
+     "size": 24,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Productivity",
+     "wPct": 68
+    },
+    {
+     "tag": "h2",
+     "size": 24,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Photos and Videos",
+     "wPct": 68
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 880
+    },
+    {
+     "wPct": 100,
+     "h": 880
+    },
+    {
+     "wPct": 57,
+     "h": 530
+    },
+    {
+     "wPct": 57,
+     "h": 530
+    }
+   ]
+  },
+  {
+   "h": 2685,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 281,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 24,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "visionOS",
+     "wPct": 68
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 880
+    },
+    {
+     "wPct": 100,
+     "h": 880
+    },
+    {
+     "wPct": 57,
+     "h": 530
+    },
+    {
+     "wPct": 57,
+     "h": 530
+    }
+   ]
+  },
+  {
+   "h": 7038,
+   "padTop": 180,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -20270,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 24,
+     "weight": "700",
+     "color": "rgb(245, 245, 247)",
+     "text": "Technology",
+     "wPct": 57
+    },
+    {
+     "tag": "h3",
+     "size": 24,
+     "weight": "600",
+     "color": "rgb(255, 255, 255)",
+     "text": "Pushing boundaries from the inside out.",
+     "wPct": 30
+    },
+    {
+     "tag": "h3",
+     "size": 32,
+     "weight": "700",
+     "color": "rgb(255, 255, 255)",
+     "text": "More pixels than a 4K TV. For each eye.",
+     "wPct": 45
+    }
+   ],
+   "media": [
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 67,
+     "h": 562
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 100,
+     "h": 811
+    }
+   ]
+  },
+  {
+   "h": 1607,
+   "padTop": 180,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 460,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 24,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Values",
+     "wPct": 68
+    },
+    {
+     "tag": "h3",
+     "size": 24,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way.",
+     "wPct": 18
+    }
+   ],
+   "media": [
+    {
+     "wPct": 57,
+     "h": 530
+    },
+    {
+     "wPct": 57,
+     "h": 530
+    },
+    {
+     "wPct": 28,
+     "h": 530
+    },
+    {
+     "wPct": 28,
+     "h": 530
+    }
+   ]
+  },
+  {
+   "h": 1727,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -283,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Explore Apple Vision Pro accessories.",
+     "wPct": 38
+    },
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "An exciting new platform. A world of new opp",
+     "wPct": 62
+    }
+   ],
+   "media": [
+    {
+     "wPct": 44,
+     "h": 440
+    },
+    {
+     "wPct": 40,
+     "h": 157
+    }
+   ]
+  }
+ ],
+ "ramp": [
+  [
+   "P 80/700",
+   8
+  ],
+  [
+   "H2 56/600",
+   3
+  ],
+  [
+   "H1 34/600",
+   1
+  ],
+  [
+   "H3 32/700",
+   5
+  ],
+  [
+   "H2 28/600",
+   1
+  ],
+  [
+   "H2 24/700",
+   8
+  ],
+  [
+   "H3 24/600",
+   2
+  ],
+  [
+   "P 24/400",
+   3
+  ],
+  [
+   "P 21/600",
+   14
+  ],
+  [
+   "P 21/400",
+   3
+  ],
+  [
+   "P 17/600",
+   48
+  ]
+ ]
+}
+
+===== vision-pro @390 =====
+{
+ "vw": 390,
+ "pageH": 22650,
+ "chapters": [
+  {
+   "h": 1688,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": -660,
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 34,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Apple Vision Pro",
+     "wPct": 88
+    },
+    {
+     "tag": "h2",
+     "size": 17,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "New powerful M5 chip and comfortable Dual Kn",
+     "wPct": 72
+    }
+   ],
+   "media": [
+    {
+     "wPct": 197,
+     "h": 811
+    }
+   ]
+  },
+  {
+   "h": 844,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": null,
+   "heads": [],
+   "media": []
+  },
+  {
+   "h": 1146,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": -383,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Take a closer look.",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 243
+    },
+    {
+     "wPct": 100,
+     "h": 243
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    }
+   ]
+  },
+  {
+   "h": 8059,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 206,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 19,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Entertainment",
+     "wPct": 88
+    },
+    {
+     "tag": "h2",
+     "size": 19,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Productivity",
+     "wPct": 88
+    },
+    {
+     "tag": "h2",
+     "size": 19,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Photos and Videos",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 243
+    },
+    {
+     "wPct": 100,
+     "h": 243
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    }
+   ]
+  },
+  {
+   "h": 1632,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 206,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 19,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "visionOS",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 243
+    },
+    {
+     "wPct": 100,
+     "h": 243
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    },
+    {
+     "wPct": 72,
+     "h": 385
+    }
+   ]
+  },
+  {
+   "h": 5094,
+   "padTop": 110,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -12658,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 19,
+     "weight": "700",
+     "color": "rgb(245, 245, 247)",
+     "text": "Technology",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(255, 255, 255)",
+     "text": "Pushing boundaries from the inside out.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "700",
+     "color": "rgb(255, 255, 255)",
+     "text": "More pixels than a 4K TV. For each eye.",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 87,
+     "h": 187
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 100,
+     "h": 220
+    }
+   ]
+  },
+  {
+   "h": 1285,
+   "padTop": 110,
+   "padBottom": 25,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 356,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 19,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Values",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way.",
+     "wPct": 58
+    }
+   ],
+   "media": [
+    {
+     "wPct": 72,
+     "h": 386
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    },
+    {
+     "wPct": 72,
+     "h": 386
+    }
+   ]
+  },
+  {
+   "h": 1458,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -356,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Explore Apple Vision Pro accessories.",
+     "wPct": 77
+    },
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "An exciting new platform. A world of new opp",
+     "wPct": 77
+    }
+   ],
+   "media": [
+    {
+     "wPct": 77,
+     "h": 206
+    },
+    {
+     "wPct": 77,
+     "h": 82
+    }
+   ]
+  }
+ ],
+ "ramp": [
+  [
+   "P 40/700",
+   8
+  ],
+  [
+   "H1 34/600",
+   1
+  ],
+  [
+   "H2 32/600",
+   3
+  ],
+  [
+   "H3 32/700",
+   1
+  ],
+  [
+   "H3 21/600",
+   2
+  ],
+  [
+   "H3 21/700",
+   4
+  ],
+  [
+   "H2 19/700",
+   8
+  ],
+  [
+   "H2 17/400",
+   33
+  ],
+  [
+   "H2 17/600",
+   1
+  ],
+  [
+   "P 17/600",
+   11
+  ],
+  [
+   "P 17/400",
+   6
+  ]
+ ]
+}
+
+===== education @1440 =====
+{
+ "vw": 1440,
+ "pageH": 7317,
+ "chapters": [
+  {
+   "h": 734,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": 29,
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 34,
+     "weight": "600",
+     "color": "rgb(245, 245, 247)",
+     "text": "Apple Education",
+     "wPct": 0
+    },
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(245, 245, 247)",
+     "text": "Designed for every kind of learner.",
+     "wPct": 45
+    }
+   ],
+   "media": [
+    {
+     "wPct": 3,
+     "h": 56
+    },
+    {
+     "wPct": 100,
+     "h": 830
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    }
+   ]
+  },
+  {
+   "h": 685,
+   "padTop": 80,
+   "padBottom": 80,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": -372,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 25.5,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Imagine what’s possible with Apple Education",
+     "wPct": 28
+    },
+    {
+     "tag": "h2",
+     "size": 25.5,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Empower learning that starts with agency.",
+     "wPct": 28
+    }
+   ],
+   "media": [
+    {
+     "wPct": 30,
+     "h": 242
+    },
+    {
+     "wPct": 30,
+     "h": 242
+    }
+   ]
+  },
+  {
+   "h": 1985,
+   "padTop": 100,
+   "padBottom": 144,
+   "bg": "rgb(250, 248, 246)",
+   "gapHeadMedia": 177,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 80,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Education that’s a grade ahead.",
+     "wPct": 42
+    },
+    {
+     "tag": "h3",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Intuitive devices built to engage.",
+     "wPct": 34
+    },
+    {
+     "tag": "h3",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Versatile tools that enable expression.",
+     "wPct": 34
+    }
+   ],
+   "media": [
+    {
+     "wPct": 43,
+     "h": 386
+    },
+    {
+     "wPct": 43,
+     "h": 386
+    },
+    {
+     "wPct": 43,
+     "h": 386
+    },
+    {
+     "wPct": 43,
+     "h": 386
+    }
+   ]
+  },
+  {
+   "h": 771,
+   "padTop": 144,
+   "padBottom": 144,
+   "bg": "rgb(0, 0, 0)",
+   "gapHeadMedia": 44,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(245, 245, 247)",
+     "text": "From grade school to grad school.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "K–12",
+     "wPct": 21
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "Higher Education",
+     "wPct": 21
+    }
+   ],
+   "media": [
+    {
+     "wPct": 28,
+     "h": 600
+    },
+    {
+     "wPct": 28,
+     "h": 600
+    },
+    {
+     "wPct": 28,
+     "h": 600
+    }
+   ]
+  },
+  {
+   "h": 771,
+   "padTop": 144,
+   "padBottom": 144,
+   "bg": "rgb(250, 248, 246)",
+   "gapHeadMedia": 36,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Real stories. Real impact.",
+     "wPct": 66
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "Higher Education",
+     "wPct": 34
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "K–12",
+     "wPct": 34
+    }
+   ],
+   "media": [
+    {
+     "wPct": 48,
+     "h": 403
+    },
+    {
+     "wPct": 48,
+     "h": 403
+    },
+    {
+     "wPct": 48,
+     "h": 403
+    },
+    {
+     "wPct": 48,
+     "h": 403
+    }
+   ]
+  },
+  {
+   "h": 660,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": -286,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "How to Buy.",
+     "wPct": 29
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 660
+    }
+   ]
+  },
+  {
+   "h": 735,
+   "padTop": 144,
+   "padBottom": 144,
+   "bg": "rgb(250, 250, 252)",
+   "gapHeadMedia": 72,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way.",
+     "wPct": 66
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Private and secure. On campus and off.",
+     "wPct": 21
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Innovation that’s accessible for every learn",
+     "wPct": 21
+    }
+   ],
+   "media": [
+    {
+     "wPct": 2,
+     "h": 38
+    },
+    {
+     "wPct": 3,
+     "h": 38
+    },
+    {
+     "wPct": 3,
+     "h": 37
+    }
+   ]
+  }
+ ],
+ "ramp": [
+  [
+   "H2 80/600",
+   1
+  ],
+  [
+   "H2 64/600",
+   1
+  ],
+  [
+   "H3 48/600",
+   4
+  ],
+  [
+   "H2 48/600",
+   5
+  ],
+  [
+   "H1 34/600",
+   1
+  ],
+  [
+   "P 28/600",
+   7
+  ],
+  [
+   "H3 28/600",
+   3
+  ],
+  [
+   "H2 25.5/600",
+   2
+  ],
+  [
+   "P 21/400",
+   5
+  ],
+  [
+   "H3 21/600",
+   3
+  ],
+  [
+   "H3 17/600",
+   7
+  ],
+  [
+   "P 17/400",
+   9
+  ]
+ ]
+}
+
+===== education @390 =====
+{
+ "vw": 390,
+ "pageH": 7975,
+ "chapters": [
+  {
+   "h": 613,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": 29,
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 34,
+     "weight": "600",
+     "color": "rgb(245, 245, 247)",
+     "text": "Apple Education",
+     "wPct": 0
+    },
+    {
+     "tag": "h2",
+     "size": 40,
+     "weight": "600",
+     "color": "rgb(245, 245, 247)",
+     "text": "Designed for every kind of learner.",
+     "wPct": 75
+    }
+   ],
+   "media": [
+    {
+     "wPct": 8,
+     "h": 40
+    },
+    {
+     "wPct": 100,
+     "h": 709
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    }
+   ]
+  },
+  {
+   "h": 942,
+   "padTop": 96,
+   "padBottom": 96,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": -236,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Imagine what’s possible with Apple Education",
+     "wPct": 62
+    },
+    {
+     "tag": "h2",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Empower learning that starts with agency.",
+     "wPct": 62
+    }
+   ],
+   "media": [
+    {
+     "wPct": 65,
+     "h": 142
+    },
+    {
+     "wPct": 65,
+     "h": 142
+    }
+   ]
+  },
+  {
+   "h": 2660,
+   "padTop": 100,
+   "padBottom": 112,
+   "bg": "rgb(250, 248, 246)",
+   "gapHeadMedia": 225,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Education that’s a grade ahead.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Intuitive devices built to engage.",
+     "wPct": 71
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Versatile tools that enable expression.",
+     "wPct": 71
+    }
+   ],
+   "media": [
+    {
+     "wPct": 87,
+     "h": 200
+    },
+    {
+     "wPct": 87,
+     "h": 200
+    },
+    {
+     "wPct": 87,
+     "h": 200
+    },
+    {
+     "wPct": 87,
+     "h": 200
+    }
+   ]
+  },
+  {
+   "h": 581,
+   "padTop": 112,
+   "padBottom": 112,
+   "bg": "rgb(0, 0, 0)",
+   "gapHeadMedia": 30,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(245, 245, 247)",
+     "text": "From grade school to grad school.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "K–12",
+     "wPct": 54
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "Higher Education",
+     "wPct": 54
+    }
+   ],
+   "media": [
+    {
+     "wPct": 67,
+     "h": 432
+    },
+    {
+     "wPct": 67,
+     "h": 432
+    },
+    {
+     "wPct": 67,
+     "h": 432
+    }
+   ]
+  },
+  {
+   "h": 615,
+   "padTop": 112,
+   "padBottom": 112,
+   "bg": "rgb(250, 248, 246)",
+   "gapHeadMedia": 48,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Real stories. Real impact.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "Higher Education",
+     "wPct": 54
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgba(255, 255, 255, 0.92)",
+     "text": "K–12",
+     "wPct": 54
+    }
+   ],
+   "media": [
+    {
+     "wPct": 67,
+     "h": 287
+    },
+    {
+     "wPct": 67,
+     "h": 287
+    },
+    {
+     "wPct": 67,
+     "h": 287
+    },
+    {
+     "wPct": 67,
+     "h": 287
+    }
+   ]
+  },
+  {
+   "h": 661,
+   "padTop": 112,
+   "padBottom": 0,
+   "bg": "rgb(255, 255, 255)",
+   "gapHeadMedia": 135,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "How to Buy.",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 188,
+     "h": 378
+    }
+   ]
+  },
+  {
+   "h": 632,
+   "padTop": 112,
+   "padBottom": 112,
+   "bg": "rgb(250, 250, 252)",
+   "gapHeadMedia": 54,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Private and secure. On campus and off.",
+     "wPct": 54
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Innovation that’s accessible for every learn",
+     "wPct": 54
+    }
+   ],
+   "media": [
+    {
+     "wPct": 7,
+     "h": 37
+    },
+    {
+     "wPct": 9,
+     "h": 35
+    },
+    {
+     "wPct": 9,
+     "h": 33
+    }
+   ]
+  }
+ ],
+ "ramp": [
+  [
+   "H2 48/600",
+   1
+  ],
+  [
+   "H2 40/600",
+   1
+  ],
+  [
+   "H1 34/600",
+   1
+  ],
+  [
+   "H2 32/600",
+   5
+  ],
+  [
+   "H3 28/600",
+   4
+  ],
+  [
+   "H2 21/600",
+   2
+  ],
+  [
+   "P 21/600",
+   7
+  ],
+  [
+   "H3 21/600",
+   3
+  ],
+  [
+   "P 19/400",
+   2
+  ],
+  [
+   "H2 17/400",
+   33
+  ],
+  [
+   "H3 17/600",
+   3
+  ],
+  [
+   "P 17/400",
+   6
+  ]
+ ]
+}
+
+===== airpods-pro @1440 =====
+{
+ "vw": 1440,
+ "pageH": 29619,
+ "chapters": [
+  {
+   "h": 900,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": -675,
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods Pro 3",
+     "wPct": 50
+    },
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "The world’s best in‑ear Active Noise Cancell",
+     "wPct": 50
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 900
+    },
+    {
+     "wPct": 100,
+     "h": 900
+    },
+    {
+     "wPct": 100,
+     "h": 900
+    },
+    {
+     "wPct": 100,
+     "h": 900
+    }
+   ]
+  },
+  {
+   "h": 1226,
+   "padTop": 160,
+   "padBottom": 216,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 80,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Get the highlights.",
+     "wPct": 66
+    }
+   ],
+   "media": [
+    {
+     "wPct": 88,
+     "h": 680
+    },
+    {
+     "wPct": 88,
+     "h": 680
+    },
+    {
+     "wPct": 88,
+     "h": 680
+    },
+    {
+     "wPct": 88,
+     "h": 680
+    }
+   ]
+  },
+  {
+   "h": 1060,
+   "padTop": 0,
+   "padBottom": 160,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -2256,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Take a closer look.",
+     "wPct": 66
+    }
+   ],
+   "media": [
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 120,
+     "h": 912
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    }
+   ]
+  },
+  {
+   "h": 18348,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -583,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Intelligent noise control",
+     "wPct": 100
+    },
+    {
+     "tag": "h3",
+     "size": 96,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "The best thingyou’ve neverheard.",
+     "wPct": 100
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "New ultra-low-noise microphones.",
+     "wPct": 19
+    }
+   ],
+   "media": [
+    {
+     "wPct": 100,
+     "h": 1440
+    },
+    {
+     "wPct": 100,
+     "h": 1440
+    },
+    {
+     "wPct": 100,
+     "h": 1440
+    },
+    {
+     "wPct": 100,
+     "h": 1440
+    }
+   ]
+  },
+  {
+   "h": 946,
+   "padTop": 160,
+   "padBottom": 0,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 298,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Why Apple is the bestplace to buy AirPods.",
+     "wPct": 66
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Free Engraving",
+     "wPct": 21
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Delivery and Pickup",
+     "wPct": 21
+    }
+   ],
+   "media": [
+    {
+     "wPct": 26,
+     "h": 284
+    },
+    {
+     "wPct": 26,
+     "h": 284
+    },
+    {
+     "wPct": 26,
+     "h": 284
+    },
+    {
+     "wPct": 26,
+     "h": 284
+    }
+   ]
+  },
+  {
+   "h": 2584,
+   "padTop": 160,
+   "padBottom": 216,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 200,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Keep exploring AirPods.",
+     "wPct": 66
+    },
+    {
+     "tag": "h3",
+     "size": 19.9,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods Pro 3\n                              ",
+     "wPct": 26
+    },
+    {
+     "tag": "h3",
+     "size": 19.9,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "New\n\t\t\t\t\t\t\t\t\t\t\n                             ",
+     "wPct": 26
+    }
+   ],
+   "media": [
+    {
+     "wPct": 19,
+     "h": 307
+    },
+    {
+     "wPct": 2,
+     "h": 56
+    },
+    {
+     "wPct": 6,
+     "h": 56
+    },
+    {
+     "wPct": 3,
+     "h": 56
+    }
+   ]
+  },
+  {
+   "h": 764,
+   "padTop": 160,
+   "padBottom": 160,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 157,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods Pro 3 and the environment.",
+     "wPct": 66
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Made with 40% recycled material by weight.",
+     "wPct": 21
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Manufactured with 40% renewable electricity.",
+     "wPct": 21
+    }
+   ],
+   "media": [
+    {
+     "wPct": 3,
+     "h": 56
+    },
+    {
+     "wPct": 2,
+     "h": 56
+    },
+    {
+     "wPct": 3,
+     "h": 56
+    }
+   ]
+  },
+  {
+   "h": 637,
+   "padTop": 0,
+   "padBottom": 160,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 108,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way.",
+     "wPct": 66
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "A plan as innovative as our products.",
+     "wPct": 21
+    },
+    {
+     "tag": "h3",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Privacy. That’s Apple.",
+     "wPct": 21
+    }
+   ],
+   "media": [
+    {
+     "wPct": 3,
+     "h": 56
+    },
+    {
+     "wPct": 2,
+     "h": 56
+    },
+    {
+     "wPct": 3,
+     "h": 56
+    }
+   ]
+  },
+  {
+   "h": 694,
+   "padTop": 160,
+   "padBottom": 160,
+   "bg": "rgb(250, 250, 252)",
+   "gapHeadMedia": null,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 56,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "400",
+     "color": "rgb(110, 110, 115)",
+     "text": "Explore AirPods",
+     "wPct": 16
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "400",
+     "color": "rgb(110, 110, 115)",
+     "text": "Shop AirPods",
+     "wPct": 11
+    }
+   ],
+   "media": []
+  }
+ ],
+ "ramp": [
+  [
+   "H3 96/600",
+   7
+  ],
+  [
+   "P 72/600",
+   1
+  ],
+  [
+   "H2 64/600",
+   1
+  ],
+  [
+   "H2 56/600",
+   7
+  ],
+  [
+   "H3 56/600",
+   8
+  ],
+  [
+   "H2 32/600",
+   1
+  ],
+  [
+   "H1 28/600",
+   1
+  ],
+  [
+   "P 28/600",
+   13
+  ],
+  [
+   "H2 28/600",
+   7
+  ],
+  [
+   "H3 28/600",
+   6
+  ],
+  [
+   "P 24/600",
+   10
+  ],
+  [
+   "P 21/600",
+   13
+  ]
+ ]
+}
+
+===== airpods-pro @390 =====
+{
+ "vw": 390,
+ "pageH": 26367,
+ "chapters": [
+  {
+   "h": 800,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": -705,
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods Pro 3",
+     "wPct": 88
+    },
+    {
+     "tag": "h2",
+     "size": 32,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "The world’s best in‑ear Active Noise Cancell",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 100,
+     "h": 800
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    }
+   ]
+  },
+  {
+   "h": 920,
+   "padTop": 96,
+   "padBottom": 196,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": 86,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Get the highlights.",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 103,
+     "h": 480
+    },
+    {
+     "wPct": 103,
+     "h": 480
+    },
+    {
+     "wPct": 103,
+     "h": 480
+    },
+    {
+     "wPct": 103,
+     "h": 480
+    }
+   ]
+  },
+  {
+   "h": 834,
+   "padTop": 0,
+   "padBottom": 96,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -1887,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Take a closer look.",
+     "wPct": 88
+    }
+   ],
+   "media": [
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 227,
+     "h": 768
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    }
+   ]
+  },
+  {
+   "h": 13956,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "gapHeadMedia": -2987,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Intelligent noise control",
+     "wPct": 100
+    },
+    {
+     "tag": "h3",
+     "size": 48,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "The best thingyou’ve neverheard.",
+     "wPct": 100
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "New ultra-low-noise microphones.",
+     "wPct": 35
+    }
+   ],
+   "media": [
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 188,
+     "h": 734
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    },
+    {
+     "wPct": 0,
+     "h": 0
+    }
+   ]
+  },
+  {
+   "h": 711,
+   "padTop": 96,
+   "padBottom": 0,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 275,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Why Apple is the bestplace to buy AirPods.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Free Engraving",
+     "wPct": 54
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Delivery and Pickup",
+     "wPct": 54
+    }
+   ],
+   "media": [
+    {
+     "wPct": 67,
+     "h": 200
+    },
+    {
+     "wPct": 67,
+     "h": 200
+    },
+    {
+     "wPct": 67,
+     "h": 200
+    },
+    {
+     "wPct": 67,
+     "h": 200
+    }
+   ]
+  },
+  {
+   "h": 2176,
+   "padTop": 96,
+   "padBottom": 196,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 86,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Keep exploring AirPods.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 19.9,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods Pro 3\n                              ",
+     "wPct": 41
+    },
+    {
+     "tag": "h3",
+     "size": 19.9,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "New\n\t\t\t\t\t\t\t\t\t\t\n                             ",
+     "wPct": 41
+    }
+   ],
+   "media": [
+    {
+     "wPct": 41,
+     "h": 182
+    },
+    {
+     "wPct": 8,
+     "h": 56
+    },
+    {
+     "wPct": 23,
+     "h": 56
+    },
+    {
+     "wPct": 10,
+     "h": 56
+    }
+   ]
+  },
+  {
+   "h": 688,
+   "padTop": 96,
+   "padBottom": 96,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 130,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods Pro 3 and the environment.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Made with 40% recycled material by weight.",
+     "wPct": 54
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Manufactured with 40% renewable electricity.",
+     "wPct": 54
+    }
+   ],
+   "media": [
+    {
+     "wPct": 11,
+     "h": 56
+    },
+    {
+     "wPct": 8,
+     "h": 56
+    },
+    {
+     "wPct": 9,
+     "h": 56
+    }
+   ]
+  },
+  {
+   "h": 554,
+   "padTop": 0,
+   "padBottom": 96,
+   "bg": "rgb(245, 245, 247)",
+   "gapHeadMedia": 72,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way.",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "A plan as innovative as our products.",
+     "wPct": 54
+    },
+    {
+     "tag": "h3",
+     "size": 21,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Privacy. That’s Apple.",
+     "wPct": 54
+    }
+   ],
+   "media": [
+    {
+     "wPct": 11,
+     "h": 56
+    },
+    {
+     "wPct": 8,
+     "h": 56
+    },
+    {
+     "wPct": 10,
+     "h": 56
+    }
+   ]
+  },
+  {
+   "h": 830,
+   "padTop": 96,
+   "padBottom": 96,
+   "bg": "rgb(250, 250, 252)",
+   "gapHeadMedia": null,
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 28,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "AirPods",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "400",
+     "color": "rgb(110, 110, 115)",
+     "text": "Explore AirPods",
+     "wPct": 88
+    },
+    {
+     "tag": "h3",
+     "size": 14,
+     "weight": "400",
+     "color": "rgb(110, 110, 115)",
+     "text": "Shop AirPods",
+     "wPct": 88
+    }
+   ],
+   "media": []
+  }
+ ],
+ "ramp": [
+  [
+   "H3 48/600",
+   7
+  ],
+  [
+   "P 40/600",
+   1
+  ],
+  [
+   "H2 32/600",
+   1
+  ],
+  [
+   "H3 32/600",
+   8
+  ],
+  [
+   "H2 28/600",
+   7
+  ],
+  [
+   "H2 24/600",
+   1
+  ],
+  [
+   "H1 21/600",
+   1
+  ],
+  [
+   "H2 21/600",
+   7
+  ],
+  [
+   "P 21/600",
+   7
+  ],
+  [
+   "H3 21/600",
+   6
+  ],
+  [
+   "H3 19.9/600",
+   2
+  ],
+  [
+   "P 19/600",
+   7
+  ]
+ ]
+}
+
+DONE

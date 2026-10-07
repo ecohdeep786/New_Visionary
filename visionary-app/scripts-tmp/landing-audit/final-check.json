@@ -1,15 +1,15 @@
 {
   "320": {
     "vw": 320,
-    "docH": 10080,
+    "docH": 8061,
     "overflows": [
       "IMG.absolute select-none right:75",
       "IMG.absolute select-none right:331",
       "BUTTON.flex h-full min-w-[104px] flex-none item right:329",
       "BUTTON.flex h-full min-w-[104px] flex-none item right:445",
       "BUTTON.flex h-full min-w-[104px] flex-none item right:566",
-      "DIV.absolute inset-0 transition-transform ea right:345",
-      "DIV.absolute inset-0 right:345",
+      "DIV.absolute inset-0 right:346",
+      "DIV.absolute inset-0 right:346",
       "DIV.absolute inset-0 right:346"
     ],
     "sections": [
@@ -33,13 +33,13 @@
         "padB": "56px",
         "bg": "rgb(255, 255, 255)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Seeing progress is easy. Knowing how to help",
+        "h2": "Teaching everyone is possible. Reaching ever",
         "h2Size": 28,
         "h2Track": "-0.252px",
         "h2Lh": "29.68px",
         "kickerGap": 38,
-        "firstGap": 80,
-        "lastGap": 32
+        "firstGap": 56,
+        "lastGap": 56
       },
       {
         "key": "03-promise",
@@ -52,8 +52,8 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": null,
-        "firstGap": 81,
-        "lastGap": 32
+        "firstGap": 57,
+        "lastGap": 56
       },
       {
         "key": "04-meet",
@@ -61,7 +61,7 @@
         "padB": "80px",
         "bg": "rgb(255, 255, 255)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "It grows with you.",
+        "h2": "It remembers.",
         "h2Size": 40,
         "h2Track": "-0.36px",
         "h2Lh": "42.4px",
@@ -80,8 +80,8 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 105,
-        "lastGap": 56
+        "firstGap": 81,
+        "lastGap": 80
       },
       {
         "key": "06-journey",
@@ -94,8 +94,8 @@
         "h2Track": "normal",
         "h2Lh": "35.2px",
         "kickerGap": -358,
-        "firstGap": 25,
-        "lastGap": 56
+        "firstGap": 1,
+        "lastGap": 80
       },
       {
         "key": "08-trust",
@@ -103,27 +103,27 @@
         "padB": "80px",
         "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Your progress.",
+        "h2": "Your information.",
         "h2Size": 32,
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 105,
-        "lastGap": 56
+        "firstGap": 81,
+        "lastGap": 80
       },
       {
         "key": "09-cta",
         "padT": "80px",
         "padB": "80px",
-        "bg": "rgb(255, 255, 255)",
+        "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
         "h2": "Your next step starts here.",
         "h2Size": 32,
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 105,
-        "lastGap": 56
+        "firstGap": 81,
+        "lastGap": 80
       }
     ],
     "journey": [
@@ -176,30 +176,6 @@
     "btns": [
       {
         "t": "Explore student learning",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore teaching tools",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore parent support",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore professional wor",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore organization lea",
         "h": 44,
         "fs": 17,
         "radius": "9999px"
@@ -230,61 +206,63 @@
         {
           "copyCx": 160,
           "imgCx": 160,
-          "top": 2350,
-          "bottom": 2900,
-          "gapAbove": 64,
+          "top": 2363,
+          "bottom": 2913,
+          "gapAbove": 96,
           "rowGap": "normal"
         },
         {
-          "copyCx": 160,
-          "imgCx": 160,
-          "top": 2980,
-          "bottom": 3589,
-          "gapAbove": 630,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": -2913,
           "rowGap": "normal"
         },
         {
-          "copyCx": 160,
-          "imgCx": 160,
-          "top": 3669,
-          "bottom": 4219,
-          "gapAbove": 689,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         },
         {
-          "copyCx": 160,
-          "imgCx": 160,
-          "top": 4299,
-          "bottom": 4561,
-          "gapAbove": 630,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         },
         {
-          "copyCx": 160,
-          "imgCx": 160,
-          "top": 4641,
-          "bottom": 4932,
-          "gapAbove": 342,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         }
       ]
     },
     "journeyHeaderLeft": 24,
-    "journeyCardLeft": -208,
-    "journeyLeftDelta": 232
+    "journeyTrackLeftPad": 24,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 24,
+    "journeyLeftDelta": 0
   },
   "390": {
     "vw": 390,
-    "docH": 10171,
+    "docH": 8416,
     "overflows": [
       "IMG.absolute select-none right:91",
       "IMG.absolute select-none right:403",
       "BUTTON.flex h-full min-w-[104px] flex-none item right:445",
       "BUTTON.flex h-full min-w-[104px] flex-none item right:566",
-      "DIV.absolute inset-0 transition-transform ea right:430",
-      "DIV.absolute inset-0 right:430",
-      "DIV.absolute inset-0 right:427",
-      "DIV.absolute inset-0 right:430"
+      "DIV.absolute inset-0 transition-transform ea right:429",
+      "DIV.absolute inset-0 right:429",
+      "DIV.absolute inset-0 right:429",
+      "DIV.absolute inset-0 right:429"
     ],
     "sections": [
       {
@@ -307,13 +285,13 @@
         "padB": "56px",
         "bg": "rgb(255, 255, 255)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Teaching everyone is possible. Reaching ever",
+        "h2": "Seeing progress is easy. Knowing how to help",
         "h2Size": 28,
         "h2Track": "-0.252px",
         "h2Lh": "29.68px",
         "kickerGap": 38,
-        "firstGap": 80,
-        "lastGap": 32
+        "firstGap": 56,
+        "lastGap": 56
       },
       {
         "key": "03-promise",
@@ -326,8 +304,8 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": null,
-        "firstGap": 81,
-        "lastGap": 32
+        "firstGap": 57,
+        "lastGap": 56
       },
       {
         "key": "04-meet",
@@ -354,8 +332,8 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 119,
-        "lastGap": 70
+        "firstGap": 95,
+        "lastGap": 94
       },
       {
         "key": "06-journey",
@@ -368,8 +346,8 @@
         "h2Track": "normal",
         "h2Lh": "35.2px",
         "kickerGap": -364,
-        "firstGap": 25,
-        "lastGap": 70
+        "firstGap": 1,
+        "lastGap": 94
       },
       {
         "key": "08-trust",
@@ -382,22 +360,22 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 119,
-        "lastGap": 70
+        "firstGap": 95,
+        "lastGap": 94
       },
       {
         "key": "09-cta",
         "padT": "93.6px",
         "padB": "93.6px",
-        "bg": "rgb(255, 255, 255)",
+        "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
         "h2": "Your next step starts here.",
         "h2Size": 32,
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 119,
-        "lastGap": 70
+        "firstGap": 95,
+        "lastGap": 94
       }
     ],
     "journey": [
@@ -455,30 +433,6 @@
         "radius": "9999px"
       },
       {
-        "t": "Explore teaching tools",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore parent support",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore professional wor",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore organization lea",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
         "t": "Get started",
         "h": 44,
         "fs": 17,
@@ -504,52 +458,54 @@
         {
           "copyCx": 195,
           "imgCx": 195,
-          "top": 2552,
-          "bottom": 2784,
-          "gapAbove": 64,
+          "top": 2554,
+          "bottom": 3144,
+          "gapAbove": 96,
           "rowGap": "normal"
         },
         {
-          "copyCx": 195,
-          "imgCx": 195,
-          "top": 2864,
-          "bottom": 3514,
-          "gapAbove": 312,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": -3144,
           "rowGap": "normal"
         },
         {
-          "copyCx": 195,
-          "imgCx": 195,
-          "top": 3594,
-          "bottom": 4214,
-          "gapAbove": 730,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         },
         {
-          "copyCx": 195,
-          "imgCx": 195,
-          "top": 4294,
-          "bottom": 4556,
-          "gapAbove": 700,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         },
         {
-          "copyCx": 195,
-          "imgCx": 195,
-          "top": 4636,
-          "bottom": 4898,
-          "gapAbove": 342,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         }
       ]
     },
     "journeyHeaderLeft": 24,
-    "journeyCardLeft": 24,
+    "journeyTrackLeftPad": 24,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 24,
     "journeyLeftDelta": 0
   },
   "768": {
     "vw": 768,
-    "docH": 10380,
+    "docH": 8805,
     "overflows": [
       "IMG.absolute select-none right:158",
       "IMG.absolute select-none right:791",
@@ -586,8 +542,8 @@
         "h2Track": "-0.27648px",
         "h2Lh": "32.5632px",
         "kickerGap": 38,
-        "firstGap": 80,
-        "lastGap": 32
+        "firstGap": 56,
+        "lastGap": 56
       },
       {
         "key": "03-promise",
@@ -600,8 +556,8 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": null,
-        "firstGap": 81,
-        "lastGap": 32
+        "firstGap": 57,
+        "lastGap": 56
       },
       {
         "key": "04-meet",
@@ -628,8 +584,8 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 121,
-        "lastGap": 60
+        "firstGap": 97,
+        "lastGap": 84
       },
       {
         "key": "06-journey",
@@ -642,8 +598,8 @@
         "h2Track": "normal",
         "h2Lh": "35.2px",
         "kickerGap": -352,
-        "firstGap": 25,
-        "lastGap": 72
+        "firstGap": 1,
+        "lastGap": 96
       },
       {
         "key": "08-trust",
@@ -656,22 +612,22 @@
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 121,
-        "lastGap": 72
+        "firstGap": 97,
+        "lastGap": 96
       },
       {
         "key": "09-cta",
         "padT": "96px",
         "padB": "96px",
-        "bg": "rgb(255, 255, 255)",
+        "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
         "h2": "Your next step starts here.",
         "h2Size": 32,
         "h2Track": "-0.288px",
         "h2Lh": "33.92px",
         "kickerGap": 12,
-        "firstGap": 121,
-        "lastGap": 72
+        "firstGap": 97,
+        "lastGap": 96
       }
     ],
     "journey": [
@@ -729,30 +685,6 @@
         "radius": "9999px"
       },
       {
-        "t": "Explore teaching tools",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore parent support",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore professional wor",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
-        "t": "Explore organization lea",
-        "h": 44,
-        "fs": 17,
-        "radius": "9999px"
-      },
-      {
         "t": "Get started",
         "h": 44,
         "fs": 17,
@@ -778,52 +710,54 @@
         {
           "copyCx": 384,
           "imgCx": 384,
-          "top": 2607,
-          "bottom": 2810,
-          "gapAbove": 72,
+          "top": 2631,
+          "bottom": 3254,
+          "gapAbove": 96,
           "rowGap": "normal"
         },
         {
-          "copyCx": 384,
-          "imgCx": 384,
-          "top": 2890,
-          "bottom": 3522,
-          "gapAbove": 283,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": -3254,
           "rowGap": "normal"
         },
         {
-          "copyCx": 384,
-          "imgCx": 384,
-          "top": 3602,
-          "bottom": 4234,
-          "gapAbove": 712,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         },
         {
-          "copyCx": 384,
-          "imgCx": 384,
-          "top": 4314,
-          "bottom": 4517,
-          "gapAbove": 712,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         },
         {
-          "copyCx": 384,
-          "imgCx": 384,
-          "top": 4597,
-          "bottom": 4829,
-          "gapAbove": 283,
+          "copyCx": 0,
+          "imgCx": 0,
+          "top": 0,
+          "bottom": 0,
+          "gapAbove": 0,
           "rowGap": "normal"
         }
       ]
     },
     "journeyHeaderLeft": 24,
-    "journeyCardLeft": -327,
-    "journeyLeftDelta": 351
+    "journeyTrackLeftPad": 24,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 24,
+    "journeyLeftDelta": 0
   },
   "1024": {
     "vw": 1024,
-    "docH": 8062,
+    "docH": 8997,
     "overflows": [
       "FIGURE.relative m-0 flex w-[78%] flex-none snap right:44",
       "IMG.aspect-[4/3] w-full flex-none select-non right:44",
@@ -860,8 +794,8 @@
         "h2Track": "-0.36864px",
         "h2Lh": "43.4176px",
         "kickerGap": 42,
-        "firstGap": 96,
-        "lastGap": 48
+        "firstGap": 72,
+        "lastGap": 72
       },
       {
         "key": "03-promise",
@@ -874,8 +808,8 @@
         "h2Track": "-0.359424px",
         "h2Lh": "42.3322px",
         "kickerGap": null,
-        "firstGap": 97,
-        "lastGap": 48
+        "firstGap": 73,
+        "lastGap": 72
       },
       {
         "key": "04-meet",
@@ -902,8 +836,8 @@
         "h2Track": "-0.359424px",
         "h2Lh": "42.3322px",
         "kickerGap": 12,
-        "firstGap": 127,
-        "lastGap": 66
+        "firstGap": 103,
+        "lastGap": 90
       },
       {
         "key": "06-journey",
@@ -916,8 +850,8 @@
         "h2Track": "normal",
         "h2Lh": "35.2px",
         "kickerGap": -415,
-        "firstGap": 25,
-        "lastGap": 78
+        "firstGap": 1,
+        "lastGap": 102
       },
       {
         "key": "08-trust",
@@ -930,22 +864,22 @@
         "h2Track": "-0.359424px",
         "h2Lh": "42.3322px",
         "kickerGap": 12,
-        "firstGap": 127,
-        "lastGap": 78
+        "firstGap": 103,
+        "lastGap": 102
       },
       {
         "key": "09-cta",
         "padT": "102.4px",
         "padB": "102.4px",
-        "bg": "rgb(255, 255, 255)",
+        "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
         "h2": "Your next step starts here.",
         "h2Size": 40,
         "h2Track": "-0.359424px",
         "h2Lh": "42.3322px",
         "kickerGap": 12,
-        "firstGap": 127,
-        "lastGap": 78
+        "firstGap": 103,
+        "lastGap": 102
       }
     ],
     "journey": [
@@ -1050,63 +984,65 @@
       "centerDelta": 0,
       "rows": [
         {
-          "copyCx": 248,
-          "imgCx": 738,
-          "top": 2676,
-          "bottom": 2898,
-          "gapAbove": 96,
-          "rowGap": "normal 80px"
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 2692,
+          "bottom": 3092,
+          "gapAbove": 112,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 248,
-          "imgCx": 738,
-          "top": 2898,
-          "bottom": 3282,
-          "gapAbove": 222,
-          "rowGap": "normal 80px"
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 3092,
+          "bottom": 3636,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 248,
-          "imgCx": 738,
-          "top": 3282,
-          "bottom": 3632,
-          "gapAbove": 384,
-          "rowGap": "normal 80px"
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 3636,
+          "bottom": 4180,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 248,
-          "imgCx": 738,
-          "top": 3632,
-          "bottom": 3983,
-          "gapAbove": 350,
-          "rowGap": "normal 80px"
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 4180,
+          "bottom": 4724,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 248,
-          "imgCx": 738,
-          "top": 3983,
-          "bottom": 4333,
-          "gapAbove": 351,
-          "rowGap": "normal 80px"
+          "copyCx": 280,
+          "imgCx": 824,
+          "top": 4724,
+          "bottom": 5268,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         }
       ]
     },
     "journeyHeaderLeft": 64,
-    "journeyCardLeft": -458,
-    "journeyLeftDelta": 522
+    "journeyTrackLeftPad": 64,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 64,
+    "journeyLeftDelta": 0
   },
   "1440": {
     "vw": 1440,
-    "docH": 9301,
+    "docH": 10019,
     "overflows": [
-      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:70",
-      "IMG.aspect-[4/3] w-full flex-none select-non right:70",
-      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:70",
-      "P.font-semibold tracking-[0.007em] leading right:30",
-      "P.mt-2 font-normal leading-[1.47] text-[cl right:30",
       "FIGURE.relative m-0 flex w-[78%] flex-none snap right:1521",
       "IMG.aspect-[4/3] w-full flex-none select-non right:1521",
-      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:1521"
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:1521",
+      "P.font-semibold tracking-[0.007em] leading right:1481",
+      "P.mt-2 font-normal leading-[1.47] text-[cl right:1481",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:2247",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:2247",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:2247"
     ],
     "sections": [
       {
@@ -1129,13 +1065,13 @@
         "padB": "90px",
         "bg": "rgb(255, 255, 255)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Seeing progress is easy. Knowing how to help",
+        "h2": "Teaching everyone is possible. Reaching ever",
         "h2Size": 56,
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 48,
-        "firstGap": 114,
-        "lastGap": 66
+        "firstGap": 90,
+        "lastGap": 90
       },
       {
         "key": "03-promise",
@@ -1148,8 +1084,8 @@
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": null,
-        "firstGap": 115,
-        "lastGap": 66
+        "firstGap": 91,
+        "lastGap": 90
       },
       {
         "key": "04-meet",
@@ -1157,7 +1093,7 @@
         "padB": "144px",
         "bg": "rgb(255, 255, 255)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "It grows with you.",
+        "h2": "It remembers.",
         "h2Size": 64,
         "h2Track": "-0.576px",
         "h2Lh": "67.84px",
@@ -1176,8 +1112,8 @@
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 12,
-        "firstGap": 169,
-        "lastGap": 108
+        "firstGap": 145,
+        "lastGap": 132
       },
       {
         "key": "06-journey",
@@ -1190,8 +1126,8 @@
         "h2Track": "normal",
         "h2Lh": "44px",
         "kickerGap": -534,
-        "firstGap": 25,
-        "lastGap": 120
+        "firstGap": 1,
+        "lastGap": 144
       },
       {
         "key": "08-trust",
@@ -1199,27 +1135,27 @@
         "padB": "144px",
         "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Your progress.",
+        "h2": "Your privacy.",
         "h2Size": 56,
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 12,
-        "firstGap": 169,
-        "lastGap": 120
+        "firstGap": 145,
+        "lastGap": 144
       },
       {
         "key": "09-cta",
         "padT": "144px",
         "padB": "144px",
-        "bg": "rgb(255, 255, 255)",
+        "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
         "h2": "Your next step starts here.",
         "h2Size": 56,
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 12,
-        "firstGap": 169,
-        "lastGap": 120
+        "firstGap": 145,
+        "lastGap": 144
       }
     ],
     "journey": [
@@ -1324,63 +1260,65 @@
       "centerDelta": 0,
       "rows": [
         {
-          "copyCx": 456,
-          "imgCx": 946,
-          "top": 3060,
-          "bottom": 3358,
-          "gapAbove": 96,
-          "rowGap": "normal 80px"
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 3076,
+          "bottom": 3492,
+          "gapAbove": 112,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 456,
-          "imgCx": 946,
-          "top": 3358,
-          "bottom": 3784,
-          "gapAbove": 298,
-          "rowGap": "normal 80px"
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 3492,
+          "bottom": 4052,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 456,
-          "imgCx": 946,
-          "top": 3784,
-          "bottom": 4210,
-          "gapAbove": 426,
-          "rowGap": "normal 80px"
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 4052,
+          "bottom": 4612,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 456,
-          "imgCx": 946,
-          "top": 4210,
-          "bottom": 4588,
-          "gapAbove": 426,
-          "rowGap": "normal 80px"
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 4612,
+          "bottom": 5172,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 456,
-          "imgCx": 946,
-          "top": 4588,
-          "bottom": 5015,
-          "gapAbove": 378,
-          "rowGap": "normal 80px"
+          "copyCx": 480,
+          "imgCx": 1032,
+          "top": 5172,
+          "bottom": 5732,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         }
       ]
     },
     "journeyHeaderLeft": 90,
-    "journeyCardLeft": -636,
-    "journeyLeftDelta": 726
+    "journeyTrackLeftPad": 90,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 90,
+    "journeyLeftDelta": 0
   },
   "1920": {
     "vw": 1920,
-    "docH": 9780,
+    "docH": 10446,
     "overflows": [
-      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:162",
-      "IMG.aspect-[4/3] w-full flex-none select-non right:162",
-      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:162",
-      "P.font-semibold tracking-[0.007em] leading right:122",
-      "P.mt-2 font-normal leading-[1.47] text-[cl right:122",
-      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:2742",
-      "IMG.aspect-[4/3] w-full flex-none select-non right:2742",
-      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:2742"
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:2650",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:2650",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:2650",
+      "P.font-semibold tracking-[0.007em] leading right:2610",
+      "P.mt-2 font-normal leading-[1.47] text-[cl right:2610",
+      "FIGURE.relative m-0 flex w-[78%] flex-none snap right:3510",
+      "IMG.aspect-[4/3] w-full flex-none select-non right:3510",
+      "FIGCAPTION.flex flex-col px-6 pb-7 pt-6 text-left s right:3510"
     ],
     "sections": [
       {
@@ -1403,13 +1341,13 @@
         "padB": "96px",
         "bg": "rgb(255, 255, 255)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Seeing progress is easy. Knowing how to help",
+        "h2": "Teaching everyone is possible. Reaching ever",
         "h2Size": 56,
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 48,
-        "firstGap": 120,
-        "lastGap": 72
+        "firstGap": 96,
+        "lastGap": 96
       },
       {
         "key": "03-promise",
@@ -1422,8 +1360,8 @@
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": null,
-        "firstGap": 121,
-        "lastGap": 72
+        "firstGap": 97,
+        "lastGap": 96
       },
       {
         "key": "04-meet",
@@ -1450,8 +1388,8 @@
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 12,
-        "firstGap": 169,
-        "lastGap": 108
+        "firstGap": 145,
+        "lastGap": 132
       },
       {
         "key": "06-journey",
@@ -1464,8 +1402,8 @@
         "h2Track": "normal",
         "h2Lh": "44px",
         "kickerGap": -610,
-        "firstGap": 25,
-        "lastGap": 120
+        "firstGap": 1,
+        "lastGap": 144
       },
       {
         "key": "08-trust",
@@ -1473,27 +1411,27 @@
         "padB": "144px",
         "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
-        "h2": "Your privacy.",
+        "h2": "Your information.",
         "h2Size": 56,
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 12,
-        "firstGap": 169,
-        "lastGap": 120
+        "firstGap": 145,
+        "lastGap": 144
       },
       {
         "key": "09-cta",
         "padT": "144px",
         "padB": "144px",
-        "bg": "rgb(255, 255, 255)",
+        "bg": "rgb(245, 245, 247)",
         "borderTop": "rgba(0, 0, 0, 0) 1px",
         "h2": "Your next step starts here.",
         "h2Size": 56,
         "h2Track": "-0.504px",
         "h2Lh": "59.36px",
         "kickerGap": 12,
-        "firstGap": 169,
-        "lastGap": 120
+        "firstGap": 145,
+        "lastGap": 144
       }
     ],
     "journey": [
@@ -1598,50 +1536,52 @@
       "centerDelta": 0,
       "rows": [
         {
-          "copyCx": 696,
-          "imgCx": 1186,
-          "top": 3403,
-          "bottom": 3660,
-          "gapAbove": 96,
-          "rowGap": "normal 80px"
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 3419,
+          "bottom": 3835,
+          "gapAbove": 112,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 696,
-          "imgCx": 1186,
-          "top": 3660,
-          "bottom": 4149,
-          "gapAbove": 257,
-          "rowGap": "normal 80px"
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 3835,
+          "bottom": 4395,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 696,
-          "imgCx": 1186,
-          "top": 4149,
-          "bottom": 4586,
-          "gapAbove": 489,
-          "rowGap": "normal 80px"
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 4395,
+          "bottom": 4955,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 696,
-          "imgCx": 1186,
-          "top": 4586,
-          "bottom": 4972,
-          "gapAbove": 437,
-          "rowGap": "normal 80px"
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 4955,
+          "bottom": 5515,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         },
         {
-          "copyCx": 696,
-          "imgCx": 1186,
-          "top": 4972,
-          "bottom": 5409,
-          "gapAbove": 386,
-          "rowGap": "normal 80px"
+          "copyCx": 720,
+          "imgCx": 1272,
+          "top": 5515,
+          "bottom": 6075,
+          "gapAbove": 0,
+          "rowGap": "normal 64px"
         }
       ]
     },
     "journeyHeaderLeft": 90,
-    "journeyCardLeft": -678,
-    "journeyLeftDelta": 768
+    "journeyTrackLeftPad": 90,
+    "journeyTrackLeftEdge": 0,
+    "journeyCardRestLeft": 90,
+    "journeyLeftDelta": 0
   },
   "targets": {
     "section-pad-phone": "96–112px",
