@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 
@@ -117,18 +117,22 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
 
 const JOURNEY_GALLERY_MS = 5000;
 
-/* The journey gallery on persona pages — one anatomy site-wide. The cards
-   follow Apple Education's category-card grammar ("From grade school to grad
-   school."): the category kicker and its statement live ON the photo,
-   top-left over a legibility veil, and a small white chevron circle
-   bottom-right is the details affordance (the whole card opens the stage's
-   details). The controls are the landing journey's gallery cluster: the
-   #E8E8ED pill around the dot nav beside the play/pause circle, auto-
-   advancing every 5s (opening a card pauses the tour). The track shares the
-   header's measured gutter (left: 90px @1440, 6.25vw) so the statement and
-   the first card sit on one spine, and the next card peeks at the viewport
-   edge. Reduced motion keeps the tour but steps it instantly — the
-   play/pause control still stops and resumes it. */
+
+
+
+/* The journey gallery on persona pages — one anatomy site-wide, rebuilt to
+   Apple's education-initiative story-card grammar (the "Equipping today's
+   learners…" chapter, measured live): cards at 68% of the viewport (980px
+   @1440), 30px radius, the story headline INSIDE the card bottom-left at
+   48px/600 white over Apple's exact bottom smoke (transparent to
+   rgba(0,0,0,0.7) across the lower ~43%), a bare 36px white plus glyph
+   bottom-right, and the whole card as the button that opens the stage's
+   story modal. The controls are Apple's bare 36px glyph row 25px under
+   the card: play/pause left, prev/next right, no dots. Auto-advances
+   every 5s (opening a card pauses the tour; reduced motion steps
+   instantly). The track shares the header's gutter so the statement and
+   the first card sit on one spine, with the next card peeking at the
+   viewport edge. */
 const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label }) {
   const trackRef = useRef(null);
   const lockRef = useRef(0);
@@ -143,8 +147,6 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
     const unit = track.children[1] ? track.children[1].offsetLeft - first.offsetLeft : first.offsetWidth;
     const clamped = Math.min(stages.length - 1, Math.max(0, i));
     setActive(clamped);
-    /* the lock keeps the scroll listener from re-deriving intermediate
-       indices (and jittering the dot pill) while the smooth scroll runs */
     lockRef.current = Date.now() + 700;
     track.scrollTo({ left: clamped * unit, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }, [stages.length]);
@@ -155,7 +157,6 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
     return () => clearInterval(id);
   }, [playing, active, stepTo, stages.length]);
 
-  /* swiping the track by hand keeps the dots honest */
   const onScroll = useCallback(() => {
     if (rafRef.current) return;
     rafRef.current = requestAnimationFrame(() => {
@@ -181,16 +182,16 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
         role="group"
         aria-roledescription="carousel"
         aria-label={label}
-        className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden"
+        className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden"
       >
         {stages.map((stage, i) => (
           <figure key={stage.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
-            className="relative m-0 w-[86%] flex-none snap-start sm:w-[64%] lg:w-[47%]">
+            className="relative m-0 w-[86vw] flex-none snap-start sm:w-[76vw] lg:w-[68vw]">
             <button
               type="button"
               onClick={() => openStage(stage)}
               aria-label={`Open details for ${stage.title}`}
-              className="group relative block w-full overflow-hidden rounded-[var(--radius-media)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+              className="group relative block w-full overflow-hidden rounded-[30px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
             >
               <img
                 src={stage.image}
@@ -198,60 +199,92 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 loading="eager"
                 decoding="async"
                 draggable="false"
-                className="aspect-[16/9] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
+                className="aspect-[4/3] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02] sm:aspect-[1.9]"
               />
-              {/* legibility veil for the on-card type (education pre-grades
-                  its media; ours is stock, so the top-left carries its own
-                  quiet gradient — the ContinuityCard recipe) */}
-              <span className="absolute inset-0 bg-gradient-to-br from-[#121317]/60 via-[#121317]/20 to-transparent" aria-hidden="true" />
-              <span className="absolute left-0 top-0 block max-w-[80%] p-6 text-left sm:p-7 lg:p-8">
-                <span className="block font-semibold tracking-[0] leading-[1.2] text-[17px] text-white">{stage.title}</span>
-                <span key={stage.statement} className="mt-2 block font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(20px,1.8vw,26px)] text-white">{stage.statement || stage.title}</span>
+              {/* Apple's exact bottom smoke (measured on the education-initiative
+                  story cards): transparent to rgba(0,0,0,0.7) across the lower
+                  ~43% of the card, so the bottom-left statement reads on any
+                  stock photo without a full-card veil */}
+              <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
+              {/* the story headline — inside the card, bottom-left, 48px/600
+                  white (measured: lh 52px, inset 36px, up to ~673px wide) */}
+              <span className="absolute bottom-0 left-0 block max-w-[72%] p-6 text-left sm:p-9">
+                <span key={stage.statement} className="block font-semibold tracking-[-0.01em] leading-[1.08] text-[clamp(22px,3.34vw,48px)] text-white">{stage.statement || stage.title}</span>
               </span>
-              <span className="absolute bottom-5 right-5 flex h-10 w-10 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
-                <ChevronIcon className="h-4 w-4" />
+              {/* the bare plus glyph — Apple's story-card affordance: no
+                  circle, no pill, just the white 36px + over the smoke */}
+              <span className="absolute bottom-6 right-6 block h-9 w-9 text-white sm:bottom-6 sm:right-6">
+                <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" className="h-9 w-9" aria-hidden="true">
+                  <path d="M18 8v20M8 18h20" />
+                </svg>
               </span>
             </button>
           </figure>
         ))}
       </div>
-      {/* the gallery controls — the landing journey's cluster: the #E8E8ED
-          pill around the dot nav beside the play/pause circle */}
-      <div className="mt-12 flex items-center justify-center gap-4 px-6 sm:mt-16">
-        <div className="flex h-12 items-center rounded-full bg-[#E8E8ED] px-4 sm:h-14">
-          <CarouselDots total={stages.length} active={active} onSelect={stepTo} label={label} tone="pill" />
-        </div>
+      {/* the controls — Apple's bare 36px glyph row 25px under the cards:
+          play/pause at the track's left edge, prev/next chevrons at the
+          right edge; no dots on this gallery */}
+      <div className="mt-6 flex items-center justify-between px-6 lg:px-[clamp(24px,6.25vw,90px)]">
         <button
           type="button"
           aria-label={playing ? "Pause the journey" : "Play the journey"}
           aria-pressed={!playing}
           onClick={() => setPlaying((v) => !v)}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:h-14 sm:w-14"
-          style={{ color: COLORS.ink }}
+          className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
         >
           {playing ? (
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
-              <rect x="7" y="5.5" width="3.4" height="13" rx="1.1" />
-              <rect x="13.6" y="5.5" width="3.4" height="13" rx="1.1" />
+              <rect x="6.5" y="5" width="4" height="14" rx="1.2" />
+              <rect x="13.5" y="5" width="4" height="14" rx="1.2" />
             </svg>
           ) : (
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px] translate-x-[1px]" aria-hidden="true">
-              <path d="M8.5 5.9c0-.8.9-1.3 1.6-.9l8.2 5.1c.7.4.7 1.4 0 1.8l-8.2 5.1c-.7.5-1.6 0-1.6-.9V5.9z" />
+              <path d="M8 5.5c0-.9 1-1.5 1.8-1l9.6 5.6c.8.5.8 1.7 0 2.2l-9.6 5.6c-.8.5-1.8-.1-1.8-1V5.5z" />
             </svg>
           )}
         </button>
+        <div className="flex items-center gap-5">
+          <button
+            type="button"
+            aria-label={`Previous ${label}`}
+            disabled={active === 0}
+            onClick={() => stepTo(active - 1)}
+            className={`flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === 0 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+          >
+            <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
+          </button>
+          <button
+            type="button"
+            aria-label={`Next ${label}`}
+            disabled={active === stages.length - 1}
+            onClick={() => stepTo(active + 1)}
+            className={`flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${active === stages.length - 1 ? "cursor-default opacity-30" : "hover:opacity-60"}`}
+          >
+            <ChevronIcon className="h-[18px] w-[18px]" />
+          </button>
+        </div>
       </div>
       <p aria-live="polite" className="sr-only">{`${stages[active].title}. ${stages[active].copy}`}</p>
     </div>
   );
 });
 
+
+/* The stage's story popup — Apple's modal-story anatomy (measured on the
+   education-initiative card click-through): a full-screen WHITE blur
+   curtain (rgba(255,255,255,0.48) over blur(20px)), the white panel inset
+   16px at radius 30px, the media full-bleed at the panel's top edge with
+   the stage chip over its own smoke, then the story zone: 48px/600
+   heading, 17px body, the canonical black primary pill, and the feature
+   blocks. Close is Apple's bare glyph over the media. Escape and the
+   backdrop close it; focus is trapped and restored. */
 const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, stageMeta, fallbackKey, secondaryLabel }) {
   const closeRef = useRef(null);
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     closeRef.current?.focus();
-        const onKey = (e) => {
+    const onKey = (e) => {
       if (e.key === "Escape") { onClose(); return; }
       if (e.key !== "Tab") return;
       const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
@@ -280,108 +313,110 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
     : { label: "See how it works", to: "/how-it-works" };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8 sm:px-6" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-[rgba(255,255,255,0.48)] backdrop-blur-[20px] p-4" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
       <button
         type="button"
         tabIndex={-1}
         aria-label="Close dialog"
         onClick={onClose}
-        className="absolute inset-0 h-full w-full cursor-default bg-[#121317]/60"
+        className="fixed inset-0 h-full w-full cursor-default"
       />
 
       <div
-        className="relative max-h-[88vh] w-full max-w-[1080px] overflow-y-auto rounded-[var(--radius-media)] bg-white p-6 sm:p-10 lg:p-14"
+        className="relative mx-auto my-4 max-h-[calc(100vh-32px)] w-full max-w-[1080px] overflow-hidden rounded-[30px] bg-white"
         style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}
       >
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
+        <div className="max-h-[calc(100vh-32px)] overflow-y-auto">
+          {/* the close — Apple's bare modal glyph, top-right over the media */}
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
 
-        <p className="text-[15px] font-normal tracking-[0]" style={{ color: COLORS.grey }}>
-          {stage.title}
-        </p>
-
-        <h3 id="journey-modal-title" className="mt-3 max-w-[860px] font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.9vw,56px)]" style={{ color: COLORS.ink }}>
-          {content.top}
-          <br />
-          <span style={{ color: COLORS.blue }}>{content.accent}</span>
-        </h3>
-
-        <div className="relative mt-8 overflow-hidden rounded-[24px]">
-          <img src={stage.image} alt={stage.alt} className="aspect-[21/9] w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#121317]/60 via-[#121317]/20 to-transparent p-5">
+          {/* media full-bleed to the panel's top/side edges (Apple's story
+              modal carries the film edge-to-edge; the stage chip rides
+              bottom-left over its own smoke) */}
+          <div className="relative">
+            <img src={stage.image} alt={stage.alt} className="aspect-[16/9] w-full object-cover" />
+            <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
             <span
-              className="inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[13px] font-medium tracking-[0]"
+              className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[13px] font-medium tracking-[0] sm:left-9"
               style={{ color: COLORS.ink }}
             >
               <meta.Icon className="h-3.5 w-3.5" strokeWidth={1.8} style={{ color: COLORS.blue }} />
               Visionary for {stage.title}
             </span>
           </div>
-        </div>
 
-        <p className="mt-7 max-w-[680px] font-normal tracking-[0] leading-[1.65] text-[15px] sm:text-[16px]" style={{ color: COLORS.grey }}>
-          {content.intro}
-        </p>
-        <div className="mt-7 flex flex-wrap items-center gap-3">
-          {/* the primary action carries the canonical Apple-black pill — the
-              same system as the hero and closer CTAs (blue is links/accents) */}
-          <Link
-            to={content.primary.to}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#121317] px-6 text-[14px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-          >
-            {content.primary.label}
-            <ChevronIcon className="h-4 w-4" />
-          </Link>
-          <Link
-            to={secondary.to}
-            className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-            style={{ borderColor: COLORS.mist, color: COLORS.ink }}
-          >
-            {secondary.label}
-          </Link>
-        </div>
+          {/* the story zone — Apple's measured breath, text inset from the
+              panel edges; heading at the 48/600 story tier, body 17px */}
+          <div className="px-6 pb-12 pt-10 sm:px-12 sm:pb-14 lg:px-16 lg:pb-[72px] lg:pt-14">
+            <h3 id="journey-modal-title" className="max-w-[760px] font-semibold tracking-[-0.01em] leading-[1.08] text-[clamp(28px,3.34vw,48px)]" style={{ color: COLORS.ink }}>
+              {content.top}
+              <br />
+              <span style={{ color: COLORS.blue }}>{content.accent}</span>
+            </h3>
 
-        <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-          {content.blocks.map((b) => (
-            <div key={b.t} className="border-t pt-6" style={{ borderColor: COLORS.mist }}>
-              <div className="flex items-start gap-4">
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: COLORS.mist, color: COLORS.blue }}
-                >
-                  <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
-                </span>
-                <div className="min-w-0">
-                  <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
-                    <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
-                  </p>
-                  <Link
-                    to={b.to}
-                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                    style={{ color: COLORS.blue }}
-                  >
-                    {b.l}
-                    <ChevronIcon className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
+            <p className="mt-6 max-w-[680px] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>
+              {content.intro}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                to={content.primary.to}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#121317] px-6 text-[14px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              >
+                {content.primary.label}
+                <ChevronIcon className="h-4 w-4" />
+              </Link>
+              <Link
+                to={secondary.to}
+                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                style={{ borderColor: COLORS.mist, color: COLORS.ink }}
+              >
+                {secondary.label}
+              </Link>
             </div>
-          ))}
+
+            <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+              {content.blocks.map((b) => (
+                <div key={b.t} className="border-t pt-6" style={{ borderColor: COLORS.mist }}>
+                  <div className="flex items-start gap-4">
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
+                      style={{ borderColor: COLORS.mist, color: COLORS.blue }}
+                    >
+                      <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
+                        <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
+                      </p>
+                      <Link
+                        to={b.to}
+                        className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                        style={{ color: COLORS.blue }}
+                      >
+                        {b.l}
+                        <ChevronIcon className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 });
-
 const IntelligenceCopy = React.memo(function IntelligenceCopy({ step }) {
   return (
     <div key={step.title} className="hero-fade-up max-w-[460px]">

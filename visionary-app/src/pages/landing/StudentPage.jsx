@@ -298,6 +298,19 @@ const JOURNEY_STAGES = [
 
 const JOURNEY_CATEGORIES = ["Primary", "Secondary and higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
 
+/* Icons per journey-flow card (10 · JOURNEY FLOW) */
+const JOURNEY_STAGE_ICONS = {
+  "Primary": Sparkles,
+  "Secondary": BookOpen,
+  "Secondary and higher secondary": BookOpen,
+  "Higher secondary": Layers3,
+  "Competitive exams": Target,
+  "Vocational and skills": RefreshCw,
+  "Higher education": Brain,
+  "Learning on your own": Clock,
+  "Independent learning": Clock,
+};
+
 const STAGE_META = {
   "Primary": { Icon: GraduationCap },
   "Secondary and higher secondary": { Icon: BookOpen },
@@ -393,15 +406,12 @@ function StudentJourneySection() {
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
         <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
-          <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
-            Your learning, your journey
-          </p>
-          <h2 className="mt-3 min-h-[3.1em] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)] md:min-h-0" style={{ color: COLORS.ink }}>
+          <h2 className="min-h-[3.15em] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)] md:min-h-0" style={{ color: COLORS.ink }}>
             Learning that
             <br className="hidden md:block" />{" "}
             <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
           </h2>
-          <p className="mt-4 max-w-[560px] font-normal tracking-[0] leading-[25px] text-[17.5px]"
+          <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]"
             style={{ color: COLORS.grey }}
           >
             Wherever you begin, Visionary helps your learning move forward from there.

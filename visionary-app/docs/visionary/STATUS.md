@@ -880,3 +880,21 @@ Evidence: all three en/hi/bn personal linked-role journeys pass author/review/as
 Open: wider linked-role/source fixture acceptance, native English/Hindi/Bengali review, physical screen-reader/zoom/voice/audio/clipboard/device tasks and final visual owner sign-off. Public changes remain untouched. No backend commencement or whole-product acceptance.
 
 D-044 final validation: 459/459 full tests, 25/25 focused, all three linked-role language journeys, all nine rebuilt Work review recovery cases, production build, both type checks, full lint and git diff --check pass. Evidence: scripts-tmp/linked-role-full-tests-final.txt, linked-role-types-final.txt, linked-role-lint-final.txt, linked-role-build-final.txt, linked-role-languages-final.txt, review-draft-focused-final.txt and review-draft-work-render-final.txt. Overall frontend acceptance remains OPEN.
+
+### 2026-10-07 — D-045 internal frontend design finishing pass
+
+Done: refined responsive page spacing, readable headings/cards, Home/intro hierarchy and phone artwork; semantic lesson stage navigation and source/title/language hierarchy; collapsed optional learner memory; scoped same-shell scroll return; localized Home and daily-plan interface copy independent of teaching/source text. Corrected Build → Ask destination/context with save-before-leave, a visible editor heading and non-destructive suggested-question fallback. Corrected blank reduced-motion Guide canvas after resize.
+
+Files: dashboard workspace.css/Layout/AudioPresence, DecisionHome/LearningWorkspace/ArtifactStudio/Guide, useWorkspaceScroll, homeCopy/declaration, projectCopy, home/dailyPlan services, three new Home-language regressions and the handoff/evidence index. No public source changes made by this pass; existing public modifications retained.
+
+QA:462 full tests and20 focused tests pass, as do lint/both types/build/diff check. Source-mode20 Home and118 role-route viewport checks pass. Retained final production professional matrix has26 checks; final compiled five-role Home captures and source-mode authored cube-to-project/contextual-Ask journey are indexed in the handoff. Native hi/bn Home reflow was mechanically inspected with English teaching retained; no native reviewer sign-off is inferred.
+
+Open: final owner visual acceptance, native-language/teaching and physical screen-reader/zoom/microphone/audio/clipboard/device tasks, broader permission/source fixtures. Chapter1 is the next founder-supplied content rehearsal after visual review. Backend remains deferred; whole-product acceptance remains OPEN.
+
+## 2026-10-07 — Local reference-driven design completion (D-046)
+
+Done: inspected all six Downloads JPEGs individually; implemented an open white internal shell, plain Learn/Build headers, quieter five-role Home, divided role summaries, ordered chapter rows, consistent class headings/code/section navigation, classwork rows with visible Review and optional lifecycle actions, semantic People sections and invitation disclosure, compact teacher metrics/growth, and divided Connections/organization membership lists. Reused existing Visionary artwork on useful empty states; preserved public source and backend boundaries.
+
+QA:462 full regressions pass; final lint, both types, build and diff check pass. 93 retained reflow observations (70 development / 23 compiled), zero measured document/main overflow; final browser errors empty. Actual class people/invite/action/review/form-cancel and chapter-resume controls verified. Original School personal learner restored; final compiled preview remains at 5173. See REFERENCE_DESIGN_HANDOFF.md for captures and fixture limits.
+
+Open: owner visual, native-language/physical-device/accessibility and wider source/state gates; founder Chapter 1 rehearsal next, backend deferred.

@@ -1,10 +1,11 @@
+import SpotIllustration from '@/components/landing/SpotIllustration';
 import { classColors } from '@/lib/classColors';
 import { primaryWorkspaceCopy } from '@/lib/primaryWorkspaceCopy';
 import AssignedCurriculumOutline from '@/components/dashboard/AssignedCurriculumOutline';
 import ClassCurriculum from '@/components/dashboard/ClassCurriculum';
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { ChevronRight, Send, CheckCircle2, Clock, GraduationCap, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
+import { ChevronRight, Send, CheckCircle2, Clock, ClipboardList, KeyRound, Link2, Megaphone } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useWorkspace } from "@/hooks/useWorkspace";
@@ -282,7 +283,7 @@ export default function StudentClasses() {
   const connectedClasses = classes.filter(c => activeClassIds.has(c.id));
   const invitations = classes.filter(c => !activeClassIds.has(c.id) && enrollments.some(e => e.class_id === c.id && e.status === "invited"));
   const classAssignments = (assignments || []).filter(a => a.class_id === openClassId).sort((x, y) => (y.created_date || "").localeCompare(x.created_date || ""));
-  return <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
+  return <div className="v-page" lang={locale}>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-[28px] font-medium text-[#121317] tracking-tight"> {copy("Your classes")} </h1>
@@ -321,13 +322,7 @@ export default function StudentClasses() {
         borderTopColor: accent
       }} />
         </div> : loadError ? null : connectedClasses.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{
-        backgroundColor: `${accent}15`
-      }}>
-            <GraduationCap className="w-8 h-8" style={{
-          color: accent
-        }} />
-          </div>
+          <SpotIllustration subject="study" className="v-empty-illustration" />
           <div>
             <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
             <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Join with a class code from your teacher. When you connect, assignments and feedback will appear here.")} </p>
@@ -342,18 +337,16 @@ export default function StudentClasses() {
           <button onClick={() => setOpenClassId(null)} className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#121317] self-start">
             <ChevronRight className="w-4 h-4 rotate-180" /> {copy("All classes")} </button>
 
-          <div className="rounded-3xl overflow-hidden">
-            <div className="p-8" style={{
-          ...classColors(openClass.color || accent)
-        }}>
+          <header className="v-class-heading">
+            <div>
               <h2 className="text-[24px] font-medium tracking-tight">{openClass.name}</h2>
               {openClass.section && <p className="text-sm mt-1">{openClass.section}</p>}
               {openClass.subject && <p className="text-sm mt-0.5">{openClass.subject}</p>}
               {openClass.subject && <Link className="v-button mt-4" to={`/dashboard/learn?fromClass=${encodeURIComponent(openClass.id)}`}> {copy("Explore")} {openClass.subject} {copy("in Learn")} </Link>}
             </div>
-          </div>
+          </header>
 
-          <div className="flex flex-wrap gap-2 border-b border-[#dadce0]" aria-label={copy("Class sections")}>{[["classwork", "Classwork"], ["outline", "Learning outline"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#0b57d2]" : "border-transparent text-[#5f6368]"}`}> {copy(label)} </button>)}</div>
+          <div className="v-class-sections" aria-label={copy("Class sections")}>{[["classwork", "Classwork"], ["outline", "Learning outline"], ["stream", "Updates"], ["community", "Community"]].map(([id, label]) => <button key={id} onClick={() => setClassTab(id)} aria-pressed={classTab === id} className={`h-11 border-b-2 px-5 text-sm font-medium ${classTab === id ? "border-[#4285F4] text-[#0b57d2]" : "border-transparent text-[#5f6368]"}`}> {copy(label)} </button>)}</div>
           {classTab === "stream" && <div className="space-y-4">{announcements.filter(a => a.class_id === openClassId).length === 0 ? <div className="py-12 text-center"><Megaphone className="mx-auto mb-3 h-9 w-9 text-[#5f6368]" /><p className="text-sm text-[#5f6368]"> {copy("Class updates from your teacher will appear here.")} </p></div> : announcements.filter(a => a.class_id === openClassId).map(a => <article key={a.id} className="rounded-2xl border border-[#dadce0] p-6"><p className="text-sm font-medium text-[#121317]">{a.author_name || openClass.teacher_name || "Teacher"}</p><p className="mt-1 text-xs text-[#5f6368]">{a.createdAt ? new Date(a.createdAt).toLocaleDateString() : copy("Class update")}</p><p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[#5f6368]">{a.text}</p></article>)}</div>}
 
           {classTab === "outline" && <><ClassCurriculum key={'published:' + ctx?.workspaceId + ':' + openClassId} classId={openClassId} /><AssignedCurriculumOutline key={ctx?.workspaceId + ':' + openClassId} classId={openClassId} /></>}

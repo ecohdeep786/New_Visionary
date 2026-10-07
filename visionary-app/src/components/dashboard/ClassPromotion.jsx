@@ -45,7 +45,7 @@ export default function ClassPromotion({
       setBusy(false);
     }
   }
-  return <details className="rounded-2xl border border-[#dadce0] bg-white p-5">
+  return <details className="border-t border-[#dadce0] pt-5">
       <summary className="flex cursor-pointer items-center gap-2 text-sm font-medium text-[#121317]">
         <GraduationCap className="h-4 w-4" style={{
         color: accent

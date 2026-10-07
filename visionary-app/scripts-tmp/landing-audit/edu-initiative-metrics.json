@@ -1,0 +1,314 @@
+
+===== @1440 =====
+{
+ "vw": 1440,
+ "pageH": 8406,
+ "chapters": [
+  {
+   "h": 900,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [
+    {
+     "tag": "h1",
+     "size": 34,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Education moves learners, leaders, innovators, com"
+    }
+   ],
+   "cards": []
+  },
+  {
+   "h": 492,
+   "padTop": 300,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [],
+   "cards": []
+  },
+  {
+   "h": 953,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Standing alongside educators to move learning forw"
+    }
+   ],
+   "cards": [
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    }
+   ]
+  },
+  {
+   "h": 953,
+   "padTop": 0,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Equipping today’s learners for tomorrow’s opportun"
+    }
+   ],
+   "cards": [
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    }
+   ]
+  },
+  {
+   "h": 973,
+   "padTop": 0,
+   "padBottom": 20,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Advancing equity through education."
+    }
+   ],
+   "cards": [
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    },
+    {
+     "w": 980,
+     "h": 516,
+     "radius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "cls": "story-card with-image",
+     "tag": "div"
+    }
+   ]
+  },
+  {
+   "h": 1953,
+   "padTop": 140,
+   "padBottom": 150,
+   "bg": "rgb(245, 245, 247)",
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our work in education doesn’t end here."
+    },
+    {
+     "tag": "h3",
+     "size": 40,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Striving for a world where all girls can learn and"
+    },
+    {
+     "tag": "h3",
+     "size": 40,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "K–12 Education"
+    },
+    {
+     "tag": "h3",
+     "size": 40,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "University Students"
+    }
+   ],
+   "cards": []
+  },
+  {
+   "h": 738,
+   "padTop": 140,
+   "padBottom": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "More from Apple on education."
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Cherokee language learners bridge generations with"
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Meet four of this year’s Swift Student Challenge w"
+    },
+    {
+     "tag": "h3",
+     "size": 17,
+     "weight": "700",
+     "color": "rgb(29, 29, 31)",
+     "text": "Apple launches new resources for teachers, expands"
+    }
+   ],
+   "cards": []
+  },
+  {
+   "h": 598,
+   "padTop": 140,
+   "padBottom": 140,
+   "bg": "rgba(0, 0, 0, 0)",
+   "heads": [
+    {
+     "tag": "h2",
+     "size": 64,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Our values lead the way."
+    },
+    {
+     "tag": "h3",
+     "size": 19,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Supply Chain Innovation"
+    },
+    {
+     "tag": "h3",
+     "size": 19,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Accessibility"
+    },
+    {
+     "tag": "h3",
+     "size": 19,
+     "weight": "600",
+     "color": "rgb(29, 29, 31)",
+     "text": "Privacy"
+    }
+   ],
+   "cards": []
+  }
+ ]
+}

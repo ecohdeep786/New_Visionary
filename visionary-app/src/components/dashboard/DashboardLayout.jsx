@@ -2,6 +2,7 @@ import {organizationCopy} from '@/lib/organizationCopy';
 import {privacyCopy} from '@/lib/privacyCopy';
 import {useWorkspace} from '@/hooks/useWorkspace';
 import {workspaceText} from '@/lib/workspaceStrings';
+import {useWorkspaceScroll} from '@/hooks/useWorkspaceScroll';
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Navigate, Outlet, useLocation, NavLink } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
@@ -38,7 +39,7 @@ export default function DashboardLayout() {
     window.addEventListener("storage", refresh);
     return () => { window.removeEventListener("visionary:workspace-change", refresh); window.removeEventListener("storage", refresh); };
   }, [queryClient]);
-  useEffect(() => { document.getElementById("main")?.scrollTo(0, 0); }, [location.pathname]);
+  useWorkspaceScroll(user?.id, activeWorkspace?.id, location.pathname, location.search, Boolean(activeWorkspace && !workspaceError && !scopeError));
   useEffect(()=>{
     if(!activeWorkspace)return;
     const route=activeWorkspace.id+':'+location.pathname;

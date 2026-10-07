@@ -128,8 +128,7 @@ function ClassDetailContent({
       }}>{copy("Back to classes")}</Link>
       </div>;
   }
-  const color = classroom.color || accent;
-  return <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full" lang={locale}>
+  return <div className="v-page v-class-detail" lang={locale}>
       <nav className="flex items-center gap-1.5 text-sm text-[#5f6368]">
         <Link to="/dashboard/classes" aria-label={copy("Back to your classes")} className="flex items-center hover:text-[#121317] transition-colors">
           <Home className="w-4 h-4" />
@@ -138,26 +137,22 @@ function ClassDetailContent({
         <span className="font-medium text-[#121317]">{classroom.name}</span>
       </nav>
 
-      <div className="rounded-3xl overflow-hidden">
-        <div className="flex flex-wrap items-start justify-between gap-6 p-6 sm:p-8 lg:p-10" style={{
-        backgroundColor: color
-      }}>
+      <header className="v-class-heading">
           <div>
-            <h1 className="text-[28px] lg:text-[32px] font-medium text-white tracking-tight leading-tight">
+            <h1 className="v-title">
               {classroom.name}
             </h1>
-            {classroom.section && <p className="text-white/85 text-base mt-1">{classroom.section}</p>}
-            {classroom.room && <p className="text-white/70 text-sm mt-1">{copy('Room {room}', {
+            {classroom.section && <p className="v-muted mt-2">{classroom.section}</p>}
+            {classroom.room && <p className="v-muted">{copy('Room {room}', {
               room: classroom.room
             })}</p>}
           </div>
-          {classroom.join_code && <div className="rounded-xl border border-white/30 bg-white/10 px-4 py-3"><p className="text-[11px] font-medium uppercase tracking-wide text-white/90">{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide text-white">{classroom.join_code}</p><button onClick={copyCode} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-white hover:bg-white/20">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs text-white">{copy("Copied")}</p>}</div>}
-        </div>
-      </div>
+          {classroom.join_code && <div className="v-class-code"><p>{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide">{classroom.join_code}</p><button onClick={copyCode} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-[#0b57d2] hover:bg-[#e8f0fd]">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs">{copy("Copied")}</p>}</div>}
+      </header>
       {error && <p role="alert" className="text-sm text-[#b3261e]">{copy(error)}</p>}
-      <ClassPromotion locale={locale} classId={classId} accent={accent} />
 
-      <div className="flex flex-wrap items-center gap-1 border-b border-[#dadce0]/60">
+
+      <nav className="v-class-sections" aria-label={copy("Class sections")}>
         {TABS.map(t => {
         const active = tab === t.id;
         return <button key={t.id} onClick={() => setTab(t.id)} aria-pressed={active} className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap" style={{
@@ -169,7 +164,7 @@ function ClassDetailContent({
           }} />}
             </button>;
       })}
-      </div>
+      </nav>
 
       {tab === "stream" && <StreamTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
       {tab === "classwork" && <ClassworkTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
@@ -177,5 +172,6 @@ function ClassDetailContent({
       {tab === "people" && <PeopleTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
       {tab === "insights" && <InsightsTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
   {tab === "community" && <CommunityTab classId={classId} accent={accent} />}
+      <ClassPromotion locale={locale} classId={classId} accent={accent} />
     </div>;
 }

@@ -1,8 +1,9 @@
 import { classTabCopy } from '@/lib/classTabCopy';
 import { useClassRecords } from '@/hooks/useClassRecords';
-import { useState } from "react";
-import { UserPlus, GraduationCap, Mail, Loader2 } from "lucide-react";
+import { useId, useState } from "react";
+import { UserPlus, Mail, Loader2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import SpotIllustration from '@/components/landing/SpotIllustration';
 import { useAuth } from "@/lib/AuthContext";
 export default function PeopleTab({
   classId,
@@ -11,6 +12,8 @@ export default function PeopleTab({
   locale = "en"
 }) {
   const copy = classTabCopy(locale);
+  const [showInvite, setShowInvite] = useState(false);
+  const inviteId = useId();
   const {
     user
   } = useAuth();
@@ -64,79 +67,32 @@ export default function PeopleTab({
       setBusy(false);
     }
   };
-  return <div className="flex flex-col gap-6 max-w-[680px]">
-      {/* Invite box */}
-      <div className="p-6 bg-white rounded-3xl border border-[#dadce0]/60">
-        <p className="text-sm font-medium text-[#121317] mb-1">{copy("Invite students")}</p>
-        <p className="text-sm text-[#5f6368] mb-4">{copy('Add an in-app invitation by email, or share class code {code}. Email delivery is not connected yet.', {
-          code: classroom?.join_code || copy('from the class header')
-        })}</p>
-        <form onSubmit={invite} className="flex flex-col gap-3 sm:flex-row">
-          <div className="flex-1 flex items-center gap-2 h-11 px-4 rounded-xl border border-[#dadce0] focus-within:border-[#4285F4]">
-            <Mail className="w-4 h-4 text-[#5f6368] shrink-0" />
-            <input type="email" required aria-label={copy("Student email address")} disabled={busy} value={email} onChange={e => setEmail(e.target.value)} placeholder="student@example.com" className="min-w-0 flex-1 bg-transparent text-sm text-[#121317] placeholder:text-[#5f6368] outline-none" />
+  return <div className="v-class-section">
+    <section className="v-people-section" aria-labelledby="class-teachers-title">
+      <div className="v-people-heading"><h2 id="class-teachers-title">{copy("Teachers")}</h2></div>
+      <div className="v-person-row">
+        <div className="v-person-avatar">{initial}</div>
+        <div className="min-w-0"><p className="text-sm font-medium break-words">{teacherName}</p><p className="text-xs text-[#5f6368] break-all">{user?.email}</p></div>
+      </div>
+    </section>
+    <section className="v-people-section" aria-labelledby="class-students-title">
+      <div className="v-people-heading">
+        <div><h2 id="class-students-title">{copy("Students")}</h2>{!loading && !unavailable && enrollments.length > 0 && <p className="v-muted mt-1">{copy('{connected} connected · {invited} invited', {connected:enrollments.filter(e=>e.status==='active').length,invited:enrollments.filter(e=>e.status==='invited').length})}</p>}</div>
+        <button type="button" className="v-button" aria-expanded={showInvite} aria-controls={inviteId} onClick={()=>setShowInvite(value=>!value)}><UserPlus size={18} aria-hidden="true"/>{copy("Invite students")}</button>
+      </div>
+      <div id={inviteId} hidden={!showInvite}>
+        <form onSubmit={invite} className="v-class-form mt-5 space-y-4">
+          <p className="v-muted">{copy('Add an in-app invitation by email, or share class code {code}. Email delivery is not connected yet.', {code:classroom?.join_code || copy('from the class header')})}</p>
+          <label className="block text-sm font-medium" htmlFor={inviteId+'-email'}>{copy("Student email address")}</label>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex-1 flex items-center gap-2 min-h-11 px-4 rounded-lg border border-[#5f6368] focus-within:border-[#4285F4]"><Mail className="w-4 h-4 text-[#5f6368] shrink-0" aria-hidden="true"/><input id={inviteId+'-email'} type="email" required disabled={busy} value={email} onChange={e=>setEmail(e.target.value)} placeholder="student@example.com" className="min-w-0 flex-1 bg-transparent py-3 text-sm outline-none"/></div>
+            <button type="submit" className="v-button primary" disabled={busy || !email.trim()}>{busy && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true"/>}{copy("Invite")}</button>
           </div>
-          <button type="submit" disabled={busy || !email.trim()} className="inline-flex items-center gap-2 h-11 px-5 rounded-xl text-sm font-medium text-white disabled:opacity-50" style={{
-          backgroundColor: accent
-        }}>
-            {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}{copy("Invite")}</button>
+          {error && <p role="alert" className="v-notice v-error">{copy(error)}</p>}
+          {notice && <p role="status" className="text-sm text-[#137333]">{copy(notice)}</p>}
         </form>
-        {error && <p role="alert" className="text-sm text-[#b3261e] mt-3">{copy(error)}</p>}
-        {notice && <p role="status" className="text-sm text-[#137333] mt-3">{copy(notice)}</p>}
       </div>
-
-      {/* Teachers */}
-      <div className="bg-white rounded-3xl border border-[#dadce0]/60 overflow-hidden">
-        <div className="px-6 py-4 border-b border-[#dadce0]/60">
-          <h3 className="text-sm font-medium text-[#121317]">{copy("Teachers")}</h3>
-        </div>
-        <div className="flex items-center gap-4 px-6 py-4">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium text-white shrink-0" style={{
-          backgroundColor: accent
-        }}>
-            {initial}
-          </div>
-          <div className="min-w-0">
-            <p className="text-sm font-medium text-[#121317] truncate">{teacherName}</p>
-            <p className="text-xs text-[#5f6368] truncate">{user?.email}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Students */}
-      <div className="bg-white rounded-3xl border border-[#dadce0]/60 overflow-hidden">
-        <div className="px-6 py-4 border-b border-[#dadce0]/60 flex items-center justify-between">
-          <h3 className="text-sm font-medium text-[#121317]">{copy("Students")}</h3>
-          {enrollments.length > 0 && <span className="text-xs text-[#5f6368]">{copy('{connected} connected · {invited} invited', {
-            connected: enrollments.filter(e => e.status === 'active').length,
-            invited: enrollments.filter(e => e.status === 'invited').length
-          })}</span>}
-        </div>
-        {loading ? <div role="status" aria-label={copy("Loading class records…")} className="flex justify-center py-10">
-            <div className="w-7 h-7 border-4 border-[#dadce0] rounded-full animate-spin" style={{
-          borderTopColor: accent
-        }} />
-          </div> : unavailable ? <p role="alert" className="p-6 text-sm text-[#b3261e]">{copy('We couldn’t load your class members. Please try again.')} <button onClick={load} className="min-h-11 underline">{copy('Retry')}</button></p> : enrollments.length === 0 ? <div className="flex flex-col items-center gap-3 py-12 text-center px-6">
-            <GraduationCap className="w-10 h-10 text-[#dadce0]" />
-            <p className="text-sm text-[#5f6368] max-w-sm">{copy("No students yet. Invite your first student above to see them here.")}</p>
-          </div> : <div className="divide-y divide-[#dadce0]/40">
-            {enrollments.map(e => <div key={e.id} className="flex items-center gap-4 px-6 py-4">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium bg-[#dadce0] text-[#5f6368] shrink-0">
-                  {(e.student_name || e.student_email || "?").charAt(0).toUpperCase()}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[#121317] truncate">{e.student_name || e.student_email}</p>
-                  <p className="text-xs text-[#5f6368] truncate">{e.student_email}</p>
-                </div>
-                <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${e.status === "active" ? "bg-[#e6f4ea] text-[#137333]" : "bg-[#ffffff] text-[#5f6368]"}`}>{copy({
-              active: 'Connected',
-              invited: 'Invited',
-              removed: 'Removed',left:'Left',inactive:'Inactive',
-              declined: 'Declined',
-              expired: 'Expired'
-            }[e.status] || copy("Unavailable"))}</span>
-              </div>)}
-          </div>}
-      </div>
-    </div>;
+      {loading ? <p role="status" className="v-muted py-10">{copy("Loading class records…")}</p> : unavailable ? <p role="alert" className="v-notice v-error mt-5">{copy('We couldn’t load your class members. Please try again.')} <button onClick={load} className="min-h-11 underline">{copy('Retry')}</button></p> : enrollments.length===0 ? <div className="v-empty-state"><SpotIllustration subject="teamwork" className="v-empty-illustration"/><p className="v-muted">{copy("No students yet. Invite your first student above to see them here.")}</p></div> : <div>{enrollments.map(e=><div key={e.id} className="v-person-row"><div className="v-person-avatar">{(e.student_name || e.student_email || "?").charAt(0).toUpperCase()}</div><div className="flex-1 min-w-0"><p className="text-sm font-medium break-words">{e.student_name || e.student_email}</p><p className="text-xs text-[#5f6368] break-all">{e.student_email}</p></div><span className={`text-xs font-medium px-2.5 py-1 rounded-full ${e.status==='active'?'bg-[#e6f4ea] text-[#137333]':'bg-[#f1f3f4] text-[#5f6368]'}`}>{copy({active:'Connected',invited:'Invited',removed:'Removed',left:'Left',inactive:'Inactive',declined:'Declined',expired:'Expired'}[e.status] || 'Unavailable')}</span></div>)}</div>}
+    </section>
+  </div>;
 }

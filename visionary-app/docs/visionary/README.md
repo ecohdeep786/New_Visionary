@@ -9,3 +9,7 @@ Current work (2026-09-27): finish internal design and usability acceptance first
 Only three living logs: STATUS, DECISIONS, QA. Product addenda and inventories are deliverables, not alternate status logs. D-016 authorizes the current internal design pass; preserve the strict `src/pages/landing` exclusion.
 
 The [local store inventory](LOCAL_STORE_INVENTORY.md) records ownership, versioned content delivery, editor backups and future cutover exclusions. It does not authorize deleting or transferring browser records.
+
+The [2026-10-07 frontend design handoff](FRONTEND_DESIGN_HANDOFF.md) records the finishing pass, screenshots, validation and the Chapter1 rehearsal boundary. Overall frontend acceptance remains tracked in the current status and review worksheet.
+
+The [local-reference design handoff](REFERENCE_DESIGN_HANDOFF.md) is the latest design result (D-046), following the six supplied Classroom JPEGs. It supersedes the decorative header treatment in D-045 and records final captures, fixtures, checks and the Chapter1 boundary.

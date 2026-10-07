@@ -2,6 +2,7 @@ import type { Locale, RequestContext } from '../domain/workspace.ts';
 import { snapshot, workspaceIdentity } from './workspaceService.ts';
 import { getStudentState, getStudentClasswork } from './mentorStateService.ts';
 import { getLearningWorkspace } from './learningPipelineService.ts';
+import { homeCopy } from '../lib/homeCopy.js';
 
 // Daily Mentor Engine seam: the mentor plans ONE day from recorded evidence only —
 // published classwork, a due review, the open learning unit, and unfinished project
@@ -57,13 +58,15 @@ function day(value: string) { return value.slice(0, 10); }
 
 export function getDailyPlan(ctx: RequestContext): DailyPlan {
  check(ctx);
+ const data = snapshot(ctx);
+ const t = homeCopy(data.preferences.interfaceLocale || 'en');
  const today = day(clock().toISOString());
  const units = getLearningWorkspace(ctx).units;
  const openUnit = [...units].filter(u => u.stage !== 'completed').sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
  const steps: PlanStep[] = [];
  if (ctx.role === 'student') for (const item of getStudentClasswork(ctx).slice(0, 2)) steps.push({
   id: `classwork:${item.id}`, kind: 'classwork', title: item.title,
-  detail: `${item.className}${item.dueAt ? ` · Due ${item.dueAt}` : ''}. Open it to review and submit your work.`,
+  detail: t('{className}{due}. Open it to review and submit your work.', {className:item.className,due:item.dueAt ? t(' · Due {date}',{date:item.dueAt}) : ''}),
   action: { label: 'Open classwork', path: `/dashboard/classes?class=${encodeURIComponent(item.classId)}` },
   reason: 'Published assignment in a class where your enrollment is active.', source: 'Connected classwork', dueAt: item.dueAt, done: false,
  });
@@ -77,7 +80,7 @@ export function getDailyPlan(ctx: RequestContext): DailyPlan {
  if (due) {
   const known = units.find(u => u.conceptId === due.conceptId)?.title;
   steps.push({
-   id: `review:${due.conceptId}`, kind: 'review', title: known ? `Review: ${known}` : 'A short review is due',
+   id: `review:${due.conceptId}`, kind: 'review', title: known ? t('Review: {title}',{title:known}) : t('A short review is due'),
    detail: 'A previous check is ready to revisit. This is a reminder, not a claim about your ability.',
    action: { label: 'Open practice', path: '/dashboard/practice' },
    reason: 'Scheduled from the date of the latest recorded check for this concept.', source: 'Your recorded learning evidence', dueAt: due.dueAt, done: false,
@@ -85,11 +88,11 @@ export function getDailyPlan(ctx: RequestContext): DailyPlan {
  }
  if (openUnit) steps.push({
   id: `unit:${openUnit.id}`, kind: 'learn', title: openUnit.title, titleLocale: openUnit.locale,
-  detail: `Continue from ${openUnit.stage}. Your answers and position are saved on this device.`,
+  detail: t('Continue from {stage}. Your answers and position are saved on this device.',{stage:t(openUnit.stage)}),
   action: { label: 'Continue learning', path: `/dashboard/learn?unit=${encodeURIComponent(openUnit.id)}` },
   reason: 'The most recently updated unfinished learning unit in this workspace.', source: 'Saved learning activity', done: false,
  });
- const artifacts = [...snapshot(ctx).artifacts].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+ const artifacts = [...data.artifacts].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
  const project = artifacts.find(a => a.status !== 'completed' && (!openUnit || a.learningSessionId !== openUnit.id));
  if (project) steps.push({
   id: `build:${project.id}`, kind: 'build', title: project.title,
@@ -113,5 +116,5 @@ export function getDailyPlan(ctx: RequestContext): DailyPlan {
   reason: 'Recorded earlier today from your completed project.', source: 'Your saved project', done: true,
  });
  const deferred = deferredIds(ctx, today);
- return { date: today, steps: [...steps.filter(step => !deferred.has(step.id)), ...done] };
+ return { date: today, steps: [...steps.filter(step => !deferred.has(step.id)), ...done].map(step => ({...step,detail:t(step.detail),reason:t(step.reason),source:t(step.source),action:{...step.action,label:t(step.action.label)}})) };
 }

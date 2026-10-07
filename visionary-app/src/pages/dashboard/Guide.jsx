@@ -102,7 +102,8 @@ function GuideConversation() {
       });
       abort.current?.abort();
       setSelected(next.selected);
-      setInput(next.input);
+      // A project can suggest a doubt without replacing an existing saved draft.
+      setInput(next.input || location.state?.initialQuestion || '');
       setCanvasPath(next.canvasPath);
       setPane(next.pane);
       setFocus(false);

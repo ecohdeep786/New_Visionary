@@ -10,6 +10,8 @@ Labels: **K** = keep existing interaction/layout foundation; **E** = enhance wit
 
 All entries below are **source inspected**. Selected current-build screenshots are indexed in `baseline/wave-0.5/README.md`; other entries still require before capture prior to enhancement. No after images exist because this stage changes no UI.
 
+2026-10-07 implementation addendum (D-045, founder-authorized finishing pass): SH-01 now includes same-shell per-workspace/path/query reading-position return. ST-01 and TE/PA/PR/OR Home counterparts share the refined spacing/type/card rhythm and quieter phone composition. ST-05's current LearningWorkspace has a distinct source/title/language header and ordered lesson stages. ST-08 includes a visible editor heading and contextual Ask link with save-before-leave. SH voice presence redraws its still frame after reduced-motion resize. These are E enhancements within the inherited design. Current screenshots, retained check counts and comparison limits are indexed in baseline/design-2026-10-07/README.md; FRONTEND_DESIGN_HANDOFF.md records the result. This addendum does not retrospectively certify earlier inventory entries or close the full frontend gate.
+
 ## Shell, onboarding and shared screens
 
 | ID | Current screen / consumer | Decision | User job and next action | Necessary enhancement / contract |
@@ -87,3 +89,5 @@ Existing role/StudentHome, ParentHome, OrgHome, older Ask/Build/Subscription and
 ## Product-side co-sign and next owners
 
 PM approves **inheritance and gap classification**, not visual compliance or fixture completeness. Existing work is retained; no completed wave is restarted. 02-UX maps gaps into the current screen grammar and all applicable states; 03 validates token equivalents; 04 implements only that approved enhancement list. Before/after screenshots and DECISIONS references remain prerequisites. 07 owns exhaustive seven-width/zoom/keyboard/language verification. G11 and G12 are not passed by this document.
+
+2026-10-07 D-046 supersedes D-045's decorative Home/intro treatment: reference-driven open white headers, flat outer shell, divided role summaries, ordered chapter rows and focused classroom/member surfaces. Existing control/scope behavior is retained; useful empty illustrations reuse product assets. REFERENCE_DESIGN_HANDOFF.md maps each supplied JPEG to the implemented grammar and scoped QA.

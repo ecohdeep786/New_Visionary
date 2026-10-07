@@ -55,6 +55,7 @@ export default function AudioPresence() {
   if (ctx && !bornAt.current) bornAt.current = performance.now();
   const effective = data ? (audioOverride ?? data.preferences?.voice !== false) : false;
   const animation = data?.preferences?.agiAnimation === 'girl' ? 'girl' : 'boy';
+  const available = Boolean(ctx && data);
   const presentation = animation;
   const presentationRef = useRef('boy');
   presentationRef.current = presentation;
@@ -195,14 +196,16 @@ export default function AudioPresence() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext('2d');
+    if (!context) return;
     let running = true;
     const resize = () => {
       const ratio = window.devicePixelRatio || 1;
       canvas.width = canvas.offsetWidth * ratio; canvas.height = canvas.offsetHeight * ratio;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      // Resizing clears the bitmap. Redraw the still frame for reduced motion too.
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = requestAnimationFrame(draw);
     };
-    resize();
-    window.addEventListener('resize', resize);
     const draw = time => {
       if (!running) return;
       const W = canvas.offsetWidth; const H = canvas.offsetHeight;
@@ -322,9 +325,10 @@ export default function AudioPresence() {
 
       if (!reducedMotion.current) frameRef.current = requestAnimationFrame(draw);
     };
-    frameRef.current = requestAnimationFrame(draw);
+    resize();
+    window.addEventListener('resize', resize);
     return () => { running = false; cancelAnimationFrame(frameRef.current); window.removeEventListener('resize', resize); };
-  }, [mode, effective, animation]);
+  }, [mode, effective, animation, available]);
 
   if (!ctx || !data) return null;
   const capabilities = getVoiceCapabilities();

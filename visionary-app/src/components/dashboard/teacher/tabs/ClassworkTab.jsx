@@ -1,3 +1,4 @@
+import SpotIllustration from '@/components/landing/SpotIllustration';
 import { classTabCopy } from '@/lib/classTabCopy';
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Plus, ClipboardList, X, Inbox } from "lucide-react";
@@ -159,7 +160,7 @@ export default function ClassworkTab({
       setBusy(false);
     }
   };
-  return <div className="flex flex-col gap-6 max-w-[800px]">
+  return <div className="v-class-section">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-[#5f6368]">{copy("Create assignments and return feedback to your students.")}</p>
         <button disabled={busy} onClick={() => setShowForm(s => !s)} className="inline-flex items-center gap-2 h-11 px-5 rounded-full text-sm font-medium text-white" style={{
@@ -170,7 +171,7 @@ export default function ClassworkTab({
       {error && <p role="alert" className="text-sm text-[#b3261e]">{copy(error)}</p>}
       {loadError && <p role="alert" className="text-sm text-[#b3261e]">{copy(loadError)} <button onClick={load} className="ml-2 font-medium underline">{copy("Retry classwork loading")}</button></p>}
 
-      {showForm && <form onSubmit={create} className="flex flex-col gap-4 p-6 bg-white rounded-2xl border border-[#dadce0]">
+      {showForm && <form onSubmit={create} className="v-class-form flex flex-col gap-4">
           <h3 className="text-base font-medium text-[#121317]">{copy("New assignment")}</h3>
           <label htmlFor="assignment-title" className="text-sm font-medium text-[#121317]">{copy("Title")}</label>
           <input disabled={busy} id="assignment-title" required maxLength={160} value={form.title} onChange={e => setForm({
@@ -244,12 +245,12 @@ export default function ClassworkTab({
         borderTopColor: accent
       }} />
         </div> : loadError ? null : assignments.length === 0 ? <div className="flex flex-col items-center gap-3 py-12 text-center">
-          <ClipboardList className="w-10 h-10 text-[#dadce0]" />
+          <SpotIllustration subject="teach" className="v-empty-illustration" />
           <p className="text-sm text-[#5f6368] max-w-sm">{copy("No assignments yet. Create your first one and tag the concepts it covers.")}</p>
         </div> : assignments.map(a => {
       const subs = subsFor(a.id);
       const ungraded = ungradedFor(a.id);
-      return <div key={a.id} className="p-5 bg-white rounded-3xl border border-[#dadce0]/60">
+      return <div key={a.id} className="v-classwork-row">
               <div className="flex flex-wrap items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{
             backgroundColor: `${accent}15`
@@ -292,14 +293,14 @@ export default function ClassworkTab({
               {a.status === 'scheduled' && <p className="mt-2 text-xs">{assignmentAcceptsResponses(a) ? copy("Scheduled publication reached \xB7 accepting responses") : copy('Scheduled · {date} · hidden until publication', {
             date: Number.isFinite(new Date(a.publish_at).getTime()) ? new Date(a.publish_at).toLocaleString(locale) : copy('Unavailable')
           })}</p>}
-              <div className="mt-3 flex flex-wrap gap-2" aria-label={copy("Actions for {title}", {
+              <details className="mt-3"><summary className="text-sm font-medium text-[#0b57d2]">{copy("Actions for {title}",{title:a.title})}</summary><div className="mt-3 flex flex-wrap gap-2" aria-label={copy("Actions for {title}", {
           title: a.title
         })}>
                {(a.status === 'draft' || a.status === 'closed') && <button disabled={busy} className="v-button" onClick={() => changeState(a, 'published')}>{a.status === 'draft' ? copy("Publish assignment") : copy("Reopen submissions")}</button>}
                {a.status === 'scheduled' && <><button disabled={busy} className="v-button" onClick={() => changeState(a, 'published')}>{copy("Publish now")}</button><button disabled={busy} className="v-button" onClick={() => changeState(a, 'draft')}>{copy("Cancel schedule to draft")}</button>{assignmentAcceptsResponses(a) && <button disabled={busy} className="v-button" onClick={() => changeState(a, 'closed')}>{copy("Close submissions")}</button>}</>}
                {(!a.status || a.status === 'published') && <button disabled={busy} className="v-button" onClick={() => changeState(a, 'closed')}>{copy("Close submissions")}</button>}
                {a.status !== 'archived' ? <button disabled={busy} className="v-button" onClick={() => changeState(a, 'archived')}>{copy("Archive assignment")}</button> : <button disabled={busy} className="v-button" onClick={() => changeState(a, 'closed')}>{copy("Restore as closed")}</button>}
-              </div>
+              </div></details>
               {!!a.state_history?.length && <details className="mt-3 text-xs"><summary className="cursor-pointer">{copy("Assignment state history")}</summary>{a.state_history.map((entry, index) => <p className="mt-2 break-words" key={index}>{entry.from} → {entry.to} · {entry.actor} · {entry.at}</p>)}</details>}
               {Array.isArray(a.topics) && a.topics.length > 0 && <div className="flex flex-wrap gap-2 mt-4 pl-14">
                   {a.topics.filter(topic => typeof topic === 'string').map(t => <span key={t} className="inline-flex items-center h-7 px-3 rounded-full text-xs font-medium bg-[#dadce0] text-[#5f6368]">

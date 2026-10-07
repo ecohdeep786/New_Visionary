@@ -1,0 +1,28 @@
+✔ same-clock project edits cannot silently overwrite another saved version (9.8755ms)
+✔ recovered drafts retain their original revision so a refresh cannot hide a conflict (5.8268ms)
+✔ failed conflict-copy saves preserve the original and unsaved backup; successful copies start private (4.0048ms)
+✔ saving and clearing one tab draft cannot remove another tab unsaved work (6.0334ms)
+✔ each role localizes Home using interface language independently of teaching language (187.4062ms)
+✔ localized daily continuation preserves the original authored concept and teaching language (20.9378ms)
+✔ authored project titles that match a UI message are never translated (38.0328ms)
+✔ browsers without speech support refuse honestly and every text path stays usable (37.5642ms)
+✔ a spoken turn follows the same teaching seam with voice input events and no transcript in events (4.0181ms)
+✔ the mentor speaks replies aloud, pauses the microphone, and resumes listening (1.0098ms)
+✔ speaking constructs a real utterance through the browser constructor (0.7862ms)
+✔ denied microphone access keeps an honest state, never restarts, and can be retried after permission (0.8585ms)
+✔ voice preference defaults on, is user-controlled, and legacy workspaces normalize to on (1.5461ms)
+✔ the Ask session control overrides the saved audio setting for the current session only (0.5636ms)
+✔ a crisis spoken aloud gets the same safety hard-stop as typed text (10.905ms)
+✔ a replaced or stopped recognition cannot deliver words or affect the next owner (20.1813ms)
+✔ continuous recognition delivers only new final results and ignores replayed result indexes (2.0182ms)
+✔ cancelled or superseded speech cannot restart recognition or complete an older session (0.5667ms)
+✔ recognition startup and device errors stop honestly and allow an explicit retry (0.8031ms)
+✔ a failed speech engine releases the suspended microphone and completes once (0.5626ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2301.0767

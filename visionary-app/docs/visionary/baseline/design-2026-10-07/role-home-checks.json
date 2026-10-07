@@ -1,0 +1,162 @@
+[
+  {
+    "role": "student",
+    "width": 320,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Aarav."
+  },
+  {
+    "role": "student",
+    "width": 390,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Aarav."
+  },
+  {
+    "role": "student",
+    "width": 768,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Aarav."
+  },
+  {
+    "role": "student",
+    "width": 1440,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Aarav."
+  },
+  {
+    "role": "teacher",
+    "width": 320,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Dev."
+  },
+  {
+    "role": "teacher",
+    "width": 390,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Dev."
+  },
+  {
+    "role": "teacher",
+    "width": 768,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Dev."
+  },
+  {
+    "role": "teacher",
+    "width": 1440,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Dev."
+  },
+  {
+    "role": "parent",
+    "width": 320,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Anika."
+  },
+  {
+    "role": "parent",
+    "width": 390,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Anika."
+  },
+  {
+    "role": "parent",
+    "width": 768,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Anika."
+  },
+  {
+    "role": "parent",
+    "width": 1440,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Anika."
+  },
+  {
+    "role": "professional",
+    "width": 320,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Sam."
+  },
+  {
+    "role": "professional",
+    "width": 390,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Sam."
+  },
+  {
+    "role": "professional",
+    "width": 768,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Sam."
+  },
+  {
+    "role": "professional",
+    "width": 1440,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, Sam."
+  },
+  {
+    "role": "organization",
+    "width": 320,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, School."
+  },
+  {
+    "role": "organization",
+    "width": 390,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, School."
+  },
+  {
+    "role": "organization",
+    "width": 768,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, School."
+  },
+  {
+    "role": "organization",
+    "width": 1440,
+    "headings": 1,
+    "mainOverflow": false,
+    "overflow": false,
+    "title": "Welcome back, School."
+  }
+]

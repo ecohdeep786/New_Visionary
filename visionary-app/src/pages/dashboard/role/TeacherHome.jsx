@@ -1,11 +1,11 @@
+import SpotIllustration from '@/components/landing/SpotIllustration';
 import { primaryWorkspaceCopy } from '@/lib/primaryWorkspaceCopy';
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Plus, GraduationCap, Users, ClipboardList, BookOpen } from "lucide-react";
+import { Plus, Users, ClipboardList, BookOpen } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import RoleGreeting from "@/components/dashboard/RoleGreeting";
 import ClassCard from "@/components/dashboard/teacher/ClassCard";
 import CreateClassModal from "@/components/dashboard/teacher/CreateClassModal";
 import TeacherInsightCard from "@/components/dashboard/teacher/TeacherInsightCard";
@@ -33,7 +33,6 @@ export default function TeacherHome() {
   } = useWorkspace();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
-  const userName = user?.full_name?.split(" ")[0] || "Teacher";
   const [classes, setClasses] = useState([]);
   const [assignmentCount, setAssignmentCount] = useState(0);const [studentCount,setStudentCount]=useState(0);
   const [pendingLoading,setLoading]=useState(true);const [loadedScope,setLoadedScope]=useState(null);
@@ -106,47 +105,30 @@ export default function TeacherHome() {
     value: assignmentCount,
     icon: ClipboardList
   }];
-  return <div className="flex flex-col gap-8 p-6 lg:p-10 max-w-[1200px] mx-auto w-full">
-      <RoleGreeting userName={userName} role="teacher" accent={accent} subtitle={copy("Your classes and teaching, together")} />
+  return <div className="v-page" lang={locale}>
+      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1><p className="v-muted mt-2">{copy("Create a class, add students, and start teaching")}</p></div><button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button></header>
 
       {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"> {copy(error)}  <button onClick={load} className="ml-2 font-medium underline"> {copy("Retry")} </button></div>}
-      {!loading && !error && <TeacherInsightCard accent={accent} classes={classes} assignmentCount={assignmentCount} pendingReviews={pendingReviews} />}
+      {!loading && !error && classes.length > 0 && <TeacherInsightCard accent={accent} classes={classes} assignmentCount={assignmentCount} pendingReviews={pendingReviews} />}
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      {classes.length > 0 && <div className="v-class-stats">
         {stats.map(s => {
         const Icon = s.icon;
-        return <div key={s.label} className="rounded-2xl bg-white border border-[#dadce0]/60 p-4 sm:p-6 flex flex-col gap-2">
+        return <div key={s.label} className="flex flex-wrap items-center gap-2">
               <Icon className="w-5 h-5 text-[#5f6368]" />
               <p className="text-[28px] font-medium text-[#121317] leading-none">{loading || error ? "—" : s.value}</p>
               <p className="text-sm text-[#5f6368]">{copy(s.label)}</p>
             </div>;
       })}
-      </div>
-
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 className="text-[22px] font-medium text-[#121317]"> {copy("Your classes")} </h2>
-          <p className="text-sm text-[#5f6368] mt-1"> {copy("Create a class, add students, and start teaching")} </p>
-        </div>
-        <button onClick={() => setShowCreate(true)} className="inline-flex items-center gap-2 h-10 px-5 rounded-full text-sm font-medium text-white transition-colors" style={{
-        backgroundColor: accent
-      }}>
-          <Plus className="w-4 h-4" /> {copy("Create class")} </button>
-      </div>
+      </div>}
 
       {loading ? <div className="flex items-center justify-center py-16">
           <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
         </div> : error ? null : classes.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{
-        backgroundColor: `${accent}15`
-      }}>
-            <GraduationCap className="w-8 h-8" style={{
-          color: accent
-        }} />
-          </div>
+          <SpotIllustration subject="study" className="v-empty-illustration" />
           <div>
             <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
             <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
@@ -160,6 +142,6 @@ export default function TeacherHome() {
         </div>}
 
       {showCreate && <CreateClassModal key={ctx?.personId + ':' + ctx?.workspaceId} onClose={() => setShowCreate(false)} onCreate={handleCreate} accent={accent} />}
-      <TeacherUpskillCard accent={accent} />
+      <details className="v-home-module"><summary className="font-medium">{copy("Grow as a teacher")}</summary><TeacherUpskillCard accent={accent}/></details>
     </div>;
 }

@@ -1,0 +1,1065 @@
+[
+  {
+    "label": "learner-lesson",
+    "headings": [
+      "Understand cube volume"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learn",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 321,
+    "phase": "development"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 769,
+    "phase": "development"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 321,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 769,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 321,
+    "phase": "development"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 769,
+    "phase": "development"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 321,
+    "phase": "development"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 769,
+    "phase": "development"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 321,
+    "phase": "development"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 769,
+    "phase": "development"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "organization-people",
+    "headings": [
+      "People & connections"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/people",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "organization-invite-form",
+    "headings": [
+      "People & connections"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/people",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-People",
+    "headings": [
+      "People & connections"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/people",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-People",
+    "headings": [
+      "People & connections"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/people",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "organization-Cohorts",
+    "headings": [
+      "Cohorts"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/cohorts",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-Cohorts",
+    "headings": [
+      "Cohorts"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/cohorts",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "organization-Curriculum",
+    "headings": [
+      "Reviewed curriculum templates"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/curriculum",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-Curriculum",
+    "headings": [
+      "Reviewed curriculum templates"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/curriculum",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "organization-Insights",
+    "headings": [
+      "Institution analytics"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/analytics",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-Insights",
+    "headings": [
+      "Institution analytics"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/analytics",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Prepare",
+    "headings": [
+      "Prepare a lesson"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/prepare",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Prepare",
+    "headings": [
+      "Prepare a lesson"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/prepare",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Classes",
+    "headings": [
+      "Your classes"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/classes",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Classes",
+    "headings": [
+      "Your classes"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/classes",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Learners",
+    "headings": [
+      "Learners"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learners",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Learners",
+    "headings": [
+      "Learners"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learners",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Insights",
+    "headings": [
+      "Teaching insights"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/insights",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "teacher-Insights",
+    "headings": [
+      "Teaching insights"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/insights",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "student-Learn",
+    "headings": [
+      "Your learning outline"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learn",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "student-Learn",
+    "headings": [
+      "Your learning outline"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learn",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "student-Ask",
+    "headings": [
+      "Visionary Guide"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/ask",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "student-Ask",
+    "headings": [
+      "Visionary Guide"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "student-Practice",
+    "headings": [
+      "Your next practice"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/practice",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "student-Practice",
+    "headings": [
+      "Your next practice"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/practice",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "student-Build",
+    "headings": [
+      "Build something of your own"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/build",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "student-Build",
+    "headings": [
+      "Build something of your own"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/build",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Children",
+    "headings": [
+      "Your children"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/child",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Children",
+    "headings": [
+      "Your children"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/child",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Reports",
+    "headings": [
+      "Their learning, in context"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/reports",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Reports",
+    "headings": [
+      "Their learning, in context"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/reports",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Connections",
+    "headings": [
+      "Connections"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/connections",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Connections",
+    "headings": [
+      "Connections"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/connections",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Ask",
+    "headings": [
+      "Visionary Guide"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/ask",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "parent-Ask",
+    "headings": [
+      "Visionary Guide"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Learn",
+    "headings": [
+      "Your learning outline"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learn",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Learn",
+    "headings": [
+      "Your learning outline"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learn",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Ask",
+    "headings": [
+      "Visionary Guide"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/ask",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Ask",
+    "headings": [
+      "Visionary Guide"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/ask",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Practice",
+    "headings": [
+      "Your next practice"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/practice",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Practice",
+    "headings": [
+      "Your next practice"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/practice",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Build",
+    "headings": [
+      "Build something of your own"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/build",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Build",
+    "headings": [
+      "Build something of your own"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/build",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Career",
+    "headings": [
+      "Your next capability"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/career",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "professional-Career",
+    "headings": [
+      "Your next capability"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/career",
+    "width": 1440,
+    "phase": "development"
+  },
+  {
+    "label": "class-people",
+    "headings": [
+      "Space, shape and reasoning"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/class/demo-class-cube",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "classwork",
+    "headings": [
+      "Space, shape and reasoning"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/class/demo-class-cube",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "classwork-create-form",
+    "headings": [
+      "Space, shape and reasoning"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/class/demo-class-cube",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-personalization",
+    "headings": [
+      "Make Guide work for you"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/personalization",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "organization-settings",
+    "headings": [
+      "Organization settings"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/settings",
+    "width": 390,
+    "phase": "development"
+  },
+  {
+    "label": "production-organization-settings",
+    "headings": [
+      "Organization settings"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/settings",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 321,
+    "phase": "production"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 390,
+    "phase": "production"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 769,
+    "phase": "production"
+  },
+  {
+    "label": "student-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "student",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 321,
+    "phase": "production"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 390,
+    "phase": "production"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 769,
+    "phase": "production"
+  },
+  {
+    "label": "teacher-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "teacher",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 321,
+    "phase": "production"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 390,
+    "phase": "production"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 769,
+    "phase": "production"
+  },
+  {
+    "label": "parent-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "parent",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 321,
+    "phase": "production"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 390,
+    "phase": "production"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 769,
+    "phase": "production"
+  },
+  {
+    "label": "professional-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "professional",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 321,
+    "phase": "production"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 390,
+    "phase": "production"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 769,
+    "phase": "production"
+  },
+  {
+    "label": "organization-home",
+    "headings": [
+      "Welcome back, School."
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/home",
+    "role": "organization",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "production-build",
+    "headings": [
+      "Build something of your own"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/build",
+    "width": 1440,
+    "phase": "production"
+  },
+  {
+    "label": "production-learning-outline",
+    "headings": [
+      "Your learning outline"
+    ],
+    "mainOverflow": false,
+    "pageOverflow": false,
+    "path": "/dashboard/learn",
+    "width": 1440,
+    "phase": "production"
+  }
+]
