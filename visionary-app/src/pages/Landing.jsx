@@ -248,7 +248,7 @@ import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
 /* The universal sentence, in the persona grammar: the product names itself,
    then the cycle carries every journey — student, teacher, parent,
    professional, organization. */
-const LANDING_HERO_WORDS = ["One Intelligence.", "to learn.", "to teach.", "to help.", "to build.", "to lead."];
+const LANDING_HERO_WORDS = ["One Intelligence."];
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
@@ -263,12 +263,13 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
     <PersonaHero
       words={LANDING_HERO_WORDS}
-      srSentence="One Intelligence. To learn. To teach. To help. To build. To lead."
+      animatedHeadlinePrefix="One intelligence for every part of"
+      animatedHeadlineWords={["learning", "teaching", "helping", "building", "leading"]}
+      srSentence="One intelligence for every part of learning, teaching, helping, building, and leading."
       sub="One connected intelligence for every way you learn, teach, work, and grow."
       cast={LANDING_HERO_LINEUP}
-      ctaLabel="Start free"
-      /* the front door carries a single pill — the persona heroes keep their pair */
-      secondaryLabel={null}
+      ctaLabel="Start learning"
+      secondaryLabel="See how it works"
       minDisplay={36}
     />
   );

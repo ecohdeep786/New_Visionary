@@ -222,7 +222,11 @@ const OrgHeroSection = React.memo(() => (
 
 
 function OrgStruggleSection() {
-  const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
+  /* The problem chapter is static — no auto-advance; one challenge at a
+     time while the visitor reads (Apple never auto-steps a problem section).
+     Dots still allow manual selection. */
+  const [index, setIndex] = useState(0);
+  const goTo = useCallback((i) => setIndex(Math.min(SLIDES.length - 1, Math.max(0, i))), []);
   const { ref, visible } = UseRevealContinuous();
 
   return (
@@ -331,11 +335,10 @@ function OrgJourneySection() {
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
-        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
-          <h2 className="min-h-[3.15em] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)] md:min-h-0" style={{ color: COLORS.ink }}>
-            Every organization learns differently.
-            <br className="hidden md:block" />{" "}
-            <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+        <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
+          <h2 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(26px,3.4vw,48px)]" style={{ color: COLORS.ink }}>
+            <span className="block">Every organization learns differently.</span>
+            <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
           </h2>
           <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             One intelligence, shaped to the way your institution teaches, trains, and grows.

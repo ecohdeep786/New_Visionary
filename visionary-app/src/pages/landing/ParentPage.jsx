@@ -210,7 +210,11 @@ const ParentHeroSection = React.memo(() => (
 
 
 function ParentStruggleSection() {
-  const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
+  /* The problem chapter is static — no auto-advance; one challenge at a
+     time while the visitor reads (Apple never auto-steps a problem section).
+     Dots still allow manual selection. */
+  const [index, setIndex] = useState(0);
+  const goTo = useCallback((i) => setIndex(Math.min(SLIDES.length - 1, Math.max(0, i))), []);
   const { ref, visible } = UseRevealContinuous();
 
   return (
@@ -366,11 +370,10 @@ function ParentJourneySection() {
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
-        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
-          <h2 className="min-h-[3.15em] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)] md:min-h-0" style={{ color: COLORS.ink }}>
-            Learning that
-            <br className="hidden md:block" />{" "}
-            <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+        <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
+          <h2 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)]" style={{ color: COLORS.ink }}>
+            <span className="block">Learning that</span>
+            <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
           </h2>
           <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             Wherever your child begins, Visionary helps their learning move forward from there.
@@ -861,7 +864,6 @@ export default function ParentPage() {
       <main id="main">
         <ParentHeroSection />
         <ParentStruggleSection />
-        <ParentPromiseSection />
         <ParentJourneySection />
         <ParentIntelligenceSection />
         <ParentClosingSection />

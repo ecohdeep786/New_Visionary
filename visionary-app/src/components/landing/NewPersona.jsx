@@ -157,6 +157,9 @@ background:linear-gradient(to top, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0
 export default function NewPersona({
   words,
   wordMs = 2800,
+  staticHeadline,
+  animatedHeadlinePrefix,
+  animatedHeadlineWords,
   srSentence,
   sub,
   img,
@@ -176,16 +179,15 @@ export default function NewPersona({
      the floor to keep 390px screens on one line. */
   minDisplay = 48,
 }) {
-  /* Personas speak in the landing grammar: the cycling fragment carries the
-     journey. The word cycle always runs — it is content rotation, not
-     decoration. Under prefers-reduced-motion the shared CSS swaps the
-     fade-up for a pure crossfade, so the rotation stays and the movement
-     goes. */
+  /* Persona pages can still use a cycling lead. The universal landing uses a
+     fixed product statement so the family lineup carries the variation. */
   const index = useCycle(words.length, wordMs);
-  /* Canonical Visionary display scale — Apple product-first rhythm, with
+  const hasAnimatedHeadline = Boolean(animatedHeadlinePrefix && animatedHeadlineWords?.length);
+  const animatedIndex = useCycle(animatedHeadlineWords?.length || 0, hasAnimatedHeadline ? wordMs : 0);
+  /* Canonical display scale — Apple product-first rhythm, with
      the measured apple.com hero tracking (80px tier: -0.015em / lh 1.05) */
   const displaySize = `clamp(${minDisplay}px, 5.55vw, 80px)`;
-  const display = `block whitespace-nowrap font-medium tracking-[-0.015em] leading-[1.05]`;
+  const display = `block font-medium tracking-[-0.015em] leading-[1.05]`;
 
   if (cast) {
     return (
@@ -198,7 +200,6 @@ export default function NewPersona({
         style={{
           backgroundColor: heroBg,
           height: "calc(100svh - 56px)",
-          minHeight: 620,
           marginTop: 56,
         }}
       >
@@ -214,10 +215,19 @@ export default function NewPersona({
             <h1 className="m-0">
               <span
                 aria-hidden="true"
-                className={display}
+                className={`${display} ${staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
                 style={{ color: "#121317", fontSize: displaySize }}
               >
-                <span className="accent-gradient inline-block">{words[0]}</span>
+                {hasAnimatedHeadline ? (
+                  <>
+                    <span>{animatedHeadlinePrefix}</span>{" "}
+                    <span key={animatedIndex} className="apple-anim accent-gradient inline-block" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
+                      {animatedHeadlineWords[animatedIndex]}.
+                    </span>
+                  </>
+                ) : (
+                  <span className="accent-gradient">{staticHeadline || words[0]}</span>
+                )}
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>
@@ -239,7 +249,7 @@ export default function NewPersona({
             between the nav and the figures and never lands on their heads
             (the student's painted head tops out at ≈0.99·H above the fold;
             the clamp is the guaranteed breath on the shortest stages). */}
-        <div aria-hidden="true" className="shrink-0" style={{ height: "calc(var(--cast-h) * 0.99 + clamp(24px, 3svh, 48px))" }} />
+        <div aria-hidden="true" className="shrink-0" style={{ height: "calc(var(--cast-h) * 0.99 + clamp(20px, 3svh, 48px))" }} />
 
         {/* the family — five alpha cutouts on the page's own white, rising
             from the fold on every device. Slots carry the measured subject

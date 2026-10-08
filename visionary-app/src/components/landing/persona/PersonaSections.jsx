@@ -51,12 +51,25 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
           {kicker}
         </p>
         <h2
-          key={`h-${index}`}
-          className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,4vw,56px)]"
+          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,4vw,56px)]"
           style={{ color: COLORS.ink }}
         >
-          {lines.join(" ")} <span style={{ color: COLORS.blue }}>{slide.word}</span>.
+          {/* the fixed problem sentence always holds line one; the rotating
+              accent word is reserved on line two (a min-h slot) so the chapter
+              never reflows and the page never jumps when the word swaps */}
+          <span className="block text-balance">{lines.join(" ")}</span>
+          <span key={`w-${index}`} className="hero-fade-up block min-h-[1.06em] [animation-duration:0.9s]" style={{ color: COLORS.blue }}>
+            {slide.word}.
+          </span>
         </h2>
+        {/* the call-out arrow — Apple's problem beat reads as a statement
+            answered by the photograph below; the hairline arrow descends from
+            under the heading's left edge toward the image, connecting the two */}
+        <div className="relative mx-auto mt-[clamp(10px,1.3vw,18px)] flex max-w-[980px] justify-start px-6 lg:justify-start lg:pl-6" aria-hidden="true">
+          <svg viewBox="0 0 40 64" fill="none" className="h-[40px] w-[24px] sm:h-[48px] sm:w-[30px]" style={{ color: COLORS.grey }}>
+            <path d="M20 2v54M7 46l13 12 13-12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
       <figure className="m-0">
         <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
@@ -107,7 +120,7 @@ const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect,
           aria-label={`Go to challenge ${i + 1}`}
           aria-pressed={i === active}
           onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
+          className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${i === active ? (pill ? "w-12" : "w-10") : "w-2 hover:opacity-70"}`}
           style={{ backgroundColor: pill ? "rgba(29,29,31,0.6)" : i === active ? COLORS.ink : `${COLORS.ink}33` }}
         />
       ))}
@@ -135,10 +148,15 @@ const JOURNEY_GALLERY_MS = 5000;
    viewport edge. */
 const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label }) {
   const trackRef = useRef(null);
+  const rootRef = useRef(null);
   const lockRef = useRef(0);
   const rafRef = useRef(0);
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(true);
+  /* No autoplay on mount — the tour starts paused with the first card
+     shown. It plays only after the user presses play; every time the
+     section scrolls back into view it resets to card 0 (Apple restarts
+     its story carousels from the first story on revisit). */
+  const [playing, setPlaying] = useState(false);
 
   const stepTo = useCallback((i) => {
     const track = trackRef.current;
@@ -150,6 +168,23 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
     lockRef.current = Date.now() + 700;
     track.scrollTo({ left: clamped * unit, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }, [stages.length]);
+
+  /* Reset to the first card whenever the gallery re-enters the viewport,
+     and pause the tour when it leaves — slides are a user-paced experience,
+     they should never spin ahead while off-screen. */
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return undefined;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (lockRef.current + 700 < Date.now()) stepTo(0);
+      } else {
+        setPlaying(false);
+      }
+    });
+    io.observe(node);
+    return () => io.disconnect();
+  }, [stepTo]);
 
   useEffect(() => {
     if (!playing) return undefined;
@@ -175,18 +210,21 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
   };
 
   return (
-    <div>
+    <div ref={rootRef}>
       <div
         ref={trackRef}
         onScroll={onScroll}
         role="group"
         aria-roledescription="carousel"
         aria-label={label}
-        className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden"
+        className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden"
+        style={{ paddingLeft: "max(24px, calc((100vw - 980px)/2))", paddingRight: 24, scrollPaddingLeft: "max(24px, calc((100vw - 980px)/2))" }}
       >
         {stages.map((stage, i) => (
           <figure key={stage.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
-            className="relative m-0 w-[86vw] flex-none snap-start sm:w-[76vw] lg:w-[68vw]">
+            className="relative m-0 w-[86vw] flex-none snap-start sm:w-[76vw] lg:w-[68vw] lg:max-w-[980px]"
+            style={{ opacity: i === active ? 1 : 0.45, transition: "opacity 1500ms" }}
+          >
             <button
               type="button"
               onClick={() => openStage(stage)}
@@ -206,10 +244,13 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                   ~43% of the card, so the bottom-left statement reads on any
                   stock photo without a full-card veil */}
               <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
-              {/* the story headline — inside the card, bottom-left, 48px/600
-                  white (measured: lh 52px, inset 36px, up to ~673px wide) */}
+              {/* the sub-category label + story headline — inside the card,
+                  bottom-left. The stage title (Primary, Secondary…) acts as the
+                  card's category heading, with the story statement as the large
+                  typographic tier above Apple's smoke. */}
               <span className="absolute bottom-0 left-0 block max-w-[72%] p-6 text-left sm:p-9">
-                <span key={stage.statement} className="block font-semibold tracking-[-0.01em] leading-[1.08] text-[clamp(22px,3.34vw,48px)] text-white">{stage.statement || stage.title}</span>
+                <span className="mb-3 block text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">{stage.title}</span>
+                <span key={stage.statement} className="block font-semibold tracking-[-0.01em] leading-[1.08] text-white text-[clamp(22px,3.34vw,48px)]">{stage.statement || stage.title}</span>
               </span>
               {/* the bare plus glyph — Apple's story-card affordance: no
                   circle, no pill, just the white 36px + over the smoke */}
@@ -224,8 +265,9 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
       </div>
       {/* the controls — Apple's bare 36px glyph row 25px under the cards:
           play/pause at the track's left edge, prev/next chevrons at the
-          right edge; no dots on this gallery */}
-      <div className="mt-6 flex items-center justify-between px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+          right edge; no dots on this gallery. The row shares the centered
+          column so the glyphs sit under the card, not the viewport edge. */}
+      <div className="mt-6 flex items-center justify-between px-6 lg:mx-auto lg:w-full lg:max-w-[980px] lg:px-0">
         <button
           type="button"
           aria-label={playing ? "Pause the journey" : "Play the journey"}
