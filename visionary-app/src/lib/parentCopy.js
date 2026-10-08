@@ -1,6 +1,7 @@
 import {roleNotificationCopy} from './roleNotificationCopy.js';
 import {learningProgressText} from './learningProgressCopy.js';
 const entries=[
+ ['No connected learners yet.','अभी कोई विद्यार्थी जुड़ा नहीं है।','এখনও কোনো শিক্ষার্থী সংযুক্ত নেই।'],
  ['Stop sharing','साझा करना बंद करें','ভাগ করা বন্ধ করুন'],
  ['Some shared sections are unavailable. Retry after checking this device’s records.','कुछ साझा भाग उपलब्ध नहीं हैं। इस उपकरण के रिकॉर्ड जाँचकर फिर प्रयास करें।','কিছু ভাগ করা অংশ উপলব্ধ নয়। এই ডিভাইসের রেকর্ড দেখে আবার চেষ্টা করুন।'],
  ['This connection does not provide a progress summary. Review sharing permissions.','इस संबंध से प्रगति सारांश उपलब्ध नहीं है। साझा अनुमतियाँ देखें।','এই সংযোগে প্রগতির সারাংশ উপলব্ধ নয়। ভাগ করার অনুমতি দেখুন।'],

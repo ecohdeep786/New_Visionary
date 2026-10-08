@@ -56,16 +56,18 @@ import {
   ExploreCard,
   ChevronIcon,
   VoiceIcon,
-  FadeReveal,
+  ScrollReveal,
 } from "@/components/landing/persona/PersonaSections";
 
 const EXPLORE_CAT_IMG = [studentmeet, teachermeet, promeet, orgmeet];
 
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
- * 01 hero · 02 struggle · 03 promise · 04 journey · 05 intelligence ·
+ * 01 hero · 02 struggle · 04 journey · 05 intelligence ·
  * 06 closing · 07 language · 08 continuity · 09 achievement ·
  * 10 journey-flow · 11 trust · 12 cta · 13 explore
+ * (03 retired — the promise/question beat; keys keep their historical
+ * numbers so bridge CSS and probes stay stable)
  * ═══════════════════════════════════════════════════════════════════ */
 
 /* ── DESIGN TOKENS ── */
@@ -215,11 +217,11 @@ function ParentStruggleSection() {
      Dots still allow manual selection. */
   const [index, setIndex] = useState(0);
   const goTo = useCallback((i) => setIndex(Math.min(SLIDES.length - 1, Math.max(0, i))), []);
-  const { ref, visible } = UseRevealContinuous();
+  const { ref } = UseRevealContinuous();
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         {/* the bridge's compact band (02-struggle) carries the chapter breath */
         }
         <StruggleChapter
@@ -228,30 +230,21 @@ function ParentStruggleSection() {
           goTo={goTo}
           lines={STRUGGLE_LINES}
           label="Parent concerns"
+          kicker="What report cards miss"
+          copy="Caring isn't the difficulty. Seeing it is."
         />
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
 
-/* ═══════════════════════ 03 · PROMISE ═══════════════════════ */
-
-const ParentPromiseSection = React.memo(function ParentPromiseSection() {
-  const { ref, visible } = UseRevealOnce();
-  return (
-    <section ref={ref} data-section="03-promise" className="relative isolate overflow-hidden px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
-      <h2
-        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-        style={{ color: COLORS.ink }}
-      >
-        What if you could see who understood —{" "}
-        <span className="accent-gradient">and who didn't?</span>
-      </h2>
-    </section>
-  );
-});
-
 /* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
+/* The turn from the problem chapter lands directly here: the struggle ends
+   in a first-person quote, and this chapter answers it with the product.
+   No promise/question beat between them: the card section's own heading
+   already carries the promise, and Apple never repeats a statement it is
+   about to show. (03 retired — the promise/question beat; keys keep their
+   historical numbers so bridge CSS and probes stay stable.) */
 
 /* Icons per journey stage — reuses icons already imported in this file */
 const JOURNEY_STAGE_ICONS = {
@@ -359,13 +352,13 @@ const JOURNEY_MODALS = {
 
 
 function ParentJourneySection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
 
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         {/* header — Apple's card-chapter treatment (education: "From grade
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
@@ -379,9 +372,9 @@ function ParentJourneySection() {
             Wherever your child begins, Visionary helps their learning move forward from there.
           </p>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
 
-      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Learning stages" />
+      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Learning stages" iconMap={STAGE_META} />
       {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Primary" secondaryLabel="Start as a parent" />}
     </section>
   );
@@ -394,14 +387,14 @@ function ParentJourneySection() {
 
 
 function ParentIntelligenceSection() {
-  const { ref: headRef, visible } = UseRevealOnce();
+  const { ref: headRef } = UseRevealOnce();
   const { index: wordIndex } = UseCycleIndex(INTELLIGENCE_WORDS.length, INTELLIGENCE_WORD_MS);
   const { active, setStepRef } = UseActiveStep(INTELLIGENCE_STEPS.length);
   const current = INTELLIGENCE_STEPS[active];
 
   return (
     <section ref={headRef} data-section="05-intelligence" className="relative isolate [overflow-x:clip] bg-white rounded-t-[32px]" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
+      <ScrollReveal className="px-6 pt-24 lg:pt-32">
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
           The intelligence behind your child's learning
         </p>
@@ -414,7 +407,7 @@ function ParentIntelligenceSection() {
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           From the first question to the moment they can use what they've learned.
         </p>
-      </FadeReveal>
+      </ScrollReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
           <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
@@ -439,20 +432,19 @@ function ParentIntelligenceSection() {
 /* ═══════════════════════ 06 · CLOSING ═══════════════════════ */
 
 const ParentClosingSection = React.memo(function ParentClosingSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
     <section ref={ref} data-section="06-closing" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
-      <p
-        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-        style={{ color: COLORS.ink }}
-      >
-        Visionary keeps{" "}
-        <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-          {KEEPS_WORDS[index]}
-        </span>{" "}
-        with you until understanding becomes confidence.
-      </p>
+      <ScrollReveal>
+        <p className="mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+          Visionary keeps{" "}
+          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+            {KEEPS_WORDS[index]}
+          </span>{" "}
+          with you until understanding becomes confidence.
+        </p>
+      </ScrollReveal>
     </section>
   );
 });
@@ -462,7 +454,7 @@ const ParentClosingSection = React.memo(function ParentClosingSection() {
 
 
 function ParentLanguageSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const [lang, setLang] = useState("hi");
   const { index } = UseCycleIndex(LANGUAGE_QUESTIONS.length, QUESTION_MS);
   const question = LANGUAGE_QUESTIONS[index][lang];
@@ -471,7 +463,7 @@ function ParentLanguageSection() {
   return (
     <section ref={ref} data-section="07-language" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         {/* header unit — tight */}
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -527,7 +519,7 @@ function ParentLanguageSection() {
             </p>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -541,13 +533,13 @@ const CATEGORY_SECTION_IMG = [primaryStudent, secondaryStudent, competitiveStude
 
 
 function ParentContinuitySection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo, step } = UseStageIndex(CONTINUITY_STAGES.length);
   const stage = CONTINUITY_STAGES[index];
 
   return (
     <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
           Keep the picture
         </p>
@@ -588,7 +580,7 @@ function ParentContinuitySection() {
         <p className="mt-14 px-6 text-center font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
           They keep their place.
         </p>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -607,7 +599,7 @@ const ACHIEVEMENT_META = [
 
 
 function ParentAchievementSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const [open, setOpen] = useState(0);
   const [active, setActive] = useState(0);
 
@@ -619,7 +611,7 @@ function ParentAchievementSection() {
 
   return (
     <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your child can achieve.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -640,7 +632,7 @@ function ParentAchievementSection() {
             />
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -651,14 +643,14 @@ function ParentAchievementSection() {
 
 
 function ParentJourneyFlowSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_CATEGORIES.length - 1, CATEGORY_MS);
   const first = JOURNEY_CATEGORIES[index];
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your child's journey changes.<br />Their learning stays with them.
@@ -706,7 +698,7 @@ function ParentJourneyFlowSection() {
             </Link>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -727,7 +719,7 @@ const TRUST_CARDS = [
 
 
 function ParentTrustSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo } = UseCycleIndex(TRUST_CARDS.length, TRUST_WORD_MS);
   const active = TRUST_CARDS[index];
   const next = TRUST_CARDS[(index + 1) % TRUST_CARDS.length];
@@ -735,7 +727,7 @@ function ParentTrustSection() {
 
   return (
     <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
@@ -769,7 +761,7 @@ function ParentTrustSection() {
             <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} image={TRUST_CARD_IMG[(index + 1) % TRUST_CARD_IMG.length]} /></div>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -777,15 +769,14 @@ function ParentTrustSection() {
 /* ═══════════════════════ 12 · CTA ═══════════════════════ */
 
 const ParentCTASection = React.memo(function ParentCTASection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   return (
     <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 rounded-t-[32px]" style={{ backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
-      <div
-        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-      >
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
-          Begin today
-        </p>
+      <ScrollReveal>
+        <div className="mx-auto max-w-[1500px] text-center">
+          <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
+            Begin today
+          </p>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
           Your child's journey is already happening.
         </h2>
@@ -807,10 +798,11 @@ const ParentCTASection = React.memo(function ParentCTASection() {
             Talk to our team
           </Link>
         </div>
-        <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
-          Free to start. Private by design.
-        </p>
-      </div>
+          <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
+            Free to start. Private by design.
+          </p>
+        </div>
+      </ScrollReveal>
     </section>
   );
 });
@@ -820,12 +812,12 @@ const ParentCTASection = React.memo(function ParentCTASection() {
 
 
 function ParentExploreSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
     <section ref={ref} data-section="13-explore" className="relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
           Explore Visionary
         </h2>
@@ -849,7 +841,7 @@ function ParentExploreSection() {
             <ChevronIcon direction="right" />
           </button>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }

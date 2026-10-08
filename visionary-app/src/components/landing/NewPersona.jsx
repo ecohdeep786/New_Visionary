@@ -121,7 +121,7 @@ const CAST_FALLBACK = { canvasH: 1, slotH: 1, slotW: 0.8, offX: 0 };
 const CAST_CSS = `
 @keyframes figIn{from{opacity:0;transform:translateY(5%) scale(0.988)}to{opacity:1;transform:none}}
 @keyframes appleFadeIn{from{opacity:0}to{opacity:1}}
-.cast-stage{--cast-h:min(46svh, calc(100vw / 3.6))}
+.cast-stage{--cast-h:min(34svh, calc(100vw / 2.2))}
 @media (min-width:640px){.cast-stage{--cast-h:min(46svh, calc(100vw / 4.1))}}
 @media (min-width:1024px){.cast-stage{--cast-h:min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px))}}
 .cast-copy{margin-top:auto;margin-bottom:auto}
@@ -215,13 +215,16 @@ export default function NewPersona({
             <h1 className="m-0">
               <span
                 aria-hidden="true"
-                className={`${display} ${staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
+                className={`${display} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
                 style={{ color: "#121317", fontSize: displaySize }}
               >
                 {hasAnimatedHeadline ? (
+                  /* Apple's stacked hero lines: the statement reads as its own
+                     line, the journey word below it — the same masked-line
+                     rhythm as an education-init headline. */
                   <>
-                    <span>{animatedHeadlinePrefix}</span>{" "}
-                    <span key={animatedIndex} className="apple-anim accent-gradient inline-block" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
+                    <span className="block text-balance">{animatedHeadlinePrefix}</span>
+                    <span key={animatedIndex} className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
                       {animatedHeadlineWords[animatedIndex]}.
                     </span>
                   </>
@@ -231,12 +234,10 @@ export default function NewPersona({
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>
-            <p
-              className="mx-auto max-w-[620px] font-normal tracking-[0] leading-[1.6] text-[clamp(16px,1.2vw,18px)]"
-              style={{ color: "#121317", marginTop: `calc(${displaySize} * 0.24)` }}
-            >
-              {sub}
-            </p>
+            {/* Apple's education hero carries no body paragraph — only the
+                large statement and the actions. The story moves below the
+                line-up, so the old sub (a restatement of the headline) is
+                dropped from the universal stage. */}
           </div>
           {/* the hero pair — full buttons. This is the product's front door;
               the same shared pills the persona heroes wear, so one button

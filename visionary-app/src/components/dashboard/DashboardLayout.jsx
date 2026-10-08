@@ -18,6 +18,7 @@ import OrganizationAccessHome from '@/pages/dashboard/OrganizationAccessHome';
 import OrganizationBilling from '@/pages/dashboard/OrganizationBilling';
 import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
+import './workspace-design.css';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Ellipsis } from "lucide-react";
 
@@ -30,9 +31,15 @@ export default function DashboardLayout() {
   const userName = user?.full_name || user?.email?.split("@")[0] || "Learner";
   const location = useLocation();
   const queryClient = useQueryClient();
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const [sidebarExpanded, setSidebarExpanded] = useState(() => window.matchMedia('(min-width: 1200px)').matches);
   const [mobileOpen, setMobileOpen] = useState(false);
   const previousRoute=useRef('');
+  useEffect(() => {
+    const wide = window.matchMedia('(min-width: 1200px)');
+    const adapt = event => setSidebarExpanded(event.matches);
+    wide.addEventListener('change', adapt);
+    return () => wide.removeEventListener('change', adapt);
+  }, []);
   useEffect(() => {
     const refresh = () => { queryClient.invalidateQueries(); };
     window.addEventListener("visionary:workspace-change", refresh);
@@ -62,11 +69,11 @@ export default function DashboardLayout() {
   const navigation=navigationFor(user.identity,locale).filter(item=>!policy||organizationPathAllowed(policy,item.to));
   let stageTier;try{stageTier=getStagePresentation({personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:"en"}).tier;}catch(error){return unavailable(error.message);}
   return <ThemeColorProvider>
-    <div className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
+    <div data-role={ctx.role} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
       <div className={`workspace-presence-anchor${sidebarExpanded ? " is-expanded" : ""}`}><AudioPresence /></div>
       <div className="flex min-h-0 flex-1 overflow-hidden">
-        <div className="hidden h-full md:block"><DashboardSidebar expanded={sidebarExpanded} /></div>
+        <div className="hidden h-full md:block"><DashboardSidebar expanded={sidebarExpanded} onExpand={() => setSidebarExpanded(true)} /></div>
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}><SheetContent side="left" className="w-72 bg-[#ffffff] p-0 pt-10">
           <SheetTitle lang={locale} className="sr-only">{t("workspaceNavigation")}</SheetTitle><SheetDescription lang={locale} className="sr-only">{t("navigationDescription")}</SheetDescription>
           <DashboardSidebar expanded onNavigate={() => setMobileOpen(false)} />

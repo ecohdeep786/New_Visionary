@@ -898,3 +898,23 @@ Done: inspected all six Downloads JPEGs individually; implemented an open white 
 QA:462 full regressions pass; final lint, both types, build and diff check pass. 93 retained reflow observations (70 development / 23 compiled), zero measured document/main overflow; final browser errors empty. Actual class people/invite/action/review/form-cancel and chapter-resume controls verified. Original School personal learner restored; final compiled preview remains at 5173. See REFERENCE_DESIGN_HANDOFF.md for captures and fixture limits.
 
 Open: owner visual, native-language/physical-device/accessibility and wider source/state gates; founder Chapter 1 rehearsal next, backend deferred.
+
+### 2026-10-08 — D-047 premium internal visual system
+
+Done: shared typography, colors, spacing, controls, icons, cards/lists/forms/dialogs and reduced-motion behavior applied through the authenticated shell. Wide navigation is labelled and grouped; compact desktop navigation exposes secondary sections through More. Home uses each role's Visionary illustration and a clear next task, with decoration hidden on phones. Empty tools/classes/learners/children/notifications/content/practice have coherent own-art states and existing actions. Class tabs, representation and Ask use the same visual grammar. Teacher review has labelled multiline feedback and clearer action placement.
+
+QA: 462/462 full tests, final build, full lint, both type checks and whitespace checks pass. Role destinations inspected on desktop and narrow phones; populated cube/classwork/roster/review inspected. Focused compiled observations and capture limits are retained under baseline/premium-system-2026-10-08/. Long route batches that timed out did not retain a complete raw matrix. One unrelated public CollegePage duplicate import caused a transient overlay/lint failure; a minimal unused-import repair restored checks. Remaining concurrent public edits were preserved.
+
+PREMIUM_DESIGN_HANDOFF.md is the next-content handoff. Owner/native language/device/accessibility/zoom/voice and broader source/state acceptance remain open. Backend remains deferred; the user's Chapter 1 will determine its authored subject/chapter-to-learning/Ask/practice/Build rehearsal. No release or AGI/Apple/Google parity certification.
+
+### 2026-10-08 — Engagement experience direction after D-047
+
+Reviewed the current learner Home/Ask and existing Guide entry/activity components against official Apple onboarding and Google expressive-design/motion guidance. ENGAGEMENT_DESIGN_PLAN.md records observed duplicated Home content, text-heavy Ask entry, proposed visual/interactive role adaptations, and a bounded Home → Ask → cube lesson first slice. This is research and a design proposal; no additional frontend behavior or backend changes were made. User enjoyment/retention remains a hypothesis requiring user observation. Chapter 1 content mapping remains next after the initial experience slice.
+
+### 2026-10-08 — D-048 three-role exploration implementation
+
+Done: the founder's explicitly requested product designer, UX/UI engineer and human-centered design engineer implemented the first engagement slice. Home presents a pending current task once and names its plan deferral precisely. Ask gives eligible authored visual examples/actual teacher-parent-professional task choices beneath its composer, with compact saved-record/history continuation. The curriculum cube adds Observe/Change/optional unscored Predict, explanatory feedback, native keyboard focus return and dynamic current dimensions in text mode. Shared responsive styles and Visionary artwork retain the existing handlers. Organization Home's forbidden Ask link was removed; permission policy is unchanged.
+
+QA:467/467 full regressions,103/103 focused, final lint/both types/production build/diff check pass. Actual draft return, visual demo launch, saved cube keyboard/model/text/prediction interactions and role entry variants were checked.17 retained focused layout samples have no document overflow; final compiled browser errors are empty. The final CSS history-row refinement was rebuilt and rendered. Evidence and temporal/fixture limits are in ENGAGEMENT_IMPLEMENTATION_HANDOFF.md and baseline/engagement-2026-10-08/. Original fictional School learner is restored; compiled Ask remains open with viewport override reset.
+
+Open: Chapter1 content mapping and connected flow rehearsal, broader deep category/state acceptance, native language/device/assistive-technology and owner/user-interest evaluation. Backend remains deferred. This completes the bounded design slice, not whole-product production or AGI acceptance. Concurrent public source edits were preserved.

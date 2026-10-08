@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
@@ -38,7 +38,7 @@ import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
 import parentmeet from "@/assets/parent-hero-main-2400w.webp";
 import promeet from "@/assets/pro-face-main-2400w.webp";
 import orgmeet from "@/assets/org-face-main-2400w.webp";
-import { useCycleIndex as UseCycleIndex, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
+import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
 import {
   StruggleChapter,
   JourneyGallery,
@@ -52,7 +52,7 @@ import {
   TrustCard,
   ExploreCard,
   ChevronIcon,
-  FadeReveal,
+  ScrollReveal,
 } from "@/components/landing/persona/PersonaSections";
 
 const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
@@ -93,19 +93,6 @@ function UsePrefersReducedMotion() {
     return () => mq.removeEventListener("change", onChange);
   }, []);
   return reduced;
-}
-
-/* The scroll slide is retired on this page — every section renders present
-   the moment you arrive, no translate-and-fade stack on scroll. These
-   keep the reveal hooks' signature so the section code doesn't change. */
-function UseRevealOnce() {
-  const ref = useRef(null);
-  return { ref, visible: true };
-}
-
-function UseRevealContinuous() {
-  const ref = useRef(null);
-  return { ref, visible: true };
 }
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
@@ -265,11 +252,11 @@ function StudentStruggleSection() {
      manual selection. */
   const [index, setIndex] = useState(0);
   const goTo = useCallback((i) => setIndex(Math.min(SLIDES.length - 1, Math.max(0, i))), []);
-  const { ref, visible } = UseRevealContinuous();
+  const { ref } = UseRevealContinuous();
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      <FadeReveal visible={visible}>
+      <ScrollReveal as="div">
         {/* the bridge's compact band (02-struggle) carries the chapter breath */
         }
         <StruggleChapter
@@ -278,8 +265,10 @@ function StudentStruggleSection() {
           goTo={goTo}
           lines={STRUGGLE_LINES}
           label="Student learning challenges"
+          kicker="Where understanding slips"
+          copy="Studying isn't the difficulty. Knowing it landed is."
         />
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -399,20 +388,20 @@ const JOURNEY_MODALS = {
 
 
 function StudentJourneySection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
 
   return (
     <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         {/* header — Apple's card-chapter treatment (education: "From grade
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
         <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
           <h2 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)]" style={{ color: COLORS.ink }}>
-            <span className="block">What happens when Learning that</span>
+            <span className="block">Learning that</span>
             <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
           </h2>
           <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]"
@@ -421,9 +410,9 @@ function StudentJourneySection() {
             Wherever you begin, Visionary helps your learning move forward from there.
           </p>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
 
-      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Learning stages" />
+      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Learning stages" iconMap={STAGE_META} />
       {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Primary" secondaryLabel="Start free" />}
     </section>
   );
@@ -436,14 +425,14 @@ function StudentJourneySection() {
 
 
 function StudentIntelligenceSection() {
-  const { ref: headRef, visible } = UseRevealOnce();
+  const { ref: headRef } = UseRevealOnce();
   const { index: wordIndex } = UseCycleIndex(INTELLIGENCE_WORDS.length, INTELLIGENCE_WORD_MS);
   const { active, setStepRef } = UseActiveStep(INTELLIGENCE_STEPS.length);
   const current = INTELLIGENCE_STEPS[active];
 
   return (
     <section ref={headRef} className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
+      <ScrollReveal className="px-6 pt-24 lg:pt-32">
         <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
           The intelligence behind your learning
         </p>
@@ -456,7 +445,7 @@ function StudentIntelligenceSection() {
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: 16 }}>
           From the first question to the moment you can use what you've learned.
         </p>
-      </FadeReveal>
+      </ScrollReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
           <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
@@ -481,20 +470,19 @@ function StudentIntelligenceSection() {
 /* ═══════════════════════ 06 · CLOSING ═══════════════════════ */
 
 const StudentClosingSection = React.memo(function StudentClosingSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
     <section ref={ref} data-section="06-closing" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
-      <p
-        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-        style={{ color: COLORS.ink }}
-      >
-        Visionary keeps{" "}
-        <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-          {KEEPS_WORDS[index]}
-        </span>{" "}
-        until understanding becomes confidence.
-      </p>
+      <ScrollReveal>
+        <p className="mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
+          Visionary keeps{" "}
+          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+            {KEEPS_WORDS[index]}
+          </span>{" "}
+          until understanding becomes confidence.
+        </p>
+      </ScrollReveal>
     </section>
   );
 });
@@ -539,7 +527,7 @@ const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onS
 
 function StudentLanguageSection() {
   const reduced = UsePrefersReducedMotion();
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo } = UseCycleIndex(LANGUAGE_CHIPS.length, QUESTION_MS);
   const active = LANGUAGE_CHIPS[index];
   /* the language at the reading position speaks its own subject question
@@ -549,7 +537,7 @@ function StudentLanguageSection() {
   return (
     <section ref={ref} data-section="07-language" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         {/* header unit — tight */}
         <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Every language</p>
         <h2 className="mt-3 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
@@ -585,7 +573,7 @@ function StudentLanguageSection() {
             Use voice or text in the way you're comfortable.
           </p>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -599,13 +587,13 @@ const CATEGORY_SECTION_IMG = [primaryStudent, secondaryStudent, competitiveStude
 
 
 function StudentContinuitySection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo, step } = UseStageIndex(CONTINUITY_STAGES.length);
   const stage = CONTINUITY_STAGES[index];
 
   return (
     <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
           Keep your place
         </p>
@@ -646,7 +634,7 @@ function StudentContinuitySection() {
         <p className="mt-14 px-6 text-center font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
           You keep your place.
         </p>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -665,7 +653,7 @@ const ACHIEVEMENT_META = [
 
 
 function StudentAchievementSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const [open, setOpen] = useState(0);
   const [active, setActive] = useState(0);
 
@@ -677,7 +665,7 @@ function StudentAchievementSection() {
 
   return (
     <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>See what you can achieve.</h2>
         <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -698,7 +686,7 @@ function StudentAchievementSection() {
             />
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -709,14 +697,14 @@ function StudentAchievementSection() {
 
 
 function StudentJourneyFlowSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_CATEGORIES.length - 1, CATEGORY_MS);
   const first = JOURNEY_CATEGORIES[index];
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
           New stage.<br />Same intelligence.
@@ -764,7 +752,7 @@ function StudentJourneyFlowSection() {
             </Link>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -783,7 +771,7 @@ const TRUST_CARDS = [
 
 
 function StudentTrustSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo } = UseCycleIndex(TRUST_CARDS.length, TRUST_WORD_MS);
   const active = TRUST_CARDS[index];
   const next = TRUST_CARDS[(index + 1) % TRUST_CARDS.length];
@@ -791,7 +779,7 @@ function StudentTrustSection() {
 
   return (
     <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
           Your{" "}
@@ -825,7 +813,7 @@ function StudentTrustSection() {
             <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -835,18 +823,17 @@ function StudentTrustSection() {
    field, one Apple-black primary pill with the arrow, one quiet path. */
 
 const StudentCTASection = React.memo(function StudentCTASection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   return (
     <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
-      <div
-        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-      >
-        <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
-          Begin today
-        </p>
-        <h2 className="mt-3 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          Your learning starts with where you are.
-        </h2>
+      <ScrollReveal>
+        <div className="mx-auto max-w-[1500px] text-center">
+          <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
+            Begin today
+          </p>
+          <h2 className="mt-3 font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+            Your learning starts with where you are.
+          </h2>
         <p className="mx-auto mt-4 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Ask your first question. Start building from what you know.
         </p>
@@ -868,10 +855,11 @@ const StudentCTASection = React.memo(function StudentCTASection() {
             Talk to our team
           </Link>
         </div>
-        <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
-          Free to start. Private by design.
-        </p>
-      </div>
+          <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
+            Free to start. Private by design.
+          </p>
+        </div>
+      </ScrollReveal>
     </section>
   );
 });
@@ -881,12 +869,12 @@ const StudentCTASection = React.memo(function StudentCTASection() {
 
 
 function StudentExploreSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
     <section ref={ref} data-section="13-explore" className="relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
           Explore Visionary
         </h2>
@@ -910,7 +898,7 @@ function StudentExploreSection() {
             <ChevronIcon direction="right" />
           </button>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }

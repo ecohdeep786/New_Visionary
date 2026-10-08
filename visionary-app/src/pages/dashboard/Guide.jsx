@@ -7,6 +7,8 @@ import { newConversation, startJourney, updateConversation, removeConversation, 
 import { prepareLearningConversation, getLearningForConversation } from '@/services/learningPipelineService';
 import { sendMentorTurn } from '@/services/mentorCompanionService';
 import MentorGreeting from '@/components/dashboard/MentorGreeting';
+import JourneyPreview from '@/components/dashboard/JourneyPreview';
+import SpotIllustration from '@/components/landing/SpotIllustration';
 import { subscribeVoiceMode, speak, resolveAudioEnabled, setSessionAudioOverride } from '@/services/voiceService';
 import { listJourneys } from '@/services/journeys';
 import { openGuideLocation, selectGuideConversation, saveAskContext, suggestedJourneys, defaultAskContext } from '@/services/guideEntryService';
@@ -248,7 +250,12 @@ function GuideConversation() {
             })}</Link>}
    {fresh && <><h2 className="guide-entry-title">{copy("What would you like help with?")}</h2>{composer}</>}
    <div className="guide-messages" aria-busy={busy}>
-    {fresh ? <div className="flex flex-col gap-4 py-2"><MentorGreeting /><GuideEntry compact role={ctx.role} value={conversation?.ask || defaultAskContext} onChange={value => {
+    {fresh ? <div className="guide-entry-content">
+     <section className="guide-example-section" aria-labelledby="guide-example-title"><h3 id="guide-example-title" className="guide-example-heading">{ctx.role === 'student' ? copy("Or try an authored example") : copy("Or open a relevant task")}</h3><div className="guide-example-grid">
+      {suggestions.map(j => <button type="button" className="guide-example-card" key={j.id} onClick={() => openActivity(j.id)}><span className={`guide-example-visual guide-example-${j.id}`}><JourneyPreview journeyId={j.id} /></span><span className="guide-example-copy">{ctx.role !== 'student' && <span className="guide-example-kind">{copy("Learning activity · Demo content")}</span>}<span className="guide-example-title" lang={ctx.locale}>{j.title}</span><span className="guide-example-action">{copy("Start exploring")}<ArrowUpRight size={16} aria-hidden="true" /></span></span></button>)}
+      {ctx.role !== 'student' && roleActions[ctx.role].slice(0, 3 - suggestions.length).map(a => <Link className="guide-example-card guide-task-card" key={a.path} to={a.path}><span className="guide-example-visual"><SpotIllustration subject={taskIllustration(a.path)} className="guide-task-illustration" /></span><span className="guide-example-copy"><span className="guide-example-title">{copy(a.label)}</span><ArrowUpRight size={18} aria-hidden="true" /></span></Link>)}
+     </div></section>
+     <MentorGreeting /><GuideEntry compact role={ctx.role} value={conversation?.ask || defaultAskContext} onChange={value => {
                 try {
                   saveAskContext(ctx, ensureConversation().id, value);
                   setError('');
@@ -256,8 +263,7 @@ function GuideConversation() {
                   setError(e.message);
                 }
               }} />
-     <div><p className="v-muted mb-3">{ctx.role === 'student' ? copy("Or try an authored example") : copy("Or open a relevant task")}</p><div className="flex flex-wrap gap-2">{suggestions.map(j => <button className="v-button" key={j.id} onClick={() => openActivity(j.id)}><BookOpen size={16} /><span lang={ctx.locale}>{j.title}</span></button>)}{ctx.role !== 'student' && roleActions[ctx.role].slice(0, 3 - suggestions.length).map(a => <Link className="v-button" key={a.path} to={a.path}>{copy(a.label)}<ArrowUpRight size={16} /></Link>)}</div></div>
-     {!selected && recent && <button className="mt-8 flex items-center gap-3 rounded-xl border border-[#dadce0] p-4 text-left text-sm" onClick={() => chooseConversation(recent)}><History size={18} /><span className="min-w-0"><span className="block text-xs text-[#5f6368]">{copy("Continue where you left off")}</span><span className="mt-1 block truncate">{recent.title}</span></span></button>}
+     {!selected && recent && <button className="guide-recent-conversation" onClick={() => chooseConversation(recent)}><History size={18} aria-hidden="true" /><span className="min-w-0"><span className="block text-xs text-[#5f6368]">{copy("Continue where you left off")}</span><span className="mt-1 block truncate">{recent.title}</span></span><ArrowUpRight size={16} aria-hidden="true" /></button>}
     </div> : conversation.messages.map(message => <div key={message.id} className={`guide-message ${message.role === 'user' ? 'user' : ''}`}>{message.role === 'guide' && <p className="mb-2 flex items-center gap-2 text-xs font-medium text-[#4285F4]"><Sparkles size={14} />Visionary Guide · {message.status === 'not_connected' ? copy("Teaching service not connected") : message.status === 'blocked' ? copy("Safety response") : message.status === 'ready' ? copy("Connected teaching response") : message.status === 'mentor' ? copy("From your saved records") : message.status === 'model' ? copy("Connected mentor response") : copy("Authored demo response")}</p>}{message.blocks.map((block, i) => block.type === 'text' ? <p key={i} lang={block.locale} className="whitespace-pre-wrap">{block.text}</p> : block.type === 'activity' ? <button key={i} lang={block.locale} className="v-button mr-2 mt-3" onClick={() => openActivity(block.journeyId)}><BookOpen size={16} />{block.label}</button> : message.status === 'model' ? <Link lang={block.locale} className="v-button mt-3" key={i} to={block.path}>{block.label}<ArrowUpRight size={16} /></Link> : <button lang={block.locale} className="v-button mt-3" key={i} onClick={() => openCanvas(block.path)}>{block.label}<ArrowUpRight size={16} /></button>)}</div>)}
    </div>
    {!!conversation?.messages.length && <GuideEntry compact role={ctx.role} value={conversation.ask || defaultAskContext} onChange={value => {
@@ -299,6 +305,10 @@ function GuideConversation() {
               setError(e.message);
             }
           }}>{copy("Delete conversation")}</button></DialogContent></Dialog></div></>;
+}
+function taskIllustration(path) {
+  const section = path.split('/').pop();
+  return { prepare: 'document', classes: 'community', learners: 'learn', reports: 'handshake', child: 'handshake', career: 'briefcase', build: 'briefcase', cohorts: 'community', people: 'community', analytics: 'growth' }[section] || 'compass';
 }
 function getJourneyTitle(id) {
   return listJourneys().find(j => j.id === id)?.title || 'this idea';

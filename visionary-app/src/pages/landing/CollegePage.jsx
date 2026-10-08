@@ -22,6 +22,12 @@ import {
   useHorizontalTrack as UseScrollTrack,
   useStageIndex as UseStageIndex,
 } from "@/components/landing/system/hooks";
+import {
+  StruggleChapter,
+  JourneyGallery,
+  JourneyModal as SharedJourneyModal,
+  ScrollReveal,
+} from "@/components/landing/persona/PersonaSections";
 
 /**
  * Problem Section
@@ -58,9 +64,11 @@ const EXPLORE_CAT_IMG = [studentmeet, teachermeet, parentmeet, orgmeet];
 
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
- * 01 hero · 02 struggle · 03 promise · 04 journey · 05 intelligence ·
+ * 01 hero · 02 struggle · 04 journey · 05 intelligence ·
  * 06 closing · 07 language · 08 continuity · 09 achievement ·
  * 10 journey-flow · 11 trust · 12 cta · 13 explore
+ * (03 retired — the promise/question beat; keys keep their historical
+ * numbers so bridge CSS and probes stay stable)
  * ═══════════════════════════════════════════════════════════════════ */
 
 /* ── DESIGN TOKENS ── */
@@ -92,24 +100,25 @@ const SLIDES = [
   { word: "Focus", quote: "Between meetings and deadlines, learning keeps getting postponed.", image: proProblem4, alt: "Professional juggling work deadlines and learning" },
   { word: "Results", quote: "My team ships. I still don't know if we're building it right.", image: proProblem2, alt: "Professional uncertain about team output" },
 ];
+const STRUGGLE_LINES = ["Every", "professional", "wonders", "about"];
 const CYCLE_MS = 4000;
 
 const JOURNEY_WORDS = [
-  "moves with your career?",
-  "meets your challenges",
-  "grows with your goals",
-  "compounds with your skills",
+  "moves with your career.",
+  "meets your challenges.",
+  "grows with your goals.",
+  "compounds with your skills.",
   "opens what comes next.",
 ];
 const JOURNEY_WORD_MS = 3000;
 
 const JOURNEY_STAGES = [
-  { title: "Early Career", copy: "Turn every first project into real skill — not just another line on your resume.", image: secondaryStudent, alt: "Early career professional at work" },
-  { title: "Mid-Level", copy: "When the questions get harder and the decisions matter more, Visionary helps you reason through them.", image: higherStudent, alt: "Mid-level professional solving problems" },
-  { title: "Senior", copy: "Your judgement is your product. Visionary sharpens it by connecting what you've done to what comes next.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
-  { title: "Leadership", copy: "Lead with clarity — see what your team understands, where they're stuck, and what they're ready for.", image: competitiveStudent, alt: "Leader reviewing team progress" },
-  { title: "Specialist", copy: "Go deep without losing context. Every paper, project, and problem builds on the last.", image: higherStudent, alt: "Specialist deep in their domain" },
-  { title: "Entrepreneur", copy: "Turn ideas into shipped work — with intelligence that remembers every decision and every lesson.", image: primaryStudent, alt: "Entrepreneur building something real" },
+  { title: "Early Career", statement: "Turn every first role into real skill.", copy: "Turn every first project into real skill — not just another line on your resume.", image: secondaryStudent, alt: "Early career professional at work" },
+  { title: "Mid-Level", statement: "Reason through the harder decisions.", copy: "When the questions get harder and the decisions matter more, Visionary helps you reason through them.", image: higherStudent, alt: "Mid-level professional solving problems" },
+  { title: "Senior", statement: "Your judgement, sharpened.", copy: "Your judgement is your product. Visionary sharpens it by connecting what you've done to what comes next.", image: vocationStudent, alt: "Senior professional mentoring and leading" },
+  { title: "Leadership", statement: "Lead with clear sight.", copy: "See what your team understands, where they're stuck, and what they're ready for.", image: competitiveStudent, alt: "Leader reviewing team progress" },
+  { title: "Specialist", statement: "Go deep without losing context.", copy: "Go deep without losing context. Every paper, project, and problem builds on the last.", image: higherStudent, alt: "Specialist deep in their domain" },
+  { title: "Entrepreneur", statement: "Ship ideas. Keep the lessons.", copy: "Turn ideas into shipped work — with intelligence that remembers every decision and every lesson.", image: primaryStudent, alt: "Entrepreneur building something real" },
 ];
 
 const INTELLIGENCE_WORDS = ["Every project connected.", "Every skill connected.", "Every decision connected.", "Every idea connected."];
@@ -186,14 +195,6 @@ const VoiceIcon = React.memo(function VoiceIcon({ className = "h-9 w-9", style }
   );
 });
 
-const FadeReveal = React.memo(function FadeReveal({ visible, children, className = "" }) {
-  return (
-    <div className={`transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}>
-      {children}
-    </div>
-  );
-});
-
 /* ═══════════════════════ 01 · HERO ═══════════════════════ */
 
 const ProHeroSection = React.memo(() => (
@@ -209,180 +210,37 @@ const ProHeroSection = React.memo(() => (
 
 /* ═══════════════════════ 02 · STRUGGLE ═══════════════════════ */
 
-const STRUGGLE_WORD_STYLE = `
-@keyframes struggleWordIn {
-  from {
-    opacity: 0;
-    transform: translate3d(-18px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-`;
-
-const STRUGGLE_IMAGE_STYLE = `
-@keyframes struggleImageIn {
-  from {
-    opacity: 0;
-    transform: scale(1.015);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-`;
-
-const StruggleHeading = React.memo(function StruggleHeading({ word, slideKey }) {
-  return (
-    <h2
-      className="font-medium tracking-[0] leading-[1.15] text-[clamp(28px,2.78vw,40px)] lg:leading-[1.08]"
-      style={{ color: COLORS.ink }}
-    >
-      <span className="block">Every</span>
-      <span className="block">Professional</span>
-      <span className="block">Wonders</span>
-      <span className="block">About</span>
-      <span className="block overflow-hidden whitespace-nowrap">
-        <span
-          key={slideKey}
-          className="inline-block animate-[struggleWordIn_0.65s_cubic-bezier(0.22,1,0.36,1)_both]"
-          style={{ color: COLORS.blue }}
-        >
-          {word}
-        </span>
-      </span>
-    </h2>
-  );
-});
-
-const STRUGGLE_MAIN_POSITIONS = ["center 30%"];
-const STRUGGLE_SATELLITES = [];
-
-const StruggleCluster = React.memo(function StruggleCluster({ slide, slideKey }) {
-  return (
-    <figure className="m-0 w-full">
-      <style>
-        {STRUGGLE_WORD_STYLE}
-        {STRUGGLE_IMAGE_STYLE}
-      </style>
-
-      <div className="relative mx-auto w-full max-w-[520px]">
-        {/* circle wrapper — exactly circle-sized, centered in the column */}
-        <div className="relative mx-auto w-[86%] max-w-[400px]">
-          {/* hand-drawn arrow — lives in the gap BETWEEN heading and circle */}
-          <svg
-            viewBox="0 0 220 120"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-[136px] top-1/2 z-10 hidden h-[72px] w-[120px] -translate-y-1/2 lg:block"
-            style={{ color: COLORS.ink }}
-          >
-            <path d="M6 66 C 60 86, 140 84, 198 52" />
-            <path d="M198 52 l-16 2" />
-            <path d="M198 52 l-6 14" />
-          </svg>
-
-          <div className="aspect-square w-full overflow-hidden rounded-full">
-            <img
-              key={`main-${slideKey}`}
-              src={slide.image}
-              alt={slide.alt}
-              loading="eager"
-              decoding="async"
-              className="block h-full w-full object-cover animate-[struggleImageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
-              style={{ objectPosition: STRUGGLE_MAIN_POSITIONS[slideKey % STRUGGLE_MAIN_POSITIONS.length] }}
-            />
-          </div>
-        </div>
-
-        {/* quote — centered under the circle */}
-        <figcaption
-          key={`quote-${slideKey}`}
-          aria-live="polite"
-          className="hero-fade-up mx-auto mt-8 max-w-[520px] px-4 text-center font-normal tracking-[0] leading-[1.4] text-[clamp(16px,1.39vw,20px)] [animation-delay:120ms] [animation-fill-mode:both] sm:px-0"
-          style={{ color: COLORS.ink }}
-        >
-          {slide.quote}
-        </figcaption>
-      </div>
-    </figure>
-  );
-});
-
-const CarouselDots = React.memo(function CarouselDots({ total, active, onSelect }) {
-  return (
-    <div className="flex items-center gap-2" role="group" aria-label="Professional work challenges">
-      {Array.from({ length: total }, (_, i) => (
-        <button
-          key={i}
-          type="button"
-          aria-label={`Go to challenge ${i + 1}`}
-          aria-pressed={i === active}
-          onClick={() => onSelect(i)}
-          className={`relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-3 after:-inset-x-1.5 after:content-[''] ${i === active ? "w-10" : "w-2 hover:opacity-70"}`}
-          style={{ backgroundColor: i === active ? COLORS.ink : `${COLORS.ink}33` }}
-        />
-      ))}
-    </div>
-  );
-});
-
 function ProStruggleSection() {
-  const { index, goTo } = UseCycleIndex(SLIDES.length, CYCLE_MS);
-  const { ref, visible } = UseRevealContinuous();
-  const slide = SLIDES[index];
+  /* The problem chapter is static — no auto-advance; one challenge at a
+     time while the visitor reads (Apple never auto-steps a problem section).
+     Dots still allow manual selection. */
+  const [index, setIndex] = useState(0);
+  const goTo = useCallback((i) => setIndex(Math.min(SLIDES.length - 1, Math.max(0, i))), []);
+  const { ref } = UseRevealContinuous();
 
   return (
-    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white py-24 lg:py-32">
-      <FadeReveal visible={visible}>
-        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10">
-          <div className="mx-auto w-full max-w-[420px] lg:col-span-5 lg:mx-0 lg:max-w-none lg:pl-[4%] xl:pl-[6.5%]">
-            <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-              The problem
-            </p>
-            <div className="mt-6">
-              <StruggleHeading word={slide.word} slideKey={index} />
-            </div>
-          </div>
-
-          <div className="relative w-full lg:col-span-7 lg:pr-[2%] xl:pr-[4%]">
-            <StruggleCluster slide={slide} slideKey={index} />
-          </div>
-        </div>
-
-        <div className="mt-12 flex justify-center px-6 lg:mt-14">
-          <CarouselDots total={SLIDES.length} active={index} onSelect={goTo} />
-        </div>
-      </FadeReveal>
+    <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
+      <ScrollReveal>
+        <StruggleChapter
+          slides={SLIDES}
+          index={index}
+          goTo={goTo}
+          lines={STRUGGLE_LINES}
+          label="Career learning challenges"
+          kicker="What work doesn't show"
+          copy="Working isn't the difficulty. Showing it is."
+        />
+      </ScrollReveal>
     </section>
   );
 }
-
-/* ═══════════════════════ 03 · PROMISE ═══════════════════════ */
-
-const ProPromiseSection = React.memo(function ProPromiseSection() {
-  const { ref, visible } = UseRevealOnce();
-  return (
-    <section ref={ref} data-section="03-promise" className="relative overflow-hidden px-6 py-24 lg:py-32">
-      <h2
-        className={`mx-auto max-w-[1080px] text-center font-medium tracking-[0] leading-[1.05] text-[clamp(34px,5vw,72px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-        style={{ color: COLORS.ink }}
-      >
-        What if every skill you learned actually{" "}
-        <span style={{ color: COLORS.blue }}>made it into your work?</span>
-      </h2>
-    </section>
-  );
-});
 
 /* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
+/* The turn from the problem chapter lands directly here: the struggle ends
+   in a first-person quote, and this chapter answers it with the product.
+   No promise/question beat between them — Apple turns with statements, not
+   rhetorical questions. (03 retired — the promise/question beat; keys keep
+   their historical numbers so bridge CSS and probes stay stable.) */
 
 /* Icons per journey stage — reuses icons already imported in this file */
 const JOURNEY_STAGE_ICONS = {
@@ -473,291 +331,33 @@ const JOURNEY_MODALS = {
   },
 };
 
-const JourneyCarousel = React.memo(function JourneyCarousel({ stages, onOpen, trackRef, onScroll, canPrev, canNext, scrollByCard }) {
-  const ALIGN = "max(1.5rem, calc(50% - 40rem))";
-
-  return (
-    <div className="mt-16 lg:mt-20">
-      <div
-        ref={trackRef}
-        onScroll={onScroll}
-        style={{ paddingLeft: ALIGN, paddingRight: "max(1.5rem, 6%)", scrollPaddingLeft: ALIGN }}
-        className="flex snap-x snap-mandatory gap-12 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {stages.map((stage) => {
-          const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
-          return (
-            <article key={stage.title} data-card className="w-[85%] shrink-0 snap-start sm:w-[440px] lg:w-[700px] xl:w-[780px]">
-              <button
-                type="button"
-                onClick={() => onOpen(stage)}
-                aria-label={`Open details for ${stage.title}`}
-                className="group relative block w-full overflow-hidden rounded-[50px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
-              >
-                <img
-                  src={stage.image}
-                  alt={stage.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/9] w-full rounded-[50px] object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02]"
-                />
-                {/* stage icon pill — the missing icon layer */}
-                <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-                <span className="elevation-2 absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white transition-transform duration-300 group-hover:scale-110" style={{ color: COLORS.ink }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </span>
-              </button>
-              <h3 className="mt-[calc(clamp(28px,2.9vw,40px)*1.714)] text-center font-normal tracking-[0] leading-[1.02] text-[clamp(28px,2.9vw,40px)]" style={{ color: COLORS.ink }}>{stage.title}</h3>
-              <p className="mx-auto mt-[calc(clamp(28px,2.9vw,40px)*0.714)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{stage.copy}</p>
-            </article>
-          );
-        })}
-      </div>
-      <div className="mt-12 flex justify-end px-6 lg:mt-16 lg:pr-[9%]">
-        <div className="inline-flex items-center gap-10 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.cardSurface }}>
-          <button type="button" aria-label="Previous stages" disabled={!canPrev} onClick={() => scrollByCard(-1)} className={`transition-colors ${canPrev ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canPrev ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="left" />
-          </button>
-          <button type="button" aria-label="Next stages" disabled={!canNext} onClick={() => scrollByCard(1)} className={`transition-colors ${canNext ? "hover:opacity-70" : "cursor-default"}`} style={{ color: canNext ? COLORS.ink : `${COLORS.ink}40` }}>
-            <ChevronIcon direction="right" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-});
-
-const JourneyModal = React.memo(function JourneyModal({ stage, onClose }) {
-  const closeRef = useRef(null);
-  useEffect(() => {
-    const previouslyFocused = document.activeElement;
-    closeRef.current?.focus();
-        const onKey = (e) => {
-      if (e.key === "Escape") { onClose(); return; }
-      if (e.key !== "Tab") return;
-      const dialog = document.querySelector('[role="dialog"][aria-modal="true"]');
-      if (!dialog) return;
-      const focusables = [...dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-      previouslyFocused?.focus?.();
-    };
-  }, [onClose]);
-
-  const content = JOURNEY_MODALS[stage.title];
-  const meta = STAGE_META[stage.title] || STAGE_META["Early Career"];
-  if (!content) return null;
-  const secondary = content.primary.to === "/how-it-works"
-    ? { label: "Start free", to: "/register" }
-    : { label: "See how it works", to: "/how-it-works" };
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8 sm:px-6" role="dialog" aria-modal="true" aria-labelledby="journey-modal-title">
-      <button
-        type="button"
-        tabIndex={-1}
-        aria-label="Close dialog"
-        onClick={onClose}
-        className="absolute inset-0 h-full w-full cursor-default bg-[#121317]/60"
-      />
-
-      <div
-        className="relative max-h-[88vh] w-full max-w-[1080px] overflow-y-auto rounded-[28px] bg-white p-6 sm:p-10 lg:p-14"
-        style={{ animation: "heroFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both" }}
-      >
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#121317] text-white transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
-
-        <p className="text-[12px] font-medium uppercase tracking-[0.12em]" style={{ color: COLORS.grey }}>
-          {stage.title}
-        </p>
-
-        <h3 id="journey-modal-title" className="mt-[calc(clamp(30px,3.8vw,56px)*0.4)] max-w-[860px] font-medium tracking-[-0.02em] leading-[1.05] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
-          {content.top}
-          <br />
-          <span style={{ color: COLORS.blue }}>{content.accent}</span>
-        </h3>
-
-        <div className="relative mt-8 overflow-hidden rounded-[24px]">
-          <img src={stage.image} alt={stage.alt} className="aspect-[21/9] w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#121317]/60 via-[#121317]/20 to-transparent p-5">
-            <span
-              className="inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em]"
-              style={{ color: COLORS.ink }}
-            >
-              <meta.Icon className="h-3.5 w-3.5" strokeWidth={1.8} style={{ color: COLORS.blue }} />
-              Visionary for {stage.title}
-            </span>
-          </div>
-        </div>
-
-        <p className="mt-7 max-w-[680px] font-normal tracking-[0] leading-[1.65] text-[15px] sm:text-[16px]" style={{ color: COLORS.grey }}>
-          {content.intro}
-        </p>
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <Link
-            to={content.primary.to}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
-          >
-            {content.primary.label}
-            <ChevronIcon className="h-4 w-4" />
-          </Link>
-          <Link
-            to={secondary.to}
-            className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-            style={{ borderColor: `${COLORS.ink}26`, color: COLORS.ink }}
-          >
-            {secondary.label}
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-          {content.blocks.map((b) => (
-            <div key={b.t} className="border-t pt-6" style={{ borderColor: `${COLORS.ink}26` }}>
-              <div className="flex items-start gap-4">
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                  style={{ borderColor: `${COLORS.ink}26`, color: COLORS.blue }}
-                >
-                  <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
-                </span>
-                <div className="min-w-0">
-                  <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
-                    <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
-                  </p>
-                  <Link
-                    to={b.to}
-                    className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                    style={{ color: COLORS.blue }}
-                  >
-                    {b.l}
-                    <ChevronIcon className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-});
+/* ═══════════════════════ 04 · JOURNEY ═══════════════════════ */
 
 function ProJourneySection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
   const [openStage, setOpenStage] = useState(null);
-  const [activeStage, setActiveStage] = useState(0);
-  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
-
-  /* scroll → active chip */
-  const handleScroll = useCallback(() => {
-    update();
-    const t = trackRef.current;
-    if (!t) return;
-    const cards = Array.from(t.querySelectorAll("[data-card]"));
-    if (!cards.length) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    let best = 0;
-    let bestDist = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(card.getBoundingClientRect().left - tLeft - align);
-      if (d < bestDist) { bestDist = d; best = i; }
-    });
-    setActiveStage(best);
-  }, [update, trackRef]);
-
-  /* chip → scroll track */
-  const goToStage = useCallback((i) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelectorAll("[data-card]")[i];
-    if (!card) return;
-    const align = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    const tLeft = t.getBoundingClientRect().left;
-    t.scrollTo({ left: t.scrollLeft + (card.getBoundingClientRect().left - tLeft) - align, behavior: "smooth" });
-    setActiveStage(i);
-  }, [trackRef]);
 
   return (
-    <section ref={ref} data-section="04-journey" className="relative overflow-hidden py-24 lg:py-32">
-      <FadeReveal visible={visible}>
-        {/* header — eyebrow / heading / one-line sub */}
-        <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.ink }}>
-          Your career, your journey
-        </p>
-        <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          What happens when work
-          <br className="hidden md:block" />{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
-        </h2>
-        <p
-          className="mx-auto mt-6 w-full max-w-[900px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
-          style={{ color: COLORS.grey }}
-        >
-          Wherever your career begins, Visionary helps your work move forward from there.
-        </p>
-
-        {/* stage rail — even beat under the header */}
-        <div className="mt-14 px-6 lg:mt-20">
-          <div className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:justify-center lg:gap-4 lg:overflow-visible lg:py-0" role="group" aria-label="Career stages">
-            {JOURNEY_STAGES.map((stage, i) => {
-              const Icon = JOURNEY_STAGE_ICONS[stage.title] || Sparkles;
-              const active = i === activeStage;
-              return (
-                <button
-                  key={stage.title}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => goToStage(i)}
-                  className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                  style={active
-                    ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
-                    : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
-                >
-                  <Icon className="h-4 w-4" strokeWidth={1.8} />
-                  {stage.title}
-                </button>
-              );
-            })}
-          </div>
+    <section ref={ref} data-section="04-journey" className="relative isolate overflow-hidden py-24 lg:py-32 bg-white">
+      <ScrollReveal>
+        {/* header — Apple's card-chapter treatment (education: "From grade
+            school to grad school."): statement LEFT-aligned at the measured
+            gutter, and the gallery's track carries the same gutter so the
+            first card starts exactly at the heading's left edge — one spine. */}
+        <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
+          <h2 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)]" style={{ color: COLORS.ink }}>
+            <span className="block">Work that</span>
+            <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+          </h2>
+          <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            Wherever your career begins, Visionary helps your work move forward from there.
+          </p>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
 
-      <JourneyCarousel
-        stages={JOURNEY_STAGES}
-        onOpen={setOpenStage}
-        trackRef={trackRef}
-        onScroll={handleScroll}
-        canPrev={canPrev}
-        canNext={canNext}
-        scrollByCard={scrollByCard}
-      />
-      {openStage && <JourneyModal stage={openStage} onClose={() => setOpenStage(null)} />}
+      <JourneyGallery stages={JOURNEY_STAGES} onOpen={setOpenStage} label="Career stages" iconMap={STAGE_META} />
+      {openStage && <SharedJourneyModal stage={openStage} onClose={() => setOpenStage(null)} modals={JOURNEY_MODALS} stageMeta={STAGE_META} fallbackKey="Early Career" secondaryLabel="Start free" />}
     </section>
   );
 }
@@ -796,14 +396,14 @@ const IntelligenceVisual = React.memo(function IntelligenceVisual({ step, index,
 });
 
 function ProIntelligenceSection() {
-  const { ref: headRef, visible } = UseRevealOnce();
+  const { ref: headRef } = UseRevealOnce();
   const { index: wordIndex } = UseCycleIndex(INTELLIGENCE_WORDS.length, INTELLIGENCE_WORD_MS);
   const { active, setStepRef } = UseActiveStep(INTELLIGENCE_STEPS.length);
   const current = INTELLIGENCE_STEPS[active];
 
   return (
     <section ref={headRef} data-section="05-intelligence" className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
-      <FadeReveal visible={visible} className="px-6 pt-24 lg:pt-32">
+      <ScrollReveal className="px-6 pt-24 lg:pt-32">
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           The intelligence behind your work
         </p>
@@ -816,7 +416,7 @@ function ProIntelligenceSection() {
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           Visionary keeps your work moving — from the first problem of the day to the skills that define your career.
         </p>
-      </FadeReveal>
+      </ScrollReveal>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
           <div className="sticky top-16 flex h-[calc(100vh-2rem)] items-center">
@@ -841,7 +441,7 @@ function ProIntelligenceSection() {
 /* ═══════════════════════ 06 · CLOSING ═══════════════════════ */
 
 const ProClosingSection = React.memo(function ProClosingSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
     <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
@@ -888,7 +488,7 @@ const LanguageChips = React.memo(function LanguageChips({ active, onSelect }) {
 });
 
 function ProLanguageSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const [lang, setLang] = useState("en");
   const { index } = UseCycleIndex(LANGUAGE_QUESTIONS.length, QUESTION_MS);
   const question = LANGUAGE_QUESTIONS[index][lang];
@@ -897,7 +497,7 @@ function ProLanguageSection() {
   return (
     <section ref={ref} data-section="07-language" className="relative px-6 py-24 lg:py-32">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         {/* header unit — tight */}
         <p className="text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our language</p>
         <h2 className="text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -953,7 +553,7 @@ function ProLanguageSection() {
             </p>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -1048,13 +648,13 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
 });
 
 function ProContinuitySection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo, step } = UseStageIndex(CONTINUITY_STAGES.length);
   const stage = CONTINUITY_STAGES[index];
 
   return (
     <section ref={ref} data-section="08-continuity" className="relative py-24 lg:py-32 [overflow-x:clip]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
           Your continuity
         </p>
@@ -1095,7 +695,7 @@ function ProContinuitySection() {
         <p className="mt-14 px-6 text-center font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
           Your work keeps its place.
         </p>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -1149,7 +749,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
 });
 
 function ProAchievementSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const [open, setOpen] = useState(0);
   const [active, setActive] = useState(0);
 
@@ -1161,7 +761,7 @@ function ProAchievementSection() {
 
   return (
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with intelligence.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -1182,7 +782,7 @@ function ProAchievementSection() {
             />
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -1216,14 +816,14 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
 });
 
 function ProJourneyFlowSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index } = UseCycleIndex(JOURNEY_CATEGORIES.length - 1, CATEGORY_MS);
   const first = JOURNEY_CATEGORIES[index];
   const second = JOURNEY_CATEGORIES[index + 1];
 
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your journey</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your work changes.<br />Your intelligence grows with you.
@@ -1271,7 +871,7 @@ function ProJourneyFlowSection() {
             </Link>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -1309,7 +909,7 @@ const TrustCard = React.memo(function TrustCard({ card }) {
 });
 
 function ProTrustSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { index, goTo } = UseCycleIndex(TRUST_CARDS.length, TRUST_WORD_MS);
   const active = TRUST_CARDS[index];
   const next = TRUST_CARDS[(index + 1) % TRUST_CARDS.length];
@@ -1317,7 +917,7 @@ function ProTrustSection() {
 
   return (
     <section ref={ref} data-section="11-trust" className="relative bg-white py-24 lg:py-32 [overflow-x:clip]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
         <h2 className="px-6 text-center font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
@@ -1351,7 +951,7 @@ function ProTrustSection() {
             <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
           </div>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -1359,7 +959,7 @@ function ProTrustSection() {
 /* ═══════════════════════ 12 · CTA ═══════════════════════ */
 
 const ProCTASection = React.memo(function ProCTASection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   return (
     <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
       <div
@@ -1415,12 +1015,12 @@ const ExploreCard = React.memo(function ExploreCard({ index, category }) {
 });
 
 function ProExploreSection() {
-  const { ref, visible } = UseRevealOnce();
+  const { ref } = UseRevealOnce();
   const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
     <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
-      <FadeReveal visible={visible}>
+      <ScrollReveal>
         <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
           Explore more categories
         </h2>
@@ -1444,7 +1044,7 @@ function ProExploreSection() {
             <ChevronIcon direction="right" />
           </button>
         </div>
-      </FadeReveal>
+      </ScrollReveal>
     </section>
   );
 }
@@ -1458,7 +1058,6 @@ export default function ProfessionalPage() {
       <main id="main">
         <ProHeroSection />
         <ProStruggleSection />
-        <ProPromiseSection />
         <ProJourneySection />
         <ProIntelligenceSection />
         <ProClosingSection />

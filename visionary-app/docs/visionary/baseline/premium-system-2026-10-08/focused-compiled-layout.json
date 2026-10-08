@@ -1,0 +1,32 @@
+[
+  {
+    "documentWidth": 862,
+    "mainWidth": 769,
+    "surface": "learner-home",
+    "width": 862
+  },
+  {
+    "documentWidth": 862,
+    "mainWidth": 769,
+    "surface": "learner-ask",
+    "width": 862
+  },
+  {
+    "documentWidth": 857,
+    "mainWidth": 764,
+    "surface": "learner-settings",
+    "width": 862
+  },
+  {
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "surface": "learner-home-phone",
+    "width": 390
+  },
+  {
+    "documentWidth": 769,
+    "mainWidth": 523,
+    "surface": "learner-home-tablet-manually-expanded",
+    "width": 769
+  }
+]

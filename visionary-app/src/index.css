@@ -473,6 +473,42 @@
   animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Apple-style section scroll reveal — after the hero, children rise in place,
+   one element at a time, on the resolve-out curve. Staggers each direct child
+   of a .reveal-item by 60ms so a heading + sub + image each wait their beat.
+   Reduced-motion snaps to fully visible instantly. */
+.scroll-reveal {
+  opacity: 0;
+}
+
+.scroll-reveal.in-view {
+  opacity: 1;
+}
+
+.scroll-reveal.in-view .reveal-item > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.9s var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  transition-delay: calc(
+    var(--reveal-base-delay, 0ms) + (var(--reveal-idx, 0) * 60ms)
+  );
+}
+
+.scroll-reveal .reveal-item > * {
+  opacity: 0;
+  transform: translateY(26px);
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal .reveal-item > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ═══ Wave L4 — anchor navigation + print (03-design-system) ═══ */
 /* Anchored sections must never hide behind the sticky nav */
 section[id],

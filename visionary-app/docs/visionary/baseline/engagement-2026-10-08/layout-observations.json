@@ -1,0 +1,107 @@
+[
+  {
+    "documentWidth": 862,
+    "mainWidth": 769,
+    "surface": "ask-development",
+    "width": 862
+  },
+  {
+    "continueLinks": 1,
+    "documentWidth": 862,
+    "mainWidth": 769,
+    "surface": "home-development",
+    "width": 862
+  },
+  {
+    "documentWidth": 1440,
+    "mainWidth": 1195,
+    "surface": "cube-prediction-development",
+    "width": 1440
+  },
+  {
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "surface": "cube-phone-development",
+    "width": 390
+  },
+  {
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "surface": "ask-phone-development",
+    "width": 390
+  },
+  {
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "surface": "teacher-ask-phone",
+    "width": 390
+  },
+  {
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "surface": "parent-ask-phone",
+    "width": 390
+  },
+  {
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "surface": "professional-ask-phone",
+    "width": 390
+  },
+  {
+    "documentWidth": 385,
+    "mainWidth": 379,
+    "surface": "organization-home-no-ask",
+    "width": 390
+  },
+  {
+    "documentWidth": 1440,
+    "mainWidth": 1195,
+    "surface": "compiled-ask-desktop-settled",
+    "width": 1440
+  },
+  {
+    "documentWidth": 321,
+    "mainWidth": 315,
+    "surface": "compiled-ask-320",
+    "width": 321
+  },
+  {
+    "documentWidth": 321,
+    "mainWidth": 315,
+    "surface": "compiled-cube-320",
+    "width": 321
+  },
+  {
+    "documentWidth": 1440,
+    "mainWidth": 1195,
+    "surface": "compiled-cube-desktop",
+    "width": 1440
+  },
+  {
+    "documentWidth": 1440,
+    "mainWidth": 1195,
+    "surface": "compiled-home-desktop",
+    "width": 1440
+  },
+  {
+    "askLinks": 0,
+    "documentWidth": 1435,
+    "mainWidth": 1190,
+    "surface": "compiled-organization-home-no-ask",
+    "width": 1440
+  },
+  {
+    "documentWidth": 1440,
+    "mainWidth": 1195,
+    "recentRowDisplay": "flex",
+    "surface": "final-compiled-ask-desktop",
+    "width": 1440
+  },
+  {
+    "documentWidth": 862,
+    "mainWidth": 769,
+    "surface": "final-compiled-ask-default",
+    "width": 862
+  }
+]

@@ -143,7 +143,7 @@ export default function AssignmentGrader({
   return <Dialog open onOpenChange={open => {
     if (!open && !busyId) onClose();
   }}>
-      <DialogContent lang={locale} className="max-h-[85dvh] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-white p-0 sm:max-w-[640px]">
+      <DialogContent lang={locale} className="v-review-dialog max-h-[85dvh] max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-white p-0 sm:max-w-[640px]">
         <div className="flex items-center justify-between p-6 border-b border-[#dadce0]/60">
           <div className="min-w-0">
             <DialogTitle className="pr-8 text-sm font-medium text-[#121317]">{assignment.title}</DialogTitle>
@@ -189,7 +189,7 @@ export default function AssignmentGrader({
               })}</summary>{s.revision_history.map((entry, index) => <div key={index} className="mt-3 border-l-2 border-[#dadce0] pl-3"><p className="font-medium">{copy('Attempt {number}', {
                   number: entry.attempt
                 })}</p><p className="whitespace-pre-wrap">{entry.text}</p><p className="mt-2 whitespace-pre-wrap">{copy("Feedback:")}{entry.feedback}</p><CriterionFeedback criteria={assignment.objective_snapshot?.criteria} feedback={entry.criterion_feedback} /></div>)}</details>}
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="v-review-controls flex flex-wrap items-center gap-3">
                   {!!assignment.objective_snapshot?.criteria?.length && <section className="w-full"><h3 className="text-sm font-medium">{copy("Review the assigned criteria")}</h3><p className="mt-2 text-xs text-[#5f6368]">{copy("Returning a grade requires a rating and note for each criterion. Revision requests may address selected criteria.")}</p>{assignment.objective_snapshot.criteria.map(item => <div className="mt-4" key={item.id}><p className="text-sm font-medium">{item.label}</p><p className="mt-1 text-xs text-[#5f6368]">{item.prompt}</p><select className="v-field mt-2" aria-label={copy("Criterion rating: {criterion} for {name}", {
                   criterion: item.label,
                   name: s.student_name || s.student_email
@@ -209,15 +209,18 @@ export default function AssignmentGrader({
                     note: event.target.value
                   }
                 })} /></div>)}</section>}
-                  <div className="flex items-center gap-2">
+                  <div className="v-review-grade flex items-center gap-2">
+                    <span className="text-sm text-[#5f6368]">{copy("Grade")}</span>
                     <input type="number" disabled={!!busyId} aria-label={copy("Grade for {name}", {
                 name: s.student_name || s.student_email
               })} min="0" max={assignment.points || 100} value={s.grade ?? ""} onChange={e => updateField(s, "grade", e.target.value)} placeholder={copy("Grade")} className="w-20 h-11 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]" />
                     <span className="text-xs text-[#5f6368]">/ {assignment.points || 100}</span>
                   </div>
-                  <input aria-label={copy("Feedback for {name}", {
+                  <label className="v-review-feedback text-sm text-[#5f6368]">{copy("Feedback (required for revision)")}
+                  <textarea rows={3} aria-label={copy("Feedback for {name}", {
               name: s.student_name || s.student_email
-            })} maxLength={5000} disabled={!!busyId} value={s.feedback || ""} onChange={e => updateField(s, "feedback", e.target.value)} placeholder={copy("Feedback (required for revision)")} className="min-w-0 flex-1 h-11 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]" />
+            })} maxLength={5000} disabled={!!busyId} value={s.feedback || ""} onChange={e => updateField(s, "feedback", e.target.value)} className="v-field mt-2 w-full" />
+                  </label>
                   <button onClick={() => returnSub(s)} disabled={!!busyId} className="inline-flex items-center justify-center gap-1.5 h-11 px-4 rounded-full text-sm font-medium text-white disabled:opacity-50 shrink-0" style={{
               backgroundColor: accent
             }}>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { mentorGreeting } from '@/services/mentorCompanionService';
 
@@ -21,10 +21,13 @@ export default function MentorGreeting() {
   }, [ctx?.personId, ctx?.workspaceId, ctx?.locale]);
   if (!ctx || !greeting) return null;
   const copy = COPY[ctx.locale] || COPY.en;
-  return <section className="v-card" aria-labelledby="mentor-greeting-title">
-    <p className="mb-2 flex items-center gap-2 text-xs font-medium text-[#4285F4]"><Sparkles size={14} aria-hidden="true" />{copy.title}</p>
-    <h2 id="mentor-greeting-title" className="text-base font-medium leading-6">{greeting.text}</h2>
-    {!!greeting.actions.length && <div className="mt-4 flex flex-wrap gap-2">{greeting.actions.map(item => <Link key={item.path + item.label} className="v-button" to={item.path}>{item.label}</Link>)}</div>}
-    <p className="v-muted mt-3 text-xs">{copy.source}</p>
+  return <section className="v-mentor-continuation" aria-labelledby="mentor-greeting-title">
+    <span className="v-mentor-mark"><Sparkles size={20} aria-hidden="true" /></span>
+    <div className="v-mentor-copy">
+      <h3 id="mentor-greeting-title" className="v-mentor-label">{copy.title}</h3>
+      <p className="v-mentor-next">{greeting.text}</p>
+      <p className="v-mentor-source">{copy.source}</p>
+    </div>
+    {!!greeting.actions.length && <div className="v-mentor-actions">{greeting.actions.map(item => <Link key={item.path + item.label} className="v-button" to={item.path}>{item.label}<ArrowUpRight size={16} aria-hidden="true" /></Link>)}</div>}
   </section>;
 }

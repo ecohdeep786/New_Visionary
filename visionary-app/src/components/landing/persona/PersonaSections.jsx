@@ -41,38 +41,73 @@ const STRUGGLE_MASK = {
   maskComposite: "intersect",
 };
 
-const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goTo, lines, label, kicker = "The problem" }) {
+/* Apple's scroll reveal — after the hero, sections enter the viewport and
+   their type/photography rise in place, one element at a time, on Apple's
+   resolve-out curve. Blocks keep their layout while hidden (no collapse),
+   the observer fires once, and the global reduced-motion contract snaps the
+   transition to instant. This is the "scroll, then the text appears" beat. */
+const APPLE_REVEAL_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+function revealStyle(entered, delay) {
+  return {
+    opacity: entered ? 1 : 0,
+    transform: entered ? "none" : "translateY(26px)",
+    transition: `opacity 0.9s ${APPLE_REVEAL_EASE}, transform 0.9s ${APPLE_REVEAL_EASE}`,
+    transitionDelay: `${delay}ms`,
+    willChange: "opacity, transform",
+  };
+}
+
+const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goTo, lines, label, kicker = "The problem", copy }) {
   const slide = slides[index];
+  /* one observer for the whole problem beat; children stagger like Apple's
+     chapter enters — kicker, statement, support, photograph, quote, dots */
+  const { ref, entered } = useInViewOnce(0.2);
   return (
-    <>
+    <div ref={ref}>
       <p className="sr-only">{label}</p>
       <div className="px-6">
-        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
+        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey, ...revealStyle(entered, 0) }}>
           {kicker}
         </p>
         <h2
-          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,4vw,56px)]"
-          style={{ color: COLORS.ink }}
+          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.05] text-[clamp(34px,4.45vw,64px)]"
+          style={{ color: COLORS.ink, ...revealStyle(entered, 90) }}
         >
           {/* the fixed problem sentence always holds line one; the rotating
               accent word is reserved on line two (a min-h slot) so the chapter
               never reflows and the page never jumps when the word swaps */}
           <span className="block text-balance">{lines.join(" ")}</span>
-          <span key={`w-${index}`} className="hero-fade-up block min-h-[1.06em] [animation-duration:0.9s]" style={{ color: COLORS.blue }}>
+          <span key={`w-${index}`} className="hero-fade-up block min-h-[1.05em] [animation-duration:0.9s]" style={{ color: COLORS.blue }}>
             {slide.word}.
           </span>
         </h2>
-        {/* the call-out arrow — Apple's problem beat reads as a statement
-            answered by the photograph below; the hairline arrow descends from
-            under the heading's left edge toward the image, connecting the two */}
-        <div className="relative mx-auto mt-[clamp(10px,1.3vw,18px)] flex max-w-[980px] justify-start px-6 lg:justify-start lg:pl-6" aria-hidden="true">
-          <svg viewBox="0 0 40 64" fill="none" className="h-[40px] w-[24px] sm:h-[48px] sm:w-[30px]" style={{ color: COLORS.grey }}>
-            <path d="M20 2v54M7 46l13 12 13-12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
+        {/* Apple's premium beat carries one supporting line directly under the
+            statement (the 17px body run Apple places beneath a feature or
+            story headline), before the photograph — statement → one line → shot.
+            No arrow to the image; the photograph breaks below on the section's
+            own white with measured air. Clean, centered, calm. */}
+        {copy && (
+          <p
+            className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]"
+            style={{ color: COLORS.grey, ...revealStyle(entered, 165) }}
+          >
+            {copy}
+          </p>
+        )}
       </div>
-      <figure className="m-0">
-        <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
+      <figure className="m-0 relative" style={{ ...revealStyle(entered, 240) }}>
+        {/* a whisper of Apple's product-wash — the subject breathes over a
+            barely-there radial at the base, never a card, never a band */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%]"
+          style={{ background: "radial-gradient(46% 62% at 50% 100%, rgba(66,133,244,0.05) 0%, rgba(66,133,244,0.02) 46%, rgba(66,133,244,0) 72%)" }}
+        />
+        {/* the subject shares the statement's centered column — the same
+            980px spine the heading and copy sit on, so the photograph is
+            optically centered with the text on every screen */}
+        <div className="relative mx-auto mt-[clamp(32px,5vw,80px)] h-[clamp(300px,46svh,440px)] w-full max-w-[980px] sm:h-[clamp(330px,min(46vw,64svh),640px)]">
           {slides.map((s, i) => (
             <img
               key={s.alt}
@@ -99,10 +134,10 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
           </p>
         </figcaption>
       </figure>
-      <div className="mt-8 flex justify-center">
+      <div className="mt-8 flex justify-center" style={{ ...revealStyle(entered, 360) }}>
         <CarouselDots total={slides.length} active={index} onSelect={goTo} label={label} />
       </div>
-    </>
+    </div>
   );
 });
 
@@ -146,12 +181,14 @@ const JOURNEY_GALLERY_MS = 5000;
    instantly). The track shares the header's gutter so the statement and
    the first card sit on one spine, with the next card peeking at the
    viewport edge. */
-const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label }) {
+const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, label, iconMap }) {
   const trackRef = useRef(null);
   const rootRef = useRef(null);
   const lockRef = useRef(0);
   const rafRef = useRef(0);
   const [active, setActive] = useState(0);
+  /* cards rise in place as the chapter enters — Apple's story-card entrance */
+  const reveal = useInViewOnce(0.12);
   /* No autoplay on mount — the tour starts paused with the first card
      shown. It plays only after the user presses play; every time the
      section scrolls back into view it resets to card 0 (Apple restarts
@@ -210,7 +247,7 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
   };
 
   return (
-    <div ref={rootRef}>
+    <div ref={(node) => { reveal.ref.current = node; rootRef.current = node; }}>
       <div
         ref={trackRef}
         onScroll={onScroll}
@@ -220,11 +257,23 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
         className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden"
         style={{ paddingLeft: "max(24px, calc((100vw - 980px)/2))", paddingRight: 24, scrollPaddingLeft: "max(24px, calc((100vw - 980px)/2))" }}
       >
-        {stages.map((stage, i) => (
-          <figure key={stage.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
-            className="relative m-0 w-[86vw] flex-none snap-start sm:w-[76vw] lg:w-[68vw] lg:max-w-[980px]"
-            style={{ opacity: i === active ? 1 : 0.45, transition: "opacity 1500ms" }}
-          >
+        {stages.map((stage, i) => {
+          const StageIcon = (iconMap && iconMap[stage.title]?.Icon) || Sparkles;
+          return (
+            <div
+              key={stage.title}
+              className="flex-none snap-start"
+              style={{
+                opacity: reveal.entered ? 1 : 0,
+                transform: reveal.entered ? "none" : "translateY(24px)",
+                transition: `opacity 0.85s ${APPLE_REVEAL_EASE}, transform 0.85s ${APPLE_REVEAL_EASE}`,
+                transitionDelay: `${140 + i * 80}ms`,
+              }}
+            >
+              <figure role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
+                className="relative m-0 w-[86vw] sm:w-[76vw] lg:w-[68vw] lg:max-w-[980px]"
+                style={{ opacity: i === active ? 1 : 0.45, transition: "opacity 1500ms" }}
+              >
             <button
               type="button"
               onClick={() => openStage(stage)}
@@ -239,6 +288,11 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 draggable="false"
                 className="aspect-[4/3] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02] sm:aspect-[1.9]"
               />
+              {/* our product icon — the stage glyph on a white pill, the same
+                  brand language as the journey-flow cards */}
+              <span className="absolute left-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-[0_4px_14px_rgba(0,0,0,0.14)]" style={{ color: COLORS.blue }}>
+                <StageIcon className="h-[18px] w-[18px]" strokeWidth={1.8} />
+              </span>
               {/* Apple's exact bottom smoke (measured on the education-initiative
                   story cards): transparent to rgba(0,0,0,0.7) across the lower
                   ~43% of the card, so the bottom-left statement reads on any
@@ -260,8 +314,10 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 </svg>
               </span>
             </button>
-          </figure>
-        ))}
+              </figure>
+            </div>
+          );
+        })}
       </div>
       {/* the controls — Apple's bare 36px glyph row 25px under the cards:
           play/pause at the track's left edge, prev/next chevrons at the
@@ -694,13 +750,22 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
   );
 });
 
-const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "", iconMap, images }) {
+const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "", iconMap, images, onOpen, category, imgAlt }) {
   const Icon = iconMap[text] || Sparkles;
+  /* When onOpen is supplied the card behaves like an Apple story card: the
+     whole surface is the button that opens the category's story popup. */
+  const isInteractive = typeof onOpen === "function";
+  const Wrap = isInteractive ? "button" : "div";
   return (
-    <div className={`relative overflow-hidden rounded-[48px] ${className}`}>
+    <Wrap
+      type={isInteractive ? "button" : undefined}
+      onClick={isInteractive ? () => onOpen(category) : undefined}
+      aria-label={isInteractive ? `Open ${text}` : undefined}
+      className={`relative block overflow-hidden rounded-[48px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-google hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4" : ""} ${className}`}
+    >
       <img
         src={images[index % images.length]}
-        alt={text}
+        alt={imgAlt || text}
         loading="lazy"
         decoding="async"
         className="aspect-[20/19] w-full object-cover"
@@ -796,6 +861,68 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
   );
 });
 
+/* Apple's scroll-reveal chapter: after the hero, sections enter the viewport
+   and their type/photography rise in place, one element at a time, on Apple's
+   resolve-out curve (cubic-bezier(0.22,1,0.36,1)). Staggers children via
+   :global(.reveal-item > *) so a heading + sub + image each wait their beat —
+   the "scroll, then the text appears" cadence. The observer fires once; the
+   global reduced-motion contract snaps the transition to instant. */
+const SCROLL_REVEAL_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+function useInViewOnce(threshold = 0.2) {
+  const ref = useRef(null);
+  const [entered, setEntered] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setEntered(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setEntered(true);
+        io.disconnect();
+      }
+    }, { threshold });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
+  return { ref, entered };
+}
+
+/* RevealItem wraps one piece of a staggered scroll-reveal chapter so the
+   resolve-out stagger targets each element individually. The index drives a
+   per-child 60ms delay via the .scroll-reveal.in-view :global(.reveal-item > *)
+   rule registered in index.css. Under reduced motion children are visible
+   instantly (the CSS rule handles that; this wrapper only annotates). */
+let itemCounter = 0;
+const RevealItem = React.memo(function RevealItem({ children, className = "", style, idx }) {
+  return (
+    <div
+      className={`reveal-item ${className}`}
+      style={{ ["--reveal-idx"]: idx ?? itemCounter, ...style }}
+    >
+      {children}
+    </div>
+  );
+});
+RevealItem.displayName = "RevealItem";
+
+const ScrollReveal = React.memo(function ScrollReveal({ children, className = "", as: Tag = "div", threshold = 0.2, baseDelay = 0 }) {
+  const { ref, entered } = useInViewOnce(threshold);
+  return (
+    <Tag
+      ref={ref}
+      className={`scroll-reveal ${entered ? "in-view" : ""} ${className}`}
+      style={{
+        ["--reveal-ease"]: SCROLL_REVEAL_EASE,
+        ["--reveal-base-delay"]: `${baseDelay}ms`,
+      }}
+    >
+      {children}
+    </Tag>
+  );
+});
+
 export {
   StruggleChapter,
   CarouselDots,
@@ -814,4 +941,6 @@ export {
   ChevronIcon,
   VoiceIcon,
   FadeReveal,
+  ScrollReveal,
+  RevealItem,
 };

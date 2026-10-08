@@ -47,7 +47,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     window.addEventListener('keydown', onShortcut);
     return () => window.removeEventListener('keydown', onShortcut);
   }, []);
-  return <header lang={locale} className="z-30 flex h-16 shrink-0 items-center gap-2 bg-white px-3 sm:px-5">
+  return <header lang={locale} className="workspace-topbar z-30 flex h-16 shrink-0 items-center gap-2 bg-white px-3 sm:px-5">
     <button onClick={onToggleSidebar} aria-label={t("toggleNavigation")} aria-expanded={sidebarExpanded} aria-controls="dashboard-navigation" className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#5f6368] hover:bg-[#e8f0fd] md:flex"><Menu className="h-5 w-5" /></button>
     <Link to="/dashboard/home" aria-label={t("visionaryHome")} className="workspace-brand shrink-0"><VisionaryLogo /></Link>
     <WorkspaceSwitcher />

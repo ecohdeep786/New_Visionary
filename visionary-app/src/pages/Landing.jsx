@@ -266,7 +266,6 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       animatedHeadlinePrefix="One intelligence for every part of"
       animatedHeadlineWords={["learning", "teaching", "helping", "building", "leading"]}
       srSentence="One intelligence for every part of learning, teaching, helping, building, and leading."
-      sub="One connected intelligence for every way you learn, teach, work, and grow."
       cast={LANDING_HERO_LINEUP}
       ctaLabel="Start learning"
       secondaryLabel="See how it works"
@@ -284,7 +283,7 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
    and crossfade — a keyed <img> remount refetched and flashed an empty
    frame on every slide advance, worst on slow phones. */
 function LandingProblemSection() {
-  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
+  const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
@@ -430,7 +429,7 @@ const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
         ref={stripRef}
         className="flex h-[52px] w-full items-stretch overflow-x-auto rounded-[90px] border bg-white p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{ borderColor: COLORS.mist }}
-        role="tablist"
+        role="group"
         aria-label="Audiences"
         onKeyDown={onKeyDown}
       >
@@ -439,11 +438,9 @@ const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
             key={s.id}
             ref={(n) => { tabRefs.current[i] = n; }}
             type="button"
-            role="tab"
             id={`meet-tab-${s.id}`}
-            aria-selected={active === i}
-            aria-controls={`meet-panel-${s.id}`}
-            tabIndex={active === i ? 0 : -1}
+            aria-pressed={active === i}
+            tabIndex={0}
             onClick={() => { onSelect(i); centerTab(i); }}
             className={`flex h-full min-w-[104px] flex-none items-center justify-center rounded-[90px] px-4 text-[13px] tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#4285F4] sm:min-w-0 sm:flex-1 sm:text-[14px] ${active === i ? "font-medium" : "font-normal"}`}
             style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}
@@ -487,7 +484,14 @@ function LandingMeetSection() {
   const { active, setStepRef, scrollToStep } = useActiveStep(MEET_SECTIONS.length);
   const sectionRef = useRef(null);
   const setSectionRef = (n) => { sectionRef.current = n; revealRef.current = n; };
-  const scrollToRow = useCallback((i) => { scrollToStep(i); }, [scrollToStep]);
+  const scrollToRow = useCallback((i) => {
+    scrollToStep(i);
+    /* all five chapters are now on the page — Apple product localnav law:
+       choosing a chip glides the reader to that chapter (smooth, anchored
+       below the pinned strip) instead of swapping a single hidden panel. */
+    const node = document.getElementById(`meet-panel-${MEET_SECTIONS[i].id}`);
+    node?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [scrollToStep]);
   return (
     <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
       <div className="px-6">
@@ -542,15 +546,10 @@ function LandingMeetSection() {
               ref={setStepRef(i)}
               data-step={i}
               id={`meet-panel-${s.id}`}
-              role="tabpanel"
-              aria-labelledby={`meet-tab-${s.id}`}
-              aria-hidden={i !== active}
-              tabIndex={i === active ? 0 : -1}
-              hidden={i !== active}
-              style={i !== active ? { display: "none" } : undefined}
-              className={`mx-auto lg:grid lg:max-w-[1040px] lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center lg:gap-x-16 ${i > 0 ? "lg:pt-36" : ""}`}
-            >
-              <div>
+              role="region"
+              aria-label={`${s.tab} learning with Visionary`}
+              className={`mx-auto scroll-mt-36 lg:grid lg:max-w-[1040px] lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center lg:gap-x-16 ${i > 0 ? "lg:pt-20" : ""}`}
+            >              <div>
                 <MeetCopy section={s} />
               </div>
               <figure className="m-0 mt-12 flex justify-center lg:mt-0 lg:justify-end">
@@ -618,7 +617,7 @@ const LGOrbitDots = React.memo(function LGOrbitDots({ activeIndex, onSelect, red
 function LandingLanguageSection() {
   const reduced = usePrefersReducedMotion();
   const { ref, visible } = useRevealContinuous();
-  const { index, goTo } = useCycleIndex(LG_CHIPS.length, LG_RING_MS);
+  const { index, goTo } = useCycleIndex(LG_CHIPS.length, 0);
   const active = LG_CHIPS[index];
   /* each language tours with its own question — the dot at the reading
      position and the script at the center always belong to each other
@@ -685,7 +684,9 @@ function LandingJourneySection() {
   const lockRef = useRef(0);
   const rafRef = useRef(0);
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(true);
+  /* the journey starts paused — Apple galleries are reader-paced; the play
+     control opts in to the tour, it does not ambush it. */
+  const [playing, setPlaying] = useState(false);
 
   const stepTo = useCallback((i) => {
     const track = trackRef.current;

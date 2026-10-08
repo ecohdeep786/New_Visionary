@@ -1,10 +1,11 @@
+import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import { cohortCopy } from '@/lib/cohortCopy';
 import { downloadText } from '@/lib/downloadText';
 import { getResourceEditorDraft, saveResourceEditorDraft, clearResourceEditorDraft } from '@/services/resourceEditorDraft';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Users } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { organizationRoster, saveCohort } from '@/services/classroomService';
 import { archiveResource, resourceRevision } from '@/services/workspaceService';
@@ -183,7 +184,7 @@ function CohortWorkspace({
             setNotice(e.message);
             setFailed(true);
           }
-        }}>{t(r.status === 'archived' ? 'Restore' : 'Archive')}</button></div>) : <div className="py-8"><Users className="mb-4 text-[#4285F4]" /><h2 className="text-lg font-medium">{t(query ? 'No matching cohorts' : 'Start with one learning group')}</h2><p className="v-muted mt-3">{t("Connect people, choose a clear purpose, and link the classes that support it.")}</p></div>}</section>{notice && <p role={failed ? 'alert' : 'status'} lang={failed ? 'en' : locale} className={`v-notice ${failed ? 'v-error' : ''}`}>{failed ? notice : t(notice)}</p>}
+        }}>{t(r.status === 'archived' ? 'Restore' : 'Archive')}</button></div>) : <WorkspaceEmptyState illustration={query ? "compass" : "community"} title={t(query ? 'No matching cohorts' : 'Start with one learning group')} description={t("Connect people, choose a clear purpose, and link the classes that support it.")} />}</section>{notice && <p role={failed ? 'alert' : 'status'} lang={failed ? 'en' : locale} className={`v-notice ${failed ? 'v-error' : ''}`}>{failed ? notice : t(notice)}</p>}
  <Dialog open={!!draft} onOpenChange={open => {
       if (!open && !busy) setDraft(null);
     }}><DialogContent lang={locale} className="max-h-[85dvh] overflow-y-auto sm:max-w-2xl"><DialogTitle>{t(draft?.id ? 'Edit cohort' : 'Create cohort')}</DialogTitle><DialogDescription>{t("Only accepted members and explicitly organization-linked classes are available. No private notes or conversations are included.")}</DialogDescription>{draft && <>{error&&<div className="v-notice v-error" role="alert"><p lang="en">{error.message}</p><button className="v-button mt-3" onClick={()=>refetch()}>{t("Refresh roster")}</button></div>}{isPending&&<p role="status">{t("Loading accepted members and linked classes…")}</p>}<label className="text-sm">{t("Name")}<input className="v-field mt-2" value={draft.title} onChange={e => setDraft({
