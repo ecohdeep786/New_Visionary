@@ -6,7 +6,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import studentHero from "@/assets/student-hero-main-2400w.webp";
 import studentHeroContent from "@/assets/student-hero-main-1600w.webp"; /* content-slot size (L3 07-perf carry-forward) */
 import PersonaHero from "@/components/landing/NewPersona";
-import { ShieldCheck, HeartHandshake, Scale } from "lucide-react";
+import { ShieldCheck, HeartHandshake, Scale, ChevronDown } from "lucide-react";
 
 /**
  * Problem Section
@@ -47,15 +47,38 @@ import {
   IntelligenceVisual,
   StageDropdown,
   ContinuityCard,
-  AchievementAccordion,
   JourneyCategoryCard,
-  TrustCard,
-  ExploreCard,
   ChevronIcon,
   ScrollReveal,
 } from "@/components/landing/persona/PersonaSections";
 
 const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
+
+const StudentExploreCard = React.memo(function StudentExploreCard({ index, category, images }) {
+  return (
+    <Link
+      to={`/${category.slug}`}
+      data-card
+      className="group block w-[260px] shrink-0 snap-start sm:w-[320px]"
+    >
+      <div className="overflow-hidden rounded-[24px] bg-[#f5f5f7]">
+        <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
+      </div>
+      <div className="flex flex-col items-start pt-5 text-left">
+        <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
+          {category.chip}
+        </p>
+        <p className="mt-2 font-semibold tracking-[-0.003em] leading-[1.2] text-[21px]" style={{ color: COLORS.ink }}>
+          {category.copy}
+        </p>
+        <span className="mt-3 inline-flex items-center gap-1.5 font-normal tracking-[0] leading-[22px] text-[17px]" style={{ color: COLORS.blue }}>
+          Learn more
+          <ChevronIcon className="h-4 w-4" />
+        </span>
+      </div>
+    </Link>
+  );
+});
 
 /* ═══════════════════════════════════════════════════════════════════
  * SECTION MAP (render order) — each <section> has data-section for DevTools
@@ -190,9 +213,9 @@ const CONTINUITY_STAGES = [
 ];
 
 const ACHIEVEMENT_TABS = [
-  { black: "Understand", blue: "what matters.", copy: "A clear picture of the subjects and skills that matter today." },
-  { black: "Achieve what", blue: "you're working toward.", copy: "Set your goal and keep moving, with support that adapts." },
-  { black: "Build something from", blue: "what you know.", copy: "Turn what you know into real projects, real skills, real work." },
+  { title: "Understand what matters.", copy: "A clear picture of the subjects and skills that matter today." },
+  { title: "Achieve what you're working toward.", copy: "Set your goal and keep moving, with support that adapts." },
+  { title: "Build something from what you know.", copy: "Turn what you know into real projects, real skills, real work." },
 ];
 
 const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Independent learning"];
@@ -641,48 +664,64 @@ function StudentContinuitySection() {
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
 const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild];
 
-/* icon per achievement tab — reuses icons already imported in this file */
-const ACHIEVEMENT_META = [
-  { Icon: Eye },      /* Understand */
-  { Icon: Target },   /* Achieve */
-  { Icon: Layers3 },  /* Build */
-];
-
-
-
-
 function StudentAchievementSection() {
   const { ref } = UseRevealOnce();
-  const [open, setOpen] = useState(0);
   const [active, setActive] = useState(0);
 
-  const toggle = useCallback((i) => {
-    const next = open === i ? (i === 0 ? 1 : i - 1) : i;
-    setOpen(next);
-    setActive(next);
-  }, [open]);
-
   return (
-    <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="09-achievement" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip]">
       <ScrollReveal>
-        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: 12 }}>See what you can achieve.</h2>
-        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Turn understanding into results, skills, and progress you can see.
-        </p>
+        <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+          <h2 className="font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,4vw,48px)]" style={{ color: COLORS.ink }}>
+            See what you can achieve.
+          </h2>
 
-        {/* Breath 2 — accordion + image, balanced columns */}
-        <div className="mx-auto mt-14 grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 lg:mt-28 lg:grid-cols-2 lg:items-center lg:gap-24 lg:px-[var(--frame-x)]">
-          <AchievementAccordion meta={ACHIEVEMENT_META} tabs={ACHIEVEMENT_TABS} open={open} onToggle={toggle} />
-          <div key={active} className="hero-fade-up overflow-hidden rounded-[48px]">
-            <img
-              src={ACHIEVEMENT_IMAGE[active]}
-              alt={`${ACHIEVEMENT_TABS[active].black} ${ACHIEVEMENT_TABS[active].blue}`}
-              loading="lazy"
-              decoding="async"
-              className="h-[320px] w-full rounded-[14px] object-contain sm:h-[440px] lg:h-[620px]"
-              style={{ objectPosition: "center center" }}
-            />
+          <div className="mt-12 overflow-hidden rounded-[1.75rem] bg-[#f5f5f7] lg:mt-16 lg:h-[784px]">
+            <div className="grid h-full grid-cols-1 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:items-stretch">
+              <ul className="flex flex-col px-6 py-6 lg:px-0 lg:py-0 lg:pl-[69px]">
+                {ACHIEVEMENT_TABS.map((tab, i) => {
+                  const isOpen = active === i;
+                  return (
+                    <li key={tab.title} className="border-t first:border-t-0 lg:first:border-t-0" style={{ borderColor: `${COLORS.ink}33` }}>
+                      <button
+                        type="button"
+                        aria-expanded={isOpen}
+                        onClick={() => setActive(i)}
+                        className="flex w-full items-start justify-between gap-4 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f] focus-visible:ring-offset-4 lg:py-8"
+                      >
+                        <span className="font-semibold tracking-[-0.003em] leading-[1.14] text-[clamp(24px,2.2vw,28px)]" style={{ color: COLORS.ink }}>
+                          {tab.title}
+                        </span>
+                        <ChevronDown
+                          aria-hidden="true"
+                          className={`mt-2 h-4 w-7 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                          style={{ color: "#868689" }}
+                          strokeWidth={2}
+                        />
+                      </button>
+                      <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                        <div className="overflow-hidden">
+                          <p className="pb-8 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>
+                            {tab.copy}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="relative min-h-[360px] lg:min-h-0">
+                <img
+                  key={active}
+                  src={ACHIEVEMENT_IMAGE[active]}
+                  alt={ACHIEVEMENT_TABS[active].title}
+                  loading="lazy"
+                  decoding="async"
+                  className="hero-fade-up absolute inset-6 h-[calc(100%-3rem)] w-[calc(100%-3rem)] object-contain lg:inset-10 lg:h-[calc(100%-5rem)] lg:w-[calc(100%-5rem)]"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </ScrollReveal>
@@ -757,10 +796,6 @@ function StudentJourneyFlowSection() {
 }
 
 /* ═══════════════════════ 11 · TRUST ═══════════════════════ */
-/* words now map 1:1 to cards — heading narrates the visible card */
-const TRUST_WORDS = ["control.", "learning.", "intelligence."];
-const TRUST_WORD_MS = 6000;
-
 const TRUST_CARDS = [
   { title: "Private by design.", copy: "We treat your personal information with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
   { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
@@ -771,46 +806,36 @@ const TRUST_CARDS = [
 
 function StudentTrustSection() {
   const { ref } = UseRevealOnce();
-  const { index, goTo } = UseCycleIndex(TRUST_CARDS.length, TRUST_WORD_MS);
-  const active = TRUST_CARDS[index];
-  const next = TRUST_CARDS[(index + 1) % TRUST_CARDS.length];
-  const stepCards = useCallback((d) => goTo(index + d), [goTo, index]);
 
   return (
     <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
         <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
-          Your{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
+          Your intelligence.
         </h2>
         <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way.
         </p>
 
-        {/* Breath 2 — narrative column + preview cards */}
-        <div className="mx-auto mt-14 grid w-full max-w-[1600px] grid-cols-1 items-start gap-16 px-6 lg:mt-20 lg:grid-cols-[4fr_8fr] lg:gap-24 lg:px-0">
-          <div className="lg:pl-[var(--frame-x)]">
-            <h3 key={active.title} className="hero-fade-up max-w-[460px] font-medium tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-              {active.title}
-            </h3>
-            <div className="mt-10 flex items-center gap-3">
-              <button type="button" aria-label="Previous trust card" onClick={() => stepCards(-1)} className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]" style={{ color: COLORS.ink }}>
-                <ChevronIcon direction="left" />
-              </button>
-              <button type="button" aria-label="Next trust card" onClick={() => stepCards(1)} className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]" style={{ color: COLORS.ink }}>
-                <ChevronIcon direction="right" />
-              </button>
-              <span className="ml-2 font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-                0{index + 1} / 0{TRUST_CARDS.length}
+        <div className="mx-auto mt-14 grid w-full max-w-[1200px] grid-cols-1 gap-6 px-6 lg:mt-20 lg:grid-cols-3 lg:px-6">
+          {TRUST_CARDS.map((card) => (
+            <article key={card.title} className="flex flex-col rounded-[28px] bg-[#f5f5f7] p-8 lg:p-10">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white" style={{ color: COLORS.blue }}>
+                <card.Icon className="h-6 w-6" strokeWidth={1.8} />
               </span>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-8 2xl:grid 2xl:grid-cols-2 2xl:gap-10">
-            <div key={`a-${index}`} className="hero-fade-up w-full max-w-[780px]"><TrustCard card={active} /></div>
-            <div key={`b-${index}`} className="hero-fade-up hidden w-full max-w-[780px] 2xl:block [animation-delay:80ms] [animation-fill-mode:both]"><TrustCard card={next} /></div>
-          </div>
+              <h3 className="mt-10 font-semibold tracking-[-0.003em] leading-[1.1] text-[clamp(28px,2.4vw,34px)]" style={{ color: COLORS.ink }}>
+                {card.title}
+              </h3>
+              <p className="mt-4 font-normal tracking-[0] leading-[24px] text-[17px]" style={{ color: COLORS.grey }}>
+                {card.copy}
+              </p>
+              <Link to={card.to} className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
+                {card.link}
+                <ChevronIcon className="h-4 w-4" />
+              </Link>
+            </article>
+          ))}
         </div>
       </ScrollReveal>
     </section>
@@ -849,9 +874,10 @@ const StudentCTASection = React.memo(function StudentCTASection() {
           </Link>
           <Link
             to="/contact"
-            className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-7 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors duration-200 hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
+            className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
           >
             Talk to our team
+            <ChevronIcon className="h-4 w-4" />
           </Link>
         </div>
           <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
@@ -884,7 +910,7 @@ function StudentExploreSection() {
             className="flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:gap-12 lg:pl-[calc(6.5%_+_480px)] lg:pr-6"
           >
             {EXPLORE_CATEGORIES.map((c, index) => (
-              <ExploreCard index={index} key={c.slug} category={c} images={EXPLORE_CAT_IMG} />
+              <StudentExploreCard index={index} key={c.slug} category={c} images={EXPLORE_CAT_IMG} />
             ))}
           </div>
           <button
