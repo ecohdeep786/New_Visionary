@@ -125,7 +125,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
           {kicker}
         </p>
         <h2
-          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.05] text-[clamp(34px,4.45vw,64px)]"
+          className="mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.05] text-[clamp(40px,5vw,64px)]"
           style={{ color: COLORS.ink, ...revealStyle(entered, 90) }}
         >
           {/* the fixed problem sentence always holds line one; the rotating
