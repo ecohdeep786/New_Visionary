@@ -256,19 +256,18 @@ function StudentStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      <ScrollReveal as="div">
-        {/* the bridge's compact band (02-struggle) carries the chapter breath */
-        }
-        <StruggleChapter
-          slides={SLIDES}
-          index={index}
-          goTo={goTo}
-          lines={STRUGGLE_LINES}
-          label="Student learning challenges"
-          kicker="Where understanding slips"
-          copy="Studying isn't the difficulty. Knowing it landed is."
-        />
-      </ScrollReveal>
+      {/* the bridge's compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      <StruggleChapter
+        linked
+        slides={SLIDES}
+        index={index}
+        goTo={goTo}
+        lines={STRUGGLE_LINES}
+        label="Student learning challenges"
+        kicker="Where understanding slips"
+        copy="Studying isn't the difficulty. Knowing it landed is."
+      />
     </section>
   );
 }
@@ -399,7 +398,7 @@ function StudentJourneySection() {
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
-        <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
+        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)]" style={{ color: COLORS.ink }}>
             <span className="block">Learning that</span>
             <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>

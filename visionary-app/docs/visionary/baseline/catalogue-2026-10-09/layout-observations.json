@@ -1,0 +1,28 @@
+[
+  {
+    "documentWidth": 1440,
+    "surface": "multi-book-desktop",
+    "width": 1440
+  },
+  {
+    "view": "fraction-book-phone",
+    "url": "http://127.0.0.1:5173/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6&book=sample%3Alibrary%3Afractions-book",
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "viewport": 390
+  },
+  {
+    "view": "multi-subject-books-desktop",
+    "url": "http://127.0.0.1:5173/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+    "documentWidth": 1440,
+    "mainWidth": 1195,
+    "viewport": 1440
+  },
+  {
+    "view": "book-cards-phone-final",
+    "url": "http://127.0.0.1:5173/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+    "documentWidth": 390,
+    "mainWidth": 385,
+    "viewport": 390
+  }
+]

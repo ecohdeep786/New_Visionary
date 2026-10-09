@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {appClient} from '../src/api/appClient.js';
 import {bootstrapPerson,saveResource,resourceRevision,snapshot} from '../src/services/workspaceService.ts';
 import {teacherObjectiveChoices,prepareTeacherObjective,assignReviewedLesson} from '../src/services/classroomService.js';
-import {SAMPLE_SELECTION} from '../src/services/contentRepository.ts';
+import {SAMPLE_SELECTION,configureContentRepository} from '../src/services/contentRepository.ts';
 import {getClassworkActivity,classworkActivityRevision,submitClassworkActivity} from '../src/services/classworkPlayerService.js';
 import {saveClassworkDraft,readClassworkDrafts} from '../src/services/classworkDraftService.js';
 const memory=new Map();globalThis.localStorage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,String(value)),removeItem:key=>memory.delete(key)};globalThis.window={dispatchEvent(){},location:{origin:'http://localhost',search:''}};globalThis.CustomEvent??=class{constructor(type){this.type=type;}};
@@ -21,6 +21,34 @@ test('source and teacher context are rechecked and provisional or unavailable ob
  await assert.rejects(prepareTeacherObjective(teacher.ctx,{...args,expectedSource:'stale'}),/source changed/);await assert.rejects(prepareTeacherObjective(teacher.ctx,{...args,conceptId:'outside'}),/loaded curriculum/);await assert.rejects(teacherObjectiveChoices(teacher.ctx,{board:'Unconnected',classLevel:'6',subject:'Missing subject'}),/No sourced curriculum/);
  const hindi=await teacherObjectiveChoices({...teacher.ctx,locale:'hi'},SAMPLE_SELECTION);const translated=await prepareTeacherObjective({...teacher.ctx,locale:'hi'},{...args,expectedSource:JSON.stringify(hindi.syllabus.provenance)});assert.equal(translated.locale,'hi');assert.notEqual(translated.explanation,(await prepareTeacherObjective(teacher.ctx,args)).explanation);
  await account('student');await assert.rejects(prepareTeacherObjective(teacher.ctx,args),/teacher workspace/);
+});
+test('teacher objective choices distinguish reused chapter and objective names across books without changing the selected source',async()=>{
+ const teacher=await account('teacher');
+ const selection={board:'Synthetic book fixture',classLevel:'8',subject:'Synthetic subject'};
+ const provenance={provider:'Synthetic fixture author',sourceId:'two-books',version:'fixture-1'};
+ const paths=[['core','Core textbook'],['companion','Activity companion']];
+ const graph={
+  syllabus:{...selection,id:'fixture:two-books',status:'official',contentLocale:'en',availableLocales:['en'],provenance,
+   textbooks:paths.map(([id,title])=>({id:`fixture:book:${id}`,title,chapterIds:[`fixture:chapter:${id}`]})),
+   chapters:paths.map(([id])=>({id:`fixture:chapter:${id}`,title:'Chapter 1',textbookId:`fixture:book:${id}`,topicIds:[`fixture:topic:${id}`],status:'official'}))},
+  topics:paths.map(([id])=>({id:`fixture:topic:${id}`,title:'Shared topic title',chapterId:`fixture:chapter:${id}`,conceptIds:[`fixture:concept:${id}`],status:'official'})),
+  concepts:paths.map(([id,title])=>({id:`fixture:concept:${id}`,title:'Shared objective title',topicId:`fixture:topic:${id}`,prerequisiteIds:[],status:'official',locale:'en',availableLocales:['en'],provenance,explanation:`Authored explanation from ${title}.`,representations:[{id:`fixture:text:${id}`,kind:'text',alternative:`Text from ${title}.`}]}))
+ };
+ configureContentRepository({async getSyllabus(){return structuredClone(graph);}});
+ try{
+  const loaded=await teacherObjectiveChoices(teacher.ctx,selection);
+  assert.deepEqual(loaded.choices.map(choice=>[choice.bookId,choice.bookTitle,choice.chapter]),[
+   ['fixture:book:core','Core textbook','Chapter 1'],['fixture:book:companion','Activity companion','Chapter 1']
+  ]);
+  assert.equal(loaded.choices[0].title,loaded.choices[1].title);
+  assert.notEqual(loaded.choices[0].id,loaded.choices[1].id);
+  for(const choice of loaded.choices){
+   const objective=await prepareTeacherObjective(teacher.ctx,{selection,conceptId:choice.id,expectedSource:JSON.stringify(provenance)});
+   assert.equal(objective.conceptId,choice.id);
+   assert.equal(objective.explanation,`Authored explanation from ${choice.bookTitle}.`);
+   assert.deepEqual(objective.provenance,provenance);
+  }
+ }finally{configureContentRepository(null);}
 });
 test('same-clock lesson edits reject stale assignment and cannot replay a different saved objective',async()=>{
  const {teacher,classroom,lesson}=await fixture();const revision=resourceRevision(lesson);const first=await assignReviewedLesson(teacher.ctx,{resourceId:lesson.id,classId:classroom.id,expectedRevision:revision});const db=JSON.parse(memory.get('visionary_workspace_v2'));db.data[teacher.ctx.workspaceId].resources.find(row=>row.id===lesson.id).body='Different instructions at the same clock instant';memory.set('visionary_workspace_v2',JSON.stringify(db));

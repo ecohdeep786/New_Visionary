@@ -101,7 +101,7 @@ function ObjectivePicker({
             sequence.current++;
             setConceptId(event.target.value);
             setBusy(false);
-          }}>{loaded.choices.map(choice => <option value={choice.id} key={choice.id}>{choice.chapter} — {choice.title}</option>)}</select></label><button type="button" className="v-button mt-3" disabled={busy || !conceptId} onClick={attach}>{copy("Attach selected objective")}</button></> : <p role="status" className="mt-3 text-sm">{copy("No sourced objectives are available in this outline.")}</p>}</div>}{objective && <><LessonObjectivePreview key={JSON.stringify(objective)} objective={objective} /><button type="button" className="v-button mt-4" onClick={() => {
+          }}>{loaded.choices.map(choice => <option value={choice.id} key={choice.id}>{[choice.bookTitle, choice.chapter, choice.title].filter(Boolean).join(' · ')}</option>)}</select></label><button type="button" className="v-button mt-3" disabled={busy || !conceptId} onClick={attach}>{copy("Attach selected objective")}</button></> : <p role="status" className="mt-3 text-sm">{copy("No sourced objectives are available in this outline.")}</p>}</div>}{objective && <><LessonObjectivePreview key={JSON.stringify(objective)} objective={objective} /><button type="button" className="v-button mt-4" onClick={() => {
         sequence.current++;
         setBusy(false);
         onChange(null);

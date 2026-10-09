@@ -1,0 +1,90 @@
+{
+  "capturedAt": "2026-10-09T14:24:32.558Z",
+  "mode": "compiled preview",
+  "observations": [
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "learn-desktop",
+      "width": 1440
+    },
+    {
+      "documentWidth": 385,
+      "mainWidth": 379,
+      "surface": "learn-phone",
+      "width": 390
+    },
+    {
+      "documentWidth": 390,
+      "mainWidth": 385,
+      "surface": "compiled-build-phone",
+      "width": 390
+    },
+    {
+      "documentWidth": 390,
+      "mainWidth": 385,
+      "surface": "compiled-build-editor-phone",
+      "width": 390
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "compiled-build-desktop",
+      "width": 1440
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "progress-desktop-empty",
+      "width": 1440
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "prepare-desktop-empty",
+      "width": 1440
+    },
+    {
+      "documentWidth": 385,
+      "mainWidth": 379,
+      "surface": "prepare-phone-empty",
+      "width": 390
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "career-desktop-empty",
+      "width": 1440
+    },
+    {
+      "documentWidth": 390,
+      "mainWidth": 385,
+      "surface": "career-phone-empty",
+      "width": 390
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "parent-reports-desktop-empty",
+      "width": 1440
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "organization-content-desktop-empty",
+      "width": 1440
+    },
+    {
+      "documentWidth": 1440,
+      "mainWidth": 1195,
+      "surface": "privacy-desktop-empty",
+      "width": 1440
+    },
+    {
+      "documentWidth": 390,
+      "mainWidth": 385,
+      "surface": "privacy-phone-empty",
+      "width": 390
+    }
+  ]
+}

@@ -59,12 +59,21 @@ function ClassDetailContent({
     mounted.current = true;
     return () => { mounted.current = false; };
   }, []);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const themeColor = useThemeColor();
   const accent = themeColor.accent;
   const [classroom, setClassroom] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState(() => searchParams.has('curriculum') ? 'curriculum' : 'stream');
+  const requestedSection = searchParams.get('section');
+  const tab = TABS.some(section => section.id === requestedSection)
+    ? requestedSection
+    : searchParams.has('curriculum') ? 'curriculum' : 'stream';
+  const selectSection = section => {
+    if (section === tab) return;
+    const next = new URLSearchParams(searchParams);
+    next.set('section', section);
+    setSearchParams(next);
+  };
   const {
     user
   } = useAuth();
@@ -155,7 +164,7 @@ function ClassDetailContent({
       <nav className="v-class-sections" aria-label={copy("Class sections")}>
         {TABS.map(t => {
         const active = tab === t.id;
-        return <button key={t.id} onClick={() => setTab(t.id)} aria-pressed={active} className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap" style={{
+        return <button key={t.id} onClick={() => selectSection(t.id)} aria-pressed={active} aria-controls="class-section-content" className="relative h-11 px-5 text-sm font-medium transition-colors whitespace-nowrap" style={{
           color: active ? accent : "#5f6368"
         }}>
               {copy(t.label)}
@@ -166,12 +175,14 @@ function ClassDetailContent({
       })}
       </nav>
 
+      <section id="class-section-content" aria-label={copy(TABS.find(section => section.id === tab).label)}>
       {tab === "stream" && <StreamTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
       {tab === "classwork" && <ClassworkTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
       {tab === "curriculum" && <ClassCurriculum key={classId} classId={classId} />}
       {tab === "people" && <PeopleTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
       {tab === "insights" && <InsightsTab locale={locale} classId={classId} classroom={classroom} accent={accent} />}
   {tab === "community" && <CommunityTab classId={classId} accent={accent} />}
+      </section>
       <ClassPromotion locale={locale} classId={classId} accent={accent} />
     </div>;
 }

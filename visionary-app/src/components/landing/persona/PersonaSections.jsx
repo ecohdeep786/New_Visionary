@@ -58,13 +58,67 @@ function revealStyle(entered, delay) {
   };
 }
 
-const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goTo, lines, label, kicker = "The problem", copy }) {
+/* Apple's hero→next scroll-linked reveal (measured on the education-
+   initiative page): the chapter that directly follows the full-view hero
+   starts pinned invisible, then fades in as a continuous function of how
+   far the hero has scrolled — the copy begins entering at 30% of the hero's
+   height and completes at 90% (tween `opacity: [0,1]` over
+   `css(--hero-scroll-distance) * 0.3 → * 0.9`, disabled when the hero is
+   not full-viewport). No observer, no trigger: the reveal tracks the
+   scrollbar, so any scroll gesture reads as one motion — the premium beat
+   Apple uses between a hero and its story. Reduced motion shows the copy
+   instantly, exactly like Apple's `disabledWhen` contract. `active=false`
+   keeps the chapter always visible when the section above has no hero. */
+function useAppleLinkedReveal(active = true) {
+  const ref = useRef(null);
+  const [style, setStyle] = useState({ opacity: 0, transform: "translateY(12px)" });
+  useEffect(() => {
+    const el = ref.current;
+    if (!active || !el || typeof window === "undefined") {
+      if (!active) setStyle({ opacity: 1, transform: "none" });
+      return undefined;
+    }
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      setStyle({ opacity: 1, transform: "none" });
+      return undefined;
+    }
+    /* the section top in document coordinates = the height of the hero that
+       immediately precedes it, since the persona hero fills the first viewport */
+    const heroSpan = () => el.getBoundingClientRect().top + window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const H = heroSpan();
+      let p = (window.scrollY - H * 0.3) / (H * 0.6);
+      p = Math.min(1, Math.max(0, p));
+      setStyle({ opacity: p, transform: `translateY(${(1 - p) * 12}px)` });
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [active]);
+  return { ref, style };
+}
+
+const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goTo, lines, label, kicker = "The problem", copy, linked = false }) {
   const slide = slides[index];
   /* one observer for the whole problem beat; children stagger like Apple's
-     chapter enters — kicker, statement, support, photograph, quote, dots */
-  const { ref, entered } = useInViewOnce(0.2);
+     chapter enters — kicker, statement, support, photograph, quote, dots.
+     `linked` switches the beat to Apple's hero-scroll-linked reveal instead
+     (the education-initiative tween), so this chapter always leads with the
+     hero above it. */
+  const linkedReveal = useAppleLinkedReveal(linked);
+  const observer = useInViewOnce(linked ? 0 : 0.2);
+  const entered = linked ? true : observer.entered;
+  const revealRef = linked ? linkedReveal.ref : observer.ref;
   return (
-    <div ref={ref}>
+    <div ref={revealRef} style={linked ? linkedReveal.style : undefined}>
       <p className="sr-only">{label}</p>
       <div className="px-6">
         <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey, ...revealStyle(entered, 0) }}>
@@ -254,8 +308,8 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
         role="group"
         aria-roledescription="carousel"
         aria-label={label}
-        className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden"
-        style={{ paddingLeft: "max(24px, calc((100vw - 980px)/2))", paddingRight: 24, scrollPaddingLeft: "max(24px, calc((100vw - 980px)/2))" }}
+        className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden [scroll-padding-left:24px] min-[735px]:[padding-left:calc((100vw_-_692px)/2)] min-[735px]:[scroll-padding-left:calc((100vw_-_692px)/2)] min-[1069px]:[padding-left:calc((100vw_-_980px)/2)] min-[1069px]:[scroll-padding-left:calc((100vw_-_980px)/2)]"
+        style={{ paddingRight: 24 }}
       >
         {stages.map((stage, i) => {
           const StageIcon = (iconMap && iconMap[stage.title]?.Icon) || Sparkles;
@@ -270,8 +324,13 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 transitionDelay: `${140 + i * 80}ms`,
               }}
             >
+              {/* Apple's exact story-card metrics (measured on the education-
+                  initiative gallery): 980×516 @≥1069px (1.9), 692×430 @735–1068px
+                  (1.61), 275×400 @<735px (portrait). The fixed widths are what
+                  give the gallery its premium peek — each instance shows the
+                  next story at the viewport edge. */}
               <figure role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${stages.length}: ${stage.title}`}
-                className="relative m-0 w-[86vw] sm:w-[76vw] lg:w-[68vw] lg:max-w-[980px]"
+                className="relative m-0 w-[275px] min-[735px]:w-[692px] min-[1069px]:w-[980px]"
                 style={{ opacity: i === active ? 1 : 0.45, transition: "opacity 1500ms" }}
               >
             <button
@@ -286,30 +345,27 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                 loading="eager"
                 decoding="async"
                 draggable="false"
-                className="aspect-[4/3] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02] sm:aspect-[1.9]"
+                className="aspect-[11/16] w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.02] min-[735px]:aspect-[692/430] min-[1069px]:aspect-[1.9]"
               />
-              {/* our product icon — the stage glyph on a white pill, the same
-                  brand language as the journey-flow cards */}
-              <span className="absolute left-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-[0_4px_14px_rgba(0,0,0,0.14)]" style={{ color: COLORS.blue }}>
-                <StageIcon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-              </span>
-              {/* Apple's exact bottom smoke (measured on the education-initiative
-                  story cards): transparent to rgba(0,0,0,0.7) across the lower
-                  ~43% of the card, so the bottom-left statement reads on any
-                  stock photo without a full-card veil */}
-              <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
+              {/* Apple's exact bottom smoke: transparent → rgba(0,0,0,0.7)
+                  across the lower ~53% of the card (66% on the portrait mobile
+                  card), so the bottom-left statement reads on any stock photo
+                  without a full-card veil */}
+              <span className="absolute inset-x-0 bottom-0 h-[66%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent min-[735px]:h-[53%]" aria-hidden="true" />
               {/* the sub-category label + story headline — inside the card,
-                  bottom-left. The stage title (Primary, Secondary…) acts as the
-                  card's category heading, with the story statement as the large
-                  typographic tier above Apple's smoke. */}
+                  bottom-left inset to Apple's 36px text column. The stage title
+                  (Primary, Secondary…) acts as the card's category heading, with
+                  the story statement as the large typographic tier above the
+                  smoke. */}
               <span className="absolute bottom-0 left-0 block max-w-[72%] p-6 text-left sm:p-9">
                 <span className="mb-3 block text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">{stage.title}</span>
-                <span key={stage.statement} className="block font-semibold tracking-[-0.01em] leading-[1.08] text-white text-[clamp(22px,3.34vw,48px)]">{stage.statement || stage.title}</span>
+                <span key={stage.statement} className="block max-w-[15ch] font-semibold tracking-[-0.01em] leading-[1.08] text-white text-[28px] min-[735px]:text-[40px] min-[1069px]:text-[48px]">{stage.statement || stage.title}</span>
               </span>
-              {/* the bare plus glyph — Apple's story-card affordance: no
-                  circle, no pill, just the white 36px + over the smoke */}
-              <span className="absolute bottom-6 right-6 block h-9 w-9 text-white sm:bottom-6 sm:right-6">
-                <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" className="h-9 w-9" aria-hidden="true">
+              {/* Apple's story-card affordance — a white 36px circular button
+                  carrying the plus cutout, pinned to the card's bottom-right
+                  over the smoke and matched to our ink color */}
+              <span className="absolute bottom-6 right-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white sm:bottom-6 sm:right-6">
+                <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="h-[18px] w-[18px]" aria-hidden="true" style={{ color: COLORS.ink }}>
                   <path d="M18 8v20M8 18h20" />
                 </svg>
               </span>
@@ -322,8 +378,9 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
       {/* the controls — Apple's bare 36px glyph row 25px under the cards:
           play/pause at the track's left edge, prev/next chevrons at the
           right edge; no dots on this gallery. The row shares the centered
-          column so the glyphs sit under the card, not the viewport edge. */}
-      <div className="mt-6 flex items-center justify-between px-6 lg:mx-auto lg:w-full lg:max-w-[980px] lg:px-0">
+          card column so the glyphs sit under the card, not the viewport edge
+          — matching the per-breakpoint card width. */}
+      <div className="mt-6 flex items-center justify-between px-6 min-[735px]:mx-auto min-[735px]:w-full min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
         <button
           type="button"
           aria-label={playing ? "Pause the journey" : "Play the journey"}
@@ -431,17 +488,19 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center text-white [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.45))] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
 
-          {/* media full-bleed to the panel's top/side edges (Apple's story
-              modal carries the film edge-to-edge; the stage chip rides
-              bottom-left over its own smoke) */}
-          <div className="relative">
+          {/* media full-bleed to the panel's top/side edges. Apple's story
+              modal clips the media by its OWN rounded container (the
+              `.modal-contents` overflow:hidden + border-radius:30px), so the
+              popup's top border reads cleanly rounded even though the white
+              card behind it is separate — we mirror that exactly. */}
+          <div className="relative overflow-hidden rounded-[30px]">
             <img src={stage.image} alt={stage.alt} className="aspect-[16/9] w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(0,0,0,0.7)] to-transparent" aria-hidden="true" />
             <span
@@ -781,7 +840,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
           {text}
         </span>
       </div>
-    </div>
+    </Wrap>
   );
 });
 

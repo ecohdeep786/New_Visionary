@@ -1,4 +1,5 @@
 import CurriculumSummary from "@/components/onboarding/steps/student/CurriculumSummary";
+import SubjectContextInput from '@/components/onboarding/SubjectContextInput';
 import SubjectConfidence from "@/components/onboarding/steps/student/SubjectConfidence";
 import StudyRoutine from "@/components/onboarding/steps/student/StudyRoutine";
 import StudentContextForm from "@/components/onboarding/steps/student/StudentContextForm";
@@ -357,6 +358,7 @@ export const HIGHER_ED_FLOW_STEPS = [
     options: HIGHER_ED_INSTITUTIONS,
     illustration: "team",
   },
+  { id: "institution_name", title: "Where do you study?", subtitle: "Optional institution name for your learning context; this does not create a connection.", type: "input", field: "institution_name", placeholder: "Your college or university", optional: true },
   {
     id: "degree",
     title: "What degree are you pursuing?",
@@ -388,6 +390,8 @@ export const HIGHER_ED_FLOW_STEPS = [
     field: "semester",
     options: ["Semester 1", "Semester 2", "Semester 3", "Semester 4", "Semester 5", "Semester 6", "Semester 7", "Semester 8"].map((s) => ({ id: s, label: s })),
   },
+  { id: "subjects", title: "What are you studying this term?", subtitle: "Choose your own starting subjects. Official course content is not connected yet.", component: SubjectContextInput, optional: true, illustration: "learn" },
+  { id: "learning_language", title: "Which language do you learn in?", subtitle: "A saved preference. Content availability and source language are shown separately in Learn.", type: "choice", field: "preferred_language", options: LANGUAGES, optional: true, illustration: "languages" },
   {
     id: "career_goal",
     title: "What's your career goal?",
@@ -422,6 +426,8 @@ export const COMPETITIVE_FLOW_STEPS = [
     options: COMPETITIVE_TARGETS,
     illustration: "compass",
   },
+  { id: "subjects", title: "Which areas will you prepare?", subtitle: "Your starting preferences, separate from a verified exam syllabus.", component: SubjectContextInput, optional: true, illustration: "learn" },
+  { id: "learning_language", title: "Which language do you learn in?", subtitle: "A saved preference. Content availability and source language are shown separately in Learn.", type: "choice", field: "preferred_language", options: LANGUAGES, optional: true, illustration: "languages" },
   {
     id: "attempt_year",
     title: "When are you attempting the exam?",
@@ -497,13 +503,14 @@ export const TEACHER_FLOW_STEPS = [
     type: "choice",
     field: "board",
     options: BOARDS,
+    condition: (d) => d.teacher_category === 'school',
   },
   {
     id: "state",
     title: "Which state are you in?",
     type: "choice",
     field: "state",
-    condition: (d) => d.board === "State",
+    condition: (d) => d.teacher_category === 'school' && d.board === "State",
     options: INDIAN_STATES,
     columns: 3,
   },
@@ -523,7 +530,11 @@ export const TEACHER_FLOW_STEPS = [
     field: "teacher_classes",
     options: CLASSES,
     required: true,
+    condition: (d) => d.teacher_category === 'school',
   },
+  { id: "teacher_institution", title: "Where do you teach?", subtitle: "Optional institution or learning organization. Access is established separately through Connections.", type: "input", field: "teacher_institution", placeholder: "Institution or teaching context", optional: true, condition: (d) => d.teacher_category !== 'school' },
+  { id: "teacher_course_level", title: "What course or level do you teach?", type: "input", field: "teacher_course_level", placeholder: "For example, undergraduate chemistry", condition: (d) => ['higher_ed', 'university', 'independent'].includes(d.teacher_category) },
+  { id: "teacher_exam", title: "Which exam do you help learners prepare for?", type: "choice", field: "teacher_exam", options: [...COMPETITIVE_TARGETS, { id: 'Other', label: 'Another examination' }], condition: (d) => d.teacher_category === 'coaching' },
   {
     id: "teacher_subjects",
     title: "Which subjects do you teach?",
@@ -626,6 +637,7 @@ export const PARENT_FLOW_STEPS = [
     options: CLASSES,
     columns: 3,
   },
+  { id: "child_context", title: "What course or examination is your child studying?", subtitle: "Optional setup preference. Your child's connected account controls its own learning profile and sharing permissions.", type: "input", field: "child_context", placeholder: "Course, institution or examination", optional: true, condition: (d) => ['higher_ed', 'competitive'].includes(d.child_stage) },
   {
     id: "medium",
     title: "What language does your child learn in?",
@@ -668,6 +680,7 @@ export const ORG_FLOW_STEPS = [
     type: "choice",
     field: "org_board",
     options: BOARDS,
+    condition: (d) => d.org_type === 'school',
   },
   {
     id: "org_medium",
@@ -695,4 +708,5 @@ export const ORG_FLOW_STEPS = [
     options: DEGREE_PROGRAMS,
     condition: (d) => ["college", "university"].includes(d.org_type),
   },
+  { id: "org_focus", title: "What does your organization teach?", subtitle: "Describe the examinations, courses or skills you offer. Content and access are configured in your workspace.", type: "input", field: "org_focus", placeholder: "For example, exam preparation or design courses", condition: (d) => ['coaching', 'training'].includes(d.org_type) },
 ];

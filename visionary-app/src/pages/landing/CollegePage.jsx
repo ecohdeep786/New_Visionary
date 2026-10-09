@@ -220,17 +220,18 @@ function ProStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      <ScrollReveal>
-        <StruggleChapter
-          slides={SLIDES}
-          index={index}
-          goTo={goTo}
-          lines={STRUGGLE_LINES}
-          label="Career learning challenges"
-          kicker="What work doesn't show"
-          copy="Working isn't the difficulty. Showing it is."
-        />
-      </ScrollReveal>
+      {/* the bridge's compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      <StruggleChapter
+        linked
+        slides={SLIDES}
+        index={index}
+        goTo={goTo}
+        lines={STRUGGLE_LINES}
+        label="Career learning challenges"
+        kicker="What work doesn't show"
+        copy="Working isn't the difficulty. Showing it is."
+      />
     </section>
   );
 }
@@ -345,7 +346,7 @@ function ProJourneySection() {
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
-        <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
+        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2 className="font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(34px,4.45vw,64px)]" style={{ color: COLORS.ink }}>
             <span className="block">Work that</span>
             <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
@@ -445,16 +446,18 @@ const ProClosingSection = React.memo(function ProClosingSection() {
   const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
   return (
     <section ref={ref} data-section="06-closing" className="relative px-6 py-24 lg:py-32">
-      <p
-        className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-        style={{ color: COLORS.ink }}
-      >
-        Visionary keeps{" "}
-        <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-          {KEEPS_WORDS[index]}
-        </span>{" "}
-        with you until every skill compounds into the work you came here to do.
-      </p>
+      <ScrollReveal>
+        <p
+          className="mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]"
+          style={{ color: COLORS.ink }}
+        >
+          Visionary keeps{" "}
+          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+            {KEEPS_WORDS[index]}
+          </span>{" "}
+          with you until every skill compounds into the work you came here to do.
+        </p>
+      </ScrollReveal>
     </section>
   );
 });
@@ -882,15 +885,15 @@ const TRUST_WORDS = ["work.", "ideas.", "career."];
 const TRUST_WORD_MS = 6000;
 
 const TRUST_CARDS = [
-  { title: "Private by Design", copy: "Your work. Your ideas. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
-  { title: "Safe to grow with", copy: "Built from the first project to what's next.", Icon: HeartHandshake, to: "/security", link: "See security practices" },
-  { title: "Built responsibly.", copy: "Intelligence should help professionals without compromising matters to them.", Icon: Scale, to: "/terms", link: "Terms & commitments" },
+  { title: "Private by Design", copy: "Your work. Your ideas. Treated with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach", image: proProblem2 },
+  { title: "Safe to grow with", copy: "Built from the first project to what's next.", Icon: HeartHandshake, to: "/security", link: "See security practices", image: proProblem3 },
+  { title: "Built responsibly.", copy: "Intelligence should help professionals without compromising matters to them.", Icon: Scale, to: "/terms", link: "Terms & commitments", image: proProblem4 },
 ];
 
 const TrustCard = React.memo(function TrustCard({ card }) {
   return (
     <div className="elevation-1 relative w-full max-w-[780px] shrink-0 overflow-hidden rounded-[32px] border bg-white" style={{ borderColor: `${COLORS.ink}1A` }}>
-      <img src="https://storage.googleapis.com/gweb-research2023-media/images/AlphaEvolve.width-800.png" alt={card.title} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
+      <img src={card.image} alt={card.title} loading="lazy" decoding="async" className="aspect-[8/5] w-full object-cover" />
       {/* white chip guarantees copy contrast on any image */}
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
@@ -962,28 +965,28 @@ const ProCTASection = React.memo(function ProCTASection() {
   const { ref } = UseRevealOnce();
   return (
     <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
-      <div
-        className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
-      >
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-          Start with what's in front of you
-        </p>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
-          Your next project is already in front of you.
-        </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Understand it faster. Solve it with intelligence. Ship it and carry the lesson forward.
-        </p>
-        <div className="mt-12 flex justify-center">
-          <Link
-            to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
-          >
-            Get started
-          </Link>
+      <ScrollReveal>
+        <div className="mx-auto max-w-[1500px] text-center">
+          <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
+            Start with what's in front of you
+          </p>
+          <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-medium tracking-[0] leading-[1.03] text-[clamp(36px,5vw,72px)]" style={{ color: COLORS.ink }}>
+            Your next project is already in front of you.
+          </h2>
+          <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            Understand it faster. Solve it with intelligence. Ship it and carry the lesson forward.
+          </p>
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/register"
+              className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              style={{ backgroundColor: COLORS.blue }}
+            >
+              Get started
+            </Link>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 });

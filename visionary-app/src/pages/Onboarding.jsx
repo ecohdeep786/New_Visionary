@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
 import { initializeLearningWorkspace } from "@/lib/learningProfile";
+import { onboardingLearningContext } from '@/lib/onboardingLearningContext';
 import OnboardingLayout from "@/components/onboarding/OnboardingLayout";
 import ChoiceGrid from "@/components/onboarding/ChoiceGrid";
 import ChipMultiSelect from "@/components/onboarding/ChipMultiSelect";
@@ -134,8 +135,16 @@ export default function Onboarding() {
     );
   }
 
+  const learningContext = onboardingLearningContext(data);
+  const contextRows = data.identity === 'teacher'
+    ? [['Teaching category', data.teacher_category], ...(data.teacher_category === 'school' ? [['Board', data.board], ['Classes', (data.teacher_classes || []).join(', ')]] : [['Teaching context', data.teacher_institution], ['Course or examination', data.teacher_exam || data.teacher_course_level]]), ['Subjects', (data.teacher_subjects || []).join(', ')]]
+    : data.identity === 'organization'
+      ? [['Organization type', data.org_type], ['Organization', data.org_name], ...(data.org_type === 'school' ? [['Board', data.org_board], ['Classes', (data.org_classes || []).join(', ')]] : [['Programs or focus', (data.org_programs || []).join(', ') || data.org_focus]])]
+      : data.identity === 'parent'
+        ? [['Child learning stage', data.child_stage], ...(data.child_stage === 'school' ? [['Board', data.board], ['Class', data.grade_level]] : [['Child course or examination', data.child_context]])]
+        : [['Learning stage', learningContext?.stage], ['Board, institution or exam', learningContext?.board], ['Class or course', learningContext?.classLevel], ['Subjects', learningContext?.subjects.join(', ')], ['Goal', data.career_goal]];
   if(phase==='review')return <OnboardingLayout title="Review your workspace" subtitle="You can change these preferences later. Use fictional information in this preview." illustration="shield" onBack={()=>setPhase('flow')} onContinue={handleComplete} canContinue={!!data.age_band} isSubmitting={submitting} continueLabel="Create my workspace">
-    <dl className="space-y-4 text-sm">{[['Role',data.identity],['Name',data.full_name||user?.full_name],['Learning language',data.preferred_language||data.learning_language||'English']].map(([label,value])=><div key={label}><dt className="text-[#5f6368]">{label}</dt><dd className="mt-1 font-medium">{value||'Not provided'}</dd></div>)}</dl>
+    <dl className="space-y-4 text-sm">{[['Role',data.identity],['Name',data.full_name||user?.full_name],['Learning language',data.preferred_language||data.learning_language||data.medium||data.org_medium?.join(', ')||'English'], ...contextRows.filter(([,value]) => value)].map(([label,value])=><div key={label}><dt className="text-[#5f6368]">{label}</dt><dd className="mt-1 font-medium">{value||'Not provided'}</dd></div>)}</dl>
     <label className="mt-6 block text-sm">Age range<select className="mt-2 w-full rounded-xl border p-3" value={data.age_band||''} onChange={e=>updateData('age_band',e.target.value)}><option value="">Choose an age range</option><option value="minor">Under 18</option><option value="adult">18 or older</option></select></label>
     <p className="mt-3 text-xs leading-6 text-[#5f6368]">Self-reported, not verified. Guardian consent and identity verification require future services. Private learning is never automatically shared.</p>
     <label className="mt-5 block text-sm">Your curriculum or goal (optional)<textarea className="mt-2 w-full rounded-xl border p-3" rows={3} value={data.curriculum_notes||''} onChange={e=>updateData('curriculum_notes',e.target.value)} placeholder="Add a board, syllabus, language, skill or goal in your own words."/></label>

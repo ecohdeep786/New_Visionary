@@ -60,7 +60,12 @@ export async function teacherObjectiveChoices(ctx,selection){
  if(!['sample','official'].includes(syllabus.status))throw Error('No sourced curriculum is available for this selection. Your lesson has not changed.');
  const chapters=await repo.getChapters(syllabus.id);const topics=(await Promise.all(chapters.map(chapter=>repo.getTopics(chapter.id)))).flat();
  const concepts=(await Promise.all(topics.map(topic=>repo.getConcepts(topic.id)))).flat();await teacherContext(ctx);
- return {syllabus,choices:concepts.filter(concept=>['sample','official'].includes(concept.status)).map(concept=>({id:concept.id,title:concept.title,chapter:chapters.find(chapter=>chapter.id===topics.find(topic=>topic.id===concept.topicId)?.chapterId)?.title||''}))};
+ return {syllabus,choices:concepts.filter(concept=>['sample','official'].includes(concept.status)).map(concept=>{
+  const topic=topics.find(row=>row.id===concept.topicId);
+  const chapter=chapters.find(row=>row.id===topic?.chapterId);
+  const book=syllabus.textbooks.find(row=>row.id===chapter?.textbookId);
+  return {id:concept.id,title:concept.title,chapter:chapter?.title||'',bookId:book?.id||'',bookTitle:book?.title||''};
+ })};
 }
 export async function prepareTeacherObjective(ctx,{selection,conceptId,expectedSource}){
  const {syllabus,choices}=await teacherObjectiveChoices(ctx,selection);if(!choices.some(choice=>choice.id===conceptId))throw Error('Choose an objective from the loaded curriculum.');

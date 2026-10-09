@@ -1,10 +1,13 @@
 import type { Locale, RequestContext } from '../domain/workspace.ts';
 import { workspaceIdentity } from './workspaceService.ts';
 import { getJourney } from './journeys.ts';
+import {learningProfileSelection} from '../lib/learningCatalogue.js';
 
 export type ContentStatus = 'sample' | 'provisional' | 'official';
 export interface ContentProvenance { provider: string; sourceId: string; version: string }
 export interface ContentSelection { board: string; classLevel: string; subject: string }
+export interface ContentSubjectSummary {subject:string; origin:'catalog'|'profile'|'saved'}
+export interface ContentSubjectCatalogue {board:string;classLevel:string;subjects:string[]}
 export interface ContentQuestion { id: string; prompt: string; options: string[]; answerIndex: number; source: 'authored-sample' | 'database' }
 export interface ContentCriterion { id: string; label: string; prompt: string }
 export interface RepresentationDescriptor { id: string; kind: 'text' | 'diagram' | 'cube' | 'number-line' | 'scene'; alternative: string; assetId?: string; numberLine?:{minimum:number;maximum:number;divisions:number;initial:number}; series?:{label:string;value:number}[] }
@@ -23,8 +26,9 @@ export interface ContentDataGap extends ContentSelection { user_id: string; time
 export type ContentIssueKind = 'explanation' | 'question' | 'representation' | 'translation' | 'source';
 export interface ContentIssue { id: string; conceptId: string; kind: ContentIssueKind; locale: Locale; sourceId?: string; sourceVersion?: string; createdAt: string; state: 'saved-locally' }
 /** Implement this boundary with the syllabus API. A miss is null, not invented curriculum. */
-export interface ContentRepositoryAdapter { getSyllabus(selection: ContentSelection, ctx: RequestContext): Promise<ContentGraph | null>; getConcept?(conceptId: string, ctx: RequestContext): Promise<ContentConcept | null> }
+export interface ContentRepositoryAdapter { getSyllabus(selection: ContentSelection, ctx: RequestContext): Promise<ContentGraph | null>; getConcept?(conceptId: string, ctx: RequestContext): Promise<ContentConcept | null>; getSubjects?(selection:Omit<ContentSelection,'subject'>,ctx:RequestContext):Promise<ContentSubjectCatalogue|null> }
 export interface ContentRepository {
+ getSubjects(board:string,classLevel:string):Promise<ContentSubjectSummary[]>;
  getSyllabus(board: string, classLevel: string, subject: string): Promise<ContentSyllabus>;
  getChapters(syllabusId: string): Promise<ContentChapter[]>;
  getTopics(chapterId: string): Promise<ContentTopic[]>;
@@ -39,6 +43,7 @@ export interface ContentRepository {
 }
 
 export const SAMPLE_SELECTION: ContentSelection = { board: 'Sample', classLevel: '6', subject: 'Mathematics' };
+export const SAMPLE_LIBRARY_SELECTION:ContentSelection={board:'Sample library',classLevel:'6',subject:'Mathematics'};
 export const PROFESSIONAL_SAMPLE_SELECTION: ContentSelection = { board: 'Sample', classLevel: 'Professional', subject: 'Data interpretation' };
 const KEY = 'visionary_content_v1';
 interface ContentStore { version: 1; spaces: Record<string, { graphs: ContentGraph[]; aliases: Record<string, string>; gaps: ContentDataGap[]; issues?: ContentIssue[] }> }
@@ -118,6 +123,15 @@ function sample(locale: Locale, professional = false): ContentGraph {
  }
  return { syllabus, topics, concepts };
 }
+/** Isolated multi-book rehearsal; old sample IDs/source versions remain unchanged. */
+function sampleLibrary(locale:Locale):ContentGraph {
+ const graph=sample(locale),rebase=(id:string)=>id.replace(/^sample:/,'sample:library:');
+ graph.syllabus={...graph.syllabus,...SAMPLE_LIBRARY_SELECTION,id:'sample:library',provenance:{provider:'Visionary authored samples',sourceId:'sample:library',version:'1'},textbooks:[{id:'sample:library:fractions-book',title:locale==='hi'?'भिन्न कार्यपुस्तिका':locale==='bn'?'ভগ্নাংশের অনুশীলন বই':'Fractions workbook',chapterIds:['sample:library:fractions']},{id:'sample:library:geometry-book',title:locale==='hi'?'ज्यामिति कार्यपुस्तिका':locale==='bn'?'জ্যামিতির অনুশীলন বই':'Geometry workbook',chapterIds:['sample:library:geometry']}],chapters:graph.syllabus.chapters.map(chapter=>({...chapter,id:rebase(chapter.id),textbookId:chapter.id==='sample:fractions'?'sample:library:fractions-book':'sample:library:geometry-book',topicIds:chapter.topicIds.map(rebase)}))};
+ graph.topics=graph.topics.map(topic=>({...topic,id:rebase(topic.id),chapterId:rebase(topic.chapterId),conceptIds:topic.conceptIds.map(rebase)}));
+ graph.concepts=graph.concepts.map(concept=>({...concept,id:rebase(concept.id),topicId:rebase(concept.topicId),prerequisiteIds:concept.prerequisiteIds.map(rebase),provenance:graph.syllabus.provenance}));
+ return graph;
+}
+function authoredGraph(locale:Locale,id:string){return id==='sample:library'?sampleLibrary(locale):sample(locale,id==='sample:professional');}
 export function validateContentQuestion(question: ContentQuestion) {
  if (!question || typeof question.id !== 'string' || !question.id.trim() || typeof question.prompt !== 'string' || !question.prompt.trim() || !Array.isArray(question.options) || question.options.length < 2 || question.options.some(option => typeof option !== 'string' || !option.trim()) || !Number.isInteger(question.answerIndex) || question.answerIndex < 0 || question.answerIndex >= question.options.length || !['authored-sample', 'database'].includes(question.source)) throw new Error('The content service returned an incomplete question. Your saved work is unchanged.');
 }
@@ -195,9 +209,21 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
  const graphForConcept = (db: ContentStore, id: string) => conceptGraph(space(db, ctx).graphs,id,ctx.locale);
  const conceptFrom = (db: ContentStore, id: string) => graphForConcept(db, id)?.concepts.find(c => c.id === id);
  return {
+  async getSubjects(board,classLevel){
+   check(ctx);const query={board:board.trim(),classLevel:classLevel.trim()},remote=adapter;
+   const catalogue=remote?.getSubjects ? await abortable(remote.getSubjects(query,ctx),ctx.signal) : null;
+   check(ctx);
+   if(catalogue&&(catalogue.board!==query.board||catalogue.classLevel!==query.classLevel||!Array.isArray(catalogue.subjects)||catalogue.subjects.length>200||catalogue.subjects.some(subject=>typeof subject!=='string'||!subject.trim()||subject.length>100)))throw Error('The subject catalog does not match this curriculum context. Your saved work is unchanged.');
+   const profile=workspaceIdentity(ctx).person.learningContext,context=learningProfileSelection(profile);
+   const rows=new Map<string,ContentSubjectSummary>();
+   for(const subject of catalogue?.subjects||[])rows.set(subject.trim(),{subject:subject.trim(),origin:'catalog'});
+   if(context.board===query.board&&context.classLevel===query.classLevel)for(const subject of profile?.subjects||[])if(!rows.has(subject))rows.set(subject,{subject,origin:'profile'});
+   for(const graph of getSavedCurriculumGraphs(ctx))if(graph.syllabus.board===query.board&&graph.syllabus.classLevel===query.classLevel&&!rows.has(graph.syllabus.subject))rows.set(graph.syllabus.subject,{subject:graph.syllabus.subject,origin:'saved'});
+   return [...rows.values()];
+  },
   async getSyllabus(board, classLevel, subject) {
    check(ctx); const query = selection(board, classLevel, subject); const remote = adapter;
-   let graph = remote ? await abortable(remote.getSyllabus(query, ctx), ctx.signal) : same(query, SAMPLE_SELECTION) ? sample(ctx.locale) : same(query, PROFESSIONAL_SAMPLE_SELECTION) && ctx.role === 'professional' ? sample(ctx.locale, true) : null;
+   let graph = remote ? await abortable(remote.getSyllabus(query, ctx), ctx.signal) : same(query, SAMPLE_SELECTION) ? sample(ctx.locale) : same(query,SAMPLE_LIBRARY_SELECTION) ? sampleLibrary(ctx.locale) : same(query, PROFESSIONAL_SAMPLE_SELECTION) && ctx.role === 'professional' ? sample(ctx.locale, true) : null;
    check(ctx); const db = read(); const current = space(db, ctx); const matching = current.graphs.filter(g => same(g.syllabus, query)); const existing = preferredGraph(matching, ctx.locale);
    if (graph) {
     validateGraph(graph, Boolean(remote)); graph = structuredClone(graph);
@@ -212,14 +238,14 @@ export function getContentRepository(ctx: RequestContext): ContentRepository {
    graph = provisional(query); current.graphs.push(graph); current.gaps.push({ ...query, user_id: ctx.personId, timestamp: new Date().toISOString(), syllabusId: graph.syllabus.id });
    write(db, ctx); return structuredClone(graph.syllabus);
   },
-  async getChapters(syllabusId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.id === syllabusId), ctx.locale); if (!graph) throw new Error('Syllabus unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional'].includes(graph.syllabus.id)) graph = sample(ctx.locale, graph.syllabus.id === 'sample:professional'); return structuredClone(graph.syllabus.chapters); },
-  async getTopics(chapterId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.chapters.some(c => c.id === chapterId)), ctx.locale); if (!graph) throw new Error('Chapter unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional'].includes(graph.syllabus.id)) graph = sample(ctx.locale, graph.syllabus.id === 'sample:professional'); return structuredClone(graph.topics.filter(t => t.chapterId === chapterId)); },
-  async getConcepts(topicId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.topics.some(t => t.id === topicId)), ctx.locale); if (!graph) throw new Error('Topic unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional'].includes(graph.syllabus.id)) graph = sample(ctx.locale, graph.syllabus.id === 'sample:professional'); return structuredClone(graph.concepts.filter(c => c.topicId === topicId && eligible(ctx, c)).map(c => forLanguage(c, graph!.syllabus, ctx.locale))); },
+  async getChapters(syllabusId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.id === syllabusId), ctx.locale); if (!graph) throw new Error('Syllabus unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional','sample:library'].includes(graph.syllabus.id)) graph = authoredGraph(ctx.locale, graph.syllabus.id); return structuredClone(graph.syllabus.chapters); },
+  async getTopics(chapterId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.syllabus.chapters.some(c => c.id === chapterId)), ctx.locale); if (!graph) throw new Error('Chapter unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional','sample:library'].includes(graph.syllabus.id)) graph = authoredGraph(ctx.locale, graph.syllabus.id); return structuredClone(graph.topics.filter(t => t.chapterId === chapterId)); },
+  async getConcepts(topicId) { check(ctx); let graph = preferredGraph(space(read(), ctx).graphs.filter(g => g.topics.some(t => t.id === topicId)), ctx.locale); if (!graph) throw new Error('Topic unavailable in this workspace.'); if (graph.syllabus.status === 'sample' && ['sample:math','sample:professional','sample:library'].includes(graph.syllabus.id)) graph = authoredGraph(ctx.locale, graph.syllabus.id); return structuredClone(graph.concepts.filter(c => c.topicId === topicId && eligible(ctx, c)).map(c => forLanguage(c, graph!.syllabus, ctx.locale))); },
   async getConcept(conceptId) {
    check(ctx); const db = read(); const officialId = space(db, ctx).aliases[conceptId]; const id = officialId || conceptId;
    const storedGraph = graphForConcept(db, id);
    let concept = conceptFrom(db, id);
-   if (concept?.status === 'sample') concept = sample(ctx.locale, storedGraph?.syllabus.id === 'sample:professional').concepts.find(c => c.id === id) ?? concept;
+   if (concept?.status === 'sample') concept = authoredGraph(ctx.locale,storedGraph?.syllabus.id||'').concepts.find(c => c.id === id) ?? concept;
    if (!concept && adapter?.getConcept) {
     concept = await abortable(adapter.getConcept(id, ctx), ctx.signal) ?? undefined;
     if (concept && concept.status === 'official' && (!validProvenance(concept.provenance) || !validLocales(concept.availableLocales) || !concept.locale || !concept.availableLocales.includes(concept.locale))) throw new Error('Connected concept needs a source version and explicit language availability.');

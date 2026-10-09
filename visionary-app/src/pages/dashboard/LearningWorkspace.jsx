@@ -8,6 +8,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, Box, CheckCircle2, Layers, LineChart, Target } from 'lucide-react';
 import WorkspaceIntro from '@/components/dashboard/WorkspaceIntro';
+import LearningSubjectShelf from '@/components/dashboard/LearningSubjectShelf';
+import {booksForOutline,catalogueSelection,learningProfileSelection} from '@/lib/learningCatalogue';
+import {learningCatalogueCopy} from '@/lib/learningCatalogueCopy';
 import LearningRepresentation from '@/components/dashboard/LearningRepresentation';
 import LearningAttemptHistory from '@/components/dashboard/LearningAttemptHistory';
 import LearningPrerequisites from '@/components/dashboard/LearningPrerequisites';
@@ -16,7 +19,7 @@ import ClassworkLearningPlayer from './ClassworkLearningPlayer';
 import ClassworkStudy from './ClassworkStudy';
 import { useAuth } from '@/lib/AuthContext';
 import { useWorkspace } from '@/hooks/useWorkspace';
-import { getContentRepository, SAMPLE_SELECTION, PROFESSIONAL_SAMPLE_SELECTION } from '@/services/contentRepository';
+import { getContentRepository, getSavedCurriculumGraphs, SAMPLE_SELECTION, SAMPLE_LIBRARY_SELECTION, PROFESSIONAL_SAMPLE_SELECTION } from '@/services/contentRepository';
 import { getStudentState, getStudentClassLearningContext } from '@/services/mentorStateService';
 import { getLearningWorkspace, getLearningUnit, learningAnswerSelection, saveLearningAnswerDraft, assertLearningSource, getLearningReviewQueue, selectLearningSyllabus, startLearningUnit, requestUnitTeaching, beginComprehension, answerLearningQuestion, nextLearningQuestion, createLearningProject, flushLearningOutcome, updateLearningLanguage, updateLearningRepresentation, reviewLearningExplanation } from '@/services/learningPipelineService';
 const languageNames = {
@@ -27,7 +30,7 @@ const languageNames = {
 export default function LearningWorkspace(props) {
   const [params] = useSearchParams();
   const {ctx} = useWorkspace();
-  const activityKey = `${ctx?.personId}:${ctx?.workspaceId}:${props.unitIdOverride || params.get('unit') || ''}:${params.get('chapter') || ''}:${params.get('fromClass') || ''}:${Boolean(props.practice)}`;
+  const activityKey = `${ctx?.personId}:${ctx?.workspaceId}:${props.unitIdOverride || ''}:${params.toString()}:${Boolean(props.practice)}`;
   return !props.unitIdOverride && params.get('bridgeTransition') ? <BridgeObjectiveEntry transitionId={params.get('bridgeTransition')} conceptId={params.get('bridgeConcept')} /> : !props.unitIdOverride && params.get('assignment') ? props.practice ? <ClassworkStudy assignmentId={params.get('assignment')} mode="practice" /> : <ClassworkLearningPlayer assignmentId={params.get('assignment')} /> : <CurriculumLearningWorkspace key={activityKey} {...props} />;
 }
 function BridgeObjectiveEntry({
@@ -121,20 +124,17 @@ function CurriculumLearningWorkspace({
   const ctx = baseContext ? {...baseContext, get signal() {return requests.current.signal;}} : null;
   const locale = data?.preferences.interfaceLocale || 'en';
   const copy = learningCopy(locale);
+  const catalogueCopy = learningCatalogueCopy(locale);
   const {
     user
   } = useAuth();
   const [params, setParams] = useSearchParams();
   const [selection, setSelection] = useState(() => {
-    const fallback = {
-      board: user?.board || '',
-      classLevel: user?.grade_level || '',
-      subject: Array.isArray(user?.subjects) ? user.subjects[0] || '' : ''
-    };
     try {
-      return ctx ? getLearningWorkspace(ctx).selection || fallback : fallback;
+      const profile=learningProfileSelection(ctx ? workspaceIdentity(ctx).person.learningContext : null,user);
+      return ctx ? catalogueSelection(getLearningWorkspace(ctx).selection,profile) : profile;
     } catch {
-      return fallback;
+      return learningProfileSelection(null,user);
     }
   });
   const [syllabus, setSyllabus] = useState(null);
@@ -154,6 +154,7 @@ function CurriculumLearningWorkspace({
   const [renderedWorkspaceId, setRenderedWorkspaceId] = useState(ctx?.workspaceId || '');
   const unitId = unitIdOverride || params.get('unit');
   const chapterId = params.get('chapter');
+  const bookId = params.get('book');
   const fromClassId = params.get('fromClass');
   useEffect(() => {
     let live = true;
@@ -188,10 +189,12 @@ function CurriculumLearningWorkspace({
           return;
         }
         const path = getLearningWorkspace(ctx);
-        if (chapterId && path.syllabusId) {
-          const chapters = await repo.getChapters(path.syllabusId);
-          const selected = chapters.find(item => item.id === chapterId);
-          if (!selected) throw Error('This chapter link is no longer in your learning outline.');
+        const sourceOutline=saved.sourceContext ? getSavedCurriculumGraphs({...ctx,locale:saved.locale}).find(graph=>['board','classLevel','subject'].every(key=>graph.syllabus[key]===saved.sourceContext.selection[key]) && ['provider','sourceId','version'].every(key=>graph.syllabus.provenance?.[key]===saved.sourceContext.provenance[key]))?.syllabus : null;
+        if (sourceOutline || chapterId && path.syllabusId) {
+          const chapters = sourceOutline?.chapters || await repo.getChapters(path.syllabusId);
+          const selected = chapterId ? chapters.find(item => item.id === chapterId) : chapters.find(item=>item.topicIds.includes(content.topicId));
+          if (!selected && chapterId) throw Error('This chapter link is no longer in your learning outline.');
+          if (selected) {
           const chapterTopics = await repo.getTopics(selected.id);
           const rows = await Promise.all(chapterTopics.map(async topic => ({
             ...topic,
@@ -202,25 +205,25 @@ function CurriculumLearningWorkspace({
             setChapter(selected);
             setTopics(rows);
           }
+          }
         }
       } else {
-        const profile = {
-          board: user?.board || '',
-          classLevel: user?.grade_level || '',
-          subject: Array.isArray(user?.subjects) ? user.subjects[0] || '' : ''
-        };
+        const profile = learningProfileSelection(workspaceIdentity(ctx).person.learningContext,user);
         const connected = fromClassId ? getStudentClassLearningContext(ctx, fromClassId) : null;
+        const requested=params.has('catalogueSubject') ? {board:params.get('catalogueBoard')||'',classLevel:params.get('catalogueLevel')||'',subject:params.get('catalogueSubject')||''} : null;
         const saved = connected ? {
           ...profile,
           subject: connected.subject
-        } : getLearningWorkspace(ctx).selection || profile;
+        } : requested || catalogueSelection(getLearningWorkspace(ctx).selection,profile);
         if (saved.subject) {
           const outline = await selectLearningSyllabus(ctx, saved);
+          if(bookId && !outline.textbooks.some(book=>book.id===bookId))throw Error('This book is not in your current learning outline.');
           let selected = null;
           let rows = [];
           if (chapterId) {
             selected = outline.chapters.find(item => item.id === chapterId);
             if (!selected) throw Error('This chapter is not in your current learning outline.');
+            if(bookId && selected.textbookId!==bookId)throw Error('This chapter is not in the selected book.');
             const repo = getContentRepository(ctx);
             const chaptersTopics = await repo.getTopics(selected.id);
             rows = await Promise.all(chaptersTopics.map(async topic => ({
@@ -252,7 +255,7 @@ function CurriculumLearningWorkspace({
     return () => {
       live = false;
     };
-  }, [ctx?.personId, ctx?.workspaceId, ctx?.locale, unitId, chapterId, fromClassId, contentRetry]);
+  }, [ctx?.personId, ctx?.workspaceId, ctx?.locale, unitId, bookId, chapterId, fromClassId, contentRetry]);
   async function run(work) {
     setBusy(true);
     setError('');
@@ -274,7 +277,7 @@ function CurriculumLearningWorkspace({
       setChapter(null);
       setTopics([]);
       setClassContext(null);
-      setParams({});
+      setParams({catalogueSubject:value.subject,catalogueBoard:value.board,catalogueLevel:value.classLevel});
     });
   }
   function openChapter(value) {
@@ -282,7 +285,8 @@ function CurriculumLearningWorkspace({
       ...(fromClassId ? {
         fromClass: fromClassId
       } : {}),
-      chapter: value.id
+      catalogueSubject:selection.subject,catalogueBoard:selection.board,catalogueLevel:selection.classLevel,
+      chapter: value.id,book:value.textbookId
     });
   }
   async function openConcept(id) {
@@ -293,7 +297,7 @@ function CurriculumLearningWorkspace({
         fromClass: fromClassId
       } : {}),
       ...(inChapter ? {
-        chapter: chapter.id
+        chapter: chapter.id,book:chapter.textbookId
       } : {}),
       unit: activity.id
     });
@@ -321,6 +325,7 @@ function CurriculumLearningWorkspace({
   if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening your learning outline\u2026")}</div>;
   if (activityConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved activity changed')}</h1><p className="v-notice" role="alert">{copy('A newer version of this activity is saved. Reload it to continue with the latest language, view and recorded answers.')}</p><button className="v-button primary mt-4" onClick={() => setContentRetry(value => value + 1)}>{copy('Retry saved learning')}</button></div>;
   const professional = ctx.role === 'professional';
+  const outlineBooks = booksForOutline(syllabus,bookId,chapter?.id);
   let state, saved, reviewQueue;
   try {
     state = getStudentState(ctx);
@@ -348,11 +353,13 @@ function CurriculumLearningWorkspace({
   }
   const evidence = unit ? state.concepts.find(c => c.conceptId === unit.conceptId) : null;
   const outlineQuery = new URLSearchParams({
+    ...(unit?.sourceContext ? {catalogueSubject:unit.sourceContext.selection.subject,catalogueBoard:unit.sourceContext.selection.board,catalogueLevel:unit.sourceContext.selection.classLevel} : params.has('catalogueSubject') ? {catalogueSubject:params.get('catalogueSubject')||'',catalogueBoard:params.get('catalogueBoard')||'',catalogueLevel:params.get('catalogueLevel')||''} : {}),
     ...(fromClassId ? {
       fromClass: fromClassId
     } : {}),
-    ...(chapterId ? {
-      chapter: chapterId
+    ...(chapterId || chapter?.id ? {
+      chapter: chapterId || chapter.id,
+      ...(chapter?.textbookId ? {book:chapter.textbookId} : bookId ? {book:bookId} : {})
     } : {})
   }).toString();
   const outlineUrl = `/dashboard/learn${outlineQuery ? `?${outlineQuery}` : ''}`;
@@ -364,7 +371,7 @@ function CurriculumLearningWorkspace({
   const nextConcept = chapterConcepts.find(item => saved.some(activity => activity.conceptId === item.id && activity.stage !== 'completed')) || chapterConcepts.find(item => !saved.some(activity => activity.conceptId === item.id)) || chapterConcepts[0];
   const chapterIndex = unit ? chapterConcepts.findIndex(item => item.id === unit.conceptId) : -1;
   const followingConcept = chapterIndex >= 0 ? chapterConcepts.slice(chapterIndex + 1).find(item => !saved.some(activity => activity.conceptId === item.id && activity.stage === 'completed')) : null;
-  const status = <>{busy && <p role="status" className="v-muted">{copy("Saving your place\u2026")}</p>}{error && <div role="alert" className="v-notice v-error"><span lang="en">{error}</span> {copy('Your saved work is kept.')} {!unitId && (chapterId || fromClassId) && <button className="v-button ml-3" onClick={() => setParams({})}>{copy("Open my outline")}</button>}</div>}</>;
+  const status = <>{busy && <p role="status" className="v-muted">{copy("Saving your place\u2026")}</p>}{error && <div role="alert" className="v-notice v-error"><span lang="en">{error}</span> {copy('Your saved work is kept.')} {!unitId && (bookId || chapterId || fromClassId) && <button className="v-button ml-3" onClick={() => setParams({})}>{copy("Open my outline")}</button>}</div>}</>;
   if (unitId && !unit && !busy) return <div className="v-page" lang={locale}><h1 className="v-title">{copy("Learning activity unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("Open your outline to choose an available concept. This link did not create or score an activity.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry activity")}</button></div></div>;
   if (unitId && unit && !concept && !busy) return <div className="v-page" lang={locale}><p className="v-home-eyebrow">{copy("Saved learning activity")}</p><h1 className="v-title mt-2">{copy("Teaching content unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("This activity is still saved locally. No check, practice or mastery result was added while the content was unavailable.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask about this activity")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry content")}</button><button className="v-button" onClick={() => {try {exportSavedActivity();}catch(failure){setError(failure.message);}}}>{copy("Export current activity view")}</button></div></div>;
   if (unit && concept) return <div className="v-page v-lesson" lang={locale}>
@@ -467,6 +474,7 @@ function CurriculumLearningWorkspace({
             unit: u.id
           });
         })}>{u.stage === 'completed' ? copy("Start review") : u.stage === 'practice' && !u.answer ? copy("Resume practice") : copy('Practice')}</button></div>) : <WorkspaceEmptyState illustration="practice" heading="h3" title={copy("Start in Learn")} description={copy("Finish a comprehension check in Learn first. No weakness is inferred from an empty history.")}><Link className="v-button primary" to="/dashboard/learn">{copy("Start in Learn")}<ArrowRight size={16} /></Link></WorkspaceEmptyState>}</section>}
+  {!practice && !fromClassId && <LearningSubjectShelf ctx={ctx} locale={locale} selection={selection} busy={busy} professional={professional} onSelect={openOutline}/>}
   {!practice && <details open={!syllabus} className="v-card v-outline-selector"><summary className="cursor-pointer font-medium">{professional ? copy("Choose a capability") : copy("Choose a subject")}</summary><form className="mt-5 grid gap-4" onSubmit={e => {
         e.preventDefault();
         openOutline(selection);
@@ -477,6 +485,7 @@ function CurriculumLearningWorkspace({
                 ...selection,
                 [key]: e.target.value
               })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form><p className="v-muted mt-4">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p></details>}
+  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try a multi-book sample')}<ArrowRight size={16} aria-hidden="true"/></button>}
   {!practice && syllabus && <><section className="v-outline-summary" aria-label={copy("Subject chapters")}>
     <div className="v-outline-summary-copy"><h2 className="text-xl font-medium">{syllabus.subject}</h2>
     {(syllabus.board || syllabus.classLevel) && <p className="v-outline-context">{[syllabus.board,syllabus.classLevel].filter(Boolean).join(' · ')}</p>}
@@ -492,10 +501,11 @@ function CurriculumLearningWorkspace({
           })}</p>}</div>
     <SpotIllustration subject={professional ? 'briefcase' : 'learn'} className="v-outline-art"/>
    </section>
-   <div className="v-learning-browser" data-has-chapter={Boolean(chapter)}>
+   {outlineBooks.books.length ? <details className="v-outline-books" open={!outlineBooks.selected}><summary>{catalogueCopy('Books')} · {outlineBooks.books.length}</summary><div className="v-book-grid mt-4">{outlineBooks.books.map(book=><button className="v-book-card" key={book.id} aria-pressed={outlineBooks.selected?.id===book.id} disabled={busy} onClick={()=>setParams({...(fromClassId?{fromClass:fromClassId}:{}),catalogueSubject:selection.subject,catalogueBoard:selection.board,catalogueLevel:selection.classLevel,book:book.id})}><span className="v-book-cover" aria-hidden="true"><BookOpen size={32} strokeWidth={1.5}/></span><strong>{book.title}</strong><span className="v-muted">{book.chapterIds.length} {catalogueCopy(book.chapterIds.length === 1 ? 'chapter' : 'chapters')}</span><ArrowRight size={18} aria-hidden="true"/></button>)}</div></details> : <p className="v-muted">{catalogueCopy('No books in this outline yet.')}</p>}
+   {outlineBooks.selected && <><nav className="v-catalogue-trail" aria-label={catalogueCopy('Books')}><button disabled={busy} onClick={()=>setParams({...(fromClassId?{fromClass:fromClassId}:{}),catalogueSubject:selection.subject,catalogueBoard:selection.board,catalogueLevel:selection.classLevel})}>{catalogueCopy('All books')}</button><span aria-hidden="true">/</span><span>{outlineBooks.selected.title}</span></nav><div className="v-learning-browser" data-has-chapter={Boolean(chapter)}>
     <details open className="v-outline-chapters v-card">
-      <summary className="cursor-pointer font-medium">{copy("Subject chapters")}</summary>
-      <ol className="v-chapter-list mt-5 v-outline-chapter-choices">{syllabus.chapters.map((c,index) => <li key={c.id}><button className="v-chapter-row" aria-pressed={chapter?.id === c.id} disabled={busy} onClick={() => openChapter(c)}><span className="v-chapter-number" aria-hidden="true">{index+1}</span><span lang={syllabus.contentLocale || undefined}>{c.title}</span><ArrowRight size={18} aria-hidden="true"/></button></li>)}</ol>
+      <summary className="cursor-pointer font-medium">{catalogueCopy('Book chapters')}</summary>
+      <ol className="v-chapter-list mt-5 v-outline-chapter-choices">{outlineBooks.chapters.map((c,index) => <li key={c.id}><button className="v-chapter-row" aria-pressed={chapter?.id === c.id} disabled={busy} onClick={() => openChapter(c)}><span className="v-chapter-number" aria-hidden="true">{index+1}</span><span lang={syllabus.contentLocale || undefined}>{c.title}</span><ArrowRight size={18} aria-hidden="true"/></button></li>)}</ol>{!outlineBooks.chapters.length && <p className="v-muted mt-4">{catalogueCopy('No chapters in this book yet.')}</p>}
     </details>
    {chapter && <section className="v-card v-outline-path" aria-label={copy('{title} learning path', {
         title: chapter.title
@@ -535,7 +545,7 @@ function CurriculumLearningWorkspace({
       </li>;
     })}</ol></div>)}
    </section>}
-   </div>
+   </div></>}
   </>}
   <Link className="v-button self-start" to={practice ? '/dashboard/practice?legacy=1' : '/dashboard/learn?legacy=1'}>{copy("Open previous saved topics and examples")}</Link>
  </div>;

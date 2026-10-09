@@ -14,6 +14,7 @@ export default function AssignLesson({
   const [failed, setFailed] = useState(false);
   const [open, setOpen] = useState(false);
   const [classId, setClassId] = useState('');
+  const [assignedClassId, setAssignedClassId] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [points, setPoints] = useState(10);
   const [busy, setBusy] = useState(false);
@@ -41,7 +42,7 @@ export default function AssignLesson({
     setBusy(true);
     try {
       if (needsSave) throw Error('Save and review the latest lesson changes before assigning.');
-      await assignReviewedLesson(ctx, {
+      const assigned = await assignReviewedLesson(ctx, {
         resourceId: resource.id,
         classId,
         dueDate,
@@ -49,6 +50,7 @@ export default function AssignLesson({
         expectedVersion: saved.updatedAt,
         expectedRevision: resourceRevision(saved)
       });
+      setAssignedClassId(assigned.class_id);
       setNotice('Assigned. A reviewed copy is now available to this class. Later lesson edits do not change this copy.');
       setFailed(false);
       setOpen(false);
@@ -64,7 +66,7 @@ export default function AssignLesson({
       setFailed(false);
       setClassId('');
       setOpen(true);
-    }}>{copy(needsSave ? 'Save changes before assigning' : 'Assign reviewed lesson')}</button>{notice && <p className={`v-notice ${failed ? 'v-error' : ''}`} role={failed ? 'alert' : 'status'} lang={failed ? 'en' : locale}>{failed ? notice : copy(notice)}</p>}<Dialog open={open} onOpenChange={value => {
+    }}>{copy(needsSave ? 'Save changes before assigning' : 'Assign reviewed lesson')}</button>{notice && <p className={`v-notice ${failed ? 'v-error' : ''}`} role={failed ? 'alert' : 'status'} lang={failed ? 'en' : locale}>{failed ? notice : copy(notice)}</p>}{notice && !failed && assignedClassId && <Link className="v-button mt-3" to={`/dashboard/class/${encodeURIComponent(assignedClassId)}?section=classwork`}>{copy("Classwork")}</Link>}<Dialog open={open} onOpenChange={value => {
       if (!busy) setOpen(value);
     }}><DialogContent lang={locale}><DialogTitle>{copy('Assign {title}', {
             title: resource.title

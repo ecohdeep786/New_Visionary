@@ -4,6 +4,7 @@
  * Follows Google's pattern: "ask everything needed for the core setup in one go."
  */
 import { useState } from "react";
+import SubjectContextInput from '@/components/onboarding/SubjectContextInput';
 import ChoiceGrid from "@/components/onboarding/ChoiceGrid";
 import {
   BOARDS,
@@ -91,10 +92,7 @@ export default function StudentContextForm({ data, updateData }) {
           dense
         />
       </div>
-      <label className="mb-8 block text-sm font-medium text-[#121317]">One subject to begin with (optional)
-        <input className="mt-2 w-full rounded-xl border border-[#dadce0] bg-white p-3 font-normal" maxLength={100} value={data.subjects?.[0]||''} onChange={event=>updateData('subjects',event.target.value.trim()?[event.target.value,...(data.subjects||[]).slice(1)]:[])} placeholder="For example, Mathematics"/>
-        <span className="mt-2 block text-xs font-normal text-[#5f6368]">You can skip this and choose a subject in Learn. This is your label, not a verified curriculum match.</span>
-      </label>
+      <SubjectContextInput data={data} updateData={updateData} />
     </>
   );
 }

@@ -233,19 +233,18 @@ function OrgStruggleSection() {
 
   return (
     <section ref={ref} data-section="02-struggle" className="relative overflow-x-clip bg-white">
-      <ScrollReveal>
-        {/* the bridge's compact band (02-struggle) carries the chapter breath */
-        }
-        <StruggleChapter
-          slides={SLIDES}
-          index={index}
-          goTo={goTo}
-          lines={STRUGGLE_LINES}
-          label="Organization learning challenges"
-          kicker="What you can't see"
-          copy="Learning isn't the difficulty. Seeing it is."
-        />
-      </ScrollReveal>
+      {/* the bridge's compact band (02-struggle) carries the chapter breath;
+          the chapter leads in on Apple's hero-scroll-linked reveal */}
+      <StruggleChapter
+        linked
+        slides={SLIDES}
+        index={index}
+        goTo={goTo}
+        lines={STRUGGLE_LINES}
+        label="Organization learning challenges"
+        kicker="What you can't see"
+        copy="Learning isn't the difficulty. Seeing it is."
+      />
     </section>
   );
 }
@@ -328,7 +327,7 @@ function OrgJourneySection() {
             school to grad school."): statement LEFT-aligned at the measured
             gutter, and the gallery's track carries the same gutter so the
             first card starts exactly at the heading's left edge — one spine. */}
-        <div className="mx-auto w-full max-w-[980px] px-6 lg:px-0">
+        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           {/* Apple's card-chapter headline is the statement itself — no
               eyebrow above it ("From grade school to grad school.").
               Keep one clean spine: statement, sub, gallery share the gutter. */}
