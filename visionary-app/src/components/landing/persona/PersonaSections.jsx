@@ -749,7 +749,7 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
       <p className="mb-6 text-center font-normal tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.ink }}>
         {label}
       </p>
-      <div className="relative overflow-hidden rounded-[48px]">
+      <div className="relative overflow-hidden rounded-[30px]">
         <img
           src={images[index % images.length]}
           alt={`${label}: ${text}`}
@@ -820,7 +820,7 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       type={isInteractive ? "button" : undefined}
       onClick={isInteractive ? () => onOpen(category) : undefined}
       aria-label={isInteractive ? `Open ${text}` : undefined}
-      className={`relative block overflow-hidden rounded-[48px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-google hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4" : ""} ${className}`}
+      className={`relative block overflow-hidden rounded-[30px] text-left ${isInteractive ? "cursor-pointer border-0 bg-transparent outline-none transition-transform duration-300 ease-google hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4" : ""} ${className}`}
     >
       <img
         src={images[index % images.length]}
@@ -875,7 +875,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
     <Link
       to={`/${category.slug}`}
       data-card
-      className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)] sm:w-[320px]"
+      className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[30px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)] sm:w-[320px]"
       style={{ borderColor: `${COLORS.ink}1A` }}
     >
       <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />

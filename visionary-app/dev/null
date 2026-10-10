@@ -1,395 +1,943 @@
-// src/pages/landing/PrivacyPage.jsx
-import { useState, useEffect, useMemo } from "react";
+import { Fragment, jsx, jsxs } from "react/jsx-runtime";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
-import {
-  Database,
-  Target,
-  Share2,
-  Settings2,
-  Mail,
-  Eye,
-  ShieldCheck,
-  Cookie,
-  Accessibility,
-  FileText,
-  ArrowRight,
-  ChevronDown,
-  Scale
-} from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
-import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
-import SpotIllustration from "@/components/landing/SpotIllustration";
-import { LEGAL_META, GRIEVANCE_OFFICER } from "@/data/legalMeta";
-import { jsx, jsxs } from "react/jsx-runtime";
-var COLORS = {
-  ink: "#121317",
-  grey: "#5f6368",
-  lightGrey: "#9AA0A6",
-  mist: "#dadce0",
-  border: "#e5e7eb",
-  soft: "#f8f9fa",
-  canvas: "#f7f8fa",
-  blue: "#4285F4",
-  white: "#ffffff",
-  graphite: "#5f6368"
-};
-var FONT_FAMILY = "'Google Sans Flex', 'Google Sans', system-ui, sans-serif";
-var AT_A_GLANCE = [
-  { to: "#what-we-collect", label: "What we collect", Icon: Database },
-  { to: "#purpose", label: "Why we use it", Icon: Target },
-  { to: "#sharing", label: "What we share", Icon: Share2 },
-  { to: "#your-controls", label: "Your controls", Icon: Settings2 }
-];
-var SECTIONS = [
-  { id: "what-we-collect", number: "01", title: "What we collect" },
-  { id: "purpose", number: "02", title: "Why we use it" },
-  { id: "sharing", number: "03", title: "What we share" },
-  { id: "your-controls", number: "04", title: "Your controls" },
-  { id: "security", number: "05", title: "Security" },
-  { id: "retention", number: "06", title: "Data retention" },
-  { id: "younger-learners", number: "07", title: "Younger learners" },
-  { id: "explainers", number: "08", title: "Privacy, clearly explained" },
-  { id: "grievance-officer", number: "09", title: "Grievance officer" }
-];
-var FAQ = [
-  {
-    q: "What information does Visionary collect exactly?",
-    a: "Depending on how you use Visionary, this can include account details, the questions and content you provide, learning activity, progress, projects, and information needed to provide the service."
-  },
-  {
-    q: "Why does Visionary use personal information?",
-    a: "To provide the service, keep your learning connected across sessions, maintain and improve the service, protect people and the service from misuse, and communicate with you about what matters."
-  },
-  {
-    q: "Who can see my learning information?",
-    a: "Your account's role decides it. Students see their own work; teachers see the classes they teach; parents see what their role allows; institutions see aggregated, role-appropriate views. It is never public."
-  },
-  {
-    q: "How long is information retained?",
-    a: "Learning records are kept while your account is active. When information is no longer needed, it is deleted or anonymized. You can request deletion at any time."
-  },
-  {
-    q: "Can I delete my account?",
-    a: "Yes. Request deletion through the grievance officer below. We will confirm what will be removed, complete the deletion, and tell you what was done."
-  }
-];
-function SectionHeading({ number, title }) {
-  return /* @__PURE__ */ jsxs("div", { className: "mb-6", children: [
-    /* @__PURE__ */ jsx("div", { className: "mb-3 text-[12px] font-medium uppercase tracking-[0.12em]", style: { color: COLORS.grey }, children: number }),
-    /* @__PURE__ */ jsx("h2", { className: "text-[30px] font-normal leading-[1.2] tracking-[-0.025em] sm:text-[36px]", style: { color: COLORS.ink }, children: title })
-  ] });
-}
-function Paragraph({ children }) {
-  return /* @__PURE__ */ jsx("p", { className: "max-w-[760px] text-[16px] leading-[1.78]", style: { color: COLORS.grey }, children });
-}
-function IconTile({ Icon }) {
-  return /* @__PURE__ */ jsx("span", { className: "flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white", style: { borderColor: COLORS.mist, color: COLORS.blue }, children: /* @__PURE__ */ jsx(Icon, { className: "h-5 w-5", strokeWidth: 1.7 }) });
-}
-function LearnMoreRow({ to, label }) {
-  return /* @__PURE__ */ jsxs(Link, { to, className: "mt-5 inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.blue }, children: [
-    label,
-    /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
-  ] });
-}
-function PrivacyPage() {
-  const [openFaq, setOpenFaq] = useState(null);
-  const [activeId, setActiveId] = useState("what-we-collect");
-  const [showMobileContents, setShowMobileContents] = useState(false);
-  const activeSection = useMemo(
-    () => SECTIONS.find((section) => section.id === activeId),
-    [activeId]
-  );
-  useEffect(() => {
-    const observers = [];
-    SECTIONS.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (!element) return;
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setActiveId(section.id);
-          });
-        },
-        { rootMargin: "-18% 0px -65% 0px", threshold: 0.01 }
-      );
-      observer.observe(element);
-      observers.push(observer);
-    });
-    return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
-  useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash && SECTIONS.some((section) => section.id === hash)) {
-      requestAnimationFrame(() => {
-        const element = document.getElementById(hash);
-        element?.scrollIntoView({ behavior: "auto", block: "start" });
-        setActiveId(hash);
-      });
-    }
-  }, []);
-  function scrollToSection(id) {
-    const target = document.getElementById(id);
-    if (!target) return;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.replaceState(null, "", `#${id}`);
-  }
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-white", style: { fontFamily: FONT_FAMILY }, children: [
-    /* @__PURE__ */ jsx(LandingNav, {}),
-    /* @__PURE__ */ jsx(Breadcrumb, { page: "Privacy policy" }),
-    /* @__PURE__ */ jsxs("main", { id: "main", children: [
-      /* @__PURE__ */ jsx("section", { className: "border-b px-6 pb-14 pt-24 sm:pt-28 sm:px-8 sm:pb-16 lg:pt-32 lg:px-10", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full max-w-[1240px]", children: [
-        /* @__PURE__ */ jsxs("div", { className: "mb-5 flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em]", style: { color: COLORS.grey }, children: [
-          /* @__PURE__ */ jsx(Scale, { className: "h-4 w-4", strokeWidth: 1.7 }),
-          "Privacy"
-        ] }),
-        /* @__PURE__ */ jsx("h1", { className: "max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px]", style: { color: COLORS.ink }, children: "Your data, your control." }),
-        /* @__PURE__ */ jsx("p", { className: "mt-[calc(48px*0.421)] sm:mt-[calc(64px*0.421)] lg:mt-[calc(76px*0.421)] max-w-[640px] text-[18px] leading-[1.6] sm:text-[20px]", style: { color: COLORS.grey }, children: "See what we keep. Change or remove it anytime." }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-8 flex flex-wrap items-start gap-6", children: [
-          /* @__PURE__ */ jsxs("a", { href: "#your-controls", className: "inline-flex items-center gap-2.5 rounded-[10px] bg-[#4285F4] px-5 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[#1a73e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2", children: [
-            /* @__PURE__ */ jsx(ShieldCheck, { className: "h-4 w-4", strokeWidth: 1.8 }),
-            "Take Privacy Checkup"
-          ] }),
-          /* @__PURE__ */ jsxs("p", { className: "mt-[3px] text-[13px] tracking-[0.24px]", style: { color: COLORS.lightGrey }, children: [
-            "Last updated: ",
-            /* @__PURE__ */ jsx("strong", { style: { color: COLORS.ink }, children: LEGAL_META.privacy.lastUpdated })
+import studentHero from "@/assets/student-hero-main-2400w.webp";
+import studentHeroContent from "@/assets/student-hero-main-1600w.webp";
+import PersonaHero from "@/components/landing/NewPersona";
+import { ShieldCheck, HeartHandshake, Scale, ChevronDown } from "lucide-react";
+import problemexam from "@/assets/problem-exam.webp";
+import problempractice from "@/assets/problem-practice.webp";
+import problemrevision from "@/assets/problem-revision.webp";
+import problemunderstanding from "@/assets/problem-understanding.webp";
+import primaryStudent from "@/assets/student-primary.webp";
+import secondaryStudent from "@/assets/student-secondary.webp";
+import competitiveStudent from "@/assets/student-competitive.webp";
+import higherStudent from "@/assets/student-higher.webp";
+import vocationStudent from "@/assets/student-vocational.webp";
+import studentachivenment from "@/assets/achievenment-achieve.webp";
+import studentbuild from "@/assets/achivenment-build.webp";
+import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
+import parentmeet from "@/assets/parent-hero-main-2400w.webp";
+import promeet from "@/assets/pro-face-main-2400w.webp";
+import orgmeet from "@/assets/org-face-main-2400w.webp";
+import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useHorizontalTrack as UseScrollTrack } from "@/components/landing/system/hooks";
+import {
+  StruggleChapter,
+  JourneyGallery,
+  JourneyModal,
+  JourneyCategoryCard,
+  ChevronIcon,
+  ScrollReveal,
+  RevealItem
+} from "@/components/landing/persona/PersonaSections";
+const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
+const StudentExploreCard = React.memo(function StudentExploreCard2({ index, category, images }) {
+  return /* @__PURE__ */ jsxs(
+    Link,
+    {
+      to: `/${category.slug}`,
+      "data-card": true,
+      className: "group block w-[260px] shrink-0 snap-start sm:w-[320px]",
+      children: [
+        /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[30px] bg-[#f5f5f7]", children: /* @__PURE__ */ jsx("img", { src: images[index], alt: category.alt, loading: "lazy", decoding: "async", className: "aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" }) }),
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-start pt-5 text-left", children: [
+          /* @__PURE__ */ jsx("p", { className: "font-normal tracking-[0] leading-[20px] text-[14px]", style: { color: COLORS.grey }, children: category.chip }),
+          /* @__PURE__ */ jsx("p", { className: "mt-2 font-normal tracking-[0] leading-[25px] text-[17.5px]", style: { color: COLORS.ink }, children: category.copy }),
+          /* @__PURE__ */ jsxs("span", { className: "mt-3 inline-flex items-center gap-1.5 font-normal tracking-[0] leading-[22px] text-[17px]", style: { color: COLORS.blue }, children: [
+            "Learn more",
+            /* @__PURE__ */ jsx(ChevronIcon, { className: "h-4 w-4" })
           ] })
         ] })
+      ]
+    }
+  );
+});
+const COLORS = {
+  ink: "#121317",
+  surface: "#F5F6F8",
+  blue: "#4285F4",
+  grey: "#5f6368",
+  lightGrey: "#9AA0A6",
+  chipBg: "#D2E3FC",
+  mist: "#dadce0",
+  white: "#ffffff",
+  cardSurface: "#EEF1F6",
+  cardSurfaceAlt: "#E9EFFA"
+};
+const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
+function UsePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return void 0;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return reduced;
+}
+const HERO_WORDS = ["Learning,", "to master.", "to build."];
+const HERO_WORD_MS = 2800;
+const STRUGGLE_LINES = ["Every", "student", "struggles", "with"];
+const SLIDES = [
+  { word: "understanding", quote: "I studied for hours. I still couldn't explain it.", image: problemunderstanding, alt: "Student studying on a tablet" },
+  { word: "remembering", quote: "I understood it in class. I forgot it by evening.", image: problemrevision, alt: "Student reviewing notes on a laptop" },
+  { word: "practice", quote: "I knew the formula. I didn't know when to use it.", image: problempractice, alt: "Student practising problems at a desk" },
+  { word: "exams", quote: "I just needed someone to explain it differently.", image: problemexam, alt: "Student preparing before an exam" }
+];
+const CYCLE_MS = 4e3;
+const JOURNEY_WORD_MS = 3e3;
+const QUESTION_MS = 3200;
+const CATEGORY_MS = 4200;
+const JOURNEY_WORDS = [
+  "moves with you.",
+  "meets your questions.",
+  "changes with your goals.",
+  "grows with your understanding.",
+  "opens what comes next."
+];
+const JOURNEY_STAGES1 = [
+  { title: "Primary", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Secondary", copy: "When a lesson gets difficult, you can keep going until the idea finally makes sense.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Higher secondary", copy: "Connect difficult ideas, go deeper into the subject, and build the understanding that carries forward.", image: higherStudent, alt: "Student writing notes from an open textbook" },
+  { title: "Competitive exams", copy: "Move beyond familiar questions and strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational and skills", copy: "Connect what you learn with practice, projects, and the skills you want to take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
+  { title: "Higher education", copy: "Go deeper, explore your field, and turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
+  { title: "Learning on your own", copy: "Start with what you want to understand, build, or become better at, and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" }
+];
+const LANGUAGE_CHIPS = [
+  { code: "hi", label: "Hindi" },
+  { code: "en", label: "English" },
+  { code: "bn", label: "Bengali" },
+  { code: "ta", label: "Tamil" },
+  { code: "kn", label: "Kannada" },
+  { code: "pa", label: "Punjabi" }
+];
+const LANGUAGE_QUESTIONS = [
+  { hi: "Why do objects fall?", en: "Why do objects fall?", bn: "\u09AC\u09B8\u09CD\u09A4\u09C1 \u0995\u09C7\u09A8 \u09AA\u09A1\u09BC\u09C7?", ta: "\u0BAA\u0BCA\u0BB0\u0BC1\u0B9F\u0BCD\u0B95\u0BB3\u0BCD \u0B8F\u0BA9\u0BCD \u0BB5\u0BBF\u0BB4\u0BC1\u0B95\u0BBF\u0BA9\u0BCD\u0BB1\u0BA9?", kn: "\u0CB5\u0CB8\u0CCD\u0CA4\u0CC1\u0C97\u0CB3\u0CC1 \u0C8F\u0C95\u0CC6 \u0CAC\u0CC0\u0CB3\u0CC1\u0CA4\u0CCD\u0CA4\u0CB5\u0CC6?", pa: "\u0A1A\u0A40\u0A1C\u0A3C\u0A3E\u0A02 \u0A15\u0A3F\u0A09\u0A02 \u0A21\u0A3F\u0A71\u0A17\u0A26\u0A40\u0A06\u0A02 \u0A39\u0A28?" },
+  { hi: "What is Python's list comprehension?", en: "What is Python's list comprehension?", bn: "Python-\u098F list comprehension \u0995\u09C0?", ta: "Python-\u0B87\u0BB2\u0BCD list comprehension \u0B8E\u0BA9\u0BCD\u0BB1\u0BBE\u0BB2\u0BCD \u0B8E\u0BA9\u0BCD\u0BA9?", kn: "Python \u0CA8\u0CB2\u0CCD\u0CB2\u0CBF list comprehension \u0C8F\u0CA8\u0CC1?", pa: "Python \u0A26\u0A40 list comprehension \u0A15\u0A40 \u0A39\u0A48?" },
+  { hi: "Transformer mein primary winding ka kaam kya hai?", en: "What does the primary winding do in a transformer?", bn: "Transformer-\u098F primary winding-\u098F\u09B0 \u0995\u09BE\u099C \u0995\u09C0?", ta: "Transformer-\u0B87\u0BB2\u0BCD primary winding-\u0B87\u0BA9\u0BCD \u0BAA\u0BA3\u0BBF \u0B8E\u0BA9\u0BCD\u0BA9?", kn: "Transformer \u0CA8\u0CB2\u0CCD\u0CB2\u0CBF primary winding \u0CA8 \u0C95\u0CC6\u0CB2\u0CB8 \u0C8F\u0CA8\u0CC1?", pa: "Transformer \u0A35\u0A3F\u0A71\u0A1A primary winding \u0A26\u0A3E \u0A15\u0A70\u0A2E \u0A15\u0A40 \u0A39\u0A48?" },
+  { hi: "DCF valuation ke steps kya hain?", en: "What are the steps of DCF valuation?", bn: "DCF valuation-\u098F\u09B0 \u09A7\u09BE\u09AA\u0997\u09C1\u09B2\u09CB \u0995\u09C0?", ta: "DCF valuation-\u0B87\u0BA9\u0BCD \u0BAA\u0B9F\u0BBF\u0B95\u0BB3\u0BCD \u0B8E\u0BB5\u0BC8?", kn: "DCF valuation \u0CA8 \u0CB9\u0C82\u0CA4\u0C97\u0CB3\u0CC1 \u0CAF\u0CBE\u0CB5\u0CC1\u0CB5\u0CC1?", pa: "DCF valuation \u0A26\u0A47 \u0A15\u0A26\u0A2E \u0A15\u0A40 \u0A39\u0A28?" },
+  { hi: "Integration by parts kab use karte hain?", en: "When do you use integration by parts?", bn: "Integration by parts \u0995\u0996\u09A8 \u09AC\u09CD\u09AF\u09AC\u09B9\u09BE\u09B0 \u0995\u09B0\u09BE \u09B9\u09AF\u09BC?", ta: "Integration by parts \u0B8E\u0BAA\u0BCD\u0BAA\u0BCB\u0BA4\u0BC1 \u0BAA\u0BAF\u0BA9\u0BCD\u0BAA\u0B9F\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0BB5\u0BA4\u0BC1?", kn: "Integration by parts \u0C85\u0CA8\u0CCD\u0CA8\u0CC1 \u0CAF\u0CBE\u0CB5\u0CBE\u0C97 \u0CAC\u0CB3\u0CB8\u0CC1\u0CB5\u0CC1\u0CA6\u0CC1?", pa: "Integration by parts \u0A15\u0A26\u0A4B\u0A02 \u0A35\u0A30\u0A24\u0A3F\u0A06 \u0A1C\u0A3E\u0A02\u0A26\u0A3E \u0A39\u0A48?" }
+];
+const CONTINUITY_STAGES = [
+  { name: "Primary", previous: "Fractions", now: "Decimals", next: "Percentages" },
+  { name: "Secondary", previous: "Linear equations", now: "Graphs", next: "Equations" },
+  { name: "Competitive exams", previous: "Concept", now: "Difficult problem", next: "New problem" },
+  { name: "Vocational and skills", previous: "Basic skill", now: "Practice", next: "Real project" },
+  { name: "Higher education", previous: "Research", now: "Analysis", next: "Project / discovery" },
+  { name: "Independent learning", previous: "Goal", now: "Progress", next: "New direction" }
+];
+const ACHIEVEMENT_TABS = [
+  { title: "Understand what matters.", copy: "A clear picture of the subjects and skills that matter today." },
+  { title: "Achieve what you're working toward.", copy: "Set your goal and keep moving, with support that adapts." },
+  { title: "Build something from what you know.", copy: "Turn what you know into real projects, real skills, real work." }
+];
+const JOURNEY_CATEGORIES1 = ["Primary", "Secondary", "Higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Independent learning"];
+const EXPLORE_CATEGORIES = [
+  { slug: "teacher", chip: "Teacher", copy: "See who needs another explanation.", alt: "Teacher working on a laptop in a classroom" },
+  { slug: "parent", chip: "Parent", copy: "See where your child needs support.", alt: "Parents helping students at a classroom desk" },
+  { slug: "professional", chip: "Professional", copy: "Turn what you know into useful work.", alt: "Professional discussing work with a tablet" },
+  { slug: "organization", chip: "Organization", copy: "Help teams carry knowledge forward.", alt: "Leader talking at an organization table" }
+];
+const StudentHeroSection = React.memo(() => /* @__PURE__ */ jsx(
+  PersonaHero,
+  {
+    words: HERO_WORDS,
+    srSentence: "Learning, to master, to build.",
+    sub: "Every concept you understand becomes the foundation for the next.",
+    img: studentHero,
+    alt: "A student smiling while carrying a new laptop",
+    ctaLabel: "Start learning free"
+  }
+));
+function StudentStruggleSection() {
+  const [index, setIndex] = useState(0);
+  const goTo = useCallback((i) => setIndex(Math.min(SLIDES.length - 1, Math.max(0, i))), []);
+  const { ref } = UseRevealContinuous();
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "02-struggle", className: "relative overflow-x-clip bg-white", children: /* @__PURE__ */ jsx(
+    StruggleChapter,
+    {
+      linked: true,
+      slides: SLIDES,
+      index,
+      goTo,
+      lines: STRUGGLE_LINES,
+      label: "Student learning challenges",
+      kicker: "Where understanding slips",
+      copy: "Studying isn't the difficulty. Knowing it landed is."
+    }
+  ) });
+}
+const JOURNEY_STAGES = [
+  { title: "Primary", statement: "Build the basics. Build them right.", copy: "From your first questions to the ideas you're ready to explore next.", image: primaryStudent, alt: "Young student drawing on a tablet" },
+  { title: "Secondary and higher secondary", statement: "One place for every subject.", copy: "When lessons get difficult, understanding keeps up through every chapter and every exam.", image: secondaryStudent, alt: "Teenager working on a laptop in a library" },
+  { title: "Competitive exams", statement: "Prepare for the exam. Not just the syllabus.", copy: "Strengthen the reasoning you need when the question changes.", image: competitiveStudent, alt: "Aspirant solving a mock test beside prep books" },
+  { title: "Vocational and skills", statement: "Learn by doing. Skills that work.", copy: "Practice, projects, and skills you can take into the real world.", image: vocationStudent, alt: "Student practising hands-on in a workshop" },
+  { title: "Higher education", statement: "Go deeper. Build further.", copy: "Turn what you know into research, projects, and new ideas.", image: higherStudent, alt: "University student reviewing research papers" },
+  { title: "Learning on your own", statement: "Your pace. Your path.", copy: "Start with what you want to understand. The path takes shape from there.", image: higherStudent, alt: "Adult learning independently at home" }
+];
+const JOURNEY_CATEGORIES = ["Primary", "Secondary and higher secondary", "Competitive exams", "Vocational and skills", "Higher education", "Learning on your own"];
+const JOURNEY_STAGE_ICONS = {
+  "Primary": Sparkles,
+  "Secondary": BookOpen,
+  "Secondary and higher secondary": BookOpen,
+  "Higher secondary": Layers3,
+  "Competitive exams": Target,
+  "Vocational and skills": RefreshCw,
+  "Higher education": Brain,
+  "Learning on your own": Clock,
+  "Independent learning": Clock
+};
+const STAGE_META = {
+  "Primary": { Icon: GraduationCap },
+  "Secondary and higher secondary": { Icon: BookOpen },
+  "Competitive exams": { Icon: Target },
+  "Vocational and skills": { Icon: Layers3 },
+  "Higher education": { Icon: Brain },
+  "Learning on your own": { Icon: Sparkles }
+};
+const JOURNEY_MODALS = {
+  "Primary": {
+    top: "Build the basics.",
+    accent: "Build them right.",
+    intro: "Primary learning sets the pattern for everything after. Visionary makes first understanding visual, gentle, and connected.",
+    primary: { label: "See an example", to: "/how-it-works" },
+    blocks: [
+      { Icon: Eye, t: "See it first.", c: "Numbers and words begin as pictures, stories, and voice.", l: "How it works", to: "/how-it-works" },
+      { Icon: RefreshCw, t: "Practise gently.", c: "Short, encouraging practice that rewards effort, not speed.", l: "Start practising free", to: "/register" },
+      { Icon: Globe2, t: "In your language.", c: "First learning happens best in the language a child thinks in.", l: "Language support", to: "/how-it-works" },
+      { Icon: UsersRound, t: "Parents stay close.", c: "Progress shared in ways that help at home, not only at report time.", l: "For parents", to: "/parent" }
+    ]
+  },
+  "Secondary and higher secondary": {
+    top: "One place for",
+    accent: "every subject.",
+    intro: "From class 6 to class 12, lessons get deeper and exams get closer. Visionary keeps understanding connected across every chapter, board, and subject.",
+    primary: { label: "See an example", to: "/how-it-works" },
+    blocks: [
+      { Icon: Sparkles, t: "When it gets difficult.", c: "Explanations adapt until the idea finally makes sense.", l: "See how it works", to: "/how-it-works" },
+      { Icon: RefreshCw, t: "Practise what matters.", c: "Practice tied to your syllabus and the way your exams ask.", l: "Start practising free", to: "/register" },
+      { Icon: BookOpen, t: "Remember it later.", c: "Yesterday's understanding stays available for today's lesson.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: MessageCircle, t: "Boards and beyond.", c: "The same understanding carries into competitive preparation.", l: "Talk to us", to: "/contact" }
+    ]
+  },
+  "Competitive exams": {
+    top: "Prepare for the exam.",
+    accent: "Not just the syllabus.",
+    intro: "Competitive preparation is reasoning under pressure. Visionary strengthens the thinking that holds when the question changes shape.",
+    primary: { label: "See an example", to: "/how-it-works" },
+    blocks: [
+      { Icon: Eye, t: "Reasoning over memorising.", c: "Understand why a method works, so new questions feel familiar.", l: "See how it works", to: "/how-it-works" },
+      { Icon: RefreshCw, t: "Practise under real conditions.", c: "Accuracy, speed, and confidence built together.", l: "Start practising free", to: "/register" },
+      { Icon: BookOpen, t: "Learn from every attempt.", c: "Each mock becomes context: what to revise, skip, strengthen.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: Clock, t: "Stay steady.", c: "Clear explanations when pressure is high and time is short.", l: "Get support", to: "/help" }
+    ]
+  },
+  "Vocational and skills": {
+    top: "Learn by doing.",
+    accent: "Skills that work.",
+    intro: "Vocational learning works best when you use it. Visionary connects practice, projects, and real work into one continuing journey.",
+    primary: { label: "See an example", to: "/how-it-works" },
+    blocks: [
+      { Icon: RefreshCw, t: "Practise the real thing.", c: "Skills build through doing. Guidance never gives the answer away.", l: "See how it works", to: "/how-it-works" },
+      { Icon: Layers3, t: "Build a portfolio.", c: "Turn what you learn into work you can actually show.", l: "Start building free", to: "/register" },
+      { Icon: BookOpen, t: "Skills that carry forward.", c: "What you practise now connects to the next skill and job.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: UsersRound, t: "Learn with others.", c: "Communities and partners help you practise in real contexts.", l: "Find a partner", to: "/partners" }
+    ]
+  },
+  "Higher education": {
+    top: "Go deeper.",
+    accent: "Build further.",
+    intro: "University work asks for depth: research, analysis, and original thinking. Visionary keeps the threads connected across semesters.",
+    primary: { label: "See an example", to: "/how-it-works" },
+    blocks: [
+      { Icon: Eye, t: "Understand at depth.", c: "Explanations that support serious subject work, not summaries.", l: "See how it works", to: "/how-it-works" },
+      { Icon: BookOpen, t: "Research with context.", c: "Keep threads across papers, projects, and semesters.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: Layers3, t: "Build from what you know.", c: "Turn coursework into research, projects, and new ideas.", l: "Start building free", to: "/register" },
+      { Icon: Building2, t: "Work with your institution.", c: "Visionary can support classrooms, labs, and departments.", l: "For organizations", to: "/organization" }
+    ]
+  },
+  "Learning on your own": {
+    top: "Your pace.",
+    accent: "Your path.",
+    intro: "No syllabus required. Start with what you want to understand, build, or become better at, and let the learning take shape from there.",
+    primary: { label: "See an example", to: "/how-it-works" },
+    blocks: [
+      { Icon: Sparkles, t: "Start where you are.", c: "Visionary begins from your question, not a curriculum.", l: "See how it works", to: "/how-it-works" },
+      { Icon: Clock, t: "Learn at your pace.", c: "The experience adapts to your time, language, and depth.", l: "Start learning free", to: "/register" },
+      { Icon: BookOpen, t: "Keep your place.", c: "Return after weeks away and continue where you stopped.", l: "Keep your place", to: "/how-it-works" },
+      { Icon: UsersRound, t: "Find your people.", c: "Communities and updates keep independent learners connected.", l: "Join the community", to: "/community" }
+    ]
+  }
+};
+function StudentJourneySection() {
+  const { ref } = UseRevealOnce();
+  const { index } = UseCycleIndex(JOURNEY_WORDS.length, JOURNEY_WORD_MS);
+  const [openStage, setOpenStage] = useState(null);
+  return /* @__PURE__ */ jsxs("section", { ref, "data-section": "04-journey", className: "relative isolate overflow-hidden py-24 lg:py-32 bg-white", children: [
+    /* @__PURE__ */ jsx(ScrollReveal, { children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]", children: [
+      /* @__PURE__ */ jsxs("h2", { className: "font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]", style: { color: COLORS.ink }, children: [
+        /* @__PURE__ */ jsx("span", { className: "block", children: "Learning that" }),
+        /* @__PURE__ */ jsx("span", { className: "hero-fade-up block min-h-[1.06em] [animation-duration:1s]", style: { color: COLORS.blue }, children: JOURNEY_WORDS[index] }, index)
+      ] }),
+      /* @__PURE__ */ jsx(
+        "p",
+        {
+          className: "mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]",
+          style: { color: COLORS.grey },
+          children: "Wherever you begin, Visionary helps your learning move forward from there."
+        }
+      )
+    ] }) }),
+    /* @__PURE__ */ jsx(JourneyGallery, { stages: JOURNEY_STAGES, onOpen: setOpenStage, label: "Learning stages", iconMap: STAGE_META }),
+    openStage && /* @__PURE__ */ jsx(JourneyModal, { stage: openStage, onClose: () => setOpenStage(null), modals: JOURNEY_MODALS, stageMeta: STAGE_META, fallbackKey: "Primary", secondaryLabel: "Start free" })
+  ] });
+}
+const INTELLIGENCE_STEPS = [
+  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
+  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
+  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
+  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." }
+];
+const IntelligenceDrawer = React.memo(function IntelligenceDrawer2({ step, index, total, active = false }) {
+  const frost = "rgba(245,247,250,0.72)";
+  const frostDim = "rgba(245,247,250,0.45)";
+  return /* @__PURE__ */ jsxs("div", { className: "hero-fade-up w-full", children: [
+    /* @__PURE__ */ jsxs("p", { className: "text-[13px] font-medium tracking-[0.14em]", children: [
+      /* @__PURE__ */ jsx("span", { style: { color: active ? "#8ab4f8" : frostDim }, children: String(index + 1).padStart(2, "0") }),
+      /* @__PURE__ */ jsxs("span", { style: { color: frostDim }, children: [
+        " \xB7 ",
+        String(total).padStart(2, "0")
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx("h3", { className: "mt-4 whitespace-pre-line font-semibold tracking-[-0.009em] leading-[1.14] text-[clamp(26px,2.4vw,32px)]", style: { color: "#f5f7fa" }, children: step.title }),
+    /* @__PURE__ */ jsx("p", { className: "mt-4 font-normal tracking-[0] leading-[25px] text-[17px]", style: { color: frost }, children: step.copy })
+  ] }, `${index}-${step.title}`);
+});
+const IntelligenceBeats = React.memo(function IntelligenceBeats2({ index, label }) {
+  const core = "#f5f7fa", blue = "#8ab4f8", hairline = "rgba(255,255,255,0.14)", track = "rgba(255,255,255,0.12)";
+  const stage = {
+    background: "radial-gradient(58% 52% at 50% 44%, rgba(66,133,244,0.2) 0%, rgba(66,133,244,0.06) 46%, rgba(13,16,23,0) 74%)"
+  };
+  if (index === 0) {
+    return /* @__PURE__ */ jsx("div", { role: "img", "aria-label": label, className: "relative h-full w-full overflow-hidden", style: stage, children: /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 100", className: "absolute inset-0 h-full w-full", "aria-hidden": "true", children: [
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "46", fill: "none", stroke: hairline, strokeWidth: "0.4", strokeDasharray: "3 5" }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "34", fill: "none", stroke: blue, strokeOpacity: "0.35", strokeWidth: "0.5", strokeDasharray: "2 6" }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "22", fill: "rgba(255,255,255,0.03)", stroke: core, strokeOpacity: "0.12", strokeWidth: "0.4" }),
+      [[50, 6], [81, 30], [81, 70], [50, 94], [19, 70], [19, 30]].map(([cx, cy], i) => /* @__PURE__ */ jsxs("g", { children: [
+        /* @__PURE__ */ jsx("line", { x1: "50", y1: "50", x2: cx, y2: cy, stroke: blue, strokeOpacity: "0.45", strokeWidth: "0.4", strokeDasharray: "2 3" }),
+        /* @__PURE__ */ jsx("circle", { cx, cy, r: i === 0 ? 2.1 : 1.5, fill: blue, fillOpacity: i === 0 ? 1 : 0.5 })
+      ] }, i)),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "6.5", fill: blue, fillOpacity: "0.22" }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "3.4", fill: core })
+    ] }) });
+  }
+  if (index === 1) {
+    return /* @__PURE__ */ jsx("div", { role: "img", "aria-label": label, className: "relative h-full w-full overflow-hidden", style: stage, children: /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 100", className: "absolute inset-0 h-full w-full", "aria-hidden": "true", children: [
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "46", fill: "none", stroke: hairline, strokeWidth: "0.4", strokeDasharray: "3 5" }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "16", fill: "rgba(255,255,255,0.04)", stroke: blue, strokeOpacity: "0.55", strokeWidth: "0.5" }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "6", fill: blue, fillOpacity: "0.2" }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "3", fill: core }),
+      [0, 120, 240].map((deg, i) => {
+        const rad = (deg - 90) * Math.PI / 180;
+        const r = 27, w = 11;
+        return /* @__PURE__ */ jsx("path", { d: `M ${50 + r * Math.cos(rad)} ${50 + r * Math.sin(rad)} L ${50 + (r + w) * Math.cos(rad)} ${50 + (r + w) * Math.sin(rad)}`, stroke: i === 1 ? blue : core, strokeWidth: "2", strokeLinecap: "round", strokeOpacity: i === 1 ? 0.95 : 0.5 }, i);
+      }),
+      [0, 120, 240].map((deg, i) => {
+        const rad = (deg - 90 + 20) * Math.PI / 180;
+        return /* @__PURE__ */ jsx("circle", { cx: 50 + 43 * Math.cos(rad), cy: 50 + 43 * Math.sin(rad), r: i === 0 ? 2.2 : 1.4, fill: i === 0 ? blue : core, fillOpacity: i === 0 ? 1 : 0.4 }, i);
+      })
+    ] }) });
+  }
+  if (index === 2) {
+    return /* @__PURE__ */ jsx("div", { role: "img", "aria-label": label, className: "relative h-full w-full overflow-hidden", style: stage, children: /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 100", className: "absolute inset-0 h-full w-full", "aria-hidden": "true", children: [
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "44", fill: "none", stroke: hairline, strokeWidth: "0.4", strokeDasharray: "3 5" }),
+      /* @__PURE__ */ jsx("path", { d: "M 50 12 A 38 38 0 1 1 21 73", fill: "none", stroke: track, strokeWidth: "2.4", strokeLinecap: "round" }),
+      /* @__PURE__ */ jsx("path", { d: "M 50 8 A 42 42 0 1 1 18 76", fill: "none", stroke: blue, strokeWidth: "1.6", strokeLinecap: "round", strokeOpacity: "0.9" }),
+      [0, 40, 80, 120, 160, 200, 240, 280].map((deg, i) => {
+        const rad = (deg - 90) * Math.PI / 180;
+        return /* @__PURE__ */ jsx("circle", { cx: 50 + 40 * Math.cos(rad), cy: 50 + 40 * Math.sin(rad), r: i === 7 ? 2.2 : 1.4, fill: i === 7 ? core : blue, fillOpacity: i === 7 ? 1 : 0.5 }, i);
+      }),
+      /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "2.6", fill: core }),
+      /* @__PURE__ */ jsx("path", { d: "M 78 20 l 3 4 7 -8", fill: "none", stroke: blue, strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round" })
+    ] }) });
+  }
+  return /* @__PURE__ */ jsx("div", { role: "img", "aria-label": label, className: "relative h-full w-full overflow-hidden", style: stage, children: /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 100", className: "absolute inset-0 h-full w-full", "aria-hidden": "true", children: [
+    /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "46", fill: "none", stroke: hairline, strokeWidth: "0.4", strokeDasharray: "3 5" }),
+    /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "32", fill: "none", stroke: blue, strokeOpacity: "0.3", strokeWidth: "0.5" }),
+    [0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => {
+      const rad = (deg - 90) * Math.PI / 180;
+      const hyp = 32 + (i % 3 === 0 ? 6 : 0);
+      const hex = 50 + hyp * Math.cos(rad), hey = 50 + hyp * Math.sin(rad);
+      const tex = 50 + 43 * Math.cos(rad), tey = 50 + 43 * Math.sin(rad);
+      const isHub = i === 2;
+      return /* @__PURE__ */ jsxs("g", { children: [
+        /* @__PURE__ */ jsx("line", { x1: hex, y1: hey, x2: tex, y2: tey, stroke: isHub ? core : blue, strokeWidth: isHub ? 0.9 : 0.5, strokeOpacity: isHub ? 1 : 0.45 }),
+        /* @__PURE__ */ jsx("circle", { cx: hex, cy: hey, r: isHub ? 1.8 : 1.2, fill: isHub ? core : blue, fillOpacity: isHub ? 1 : 0.55 }),
+        /* @__PURE__ */ jsx("circle", { cx: tex, cy: tey, r: isHub ? 2.4 : 1.5, fill: isHub ? core : blue, fillOpacity: isHub ? 1 : 0.5 })
+      ] }, i);
+    }),
+    /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "6", fill: blue, fillOpacity: "0.18" }),
+    /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "3", fill: core })
+  ] }) });
+});
+const INTELLIGENCE_CLIPS = [null, null, null, null];
+const IntelligenceFrame = React.memo(function IntelligenceFrame2({ active, autoplay = true }) {
+  const reduced = UsePrefersReducedMotion();
+  const videos = useRef([]);
+  useEffect(() => {
+    videos.current.forEach((v, i) => {
+      if (!v) return;
+      if (autoplay && i === active && !reduced) v.play().catch(() => {
+      });
+      else v.pause();
+    });
+  }, [active, autoplay, reduced]);
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: "relative h-full w-full overflow-hidden rounded-[30px] border",
+      style: { backgroundColor: "#0d1017", borderColor: "rgba(255,255,255,0.1)" },
+      children: INTELLIGENCE_STEPS.map((s, i) => /* @__PURE__ */ jsx(
+        "div",
+        {
+          "aria-hidden": i !== active,
+          className: "absolute inset-0",
+          style: {
+            opacity: i === active ? 1 : 0,
+            transform: i === active ? "none" : "scale(0.97)",
+            transition: reduced ? "none" : "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)"
+          },
+          children: INTELLIGENCE_CLIPS[i] ? /* @__PURE__ */ jsx(
+            "video",
+            {
+              ref: (el) => videos.current[i] = el,
+              src: INTELLIGENCE_CLIPS[i],
+              muted: true,
+              loop: true,
+              playsInline: true,
+              preload: "metadata",
+              "aria-label": s.title,
+              className: "h-full w-full object-cover"
+            }
+          ) : /* @__PURE__ */ jsx(IntelligenceBeats, { index: i, label: s.title })
+        },
+        s.title
+      ))
+    }
+  );
+});
+function UseCentredStep(total) {
+  const nodes = useRef([]);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const mid = window.innerHeight / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      nodes.current.slice(0, total).forEach((n, i) => {
+        if (!n) return;
+        const r = n.getBoundingClientRect();
+        const dist = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      setActive(best);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [total]);
+  const setStepRef = useCallback(
+    (i) => (node) => {
+      nodes.current[i] = node;
+    },
+    []
+  );
+  return { active, setStepRef, nodes };
+}
+function StudentIntelligenceSection() {
+  const { ref: headRef } = UseRevealOnce();
+  const { active, setStepRef, nodes } = UseCentredStep(INTELLIGENCE_STEPS.length);
+  const scrollToBeat = useCallback((i) => {
+    const node = nodes.current?.[i];
+    if (!node) return;
+    const reduced = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    node.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+  }, [nodes]);
+  return /* @__PURE__ */ jsxs("section", { ref: headRef, "data-section": "05-intelligence", className: "scene-dark relative [overflow-x:clip]", style: { fontFamily: FONT_FAMILY }, children: [
+    /* @__PURE__ */ jsx(
+      "div",
+      {
+        "aria-hidden": "true",
+        className: "pointer-events-none absolute inset-x-0 top-0 h-[480px]",
+        style: { background: "radial-gradient(52% 74% at 50% 0%, rgba(66,133,244,0.13) 0%, rgba(66,133,244,0.04) 46%, rgba(10,13,20,0) 74%)" }
+      }
+    ),
+    /* @__PURE__ */ jsxs(ScrollReveal, { className: "relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center", children: [
+      /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("h2", { className: "text-balance font-medium tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]", children: /* @__PURE__ */ jsx("span", { className: "accent-gradient-on-dark", children: "One intelligence." }) }) }),
+      /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsx("p", { className: "text-frost mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]", children: "From the first question to using what you know." }) })
+    ] }),
+    /* @__PURE__ */ jsxs("div", { className: "relative mx-auto grid w-full grid-cols-1 gap-16 px-6 pt-20 min-[1069px]:max-w-[980px] lg:grid-cols-[5fr_6fr] lg:gap-32 lg:px-0 lg:pt-16", children: [
+      /* @__PURE__ */ jsx("div", { className: "hidden lg:block", children: INTELLIGENCE_STEPS.map((s, i) => /* @__PURE__ */ jsx(
+        "div",
+        {
+          ref: setStepRef(i),
+          "data-step": i,
+          className: "flex min-h-[64vh] items-center py-[8vh]",
+          children: /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: "w-full",
+              style: {
+                opacity: active === i ? 1 : 0.4,
+                transition: "opacity 0.7s cubic-bezier(0.16,1,0.3,1)"
+              },
+              children: /* @__PURE__ */ jsx(IntelligenceDrawer, { step: s, index: i, total: INTELLIGENCE_STEPS.length, active: active === i })
+            }
+          )
+        },
+        s.title
+      )) }),
+      /* @__PURE__ */ jsx("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxs("div", { className: "sticky top-14 flex h-[calc(100vh-2rem)] flex-col items-center justify-center", children: [
+        /* @__PURE__ */ jsx("div", { className: "aspect-[15/16] w-full", children: /* @__PURE__ */ jsx(IntelligenceFrame, { active }) }),
+        /* @__PURE__ */ jsx("div", { className: "mt-7 flex items-center gap-2.5", role: "group", "aria-label": "Intelligence steps", children: INTELLIGENCE_STEPS.map((s, i) => /* @__PURE__ */ jsx(
+          "button",
+          {
+            type: "button",
+            "aria-label": `Go to step ${i + 1}: ${s.title}`,
+            "aria-pressed": i === active,
+            onClick: () => scrollToBeat(i),
+            className: "h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2",
+            style: { width: i === active ? 40 : 8, backgroundColor: i === active ? "#8ab4f8" : "rgba(245,247,250,0.3)" }
+          },
+          s.title
+        )) })
       ] }) }),
-      /* @__PURE__ */ jsx("section", { className: "px-6 pt-12 pb-4 sm:px-8 lg:px-10", "aria-label": "At a glance", children: /* @__PURE__ */ jsx("div", { className: "mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4", children: AT_A_GLANCE.map(({ to, label, Icon }) => /* @__PURE__ */ jsxs("a", { href: to, className: "group relative flex min-h-[132px] flex-col rounded-[16px] border bg-white p-6 transition-all duration-300 hover:shadow-[0_1px_6px_rgba(32,33,36,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]", style: { borderColor: COLORS.mist }, children: [
-        /* @__PURE__ */ jsx("span", { className: "text-[15px] font-medium leading-[1.4] text-[#121317]", children: label }),
-        /* @__PURE__ */ jsx(ArrowRight, { className: "absolute right-5 top-6 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5", strokeWidth: 1.7, style: { color: COLORS.lightGrey } }),
-        /* @__PURE__ */ jsx("span", { className: "mt-auto flex h-10 w-10 items-center justify-center rounded-[12px] border bg-white", style: { borderColor: COLORS.mist, color: COLORS.blue }, children: /* @__PURE__ */ jsx(Icon, { className: "h-4 w-4", strokeWidth: 1.7 }) })
-      ] }, to)) }) }),
-      /* @__PURE__ */ jsx("section", { className: "px-6 pt-10 sm:px-8 lg:px-10", "aria-label": "On this page", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto grid w-full max-w-[1240px] gap-12 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-20", children: [
-        /* @__PURE__ */ jsx("aside", { className: "hidden lg:block", children: /* @__PURE__ */ jsxs("div", { className: "sticky top-24", children: [
-          /* @__PURE__ */ jsx("div", { className: "mb-4 text-[12px] font-medium uppercase tracking-[0.12em]", style: { color: COLORS.grey }, children: "On this page" }),
-          /* @__PURE__ */ jsx("nav", { "aria-label": "Privacy sections", children: /* @__PURE__ */ jsx("div", { className: "space-y-1", children: SECTIONS.map((section) => {
-            const active = activeId === section.id;
-            return /* @__PURE__ */ jsxs(
+      /* @__PURE__ */ jsx("div", { className: "flex flex-col gap-24 lg:hidden", children: INTELLIGENCE_STEPS.map((s, i) => /* @__PURE__ */ jsxs("div", { children: [
+        /* @__PURE__ */ jsx("div", { className: "mx-auto aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[30px]", children: /* @__PURE__ */ jsx(IntelligenceFrame, { active: i, autoplay: false }) }),
+        /* @__PURE__ */ jsx("div", { className: "mt-10", children: /* @__PURE__ */ jsx(IntelligenceDrawer, { step: s, index: i, total: INTELLIGENCE_STEPS.length }) })
+      ] }, s.title)) })
+    ] })
+  ] });
+}
+const StudentOrbitDots = React.memo(function StudentOrbitDots2({ activeIndex, onSelect, reduced }) {
+  const stepDeg = 360 / LANGUAGE_CHIPS.length;
+  const rotation = activeIndex * stepDeg;
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("svg", { "aria-hidden": "true", viewBox: "0 0 100 100", className: "absolute inset-0 h-full w-full", children: /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: "49.75", fill: "none", stroke: COLORS.ink, strokeOpacity: "0.12", strokeWidth: "0.25" }) }),
+    /* @__PURE__ */ jsx("div", { className: "absolute inset-0 transition-transform ease-google", style: { transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }, children: LANGUAGE_CHIPS.map((c, i) => {
+      const isActive = i === activeIndex;
+      return /* @__PURE__ */ jsx("div", { className: "absolute inset-0", style: { transform: `rotate(${-i * stepDeg}deg)` }, children: /* @__PURE__ */ jsx(
+        "button",
+        {
+          type: "button",
+          "aria-pressed": isActive,
+          "aria-label": `Show ${c.label}`,
+          onClick: () => onSelect(i),
+          className: "absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2",
+          style: { boxShadow: isActive ? "0 0 0 5px rgba(18,19,23,0.05)" : "none" },
+          children: /* @__PURE__ */ jsx(
+            "span",
+            {
+              className: "block rounded-full transition-all duration-500 ease-apple",
+              style: { width: isActive ? 12 : 7, height: isActive ? 12 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}3D` }
+            }
+          )
+        }
+      ) }, c.code);
+    }) })
+  ] });
+});
+function StudentLanguageSection() {
+  const reduced = UsePrefersReducedMotion();
+  const { ref } = UseRevealOnce();
+  const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const dialRef = useRef(null);
+  const inViewRef = useRef(true);
+  const active = LANGUAGE_CHIPS[index];
+  const question = LANGUAGE_QUESTIONS[index % LANGUAGE_QUESTIONS.length][active.code];
+  useEffect(() => {
+    if (!playing) return void 0;
+    const id = setInterval(() => {
+      if (inViewRef.current) setIndex((i) => (i + 1) % LANGUAGE_CHIPS.length);
+    }, QUESTION_MS);
+    return () => clearInterval(id);
+  }, [playing]);
+  useEffect(() => {
+    const node = dialRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return void 0;
+    const io = new IntersectionObserver(([entry]) => {
+      inViewRef.current = entry.isIntersecting;
+    });
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+  const goTo = useCallback(
+    (i) => setIndex((i % LANGUAGE_CHIPS.length + LANGUAGE_CHIPS.length) % LANGUAGE_CHIPS.length),
+    []
+  );
+  const step = useCallback(
+    (d) => setIndex((i) => (i + d + LANGUAGE_CHIPS.length) % LANGUAGE_CHIPS.length),
+    []
+  );
+  return /* @__PURE__ */ jsxs("section", { ref, "data-section": "07-language", className: "relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]", children: [
+    /* @__PURE__ */ jsx("style", { children: "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}" }),
+    /* @__PURE__ */ jsxs(ScrollReveal, { children: [
+      /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsxs("h2", { className: "text-balance mt-[var(--gap-eyebrow-title-display)] text-center font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,5vw,64px)]", style: { color: COLORS.ink }, children: [
+        "The words change.",
+        /* @__PURE__ */ jsx("br", { className: "hidden sm:block" }),
+        "Understanding doesn't."
+      ] }) }),
+      /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsx("p", { className: "mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]", style: { color: COLORS.grey }, children: "Ask in the language you think in. The understanding that comes back is the same." }) }),
+      /* @__PURE__ */ jsx(RevealItem, { idx: 3, children: /* @__PURE__ */ jsx("div", { className: "mt-6 flex justify-center", children: /* @__PURE__ */ jsxs(
+        Link,
+        {
+          to: "/how-it-works",
+          className: "inline-flex items-center gap-1.5 text-[15px] font-normal transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2",
+          style: { color: COLORS.blue },
+          children: [
+            "Learn more",
+            /* @__PURE__ */ jsx(ChevronIcon, { className: "h-3.5 w-3.5" })
+          ]
+        }
+      ) }) }),
+      /* @__PURE__ */ jsx(RevealItem, { idx: 4, children: /* @__PURE__ */ jsxs("div", { ref: dialRef, className: "mx-auto mt-14 w-full max-w-[min(604px,88vw)] sm:mt-20", children: [
+        /* @__PURE__ */ jsxs("div", { className: "relative aspect-square w-full", role: "group", "aria-label": "Language selection", children: [
+          /* @__PURE__ */ jsx(StudentOrbitDots, { activeIndex: index, onSelect: goTo, reduced }),
+          /* @__PURE__ */ jsx("div", { "aria-hidden": "true", className: "pointer-events-none absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full", style: { background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.06) 0%, rgba(66,133,244,0.02) 46%, rgba(66,133,244,0) 72%)" } }),
+          /* @__PURE__ */ jsxs("div", { className: "absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center", children: [
+            /* @__PURE__ */ jsx("span", { className: "hero-fade-up text-[13px] font-medium tracking-[0] leading-[1.4]", style: { color: COLORS.grey }, children: active.label }, `name-${index}`),
+            /* @__PURE__ */ jsx("p", { "aria-live": "polite", lang: active.code, className: "mt-3 flex items-center justify-center text-center font-semibold tracking-[-0.014em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]", style: { color: COLORS.ink }, children: /* @__PURE__ */ jsx("span", { className: "hero-fade-up", children: question }, index) }),
+            /* @__PURE__ */ jsx("div", { className: "mt-5 flex items-end justify-center gap-1.5", "aria-hidden": "true", children: ["#121317", "#4285F4", "#121317", "#121317"].map((c, i) => /* @__PURE__ */ jsx("span", { className: "h-6 w-1.5 rounded-full", style: { backgroundColor: c, opacity: i === 1 ? 1 : 0.22, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` } }, i)) })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-6 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsx(
+            "button",
+            {
+              type: "button",
+              "aria-label": playing ? "Pause the languages" : "Play the languages",
+              "aria-pressed": !playing,
+              onClick: () => setPlaying((v) => !v),
+              className: "flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2",
+              children: playing ? /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 24 24", fill: "currentColor", className: "h-[18px] w-[18px]", "aria-hidden": "true", children: [
+                /* @__PURE__ */ jsx("rect", { x: "6.5", y: "5", width: "4", height: "14", rx: "1.2" }),
+                /* @__PURE__ */ jsx("rect", { x: "13.5", y: "5", width: "4", height: "14", rx: "1.2" })
+              ] }) : /* @__PURE__ */ jsx("svg", { viewBox: "0 0 24 24", fill: "currentColor", className: "h-[18px] w-[18px] translate-x-[1px]", "aria-hidden": "true", children: /* @__PURE__ */ jsx("path", { d: "M8 5.5c0-.9 1-1.5 1.8-1l9.6 5.6c.8.5.8 1.7 0 2.2l-9.6 5.6c-.8.5-1.8-.1-1.8-1V5.5z" }) })
+            }
+          ),
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-5", children: [
+            /* @__PURE__ */ jsx(
               "button",
               {
                 type: "button",
-                onClick: () => scrollToSection(section.id),
-                className: "group flex w-full items-start gap-3 rounded-[12px] px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
-                style: { backgroundColor: active ? COLORS.canvas : "transparent" },
-                children: [
-                  /* @__PURE__ */ jsx("span", { className: "mt-0.5 w-6 text-[11px] font-medium", style: { color: active ? COLORS.blue : COLORS.grey }, children: section.number }),
-                  /* @__PURE__ */ jsx("span", { className: "text-[13px] leading-[1.45]", style: { color: active ? COLORS.ink : COLORS.graphite }, children: section.title })
-                ]
-              },
-              section.id
-            );
-          }) }) }),
-          /* @__PURE__ */ jsx("div", { className: "mt-8 border-t pt-6", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3", children: [
-            /* @__PURE__ */ jsx(ShieldCheck, { className: "mt-0.5 h-5 w-5 shrink-0", strokeWidth: 1.7, style: { color: COLORS.blue } }),
-            /* @__PURE__ */ jsx("p", { className: "text-[13px] leading-[1.6]", style: { color: COLORS.grey }, children: "For safety and security details, see the Safety and Security pages." })
-          ] }) })
-        ] }) }),
-        /* @__PURE__ */ jsxs("div", { className: "lg:hidden", children: [
+                "aria-label": "Previous language",
+                onClick: () => step(-1),
+                className: "flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2",
+                children: /* @__PURE__ */ jsx(ChevronIcon, { direction: "left", className: "h-[18px] w-[18px]" })
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              "button",
+              {
+                type: "button",
+                "aria-label": "Next language",
+                onClick: () => step(1),
+                className: "flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2",
+                children: /* @__PURE__ */ jsx(ChevronIcon, { className: "h-[18px] w-[18px]" })
+              }
+            )
+          ] })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsx(RevealItem, { idx: 5, children: /* @__PURE__ */ jsxs("div", { className: "mx-auto mt-6 w-full max-w-[860px] sm:mt-8", children: [
+        /* @__PURE__ */ jsxs("p", { className: "text-center font-normal tracking-[0] leading-[20px] text-[13px]", style: { color: COLORS.lightGrey }, children: [
+          "Listening in ",
+          active.label,
+          " \xB7 understood in every language"
+        ] }),
+        /* @__PURE__ */ jsx("p", { className: "mt-1 text-center font-normal tracking-[0] leading-[20px] text-[13px]", style: { color: COLORS.lightGrey }, children: "Use voice or text in the way you're comfortable." })
+      ] }) })
+    ] })
+  ] });
+}
+const CATEGORY_SECTION_IMG = [primaryStudent, secondaryStudent, competitiveStudent, vocationStudent, higherStudent];
+function StudentContinuitySection() {
+  const { ref } = UseRevealOnce();
+  const [index, setIndex] = useState(0);
+  const stage = CONTINUITY_STAGES[index];
+  const columns = [
+    { label: "What you learned", text: stage.previous },
+    { label: "What you're working on", text: stage.now },
+    { label: "Where you can go", text: stage.next }
+  ];
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "08-continuity", className: "relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white", children: /* @__PURE__ */ jsx(ScrollReveal, { children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]", children: [
+    /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("h2", { className: "font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]", style: { color: COLORS.ink }, children: "What you learn stays with you." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsx("p", { className: "mt-[var(--gap-title-sub-display)] max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]", style: { color: COLORS.grey }, children: "What you understand becomes part of what comes next. You never start over." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsx("div", { className: "mt-12 flex flex-wrap items-center gap-2.5 lg:mt-16", role: "group", "aria-label": "Choose a stage", children: CONTINUITY_STAGES.map((s, i) => {
+      const isActive = i === index;
+      return /* @__PURE__ */ jsx(
+        "button",
+        {
+          type: "button",
+          "aria-pressed": isActive,
+          onClick: () => setIndex(i),
+          className: `rounded-full px-4 py-2 text-[14px] leading-[20px] tracking-[0] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${isActive ? "font-medium" : "font-normal border hover:bg-[#121317]/5"}`,
+          style: isActive ? { backgroundColor: COLORS.chipBg, color: COLORS.ink } : { color: COLORS.ink, borderColor: `${COLORS.ink}40` },
+          children: s.name
+        },
+        s.name
+      );
+    }) }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 3, children: /* @__PURE__ */ jsx("div", { className: "mt-14 grid grid-cols-1 gap-12 lg:mt-20 lg:grid-cols-3 lg:gap-8", children: columns.map((col, i) => {
+      const activeImg = (index + i) % CATEGORY_SECTION_IMG.length;
+      return /* @__PURE__ */ jsxs("figure", { className: "m-0 flex flex-col items-start", children: [
+        /* @__PURE__ */ jsx("p", { className: "font-normal tracking-[0] leading-[20px] text-[14px]", style: { color: COLORS.grey }, children: col.label }),
+        /* @__PURE__ */ jsx("div", { className: "relative mt-4 aspect-[4/5] w-full overflow-hidden rounded-[30px] bg-[#f5f5f7]", children: CATEGORY_SECTION_IMG.map((src, k) => /* @__PURE__ */ jsx(
+          "img",
+          {
+            src,
+            alt: k === activeImg ? `${col.label}: ${col.text}` : "",
+            "aria-hidden": k !== activeImg,
+            loading: "lazy",
+            decoding: "async",
+            draggable: "false",
+            className: `absolute inset-0 h-full w-full select-none object-cover transition-opacity duration-500 ease-apple motion-reduce:transition-none ${k === activeImg ? "opacity-100" : "opacity-0"}`
+          },
+          src
+        )) }),
+        /* @__PURE__ */ jsx("p", { className: "hero-fade-up mt-5 text-left font-semibold tracking-[-0.002em] leading-[1.15] text-[clamp(24px,2.2vw,28px)]", style: { color: COLORS.ink }, children: col.text }, `${col.text}-${index}`)
+      ] }, col.label);
+    }) }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 4, children: /* @__PURE__ */ jsx("p", { className: "mt-16 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20", style: { color: COLORS.ink }, children: "You keep your place." }) })
+  ] }) }) });
+}
+const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild];
+function StudentAchievementSection() {
+  const { ref } = UseRevealOnce();
+  const [active, setActive] = useState(0);
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "09-achievement", className: "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip]", children: /* @__PURE__ */ jsx(ScrollReveal, { children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]", children: [
+    /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("p", { className: "text-[15px] font-normal", style: { color: COLORS.grey }, children: "Every step counts" }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsx("h2", { className: "mt-[var(--gap-eyebrow-title-display)] font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,4vw,48px)]", style: { color: COLORS.ink }, children: "See what you can achieve." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsx("div", { className: "mt-12 overflow-hidden rounded-[30px] bg-[#f5f5f7] lg:mt-16 lg:h-[784px]", children: /* @__PURE__ */ jsxs("div", { className: "grid h-full grid-cols-1 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:items-stretch", children: [
+      /* @__PURE__ */ jsx("ul", { className: "flex flex-col px-6 py-6 lg:px-0 lg:py-0 lg:pl-[69px]", children: ACHIEVEMENT_TABS.map((tab, i) => {
+        const isOpen = active === i;
+        return /* @__PURE__ */ jsxs("li", { className: "border-t first:border-t-0 lg:first:border-t-0", style: { borderColor: `${COLORS.ink}33` }, children: [
           /* @__PURE__ */ jsxs(
             "button",
             {
               type: "button",
-              onClick: () => setShowMobileContents((value) => !value),
-              "aria-expanded": showMobileContents,
-              className: "flex w-full items-center justify-between py-4 text-left hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
+              "aria-expanded": isOpen,
+              onClick: () => setActive(i),
+              className: "flex w-full items-start justify-between gap-4 py-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d1d1f] focus-visible:ring-offset-4 lg:py-8",
               children: [
-                /* @__PURE__ */ jsx("span", { className: "text-[15px]", style: { color: COLORS.ink }, children: activeSection?.title }),
-                /* @__PURE__ */ jsx(ChevronDown, { className: `h-4 w-4 transition-transform duration-200 ${showMobileContents ? "rotate-180" : ""}`, strokeWidth: 1.8, style: { color: COLORS.grey } })
+                /* @__PURE__ */ jsx("span", { className: "font-semibold tracking-[-0.003em] leading-[1.14] text-[clamp(24px,2.2vw,28px)]", style: { color: COLORS.ink }, children: tab.title }),
+                /* @__PURE__ */ jsx(
+                  ChevronDown,
+                  {
+                    "aria-hidden": "true",
+                    className: `mt-2 h-4 w-7 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`,
+                    style: { color: "#868689" },
+                    strokeWidth: 2
+                  }
+                )
               ]
             }
           ),
-          showMobileContents && /* @__PURE__ */ jsx("div", { className: "pb-5", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[18px] border", style: { borderColor: COLORS.mist }, children: SECTIONS.map((section) => {
-            const active = activeId === section.id;
-            return /* @__PURE__ */ jsxs(
-              "button",
-              {
-                type: "button",
-                onClick: () => {
-                  scrollToSection(section.id);
-                  setActiveId(section.id);
-                  setShowMobileContents(false);
-                },
-                className: "flex w-full items-start gap-4 border-b px-4 py-4 text-left last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
-                style: { borderColor: COLORS.mist, backgroundColor: active ? COLORS.canvas : COLORS.white },
-                children: [
-                  /* @__PURE__ */ jsx("span", { className: "mt-0.5 text-[12px] font-medium", style: { color: active ? COLORS.blue : COLORS.grey }, children: section.number }),
-                  /* @__PURE__ */ jsx("span", { className: "text-[14px] leading-[1.45]", style: { color: active ? COLORS.ink : COLORS.graphite }, children: section.title })
-                ]
-              },
-              section.id
-            );
-          }) }) })
-        ] }),
-        /* @__PURE__ */ jsx("div", { className: "min-w-0", children: /* @__PURE__ */ jsxs("article", { className: "divide-y divide-[#dadce0]", children: [
-          /* @__PURE__ */ jsxs("section", { id: "what-we-collect", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "01", title: "What we collect" }),
-            /* @__PURE__ */ jsx(Paragraph, { children: "The information Visionary handles depends on what you are trying to do. Personal information is only collected where it is needed to provide the service, keep it working, and honour the choices you make." }),
-            /* @__PURE__ */ jsx("div", { className: "mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4", children: [
-              { Icon: Mail, title: "Your account", text: "Created with an email address \u2014 the details needed to provide access and maintain essential settings for you." },
-              { Icon: Target, title: "Your learning", text: "Questions you ask, practice you complete, and projects you build \u2014 the work that shapes your progress." },
-              { Icon: Database, title: "Your device", text: "Basic device and browser information that keeps the service working on the devices you use." },
-              { Icon: Settings2, title: "Your choices", text: "The email updates you opt into, and the privacy preferences you set along the way." }
-            ].map(({ Icon, title, text }) => /* @__PURE__ */ jsxs("div", { className: "rounded-[16px] border p-6", style: { borderColor: COLORS.mist }, children: [
-              /* @__PURE__ */ jsx(IconTile, { Icon }),
-              /* @__PURE__ */ jsx("h3", { className: "mt-5 text-[16px] font-medium", style: { color: COLORS.ink }, children: title }),
-              /* @__PURE__ */ jsx("p", { className: "mt-2 text-[14px] leading-[1.65]", style: { color: COLORS.grey }, children: text })
-            ] }, title)) })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "purpose", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "02", title: "Why we use it" }),
-            /* @__PURE__ */ jsx(Paragraph, { children: "Personal information is used to provide, maintain, and improve Visionary \u2014 and to keep it safe for the people using it." }),
-            /* @__PURE__ */ jsx("div", { className: "mt-10 max-w-[880px]", children: [
-              { Icon: Target, title: "Provide Visionary", text: "Answer questions, guide practice, and keep your work in one place as you continue." },
-              { Icon: Database, title: "Keep your learning connected", text: "Carry understanding across sessions, devices, and years \u2014 never starting over." },
-              { Icon: Settings2, title: "Maintain and improve the service", text: "Fix problems, and understand what is helping and what is not." },
-              { Icon: ShieldCheck, title: "Protect people and the service", text: "Prevent misuse, and keep accounts safe from harm." },
-              { Icon: Mail, title: "Communicate with you", text: "Service updates, and the email updates you choose to receive." }
-            ].map(({ Icon, title, text }, i, arr) => /* @__PURE__ */ jsxs("div", { className: `flex items-start gap-5 py-6 ${i < arr.length - 1 ? "border-b" : ""}`, style: { borderColor: COLORS.border }, children: [
-              /* @__PURE__ */ jsx(IconTile, { Icon }),
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("h3", { className: "text-[17px] font-medium", style: { color: COLORS.ink }, children: title }),
-                /* @__PURE__ */ jsx("p", { className: "mt-1.5 max-w-[620px] text-[14.5px] leading-[1.65]", style: { color: COLORS.grey }, children: text })
-              ] })
-            ] }, title)) })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "sharing", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "03", title: "What we share" }),
-            /* @__PURE__ */ jsx(Paragraph, { children: "We do not sell personal information, and we do not use it for advertising. What is visible depends on the relationship." }),
-            /* @__PURE__ */ jsx("div", { className: "mt-10 overflow-hidden rounded-[16px] border", style: { borderColor: COLORS.mist }, children: [
-              ["Student", "Class-level progress is visible to the teacher of that class. Conversations stay private to the account."],
-              ["Teacher", "Sees their classes. Never another class's data."],
-              ["Parent", "Progress and activity \u2014 not private conversations."],
-              ["Institution", "Aggregated, role-appropriate views only."],
-              ["Service providers", "Only the processors that run the service \u2014 bound by contract to handle data per this page."]
-            ].map(([who, what], i, arr) => /* @__PURE__ */ jsxs("div", { className: `px-5 py-4 sm:px-6 ${i < arr.length - 1 ? "border-b" : ""}`, style: { borderColor: COLORS.mist }, children: [
-              /* @__PURE__ */ jsx("p", { className: "text-[14.5px] font-medium", style: { color: COLORS.ink }, children: who }),
-              /* @__PURE__ */ jsx("p", { className: "mt-1 text-[14px] leading-[1.65]", style: { color: COLORS.grey }, children: what })
-            ] }, who)) }),
-            /* @__PURE__ */ jsx("p", { className: "mt-6 max-w-[760px] text-[14px] leading-[1.7]", style: { color: COLORS.grey }, children: "We may also share information to meet legal obligations under Indian law. Legal demands are handled through the grievance process below." })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "your-controls", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "04", title: "Your controls" }),
-            /* @__PURE__ */ jsx(Paragraph, { children: "You can see, manage, export, and delete your information \u2014 and change your mind at any time." }),
-            /* @__PURE__ */ jsx("div", { className: "mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4", children: [
-              { Icon: Eye, title: "View", text: "Your account and learning history are visible to you in the product." },
-              { Icon: Settings2, title: "Manage", text: "Update cookie preferences and email choices from any update you receive." },
-              { Icon: Database, title: "Export", text: "Request a copy of your account information where available." },
-              { Icon: Mail, title: "Delete", text: "Request account deletion, and see what happens next." }
-            ].map(({ Icon, title, text }) => /* @__PURE__ */ jsxs("div", { className: "rounded-[16px] border p-6", style: { borderColor: COLORS.mist }, children: [
-              /* @__PURE__ */ jsx(IconTile, { Icon }),
-              /* @__PURE__ */ jsx("h3", { className: "mt-5 text-[16px] font-medium", style: { color: COLORS.ink }, children: title }),
-              /* @__PURE__ */ jsx("p", { className: "mt-2 text-[14px] leading-[1.65]", style: { color: COLORS.grey }, children: text })
-            ] }, title)) }),
-            /* @__PURE__ */ jsxs("div", { className: "mt-8 flex flex-wrap items-center gap-x-6 gap-y-3", children: [
-              /* @__PURE__ */ jsxs(Link, { to: "/cookies", className: "inline-flex items-center gap-2 text-[14.5px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.blue }, children: [
-                "Manage cookie preferences",
-                /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
-              ] }),
-              /* @__PURE__ */ jsxs(Link, { to: "/security", className: "inline-flex items-center gap-2 text-[14.5px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.grey }, children: [
-                "Review security practices",
-                /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
-              ] })
+          /* @__PURE__ */ jsx("div", { className: `grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`, children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden", children: /* @__PURE__ */ jsx("p", { className: "pb-8 font-normal tracking-[0] leading-[25px] text-[17px]", style: { color: COLORS.ink }, children: tab.copy }) }) })
+        ] }, tab.title);
+      }) }),
+      /* @__PURE__ */ jsx("div", { className: "relative min-h-[360px] lg:min-h-0", children: /* @__PURE__ */ jsx(
+        "img",
+        {
+          src: ACHIEVEMENT_IMAGE[active],
+          alt: ACHIEVEMENT_TABS[active].title,
+          loading: "lazy",
+          decoding: "async",
+          className: "hero-fade-up absolute inset-6 h-[calc(100%-3rem)] w-[calc(100%-3rem)] object-contain lg:inset-10 lg:h-[calc(100%-5rem)] lg:w-[calc(100%-5rem)]"
+        },
+        active
+      ) })
+    ] }) }) })
+  ] }) }) });
+}
+function StudentJourneyFlowSection() {
+  const { ref } = UseRevealOnce();
+  const { index } = UseCycleIndex(JOURNEY_CATEGORIES.length - 1, CATEGORY_MS);
+  const first = JOURNEY_CATEGORIES[index];
+  const second = JOURNEY_CATEGORIES[index + 1];
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "10-journey-flow", className: "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]", children: /* @__PURE__ */ jsxs(ScrollReveal, { children: [
+    /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("p", { className: "px-6 text-center text-[15px] font-normal", style: { color: COLORS.grey }, children: "Your journey" }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsxs("h2", { className: "px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]", style: { color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }, children: [
+      "New stage.",
+      /* @__PURE__ */ jsx("br", {}),
+      "Same intelligence."
+    ] }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsx("p", { className: "mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]", style: { color: COLORS.grey }, children: "As your goals change, Visionary is the place to continue." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 3, children: /* @__PURE__ */ jsxs("div", { className: "mx-auto mt-14 grid w-full max-w-[1900px] grid-cols-1 items-center gap-16 px-6 lg:mt-28 lg:grid-cols-[7fr_5fr] lg:gap-24 lg:pl-[10%] lg:pr-12", children: [
+      /* @__PURE__ */ jsxs("div", { className: "relative", children: [
+        /* @__PURE__ */ jsx(JourneyCategoryCard, { iconMap: JOURNEY_STAGE_ICONS, images: CATEGORY_SECTION_IMG, index, text: first, className: "mx-auto max-w-[430px] lg:mx-0" }),
+        /* @__PURE__ */ jsx("div", { className: "flex justify-start py-2 pl-[16%] lg:py-3 lg:pl-[20%]", children: /* @__PURE__ */ jsxs(
+          "svg",
+          {
+            viewBox: "0 0 220 260",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "3.5",
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            "aria-hidden": "true",
+            className: "h-[64px] w-[110px] lg:h-[88px] lg:w-[150px]",
+            style: { color: COLORS.ink },
+            children: [
+              /* @__PURE__ */ jsx("path", { d: "M12 4 C 4 120, 44 196, 188 232" }),
+              /* @__PURE__ */ jsx("path", { d: "M188 232 l-19 6 M188 232 l-14 -14" })
+            ]
+          }
+        ) }),
+        /* @__PURE__ */ jsx(JourneyCategoryCard, { iconMap: JOURNEY_STAGE_ICONS, images: CATEGORY_SECTION_IMG, index: index + 1, text: second, className: "ml-[10%] max-w-[430px] lg:ml-[28%]" })
+      ] }),
+      /* @__PURE__ */ jsxs("div", { className: "max-w-[500px]", children: [
+        /* @__PURE__ */ jsx("p", { className: "font-normal tracking-[0] leading-[1.2] text-[clamp(28px,2.78vw,40px)]", style: { color: COLORS.ink }, children: "Wherever your journey goes, your learning can continue with you." }),
+        /* @__PURE__ */ jsxs(
+          Link,
+          {
+            to: "/how-it-works",
+            className: "mt-8 inline-flex items-center gap-2 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
+            style: { color: COLORS.blue },
+            children: [
+              "See how Visionary keeps it connected",
+              /* @__PURE__ */ jsx(ChevronIcon, { className: "h-4 w-4" })
+            ]
+          }
+        )
+      ] })
+    ] }) })
+  ] }) });
+}
+const TRUST_CARDS = [
+  { title: "Private by design.", copy: "We treat your personal information with care.", Icon: ShieldCheck, to: "/privacy", link: "Read the privacy approach" },
+  { title: "Safe to grow with.", copy: "Built from the first question to what's next.", Icon: HeartHandshake, to: "/security", link: "See our security practices" },
+  { title: "Built responsibly.", copy: "Intelligence should help people, never work against them.", Icon: Scale, to: "/terms", link: "Read our commitments" }
+];
+function StudentTrustSection() {
+  const { ref } = UseRevealOnce();
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "11-trust", className: "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]", children: /* @__PURE__ */ jsxs(ScrollReveal, { children: [
+    /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("p", { className: "px-6 text-center text-[15px] font-normal", style: { color: COLORS.grey }, children: "Trust and safety" }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsx("h2", { className: "px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]", style: { color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }, children: "Your intelligence." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsx("p", { className: "mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]", style: { color: COLORS.grey }, children: "Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 3, children: /* @__PURE__ */ jsx("div", { className: "mx-auto mt-14 grid w-full max-w-[1200px] grid-cols-1 gap-6 px-6 lg:mt-20 lg:grid-cols-3 lg:px-6", children: TRUST_CARDS.map((card) => /* @__PURE__ */ jsxs("article", { className: "flex flex-col rounded-[28px] bg-[#f5f5f7] p-8 lg:p-10", children: [
+      /* @__PURE__ */ jsx("span", { className: "flex h-12 w-12 items-center justify-center rounded-full bg-white", style: { color: COLORS.blue }, children: /* @__PURE__ */ jsx(card.Icon, { className: "h-6 w-6", strokeWidth: 1.8 }) }),
+      /* @__PURE__ */ jsx("h3", { className: "mt-10 font-semibold tracking-[-0.003em] leading-[1.1] text-[clamp(28px,2.4vw,34px)]", style: { color: COLORS.ink }, children: card.title }),
+      /* @__PURE__ */ jsx("p", { className: "font-normal tracking-[0] leading-[24px] text-[17px]", style: { color: COLORS.grey, marginTop: "calc(clamp(28px, 2.4vw, 34px) * 0.47)" }, children: card.copy }),
+      /* @__PURE__ */ jsxs(Link, { to: card.to, className: "mt-auto inline-flex items-center gap-1.5 pt-8 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]", style: { color: COLORS.blue }, children: [
+        card.link,
+        /* @__PURE__ */ jsx(ChevronIcon, { className: "h-4 w-4" })
+      ] })
+    ] }, card.title)) }) })
+  ] }) });
+}
+const StudentCTASection = React.memo(function StudentCTASection2() {
+  const { ref } = UseRevealOnce();
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "12-cta", className: "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]", children: /* @__PURE__ */ jsx(ScrollReveal, { children: /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-[1500px] text-center", children: [
+    /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("p", { className: "text-[15px] font-normal", style: { color: COLORS.grey }, children: "Begin today" }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsx("h2", { className: "mt-[var(--gap-eyebrow-title-display)] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]", style: { color: COLORS.ink }, children: "Your learning starts with where you are." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsx("p", { className: "mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]", style: { color: COLORS.grey }, children: "Ask your first question. Start building from what you know." }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 3, children: /* @__PURE__ */ jsxs("div", { className: "mt-12 flex flex-wrap items-center justify-center gap-3", children: [
+      /* @__PURE__ */ jsxs(
+        Link,
+        {
+          to: "/register",
+          className: "inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]",
+          children: [
+            "Get started",
+            /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", className: "h-4 w-4", children: [
+              /* @__PURE__ */ jsx("path", { d: "M5 12h14" }),
+              /* @__PURE__ */ jsx("path", { d: "m12 5 7 7-7 7" })
             ] })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "security", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "05", title: "Security" }),
-            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16", children: [
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx(Paragraph, { children: "Privacy needs security behind it. Visionary uses appropriate technical and organizational safeguards \u2014 including encryption in transit and access controls \u2014 to protect information against unauthorized access, alteration, deletion, or misuse." }),
-                /* @__PURE__ */ jsx(LearnMoreRow, { to: "/security", label: "How security works at Visionary" })
-              ] }),
-              /* @__PURE__ */ jsx("div", { className: "lg:justify-end", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "shield", className: "aspect-[16/11] w-full" }) }) })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "retention", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "06", title: "Data retention" }),
-            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:items-start lg:gap-16 xl:grid-cols-[560px_1fr]", children: [
-              /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx(Paragraph, { children: "Learning records are kept while your account is active \u2014 that continuity is the product. When information is no longer needed to provide the service, it is deleted or anonymized." }) }),
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "download", className: "aspect-[16/11] w-full" }) }),
-                /* @__PURE__ */ jsxs("div", { className: "mt-10 max-w-[880px] rounded-[16px] border p-6 sm:p-7", style: { borderColor: COLORS.mist }, children: [
-                  /* @__PURE__ */ jsx("p", { className: "text-[16px] font-medium", style: { color: COLORS.ink }, children: "Your privacy options." }),
-                  /* @__PURE__ */ jsx("ul", { className: "mt-4 space-y-2.5", children: ["Request deletion at any time.", "See how long each kind of record is kept.", "Withdraw consent for optional features.", "Export your information."].map((t) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-3", children: [
-                    /* @__PURE__ */ jsx("span", { className: "mt-2 h-1.5 w-1.5 shrink-0 rounded-full", style: { backgroundColor: COLORS.blue } }),
-                    /* @__PURE__ */ jsx("span", { className: "text-[14.5px] leading-[1.65]", style: { color: COLORS.grey }, children: t })
-                  ] }, t)) })
-                ] })
-              ] })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "younger-learners", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "07", title: "Younger learners" }),
-            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16", children: [
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx(Paragraph, { children: "Where a learner is a child under the DPDP Act, their information is processed only with the consent of a parent or guardian, and it is never used for advertising or profiling." }),
-                /* @__PURE__ */ jsx(LearnMoreRow, { to: "/safety", label: "How safety works for younger learners" })
-              ] }),
-              /* @__PURE__ */ jsx("div", { className: "lg:justify-end", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "safety", className: "aspect-[16/11] w-full" }) }) })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "explainers", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "08", title: "Privacy, clearly explained." }),
-            /* @__PURE__ */ jsx("div", { className: "max-w-[880px] border-t", style: { borderColor: COLORS.mist }, children: FAQ.map((item, index) => /* @__PURE__ */ jsxs("div", { className: "border-b", style: { borderColor: COLORS.mist }, children: [
-              /* @__PURE__ */ jsxs(
-                "button",
-                {
-                  type: "button",
-                  "aria-expanded": openFaq === index,
-                  onClick: () => setOpenFaq(openFaq === index ? null : index),
-                  className: "flex w-full items-center justify-between gap-6 py-5 text-left hover:shadow-[0_1px_3px_rgba(16,17,20,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]",
-                  children: [
-                    /* @__PURE__ */ jsx("span", { className: "text-[16px] leading-[1.45]", style: { color: COLORS.ink }, children: item.q }),
-                    /* @__PURE__ */ jsx(ChevronDown, { className: ["h-4 w-4 shrink-0 transition-transform duration-200", openFaq === index ? "rotate-180" : ""].join(" "), strokeWidth: 1.8, style: { color: COLORS.grey } })
-                  ]
-                }
-              ),
-              openFaq === index && /* @__PURE__ */ jsx("p", { className: "pb-5 text-[14.5px] leading-[1.7]", style: { color: COLORS.grey }, children: item.a })
-            ] }, item.q)) })
-          ] }),
-          /* @__PURE__ */ jsxs("section", { id: "grievance-officer", className: "scroll-mt-24 py-14 sm:py-16", children: [
-            /* @__PURE__ */ jsx(SectionHeading, { number: "09", title: "Grievance officer" }),
-            /* @__PURE__ */ jsxs("div", { className: "grid gap-10 lg:grid-cols-[1fr_420px] lg:items-start lg:gap-16", children: [
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx(Paragraph, { children: "Under the DPDP Act, 2023, a named person is responsible for answering privacy requests and complaints." }),
-                /* @__PURE__ */ jsxs("div", { className: "mt-8 rounded-[16px] border p-6 sm:p-7", style: { borderColor: COLORS.mist }, children: [
-                  /* @__PURE__ */ jsxs("p", { className: "text-[14.5px] leading-[1.7]", style: { color: COLORS.grey }, children: [
-                    GRIEVANCE_OFFICER.role,
-                    ": ",
-                    /* @__PURE__ */ jsx("strong", { style: { color: COLORS.ink }, children: GRIEVANCE_OFFICER.name })
-                  ] }),
-                  /* @__PURE__ */ jsx("p", { className: "mt-3", children: /* @__PURE__ */ jsxs("a", { href: `mailto:${GRIEVANCE_OFFICER.email}`, className: "inline-flex items-center gap-2 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm", style: { color: COLORS.blue }, children: [
-                    GRIEVANCE_OFFICER.email,
-                    /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4", strokeWidth: 1.8 })
-                  ] }) }),
-                  /* @__PURE__ */ jsx("p", { className: "mt-3 text-[14px] leading-[1.7]", style: { color: COLORS.grey }, children: GRIEVANCE_OFFICER.response })
-                ] })
-              ] }),
-              /* @__PURE__ */ jsx("div", { className: "lg:justify-end", children: /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-[20px] border", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsx(SpotIllustration, { subject: "help", className: "aspect-[16/11] w-full" }) }) })
-            ] })
-          ] })
-        ] }) })
-      ] }) }),
-      /* @__PURE__ */ jsx("section", { "aria-label": "Related policies", className: "border-t px-6 py-20 sm:px-8 lg:px-10", style: { borderColor: COLORS.mist }, children: /* @__PURE__ */ jsxs("div", { className: "mx-auto w-full max-w-[1240px]", children: [
-        /* @__PURE__ */ jsx("h2", { className: "text-[22px] font-normal leading-[1.3] tracking-[-0.01em]", style: { color: COLORS.ink }, children: "Read them together" }),
-        /* @__PURE__ */ jsx("div", { className: "mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4", children: [
-          { to: "/cookies", label: "Cookie policy", desc: "Essential cookies only.", Icon: Cookie },
-          { to: "/security", label: "Security", desc: "How your information is protected.", Icon: ShieldCheck },
-          { to: "/safety", label: "Safety", desc: "Guardrails for every learner.", Icon: Accessibility },
-          { to: "/accessibility", label: "Accessibility", desc: "Built for every kind of learner.", Icon: FileText }
-        ].map(({ to, label, desc, Icon }) => /* @__PURE__ */ jsxs(Link, { to, className: "group rounded-[12px] border p-5 transition-colors hover:shadow-[0_1px_4px_rgba(16,17,20,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]", style: { borderColor: COLORS.mist }, children: [
-          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3", children: [
-            /* @__PURE__ */ jsx(Icon, { className: "h-[18px] w-[18px]", strokeWidth: 1.7, style: { color: COLORS.blue } }),
-            /* @__PURE__ */ jsx("span", { className: "text-[15px] font-medium", style: { color: COLORS.ink }, children: label })
-          ] }),
-          /* @__PURE__ */ jsx("p", { className: "mt-2 text-[13.5px] leading-[1.6]", style: { color: COLORS.grey }, children: desc })
-        ] }, to)) })
-      ] }) })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxs(
+        Link,
+        {
+          to: "/contact",
+          className: "inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]",
+          children: [
+            "Talk to our team",
+            /* @__PURE__ */ jsx(ChevronIcon, { className: "h-4 w-4" })
+          ]
+        }
+      )
+    ] }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 4, children: /* @__PURE__ */ jsx("p", { className: "mt-6 text-center font-normal tracking-[0.24px] text-[13px]", style: { color: COLORS.grey }, children: "Free to start. Private by design." }) })
+  ] }) }) });
+});
+function StudentExploreSection() {
+  const { ref } = UseRevealOnce();
+  const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
+  return /* @__PURE__ */ jsx("section", { ref, "data-section": "13-explore", className: "relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]", children: /* @__PURE__ */ jsxs(ScrollReveal, { children: [
+    /* @__PURE__ */ jsx(RevealItem, { idx: 0, children: /* @__PURE__ */ jsx("p", { className: "px-6 text-[15px] font-normal lg:pl-[6.5%] lg:pr-6", style: { color: COLORS.grey }, children: "Keep exploring" }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 1, children: /* @__PURE__ */ jsx("h2", { className: "px-6 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] lg:pl-[6.5%] lg:pr-6", style: { color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }, children: "Explore Visionary" }) }),
+    /* @__PURE__ */ jsx(RevealItem, { idx: 2, children: /* @__PURE__ */ jsxs("div", { className: "relative mt-16 lg:mt-20", children: [
+      /* @__PURE__ */ jsx(
+        "div",
+        {
+          ref: trackRef,
+          onScroll: update,
+          className: "flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:gap-12 lg:pl-[calc(6.5%_+_480px)] lg:pr-6",
+          children: EXPLORE_CATEGORIES.map((c, index) => /* @__PURE__ */ jsx(StudentExploreCard, { index, category: c, images: EXPLORE_CAT_IMG }, c.slug))
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "button",
+        {
+          type: "button",
+          "aria-label": "Next categories",
+          onClick: () => scrollByCard(1),
+          className: `absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-white elevation-2 transition-opacity hover:bg-[#121317]/5 lg:right-6 ${canNext ? "opacity-100" : "pointer-events-none opacity-0"}`,
+          style: { borderColor: `${COLORS.ink}1A`, color: COLORS.ink },
+          children: /* @__PURE__ */ jsx(ChevronIcon, { direction: "right" })
+        }
+      )
+    ] }) })
+  ] }) });
+}
+export default function StudentPage() {
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-white", style: { fontFamily: FONT_FAMILY }, children: [
+    /* @__PURE__ */ jsx(LandingNav, {}),
+    /* @__PURE__ */ jsxs("main", { id: "main", children: [
+      /* @__PURE__ */ jsx(StudentHeroSection, {}),
+      /* @__PURE__ */ jsx(StudentStruggleSection, {}),
+      /* @__PURE__ */ jsx(StudentJourneySection, {}),
+      /* @__PURE__ */ jsx(StudentIntelligenceSection, {}),
+      /* @__PURE__ */ jsx(StudentLanguageSection, {}),
+      /* @__PURE__ */ jsx(StudentContinuitySection, {}),
+      /* @__PURE__ */ jsx(StudentAchievementSection, {}),
+      /* @__PURE__ */ jsx(StudentJourneyFlowSection, {}),
+      /* @__PURE__ */ jsx(StudentTrustSection, {}),
+      /* @__PURE__ */ jsx(StudentCTASection, {}),
+      /* @__PURE__ */ jsx(StudentExploreSection, {})
     ] }),
     /* @__PURE__ */ jsx(LandingFooter, { variant: "quiet" })
   ] });
 }
-export {
-  PrivacyPage as default
-};

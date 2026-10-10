@@ -38,16 +38,15 @@ import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
 import parentmeet from "@/assets/parent-hero-main-2400w.webp";
 import promeet from "@/assets/pro-face-main-2400w.webp";
 import orgmeet from "@/assets/org-face-main-2400w.webp";
-import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
+import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useHorizontalTrack as UseScrollTrack } from "@/components/landing/system/hooks";
 import {
   StruggleChapter,
   JourneyGallery,
   JourneyModal,
-  StageDropdown,
-  ContinuityCard,
   JourneyCategoryCard,
   ChevronIcon,
   ScrollReveal,
+  RevealItem,
 } from "@/components/landing/persona/PersonaSections";
 
 const EXPLORE_CAT_IMG = [teachermeet, parentmeet, promeet, orgmeet];
@@ -59,14 +58,14 @@ const StudentExploreCard = React.memo(function StudentExploreCard({ index, categ
       data-card
       className="group block w-[260px] shrink-0 snap-start sm:w-[320px]"
     >
-      <div className="overflow-hidden rounded-[24px] bg-[#f5f5f7]">
+      <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7]">
         <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
       </div>
       <div className="flex flex-col items-start pt-5 text-left">
         <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
           {category.chip}
         </p>
-        <p className="mt-2 font-semibold tracking-[-0.003em] leading-[1.2] text-[21px]" style={{ color: COLORS.ink }}>
+        <p className="mt-2 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
           {category.copy}
         </p>
         <span className="mt-3 inline-flex items-center gap-1.5 font-normal tracking-[0] leading-[22px] text-[17px]" style={{ color: COLORS.blue }}>
@@ -146,12 +145,11 @@ const SLIDES = [
 
 const CYCLE_MS = 4000;
 const JOURNEY_WORD_MS = 3000;
-const KEEPS_WORD_MS = 2500;
 const QUESTION_MS = 3200;
 const CATEGORY_MS = 4200;
 
 const JOURNEY_WORDS = [
-  "moves with you.",
+  "moves with \nyou.",
   "meets your questions.",
   "changes with your goals.",
   "grows with your understanding.",
@@ -168,15 +166,6 @@ const JOURNEY_STAGES1 = [
   { title: "Learning on your own", copy: "Start with what you want to understand, build, or become better at, and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
 ];
 
-const INTELLIGENCE_STEPS = [
-  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding.", note: "Wherever learning begins, understanding comes first." },
-  { title: "See it.\nHear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next.", note: "Every lesson, explained the way it makes sense to you." },
-  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace.", note: "Practice that adapts as your questions change shape." },
-  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you.", note: "What you know becomes what you build — and what you carry forward." },
-];
-
-const KEEPS_WORDS = ["teaching", "listening", "adapting"];
-
 const LANGUAGE_CHIPS = [
   { code: "hi", label: "Hindi" },
   { code: "en", label: "English" },
@@ -192,15 +181,6 @@ const LANGUAGE_QUESTIONS = [
   { hi: "Transformer mein primary winding ka kaam kya hai?", en: "What does the primary winding do in a transformer?", bn: "Transformer-এ primary winding-এর কাজ কী?", ta: "Transformer-இல் primary winding-இன் பணி என்ன?", kn: "Transformer ನಲ್ಲಿ primary winding ನ ಕೆಲಸ ಏನು?", pa: "Transformer ਵਿੱਚ primary winding ਦਾ ਕੰਮ ਕੀ ਹੈ?" },
   { hi: "DCF valuation ke steps kya hain?", en: "What are the steps of DCF valuation?", bn: "DCF valuation-এর ধাপগুলো কী?", ta: "DCF valuation-இன் படிகள் எவை?", kn: "DCF valuation ನ ಹಂತಗಳು ಯಾವುವು?", pa: "DCF valuation ਦੇ ਕਦਮ ਕੀ ਹਨ?" },
   { hi: "Integration by parts kab use karte hain?", en: "When do you use integration by parts?", bn: "Integration by parts কখন ব্যবহার করা হয়?", ta: "Integration by parts எப்போது பயன்படுத்துவது?", kn: "Integration by parts ಅನ್ನು ಯಾವಾಗ ಬಳಸುವುದು?", pa: "Integration by parts ਕਦੋਂ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ?" },
-];
-
-const CONTINUITY_STAGES = [
-  { name: "Primary", previous: "Fractions", now: "Decimals", next: "Percentages" },
-  { name: "Secondary", previous: "Linear equations", now: "Graphs", next: "Equations" },
-  { name: "Competitive exams", previous: "Concept", now: "Difficult problem", next: "New problem" },
-  { name: "Vocational and skills", previous: "Basic skill", now: "Practice", next: "Real project" },
-  { name: "Higher education", previous: "Research", now: "Analysis", next: "Project / discovery" },
-  { name: "Independent learning", previous: "Goal", now: "Progress", next: "New direction" },
 ];
 
 const ACHIEVEMENT_TABS = [
@@ -432,55 +412,72 @@ function StudentJourneySection() {
 }
 
 /* ═══════════════════════ 05 · INTELLIGENCE ═══════════════════════ */
-/* Apple's scroll-story chapter: a still statement on the 980 spine, a pinned
-   drawer column with a numbered beat rail, and the same intelligence mark
-   transforming per beat — one artifact, four faces. The drawer copy callback
-   reaches back to the journey categories (04) so the product pays off the
-   learner just introduced. */
+/* Apple's dark technology chapter, final anatomy (Vision Pro measured,
+   Oct 2026): a calm statement opens the chapter — one gradient wordmark,
+   one subhead capped at two lines — then the product story: four beats
+   that walk the learner through the flow (understand → see it → practise
+   → build), each beat swapping one sticky product stage. The stage is
+   video-ready: drop the product clip into INTELLIGENCE_CLIPS and it plays
+   while its beat is centred; until then the scene art holds the frame.
+   Step dots under the stage, inactive beats dimmed, one muted link
+   closes the chapter. */
 
-const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index, total }) {
+const INTELLIGENCE_STEPS = [
+  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
+  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
+  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
+  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
+];
+
+const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index, total, active = false }) {
+  /* frost tokens for the dark stage — explicit so nothing leans on the
+     bridge's inherited overrides (spans escape those anyway) */
+  const frost = "rgba(245,247,250,0.72)";
+  const frostDim = "rgba(245,247,250,0.45)";
   return (
     <div key={`${index}-${step.title}`} className="hero-fade-up w-full">
-      <p className="text-[13px] font-medium uppercase tracking-[0.14em]" style={{ color: COLORS.grey }}>
-        {String(index + 1).padStart(2, "0")} · {String(total).padStart(2, "0")}
+      <p className="text-[13px] font-medium tracking-[0.14em]">
+        <span style={{ color: active ? "#8ab4f8" : frostDim }}>{String(index + 1).padStart(2, "0")}</span>
+        <span style={{ color: frostDim }}> · {String(total).padStart(2, "0")}</span>
       </p>
-      <h3 className="mt-4 font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(36px,3.6vw,48px)]" style={{ color: COLORS.ink }}>
+      <h3 className="mt-4 whitespace-pre-line font-semibold tracking-[-0.009em] leading-[1.14] text-[clamp(26px,2.4vw,32px)]" style={{ color: "#f5f7fa" }}>
         {step.title}
       </h3>
-      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey }}>
+      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: frost }}>
         {step.copy}
-      </p>
-      <p className="mt-4 flex items-start gap-2 font-normal tracking-[0] leading-[21px] text-[15px]" style={{ color: COLORS.grey }}>
-        <span aria-hidden="true" className="mt-[0.55em] h-px w-4 shrink-0" style={{ backgroundColor: COLORS.blue }} />
-        {step.note}
       </p>
     </div>
   );
 });
 
-/* Four scenes of ONE intelligence — the same mark evolving, in the same
-   token language (light field, thin blue rings, ink core, blue satellites).
+/* Four scenes of ONE intelligence — the same mark evolving, on Apple's dark
+   technology-chapter stage: near-black field, a blue glow breathing behind
+   the artifact, hairline white rings, frost core, glowing blue satellites.
    Each beat recomposes the artifact so the intelligence visibly grows with
-   the scroll, the way Apple's drawers transform a single product scene. */
+   the scroll, the way Apple's dark chapters transform a single product
+   scene. These hold the frame until the product clips land. */
 const IntelligenceBeats = React.memo(function IntelligenceBeats({ index, label }) {
-  // token colors
-  const ink = "#121317", blue = "#4285F4", mist = "#dadce0", light = "#dbe7fd";
+  const core = "#f5f7fa", blue = "#8ab4f8", hairline = "rgba(255,255,255,0.14)", track = "rgba(255,255,255,0.12)";
+  const stage = {
+    background:
+      "radial-gradient(58% 52% at 50% 44%, rgba(66,133,244,0.2) 0%, rgba(66,133,244,0.06) 46%, rgba(13,16,23,0) 74%)",
+  };
   if (index === 0) {
     // Understand — ideas converging on one center
     return (
-      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={stage}>
         <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r="46" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
-          <circle cx="50" cy="50" r="34" fill="none" stroke={blue} strokeOpacity="0.28" strokeWidth="0.5" strokeDasharray="2 6" />
-          <circle cx="50" cy="50" r="22" fill="#ffffff" stroke={ink} strokeOpacity="0.1" strokeWidth="0.4" />
+          <circle cx="50" cy="50" r="46" fill="none" stroke={hairline} strokeWidth="0.4" strokeDasharray="3 5" />
+          <circle cx="50" cy="50" r="34" fill="none" stroke={blue} strokeOpacity="0.35" strokeWidth="0.5" strokeDasharray="2 6" />
+          <circle cx="50" cy="50" r="22" fill="rgba(255,255,255,0.03)" stroke={core} strokeOpacity="0.12" strokeWidth="0.4" />
           {[[50,6],[81,30],[81,70],[50,94],[19,70],[19,30]].map(([cx,cy],i)=>(
             <g key={i}>
-              <line x1="50" y1="50" x2={cx} y2={cy} stroke={blue} strokeOpacity="0.35" strokeWidth="0.4" strokeDasharray="2 3" />
+              <line x1="50" y1="50" x2={cx} y2={cy} stroke={blue} strokeOpacity="0.45" strokeWidth="0.4" strokeDasharray="2 3" />
               <circle cx={cx} cy={cy} r={i===0?2.1:1.5} fill={blue} fillOpacity={i===0?1:0.5} />
             </g>
           ))}
-          <circle cx="50" cy="50" r="3.4" fill={ink} />
-          <circle cx="50" cy="50" r="6.5" fill={blue} fillOpacity="0.18" />
+          <circle cx="50" cy="50" r="6.5" fill={blue} fillOpacity="0.22" />
+          <circle cx="50" cy="50" r="3.4" fill={core} />
         </svg>
       </div>
     );
@@ -488,21 +485,21 @@ const IntelligenceBeats = React.memo(function IntelligenceBeats({ index, label }
   if (index === 1) {
     // See / Hear / Ask — three ways to one idea
     return (
-      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={stage}>
         <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r="46" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
-          <circle cx="50" cy="50" r="16" fill="#ffffff" stroke={blue} strokeOpacity="0.5" strokeWidth="0.5" />
-          <circle cx="50" cy="50" r="3" fill={ink} />
-          <circle cx="50" cy="50" r="6" fill={blue} fillOpacity="0.16" />
+          <circle cx="50" cy="50" r="46" fill="none" stroke={hairline} strokeWidth="0.4" strokeDasharray="3 5" />
+          <circle cx="50" cy="50" r="16" fill="rgba(255,255,255,0.04)" stroke={blue} strokeOpacity="0.55" strokeWidth="0.5" />
+          <circle cx="50" cy="50" r="6" fill={blue} fillOpacity="0.2" />
+          <circle cx="50" cy="50" r="3" fill={core} />
           {/* three arcs at 120° */}
           {[0,120,240].map((deg,i)=>{
             const rad = (deg-90)*Math.PI/180;
             const r=27, w=11;
-            return <path key={i} d={`M ${50+(r)*Math.cos(rad)} ${50+(r)*Math.sin(rad)} L ${50+(r+w)*Math.cos(rad)} ${50+(r+w)*Math.sin(rad)}`} stroke={i===1?blue:ink} strokeWidth="2" strokeLinecap="round" strokeOpacity={i===1?0.9:0.55} />;
+            return <path key={i} d={`M ${50+(r)*Math.cos(rad)} ${50+(r)*Math.sin(rad)} L ${50+(r+w)*Math.cos(rad)} ${50+(r+w)*Math.sin(rad)}`} stroke={i===1?blue:core} strokeWidth="2" strokeLinecap="round" strokeOpacity={i===1?0.95:0.5} />;
           })}
           {[0,120,240].map((deg,i)=>{
             const rad = (deg-90+20)*Math.PI/180;
-            return <circle key={i} cx={50+43*Math.cos(rad)} cy={50+43*Math.sin(rad)} r={i===0?2.2:1.4} fill={i===0?blue:ink} fillOpacity={i===0?1:0.4} />;
+            return <circle key={i} cx={50+43*Math.cos(rad)} cy={50+43*Math.sin(rad)} r={i===0?2.2:1.4} fill={i===0?blue:core} fillOpacity={i===0?1:0.4} />;
           })}
         </svg>
       </div>
@@ -511,18 +508,18 @@ const IntelligenceBeats = React.memo(function IntelligenceBeats({ index, label }
   if (index === 2) {
     // Practice — a progress arc building with dots marching
     return (
-      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={stage}>
         <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r="44" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
+          <circle cx="50" cy="50" r="44" fill="none" stroke={hairline} strokeWidth="0.4" strokeDasharray="3 5" />
           {/* ~300° progress arc */}
-          <path d="M 50 8 A 42 42 0 1 1 18 76" fill="none" stroke={blue} strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.85" />
-          <path d="M 50 12 A 38 38 0 1 1 21 73" fill="none" stroke={light} strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M 50 12 A 38 38 0 1 1 21 73" fill="none" stroke={track} strokeWidth="2.4" strokeLinecap="round" />
+          <path d="M 50 8 A 42 42 0 1 1 18 76" fill="none" stroke={blue} strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.9" />
           {/* marching dots along the arc */}
           {[0,40,80,120,160,200,240,280].map((deg,i)=>{
             const rad = (deg-90)*Math.PI/180;
-            return <circle key={i} cx={50+40*Math.cos(rad)} cy={50+40*Math.sin(rad)} r={i===7?2.2:1.4} fill={i===7?ink:blue} fillOpacity={i===7?1:0.5} />;
+            return <circle key={i} cx={50+40*Math.cos(rad)} cy={50+40*Math.sin(rad)} r={i===7?2.2:1.4} fill={i===7?core:blue} fillOpacity={i===7?1:0.5} />;
           })}
-          <circle cx="50" cy="50" r="2.6" fill={ink} />
+          <circle cx="50" cy="50" r="2.6" fill={core} />
           {/* a check spark near the end of the arc */}
           <path d="M 78 20 l 3 4 7 -8" fill="none" stroke={blue} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -531,10 +528,10 @@ const IntelligenceBeats = React.memo(function IntelligenceBeats({ index, label }
   }
   // Build — the artifact radiates out into the work
   return (
-    <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+    <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={stage}>
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-        <circle cx="50" cy="50" r="46" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
-        <circle cx="50" cy="50" r="32" fill="none" stroke={blue} strokeOpacity="0.22" strokeWidth="0.5" />
+        <circle cx="50" cy="50" r="46" fill="none" stroke={hairline} strokeWidth="0.4" strokeDasharray="3 5" />
+        <circle cx="50" cy="50" r="32" fill="none" stroke={blue} strokeOpacity="0.3" strokeWidth="0.5" />
         {[0,45,90,135,180,225,270,315].map((deg,i)=>{
           const rad = (deg-90)*Math.PI/180;
           const hyp = 32 + (i%3===0?6:0);
@@ -543,25 +540,29 @@ const IntelligenceBeats = React.memo(function IntelligenceBeats({ index, label }
           const isHub = i===2;
           return (
             <g key={i}>
-              <line x1={hex} y1={hey} x2={tex} y2={tey} stroke={isHub?ink:blue} strokeWidth={isHub?0.9:0.5} strokeOpacity={isHub?1:0.4} />
-              <circle cx={hex} cy={hey} r={isHub?1.8:1.2} fill={isHub?ink:blue} fillOpacity={isHub?1:0.55} />
-              <circle cx={tex} cy={tey} r={isHub?2.4:1.5} fill={isHub?ink:blue} fillOpacity={isHub?1:0.5} />
+              <line x1={hex} y1={hey} x2={tex} y2={tey} stroke={isHub?core:blue} strokeWidth={isHub?0.9:0.5} strokeOpacity={isHub?1:0.45} />
+              <circle cx={hex} cy={hey} r={isHub?1.8:1.2} fill={isHub?core:blue} fillOpacity={isHub?1:0.55} />
+              <circle cx={tex} cy={tey} r={isHub?2.4:1.5} fill={isHub?core:blue} fillOpacity={isHub?1:0.5} />
             </g>
           );
         })}
-        <circle cx="50" cy="50" r="3" fill={ink} />
-        <circle cx="50" cy="50" r="6" fill={blue} fillOpacity="0.14" />
+        <circle cx="50" cy="50" r="6" fill={blue} fillOpacity="0.18" />
+        <circle cx="50" cy="50" r="3" fill={core} />
       </svg>
     </div>
   );
 });
 
-/* Product clip per beat. Each entry is the internal product video URL for that
-   step; while a clip is unset the beat's scene art stays in the frame. */
+/* Product clip per beat. Each entry is the internal product video URL for
+   that step of the flow; while a clip is unset the beat's scene art stays
+   in the frame. */
 const INTELLIGENCE_CLIPS = [null, null, null, null];
 
-/* One sticky product frame. Every beat is stacked and cross-faded by `active`;
-   a clip plays only while its beat is active and never under reduced motion. */
+/* One sticky product stage — the chapter's video rectangle. Hairline chrome
+   on a raised ink field; every beat is stacked and cross-faded by `active`
+   with a settle-scale (Apple's product-scene resolve), a clip plays only
+   while its beat is active, and reduced motion snaps everything to instant.
+   The 30px radius matches the journey story cards exactly. */
 const IntelligenceFrame = React.memo(function IntelligenceFrame({ active, autoplay = true }) {
   const reduced = UsePrefersReducedMotion();
   const videos = useRef([]);
@@ -573,13 +574,22 @@ const IntelligenceFrame = React.memo(function IntelligenceFrame({ active, autopl
     });
   }, [active, autoplay, reduced]);
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-[40px] lg:rounded-[48px]" style={{ backgroundColor: "#f5f5f7" }}>
+    <div
+      className="relative h-full w-full overflow-hidden rounded-[30px] border"
+      style={{ backgroundColor: "#0d1017", borderColor: "rgba(255,255,255,0.1)" }}
+    >
       {INTELLIGENCE_STEPS.map((s, i) => (
         <div
           key={s.title}
           aria-hidden={i !== active}
-          className="absolute inset-0 transition-opacity duration-700 ease-google"
-          style={{ opacity: i === active ? 1 : 0 }}
+          className="absolute inset-0"
+          style={{
+            opacity: i === active ? 1 : 0,
+            transform: i === active ? "none" : "scale(0.97)",
+            transition: reduced
+              ? "none"
+              : "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+          }}
         >
           {INTELLIGENCE_CLIPS[i] ? (
             <video
@@ -602,7 +612,7 @@ const IntelligenceFrame = React.memo(function IntelligenceFrame({ active, autopl
 });
 
 /* Active beat = the one whose copy crosses the viewport centre. Computed from
-   the beat boxes so the product frame swaps exactly when its copy is centred. */
+   the beat boxes so the product stage swaps exactly when its copy is centred. */
 function UseCentredStep(total) {
   const nodes = useRef([]);
   const [active, setActive] = useState(0);
@@ -642,33 +652,50 @@ function UseCentredStep(total) {
     },
     []
   );
-  return { active, setStepRef };
+  return { active, setStepRef, nodes };
 }
 
 function StudentIntelligenceSection() {
   const { ref: headRef } = UseRevealOnce();
-  const { active, setStepRef } = UseCentredStep(INTELLIGENCE_STEPS.length);
-  const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
+  const { active, setStepRef, nodes } = UseCentredStep(INTELLIGENCE_STEPS.length);
+
+  /* the step dots jump the scroll to their beat (controls-under-media) */
+  const scrollToBeat = useCallback((i) => {
+    const node = nodes.current?.[i];
+    if (!node) return;
+    const reduced =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    node.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+  }, [nodes]);
 
   return (
-    <section ref={headRef} data-section="05-intelligence" data-surface="light" className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
-      <ScrollReveal className="px-6 pt-24 lg:pt-28">
-        {/* header — statement on the measured spine, not centered */}
-        <div className="mx-auto w-full text-center min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
-          <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
-            The intelligence behind your learning
-          </p>
-          <h2 className="mt-2 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
-            One intelligence.
+    <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+      {/* the chapter's one breath of light — blue rising from above the
+          statement, so all color lives in the content */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[480px]"
+        style={{ background: "radial-gradient(52% 74% at 50% 0%, rgba(66,133,244,0.13) 0%, rgba(66,133,244,0.04) 46%, rgba(10,13,20,0) 74%)" }}
+      />
+      {/* statement opening — one gradient wordmark, one subhead capped at
+          two lines; the 40px floor keeps "intelligence." whole at 320px */}
+      <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
+        <RevealItem idx={0}>
+          <h2 className="text-balance font-medium tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]">
+            <span className="accent-gradient-on-dark">One intelligence.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-            From the first question to the moment you can use what you've learned.
+        </RevealItem>
+        <RevealItem idx={1}>
+          <p className="text-frost mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]">
+            From the first question to using what you know.
           </p>
-        </div>
+        </RevealItem>
       </ScrollReveal>
 
-      <div className="mx-auto grid w-full grid-cols-1 gap-16 px-6 pb-24 pt-20 min-[1069px]:max-w-[980px] lg:grid-cols-[5fr_6fr] lg:gap-32 lg:px-0 lg:pb-16 lg:pt-16">
-        {/* desktop: beats scroll on the left, one product frame stays sticky on the right */}
+      {/* the product flow — four beats scroll past one video-ready stage;
+          inactive beats dim like Apple's non-active cards */}
+      <div className="relative mx-auto grid w-full grid-cols-1 gap-16 px-6 pt-20 min-[1069px]:max-w-[980px] lg:grid-cols-[5fr_6fr] lg:gap-32 lg:px-0 lg:pt-16">
         <div className="hidden lg:block">
           {INTELLIGENCE_STEPS.map((s, i) => (
             <div
@@ -677,23 +704,44 @@ function StudentIntelligenceSection() {
               data-step={i}
               className="flex min-h-[64vh] items-center py-[8vh]"
             >
-              <IntelligenceDrawer step={s} index={i} total={INTELLIGENCE_STEPS.length} />
+              <div
+                className="w-full"
+                style={{
+                  opacity: active === i ? 1 : 0.4,
+                  transition: "opacity 0.7s cubic-bezier(0.16,1,0.3,1)",
+                }}
+              >
+                <IntelligenceDrawer step={s} index={i} total={INTELLIGENCE_STEPS.length} active={active === i} />
+              </div>
             </div>
           ))}
         </div>
         <div className="hidden lg:block">
-          <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
+          <div className="sticky top-14 flex h-[calc(100vh-2rem)] flex-col items-center justify-center">
             <div className="aspect-[15/16] w-full">
               <IntelligenceFrame active={active} />
+            </div>
+            <div className="mt-7 flex items-center gap-2.5" role="group" aria-label="Intelligence steps">
+              {INTELLIGENCE_STEPS.map((s, i) => (
+                <button
+                  key={s.title}
+                  type="button"
+                  aria-label={`Go to step ${i + 1}: ${s.title}`}
+                  aria-pressed={i === active}
+                  onClick={() => scrollToBeat(i)}
+                  className="h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2"
+                  style={{ width: i === active ? 40 : 8, backgroundColor: i === active ? "#8ab4f8" : "rgba(245,247,250,0.3)" }}
+                />
+              ))}
             </div>
           </div>
         </div>
 
-        {/* mobile: each beat stacks its frame above its copy */}
+        {/* mobile: each beat stacks its stage above its copy */}
         <div className="flex flex-col gap-24 lg:hidden">
           {INTELLIGENCE_STEPS.map((s, i) => (
             <div key={s.title}>
-              <div className="mx-auto aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[40px]">
+              <div className="mx-auto aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[30px]">
                 <IntelligenceFrame active={i} autoplay={false} />
               </div>
               <div className="mt-10">
@@ -704,24 +752,31 @@ function StudentIntelligenceSection() {
         </div>
       </div>
 
-      <ScrollReveal className="px-6 pb-24 lg:pb-32">
-        <p className="mx-auto max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
-          Visionary keeps{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-            {KEEPS_WORDS[index]}
-          </span>{" "}
-          until understanding becomes confidence.
-        </p>
-      </ScrollReveal>
+      {/* one muted link closes the chapter
+      <div className="relative mt-2 flex justify-center px-6 lg:mt-4">
+        <Link
+          to="/how-it-works"
+          className="inline-flex items-center gap-1.5 text-[15px] font-normal transition-colors duration-200 hover:text-[#c8dcff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2"
+          style={{ color: "rgba(138,180,248,0.85)" }}
+        >
+          Learn more
+          <ChevronIcon className="h-3.5 w-3.5" />
+        </Link> */}
+      {/* </div> */}
     </section>
   );
 }
 
+
 /* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
-/* The voice dial — the landing's canonical language chapter: six wordless
-   language dots glide one step per beat on a hairline ring, the language
-   landing at 12 o'clock speaks its own subject question at the center,
-   name as a quiet caption, the brand hues listening beneath. */
+/* The voice dial — the landing's canonical language chapter, final anatomy:
+   a centered feature statement (Apple's law for a chapter that opens on one
+   symmetric object, measured on the Vision Pro page) with the chapter's one
+   muted link, then the dial — six wordless language dots gliding one step
+   per beat on a hairline ring, the language landing at 12 o'clock speaking
+   its own subject question at the center. The reel auto-advances the way
+   Apple's product highlights do, with the bare control row under the stage
+   (play/pause left, chevrons right) and goes silent while off-screen. */
 
 const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onSelect, reduced }) {
   const stepDeg = 360 / LANGUAGE_CHIPS.length;
@@ -732,7 +787,7 @@ const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onS
     <>
       {/* the orbit track */}
       <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
-        <circle cx="50" cy="50" r="49.75" fill="none" stroke={COLORS.ink} strokeOpacity="0.1" strokeWidth="0.25" />
+        <circle cx="50" cy="50" r="49.75" fill="none" stroke={COLORS.ink} strokeOpacity="0.12" strokeWidth="0.25" />
       </svg>
       {/* the rotating dot ring */}
       <div className="absolute inset-0 transition-transform ease-google" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: reduced ? "0ms" : "700ms" }}>
@@ -743,9 +798,9 @@ const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onS
               <button type="button" aria-pressed={isActive} aria-label={`Show ${c.label}`}
                 onClick={() => onSelect(i)}
                 className="absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                style={{ boxShadow: isActive ? "0 0 0 6px rgba(18,19,23,0.06)" : "none" }}>
-                <span className="block rounded-full transition-all duration-300"
-                  style={{ width: isActive ? 11 : 7, height: isActive ? 11 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}38` }} />
+                style={{ boxShadow: isActive ? "0 0 0 5px rgba(18,19,23,0.05)" : "none" }}>
+                <span className="block rounded-full transition-all duration-500 ease-apple"
+                  style={{ width: isActive ? 12 : 7, height: isActive ? 12 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}3D` }} />
               </button>
             </div>
           );
@@ -758,116 +813,246 @@ const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onS
 function StudentLanguageSection() {
   const reduced = UsePrefersReducedMotion();
   const { ref } = UseRevealOnce();
-  const { index, goTo } = UseCycleIndex(LANGUAGE_CHIPS.length, QUESTION_MS);
+  const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const dialRef = useRef(null);
+  const inViewRef = useRef(true);
   const active = LANGUAGE_CHIPS[index];
   /* the language at the reading position speaks its own subject question
      (5 subject lines tour across 6 languages, so the bank wraps) */
   const question = LANGUAGE_QUESTIONS[index % LANGUAGE_QUESTIONS.length][active.code];
 
+  /* Apple's highlights anatomy: the reel advances on its own while it is on
+     screen and the visitor holds the control — pause stops the tour, the
+     chevrons and dots step it by hand. */
+  useEffect(() => {
+    if (!playing) return undefined;
+    const id = setInterval(() => {
+      if (inViewRef.current) setIndex((i) => (i + 1) % LANGUAGE_CHIPS.length);
+    }, QUESTION_MS);
+    return () => clearInterval(id);
+  }, [playing]);
+
+  useEffect(() => {
+    const node = dialRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return undefined;
+    const io = new IntersectionObserver(([entry]) => {
+      inViewRef.current = entry.isIntersecting;
+    });
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
+  const goTo = useCallback(
+    (i) => setIndex(((i % LANGUAGE_CHIPS.length) + LANGUAGE_CHIPS.length) % LANGUAGE_CHIPS.length),
+    []
+  );
+  const step = useCallback(
+    (d) => setIndex((i) => (i + d + LANGUAGE_CHIPS.length) % LANGUAGE_CHIPS.length),
+    []
+  );
+
   return (
     <section ref={ref} data-section="07-language" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
       <style>{"@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}"}</style>
       <ScrollReveal>
-        {/* header unit — tight */}
-        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Every language</p>
-        <h2 className="mt-3 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
-          The words can change.<br />Understanding shouldn't.
-        </h2>
+        {/* header — eyebrow, statement, one supporting line, staggered on
+            Apple's resolve-out curve like the rest of the page's chapters */}
+        {/* <RevealItem idx={0}>
+          <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Every language</p>
+        </RevealItem> */}
+        <RevealItem idx={1}>
+          <h2 className="text-balance mt-[var(--gap-eyebrow-title-display)] text-center font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+            The words change.<br className="hidden sm:block" />Understanding doesn't.
+          </h2>
+        </RevealItem>
+        <RevealItem idx={2}>
+          <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[640px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            Ask in the language you think in. The understanding that comes back is the same.
+          </p>
+        </RevealItem>
+        {/* the chapter's one quiet link — Apple's feature-chapter affordance */}
+        <RevealItem idx={3}>
+          <div className="mt-6 flex justify-center">
+            <Link
+              to="/how-it-works"
+              className="inline-flex items-center gap-1.5 text-[15px] font-normal transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              style={{ color: COLORS.blue }}
+            >
+              Learn more
+              <ChevronIcon className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </RevealItem>
 
-        {/* the voice dial — dots ride the ring while the chosen language's
-            question holds the center; 36px breath before the stage */}
-        <div className="mx-auto mt-9 w-full max-w-[460px] sm:mt-14">
-          <div className="relative aspect-square w-full" role="group" aria-label="Language selection">
-            <StudentOrbitDots activeIndex={index} onSelect={goTo} reduced={reduced} />
-            {/* the center — the speaking language's name, its question at
-                statement scale, the brand hues listening beneath. The fixed
-                inscribed region is sized for the worst-wrapping script. */}
-            <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
-              <span key={`name-${index}`} className="hero-fade-up text-[11px] font-medium uppercase tracking-[0.14em]" style={{ color: COLORS.grey }}>{active.label}</span>
-              <p aria-live="polite" lang={active.code} className="mt-3 flex items-center justify-center text-center font-medium tracking-[-0.014em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: COLORS.ink }}>
-                <span key={index} className="hero-fade-up">{question}</span>
-              </p>
-              <div className="mt-4 flex items-end justify-center gap-1.5" aria-hidden="true">
-                {["#4285F4", "#EA4335", "#FBBC05", "#34A853"].map((c, i) => (
-                  <span key={`${c}-${i}`} className="h-5 w-1.5 rounded-full" style={{ backgroundColor: c, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
-                ))}
+        {/* the voice dial — the ring grows with the screen; dots ride the
+            hairline while the speaking language's question holds the center.
+            A whisper of product-wash breathes beneath, and the equalizer is
+            monochrome with the zone's single accent — no decorative chrome. */}
+        <RevealItem idx={4}>
+          <div ref={dialRef} className="mx-auto mt-14 w-full max-w-[min(604px,88vw)] sm:mt-20">
+            <div className="relative aspect-square w-full" role="group" aria-label="Language selection">
+              <StudentOrbitDots activeIndex={index} onSelect={goTo} reduced={reduced} />
+              {/* whisper of product-wash beneath the dial — Apple's soft
+                  radial, same recipe as the struggle chapter's floor */}
+              <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(50% 50% at 50% 50%, rgba(66,133,244,0.06) 0%, rgba(66,133,244,0.02) 46%, rgba(66,133,244,0) 72%)" }} />
+              {/* the center — the speaking language's name in Apple's quiet
+                  label voice (sentence case, no tracking), its question at
+                  statement scale, the one accent listening beneath. The fixed
+                  inscribed region is sized for the worst-wrapping script. */}
+              <div className="absolute inset-x-[16%] inset-y-[18%] flex flex-col items-center justify-center text-center">
+                <span key={`name-${index}`} className="hero-fade-up text-[13px] font-medium tracking-[0] leading-[1.4]" style={{ color: COLORS.grey }}>{active.label}</span>
+                <p aria-live="polite" lang={active.code} className="mt-3 flex items-center justify-center text-center font-semibold tracking-[-0.014em] leading-[1.15] text-[clamp(22px,2.2vw,32px)]" style={{ color: COLORS.ink }}>
+                  <span key={index} className="hero-fade-up">{question}</span>
+                </p>
+                <div className="mt-5 flex items-end justify-center gap-1.5" aria-hidden="true">
+                  {["#121317", "#4285F4", "#121317", "#121317"].map((c, i) => (
+                    <span key={i} className="h-6 w-1.5 rounded-full" style={{ backgroundColor: c, opacity: i === 1 ? 1 : 0.22, transformOrigin: "center", animation: `voiceDot 1.2s ease-in-out ${i * 0.15}s infinite` }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* the control row — Apple's bare 36px glyphs at the stage's
+                edges: play/pause left, prev/next right */}
+            <div className="mt-6 flex items-center justify-between">
+              <button
+                type="button"
+                aria-label={playing ? "Pause the languages" : "Play the languages"}
+                aria-pressed={!playing}
+                onClick={() => setPlaying((v) => !v)}
+                className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              >
+                {playing ? (
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
+                    <rect x="6.5" y="5" width="4" height="14" rx="1.2" />
+                    <rect x="13.5" y="5" width="4" height="14" rx="1.2" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px] translate-x-[1px]" aria-hidden="true">
+                    <path d="M8 5.5c0-.9 1-1.5 1.8-1l9.6 5.6c.8.5.8 1.7 0 2.2l-9.6 5.6c-.8.5-1.8-.1-1.8-1V5.5z" />
+                  </svg>
+                )}
+              </button>
+              <div className="flex items-center gap-5">
+                <button
+                  type="button"
+                  aria-label="Previous language"
+                  onClick={() => step(-1)}
+                  className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                >
+                  <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next language"
+                  onClick={() => step(1)}
+                  className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                >
+                  <ChevronIcon className="h-[18px] w-[18px]" />
+                </button>
               </div>
             </div>
           </div>
-        </div>
-        <div className="mx-auto mt-6 w-full max-w-[860px] sm:mt-7">
-          <p className="text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            Listening in {active.label} · understood in every language
-          </p>
-          <p className="mt-1 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
-            Use voice or text in the way you're comfortable.
-          </p>
-        </div>
+        </RevealItem>
+
+        {/* quiet legend — the chapter's small print sits directly under the
+            stage, after the controls (Apple: media → controls → caption) */}
+        <RevealItem idx={5}>
+          <div className="mx-auto mt-6 w-full max-w-[860px] sm:mt-8">
+            <p className="text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+              Listening in {active.label} · understood in every language
+            </p>
+            <p className="mt-1 text-center font-normal tracking-[0] leading-[20px] text-[13px]" style={{ color: COLORS.lightGrey }}>
+              Use voice or text in the way you're comfortable.
+            </p>
+          </div>
+        </RevealItem>
       </ScrollReveal>
     </section>
   );
 }
 
+
 /* ═══════════════════════ 08 · CONTINUITY ═══════════════════════ */
-
-
+/* The intelligence-stays-with-you chapter — Apple's education "Designed to
+   Ignite" trio, measured live Oct 2026: a center-dominant square flanked by
+   two smaller wings descending left to right. The composition IS the flow —
+   what the intelligence remembers (left wing), what it sits beside you
+   working on now (dominant center), where it can take you next (right
+   wing). The three sentences are the captions; no picker, the knowledge
+   itself is the story. Left editorial header on the fixed spine (education
+   law measured: heading and support share one left edge). Mobile stacks
+   the trio, Apple's responsive fallback. */
 
 const CATEGORY_SECTION_IMG = [primaryStudent, secondaryStudent, competitiveStudent, vocationStudent, higherStudent];
 
-
-
 function StudentContinuitySection() {
   const { ref } = UseRevealOnce();
-  const { index, goTo, step } = UseStageIndex(CONTINUITY_STAGES.length);
-  const stage = CONTINUITY_STAGES[index];
+  const moments = [
+    { label: "What you learned", image: primaryStudent, alt: "A student building the basics" },
+    { label: "What you're working on", image: secondaryStudent, alt: "A student working through today's lesson" },
+    { label: "Where you can go", image: competitiveStudent, alt: "A student preparing for what comes next" },
+  ];
 
   return (
-    <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white">
       <ScrollReveal>
-        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
-          Keep your place
-        </p>
-        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
-          What you learn stays with you.
-        </h2>
-        <p className="mx-auto mt-4 max-w-[700px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          What you understand becomes part of what comes next. You never start over.
-        </p>
-        <div className="mt-14 flex justify-center lg:mt-20">
-          <StageDropdown stages={CONTINUITY_STAGES} active={index} onSelect={goTo} />
+        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
+          <RevealItem idx={0}>
+            <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+              What you learn stays with you.
+            </h2>
+          </RevealItem>
+          <RevealItem idx={1}>
+            <p className="mt-[var(--gap-title-sub-display)] max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+              Your intelligence carries every lesson forward — where you've been, where you are, and where you can go.
+            </p>
+          </RevealItem>
+          {/* the Ignite trio — center-dominant, wings descending; each image
+              captioned with its sentence */}
+          <RevealItem idx={2}>
+            <div className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-[0.6fr_1fr_0.6fr] sm:items-start sm:gap-6 lg:mt-20 lg:gap-8">
+              {/* past — the left wing */}
+              <figure className="m-0">
+                <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-[15/11]">
+                  <img src={moments[0].image} alt={moments[0].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
+                </div>
+                <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+                  {moments[0].label}
+                </figcaption>
+              </figure>
+              {/* now — the dominant center, set slightly lower on Apple's diagonal */}
+              <figure className="m-0 sm:mt-10">
+                <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-square">
+                  <img src={moments[1].image} alt={moments[1].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
+                </div>
+                <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+                  {moments[1].label}
+                </figcaption>
+              </figure>
+              {/* next — the right wing, lowest on the diagonal */}
+              <figure className="m-0 sm:mt-52">
+                <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-[15/11]">
+                  <img src={moments[2].image} alt={moments[2].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
+                </div>
+                <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+                  {moments[2].label}
+                </figcaption>
+              </figure>
+            </div>
+          </RevealItem>
+          {/* the bookend — on the same left axis
+          <RevealItem idx={3}>
+            <p className="mt-16 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
+              You keep your place.
+            </p>
+          </RevealItem> */}
         </div>
-        <div className="mt-14 grid grid-cols-1 gap-16 px-6 lg:mt-20 lg:grid-cols-3 lg:gap-12 lg:px-0">
-          <ContinuityCard images={CATEGORY_SECTION_IMG} index={index} label="Previous" caption="What you learned" text={stage.previous} imgClass="lg:h-[400px]" className="lg:-ml-[6vw]" />
-          <ContinuityCard images={CATEGORY_SECTION_IMG} index={index} label="Now" caption="What you're working on" text={stage.now} imgClass="lg:h-[600px]" className="lg:mt-[100px]" />
-          <ContinuityCard images={CATEGORY_SECTION_IMG} index={index} label="Next" caption="Where you can go" text={stage.next} imgClass="lg:h-[370px]" className="lg:-mr-[6vw] lg:mt-[20px]" />
-        </div>
-        <div className="mt-14 flex justify-center gap-4 lg:mt-20">
-          <button
-            type="button"
-            aria-label="Previous stage"
-            onClick={() => step(-1)}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]"
-            style={{ color: COLORS.ink }}
-          >
-            <ChevronIcon direction="left" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next stage"
-            onClick={() => step(1)}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#E8E8ED] transition-colors hover:bg-[#DDDDE2]"
-            style={{ color: COLORS.ink }}
-          >
-            <ChevronIcon direction="right" />
-          </button>
-        </div>
-        <p className="mt-14 px-6 text-center font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
-          You keep your place.
-        </p>
       </ScrollReveal>
     </section>
   );
 }
+
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
 const ACHIEVEMENT_IMAGE = [studentHeroContent, studentachivenment, studentbuild];
@@ -880,11 +1065,16 @@ function StudentAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip]">
       <ScrollReveal>
         <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
-          <h2 className="font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,4vw,48px)]" style={{ color: COLORS.ink }}>
-            See what you can achieve.
-          </h2>
-
-          <div className="mt-12 overflow-hidden rounded-[1.75rem] bg-[#f5f5f7] lg:mt-16 lg:h-[784px]">
+          <RevealItem idx={0}>
+            <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>Every step counts</p>
+          </RevealItem>
+          <RevealItem idx={1}>
+            <h2 className="mt-[var(--gap-eyebrow-title-display)] font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(40px,4vw,48px)]" style={{ color: COLORS.ink }}>
+              See what you can achieve.
+            </h2>
+          </RevealItem>
+          <RevealItem idx={2}>
+          <div className="mt-12 overflow-hidden rounded-[30px] bg-[#f5f5f7] lg:mt-16 lg:h-[784px]">
             <div className="grid h-full grid-cols-1 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:items-stretch">
               <ul className="flex flex-col px-6 py-6 lg:px-0 lg:py-0 lg:pl-[69px]">
                 {ACHIEVEMENT_TABS.map((tab, i) => {
@@ -931,6 +1121,7 @@ function StudentAchievementSection() {
               </div>
             </div>
           </div>
+        </RevealItem>
         </div>
       </ScrollReveal>
     </section>
@@ -951,15 +1142,22 @@ function StudentJourneyFlowSection() {
   return (
     <section ref={ref} data-section="10-journey-flow" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your journey</p>
-        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
-          New stage.<br />Same intelligence.
-        </h2>
-        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          As your goals change, Visionary is the place to continue.
-        </p>
+        <RevealItem idx={0}>
+          <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Your journey</p>
+        </RevealItem>
+        <RevealItem idx={1}>
+          <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+            New stage.<br />Same intelligence.
+          </h2>
+        </RevealItem>
+        <RevealItem idx={2}>
+          <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            As your goals change, Visionary is the place to continue.
+          </p>
+        </RevealItem>
 
         {/* Breath 2 — cascade + closing column */}
+        <RevealItem idx={3}>
         <div className="mx-auto mt-14 grid w-full max-w-[1900px] grid-cols-1 items-center gap-16 px-6 lg:mt-28 lg:grid-cols-[7fr_5fr] lg:gap-24 lg:pl-[10%] lg:pr-12">
           {/* cascade: card → connector → card (in-flow, never overlapping) */}
           <div className="relative">
@@ -998,6 +1196,7 @@ function StudentJourneyFlowSection() {
             </Link>
           </div>
         </div>
+        </RevealItem>
       </ScrollReveal>
     </section>
   );
@@ -1018,14 +1217,21 @@ function StudentTrustSection() {
   return (
     <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Trust and safety</p>
-        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: 12 }}>
-          Your intelligence.
-        </h2>
-        <p className="mx-auto mt-4 max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way.
-        </p>
+        <RevealItem idx={0}>
+          <p className="px-6 text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Trust and safety</p>
+        </RevealItem>
+        <RevealItem idx={1}>
+          <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
+            Your intelligence.
+          </h2>
+        </RevealItem>
+        <RevealItem idx={2}>
+          <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way.
+          </p>
+        </RevealItem>
 
+        <RevealItem idx={3}>
         <div className="mx-auto mt-14 grid w-full max-w-[1200px] grid-cols-1 gap-6 px-6 lg:mt-20 lg:grid-cols-3 lg:px-6">
           {TRUST_CARDS.map((card) => (
             <article key={card.title} className="flex flex-col rounded-[28px] bg-[#f5f5f7] p-8 lg:p-10">
@@ -1035,7 +1241,9 @@ function StudentTrustSection() {
               <h3 className="mt-10 font-semibold tracking-[-0.003em] leading-[1.1] text-[clamp(28px,2.4vw,34px)]" style={{ color: COLORS.ink }}>
                 {card.title}
               </h3>
-              <p className="mt-4 font-normal tracking-[0] leading-[24px] text-[17px]" style={{ color: COLORS.grey }}>
+              {/* the card sub keeps a gap ratio-locked to its own fluid heading —
+                  a fixed 16px over a clamp heading drifts on small screens */}
+              <p className="font-normal tracking-[0] leading-[24px] text-[17px]" style={{ color: COLORS.grey, marginTop: "calc(clamp(28px, 2.4vw, 34px) * 0.47)" }}>
                 {card.copy}
               </p>
               <Link to={card.to} className="mt-auto inline-flex items-center gap-1.5 pt-8 text-[17px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
@@ -1045,6 +1253,7 @@ function StudentTrustSection() {
             </article>
           ))}
         </div>
+        </RevealItem>
       </ScrollReveal>
     </section>
   );
@@ -1060,15 +1269,22 @@ const StudentCTASection = React.memo(function StudentCTASection() {
     <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
       <ScrollReveal>
         <div className="mx-auto max-w-[1500px] text-center">
-          <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
-            Begin today
-          </p>
-          <h2 className="mt-3 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
-            Your learning starts with where you are.
-          </h2>
-        <p className="mx-auto mt-4 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          <RevealItem idx={0}>
+            <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
+              Begin today
+            </p>
+          </RevealItem>
+          <RevealItem idx={1}>
+            <h2 className="mt-[var(--gap-eyebrow-title-display)] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+              Your learning starts with where you are.
+            </h2>
+          </RevealItem>
+        <RevealItem idx={2}>
+        <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Ask your first question. Start building from what you know.
         </p>
+        </RevealItem>
+        <RevealItem idx={3}>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/register"
@@ -1088,9 +1304,12 @@ const StudentCTASection = React.memo(function StudentCTASection() {
             <ChevronIcon className="h-4 w-4" />
           </Link>
         </div>
+        </RevealItem>
+          <RevealItem idx={4}>
           <p className="mt-6 text-center font-normal tracking-[0.24px] text-[13px]" style={{ color: COLORS.grey }}>
             Free to start. Private by design.
           </p>
+          </RevealItem>
         </div>
       </ScrollReveal>
     </section>
@@ -1108,9 +1327,17 @@ function StudentExploreSection() {
   return (
     <section ref={ref} data-section="13-explore" className="relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
       <ScrollReveal>
-        <h2 className="px-6 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
+        <RevealItem idx={0}>
+          <p className="px-6 text-[15px] font-normal lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.grey }}>
+            Keep exploring
+          </p>
+        </RevealItem>
+        <RevealItem idx={1}>
+        <h2 className="px-6 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Explore Visionary
         </h2>
+        </RevealItem>
+        <RevealItem idx={2}>
         <div className="relative mt-16 lg:mt-20">
           <div
             ref={trackRef}
@@ -1131,6 +1358,7 @@ function StudentExploreSection() {
             <ChevronIcon direction="right" />
           </button>
         </div>
+        </RevealItem>
       </ScrollReveal>
     </section>
   );

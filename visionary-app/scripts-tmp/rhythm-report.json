@@ -1,177 +1,152 @@
 {
- "generated": "2026-09-20T09:34:15.170Z",
+ "generated": "2026-10-10T15:36:45.606Z",
  "ledger": [
-  {
-   "route": "/",
-   "unit": "One Intelligence.One Intelligence. Built",
-   "ratios": {
-    "360": 1.161,
-    "768": 0.544,
-    "1440": 0.29,
-    "1920": 0.238
-   },
-   "ok": false,
-   "drift": "spread 0.923em (360:1.161 768:0.544 1440:0.29 1920:0.238)"
-  },
-  {
-   "route": "/",
-   "unit": "Teaching everyone is possible. Reaching ",
-   "ratios": {
-    "360": 0.857,
-    "768": 0.857,
-    "1440": 0.857,
-    "1920": 0.857
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.857 768:0.857 1440:0.857 1920:0.857)"
-  },
   {
    "route": "/",
    "unit": "It understands.",
    "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "360": 0.4,
+    "768": 0.347,
+    "1440": 0.25,
+    "1920": 0.25
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.15em (360:0.4 768:0.347 1440:0.25 1920:0.25)"
   },
   {
    "route": "/",
    "unit": "Understand what you're learning.",
    "ratios": {
-    "360": 1.143,
-    "768": 1.143,
-    "1440": 0,
-    "1920": 0
+    "360": 0.714,
+    "768": 0.714,
+    "1440": 0.448,
+    "1920": 0.417
    },
-   "ok": true,
-   "drift": "spread 0em (360:1.143 768:1.143 1440:0 1920:0)"
+   "ok": false,
+   "drift": "spread 0.297em (360:0.714 768:0.714 1440:0.448 1920:0.417)"
   },
   {
    "route": "/",
    "unit": "Know what your class is learning.",
    "ratios": {
-    "360": 1.143,
-    "768": 1.143,
-    "1440": 0,
-    "1920": 0
+    "360": 0.714,
+    "768": 0.714,
+    "1440": 0.448,
+    "1920": 0.417
    },
-   "ok": true,
-   "drift": "spread 0em (360:1.143 768:1.143 1440:0 1920:0)"
+   "ok": false,
+   "drift": "spread 0.297em (360:0.714 768:0.714 1440:0.448 1920:0.417)"
   },
   {
    "route": "/",
    "unit": "Know what your child is learning.",
    "ratios": {
-    "360": 1.143,
-    "768": 1.143,
-    "1440": 0,
-    "1920": 0
+    "360": 0.714,
+    "768": 0.714,
+    "1440": 0.448,
+    "1920": 0.417
    },
-   "ok": true,
-   "drift": "spread 0em (360:1.143 768:1.143 1440:0 1920:0)"
+   "ok": false,
+   "drift": "spread 0.297em (360:0.714 768:0.714 1440:0.448 1920:0.417)"
   },
   {
    "route": "/",
    "unit": "Learn what the work requires.",
    "ratios": {
-    "360": 1.143,
-    "768": 1.143,
-    "1440": 0,
-    "1920": 0
+    "360": 0.714,
+    "768": 0.714,
+    "1440": 0.448,
+    "1920": 0.417
    },
-   "ok": true,
-   "drift": "spread 0em (360:1.143 768:1.143 1440:0 1920:0)"
+   "ok": false,
+   "drift": "spread 0.297em (360:0.714 768:0.714 1440:0.448 1920:0.417)"
   },
   {
    "route": "/",
    "unit": "See what your people are learning.",
    "ratios": {
-    "360": 1.143,
-    "768": 1.143,
-    "1440": 0,
-    "1920": 0
+    "360": 0.714,
+    "768": 0.714,
+    "1440": 0.448,
+    "1920": 0.417
    },
-   "ok": true,
-   "drift": "spread 0em (360:1.143 768:1.143 1440:0 1920:0)"
+   "ok": false,
+   "drift": "spread 0.297em (360:0.714 768:0.714 1440:0.448 1920:0.417)"
   },
   {
    "route": "/",
-   "unit": "What you understand today make tomorrow ",
+   "unit": "Your information.",
    "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.286,
+    "1920": 0.286
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.214em (360:0.5 768:0.5 1440:0.286 1920:0.286)"
   },
   {
    "route": "/",
-   "unit": "It remembers more than what you said.",
+   "unit": "Your data stays yours.",
    "ratios": {
-    "360": 0.727,
-    "768": 0.727,
-    "1440": 0.727,
-    "1920": 0.727
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.727 768:0.727 1440:0.727 1920:0.727)"
+   "drift": "spread 0.048em (360:0.381 768:0.381 1440:0.333 1920:0.333)"
   },
   {
    "route": "/",
-   "unit": "You won't stay the same.Neither should y",
+   "unit": "Safe to grow with.",
    "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "drift": "spread 0.048em (360:0.381 768:0.381 1440:0.333 1920:0.333)"
   },
   {
    "route": "/",
-   "unit": "Every language.One understanding.",
+   "unit": "Built with care.",
    "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
-  },
-  {
-   "route": "/",
-   "unit": "Your information",
-   "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "drift": "spread 0.048em (360:0.381 768:0.381 1440:0.333 1920:0.333)"
   },
   {
    "route": "/",
    "unit": "Your next step starts here.",
    "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.286,
+    "1920": 0.286
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.214em (360:0.5 768:0.5 1440:0.286 1920:0.286)"
   },
   {
-   "route": "/",
-   "unit": "Find answers to common questions about V",
+   "route": "/student",
+   "unit": "Learning,Learning, to master, to build.",
+   "ratios": {
+    "360": 0.333,
+    "768": 0.333,
+    "1920": 0.2
+   },
+   "ok": false,
+   "drift": "spread 0.133em (360:0.333 768:0.333 1920:0.2)"
+  },
+  {
+   "route": "/student",
+   "unit": "Every student struggles withunderstandin",
    "ratios": {
     "360": 0.333,
     "768": 0.333,
@@ -183,235 +158,124 @@
   },
   {
    "route": "/student",
-   "unit": "Learning,Learning, to mastery.",
+   "unit": "Learning thatmoves with you.",
    "ratios": {
-    "360": 0.167,
-    "768": 0.167,
-    "1440": 0.167,
-    "1920": 0.167
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.25,
+    "1920": 0.25
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
-  },
-  {
-   "route": "/student",
-   "unit": "Learning that moves with you.",
-   "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
-  },
-  {
-   "route": "/student",
-   "unit": "Primary",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/student",
-   "unit": "Secondary & Higher Secondary",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/student",
-   "unit": "Competitive Exams",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/student",
-   "unit": "Vocational & Skills",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/student",
-   "unit": "Higher Education",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/student",
-   "unit": "Learning on Your Own",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/student",
-   "unit": "One intelligence. Every step connected.",
-   "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "ok": false,
+   "drift": "spread 0.15em (360:0.4 768:0.4 1440:0.25 1920:0.25)"
   },
   {
    "route": "/student",
    "unit": "Understand what you're learning.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.444,
+    "768": 0.444,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0 1920:0)"
   },
   {
    "route": "/student",
    "unit": "See it.\nHear it.\nAsk it another way.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.444,
+    "768": 0.444,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0 1920:0)"
   },
   {
    "route": "/student",
-   "unit": "Practice what you're learning",
+   "unit": "Practice what you're learning.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.444,
+    "768": 0.444,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0 1920:0)"
   },
   {
    "route": "/student",
    "unit": "Build from what you know.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.444,
+    "768": 0.444,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0 1920:0)"
   },
   {
    "route": "/student",
-   "unit": "The words can change.Understanding shoul",
+   "unit": "Private by design.",
+   "ratios": {
+    "360": 0.47,
+    "768": 0.47,
+    "1440": 0.47,
+    "1920": 0.47
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.47 768:0.47 1440:0.47 1920:0.47)"
+  },
+  {
+   "route": "/student",
+   "unit": "Safe to grow with.",
+   "ratios": {
+    "360": 0.47,
+    "768": 0.47,
+    "1440": 0.47,
+    "1920": 0.47
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.47 768:0.47 1440:0.47 1920:0.47)"
+  },
+  {
+   "route": "/student",
+   "unit": "Built responsibly.",
+   "ratios": {
+    "360": 0.47,
+    "768": 0.47,
+    "1440": 0.47,
+    "1920": 0.47
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.47 768:0.47 1440:0.47 1920:0.47)"
+  },
+  {
+   "route": "/student",
+   "unit": "to master.Learning, to master, to build.",
+   "ratios": {
+    "1440": 0.2
+   },
+   "ok": true,
+   "drift": "insufficient widths"
+  },
+  {
+   "route": "/teacher",
+   "unit": "Teaching.Teaching, to grow, to reach.",
    "ratios": {
     "360": 0.333,
     "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "1440": 0.2,
+    "1920": 0.2
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
-  },
-  {
-   "route": "/student",
-   "unit": "What you learn stays with you.",
-   "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
-  },
-  {
-   "route": "/student",
-   "unit": "See what you can achieve with intelligen",
-   "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
-  },
-  {
-   "route": "/student",
-   "unit": "Your journey changes.Your learning stays",
-   "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
-  },
-  {
-   "route": "/student",
-   "unit": "Your control.",
-   "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.133em (360:0.333 768:0.333 1440:0.2 1920:0.2)"
   },
   {
    "route": "/teacher",
-   "unit": "Teaching.Teaching, to reach every learne",
-   "ratios": {
-    "360": 0.167,
-    "768": 0.167,
-    "1440": 0.167,
-    "1920": 0.167
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
-  },
-  {
-   "route": "/teacher",
-   "unit": "What happens when teaching moves with yo",
+   "unit": "Every teacher wonders aboutunderstanding",
    "ratios": {
     "360": 0.333,
     "768": 0.333,
@@ -423,75 +287,15 @@
   },
   {
    "route": "/teacher",
-   "unit": "Lesson Planning",
+   "unit": "Teaching thatmoves with your class.",
    "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.25,
+    "1920": 0.25
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/teacher",
-   "unit": "In Class",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/teacher",
-   "unit": "Checking Understanding",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/teacher",
-   "unit": "Adapting",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/teacher",
-   "unit": "Supporting Individuals",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/teacher",
-   "unit": "Growing",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
+   "ok": false,
+   "drift": "spread 0.15em (360:0.4 768:0.4 1440:0.25 1920:0.25)"
   },
   {
    "route": "/teacher",
@@ -509,37 +313,37 @@
    "route": "/teacher",
    "unit": "Understand what your class is learning.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/teacher",
-   "unit": "Show it. Hear it. Teach it another way.",
+   "unit": "Show it, hear it, teach it another way.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/teacher",
-   "unit": "Check who's with you, before the exam te",
+   "unit": "Know who's with you before the exam.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/teacher",
@@ -567,7 +371,7 @@
   },
   {
    "route": "/teacher",
-   "unit": "See what your class can achieve with int",
+   "unit": "See what your class can achieve.",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
@@ -602,20 +406,32 @@
    "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
-   "route": "/parent",
-   "unit": "Parenting.Parenting, to see what is happ",
+   "route": "/teacher",
+   "unit": "Your teaching starts with where your cla",
    "ratios": {
-    "360": 0.167,
-    "768": 0.167,
-    "1440": 0.167,
-    "1920": 0.167
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.667,
+    "1920": 0.667
    },
    "ok": true,
-   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
+   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
    "route": "/parent",
-   "unit": "Learning that moves with them.",
+   "unit": "Parenting.Parenting, to see, to help.",
+   "ratios": {
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.2,
+    "1920": 0.2
+   },
+   "ok": false,
+   "drift": "spread 0.133em (360:0.333 768:0.333 1440:0.2 1920:0.2)"
+  },
+  {
+   "route": "/parent",
+   "unit": "Every parent wonders aboutprogress.",
    "ratios": {
     "360": 0.333,
     "768": 0.333,
@@ -627,75 +443,15 @@
   },
   {
    "route": "/parent",
-   "unit": "Early Years",
+   "unit": "Learning thatmoves with them.",
    "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.25,
+    "1920": 0.25
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/parent",
-   "unit": "Primary",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/parent",
-   "unit": "Secondary",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/parent",
-   "unit": "Higher Secondary",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/parent",
-   "unit": "Competitive Exams",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/parent",
-   "unit": "Beyond School",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
+   "ok": false,
+   "drift": "spread 0.15em (360:0.4 768:0.4 1440:0.25 1920:0.25)"
   },
   {
    "route": "/parent",
@@ -713,49 +469,49 @@
    "route": "/parent",
    "unit": "What your child understood this week.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/parent",
    "unit": "Know where your child is stuck.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/parent",
    "unit": "See which way learning is moving.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/parent",
-   "unit": "You see more when everyone sees the same",
+   "unit": "You see more when everyone shares one vi",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/parent",
@@ -783,7 +539,7 @@
   },
   {
    "route": "/parent",
-   "unit": "See what your child can achieve with int",
+   "unit": "See what your child can achieve.",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
@@ -818,20 +574,32 @@
    "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
-   "route": "/professional",
-   "unit": "Building.Learning, to apply what you lea",
+   "route": "/parent",
+   "unit": "Your child's journey is already happenin",
    "ratios": {
-    "360": 0.167,
-    "768": 0.167,
-    "1440": 0.167,
-    "1920": 0.167
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.667,
+    "1920": 0.667
    },
    "ok": true,
-   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
+   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
    "route": "/professional",
-   "unit": "What happens when work moves with your c",
+   "unit": "Building.Building, to apply, to grow.",
+   "ratios": {
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.2,
+    "1920": 0.2
+   },
+   "ok": false,
+   "drift": "spread 0.133em (360:0.333 768:0.333 1440:0.2 1920:0.2)"
+  },
+  {
+   "route": "/professional",
+   "unit": "Every professional wonders aboutApplicat",
    "ratios": {
     "360": 0.333,
     "768": 0.333,
@@ -843,75 +611,15 @@
   },
   {
    "route": "/professional",
-   "unit": "Early Career",
+   "unit": "Work thatmoves with your career.",
    "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.25,
+    "1920": 0.25
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/professional",
-   "unit": "Mid-Level",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/professional",
-   "unit": "Senior",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/professional",
-   "unit": "Leadership",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/professional",
-   "unit": "Specialist",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/professional",
-   "unit": "Entrepreneur",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
+   "ok": false,
+   "drift": "spread 0.15em (360:0.4 768:0.4 1440:0.25 1920:0.25)"
   },
   {
    "route": "/professional",
@@ -929,49 +637,49 @@
    "route": "/professional",
    "unit": "Understand the work before you do it.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 1.667,
+    "768": 1.667,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:1.667 768:1.667 1440:0 1920:0)"
   },
   {
    "route": "/professional",
    "unit": "Turn every project into a lesson.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 1.667,
+    "768": 1.667,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:1.667 768:1.667 1440:0 1920:0)"
   },
   {
    "route": "/professional",
    "unit": "Carry your expertise across teams and to",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 1.667,
+    "768": 1.667,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:1.667 768:1.667 1440:0 1920:0)"
   },
   {
    "route": "/professional",
    "unit": "Know what your work is actually building",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 1.667,
+    "768": 1.667,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:1.667 768:1.667 1440:0 1920:0)"
   },
   {
    "route": "/professional",
@@ -1034,20 +742,31 @@
    "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
-   "route": "/organization",
-   "unit": "Leading.One intelligence, to scale under",
+   "route": "/professional",
+   "unit": "Your next project is already in front of",
    "ratios": {
-    "360": 0.167,
-    "768": 0.167,
-    "1440": 0.167,
-    "1920": 0.167
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.667,
+    "1920": 0.667
    },
    "ok": true,
-   "drift": "spread 0em (360:0.167 768:0.167 1440:0.167 1920:0.167)"
+   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
    "route": "/organization",
-   "unit": "Every organization learns differently. V",
+   "unit": "Leading.Leading, to scale, to last.",
+   "ratios": {
+    "360": 0.333,
+    "768": 0.333,
+    "1920": 0.2
+   },
+   "ok": false,
+   "drift": "spread 0.133em (360:0.333 768:0.333 1920:0.2)"
+  },
+  {
+   "route": "/organization",
+   "unit": "Every organization wonders aboutadoption",
    "ratios": {
     "360": 0.333,
     "768": 0.333,
@@ -1059,51 +778,15 @@
   },
   {
    "route": "/organization",
-   "unit": "Schools",
+   "unit": "Every organization learns differently.Vi",
    "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
+    "360": 0.571,
+    "768": 0.571,
+    "1440": 0.358,
+    "1920": 0.333
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/organization",
-   "unit": "Colleges & Universities",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/organization",
-   "unit": "Coaching",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
-  },
-  {
-   "route": "/organization",
-   "unit": "Workplace learning",
-   "ratios": {
-    "360": 0.714,
-    "768": 0.714,
-    "1440": 0.714,
-    "1920": 0.714
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.714 768:0.714 1440:0.714 1920:0.714)"
+   "ok": false,
+   "drift": "spread 0.238em (360:0.571 768:0.571 1440:0.358 1920:0.333)"
   },
   {
    "route": "/organization",
@@ -1121,49 +804,49 @@
    "route": "/organization",
    "unit": "See what people understand.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/organization",
    "unit": "Find gaps before they spread.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/organization",
    "unit": "Support every role from one system.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/organization",
    "unit": "Improve the next decision.",
    "ratios": {
-    "360": 1.429,
-    "768": 1.429,
+    "360": 0.571,
+    "768": 0.571,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:1.429 768:1.429 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0 1920:0)"
   },
   {
    "route": "/organization",
@@ -1191,7 +874,7 @@
   },
   {
    "route": "/organization",
-   "unit": "See what your organization can achieve w",
+   "unit": "See what your organization can achieve.",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
@@ -1238,164 +921,211 @@
    "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
   },
   {
-   "route": "/how-it-works",
-   "unit": "How you use Visionary,step by step.",
+   "route": "/organization",
+   "unit": "to scale.Leading, to scale, to last.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "1440": 0.2
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "insufficient widths"
+  },
+  {
+   "route": "/help",
+   "unit": "Find your answer.",
+   "ratios": {
+    "360": 0.417,
+    "768": 0.313,
+    "1440": 0.263,
+    "1920": 0.263
+   },
+   "ok": false,
+   "drift": "spread 0.154em (360:0.417 768:0.313 1440:0.263 1920:0.263)"
   },
   {
    "route": "/how-it-works",
-   "unit": "Create your account.",
+   "unit": "How Visionary works.",
    "ratios": {
-    "360": 0.857,
-    "768": 0.857,
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
+   },
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
+  },
+  {
+   "route": "/how-it-works",
+   "unit": "Sign in your account.",
+   "ratios": {
+    "360": 0.999,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:0.857 768:0.857 1440:0 1920:0)"
+   "drift": "insufficient widths"
   },
   {
    "route": "/how-it-works",
    "unit": "Start as yourself.",
    "ratios": {
-    "360": 0.857,
-    "768": 0.857,
+    "360": 0.999,
+    "768": 0.999,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:0.857 768:0.857 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.999 768:0.999 1440:0 1920:0)"
   },
   {
    "route": "/how-it-works",
    "unit": "Step into your space.",
    "ratios": {
-    "360": 0.857,
-    "768": 0.857,
+    "360": 0.999,
+    "768": 0.999,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:0.857 768:0.857 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.999 768:0.999 1440:0 1920:0)"
   },
   {
    "route": "/how-it-works",
    "unit": "Stay connected.",
    "ratios": {
-    "360": 0.857,
-    "768": 0.857,
+    "360": 0.999,
+    "768": 0.999,
     "1440": 0,
     "1920": 0
    },
    "ok": true,
-   "drift": "spread 0em (360:0.857 768:0.857 1440:0 1920:0)"
+   "drift": "spread 0em (360:0.999 768:0.999 1440:0 1920:0)"
   },
   {
    "route": "/how-it-works",
-   "unit": "One loop, goal.",
+   "unit": "One loop, check.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.555,
+    "1440": 0.592,
+    "1920": 0.592
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "spread 0.037em (360:0.555 1440:0.592 1920:0.592)"
   },
   {
    "route": "/how-it-works",
    "unit": "One intelligence. Different ways to use ",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.555,
+    "768": 0.555,
+    "1440": 0.592,
+    "1920": 0.592
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "spread 0.037em (360:0.555 768:0.555 1440:0.592 1920:0.592)"
   },
   {
    "route": "/how-it-works",
    "unit": "See it with your own question.",
    "ratios": {
+    "360": 1,
+    "768": 1.067,
+    "1440": 1.334,
+    "1920": 1.334
+   },
+   "ok": false,
+   "drift": "spread 0.334em (360:1 768:1.067 1440:1.334 1920:1.334)"
+  },
+  {
+   "route": "/how-it-works",
+   "unit": "Create your account.",
+   "ratios": {
+    "768": 0.999
+   },
+   "ok": true,
+   "drift": "insufficient widths"
+  },
+  {
+   "route": "/how-it-works",
+   "unit": "One loop, goal.",
+   "ratios": {
+    "768": 0.555
+   },
+   "ok": true,
+   "drift": "insufficient widths"
+  },
+  {
+   "route": "/about",
+   "unit": "Helping people turn questions into under",
+   "ratios": {
     "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "768": 0.5,
+    "1440": 0.421,
+    "1920": 0.421
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.246em (360:0.667 768:0.5 1440:0.421 1920:0.421)"
   },
   {
    "route": "/about",
-   "unit": "Our mission is to make understanding las",
+   "unit": "Understanding should open the next door.",
    "ratios": {
-    "360": 0.444,
-    "768": 0.444,
-    "1440": 0.444,
-    "1920": 0.444
+    "360": 1.5,
+    "768": 1.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+   "drift": "spread 0em (360:1.5 768:1.5)"
   },
   {
    "route": "/about",
-   "unit": "Understand more. Forget less. [eyebrow]",
+   "unit": "Find a way in",
    "ratios": {
-    "360": 0.222,
-    "768": 0.222,
-    "1440": 0.222,
-    "1920": 0.222
+    "360": 0.364,
+    "768": 0.364,
+    "1440": 0.364,
+    "1920": 0.364
    },
    "ok": true,
-   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
+   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
   },
   {
    "route": "/about",
-   "unit": "Five things we build by.",
+   "unit": "Grow with support",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.364,
+    "768": 0.364,
+    "1440": 0.364,
+    "1920": 0.364
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
   },
   {
    "route": "/about",
-   "unit": "Understanding over scores.",
+   "unit": "Choose what comes next",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
-    "1440": 0.545,
-    "1920": 0.545
+    "360": 0.364,
+    "768": 0.364,
+    "1440": 0.364,
+    "1920": 0.364
    },
    "ok": true,
-   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
   },
   {
    "route": "/about",
-   "unit": "Continuity over restarts.",
+   "unit": "Keep growing",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
-    "1440": 0.545,
-    "1920": 0.545
+    "360": 0.364,
+    "768": 0.364,
+    "1440": 0.364,
+    "1920": 0.364
    },
    "ok": true,
-   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
   },
   {
    "route": "/about",
-   "unit": "One intelligence, every role.",
+   "unit": "Students",
    "ratios": {
     "360": 0.545,
     "768": 0.545,
@@ -1407,7 +1137,7 @@
   },
   {
    "route": "/about",
-   "unit": "Language is access.",
+   "unit": "Teachers",
    "ratios": {
     "360": 0.545,
     "768": 0.545,
@@ -1419,7 +1149,7 @@
   },
   {
    "route": "/about",
-   "unit": "Private by design.",
+   "unit": "Parents",
    "ratios": {
     "360": 0.545,
     "768": 0.545,
@@ -1431,103 +1161,7 @@
   },
   {
    "route": "/about",
-   "unit": "Whoever you are, it's built for you. [ey",
-   "ratios": {
-    "360": 0.222,
-    "768": 0.222,
-    "1440": 0.222,
-    "1920": 0.222
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
-  },
-  {
-   "route": "/about",
-   "unit": "Understand what you're learning.",
-   "ratios": {
-    "360": 0.375,
-    "768": 0.375,
-    "1440": 0.375,
-    "1920": 0.375
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.375 768:0.375 1440:0.375 1920:0.375)"
-  },
-  {
-   "route": "/about",
-   "unit": "See who understood.",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/about",
-   "unit": "Know the week, not the report card.",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/about",
-   "unit": "Turn learning into work.",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/about",
-   "unit": "Build understanding that stays.",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/about",
-   "unit": "A student whose understanding follows th",
-   "ratios": {
-    "360": 1.4,
-    "768": 1.4,
-    "1440": 1.4,
-    "1920": 1.4
-   },
-   "ok": true,
-   "drift": "spread 0em (360:1.4 768:1.4 1440:1.4 1920:1.4)"
-  },
-  {
-   "route": "/about",
-   "unit": "Visionary is grounded in how people actu",
-   "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
-  },
-  {
-   "route": "/about",
-   "unit": "The Socratic method.",
+   "unit": "College & careers",
    "ratios": {
     "360": 0.545,
     "768": 0.545,
@@ -1539,7 +1173,7 @@
   },
   {
    "route": "/about",
-   "unit": "Mastery tracking.",
+   "unit": "Organizations",
    "ratios": {
     "360": 0.545,
     "768": 0.545,
@@ -1551,171 +1185,156 @@
   },
   {
    "route": "/about",
-   "unit": "Native language pedagogy.",
+   "unit": "Research",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
-    "1440": 0.545,
-    "1920": 0.545
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/about",
-   "unit": "Built in India. Built for India.",
+   "unit": "Careers",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/about",
-   "unit": "The people building Visionary. [eyebrow]",
+   "unit": "Safety",
    "ratios": {
-    "360": 0.222,
-    "768": 0.222,
-    "1440": 0.222,
-    "1920": 0.222
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/about",
-   "unit": "Safe to grow with.",
+   "unit": "Updates",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/about",
-   "unit": "You see age-appropriate answers.",
+   "unit": "There is a place for you in Visionary.",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.555,
+    "768": 0.555,
+    "1440": 0.592,
+    "1920": 0.592
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/about",
-   "unit": "You're protected by default.",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0.037em (360:0.555 768:0.555 1440:0.592 1920:0.592)"
   },
   {
    "route": "/pricing",
-   "unit": "One intelligence. Priced for your journe",
+   "unit": "Plans for every journey.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/pricing",
    "unit": "Start",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.308,
+    "768": 0.308,
+    "1440": 0.308,
+    "1920": 0.308
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.308 768:0.308 1440:0.308 1920:0.308)"
   },
   {
    "route": "/pricing",
    "unit": "Personal",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.308,
+    "768": 0.308,
+    "1440": 0.308,
+    "1920": 0.308
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.308 768:0.308 1440:0.308 1920:0.308)"
   },
   {
    "route": "/pricing",
    "unit": "Family",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.308,
+    "768": 0.308,
+    "1440": 0.308,
+    "1920": 0.308
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.308 768:0.308 1440:0.308 1920:0.308)"
   },
   {
    "route": "/pricing",
    "unit": "Institution",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.308,
+    "768": 0.308,
+    "1440": 0.308,
+    "1920": 0.308
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.308 768:0.308 1440:0.308 1920:0.308)"
   },
   {
    "route": "/pricing",
-   "unit": "Questions about pricing, answered. [eyeb",
+   "unit": "See exactly what you get.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.555
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "insufficient widths"
   },
   {
    "route": "/pricing",
-   "unit": "Your journey is already happening. Start",
+   "unit": "Your journey is already happening, so st",
    "ratios": {
-    "360": 0.667,
-    "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/download",
-   "unit": "One intelligence. Every device.",
+   "unit": "Get Visionary on every device.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/download",
@@ -1723,11 +1342,11 @@
    "ratios": {
     "360": 0.6,
     "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "1440": 0.557,
+    "1920": 0.557
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0.043em (360:0.6 768:0.6 1440:0.557 1920:0.557)"
   },
   {
    "route": "/download",
@@ -1735,23 +1354,23 @@
    "ratios": {
     "360": 0.6,
     "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "1440": 0.557,
+    "1920": 0.557
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0.043em (360:0.6 768:0.6 1440:0.557 1920:0.557)"
   },
   {
    "route": "/download",
    "unit": "Choose your platform.",
    "ratios": {
-    "360": 0.533,
-    "768": 0.533,
-    "1440": 0.533,
-    "1920": 0.533
+    "360": 0.667,
+    "768": 0.792,
+    "1440": 0.611,
+    "1920": 0.611
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.533 768:0.533 1440:0.533 1920:0.533)"
+   "ok": false,
+   "drift": "spread 0.181em (360:0.667 768:0.792 1440:0.611 1920:0.611)"
   },
   {
    "route": "/download",
@@ -1827,595 +1446,451 @@
   },
   {
    "route": "/download",
-   "unit": "What you need to run Visionary. [eyebrow",
+   "unit": "Still deciding? The web is one click awa",
    "ratios": {
-    "360": 0.29,
-    "768": 0.29,
-    "1440": 0.29,
-    "1920": 0.29
+    "360": 1,
+    "768": 1.067,
+    "1440": 1.334,
+    "1920": 1.334
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.29 768:0.29 1440:0.29 1920:0.29)"
+   "ok": false,
+   "drift": "spread 0.334em (360:1 768:1.067 1440:1.334 1920:1.334)"
   },
   {
-   "route": "/download",
-   "unit": "Still deciding? The web is one click awa",
+   "route": "/research",
+   "unit": "One intelligence,every learner.",
+   "ratios": {
+    "360": 1.167,
+    "768": 0.875,
+    "1440": 0.737,
+    "1920": 0.737
+   },
+   "ok": false,
+   "drift": "spread 0.43em (360:1.167 768:0.875 1440:0.737 1920:0.737)"
+  },
+  {
+   "route": "/research",
+   "unit": "Building the mentor intelligence.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
+   },
+   "ok": false,
+   "drift": "spread 0.096em (360:0.667 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/research",
+   "unit": "The daily mentor engine",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/research",
+   "unit": "Two faces of one intelligence",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/research",
+   "unit": "A teacher-moderated community",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/research",
+   "unit": "Our research drives real understanding.",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/research",
-   "unit": "We are building Visionaryone question at",
+   "unit": "A mentor for every step",
    "ratios": {
-    "360": 0.5,
-    "768": 0.5,
-    "1440": 0.5,
-    "1920": 0.5
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/research",
-   "unit": "What makes understanding stick?",
+   "unit": "Teaching, amplified",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/research",
-   "unit": "What should an AI teacher do?",
+   "unit": "The journey, with consent",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/research",
-   "unit": "What should carry forward?",
+   "unit": "From goal to evidence",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/research",
-   "unit": "What should change for each person?",
+   "unit": "Understanding at scale",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/research",
-   "unit": "How does learning become doing?",
+   "unit": "How it works",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/research",
-   "unit": "How do we know it worked?",
+   "unit": "The product",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/research",
-   "unit": "Understand",
+   "unit": "Community",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/research",
-   "unit": "Ask",
+   "unit": "The mind behind the mentor.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/research",
-   "unit": "Practise",
+   "unit": "One question started it all.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/research",
-   "unit": "Build",
+   "unit": "Responsible research is at the heart of ",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/research",
-   "unit": "Continue",
+   "unit": "Join the community",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.348,
+    "768": 0.348,
+    "1440": 0.348,
+    "1920": 0.348
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.348 768:0.348 1440:0.348 1920:0.348)"
   },
   {
    "route": "/research",
-   "unit": "Who is asking?",
+   "unit": "Work with us",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.348,
+    "768": 0.348,
+    "1440": 0.348,
+    "1920": 0.348
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.348 768:0.348 1440:0.348 1920:0.348)"
   },
   {
    "route": "/research",
-   "unit": "What happened before?",
+   "unit": "Have a research question?",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.222,
+    "768": 0.222,
+    "1440": 0.222,
+    "1920": 0.222
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/research",
-   "unit": "What are they trying to do?",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/research",
-   "unit": "How far should it go?",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/research",
-   "unit": "The words can change.Understanding shoul",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/research",
-   "unit": "What matters?",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
   },
   {
    "route": "/careers",
-   "unit": "Help us buildwhat understanding can beco",
+   "unit": "Why Visionary",
    "ratios": {
-    "360": 0.5,
-    "768": 0.5,
-    "1440": 0.5,
-    "1920": 0.5
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/careers",
-   "unit": "Make difficult ideas clearer",
+   "unit": "Meaningful problems",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.421,
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/careers",
-   "unit": "Turn knowing into ability",
+   "unit": "Early-stage impact",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.421,
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/careers",
-   "unit": "Make something from knowledge",
+   "unit": "Learning-centered",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.421,
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/careers",
-   "unit": "Keep the journey connected",
+   "unit": "Teams",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/careers",
-   "unit": "Start with the person",
+   "unit": "Engineering",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/careers",
-   "unit": "Build the real thing",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/careers",
-   "unit": "Question assumptions",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/careers",
-   "unit": "Work across disciplines",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/careers",
-   "unit": "Own the outcome",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/careers",
-   "unit": "Software and systems",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/careers",
    "unit": "Product and strategy",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/careers",
-   "unit": "Product and experience design",
+   "unit": "Design",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/careers",
-   "unit": "Learning and AI research",
+   "unit": "Learning and evaluation",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/careers",
-   "unit": "Learning and pedagogy",
+   "unit": "Teaching and curriculum",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/careers",
-   "unit": "Building the company",
+   "unit": "Company operations",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.381,
+    "768": 0.381,
+    "1440": 0.381,
+    "1920": 0.381
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.381 768:0.381 1440:0.381 1920:0.381)"
   },
   {
    "route": "/careers",
-   "unit": "Curious",
+   "unit": "How to prepare for our hiring process",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.555,
+    "768": 0.555,
+    "1440": 0.592,
+    "1920": 0.592
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0.037em (360:0.555 768:0.555 1440:0.592 1920:0.592)"
   },
   {
    "route": "/careers",
-   "unit": "Builders",
+   "unit": "Choose a listed role.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.842
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "insufficient widths"
   },
   {
    "route": "/careers",
-   "unit": "Evidence-minded",
+   "unit": "Share your work.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.842
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "insufficient widths"
   },
   {
-   "route": "/community",
-   "unit": "Learners, teachers, and parents growing ",
+   "route": "/careers",
+   "unit": "Work through the role.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.842
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "insufficient widths"
   },
   {
-   "route": "/community",
-   "unit": "One journey, many voices.",
+   "route": "/careers",
+   "unit": "Decide with context.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.842
    },
    "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "drift": "insufficient widths"
   },
   {
-   "route": "/community",
-   "unit": "Learners helping learners",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/community",
-   "unit": "Teachers supporting teachers",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/community",
-   "unit": "Ask, answer, grow",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/community",
-   "unit": "Built by everyone",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/community",
-   "unit": "Come as you are, stay as you grow.",
-   "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
-  },
-  {
-   "route": "/community",
-   "unit": "Ask your first question",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/community",
-   "unit": "Share what worked",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/community",
-   "unit": "Ready to join the community?",
+   "route": "/careers",
+   "unit": "Open roles",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
-   "route": "/contact",
-   "unit": "Get in touch.Start with what you need.",
+   "route": "/careers",
+   "unit": "No public roles listed right now.",
    "ratios": {
     "360": 0.5,
     "768": 0.5,
@@ -2426,116 +1901,188 @@
    "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
-   "route": "/contact",
-   "unit": "General questions",
+   "route": "/careers",
+   "unit": "What you learn here should stay with you",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
+   },
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
+  },
+  {
+   "route": "/community",
+   "unit": "Communities and programs for everyone le",
+   "ratios": {
+    "360": 0.583,
+    "768": 0.438,
+    "1440": 0.368,
+    "1920": 0.368
+   },
+   "ok": false,
+   "drift": "spread 0.215em (360:0.583 768:0.438 1440:0.368 1920:0.368)"
+  },
+  {
+   "route": "/community",
+   "unit": "Communities for learners",
+   "ratios": {
+    "360": 0.571,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/community",
+   "unit": "Guided by teachers",
+   "ratios": {
+    "360": 0.571,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/community",
+   "unit": "For families and organizations",
+   "ratios": {
+    "360": 0.571,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.571 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/community",
+   "unit": "More ways to engage and learn",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/community",
+   "unit": "Get updates",
+   "ratios": {
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.4,
+    "1920": 0.4
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.4 768:0.4 1440:0.4 1920:0.4)"
+  },
+  {
+   "route": "/community",
+   "unit": "Explore how it works",
+   "ratios": {
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.4,
+    "1920": 0.4
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.4 768:0.4 1440:0.4 1920:0.4)"
+  },
+  {
+   "route": "/community",
+   "unit": "Get help",
+   "ratios": {
+    "360": 0.4,
+    "768": 0.4,
+    "1440": 0.4,
+    "1920": 0.4
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.4 768:0.4 1440:0.4 1920:0.4)"
+  },
+  {
+   "route": "/community",
+   "unit": "Bring your class together.",
+   "ratios": {
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
+   },
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/contact",
-   "unit": "Schools and institutions",
+   "unit": "Guidance to get you going on Visionary",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/contact",
-   "unit": "Press and media",
+   "unit": "Get help learning with Visionary",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/contact",
-   "unit": "Safety and privacy",
+   "unit": "Your questions answered",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/contact",
-   "unit": "What happened?",
+   "unit": "Still need help?",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/contact",
-   "unit": "What are you trying to do?",
+   "unit": "Start with what you need.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/contact",
-   "unit": "Who is it for?",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/contact",
-   "unit": "Safety concern",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/contact",
-   "unit": "Privacy concern",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/contact",
-   "unit": "Careers",
+   "unit": "A question about Visionary?",
    "ratios": {
     "360": 0.444,
     "768": 0.444,
@@ -2547,7 +2094,7 @@
   },
   {
    "route": "/contact",
-   "unit": "Research",
+   "unit": "Discuss an organization",
    "ratios": {
     "360": 0.444,
     "768": 0.444,
@@ -2559,7 +2106,7 @@
   },
   {
    "route": "/contact",
-   "unit": "Everything else",
+   "unit": "Share a safety concern",
    "ratios": {
     "360": 0.444,
     "768": 0.444,
@@ -2571,643 +2118,703 @@
   },
   {
    "route": "/contact",
-   "unit": "Start with the question.We will find the",
+   "unit": "A media enquiry",
    "ratios": {
-    "360": 0.499,
-    "768": 0.499,
-    "1440": 0.499,
-    "1920": 0.499
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/contact",
+   "unit": "Talk about research",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/contact",
+   "unit": "Introduce yourself",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/contact",
+   "unit": "A formal route for privacy concerns.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/contact",
+   "unit": "Md Shahid Ali",
+   "ratios": {
+    "360": 0.545,
+    "768": 0.545,
+    "1440": 0.545,
+    "1920": 0.545
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+  },
+  {
+   "route": "/contact",
+   "unit": "Before you send",
+   "ratios": {
+    "360": 0.6,
+    "768": 0.6,
+    "1440": 0.6,
+    "1920": 0.6
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+  },
+  {
+   "route": "/contact",
+   "unit": "Keep sensitive details out",
+   "ratios": {
+    "360": 0.6,
+    "768": 0.6,
+    "1440": 0.6,
+    "1920": 0.6
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
   },
   {
    "route": "/partners",
-   "unit": "Bring Visionarycloser to where learning ",
+   "unit": "Better learning, together.",
    "ratios": {
-    "360": 0.417,
-    "768": 0.422,
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
+   },
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
+  },
+  {
+   "route": "/partners",
+   "unit": "What is a Visionary partnership?",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/partners",
+   "unit": "A source to grow learning capability",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
+   },
+   "ok": false,
+   "drift": "spread 0.096em (360:0.667 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Local context, real languages",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
+   },
+   "ok": false,
+   "drift": "spread 0.096em (360:0.667 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Evidence over claims",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.571,
+    "1440": 0.571,
+    "1920": 0.571
+   },
+   "ok": false,
+   "drift": "spread 0.096em (360:0.667 768:0.571 1440:0.571 1920:0.571)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Who we partner with",
+   "ratios": {
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
+   },
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Schools & systems",
+   "ratios": {
+    "360": 0.75,
+    "768": 0.75,
+    "1440": 0.75,
+    "1920": 0.75
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.75 768:0.75 1440:0.75 1920:0.75)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Technology teams",
+   "ratios": {
+    "360": 0.75,
+    "768": 0.75,
+    "1440": 0.75,
+    "1920": 0.75
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.75 768:0.75 1440:0.75 1920:0.75)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Regional & language experts",
+   "ratios": {
+    "360": 0.75,
+    "768": 0.75,
+    "1440": 0.75,
+    "1920": 0.75
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.75 768:0.75 1440:0.75 1920:0.75)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Institutions & organizations",
+   "ratios": {
+    "360": 0.75,
+    "768": 0.75,
+    "1440": 0.75,
+    "1920": 0.75
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.75 768:0.75 1440:0.75 1920:0.75)"
+  },
+  {
+   "route": "/partners",
+   "unit": "What a partnership includes",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/partners",
+   "unit": "How deep the work can go",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/partners",
+   "unit": "How a partnership begins.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/partners",
+   "unit": "Write to us",
+   "ratios": {
+    "360": 0.421,
+    "768": 0.421,
     "1440": 0.421,
     "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0.005em (360:0.417 768:0.422 1440:0.421 1920:0.421)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/partners",
-   "unit": "Bring Visionary to learners",
+   "unit": "A context call",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.421,
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/partners",
-   "unit": "Help people use it well",
+   "unit": "A scoped pilot",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.421,
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/partners",
-   "unit": "Make adoption practical",
+   "unit": "Review, then begin",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.421,
+    "768": 0.421,
+    "1440": 0.421,
+    "1920": 0.421
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
   },
   {
    "route": "/partners",
-   "unit": "Connect useful systems",
+   "unit": "Start with the support you need.",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/partners",
-   "unit": "K–12 education",
+   "unit": "Frequently asked questions",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/partners",
-   "unit": "Colleges and universities",
+   "unit": "Bring Visionary closer to your learners.",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Coaching and preparation",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Teacher communities",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Understand the need",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Plan the rollout",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Help people use it",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Learn what changed",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Create integrations",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Bring systems together",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Reach new environments",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/partners",
-   "unit": "Start local.Build for more places.",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/updates",
-   "unit": "Stay close towhat comes next.",
+   "unit": "What’s new at Visionary.",
    "ratios": {
-    "360": 0.5,
-    "768": 0.5,
-    "1440": 0.5,
-    "1920": 0.5
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/updates",
-   "unit": "Useful, not constant",
+   "unit": "One intelligence, every learner, in thei",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Product updates",
+   "unit": "Latest updates.",
    "ratios": {
-    "360": 0.25,
-    "768": 0.25,
-    "1440": 0.25,
-    "1920": 0.25
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.25 768:0.25 1440:0.25 1920:0.25)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Languages and access",
+   "unit": "The learning loop, end to end",
    "ratios": {
-    "360": 0.25,
-    "768": 0.25,
-    "1440": 0.25,
-    "1920": 0.25
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.25 768:0.25 1440:0.25 1920:0.25)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Research and learning",
+   "unit": "Three languages, one loop",
    "ratios": {
-    "360": 0.25,
-    "768": 0.25,
-    "1440": 0.25,
-    "1920": 0.25
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.25 768:0.25 1440:0.25 1920:0.25)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Community and events",
+   "unit": "Consent-scoped progress summaries",
    "ratios": {
-    "360": 0.25,
-    "768": 0.25,
-    "1440": 0.25,
-    "1920": 0.25
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.25 768:0.25 1440:0.25 1920:0.25)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "New capabilities",
+   "unit": "Insights across cohorts",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Important improvements",
+   "unit": "Class communities, moderated",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "What changed and why",
+   "unit": "What we learn, we publish",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "New ways to communicate",
+   "unit": "Teach in your language",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "New ways to participate",
+   "unit": "Safety guidance, reviewed openly",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Community conversations",
+   "unit": "Evidence over claims.",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/updates",
-   "unit": "Learning sessions",
+   "unit": "Get updates by email.",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "Share something useful.Help someone star",
+   "unit": "Share a better way to learn.",
    "ratios": {
-    "360": 0.5,
-    "768": 0.5,
-    "1440": 0.5,
-    "1920": 0.5
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/referral",
-   "unit": "Tell someone",
+   "unit": "How it works.",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "They begin",
+   "unit": "Share the link",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "You may benefit",
+   "unit": "Your friend explores",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "1. Get your referral link",
+   "unit": "Learning begins",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "2. Share it",
+   "unit": "Start from what they need.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "3. They start with Visionary",
+   "unit": "Students and families",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "4. The referral is evaluated",
+   "unit": "Teachers",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "Share how you learn",
+   "unit": "Organizations",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "Help another learner start",
+   "unit": "Copy the standard sign-up link.",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "Share what is genuinely useful",
+   "unit": "No points. No tracking. Just a good tool",
    "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/referral",
-   "unit": "Create something useful",
+   "unit": "Frequently asked questions.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/referral",
-   "unit": "Help people discover it",
+   "unit": "Not sharing yet? Keep growing with us.",
    "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/referral",
-   "unit": "Let the product handle attribution",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/referral",
-   "unit": "Send it to someone",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/referral",
-   "unit": "Share with a community",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/referral",
-   "unit": "Share publicly",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "Safe to grow with.",
+   "unit": "Safe by design,for every learner.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/safety",
-   "unit": "Protection is the default, not a setting",
+   "unit": "Safety that fits the learner.",
    "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "Age-appropriate answers",
+   "unit": "On from the first question.",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "Protected by default",
+   "unit": "Your memory is yours.",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.571,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "ok": false,
+   "drift": "spread 0.127em (360:0.571 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "You can flag anything",
+   "unit": "Set boundaries that are right for your f",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/safety",
-   "unit": "Built into every interaction. [eyebrow]",
+   "unit": "Consent-scoped progress summaries",
    "ratios": {
     "360": 0.444,
     "768": 0.444,
@@ -3219,775 +2826,331 @@
   },
   {
    "route": "/safety",
-   "unit": "Family controls",
+   "unit": "Boundaries for younger learners",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "Report anything",
+   "unit": "Aggregate insights, never individual ans",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "Safe by default",
+   "unit": "Seen something wrong? Flag it.",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
   },
   {
    "route": "/safety",
-   "unit": "Reviewed guidance",
+   "unit": "One tap to flag anything",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
    "route": "/safety",
-   "unit": "Have a safety concern? We respond fast.",
+   "unit": "A human reads every report",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/safety",
+   "unit": "Reviewed in the open",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/safety",
+   "unit": "Three checks before you share anything.",
+   "ratios": {
+    "360": 0.615,
+    "768": 0.471,
+    "1440": 0.471,
+    "1920": 0.471
+   },
+   "ok": false,
+   "drift": "spread 0.144em (360:0.615 768:0.471 1440:0.471 1920:0.471)"
+  },
+  {
+   "route": "/safety",
+   "unit": "Discover more ways we keep learning safe",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "1440": 0.444,
+    "1920": 0.444
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
   },
   {
    "route": "/privacy",
-   "unit": "Your information.Your control.",
+   "unit": "Your learning is personal. Privacy shoul",
    "ratios": {
-    "360": 0.285,
-    "768": 0.277,
-    "1440": 0.292,
-    "1920": 0.292
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0.015em (360:0.285 768:0.277 1440:0.292 1920:0.292)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/privacy",
-   "unit": "We collect what we needto provide Vision",
+   "unit": "Workspace and account context",
    "ratios": {
-    "360": 0.588,
-    "768": 0.588,
-    "1440": 0.57,
-    "1920": 0.57
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0.018em (360:0.588 768:0.588 1440:0.57 1920:0.57)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Your account",
+   "unit": "Learning and content you provide",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Your learning",
+   "unit": "Device and technical details",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Your device",
+   "unit": "Your preferences",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "Your choices",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "Information should havea clear purpose. ",
-   "ratios": {
-    "360": 0.588,
-    "768": 0.588,
-    "1440": 0.57,
-    "1920": 0.57
-   },
-   "ok": true,
-   "drift": "spread 0.018em (360:0.588 768:0.588 1440:0.57 1920:0.57)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
    "unit": "Provide Visionary",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/privacy",
-   "unit": "Keep your learning connected",
+   "unit": "Keep saved work available",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/privacy",
-   "unit": "Maintain and improve the service",
+   "unit": "Maintain and improve",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/privacy",
    "unit": "Protect people and the service",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/privacy",
    "unit": "Communicate with you",
    "ratios": {
-    "360": 0.364,
-    "768": 0.364,
-    "1440": 0.364,
-    "1920": 0.364
+    "360": 0.333,
+    "768": 0.333,
+    "1440": 0.333,
+    "1920": 0.333
    },
    "ok": true,
-   "drift": "spread 0em (360:0.364 768:0.364 1440:0.364 1920:0.364)"
+   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
   },
   {
    "route": "/privacy",
-   "unit": "Your informationshouldn't travelwithout ",
+   "unit": "Review",
    "ratios": {
-    "360": 0.352,
-    "768": 0.37,
-    "1440": 0.387,
-    "1920": 0.387
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0.035em (360:0.352 768:0.37 1440:0.387 1920:0.387)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "It depends on the relationship. [eyebrow",
+   "unit": "Adjust",
    "ratios": {
-    "360": 0.174,
-    "768": 0.174,
-    "1440": 0.174,
-    "1920": 0.174
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.174 768:0.174 1440:0.174 1920:0.174)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "Know what you can dowith your informatio",
-   "ratios": {
-    "360": 0.352,
-    "768": 0.37,
-    "1440": 0.387,
-    "1920": 0.387
-   },
-   "ok": true,
-   "drift": "spread 0.035em (360:0.352 768:0.37 1440:0.387 1920:0.387)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "View",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "Manage",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
    "unit": "Export",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Delete",
+   "unit": "Request removal",
    "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Privacy needssecurity behind it.",
+   "unit": "Access or correction",
    "ratios": {
-    "360": 0.588,
-    "768": 0.579,
-    "1440": 0.323,
-    "1920": 0.323
-   },
-   "ok": false,
-   "drift": "spread 0.265em (360:0.588 768:0.579 1440:0.323 1920:0.323)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "Keep what you need.Remove what you don't",
-   "ratios": {
-    "360": 0.352,
-    "768": 0.37,
-    "1440": 0.399,
-    "1920": 0.399
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0.047em (360:0.352 768:0.37 1440:0.399 1920:0.399)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Purpose matters. [eyebrow]",
+   "unit": "Deletion",
    "ratios": {
-    "360": 0.19,
-    "768": 0.19,
-    "1440": 0.19,
-    "1920": 0.19
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.19 768:0.19 1440:0.19 1920:0.19)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/privacy",
-   "unit": "Extra care for younger learners.",
+   "unit": "Records on this device",
    "ratios": {
-    "360": 0.571,
-    "768": 0.571,
-    "1440": 0.364,
-    "1920": 0.364
-   },
-   "ok": false,
-   "drift": "spread 0.207em (360:0.571 768:0.571 1440:0.364 1920:0.364)"
-  },
-  {
-   "route": "/privacy",
-   "unit": "Privacy,clearly explained. [eyebrow]",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
   },
   {
    "route": "/terms",
-   "unit": "Using Visionary.Here is what you are agr",
+   "unit": "Clear rules, written to be understood.",
    "ratios": {
-    "360": 0.421,
-    "768": 0.421,
-    "1440": 0.421,
-    "1920": 0.421
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
-  },
-  {
-   "route": "/terms",
-   "unit": "Clear rules.Better understanding.",
-   "ratios": {
-    "360": 0.499,
-    "768": 0.499,
-    "1440": 0.499,
-    "1920": 0.499
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/security",
-   "unit": "What you trust Visionary with,we work to",
+   "unit": "Secure by design, protected end to end.",
    "ratios": {
-    "360": 0.421,
-    "768": 0.421,
-    "1440": 0.421,
-    "1920": 0.421
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
    },
-   "ok": true,
-   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
-  },
-  {
-   "route": "/security",
-   "unit": "Protect",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/security",
-   "unit": "Control",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/security",
-   "unit": "Explain",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
   },
   {
    "route": "/security",
    "unit": "Who can access",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/security",
-   "unit": "What they can access",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/security",
-   "unit": "Understand your data",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/security",
-   "unit": "Protect your account",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/security",
-   "unit": "Protect information",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/security",
-   "unit": "Limit access",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/security",
-   "unit": "Respond to problems",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/security",
-   "unit": "Be clear about what we know",
-   "ratios": {
-    "360": 0.471,
-    "768": 0.471,
-    "1440": 0.471,
-    "1920": 0.471
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.471 768:0.471 1440:0.471 1920:0.471)"
-  },
-  {
-   "route": "/security",
-   "unit": "Your knowledge should move forward.Your ",
-   "ratios": {
-    "360": 0.499,
-    "768": 0.499,
-    "1440": 0.499,
-    "1920": 0.499
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Learn your way.Use Visionary your way.",
-   "ratios": {
-    "360": 0.421,
-    "768": 0.421,
-    "1440": 0.421,
-    "1920": 0.421
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.421 768:0.421 1440:0.421 1920:0.421)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Read and view",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Listen and follow",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Use your voice",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Use your controls",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Ask naturally",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Keep the conversation going",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Hear information",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Use the mode that works",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "In the browser",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "On smaller screens",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "At your desk",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Build with people, not assumptions.",
-   "ratios": {
-    "360": 0.632,
-    "768": 0.632,
-    "1440": 0.632,
-    "1920": 0.632
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.632 768:0.632 1440:0.632 1920:0.632)"
-  },
-  {
-   "route": "/accessibility",
-   "unit": "Understanding should havemore than one w",
-   "ratios": {
-    "360": 0.499,
-    "768": 0.499,
-    "1440": 0.499,
-    "1920": 0.499
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.499 768:0.499 1440:0.499 1920:0.499)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "Only what's needed.",
-   "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "Essential only, nothing extra.",
-   "ratios": {
-    "360": 0.333,
-    "768": 0.333,
-    "1440": 0.333,
-    "1920": 0.333
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.333 768:0.333 1440:0.333 1920:0.333)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "Essential cookies",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "No advertising cookies",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "Analytics with consent",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "You control them",
-   "ratios": {
-    "360": 0.6,
-    "768": 0.6,
-    "1440": 0.6,
-    "1920": 0.6
-   },
-   "ok": true,
-   "drift": "spread 0em (360:0.6 768:0.6 1440:0.6 1920:0.6)"
-  },
-  {
-   "route": "/cookies",
-   "unit": "What each cookie does. [eyebrow]",
    "ratios": {
     "360": 0.444,
     "768": 0.444,
@@ -3998,52 +3161,496 @@
    "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
-   "route": "/cookies",
-   "unit": "Session cookies.",
+   "route": "/security",
+   "unit": "What they can access",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
-    "1440": 0.545,
-    "1920": 0.545
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
-   "route": "/cookies",
-   "unit": "Preference cookies.",
+   "route": "/security",
+   "unit": "Understand your data",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
-    "1440": 0.545,
-    "1920": 0.545
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
-   "route": "/cookies",
-   "unit": "Analytics (optional).",
+   "route": "/security",
+   "unit": "Protect your account",
    "ratios": {
-    "360": 0.545,
-    "768": 0.545,
-    "1440": 0.545,
-    "1920": 0.545
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
    },
    "ok": true,
-   "drift": "spread 0em (360:0.545 768:0.545 1440:0.545 1920:0.545)"
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
   },
   {
-   "route": "/cookies",
-   "unit": "Questions about cookies?",
+   "route": "/security",
+   "unit": "Protect information",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/security",
+   "unit": "Limit access",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/security",
+   "unit": "Respond to problems",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/security",
+   "unit": "Be clear about what we know",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/security",
+   "unit": "Sign in with your Sync Encrypted ID",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/security",
+   "unit": "Your learning follows you",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/security",
+   "unit": "You see every device",
+   "ratios": {
+    "360": 0.444,
+    "768": 0.444,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.444 768:0.444 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Help every learner learn how they learn ",
+   "ratios": {
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
+   },
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Make information easier to read.",
    "ratios": {
     "360": 0.667,
     "768": 0.667,
-    "1440": 0.667,
-    "1920": 0.667
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Clear structure",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
    },
    "ok": true,
-   "drift": "spread 0em (360:0.667 768:0.667 1440:0.667 1920:0.667)"
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Readable contrast",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Zoom & text scaling",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Reduced motion",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Use your voice or your ears.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Ask with your voice",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Hear information",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Keep the conversation going",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Availability, honestly",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Operated the way you already do.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Keyboard navigation",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Visible focus",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Usable touch targets",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Your device's controls",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "The same idea, more than one way in.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Three languages today",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Plain language",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Human-reviewed answers",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Choice of mode",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "One person. Every device. Anywhere.",
+   "ratios": {
+    "360": 0.833,
+    "768": 0.833,
+    "1440": 0.556,
+    "1920": 0.556
+   },
+   "ok": false,
+   "drift": "spread 0.277em (360:0.833 768:0.833 1440:0.556 1920:0.556)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Start at your own pace.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/accessibility",
+   "unit": "Our commitment.",
+   "ratios": {
+    "360": 0.667,
+    "768": 0.667,
+    "1440": 0.444,
+    "1920": 0.444
+   },
+   "ok": false,
+   "drift": "spread 0.223em (360:0.667 768:0.667 1440:0.444 1920:0.444)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "How we use cookies. And how you control ",
+   "ratios": {
+    "360": 0.277,
+    "768": 0.208,
+    "1440": 0.28,
+    "1920": 0.28
+   },
+   "ok": false,
+   "drift": "spread 0.072em (360:0.277 768:0.208 1440:0.28 1920:0.28)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "Essential cookies.",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "No advertising cookies.",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "Analytics with consent.",
+   "ratios": {
+    "360": 0.5,
+    "768": 0.5,
+    "1440": 0.5,
+    "1920": 0.5
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.5 768:0.5 1440:0.5 1920:0.5)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "Essential",
+   "ratios": {
+    "360": 0.222,
+    "768": 0.222,
+    "1440": 0.222,
+    "1920": 0.222
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "Preferences",
+   "ratios": {
+    "360": 0.222,
+    "768": 0.222,
+    "1440": 0.222,
+    "1920": 0.222
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
+  },
+  {
+   "route": "/cookies",
+   "unit": "Analytics",
+   "ratios": {
+    "360": 0.222,
+    "768": 0.222,
+    "1440": 0.222,
+    "1920": 0.222
+   },
+   "ok": true,
+   "drift": "spread 0em (360:0.222 768:0.222 1440:0.222 1920:0.222)"
   }
  ]
 }
