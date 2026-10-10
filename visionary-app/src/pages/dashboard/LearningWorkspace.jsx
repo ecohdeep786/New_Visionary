@@ -11,6 +11,7 @@ import WorkspaceIntro from '@/components/dashboard/WorkspaceIntro';
 import LearningSubjectShelf from '@/components/dashboard/LearningSubjectShelf';
 import {booksForOutline,catalogueSelection,learningProfileSelection} from '@/lib/learningCatalogue';
 import {learningCatalogueCopy} from '@/lib/learningCatalogueCopy';
+import {getStagePresentation} from '@/services/stagePresentation';
 import LearningRepresentation from '@/components/dashboard/LearningRepresentation';
 import LearningAttemptHistory from '@/components/dashboard/LearningAttemptHistory';
 import LearningPrerequisites from '@/components/dashboard/LearningPrerequisites';
@@ -325,6 +326,7 @@ function CurriculumLearningWorkspace({
   if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening your learning outline\u2026")}</div>;
   if (activityConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved activity changed')}</h1><p className="v-notice" role="alert">{copy('A newer version of this activity is saved. Reload it to continue with the latest language, view and recorded answers.')}</p><button className="v-button primary mt-4" onClick={() => setContentRetry(value => value + 1)}>{copy('Retry saved learning')}</button></div>;
   const professional = ctx.role === 'professional';
+  const foundational = ctx.role === 'student' && getStagePresentation(ctx).tier === 'foundational';
   const outlineBooks = booksForOutline(syllabus,bookId,chapter?.id);
   let state, saved, reviewQueue;
   try {
@@ -442,7 +444,7 @@ function CurriculumLearningWorkspace({
   <div className="flex flex-wrap gap-3"><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask a doubt \xB7 keep my place")}</Link><Link className="v-button" to="/dashboard/home">{copy("Save and return Home")}</Link></div>
   <ContentIssueReport key={`${concept.id}:${unit.locale}`} ctx={ctx} concept={concept} locale={unit.locale} />
  </div>;
-  return <div className="v-page" lang={locale}><WorkspaceIntro eyebrow={practice ? copy("Review and strengthen") : copy("Explore and understand")} title={practice ? copy("Your next practice") : copy("Your learning outline")} description={practice ? copy("Revisit what you have already checked. Your results and next step stay connected to Learn.") : professional ? copy("Connect a skill goal to concepts, practice and portfolio work.") : copy("Subjects become chapters, concepts, checks and projects\u2014with your place kept at every step.")} icon={practice ? Target : BookOpen} />{status}
+  return <div className="v-page" lang={locale}><WorkspaceIntro eyebrow={practice ? copy("Review and strengthen") : copy("Explore and understand")} title={practice ? copy("Your next practice") : foundational ? catalogueCopy('Let’s learn') : copy("Your learning outline")} description={practice ? copy("Revisit what you have already checked. Your results and next step stay connected to Learn.") : professional ? copy("Connect a skill goal to concepts, practice and portfolio work.") : foundational ? catalogueCopy('Pick a subject, then choose a book.') : copy("Subjects become chapters, concepts, checks and projects\u2014with your place kept at every step.")} icon={practice ? Target : BookOpen} />{status}
   {classContext && <div className="v-notice flex flex-wrap items-center justify-between gap-3"><div><p className="font-medium">{copy('Learning alongside {name}', {
             name: classContext.name
           })}</p><p className="v-muted mt-1 hidden sm:block">{copy("This outline uses your class subject. Assignments and teacher feedback remain in Classes.")}</p></div><Link className="v-button" to={`/dashboard/classes?class=${encodeURIComponent(classContext.id)}`}>{copy("Classwork")}</Link></div>}
@@ -475,17 +477,6 @@ function CurriculumLearningWorkspace({
           });
         })}>{u.stage === 'completed' ? copy("Start review") : u.stage === 'practice' && !u.answer ? copy("Resume practice") : copy('Practice')}</button></div>) : <WorkspaceEmptyState illustration="practice" heading="h3" title={copy("Start in Learn")} description={copy("Finish a comprehension check in Learn first. No weakness is inferred from an empty history.")}><Link className="v-button primary" to="/dashboard/learn">{copy("Start in Learn")}<ArrowRight size={16} /></Link></WorkspaceEmptyState>}</section>}
   {!practice && !fromClassId && <LearningSubjectShelf ctx={ctx} locale={locale} selection={selection} busy={busy} professional={professional} onSelect={openOutline}/>}
-  {!practice && <details open={!syllabus} className="v-card v-outline-selector"><summary className="cursor-pointer font-medium">{professional ? copy("Choose a capability") : copy("Choose a subject")}</summary><form className="mt-5 grid gap-4" onSubmit={e => {
-        e.preventDefault();
-        openOutline(selection);
-      }}><label className="max-w-xl text-sm">{professional ? copy("Skill or capability (optional)") : copy("Subject (optional)")}<input className="v-field mt-2" maxLength={100} placeholder={professional ? copy("For example, data interpretation") : copy("For example, mathematics")} value={selection.subject} onChange={e => setSelection({
-            ...selection,
-            subject: e.target.value
-          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
-                ...selection,
-                [key]: e.target.value
-              })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form><p className="v-muted mt-4">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p></details>}
-  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try a multi-book sample')}<ArrowRight size={16} aria-hidden="true"/></button>}
   {!practice && syllabus && <><section className="v-outline-summary" aria-label={copy("Subject chapters")}>
     <div className="v-outline-summary-copy"><h2 className="text-xl font-medium">{syllabus.subject}</h2>
     {(syllabus.board || syllabus.classLevel) && <p className="v-outline-context">{[syllabus.board,syllabus.classLevel].filter(Boolean).join(' · ')}</p>}
@@ -547,6 +538,19 @@ function CurriculumLearningWorkspace({
    </section>}
    </div></>}
   </>}
+  <div className="v-catalogue-controls">
+  {!practice && <details open={!syllabus} className="v-outline-selector"><summary className="cursor-pointer font-medium">{professional ? copy("Choose a capability") : copy("Choose a subject")}</summary><form className="mt-5 grid gap-4" onSubmit={e => {
+        e.preventDefault();
+        openOutline(selection);
+      }}><label className="max-w-xl text-sm">{professional ? copy("Skill or capability (optional)") : copy("Subject (optional)")}<input className="v-field mt-2" maxLength={100} placeholder={professional ? copy("For example, data interpretation") : copy("For example, mathematics")} value={selection.subject} onChange={e => setSelection({
+            ...selection,
+            subject: e.target.value
+          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
+                ...selection,
+                [key]: e.target.value
+              })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form><p className="v-muted mt-4">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p></details>}
+  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try a multi-book sample')}<ArrowRight size={16} aria-hidden="true"/></button>}
+  </div>
   <Link className="v-button self-start" to={practice ? '/dashboard/practice?legacy=1' : '/dashboard/learn?legacy=1'}>{copy("Open previous saved topics and examples")}</Link>
  </div>;
 }

@@ -45,7 +45,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .workspace-shell #main :is(a,button)[class~="rounded-full"] {min-height: 44px;border-radius: var(--v-radius-control);font-size: 14px;line-height: 1.45}
 .workspace-shell #main :is(input,select,textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]) {border-radius: var(--v-radius-control);min-height: 46px;line-height: 1.5}
 .workspace-shell #main :is(button,a)[class~="p-2"]:has(>svg):not(:has(>span)) {min-width: 44px;min-height: 44px}
-.guide-canvas .v-page {padding: 24px 0;gap: 24px}
+.guide-canvas .v-page {padding: 24px 0;gap: 24px;margin: 0}
 .guide-canvas .v-title {font-size: 28px}
 .v-muted {color: var(--v-muted);font-size: 14px;line-height: 1.65}
 .v-page :is(h2,h3) {text-wrap: balance;overflow-wrap: anywhere}
@@ -89,7 +89,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-home-priority-label::before {display: none}
 .v-home-priority h2 {font-size: clamp(23px,2vw,28px);line-height: 1.3;letter-spacing: -.02em}
 .v-home-priority-art {width: 168px;height: 168px}
-.v-home-reason summary {min-height: 40px;font-size: 13px}
+.v-home-reason summary {min-height: 44px;font-size: 13px}
 .v-home-reason p {font-size: 13px;max-width: 66ch}
 .v-home-module {padding-top: 24px;border-color: var(--v-border)}
 .v-home-module h2 {margin-bottom: 16px;letter-spacing: -.015em}
@@ -103,8 +103,8 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-empty-actions {display: flex;align-items: center;justify-content: center;flex-wrap: wrap;gap: 12px;margin-top: 8px}
 .v-class-sections {gap: 8px;border-color: var(--v-border)}
 .v-class-sections button {position: relative;border: 0!important;border-radius: 10px 10px 0 0;min-height: 48px;color: var(--v-muted);background: transparent}
-.v-class-sections button[aria-selected="true"] {color: var(--v-action);background: #f5f8ff}
-.v-class-sections button[aria-selected="true"]::after {content: '';position: absolute;height: 3px;bottom: 0;left: 16px;right: 16px;border-radius: 3px 3px 0 0;background: var(--v-action)}
+.v-class-sections button:is([aria-selected="true"],[aria-pressed="true"]) {color: var(--v-action);background: #f5f8ff}
+.v-class-sections button:is([aria-selected="true"],[aria-pressed="true"])::after {content: '';position: absolute;height: 3px;bottom: 0;left: 16px;right: 16px;border-radius: 3px 3px 0 0;background: var(--v-action)}
 .v-class-sections button:hover {background: #f7f8fa}
 .v-class-code,.v-class-form {border-color: var(--v-border);border-radius: 16px}
 .v-person-avatar {background: #edf1f7;color: #57657c}
@@ -397,6 +397,29 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-catalogue-trail>span:last-child {overflow-wrap:anywhere}
 @media(max-width:600px) {.v-book-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.v-book-card {padding:.875rem}.v-book-cover {min-height:88px}}
 @media(max-width:360px) {.v-book-grid {grid-template-columns:1fr}}
+.v-catalogue-controls {display:flex;align-items:flex-start;flex-wrap:wrap;gap:12px;border-top:1px solid var(--v-border);padding-top:16px}
+.v-catalogue-controls:empty {display:none}
+.v-catalogue-controls .v-outline-selector {flex:1;min-width:min(100%,240px);border:0;padding:0;background:transparent}
+.v-catalogue-controls .v-outline-selector>summary {display:flex;align-items:center;gap:8px;width:fit-content;min-height:44px;color:var(--v-action);font-size:14px;list-style:none}
+.v-catalogue-controls .v-outline-selector>summary::before {content:'+';font-size:20px;font-weight:400}
+.v-catalogue-controls .v-outline-selector[open]>summary::before {content:'−'}
+.v-catalogue-controls .v-outline-selector[open] {flex-basis:100%}
+.v-catalogue-controls .v-outline-selector form {max-width:680px;padding:20px;border:1px solid var(--v-border);border-radius:var(--v-radius-panel)}
+.v-catalogue-controls .v-outline-selector>p {max-width:65ch;font-size:13px}
+.v-home-task-options {font-size:13px;color:var(--v-muted)}
+.v-home-task-options>summary {min-height:44px}
+.v-home-task-options[open]>summary {margin-bottom:8px}
+.v-home-plan-actions .v-home-defer {background:transparent;border-color:transparent;color:var(--v-muted)}
+.v-action-link {display:inline-flex;align-items:center;gap:8px;min-height:44px;padding-block:10px;color:var(--v-action);font-size:14px;line-height:1.5}
+.workspace-bottom-more[data-active="true"] {background:var(--v-soft);color:var(--v-action);font-weight:500}
+.workspace-shell.stage-foundational :is(.v-button,.v-field) {min-height:52px;font-size:16px}
+.workspace-shell.stage-foundational .v-subject-card {min-height:104px;font-size:17px}
+.workspace-shell.stage-foundational .v-book-card {font-size:17px;gap:16px;padding:20px}
+.workspace-shell.stage-foundational .v-chapter-row {min-height:88px}
+.workspace-shell.stage-foundational .workspace-bottom-nav {min-height:76px}
+.workspace-shell.stage-foundational .workspace-bottom-nav> :is(a,button) {min-height:60px;min-width:60px;font-size:14px;gap:6px}
+.workspace-shell.stage-foundational .workspace-bottom-nav svg {width:24px;height:24px}
+@media(max-width:600px) {.v-catalogue-controls .v-outline-selector form {padding:18px}.workspace-shell.stage-foundational .v-book-grid {grid-template-columns:1fr}.workspace-shell.stage-foundational .v-book-card {grid-template-columns:72px minmax(0,1fr);align-items:center;gap:8px 16px}.workspace-shell.stage-foundational .v-book-cover {grid-row:span 3;min-height:92px}.workspace-shell.stage-foundational .v-book-card>svg {grid-column:2}}
 @media(prefers-reduced-motion:reduce) {
   .visionary-workspace *,body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) * {animation: none!important;transition: none!important}
 }

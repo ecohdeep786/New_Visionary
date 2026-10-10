@@ -59,7 +59,7 @@ export default function TeacherUpskillCard({
         <p className="text-base font-medium text-[#121317]"> {copy(skill.skill)} </p>
         <p className="text-sm text-[#5f6368] mt-1 leading-relaxed"> {copy(skill.action)} </p>
       </div>
-      <Link to="/dashboard/ask" className="inline-flex items-center gap-2 self-start text-sm font-medium" style={{
+      <Link to="/dashboard/ask" className="v-action-link self-start font-medium" style={{
       color: accent
     }}> {copy("Ask about teaching practice")} <ArrowRight className="w-4 h-4" />
       </Link>

@@ -10,6 +10,7 @@ import { RoutePrefetcher } from '@/lib/RoutePrefetcher'
 import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
+import { needsAssetReload } from '@/lib/assetRecovery'
 
 class AppErrorBoundary extends React.Component {
   state = { error: null, errorInfo: null }
@@ -30,6 +31,8 @@ class AppErrorBoundary extends React.Component {
 
   render() {
     if (this.state.error) {
+      const internal = window.location.pathname.startsWith('/dashboard');
+      const reloadAssets = internal && needsAssetReload(this.state.error);
       return (
         <main className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#121317]">
           <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]">
@@ -40,15 +43,15 @@ class AppErrorBoundary extends React.Component {
             </div>
             <h1 className="mt-5 text-xl font-medium tracking-tight">Something went wrong</h1>
             <p className="mt-2 text-sm text-[#5f6368] leading-relaxed">
-              Visionary encountered an unexpected state. Your session and data remain safe.
+              {internal ? reloadAssets ? 'This page needs the latest app files. Reload to reopen your workspace.' : 'This page could not open. Try again or return Home. Check your last saved work when you reopen it.' : 'Visionary encountered an unexpected state. Your session and data remain safe.'}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <button
                 type="button"
-                onClick={() => this.setState({ error: null })}
-                className="flex-1 rounded-full bg-[#4285F4] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#3367d6]"
+                onClick={() => reloadAssets ? window.location.reload() : this.setState({ error: null })}
+                className={`flex-1 rounded-full bg-[#4285F4] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#3367d6]${internal ? ' min-h-11' : ''}`}
               >
-                Try again
+                {reloadAssets ? 'Reload page' : 'Try again'}
               </button>
               <button
                 type="button"

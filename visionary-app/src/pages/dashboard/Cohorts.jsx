@@ -165,7 +165,7 @@ function CohortWorkspace({
  {isPending ? <p role="status">{t("Loading accepted members and linked classes\u2026")}</p> : error ? <p role="alert" className="v-notice v-error"><span lang="en">{error.message}</span><button className="v-button ml-3" onClick={() => refetch()}>{t("Retry")}</button></p> : <p className="v-notice">{t('{members} accepted members · {classes} explicitly linked classes.', {
         members: roster.members.length,
         classes: roster.classes.length
-      })} <Link className="underline" to="/dashboard/people">{t("Manage people")}</Link><button className="ml-3 underline" onClick={() => refetch()}>{t("Refresh roster")}</button></p>}
+      })} <Link className="v-action-link" to="/dashboard/people">{t("Manage people")}</Link><button className="v-button ml-3" onClick={() => refetch()}>{t("Refresh roster")}</button></p>}
  <label><span className="sr-only">{t("Search cohorts")}</span><input className="v-field max-w-md" value={query} onChange={e => setQuery(e.target.value)} placeholder={t("Search cohorts")} /></label>
  <section className="v-card">{rows.length ? rows.map(r => <div className="v-list-row" key={r.id}><button className="min-w-0 flex-1 text-left" onClick={() => {
           open({

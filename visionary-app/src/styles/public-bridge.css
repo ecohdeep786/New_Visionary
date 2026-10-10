@@ -69,28 +69,28 @@ main > section[data-section="02-problem"],
   padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
 }
 
-main > section[data-section="05-intelligence"],
-main > section[data-section="05-one-intelligence"] {
+main > section[data-section="05-intelligence"]:not([data-surface="light"]),
+main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
   background: var(--scene-ink, #0a0d14) !important;
   color: #f5f7fa;
 }
 
-main > section[data-section="05-intelligence"] p,
-main > section[data-section="05-intelligence"] h2,
-main > section[data-section="05-intelligence"] h3,
-main > section[data-section="05-one-intelligence"] p,
-main > section[data-section="05-one-intelligence"] h2,
-main > section[data-section="05-one-intelligence"] h3 {
+main > section[data-section="05-intelligence"]:not([data-surface="light"]) p,
+main > section[data-section="05-intelligence"]:not([data-surface="light"]) h2,
+main > section[data-section="05-intelligence"]:not([data-surface="light"]) h3,
+main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) p,
+main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) h2,
+main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) h3 {
   color: inherit !important;
 }
 
-main > section[data-section="05-intelligence"] p,
-main > section[data-section="05-one-intelligence"] p {
+main > section[data-section="05-intelligence"]:not([data-surface="light"]) p,
+main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) p {
   color: var(--scene-ink-soft, rgba(245, 247, 250, 0.72)) !important;
 }
 
-main > section[data-section="05-intelligence"] img,
-main > section[data-section="05-one-intelligence"] img {
+main > section[data-section="05-intelligence"]:not([data-surface="light"]) img,
+main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) img {
   border-color: rgba(255, 255, 255, 0.14) !important;
 }
 

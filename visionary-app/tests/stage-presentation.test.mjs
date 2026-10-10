@@ -18,6 +18,17 @@ const onboard = overrides => {
 };
 beforeEach(() => { memory.clear(); configureTeachingInterface(null); workspace.configureMock({ latency: 0, fault: 'none', now: () => new Date('2026-09-26T12:00:00Z') }); workspace.seedDemo('adult'); });
 
+test('demo category labels retain their stage without inventing curricula or rolling back a later change', () => {
+ for (const [id, expected] of [['exam','competitive'],['college','higher-education'],['professional','professional'],['employee','professional']]) {
+  const person=workspace.seedDemo(id);
+  assert.equal(stageForPerson(person),expected);
+  assert.deepEqual(person.learningContext.subjects,[]);
+ }
+ const request={personId:'demo-exam',workspaceId:'demo-exam:student',role:'student',locale:'en'};
+ workspace.updateStageProfile(request,{stage:'vocational'});
+ assert.equal(stageForPerson(workspace.seedDemo('exam')),'vocational');
+});
+
 test('onboarding decides the stage tier: class 3 is foundational, 7 developing, 10 secondary', () => {
  assert.equal(deriveStageTier(onboard({ id: 'tier-class-3', board: 'CBSE', grade_level: 'Class 3', subjects: ['Mathematics'] })), 'foundational');
  assert.equal(deriveStageTier(onboard({ id: 'tier-class-7', board: 'CBSE', grade_level: 'Class 7', subjects: ['Mathematics'] })), 'developing');

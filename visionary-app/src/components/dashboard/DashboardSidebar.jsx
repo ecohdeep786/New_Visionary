@@ -6,6 +6,8 @@ import {organizationAccess} from '@/services/workspaceService';
 import {organizationPathAllowed} from '@/services/organizationPolicy';
 import {workspaceText} from '@/lib/workspaceStrings';
 import { Ellipsis } from 'lucide-react';
+import { getStagePresentation } from '@/services/stagePresentation';
+import { presentNavigation } from '@/lib/navigationPresentation';
 
 // Google-style navigation: pill states, a neutral hover, and blue reserved for the
 // selected item. In the collapsed rail the active pill wraps only the icon, Gmail-style;
@@ -16,7 +18,9 @@ export default function DashboardSidebar({ expanded, onNavigate, onExpand }) {
   const locale=data?.preferences.interfaceLocale||'en';const t=key=>workspaceText(locale,key);
   const policy=ctx?.role==='organization'?organizationAccess(ctx):null;
   const allowed=item=>!policy||organizationPathAllowed(policy,item.to);
-  const items = navigationFor(user?.identity,locale).filter(allowed);
+  const tier = ctx ? getStagePresentation(ctx).tier : 'higher';
+  const navigation = presentNavigation(user?.identity,tier,navigationFor(user?.identity,locale),secondaryNavigation(user?.identity,locale));
+  const items = navigation.primary.filter(allowed);
   const renderItem = (item) => {
     const Icon = item.icon;
     return <NavLink key={item.to} to={item.to} onClick={onNavigate}
@@ -32,6 +36,6 @@ export default function DashboardSidebar({ expanded, onNavigate, onExpand }) {
     </NavLink>;
   };
   return <aside id="dashboard-navigation" data-expanded={expanded} className={`${expanded ? "w-60 px-3" : "w-[88px] px-2"} workspace-sidebar flex h-full shrink-0 flex-col py-3`}>
-    <nav lang={locale} aria-label={t('primaryNavigation')} className="workspace-navigation flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto py-3"><div className="workspace-nav-group">{items.map(renderItem)}</div>{expanded?<><p className="workspace-nav-section-label">{t('moreWorkspace')}</p><div className="workspace-nav-group workspace-nav-secondary">{secondaryNavigation(user?.identity,locale).filter(allowed).map(renderItem)}</div></>:<button className="workspace-nav-more" onClick={onExpand} aria-label={t('moreNavigation')}><Ellipsis aria-hidden="true" size={20}/><span>{t('more')}</span></button>}</nav>
+    <nav lang={locale} aria-label={t('primaryNavigation')} className="workspace-navigation flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto py-3"><div className="workspace-nav-group">{items.map(renderItem)}</div>{expanded?<><p className="workspace-nav-section-label">{t('moreWorkspace')}</p><div className="workspace-nav-group workspace-nav-secondary">{navigation.secondary.filter(allowed).map(renderItem)}</div></>:<button className="workspace-nav-more" onClick={onExpand} aria-label={t('moreNavigation')}><Ellipsis aria-hidden="true" size={20}/><span>{t('more')}</span></button>}</nav>
   </aside>;
 }

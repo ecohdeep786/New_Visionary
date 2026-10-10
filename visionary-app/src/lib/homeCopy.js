@@ -2,6 +2,7 @@ import { primaryWorkspaceCopy } from './primaryWorkspaceCopy.js';
 
 // Interface copy only. Authored concept names, assignments and project text stay verbatim.
 const rows = [
+  ['Change plan','योजना बदलें','পরিকল্পনা বদলান'],
   ['Open classwork','कक्षा का कार्य खोलें','ক্লাসের কাজ খুলুন'],
   ['{className}{due}. Open it to review and submit your work.','{className}{due}। कार्य देखने और जमा करने के लिए खोलें।','{className}{due}। কাজ পর্যালোচনা ও জমা দিতে খুলুন।'],
   [' · Due {date}',' · अंतिम तारीख {date}',' · শেষ তারিখ {date}'],

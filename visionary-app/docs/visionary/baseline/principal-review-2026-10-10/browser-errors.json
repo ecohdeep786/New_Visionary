@@ -1,0 +1,60 @@
+{
+  "afterRecoveredDocument": "2026-10-10T08:56:38Z",
+  "historical": [
+    {
+      "level": "error",
+      "message": "Error: useAuth must be used within an AuthProvider\n    at useAuth (http://127.0.0.1:5174/src/lib/AuthContext.jsx:141:23)\n    at ProtectedRoute (http://127.0.0.1:5174/src/components/ProtectedRoute.jsx:38:85)\n    at renderWithHooks (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:11596:26)\n    at mountIndeterminateComponent (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:14974:21)\n    at beginWork (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:15962:22)\n    at HTMLUnknownElement.callCallback2 (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:3680:22)\n    at Object.invokeGuardedCallbackDev (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:3705:24)\n    at invokeGuardedCallback (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:3739:39)\n    at beginWork$1 (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19818:15)\n    at performUnitOfWork (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19251:20)",
+      "timestamp": "2026-10-10T08:45:16.583Z",
+      "url": "http://127.0.0.1:5174/src/lib/AuthContext.jsx"
+    },
+    {
+      "level": "error",
+      "message": "Error: useAuth must be used within an AuthProvider\n    at useAuth (http://127.0.0.1:5174/src/lib/AuthContext.jsx:141:23)\n    at ProtectedRoute (http://127.0.0.1:5174/src/components/ProtectedRoute.jsx:38:85)\n    at renderWithHooks (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:11596:26)\n    at mountIndeterminateComponent (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:14974:21)\n    at beginWork (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:15962:22)\n    at HTMLUnknownElement.callCallback2 (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:3680:22)\n    at Object.invokeGuardedCallbackDev (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:3705:24)\n    at invokeGuardedCallback (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:3739:39)\n    at beginWork$1 (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19818:15)\n    at performUnitOfWork (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19251:20)",
+      "timestamp": "2026-10-10T08:45:16.583Z",
+      "url": "http://127.0.0.1:5174/src/lib/AuthContext.jsx"
+    },
+    {
+      "level": "error",
+      "message": "The above error occurred in the <ProtectedRoute> component:\n\n    at ProtectedRoute (http://127.0.0.1:5174/src/components/ProtectedRoute.jsx:32:42)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx:31:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=66bfe2d2:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx?t=1791621907050:23:32)\n    at App\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, AppErrorBoundary.",
+      "timestamp": "2026-10-10T08:45:16.861Z",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2"
+    },
+    {
+      "level": "error",
+      "message": "[Visionary Resilience Diagnostic]: Error: useAuth must be used within an AuthProvider\n    at useAuth (http://127.0.0.1:5174/src/lib/AuthContext.jsx:141:23)\n    at ProtectedRoute (http://127.0.0.1:5174/src/components/ProtectedRoute.jsx:38:85)\n    at renderWithHooks (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:11596:26)\n    at mountIndeterminateComponent (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:14974:21)\n    at beginWork (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:15962:22)\n    at beginWork$1 (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19806:22)\n    at performUnitOfWork (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19251:20)\n    at workLoopSync (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19190:13)\n    at renderRootSync (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:19169:15)\n    at recoverFromConcurrentError (http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2:18786:28) Object",
+      "timestamp": "2026-10-10T08:45:16.861Z",
+      "url": "http://127.0.0.1:5174/src/App.jsx"
+    },
+    {
+      "level": "error",
+      "message": "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:5174/ <--[HTTP]--> localhost:5173/ (server)\n  (browser) 127.0.0.1:5174/ <--[WebSocket (failing)]--> localhost:5173/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr .",
+      "timestamp": "2026-10-10T08:56:02.661Z",
+      "url": "http://127.0.0.1:5174/@vite/client"
+    },
+    {
+      "level": "error",
+      "message": "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5174/src/pages/dashboard/Learn.jsx",
+      "timestamp": "2026-10-10T08:56:24.549Z",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/chunk-QCHXOAYK.js?v=66bfe2d2"
+    },
+    {
+      "level": "error",
+      "message": "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5174/src/pages/dashboard/Learn.jsx",
+      "timestamp": "2026-10-10T08:56:24.635Z",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/chunk-QCHXOAYK.js?v=66bfe2d2"
+    },
+    {
+      "level": "error",
+      "message": "The above error occurred in one of your React components:\n\n    at Lazy\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Outlet (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7630:26)\n    at Suspense\n    at div\n    at main\n    at div\n    at div\n    at ThemeColorProvider (http://127.0.0.1:5174/src/hooks/useThemeColor.jsx:29:38)\n    at DashboardLayout (http://127.0.0.1:5174/src/components/dashboard/DashboardLayout.jsx?t=1791621025040:44:69)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Outlet (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7630:26)\n    at OnboardingGate (http://127.0.0.1:5174/src/components/OnboardingGate.jsx?t=1791621907325:22:20)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Outlet (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7630:26)\n    at ProtectedRoute (http://127.0.0.1:5174/src/components/ProtectedRoute.jsx?t=1791621907325:32:42)\n    at RenderedRoute (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Routes (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5174/src/App.jsx?t=1791622285855:31:1)\n    at Router (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7639:13)\n    at BrowserRouter (http://127.0.0.1:5174/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5174/node_modules/.vite/deps/@tanstack_react-query.js?v=66bfe2d2:26:30)\n    at AuthProvider (http://127.0.0.1:5174/src/lib/AuthContext.jsx?t=1791621907325:23:32)\n    at App\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, AppErrorBoundary.",
+      "timestamp": "2026-10-10T08:56:24.635Z",
+      "url": "http://127.0.0.1:5174/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2"
+    },
+    {
+      "level": "error",
+      "message": "[Visionary Resilience Diagnostic]: TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5174/src/pages/dashboard/Learn.jsx Object",
+      "timestamp": "2026-10-10T08:56:24.635Z",
+      "url": "http://127.0.0.1:5174/src/App.jsx?t=1791622285855"
+    }
+  ],
+  "postRecovery": []
+}

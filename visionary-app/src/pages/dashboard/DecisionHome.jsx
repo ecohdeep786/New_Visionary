@@ -56,9 +56,9 @@ export default function DecisionHome() {
         <div className="v-home-actions v-home-current-controls">
           <Link className="v-button primary" to={priority.action.path}>{priority.action.label}<ArrowRight size={18} aria-hidden="true"/></Link>
           <Link className="v-home-secondary" to={priority.alternative.path}>{priority.alternative.label}</Link>
-          {homePlan.currentStep && <button type="button" className="v-button v-home-defer" onClick={() => postponePlanStep(homePlan.currentStep.deferId)}>{currentPlanDeferralLabel(locale)}</button>}
         </div>
         <details className="v-home-reason"><summary>{copy("Why this?")}</summary><p>{priority.reason}</p><p>{priority.source}{priority.updatedAt && <> · <time dateTime={priority.updatedAt}>{new Date(priority.updatedAt).toLocaleDateString(locale)}</time></>}</p></details>
+        {homePlan.currentStep && <details className="v-home-task-options"><summary>{copy('Change plan')}</summary><button type="button" className="v-button v-home-defer" onClick={() => postponePlanStep(homePlan.currentStep.deferId)}>{currentPlanDeferralLabel(locale)}</button></details>}
       </div>
       <SpotIllustration subject={{student:"learn",teacher:"document",parent:"handshake",professional:"briefcase",organization:"community"}[ctx.role] || "compass"} className="v-home-priority-art" />
     </section>
@@ -73,8 +73,8 @@ export default function DecisionHome() {
           <div><p className="v-home-row-title" lang={row.titleLocale || undefined}>{row.title}</p><p className="v-muted">{row.detail}</p></div>
         </div>
         <div className="flex items-center gap-2 v-home-plan-actions">
-          {row.deferId && <button type="button" className="v-button v-home-defer" onClick={() => postponePlanStep(row.deferId)}>{copy("Not today")}<span className="sr-only">: {row.title}</span></button>}
           <Link className="v-button" to={row.action.path}>{row.action.label}<span className="sr-only">: {row.title}</span></Link>
+          {row.deferId && <button type="button" className="v-button v-home-defer" onClick={() => postponePlanStep(row.deferId)}>{copy("Not today")}<span className="sr-only">: {row.title}</span></button>}
         </div>
       </div>)}
     </section>)}</div>}

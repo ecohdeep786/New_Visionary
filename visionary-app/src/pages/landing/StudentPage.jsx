@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
@@ -38,13 +38,11 @@ import teachermeet from "@/assets/teacher-hero-main-2400w.webp";
 import parentmeet from "@/assets/parent-hero-main-2400w.webp";
 import promeet from "@/assets/pro-face-main-2400w.webp";
 import orgmeet from "@/assets/org-face-main-2400w.webp";
-import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useActiveStep as UseActiveStep, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
+import { useCycleIndex as UseCycleIndex, useRevealOnce as UseRevealOnce, useRevealContinuous as UseRevealContinuous, useHorizontalTrack as UseScrollTrack, useStageIndex as UseStageIndex } from "@/components/landing/system/hooks";
 import {
   StruggleChapter,
   JourneyGallery,
   JourneyModal,
-  IntelligenceCopy,
-  IntelligenceVisual,
   StageDropdown,
   ContinuityCard,
   JourneyCategoryCard,
@@ -148,7 +146,6 @@ const SLIDES = [
 
 const CYCLE_MS = 4000;
 const JOURNEY_WORD_MS = 3000;
-const INTELLIGENCE_WORD_MS = 3000;
 const KEEPS_WORD_MS = 2500;
 const QUESTION_MS = 3200;
 const CATEGORY_MS = 4200;
@@ -171,18 +168,12 @@ const JOURNEY_STAGES1 = [
   { title: "Learning on your own", copy: "Start with what you want to understand, build, or become better at, and let your learning take shape from there.", image: higherStudent, alt: "Adult learning independently at home" },
 ];
 
-const INTELLIGENCE_WORDS = ["Every step connected.", "Every question connected.", "Every idea connected.", "Every attempt connected.", "Every discovery connected."];
-
 const INTELLIGENCE_STEPS = [
-  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
-  { title: "See it.\nHear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
-  { title: "Practice what you're learning.", copy: "Visionary keeps teaching, listening, adapting, and encouraging until understanding becomes confidence." },
-  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
+  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding.", note: "Wherever learning begins, understanding comes first." },
+  { title: "See it.\nHear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next.", note: "Every lesson, explained the way it makes sense to you." },
+  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace.", note: "Practice that adapts as your questions change shape." },
+  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you.", note: "What you know becomes what you build — and what you carry forward." },
 ];
-
-/* Photography per step — the framed-photo anatomy shared with the landing
-   and the Organization page (never the window/art fallback). */
-const INTELLIGENCE_IMG = [higherStudent, secondaryStudent, competitiveStudent, vocationStudent];
 
 const KEEPS_WORDS = ["teaching", "listening", "adapting"];
 
@@ -441,62 +432,279 @@ function StudentJourneySection() {
 }
 
 /* ═══════════════════════ 05 · INTELLIGENCE ═══════════════════════ */
+/* Apple's scroll-story chapter: a still statement on the 980 spine, a pinned
+   drawer column with a numbered beat rail, and the same intelligence mark
+   transforming per beat — one artifact, four faces. The drawer copy callback
+   reaches back to the journey categories (04) so the product pays off the
+   learner just introduced. */
 
+const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index, total }) {
+  return (
+    <div key={`${index}-${step.title}`} className="hero-fade-up w-full">
+      <p className="text-[13px] font-medium uppercase tracking-[0.14em]" style={{ color: COLORS.grey }}>
+        {String(index + 1).padStart(2, "0")} · {String(total).padStart(2, "0")}
+      </p>
+      <h3 className="mt-4 font-semibold tracking-[-0.009em] leading-[1.08] text-[clamp(36px,3.6vw,48px)]" style={{ color: COLORS.ink }}>
+        {step.title}
+      </h3>
+      <p className="mt-4 font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.grey }}>
+        {step.copy}
+      </p>
+      <p className="mt-4 flex items-start gap-2 font-normal tracking-[0] leading-[21px] text-[15px]" style={{ color: COLORS.grey }}>
+        <span aria-hidden="true" className="mt-[0.55em] h-px w-4 shrink-0" style={{ backgroundColor: COLORS.blue }} />
+        {step.note}
+      </p>
+    </div>
+  );
+});
 
+/* Four scenes of ONE intelligence — the same mark evolving, in the same
+   token language (light field, thin blue rings, ink core, blue satellites).
+   Each beat recomposes the artifact so the intelligence visibly grows with
+   the scroll, the way Apple's drawers transform a single product scene. */
+const IntelligenceBeats = React.memo(function IntelligenceBeats({ index, label }) {
+  // token colors
+  const ink = "#121317", blue = "#4285F4", mist = "#dadce0", light = "#dbe7fd";
+  if (index === 0) {
+    // Understand — ideas converging on one center
+    return (
+      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+        <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
+          <circle cx="50" cy="50" r="34" fill="none" stroke={blue} strokeOpacity="0.28" strokeWidth="0.5" strokeDasharray="2 6" />
+          <circle cx="50" cy="50" r="22" fill="#ffffff" stroke={ink} strokeOpacity="0.1" strokeWidth="0.4" />
+          {[[50,6],[81,30],[81,70],[50,94],[19,70],[19,30]].map(([cx,cy],i)=>(
+            <g key={i}>
+              <line x1="50" y1="50" x2={cx} y2={cy} stroke={blue} strokeOpacity="0.35" strokeWidth="0.4" strokeDasharray="2 3" />
+              <circle cx={cx} cy={cy} r={i===0?2.1:1.5} fill={blue} fillOpacity={i===0?1:0.5} />
+            </g>
+          ))}
+          <circle cx="50" cy="50" r="3.4" fill={ink} />
+          <circle cx="50" cy="50" r="6.5" fill={blue} fillOpacity="0.18" />
+        </svg>
+      </div>
+    );
+  }
+  if (index === 1) {
+    // See / Hear / Ask — three ways to one idea
+    return (
+      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+        <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
+          <circle cx="50" cy="50" r="16" fill="#ffffff" stroke={blue} strokeOpacity="0.5" strokeWidth="0.5" />
+          <circle cx="50" cy="50" r="3" fill={ink} />
+          <circle cx="50" cy="50" r="6" fill={blue} fillOpacity="0.16" />
+          {/* three arcs at 120° */}
+          {[0,120,240].map((deg,i)=>{
+            const rad = (deg-90)*Math.PI/180;
+            const r=27, w=11;
+            return <path key={i} d={`M ${50+(r)*Math.cos(rad)} ${50+(r)*Math.sin(rad)} L ${50+(r+w)*Math.cos(rad)} ${50+(r+w)*Math.sin(rad)}`} stroke={i===1?blue:ink} strokeWidth="2" strokeLinecap="round" strokeOpacity={i===1?0.9:0.55} />;
+          })}
+          {[0,120,240].map((deg,i)=>{
+            const rad = (deg-90+20)*Math.PI/180;
+            return <circle key={i} cx={50+43*Math.cos(rad)} cy={50+43*Math.sin(rad)} r={i===0?2.2:1.4} fill={i===0?blue:ink} fillOpacity={i===0?1:0.4} />;
+          })}
+        </svg>
+      </div>
+    );
+  }
+  if (index === 2) {
+    // Practice — a progress arc building with dots marching
+    return (
+      <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+        <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
+          <circle cx="50" cy="50" r="44" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
+          {/* ~300° progress arc */}
+          <path d="M 50 8 A 42 42 0 1 1 18 76" fill="none" stroke={blue} strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.85" />
+          <path d="M 50 12 A 38 38 0 1 1 21 73" fill="none" stroke={light} strokeWidth="2.4" strokeLinecap="round" />
+          {/* marching dots along the arc */}
+          {[0,40,80,120,160,200,240,280].map((deg,i)=>{
+            const rad = (deg-90)*Math.PI/180;
+            return <circle key={i} cx={50+40*Math.cos(rad)} cy={50+40*Math.sin(rad)} r={i===7?2.2:1.4} fill={i===7?ink:blue} fillOpacity={i===7?1:0.5} />;
+          })}
+          <circle cx="50" cy="50" r="2.6" fill={ink} />
+          {/* a check spark near the end of the arc */}
+          <path d="M 78 20 l 3 4 7 -8" fill="none" stroke={blue} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+    );
+  }
+  // Build — the artifact radiates out into the work
+  return (
+    <div role="img" aria-label={label} className="relative h-full w-full overflow-hidden" style={{ backgroundColor: "#f8f9fa" }}>
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" fill="none" stroke={mist} strokeWidth="0.4" strokeDasharray="3 5" />
+        <circle cx="50" cy="50" r="32" fill="none" stroke={blue} strokeOpacity="0.22" strokeWidth="0.5" />
+        {[0,45,90,135,180,225,270,315].map((deg,i)=>{
+          const rad = (deg-90)*Math.PI/180;
+          const hyp = 32 + (i%3===0?6:0);
+          const hex = 50 + hyp*Math.cos(rad), hey = 50 + hyp*Math.sin(rad);
+          const tex = 50 + 43*Math.cos(rad), tey = 50 + 43*Math.sin(rad);
+          const isHub = i===2;
+          return (
+            <g key={i}>
+              <line x1={hex} y1={hey} x2={tex} y2={tey} stroke={isHub?ink:blue} strokeWidth={isHub?0.9:0.5} strokeOpacity={isHub?1:0.4} />
+              <circle cx={hex} cy={hey} r={isHub?1.8:1.2} fill={isHub?ink:blue} fillOpacity={isHub?1:0.55} />
+              <circle cx={tex} cy={tey} r={isHub?2.4:1.5} fill={isHub?ink:blue} fillOpacity={isHub?1:0.5} />
+            </g>
+          );
+        })}
+        <circle cx="50" cy="50" r="3" fill={ink} />
+        <circle cx="50" cy="50" r="6" fill={blue} fillOpacity="0.14" />
+      </svg>
+    </div>
+  );
+});
 
+/* Product clip per beat. Each entry is the internal product video URL for that
+   step; while a clip is unset the beat's scene art stays in the frame. */
+const INTELLIGENCE_CLIPS = [null, null, null, null];
 
+/* One sticky product frame. Every beat is stacked and cross-faded by `active`;
+   a clip plays only while its beat is active and never under reduced motion. */
+const IntelligenceFrame = React.memo(function IntelligenceFrame({ active, autoplay = true }) {
+  const reduced = UsePrefersReducedMotion();
+  const videos = useRef([]);
+  useEffect(() => {
+    videos.current.forEach((v, i) => {
+      if (!v) return;
+      if (autoplay && i === active && !reduced) v.play().catch(() => {});
+      else v.pause();
+    });
+  }, [active, autoplay, reduced]);
+  return (
+    <div className="relative h-full w-full overflow-hidden rounded-[40px] lg:rounded-[48px]" style={{ backgroundColor: "#f5f5f7" }}>
+      {INTELLIGENCE_STEPS.map((s, i) => (
+        <div
+          key={s.title}
+          aria-hidden={i !== active}
+          className="absolute inset-0 transition-opacity duration-700 ease-google"
+          style={{ opacity: i === active ? 1 : 0 }}
+        >
+          {INTELLIGENCE_CLIPS[i] ? (
+            <video
+              ref={(el) => (videos.current[i] = el)}
+              src={INTELLIGENCE_CLIPS[i]}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={s.title}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <IntelligenceBeats index={i} label={s.title} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+});
+
+/* Active beat = the one whose copy crosses the viewport centre. Computed from
+   the beat boxes so the product frame swaps exactly when its copy is centred. */
+function UseCentredStep(total) {
+  const nodes = useRef([]);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const mid = window.innerHeight / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      nodes.current.slice(0, total).forEach((n, i) => {
+        if (!n) return;
+        const r = n.getBoundingClientRect();
+        const dist = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      setActive(best);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [total]);
+  const setStepRef = useCallback(
+    (i) => (node) => {
+      nodes.current[i] = node;
+    },
+    []
+  );
+  return { active, setStepRef };
+}
 
 function StudentIntelligenceSection() {
   const { ref: headRef } = UseRevealOnce();
-  const { index: wordIndex } = UseCycleIndex(INTELLIGENCE_WORDS.length, INTELLIGENCE_WORD_MS);
-  const { active, setStepRef } = UseActiveStep(INTELLIGENCE_STEPS.length);
-  const current = INTELLIGENCE_STEPS[active];
+  const { active, setStepRef } = UseCentredStep(INTELLIGENCE_STEPS.length);
+  const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
 
   return (
-    <section ref={headRef} className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
-      <ScrollReveal className="px-6 pt-24 lg:pt-32">
-        <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>
-          The intelligence behind your learning
-        </p>
-        <h2 className="mt-3 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
-          One intelligence.{" "}
-          <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
-            {INTELLIGENCE_WORDS[wordIndex]}
-          </span>
-        </h2>
-        <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: 16 }}>
-          From the first question to the moment you can use what you've learned.
-        </p>
+    <section ref={headRef} data-section="05-intelligence" data-surface="light" className="relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+      <ScrollReveal className="px-6 pt-24 lg:pt-28">
+        {/* header — statement on the measured spine, not centered */}
+        <div className="mx-auto w-full text-center min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
+          <p className="text-[15px] font-normal" style={{ color: COLORS.grey }}>
+            The intelligence behind your learning
+          </p>
+          <h2 className="mt-2 font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+            One intelligence.
+          </h2>
+          <p className="mx-auto mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+            From the first question to the moment you can use what you've learned.
+          </p>
+        </div>
       </ScrollReveal>
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-20 lg:px-0 lg:pt-24">
+
+      <div className="mx-auto grid w-full grid-cols-1 gap-16 px-6 pb-24 pt-20 min-[1069px]:max-w-[980px] lg:grid-cols-[5fr_6fr] lg:gap-32 lg:px-0 lg:pb-16 lg:pt-16">
+        {/* desktop: beats scroll on the left, one product frame stays sticky on the right */}
+        <div className="hidden lg:block">
+          {INTELLIGENCE_STEPS.map((s, i) => (
+            <div
+              key={s.title}
+              ref={setStepRef(i)}
+              data-step={i}
+              className="flex min-h-[64vh] items-center py-[8vh]"
+            >
+              <IntelligenceDrawer step={s} index={i} total={INTELLIGENCE_STEPS.length} />
+            </div>
+          ))}
+        </div>
         <div className="hidden lg:block">
           <div className="sticky top-14 flex h-[calc(100vh-2rem)] items-center">
-            <IntelligenceCopy step={current} />
+            <div className="aspect-[15/16] w-full">
+              <IntelligenceFrame active={active} />
+            </div>
           </div>
         </div>
-        <div className="flex flex-col gap-32 lg:gap-[40vh] lg:py-[12vh]">
+
+        {/* mobile: each beat stacks its frame above its copy */}
+        <div className="flex flex-col gap-24 lg:hidden">
           {INTELLIGENCE_STEPS.map((s, i) => (
             <div key={s.title}>
-              <IntelligenceVisual step={s} index={i} setStepRef={setStepRef} image={INTELLIGENCE_IMG[i % INTELLIGENCE_IMG.length]} />
-              <div className="mt-10 lg:hidden">
-                <IntelligenceCopy step={s} />
+              <div className="mx-auto aspect-[4/3] w-full max-w-[440px] overflow-hidden rounded-[40px]">
+                <IntelligenceFrame active={i} autoplay={false} />
+              </div>
+              <div className="mt-10">
+                <IntelligenceDrawer step={s} index={i} total={INTELLIGENCE_STEPS.length} />
               </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
-  );
-}
 
-/* ═══════════════════════ 06 · CLOSING ═══════════════════════ */
-
-const StudentClosingSection = React.memo(function StudentClosingSection() {
-  const { ref } = UseRevealOnce();
-  const { index } = UseCycleIndex(KEEPS_WORDS.length, KEEPS_WORD_MS);
-  return (
-    <section ref={ref} data-section="06-closing" className="relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32px]">
-      <ScrollReveal>
+      <ScrollReveal className="px-6 pb-24 lg:pb-32">
         <p className="mx-auto max-w-[980px] text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           Visionary keeps{" "}
           <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
@@ -507,7 +715,7 @@ const StudentClosingSection = React.memo(function StudentClosingSection() {
       </ScrollReveal>
     </section>
   );
-});
+}
 
 /* ═══════════════════════ 07 · LANGUAGE ═══════════════════════ */
 /* The voice dial — the landing's canonical language chapter: six wordless
@@ -941,7 +1149,6 @@ export default function StudentPage() {
         <StudentStruggleSection />
         <StudentJourneySection />
         <StudentIntelligenceSection />
-        <StudentClosingSection />
         <StudentLanguageSection />
         <StudentContinuitySection />
         <StudentAchievementSection />

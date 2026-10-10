@@ -1,0 +1,2861 @@
+[
+  {
+    "role": "student",
+    "route": "learn",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "For example, mathematics",
+        "tag": "INPUT",
+        "width": 576
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 280
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 280
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open my outline",
+        "tag": "BUTTON",
+        "width": 169
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Try authored learning sample",
+        "tag": "BUTTON",
+        "width": 226
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Try a multi-book sample",
+        "tag": "BUTTON",
+        "width": 218
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open previous saved topics and examples",
+        "tag": "A",
+        "width": 315
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your learning outline",
+      "Your subjects",
+      "Choose a subject",
+      "Add board and class"
+    ],
+    "text": "Explore and understand\n\nYour learning outline\n\nSubjects become chapters, concepts, checks and projects—with your place kept at every step.\n\nYour subjects\n\nYour current learning context\n\nNo subjects are listed for this context yet. Add a subject below or try an authored sample.\n\nChoose a subject\nSubject (optional)\nAdd board and class\nOpen my outline\nTry authored learning sample\n\nNo subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.\n\nTry a multi-book sample\nOpen previous saved topics and examples",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "ask",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Conversation history",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New conversation",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Audio interaction for this session: on. Turn off for this session",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Return to Understand cube volume · Your position is saved",
+        "tag": "A",
+        "width": 444
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Ask in your own words…",
+        "tag": "TEXTAREA",
+        "width": 402
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Send message",
+        "tag": "BUTTON",
+        "width": 46
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "3³= 27Understand cube volumeStart exploring",
+        "tag": "BUTTON",
+        "width": 215
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "4/8 = 1/2Make sense of fractionsStart exploring",
+        "tag": "BUTTON",
+        "width": 215
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "203025Turn data into a decisionStart exploring",
+        "tag": "BUTTON",
+        "width": 215
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Continue learning",
+        "tag": "A",
+        "width": 178
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open projects",
+        "tag": "A",
+        "width": 155
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Understand",
+        "tag": "BUTTON",
+        "width": 107
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Solve with guidance",
+        "tag": "BUTTON",
+        "width": 159
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Check my attempt",
+        "tag": "BUTTON",
+        "width": 150
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Plan",
+        "tag": "BUTTON",
+        "width": 60
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Build",
+        "tag": "BUTTON",
+        "width": 64
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "A topic or goal",
+        "tag": "BUTTON",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Paste material",
+        "tag": "BUTTON",
+        "width": 122
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Outside my plan",
+        "tag": "BUTTON",
+        "width": 136
+      },
+      {
+        "disabled": false,
+        "height": 14,
+        "label": "About this preview",
+        "tag": "A",
+        "width": 94
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Learning outline",
+        "tag": "A",
+        "width": 129
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Teaching language",
+        "tag": "SELECT",
+        "width": 200
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open your project",
+        "tag": "A",
+        "width": 158
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request project guidance",
+        "tag": "BUTTON",
+        "width": 204
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Ask a doubt · keep my place",
+        "tag": "A",
+        "width": 224
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Save and return Home",
+        "tag": "A",
+        "width": 184
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "What is the problem?",
+        "tag": "SELECT",
+        "width": 404
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Save issue locally",
+        "tag": "BUTTON",
+        "width": 149
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Visionary Guide",
+      "What would you like help with?",
+      "Or try an authored example",
+      "Your mentor checked in",
+      "Intent and context",
+      "Understand cube volume",
+      "Put the idea to work",
+      "Report a content problem"
+    ],
+    "text": "Learner · Workspace view\n\nVisionary Guide\nReturn to Understand cube volume · Your position is saved\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr try an authored example\n3³\n= 27\nUnderstand cube volume\nStart exploring\n4/8 = 1/2\nMake sense of fractions\nStart exploring\n20\n30\n25\nTurn data into a decision\nStart exploring\nYour mentor checked in\n\nHere is where today starts: Understand cube volume. 1 more step follow it.\n\nFrom your saved records — not an AI assessment.\n\nContinue learning\nOpen projects\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview\n\nLearning outline\n\nAuthored sample · Not official curriculum\n\nUnderstand cube volume\n\nYour place is saved locally. Understanding is checked before guided practice and building.\n\nTeaching language\nEnglish\nहिन्दी\nবাংলা\n1\nUnderstand\n2\nCheck\n3\nPractice\n4\nBuild\n\nVisionary Guide’s teaching service is not connected. Your workspace can keep your question and learning progress locally; no model answer has been generated.\n\nPut the idea to work\n\nChoose a side length for a cube-shaped box. Explain its capacity, compare two sizes, and describe a material you could use safely.\n\nOpen your project\nRequest project guidance\nAsk a doubt · keep my place\nSave and return Home\nReport a content problem",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "practice",
+    "url": "http://127.0.0.1:5173/dashboard/practice",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Practice",
+        "tag": "BUTTON",
+        "width": 91
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open previous saved topics and examples",
+        "tag": "A",
+        "width": 315
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your next practice",
+      "Ready to revisit"
+    ],
+    "text": "Review and strengthen\n\nYour next practice\n\nRevisit what you have already checked. Your results and next step stay connected to Learn.\n\nReady to revisit\n\nUnderstand cube volume\n\nNext review Oct 16, 2026 · 2 recorded answers\n\nPractice\nOpen previous saved topics and examples",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "build",
+    "url": "http://127.0.0.1:5173/dashboard/build",
+    "controls": [],
+    "documentWidth": 1440,
+    "headings": [],
+    "text": "Opening this workspace…",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "classes",
+    "url": "http://127.0.0.1:5173/dashboard/classes",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Join class",
+        "tag": "BUTTON",
+        "width": 128
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Join with a code",
+        "tag": "BUTTON",
+        "width": 170
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your classes",
+      "No classes yet"
+    ],
+    "text": "Your classes\n\nAssignments, feedback, and class updates in one place\n\nJoin class\nNo classes yet\n\nJoin with a class code from your teacher. When you connect, assignments and feedback will appear here.\n\nJoin with a code",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "progress",
+    "url": "http://127.0.0.1:5173/dashboard/progress",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Evidence period",
+        "tag": "SELECT",
+        "width": 513
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Find an objective",
+        "tag": "INPUT",
+        "width": 513
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open original activity: Understand cube volume",
+        "tag": "A",
+        "width": 202
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open original activity: Understand cube volume",
+        "tag": "A",
+        "width": 178
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open original activity: Understand cube volume",
+        "tag": "A",
+        "width": 178
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Add a goal",
+        "tag": "BUTTON",
+        "width": 106
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your learning evidence",
+      "Evidence over time",
+      "Evidence sources and limits",
+      "Understand cube volume",
+      "Evidence timeline (2)",
+      "My learning goals"
+    ],
+    "text": "Your learning evidence\n\nReview what you checked, practised and applied, then choose your next activity.\n\nEvidence over time\nEvidence period\nLast 7 days\nLast 30 days\nAll recorded history\nFind an objective\n\nAnswer counts and the timeline use your selected period. The current evidence stage and review date use all saved evidence, under the local demo policy. Completion, self-reported confidence and saved drafts do not measure knowledge.\n\nAs of 10/10/2026, 8:24:34 AM · This workspace only · Saved on this device\n\nEvidence sources and limits\nUnderstand cube volume\n\nGuided learning objective\n\nSecure\nRecorded answers\n2/2\ncorrect\nApplication records\n0\nUnverified or unmeasured work\nNext local review\n10/16/2026\nOpen original activity\n: Understand cube volume\nEvidence timeline\n(2)\nMy learning goals\n\nSave what you want to work toward. Private notes stay in your learner workspace.\n\nAdd a goal\n\nNo goal saved yet. Start with one concrete outcome you can revisit.",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "connections",
+    "url": "http://127.0.0.1:5173/dashboard/connections",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 47,
+        "label": "person@example.com",
+        "tag": "INPUT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request connection",
+        "tag": "BUTTON",
+        "width": 190
+      },
+      {
+        "disabled": false,
+        "height": 20,
+        "label": "Join with a class code",
+        "tag": "A",
+        "width": 165
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Connections",
+      "Connect with a teacher or collaborator",
+      "Connect with a teacher or collaborator",
+      "Connected, with clear boundaries",
+      "Requests",
+      "Connected",
+      "Closed history"
+    ],
+    "text": "Connections\n\nYour personal and work relationships, each with its own permission.\n\nConnect with a teacher or collaborator\nRequests\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nConnected\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nClosed history\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nLocal preview: connections work between accounts stored in this browser. Cloud invitations, verified access rules, and cross-device sync are not active yet.",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "settings",
+    "url": "http://127.0.0.1:5173/dashboard/settings",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review current stage profile",
+        "tag": "BUTTON",
+        "width": 220
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "View stage notice on Home",
+        "tag": "A",
+        "width": 218
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Teaching language",
+        "tag": "SELECT",
+        "width": 508
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Interface language",
+        "tag": "SELECT",
+        "width": 508
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Guide appearance",
+        "tag": "SELECT",
+        "width": 320
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Reset personalization",
+        "tag": "BUTTON",
+        "width": 176
+      },
+      {
+        "disabled": false,
+        "height": 1,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1
+      },
+      {
+        "disabled": false,
+        "height": 1,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1
+      },
+      {
+        "disabled": false,
+        "height": 1,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1
+      },
+      {
+        "disabled": false,
+        "height": 1,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1
+      },
+      {
+        "disabled": false,
+        "height": 1,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1
+      },
+      {
+        "disabled": false,
+        "height": 1,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Save account accent",
+        "tag": "BUTTON",
+        "width": 196
+      }
+    ],
+    "documentWidth": 1435,
+    "headings": [
+      "Make Guide work for you",
+      "Your learning stage",
+      "Language and accessibility",
+      "What Guide remembers",
+      "Account appearance"
+    ],
+    "text": "Make Guide work for you\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nYour learning stage\n\nUpdate your personal learning profile. Board, institution and education-stage changes require confirmation. This does not change your age, consent or safety permissions.\n\nReview current stage profileView stage notice on Home\nLanguage and accessibility\nTeaching language\nEnglish\nहिन्दी\nবাংলা\nInterface language\nEnglish\nहिन्दी\nবাংলা\nGuide appearance\nVision Boy — the sky sphere\nVision Girl — the glowing bars\n\nOpen the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.\n\nTeaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.\n\nShow source-language explanation alongside teaching\nPrefer text alternatives\nUse my explicit preferences for personalization\nAudio interaction: speak with Visionary and hear replies. The Guide panel shows listening and speaking states when audio is active. Text remains available when audio is off or unavailable.\nWhat Guide remembers\nAccount appearance\n\nThis account accent applies to supported learning views. Language and Guide preferences above apply to the current workspace.\n\nChoose an account accent\nBlue\nGreen\nAmber\nRed\nPurple\nTeal\nSave account accent",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "personalization",
+    "url": "http://127.0.0.1:5173/dashboard/personalization",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review current stage profile",
+        "tag": "BUTTON",
+        "width": 220
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "View stage notice on Home",
+        "tag": "A",
+        "width": 218
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Teaching language",
+        "tag": "SELECT",
+        "width": 511
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Interface language",
+        "tag": "SELECT",
+        "width": 511
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Guide appearance",
+        "tag": "SELECT",
+        "width": 320
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Reset personalization",
+        "tag": "BUTTON",
+        "width": 176
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Make Guide work for you",
+      "Your learning stage",
+      "Language and accessibility",
+      "What Guide remembers"
+    ],
+    "text": "Make Guide work for you\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nYour learning stage\n\nUpdate your personal learning profile. Board, institution and education-stage changes require confirmation. This does not change your age, consent or safety permissions.\n\nReview current stage profileView stage notice on Home\nLanguage and accessibility\nTeaching language\nEnglish\nहिन्दी\nবাংলা\nInterface language\nEnglish\nहिन्दी\nবাংলা\nGuide appearance\nVision Boy — the sky sphere\nVision Girl — the glowing bars\n\nOpen the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.\n\nTeaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.\n\nShow source-language explanation alongside teaching\nPrefer text alternatives\nUse my explicit preferences for personalization\nAudio interaction: speak with Visionary and hear replies. The Guide panel shows listening and speaking states when audio is active. Text remains available when audio is off or unavailable.\nWhat Guide remembers",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "privacy",
+    "url": "http://127.0.0.1:5173/dashboard/privacy",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Export this workspace",
+        "tag": "BUTTON",
+        "width": 182
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review connections and requests",
+        "tag": "A",
+        "width": 258
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Clear learning memory",
+        "tag": "BUTTON",
+        "width": 186
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review local data",
+        "tag": "BUTTON",
+        "width": 150
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Privacy & consent",
+      "Sharing boundaries",
+      "Review sharing permissions",
+      "Your local learning memory",
+      "Recent retained activity (20)",
+      "What is saved on this device"
+    ],
+    "text": "Privacy & consent\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nSharing boundaries\n\nPersonal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organization access is limited to the work explicitly assigned or shared.\n\nExport this workspace\n\nExport contains this account’s local workspace records. Cloud correction, deletion, guardian verification and grievance processing require future services.\n\nReview sharing permissions\n\nConnections keeps requests, approvers, scopes, expiry and revocation together. Review the current permission before accepting a request or sharing work.\n\nReview connections and requests\n\nNo request is sent and no permission changes when you open this page. Identity and guardian verification remain future services.\n\nYour local learning memory\n\nThis contains structured activity only—not your message text. Clearing it does not delete your projects, conversations, learning evidence, or required audit events.\n\nYou practised this concept 1 time this week.\nRecent retained activity (20)\nClear learning memory\nWhat is saved on this device\n\nReview your own local work before a future account transfer. This check does not upload, merge, or remove anything.\n\nReview local data",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "notifications",
+    "url": "http://127.0.0.1:5173/dashboard/notifications",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Summary frequency",
+        "tag": "SELECT",
+        "width": 384
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Show updates",
+        "tag": "SELECT",
+        "width": 124
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Home",
+        "tag": "A",
+        "width": 117
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Notifications",
+      "Summary preference",
+      "Saved updates",
+      "You’re up to date"
+    ],
+    "text": "Notifications\n\nUpdates saved in this workspace. No email, push or scheduled delivery is connected.\n\nSummary preference\nSummary frequency\nOff\nWeekly\nDaily\nUrgent only\nSaved updates\nShow updates\nAll updates\nUnread only\nYou’re up to date\n\nRelevant updates will appear here.\n\nOpen Home",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "profile",
+    "url": "http://127.0.0.1:5173/dashboard/profile",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Display name",
+        "tag": "INPUT",
+        "width": 916
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Save profile",
+        "tag": "BUTTON",
+        "width": 113
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "New learning area",
+        "tag": "INPUT",
+        "width": 933
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Add area",
+        "tag": "BUTTON",
+        "width": 96
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Export profile edits",
+        "tag": "BUTTON",
+        "width": 161
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Connections and requests",
+        "tag": "A",
+        "width": 210
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Language and appearance settings",
+        "tag": "A",
+        "width": 267
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your profile",
+      "Account display name",
+      "Learning areas"
+    ],
+    "text": "Your profile\n\nOne account with separate workspaces and preferences.\n\nAccount display name\n\nschool-admin@visionary.test\n\nstudent workspace · Teaching language: English\n\nYour display name applies to this account. Language and learning areas belong to the active workspace.\n\nDisplay name\nSave profile\nLearning areas\n\nAdd a subject, skill or interest. This creates a personal learning-area record; reviewed curriculum content remains separate.\n\nNo personal learning areas yet.\n\nNew learning area\nAdd area\nExport profile edits\nConnections and requests\nLanguage and appearance settings",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "support",
+    "url": "http://127.0.0.1:5173/dashboard/support",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Learn",
+        "tag": "A",
+        "width": 115
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review connections",
+        "tag": "A",
+        "width": 168
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open language settings",
+        "tag": "A",
+        "width": 193
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Ask",
+        "tag": "A",
+        "width": 102
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review storage and export",
+        "tag": "A",
+        "width": 214
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Privacy",
+        "tag": "A",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review plans and usage",
+        "tag": "A",
+        "width": 194
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Help with your workspace",
+      "Start learning",
+      "Connections and access",
+      "Teaching and interface languages",
+      "Voice and text",
+      "Recover unfinished work",
+      "Stored records",
+      "Connected services"
+    ],
+    "text": "Help with your workspace\n\nChoose a next step for the active workspace. Records in this preview are saved in this browser.\n\nStart learning\n\nChoose a sourced subject, chapter and objective. Explore, ask, practise and build. A personal learning-area name does not generate curriculum.\n\nOpen Learn\nConnections and access\n\nEnrollment, active membership and accepted sharing scopes govern access. Expired or revoked permissions close access. A paid plan does not grant guardian permission.\n\nReview connections\nTeaching and interface languages\n\nSettings saves separate language choices. Supported source copies keep their own language. Navigation, Progress, learning controls and shared preferences support English, Hindi and Bengali; some other screens and service errors remain English.\n\nOpen language settings\nVoice and text\n\nStart listening explicitly in Guide and review recognized words before Send. Stop or close Guide to end input. Text stays available when device input fails or permission is denied. Device recognition quality still requires acceptance testing.\n\nOpen Ask\nRecover unfinished work\n\nReopen the same workspace and browser tab for supported editor drafts. If saving fails, keep the page open, export edits and retry. Review a newer saved version before replacing it. Local recovery is not cloud backup.\n\nReview storage and export\nStored records\n\nThis browser stores the preview records. Clearing browser data can remove them. Privacy provides exports and supporting-record ownership review; this does not migrate data or certify server security.\n\nOpen Privacy\nConnected services\n\nAuthored samples and local evidence rules work here. Model inference, cloud identity and storage, cross-device sync, production speech, payments and ad delivery are not connected. Frontend behavior does not demonstrate AGI capability.\n\nReview plans and usage",
+    "width": 1440
+  },
+  {
+    "role": "student",
+    "route": "subscription",
+    "url": "http://127.0.0.1:5173/dashboard/subscription",
+    "controls": [
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Current plan",
+        "tag": "BUTTON",
+        "width": 296
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review demo plan",
+        "tag": "BUTTON",
+        "width": 296
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review demo plan",
+        "tag": "BUTTON",
+        "width": 296
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "person@visionary.test",
+        "tag": "INPUT",
+        "width": 893
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Invite member",
+        "tag": "BUTTON",
+        "width": 131
+      },
+      {
+        "disabled": false,
+        "height": 16,
+        "label": "Contact and service information",
+        "tag": "A",
+        "width": 190
+      }
+    ],
+    "documentWidth": 1435,
+    "headings": [
+      "Plans & usage",
+      "Free",
+      "Guided conversation usage",
+      "Free",
+      "Premium",
+      "Family",
+      "Family billing",
+      "Demo invoices"
+    ],
+    "text": "Plans & usage\n\nChoose how you learn and build. All billing here is simulated.\n\nCurrent account plan\n\nFree\n\nActive local preview\n\nGuided conversation usage\n\n0 guided turns today · 10-turn demo allowance . Resets at 00:00 UTC. Demo counts are not production entitlements.\n\nSaved learning, practice, projects and required classwork remain available at the limit.\n\nFree\n\n₹0\n\nStart with guided learning and saved activities.\n\nPersonal learning and projects\nClear connections and sharing\nSaved activities stay accessible\nCurrent plan\nPremium\n\n₹299/month\n\nAn ad-free experience with higher guided limits.\n\nPersonal learning and projects\nClear connections and sharing\nNo ads · Demo expanded access\nReview demo plan\nFamily\n\n₹499/month\n\nUp to six separate profiles. Billing and guardian permission stay separate.\n\nPersonal learning and projects\nClear connections and sharing\nNo ads · Demo expanded access\n\nProvisional family pricing.\n\nReview demo plan\nFamily billing\n\nShare an owned Family plan with up to five other local accounts. Accepting a billing invitation does not share reports, conversations or guardian access.\n\nFamily member email\nInvite member\n\nNo family billing invitations.\n\nDemo invoices\n\nNo invoices. This preview has no payment method.\n\nNo real checkout, renewal, tax calculation, or payment method is connected. Paid plan limits and tax treatment require confirmed service policies. Adult sponsorship is not currently served. Organization pricing is arranged separately. Contact and service information",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "home",
+    "url": "http://127.0.0.1:5173/dashboard/home",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open preparation",
+        "tag": "A",
+        "width": 180
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "View classwork",
+        "tag": "A",
+        "width": 109
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Your own growth",
+        "tag": "A",
+        "width": 150
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open classes",
+        "tag": "A",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open lesson drafts",
+        "tag": "A",
+        "width": 162
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Lesson planQuiz for class review needsTeacher coach",
+        "tag": "SELECT",
+        "width": 1099
+      },
+      {
+        "disabled": false,
+        "height": 87,
+        "label": "Describe the objective and the support you need. Avoid personal learner details.",
+        "tag": "TEXTAREA",
+        "width": 1099
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request teaching support",
+        "tag": "BUTTON",
+        "width": 206
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1099
+      },
+      {
+        "disabled": false,
+        "height": 129,
+        "label": "Write your own outline here, or review a connected service response before saving.",
+        "tag": "TEXTAREA",
+        "width": 1099
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Save preparation draft",
+        "tag": "BUTTON",
+        "width": 182
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Ask Visionary Guide",
+        "tag": "A",
+        "width": 195
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Welcome back, School.",
+      "Prepare your next lesson",
+      "Why this?",
+      "Teaching workspace",
+      "Quiz, lesson plan, and teacher coach",
+      "Need help along the way?"
+    ],
+    "text": "Teacher\n\nWelcome back, School.\n\nSharing is always scoped\n\nSaved on this device\n\nNext for you\n\nPrepare your next lesson\n\nReview the objective, explanation and checks before sharing with a class.\n\nOpen preparation\nView classwork\nWhy this?\nTeaching workspace\nYour own growth\n\nClass evidence and your own learning stay separate. Private learner doubts are not included.\n\nNo assigned class is connected. You can prepare independently or connect a class.\n\nOpen classes\nOpen lesson drafts\nQuiz, lesson plan, and teacher coach\n\nYour own growth: 0 capabilities with recorded activity. This is separate from the class summary.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "prepare",
+    "url": "http://127.0.0.1:5173/dashboard/prepare",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New lesson",
+        "tag": "BUTTON",
+        "width": 137
+      },
+      {
+        "disabled": false,
+        "height": 102,
+        "label": "Understand cube volumeEditable demo outline",
+        "tag": "BUTTON",
+        "width": 357
+      },
+      {
+        "disabled": false,
+        "height": 102,
+        "label": "Make sense of fractionsEditable demo outline",
+        "tag": "BUTTON",
+        "width": 357
+      },
+      {
+        "disabled": false,
+        "height": 102,
+        "label": "Turn data into a decisionEditable demo outline",
+        "tag": "BUTTON",
+        "width": 357
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Search saved items",
+        "tag": "INPUT",
+        "width": 418
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New lesson",
+        "tag": "BUTTON",
+        "width": 112
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Prepare a lesson",
+      "Organization preparation inbox",
+      "Start from a curated journey",
+      "Your next lesson starts here"
+    ],
+    "text": "Prepare a lesson\n\nStart with an objective. Shape the explanation, then review it before sharing.\n\nNew lesson\nOrganization preparation inbox\n\nExplicit approved copies for your active Work membership. Personal preparation stays separate. A copy creates no learner evidence or assignment.\n\nNo delivered content in this workspace. In Work, an academic administrator can share an approved revision with you.\n\nStart from a curated journey\nUnderstand cube volume\nEditable demo outline\nMake sense of fractions\nEditable demo outline\nTurn data into a decision\nEditable demo outline\nSearch saved items\nYour next lesson starts here\n\nUse a clear goal and save a first draft. You can refine it at any time.\n\nNew lesson",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "classes",
+    "url": "http://127.0.0.1:5173/dashboard/classes",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Create class",
+        "tag": "BUTTON",
+        "width": 143
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Create your first class",
+        "tag": "BUTTON",
+        "width": 214
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Another skill",
+        "tag": "BUTTON",
+        "width": 36
+      },
+      {
+        "disabled": false,
+        "height": 20,
+        "label": "Ask about teaching practice",
+        "tag": "A",
+        "width": 209
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your classes",
+      "No classes yet",
+      "Grow as a teacher"
+    ],
+    "text": "Your classes\n\nCreate a class, add students, and start teaching\n\nCreate class\nNo classes yet\n\nCreate your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.\n\nCreate your first class\nGrow as a teacher",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "learners",
+    "url": "http://127.0.0.1:5173/dashboard/learners",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Find a learner",
+        "tag": "INPUT",
+        "width": 448
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open classes",
+        "tag": "A",
+        "width": 125
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Learners",
+      "Your class connections start here"
+    ],
+    "text": "Learners\n\nClasswork evidence you can act on. Personal conversations and independent learning are not included.\n\nFind a learner\nYour class connections start here\n\nInvite learners to a class. Their submitted work appears here once they connect.\n\nOpen classes",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "insights",
+    "url": "http://127.0.0.1:5173/dashboard/insights",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Go to classes",
+        "tag": "A",
+        "width": 153
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Teaching insights",
+      "Insights start with a class"
+    ],
+    "text": "Teaching\n\nTeaching insights\n\nAn overview of your classes, connected learners, and teaching workload.\n\nYour classes\n0\nConnected students\n0\nClass assignments\n0\nInsights start with a class\n\nCreate a class and share its join code. Learner and assignment totals appear here as you teach.\n\nGo to classes",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "growth",
+    "url": "http://127.0.0.1:5173/dashboard/growth",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Add growth goal",
+        "tag": "BUTTON",
+        "width": 171
+      },
+      {
+        "disabled": false,
+        "height": 102,
+        "label": "Understand cube volumeEditable demo outline",
+        "tag": "BUTTON",
+        "width": 357
+      },
+      {
+        "disabled": false,
+        "height": 102,
+        "label": "Make sense of fractionsEditable demo outline",
+        "tag": "BUTTON",
+        "width": 357
+      },
+      {
+        "disabled": false,
+        "height": 102,
+        "label": "Turn data into a decisionEditable demo outline",
+        "tag": "BUTTON",
+        "width": 357
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Search saved items",
+        "tag": "INPUT",
+        "width": 418
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Add growth goal",
+        "tag": "BUTTON",
+        "width": 146
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Teacher Growth",
+      "Start from a curated journey",
+      "What would you like to develop?"
+    ],
+    "text": "Teacher Growth\n\nYour own learning, separate from class administration.\n\nAdd growth goal\nStart from a curated journey\nUnderstand cube volume\nEditable demo outline\nMake sense of fractions\nEditable demo outline\nTurn data into a decision\nEditable demo outline\nSearch saved items\nWhat would you like to develop?\n\nUse a clear goal and save a first draft. You can refine it at any time.\n\nAdd growth goal",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "library",
+    "url": "http://127.0.0.1:5173/dashboard/library",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New resource",
+        "tag": "BUTTON",
+        "width": 153
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Search saved items",
+        "tag": "INPUT",
+        "width": 418
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New resource",
+        "tag": "BUTTON",
+        "width": 128
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your library",
+      "Build your resource library"
+    ],
+    "text": "Your library\n\nKeep reviewed lessons and resources together.\n\nNew resource\nSearch saved items\nBuild your resource library\n\nUse a clear goal and save a first draft. You can refine it at any time.\n\nNew resource",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "build",
+    "url": "http://127.0.0.1:5173/dashboard/build",
+    "controls": [],
+    "documentWidth": 1440,
+    "headings": [],
+    "text": "Opening this workspace…",
+    "width": 1440
+  },
+  {
+    "role": "teacher",
+    "route": "ask",
+    "url": "http://127.0.0.1:5173/dashboard/ask",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Conversation history",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New conversation",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Audio interaction for this session: on. Turn off for this session",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Ask in your own words…",
+        "tag": "TEXTAREA",
+        "width": 839
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Send message",
+        "tag": "BUTTON",
+        "width": 46
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "Prepare a lesson",
+        "tag": "A",
+        "width": 284
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "Review classwork",
+        "tag": "A",
+        "width": 284
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "Explore learner evidence",
+        "tag": "A",
+        "width": 284
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open preparation",
+        "tag": "A",
+        "width": 178
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review classes",
+        "tag": "A",
+        "width": 159
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Explain an idea",
+        "tag": "BUTTON",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Guide a learner",
+        "tag": "BUTTON",
+        "width": 130
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Review teaching work",
+        "tag": "BUTTON",
+        "width": 171
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Plan a lesson",
+        "tag": "BUTTON",
+        "width": 114
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Build a resource",
+        "tag": "BUTTON",
+        "width": 134
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "A topic or goal",
+        "tag": "BUTTON",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Paste material",
+        "tag": "BUTTON",
+        "width": 122
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Outside my plan",
+        "tag": "BUTTON",
+        "width": 136
+      },
+      {
+        "disabled": false,
+        "height": 14,
+        "label": "About this preview",
+        "tag": "A",
+        "width": 94
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Visionary Guide",
+      "What would you like help with?",
+      "Or open a relevant task",
+      "Your mentor checked in",
+      "Intent and context"
+    ],
+    "text": "Teacher · Workspace view\n\nVisionary Guide\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr open a relevant task\nPrepare a lesson\nReview classwork\nExplore learner evidence\nYour mentor checked in\n\nYour classes and preparation are ready when you are. Review evidence or continue a lesson draft.\n\nFrom your saved records — not an AI assessment.\n\nOpen preparation\nReview classes\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "home",
+    "url": "http://127.0.0.1:5173/dashboard/home",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Connect with a child",
+        "tag": "A",
+        "width": 199
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review sharing boundaries",
+        "tag": "A",
+        "width": 184
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Manage child connections",
+        "tag": "A",
+        "width": 209
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Ask Visionary Guide",
+        "tag": "A",
+        "width": 195
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Welcome back, School.",
+      "Connect before viewing progress",
+      "Why this?",
+      "Your child’s week",
+      "Need help along the way?"
+    ],
+    "text": "Parent\n\nWelcome back, School.\n\nSharing is always scoped\n\nSaved on this device\n\nNext for you\n\nConnect before viewing progress\n\nRequest permission to see a child’s learning summary. Family billing does not grant access.\n\nConnect with a child\nReview sharing boundaries\nWhy this?\nYour child’s week\n\nRead-only progress shared with you. Private questions, conversations, notes, and drafts remain private.\n\nNo child currently shares a progress summary with you. A pending, expired, or revoked connection does not grant access.\n\nManage child connections\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "child",
+    "url": "http://127.0.0.1:5173/dashboard/child",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "learner@visionary.test",
+        "tag": "INPUT",
+        "width": 887
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Request sharing",
+        "tag": "BUTTON",
+        "width": 142
+      },
+      {
+        "disabled": false,
+        "height": 20,
+        "label": "Review all connection history",
+        "tag": "A",
+        "width": 1099
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your children",
+      "Request progress sharing",
+      "Connections and history",
+      "No connected learners yet."
+    ],
+    "text": "Your children\n\nA separate, permission-based connection for each learner.\n\nRequest progress sharing\n\nThe learner’s local account must accept before summaries appear. This preview does not verify guardianship. Do not enter real child information.\n\nLearner demo email\nRequest sharing\nConnections and history\n\nOnly a currently accepted progress connection opens a report.\n\nNo connected learners yet.\n\nNo connected learners yet. Personal conversations, project drafts, and billing membership are never included in progress access.\n\nReview all connection history",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "reports",
+    "url": "http://127.0.0.1:5173/dashboard/reports",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Return to children",
+        "tag": "A",
+        "width": 1099
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review connections",
+        "tag": "A",
+        "width": 168
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Their learning, in context",
+      "Connect before viewing progress"
+    ],
+    "text": "Return to children\nTheir learning, in context\n\nShared learning summaries, not private conversations. This local report is updated when you open it.\n\nConnect before viewing progress\n\nReports appear only after the appropriate sharing permission is active.\n\nReview connections",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "connections",
+    "url": "http://127.0.0.1:5173/dashboard/connections",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 47,
+        "label": "person@example.com",
+        "tag": "INPUT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request connection",
+        "tag": "BUTTON",
+        "width": 190
+      },
+      {
+        "disabled": false,
+        "height": 20,
+        "label": "Connect your child",
+        "tag": "A",
+        "width": 145
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Connections",
+      "Connect with a teacher or collaborator",
+      "Connect with a teacher or collaborator",
+      "Connected, with clear boundaries",
+      "Requests",
+      "Connected",
+      "Closed history"
+    ],
+    "text": "Connections\n\nYour personal and work relationships, each with its own permission.\n\nConnect with a teacher or collaborator\nRequests\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nConnected\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nClosed history\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nLocal preview: connections work between accounts stored in this browser. Cloud invitations, verified access rules, and cross-device sync are not active yet.",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "ask",
+    "url": "http://127.0.0.1:5173/dashboard/ask",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Conversation history",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New conversation",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Audio interaction for this session: on. Turn off for this session",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Ask in your own words…",
+        "tag": "TEXTAREA",
+        "width": 839
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Send message",
+        "tag": "BUTTON",
+        "width": 46
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "Understand my child’s week",
+        "tag": "A",
+        "width": 433
+      },
+      {
+        "disabled": false,
+        "height": 194,
+        "label": "Manage family connections",
+        "tag": "A",
+        "width": 433
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "View shared reports",
+        "tag": "A",
+        "width": 194
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Understand a report",
+        "tag": "BUTTON",
+        "width": 161
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Support this week",
+        "tag": "BUTTON",
+        "width": 147
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Review a question",
+        "tag": "BUTTON",
+        "width": 147
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Plan support",
+        "tag": "BUTTON",
+        "width": 113
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Build together",
+        "tag": "BUTTON",
+        "width": 122
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "A topic or goal",
+        "tag": "BUTTON",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Paste material",
+        "tag": "BUTTON",
+        "width": 122
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Outside my plan",
+        "tag": "BUTTON",
+        "width": 136
+      },
+      {
+        "disabled": false,
+        "height": 14,
+        "label": "About this preview",
+        "tag": "A",
+        "width": 94
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Visionary Guide",
+      "What would you like help with?",
+      "Or open a relevant task",
+      "Your mentor checked in",
+      "Intent and context"
+    ],
+    "text": "Parent · Workspace view\n\nVisionary Guide\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr open a relevant task\nUnderstand my child’s week\nManage family connections\nYour mentor checked in\n\nYou can see the week for a connected child whenever you want.\n\nFrom your saved records — not an AI assessment.\n\nView shared reports\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "notifications",
+    "url": "http://127.0.0.1:5173/dashboard/notifications",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Summary frequency",
+        "tag": "SELECT",
+        "width": 513
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Preview language",
+        "tag": "SELECT",
+        "width": 513
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Children",
+        "tag": "A",
+        "width": 133
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Family updates",
+      "Digest preferences",
+      "Sharing status",
+      "Summary preview",
+      "Sharing event history"
+    ],
+    "text": "Family updates\n\nCurrent connection status and a manual summary preview from this device. No email, push message or scheduled digest is sent.\n\nDigest preferences\nSummary frequency\nOff\nDaily\nWeekly\nUrgent only\nPreview language\nEnglish\nहिन्दी\nবাংলা\n\nThese settings are saved for this workspace. Automatic delivery needs a future notification service.\n\nSharing status\n\nLive status, not a sent alert. A report link appears only while progress sharing is active.\n\nNo child connection yet. You can request progress sharing from Children.\n\nOpen Children\nSummary preview\n\nCurrent last-7-day counts only. Private questions, answers, grades, feedback and drafts are excluded.\n\nNo active progress-sharing connection is available for a summary preview.\n\nSharing event history\n\nSaved local actions for new connections. Older imported connections may have current status without an event history.\n\nNo saved sharing actions yet.",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "privacy",
+    "url": "http://127.0.0.1:5173/dashboard/privacy",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Export this workspace",
+        "tag": "BUTTON",
+        "width": 182
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review connections and requests",
+        "tag": "A",
+        "width": 258
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Clear learning memory",
+        "tag": "BUTTON",
+        "width": 186
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review local data",
+        "tag": "BUTTON",
+        "width": 150
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Privacy & consent",
+      "Sharing boundaries",
+      "Review sharing permissions",
+      "Your local learning memory",
+      "Recent retained activity (0)",
+      "What is saved on this device"
+    ],
+    "text": "Privacy & consent\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nSharing boundaries\n\nPersonal doubts, notes and project drafts stay private. Family billing does not grant guardian access. Organization access is limited to the work explicitly assigned or shared.\n\nExport this workspace\n\nExport contains this account’s local workspace records. Cloud correction, deletion, guardian verification and grievance processing require future services.\n\nReview sharing permissions\n\nConnections keeps requests, approvers, scopes, expiry and revocation together. Review the current permission before accepting a request or sharing work.\n\nReview connections and requests\n\nNo request is sent and no permission changes when you open this page. Identity and guardian verification remain future services.\n\nYour local learning memory\n\nThis contains structured activity only—not your message text. Clearing it does not delete your projects, conversations, learning evidence, or required audit events.\n\nNo retained observations in this workspace.\n\nRecent retained activity (0)\nClear learning memory\nWhat is saved on this device\n\nReview your own local work before a future account transfer. This check does not upload, merge, or remove anything.\n\nReview local data",
+    "width": 1440
+  },
+  {
+    "role": "parent",
+    "route": "subscription",
+    "url": "http://127.0.0.1:5173/dashboard/subscription",
+    "controls": [
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Current plan",
+        "tag": "BUTTON",
+        "width": 296
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review demo plan",
+        "tag": "BUTTON",
+        "width": 296
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review demo plan",
+        "tag": "BUTTON",
+        "width": 296
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "person@visionary.test",
+        "tag": "INPUT",
+        "width": 893
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Invite member",
+        "tag": "BUTTON",
+        "width": 131
+      },
+      {
+        "disabled": false,
+        "height": 16,
+        "label": "Contact and service information",
+        "tag": "A",
+        "width": 190
+      }
+    ],
+    "documentWidth": 1435,
+    "headings": [
+      "Plans & usage",
+      "Free",
+      "Guided conversation usage",
+      "Free",
+      "Premium",
+      "Family",
+      "Family billing",
+      "Demo invoices"
+    ],
+    "text": "Plans & usage\n\nChoose how you learn and build. All billing here is simulated.\n\nCurrent account plan\n\nFree\n\nActive local preview\n\nGuided conversation usage\n\n0 guided turns today · 10-turn demo allowance . Resets at 00:00 UTC. Demo counts are not production entitlements.\n\nSaved learning, practice, projects and required classwork remain available at the limit.\n\nFree\n\n₹0\n\nStart with guided learning and saved activities.\n\nPersonal learning and projects\nClear connections and sharing\nSaved activities stay accessible\nCurrent plan\nPremium\n\n₹299/month\n\nAn ad-free experience with higher guided limits.\n\nPersonal learning and projects\nClear connections and sharing\nNo ads · Demo expanded access\nReview demo plan\nFamily\n\n₹499/month\n\nUp to six separate profiles. Billing and guardian permission stay separate.\n\nPersonal learning and projects\nClear connections and sharing\nNo ads · Demo expanded access\n\nProvisional family pricing.\n\nReview demo plan\nFamily billing\n\nShare an owned Family plan with up to five other local accounts. Accepting a billing invitation does not share reports, conversations or guardian access.\n\nFamily member email\nInvite member\n\nNo family billing invitations.\n\nDemo invoices\n\nNo invoices. This preview has no payment method.\n\nNo real checkout, renewal, tax calculation, or payment method is connected. Paid plan limits and tax treatment require confirmed service policies. Adult sponsorship is not currently served. Organization pricing is arranged separately. Contact and service information",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "home",
+    "url": "http://127.0.0.1:5173/dashboard/home",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review learning stage",
+        "tag": "A",
+        "width": 181
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Set a skill goal",
+        "tag": "A",
+        "width": 157
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Explore learning",
+        "tag": "A",
+        "width": 113
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Ask Visionary Guide",
+        "tag": "A",
+        "width": 195
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Welcome back, School.",
+      "Professional learning",
+      "Give your next skill a clear purpose",
+      "Why this?",
+      "Need help along the way?"
+    ],
+    "text": "Professional\n\nWelcome back, School.\n\nSharing is always scoped\n\nSaved on this device\nProfessional learning\n\nNext for you\n\nGive your next skill a clear purpose\n\nChoose a work problem or career goal to guide your learning.\n\nSet a skill goal\nExplore learning\nWhy this?\nLoading your authorized summary…\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nCareer suggestions use only your saved goal and recorded work. No hiring assessment or live model is connected.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "career",
+    "url": "http://127.0.0.1:5173/dashboard/career",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 59,
+        "label": "1. Set your direction",
+        "tag": "A",
+        "width": 358
+      },
+      {
+        "disabled": false,
+        "height": 59,
+        "label": "2. Build skill evidence",
+        "tag": "A",
+        "width": 358
+      },
+      {
+        "disabled": false,
+        "height": 59,
+        "label": "3. Show your work",
+        "tag": "A",
+        "width": 358
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review connections",
+        "tag": "A",
+        "width": 168
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "For example, make evidence-based decisions",
+        "tag": "INPUT",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 87,
+        "label": "Describe a work problem or outcome without confidential details.",
+        "tag": "TEXTAREA",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Not linked yet",
+        "tag": "SELECT",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Save direction",
+        "tag": "BUTTON",
+        "width": 130
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Export current edits",
+        "tag": "BUTTON",
+        "width": 167
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Explore capabilities",
+        "tag": "A",
+        "width": 187
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Load saved direction and discard edits",
+        "tag": "BUTTON",
+        "width": 286
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Explore capabilities",
+        "tag": "A",
+        "width": 187
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Build",
+        "tag": "A",
+        "width": 110
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your next capability",
+      "1. Set your direction",
+      "Latest saved direction",
+      "2. Build skill evidence",
+      "3. Show your work"
+    ],
+    "text": "Personal professional workspace\n\nYour next capability\n\nSet a purpose, practise one skill, then keep work you can explain. Saved work stays in this workspace until you explicitly share an artifact.\n\n1. Set your direction\n2. Build skill evidence\n3. Show your work\n\nYour personal professional space\n\nYour goal, evidence and projects are personal. Joining a company creates a separate workspace; it does not copy this work or grant the company access. Sharing a portfolio project requires your separate confirmation.\n\nReview connections\n1. Set your direction\n\nA target is your choice, not a prediction about your career.\n\nCapability or role target\nWhat would useful progress look like?\nConnect to a capability you started\nNot linked yet\nSave direction\nExport current edits\nExplore capabilities\nLatest saved direction\n2. Build skill evidence\n\nStart with a target or explore an authored sample. A model response is not connected yet.\n\nExplore capabilities\n3. Show your work\n\nCompleted work is application evidence, not automatic mastery or a credential.\n\nOpen Build\n\nNo project is connected to this target yet. Finish a comprehension check and practice step to start its guided project.\n\nLocal preview · No live model, hiring assessment, or cloud sync. Do not include confidential employer material.",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "learn",
+    "url": "http://127.0.0.1:5173/dashboard/learn",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "For example, data interpretation",
+        "tag": "INPUT",
+        "width": 576
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 280
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 280
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open my outline",
+        "tag": "BUTTON",
+        "width": 169
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Try authored workplace sample",
+        "tag": "BUTTON",
+        "width": 242
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open previous saved topics and examples",
+        "tag": "A",
+        "width": 315
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your learning outline",
+      "Your capabilities",
+      "Choose a capability",
+      "Add goal and level"
+    ],
+    "text": "Explore and understand\n\nYour learning outline\n\nConnect a skill goal to concepts, practice and portfolio work.\n\nYour capabilities\n\nYour current learning context\n\nNo subjects are listed for this context yet. Add a subject below or try an authored sample.\n\nChoose a capability\nSkill or capability (optional)\nAdd goal and level\nOpen my outline\nTry authored workplace sample\n\nNo capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.\n\nOpen previous saved topics and examples",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "practice",
+    "url": "http://127.0.0.1:5173/dashboard/practice",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Start in Learn",
+        "tag": "A",
+        "width": 149
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open previous saved topics and examples",
+        "tag": "A",
+        "width": 315
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your next practice",
+      "Ready to revisit",
+      "Start in Learn"
+    ],
+    "text": "Review and strengthen\n\nYour next practice\n\nRevisit what you have already checked. Your results and next step stay connected to Learn.\n\nReady to revisit\nStart in Learn\n\nFinish a comprehension check in Learn first. No weakness is inferred from an empty history.\n\nStart in Learn\nOpen previous saved topics and examples",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "build",
+    "url": "http://127.0.0.1:5173/dashboard/build",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New project",
+        "tag": "BUTTON",
+        "width": 141
+      },
+      {
+        "disabled": false,
+        "height": 18,
+        "label": "Open learning outline",
+        "tag": "A",
+        "width": 137
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Search projects",
+        "tag": "INPUT",
+        "width": 965
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Project status",
+        "tag": "SELECT",
+        "width": 122
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Build something of your own",
+      "My projects"
+    ],
+    "text": "Create and reflect\n\nBuild something of your own\n\nBring your ideas, evidence, and experiments together.\n\nNew project\n\nStart from a verified learning unit for a connected project, or make a private blank project. Open learning outline\n\nSearch projects\nall\ndraft\nin-progress\ncompleted\nMy projects\n\nYour first project starts here\n\nCreate a blank project or continue a concept in Learn. Your work stays yours.",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "progress",
+    "url": "http://127.0.0.1:5173/dashboard/progress",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Evidence period",
+        "tag": "SELECT",
+        "width": 513
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Find an objective",
+        "tag": "INPUT",
+        "width": 513
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Show all recorded history",
+        "tag": "BUTTON",
+        "width": 202
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Choose a learning activity",
+        "tag": "A",
+        "width": 232
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Your learning evidence",
+      "Evidence over time",
+      "Evidence sources and limits",
+      "Your evidence starts with an activity"
+    ],
+    "text": "Your learning evidence\n\nReview what you checked, practised and applied, then choose your next activity.\n\nEvidence over time\nEvidence period\nLast 7 days\nLast 30 days\nAll recorded history\nFind an objective\n\nAnswer counts and the timeline use your selected period. The current evidence stage and review date use all saved evidence, under the local demo policy. Completion, self-reported confidence and saved drafts do not measure knowledge.\n\nAs of 10/10/2026, 8:28:16 AM · This workspace only · Saved on this device\n\nEvidence sources and limits\nYour evidence starts with an activity\n\nAn empty report does not mean 0% knowledge. Start an activity to record evidence.\n\nShow all recorded history\nChoose a learning activity",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "classes",
+    "url": "http://127.0.0.1:5173/dashboard/classes",
+    "controls": [],
+    "documentWidth": 1440,
+    "headings": [],
+    "text": "Opening this workspace…",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "connections",
+    "url": "http://127.0.0.1:5173/dashboard/connections",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 47,
+        "label": "person@example.com",
+        "tag": "INPUT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request connection",
+        "tag": "BUTTON",
+        "width": 190
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Connections",
+      "Connect with a teacher or collaborator",
+      "Connect with a teacher or collaborator",
+      "Connected, with clear boundaries",
+      "Requests",
+      "Connected",
+      "Closed history"
+    ],
+    "text": "Connections\n\nYour personal and work relationships, each with its own permission.\n\nConnect with a teacher or collaborator\nRequests\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nConnected\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nClosed history\n\nNothing here yet. Connections are optional—your own learning continues independently.\n\nLocal preview: connections work between accounts stored in this browser. Cloud invitations, verified access rules, and cross-device sync are not active yet.",
+    "width": 1440
+  },
+  {
+    "role": "professional",
+    "route": "ask",
+    "url": "http://127.0.0.1:5173/dashboard/ask",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Conversation history",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New conversation",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Audio interaction for this session: on. Turn off for this session",
+        "tag": "BUTTON",
+        "width": 44
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Ask in your own words…",
+        "tag": "TEXTAREA",
+        "width": 839
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Send message",
+        "tag": "BUTTON",
+        "width": 46
+      },
+      {
+        "disabled": false,
+        "height": 221,
+        "label": "203025Learning activity · Demo contentTurn data into a decisionStart exploring",
+        "tag": "BUTTON",
+        "width": 284
+      },
+      {
+        "disabled": false,
+        "height": 221,
+        "label": "Plan my next career step",
+        "tag": "A",
+        "width": 284
+      },
+      {
+        "disabled": false,
+        "height": 221,
+        "label": "Open my portfolio",
+        "tag": "A",
+        "width": 284
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Open Learn",
+        "tag": "A",
+        "width": 139
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Understand",
+        "tag": "BUTTON",
+        "width": 107
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Work through a problem",
+        "tag": "BUTTON",
+        "width": 187
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Review my attempt",
+        "tag": "BUTTON",
+        "width": 154
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Plan a next step",
+        "tag": "BUTTON",
+        "width": 132
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Build",
+        "tag": "BUTTON",
+        "width": 64
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "A topic or goal",
+        "tag": "BUTTON",
+        "width": 125
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Paste material",
+        "tag": "BUTTON",
+        "width": 122
+      },
+      {
+        "disabled": false,
+        "height": 48,
+        "label": "Outside my plan",
+        "tag": "BUTTON",
+        "width": 136
+      },
+      {
+        "disabled": false,
+        "height": 14,
+        "label": "About this preview",
+        "tag": "A",
+        "width": 94
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Visionary Guide",
+      "What would you like help with?",
+      "Or open a relevant task",
+      "Your mentor checked in",
+      "Intent and context"
+    ],
+    "text": "Professional · Workspace view\n\nVisionary Guide\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr open a relevant task\n20\n30\n25\nLearning activity · Demo content\nTurn data into a decision\nStart exploring\nPlan my next career step\nOpen my portfolio\nYour mentor checked in\n\nNothing is waiting from your records yet. Ask any question, or open Learn to choose a starting point.\n\nFrom your saved records — not an AI assessment.\n\nOpen Learn\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "home",
+    "url": "http://127.0.0.1:5173/dashboard/home",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Manage people",
+        "tag": "A",
+        "width": 165
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review cohorts",
+        "tag": "A",
+        "width": 109
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Welcome back, School.",
+      "Bring your people together",
+      "Why this?"
+    ],
+    "text": "My organization\n\nWelcome back, School.\n\nOnly connected work belongs here\n\nSaved on this device\n\nNext for you\n\nBring your people together\n\nStart with invitations, then organize connected people into cohorts.\n\nManage people\nReview cohorts\nWhy this?\nLoading your authorized summary…\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "people",
+    "url": "http://127.0.0.1:5173/dashboard/people",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 47,
+        "label": "person@example.com",
+        "tag": "INPUT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Workspace role",
+        "tag": "SELECT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request connection",
+        "tag": "BUTTON",
+        "width": 190
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "People & connections",
+      "Invite someone to your organization",
+      "Invite someone to your organization",
+      "Connected, with clear boundaries",
+      "Requests",
+      "Connected",
+      "teacher@visionary.test",
+      "Local action history",
+      "school-teacher@visionary.test",
+      "Local action history",
+      "minor-cbse@visionary.test",
+      "Local action history",
+      "bengali@visionary.test",
+      "Local action history",
+      "Closed history"
+    ],
+    "text": "People & connections\n\nManage local invitations and review who accepted, declined or lost access.\n\nInvite someone to your organization\nRequests\n\nNo organization connections in this section yet.\n\nConnected\nteacher@visionary.test\n\nScope: Organization membership · teacher · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nschool-teacher@visionary.test\n\nScope: Organization membership · teacher · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nminor-cbse@visionary.test\n\nScope: Organization membership · student · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nbengali@visionary.test\n\nScope: Organization membership · student · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nClosed history\n\nNo organization connections in this section yet.\n\nLocal preview: connections work between accounts stored in this browser. Cloud invitations, verified access rules, and cross-device sync are not active yet.",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "cohorts",
+    "url": "http://127.0.0.1:5173/dashboard/cohorts",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 76,
+        "label": "Create cohort",
+        "tag": "BUTTON",
+        "width": 155
+      },
+      {
+        "disabled": false,
+        "height": 16,
+        "label": "Manage people",
+        "tag": "A",
+        "width": 92
+      },
+      {
+        "disabled": false,
+        "height": 21,
+        "label": "Refresh roster",
+        "tag": "BUTTON",
+        "width": 83
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Search cohorts",
+        "tag": "INPUT",
+        "width": 448
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Cohorts",
+      "Start with one learning group"
+    ],
+    "text": "Cohorts\n\nGive a connected group a shared purpose, without merging their personal work.\n\nCreate cohort\n\n4 accepted members · 2 explicitly linked classes. Manage peopleRefresh roster\n\nSearch cohorts\nStart with one learning group\n\nConnect people, choose a clear purpose, and link the classes that support it.",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "curriculum",
+    "url": "http://127.0.0.1:5173/dashboard/curriculum",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New curriculum template",
+        "tag": "BUTTON",
+        "width": 201
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 874
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Content state",
+        "tag": "SELECT",
+        "width": 160
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Reviewed curriculum templates",
+      "Content versions",
+      "Start with one sourced content draft.",
+      "Earlier subject drafts · unreviewed"
+    ],
+    "text": "Reviewed curriculum templates\n\nAuthor, review and retain source versions before use.\n\nNew curriculum template\n\nMap the intended learner group, source sections, objectives and prerequisite sequence in each template. Approved fixed copies reach only chosen accepted teachers; teachers review their own preparation and classroom assignment. Approval records an editorial review on this device. It does not publish a learner curriculum, generate learning activities or verify source rights. Teachers control classroom assignments.\n\nSearch content\nContent state\nall\ndraft\nsubmitted\nchanges\napproved\narchived\nContent versions\nStart with one sourced content draft.\nEarlier subject drafts · unreviewed",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "library",
+    "url": "http://127.0.0.1:5173/dashboard/library",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "New content draft",
+        "tag": "BUTTON",
+        "width": 155
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 874
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Content state",
+        "tag": "SELECT",
+        "width": 160
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Organization content",
+      "Content versions",
+      "Start with one sourced content draft."
+    ],
+    "text": "Organization content\n\nAuthor, review and retain source versions before use.\n\nNew content draft\n\nApproval records an editorial review on this device. It does not publish a learner curriculum, generate learning activities or verify source rights. Teachers control classroom assignments.\n\nSearch content\nContent state\nall\ndraft\nsubmitted\nchanges\napproved\narchived\nContent versions\nStart with one sourced content draft.",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "analytics",
+    "url": "http://127.0.0.1:5173/dashboard/analytics",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Last 7 daysLast 30 days",
+        "tag": "SELECT",
+        "width": 127
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Institution analytics",
+      "Scoped learning evidence",
+      "Class overview"
+    ],
+    "text": "Organization\n\nInstitution analytics\n\nA focused view of your institution’s roster and explicitly linked classrooms.\n\nLinked classes\n2\nConnected people\n4\nClass assignments\n2\nScoped learning evidence\n\nOnly recorded work from active learners in explicitly linked classes. Personal projects and conversations are excluded.\n\nEvidence period\nLast 7 days\nLast 30 days\n\nLast 7 days of recorded class evidence. Current linked-class denominator: 2 active enrolled learners.\n\nPeriod participation is hidden below 5 contributors.\n\nCurrent submissions awaiting review: hidden below 5 enrolled learners. This operational count is current, not filtered by the evidence period.\n\nConcept totals require at least 5 contributing learners in the selected period. Smaller groups are hidden.\n\nNo concept total is available for this period. This does not describe any learner’s ability.\n\nClass overview\nClass\tStudents\tAssignments\nSpace, shape and reasoning\t1\t1\nEveryday mathematical thinking\t1\t1",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "audit",
+    "url": "http://127.0.0.1:5173/dashboard/audit",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Period",
+        "tag": "SELECT",
+        "width": 127
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Action source",
+        "tag": "SELECT",
+        "width": 177
+      },
+      {
+        "disabled": false,
+        "height": 16,
+        "label": "People",
+        "tag": "A",
+        "width": 40
+      },
+      {
+        "disabled": false,
+        "height": 20,
+        "label": "Review people and connections",
+        "tag": "A",
+        "width": 1042
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Organization audit"
+    ],
+    "text": "Organization audit\n\nSaved membership actions and changes in this organization workspace. This history is stored on this device.\n\nPeriod\nLast 7 days\nLast 30 days\nAction source\nAll sources\nMembership\nWorkspace changes\nClasswork states\nTeacher promotions\n\n4 imported invitations have incomplete earlier history. Review their current status in People. People.\n\n0 recorded actions in the selected period and source.\n\n2 older class activities have no recorded state history. Earlier actions and actors have not been reconstructed.\n\nNo recorded actions match this period and source.\n\nReview people and connections\n\nThis local record is editable browser data. Promotion rows summarize explicitly scoped teacher actions and current notice states; they do not expose learner profiles or reconstruct earlier unscoped actions. Production audit retention and integrity require the later server implementation.",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "settings",
+    "url": "http://127.0.0.1:5173/dashboard/settings",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "SchoolCoaching organizationCompanyNonprofit organization",
+        "tag": "SELECT",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Englishहिन्दीবাংলা",
+        "tag": "SELECT",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 13,
+        "label": null,
+        "tag": "INPUT",
+        "width": 13
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review administrative permissions",
+        "tag": "A",
+        "width": 263
+      },
+      {
+        "disabled": true,
+        "height": 44,
+        "label": "Review settings changes",
+        "tag": "BUTTON",
+        "width": 197
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Export settings edits",
+        "tag": "BUTTON",
+        "width": 170
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Load latest settings and discard edits",
+        "tag": "BUTTON",
+        "width": 277
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Review audit",
+        "tag": "A",
+        "width": 121
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Organization settings",
+      "Content and distribution",
+      "Current safeguards"
+    ],
+    "text": "Organization settings\n\nSchool · Revision 0 · This device only\n\nContent and distribution\nOrganization type\nSchool\nCoaching organization\nCompany\nNonprofit organization\nDefault language for new content\nEnglish\nहिन्दी\nবাংলা\n\nSets the initial source language for a new draft. It does not translate or change existing content, reviews or learner preferences.\n\nAllow new approved content deliveries to teachers\n\nPausing blocks new delivery actions by all academic administrators. Existing fixed deliveries, teacher drafts and assignments remain available under their membership permissions.\n\nCurrent safeguards\nSource and version are required; a different author reviews content before approval.\nMinor and guardian access follows existing consent scopes. Organization settings cannot grant access to private questions or personal projects.\nLive model controls, domain verification, scheduled retention and server enforcement are not connected.\nReview administrative permissions\nReview settings changes\nExport settings edits\nLoad latest settings and discard edits\nReview audit",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "subscription",
+    "url": "http://127.0.0.1:5173/dashboard/subscription",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 46,
+        "label": null,
+        "tag": "INPUT",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 66,
+        "label": "Purpose",
+        "tag": "TEXTAREA",
+        "width": 1042
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Save seat request",
+        "tag": "BUTTON",
+        "width": 153
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "Organization seats and billing",
+      "Request seats",
+      "Request history"
+    ],
+    "text": "Organization seats and billing\n\nPlan an access request with your owner. Organization pricing and invoices are not connected.\n\nRequest seats\n\nThis saves a planning request on this device. Acknowledgement does not activate seats, grant access or create a charge.\n\nRequested seats\nPurpose\nSave seat request\nRequest history\n\nNo saved seat requests.",
+    "width": 1440
+  },
+  {
+    "role": "organization",
+    "route": "connections",
+    "url": "http://127.0.0.1:5173/dashboard/connections",
+    "controls": [
+      {
+        "disabled": false,
+        "height": 47,
+        "label": "person@example.com",
+        "tag": "INPUT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 46,
+        "label": "Workspace role",
+        "tag": "SELECT",
+        "width": 622
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Request connection",
+        "tag": "BUTTON",
+        "width": 190
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      },
+      {
+        "disabled": false,
+        "height": 44,
+        "label": "Disconnect",
+        "tag": "BUTTON",
+        "width": 105
+      }
+    ],
+    "documentWidth": 1440,
+    "headings": [
+      "People & connections",
+      "Invite someone to your organization",
+      "Invite someone to your organization",
+      "Connected, with clear boundaries",
+      "Requests",
+      "Connected",
+      "teacher@visionary.test",
+      "Local action history",
+      "school-teacher@visionary.test",
+      "Local action history",
+      "minor-cbse@visionary.test",
+      "Local action history",
+      "bengali@visionary.test",
+      "Local action history",
+      "Closed history"
+    ],
+    "text": "People & connections\n\nManage local invitations and review who accepted, declined or lost access.\n\nInvite someone to your organization\nRequests\n\nNo organization connections in this section yet.\n\nConnected\nteacher@visionary.test\n\nScope: Organization membership · teacher · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nschool-teacher@visionary.test\n\nScope: Organization membership · teacher · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nminor-cbse@visionary.test\n\nScope: Organization membership · student · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nbengali@visionary.test\n\nScope: Organization membership · student · Approval: Invited member\n\nConnected\nLocal action history\nDisconnect\nClosed history\n\nNo organization connections in this section yet.\n\nLocal preview: connections work between accounts stored in this browser. Cloud invitations, verified access rules, and cross-device sync are not active yet.",
+    "width": 1440
+  }
+]
