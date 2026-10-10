@@ -986,72 +986,72 @@ function StudentLanguageSection() {
 
 const CATEGORY_SECTION_IMG = [primaryStudent, secondaryStudent, competitiveStudent, vocationStudent, higherStudent];
 
-function StudentContinuitySection() {
-  const { ref } = UseRevealOnce();
-  const moments = [
-    { label: "What you learned", image: primaryStudent, alt: "A student building the basics" },
-    { label: "What you're working on", image: secondaryStudent, alt: "A student working through today's lesson" },
-    { label: "Where you can go", image: competitiveStudent, alt: "A student preparing for what comes next" },
-  ];
+// function StudentContinuitySection() {
+//   const { ref } = UseRevealOnce();
+//   const moments = [
+//     { label: "What you learned", image: primaryStudent, alt: "A student building the basics" },
+//     { label: "What you're working on", image: secondaryStudent, alt: "A student working through today's lesson" },
+//     { label: "Where you can go", image: competitiveStudent, alt: "A student preparing for what comes next" },
+//   ];
 
-  return (
-    <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white">
-      <ScrollReveal>
-        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
-          <RevealItem idx={0}>
-            <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
-              What you learn stays with you.
-            </h2>
-          </RevealItem>
-          <RevealItem idx={1}>
-            <p className="mt-[var(--gap-title-sub-display)] max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-              Your intelligence carries every lesson forward — where you've been, where you are, and where you can go.
-            </p>
-          </RevealItem>
-          {/* the Ignite trio — center-dominant, wings descending; each image
-              captioned with its sentence */}
-          <RevealItem idx={2}>
-            <div className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-[0.6fr_1fr_0.6fr] sm:items-start sm:gap-6 lg:mt-20 lg:gap-8">
-              {/* past — the left wing */}
-              <figure className="m-0">
-                <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-[15/11]">
-                  <img src={moments[0].image} alt={moments[0].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
-                </div>
-                <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
-                  {moments[0].label}
-                </figcaption>
-              </figure>
-              {/* now — the dominant center, set slightly lower on Apple's diagonal */}
-              <figure className="m-0 sm:mt-10">
-                <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-square">
-                  <img src={moments[1].image} alt={moments[1].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
-                </div>
-                <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
-                  {moments[1].label}
-                </figcaption>
-              </figure>
-              {/* next — the right wing, lowest on the diagonal */}
-              <figure className="m-0 sm:mt-52">
-                <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-[15/11]">
-                  <img src={moments[2].image} alt={moments[2].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
-                </div>
-                <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
-                  {moments[2].label}
-                </figcaption>
-              </figure>
-            </div>
-          </RevealItem>
-          {/* the bookend — on the same left axis
-          <RevealItem idx={3}>
-            <p className="mt-16 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
-              You keep your place.
-            </p>
-          </RevealItem> */}
-        </div>
-      </ScrollReveal>
-    </section>
-  );
-}
+//   return (
+//     <section ref={ref} data-section="08-continuity" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white">
+//       <ScrollReveal>
+//         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
+//           <RevealItem idx={0}>
+//             <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+//               What you learn stays with you.
+//             </h2>
+//           </RevealItem>
+//           <RevealItem idx={1}>
+//             <p className="mt-[var(--gap-title-sub-display)] max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+//               Your intelligence carries every lesson forward — where you've been, where you are, and where you can go.
+//             </p>
+//           </RevealItem>
+//           {/* the Ignite trio — center-dominant, wings descending; each image
+//               captioned with its sentence */}
+//           <RevealItem idx={2}>
+//             <div className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-[0.6fr_1fr_0.6fr] sm:items-start sm:gap-6 lg:mt-20 lg:gap-8">
+//               {/* past — the left wing */}
+//               <figure className="m-0">
+//                 <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-[15/11]">
+//                   <img src={moments[0].image} alt={moments[0].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
+//                 </div>
+//                 <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+//                   {moments[0].label}
+//                 </figcaption>
+//               </figure>
+//               {/* now — the dominant center, set slightly lower on Apple's diagonal */}
+//               <figure className="m-0 sm:mt-10">
+//                 <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-square">
+//                   <img src={moments[1].image} alt={moments[1].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
+//                 </div>
+//                 <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+//                   {moments[1].label}
+//                 </figcaption>
+//               </figure>
+//               {/* next — the right wing, lowest on the diagonal */}
+//               <figure className="m-0 sm:mt-52">
+//                 <div className="overflow-hidden rounded-[30px] bg-[#f5f5f7] aspect-[15/11]">
+//                   <img src={moments[2].image} alt={moments[2].alt} loading="lazy" decoding="async" draggable="false" className="h-full w-full select-none object-cover" />
+//                 </div>
+//                 <figcaption className="mt-5 font-medium tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+//                   {moments[2].label}
+//                 </figcaption>
+//               </figure>
+//             </div>
+//           </RevealItem>
+//           {/* the bookend — on the same left axis
+//           <RevealItem idx={3}>
+//             <p className="mt-16 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.9vw,42px)] lg:mt-20" style={{ color: COLORS.ink }}>
+//               You keep your place.
+//             </p>
+//           </RevealItem> */}
+//         </div>
+//       </ScrollReveal>
+//     </section>
+//   );
+// }
 
 
 /* ═══════════════════════ 09 · ACHIEVEMENT ═══════════════════════ */
@@ -1378,7 +1378,7 @@ export default function StudentPage() {
         <StudentJourneySection />
         <StudentIntelligenceSection />
         <StudentLanguageSection />
-        <StudentContinuitySection />
+        
         <StudentAchievementSection />
         <StudentJourneyFlowSection />
         <StudentTrustSection />
