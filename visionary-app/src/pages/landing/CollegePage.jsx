@@ -27,6 +27,7 @@ import {
   JourneyGallery,
   JourneyModal as SharedJourneyModal,
   ScrollReveal,
+  RevealItem,
 } from "@/components/landing/persona/PersonaSections";
 
 /**
@@ -349,7 +350,7 @@ function ProJourneySection() {
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             <span className="block">Work that</span>
-            <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+            <span key={index} className="hero-fade-up accent-gradient block min-h-[1.06em] [animation-duration:1s]">{JOURNEY_WORDS[index]}</span>
           </h2>
           <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             Wherever your career begins, Visionary helps your work move forward from there.
@@ -410,7 +411,7 @@ function ProIntelligenceSection() {
         </p>
         <h2 className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           One intelligence.{" "}
-          <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+          <span key={wordIndex} className="hero-fade-up accent-gradient inline-block">
             {INTELLIGENCE_WORDS[wordIndex]}
           </span>
         </h2>
@@ -452,7 +453,7 @@ const ProClosingSection = React.memo(function ProClosingSection() {
           style={{ color: COLORS.ink }}
         >
           Visionary keeps{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+          <span key={index} className="hero-fade-up accent-gradient inline-block">
             {KEEPS_WORDS[index]}
           </span>{" "}
           with you until every skill compounds into the work you came here to do.
@@ -538,7 +539,7 @@ function ProLanguageSection() {
             className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.6] text-[clamp(26px,3.4vw,48px)]"
             style={{ color: COLORS.blue }}
           >
-            <span key={`${lang}-${index}`} className="hero-fade-up inline">{question}</span>
+            <span key={`${lang}-${index}`} className="hero-fade-up accent-gradient inline">{question}</span>
           </p>
 
           {/* state line — the only chrome */}
@@ -550,7 +551,7 @@ function ProLanguageSection() {
         {/* Breath 3 — helper chip, Google-style surface pill */}
         <div className="mt-14 flex justify-center lg:mt-20">
           <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
-            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
+            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.ink }} />
             <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
               Think your way — voice or text, in the language you're comfortable with.
             </p>
@@ -718,28 +719,21 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
   return (
     <div>
       {tabs.map((tab, i) => {
-        const Meta = ACHIEVEMENT_META[i] || ACHIEVEMENT_META[0];
         const isOpen = open === i;
         return (
           <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
 
-            <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start gap-7 text-left">
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-white transition-colors"
-                style={{ borderColor: isOpen ? COLORS.blue : `${COLORS.ink}26`, color: isOpen ? COLORS.blue : COLORS.grey }}
-              >
-                <Meta.Icon className="h-4 w-4" strokeWidth={1.8} />
-              </span>
-              <h3 className="max-w-[460px] flex-1 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
-                {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
+            <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start justify-between gap-4 text-left">
+              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2.2vw,30px)]" style={{ color: COLORS.ink }}>
+                {tab.black} <span className="accent-gradient">{tab.blue}</span>
               </h3>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: COLORS.grey }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-2 h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: "#6e6e73" }}>
                 <path d="M6 15l6-6 6 6" />
               </svg>
             </button>
             <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
-                <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
+                <p className="max-w-[520px] pt-6 font-normal tracking-[0] leading-[1.5] text-[18px]" style={{ color: COLORS.grey }}>
                   {tab.copy}
                 </p>
               </div>
@@ -766,7 +760,7 @@ function ProAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative py-24 lg:py-32 [overflow-x:clip]">
       <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with intelligence.</h2>
+        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what you can achieve with <span className="accent-gradient">intelligence.</span></h2>
         <p className="mx-auto mt-[calc(clamp(40px,5vw,64px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Turn what you understand into shipped work — real projects, real skills, and a career that compounds.
         </p>
@@ -793,7 +787,6 @@ function ProAchievementSection() {
 /* ═══════════════════════ 10 · JOURNEY FLOW ═══════════════════════ */
 
 const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "" }) {
-  const Icon = JOURNEY_STAGE_ICONS[text] || Sparkles;
   return (
     <div className={`relative overflow-hidden rounded-[48px] ${className}`}>
       <img
@@ -805,10 +798,6 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       />
       {/* scrim — guarantees white type contrast on any photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
-      {/* stage icon pill — consistency with journey cards */}
-      <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-      </span>
       <div className="absolute inset-0 flex items-center justify-center px-4">
         <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
           {text}
@@ -845,7 +834,7 @@ function ProJourneyFlowSection() {
                 viewBox="0 0 220 260"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="3.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
@@ -924,7 +913,7 @@ function ProTrustSection() {
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>Our trust</p>
         <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
+          <span key={index} className="hero-fade-up accent-gradient inline-block">{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(40px,5vw,64px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your projects, ideas, and career decisions are personal. Visionary is designed with privacy, security, and transparency at the heart of the experience.
@@ -964,23 +953,19 @@ function ProTrustSection() {
 const ProCTASection = React.memo(function ProCTASection() {
   const { ref } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative px-6 py-24 lg:py-32">
+    <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
       <ScrollReveal>
         <div className="mx-auto max-w-[1500px] text-center">
-          <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
-            Start with what's in front of you
-          </p>
-          <h2 className="mt-[calc(clamp(40px,5vw,64px)*0.444)] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+          <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             Your next project is already in front of you.
           </h2>
-          <p className="mx-auto mt-[calc(clamp(40px,5vw,64px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
+          <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             Understand it faster. Solve it with intelligence. Ship it and carry the lesson forward.
           </p>
           <div className="mt-12 flex justify-center">
             <Link
               to="/register"
-              className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-              style={{ backgroundColor: COLORS.blue }}
+              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[16px] text-white transition-all hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
             >
               Get started
             </Link>
@@ -994,23 +979,28 @@ const ProCTASection = React.memo(function ProCTASection() {
 /* ═══════════════════════ 13 · EXPLORE ═══════════════════════ */
 
 const ExploreCard = React.memo(function ExploreCard({ index, category }) {
+  /* Apple's line-up card — the student page's explore anatomy: white card,
+     photograph full-bleed on top, 24px/600 name, 18px grey line, quiet
+     blue link, left-aligned. */
   return (
     <Link
       to={`/${category.slug}`}
       data-card
-      className="elevation-1 block w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] border bg-white sm:w-[320px]"
-      style={{ borderColor: `${COLORS.ink}1A` }}
+      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
     >
-      <img src={EXPLORE_CAT_IMG[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover" />
-      <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
-        <p className="font-normal uppercase tracking-[0] leading-[14px] text-[10px]" style={{ color: COLORS.grey }}>
+      <div className="media-settle relative aspect-square overflow-hidden">
+        <img src={EXPLORE_CAT_IMG[index]} alt={category.alt} loading="lazy" decoding="async" className="h-full w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
+      </div>
+      <div className="p-7 lg:p-8">
+        <h3 className="text-balance text-[24px] font-semibold leading-[1.12] tracking-[0.009em]" style={{ color: COLORS.ink, maxWidth: "18ch" }}>
           {category.chip}
-        </p>
-        <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+        </h3>
+        <p className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.grey, maxWidth: "38ch" }}>
           {category.copy}
         </p>
-        <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
           Explore more
+          <ChevronIcon className="h-4 w-4" />
         </span>
       </div>
     </Link>
@@ -1019,34 +1009,55 @@ const ExploreCard = React.memo(function ExploreCard({ index, category }) {
 
 function ProExploreSection() {
   const { ref } = UseRevealOnce();
-  const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
+  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative py-16 lg:py-24 [overflow-x:clip]">
+    <section ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
-          Explore more categories
-        </h2>
-        <div className="relative mt-16 lg:mt-20">
-          <div
-            ref={trackRef}
-            onScroll={update}
-            className="flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:gap-12 lg:pl-[calc(6.5%_+_480px)] lg:pr-6"
-          >
-            {EXPLORE_CATEGORIES.map((c, index) => (
-              <ExploreCard index={index} key={c.slug} category={c} />
-            ))}
+        <RevealItem idx={0}>
+          <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+            <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+              Explore more <span className="accent-gradient">categories.</span>
+            </h2>
           </div>
-          <button
-            type="button"
-            aria-label="Next categories"
-            onClick={() => scrollByCard(1)}
-            className={`absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-white elevation-2 transition-opacity hover:bg-[#121317]/5 lg:right-6 ${canNext ? "opacity-100" : "pointer-events-none opacity-0"}`}
-            style={{ borderColor: `${COLORS.ink}1A`, color: COLORS.ink }}
-          >
-            <ChevronIcon direction="right" />
-          </button>
-        </div>
+        </RevealItem>
+        <RevealItem idx={1} className="stagger-group">
+          <div className="relative mt-12 lg:mt-16">
+            <div
+              ref={trackRef}
+              onScroll={update}
+              className="flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pl-6 pr-6 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden lg:gap-6 lg:scroll-pl-[max(24px,calc((100vw-1265px)/2+80px))] lg:pl-[max(24px,calc((100vw-1265px)/2+80px))]"
+            >
+              {EXPLORE_CATEGORIES.map((c, index) => (
+                <ExploreCard index={index} key={c.slug} category={c} />
+              ))}
+            </div>
+
+            {/* the gallery controls — centred round chevrons under the row */}
+            <div className="mt-9 flex items-center justify-center gap-5">
+              <button
+                type="button"
+                aria-label="Previous categories"
+                onClick={() => scrollByCard(-1)}
+                disabled={!canPrev}
+                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
+              >
+                <ChevronIcon direction="left" className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next categories"
+                onClick={() => scrollByCard(1)}
+                disabled={!canNext}
+                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
+              >
+                <ChevronIcon className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </RevealItem>
       </ScrollReveal>
     </section>
   );

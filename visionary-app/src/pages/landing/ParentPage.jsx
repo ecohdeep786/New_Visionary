@@ -57,6 +57,7 @@ import {
   ChevronIcon,
   VoiceIcon,
   ScrollReveal,
+  RevealItem,
 } from "@/components/landing/persona/PersonaSections";
 
 const EXPLORE_CAT_IMG = [studentmeet, teachermeet, promeet, orgmeet];
@@ -365,7 +366,7 @@ function ParentJourneySection() {
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
             <span className="block">Learning that</span>
-            <span key={index} className="hero-fade-up block min-h-[1.06em] [animation-duration:1s]" style={{ color: COLORS.blue }}>{JOURNEY_WORDS[index]}</span>
+            <span key={index} className="hero-fade-up accent-gradient block min-h-[1.06em] [animation-duration:1s]">{JOURNEY_WORDS[index]}</span>
           </h2>
           <p className="mt-4 max-w-[640px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
             Wherever your child begins, Visionary helps their learning move forward from there.
@@ -399,7 +400,7 @@ function ParentIntelligenceSection() {
         </p>
         <h2 className="text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           One intelligence.{" "}
-          <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+          <span key={wordIndex} className="hero-fade-up accent-gradient inline-block">
             {INTELLIGENCE_WORDS[wordIndex]}
           </span>
         </h2>
@@ -438,7 +439,7 @@ const ParentClosingSection = React.memo(function ParentClosingSection() {
       <ScrollReveal>
         <p className="mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)]" style={{ color: COLORS.ink }}>
           Visionary keeps{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>
+          <span key={index} className="hero-fade-up accent-gradient inline-block">
             {KEEPS_WORDS[index]}
           </span>{" "}
           with you until understanding becomes confidence.
@@ -500,7 +501,7 @@ function ParentLanguageSection() {
             className="mx-auto mt-8 max-w-[760px] text-center font-normal tracking-[0] leading-[1.6] text-[clamp(26px,3.4vw,48px)]"
             style={{ color: COLORS.blue }}
           >
-            <span key={`${lang}-${index}`} className="hero-fade-up inline">{question}</span>
+            <span key={`${lang}-${index}`} className="hero-fade-up accent-gradient inline">{question}</span>
           </p>
 
           {/* state line — the only chrome */}
@@ -512,7 +513,7 @@ function ParentLanguageSection() {
         {/* Breath 3 — helper chip, Google-style surface pill */}
         <div className="mt-14 flex justify-center lg:mt-20">
           <div className="flex items-center gap-4 rounded-full px-8 py-4" style={{ backgroundColor: COLORS.surface }}>
-            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.blue }} />
+            <VoiceIcon className="h-6 w-6 shrink-0" style={{ color: COLORS.ink }} />
             <p className="font-normal tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
               Ask your way: use voice or text in the way you're comfortable.
             </p>
@@ -612,7 +613,7 @@ function ParentAchievementSection() {
     <section ref={ref} data-section="09-achievement" className="relative isolate py-24 lg:py-32 [overflow-x:clip] bg-white rounded-t-[32px]">
       <ScrollReveal>
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Your achievement</p>
-        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your child can achieve.</h2>
+        <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See what your child can <span className="accent-gradient">achieve.</span></h2>
         <p className="mx-auto mt-[calc(clamp(40px,5vw,64px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Turn understanding into results, skills, and confidence you can see.
         </p>
@@ -668,7 +669,7 @@ function ParentJourneyFlowSection() {
                 viewBox="0 0 220 260"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="3.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
@@ -730,7 +731,7 @@ function ParentTrustSection() {
         <p className="px-6 text-center font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Trust and safety</p>
         <h2 className="px-6 text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
           Your{" "}
-          <span key={index} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{TRUST_WORDS[index]}</span>
+          <span key={index} className="hero-fade-up accent-gradient inline-block">{TRUST_WORDS[index]}</span>
         </h2>
         <p className="mx-auto mt-[calc(clamp(40px,5vw,64px)*0.667)] max-w-[760px] px-6 text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Your child's questions, conversations, and progress are personal. Visionary keeps it that way.
@@ -770,13 +771,10 @@ function ParentTrustSection() {
 const ParentCTASection = React.memo(function ParentCTASection() {
   const { ref } = UseRevealOnce();
   return (
-    <section ref={ref} data-section="12-cta" className="relative isolate px-6 py-24 lg:py-32 rounded-t-[32px]" style={{ backgroundImage: "linear-gradient(180deg, #d9e6fd 0%, #e8f0fe 48%, #f5f9ff 100%)" }}>
+    <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
       <ScrollReveal>
         <div className="mx-auto max-w-[1500px] text-center">
-          <p className="font-normal uppercase tracking-[0] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>
-            Begin today
-          </p>
-        <h2 className="mt-[calc(clamp(40px,5vw,64px)*0.444)] font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+          <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           Your child's journey is already happening.
         </h2>
         <p className="mx-auto mt-[calc(clamp(40px,5vw,64px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -785,14 +783,13 @@ const ParentCTASection = React.memo(function ParentCTASection() {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Link
             to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
+            className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[16px] text-white transition-all hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
           >
             Get started
           </Link>
           <Link
             to="/contact"
-            className="inline-flex h-14 items-center justify-center rounded-full border border-[#121317]/20 bg-white/60 px-10 font-normal tracking-[0.24px] text-[16px] text-[#121317] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+            className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[17px] font-normal tracking-[0] text-[#4285F4] transition-colors duration-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]"
           >
             Talk to our team
           </Link>
@@ -812,34 +809,55 @@ const ParentCTASection = React.memo(function ParentCTASection() {
 
 function ParentExploreSection() {
   const { ref } = UseRevealOnce();
-  const { trackRef, canNext, scrollByCard, update } = UseScrollTrack();
+  const { trackRef, canPrev, canNext, scrollByCard, update } = UseScrollTrack();
 
   return (
-    <section ref={ref} data-section="13-explore" className="relative isolate py-16 lg:py-24 [overflow-x:clip] bg-white rounded-t-[32px]">
+    <section ref={ref} data-section="13-explore" className="relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <h2 className="px-6 font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)] lg:pl-[6.5%] lg:pr-6" style={{ color: COLORS.ink }}>
-          Explore Visionary
-        </h2>
-        <div className="relative mt-16 lg:mt-20">
-          <div
-            ref={trackRef}
-            onScroll={update}
-            className="flex snap-x snap-mandatory gap-8 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:gap-12 lg:pl-[calc(6.5%_+_480px)] lg:pr-6"
-          >
-            {EXPLORE_CATEGORIES.map((c, index) => (
-              <ExploreCard index={index} key={c.slug} category={c} images={EXPLORE_CAT_IMG} />
-            ))}
+        <RevealItem idx={0}>
+          <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+            <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+              Explore <span className="accent-gradient">Visionary.</span>
+            </h2>
           </div>
-          <button
-            type="button"
-            aria-label="Next categories"
-            onClick={() => scrollByCard(1)}
-            className={`absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-white elevation-2 transition-opacity hover:bg-[#121317]/5 lg:right-6 ${canNext ? "opacity-100" : "pointer-events-none opacity-0"}`}
-            style={{ borderColor: `${COLORS.ink}1A`, color: COLORS.ink }}
-          >
-            <ChevronIcon direction="right" />
-          </button>
-        </div>
+        </RevealItem>
+        <RevealItem idx={1} className="stagger-group">
+          <div className="relative mt-12 lg:mt-16">
+            <div
+              ref={trackRef}
+              onScroll={update}
+              className="flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pl-6 pr-6 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden lg:gap-6 lg:scroll-pl-[max(24px,calc((100vw-1265px)/2+80px))] lg:pl-[max(24px,calc((100vw-1265px)/2+80px))]"
+            >
+              {EXPLORE_CATEGORIES.map((c, index) => (
+                <ExploreCard index={index} key={c.slug} category={c} images={EXPLORE_CAT_IMG} />
+              ))}
+            </div>
+
+            {/* the gallery controls — centred round chevrons under the row */}
+            <div className="mt-9 flex items-center justify-center gap-5">
+              <button
+                type="button"
+                aria-label="Previous categories"
+                onClick={() => scrollByCard(-1)}
+                disabled={!canPrev}
+                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
+              >
+                <ChevronIcon direction="left" className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next categories"
+                onClick={() => scrollByCard(1)}
+                disabled={!canNext}
+                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
+              >
+                <ChevronIcon className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </RevealItem>
       </ScrollReveal>
     </section>
   );

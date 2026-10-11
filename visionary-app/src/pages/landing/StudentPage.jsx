@@ -67,9 +67,9 @@ const StudentExploreCard = React.memo(function StudentExploreCard({ category, im
     <Link
       to={`/${category.slug}`}
       data-card
-      className="group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
+      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
     >
-      <div className="relative aspect-square overflow-hidden">
+      <div className="media-settle relative aspect-square overflow-hidden">
         <img
           src={image}
           alt={category.alt}
@@ -767,7 +767,7 @@ function StudentIntelligenceSection() {
                   aria-label={`Go to step ${i + 1}: ${s.title}`}
                   aria-pressed={i === active}
                   onClick={() => scrollToBeat(i)}
-                  className="h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2"
+                  className="relative h-2 rounded-full transition-all duration-300 after:absolute after:-inset-y-4 after:-inset-x-3 after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2"
                   style={{ width: i === active ? 40 : 8, backgroundColor: i === active ? "#8ab4f8" : "rgba(245,247,250,0.3)" }}
                 />
               ))}
@@ -835,7 +835,7 @@ const StudentOrbitDots = React.memo(function StudentOrbitDots({ activeIndex, onS
             <div key={c.code} className="absolute inset-0" style={{ transform: `rotate(${-i * stepDeg}deg)` }}>
               <button type="button" aria-pressed={isActive} aria-label={`Show ${c.label}`}
                 onClick={() => onSelect(i)}
-                className="absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="absolute left-1/2 top-0 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full after:absolute after:-inset-y-4 after:-inset-x-4 after:rounded-full after:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 style={{ boxShadow: isActive ? "0 0 0 5px rgba(18,19,23,0.05)" : "none" }}>
                 <span className="block rounded-full transition-all duration-500 ease-apple"
                   style={{ width: isActive ? 12 : 7, height: isActive ? 12 : 7, backgroundColor: isActive ? COLORS.ink : `${COLORS.ink}3D` }} />
@@ -967,7 +967,7 @@ function StudentLanguageSection() {
                 aria-label={playing ? "Pause the languages" : "Play the languages"}
                 aria-pressed={!playing}
                 onClick={() => setPlaying((v) => !v)}
-                className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 {playing ? (
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -985,7 +985,7 @@ function StudentLanguageSection() {
                   type="button"
                   aria-label="Previous language"
                   onClick={() => step(-1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
                 </button>
@@ -993,7 +993,7 @@ function StudentLanguageSection() {
                   type="button"
                   aria-label="Next language"
                   onClick={() => step(1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon className="h-[18px] w-[18px]" />
                 </button>
@@ -1225,7 +1225,7 @@ const JourneyPairCard = React.memo(function JourneyPairCard({ stage, className =
           {stage.statement}
         </p>
       </figcaption>
-      <div className="relative mt-7 min-h-0 flex-1">
+      <div className="media-settle relative mt-7 min-h-0 flex-1">
         <img
           key={stage.statement}
           src={stage.image}
@@ -1297,10 +1297,10 @@ function StudentJourneyFlowSection() {
         </RevealItem>
 
         {/* the flow row — two equal stage cards, one quiet connector */}
-        <RevealItem idx={3}>
+        <RevealItem idx={3} className="stagger-group">
           <div ref={stageRef} className="mx-auto mt-14 w-full max-w-[1265px] px-6 lg:mt-20 lg:px-[80px]">
             <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:justify-center lg:gap-16">
-              <JourneyPairCard stage={JOURNEY_STAGE_BY_TITLE[first]} className="h-[560px] w-full max-w-[440px] lg:h-[680px] lg:w-[440px]" />
+              <JourneyPairCard stage={JOURNEY_STAGE_BY_TITLE[first]} className="stagger-child h-[560px] w-full max-w-[440px] lg:h-[680px] lg:w-[440px]" />
               {/* the continuity arc — Apple's crafted connector between stages */}
               <svg
                 viewBox="0 0 64 48"
@@ -1331,7 +1331,7 @@ function StudentJourneyFlowSection() {
                 <path d="M12 4v16" />
                 <path d="m5 13 7 7 7-7" />
               </svg>
-              <JourneyPairCard stage={JOURNEY_STAGE_BY_TITLE[second]} className="h-[560px] w-full max-w-[440px] lg:h-[680px] lg:w-[440px]" />
+              <JourneyPairCard stage={JOURNEY_STAGE_BY_TITLE[second]} className="stagger-child h-[560px] w-full max-w-[440px] lg:h-[680px] lg:w-[440px]" />
             </div>
 
             {/* the bare control row — pause left, chevrons right */}
@@ -1341,7 +1341,7 @@ function StudentJourneyFlowSection() {
                 aria-label={playing ? "Pause the journey" : "Play the journey"}
                 aria-pressed={!playing}
                 onClick={() => setPlaying((v) => !v)}
-                className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 {playing ? (
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]" aria-hidden="true">
@@ -1359,7 +1359,7 @@ function StudentJourneyFlowSection() {
                   type="button"
                   aria-label="Previous stages"
                   onClick={() => step(-1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon direction="left" className="h-[18px] w-[18px]" />
                 </button>
@@ -1367,7 +1367,7 @@ function StudentJourneyFlowSection() {
                   type="button"
                   aria-label="Next stages"
                   onClick={() => step(1)}
-                  className="flex h-9 w-9 items-center justify-center text-[#121317] transition-opacity hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  className="flex h-9 w-9 items-center justify-center text-[#121317]/60 transition-[color,transform] duration-150 hover:text-[#121317] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                 >
                   <ChevronIcon className="h-[18px] w-[18px]" />
                 </button>
@@ -1433,12 +1433,12 @@ function StudentTrustSection() {
           </RevealItem>
 
           {/* the values — typographic columns on the ground, hairline rules */}
-          <RevealItem idx={2}>
+          <RevealItem idx={2} className="stagger-group">
             <div className="mt-14 grid grid-cols-1 lg:mt-20 lg:grid-cols-3">
               {TRUST_VALUES.map((value, i) => (
                 <article
                   key={value.title}
-                  className={`py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
+                  className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
                   style={{ borderColor: `${COLORS.ink}1A` }}
                 >
                   <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
@@ -1575,7 +1575,7 @@ function StudentExploreSection() {
             </h2>
           </div>
         </RevealItem>
-        <RevealItem idx={1}>
+        <RevealItem idx={1} className="stagger-group">
           <div className="relative mt-12 lg:mt-16">
             <div
               ref={trackRef}
@@ -1599,8 +1599,8 @@ function StudentExploreSection() {
                 aria-label="Previous destinations"
                 onClick={() => scrollByCard(-1)}
                 disabled={!canPrev}
-                className="flex h-10 w-10 items-center justify-center rounded-full border transition-opacity duration-200 hover:opacity-70 disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                style={{ borderColor: `${COLORS.ink}33`, color: COLORS.ink }}
+                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
               >
                 <ChevronIcon direction="left" className="h-4 w-4" />
               </button>
@@ -1609,8 +1609,8 @@ function StudentExploreSection() {
                 aria-label="Next destinations"
                 onClick={() => scrollByCard(1)}
                 disabled={!canNext}
-                className="flex h-10 w-10 items-center justify-center rounded-full border transition-opacity duration-200 hover:opacity-70 disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                style={{ borderColor: `${COLORS.ink}33`, color: COLORS.ink }}
+                className="flex h-10 w-10 items-center justify-center rounded-full border transition-[opacity,transform] duration-200 hover:opacity-100 disabled:opacity-30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                style={{ borderColor: `${COLORS.ink}33`, color: `${COLORS.ink}99` }}
               >
                 <ChevronIcon className="h-4 w-4" />
               </button>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ChevronDown } from "lucide-react";
 
 /**
  * Shared persona-section components — extracted verbatim from the five
@@ -132,7 +132,7 @@ const StruggleChapter = React.memo(function StruggleChapter({ slides, index, goT
               accent word is reserved on line two (a min-h slot) so the chapter
               never reflows and the page never jumps when the word swaps */}
           <span className="block text-balance">{lines.join(" ")}</span>
-          <span key={`w-${index}`} className="hero-fade-up block min-h-[1.05em] [animation-duration:0.9s]" style={{ color: COLORS.blue }}>
+          <span key={`w-${index}`} className="hero-fade-up accent-gradient block min-h-[1.05em] [animation-duration:0.9s]">
             {slide.word}.
           </span>
         </h2>
@@ -507,7 +507,7 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
               className="absolute bottom-5 left-6 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-[13px] font-medium tracking-[0] sm:left-9"
               style={{ color: COLORS.ink }}
             >
-              <meta.Icon className="h-3.5 w-3.5" strokeWidth={1.8} style={{ color: COLORS.blue }} />
+              <meta.Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
               Visionary for {stage.title}
             </span>
           </div>
@@ -527,13 +527,13 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to={content.primary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full bg-[#121317] px-6 text-[17px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="inline-flex h-11 items-center justify-center rounded-full bg-[#121317] px-6 text-[17px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 {content.primary.label}
               </Link>
               <Link
                 to={secondary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[17px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[17px] transition-colors hover:bg-[#F5F6F8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 style={{ borderColor: COLORS.mist, color: COLORS.ink }}
               >
                 {secondary.label}
@@ -769,32 +769,28 @@ const ContinuityCard = React.memo(function ContinuityCard({ index, label, captio
   );
 });
 
-const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, open, onToggle, meta }) {
+const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, open, onToggle }) {
   return (
     <div>
       {tabs.map((tab, i) => {
-        const Meta = meta[i] || meta[0];
         const isOpen = open === i;
         return (
           <div key={tab.black} className="border-b py-10 first:pt-0 lg:py-12" style={{ borderColor: `${COLORS.ink}26` }}>
-            
-            <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start gap-7 text-left">
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-white transition-colors"
-                style={{ borderColor: isOpen ? COLORS.blue : `${COLORS.ink}26`, color: isOpen ? COLORS.blue : COLORS.grey }}
-              >
-                <Meta.Icon className="h-4 w-4" strokeWidth={1.8} />
-              </span>
-              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[-0.005em] leading-[1.14] text-[28px]" style={{ color: COLORS.ink }}>
-                {tab.black} <span style={{ color: COLORS.blue }}>{tab.blue}</span>
+
+            <button type="button" aria-expanded={isOpen} onClick={() => onToggle(i)} className="flex w-full items-start justify-between gap-4 text-left">
+              <h3 className="max-w-[460px] flex-1 font-semibold tracking-[0.007em] leading-[1.14] text-[clamp(24px,2.2vw,30px)]" style={{ color: COLORS.ink }}>
+                {tab.black} <span className="accent-gradient">{tab.blue}</span>
               </h3>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`mt-3 h-6 w-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: COLORS.grey }}>
-                <path d="M6 15l6-6 6 6" />
-              </svg>
+              <ChevronDown
+                aria-hidden="true"
+                className={`mt-2 h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                style={{ color: "#6e6e73" }}
+                strokeWidth={2.5}
+              />
             </button>
             <div className={`grid transition-all duration-500 ease-google ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
-                <p className="max-w-[460px] pt-6 font-normal tracking-[0] leading-[22px] text-[15px] lg:pl-[72px]" style={{ color: COLORS.grey }}>
+                <p className="max-w-[520px] pt-6 font-normal tracking-[0] leading-[1.5] text-[18px]" style={{ color: COLORS.grey }}>
                   {tab.copy}
                 </p>
               </div>
@@ -806,8 +802,7 @@ const AchievementAccordion = React.memo(function AchievementAccordion({ tabs, op
   );
 });
 
-const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "", iconMap, images, onOpen, category, imgAlt }) {
-  const Icon = iconMap[text] || Sparkles;
+const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, text, className = "", images, onOpen, category, imgAlt }) {
   /* When onOpen is supplied the card behaves like an Apple story card: the
      whole surface is the button that opens the category's story popup. */
   const isInteractive = typeof onOpen === "function";
@@ -828,10 +823,6 @@ const JourneyCategoryCard = React.memo(function JourneyCategoryCard({ index, tex
       />
       {/* scrim — guarantees white type contrast on any photo */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#121317]/55 via-[#121317]/20 to-transparent" aria-hidden="true" />
-      {/* stage icon pill — consistency with journey cards */}
-      <span className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/95" style={{ color: COLORS.blue }}>
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-      </span>
       <div className="absolute inset-0 flex items-center justify-center px-4">
         <span key={text} className="text-center font-medium tracking-[0] leading-[1.03] text-white text-[clamp(40px,4.5vw,72px)] animate-[heroFadeUp_0.9s_cubic-bezier(0.22,1,0.36,1)]">
           {text}
@@ -853,9 +844,7 @@ const TrustCard = React.memo(function TrustCard({ card, image }) {
       {/* white chip guarantees copy contrast on any image */}
       <div className="absolute left-6 top-6 sm:left-8 sm:top-8 sm:max-w-[320px]">
         <div className="rounded-[20px] bg-white/95 p-5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: COLORS.chipBg, color: COLORS.blue }}>
-            <card.Icon className="h-5 w-5" strokeWidth={1.8} />
-          </span>
+          <card.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
           <p className="mt-3 font-normal tracking-[0] leading-[22px] text-[15px]" style={{ color: COLORS.ink }}>{card.copy}</p>
           <Link to={card.to} className="mt-3 inline-flex items-center gap-1.5 text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ color: COLORS.blue }}>
             {card.link}
@@ -868,23 +857,28 @@ const TrustCard = React.memo(function TrustCard({ card, image }) {
 });
 
 const ExploreCard = React.memo(function ExploreCard({ index, category, images }) {
+  /* Apple's line-up card — the student page's explore anatomy: white card,
+     photograph full-bleed on top, 24px/600 name, 18px grey line, quiet
+     blue link, left-aligned, no elevation chrome. */
   return (
     <Link
       to={`/${category.slug}`}
       data-card
-      className="elevation-1 group block w-[260px] shrink-0 snap-start overflow-hidden rounded-[30px] border bg-white transition-all duration-300 ease-google hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(60,64,67,0.16)] sm:w-[320px]"
-      style={{ borderColor: `${COLORS.ink}1A` }}
+      className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
     >
-      <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
-      <div className="flex flex-col items-center px-6 pb-6 pt-5 text-center">
-        <p className="font-medium tracking-[0] leading-[20px] text-[14px]" style={{ color: COLORS.grey }}>
+      <div className="media-settle relative aspect-square overflow-hidden">
+        <img src={images[index]} alt={category.alt} loading="lazy" decoding="async" className="h-full w-full select-none object-cover transition-transform duration-500 ease-google group-hover:scale-[1.04]" />
+      </div>
+      <div className="p-7 lg:p-8">
+        <h3 className="text-balance text-[24px] font-semibold leading-[1.12] tracking-[0.009em]" style={{ color: COLORS.ink, maxWidth: "18ch" }}>
           {category.chip}
-        </p>
-        <p className="mt-3 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>
+        </h3>
+        <p className="mt-2 text-balance font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.grey, maxWidth: "38ch" }}>
           {category.copy}
         </p>
-        <span className="mt-4 font-normal tracking-[0] leading-[22px] text-[16px]" style={{ color: COLORS.blue }}>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
           Learn more
+          <ChevronIcon className="h-4 w-4" />
         </span>
       </div>
     </Link>

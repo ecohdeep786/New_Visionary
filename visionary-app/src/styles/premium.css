@@ -20,6 +20,14 @@
   --ease-spring: cubic-bezier(0.22, 1.4, 0.36, 1);
   --ease-google: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* Motion duration scale — micro-interactions fast, reveals calm,
+     statements cinematic. Nothing on the page runs past 1s. */
+  --motion-duration-fast: 180ms;
+  --motion-duration-base: 280ms;
+  --motion-duration-slow: 420ms;
+  --motion-duration-statement: 650ms;
+  --motion-duration-cinematic: 900ms;
+
   /* Dark cinematic scene tokens */
   --scene-ink: #0a0d14;
   --scene-ink-soft: rgba(245, 247, 250, 0.72);

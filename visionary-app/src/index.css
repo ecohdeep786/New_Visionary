@@ -501,6 +501,51 @@
   will-change: opacity, transform;
 }
 
+/* ── Card-group stagger — a chapter's cards rise as a rhythm group while
+   their photographs settle from 1.03 to 1. One class on the chapter's
+   RevealItem (.stagger-group) plus .stagger-child per card; the beat is
+   60ms per card, on the resolve-out curve. Reduced-motion snaps the whole
+   group visible instantly. */
+.scroll-reveal .stagger-group .stagger-child {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.in-view .stagger-group .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--motion-duration-cinematic, 0.9s) var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform var(--motion-duration-cinematic, 0.9s) var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.scroll-reveal.in-view .stagger-group .stagger-child:nth-child(2) { transition-delay: 60ms; }
+.scroll-reveal.in-view .stagger-group .stagger-child:nth-child(3) { transition-delay: 120ms; }
+.scroll-reveal.in-view .stagger-group .stagger-child:nth-child(4) { transition-delay: 180ms; }
+.scroll-reveal.in-view .stagger-group .stagger-child:nth-child(5) { transition-delay: 240ms; }
+.scroll-reveal.in-view .stagger-group .stagger-child:nth-child(6) { transition-delay: 300ms; }
+
+/* the photographs settle — media resolves from 1.03 while its card rises */
+.scroll-reveal .stagger-group .stagger-child .media-settle {
+  transform: scale(1.03);
+  will-change: transform;
+}
+
+.scroll-reveal.in-view .stagger-group .stagger-child .media-settle {
+  transform: scale(1);
+  transition: transform 1.1s var(--reveal-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal .stagger-group .stagger-child,
+  .scroll-reveal .stagger-group .stagger-child .media-settle {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal .reveal-item > * {
     opacity: 1;
