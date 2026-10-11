@@ -515,10 +515,10 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
           {/* the story zone — Apple's measured breath, text inset from the
               panel edges; heading at the 48/600 story tier, body 17px */}
           <div className="px-6 pb-12 pt-10 sm:px-12 sm:pb-14 lg:px-16 lg:pb-[72px] lg:pt-14">
-            <h3 id="journey-modal-title" className="max-w-[760px] font-semibold tracking-[-0.01em] leading-[1.08] text-[clamp(28px,3.34vw,48px)]" style={{ color: COLORS.ink }}>
+            <h3 id="journey-modal-title" className="max-w-[760px] font-semibold tracking-[0] leading-[1.08] text-[clamp(28px,3.34vw,48px)]" style={{ color: COLORS.ink }}>
               {content.top}
               <br />
-              <span style={{ color: COLORS.blue }}>{content.accent}</span>
+              <span className="accent-gradient">{content.accent}</span>
             </h3>
 
             <p className="mt-6 max-w-[680px] font-normal tracking-[0] leading-[25px] text-[17px]" style={{ color: COLORS.ink }}>
@@ -527,14 +527,13 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to={content.primary.to}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#121317] px-6 text-[14px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="inline-flex h-11 items-center justify-center rounded-full bg-[#121317] px-6 text-[17px] font-medium text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 {content.primary.label}
-                <ChevronIcon className="h-4 w-4" />
               </Link>
               <Link
                 to={secondary.to}
-                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[14px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                className="inline-flex h-11 items-center justify-center rounded-full border px-6 text-[17px] transition-colors hover:bg-[#F5F6F8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                 style={{ borderColor: COLORS.mist, color: COLORS.ink }}
               >
                 {secondary.label}
@@ -545,15 +544,13 @@ const JourneyModal = React.memo(function JourneyModal({ stage, onClose, modals, 
               {content.blocks.map((b) => (
                 <div key={b.t} className="border-t pt-6" style={{ borderColor: COLORS.mist }}>
                   <div className="flex items-start gap-4">
-                    <span
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border bg-white"
-                      style={{ borderColor: COLORS.mist, color: COLORS.blue }}
-                    >
-                      <b.Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
-                    </span>
+                    <b.Icon aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.75} style={{ color: COLORS.ink }} />
                     <div className="min-w-0">
-                      <p className="font-normal tracking-[0] leading-[1.65] text-[14px] sm:text-[15px]" style={{ color: COLORS.grey }}>
-                        <strong style={{ color: COLORS.ink }}>{b.t}</strong> {b.c}
+                      <h4 className="text-[17px] font-semibold leading-[21px] tracking-[-0.01em]" style={{ color: COLORS.ink }}>
+                        {b.t}
+                      </h4>
+                      <p className="mt-2 font-normal tracking-[0] leading-[1.5] text-[15px]" style={{ color: COLORS.grey }}>
+                        {b.c}
                       </p>
                       <Link
                         to={b.to}
