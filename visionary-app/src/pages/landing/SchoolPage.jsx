@@ -183,7 +183,7 @@ export default function SchoolPage() {
               <span className="flex h-20 w-20 items-center justify-center rounded-[24px] g-card" style={{ color: COLORS.blue }}>
                 <CircleHelp className="h-9 w-9" strokeWidth={1.8} />
               </span>
-              <h1 className="mt-8 text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
+              <h1 className="mx-auto mt-8 max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
                 Find <span className="accent-gradient">your answer.</span>
               </h1>
               <p className="mt-5 max-w-[560px] text-center text-[17px] leading-[1.6]" style={{ color: COLORS.grey }}>Search, or browse a topic, then reach us.</p>
@@ -230,7 +230,7 @@ export default function SchoolPage() {
                   <activeTopic.Icon className="h-6 w-6" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <h2 className="font-medium tracking-[0] leading-[1.15] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>{activeTopic.label}</h2>
+                  <h2 className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{activeTopic.label}</h2>
                   <p className="mt-1 font-normal tracking-[0] text-[14px]" style={{ color: COLORS.grey }}>{activeTopic.line}</p>
                 </div>
               </div>
@@ -249,7 +249,7 @@ export default function SchoolPage() {
               {/* Topic grid */}
               {topics.length > 0 && (
                 <>
-                  <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Browse by topic</p>
+                  <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Browse by topic</p>
                   <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     {topics.map((t) => (
                       <button key={t.id} type="button" onClick={() => { setTopicId(t.id); setQ(""); }}
@@ -258,7 +258,7 @@ export default function SchoolPage() {
                         <span className="flex h-14 w-14 items-center justify-center rounded-[16px] g-card" style={{ color: COLORS.blue }}>
                           <t.Icon className="h-6 w-6" strokeWidth={1.8} />
                         </span>
-                        <p className="mt-6 font-medium tracking-[0] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</p>
+                        <p className="mt-6 font-semibold tracking-[0.009em] leading-[1.12] text-[20px]" style={{ color: COLORS.ink }}>{t.label}</p>
                         <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{t.line}</p>
                       </button>
                     ))}
@@ -269,7 +269,7 @@ export default function SchoolPage() {
               {/* Flat matching answers while searching */}
               {query && answers.length > 0 && (
                 <div className="mx-auto mt-16 w-full max-w-[900px]">
-                  <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Matching answers</p>
+                  <p className="text-center text-[15px] font-normal" style={{ color: COLORS.grey }}>Matching answers</p>
                   <div className="mt-6">
                     {answers.map((a) => <AnswerItem key={`${a.topicLabel}-${a.q}`} a={a} />)}
                   </div>
