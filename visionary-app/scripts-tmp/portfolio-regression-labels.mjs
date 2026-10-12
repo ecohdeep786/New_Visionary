@@ -1,1 +1,0 @@
-import fs from 'node:fs';const p='scripts-tmp/professional-portfolio-review-verify.mjs';let s=fs.readFileSync(p,'utf8').replace("dialog.getByLabel('Your rating').nth(index)","dialog.locator('fieldset select').nth(index)").replace("dialog.getByLabel('Evidence note').nth(index)","dialog.locator('fieldset textarea').nth(index)");fs.writeFileSync(p,s);
