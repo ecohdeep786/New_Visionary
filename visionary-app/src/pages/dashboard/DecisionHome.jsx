@@ -45,9 +45,8 @@ export default function DecisionHome() {
   const presentation = getStagePresentation(ctx);
   const stageTier = presentation.tier;
   return <div className={`v-page v-home stage-${stageTier}`} lang={locale}>
-    <header className="v-home-header"><div><p className="v-home-eyebrow">{workspace}</p><h1 className="v-title">{copy('Welcome back, {name}.',{name})}</h1><p className="v-home-boundary">{boundary}</p></div><span className="v-home-local-label">{copy("Saved on this device")}</span></header>
+    <header className="v-home-header"><div><p className="v-home-eyebrow">{workspace}</p><h1 className="v-title">{copy('Welcome back, {name}.',{name})}</h1><div className="v-home-context"><p className="v-home-boundary">{boundary}</p>{['student','professional'].includes(ctx.role)&&<StagePresentationSummary presentation={presentation} locale={locale}/>}</div></div><span className="v-home-local-label">{copy("Saved on this device")}</span></header>
     {query.isFetching && <p className="v-muted" role="status">{copy("Updating your next step…")}</p>}
-    {['student','professional'].includes(ctx.role)&&<StagePresentationSummary presentation={presentation} locale={workspaceData?.preferences.interfaceLocale||'en'}/>}
     <section className="v-home-priority" aria-labelledby="next-step-title" data-role={ctx.role}>
       <div className="v-home-priority-copy">
         <p className="v-home-priority-label"><Sparkles size={16} aria-hidden="true" />{copy("Next for you")}</p>

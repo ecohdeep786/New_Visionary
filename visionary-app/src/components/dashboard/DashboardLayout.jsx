@@ -8,7 +8,6 @@ import { Navigate, Outlet, useLocation, NavLink } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopbar from "./DashboardTopbar";
-import AudioPresence from "./AudioPresence";
 import { useAuth } from "@/lib/AuthContext";
 import { ThemeColorProvider } from "@/hooks/useThemeColor";
 import { canAccessDashboardPath, navigationFor, secondaryNavigation } from "@/lib/dashboardNavigation";
@@ -107,7 +106,6 @@ export default function DashboardLayout() {
       <a className="workspace-skip-link" href="#main" onClick={event => { event.preventDefault(); document.getElementById('main')?.focus(); }}>{shell.skip}</a>
       <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
       <div role="status" aria-live="polite" aria-atomic="true" className={offline ? 'workspace-connectivity' : 'sr-only'}>{offline ? shell.offline : connectionChanged ? shell.online : ''}</div>
-      <div className={`workspace-presence-anchor${sidebarExpanded ? " is-expanded" : ""}`}><AudioPresence /></div>
       <div className="flex min-h-0 flex-1 overflow-hidden">
         <div className="hidden h-full md:block"><DashboardSidebar expanded={sidebarExpanded} onExpand={() => setSidebarExpanded(true)} /></div>
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}><SheetContent id="mobile-workspace-navigation" lang={locale} side="left" onCloseAutoFocus={event => {
@@ -123,7 +121,7 @@ export default function DashboardLayout() {
           <div className="workspace-surface min-h-full overflow-hidden">{!permitted?<div className="v-page" lang={locale}><h1 className="v-title">{organizationCopy(locale,'Permission required')}</h1><p className="v-notice" role="alert">{organizationCopy(locale,'Your {role} permission does not include this section. Ask the organization owner to review access.',{role:organizationCopy(locale,policy.label)})}</p><NavLink to="/dashboard/home" className="v-button">{organizationCopy(locale,'Return to workspace')}</NavLink></div>:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<div lang={locale} className="v-page" role="status" aria-busy="true">{t("openingWorkspace")}</div>}><Outlet /></Suspense>}</div>
         </main>
       </div>
-      <nav ref={mobileNavigation} lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs ${isActive?'bg-[#e8f0fd] font-medium text-[#1967d2]':'text-[#5f6368]'}`}><Icon aria-hidden="true" size={19}/>{item.label}</NavLink>;})}<button ref={mobileTrigger} aria-label={t("moreNavigation")} aria-haspopup="dialog" aria-controls="mobile-workspace-navigation" aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs text-[#5f6368]" onClick={()=>setMobileOpen(true)}><Ellipsis aria-hidden="true" size={19}/>{t("more")}</button></nav>
+      <nav ref={mobileNavigation} lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className="workspace-bottom-link flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 px-2 text-xs"><span className="workspace-bottom-icon"><Icon aria-hidden="true" size={20}/></span><span>{item.label}</span></NavLink>;})}<button ref={mobileTrigger} aria-label={t("moreNavigation")} aria-haspopup="dialog" aria-controls="mobile-workspace-navigation" aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} aria-current={presented.mobileMoreActive ? 'true' : undefined} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 px-2 text-xs" onClick={()=>setMobileOpen(true)}><span className="workspace-bottom-icon"><Ellipsis aria-hidden="true" size={20}/></span><span>{t("more")}</span></button></nav>
     </div>
   </ThemeColorProvider>;
 }

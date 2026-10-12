@@ -32,18 +32,23 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .workspace-topbar {border-bottom: 1px solid var(--v-border);gap: 12px}
 .workspace-topbar .workspace-search-trigger {background: var(--v-canvas);border: 1px solid transparent}
 .workspace-topbar .workspace-search-trigger:hover {border-color: var(--v-border);background: var(--v-raised)}
-.workspace-search-shortcut {border: 1px solid var(--v-border);border-radius: 6px;background: var(--v-surface);padding: 2px 5px}
+.workspace-search-shortcut {border: 1px solid var(--v-border);border-radius: 6px;background: var(--v-surface);padding: 2px 5px;white-space: nowrap;flex-shrink: 0}
 .workspace-sidebar {background: var(--v-canvas)}
 .workspace-navigation {padding-bottom: 96px;scrollbar-width: thin;scrollbar-color: var(--v-border) transparent}
 .workspace-nav-group {display: flex;flex-direction: column;gap: 4px}
-.workspace-sidebar[data-expanded="true"] .workspace-nav-link {min-height: 44px;border-radius: 12px;padding: 8px 14px;gap: 12px}
+.workspace-sidebar[data-expanded="true"] .workspace-nav-link {min-height: 44px;border-radius: 999px;padding: 8px 14px;gap: 12px}
 .workspace-sidebar[data-expanded="true"] .workspace-nav-link span:last-child {font-size: 0.875rem;line-height: 1.4}
 .workspace-nav-link[aria-current="page"] span:last-child {color: var(--v-action)!important}
 .workspace-nav-link:not([aria-current="page"]):hover {background: var(--v-raised)}
 .workspace-sidebar[data-expanded="false"] .workspace-nav-link {min-height: 68px;border-radius: 14px}
-.workspace-nav-section-label {padding: 24px 14px 10px;color: var(--v-muted);font-size: 0.75rem;font-weight: 500;line-height: 1.5;letter-spacing: .02em}
+.workspace-nav-section-label {padding: 16px 14px 8px;color: var(--v-muted);font-size: 0.75rem;font-weight: 500;line-height: 1.5}
+.workspace-nav-section {margin-top: 12px}
+.workspace-nav-account {border-top: 1px solid var(--v-border)}
 .workspace-nav-more {display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 5px;min-height: 64px;border-radius: 14px;color: var(--v-muted);font-size: 0.75rem;margin-top: 8px}
 .workspace-nav-more:hover {background: var(--v-raised)}
+.workspace-nav-more-icon {display: grid;place-items: center;width: 56px;min-height: 32px;border-radius: 999px}
+.workspace-nav-more[data-active="true"] {color: var(--v-action);font-weight: 600}
+.workspace-nav-more[data-active="true"] .workspace-nav-more-icon {background: var(--v-soft)}
 .workspace-shell #main {background: var(--v-surface);padding: 0;scrollbar-gutter: stable}
 .workspace-shell .workspace-surface {border: 0;border-radius: 0;background: var(--v-surface)}
 .v-page {max-width: 1200px;padding: 40px 40px 64px;gap: 32px;animation: v-content-appear 180ms ease-out}
@@ -92,6 +97,10 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
 .v-home-header {display: flex;flex-direction: row;justify-content: space-between;align-items: flex-start;gap: 24px}
 .v-home-eyebrow {color: var(--v-muted);font-size: 0.8125rem;font-weight: 500;margin-bottom: 8px}
 .v-home-boundary {margin-top: 10px;font-size: 0.8125rem;color: var(--v-muted)}
+.v-home-context {display: flex;align-items: baseline;flex-wrap: wrap;gap: 0 20px;margin-top: 8px}
+.v-home-context .v-home-boundary {margin-top: 0}
+.v-home-context .v-home-reason {width: auto;min-width: 0;max-width: 100%}
+.v-home-context .v-home-reason[open] {flex-basis: 100%;padding-bottom: 8px}
 .v-home-local-label {flex: none;display: inline-flex;align-items: center;gap: 6px;border: 1px solid var(--v-border);border-radius: 999px;padding: 6px 10px;font-size: 0.6875rem;color: var(--v-muted);white-space: nowrap;margin-top: 4px}
 .v-home-local-label::before {content: '';width: 5px;height: 5px;border-radius: 50%;background: var(--v-success)}
 .v-home-priority {display: grid;grid-template-columns: minmax(0,1fr) 168px;align-items: center;gap: 32px;padding: 32px;border-radius: 24px;border-color: var(--v-border);background: var(--v-soft)}
@@ -145,6 +154,10 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .workspace-account-item svg {width: 18px;height: 18px;stroke-width: 1.75;color: var(--v-muted)}
 .workspace-bottom-nav {box-shadow: 0 -1px 12px #172b4d05;border-color: var(--v-border);padding-top: 6px}
 .workspace-bottom-nav > * {border-radius: 14px;transition: background-color var(--v-motion)}
+.workspace-bottom-nav > :is(a,button) {color: var(--v-muted)}
+.workspace-bottom-icon {display: grid;place-items: center;width: min(100%,64px);min-height: 32px;border-radius: 999px}
+.workspace-bottom-nav > :is([aria-current="page"],[data-active="true"]) {background: transparent;color: var(--v-action);font-weight: 600}
+.workspace-bottom-nav > :is([aria-current="page"],[data-active="true"]) .workspace-bottom-icon {background: var(--v-soft)}
 @keyframes v-content-appear {from {opacity: .4} to {opacity: 1}}
 @media(min-width:1200px) {
   .v-page {padding: 48px 48px 72px;gap: 36px}
@@ -422,7 +435,6 @@ body:has(.visionary-workspace) [role="dialog"][class~="left-[50%]"] {border-colo
 .v-home-task-options[open]>summary {margin-bottom:8px}
 .v-home-plan-actions .v-home-defer {background:transparent;border-color:transparent;color:var(--v-muted)}
 .v-action-link {display:inline-flex;align-items:center;gap:8px;min-height:44px;padding-block:10px;color:var(--v-action);font-size: 0.875rem;line-height:1.5}
-.workspace-bottom-more[data-active="true"] {background:var(--v-soft);color:var(--v-action);font-weight:500}
 .workspace-shell.stage-foundational :is(.v-button,.v-field) {min-height:52px;font-size: 1rem}
 .workspace-shell.stage-foundational .v-subject-card {min-height:104px;font-size: 1.0625rem}
 .workspace-shell.stage-foundational .v-book-card {font-size: 1.0625rem;gap:16px;padding:20px}
@@ -476,6 +488,13 @@ body:has(.visionary-workspace) [role="dialog"] .v-button:disabled {background: v
 .workspace-topbar {height: auto;min-height: 4rem;padding-block: .5rem;background: var(--v-surface)}
 .workspace-topbar :is(button,a).h-11 {height: auto;min-height: 48px}
 .workspace-topbar :is(button,a).w-11 {width: 48px;min-width: 48px}
+/* Keep the search label available on desktop: the icon-target rule above must
+   not override the responsive full-width search control. */
+@media(min-width:768px) {
+  .workspace-topbar button.workspace-search-trigger {width: 100%;min-height: 48px;min-width: 0}
+  .workspace-shell #main {background: var(--v-canvas);padding: 12px 16px 16px 0}
+  .workspace-shell .workspace-surface {border-radius: 24px}
+}
 .workspace-topbar > div {min-width: 0}
 .workspace-voice-preview:not(.is-listening):not(.is-speaking) :is(.workspace-voice-preview-orb,.workspace-voice-preview-bars i) {animation: none}
 .workspace-sidebar[data-expanded="true"] .workspace-nav-link {min-height: 48px}
@@ -563,6 +582,7 @@ body:has(.visionary-workspace) .workspace-voice-preview-glow {display: none}
   .workspace-topbar .workspace-search-trigger {width: 48px;flex-shrink: 0}
   .workspace-topbar .workspace-search-trigger :is(span,kbd) {display: none}
   .workspace-topbar .workspace-search-trigger {padding-inline: 0;justify-content: center}
+  .workspace-topbar .workspace-presence-anchor {position: static;flex-shrink: 0;min-height: 48px;width: 48px;height: auto}
 }
 @media(max-width:360px) {
   .workspace-topbar {padding-inline: .5rem;gap: .25rem}

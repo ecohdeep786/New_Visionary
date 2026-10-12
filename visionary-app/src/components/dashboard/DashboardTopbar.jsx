@@ -10,6 +10,7 @@ import VisionaryLogo from "@/components/VisionaryLogo";
 import { navigationFor,secondaryNavigation } from "@/lib/dashboardNavigation";
 import { PRODUCT_ACCESS } from "@/lib/productAccess";
 import WorkspaceSwitcher from './WorkspaceSwitcher';
+import AudioPresence from './AudioPresence';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -66,7 +67,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
       </button>
     </div>
     {allowed(connect.to)&&<Link to={connect.to} aria-label={connect.label} title={connect.label} className="workspace-connect-action hidden h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-full px-2 text-[#0b57d2] hover:bg-[#e8f0fd] md:flex xl:px-3"><Plus aria-hidden="true" className="h-5 w-5" /><span className="hidden text-sm font-medium xl:inline">{connect.label}</span></Link>}
-    <span className="w-14 shrink-0 md:hidden" aria-hidden="true" />
+    <div className={`workspace-presence-anchor${sidebarExpanded ? ' is-expanded' : ''}`}><AudioPresence /></div>
     <DropdownMenu>
       <DropdownMenuTrigger asChild><button aria-label={t("accountMenu")} className="ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0b57d2] text-sm font-medium text-white ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#4285F4]">{userName.charAt(0).toUpperCase()}</button></DropdownMenuTrigger>
       <DropdownMenuContent lang={locale} align="end" sideOffset={8} className="workspace-account-menu w-[min(320px,calc(100vw-24px))] rounded-[20px] bg-white p-2">

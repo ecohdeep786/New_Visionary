@@ -8,6 +8,8 @@ Current work (2026-09-27): finish internal design and usability acceptance first
 
 Only three living logs: STATUS, DECISIONS, QA. Product addenda and inventories are deliverables, not alternate status logs. D-016 authorizes the current internal design pass; preserve the strict `src/pages/landing` exclusion.
 
+The [Google Skills navigation continuation](baseline/navigation-quality-2026-10-12/README.md), D-055, records the reviewed reference, restored desktop search, grouped destinations, current More states, rounded desktop surface, compact Home context and phone Guide alignment. Compiled five-role light/dark/reflow/interaction evidence is bounded there; overall acceptance stays in the existing worksheet.
+
 The current [stylesheet ownership guide](../../src/styles/README.md), D-054, defines public frontend Google Sans Flex and internal product Google Sans with independent tokens and portal/entry/fallback inheritance. [Font review evidence](baseline/font-surfaces-2026-10-12/README.md) records compiled font isolation and responsive verification. The earlier single-font assumption is superseded.
 
 The [shared typography and outcome handoff](DESIGN_QUALITY_HANDOFF.md), D-053, connects the internal product to the updated font token, restores readable product spacing/scaling and makes actual recorded work and next steps easier to understand. [Review evidence](baseline/design-quality-2026-10-12/README.md) covers the isolated compiled learning/Progress/type checks and remaining human/device acceptance.

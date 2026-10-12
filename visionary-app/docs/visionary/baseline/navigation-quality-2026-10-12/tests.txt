@@ -1,0 +1,28 @@
+✔ a current-only plan moves to priority controls without mutating service data (2.7893ms)
+✔ known unit-id alias deduplicates while retaining distinct and completed steps (0.3375ms)
+✔ distinct tasks sharing one route or title remain visible (0.2331ms)
+✔ completed records remain visible and an unrelated conversation leaves the plan intact (1.3568ms)
+✔ priority deferral names the plan rather than hiding or deleting saved learning (0.4663ms)
+✔ emerging-reader navigation keeps every route reachable without mutating the role list (2.4559ms)
+✔ the full role navigation remains for other stages and roles (1.5389ms)
+✔ More identifies a secondary destination without highlighting an unknown route (0.3028ms)
+✔ stale CSS or lazy import failures need a document reload; ordinary failures keep normal recovery (0.489ms)
+✔ large text navigation keeps every destination reachable and marks More for a displaced primary page (0.2766ms)
+✔ nested destinations keep the active parent or More without matching similar route names (0.1935ms)
+✔ teacher review drafts keep only the current attempt and survive a failed local write (7.1884ms)
+✔ reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped (85.6706ms)
+✔ visiting the dashboard never creates a streak or changes inputs (3.5449ms)
+✔ grades are normalized against assignment points without write-side effects (0.6107ms)
+✔ priority sorting preserves high priority and real activity makes a streak (15.3904ms)
+✔ practice scoring cannot exceed its question count (0.4156ms)
+✔ auth returns only to internal dashboard paths (1.5271ms)
+✔ preview account isolation, consent, persistence, and idempotent onboarding (6.9991ms)
+✔ onboarding keeps a competitive goal without inventing exam subjects (0.934ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1066.2991

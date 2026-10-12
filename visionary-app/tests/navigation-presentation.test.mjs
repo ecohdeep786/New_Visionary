@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {presentNavigation} from '../src/lib/navigationPresentation.js';
+import {presentNavigation,navigationPathMatches} from '../src/lib/navigationPresentation.js';
 import {needsAssetReload} from '../src/lib/assetRecovery.js';
 
 const primary=['home','learn','ask','practice','build'].map(key=>({key,to:`/dashboard/${key}`}));
@@ -38,4 +38,14 @@ test('large text navigation keeps every destination reachable and marks More for
   assert.deepEqual(result.primary,primary);
   assert.deepEqual(result.secondary,secondary);
   assert.equal(presentNavigation('teacher','higher',primary,secondary,'/dashboard/missing',2).mobileMoreActive,false);
+});
+test('nested destinations keep the active parent or More without matching similar route names',()=>{
+  assert.equal(navigationPathMatches('/dashboard/learn','/dashboard/learn/topic'),true);
+  assert.equal(navigationPathMatches('/dashboard/learn','/dashboard/learners'),false);
+  assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/learn/topic').mobileMoreActive,false);
+  assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/progress/detail').railMoreActive,true);
+  assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/progress/detail').mobileMoreActive,true);
+  assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/build/project').railMoreActive,false);
+  assert.equal(presentNavigation('student','foundational',primary,secondary,'/dashboard/build/project').railMoreActive,true);
+  assert.equal(presentNavigation('student','higher',primary,secondary,'/dashboard/unknown').railMoreActive,false);
 });
