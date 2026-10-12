@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Globe } from "lucide-react";
+import { fontStack } from "@/components/landing/system/tokens";
 
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = { ink: "#121317", graphite: "#3c4043", slate: "#5f6368", mist: "#dadce0", white: "#ffffff", blue: "#4285F4" };
 
 const FOOTER_LINK =
@@ -86,7 +86,7 @@ export default function LandingFooter({ variant = "brand" }) {
   return (
     /* Apple's global footer surface: #F5F5F7, hairline seams, quiet 12px
        links — the page ends in air, not a logo. */
-    <footer className="border-t" style={{ fontFamily: FONT, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
+    <footer className="border-t" style={{ fontFamily: fontStack, backgroundColor: "#F5F5F7", borderColor: "#d2d2d7" }}>
       <div className="public-frame public-frame-wide pt-16">
         <div className="grid grid-cols-2 gap-10 border-t pb-16 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8" style={{ borderColor: "#d2d2d7" }}>
           {FOOTER_SECTIONS.map((section) => (

@@ -18,11 +18,11 @@ import imgProjectC from "@/assets/organization-problem-2-1600w.webp";
 import imgResponsible from "@/assets/problem-understanding.webp";
 import imgFutureCommunity from "@/assets/teacher-problem-2.webp";
 import imgFutureCareers from "@/assets/organization-problem-3-1600w.webp";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the careers-page dialect (Material geometry, #121317 ink,
    #4285F4 actions, pill buttons), shared across converted pages. Styling
    uses Tailwind arbitrary values of the same tokens. ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ The research, honestly labelled. "In the product" items are real,
    shipped capabilities of the internal mentor; "Next" items are the work
@@ -166,7 +166,7 @@ function TextLink({ to, href, onClick, children }) {
 
 export default function ResearchNewsPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Research" />

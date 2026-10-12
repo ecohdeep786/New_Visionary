@@ -7,6 +7,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
@@ -19,7 +20,6 @@ const COLORS = {
   white: "#ffffff",
   soft: "#F5F6F8",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ TYPE SCALE — exact pricing page match ═══
    Hero H1 / major H2 : clamp(36px,5vw,72px)
@@ -345,7 +345,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
 function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           How <span className="accent-gradient">Visionary</span> works.
@@ -406,7 +406,7 @@ function HowJourneySection() {
   };
 
   return (
-    <section ref={headRef} className="relative bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={headRef} className="relative bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-60 lg:px-0 lg:pt-24">
         <div className="hidden lg:block">
           <div className="sticky top-14 flex h-[calc(100dvh-4rem)] items-center">
@@ -468,7 +468,7 @@ function HowLoopSection() {
   const stage = LOOP_STAGES[active];
 
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The learning loop</GreyTag>
         <h2 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -540,7 +540,7 @@ function HowDifferentPeopleSection() {
   const [role, setRole] = useState(0);
   const scenario = ROLES[role];
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Different people</GreyTag>
         <h2 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -596,7 +596,7 @@ function HowDifferentPeopleSection() {
 function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <GreyTag className="text-center">Get started</GreyTag>
         <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>See it with your own question.</h2>
@@ -619,7 +619,7 @@ function HowCTASection() {
 /* ═══ PAGE ═══ */
 export default function CoachingPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="How it works" />
       <main id="main">

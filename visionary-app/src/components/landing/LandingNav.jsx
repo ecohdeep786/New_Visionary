@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 import VisionaryLogo from "@/components/VisionaryLogo";
 import { CATEGORIES } from "@/data/landingCategories";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = {
   ink: "#121317",
   graphite: "#3c4043",
@@ -279,7 +279,7 @@ export default function LandingNav() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 h-14" style={{ fontFamily: FONT }}>
+    <header className="fixed inset-x-0 top-0 z-50 h-14" style={{ fontFamily: fontStack }}>
       {/* Skip link — first focusable element, Google/US-WAG convention */}
       <a
         href="#main"

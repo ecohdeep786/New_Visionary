@@ -22,7 +22,6 @@ const COLORS = {
   mist: "#dadce0",
   white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const PERSONA_IMAGES = {
   Student: studentImage,
   Teacher: teacherImage,
@@ -62,6 +61,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 
 /* ═══ MODELS — single plan-config fixture (01-PM, Wave L3): src/data/pricingConfig.js ═══ */
 import { PLANS, COMPARISON, PERSONA_PLANS, PRICING_FAQ, formatPrice } from "@/data/pricingConfig";
+import { fontStack } from "@/components/landing/system/tokens";
 
 
 /* ═══ Billing toggle — same pill language as site tabs ═══ */
@@ -157,7 +157,7 @@ function PricingPlansSection() {
   const { ref, visible } = useRevealOnce();
   const [billing, setBilling] = useState("annual");
   return (
-    <section ref={ref} className="relative px-4 pb-20 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-4 pb-20 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto max-w-[1440px] text-center">
           <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
@@ -187,7 +187,7 @@ function PricingPlansSection() {
 function PricingPersonaSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h2 className="mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
         <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -220,7 +220,7 @@ function PricingComparisonSection() {
   const { ref, visible } = useRevealOnce();
   return (
     
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h2 className="mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
         <p className="mx-auto mt-6 max-w-[1240px] text-right text-[12px] text-[#5f6368] md:hidden">Scroll to compare all plans →</p>
@@ -256,7 +256,7 @@ function PricingComparisonSection() {
 function PricingTrustBand() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-12" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-12" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <Sparkles className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
@@ -275,7 +275,7 @@ function PricingFAQSection() {
   const [open, setOpen] = useState(-1);
   const toggle = useCallback((i) => setOpen((cur) => (cur === i ? -1 : i)), []);
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
@@ -310,7 +310,7 @@ function PricingFAQSection() {
 function PricingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
         <p className="mx-auto mt-5 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
@@ -332,7 +332,7 @@ function PricingCTASection() {
 /* ═══ PAGE — universal for all users, quiet footer ═══ */
 export default function AILearningPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Pricing" />
       <main id="main">

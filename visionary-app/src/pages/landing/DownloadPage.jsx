@@ -7,6 +7,7 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
@@ -18,7 +19,6 @@ const COLORS = {
   mist: "#dadce0",
   white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -96,7 +96,7 @@ function DownloadHeroSection() {
     document.getElementById("platforms")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-24 lg:pt-28" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
@@ -156,7 +156,7 @@ function DownloadPlatformsSection() {
   const { ref, visible } = useRevealOnce();
   const detected = useDetectedPlatform();
   return (
-    <section ref={ref} id="platforms" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} id="platforms" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
@@ -238,7 +238,7 @@ function DownloadNotifySection() {
   }
 
   return (
-    <section ref={ref} className="relative bg-white px-6 pb-24" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 pb-24" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[24px] border p-8 text-center" style={{ borderColor: COLORS.mist }}>
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
@@ -297,7 +297,7 @@ function DownloadSyncSection() {
     return () => clearInterval(id);
   }, []);
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         Start on one device.{" "}
         <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
@@ -314,7 +314,7 @@ function DownloadSyncSection() {
 function DownloadRequirementsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
@@ -335,7 +335,7 @@ function DownloadRequirementsSection() {
 function DownloadTrustBand() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 pb-24" style={{ backgroundColor: COLORS.white, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 pb-24" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
@@ -352,7 +352,7 @@ function DownloadTrustBand() {
 function DownloadCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: FONT_FAMILY }}>
+    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.
@@ -397,7 +397,7 @@ export default function DownloadPage() {
 
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Download" />
       <main id="main">

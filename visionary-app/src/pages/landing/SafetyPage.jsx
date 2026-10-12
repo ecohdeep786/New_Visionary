@@ -10,10 +10,10 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { LEGAL_META, RESPONSE_TIMES } from "@/data/legalMeta";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const SAFETY_EMAIL = "safety@visionary.org.in";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
@@ -142,7 +142,7 @@ const SHARE_CHECKS = [
 
 export default function SafetyPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Safety" />

@@ -6,6 +6,7 @@ import {
   useHorizontalTrack as useScrollTrack,
 } from "@/components/landing/system/hooks";
 import { ScrollReveal, RevealItem, ChevronIcon } from "@/components/landing/persona/PersonaSections";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══════════════════════════════════════════════════════════════════════
  * PREMIUM PARITY SECTIONS — the student page's FINAL section anatomy, shared
@@ -22,7 +23,6 @@ const COLORS = {
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -263,7 +263,7 @@ function PremiumIntelligenceSection({ steps, sub }) {
   }, [nodes]);
 
   return (
-    <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       {/* the chapter's one breath of light — blue rising from above the
           statement, so all color lives in the content */}
       <div

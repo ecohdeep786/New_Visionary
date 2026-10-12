@@ -11,10 +11,10 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import { GRIEVANCE_OFFICER, RESPONSE_TIMES } from "@/data/legalMeta";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #4285F4/#0b57d0
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* Contact routes — real mailboxes (preserved from the page). */
 const CONTACT_ROUTES = [
@@ -128,7 +128,7 @@ export default function ContactPage() {
   const tab = TABS.find((t) => t.id === activeTab);
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Contact" />

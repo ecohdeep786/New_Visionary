@@ -9,10 +9,10 @@ import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
    actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ Motion — reveal on first scroll into view (shared reveal grammar,
    motion-reduce safe). ═══ */
@@ -85,7 +85,7 @@ export default function UpdatesPage() {
   const catLabel = (id) => CATEGORIES.find((c) => c.id === id)?.label ?? id;
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Updates" />

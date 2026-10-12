@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ShieldCheck, Lock, Accessibility, Scale } from "lucide-react";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* Shared trust-values strip — closes every trust/legal page above the quiet
    footer. The four commitments cross-link to each other; the page you are on
    is marked, not linked, so the strip reads as a map of the trust family. */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = { ink: "#121317", slate: "#5f6368", mist: "#dadce0", surface: "#f8f9fa", blue: "#4285F4" };
 
 const VALUES = [
@@ -17,7 +17,7 @@ const VALUES = [
 
 export default function ValuesStrip({ current }) {
   return (
-    <aside aria-label="Our commitments" className="border-t bg-[#f8f9fa]" style={{ fontFamily: FONT, borderColor: C.mist }}>
+    <aside aria-label="Our commitments" className="border-t bg-[#f8f9fa]" style={{ fontFamily: fontStack, borderColor: C.mist }}>
       <div className="public-frame public-frame-wide py-14 lg:py-16">
         <p className="text-center text-[12px] font-normal uppercase tracking-[0.43px]" style={{ color: C.slate }}>
           Our commitments

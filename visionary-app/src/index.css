@@ -1,25 +1,15 @@
+@import "./styles/tokens.css";
 @import "./styles/rhythm.css";
 @import "./styles/public-system.css";
 @import "./styles/public-bridge.css";
 @import "./styles/premium.css";
+@import "./styles/apple-typography.css";
 
-/* Google Fonts imports */
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
-/* The brand voices: Google Sans Flex (variable, opsz 16–144, wght 400–750)
-   leads every landing stack, Google Sans static carries legacy references.
-   Both are served by the Fonts API again (verified 200, Oct 2026).
-   DM Sans stays as the safety stand-in if gstatic is unreachable. */
+/* Google Fonts imports — Google Sans Flex only (brand),
+   Google Sans as the static fallback, DM Sans as safety net. */
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@16..144,400..750&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap');
 
 
 
@@ -316,7 +306,7 @@
        tint shows through as a grey band behind it. Pages set their own
        surfaces; the document base is white. */
     background-color: #ffffff;
-    font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', -apple-system, 'SF Pro Display', 'Inter', sans-serif;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -436,7 +426,7 @@
   /* ── Student: Learning → Mastery ─────────────────────────────── */
   .lm-section {
     color: #121317;
-    font-family: 'Google Sans Flex', 'Google Sans', 'Product Sans', sans-serif;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
   }
 
   /* Display type — 168px / line-height same / tracking 0% / Medium (500) */

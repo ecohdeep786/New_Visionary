@@ -8,13 +8,13 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system) ═══ */
 const COLORS = {
   ink: "#121317", surface: "#F5F6F8", blue: "#4285F4", grey: "#5f6368",
   lightGrey: "#9AA0A6", mist: "#dadce0", white: "#ffffff",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -172,7 +172,7 @@ export default function SchoolPage() {
   const noResults = query.length > 0 && topics.length === 0 && answers.length === 0;
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Help" />
       <main id="main">

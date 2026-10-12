@@ -12,6 +12,7 @@ import ValuesStrip from "@/components/landing/ValuesStrip";
 import PolicyTabs from "@/components/landing/PolicyTabs";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { LEGAL_META } from "@/data/legalMeta";
+import { fontStack } from "@/components/landing/system/tokens";
 
 const COLORS = {
   ink: "#121317",
@@ -26,7 +27,6 @@ const COLORS = {
   white: "#ffffff",
   graphite: "#5f6368",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══ CONTROLLERS ═══ */
 function useRevealOnce(rootMargin = "0px 0px -10% 0px") {
@@ -199,7 +199,7 @@ export default function SecurityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Security" />
       <PolicyTabs />

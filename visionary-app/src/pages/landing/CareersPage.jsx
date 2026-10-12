@@ -26,10 +26,10 @@ import imgDesign from "@/assets/problem-practice.webp";
 import imgEvidence from "@/assets/problem-understanding.webp";
 import imgEducation from "@/assets/teacher-problem-2.webp";
 import imgOperations from "@/assets/organization-problem-3-1600w.webp";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — careers-product dialect: Material geometry (8–12px cards,
    pill inputs/buttons), Material blue for actions and selection only ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 const C = {
   ink: "#121317",
   graphite: "#3c4043",
@@ -233,7 +233,7 @@ export default function CareersPage() {
   const active = useScrollSpy();
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <div className="lg:flex">
         <CareersRail active={active} />

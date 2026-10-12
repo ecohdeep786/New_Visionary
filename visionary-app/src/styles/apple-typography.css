@@ -1,0 +1,206 @@
+/* ═══ Apple × Google typography reference layer ═══
+   Measured from apple.com @1440 (Oct 2026): iphone, ipad, apple-watch,
+   macbook-air, education, ios pages.
+
+   Apple's product pages use SF Pro Display for headings and SF Pro Text for
+   body/UI at weights 600 (headings) / 400 (body). The Visionary brand reads
+   Medium (500) on its own identity, but these premium pages adopt Apple's
+   600 weight for headings.
+
+   BRAND LAW: Visionary ships on Google Sans Flex only. SF Pro is referenced
+   here purely as a measurement source for sizing/weight/line-height — it is
+   NOT in any active font stack. Every declaration uses the single brand
+   stack: 'Google Sans Flex', 'Google Sans', sans-serif. */
+
+@layer components {
+  /* ── Font family helpers ──
+     Brand stack first; SF Pro only on Apple hardware fallback. The earlier
+     generic-system tokens (Inter, system-ui) are stripped so the only
+     surfaces that render Google branding stay locked to Google Sans. */
+  .apple-font-display {
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+  .apple-font-text {
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Hero H1 — 80px clamp, 600 weight, 1.05 line-height, -0.015em tracking ──
+     Apple's product-page hero headline (measured: 80px @1440, -1.2px tracking) */
+  .apple-hero-h1 {
+    font-size: clamp(56px, 5.55vw, 80px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+
+  /* ── Section H2 — 48px clamp, 600 weight, 1.08 line-height, -0.009em tracking ──
+     Apple's chapter-statement tier: "Take a closer look.", "Get the highlights." */
+  .apple-section-h2 {
+    font-size: clamp(36px, 3.3vw, 48px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.009em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Display — 56px clamp, 600 weight, 1.07 line-height, -0.009em tracking ──
+     Apple's hero subheadline tier (e.g. MacBook Air 64px hero subheading) */
+  .apple-display {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.009em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Subheading H3 — 28px clamp, 600 weight, 1.14 line-height, +0.007em tracking ──
+     Apple's feature subheading tier */
+  .apple-subheading {
+    font-size: clamp(24px, 2.5vw, 28px);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: 0.007em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Card H3 — 32px clamp, 600 weight, 1.125 line-height, +0.004em tracking ──
+     Apple's card-title tier (32px desktop) */
+  .apple-card-h3 {
+    font-size: clamp(24px, 2.8vw, 32px);
+    font-weight: 600;
+    line-height: 1.125;
+    letter-spacing: 0.004em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Card H4 — 24px, 600 weight, 1.14 line-height ──
+     Apple's card subtitle tier */
+  .apple-card-h4 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: 0.004em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Lead body — 17px, 400 weight, 1.47 line-height, -0.022em tracking ── */
+  .apple-lead {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.022em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Lead bold — 17px, 600 weight, 1.24 line-height, -0.022em tracking ── */
+  .apple-lead-bold {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.24;
+    letter-spacing: -0.022em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Body — 17px, 400 weight, 1.47 line-height, -0.022em tracking ── */
+  .apple-body {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.022em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Card body — 17px, 400 weight, 1.47 line-height ── */
+  .apple-card-body {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.022em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Eyebrow — 12px, 600 weight, 1.33 line-height, -0.01px tracking ──
+     Apple carries no uppercase kickers — quiet sentence-case lead-ins */
+  .apple-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.33;
+    letter-spacing: -0.01px;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    text-transform: none !important;
+  }
+
+  /* ── Metadata — 14px, 600 weight, 1.43 line-height, -0.224px tracking ── */
+  .apple-meta {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.43;
+    letter-spacing: -0.016em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Fine print — 13px, 400 weight, 1.54 line-height ──
+     Apple's smallest (measured: 13px, never below 14px on product pages) */
+  .apple-fine {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.54;
+    letter-spacing: -0.014em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Footer link — 12px, 400 weight, 1.33 line-height ── */
+  .apple-footer-link {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.33;
+    letter-spacing: -0.01px;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Button — 17px, 600 weight, 1.29 line-height, -0.022em tracking ── */
+  .apple-btn-primary {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: -0.022em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  .apple-btn-secondary {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: -0.022em;
+    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  }
+
+  /* ── Apple page antialiasing ── */
+  .apple-page {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Vertical rhythm helpers (Apple's measured gaps) ── */
+  .apple-gap-eyebrow-title {
+    margin-top: 1rem; /* 16px — Apple's eyebrow→h2 gap */
+  }
+  .apple-gap-title-sub {
+    margin-top: 1.5rem; /* 24px — Apple's h2→sub gap */
+  }
+
+  /* ── Apple's card surface: flat, no shadow, no border ── */
+  .apple-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(18, 19, 23, 0.045);
+    border-radius: 28px;
+  }
+
+  /* Apple's hairline divider */
+  .apple-hairline {
+    border-color: rgba(18, 19, 23, 0.045);
+  }
+}

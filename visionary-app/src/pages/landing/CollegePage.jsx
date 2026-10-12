@@ -46,6 +46,7 @@ import {
 } from "@/components/landing/persona/PremiumPersonaSections";
 
 import { Eye, RefreshCw, Globe2, UsersRound, Sparkles, BookOpen, MessageCircle, Clock, Layers3, Building2, GraduationCap, Target, Brain, Zap } from "lucide-react";
+import { fontStack } from "@/components/landing/system/tokens";
 
 const EXPLORE_CAT_IMG = [studentmeet, teachermeet, parentmeet, orgmeet];
 
@@ -69,7 +70,6 @@ const COLORS = {
   cardSurface: "#EEF1F6",
   cardSurfaceAlt: "#E9EFFA",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 
@@ -298,7 +298,7 @@ function ProJourneySection() {
 
 export default function CollegePage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <ProHeroSection />

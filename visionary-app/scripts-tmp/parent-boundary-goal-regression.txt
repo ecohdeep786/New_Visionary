@@ -1,1 +1,0 @@
-Learner goal: create privately, exact parent preview, second-child isolation, stop sharing and 390px layout passed.

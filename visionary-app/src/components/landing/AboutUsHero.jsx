@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import HeroFanCards from "@/components/landing/HeroFanCards";
+import { fontStack } from "@/components/landing/system/tokens";
 
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ── Fan cards: every main category plus the sub-categories used on each
       category page. All sub-category cards redirect to their main category
@@ -40,7 +40,7 @@ export default function AboutUsHero() {
     <section
       className="relative overflow-hidden border-b border-[#e8eaed] bg-white"
       style={{
-        fontFamily: FONT,
+        fontFamily: fontStack,
         paddingTop: "calc(64px + 168px)",
         paddingBottom: "40px",
       }}

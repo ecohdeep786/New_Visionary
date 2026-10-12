@@ -26,8 +26,8 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]){
 .workspace-presence-anchor.is-expanded{left:104px}
 .workspace-presence-anchor .v-audio-orb-button{pointer-events:auto}
 .workspace-bottom-nav{min-height:64px;padding-bottom:env(safe-area-inset-bottom)}
-.visionary-workspace :lang(hi){font-family:'Noto Sans Devanagari','Kohinoor Devanagari','Nirmala UI',sans-serif;line-height:1.7}
-.visionary-workspace :lang(bn){font-family:'Noto Sans Bengali','Kohinoor Bangla','Nirmala UI',sans-serif;line-height:1.7}
+.visionary-workspace :lang(hi){font-family:'Google Sans Flex', 'Google Sans', sans-serif;line-height:1.7}
+.visionary-workspace :lang(bn){font-family:'Google Sans Flex', 'Google Sans', sans-serif;line-height:1.7}
 .visionary-workspace progress{height:8px;appearance:none;border:0;border-radius:999px;overflow:hidden;background:var(--v-soft)}
 .visionary-workspace progress::-webkit-progress-bar{background:var(--v-soft);border-radius:999px}
 .visionary-workspace progress::-webkit-progress-value{background:var(--v-brand);border-radius:999px}

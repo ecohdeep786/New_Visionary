@@ -36,7 +36,6 @@ const COLORS = {
   chipBg: "#D2E3FC",
   track: "rgba(69,71,77,0.15)",
 };
-const FONT_FAMILY = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 /* ═══════════════════════ CONTROLLERS ═══════════════════════ */
 function usePrefersReducedMotion() {
@@ -236,6 +235,7 @@ import parentCut480 from "@/assets/hero-cutouts/parent-480w.webp";
 import parentCut800 from "@/assets/hero-cutouts/parent-800w.webp";
 import orgCut480 from "@/assets/hero-cutouts/organization-480w.webp";
 import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* The universal sentence, in the persona grammar: the product names itself,
    then the cycle carries every journey — student, teacher, parent,
@@ -279,7 +279,7 @@ function LandingProblemSection() {
   const { ref, visible } = useRevealContinuous();
   const slide = PROBLEM_SLIDES[index];
   return (
-    <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-white" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
         {/* the section's own compact-band override (bridge: 02-problem) provides
@@ -349,7 +349,7 @@ function LandingProblemSection() {
 function LandingPromiseSection() {
   const { ref, visible } = useRevealContinuous();
   return (
-    <section ref={ref} data-section="03-promise" className="relative z-10 bg-white px-6 [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="03-promise" className="relative z-10 bg-white px-6 [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h2 className="mx-auto text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch" }}>
           What if your intelligence never forgot{" "}
@@ -488,7 +488,7 @@ function LandingMeetSection() {
     node?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [scrollToStep]);
   return (
-    <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <div className="px-6">
         <FadeReveal visible={visible}>
           {/* Apple's header rhythm: the kicker sits tight above the headline
@@ -624,7 +624,7 @@ function LandingJourneySection() {
   useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
 
   return (
-    <section ref={ref} data-section="06-journey" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: FONT_FAMILY }}>
+    <section ref={ref} data-section="06-journey" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
       <div className={`transition-all duration-700 ${EASE_APPLE} ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         {/* the header — Apple's "Get the highlights." treatment: the statement
             alone, LEFT-aligned, on the 40px highlights tier (32px on phones).
@@ -699,7 +699,7 @@ function LandingJourneySection() {
    hero's audience row; depth lives on the pages those links open. */
 export default function LandingPage() {
   return (
-    <div className="page-landing min-h-screen bg-white" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <LandingHeroSection />

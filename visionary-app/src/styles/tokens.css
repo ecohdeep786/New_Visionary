@@ -1,0 +1,8 @@
+/* ═══ Visionary design tokens — font source of truth ═══
+   Single origin for the brand font stack. Every CSS file and JS
+   inline style references --font-brand so there is one place to
+   change the type when the brand evolves. */
+
+:root {
+  --font-brand: 'Google Sans Flex', 'Google Sans', sans-serif;
+}

@@ -20,7 +20,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
   --v-radius-control: 12px;
   --v-radius-panel: 20px;
   --v-motion: 160ms;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
   color-scheme: light;
   -webkit-font-smoothing: antialiased;
   font-variant-numeric: tabular-nums;

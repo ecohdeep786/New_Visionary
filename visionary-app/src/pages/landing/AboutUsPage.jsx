@@ -14,10 +14,10 @@ import imgStagePrimary from "@/assets/student-primary.webp";
 import imgStageSecondary from "@/assets/student-secondary.webp";
 import imgStageCompetitive from "@/assets/student-competitive.webp";
 import imgStageHigher from "@/assets/student-higher.webp";
+import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ Tokens — the shared Material dialect (#121317 ink, #4285F4/#0b57d0
    actions, #dadce0 hairlines, pill buttons, radius scaled to card size). ═══ */
-const FONT = "'Google Sans Flex', 'Google Sans', 'DM Sans', system-ui, sans-serif";
 
 const ROLES = [
   { to: "/student", label: "Students", line: "From first concepts to higher education and learning on your own.", image: studentImage, tint: "#e8f0fe" },
@@ -196,5 +196,5 @@ function FinalCta() {
 }
 
 export default function AboutUsPage() {
-  return <div className="min-h-screen bg-white" style={{ fontFamily: FONT }}><LandingNav /><main id="main"><AboutUsHero /><MissionSection /><LifeJourneySection /><ImpactSection /><RolesSection /><ExploreSection /><FinalCta /></main><LandingFooter variant="quiet" /></div>;
+  return <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}><LandingNav /><main id="main"><AboutUsHero /><MissionSection /><LifeJourneySection /><ImpactSection /><RolesSection /><ExploreSection /><FinalCta /></main><LandingFooter variant="quiet" /></div>;
 }
