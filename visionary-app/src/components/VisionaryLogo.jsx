@@ -2,7 +2,7 @@
  * Visionary brand logo — SVG matching the brand spec:
  * Dark grey "V" formed by two thick strokes meeting at a white circle,
  * followed by "isionary" in medium grey.
- * Font family resolves to the CSS variable --font-brand (Google Sans Flex).
+ * The shared wordmark follows the current surface's --font-brand alias.
  */
 export default function VisionaryLogo({ className = "", showText = true }) {
   return (

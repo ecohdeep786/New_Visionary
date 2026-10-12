@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserNotRegisteredError = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-white to-[#e8f0fd]">
+    <div data-font-surface="product" className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-white to-[#e8f0fd]">
       <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg border border-[#dadce0]">
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-[#ffffff]">

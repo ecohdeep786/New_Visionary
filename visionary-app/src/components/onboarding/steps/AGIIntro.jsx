@@ -2,7 +2,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 
 export default function AGIIntro({ data, userName, onComplete }) {
   return (
-    <main className="flex min-h-dvh items-center justify-center bg-white p-6">
+    <main data-font-surface="product" className="flex min-h-dvh items-center justify-center bg-white p-6">
       <section className="w-full max-w-lg rounded-3xl border border-[#dadce0] bg-white p-8 sm:p-10">
         <Sparkles className="mb-6 h-8 w-8 text-[#4285F4]" />
         <p className="text-sm text-[#5f6368]">Visionary PA</p>

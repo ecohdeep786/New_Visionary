@@ -7,21 +7,20 @@
    Medium (500) on its own identity, but these premium pages adopt Apple's
    600 weight for headings.
 
-   BRAND LAW: Visionary ships on Google Sans Flex only. SF Pro is referenced
+   PUBLIC TYPOGRAPHY: Frontend pages use Google Sans Flex. SF Pro is referenced
    here purely as a measurement source for sizing/weight/line-height — it is
    NOT in any active font stack. Every declaration uses the single brand
-   stack: 'Google Sans Flex', 'Google Sans', sans-serif. */
+   stack through --font-public. Internal product type uses --font-product. */
 
 @layer components {
   /* ── Font family helpers ──
-     Brand stack first; SF Pro only on Apple hardware fallback. The earlier
-     generic-system tokens (Inter, system-ui) are stripped so the only
-     surfaces that render Google branding stay locked to Google Sans. */
+     Public display helpers consume their own font token. Product controls
+     and overlays inherit the separate internal product stack. */
   .apple-font-display {
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
   .apple-font-text {
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Hero H1 — 80px clamp, 600 weight, 1.05 line-height, -0.015em tracking ──
@@ -31,7 +30,7 @@
     font-weight: 600;
     line-height: 1.05;
     letter-spacing: -0.015em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
     max-width: 18ch;
     text-wrap: balance;
   }
@@ -43,7 +42,7 @@
     font-weight: 600;
     line-height: 1.08;
     letter-spacing: -0.009em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Display — 56px clamp, 600 weight, 1.07 line-height, -0.009em tracking ──
@@ -53,7 +52,7 @@
     font-weight: 600;
     line-height: 1.07;
     letter-spacing: -0.009em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Subheading H3 — 28px clamp, 600 weight, 1.14 line-height, +0.007em tracking ──
@@ -63,7 +62,7 @@
     font-weight: 600;
     line-height: 1.14;
     letter-spacing: 0.007em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Card H3 — 32px clamp, 600 weight, 1.125 line-height, +0.004em tracking ──
@@ -73,7 +72,7 @@
     font-weight: 600;
     line-height: 1.125;
     letter-spacing: 0.004em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Card H4 — 24px, 600 weight, 1.14 line-height ──
@@ -83,7 +82,7 @@
     font-weight: 600;
     line-height: 1.14;
     letter-spacing: 0.004em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Lead body — 17px, 400 weight, 1.47 line-height, -0.022em tracking ── */
@@ -92,7 +91,7 @@
     font-weight: 400;
     line-height: 1.47;
     letter-spacing: -0.022em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Lead bold — 17px, 600 weight, 1.24 line-height, -0.022em tracking ── */
@@ -101,7 +100,7 @@
     font-weight: 600;
     line-height: 1.24;
     letter-spacing: -0.022em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Body — 17px, 400 weight, 1.47 line-height, -0.022em tracking ── */
@@ -110,7 +109,7 @@
     font-weight: 400;
     line-height: 1.47;
     letter-spacing: -0.022em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Card body — 17px, 400 weight, 1.47 line-height ── */
@@ -119,7 +118,7 @@
     font-weight: 400;
     line-height: 1.47;
     letter-spacing: -0.022em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Eyebrow — 12px, 600 weight, 1.33 line-height, -0.01px tracking ──
@@ -129,7 +128,7 @@
     font-weight: 600;
     line-height: 1.33;
     letter-spacing: -0.01px;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
     text-transform: none !important;
   }
 
@@ -139,7 +138,7 @@
     font-weight: 600;
     line-height: 1.43;
     letter-spacing: -0.016em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Fine print — 13px, 400 weight, 1.54 line-height ──
@@ -149,7 +148,7 @@
     font-weight: 400;
     line-height: 1.54;
     letter-spacing: -0.014em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Footer link — 12px, 400 weight, 1.33 line-height ── */
@@ -158,7 +157,7 @@
     font-weight: 400;
     line-height: 1.33;
     letter-spacing: -0.01px;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Button — 17px, 600 weight, 1.29 line-height, -0.022em tracking ── */
@@ -167,7 +166,7 @@
     font-weight: 600;
     line-height: 1.29;
     letter-spacing: -0.022em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   .apple-btn-secondary {
@@ -175,7 +174,7 @@
     font-weight: 600;
     line-height: 1.29;
     letter-spacing: -0.022em;
-    font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+    font-family: var(--font-public);
   }
 
   /* ── Apple page antialiasing ── */

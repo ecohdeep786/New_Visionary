@@ -19,6 +19,7 @@ export default function OnboardingLayout({
 
   return (
     <form
+      data-font-surface="product"
       onSubmit={(event) => { event.preventDefault(); if (canContinue && !isSubmitting) onContinue(); }}
       className="h-screen overflow-hidden flex flex-col bg-white"
     >

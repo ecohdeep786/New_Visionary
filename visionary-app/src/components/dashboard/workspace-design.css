@@ -1,3 +1,6 @@
+@import "../../styles/workspace-typography.css";
+@import "../../styles/workspace-outcomes.css";
+
 /* Authenticated product only. Public components and their tokens remain independent.
    Color expresses interaction/state; whitespace and type express hierarchy. */
 .visionary-workspace,
@@ -20,7 +23,7 @@ body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]) {
   --v-radius-control: 12px;
   --v-radius-panel: 20px;
   --v-motion: 160ms;
-  font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  font-family: var(--font-product);
   color-scheme: light;
   -webkit-font-smoothing: antialiased;
   font-variant-numeric: tabular-nums;

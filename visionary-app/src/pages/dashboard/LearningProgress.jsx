@@ -6,6 +6,7 @@ import { getLearningProgress } from '@/services/learningProgressService';
 import LearnerGoals from '@/components/dashboard/LearnerGoals';
 import WorkspaceIntro from '@/components/dashboard/WorkspaceIntro';
 import SpotIllustration from '@/components/landing/SpotIllustration';
+import ProgressOverview from '@/components/dashboard/ProgressOverview';
 
 const SOURCE_LABEL = { en: 'Evidence sources and limits', hi: 'प्रमाण के स्रोत और सीमाएँ', bn: 'প্রমাণের উৎস ও সীমাবদ্ধতা' };
 
@@ -23,12 +24,12 @@ export default function LearningProgress({ ctx, data }) {
   const rows = report.objectives.filter(row => row.title.toLowerCase().includes(query.trim().toLowerCase()));
   return <div lang={locale} className="v-page v-progress-page">
     <WorkspaceIntro title={t('title')} description={t('intro')} icon={History} />
+    <ProgressOverview report={report} locale={locale} periodLabel={t(period === 'all' ? 'all' : period === 30 ? 'thirty' : 'seven')} />
     <section className="v-card v-progress-controls" aria-labelledby="evidence-over-time">
       <h2 id="evidence-over-time" className="text-lg font-medium">{t('overTime')}</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2"><label className="text-sm">{t('period')}<select aria-label={t('period')} className="v-field mt-2" value={period} onChange={event => setPeriod(event.target.value === 'all' ? 'all' : Number(event.target.value))}><option value={7}>{t('seven')}</option><option value={30}>{t('thirty')}</option><option value="all">{t('all')}</option></select></label><label className="text-sm">{t('find')}<input aria-label={t('find')} className="v-field mt-2" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
-      <p className="v-muted mt-4">{t('policy')}</p>
       <p className="v-muted mt-2">{t('asOf')} <time dateTime={report.asOf}>{new Date(report.asOf).toLocaleString(locale)}</time> · {t('local')}</p>
-      <details className="v-evidence-source-notes"><summary>{SOURCE_LABEL[locale] || SOURCE_LABEL.en}</summary><p className="v-muted mt-3">{t('sources')}</p><p className="v-muted mt-2">{t('accuracy')}</p></details>
+      <details className="v-evidence-source-notes"><summary>{SOURCE_LABEL[locale] || SOURCE_LABEL.en}</summary><p className="v-muted mt-3">{t('policy')}</p><p className="v-muted mt-3">{t('sources')}</p><p className="v-muted mt-2">{t('accuracy')}</p></details>
     </section>
     {report.unavailable.length > 0 && <section className="v-notice v-error" role="alert"><h2 className="text-base font-medium">{t('unavailable')}</h2>{report.unavailable.map(item => <p className="mt-2 text-sm" key={item.source}><span lang="en">{item.source}: {item.message}</span></p>)}<button className="v-button mt-3" onClick={() => setRetry(retry + 1)}>{t('retry')}</button></section>}
     {rows.length ? rows.map(row => {

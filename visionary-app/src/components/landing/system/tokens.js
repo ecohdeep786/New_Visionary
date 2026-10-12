@@ -5,8 +5,7 @@
  * restraint: one accent per zone, no decorative chrome.
  */
 
-export const fontStack =
-  "'Google Sans Flex', 'Google Sans', sans-serif";
+export const fontStack = 'var(--font-public)';
 
 export const color = {
   ink: "#121317",

@@ -1,8 +1,18 @@
-/* ═══ Visionary design tokens — font source of truth ═══
-   Single origin for the brand font stack. Every CSS file and JS
-   inline style references --font-brand so there is one place to
-   change the type when the brand evolves. */
+/* Font families have independent surface contracts.
+   Public pages: --font-public. Authenticated product: --font-product.
+   --font-brand remains the inherited compatibility alias for shared UI. */
 
 :root {
-  --font-brand: 'Google Sans Flex', 'Google Sans', sans-serif;
+  --font-public: 'Google Sans Flex', 'Google Sans', sans-serif;
+  --font-product: 'Google Sans', sans-serif;
+  --font-brand: var(--font-public);
+}
+
+/* Body inheritance covers portals (including tooltips and toasts) outside the
+   shell. The selector stops matching as soon as the product is unmounted. */
+body:has(.visionary-workspace, [data-font-surface="product"]),
+.visionary-workspace,
+[data-font-surface="product"] {
+  --font-brand: var(--font-product);
+  font-family: var(--font-product);
 }

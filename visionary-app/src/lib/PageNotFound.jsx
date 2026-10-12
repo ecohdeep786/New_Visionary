@@ -1,11 +1,12 @@
 import { useLocation } from 'react-router-dom';
+import { fontSurfaceForPath } from './fontSurface';
 
 export default function PageNotFound({}) {
     const location = useLocation();
     const pageName = location.pathname.substring(1);
     
     return (
-        <div className="min-h-screen flex items-center justify-center p-6 bg-white">
+        <div data-font-surface={fontSurfaceForPath(location.pathname)} className="min-h-screen flex items-center justify-center p-6 bg-white">
             <div className="max-w-md w-full">
                 <div className="text-center space-y-6">
                     {/* 404 Error Code */}

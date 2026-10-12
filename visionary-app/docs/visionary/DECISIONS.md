@@ -263,3 +263,17 @@ Search uses predictable keyboard movement, composition-safe activation, localize
 Browser QA exposed a missing headShaded primitive in the shared illustration module that crashed importing internal screens. Restore that primitive with the existing skin-tone gradient vocabulary; do not redesign illustrations or edit public landing pages. This necessary shared repair does not imply a zero-pixel public comparison. The attached icon document's landing instructions are reference material, excluded by the current request.
 
 INTERNAL_DESIGN_HANDOFF.md records the keep/enhance inventory, roles, layouts, tokens/contrast, states/flows, icon rules, sound/motion events and future integration criteria. Automated evidence is bounded; overall physical-device, assistive-technology, language/owner and wider-state frontend acceptance remains open before backend implementation. No release or backend work is included.
+
+### D-053 — 2026-10-12: Shared typography and recorded accomplishments
+
+The founder asked the internal product to follow the updated shared typography folder and make completed work understandable and satisfying. Consume --font-brand from src/styles/tokens.css through a scoped workspace-typography.css layer; retain product-sized relative type and readable Indic leading rather than applying public display helpers. Normalize internal legacy utilities that are otherwise fixed by shared important declarations. Keep public style/page files unchanged.
+
+Progress should lead with available recorded work in the selected period, before filters and source details. Derive totals from the owner-scoped report; disclose unreadable sources, omit a fabricated empty-account achievement, and keep search filtering separate from period totals. Understanding-check/practice feedback should name the actual saved step and provide a clear next action. Application is a saved project record, not a mastery assessment. Keep retries, source languages and service gates; add no confetti, sound, reward pressure, inferred streak or invented improvement metric.
+
+DESIGN_QUALITY_HANDOFF.md records the implemented integration and bounded verification. No backend/native capability or measured retention/motivation improvement is inferred. Existing device/user/owner and wider-state acceptance remains open.
+
+### D-054 — 2026-10-12: Distinct public and product font families
+
+The founder clarified the font contract: public frontend pages use Google Sans Flex; the internal product uses Google Sans. This supersedes D-053's single-family assumption without changing its scale/outcome work. src/styles/tokens.css owns independent --font-public and --font-product stacks. The compatibility --font-brand alias follows the active surface for shared controls and the wordmark.
+
+Public display CSS and the public React fontStack consume the public token; workspace/Indic typography consumes the product token. Tailwind's generic font helpers follow the active surface. Product entry, loading, restricted/error and internal404 containers have product markers; body inheritance covers escaped portals and restores public fonts on product exit. No imperative body-font mutation, layout rewrite, domain/service change or new font provider is introduced. src/styles/README.md documents ownership and future usage.

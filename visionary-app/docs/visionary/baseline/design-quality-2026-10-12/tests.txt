@@ -1,0 +1,35 @@
+✔ five role Homes offer direct role-safe next actions without creating conversations (361.1646ms)
+✔ a saved onboarding subject becomes the first action without inventing curriculum or weakness (162.2948ms)
+✔ Home and deep link resume the exact session without resetting its snapshot (693.1283ms)
+✔ invalid and cross-workspace activity links create no blank conversation (8.4165ms)
+✔ localized Home activity title declares the saved teaching language, not the current preference (8.7792ms)
+✔ saved Ask intent/material/draft remain workspace scoped and storage failures keep prior values (2.9857ms)
+✔ parent Home excludes private evidence and drops revoked child summaries (49.9752ms)
+✔ minor suggestions omit the professional scenario; unavailable services fail honestly (23.7332ms)
+✔ unsupported and matched Guide responses use the same role and age eligibility as entry (131.4179ms)
+✔ known response blocks retain their own language across mixed-language history; legacy and free text stay unknown (55.7774ms)
+✔ one route-entry snapshot hydrates the exact session draft instead of another active conversation (75.7525ms)
+✔ failed History and New selection keep the complete prior view and stored selection, then retry succeeds (5.4763ms)
+✔ material persistence failure retains the acknowledged value and can retry the local edit (1.9809ms)
+✔ period history excludes drafts and unverified application from accuracy and keeps exact original activity (79.6061ms)
+✔ multiple earlier sessions group a stable objective once but each timeline link resumes its own session (96.6534ms)
+✔ a period with no evidence distinguishes retained history from an entirely new workspace (25.0977ms)
+✔ incomplete activity source retains measured history but exposes no misleading resume link (2.2882ms)
+✔ unreadable source is partial, available earlier evidence remains visible and originals are preserved (131.689ms)
+✔ duplicate or malformed evidence never becomes inflated or partially counted results (2.4967ms)
+✔ owner/workspace authorization and cancellation apply before exposing any timeline (3.3209ms)
+✔ same objective across source versions groups counts but preserves both original activity links and versions (2.6401ms)
+✔ malformed earlier sessions cannot leave partial counts, and missing units do not remove readable evidence (1.898ms)
+✔ emerging-reader navigation keeps every route reachable without mutating the role list (2.7417ms)
+✔ the full role navigation remains for other stages and roles (1.6499ms)
+✔ More identifies a secondary destination without highlighting an unknown route (0.3323ms)
+✔ stale CSS or lazy import failures need a document reload; ordinary failures keep normal recovery (0.584ms)
+✔ large text navigation keeps every destination reachable and marks More for a displaced primary page (0.3571ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8028.3679

@@ -91,9 +91,9 @@ export default function DashboardLayout() {
   useEffect(() => { if(activeWorkspace&&user)saveLastPath({personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'},location.pathname); },[location.pathname,activeWorkspace?.id]);
   const recoveryCopy=privacyCopy(locale);
   function recover(){retryWorkspace();refreshScope();}
-  function unavailable(message){return <main className="p-8" lang={locale}><h1 className="v-title">{recoveryCopy('Workspace unavailable')}</h1><p className="v-notice v-error mt-4" role="alert" lang="en">{message}</p><p className="v-muted mt-3">{recoveryCopy('Your saved records remain on this device. Restore readable records, then retry.')}</p><button className="v-button mt-4" onClick={recover}>{recoveryCopy('Retry workspace')}</button></main>;}
+  function unavailable(message){return <main data-font-surface="product" className="p-8" lang={locale}><h1 className="v-title">{recoveryCopy('Workspace unavailable')}</h1><p className="v-notice v-error mt-4" role="alert" lang="en">{message}</p><p className="v-muted mt-3">{recoveryCopy('Your saved records remain on this device. Restore readable records, then retry.')}</p><button className="v-button mt-4" onClick={recover}>{recoveryCopy('Retry workspace')}</button></main>;}
   if(workspaceError||scopeError)return unavailable(workspaceError||scopeError);
-  if(!activeWorkspace)return <main lang={locale} className="p-8" role="status" aria-busy="true">{t("openingWorkspace")}</main>;
+  if(!activeWorkspace)return <main data-font-surface="product" lang={locale} className="p-8" role="status" aria-busy="true">{t("openingWorkspace")}</main>;
   if (!canAccessDashboardPath(user?.identity, location.pathname)) return <Navigate to="/dashboard/home" replace />;
   const ctx={personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'};
   let policy;

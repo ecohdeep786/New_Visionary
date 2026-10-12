@@ -320,20 +320,23 @@ module.exports = {
   		
   		
   		fontFamily: {
+        sans: ['var(--font-brand)'],
+        public: ['var(--font-public)'],
+        product: ['var(--font-product)'],
         // figma:company-pitch-deck-all-design (Ty6gmHof) — start
         "figma-inter": ['"Inter"', 'sans-serif'],
         // figma:company-pitch-deck-all-design (Ty6gmHof) — end
       
   			
-  			'heading': ['"Google Sans"', 'sans-serif'],
+        'heading': ['var(--font-brand)'],
   			
-  			'paragraph': ['"Google Sans"', 'sans-serif'],
+        'paragraph': ['var(--font-brand)'],
   			
   			'figma-open-sans': ['"Open Sans"', 'sans-serif'],
   			
   			'figma-roboto': ['"Roboto"', 'sans-serif'],
   			
-  			'figma-google-sans-flex': ['"Google Sans Flex"', 'sans-serif'],
+        'figma-google-sans-flex': ['var(--font-public)'],
   			
   			'figma-sf-pro': ['"SF Pro"', 'sans-serif'],
   			

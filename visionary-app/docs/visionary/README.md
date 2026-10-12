@@ -8,6 +8,10 @@ Current work (2026-09-27): finish internal design and usability acceptance first
 
 Only three living logs: STATUS, DECISIONS, QA. Product addenda and inventories are deliverables, not alternate status logs. D-016 authorizes the current internal design pass; preserve the strict `src/pages/landing` exclusion.
 
+The current [stylesheet ownership guide](../../src/styles/README.md), D-054, defines public frontend Google Sans Flex and internal product Google Sans with independent tokens and portal/entry/fallback inheritance. [Font review evidence](baseline/font-surfaces-2026-10-12/README.md) records compiled font isolation and responsive verification. The earlier single-font assumption is superseded.
+
+The [shared typography and outcome handoff](DESIGN_QUALITY_HANDOFF.md), D-053, connects the internal product to the updated font token, restores readable product spacing/scaling and makes actual recorded work and next steps easier to understand. [Review evidence](baseline/design-quality-2026-10-12/README.md) covers the isolated compiled learning/Progress/type checks and remaining human/device acceptance.
+
 The [responsive internal design handoff](INTERNAL_DESIGN_HANDOFF.md), D-052 on2026-10-12, records the shared visual/interaction/UX/motion/sound continuation, light/dark tokens, text scaling, quiet voice behavior and native integration boundaries. [Compiled review evidence](baseline/internal-design-2026-10-12/README.md) distinguishes68 automated samples and five large-text Homes from the remaining physical/user acceptance.
 
 The [local store inventory](LOCAL_STORE_INVENTORY.md) records ownership, versioned content delivery, editor backups and future cutover exclusions. It does not authorize deleting or transferring browser records.

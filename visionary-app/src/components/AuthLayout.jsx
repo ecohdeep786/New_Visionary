@@ -14,7 +14,7 @@ export default function AuthLayout({
 }) {
   const displaySubtitle = subtitle || supportingText;
   return (
-    <div className="h-screen overflow-hidden flex flex-col bg-[#f0f2f5]">
+    <div data-font-surface="product" className="h-screen overflow-hidden flex flex-col bg-[#f0f2f5]">
       {/* Card area — centered, takes remaining space */}
       <div className="flex-1 flex items-center justify-center px-4 py-4 min-h-0">
         <div className="w-full max-w-[960px] max-h-full bg-white rounded-[28px] shadow-[0_1px_2px_rgba(60,64,67,0.08),0_2px_6px_2px_rgba(60,64,67,0.06)] overflow-hidden border border-[#dadce0]/30">

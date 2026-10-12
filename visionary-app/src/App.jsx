@@ -11,6 +11,7 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import OnboardingGate from '@/components/OnboardingGate'
 import { needsAssetReload } from '@/lib/assetRecovery'
+import { fontSurfaceForPath } from '@/lib/fontSurface'
 
 class AppErrorBoundary extends React.Component {
   state = { error: null, errorInfo: null }
@@ -34,7 +35,7 @@ class AppErrorBoundary extends React.Component {
       const internal = window.location.pathname.startsWith('/dashboard');
       const reloadAssets = internal && needsAssetReload(this.state.error);
       return (
-        <main className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#121317]">
+        <main data-font-surface={fontSurfaceForPath(window.location.pathname)} className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6 py-12 text-center text-[#121317]">
           <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm border border-[#dadce0]">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#fce8e6] text-red-600">
               <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
@@ -133,7 +134,7 @@ const AccessibilityPage = lazy(() => import('@/pages/landing/AccessibilityPage')
 const CookiesPage = lazy(() => import('@/pages/landing/CookiesPage'))
 
 const RouteFallback = () => (
-  <main className="flex min-h-screen items-center justify-center bg-white" aria-busy="true">
+  <main data-font-surface={fontSurfaceForPath(window.location.pathname)} className="flex min-h-screen items-center justify-center bg-white" aria-busy="true">
     <span className="text-sm text-[#5f6368]">Loading...</span>
   </main>
 )

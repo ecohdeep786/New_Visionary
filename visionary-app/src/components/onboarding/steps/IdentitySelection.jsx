@@ -36,7 +36,7 @@ export default function IdentitySelection({ onContinue }) {
   const [selected, setSelected] = useState(null);
 
   return (
-    <div className="h-screen overflow-hidden flex flex-col bg-white">
+    <div data-font-surface="product" className="h-screen overflow-hidden flex flex-col bg-white">
       <header className="shrink-0 flex items-center justify-between px-6 lg:px-10 py-4">
         <VisionaryLogo />
         <LanguageSelector />

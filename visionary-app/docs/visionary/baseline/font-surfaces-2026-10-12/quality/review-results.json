@@ -1,0 +1,68 @@
+{
+  "samples": [
+    {
+      "scheme": "light",
+      "width": 320,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "document": false,
+      "main": false,
+      "font": "\"Google Sans\", sans-serif"
+    }
+  ],
+  "type": {
+    "dialog": "\"Google Sans\", sans-serif",
+    "dialogLeading": "54.4px",
+    "titleLeading": "84px",
+    "titleSize": "56px",
+    "legacy": "34px"
+  },
+  "errors": []
+}
