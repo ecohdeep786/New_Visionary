@@ -1,12 +1,14 @@
 # Visionary internal product — current status
 
-Updated 2026-10-10. This is the single current audit and resume document. STATUS.md, DECISIONS.md and QA.md retain append-only evidence; VISIONARY_MASTER_v2.2.md is the product contract. AGI remains the ambition, not a demonstrated capability. Preserve src/pages/landing and all unrelated public work.
+Updated 2026-10-12. This is the single current audit and resume document. STATUS.md, DECISIONS.md and QA.md retain append-only evidence; VISIONARY_MASTER_v2.2.md is the product contract. AGI remains the ambition, not a demonstrated capability. Preserve src/pages/landing and all unrelated public work.
 
 ## Delivery order
 
 Complete internal frontend journeys, representative connected-category rehearsal and acceptance → backend/API/database → real content/model implementation and evaluation → controlled beta. The founder clarified that the supplied book is an example of the eventual content hierarchy and student flow, not a request to require full book ingestion before frontend completion. Chapter analysis is retained. D-050 implements the missing subject/book presentation and stage/category context and return-path fixes. See FRONTEND_COMPLETION_SCOPE.md and CATALOGUE_FRONTEND_HANDOFF.md. Backend implementation remains deferred.
 
 ## Current work
+
+Latest shared design continuation: D-052 completes semantic system dark theme, scalable shared controls and states, keyboard/IME-safe search, localized skip/offline navigation, large-text adaptive destination count and quiet review-before-send voice behavior. A missing shared illustration primitive that crashed internal startup is repaired. Build/lint/both types and27 focused regressions pass;68 compiled route/theme/width observations and five large-text role Homes pass without overflow/page errors. INTERNAL_DESIGN_HANDOFF.md and baseline/internal-design-2026-10-12/README.md record role deliverables, sound/motion/permission/native boundaries and exact evidence. Physical accessibility/device/actual zoom/performance, native-language/user/owner/public-continuity and wider populated state acceptance remain open before backend work. No public landing page edits, release or native certification.
 
 Latest design review: D-051 reduces foundational navigation to Home/Learn/Ask with Practice/Build retained under More; puts book/chapter content before optional setup; moves the current plan-removal action under Change plan; improves deeper action targets, selected-section/More states and Ask canvas placement; supplies stale-asset reload recovery; and corrects missing demo stage contexts without overwriting transitions. 483/483 regressions, full lint, both type checks and production build pass. Five-role source inspection, 47 usable route observations, populated class/parent/employer checks and final compiled evidence are bounded in PRINCIPAL_DESIGN_REVIEW_2026_10_10.md and baseline/principal-review-2026-10-10/README.md. Whole-product, physical-device, assistive-technology, representative-user and owner acceptance remain open. No toddler-independent-usability, production parity or AGI claim.
 

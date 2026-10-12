@@ -253,3 +253,13 @@ Apply the founder’s requested five-role/category review to the existing intern
 A stale asset boundary needs document reload rather than another render of a rejected import; internal errors must not promise unsaved work survived. Observed exam demo mismatch also requires missing exam/higher-education/professional stage seeds, preserving later transitions and empty subject lists. No production curriculum or user capability is inferred.
 
 PRINCIPAL_DESIGN_REVIEW_2026_10_10.md distinguishes five-role source/route coverage, populated fictional interactions, final compiled checks and open human/device acceptance. No backend integration, toddler-independent-usability claim or Apple/Google/AGI certification. Public source edits are preserved.
+
+### D-052 — 2026-10-12: Responsive internal design continuation
+
+The founder requested collaborating UX, interaction, visual, motion and sound roles for the responsive web product. Continue the inherited internal system: semantic light/dark colors, relative type, comfortable targets, selected/pressed/disabled/error states, and familiar HTML/Radix controls. Compact navigation adapts to window width and root text size; every displaced destination remains available through labelled More and retains its active indicator. Preserve role, stage, authored-content and service permissions.
+
+Search uses predictable keyboard movement, composition-safe activation, localized recovery, and origin/destination focus. The authenticated shell supplies one localized skip control and an honest offline notice. Guide opening remains silent; finalized or edited words stop capture before explicit Send. Idle, hidden and reduced-motion animation stays still. No native audio routing, notification delivery, predictive-back API, dynamic wallpaper palette or Vitals capability is advertised as implemented by this browser pass.
+
+Browser QA exposed a missing headShaded primitive in the shared illustration module that crashed importing internal screens. Restore that primitive with the existing skin-tone gradient vocabulary; do not redesign illustrations or edit public landing pages. This necessary shared repair does not imply a zero-pixel public comparison. The attached icon document's landing instructions are reference material, excluded by the current request.
+
+INTERNAL_DESIGN_HANDOFF.md records the keep/enhance inventory, roles, layouts, tokens/contrast, states/flows, icon rules, sound/motion events and future integration criteria. Automated evidence is bounded; overall physical-device, assistive-technology, language/owner and wider-state frontend acceptance remains open before backend implementation. No release or backend work is included.

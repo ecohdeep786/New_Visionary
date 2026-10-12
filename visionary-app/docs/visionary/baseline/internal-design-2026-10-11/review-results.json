@@ -1,0 +1,341 @@
+{
+  "samples": [
+    {
+      "scheme": "light",
+      "width": 320,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 320,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 390,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 768,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "light",
+      "width": 1440,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 320,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 390,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 768,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "route": "home",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "route": "learn",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "route": "build",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "route": "progress",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "route": "settings",
+      "document": false,
+      "main": false
+    },
+    {
+      "scheme": "dark",
+      "width": 1440,
+      "route": "notifications",
+      "document": false,
+      "main": false
+    }
+  ],
+  "errors": []
+}

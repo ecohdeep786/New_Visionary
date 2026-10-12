@@ -82,7 +82,12 @@ export default function AudioPresence() {
       if (!conversationRef.current) conversationRef.current = newConversation(request).id;
       const response = await sendMentorTurn({ ...request, signal: controller.signal }, conversationRef.current, transcript, 'voice');
       if (controller.signal.aborted || revision !== voiceRevision.current) return;
-      if (response.text && !speak(response.text, request.locale)) setNotice('The reply is saved in Ask. Spoken output is unavailable; you can read it by text.');
+      if (response.text) {
+        setCaption('');
+        setNotice(speak(response.text, request.locale)
+          ? 'Reply saved in Ask. Stop the voice session at any time.'
+          : 'The reply is saved in Ask. Spoken output is unavailable; you can read it by text.');
+      }
     } catch (error) {
       // Recoverable, never silent: the spoken words stay as a draft in the conversation
       // and the failure is announced; the transcript is not lost.
@@ -105,6 +110,9 @@ export default function AudioPresence() {
   }
 
   function queueSend(transcript) {
+    // One question at a time: once recognized, release capture so a new phrase
+    // cannot replace the words the person is reviewing or editing.
+    stopListening(); detachAnalyser();
     setCaption(transcript);
   }
 
@@ -114,6 +122,7 @@ export default function AudioPresence() {
       startListening({ lang: request.locale, onInterim: text => setCaption(text), onFinal: queueSend, onError: message => { detachAnalyser(); setNotice(message); } });
       attachAnalyser();
     } catch (error) {
+      detachAnalyser();
       setNotice(error.message || 'Microphone unavailable. You can keep using text.');
     }
   }
@@ -279,7 +288,8 @@ export default function AudioPresence() {
         }
       } else {
         // "Vision Boy" - the soft sky sphere exactly like the reference: bright cloud
-        // light across the top half, deep blue toward the bottom, always drifting.
+        // light across the top half, deep blue toward the bottom; drift only in a
+        // live voice session when motion is allowed.
         const sky = context.createLinearGradient(0, cy - R, 0, cy + R);
         sky.addColorStop(0, `rgba(233, 244, 255, ${dim})`);
         sky.addColorStop(0.45, `rgba(147, 193, 252, ${dim})`);
@@ -342,7 +352,7 @@ export default function AudioPresence() {
   >
     <span className="v-audio-glyph"><canvas ref={canvasRef} aria-hidden="true" /></span><span className="v-audio-name" aria-hidden="true">Guide</span>
     {!panelOpen && (notice || (caption && mode === 'listening')) && <span className="v-audio-caption" aria-hidden="true">{notice || caption}</span>}
-    <span role="status" className="sr-only">{status}</span>
+    {!panelOpen && <span role="status" className="sr-only">{status}</span>}
   </button></PopoverTrigger><PopoverContent side="top" align="start" sideOffset={16} className="workspace-voice-panel" style={{maxHeight:'min(90dvh, var(--radix-popover-content-available-height))',overflowY:'auto'}} aria-labelledby="visionary-voice-title">
     <div className="workspace-voice-panel-head sticky top-0 z-10 bg-white"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Your voice presence</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
     <span className={`workspace-voice-state state-${!effective ? 'off' : mode}`}><span aria-hidden="true" />{shortStatus}</span>
@@ -350,9 +360,9 @@ export default function AudioPresence() {
     <p className="v-muted">Start listening uses your microphone to turn speech into an editable question. Your browser may use its speech service. You can stop at any time or use text without microphone access.</p>
     <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'listening' || mode === 'speaking' || processing ? () => { endVoiceSession(); setProcessing(false); } : beginListening} disabled={!capabilities.recognition}>{mode === 'listening' || mode === 'speaking' || processing ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{!capabilities.recognition ? 'Voice input unavailable' : mode === 'listening' || mode === 'speaking' || processing ? 'Stop voice session' : mode === 'denied' ? 'Retry microphone' : 'Start listening'}</button><button className="v-button" disabled={!capabilities.recognition && !capabilities.synthesis} onClick={toggleAudio}>{effective ? 'Turn audio off' : 'Turn audio on'}</button><Link className="v-button" to="/dashboard/ask" state={{initialQuestion:caption}} onClick={() => { endVoiceSession(); setSessionAudioOverride(false); setAudioOverride(false); setProcessing(false); setPanelOpen(false); }}><MessageCircle size={17} aria-hidden="true" />Use text instead</Link></div>
     <div className={`workspace-voice-preview ${animation === 'girl' ? 'is-girl' : 'is-boy'} ${!effective ? 'is-off' : ''} ${mode === 'listening' && effective ? 'is-listening' : ''} ${mode === 'speaking' && effective ? 'is-speaking' : ''}`} aria-hidden="true"><span className="workspace-voice-preview-glow" /><span className="workspace-voice-preview-orb" style={previewMotion} /><span className="workspace-voice-preview-bars">{[0, 1, 2, 3].map(index => <i key={index} style={previewMotion} />)}</span></div>
-    <p className="workspace-voice-now" role="status">{processing ? 'Preparing your reply. Stop the session to cancel.' : caption && mode === 'listening' ? `Hearing: ${caption}` : status}</p>
+    <p className="workspace-voice-now" role="status">{processing ? 'Preparing your reply. Stop the session to cancel.' : mode === 'listening' ? 'Listening. Your question will appear below for review.' : caption ? 'Question ready to review. Edit it or send when ready.' : status}</p>
     {notice && <p className="v-notice" role="status">{notice}</p>}
-    {caption && <section className="mt-3"><label className="text-sm">Review spoken question<textarea aria-label="Review spoken question" className="v-field mt-2" value={caption} maxLength={6000} disabled={processing} onChange={event => setCaption(event.target.value)} /></label><p className="v-muted mt-2">Review or edit your words before sending. Speech is not sent automatically.</p><button className="v-button mt-3" disabled={processing || !caption.trim()} onClick={() => sendTurn(caption)}>{processing ? 'Preparing reply…' : 'Send spoken question'}</button></section>}
+    {caption && <section className="mt-3"><label className="text-sm">Review spoken question<textarea aria-label="Review spoken question" className="v-field mt-2" value={caption} maxLength={6000} disabled={processing} onChange={event => { stopListening(); detachAnalyser(); setCaption(event.target.value); }} /></label><p className="v-muted mt-2">Review or edit your words before sending. Speech is not sent automatically.</p><button className="v-button mt-3" disabled={processing || !caption.trim()} onClick={() => sendTurn(caption)}>{processing ? 'Preparing reply…' : 'Send spoken question'}</button></section>}
     <div className="workspace-voice-choices" role="group" aria-label="Visual presence"><button type="button" aria-pressed={animation === 'boy'} onClick={() => choosePresentation('boy')}><span className="workspace-voice-choice-mark is-boy" aria-hidden="true" />Vision Boy</button><button type="button" aria-pressed={animation === 'girl'} onClick={() => choosePresentation('girl')}><span className="workspace-voice-choice-mark is-girl" aria-hidden="true"><i /><i /><i /><i /></span>Vision Girl</button></div>
     <p className="workspace-voice-footnote"><AudioLines size={14} aria-hidden="true" />Voice uses this browser. Teaching AI is not connected in the local preview.</p>
   </PopoverContent></Popover>;

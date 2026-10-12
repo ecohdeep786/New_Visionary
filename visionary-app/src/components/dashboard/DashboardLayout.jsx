@@ -35,12 +35,26 @@ export default function DashboardLayout() {
   const queryClient = useQueryClient();
   const [sidebarExpanded, setSidebarExpanded] = useState(() => window.matchMedia('(min-width: 1200px)').matches);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileLimit, setMobileLimit] = useState(4);
+  const mobileNavigation = useRef(null);
   const [offline, setOffline] = useState(() => !navigator.onLine);
   const [connectionChanged, setConnectionChanged] = useState(false);
   const mobileTrigger = useRef(null);
   const navigationSelected = useRef(false);
   const shell = shellCopy(locale);
   const previousRoute=useRef('');
+  useEffect(() => {
+    const adapt = () => {
+      const textSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      setMobileLimit(Math.max(2, Math.min(4, Math.floor(window.innerWidth / Math.max(64, textSize * 3.75)) - 1)));
+    };
+    adapt();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(adapt);
+    if (mobileNavigation.current) observer?.observe(mobileNavigation.current);
+    window.addEventListener('resize', adapt);
+    return () => { observer?.disconnect(); window.removeEventListener('resize', adapt); };
+  }, [activeWorkspace?.id]);
+  useEffect(() => { setMobileOpen(false); }, [location.key]);
   useEffect(() => {
     const update = () => { setOffline(!navigator.onLine); setConnectionChanged(true); };
     window.addEventListener('online', update);
@@ -79,7 +93,7 @@ export default function DashboardLayout() {
   function recover(){retryWorkspace();refreshScope();}
   function unavailable(message){return <main className="p-8" lang={locale}><h1 className="v-title">{recoveryCopy('Workspace unavailable')}</h1><p className="v-notice v-error mt-4" role="alert" lang="en">{message}</p><p className="v-muted mt-3">{recoveryCopy('Your saved records remain on this device. Restore readable records, then retry.')}</p><button className="v-button mt-4" onClick={recover}>{recoveryCopy('Retry workspace')}</button></main>;}
   if(workspaceError||scopeError)return unavailable(workspaceError||scopeError);
-  if(!activeWorkspace)return <main className="p-8" role="status">Preparing your workspace…</main>;
+  if(!activeWorkspace)return <main lang={locale} className="p-8" role="status" aria-busy="true">{t("openingWorkspace")}</main>;
   if (!canAccessDashboardPath(user?.identity, location.pathname)) return <Navigate to="/dashboard/home" replace />;
   const ctx={personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'};
   let policy;
@@ -87,7 +101,7 @@ export default function DashboardLayout() {
   const permitted=!policy||organizationPathAllowed(policy,location.pathname);
   const navigation=navigationFor(user.identity,locale).filter(item=>!policy||organizationPathAllowed(policy,item.to));
   let stageTier;try{stageTier=getStagePresentation({personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:"en"}).tier;}catch(error){return unavailable(error.message);}
-  const presented = presentNavigation(ctx.role,stageTier,navigation,secondaryNavigation(ctx.role,locale).filter(item=>!policy||organizationPathAllowed(policy,item.to)),location.pathname);
+  const presented = presentNavigation(ctx.role,stageTier,navigation,secondaryNavigation(ctx.role,locale).filter(item=>!policy||organizationPathAllowed(policy,item.to)),location.pathname,mobileLimit);
   return <ThemeColorProvider>
     <div lang={locale} data-role={ctx.role} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
       <a className="workspace-skip-link" href="#main" onClick={event => { event.preventDefault(); document.getElementById('main')?.focus(); }}>{shell.skip}</a>
@@ -109,7 +123,7 @@ export default function DashboardLayout() {
           <div className="workspace-surface min-h-full overflow-hidden">{!permitted?<div className="v-page" lang={locale}><h1 className="v-title">{organizationCopy(locale,'Permission required')}</h1><p className="v-notice" role="alert">{organizationCopy(locale,'Your {role} permission does not include this section. Ask the organization owner to review access.',{role:organizationCopy(locale,policy.label)})}</p><NavLink to="/dashboard/home" className="v-button">{organizationCopy(locale,'Return to workspace')}</NavLink></div>:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<div lang={locale} className="v-page" role="status" aria-busy="true">{t("openingWorkspace")}</div>}><Outlet /></Suspense>}</div>
         </main>
       </div>
-      <nav lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs ${isActive?'bg-[#e8f0fd] font-medium text-[#1967d2]':'text-[#5f6368]'}`}><Icon aria-hidden="true" size={19}/>{item.label}</NavLink>;})}<button ref={mobileTrigger} aria-label={t("moreNavigation")} aria-haspopup="dialog" aria-controls="mobile-workspace-navigation" aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs text-[#5f6368]" onClick={()=>setMobileOpen(true)}><Ellipsis aria-hidden="true" size={19}/>{t("more")}</button></nav>
+      <nav ref={mobileNavigation} lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs ${isActive?'bg-[#e8f0fd] font-medium text-[#1967d2]':'text-[#5f6368]'}`}><Icon aria-hidden="true" size={19}/>{item.label}</NavLink>;})}<button ref={mobileTrigger} aria-label={t("moreNavigation")} aria-haspopup="dialog" aria-controls="mobile-workspace-navigation" aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs text-[#5f6368]" onClick={()=>setMobileOpen(true)}><Ellipsis aria-hidden="true" size={19}/>{t("more")}</button></nav>
     </div>
   </ThemeColorProvider>;
 }

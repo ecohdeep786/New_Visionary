@@ -23,6 +23,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const searchOrigin = useRef(null);
   const searchNavigated = useRef(false);
   const resultsRef = useRef(null);
+  const searchInput = useRef(null);
   const openSearch = () => { searchOrigin.current = document.activeElement; setSearchError(''); setSearchOpen(true); };
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -43,9 +44,10 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
   const destinations = [...navigationFor(role,locale), ...secondaryNavigation(role,locale), { label: t("profile"), to: "/dashboard/profile" }, { label: t("settings"), to: "/dashboard/settings" },{label:t('support'),to:'/dashboard/support'},
     ...(role === 'student' ? student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id })) : [])].filter(item=>allowed(item.to));
   const results = destinations.filter((item,index,all) => all.findIndex(destination => destination.to === item.to) === index).filter(item => (item.label + " " + item.to + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
-  const openResult = (to) => { try{if(ctx?.role==='organization'&&!organizationPathAllowed(organizationAccess(ctx),to))throw Error('Your current permission does not include this destination.');searchNavigated.current=true;setSearchError('');setSearchOpen(false);setQuery('');navigate(to);}catch(error){setSearchError(error.message);} };
+  const openResult = (to) => { try{if(ctx?.role==='organization'&&!organizationPathAllowed(organizationAccess(ctx),to))throw Error(shellCopy(locale).permissionDenied);searchNavigated.current=true;setSearchError('');setSearchOpen(false);setQuery('');navigate(to);}catch(error){setSearchError(error.message);} };
   useEffect(() => {
     const onShortcut = event => {
+      if (event.isComposing || event.defaultPrevented) return;
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
         if (document.querySelector('[role="dialog"][data-state="open"]')) return;
         event.preventDefault(); searchOrigin.current = document.activeElement; setSearchError(''); setSearchOpen(true);
@@ -90,15 +92,25 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         const target = searchNavigated.current ? document.getElementById('main') : searchOrigin.current?.isConnected ? searchOrigin.current : searchTrigger.current;
         target?.focus({ preventScroll: true });
         searchNavigated.current = false;
-      }} className="max-w-xl rounded-2xl">
+      }} className="workspace-search-dialog max-w-xl rounded-2xl">
         <DialogHeader><DialogTitle lang={locale}>{t("searchTitle")}</DialogTitle><DialogDescription lang={locale}>{searchPrompt}. {t("searchScope")}</DialogDescription></DialogHeader>
-        <input autoFocus value={query} onChange={e => setQuery(e.target.value)} onKeyDown={event => {
+        <input ref={searchInput} autoFocus value={query} onChange={e => setQuery(e.target.value)} onKeyDown={event => {
+          if (event.nativeEvent.isComposing) return;
           if (event.key === 'ArrowDown') { event.preventDefault(); resultsRef.current?.querySelector('button')?.focus(); }
+          if (event.key === 'ArrowUp') { event.preventDefault(); resultsRef.current?.querySelector('button:last-child')?.focus(); }
           if (event.key === 'Enter' && results.length === 1) { event.preventDefault(); openResult(results[0].to); }
         }} type="search" autoComplete="off" placeholder={searchPrompt} lang={locale} aria-label={t("searchInput")} aria-controls="workspace-search-results" className="v-field" />
-        {searchError&&<p lang="en" className="v-notice v-error" role="alert">{searchError}</p>}
+        {searchError&&<p lang={searchError === shellCopy(locale).permissionDenied ? locale : 'en'} className="v-notice v-error" role="alert">{searchError}</p>}
         <p role="status" aria-atomic="true" className="sr-only">{results.length ? shellCopy(locale).results(results.length) : t('searchEmpty')}</p>
-        <div ref={resultsRef} id="workspace-search-results" className="max-h-[50vh] space-y-1 overflow-y-auto">{results.length ? results.map(item => <button key={item.to} onClick={() => openResult(item.to)} className="flex min-h-12 w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-[#e8f0fd]"><span>{item.label}</span><span className="ml-4 truncate text-xs text-[#5f6368]">{item.detail || t("page")}</span></button>) : <p className="px-4 py-6 text-sm text-[#5f6368]">{t("searchEmpty")}</p>}</div>
+        <div ref={resultsRef} id="workspace-search-results" onKeyDown={event => {
+          if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+          const buttons = [...resultsRef.current.querySelectorAll('button')];
+          const index = buttons.indexOf(document.activeElement);
+          if (index === -1) return;
+          event.preventDefault();
+          const next = index + (event.key === 'ArrowDown' ? 1 : -1);
+          (buttons[next] || searchInput.current)?.focus();
+        }} className="max-h-[50vh] space-y-1 overflow-y-auto">{results.length ? results.map(item => <button key={item.to} onClick={() => openResult(item.to)} className="flex min-h-12 w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-[#e8f0fd]"><span>{item.label}</span><span className="ml-4 truncate text-xs text-[#5f6368]">{item.detail || t("page")}</span></button>) : <p className="px-4 py-6 text-sm text-[#5f6368]">{t("searchEmpty")}</p>}</div>
       </DialogContent>
     </Dialog>
   </header>;

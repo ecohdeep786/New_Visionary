@@ -31,3 +31,11 @@ test('stale CSS or lazy import failures need a document reload; ordinary failure
   for(const message of ['Unable to preload CSS for /assets/old.css','Failed to fetch dynamically imported module: /assets/old.js','Importing a module script failed.','Loading chunk 19 failed.'])assert.equal(needsAssetReload(Error(message)),true);
   for(const error of [undefined,Error('Storage quota exceeded'),Error('Permission required'),Error('Network request failed')])assert.equal(needsAssetReload(error),false);
 });
+test('large text navigation keeps every destination reachable and marks More for a displaced primary page',()=>{
+  const result=presentNavigation('teacher','higher',primary,secondary,'/dashboard/ask',2);
+  assert.deepEqual(result.mobile.map(item=>item.key),['home','learn']);
+  assert.equal(result.mobileMoreActive,true);
+  assert.deepEqual(result.primary,primary);
+  assert.deepEqual(result.secondary,secondary);
+  assert.equal(presentNavigation('teacher','higher',primary,secondary,'/dashboard/missing',2).mobileMoreActive,false);
+});

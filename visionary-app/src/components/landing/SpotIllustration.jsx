@@ -144,6 +144,19 @@ const SKIN_DEFAULT = [C.skinHighlight, C.skinMid, C.skinShade];
 const SKIN_DEEP = [C.skin, C.skinMid, C.skinDeep];
 const SKIN_DEEPER = [C.skinMid, C.skinShade, C.skinShadow];
 
+/* Shared face volume used by the portrait and wide scenes below. */
+const headShaded = (cx, cy, r, tone = SKIN_DEFAULT) => {
+  const id = `skin-${cx}-${cy}-${r}-${tone[1].replace('#', '')}`;
+  return <g>
+    <defs><radialGradient id={id} cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stopColor={tone[0]} />
+      <stop offset="65%" stopColor={tone[1]} />
+      <stop offset="100%" stopColor={tone[2]} />
+    </radialGradient></defs>
+    <circle cx={cx} cy={cy} r={r} fill={`url(#${id})`} />
+  </g>;
+};
+
 const S = {};
 
 /* ── 96×96 scenes ── */

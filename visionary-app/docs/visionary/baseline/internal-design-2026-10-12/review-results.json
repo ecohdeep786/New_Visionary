@@ -1,0 +1,145 @@
+{
+  "results": [
+    {
+      "role": "student",
+      "section": "home",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "student",
+      "section": "ask",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "student",
+      "section": "home",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "student",
+      "section": "ask",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "teacher",
+      "section": "home",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "teacher",
+      "section": "prepare",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "teacher",
+      "section": "home",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "teacher",
+      "section": "prepare",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "parent",
+      "section": "home",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "parent",
+      "section": "reports",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "parent",
+      "section": "home",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "parent",
+      "section": "reports",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "professional",
+      "section": "home",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "professional",
+      "section": "career",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "professional",
+      "section": "home",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "professional",
+      "section": "career",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "organization",
+      "section": "home",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "organization",
+      "section": "people",
+      "width": 390,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "organization",
+      "section": "home",
+      "width": 1440,
+      "document": false,
+      "main": false
+    },
+    {
+      "role": "organization",
+      "section": "people",
+      "width": 1440,
+      "document": false,
+      "main": false
+    }
+  ],
+  "errors": []
+}
