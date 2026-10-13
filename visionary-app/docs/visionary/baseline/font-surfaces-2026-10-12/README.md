@@ -1,6 +1,6 @@
 # Public and product font separation
 
-D-054 on 2026-10-12 follows the founder's clarified typography policy: public frontend Google Sans Flex, internal product Google Sans. [Stylesheet ownership](../../../../src/styles/README.md) explains the two independent tokens, compatibility alias, product entry/recovery markers and portal inheritance.
+D-054 on 2026-10-12 follows the founder's clarified typography policy: public frontend Google Sans Flex, internal product Google Sans. [Stylesheet ownership](../../../../frontend/src/styles/README.md) explains the two independent tokens, compatibility alias, product entry/recovery markers and portal inheritance.
 
 `results.json` records the isolated compiled font checks at390/1440: workspace/body/headings/controls, account menus and a body-mounted tooltip; independent public/product token changes; public restoration after single-page navigation; product-entry sign-in/registration/onboarding; and a standalone product recovery marker. FontFace loading metadata records both Google Sans Flex and Google Sans loaded in the test browser. Only an isolated fictional Alex account is used.
 

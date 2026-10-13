@@ -4,7 +4,7 @@
 
 ## Shared type integration
 
-Font-family clarification (D-054): public frontend pages use Google Sans Flex; the internal product and entry screens use Google Sans. The earlier single-family assumption is superseded. See [stylesheet ownership](../../src/styles/README.md) for the independent `--font-public` / `--font-product` definitions and surface-aware compatibility alias. The D-053 evidence below remains the historical verification of the type-scale/outcome changes.
+Font-family clarification (D-054): public frontend pages use Google Sans Flex; the internal product and entry screens use Google Sans. The earlier single-family assumption is superseded. See [stylesheet ownership](../../frontend/src/styles/README.md) for the independent `--font-public` / `--font-product` definitions and surface-aware compatibility alias. The D-053 evidence below remains the historical verification of the type-scale/outcome changes.
 
 `src/styles/tokens.css` defines `--font-brand`. The authenticated shell and its portals now consume that variable, with internal integration in `src/styles/workspace-typography.css`, imported by `workspace-design.css`. The public Apple-style display helpers remain separate from the compact product type scale.
 

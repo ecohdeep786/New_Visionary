@@ -1,0 +1,709 @@
+/* ═══ Apple × Google typography reference layer ═══
+   Measured from Apple Education Initiative, Watch, Vision Pro, AirPods,
+   iPhone, iPad Pro and MacBook Air at desktop, tablet and phone widths
+   (October 2026). Source contexts and exceptions: apple-reference-notes.md.
+
+   Apple's product pages use SF Pro Display for headings and SF Pro Text for
+   body/UI, commonly at weights 600 (headings) / 400 (body), with deliberate
+   700 feature/display exceptions. The Visionary brand reads
+   Medium (500) on its own identity, but these premium pages adopt Apple's
+   600 weight for headings.
+
+   PUBLIC TYPOGRAPHY: Frontend pages use Google Sans Flex. SF Pro is referenced
+   here purely as a measurement source for sizing/weight/line-height — it is
+   NOT in any active font stack. Every declaration uses the single brand
+   stack through --font-public. Internal product type uses --font-product. */
+
+@layer components {
+  /* ── Font family helpers ──
+     Public display helpers consume their own font token. Product controls
+     and overlays inherit the separate internal product stack. */
+  .apple-font-display {
+    font-family: var(--font-public);
+  }
+  .apple-font-text {
+    font-family: var(--font-public);
+  }
+
+  /* ── Hero H1 — 80px clamp, 600 weight, 1.05 line-height, -0.015em tracking ──
+     Apple's product-page hero headline (measured: 80px @1440, -1.2px tracking) */
+  .apple-hero-h1 {
+    font-size: clamp(56px, 5.55vw, 80px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    font-family: var(--font-public);
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+
+  .apple-section-h2 {
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    line-height: var(--lh-section);
+    letter-spacing: var(--track-section);
+    font-family: var(--font-public);
+  }
+
+  .apple-display {
+    font-size: var(--fs-display);
+    font-weight: 600;
+    line-height: var(--lh-display);
+    letter-spacing: var(--track-display);
+    font-family: var(--font-public);
+  }
+
+  .apple-subheading {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    line-height: var(--lh-feature);
+    letter-spacing: var(--track-feature);
+    font-family: var(--font-public);
+  }
+
+  .apple-card-h3 {
+    font-size: var(--fs-large-card);
+    font-weight: 600;
+    line-height: var(--lh-large-card);
+    letter-spacing: var(--track-large-card);
+    font-family: var(--font-public);
+  }
+
+  .apple-card-h4 {
+    font-size: var(--fs-card-name);
+    font-weight: 600;
+    line-height: var(--lh-card-name);
+    letter-spacing: var(--track-card-name);
+    font-family: var(--font-public);
+  }
+
+  .apple-lead {
+    font-size: var(--fs-lead);
+    font-weight: 400;
+    line-height: var(--lh-lead);
+    letter-spacing: 0.011em;
+    font-family: var(--font-public);
+  }
+
+  /* ── Lead bold — 17px, 600 weight, 1.24 line-height, -0.022em tracking ── */
+  .apple-lead-bold {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.24;
+    letter-spacing: -0.022em;
+    font-family: var(--font-public);
+  }
+
+  .apple-body {
+    font-size: var(--fs-body);
+    font-weight: 400;
+    line-height: var(--lh-body);
+    letter-spacing: var(--track-body);
+    font-family: var(--font-public);
+  }
+
+  .apple-card-body {
+    font-size: var(--fs-body);
+    font-weight: 400;
+    line-height: var(--lh-body);
+    letter-spacing: var(--track-body);
+    font-family: var(--font-public);
+  }
+
+  .apple-eyebrow {
+    font-size: var(--fs-caption);
+    font-weight: 600;
+    line-height: var(--lh-caption);
+    letter-spacing: -0.01em;
+    font-family: var(--font-public);
+    text-transform: none !important;
+  }
+
+  .apple-meta {
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    line-height: var(--lh-meta);
+    letter-spacing: var(--track-meta);
+    font-family: var(--font-public);
+  }
+
+  .apple-fine {
+    font-size: var(--fs-fine);
+    font-weight: 400;
+    line-height: var(--lh-fine);
+    letter-spacing: -0.014em;
+    font-family: var(--font-public);
+  }
+
+  /* ── Footer link — 12px, 400 weight, 1.33 line-height ── */
+  .apple-footer-link {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.33;
+    letter-spacing: -0.01px;
+    font-family: var(--font-public);
+  }
+
+  /* ── Button — 17px, 600 weight, 1.29 line-height, -0.022em tracking ── */
+  .apple-btn-primary {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: -0.022em;
+    font-family: var(--font-public);
+  }
+
+  .apple-btn-secondary {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: -0.022em;
+    font-family: var(--font-public);
+  }
+
+  /* ── Apple page antialiasing ── */
+  .apple-page {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Vertical rhythm helpers (Apple's measured gaps) ── */
+  .apple-gap-eyebrow-title {
+    margin-top: 1rem; /* 16px — Apple's eyebrow→h2 gap */
+  }
+  .apple-gap-title-sub {
+    margin-top: 1.5rem; /* 24px — Apple's h2→sub gap */
+  }
+
+  /* ── Apple's card surface: flat, no shadow, no border ── */
+  .apple-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(18, 19, 23, 0.045);
+    border-radius: 28px;
+  }
+
+  /* Apple's hairline divider */
+  .apple-hairline {
+    border-color: rgba(18, 19, 23, 0.045);
+  }
+}
+
+/* Preserve the student hero declarations that were already in place.
+   These values are unchanged; the shared content adapter below excludes
+   this entire fixed stage. No student-specific content typography remains. */
+.page-student [data-section="01-hero"] {
+  --frame-x: max(24px, 6.25vw);
+}
+.page-student [data-section="01-hero"] h1 {
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.page-student [data-section="01-hero"] h1 + p {
+  font-size: 28px;
+  line-height: 1.1429;
+  letter-spacing: 0.007em;
+  max-width: 36ch;
+}
+.page-student [data-section="01-hero"] > div:last-child {
+  padding-inline: var(--frame-x);
+}
+@media (max-width: 734px) {
+  .page-student [data-section="01-hero"] h1 + p {
+    font-size: 21px;
+    line-height: 1.381;
+  }
+}
+
+/* Shared public typography adapter. Sources inspected at desktop, tablet,
+   and phone sizes: apple.com/in/education-initiative/, /watch/, /airpods/,
+   /apple-vision-pro/. The local public font stays unchanged; its real
+   400/600 roles carry body/display with genuine local font faces. Native section structure and existing
+   display utilities identify roles automatically, without page overrides.
+   The boundary excludes complete hero sections, including unmarked heroes
+   containing h1, nested hero content, auth surfaces, and the workspace.
+   !important resolves existing inline sizes and bridge utility overrides. */
+/* Default chapter tier: Watch 48/52, 40/44, 32/36. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h2 {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-section) !important;
+  letter-spacing: var(--track-section) !important;
+  font-weight: var(--weight-heading) !important;
+  text-wrap: balance;
+}
+
+/* Existing display utilities identify editorial chapters: Education 64/68, 56/60, 40/44. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h2:is(.public-heading, .public-display, .apple-display, [class*="clamp(40px,5vw,64px)"], [class*="clamp(36px,5vw,72px)"], [class*="clamp(34px,5vw,72px)"], [class*="text-[64px]"], [style*="64px"]) {
+  font-size: var(--fs-display) !important;
+  line-height: var(--lh-display) !important;
+  letter-spacing: var(--track-display) !important;
+}
+
+/* Major in-content statement: iPad Pro elevated headlines use 600, with
+   80/84 -> 64/68 -> 40/44 and responsive tracking. Bold emphasis is a
+   separate opt-in role; a large size alone must never force weight 700. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h2,h3)[class*="clamp(40px,5.55vw,80px)"] {
+  font-size: var(--fs-emphasis) !important;
+  line-height: var(--lh-emphasis) !important;
+  letter-spacing: var(--track-statement) !important;
+  font-weight: var(--weight-heading) !important;
+}
+
+/* Compact reading/card headings keep a subordinate tier. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h2:is(.text-\[20px\],.text-\[22px\],.text-\[24px\],.text-\[26px\],.text-\[28px\],.text-\[30px\]) {
+  font-size: var(--fs-h3) !important;
+  line-height: var(--lh-feature) !important;
+  letter-spacing: var(--track-feature) !important;
+}
+
+/* Feature and accordion titles. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h3,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) button[aria-expanded] > span[class*="clamp("] {
+  font-size: var(--fs-h3) !important;
+  line-height: var(--lh-feature) !important;
+  letter-spacing: var(--track-feature) !important;
+  font-weight: var(--weight-heading) !important;
+  text-wrap: balance;
+}
+
+/* Product/card names: AirPods 24/28 on desktop. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h3:is(.text-\[20px\],.text-\[21px\],.text-\[22px\],.text-\[24px\]) {
+  font-size: var(--fs-card-name) !important;
+  line-height: var(--lh-card-name) !important;
+  letter-spacing: var(--track-card-name) !important;
+}
+
+/* Small card and stage labels remain distinct from feature titles. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h3:is(.text-\[14px\],.text-\[15px\],.text-\[16px\],.text-\[17px\],.text-\[18px\]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h4 {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-label) !important;
+  letter-spacing: var(--track-body) !important;
+}
+
+/* Explanation text, without flattening display quotes or translated samples. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p:not([class*="clamp("]):not([style*="font-size"]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) li > .text-\[18px\],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-body,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-card-body {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+  letter-spacing: var(--track-body) !important;
+}
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p:not(.font-medium):not(.font-semibold):not(.font-bold) {
+  font-weight: var(--weight-body);
+}
+
+/* UI metadata uses 14px; captions and fine print have separate smaller roles. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p:is(.text-\[12px\],.text-\[13px\],.text-\[14px\]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-meta,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-fine {
+  font-size: var(--fs-meta) !important;
+  line-height: 1.428571 !important;
+  letter-spacing: var(--track-meta) !important;
+}
+
+/* Quiet section tags and metadata use the heading weight role. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(p, span, div, button, label).uppercase,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-eyebrow,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-eyebrow {
+  font-size: var(--fs-caption) !important;
+  line-height: 1.333333 !important;
+  letter-spacing: var(--track-meta) !important;
+  text-transform: none !important;
+  font-weight: var(--weight-heading) !important;
+}
+
+/* Links and actions are a 17px role; embedded links inherit surrounding copy. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-action,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-primary,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-btn-secondary {
+  font-size: var(--fs-body) !important;
+  line-height: 1.294118 !important;
+  letter-spacing: var(--track-body) !important;
+}
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p a,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) li a:not([class]) {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+/* Legacy text-only link spans and labels consume the same body token. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[18px\]:not(h2):not(h3):not(p),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17px\]:not(h2):not(h3):not(p),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .text-\[17\.5px\]:not(h2):not(h3):not(p) {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+  letter-spacing: var(--track-body) !important;
+}
+
+/* Supporting copy is larger than explanations, with a shared heading-to-copy gap. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h2 + p:not(.uppercase):not(.text-\[12px\]):not(.text-\[13px\]):not(.text-\[14px\]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .reveal-item:has(> h2) + .reveal-item > p:not(.uppercase):not(.text-\[12px\]):not(.text-\[13px\]):not(.text-\[14px\]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-lead,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .apple-lead,
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p.text-\[20px\] {
+  font-size: var(--fs-lead) !important;
+  line-height: var(--lh-lead) !important;
+  letter-spacing: 0.011em !important;
+  margin-top: var(--gap-title-sub-display) !important;
+  max-width: min(100%, 54ch);
+  text-wrap: balance;
+}
+
+/* Education-style display leads: 24/28 desktop, 21/25 tablet and phone. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h2:is(.public-heading, .public-display, .apple-display, [class*="clamp(40px,5vw,64px)"], [class*="clamp(36px,5vw,72px)"], [class*="clamp(34px,5vw,72px)"], [class*="text-[64px]"], [style*="64px"]) + p:not(.uppercase):not(.text-\[12px\]):not(.text-\[13px\]):not(.text-\[14px\]),
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .reveal-item:has(> h2:is(.public-heading, .public-display, .apple-display, [class*="clamp(40px,5vw,64px)"], [class*="clamp(36px,5vw,72px)"], [class*="clamp(34px,5vw,72px)"], [class*="text-[64px]"], [style*="64px"])) + .reveal-item > p:not(.uppercase):not(.text-\[12px\]):not(.text-\[13px\]):not(.text-\[14px\]) {
+  font-size: var(--fs-editorial-lead) !important;
+  line-height: var(--lh-editorial-lead) !important;
+  letter-spacing: var(--track-editorial-lead) !important;
+  max-width: min(100%, 60ch);
+}
+
+/* A statement printed on a card or in the language dial retains its title role. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p.text-\[28px\],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p[class*="clamp(22px,2.2vw,32px)"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p[class*="clamp(22px,2.4vw,32px)"] {
+  font-size: var(--fs-h3) !important;
+  line-height: var(--lh-feature) !important;
+  letter-spacing: var(--track-feature) !important;
+}
+
+/* Media quotations use the larger supporting tier. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p[class*="clamp(17px,1.5vw,21px)"] {
+  font-size: var(--fs-lead) !important;
+  line-height: var(--lh-lead) !important;
+  letter-spacing: 0.011em !important;
+}
+
+/* Large editorial card statements: 40/44, 32/36, 28/32. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h3,p)[class*="text-[40px]"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h3,p)[class*="clamp(28px,2.78vw,40px)"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p[class*="clamp(28px,3.1vw,48px)"] {
+  font-size: var(--fs-large-card) !important;
+  line-height: var(--lh-large-card) !important;
+  letter-spacing: var(--track-large-card) !important;
+}
+
+/* Education gallery headlines keep their responsive story-card tier. */
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) span[class*="min-[1069px]:text-[48px]"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) span[class*="clamp(40px,4.5vw,72px)"] {
+  font-size: var(--fs-story-card) !important;
+  line-height: var(--lh-story-card) !important;
+  letter-spacing: -0.003em !important;
+  font-weight: var(--weight-heading) !important;
+}
+
+/* Functional galleries/accordions use the compact Watch chapter tier even
+   when legacy JSX marks their heading with a display-size utility. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)):is(:has([data-card]), :has(button[aria-expanded])) h2:not(.text-\[20px\]):not(.text-\[22px\]):not(.text-\[24px\]):not(.text-\[28px\]):not(.text-\[30px\]) {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-section) !important;
+  letter-spacing: var(--track-section) !important;
+}
+
+/* Text controls share the action tier; icon-only controls keep their geometry. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(button, input, textarea, select) {
+  font-size: var(--fs-body) !important;
+  line-height: 1.294118 !important;
+  letter-spacing: var(--track-body) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(button, label, span):is(.text-\[12px\], .text-\[13px\], .text-\[14px\]) {
+  font-size: var(--fs-meta) !important;
+  line-height: 1.428571 !important;
+  letter-spacing: var(--track-meta) !important;
+}
+
+/* Apple footer tier is separate from the in-content readable label floor.
+   Keep any closing display statement at its existing size. */
+body:not(:has(.visionary-workspace, [data-font-surface="product"])) footer :is(a, h4, label, select, p:not([class*="clamp("])) {
+  font-size: 12px !important;
+  line-height: 1.333333 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* A detail dialog's large title consumes the story-title role too. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) h3[class*="clamp(28px,3.34vw,48px)"] {
+  font-size: var(--fs-story-card) !important;
+  line-height: var(--lh-story-card) !important;
+  letter-spacing: -0.003em !important;
+}
+
+/* Education photo captions use 12/16; fine print uses 13/20.
+   UI chips and controls retain their separate 14/20 metadata tier. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p.text-\[12px\] {
+  font-size: var(--fs-caption) !important;
+  line-height: 1.333333 !important;
+  letter-spacing: -0.01em !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(p.text-\[13px\], .apple-fine) {
+  font-size: var(--fs-fine) !important;
+  line-height: var(--lh-fine) !important;
+  letter-spacing: -0.014em !important;
+}
+
+/* Shared components name their roles explicitly. Legacy pages above are
+   adapted by semantic HTML and existing utilities until their layout review. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
+  font-family: var(--font-public);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-section-heading {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-section) !important;
+  letter-spacing: var(--track-section) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-display {
+  font-size: var(--fs-display) !important;
+  line-height: var(--lh-display) !important;
+  letter-spacing: var(--track-display) !important;
+  font-weight: var(--weight-heading) !important;
+}
+
+/* Content leads carry the same semibold role as the Apple references.
+   Inline emphasis keeps that weight, while explanations stay regular. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h2 + p, .public-lead, .apple-lead, .reveal-item:has(> h2) + .reveal-item > p):not(.uppercase):not(.text-\[12px\]):not(.text-\[13px\]):not(.text-\[14px\]) {
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(strong, b, .apple-lead-bold) {
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, .public-text-link, .public-action, .apple-btn-primary, .apple-btn-secondary) {
+  font-weight: var(--weight-body);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-text-link {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+  letter-spacing: var(--track-body) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-action {
+  line-height: var(--lh-action) !important;
+}
+
+/* Text within lists and legacy controls follows the same body/metadata
+   roles as paragraphs. Large numerals and card statements keep their tier. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(li, label, span, div):is(.text-\[15px\], .text-\[16px\], .text-\[17px\], .text-\[17\.5px\], .text-\[18px\]) {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+  letter-spacing: var(--track-body) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(.apple-meta, p.text-\[14px\], span.text-\[14px\]) {
+  line-height: var(--lh-meta) !important;
+}
+@layer public-type-roles {
+/* Explicit roles for shared components and future page layout refinements.
+   Assign a role, never a new page-specific font size. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="product-section"] {
+  font-size: var(--fs-product-section) !important;
+  line-height: var(--lh-product-section) !important;
+  letter-spacing: var(--track-product-section) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="statement"] {
+  font-size: var(--fs-emphasis) !important;
+  line-height: var(--lh-emphasis) !important;
+  letter-spacing: var(--track-statement) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="display"] {
+  font-size: var(--fs-display) !important;
+  line-height: var(--lh-display) !important;
+  letter-spacing: var(--track-display) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="section"] {
+  font-size: var(--fs-h2) !important;
+  line-height: var(--lh-section) !important;
+  letter-spacing: var(--track-section) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="feature"] {
+  font-size: var(--fs-h3) !important;
+  line-height: var(--lh-feature) !important;
+  letter-spacing: var(--track-feature) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="card-name"] {
+  font-size: var(--fs-card-name) !important;
+  line-height: var(--lh-card-name) !important;
+  letter-spacing: var(--track-card-name) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="editorial-card"] {
+  font-size: var(--fs-large-card) !important;
+  line-height: var(--lh-large-card) !important;
+  letter-spacing: var(--track-large-card) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="story"] {
+  font-size: var(--fs-story-card) !important;
+  line-height: var(--lh-story-card) !important;
+  letter-spacing: var(--track-section) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="emphasis"] {
+  font-size: var(--fs-emphasis) !important;
+  line-height: var(--lh-emphasis) !important;
+  letter-spacing: -0.015em !important;
+  font-weight: var(--weight-emphasis) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="body"] {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+  letter-spacing: var(--track-body) !important;
+  font-weight: var(--weight-body) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="lead"] {
+  font-size: var(--fs-lead) !important;
+  line-height: var(--lh-lead) !important;
+  letter-spacing: 0.011em !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="editorial-lead"] {
+  font-size: var(--fs-editorial-lead) !important;
+  line-height: var(--lh-editorial-lead) !important;
+  letter-spacing: var(--track-editorial-lead) !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="metadata"] {
+  font-size: var(--fs-meta) !important;
+  line-height: var(--lh-meta) !important;
+  letter-spacing: var(--track-meta) !important;
+  font-weight: var(--weight-body) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="caption"] {
+  font-size: var(--fs-caption) !important;
+  line-height: var(--lh-caption) !important;
+  letter-spacing: -0.01em !important;
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="fine"] {
+  font-size: var(--fs-fine) !important;
+  line-height: var(--lh-fine) !important;
+  letter-spacing: -0.014em !important;
+  font-weight: var(--weight-body) !important;
+}
+
+}
+
+/* Embedded links inherit the text tier, including captions and fine print. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(p, li, figcaption) > a:not(.public-action) {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+
+/* Education role audit: font family alias adds the genuine 600 face while
+   retaining the original 400/500/700 glyphs. Heroes inherit the root stack. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
+  --font-public: var(--font-public-content);
+  --font-brand: var(--font-public-content);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)):is(.public-section-dark, .scene-dark, [data-section="04-intelligence"]) {
+  --type-ink: #f5f5f7;
+  --type-link: #2997ff;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h2,h3,h4):not([class*="text-white"]):not([style*="white"]):not([style*="#fff"]):not([style*="255"]) {
+  color: var(--type-ink) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h2 + p, .public-lead, .apple-lead, .reveal-item:has(> h2) + .reveal-item > p):not([class*="text-white"]) {
+  color: var(--type-ink) !important;
+}
+/* Text links use the body role; filled actions keep their contrast colors. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(.public-text-link, a:has(> svg)):not([class*="bg-"]):not([class*="text-white"]):not(:has(img,h2,h3)) {
+  color: var(--type-link) !important;
+  line-height: var(--lh-body) !important;
+  text-decoration: none;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(.public-text-link, a:has(> svg)):not([class*="bg-"]):not([class*="text-white"]):not(:has(img,h2,h3)):hover {
+  text-decoration: underline;
+}
+@layer public-type-roles {
+/* The values/tout tier is 19/23 on all three measured Education breakpoints. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is([data-type="value-title"], [data-type="value-body"]) {
+  font-size: var(--fs-value) !important;
+  line-height: var(--lh-value) !important;
+  letter-spacing: var(--track-value) !important;
+  color: var(--type-ink) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="value-title"] {
+  font-weight: var(--weight-heading) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [data-type="value-body"] {
+  font-weight: var(--weight-body) !important;
+  margin-top: calc(var(--fs-value) * 0.8) !important;
+}
+}
+/* Link siblings within values remain at the 17/25 body tier. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)).public-values a {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+}
+
+/* Preserve space for Indic vowel marks in every type role. */
+
+/* The Education editorial spine: 980px / 692px, with 24px phone gutters. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-editorial-frame {
+  width: min(calc(100% - 3rem), var(--container-editorial));
+  max-width: var(--container-editorial);
+  padding-inline: 0;
+  margin-inline: auto;
+}
+
+
+@layer public-type-roles {
+  #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is([data-type="editorial-body"], [data-type="editorial-link"]) {
+    font-size: var(--fs-editorial-body) !important;
+    line-height: var(--lh-editorial-body) !important;
+    letter-spacing: var(--track-editorial-body) !important;
+    font-weight: var(--weight-body) !important;
+  }
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) a[class*="bg-"]:not(:has(img,h2,h3)):not([data-type]) {
+  line-height: var(--lh-action) !important;
+}
+
+
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="hi"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="pa"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="bn"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="ta"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="kn"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="mr"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="te"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [lang="gu"] {
+  --lh-display: var(--lh-indic);
+  --lh-product-section: var(--lh-indic);
+  --lh-section: var(--lh-indic);
+  --lh-feature: var(--lh-indic);
+  --lh-card-name: var(--lh-indic);
+  --lh-large-card: var(--lh-indic);
+  --lh-story-card: var(--lh-indic);
+  --lh-label: var(--lh-indic);
+  --lh-meta: var(--lh-indic);
+  line-height: var(--lh-indic) !important;
+}

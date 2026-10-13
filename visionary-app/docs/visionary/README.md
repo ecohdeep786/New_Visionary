@@ -1,5 +1,7 @@
 # Visionary internal product
 
+Current phase, 2026-10-13 (D-056): the founder has authorized backend, authentication and ML development and supplied the three upstream repositories. Read [the integration foundation](../../integration/README.md) and [contract gaps](../../integration/CONTRACT_GAPS.md) for the pinned imports and next implementation work. Earlier frontend-only deferrals below are historical; existing frontend acceptance remains open evidence.
+
 Read [MASTER_SPEC.md](MASTER_SPEC.md), then **all** of [VISIONARY_MASTER_v2.2.md](VISIONARY_MASTER_v2.2.md), [agents/README.md](agents/README.md), your Part V charter, and the **last entry** of [STATUS.md](STATUS.md). Read [DECISIONS.md](DECISIONS.md) and [QA.md](QA.md) before work.
 
 The v2.2 file is the single operative contract. Its text was preserved when the loose pack was consolidated on 2026-09-19. `archive/legacy-pack/` preserves the older documents; they never override v2.2. References there to missing v1 material are not evidence of implemented features.
@@ -10,7 +12,7 @@ Only three living logs: STATUS, DECISIONS, QA. Product addenda and inventories a
 
 The [Google Skills navigation continuation](baseline/navigation-quality-2026-10-12/README.md), D-055, records the reviewed reference, restored desktop search, grouped destinations, current More states, rounded desktop surface, compact Home context and phone Guide alignment. Compiled five-role light/dark/reflow/interaction evidence is bounded there; overall acceptance stays in the existing worksheet.
 
-The current [stylesheet ownership guide](../../src/styles/README.md), D-054, defines public frontend Google Sans Flex and internal product Google Sans with independent tokens and portal/entry/fallback inheritance. [Font review evidence](baseline/font-surfaces-2026-10-12/README.md) records compiled font isolation and responsive verification. The earlier single-font assumption is superseded.
+The current [stylesheet ownership guide](../../frontend/src/styles/README.md), D-054, defines public frontend Google Sans Flex and internal product Google Sans with independent tokens and portal/entry/fallback inheritance. [Font review evidence](baseline/font-surfaces-2026-10-12/README.md) records compiled font isolation and responsive verification. The earlier single-font assumption is superseded.
 
 The [shared typography and outcome handoff](DESIGN_QUALITY_HANDOFF.md), D-053, connects the internal product to the updated font token, restores readable product spacing/scaling and makes actual recorded work and next steps easier to understand. [Review evidence](baseline/design-quality-2026-10-12/README.md) covers the isolated compiled learning/Progress/type checks and remaining human/device acceptance.
 
