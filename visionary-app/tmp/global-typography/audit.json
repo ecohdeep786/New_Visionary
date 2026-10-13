@@ -1,0 +1,474 @@
+{
+  "reference": "Apple Education and Watch at 1440, 820, 390px",
+  "heroPreservation": {
+    "preexistingStudentDeclarations": [
+      {
+        "editorialSize": "64px",
+        "headlineTracking": "-1.19918px",
+        "leadLine": "32.0012px",
+        "leadSize": "28px",
+        "sharedAdapterMatchesHero": false,
+        "tagSize": "14px",
+        "width": 1440
+      },
+      {
+        "editorialSize": "40px",
+        "headlineTracking": "-0.72px",
+        "leadLine": "29.001px",
+        "leadSize": "21px",
+        "sharedAdapterMatchesHero": false,
+        "tagSize": "14px",
+        "width": 390
+      }
+    ],
+    "otherHeroChecks": [
+      {
+        "path": "/about",
+        "width": 1440,
+        "unchanged": true
+      },
+      {
+        "path": "/privacy",
+        "width": 1440,
+        "unchanged": true
+      },
+      {
+        "path": "/about",
+        "width": 390,
+        "unchanged": true
+      },
+      {
+        "path": "/privacy",
+        "width": 390,
+        "unchanged": true
+      }
+    ]
+  },
+  "desktop": [
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "80px"
+      ],
+      "overflow": [
+        "Student learning challenges",
+        "Primary. From your first questions "
+      ],
+      "path": "/student",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "80px"
+      ],
+      "overflow": [
+        "Teacher challenges",
+        "Lesson planning. Start from what yo"
+      ],
+      "path": "/teacher",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "80px"
+      ],
+      "overflow": [
+        "Parent concerns",
+        "Early years. First questions, first"
+      ],
+      "path": "/parent",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "80px"
+      ],
+      "overflow": [
+        "Career learning challenges",
+        "Early Career. Turn every first proj"
+      ],
+      "path": "/professional",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "80px"
+      ],
+      "overflow": [
+        "Organization learning challenges",
+        "Schools. Connect students, teachers"
+      ],
+      "path": "/organization",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "64px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/about",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "64px"
+      ],
+      "overflow": [],
+      "path": "/how-it-works",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "28px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/download",
+      "uncovered": [
+        "Continue on web",
+        "Get the app"
+      ]
+    },
+    {
+      "headings": [
+        "64px",
+        "64px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/pricing",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/careers",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/research",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/community",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/contact",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/partners",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "48px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/updates",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/referral",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "overflow": [],
+      "path": "/safety",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "28px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/privacy",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "28px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/terms",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "28px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/security",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "28px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/accessibility",
+      "uncovered": []
+    },
+    {
+      "headings": [
+        "28px",
+        "28px",
+        "28px"
+      ],
+      "overflow": [],
+      "path": "/cookies",
+      "uncovered": []
+    },
+    {
+      "headings": [],
+      "overflow": [],
+      "path": "/help",
+      "uncovered": []
+    }
+  ],
+  "mobile": [
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/student"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/teacher"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/parent"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/professional"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/organization"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/about"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/how-it-works"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/download"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/pricing"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/careers"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/research"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/community"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/contact"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/partners"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/updates"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/referral"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/safety"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/privacy"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/terms"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/security"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/accessibility"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/cookies"
+    },
+    {
+      "documentOverflow": false,
+      "overflow": [],
+      "path": "/help"
+    }
+  ],
+  "finalSizes": [
+    {
+      "body": "17px",
+      "compact": [
+        "48px",
+        "52px"
+      ],
+      "editorial": [
+        "64px",
+        "68px"
+      ],
+      "editorialLead": [
+        "24px",
+        "28px"
+      ],
+      "footer": "12px",
+      "link": "17px",
+      "overflow": [],
+      "viewport": 1440
+    },
+    {
+      "body": "17px",
+      "compact": [
+        "40px",
+        "44px"
+      ],
+      "editorial": [
+        "56px",
+        "60px"
+      ],
+      "editorialLead": [
+        "21px",
+        "25px"
+      ],
+      "footer": "12px",
+      "link": "17px",
+      "overflow": [],
+      "viewport": 821
+    },
+    {
+      "body": "17px",
+      "compact": [
+        "32px",
+        "36px"
+      ],
+      "editorial": [
+        "36px",
+        "39.6px"
+      ],
+      "editorialLead": [
+        "21px",
+        "25px"
+      ],
+      "footer": "12px",
+      "link": "17px",
+      "overflow": [],
+      "viewport": 321
+    }
+  ]
+}

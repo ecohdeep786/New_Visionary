@@ -359,15 +359,15 @@ const JourneyGallery = React.memo(function JourneyGallery({ stages, onOpen, labe
                   the story statement as the large typographic tier above the
                   smoke. */}
               <span className="absolute bottom-0 left-0 block max-w-[72%] p-6 text-left sm:p-9">
-                <span className="mb-3 block text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">{stage.title}</span>
+                <span data-type="caption" className="mb-3 block text-white/75">{stage.title}</span>
                 <span key={stage.statement} className="block max-w-[15ch] font-semibold tracking-[-0.01em] leading-[1.08] text-white text-[28px] min-[735px]:text-[40px] min-[1069px]:text-[48px]">{stage.statement || stage.title}</span>
               </span>
               {/* Apple's story-card affordance — a white 36px circular button
                   carrying the plus cutout, pinned to the card's bottom-right
                   over the smoke and matched to our ink color */}
-              <span className="absolute bottom-6 right-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white sm:bottom-6 sm:right-6">
-                <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="h-[18px] w-[18px]" aria-hidden="true" style={{ color: COLORS.ink }}>
-                  <path d="M18 8v20M8 18h20" />
+              <span className="public-card-control absolute bottom-6 right-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white sm:bottom-6 sm:right-6">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="public-icon public-icon-plus" aria-hidden="true" style={{ color: COLORS.ink }}>
+                  <path d="M10 4v12M4 10h12" />
                 </svg>
               </span>
             </button>
@@ -888,7 +888,7 @@ const ExploreCard = React.memo(function ExploreCard({ index, category, images })
 
 const ChevronIcon = React.memo(function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`${className} ${direction === "left" ? "rotate-180" : ""}`}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`public-icon public-icon-chevron ${className} ${direction === "left" ? "rotate-180" : ""}`}>
       <path d="M9 6l6 6-6 6" />
     </svg>
   );

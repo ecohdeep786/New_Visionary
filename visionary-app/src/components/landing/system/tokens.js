@@ -31,14 +31,15 @@ export const radius = {
   pill: "9999px",
 };
 
-/** Type scale as clamp() strings for inline styles. */
+/** Content roles resolve from src/styles/rhythm.css at the active breakpoint.
+ * The established hero remains independent of the content scale. */
 export const type = {
   hero: "clamp(48px, 5.55vw, 80px)",
-  sectionHeading: "clamp(28px, 3vw, 48px)",
-  display: "clamp(40px, 4.45vw, 64px)",
-  body: "16px",
-  lead: "clamp(18px, 1.4vw, 20px)",
-  cardBody: "14px",
+  sectionHeading: "var(--fs-h2)",
+  display: "var(--fs-display)",
+  body: "var(--fs-body)",
+  lead: "var(--fs-lead)",
+  cardBody: "var(--fs-body)",
 };
 
 /** Content container widths — hero pages use their own 1756px shell. */

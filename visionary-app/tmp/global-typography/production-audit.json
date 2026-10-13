@@ -1,0 +1,982 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/student",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "80px/84px/700",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/teacher",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "80px/84px/700",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/parent",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "80px/84px/700",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/professional",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "80px/84px/700",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/organization",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "80px/84px/700",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/about",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/how-it-works",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/download",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/pricing",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "64px/68px/600",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/careers",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "48px/52px/600",
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/research",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/community",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/contact",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "48px/52px/600",
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/partners",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "48px/52px/600",
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/updates",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/referral",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/safety",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "48px/52px/600",
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/privacy",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/terms",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/security",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/accessibility",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600",
+          "48px/52px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/cookies",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "28px/32px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/help",
+      "device": "desktop",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 1440
+      }
+    },
+    {
+      "route": "/",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/student",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "40px/44px/700",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/teacher",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "40px/44px/700",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/parent",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "40px/44px/700",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/professional",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "40px/44px/700",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/organization",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "40px/44px/700",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/about",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/how-it-works",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/download",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/pricing",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "40px/44px/600",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/careers",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "32px/36px/600",
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/research",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/community",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/contact",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "32px/36px/600",
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/partners",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "32px/36px/600",
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/updates",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/referral",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/safety",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "32px/36px/600",
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/privacy",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/terms",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/security",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/accessibility",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600",
+          "32px/36px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/cookies",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [
+          "21px/25px/600"
+        ],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    },
+    {
+      "route": "/help",
+      "device": "phone",
+      "data": {
+        "fonts": [
+          "\"Google Sans Flex Content\", \"Google Sans Flex\", \"Google Sans\", sans-serif"
+        ],
+        "headings": [],
+        "nestedLinks": 0,
+        "overflow": false,
+        "textOverflow": [],
+        "width": 390
+      }
+    }
+  ],
+  "heroes": [
+    {
+      "route": "/student",
+      "w": 1440,
+      "changed": []
+    },
+    {
+      "route": "/about",
+      "w": 1440,
+      "changed": []
+    },
+    {
+      "route": "/privacy",
+      "w": 1440,
+      "changed": []
+    },
+    {
+      "route": "/student",
+      "w": 390,
+      "changed": []
+    },
+    {
+      "route": "/about",
+      "w": 390,
+      "changed": []
+    },
+    {
+      "route": "/privacy",
+      "w": 390,
+      "changed": []
+    }
+  ],
+  "editorialFrames": [
+    {
+      "frame": [
+        {
+          "left": 227.552490234375,
+          "w": 979.9976806640624
+        }
+      ],
+      "head": [
+        {
+          "left": 227.552490234375,
+          "line": "68px",
+          "size": "64px",
+          "tracking": "-0.576px"
+        }
+      ],
+      "overflow": false,
+      "values": [
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        }
+      ],
+      "width": 1440
+    },
+    {
+      "frame": [
+        {
+          "left": 61.62929916381836,
+          "w": 691.9967041015625
+        }
+      ],
+      "head": [
+        {
+          "left": 61.62929916381836,
+          "line": "60px",
+          "size": "56px",
+          "tracking": "-0.28px"
+        }
+      ],
+      "overflow": false,
+      "values": [
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        }
+      ],
+      "width": 821
+    },
+    {
+      "frame": [
+        {
+          "left": 23.998092651367188,
+          "w": 336.7247314453125
+        }
+      ],
+      "head": [
+        {
+          "left": 23.998092651367188,
+          "line": "44px",
+          "size": "40px",
+          "tracking": "normal"
+        }
+      ],
+      "overflow": false,
+      "values": [
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        }
+      ],
+      "width": 390
+    },
+    {
+      "frame": [
+        {
+          "left": 23.998092651367188,
+          "w": 267.25909423828125
+        }
+      ],
+      "head": [
+        {
+          "left": 23.998092651367188,
+          "line": "44px",
+          "size": "40px",
+          "tracking": "normal"
+        }
+      ],
+      "overflow": false,
+      "values": [
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        },
+        {
+          "line": "23px",
+          "overflow": false,
+          "size": "19px"
+        }
+      ],
+      "width": 321
+    }
+  ]
+}

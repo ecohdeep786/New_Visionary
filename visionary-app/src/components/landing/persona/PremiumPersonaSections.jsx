@@ -869,9 +869,9 @@ export { PremiumJourneyFlowSection };
 function PremiumTrustSection({ heading, sub, values }) {
   const { ref } = useRevealOnce();
   return (
-    <section ref={ref} data-section="11-trust" className="relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
+    <section ref={ref} data-section="11-trust" className="public-values relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] rounded-t-[32px]">
       <ScrollReveal>
-        <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+        <div className="public-editorial-frame mx-auto">
           <RevealItem idx={0}>
             <h2
               className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
@@ -899,10 +899,10 @@ function PremiumTrustSection({ heading, sub, values }) {
                   style={{ borderColor: `${COLORS.ink}1A` }}
                 >
                   <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
-                  <h3 className="mt-4 text-[17px] font-semibold leading-[1.4] tracking-[-0.005em]" style={{ color: COLORS.ink }}>
+                  <h3 data-type="value-title" className="mt-4" style={{ color: COLORS.ink }}>
                     {value.title}
                   </h3>
-                  <p className="mt-2 max-w-[35ch] text-balance font-normal tracking-[0] leading-[1.4] text-[17px]" style={{ color: COLORS.grey }}>
+                  <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: COLORS.grey }}>
                     {value.copy}
                   </p>
                   <Link
@@ -999,6 +999,7 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
     <Link
       to={`/${category.slug}`}
       data-card
+      aria-label={`Learn more about ${category.chip}`}
       className="stagger-child group block w-[82vw] max-w-[372px] shrink-0 snap-start overflow-hidden rounded-[18px] bg-white transition-transform duration-300 ease-google hover:-translate-y-1 sm:w-[372px]"
     >
       <div className="media-settle relative aspect-square overflow-hidden">
@@ -1024,14 +1025,12 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
         >
           {category.copy}
         </p>
-        <Link
-          to={`/${category.slug}`}
-          className="mt-4 inline-flex items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-          aria-label={`Learn more about ${category.chip}`}
+        <span
+          className="public-text-link mt-4 inline-flex items-center transition-colors duration-200 group-hover:underline"
         >
           Learn more
           <ChevronIcon className="h-4 w-4" />
-        </Link>
+        </span>
       </div>
     </Link>
   );
@@ -1048,18 +1047,21 @@ function PremiumExploreSection({ heading, categories, images }) {
   const onTrackPointerDown = useCallback((e) => {
     if (e.pointerType !== "mouse") return;
     drag.current = { active: true, startX: e.clientX, startLeft: trackRef.current.scrollLeft, moved: false };
-    e.currentTarget.setPointerCapture(e.pointerId);
   }, [trackRef]);
   const onTrackPointerMove = useCallback((e) => {
     const d = drag.current;
     if (!d.active) return;
     const dx = e.clientX - d.startX;
-    if (Math.abs(dx) > 4) d.moved = true;
+    if (Math.abs(dx) > 4 && !d.moved) {
+      d.moved = true;
+      e.currentTarget.setPointerCapture(e.pointerId);
+    }
+    if (!d.moved) return;
     trackRef.current.scrollLeft = d.startLeft - dx;
   }, [trackRef]);
   const onTrackPointerEnd = useCallback(() => { drag.current.active = false; }, []);
   const onTrackClickCapture = useCallback((e) => {
-    if (drag.current.moved) {
+    if (drag.current.moved && e.detail > 0) {
       e.preventDefault();
       e.stopPropagation();
       drag.current.moved = false;
@@ -1089,6 +1091,7 @@ function PremiumExploreSection({ heading, categories, images }) {
               onPointerUp={onTrackPointerEnd}
               onPointerCancel={onTrackPointerEnd}
               onClickCapture={onTrackClickCapture}
+              onDragStart={(e) => e.preventDefault()}
               className="flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pl-6 pr-6 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden lg:gap-6 lg:scroll-pl-[max(24px,calc((100vw-1265px)/2+80px))] lg:pl-[max(24px,calc((100vw-1265px)/2+80px))]"
             >
               {categories.map((c, index) => (

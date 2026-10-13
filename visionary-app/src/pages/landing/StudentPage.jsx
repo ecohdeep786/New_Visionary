@@ -299,7 +299,7 @@ function StudentJourneySection() {
 
 export default function StudentPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-student min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <StudentHeroSection />

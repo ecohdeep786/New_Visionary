@@ -34,11 +34,11 @@ export function SectionShell({
   );
 }
 
-/** 12px uppercase section opener — the same on every page. */
+/** Quiet section opener, styled centrally with the caption role. */
 export function Eyebrow({ children, center = false, className = "" }) {
   return (
     <p
-      className={`font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px] ${
+      className={`public-eyebrow ${
         center ? "text-center" : ""
       } ${className}`}
       style={{ color: color.slate }}
@@ -48,7 +48,7 @@ export function Eyebrow({ children, center = false, className = "" }) {
   );
 }
 
-/** Section heading. `display` switches to the 36-72px statement scale. */
+/** Section heading. `display` selects the editorial chapter role. */
 export function SectionHeading({
   children,
   display = false,
@@ -58,9 +58,7 @@ export function SectionHeading({
 }) {
   return (
     <Tag
-      className={`font-medium tracking-[0] ${
-        display ? "leading-[1.03]" : "leading-[1.08]"
-      } ${center ? "text-center" : ""} ${className}`}
+      className={`${display ? "public-display" : "public-section-heading"} ${center ? "text-center" : ""} ${className}`}
       style={{ color: color.ink, fontSize: display ? type.display : type.sectionHeading }}
     >
       {children}
@@ -72,7 +70,7 @@ export function SectionHeading({
 export function SectionSub({ children, center = true, className = "" }) {
   return (
     <p
-      className={`mx-auto mt-6 max-w-[760px] font-normal tracking-[0] leading-[1.55] text-[17.5px] ${
+      className={`public-lead mx-auto mt-6 max-w-[760px] ${
         center ? "text-center" : ""
       } ${className}`}
       style={{ color: color.slate }}
@@ -100,7 +98,7 @@ export function PillButton({
   className = "",
 }) {
   const base =
-    "public-action inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[16px] font-medium tracking-[0.24px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
+    "public-action inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
   const styles = {
     dark: "bg-[#121317] text-white hover:bg-black",
     blue: "bg-[#0b57d0] text-white hover:bg-[#1765cc]",
@@ -118,7 +116,7 @@ export function PillButton({
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-4 w-4"
+          className="public-icon public-icon-action"
           aria-hidden="true"
         >
           <path d="M5 12h14" />
@@ -129,13 +127,13 @@ export function PillButton({
   );
 }
 
-/** Inline text link with trailing chevron — Google's "Learn more" pattern. */
+/** Inline text link and glyph share the centrally defined action scale. */
 export function TextLink({ to, children, className = "", onClick }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${className}`}
+      className={`public-text-link inline-flex items-center gap-1.5 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${className}`}
       style={{ color: color.blue }}
     >
       {children}
@@ -146,7 +144,7 @@ export function TextLink({ to, children, className = "", onClick }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="h-3.5 w-3.5"
+        className="public-icon public-icon-chevron"
         aria-hidden="true"
       >
         <path d="M9 6l6 6-6 6" />
@@ -253,7 +251,7 @@ export function ArrowButton({
       aria-label={label}
       onClick={onClick}
       disabled={disabled}
-      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${
+      className={`public-icon-control flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white transition-all hover:bg-[#121317]/5 ${
         disabled ? "pointer-events-none opacity-40" : "opacity-100"
       }`}
       style={{ borderColor: color.mist, color: color.ink }}
@@ -266,7 +264,7 @@ export function ArrowButton({
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
-        className={`h-5 w-5 ${direction === "left" ? "rotate-180" : ""}`}
+        className={`public-icon public-icon-chevron ${direction === "left" ? "rotate-180" : ""}`}
       >
         <path d="M9 6l6 6-6 6" />
       </svg>
@@ -304,7 +302,7 @@ export function ChevronIcon({ direction = "right", className = "h-6 w-6" }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={`${className} ${direction === "left" ? "rotate-180" : ""}`}
+      className={`public-icon public-icon-chevron ${className} ${direction === "left" ? "rotate-180" : ""}`}
     >
       <path d="M9 6l6 6-6 6" />
     </svg>
