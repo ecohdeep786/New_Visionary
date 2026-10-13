@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Sparkles, ChevronDown } from "lucide-react";
+import { useInViewOnce } from "@/components/landing/system/hooks";
 
 /**
  * Shared persona-section components — extracted verbatim from the five
@@ -918,26 +919,6 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
    the "scroll, then the text appears" cadence. The observer fires once; the
    global reduced-motion contract snaps the transition to instant. */
 const SCROLL_REVEAL_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
-function useInViewOnce(threshold = 0.2) {
-  const ref = useRef(null);
-  const [entered, setEntered] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setEntered(true);
-      return undefined;
-    }
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setEntered(true);
-        io.disconnect();
-      }
-    }, { threshold });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
-  return { ref, entered };
-}
 
 /* RevealItem wraps one piece of a staggered scroll-reveal chapter so the
    resolve-out stagger targets each element individually. The index drives a

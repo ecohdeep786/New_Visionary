@@ -20,7 +20,7 @@ export function useCycleIndex(total, intervalMs) {
     if (!intervalMs || intervalMs <= 0) return undefined;
     const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);
     return () => clearInterval(id);
-  }, [total, intervalMs, index]);
+  }, [total, intervalMs]);
   return { index, goTo };
 }
 
@@ -166,4 +166,30 @@ export function useStageIndex(total) {
     [total]
   );
   return { index, goTo, step };
+}
+
+/**
+ * Reveals content once when it enters the viewport. Pairs with the
+ * `.hero-fade-up` classes on the children for the rise transition.
+ * Returns { ref, entered } for ScrollReveal/RevealItem API compatibility.
+ */
+export function useInViewOnce(threshold = 0.2) {
+  const ref = useRef(null);
+  const [entered, setEntered] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setEntered(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setEntered(true);
+        io.disconnect();
+      }
+    }, { threshold });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
+  return { ref, entered };
 }

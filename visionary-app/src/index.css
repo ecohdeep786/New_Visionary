@@ -1,6 +1,4 @@
-/* Separate font resources for public pages (Flex) and the product (Sans). */
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@16..144,400..750&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+/* Fonts are preloaded in index.html with &display=swap for fast text rendering. */
 @import "./styles/tokens.css";
 @import "./styles/rhythm.css";
 @import "./styles/public-system.css";
@@ -14,6 +12,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Lazy image fade-in — no jarring pop when deferred images finish loading ── */
+.lazy-loading {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lazy-loaded {
+  opacity: 1;
+}
 
 @keyframes oi-spin {
   to {

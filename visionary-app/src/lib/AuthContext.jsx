@@ -30,10 +30,10 @@ export const AuthProvider = ({ children }) => {
   const switchWorkspace = (workspaceId) => { queryClientInstance.cancelQueries(); queryClientInstance.clear(); selectStoredWorkspace(user.id, workspaceId); };
   const addRole = (role) => { const workspace = addStoredRole(user.id, role); switchWorkspace(workspace.id); };
 
-  const checkUserAuth = useCallback(async () => {
+  const checkUserAuth = useCallback(() => {
     setIsLoadingAuth(true);
     try {
-      const currentUser = await appClient.auth.me();
+      const currentUser = appClient.auth.me();
       setUser(currentUser);
       setAuthError(null);
     } catch {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
+import "@/components/landing/cast.css";
 
 function useCycle(total, ms) {
   const [index, setIndex] = useState(0);
@@ -118,42 +119,6 @@ const CAST_FALLBACK = { canvasH: 1, slotH: 1, slotW: 0.8, offX: 0 };
    with the CTA sitting on the figures' heads on large/tall screens
    (1536×864, 1920×1080). A real box reserves the zone — container padding
    can lose a cascade fight (the bridge pads section[data-section] too). */
-const CAST_CSS = `
-@keyframes figIn{from{opacity:0;transform:translateY(5%) scale(0.988)}to{opacity:1;transform:none}}
-@keyframes appleFadeIn{from{opacity:0}to{opacity:1}}
-.cast-stage{--cast-h:min(34svh, calc(100vw / 2.2))}
-@media (min-width:640px){.cast-stage{--cast-h:min(46svh, calc(100vw / 4.1))}}
-@media (min-width:1024px){.cast-stage{--cast-h:min(40svh, clamp(170px, calc((100vw - clamp(96px, 12vw, 240px)) / 5.17), 460px))}}
-.cast-copy{margin-top:auto;margin-bottom:auto}
-.cast-slot-0{z-index:10}.cast-slot-2{z-index:30}.cast-slot-4{z-index:10}.cast-slot-1,.cast-slot-3{z-index:20}
-.persona-floor{position:absolute;inset-inline:0;bottom:0;height:68%;pointer-events:none;
-background:linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.3) 68%, rgba(255,255,255,0.06) 88%, rgba(255,255,255,0) 100%)}
-@media (min-width:1024px){
-.persona-floor{height:40%;
-background:linear-gradient(to top, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.32) 48%, rgba(255,255,255,0) 100%), radial-gradient(62% 95% at 14% 100%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 68%)}
-}
-@media (min-width:1024px){
-.cast-slot-1{margin-left:calc(var(--cast-h)*0.1200)}
-.cast-slot-2{margin-left:calc(var(--cast-h)*0.3459)}
-.cast-slot-3{margin-left:calc(var(--cast-h)*0.1724)}
-.cast-slot-4{margin-left:calc(var(--cast-h)*0.2029)}
-}
-@media (min-width:640px) and (max-width:1023.9px){
-.cast-slot-1{margin-left:calc(var(--cast-h)*-0.1482)}
-.cast-slot-2{margin-left:calc(var(--cast-h)*0.0777)}
-.cast-slot-3{margin-left:calc(var(--cast-h)*-0.0958)}
-.cast-slot-4{margin-left:calc(var(--cast-h)*-0.0653)}
-}
-@media (max-width:639.9px){
-.cast-slot-1{margin-left:calc(var(--cast-h)*-0.2732)}
-.cast-slot-2{margin-left:calc(var(--cast-h)*-0.0473)}
-.cast-slot-3{margin-left:calc(var(--cast-h)*-0.2208)}
-.cast-slot-4{margin-left:calc(var(--cast-h)*-0.1903)}
-}
-@media (prefers-reduced-motion: reduce){
-.apple-anim{animation-name:appleFadeIn !important;animation-duration:0.7s !important;animation-timing-function:ease-out !important;animation-iteration-count:1 !important}
-}`;
-
 export default function NewPersona({
   words,
   wordMs = 2800,
@@ -203,8 +168,6 @@ export default function NewPersona({
           marginTop: 56,
         }}
       >
-        <style>{CAST_CSS}</style>
-
         {/* the words — static "One Intelligence." Centered mid-stage on every
             device: auto margins balance the copy between the nav and the
             bottom-anchored family, one composition at every width */}
@@ -323,7 +286,6 @@ export default function NewPersona({
         marginTop: 56,
       }}
     >
-      <style>{CAST_CSS}</style>
       {/* the subject — the whole photograph, always. Phones and tablets:
               the full image in flow at the section's bottom, feet on the
               fold, nothing cropped. Desktop: the same contain fit as a

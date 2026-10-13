@@ -3,24 +3,23 @@ import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import PersonaHero from "@/components/landing/NewPersona";
+import LazyImage from "@/components/landing/LazyImage";
 import {
   PremiumLanguageSection,
   PremiumTrustSection,
   PremiumCTASection,
 } from "@/components/landing/persona/PremiumPersonaSections";
+// Hero images (above the fold) — loaded eagerly with high fetch priority
 import studentmeet from "@/assets/student-hero-main-1600w.webp";
 import teachermeet from "@/assets/teacher-hero-main-1600w.webp";
 import parentmeet from "@/assets/parent-hero-main-1600w.webp";
 import promeet from "@/assets/pro-face-main-1600w.webp";
 import orgmeet from "@/assets/org-face-main-1600w.webp";
+// Problem section images — loaded lazily (below the fold)
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import teacherProblem from "@/assets/teacher-problem-1.webp";
 import problemrevision from "@/assets/problem-revision.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import cmAdapt from "@/assets/student-primary.webp";
-import cmGrow from "@/assets/student-secondary.webp";
-import cmCreate from "@/assets/student-vocational.webp";
-import cmContinue from "@/assets/student-higher.webp";
 import { ShieldCheck, HeartHandshake, Scale, Play, Pause } from "lucide-react";
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
@@ -58,7 +57,7 @@ function useCycleIndex(total, intervalMs) {
     if (!intervalMs || intervalMs <= 0) return undefined;
     const id = setInterval(() => setIndex((i) => (i + 1) % total), intervalMs);
     return () => clearInterval(id);
-  }, [total, intervalMs, index]);
+  }, [total, intervalMs]);
   return { index, goTo };
 }
 
@@ -200,11 +199,13 @@ const LG_QUESTIONS = [
 ];
 const LG_RING_MS = 3600;
 
+// Journey images — lazy-loaded via LazyImage component (below the fold)
+const JOURNEY_IMAGE_BASE = "/src/assets/student-";
 const JOURNEY_STEPS = [
-  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: cmAdapt, alt: "Child learning with a tablet outdoors", tone: "light" },
-  { title: "Grow", copy: "When you know more, you should be able to go further.", image: cmGrow, alt: "Student growing their skills", tone: "light" },
-  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: cmCreate, alt: "Person building a real project", tone: "light" },
-  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: cmContinue, alt: "Learner continuing their journey", tone: "dark" },
+  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: "@/assets/student-primary.webp", alt: "Child learning with a tablet outdoors", tone: "light" },
+  { title: "Grow", copy: "When you know more, you should be able to go further.", image: "@/assets/student-secondary.webp", alt: "Student growing their skills", tone: "light" },
+  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: "@/assets/student-vocational.webp", alt: "Person building a real project", tone: "light" },
+  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: "@/assets/student-higher.webp", alt: "Learner continuing their journey", tone: "dark" },
 ];
 const JOURNEY_CARD_MS = 5000;
 
@@ -303,12 +304,13 @@ function LandingProblemSection() {
               stage stays a full-bleed crop. */}
           <div className="relative mt-[clamp(32px,4.5vw,72px)] h-[clamp(300px,42svh,380px)] sm:h-[clamp(300px,min(44vw,58svh),600px)]">
             {PROBLEM_SLIDES.map((s, i) => (
-              <img
+              <LazyImage
                 key={s.alt}
                 src={s.image}
                 alt={i === index ? s.alt : ""}
                 aria-hidden={i !== index}
-                loading="eager"
+                eager={i === index}
+                placeholderBg="transparent"
                 decoding="async"
                 draggable="false"
                 style={{
@@ -649,7 +651,7 @@ function LandingJourneySection() {
           {JOURNEY_STEPS.map((s, i) => (
               <figure key={s.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${JOURNEY_STEPS.length}: ${s.title}`}
                 className="relative m-0 flex w-[78%] flex-none snap-start flex-col overflow-hidden rounded-[18px] bg-[#F5F5F7] sm:w-[46%] lg:w-[56%] lg:max-w-[840px]">
-                <img src={s.image} alt={s.alt} loading="eager" decoding="async" draggable="false"
+                <LazyImage src={s.image} alt={s.alt} eager={i === 0} decoding="async" draggable="false" placeholderBg="#f5f5f7"
                   className="aspect-[4/3] w-full flex-none select-none object-cover sm:aspect-[16/10] lg:aspect-[16/8.5]" />
                 {/* the on-card caption — a padded block UNDER the media on every
                     device (Apple's line-up tile anatomy: flush-top photo, text

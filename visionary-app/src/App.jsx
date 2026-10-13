@@ -140,9 +140,15 @@ const RouteFallback = () => (
 )
 
 function LandingEntry() {
-  const { isAuthenticated, isLoadingAuth, user } = useAuth();
-  if (isLoadingAuth) return <RouteFallback />;
-  return isAuthenticated ? <Navigate to={user?.onboarding_complete ? "/dashboard/home" : "/onboarding"} replace /> : <Landing />;
+  const { isAuthenticated, isLoadingAuth, authChecked, user } = useAuth();
+  if (isLoadingAuth || !authChecked) return <RouteFallback />;
+  // The landing page is always publicly accessible. Authenticated users who
+  // have completed onboarding are sent straight to their dashboard; everyone
+  // else (anonymous visitors and users mid-onboarding) sees the landing page.
+  if (isAuthenticated && user?.onboarding_complete) {
+    return <Navigate to="/dashboard/home" replace />;
+  }
+  return <Landing />;
 }
 function ClassesEntry() { const { user } = useAuth(); return user?.identity === 'teacher' ? <TeacherClasses /> : <StudentClasses />; }
 const PublicApp = () => (
