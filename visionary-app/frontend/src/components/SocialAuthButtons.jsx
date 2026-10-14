@@ -1,6 +1,10 @@
+import { useRef, useState } from 'react';
 import { Building2 } from "lucide-react";
-import { base44 } from "@/api/base44Client";
 import GoogleIcon from "@/components/GoogleIcon";
+import { useAuth } from '@/lib/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { authDestination } from '@/lib/authReturnTo';
+import { authErrorMessage } from '@/lib/authErrors';
 
 function AppleIcon({ className }) {
   return (
@@ -22,31 +26,37 @@ function MicrosoftIcon({ className }) {
 }
 
 export default function SocialAuthButtons({ onOrganization }) {
-  const handleSocial = (provider) => {
+  const { signInWithProvider } = useAuth();
+  const navigate = useNavigate();
+  const pending = useRef(false);
+  const [busy, setBusy] = useState(false), [error, setError] = useState('');
+  const handleSocial = async (provider) => {
+    if (pending.current) return;
+    pending.current = true;
+    setBusy(true); setError('');
     try {
-      base44.auth.loginWithProvider(provider, "/");
-    } catch {
-      // silent
-    }
+      navigate(authDestination(await signInWithProvider(provider)), { replace: true });
+    } catch (cause) { setError(authErrorMessage(cause, 'Sign-in could not finish. Please try again.')); }
+    finally { pending.current = false; setBusy(false); }
   };
 
   const btnClass =
     "w-12 h-12 rounded-xl border border-[#dadce0] bg-white flex items-center justify-center hover:bg-[#121317]/5 hover:shadow-sm transition-all";
 
   return (
-    <div className="flex items-center justify-center gap-3">
-      <button onClick={() => handleSocial("google")} className={btnClass} aria-label="Continue with Google">
+    <div><div className="flex items-center justify-center gap-3">
+      <button disabled={busy} onClick={() => handleSocial("google")} className={btnClass} aria-label="Continue with Google">
         <GoogleIcon className="w-5 h-5" />
       </button>
-      <button onClick={() => handleSocial("microsoft")} className={btnClass} aria-label="Continue with Microsoft">
+      <button disabled={busy} onClick={() => handleSocial("microsoft")} className={btnClass} aria-label="Continue with Microsoft">
         <MicrosoftIcon className="w-5 h-5" />
       </button>
-      <button onClick={() => handleSocial("apple")} className={btnClass} aria-label="Continue with Apple">
+      <button disabled={busy} onClick={() => handleSocial("apple")} className={btnClass} aria-label="Continue with Apple">
         <AppleIcon className="w-5 h-5 text-[#121317]" />
       </button>
-      <button onClick={onOrganization} className={btnClass} aria-label="Continue with Organization">
+      <button disabled={busy} onClick={onOrganization} className={btnClass} aria-label="Continue with Organization">
         <Building2 className="w-5 h-5 text-[#5f6368]" />
       </button>
-    </div>
+    </div>{error && <p role="alert" className="mt-3 text-sm text-[#b3261e]">{error}</p>}</div>
   );
 }

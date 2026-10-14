@@ -1,4 +1,5 @@
 import SpotIllustration from '@/components/landing/SpotIllustration';
+import GettingStarted from '@/components/onboarding/GettingStarted';
 import {homeCopy} from '@/lib/homeCopy';
 import {currentPlanDeferralLabel, homePlanPresentation, planDeferralFailureHelp} from '@/lib/homeEngagement';
 import {organizationPathAllowed} from '@/services/organizationPolicy';
@@ -46,6 +47,7 @@ export default function DecisionHome() {
   const stageTier = presentation.tier;
   return <div className={`v-page v-home stage-${stageTier}`} lang={locale}>
     <header className="v-home-header"><div><p className="v-home-eyebrow">{workspace}</p><h1 className="v-title">{copy('Welcome back, {name}.',{name})}</h1><div className="v-home-context"><p className="v-home-boundary">{boundary}</p>{['student','professional'].includes(ctx.role)&&<StagePresentationSummary presentation={presentation} locale={locale}/>}</div></div><span className="v-home-local-label">{copy("Saved on this device")}</span></header>
+    <GettingStarted />
     {query.isFetching && <p className="v-muted" role="status">{copy("Updating your next step…")}</p>}
     <section className="v-home-priority" aria-labelledby="next-step-title" data-role={ctx.role}>
       <div className="v-home-priority-copy">

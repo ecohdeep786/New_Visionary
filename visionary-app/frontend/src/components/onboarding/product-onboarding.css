@@ -1,0 +1,6 @@
+/* Static headings receive focus for announcements; controls keep their focus rings. */
+#onboarding-title:focus,
+#getting-started-title:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

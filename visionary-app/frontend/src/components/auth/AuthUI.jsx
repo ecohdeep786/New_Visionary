@@ -1,5 +1,5 @@
 import { Loader2, ArrowLeft, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 
 /* ── Shared classes ── */
@@ -146,7 +146,11 @@ export function GooglePasswordField({
   autoFocus = false,
   autoComplete = "current-password",
   required = false,
+  disabled = false,
+  invalid = false,
+  describedBy = undefined,
 }) {
+  const inputId = useId();
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState(false);
   const displayLabel = label || placeholder || "Password";
@@ -156,6 +160,7 @@ export function GooglePasswordField({
     <div className="flex flex-col gap-2">
       <div className={`relative rounded-lg border transition-colors ${focused ? "border-[#4285F4]" : "border-[#dadce0]"}`}>
         <input
+          id={inputId}
           type={showPassword ? "text" : "password"}
           autoFocus={autoFocus}
           autoComplete={autoComplete}
@@ -165,9 +170,13 @@ export function GooglePasswordField({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           required={required}
+          disabled={disabled}
+          aria-invalid={invalid || undefined}
+          aria-describedby={describedBy}
           className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#121317] outline-none"
         />
         <label
+          htmlFor={inputId}
           className={`absolute left-3 transition-all duration-150 pointer-events-none bg-white px-1 ${
             floated
               ? "top-0 -translate-y-1/2 text-xs text-[#4285F4]"
@@ -201,7 +210,11 @@ export function InputField({
   autoFocus = false,
   autoComplete = "off",
   required = false,
+  disabled = false,
+  invalid = false,
+  describedBy = undefined,
 }) {
+  const inputId = useId();
   const [focused, setFocused] = useState(false);
   const displayLabel = label || placeholder;
   const floated = focused || (value && value.length > 0);
@@ -209,6 +222,7 @@ export function InputField({
   return (
     <div className={`relative rounded-lg border transition-colors ${focused ? "border-[#4285F4]" : "border-[#dadce0]"}`}>
       <input
+        id={inputId}
         type={type}
         autoFocus={autoFocus}
         autoComplete={autoComplete}
@@ -218,9 +232,13 @@ export function InputField({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         required={required}
+        disabled={disabled}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
         className="w-full h-14 px-4 pt-4 bg-transparent text-sm text-[#121317] outline-none"
       />
       <label
+        htmlFor={inputId}
         className={`absolute left-3 transition-all duration-150 pointer-events-none bg-white px-1 ${
           floated
             ? "top-0 -translate-y-1/2 text-xs text-[#4285F4]"

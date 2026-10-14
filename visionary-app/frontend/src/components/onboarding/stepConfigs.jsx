@@ -40,7 +40,7 @@ export const CLASSES = [
 
 export const LEARNING_GOALS = [
   { id: "score_90", label: "Score above 90%" },
-  { id: "topper", label: "Become topper" },
+  { id: "topper", label: "Improve my results" },
   { id: "strengthen_weak", label: "Strengthen weak subjects" },
   { id: "board_prep", label: "Board exam preparation" },
   { id: "jee", label: "JEE" },
@@ -317,7 +317,7 @@ export const SCHOOL_FLOW_STEPS = [
     title: "Where are you studying?",
     subtitle: "Tell us your context so Learn can find relevant content when it is connected.",
     component: StudentContextForm,
-    canContinue: (data) => data.board && data.medium && data.grade_level,
+    canContinue: (data) => data.board && (data.board !== 'State' || data.state) && data.medium && data.grade_level,
     illustration: "student",
   },
   {
@@ -445,7 +445,7 @@ export const COMPETITIVE_FLOW_STEPS = [
   {
     id: "daily_hours",
     title: "How many hours can you study per day?",
-    subtitle: "This is critical for generating your preparation roadmap.",
+    subtitle: "Choose a realistic amount of time. This is a planning preference, not a commitment.",
     type: "choice",
     field: "daily_hours",
     options: DAILY_HOURS,
@@ -641,7 +641,7 @@ export const PARENT_FLOW_STEPS = [
   {
     id: "medium",
     title: "What language does your child learn in?",
-    subtitle: "We'll show progress reports in this language.",
+    subtitle: "Save a language preference. Reports require an approved family connection and available language support.",
     type: "choice",
     field: "medium",
     options: LANGUAGES,
@@ -669,10 +669,10 @@ export const ORG_FLOW_STEPS = [
   {
     id: "org_info",
     title: "Tell us about your institution",
-    subtitle: "This creates your institution's public profile.",
+    subtitle: "Save a private organization preference. This does not publish a profile or establish membership.",
     component: OrgInfo,
     canContinue: (data) =>
-      data.org_name && data.org_email && data.org_address && data.org_city && data.org_pin,
+      typeof data.org_name === 'string' && !!data.org_name.trim() && data.org_name.trim().length <= 120,
   },
   {
     id: "org_board",

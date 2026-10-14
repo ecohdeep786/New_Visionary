@@ -25,13 +25,36 @@
     font-family: var(--font-public);
   }
 
-  /* ── Hero H1 — 80px clamp, 600 weight, 1.05 line-height, -0.015em tracking ──
-     Apple's product-page hero headline (measured: 80px @1440, -1.2px tracking) */
-  .apple-hero-h1 {
-    font-size: clamp(56px, 5.55vw, 80px);
+  /* ── Hero eyebrow — Apple's hero eyebrow: 56px/40px/40px, 600 weight, 1.0 lh
+     -0.00028em tracking. SF Pro Display equivalent through Google Sans Flex 600. */
+  .apple-hero-eyebrow {
+    font-size: var(--fs-hero-eyebrow);
     font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.015em;
+    line-height: var(--lh-hero-eyebrow);
+    letter-spacing: var(--track-hero-eyebrow);
+    font-family: var(--font-public);
+    text-wrap: balance;
+    text-align: center;
+  }
+
+  /* ── Hero headline — Apple's hero-split headline: 140px/96px/64px, 600 weight
+     1.0 line-height, -0.0021em tracking. Renders as multi-line block text. */
+  .apple-hero-headline {
+    font-size: var(--fs-hero-headline);
+    font-weight: 600;
+    line-height: var(--lh-hero-headline);
+    letter-spacing: var(--track-hero-headline);
+    font-family: var(--font-public);
+    text-wrap: balance;
+    text-align: center;
+  }
+
+  /* ── Hero H1 — combined hero headline (alias for apple-hero-headline) */
+  .apple-hero-h1 {
+    font-size: clamp(4rem, 5.55vw, 8.75rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.0021em;
     font-family: var(--font-public);
     max-width: 18ch;
     text-wrap: balance;
@@ -48,66 +71,128 @@
   .apple-display {
     font-size: var(--fs-display);
     font-weight: 600;
-    line-height: var(--lh-display);
-    letter-spacing: var(--track-display);
+    line-height: 1;
+    letter-spacing: -0.0021em;
     font-family: var(--font-public);
   }
 
+  /* ── Apple elevated statement — 80px/64px/40px, 600 weight, -0.015em tracking
+     (iPad Pro elevated statement profile) */
+  .apple-statement-elevated {
+    font-size: var(--fs-statement-elevated);
+    font-weight: 600;
+    line-height: var(--lh-statement-elevated);
+    letter-spacing: var(--track-statement-elevated);
+    font-family: var(--font-public);
+    text-wrap: balance;
+  }
+
+  /* ── Apple highlights chapter — 56px/48px/32px, 600 weight
+     (Watch highlights, iPhone/Mac chapter profile) */
+  .apple-highlights {
+    font-size: var(--fs-highlights);
+    font-weight: 600;
+    line-height: var(--lh-highlights);
+    letter-spacing: var(--track-highlights);
+    font-family: var(--font-public);
+    text-wrap: balance;
+  }
+
+  /* ── Apple compact chapter — 48px/40px/32px, 600 weight
+     (Watch compact chapter profile) */
+  .apple-compact-chapter {
+    font-size: var(--fs-compact-chapter);
+    font-weight: 600;
+    line-height: var(--lh-compact-chapter);
+    letter-spacing: var(--track-compact-chapter);
+    font-family: var(--font-public);
+    text-wrap: balance;
+  }
+
+  /* ── Apple chapter introduction: 24px/21px/21px, 600 weight, 1.166667 lh, +0.009em tracking */
   .apple-subheading {
-    font-size: var(--fs-h3);
-    font-weight: 600;
-    line-height: var(--lh-feature);
-    letter-spacing: var(--track-feature);
-    font-family: var(--font-public);
-  }
-
-  .apple-card-h3 {
-    font-size: var(--fs-large-card);
-    font-weight: 600;
-    line-height: var(--lh-large-card);
-    letter-spacing: var(--track-large-card);
-    font-family: var(--font-public);
-  }
-
-  .apple-card-h4 {
-    font-size: var(--fs-card-name);
-    font-weight: 600;
-    line-height: var(--lh-card-name);
-    letter-spacing: var(--track-card-name);
-    font-family: var(--font-public);
-  }
-
-  .apple-lead {
     font-size: var(--fs-lead);
-    font-weight: 400;
+    font-weight: 600;
     line-height: var(--lh-lead);
-    letter-spacing: 0.011em;
+    letter-spacing: 0.009em;
     font-family: var(--font-public);
   }
 
-  /* ── Lead bold — 17px, 600 weight, 1.24 line-height, -0.022em tracking ── */
-  .apple-lead-bold {
-    font-size: 17px;
+  /* ── Apple router/card heading: 40px/32px/28px, 600 weight, 1.1 lh, 0/+0.004/+0.007 tracking */
+  .apple-card-h3 {
+    font-size: 2.5rem;
     font-weight: 600;
-    line-height: 1.24;
+    line-height: 1.1;
+    letter-spacing: 0;
+    font-family: var(--font-public);
+  }
+
+  /* ── Apple newsroom item title: 17px, 700 weight, 1.235294 lh, -0.022em tracking */
+  .apple-card-h4 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.235294;
     letter-spacing: -0.022em;
     font-family: var(--font-public);
   }
 
-  .apple-body {
-    font-size: var(--fs-body);
+  /* ── Apple body text (tout): 21px/19px/19px, 400 weight, 1.19048 lh, +0.011em tracking */
+  .apple-lead {
+    font-size: 1.0625rem;
     font-weight: 400;
-    line-height: var(--lh-body);
+    line-height: 1.19048;
+    letter-spacing: 0.011em;
+    font-family: var(--font-public);
+  }
+
+  /* ── Apple chapter intro (bold): 24px/21px/21px, 600 weight, 1.166667 lh, +0.009em tracking */
+  .apple-lead-bold {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.166667;
+    letter-spacing: 0.009em;
+    font-family: var(--font-public);
+  }
+
+  /* ── Apple body text: 21px/19px/19px, 400 weight, 1.19048 lh, +0.011em tracking */
+  .apple-body {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.19048;
     letter-spacing: var(--track-body);
     font-family: var(--font-public);
   }
 
+  /* ── Apple values card title: 19px, 600 weight, 1.210526 lh, +0.012em tracking */
   .apple-card-body {
-    font-size: var(--fs-body);
-    font-weight: 400;
-    line-height: var(--lh-body);
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.210526;
     letter-spacing: var(--track-body);
     font-family: var(--font-public);
+  }
+
+  /* ── Apple values body: 19px, 400 weight, 1.19048 lh, -0.022em tracking */
+  .apple-values-body {
+    font-size: 1.1875rem;
+    font-weight: 400;
+    line-height: 1.19048;
+    letter-spacing: -0.022em;
+    font-family: var(--font-public);
+  }
+
+  /* ── Apple card CTA "Learn more" — 17px, 400 weight, 1.470588 lh, -0.022em tracking */
+  .apple-card-cta {
+    font-size: var(--fs-card-cta);
+    font-weight: 400;
+    line-height: var(--lh-card-cta);
+    letter-spacing: var(--track-card-cta);
+    font-family: var(--font-public);
+    text-decoration: none;
+  }
+
+  .apple-card-cta:hover {
+    text-decoration: underline;
   }
 
   .apple-eyebrow {
@@ -119,44 +204,46 @@
     text-transform: none !important;
   }
 
+  /* ── Apple caption: 12px, 600 weight, 1.333333 lh, -0.01em tracking */
   .apple-meta {
-    font-size: var(--fs-meta);
+    font-size: 0.75rem;
     font-weight: 600;
-    line-height: var(--lh-meta);
-    letter-spacing: var(--track-meta);
+    line-height: 1.333333;
+    letter-spacing: -0.01em;
     font-family: var(--font-public);
   }
 
+  /* ── Apple body-reduced (fine print): 12px, 400 weight, 1.33349 lh, -0.016em tracking */
   .apple-fine {
-    font-size: var(--fs-fine);
+    font-size: 0.75rem;
     font-weight: 400;
-    line-height: var(--lh-fine);
-    letter-spacing: -0.014em;
+    line-height: 1.33349;
+    letter-spacing: -0.016em;
     font-family: var(--font-public);
   }
 
-  /* ── Footer link — 12px, 400 weight, 1.33 line-height ── */
+  /* ── Apple footer link — 12px, 400 weight, 1.333333 lh, -0.01em tracking */
   .apple-footer-link {
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 400;
-    line-height: 1.33;
-    letter-spacing: -0.01px;
+    line-height: 1.333333;
+    letter-spacing: -0.01em;
     font-family: var(--font-public);
   }
 
-  /* ── Button — 17px, 600 weight, 1.29 line-height, -0.022em tracking ── */
+  /* ── Apple nav link / button — 17px, 600 weight, 1.235294 lh, -0.022em tracking */
   .apple-btn-primary {
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 600;
-    line-height: 1.29;
+    line-height: 1.235294;
     letter-spacing: -0.022em;
     font-family: var(--font-public);
   }
 
   .apple-btn-secondary {
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 600;
-    line-height: 1.29;
+    line-height: 1.235294;
     letter-spacing: -0.022em;
     font-family: var(--font-public);
   }

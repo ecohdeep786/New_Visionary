@@ -1,25 +1,33 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { CheckCircle2, ArrowLeft } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 import { primaryBtnAutoClass, Spinner, InputField, BackButton, ActionRow } from "@/components/auth/AuthUI";
+import { authErrorMessage } from '@/lib/authErrors';
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState("");
+  const location = useLocation(), pending = useRef(false);
+  const [email, setEmail] = useState(typeof location.state?.email === 'string' ? location.state.email.slice(0, 320) : "");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (pending.current) return;
+    pending.current = true;
     setLoading(true);
+    setError('');
     try {
       await base44.auth.resetPasswordRequest(email);
-    } catch {
-      // Always show success regardless
-    } finally {
-      setLoading(false);
       setSent(true);
+    } catch (cause) {
+      if (cause.code === 'auth/user-not-found') setSent(true);
+      else setError(authErrorMessage(cause, 'The reset request could not be sent. Please try again.'));
+    } finally {
+      pending.current = false;
+      setLoading(false);
     }
   };
 
@@ -33,6 +41,7 @@ export default function ForgotPassword() {
         </Link>
       }
     >
+      {error && <p role="alert" className="mb-4 text-sm text-[#b3261e]">{error}</p>}
       {sent ? (
         <div key="success" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col items-center gap-6 text-center">
           <div className="w-14 h-14 rounded-full bg-[#e6f4ea] flex items-center justify-center">
@@ -45,6 +54,7 @@ export default function ForgotPassword() {
             </p>
           </div>
           <Link to="/login" className={primaryBtnAutoClass}>Back to sign in</Link>
+          <button className="text-sm text-[#4285F4]" onClick={() => { setSent(false); setError(''); }}>Use a different email</button>
           <p className="text-sm text-[#5f6368]">
             Don't have an account?{" "}
             <Link to="/register" className="text-[#4285F4] font-medium hover:underline">Sign up</Link>
@@ -63,6 +73,7 @@ export default function ForgotPassword() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
             <ActionRow
               left={

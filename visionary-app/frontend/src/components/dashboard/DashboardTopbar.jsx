@@ -15,6 +15,8 @@ import { useWorkspace } from '@/hooks/useWorkspace';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { shellCopy } from './shellCopy';
+import { toast } from '@/components/ui/use-toast';
+import { authErrorMessage } from '@/lib/authErrors';
 
 export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpanded }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -84,7 +86,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <DropdownMenuItem onSelect={() => navigate('/dashboard/privacy')} className="workspace-account-item gap-3"><ShieldCheck aria-hidden="true" />{t("privacyConsent")}</DropdownMenuItem>
         <DropdownMenuItem onSelect={() => navigate('/dashboard/support')} className="workspace-account-item gap-3"><HelpCircle aria-hidden="true" />{t("support")}</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={() => { logout(); navigate("/login", { replace: true }); }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{t("signOut")}</DropdownMenuItem>
+        <DropdownMenuItem onSelect={async () => { try { await logout(); navigate("/login", { replace: true }); } catch (error) { toast({ title: 'Sign-out could not finish', description: authErrorMessage(error), variant: 'destructive' }); } }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{t("signOut")}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
     <Dialog open={searchOpen} onOpenChange={setSearchOpen}>

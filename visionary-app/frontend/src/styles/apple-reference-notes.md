@@ -121,3 +121,91 @@ Remaining design review concerns are section composition, text line count, headi
 - Student's statement rendered at 80/84, 64/68 and 40/44 with weight 600 and the selected responsive tracking. Explore names rendered at 24/28, 21/25 and 21/25. The narrowest additional viewport requested was 320px (the browser reported 321px); no horizontal overflow was found.
 - Student hero font family, size, leading, tracking and weight were equal before and after at the three reference widths.
 - Lint, type checking, production build and all nine existing workspace tests passed. The existing React `fetchPriority` warning in the unchanged hero component remains outside this correction.
+
+---
+
+## Browser measurements — Education Initiative (14 Oct 2026)
+
+Rendered CSS pixels at computed style level, extracted via Playwright `getComputedStyle` at 1440px viewport width. Font families map to `Google Sans Flex` (Display) / `Google Sans Flex` (Text) in Visionary's stack.
+
+### Hero section (Education Initiative)
+
+| Element | Font | Size | Weight | Line Height | Tracking | Notes |
+|---------|------|------|--------|-------------|----------|-------|
+| Hero eyebrow (`.typography-hero-eyebrow`) | SF Pro Display | 56px | 600 | 1.0 (56px) | -0.00028em | "Education moves" |
+| Hero headline (`.typography-hero-headline`) | SF Pro Display | 140px | 600 | 1.0 (140px) | -0.0021em | split-line multi-line |
+
+### Section typography
+
+| Element | Font | Size | Weight | Line Height | Tracking | CSS class |
+|---------|------|------|--------|-------------|----------|-----------|
+| Section H2 (editorial chapter) | SF Pro Display | 64px | 600 | 1.0625 (68px) | -0.009em | `.typography-headline` |
+| Chapter intro (lead) | SF Pro Display | 24px | 600 | 1.166667 (28px) | +0.009em | `.typography-label` |
+| Editorial body (tout) | SF Pro Text | 21px | 400 | 1.19048 (25px) | +0.011em | `.typography-tout` |
+| Body reduced | SF Pro Text | 17px | 400 | 1.23536 (21px) | -0.022em | `.typography-body-tight` |
+| Caption | SF Pro Text | 12px | 400 | 1.33349 (16px) | -0.016em | `.typography-caption` |
+| Meta | SF Pro Text | 12px | 600 | 1.333333 (16px) | -0.01em | `.typography-caption` |
+
+### Card headings
+
+| Element | Font | Size | Weight | Line Height | Tracking | CSS class |
+|---------|------|------|--------|-------------|----------|-----------|
+| Router card heading | SF Pro Display | 40px | 600 | 1.1 (44px) | 0 | `.router-item-headline` |
+| Values card title | SF Pro Display | 19px | 600 | 1.210526 (23px) | +0.012em | `.typography-tout` |
+| Values body | SF Pro Display | 19px | 400 | 1.19048 (23px) | -0.022em | `.item-copy` |
+| Newsroom item title | SF Pro Text | 17px | 700 | 1.235294 (21px) | -0.022em | `.newsroom-item-title` |
+
+### Cards and CTAs
+
+| Element | Font | Size | Weight | Line Height | Tracking | CSS class |
+|---------|------|------|--------|-------------|----------|-----------|
+| Card "Learn more" CTA | SF Pro Display | 21px | 400 | 1.19048 (25px) | +0.011em | `.icon-wrapper` |
+| Values "Learn more" CTA | SF Pro Text | 17px | 400 | 1.470588 (25px) | -0.022em | `.item-cta` |
+
+### Navigation
+
+| Element | Font | Size | Weight | Line Height | Tracking | CSS class |
+|---------|------|------|--------|-------------|----------|-----------|
+| Primary nav link | SF Pro Text | 17px | 600 | 1.235294 (21px) | -0.022em | `.globalnav-link` |
+| Nav dropdown link | SF Pro Display | 24px | 600 | 1.166667 (28px) | +0.009em | `.globalnav-submenu-link` |
+| Footer section title | SF Pro Text | 12px | 400 | 1.33349 (16px) | -0.01em | footer h3 |
+
+### Responsive breakpoints
+
+| Element | 1440px (desktop) | 1068px (tablet) | 734px (mobile) |
+|---------|-----------------|-----------------|----------------|
+| Hero eyebrow | 56px / 56px lh | 40px / 40px lh | 40px / 40px lh |
+| Hero headline | 140px / 140px lh | 96px / 96px lh | 64px / 64px lh |
+| Section H2 | 64px / 68px lh | 56px / 60px lh | 40px / 44px lh |
+| Chapter intro | 24px / 28px lh | 21px / 25px lh | 21px / 25px lh |
+| Editor body | 21px / 25px lh | 19px / 23px lh | 19px / 23px lh |
+| Router card H3 | 40px / 44px lh | 32px / 36px lh | 28px / 32px lh |
+| Hero headline tracking | -0.0021em | -0.00144em | -0.00058em |
+| Section H2 tracking | -0.009em | -0.005em | 0 |
+
+### Layout measurements (1440px viewport)
+
+- Content frame: 980px wide, centered
+- Section padding-top: 140px (for non-hero sections)
+- Hero section height: 800px (100svh)
+- H2→paragraph gap: 19.2px (desktop)
+- Eyebrow→headline gap (in hero): ~56px between lines
+- Values card grid: 450px columns, 15.2px vertical gap
+- Footer H3: 12px, 400 weight, 1.333333 lh
+
+### Gap measurements
+
+- Eyebrow to H2: 16px (desktop)
+- H2 to chapter intro: 24px (Apple measured)
+- Hero eyebrow to hero headline: ~56px (multi-line gap)
+- Values title to body: 15.2px vertical
+- Values body "Learn more": 0px vertical (inline CTA)
+
+### Font rendering
+
+- SF Pro Display for all headings and display text
+- SF Pro Text for body, captions, nav, footer
+- Optical sizing: `auto` (default)
+- `-webkit-font-smoothing: antialiased` on dark sections
+- `text-rendering: optimizeLegibility` on some text blocks
+- `font-feature-settings: normal` (no small caps or special features)

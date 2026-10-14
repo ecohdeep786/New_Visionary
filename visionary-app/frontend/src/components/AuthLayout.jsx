@@ -14,10 +14,10 @@ export default function AuthLayout({
 }) {
   const displaySubtitle = subtitle || supportingText;
   return (
-    <div data-font-surface="product" className="h-screen overflow-hidden flex flex-col bg-[#f0f2f5]">
+    <div data-font-surface="product" className="min-h-dvh flex flex-col bg-[#f0f2f5]">
       {/* Card area — centered, takes remaining space */}
       <div className="flex-1 flex items-center justify-center px-4 py-4 min-h-0">
-        <div className="w-full max-w-[960px] max-h-full bg-white rounded-[28px] shadow-[0_1px_2px_rgba(60,64,67,0.08),0_2px_6px_2px_rgba(60,64,67,0.06)] overflow-hidden border border-[#dadce0]/30">
+        <div className="w-full max-w-[960px] bg-white rounded-[28px] shadow-[0_1px_2px_rgba(60,64,67,0.08),0_2px_6px_2px_rgba(60,64,67,0.06)] overflow-hidden border border-[#dadce0]/30">
           <div className="grid md:grid-cols-2 h-full">
             {/* Left: Branding — desktop only */}
             <div className="hidden md:flex flex-col justify-between items-start p-10 lg:p-14">
@@ -30,11 +30,11 @@ export default function AuthLayout({
                   {title}
                 </h1>
                 {accountInfo && (
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#dadce0] self-start">
+                  <div className="inline-flex max-w-full items-center gap-2 px-3 py-1.5 rounded-full border border-[#dadce0] self-start">
                     <div className="w-6 h-6 rounded-full bg-[#4285F4] flex items-center justify-center text-xs text-white font-medium">
                       {accountInfo?.charAt(0)?.toUpperCase()}
                     </div>
-                    <span className="text-sm text-[#121317]">{accountInfo}</span>
+                    <span title={accountInfo} className="min-w-0 truncate text-sm text-[#121317]">{accountInfo}</span>
                   </div>
                 )}
                 {displaySubtitle && (
@@ -54,11 +54,11 @@ export default function AuthLayout({
                   {title}
                 </h1>
                 {accountInfo && (
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#dadce0] self-start">
+                  <div className="inline-flex max-w-full items-center gap-2 px-3 py-1.5 rounded-full border border-[#dadce0] self-start">
                     <div className="w-6 h-6 rounded-full bg-[#4285F4] flex items-center justify-center text-xs text-white font-medium">
                       {accountInfo?.charAt(0)?.toUpperCase()}
                     </div>
-                    <span className="text-sm text-[#121317]">{accountInfo}</span>
+                    <span title={accountInfo} className="min-w-0 truncate text-sm text-[#121317]">{accountInfo}</span>
                   </div>
                 )}
                 {supportingText && (

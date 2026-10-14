@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { safeReturnTo } from "@/lib/authReturnTo";
+import { authDestination } from "@/lib/authReturnTo";
+import EmailVerification from '@/components/auth/EmailVerification';
 import { Mail, Phone, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
@@ -12,10 +13,12 @@ import {
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
 import { toast } from "@/components/ui/use-toast";
+import { authErrorMessage } from '@/lib/authErrors';
 
 export default function Register() {
-  const { isAuthenticated, isLoadingAuth, checkUserAuth } = useAuth();
+  const { user, isAuthenticated, isLoadingAuth, checkUserAuth, authError } = useAuth();
   const navigate = useNavigate();
+  const submitting = useRef(false);
   const [view, setView] = useState("methods");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,20 +28,23 @@ export default function Register() {
   const [otpCode, setOtpCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [duplicate, setDuplicate] = useState(false);
+  const [requirements, setRequirements] = useState(['Use at least 6 characters.']);
 
   if (isLoadingAuth) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
+      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
         <Spinner className="w-8 h-8 text-[#4285F4]" />
       </div>
     );
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard/home" replace />;
+    return <Navigate to={authDestination(user)} replace />;
   }
 
   const checkEmailExists = async (emailToCheck) => {
+    if (base44.auth.source === 'firebase') return false;
     try {
       const users = await base44.entities.User.filter({ email: emailToCheck });
       return users && users.length > 0;
@@ -68,23 +74,26 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (submitting.current) return;
     setError("");
     if (password !== confirmPassword) {
       setError("Passwords don't match.");
       return;
     }
+    if (password.length < 6) { setError('Choose a password with at least 6 characters.'); return; }
+    submitting.current = true; setDuplicate(false);
     setLoading(true);
     try {
       await base44.auth.register({ email, password });
-      setView("otp");
+      setPassword(''); setConfirmPassword('');
+      setView(base44.auth.source === 'firebase' ? 'verification' : "otp");
     } catch (err) {
-      const msg = err.message || "Registration failed";
-      if (msg.toLowerCase().includes("exist") || msg.toLowerCase().includes("already")) {
-        setError("This email is already registered. Try signing in instead.");
-      } else {
-        setError(msg);
-      }
+      if (err.registrationCreated) { setPassword(''); setConfirmPassword(''); setView('verification'); }
+      setDuplicate(err.code === 'auth/email-already-in-use');
+      if (Array.isArray(err.requirements)) setRequirements(err.requirements);
+      setError(authErrorMessage(err, 'Your account could not be created. Please try again.'));
     } finally {
+      submitting.current = false;
       setLoading(false);
     }
   };
@@ -97,10 +106,9 @@ export default function Register() {
       if (result?.access_token) {
         base44.auth.setToken(result.access_token);
       }
-      await checkUserAuth();
-      navigate(safeReturnTo(), { replace: true });
+      navigate(authDestination(await checkUserAuth({ quiet: true })), { replace: true });
     } catch (err) {
-      setError(err.message || "Invalid verification code");
+      setError(authErrorMessage(err, 'That code could not be verified. Please try again.'));
     } finally {
       setLoading(false);
     }
@@ -112,7 +120,7 @@ export default function Register() {
       await base44.auth.resendOtp(email);
       toast({ title: "Code sent", description: "Check your email for the new code." });
     } catch (err) {
-      setError(err.message || "Failed to resend code");
+      setError(authErrorMessage(err, 'The email could not be sent. Please try again.'));
     }
   };
 
@@ -147,22 +155,24 @@ export default function Register() {
 
   const renderContent = () => {
     switch (view) {
+      case 'verification': return <EmailVerification email={email} initialMessage={error} initialCooldown={error ? 0 : 60} onVerified={profile => navigate(authDestination(profile), { replace: true })} />;
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
-            <button onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
               <Phone className="w-4 h-4" /> Continue with Mobile Number
             </button>
-            <button onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
             <AuthDivider />
             <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
+            {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
             <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
-              <span className="text-[#4285F4] cursor-pointer hover:underline">Privacy Policy</span>
+              <Link to="/privacy" className="text-[#4285F4] hover:underline">Privacy Policy</Link>
               {" "}and{" "}
-              <span className="text-[#4285F4] cursor-pointer hover:underline">Terms of Service</span>.
+              <Link to="/terms" className="text-[#4285F4] hover:underline">Terms of Service</Link>.
             </p>
           </div>
         );
@@ -207,10 +217,14 @@ export default function Register() {
         return (
           <div key="password" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => setView("email")} />
-            {error && !error.includes("already") && <div className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
+            {error && <div id="registration-error" role="alert" className="p-3 rounded-lg bg-[#fce8e6] text-[#ea4335] text-sm">{error}</div>}
             <form onSubmit={handleRegister} className="flex flex-col gap-6">
+              <ul id="password-requirements" className="text-xs text-[#5f6368] list-disc pl-4">{requirements.map(requirement => <li key={requirement}>{requirement}</li>)}</ul>
               <GooglePasswordField
                 label="Create a password"
+                disabled={loading}
+                invalid={!!error}
+                describedBy="password-requirements"
                 autoComplete="new-password"
                 autoFocus
                 value={password}
@@ -219,6 +233,7 @@ export default function Register() {
               />
               <InputField
                 label="Confirm password"
+                disabled={loading}
                 type="password"
                 autoComplete="new-password"
                 placeholder="Confirm your password"
@@ -228,10 +243,8 @@ export default function Register() {
               />
               <ActionRow
                 left={
-                  error && error.includes("already") ? (
-                    <Link to="/login" className="text-sm text-[#4285F4] font-medium hover:underline">
-                      Sign in instead
-                    </Link>
+                  duplicate ? (
+                    <div className="flex flex-col gap-2"><Link to="/login" state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Sign in instead</Link><Link to="/forgot-password" state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Reset password</Link></div>
                   ) : null
                 }
               >
@@ -269,13 +282,13 @@ export default function Register() {
               </InputOTP>
             </div>
             <div className="flex justify-center">
-              <button onClick={handleVerify} disabled={loading || otpCode.length < 6} className={primaryBtnAutoClass}>
+              <button type="button" onClick={handleVerify} disabled={loading || otpCode.length < 6} className={primaryBtnAutoClass}>
                 {loading ? <Spinner /> : "Verify"}
               </button>
             </div>
             <p className="text-center text-sm text-[#5f6368]">
               Didn't receive the code?{" "}
-              <button onClick={handleResend} className="text-[#4285F4] font-medium hover:underline">
+              <button type="button" onClick={handleResend} className="text-[#4285F4] font-medium hover:underline">
                 Resend
               </button>
             </p>
@@ -297,7 +310,7 @@ export default function Register() {
               {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
                     Use another method
                   </button>
                 }
@@ -325,7 +338,7 @@ export default function Register() {
               {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
                     Use another method
                   </button>
                 }

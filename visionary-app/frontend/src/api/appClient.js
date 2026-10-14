@@ -5,6 +5,7 @@
  */
 
 import { previewPolicy } from './previewPermissions.js';
+import { firebaseAuth, firebaseAuthEnabled } from './firebase/authAdapter.js';
 import {connectionStatus} from '../lib/connectionAvailability.js';
 import {curriculumPublicationRevision,deliveredCurriculumRevision} from '../lib/curriculumPublication.js';
 import {classworkReviewRevision} from '../lib/classworkRubric.js';
@@ -109,6 +110,7 @@ const getCurrentSession = () => {
 };
 
 const getCurrentUser = () => {
+  if (firebaseAuthEnabled) return firebaseAuth.currentProfile();
   const session = getCurrentSession();
   if (!session) return null;
   const user = getUsers().find((u) => u.id === session.userId || u.email === session.email);
@@ -328,9 +330,10 @@ const auth = {
 /* Personal account separation in the preview; production needs database rules. */
 const personalEntities = new Set(['Subject', 'Topic', 'Exam', 'StudyLog', 'Question', 'Bookmark', 'Project', 'PracticeSession']);
 const readEntities = (name) => {
-  try {const raw=localStorage.getItem(`visionary_entity_${name}`);if(!raw)return [];const rows=JSON.parse(raw);if(!Array.isArray(rows)||rows.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw Error();return rows;}
+  try {const raw=localStorage.getItem(entityKey(name));if(!raw)return [];const rows=JSON.parse(raw);if(!Array.isArray(rows)||rows.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw Error();return rows;}
   catch {throw new Error(`${name} records could not be read. Saved records have not been replaced. Retry after reviewing the local data.`);}
 };
+const entityKey = (name) => firebaseAuthEnabled ? `visionary_firebase_preview_${firebaseAuth.currentProfile()?.id || 'anonymous'}_${name}` : `visionary_entity_${name}`;
 const entityUser = () => {
   const user=getCurrentUser();if(!user)return null;
   const db=readJson('visionary_workspace_v2',null);
@@ -431,7 +434,7 @@ const entityStore = new Proxy({}, {
         const existing=rows.find(row=>row.assignment_id===created.assignment_id&&row.class_id===created.class_id&&row.student_email===created.student_email);
         if(existing){if(existing.text===created.text&&JSON.stringify(existing.responses||[])===JSON.stringify(created.responses||[])&&existing.status!=='revision_requested')return existing;throw new Error('A response is already saved for this assignment. Reopen it before submitting a different copy.');}
       }
-      writeJson(`visionary_entity_${name}`, [...rows, created]);
+      writeJson(entityKey(name), [...rows, created]);
       notifyChange();
       return created;
     },
@@ -442,7 +445,7 @@ const entityStore = new Proxy({}, {
         const keys=new Set(rows.map(row=>JSON.stringify([row.class_id,row.assignment_id,row.student_email])));
         for(const row of created){const key=JSON.stringify([row.class_id,row.assignment_id,row.student_email]);if(keys.has(key))throw new Error('A response is already saved for this assignment. No bulk submissions were added.');keys.add(key);}
       }
-      writeJson(`visionary_entity_${name}`, [...rows, ...created]);
+      writeJson(entityKey(name), [...rows, ...created]);
       notifyChange();
       return created;
     },
@@ -457,21 +460,21 @@ const entityStore = new Proxy({}, {
       if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'update',updates);
       const { id: ignoredId, owner_email: ignoredOwner, workspace_id: ignoredWorkspace, ...fields } = updates;
       const updated = readEntities(name).map((record) => record.id === id ? { ...record, ...fields } : record);
-      writeJson(`visionary_entity_${name}`, updated);
+      writeJson(entityKey(name), updated);
       notifyChange();
       return updated.find((record) => record.id === id);
     },
     async delete(id) {
       if (name === 'User' || !getCurrentUser() || !visibleRecords(name).some((record) => record.id === id)) throw new Error('This record is not available in your workspace.');
       if(!personalEntities.has(name))previewPolicy(entityUser(),readEntities).assertWrite(name,readEntities(name).find(r=>r.id===id),'delete');
-      writeJson(`visionary_entity_${name}`, readEntities(name).filter((record) => record.id !== id));
+      writeJson(entityKey(name), readEntities(name).filter((record) => record.id !== id));
       notifyChange();
     },
   }),
 });
 
 export const appClient = {
-  auth,
+  auth: firebaseAuthEnabled ? firebaseAuth : auth,
   entities: entityStore,
   integrations: {
     Core: {

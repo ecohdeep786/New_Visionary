@@ -32,6 +32,7 @@ export default function LanguageSelector() {
   return (
     <div className="relative" ref={ref}>
       <button
+        type="button"
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#121317] transition-colors"
       >
@@ -43,6 +44,7 @@ export default function LanguageSelector() {
         <div className="absolute bottom-full mb-2 left-0 w-40 bg-white rounded-xl shadow-lg border border-[#dadce0]/40 py-1.5 z-50 max-h-64 overflow-y-auto">
           {LANGUAGES.map((lang) => (
             <button
+              type="button"
               key={lang.code}
               onClick={() => {
                 setSelected(lang.code);

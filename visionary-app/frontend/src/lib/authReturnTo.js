@@ -32,3 +32,8 @@ export function safeReturnTo() {
     return "/dashboard/home";
   }
 }
+
+export function authDestination(profile) {
+  if (!profile?.id) throw Object.assign(new Error('Your saved account could not be loaded. Please retry.'), { code: 'auth/profile-unavailable' });
+  return profile.onboarding_complete === true ? safeReturnTo() : '/onboarding';
+}

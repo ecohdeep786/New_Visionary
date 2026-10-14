@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react'
+import AuthAction from '@/pages/AuthAction'
 import { Toaster } from '@/components/ui/toaster'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -161,6 +162,7 @@ const PublicApp = () => (
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/forgot-user-id" element={<ForgotUserId />} />
     <Route path="/reset-password" element={<ResetPassword />} />
+    <Route path="/auth/action" element={<AuthAction />} />
     <Route path="/student" element={<StudentPage />} />
     <Route path="/teacher" element={<TeacherPage />} />
     <Route path="/parent" element={<ParentPage />} />

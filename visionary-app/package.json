@@ -25,6 +25,7 @@
     "backend:generate": "node scripts/product.mjs backend generate",
     "backend:build": "node scripts/product.mjs backend build",
     "backend:dev": "node scripts/product.mjs backend dev",
+    "backend:auth:dev": "node scripts/product.mjs backend auth-dev",
     "backend:firebase-check": "node scripts/product.mjs backend firebase-check",
     "ml:install": "node scripts/product.mjs ml install",
     "ml:build": "node scripts/product.mjs ml build",

@@ -1,6 +1,6 @@
 import { Sparkles, ArrowRight } from "lucide-react";
 
-export default function AGIIntro({ data, userName, onComplete }) {
+export default function AGIIntro({ data, userName, onComplete, cloudProfile = false }) {
   return (
     <main data-font-surface="product" className="flex min-h-dvh items-center justify-center bg-white p-6">
       <section className="w-full max-w-lg rounded-3xl border border-[#dadce0] bg-white p-8 sm:p-10">
@@ -12,8 +12,7 @@ export default function AGIIntro({ data, userName, onComplete }) {
           a project you want to build, or people you want to learn with.
         </p>
         <p className="mt-4 rounded-xl bg-[#ffffff] p-4 text-xs leading-6 text-[#5f6368]">
-          This is a local preview. AI lessons, cloud sync, and billing are not connected yet.
-          Your profile and workspace changes are saved in this browser.
+          {cloudProfile ? 'Your account setup is saved online. Learning records remain on this device; AI lessons and billing are still being connected.' : 'This is a local preview. AI lessons, cloud sync, and billing are not connected yet. Your profile and workspace changes are saved in this browser.'}
         </p>
         <button
           onClick={onComplete}

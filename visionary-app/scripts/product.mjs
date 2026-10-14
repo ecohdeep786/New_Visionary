@@ -32,6 +32,10 @@ if (component === 'doctor') {
   if (!backendNpm) throw new Error('Run this task through npm.');
   const cwd = path.join(root, 'backend/upstream/backend');
   const env = windows ? { PATH: `${nodeDirectory};${process.env.PATH}` } : {};
+  if (action === 'auth-dev') {
+    run(backendNode, ['--watch', '-r', 'ts-node/register', 'src/main-auth.ts'], cwd, env);
+    process.exit(0);
+  }
   if (action === 'firebase-check') {
     run(backendNode, [path.join(root, 'scripts/firebase-check.cjs'), ...extra], cwd, env);
     process.exit(0);

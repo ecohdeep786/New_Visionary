@@ -24,3 +24,12 @@ export function firebaseConfigFromEnvironment(environment = {}) {
   if (!/^[a-z0-9.-]+$/i.test(config.authDomain) || config.authDomain.includes('..')) throw new Error('Firebase authDomain must be a hostname without a URL scheme or path.');
   return Object.freeze(config);
 }
+
+export function firebaseEmulatorFromEnvironment(environment, config) {
+  const value = environment.VITE_FIREBASE_AUTH_EMULATOR_URL;
+  if (!value && !config.projectId.startsWith('demo-')) return null;
+  if (!value || environment.DEV !== true || !config.projectId.startsWith('demo-')) throw new Error('Firebase Auth emulator requires an explicit development demo project.');
+  const url = new URL(value);
+  if (url.protocol !== 'http:' || !['localhost', '127.0.0.1', '[::1]'].includes(url.hostname) || !url.port || url.username || url.password || url.search || url.hash || url.pathname !== '/') throw new Error('Firebase Auth emulator requires an explicit loopback HTTP origin.');
+  return url.origin;
+}

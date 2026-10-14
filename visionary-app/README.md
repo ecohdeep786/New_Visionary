@@ -41,6 +41,6 @@ Backend, ML and analysis-tool commands remain `backend:install`, `backend:build`
 
 ## Current runtime and next discussions
 
-The workspace starts at `/dashboard/home` after role-based onboarding. The existing application is a browser-local preview. Real account/workspace authorization, durable cloud records, model responses, billing and delivery remain integration work. Use fictional data in the preview.
+The workspace starts at `/dashboard/home` after role-based onboarding. Firebase-mode identity, server device sessions and saved Firestore account/onboarding state are connected locally. Start `npm run backend:auth:dev` alongside `npm run dev`; use `http://localhost:5173`. Read [the auth contract](integration/FIREBASE_AUTH_CONTRACT.md) for setup, tested recovery flows and remaining provider/deployment gates. Learning workspaces, memberships, model responses, billing and delivery remain separate integration work; their local previews are for fictional data.
 
 System design, scale, tech stack, cloud/DevOps, MLOps and testing have a [discussion index](docs/architecture/discussions/README.md). Existing specifications and historical evidence retain their documentation locations. Future implementation follows reviewed contracts and shared product-domain vocabulary.

@@ -7,7 +7,7 @@ const securityHeaders = {
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
-  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
   'Cross-Origin-Resource-Policy': 'same-origin',
 }
 
@@ -23,18 +23,22 @@ const productionSecurityHeaders = {
     "img-src 'self' data: https://storage.googleapis.com",
     "font-src 'self'",
     "style-src 'self' 'unsafe-inline'",
-    "script-src 'self'",
-    "connect-src 'self'",
+    "script-src 'self' https://apis.google.com",
+    "frame-src https://visionary-fd6d2.firebaseapp.com",
+    "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://visionary-fd6d2.firebaseapp.com",
   ].join('; '),
 }
 
 export default defineConfig(({ command, mode }) => {
   const isProd = mode === 'production'
+  const authApiTarget = process.env.VISIONARY_AUTH_TEST_PROXY || 'http://127.0.0.1:3001';
+  if (process.env.VISIONARY_AUTH_TEST_PROXY && (isProd || !process.env.VITE_FIREBASE_PROJECT_ID?.startsWith('demo-') || !/^http:\/\/127\.0\.0\.1:\d{1,5}$/.test(authApiTarget))) throw new Error('The test auth proxy requires a development demo project and loopback target.');
   return {
     plugins: [react()],
     server: {
       host: '0.0.0.0',
       headers: securityHeaders,
+      proxy: { '/api': { target: authApiTarget, changeOrigin: false } },
       watch: {
         // Rename-on-save editors race chokidar's fs.watch on Windows: the
         // watch lands on a file mid-replace and the server dies with EBUSY.
@@ -50,6 +54,7 @@ export default defineConfig(({ command, mode }) => {
     },
     preview: {
       headers: productionSecurityHeaders,
+      proxy: { '/api': { target: 'http://127.0.0.1:3001', changeOrigin: false } },
     },
     build: {
       target: 'esnext',

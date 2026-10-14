@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Auth/product records are accessed only by the NestJS server using IAM.
+    // A Web SDK, even with a valid Firebase identity, cannot set onboarding or read audit IPs.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

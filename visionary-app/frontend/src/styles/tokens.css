@@ -1,5 +1,7 @@
 /* Local font files — self-hosted, no external dependency.
-   Font weights 400 (Regular), 500 (Medium), 700 (Bold) for both families.
+   Font weights 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold).
+   Google Sans Flex includes genuine 600 for Apple-style semibold headings.
+   600 weight is served from /fonts/ on the same origin.
    The original faces remain unchanged for fixed heroes. Public content
    adds a genuine local 600 face under a CSS alias of the same family.
    Google Sans Flex is the public-facing font stack; Google Sans
@@ -16,6 +18,13 @@
   font-family: 'Google Sans Flex';
   src: url('/fonts/GoogleSansFlex-Medium.ttf') format('truetype');
   font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('/fonts/GoogleSansFlex-Semibold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }

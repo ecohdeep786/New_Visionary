@@ -1,213 +1,89 @@
-import { useState, useMemo, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
-import { useAuth } from "@/lib/AuthContext";
-import { initializeLearningWorkspace } from "@/lib/learningProfile";
-import { onboardingLearningContext } from '@/lib/onboardingLearningContext';
-import OnboardingLayout from "@/components/onboarding/OnboardingLayout";
-import ChoiceGrid from "@/components/onboarding/ChoiceGrid";
-import ChipMultiSelect from "@/components/onboarding/ChipMultiSelect";
-import { InputField } from "@/components/auth/AuthUI";
-import IdentitySelection from "@/components/onboarding/steps/IdentitySelection";
-import AGIIntro from "@/components/onboarding/steps/AGIIntro";
-import {
-  NAME_STEP,
-  STAGE_STEP,
-  TEACHER_FLOW_STEPS,
-  PARENT_FLOW_STEPS,
-  ORG_FLOW_STEPS,
-  getStudentStageSteps,
-} from "@/components/onboarding/stepConfigs";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { base44 } from '@/api/base44Client';
+import { useAuth } from '@/lib/AuthContext';
+import { authErrorMessage, authFlowError } from '@/lib/authErrors';
+import { initializeLearningWorkspace } from '@/lib/learningProfile';
+import { changeOnboardingField, changeOnboardingRole, parseOnboardingDraft } from '@/lib/onboardingDraft';
+import { productSetupSteps, setupPayload, setupRoles, setupStepReady } from '@/lib/productSetup';
+import OnboardingLayout from '@/components/onboarding/OnboardingLayout';
+import ProductSetupFields from '@/components/onboarding/ProductSetupFields';
+import IdentitySelection from '@/components/onboarding/steps/IdentitySelection';
 
 export default function Onboarding() {
-  const { user, updateUser } = useAuth();
-  const draftKey=`visionary_onboarding_${user?.id}`;
-  const [saved] = useState(()=>{try{return JSON.parse(localStorage.getItem(draftKey)||'null');}catch{return null;}});
-  const [phase, setPhase] = useState(saved?.phase || "identity");
-  const [data, setData] = useState(saved?.data || {});
-  const [currentStepId, setCurrentStepId] = useState(saved?.currentStepId || null);
-  const [submitting, setSubmitting] = useState(false);
-  const [submissionError, setSubmissionError] = useState("");
-  useEffect(()=>{if(phase==='agi-intro')return;try{localStorage.setItem(draftKey,JSON.stringify({phase,data,currentStepId}));}catch{setSubmissionError('Your setup draft could not be saved on this device. Keep this page open and try again.');}},[draftKey,phase,data,currentStepId]);
-
-  const updateData = (field, value) => setData((prev) => ({ ...prev, [field]: value }));
-
-  const steps = useMemo(() => {
-    if (phase !== "flow") return [];
-    if (data.identity === "student") {
-      return [NAME_STEP, STAGE_STEP, ...getStudentStageSteps(data.education_stage)];
-    }
-    if (data.identity === "professional") return [NAME_STEP,...getStudentStageSteps('professional')];
-    if (data.identity === "teacher") return [NAME_STEP, ...TEACHER_FLOW_STEPS];
-    if (data.identity === "parent") return PARENT_FLOW_STEPS;
-    if (data.identity === "organization") return ORG_FLOW_STEPS;
-    return [];
-  }, [phase, data.identity, data.education_stage]);
-
-  const visibleSteps = useMemo(
-    () => steps.filter((s) => !s.condition || s.condition(data)),
-    [steps, data]
-  );
-
-  const currentStep =
-    visibleSteps.find((s) => s.id === currentStepId) || visibleSteps[0];
-
-  const canContinue = useMemo(() => {
-    if (!currentStep) return false;
-    if (currentStep.optional) return true;
-    if (currentStep.canContinue) return currentStep.canContinue(data);
-    if (currentStep.component) return true;
-    if (currentStep.type === "choice") return !!data[currentStep.field];
-    if (currentStep.type === "input")
-      return !!(data[currentStep.field] && data[currentStep.field].trim());
-    if (currentStep.type === "multiselect")
-      return (
-        !currentStep.required ||
-        (data[currentStep.field] && data[currentStep.field].length > 0)
-      );
-    return true;
-  }, [currentStep, data]);
-
-  const handleIdentitySelect = (identity) => {
-    setSubmissionError("");
-    setData((prev) => ({ ...prev, identity, ...(identity==='professional'?{education_stage:'professional'}:{}) }));
-    setPhase("flow");
-    setCurrentStepId(null);
-  };
-
-  const handleContinue = () => {
-    const idx = visibleSteps.findIndex((s) => s.id === currentStep?.id);
-    const next = visibleSteps[idx + 1];
-    if (next) {
-      setCurrentStepId(next.id);
-    } else {
-      setPhase("review");
-    }
-  };
-
-  const handleBack = () => {
-    const idx = visibleSteps.findIndex((s) => s.id === currentStep?.id);
-    const prev = visibleSteps[idx - 1];
-    if (prev) {
-      setCurrentStepId(prev.id);
-    } else {
-      setPhase("identity");
-      setCurrentStepId(null);
-    }
-  };
-
-  const handleComplete = async () => {
-    setSubmitting(true);
-    setSubmissionError("");
+  const { account } = useAuth();
+  return <ProductSetup key={account?.id} />;
+}
+function ProductSetup() {
+  const { account, updateUser, completeOnboarding } = useAuth();
+  const live = base44.auth.source === 'firebase', draftKey = `visionary_onboarding_${account?.id}`;
+  const [saved] = useState(() => { try { return parseOnboardingDraft(localStorage.getItem(draftKey)); } catch { return null; } });
+  const [phase, setPhase] = useState(saved?.phase || 'identity');
+  const [data, setData] = useState(saved?.data || { full_name: account?.full_name || '', preferred_language: 'English' });
+  const [currentStepId, setCurrentStepId] = useState(saved?.currentStepId || 'about');
+  const [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
+  const lock = useRef(false);
+  const steps = useMemo(() => productSetupSteps(data), [data]);
+  const current = steps.find(step => step.id === currentStepId) || steps[0];
+  const index = steps.indexOf(current), total = steps.length + 2;
+  const labels = data.identity === 'student' ? ['Your role', 'About you', 'Your focus', 'Details', 'Review'] : ['Your role', 'About you', 'Preferences', 'Review'];
+  const updateData = (field, value) => { setError(''); setData(previous => changeOnboardingField(previous, field, value)); };
+  useEffect(() => {
+    if (account?.onboarding_complete) return;
+    try { localStorage.setItem(draftKey, JSON.stringify({ phase, data, currentStepId })); }
+    catch { setNotice('Keep this page open: your browser cannot save an unfinished draft. Completed setup will still be saved to your account.'); }
+  }, [draftKey, phase, data, currentStepId, account?.onboarding_complete]);
+  function chooseRole(identity) {
+    setData(previous => changeOnboardingRole(previous, identity)); setPhase('flow'); setCurrentStepId('about'); setError('');
+  }
+  function next() {
+    if (lock.current || !setupStepReady(current, data, live)) return;
+    if (steps[index + 1]) setCurrentStepId(steps[index + 1].id); else setPhase('review');
+  }
+  function back() {
+    setError('');
+    if (index > 0) setCurrentStepId(steps[index - 1].id); else setPhase('identity');
+  }
+  async function finish() {
+    if (lock.current) return;
+    lock.current = true; setBusy(true); setError('');
     try {
-      if(!data.age_band)throw new Error('Choose your age range.');
-      if(data.identity!=='student'&&data.age_band!=='adult')throw new Error('This role requires an adult account in the preview. Choose the learner role instead.');
-      await initializeLearningWorkspace(base44, user, {...data,identity:data.identity==='professional'?'student':data.identity});
-      await updateUser({
-        ...data,
-        onboarding_complete: true,
-        full_name: data.full_name || user?.full_name || user?.email?.split("@")[0],
-      });
-      setPhase("agi-intro");
-      localStorage.removeItem(draftKey);
-    } catch (error) {
-      setSubmissionError(error.message || "We couldn’t finish setting up your workspace. Please try again.");
-      setSubmitting(false);
-    }
-  };
-
-  const handleAGIComplete = () => {
-    window.location.href = "/dashboard/home";
-  };
-
-  /* ── Render ── */
-
-  if (phase === "identity") {
-    return <IdentitySelection onContinue={handleIdentitySelect} />;
+      if (!data.age_band) throw authFlowError('auth/age-required');
+      if (live && data.age_band !== 'adult') throw authFlowError('auth/guardian-required');
+      if (!steps.every(step => setupStepReady(step, data, live))) throw new Error('Incomplete product setup');
+      const payload = setupPayload(data);
+      if (live) {
+        const profile = await completeOnboarding(payload);
+        if (!profile?.onboarding_complete) throw authFlowError('auth/profile-unavailable');
+      } else {
+        await initializeLearningWorkspace(base44, account, { ...payload, identity: payload.identity === 'professional' ? 'student' : payload.identity });
+        await updateUser({ ...payload, onboarding_complete: true, getting_started_complete: false });
+      }
+      try { localStorage.removeItem(draftKey); } catch { /* A completed profile is authoritative even without browser storage. */ }
+    } catch (failure) { setError(authErrorMessage(failure, 'We couldn’t finish setting up Visionary. Review your details and try again.')); }
+    finally { lock.current = false; setBusy(false); }
   }
-
-  if (phase === "agi-intro") {
-    return (
-      <AGIIntro
-        data={data}
-        userName={data.full_name || user?.full_name || user?.email?.split("@")[0]}
-        onComplete={handleAGIComplete}
-      />
-    );
+  if (account?.onboarding_complete && !busy) return <Navigate to="/dashboard/home" replace />;
+  if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email} />;
+  const alerts = <>{error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#b3261e]">{error}</p>}{notice && <p role="status" className="mb-5 text-xs leading-6 text-[#5f6368]">{notice}</p>}</>;
+  if (phase === 'review') {
+    const payload = setupPayload(data);
+    const rows = [['Using Visionary as', setupRoles[data.identity]], ['Name', data.full_name], ['Age range', data.age_band === 'adult' ? '18 or older' : data.age_band === 'minor' ? 'Under 18' : 'Choose your age range'], ['Learning language', payload.preferred_language],
+      ...(data.identity === 'student' ? [['Learning focus', {school:'School',higher_ed:'Higher education',competitive:'Exam preparation',professional:'Independent learning'}[data.education_stage]], ['Board', data.board], ['Class', data.grade_level], ['State', data.state], ['Course', data.degree_program], ['Exam', data.target_exam], ['Subjects', data.subjects?.join(', ')]] : []),
+      ...(data.identity === 'teacher' ? [['Teaching context', {school:'School',higher_ed:'Higher education',university:'University',coaching:'Coaching',independent:'Independent teaching'}[data.teacher_category]], ['Subjects', data.teacher_subjects?.join(', ')]] : []),
+      ...(data.identity === 'organization' ? [['Organization', data.org_name], ['Organization type', data.org_type]] : []), ['Goal or interest', data.career_goal]].filter(([, value]) => value);
+    const ready = steps.every(step => setupStepReady(step, data, live));
+    return <OnboardingLayout title="Ready to start with Visionary?" subtitle="A quick check before we save your preferences to this account." step={total} totalSteps={total} stepLabels={labels} illustration="shield" accountEmail={account?.email}
+      onBack={() => { setPhase('flow'); setCurrentStepId(steps.at(-1).id); }} onContinue={finish} canContinue={ready} isSubmitting={busy} continueLabel="Start using Visionary">
+      {alerts}
+      <div className="mb-5 flex flex-wrap gap-4"><button type="button" onClick={() => setPhase('identity')} className="min-h-11 text-sm font-medium text-[#0b57d0]">Change role</button><button type="button" onClick={() => { setCurrentStepId('about'); setPhase('flow'); }} className="min-h-11 text-sm font-medium text-[#0b57d0]">Edit details</button></div>
+      <dl className="divide-y divide-[#e3e7ee] text-sm">{rows.map(([label, value]) => <div key={label} className="grid gap-1 py-3 sm:grid-cols-2 sm:gap-4"><dt className="text-[#5f6368]">{label}</dt><dd className="break-words font-medium leading-6">{value}</dd></div>)}</dl>
+      {!ready && <p role="status" className="mt-4 rounded-xl bg-[#fef7e0] p-4 text-sm leading-6">{data.age_band === 'minor' && live ? 'Under-18 setup needs a verified guardian connection. Your account and draft are kept.' : 'A required detail is missing. Select Edit details to finish it.'}</p>}
+      <p className="mt-5 text-xs leading-6 text-[#5f6368]">{live ? 'Your account preferences are saved online. Learning activity is currently saved on this device.' : 'This local preview saves information in your browser. Use fictional details.'} Private activity is never automatically shared.</p>
+    </OnboardingLayout>;
   }
-
-  const learningContext = onboardingLearningContext(data);
-  const contextRows = data.identity === 'teacher'
-    ? [['Teaching category', data.teacher_category], ...(data.teacher_category === 'school' ? [['Board', data.board], ['Classes', (data.teacher_classes || []).join(', ')]] : [['Teaching context', data.teacher_institution], ['Course or examination', data.teacher_exam || data.teacher_course_level]]), ['Subjects', (data.teacher_subjects || []).join(', ')]]
-    : data.identity === 'organization'
-      ? [['Organization type', data.org_type], ['Organization', data.org_name], ...(data.org_type === 'school' ? [['Board', data.org_board], ['Classes', (data.org_classes || []).join(', ')]] : [['Programs or focus', (data.org_programs || []).join(', ') || data.org_focus]])]
-      : data.identity === 'parent'
-        ? [['Child learning stage', data.child_stage], ...(data.child_stage === 'school' ? [['Board', data.board], ['Class', data.grade_level]] : [['Child course or examination', data.child_context]])]
-        : [['Learning stage', learningContext?.stage], ['Board, institution or exam', learningContext?.board], ['Class or course', learningContext?.classLevel], ['Subjects', learningContext?.subjects.join(', ')], ['Goal', data.career_goal]];
-  if(phase==='review')return <OnboardingLayout title="Review your workspace" subtitle="You can change these preferences later. Use fictional information in this preview." illustration="shield" onBack={()=>setPhase('flow')} onContinue={handleComplete} canContinue={!!data.age_band} isSubmitting={submitting} continueLabel="Create my workspace">
-    <dl className="space-y-4 text-sm">{[['Role',data.identity],['Name',data.full_name||user?.full_name],['Learning language',data.preferred_language||data.learning_language||data.medium||data.org_medium?.join(', ')||'English'], ...contextRows.filter(([,value]) => value)].map(([label,value])=><div key={label}><dt className="text-[#5f6368]">{label}</dt><dd className="mt-1 font-medium">{value||'Not provided'}</dd></div>)}</dl>
-    <label className="mt-6 block text-sm">Age range<select className="mt-2 w-full rounded-xl border p-3" value={data.age_band||''} onChange={e=>updateData('age_band',e.target.value)}><option value="">Choose an age range</option><option value="minor">Under 18</option><option value="adult">18 or older</option></select></label>
-    <p className="mt-3 text-xs leading-6 text-[#5f6368]">Self-reported, not verified. Guardian consent and identity verification require future services. Private learning is never automatically shared.</p>
-    <label className="mt-5 block text-sm">Your curriculum or goal (optional)<textarea className="mt-2 w-full rounded-xl border p-3" rows={3} value={data.curriculum_notes||''} onChange={e=>updateData('curriculum_notes',e.target.value)} placeholder="Add a board, syllabus, language, skill or goal in your own words."/></label>
-    {submissionError&&<p role="alert" className="mt-4 text-sm text-[#b3261e]">{submissionError}</p>}
+  return <OnboardingLayout step={index + 2} totalSteps={total} stepLabels={labels} title={current.title} subtitle={current.subtitle} illustration={current.illustration} accountEmail={account?.email}
+    onBack={back} onContinue={next} canContinue={setupStepReady(current, data, live)} isSubmitting={busy} optional={current.optional} onSkip={next}>
+    {alerts}<ProductSetupFields key={`${current.id}:${data.education_stage || ''}`} step={current} data={data} updateData={updateData} live={live} />
   </OnboardingLayout>;
-
-  if (!currentStep) return null;
-
-  const stepIndex = visibleSteps.findIndex((s) => s.id === currentStep.id);
-
-  const renderContent = () => {
-    if (currentStep.component) {
-      const StepComponent = currentStep.component;
-      return <StepComponent data={data} updateData={updateData} />;
-    }
-    if (currentStep.type === "choice") {
-      return (
-        <ChoiceGrid
-          options={currentStep.options}
-          value={data[currentStep.field]}
-          onChange={(v) => updateData(currentStep.field, v)}
-          columns={currentStep.columns}
-        />
-      );
-    }
-    if (currentStep.type === "multiselect") {
-      return (
-        <ChipMultiSelect
-          options={currentStep.options}
-          selected={data[currentStep.field] || []}
-          onChange={(v) => updateData(currentStep.field, v)}
-          maxSelection={currentStep.maxSelection}
-        />
-      );
-    }
-    if (currentStep.type === "input") {
-      return (
-        <InputField
-          label={currentStep.placeholder || currentStep.title}
-          value={data[currentStep.field] || ""}
-          onChange={(e) => updateData(currentStep.field, e.target.value)}
-          autoFocus
-        />
-      );
-    }
-    return null;
-  };
-
-  return (
-    <OnboardingLayout
-      step={stepIndex + 1}
-      totalSteps={visibleSteps.length}
-      title={currentStep.title}
-      subtitle={currentStep.subtitle}
-      illustration={currentStep.illustration}
-      onBack={handleBack}
-      onContinue={handleContinue}
-      canContinue={canContinue}
-      isSubmitting={submitting}
-      continueLabel={currentStep.continueLabel}
-    >
-      {submissionError && <p className="mb-4 rounded-lg bg-[#fce8e6] px-4 py-3 text-sm text-[#b3261e]" role="alert">{submissionError}</p>}
-      {renderContent()}
-    </OnboardingLayout>
-  );
 }

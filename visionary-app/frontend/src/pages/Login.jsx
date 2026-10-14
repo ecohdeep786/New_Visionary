@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { safeReturnTo } from "@/lib/authReturnTo";
+import { authDestination } from "@/lib/authReturnTo";
+import EmailVerification from '@/components/auth/EmailVerification';
 import { Mail, Phone, AlertCircle, RefreshCw, UserRound } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
@@ -10,12 +11,15 @@ import {
   Spinner, AuthDivider, BackButton, InputField, GooglePasswordField, ActionRow, PhoneInput,
 } from "@/components/auth/AuthUI";
 import { useAuth } from "@/lib/AuthContext";
+import { authErrorMessage, isCredentialError } from '@/lib/authErrors';
 
 export default function Login() {
-  const { isAuthenticated, isLoadingAuth, checkUserAuth } = useAuth();
+  const { user, isAuthenticated, isLoadingAuth, checkUserAuth, signInViaEmailPassword, authError } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const submitting = useRef(false);
   const [view, setView] = useState("methods");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(typeof location.state?.email === 'string' ? location.state.email.slice(0, 320) : "");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [orgEmail, setOrgEmail] = useState("");
@@ -24,17 +28,18 @@ export default function Login() {
 
   if (isLoadingAuth) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
+      <div data-font-surface="product" role="status" aria-label="Loading your account" aria-busy="true" className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
         <Spinner className="w-8 h-8 text-[#4285F4]" />
       </div>
     );
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard/home" replace />;
+    return <Navigate to={authDestination(user)} replace />;
   }
 
   const checkEmailExists = async (emailToCheck) => {
+    if (base44.auth.source === 'firebase') return true;
     try {
       const users = await base44.entities.User.filter({ email: emailToCheck });
       return users && users.length > 0;
@@ -64,16 +69,19 @@ export default function Login() {
 
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     setError("");
     setLoading(true);
     try {
-      await base44.auth.loginViaEmailPassword(email, password);
-      await checkUserAuth();
-      navigate(safeReturnTo(), { replace: true });
+      const profile = await signInViaEmailPassword(email, password);
+      navigate(authDestination(profile), { replace: true });
     } catch (err) {
-      setError(err.message || "Incorrect password");
-      setView("wrongPassword");
+      setError(authErrorMessage(err, 'Sign-in could not finish. Please try again.'));
+      setView(err.code === 'auth/email-not-verified' ? 'verification' : isCredentialError(err) ? 'wrongPassword' : 'password');
+      if (isCredentialError(err)) setPassword('');
     } finally {
+      submitting.current = false;
       setLoading(false);
     }
   };
@@ -118,22 +126,24 @@ export default function Login() {
 
   const renderContent = () => {
     switch (view) {
+      case 'verification': return <EmailVerification email={email} onVerified={profile => navigate(authDestination(profile), { replace: true })} />;
       case "methods":
         return (
           <div key="methods" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-4">
-            <button onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("mobile"); }} className={primaryBtnClass}>
               <Phone className="w-4 h-4" /> Continue with Mobile Number
             </button>
-            <button onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
+            <button type="button" onClick={() => { setError(""); setView("email"); }} className={outlineBtnClass}>
               <Mail className="w-4 h-4" /> Continue with Email
             </button>
             <AuthDivider />
             <SocialAuthButtons onOrganization={() => { setError(""); setView("organization"); }} />
+            {(error || authError) && <p role="alert" className="text-sm text-[#b3261e]">{error || authError.message}</p>}
             <p className="text-xs text-[#5f6368] text-center leading-relaxed mt-2">
               By continuing you agree to our{" "}
-              <span className="text-[#4285F4] cursor-pointer hover:underline">Privacy Policy</span>
+              <Link to="/privacy" className="text-[#4285F4] hover:underline">Privacy Policy</Link>
               {" "}and{" "}
-              <span className="text-[#4285F4] cursor-pointer hover:underline">Terms of Service</span>.
+              <Link to="/terms" className="text-[#4285F4] hover:underline">Terms of Service</Link>.
             </p>
             <div className="text-center mt-1">
               <Link to="/forgot-user-id" className="text-sm text-[#4285F4] font-medium hover:underline">
@@ -189,6 +199,7 @@ export default function Login() {
         return (
           <div key="password" className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200 flex flex-col gap-6">
             <BackButton onClick={() => setView("email")} />
+            {error && <p id="login-error" role="alert" className="text-sm text-[#b3261e]">{error}</p>}
             <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-6">
               <GooglePasswordField
                 label="Enter your password"
@@ -197,6 +208,9 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={loading}
+                invalid={!!error}
+                describedBy={error ? 'login-error' : undefined}
               />
               <ActionRow
                 left={
@@ -219,7 +233,7 @@ export default function Login() {
             <BackButton onClick={() => { setPassword(""); setError(""); setView("password"); }} />
             <div className="p-4 rounded-lg bg-[#fce8e6] border border-red-100 flex gap-3">
               <AlertCircle className="w-5 h-5 text-[#ea4335] shrink-0 mt-0.5" />
-              <p className="text-sm text-[#ea4335]">The password you entered is incorrect. Please try again or use another method to sign in.</p>
+              <p role="alert" className="text-sm text-[#ea4335]">{error}</p>
             </div>
             <ActionRow
               left={
@@ -228,15 +242,15 @@ export default function Login() {
                 </Link>
               }
             >
-              <button onClick={() => { setPassword(""); setError(""); setView("password"); }} className={primaryBtnAutoClass}>
+              <button type="button" onClick={() => { setPassword(""); setError(""); setView("password"); }} className={primaryBtnAutoClass}>
                 <RefreshCw className="w-4 h-4" /> Try again
               </button>
             </ActionRow>
             <div className="flex flex-col gap-3 mt-2">
-              <button onClick={goToMethods} className={outlineBtnClass}>
+              <button type="button" onClick={goToMethods} className={outlineBtnClass}>
                 Sign in with another method
               </button>
-              <button onClick={useAnotherAccount} className="flex items-center justify-center gap-2 text-sm text-[#4285F4] font-medium hover:underline self-center">
+              <button type="button" onClick={useAnotherAccount} className="flex items-center justify-center gap-2 text-sm text-[#4285F4] font-medium hover:underline self-center">
                 <UserRound className="w-4 h-4" /> Use another account
               </button>
             </div>
@@ -258,7 +272,7 @@ export default function Login() {
               {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
                     Use another method
                   </button>
                 }
@@ -286,7 +300,7 @@ export default function Login() {
               {error && <div className="p-3 rounded-lg bg-[#ffffff] text-[#b06000] text-sm">{error}</div>}
               <ActionRow
                 left={
-                  <button onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
+                  <button type="button" onClick={goToMethods} className="text-sm text-[#4285F4] font-medium hover:underline">
                     Use another method
                   </button>
                 }
