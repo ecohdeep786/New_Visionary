@@ -1,6 +1,8 @@
 #env
 .env
 .env.*
+.secrets/
+**/*firebase-adminsdk*.json
 
 # Logs
 /logs

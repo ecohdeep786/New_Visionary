@@ -35,6 +35,37 @@ Different contexts have deliberate exceptions. AirPods keeps its comparison head
 
 The snapshots included responsive duplicate nodes and animated/scaled content. Unusual fractional device-heading sizes and hidden copies were not adopted as canonical tokens. The table identifies selected stable profiles; its rows must not be generalized to every heading on their source page.
 
+## Additional pages reviewed 14 October 2026
+
+The two pages requested for this pass that were not in the table above:
+
+| Source | Representative role | Desktop size/leading | Weight | Notes |
+| --- | --- | --- | --- | --- |
+| [Mac](https://www.apple.com/mac/) | Product page title (Mac) | 80/84 | 600 | Left-aligned hero; tracking -0.015em (-1.2px @80) |
+| Mac | Content chapter (Explore the lineup. / Get to know Mac. / Help me choose. / Mac essentials.) | 48/52 | 600 | Left-aligned; tracking -0.003em (-0.144px @48) |
+| Mac | Sub-chapter statement (Give us the old. Save on the new.) | 32/36 | 600 | Centered; tracking +0.004em (+0.128px @32) |
+| Mac | Card/link heading (Shop cards, Get-to-know cards, compare tiles) | 17/21 | 600 | Left; tracking -0.022em (-0.374px @17) |
+| [Shop Beats Accessories](https://www.apple.com/shop) | Store list page — not comparable to content chapters | — | — | Only the 12/16 footer-navigation headings are in the initial DOM; main content loads client-side. No page heading profile adopted. |
+
+The Mac card heading tier equals the Watch "small benefit label" tier (17/21, 14/18 on phone) from the earlier table — it is not a new scale.
+
+## 14 October 2026 verification — Student page
+
+Confirmed with the browser at 1440 / 820 / 390 that the Student page already applies Apple's sizes for every content role (font sizes, not weights). Weights remain the approved semibold 600 headings / 400 body. No font-size edits were warranted — changing already-matching values would be gratuitous and risky.
+
+| Student section | Role (Apple) | 1440 | 820 | 390 |
+| --- | --- | --- | --- | --- |
+| 02 struggle / 04 journey / 07 language / 10 journey-flow / 12 cta | Editorial chapter | 64/68 | 56/60 | 40/44 |
+| 09 support values (11 trust) | Education values | 19/23 | 19/23 | 19/23 |
+| 05 intelligence | Elevated statement (iPad Pro profile) | 80/84 | 64/68 | 40/44 |
+| All non-hero section intro/sub | Education chapter introduction | 24/28 | 21/25 | 21/25 |
+| 05 intelligence sub | Router-style lead | 21/29 | 21/25 | 21/25 |
+| 09 achievement / 13 explore | Functional chapter (Watch compact tier) | 48/52 | 40/44 | 32/36 |
+| Explore card name | Card name (AirPods profile) | 24/28 | 21/25 | 21/25 |
+| Explore card copy | Card body | 17/23 | 17/23 | 17/23 |
+
+The hero (01) remains the teacher-matched state and is excluded from this pass by design. The only measured stray is the fixed persona hero sub at clamp(18px,1.4vw,24px) weight 500 plus its 48px phone headline floor — outside this scope.
+
 ## Tracking, font treatment and links
 
 | Selected profile | Desktop tracking | Tablet | Phone |

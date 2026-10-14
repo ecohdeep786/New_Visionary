@@ -14,7 +14,7 @@
 #   docker build --target migrate -t visionary-backend:migrate backend/
 
 # --- base ---------------------------------------------------------------
-FROM node:20-slim AS base
+FROM node:24-slim AS base
 WORKDIR /app
 # Prisma needs openssl + ca-certificates at runtime for TLS to Postgres.
 RUN apt-get update \

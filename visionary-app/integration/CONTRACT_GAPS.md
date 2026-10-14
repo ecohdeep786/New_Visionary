@@ -2,6 +2,8 @@
 
 These are observed source differences, not newly implemented APIs. The founder authorized continuing backend/ML development on 13 October 2026; earlier frontend-only restrictions do not block this work.
 
+D-059, 14 October 2026: Firebase Authentication is the selected identity provider, with existing project ID `visionary-fd6d2` supplied by the founder. The table below describes the still-unmodified source. The [current Firebase auth design](../docs/architecture/discussions/firebase-auth-system-design.md) proposes identity/session exchange, provider and custom email-code integration, workspace/consent authority, distributed abuse controls and device sync. Project environment/users/access and actual provider configuration are unverified; local credential/JWT behavior remains preview/upstream code until implementation and cutover.
+
 | Boundary | Existing frontend contract | Imported implementation | Required integration work |
 | --- | --- | --- | --- |
 | Account session | `personId`, active `workspaceId`, five `Role` values; session checked before/after model exchanges | NestJS `/api/auth/me` returns a user/profile; HttpOnly `auth_token` cookie or Bearer JWT | Stable account DTO, expiry/session behavior and a server-owned active workspace |

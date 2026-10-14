@@ -1,0 +1,6 @@
+diff --git a/example.json b/example.json
+--- a/example.json
++++ b/example.json
+@@ -1 +1 @@
+-{"version":1}
++{"version":2}

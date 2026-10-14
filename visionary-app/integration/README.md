@@ -21,6 +21,8 @@ Run commands from `visionary-app`. Keep the frontend, backend, Go and REA depend
 
 D-057 relocates the web package into `frontend/`, local Compose/SQL into `infrastructure/local/`, and temporary evidence into `artifacts/tmp/`. Root commands still work; see [repository ownership](../docs/architecture/README.md). The backend/ML/REA source paths and import lock remain unchanged.
 
+D-060 installs the Firebase Web/Admin SDKs for the founder's existing production project. Read [Firebase setup and the console handoff](FIREBASE_SETUP.md). Intentional backend dependency/runtime changes are recorded separately in [upstream-patches.json](upstream-patches.json); the original import lock remains the reviewed baseline.
+
 ```powershell
 # Windows: project-local, checksum-verified runtimes; no global PATH changes.
 powershell -NoProfile -File scripts/setup-toolchains.ps1
@@ -36,7 +38,7 @@ npm run product:doctor
 npm run product:verify-imports
 ```
 
-The backend declares Node 20. A project-local Node 20.20.2 fulfills that existing declaration; upgrading the upstream runtime is a separate change. The ML modules require Go 1.25; the local toolchain is Go 1.25.14. REA runs on the host's compatible Node 24 and has its own npm lock. Download URLs and checksums are in `toolchains.windows.json`. On other platforms use an installed compatible Node 20, Go 1.25 and REA Node version before running the corresponding commands.
+The original backend declared Node 20; its historical project-local Node 20.20.2 remains installed but is no longer selected by backend tasks. Firebase Admin 14.5.0 requires Node 22+, so D-060 moves the backend declaration/commands to supported Node 22/24 LTS (24 recommended), using the installed runtime. The ML modules require Go 1.25; the local toolchain is Go 1.25.14. REA uses the host's compatible Node 24 and its own npm lock. `toolchains.windows.json` retains the original import-bootstrap download/checksum record; the setup script still installs the historical Node tool plus Go. Provide supported installed Node 22/24 separately for current backend tasks. No global runtime is replaced.
 
 Backend installation suppresses bulk lifecycle scripts, explicitly rebuilds bcrypt and generates the Prisma client. REA installation suppresses lifecycle hooks so importing it does not change the enclosing project's Git hooks or agent configuration. Backend runtime configuration belongs in `backend/upstream/backend/.env`; ML configuration belongs in `ml/upstream/.env.local` and the appropriate service environment. Start from the supplied examples and add `DIRECT_URL` for Prisma. Credentials stay in ignored local files or an eventual secret manager.
 

@@ -274,7 +274,7 @@ function StudentJourneySection() {
             first card starts exactly at the heading's left edge — one spine. */}
         <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2
-            className="font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] text-balance"
+            className="font-semibold tracking-[-0.009em] leading-[1.0625] text-[clamp(40px,5vw,64px)] text-balance"
             style={{ color: COLORS.ink, maxWidth: "24ch" }}
           >
             <span className="block">Learning that</span>
@@ -299,7 +299,7 @@ function StudentJourneySection() {
 
 export default function StudentPage() {
   return (
-    <div className="page-student min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <StudentHeroSection />

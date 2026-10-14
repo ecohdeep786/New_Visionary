@@ -188,31 +188,9 @@
   }
 }
 
-/* Preserve the student hero declarations that were already in place.
-   These values are unchanged; the shared content adapter below excludes
-   this entire fixed stage. No student-specific content typography remains. */
-.page-student [data-section="01-hero"] {
-  --frame-x: max(24px, 6.25vw);
-}
-.page-student [data-section="01-hero"] h1 {
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-}
-.page-student [data-section="01-hero"] h1 + p {
-  font-size: 28px;
-  line-height: 1.1429;
-  letter-spacing: 0.007em;
-  max-width: 36ch;
-}
-.page-student [data-section="01-hero"] > div:last-child {
-  padding-inline: var(--frame-x);
-}
-@media (max-width: 734px) {
-  .page-student [data-section="01-hero"] h1 + p {
-    font-size: 21px;
-    line-height: 1.381;
-  }
-}
+/* Student page hero intentionally has no overrides — it uses the shared
+   persona hero typography so heading and subheading position identically
+   to the teacher, parent, professional, and organization pages. */
 
 /* Shared public typography adapter. Sources inspected at desktop, tablet,
    and phone sizes: apple.com/in/education-initiative/, /watch/, /airpods/,

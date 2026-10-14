@@ -9,3 +9,5 @@ The `@/` alias still refers to `src/`; public URLs and `/src/` development modul
 Browser-review tasks are `qa:navigation`, `qa:fonts` and `qa:design`; root equivalents begin with `frontend:qa:`. Evidence paths resolve to product documentation independently of the working directory. These are bounded historical harnesses; account/session and wider human/device acceptance remain separately recorded.
 
 Read [the product domain map](../docs/architecture/PRODUCT_DOMAINS.md), [the internal handoff](../docs/visionary/README.md) and [integration gaps](../integration/CONTRACT_GAPS.md) before connecting live services.
+
+Firebase Web SDK 13.0.0 is installed for auth setup. `src/api/firebase/` provides a lazy modular Auth client with in-memory persistence; public Web app settings live in ignored `.env.local` (template `.env.firebase.example`). It is not yet the preview auth adapter and does not initialize Analytics. Follow [the Firebase setup handoff](../integration/FIREBASE_SETUP.md) before the live account/session cutover.

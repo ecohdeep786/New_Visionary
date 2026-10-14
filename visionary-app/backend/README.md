@@ -5,3 +5,5 @@ Organization backend imported from `visionaryorg/visionary-dev`, commit `81e861b
 From the product root, use `npm run backend:install`, `npm run backend:build` and, after configuration, `npm run backend:dev`. Windows tasks use the project-local Node 20 runtime. Source imports and dependency installation do not start a server, apply migrations, send OTP email or connect a model.
 
 Read [the integration handoff](../integration/README.md) before configuring databases or replacing frontend preview services. Authentication and all product authorization belong here. The current imported schema needs the five-role workspace, membership and consent model reconciled with the existing product contract.
+
+D-060 adds Firebase Admin 14.5.0 and moves backend tooling to supported installed Node 22/24 LTS (24 recommended). Dependencies and imported runtime files have explicit [patch provenance](../integration/upstream-patches.json). The original upstream commit/hashes remain unchanged in the import baseline. Read [Firebase console/server setup](../integration/FIREBASE_SETUP.md); SDK installation does not replace the existing JWT runtime or activate live authentication.

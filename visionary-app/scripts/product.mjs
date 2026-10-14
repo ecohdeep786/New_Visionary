@@ -6,9 +6,10 @@ import { spawnSync } from 'node:child_process';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [component = 'doctor', action = 'build', ...extra] = process.argv.slice(2);
 const windows = process.platform === 'win32';
-const nodeDirectory = path.join(root, '.tools/node20/node-v20.20.2-win-x64');
-const backendNode = windows ? path.join(nodeDirectory, 'node.exe') : process.execPath;
-const backendNpm = windows ? path.join(nodeDirectory, 'node_modules/npm/bin/npm-cli.js') : process.env.npm_execpath;
+const nodeDirectory = path.dirname(process.execPath);
+const backendNode = process.execPath;
+const backendNpm = process.env.npm_execpath;
+const backendNodeSupported = [22, 24].includes(Number(process.versions.node.split('.')[0]));
 const go = windows ? path.join(root, '.tools/go125/go/bin/go.exe') : 'go';
 
 function run(executable, args, cwd, additions = {}) {
@@ -23,13 +24,18 @@ if (component === 'doctor') {
   console.log(`Frontend / REA Node: ${process.version}`);
   console.log('Frontend: frontend/ (source, assets, configs, dependencies and tests)');
   console.log('Local infrastructure: infrastructure/local/compose.yml');
-  console.log(`Backend Node 20: ${fs.existsSync(backendNode) ? 'installed' : 'missing; run scripts/setup-toolchains.ps1'}`);
+  console.log(`Backend Node: ${process.version}; ${backendNodeSupported ? 'supported for Firebase Admin' : 'use supported Node 22 or 24 LTS; Node 24 recommended'}`);
   console.log(`ML Go 1.25: ${!windows || fs.existsSync(go) ? 'available; verify with ml:build' : 'missing; run scripts/setup-toolchains.ps1'}`);
   console.log('Live frontend/backend/ML connection: pending authenticated API and workspace integration.');
 } else if (component === 'backend') {
+  if (!backendNodeSupported) throw new Error('Firebase Admin requires a supported backend runtime. Use Node 22 or 24 LTS (24 recommended).');
   if (!backendNpm) throw new Error('Run this task through npm.');
   const cwd = path.join(root, 'backend/upstream/backend');
   const env = windows ? { PATH: `${nodeDirectory};${process.env.PATH}` } : {};
+  if (action === 'firebase-check') {
+    run(backendNode, [path.join(root, 'scripts/firebase-check.cjs'), ...extra], cwd, env);
+    process.exit(0);
+  }
   const args = action === 'install' ? ['ci', '--ignore-scripts', '--no-audit', '--no-fund'] : action === 'generate' ? ['run', 'prisma:generate'] : action === 'build' ? ['run', 'build'] : action === 'dev' ? ['run', 'start:dev'] : null;
   if (!args) throw new Error(`Unknown backend action: ${action}`);
   if (action === 'install') {

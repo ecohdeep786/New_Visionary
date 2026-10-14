@@ -4,6 +4,8 @@ The founder will discuss system design, scale, stack, cloud/DevOps, MLOps and te
 
 | Discussion | Questions | Deliverable |
 | --- | --- | --- |
+| [Firebase authentication design](firebase-auth-system-design.md) | Selected Firebase identity, existing project, India-first consent, all providers, abuse limits, device/account sync and security signals | Current proposed integration/setup/acceptance plan; Firebase selected, runtime implementation pending |
+| [Initial authentication discussion](auth-system-design.md) | Observed source gaps and initial owned-identity alternative | Historical design/acceptance context; Firebase supersedes the identity recommendation |
 | System design | Domain/API/data ownership, role/consent boundaries and recovery | Reviewed architecture and contract/data flows |
 | Scale | Workload, growth, latency/availability, capacity, cost and degradation | Measurable workload/capacity/SLO plan |
 | Tech stack | Component fit, runtime/dependency lifecycle and justified additions | Decision records and migration checks |
