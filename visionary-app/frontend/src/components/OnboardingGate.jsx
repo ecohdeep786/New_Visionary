@@ -10,7 +10,8 @@ export default function OnboardingGate() {
   const location = useLocation();
 
   if (!user?.onboarding_complete) {
-    return <Navigate to="/onboarding" replace state={{ from: location.pathname }} />;
+    const destination = location.pathname + location.search;
+    return <Navigate to={location.pathname === '/dashboard/subscription' ? `/onboarding?returnTo=${encodeURIComponent(destination)}` : '/onboarding'} replace state={{ from: location.pathname }} />;
   }
 
   return <Outlet />;

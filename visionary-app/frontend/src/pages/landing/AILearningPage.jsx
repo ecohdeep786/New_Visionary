@@ -61,6 +61,7 @@ const FadeReveal = React.memo(function FadeReveal({ visible, children, className
 
 /* ═══ MODELS — single plan-config fixture (01-PM, Wave L3): src/data/pricingConfig.js ═══ */
 import { PLANS, COMPARISON, PERSONA_PLANS, PRICING_FAQ, formatPrice } from "@/data/pricingConfig";
+import { billingPath } from '@/lib/billingIntent';
 import { fontStack } from "@/components/landing/system/tokens";
 
 
@@ -130,7 +131,7 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
       </p>
 
       <Link
-        to={plan.to}
+        to={['personal', 'family'].includes(plan.id) ? billingPath(plan.id, billing) : plan.to}
         className={`mt-5 inline-flex h-12 items-center justify-center rounded-full px-5 text-center font-medium tracking-[0.1px] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
           plan.highlight ? "text-white hover:bg-[#185abc] active:scale-[0.99] focus-visible:ring-[#1967D2]" : "hover:bg-[#e8f0fe] focus-visible:ring-[#1967D2]"
         }`}

@@ -4,6 +4,7 @@ import { createHash, createHmac, randomBytes } from 'node:crypto';
 import { getFirestore, Firestore, Timestamp } from 'firebase-admin/firestore';
 import { FirebaseAdminService } from '../firebase/firebase-admin.service';
 import { onboardingProfile, publicProfile } from './profile';
+import { BILLING_ACCOUNTS, freeBillingAccount } from '../../billing/billing-account';
 
 const ABSOLUTE_MS = 8 * 60 * 60 * 1000;
 const IDLE_MS = 30 * 60 * 1000;
@@ -31,6 +32,7 @@ export class FirebaseProductService implements OnModuleDestroy {
     try { return await operation(); }
     catch (error) { if (error instanceof HttpException) throw error; throw new ServiceUnavailableException('Account storage is unavailable. Retry without changing your setup.'); }
   }
+  getDatabase() { return this.db(); }
   private async verified(operation: () => Promise<any>) {
     try { return await operation(); }
     catch (error) { if (invalidAuth.has(error?.code)) throw new UnauthorizedException('Sign in again.'); throw new ServiceUnavailableException('Identity verification is unavailable. Please retry.'); }
@@ -64,10 +66,14 @@ export class FirebaseProductService implements OnModuleDestroy {
       const db = this.db(), account = db.collection('visionary_accounts').doc(identity.uid), session = db.collection('visionary_auth_sessions').doc(sessionId);
       return db.runTransaction(async tx => {
         const snapshot = await tx.get(account);
+        const billingRef = db.collection(BILLING_ACCOUNTS).doc(identity.uid), billing = await tx.get(billingRef);
         const oldRef = previous && /^[a-f0-9]{64}$/.test(previous.device || '') ? db.collection('visionary_auth_sessions').doc(digest(previous.device)) : null;
         const old = oldRef ? (await tx.get(oldRef)).data() : null;
         const data = snapshot.exists ? snapshot.data() : { email: identity.email, full_name: identity.name || '', onboarding: { status: 'pending' }, version: 0, createdAt: Timestamp.fromMillis(now) };
         const refreshed = { ...data, email: identity.email, lastSignInAt: Timestamp.fromMillis(now) };
+        if (billing.data()?.uid && billing.data().uid !== identity.uid) throw new ConflictException('Your billing identity needs recovery. No account changes were saved.');
+        if (!billing.exists) tx.create(billingRef, freeBillingAccount(identity.uid, now));
+        else if (!billing.data().uid || !billing.data().basePlan) tx.set(billingRef, { ...billing.data(), uid: identity.uid, basePlan: 'start', schemaVersion: 1 });
         tx.set(account, refreshed);
         if (old && old.uid === identity.uid && old.cookieHash === digest(previous.cookie || '') && !old.revokedAt) tx.update(oldRef, { revokedAt: Timestamp.fromMillis(now) });
         tx.create(session, { uid: identity.uid, cookieHash: digest(cookie), lastSeen: now, expires: now + ABSOLUTE_MS, expiresAt: Timestamp.fromMillis(now + ABSOLUTE_MS) });
@@ -79,7 +85,7 @@ export class FirebaseProductService implements OnModuleDestroy {
     });
     return { cookie, device, profile, expiresIn: ABSOLUTE_MS };
   }
-  async authenticate(cookie: string, device: string) {
+  async authenticate(cookie: string, device: string, touch = true) {
     if (!cookie || !/^[a-f0-9]{64}$/.test(device || '')) throw new UnauthorizedException('Sign in to continue.');
     const identity = await this.verified(() => this.admin.getAuth().verifySessionCookie(cookie, true));
     assertAccountUid(identity.uid);
@@ -89,7 +95,7 @@ export class FirebaseProductService implements OnModuleDestroy {
       await this.db().runTransaction(async tx => {
         const snapshot = await tx.get(ref), data = snapshot.data();
         if (!data || data.revokedAt || data.uid !== identity.uid || data.cookieHash !== digest(cookie) || data.expires <= now || !Number.isFinite(data.lastSeen) || now - data.lastSeen >= IDLE_MS) throw new UnauthorizedException('Your session ended. Sign in again.');
-        tx.update(ref, { lastSeen: now });
+        if (touch) tx.update(ref, { lastSeen: now });
       });
     });
     return { uid: identity.uid, sessionId };

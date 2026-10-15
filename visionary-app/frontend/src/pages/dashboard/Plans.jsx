@@ -7,12 +7,19 @@ import { Check, ShieldCheck } from 'lucide-react';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { plans, changeSubscription } from '@/services/workspaceService';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import ConnectedBilling from '@/components/dashboard/ConnectedBilling';
+import { appClient } from '@/api/appClient';
+import { useAuth } from '@/lib/AuthContext';
 const money = (value, locale = "en") => new Intl.NumberFormat(locale + '-IN', {
   style: 'currency',
   currency: 'INR',
   maximumFractionDigits: 0
 }).format(value);
 export default function Plans() {
+  const { account } = useAuth();
+  return appClient.auth.source === 'firebase' ? <ConnectedBilling key={account?.id} profile={account} /> : <PreviewPlans />;
+}
+function PreviewPlans() {
   const {
     data: copyWorkspace
   } = useWorkspace();

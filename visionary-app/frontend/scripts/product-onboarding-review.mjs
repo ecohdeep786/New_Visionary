@@ -29,24 +29,26 @@ async function fixture(role, draft, width = 1280) {
   const context = await browser.createBrowserContext(), page = await context.newPage(); activePage = page;
   await page.setViewport({ width, height: width < 500 ? 640 : 900 });
   let account = { id: `onboarding-${role}`, email: `${role}@fixture.invalid`, full_name: '', auth_source: 'firebase', onboarding_complete: false };
-  const errors = [], writes = []; let failSetup = false, failIntro = false;
+  const errors = [], writes = [], metrics = { meReads: 0, readsAtSetup: null, readsAtIntro: null }; let failSetup = false, failIntro = false;
   page.on('pageerror', error => errors.push(error.message));
   if (draft) await page.evaluateOnNewDocument(({ id, draft }) => { if (!sessionStorage.getItem('draft-seeded')) { localStorage.setItem(`visionary_onboarding_${id}`, JSON.stringify(draft)); sessionStorage.setItem('draft-seeded', 'yes'); } }, { id: account.id, draft });
   await page.setRequestInterception(true);
   page.on('request', request => {
     const url = new URL(request.url());
     const respond = (status, body) => request.respond({ status, contentType: 'application/json', body: JSON.stringify(body) });
-    if (url.pathname === '/api/auth/me') return respond(200, account);
+    if (url.pathname === '/api/auth/me') { metrics.meReads++; return respond(200, account); }
     if (url.pathname === '/api/auth/csrf') return respond(200, { token: 'fixture-csrf' });
     if (url.pathname === '/api/auth/onboarding' || url.pathname === '/api/auth/onboarding/introduction') {
       assert.equal(request.headers()['x-visionary-account'], account.id);
       if (url.pathname.endsWith('/introduction')) {
         if (failIntro) { failIntro = false; return respond(503, { message: 'PRIVATE server detail auth/internal' }); }
         account = { ...account, getting_started_complete: true };
+        metrics.readsAtIntro = metrics.meReads;
       } else {
         if (failSetup) { failSetup = false; return respond(503, { message: 'PRIVATE server detail auth/internal' }); }
         const body = JSON.parse(request.postData()); writes.push(body);
         account = { ...account, ...body, onboarding_complete: true, getting_started_complete: false };
+        metrics.readsAtSetup = metrics.meReads;
       }
       return respond(200, account);
     }
@@ -54,7 +56,7 @@ async function fixture(role, draft, width = 1280) {
     return request.continue();
   });
   await page.goto(`${origin}/onboarding`, { waitUntil: 'networkidle0' });
-  return { context, page, errors, writes, failSetup: () => { failSetup = true; }, failIntro: () => { failIntro = true; } };
+  return { context, page, errors, writes, metrics, failSetup: () => { failSetup = true; }, failIntro: () => { failIntro = true; } };
 }
 try {
   const select = async (page, label, value) => {
@@ -103,6 +105,8 @@ try {
       await page.screenshot({path:path.join(output,'review-desktop.png'),fullPage:true});
     }
     await click(page,'Start using Visionary'); await page.waitForFunction(()=>location.pathname==='/dashboard/home'); await see(page,'Welcome to Visionary');
+    assert.equal(current.metrics.meReads,current.metrics.readsAtSetup,'confirmed setup must not require another profile request');
+    assert.doesNotMatch(await text(page), /Your account profile is saved online/);
     assert.equal(current.writes.length,1); const payload=current.writes[0];
     assert.equal(payload.full_name,'Fixture Adult'); assert.equal(payload.age_band,'adult');
     assert.equal(payload.child_name,undefined); assert.equal(payload.semester,undefined); assert.equal(payload.experience,undefined); assert.equal(payload.parent_relation,undefined); assert.equal(payload.career_goal,undefined);
@@ -117,7 +121,9 @@ try {
       await click(page,'Continue'); await see(page,'Find your next step'); await page.screenshot({path:path.join(output,'tour-navigation-desktop.png'),fullPage:true});
       await click(page,'Back'); await see(page,'Welcome to Visionary'); await click(page,'Continue'); await click(page,'Continue'); await see(page,'You’re in control');
       current.failIntro(); await click(page,'Start exploring'); await see(page,'Sign-in is temporarily unavailable'); await click(page,'Start exploring');
-      await page.waitForFunction(()=>!document.getElementById('getting-started-title')); await page.reload({waitUntil:'networkidle0'}); assert.equal(await page.$('[role="dialog"]'),null);
+      await page.waitForFunction(()=>!document.getElementById('getting-started-title'));
+      assert.equal(current.metrics.meReads,current.metrics.readsAtIntro,'confirmed introduction must not require another profile request');
+      await page.reload({waitUntil:'networkidle0'}); assert.equal(await page.$('[role="dialog"]'),null);
       await click(page,'Show getting started'); await see(page,'Welcome to Visionary'); await page.keyboard.press('Escape'); await page.waitForFunction(()=>!document.querySelector('[role="dialog"]'));
       assert.equal(await page.evaluate(()=>document.activeElement.textContent.trim()),'Show getting started');
       await click(page,'Show getting started'); await click(page,'Skip introduction'); await page.waitForFunction(()=>!document.querySelector('[role="dialog"]'));

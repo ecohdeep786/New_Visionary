@@ -240,8 +240,15 @@ import { fontStack } from "@/components/landing/system/tokens";
 
 /* The universal sentence, in the persona grammar: the product names itself,
    then the cycle carries every journey — student, teacher, parent,
-   professional, organization. */
-const LANDING_HERO_WORDS = ["One Intelligence."];
+   professional, organization — in Apple's cadence ("for students." →
+   "for teachers." → …), so the headline literally names who it's for. */
+const LANDING_HERO_WORDS = ["One intelligence"];
+
+/* Apple-grammar hero: a short benefit-led line (mirroring /education's
+   "Designed for every kind of learner" and /education-initiative's
+   "moves … everyone forward") that names every category the page serves.
+   NewPersona appends the trailing period itself, so the words carry none. */
+const HERO_CATEGORY_WORDS = ["for students", "for teachers", "for parents", "for professionals", "for organizations"];
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
 const LANDING_HERO_LINEUP = [
@@ -256,9 +263,9 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
     <PersonaHero
       words={LANDING_HERO_WORDS}
-      animatedHeadlinePrefix="One intelligence for every part of"
-      animatedHeadlineWords={["learning", "teaching", "helping", "building", "leading"]}
-      srSentence="One intelligence for every part of learning, teaching, helping, building, and leading."
+      animatedHeadlinePrefix="One intelligence"
+      animatedHeadlineWords={HERO_CATEGORY_WORDS}
+      srSentence="One intelligence for students, teachers, parents, professionals, and organizations."
       cast={LANDING_HERO_LINEUP}
       ctaLabel="Start learning"
       secondaryLabel="See how it works"

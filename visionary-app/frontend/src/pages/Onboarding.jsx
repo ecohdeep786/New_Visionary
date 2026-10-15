@@ -9,6 +9,7 @@ import { productSetupSteps, setupPayload, setupRoles, setupStepReady } from '@/l
 import OnboardingLayout from '@/components/onboarding/OnboardingLayout';
 import ProductSetupFields from '@/components/onboarding/ProductSetupFields';
 import IdentitySelection from '@/components/onboarding/steps/IdentitySelection';
+import { safeReturnTo } from '@/lib/authReturnTo';
 
 export default function Onboarding() {
   const { account } = useAuth();
@@ -63,7 +64,7 @@ function ProductSetup() {
     } catch (failure) { setError(authErrorMessage(failure, 'We couldn’t finish setting up Visionary. Review your details and try again.')); }
     finally { lock.current = false; setBusy(false); }
   }
-  if (account?.onboarding_complete && !busy) return <Navigate to="/dashboard/home" replace />;
+  if (account?.onboarding_complete && !busy) return <Navigate to={safeReturnTo()} replace />;
   if (phase === 'identity') return <IdentitySelection onContinue={chooseRole} initialRole={data.identity} accountEmail={account?.email} />;
   const alerts = <>{error && <p role="alert" className="mb-5 rounded-xl bg-[#fce8e6] p-4 text-sm leading-6 text-[#b3261e]">{error}</p>}{notice && <p role="status" className="mb-5 text-xs leading-6 text-[#5f6368]">{notice}</p>}</>;
   if (phase === 'review') {

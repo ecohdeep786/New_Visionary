@@ -1,6 +1,7 @@
 // Shared by the auth pages (Login, Register, and any page that resumes a flow
 // after sign-in, e.g. the MCP OAuth consent page). Keep the redirect
 // validation in one place — it is security-sensitive and easy to drift.
+import { billingPath, billingSelection } from './billingIntent.js';
 
 // Resolve ?returnTo= to a safe same-origin path, else the signed-in workspace.
 //
@@ -9,8 +10,13 @@
 // //evil.com when assigned to location.href — an open redirect. So require the
 // resolved path to be exactly one leading slash (no "//" prefix, no backslash).
 export function safeReturnTo() {
-  const raw = new URLSearchParams(window.location.search).get("returnTo");
-  if (!raw) return "/dashboard/home";
+  let raw = new URLSearchParams(window.location.search).get("returnTo");
+  if (!raw) {
+    const selected = billingSelection(window.location.search);
+    if (selected) raw = billingPath(selected.plan, selected.interval);
+    else if (window.location.pathname === '/dashboard/subscription') raw = window.location.pathname + window.location.search;
+    else return "/dashboard/home";
+  }
   try {
     const url = new URL(raw, window.location.origin);
     if (url.origin !== window.location.origin) return "/dashboard/home";
@@ -35,5 +41,11 @@ export function safeReturnTo() {
 
 export function authDestination(profile) {
   if (!profile?.id) throw Object.assign(new Error('Your saved account could not be loaded. Please retry.'), { code: 'auth/profile-unavailable' });
-  return profile.onboarding_complete === true ? safeReturnTo() : '/onboarding';
+  const destination = safeReturnTo();
+  return profile.onboarding_complete === true ? destination : destination.split('?')[0] === '/dashboard/subscription' ? `/onboarding?returnTo=${encodeURIComponent(destination)}` : '/onboarding';
+}
+
+export function authLink(path) {
+  const destination = safeReturnTo();
+  return destination === '/dashboard/home' ? path : `${path}?returnTo=${encodeURIComponent(destination)}`;
 }

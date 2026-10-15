@@ -12,3 +12,7 @@ No Google or Apple feature investigation has been executed by this source import
 | Apple accessibility and continuity | How should focus, reading position, speech and recoverable activity state behave across contexts? | Frontend and persistence |
 
 These are candidate research questions, not findings or claims that the corresponding mechanisms are already implemented. Attach authoritative references and reproducible observations before proposing changes.
+
+## Completed payment investigation
+
+[Google One, Workspace and Apple payment study, 15 October 2026](PAYMENTS_STUDY_2026_10_15.md) records public-document findings, actual REA browser evidence and its failures/limits, current pricing/auth integration gaps and proposed acceptance criteria. Run `node reverse-engineering/research/payment-study.mjs` from the product root to retain a fresh anonymous evidence set. The [connected billing proposal](../../integration/PAYMENTS_DESIGN.md) prepares the next implementation discussion; no provider or live payment policy is selected by this research.

@@ -1,33 +1,13 @@
-import { Controller, Get, Post, Patch, Req, Res, Body, ForbiddenException, ServiceUnavailableException, ConflictException } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Req, Res, Body } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 import { Request, Response } from 'express';
 import { FirebaseProductService } from './firebase-product.service';
+import { ProductRequestAuthority } from './request-authority';
 
 @Controller('auth')
-export class FirebaseProductController {
-  constructor(private readonly service: FirebaseProductService, private readonly config: ConfigService) {}
-  private settings() {
-    const origin = this.config.get<string>('AUTH_PUBLIC_ORIGIN') || 'http://localhost:5173';
-    const url = new URL(origin);
-    if (url.origin !== origin || !['http:', 'https:'].includes(url.protocol)) throw new ServiceUnavailableException('Set the exact public application origin.');
-    const secure = url.protocol === 'https:';
-    if (!secure && !['localhost', '127.0.0.1'].includes(url.hostname)) throw new ServiceUnavailableException('Live authentication requires HTTPS.');
-    if (this.config.get('NODE_ENV') === 'production' && !secure) throw new ServiceUnavailableException('Production authentication requires HTTPS.');
-    const prefix = secure ? '__Host-visionary-' : 'visionary-';
-    return { origin, secure, session: `${prefix}session`, device: `${prefix}device`, csrf: `${prefix}csrf` };
-  }
-  private options() { return { httpOnly: true, secure: this.settings().secure, sameSite: 'strict' as const, path: '/' }; }
-  private csrf(req: Request) {
-    const settings = this.settings(), cookie = req.cookies?.[settings.csrf], header = req.get('X-CSRF-Token');
-    if (req.get('Origin') !== settings.origin || typeof cookie !== 'string' || typeof header !== 'string' || !/^[a-f0-9]{64}$/.test(header) || cookie.length !== header.length || !timingSafeEqual(Buffer.from(cookie), Buffer.from(header))) throw new ForbiddenException('Reload this page before continuing.');
-  }
-  private current(req: Request) { const settings = this.settings(); return this.service.authenticate(req.cookies?.[settings.session], req.cookies?.[settings.device]); }
-  private async commandAccount(req: Request) {
-    const current = await this.current(req);
-    if (req.get('X-Visionary-Account') !== current.uid) throw new ConflictException('The signed-in account changed. Reload your account before saving.');
-    return current;
-  }
+export class FirebaseProductController extends ProductRequestAuthority {
+  constructor(service: FirebaseProductService, config: ConfigService) { super(service, config); }
   @Get('csrf')
   getCsrf(@Res({ passthrough: true }) res: Response) {
     const token = randomBytes(32).toString('hex');

@@ -7,11 +7,11 @@ const delay = (milliseconds, signal) => new Promise((resolve, reject) => {
 
 // Only safe reads retry automatically. Credential/session/profile writes remain explicit.
 export function createAuthTransport({ fetchImpl = (...args) => fetch(...args), timeoutMs = 20000,
-  getLocks = () => globalThis.navigator?.locks, pause = delay } = {}) {
+  getLocks = () => globalThis.navigator?.locks, pause = delay, basePath = '/api/auth', csrfBasePath = '/api/auth' } = {}) {
   let mutation = Promise.resolve();
-  async function http(path, options, csrf, signal) {
+  async function http(path, options, csrf, signal, csrfRead = false) {
     signal.throwIfAborted(); options.beforeSend?.();
-    const response = await fetchImpl(`/api/auth${path}`, { method: options.method || 'GET', credentials: 'same-origin', cache: 'no-store', signal,
+    const response = await fetchImpl(`${csrfRead ? csrfBasePath : basePath}${path}`, { method: options.method || 'GET', credentials: 'same-origin', cache: 'no-store', signal,
       headers: { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...(csrf ? { 'X-CSRF-Token': csrf } : {}), ...(options.accountId ? { 'X-Visionary-Account': options.accountId } : {}) },
       ...(options.body ? { body: JSON.stringify(options.body) } : {}) });
     signal.throwIfAborted();
@@ -34,11 +34,11 @@ export function createAuthTransport({ fetchImpl = (...args) => fetch(...args), t
         }
       }
       signal.throwIfAborted(); options.beforeSend?.();
-      const csrf = await http('/csrf', { beforeSend: options.beforeSend }, null, signal);
+      const csrf = await http('/csrf', { beforeSend: options.beforeSend }, null, signal, true);
       try { return await http(path, options, csrf.token, signal); }
       catch (error) {
         if (error.status !== 403 || error.message !== 'Reload this page before continuing.') throw error;
-        const refreshed = await http('/csrf', { beforeSend: options.beforeSend }, null, signal);
+        const refreshed = await http('/csrf', { beforeSend: options.beforeSend }, null, signal, true);
         return http(path, options, refreshed.token, signal);
       }
     };

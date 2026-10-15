@@ -23,9 +23,9 @@ const productionSecurityHeaders = {
     "img-src 'self' data: https://storage.googleapis.com",
     "font-src 'self'",
     "style-src 'self' 'unsafe-inline'",
-    "script-src 'self' https://apis.google.com",
-    "frame-src https://visionary-fd6d2.firebaseapp.com",
-    "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://visionary-fd6d2.firebaseapp.com",
+    "script-src 'self' https://apis.google.com https://checkout.razorpay.com https://cdn.razorpay.com",
+    "frame-src https://visionary-fd6d2.firebaseapp.com https://api.razorpay.com https://checkout.razorpay.com",
+    "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://visionary-fd6d2.firebaseapp.com https://api.razorpay.com https://checkout.razorpay.com https://lumberjack.razorpay.com",
   ].join('; '),
 }
 

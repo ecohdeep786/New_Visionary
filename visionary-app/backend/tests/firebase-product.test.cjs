@@ -66,6 +66,18 @@ test('verified UID creates one pending account; repeated login preserves complet
   const event = [...rows].find(([k]) => k.startsWith('visionary_auth_events/'))[1];
   assert.equal(event.ip, metadata.ip); assert.equal(event.provider, 'password'); assert.ok(event.createdAt); assert.equal(event.expiresAt, undefined); assert.equal(JSON.stringify(event).includes('fixture-token'), false);
 });
+
+test('verified first sign-in atomically creates Free billing under the Auth UID without resetting a paid account', async () => {
+  const f = fixture(), first = await f.service.signIn('fixture-token', metadata);
+  const key = `visionary_billing_test_accounts/${first.profile.id}`, billing = f.rows.get(key);
+  assert.equal(billing.uid, f.identity.uid); assert.equal(billing.basePlan, 'start');
+  assert.equal(billing.subscription, null); assert.equal(billing.attempt, null); assert.deepEqual(billing.invoices, []);
+  const paid = { ...billing, revision: 7, subscription: { id: 'sub_saved', paidThrough: 9999999999 }, invoices: [{ id: 'inv_saved' }] };
+  f.rows.set(key, paid);
+  await f.service.signIn('fixture-token', metadata);
+  assert.deepEqual(f.rows.get(key), paid);
+  assert.equal([...f.rows.keys()].filter(key => key.startsWith('visionary_billing_test_accounts/')).length, 1);
+});
 test('unverified or stale sign-in cannot write an account or start a session', async () => {
   const { service, identity, rows } = fixture(); identity.email_verified = false;
   await assert.rejects(service.signIn('fixture-token', metadata), e => e.getStatus() === 401); assert.equal(rows.size, 0);
@@ -97,6 +109,16 @@ test('absolute expiry and mismatched UID reject a retained session record', asyn
   await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
   record.expires = Date.now() + 10000; f.identity.uid = 'another-account';
   await assert.rejects(f.service.authenticate(session.cookie, session.device), e => e.getStatus() === 401);
+});
+
+test('billing observation validates expiry without extending the device idle window', async () => {
+  const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
+  const record = f.rows.get(`visionary_auth_sessions/${hash(session.device)}`); record.lastSeen = Date.now() - 10000;
+  const previous = record.lastSeen;
+  await f.service.authenticate(session.cookie, session.device, false);
+  assert.equal(f.rows.get(`visionary_auth_sessions/${hash(session.device)}`).lastSeen, previous);
+  record.lastSeen = Date.now() - 1800001;
+  await assert.rejects(f.service.authenticate(session.cookie, session.device, false), error => error.getStatus() === 401);
 });
 test('repeated sign-in rotates only the proven current device and retains account/history', async () => {
   const f = fixture(), old = await f.service.signIn('fixture-token', metadata);

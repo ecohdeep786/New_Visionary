@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { authDestination } from "@/lib/authReturnTo";
+import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
 import { Mail, Phone, AlertCircle, RefreshCw, UserRound } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
+import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
 import {
   primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
@@ -108,7 +109,7 @@ export default function Login() {
         footer: (
           <>
             Don't have an account?{" "}
-            <Link to="/register" className="text-[#4285F4] font-medium hover:underline">Create account</Link>
+            <Link to={authLink('/register')} className="text-[#4285F4] font-medium hover:underline">Create account</Link>
           </>
         ),
       }
@@ -119,7 +120,7 @@ export default function Login() {
         footer: (
           <>
             Don't have an account?{" "}
-            <Link to="/register" className="text-[#4285F4] font-medium hover:underline">Create account</Link>
+            <Link to={authLink('/register')} className="text-[#4285F4] font-medium hover:underline">Create account</Link>
           </>
         ),
       };
@@ -163,7 +164,7 @@ export default function Login() {
                 <div>
                   <p className="text-sm text-[#ea4335] font-medium">Account not found</p>
                   <p className="text-xs text-[#ea4335] mt-1">{error}</p>
-                  <Link to="/register" className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
+                  <Link to={authLink('/register')} className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
                     Create a new account →
                   </Link>
                 </div>
@@ -318,6 +319,7 @@ export default function Login() {
 
   return (
     <AuthLayout {...layoutProps}>
+      <BillingAuthNotice action={view === 'verification' ? 'Verify your email' : 'Sign in'} />
       {renderContent()}
     </AuthLayout>
   );

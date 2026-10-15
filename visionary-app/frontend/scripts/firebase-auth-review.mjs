@@ -32,7 +32,7 @@ try {
       assert.match(await page.$eval('body', element => element.innerText), /I am a Learner/);
     } else if (scenario === 'returning') {
       await page.waitForFunction(() => location.pathname === '/dashboard/home');
-      assert.equal(await page.$('.visionary-workspace'), null === true ? null : await page.$('.visionary-workspace'));
+      await page.waitForSelector('.visionary-workspace');
       assert.doesNotMatch(await page.$eval('body', element => element.innerText), /Your account profile is saved online/);
       await page.reload({ waitUntil: 'networkidle0' }); assert.equal(new URL(page.url()).pathname, '/dashboard/home');
       await page.goto('http://localhost:5173/onboarding', { waitUntil: 'networkidle0' });

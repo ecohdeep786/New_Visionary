@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { authDestination } from "@/lib/authReturnTo";
+import { authDestination, authLink } from "@/lib/authReturnTo";
 import EmailVerification from '@/components/auth/EmailVerification';
 import { Mail, Phone, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import AuthLayout from "@/components/AuthLayout";
+import BillingAuthNotice from "@/components/auth/BillingAuthNotice";
 import SocialAuthButtons from "@/components/SocialAuthButtons";
 import {
   primaryBtnClass, primaryBtnAutoClass, outlineBtnClass,
@@ -137,7 +138,7 @@ export default function Register() {
         footer: (
           <>
             I already have an account.{" "}
-            <Link to="/login" className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
+            <Link to={authLink('/login')} className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
           </>
         ),
       }
@@ -148,7 +149,7 @@ export default function Register() {
         footer: (
           <>
             I already have an account.{" "}
-            <Link to="/login" className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
+            <Link to={authLink('/login')} className="text-[#4285F4] font-medium hover:underline">Sign in</Link>
           </>
         ),
       };
@@ -187,7 +188,7 @@ export default function Register() {
                 <div>
                   <p className="text-sm text-[#ea4335] font-medium">Email already registered</p>
                   <p className="text-xs text-[#ea4335] mt-1">{error}</p>
-                  <Link to="/login" className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
+                  <Link to={authLink('/login')} className="text-xs text-[#4285F4] font-medium hover:underline mt-1.5 inline-block">
                     Sign in instead →
                   </Link>
                 </div>
@@ -244,7 +245,7 @@ export default function Register() {
               <ActionRow
                 left={
                   duplicate ? (
-                    <div className="flex flex-col gap-2"><Link to="/login" state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Sign in instead</Link><Link to="/forgot-password" state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Reset password</Link></div>
+                    <div className="flex flex-col gap-2"><Link to={authLink('/login')} state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Sign in instead</Link><Link to="/forgot-password" state={{ email }} className="text-sm text-[#4285F4] font-medium hover:underline">Reset password</Link></div>
                   ) : null
                 }
               >
@@ -356,6 +357,7 @@ export default function Register() {
 
   return (
     <AuthLayout {...layoutProps}>
+      <BillingAuthNotice action={view === 'verification' ? 'Verify your email' : 'Create an account'} />
       {renderContent()}
     </AuthLayout>
   );

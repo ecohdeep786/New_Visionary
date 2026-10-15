@@ -99,8 +99,8 @@ export const AuthProvider = ({ children }) => {
       }
     };
     window.addEventListener('focus', refresh);
-    window.addEventListener('pointerdown', activity, { passive: true }); window.addEventListener('keydown', activity);
-    return () => { ++requestVersion.current; window.removeEventListener('storage', syncSession); window.removeEventListener('visionary:auth-change', checkUserAuth); window.removeEventListener('focus', refresh); window.removeEventListener('pointerdown', activity); window.removeEventListener('keydown', activity); };
+    window.addEventListener('pointerdown', activity, { passive: true, capture: true }); window.addEventListener('keydown', activity, { capture: true });
+    return () => { ++requestVersion.current; window.removeEventListener('storage', syncSession); window.removeEventListener('visionary:auth-change', checkUserAuth); window.removeEventListener('focus', refresh); window.removeEventListener('pointerdown', activity, true); window.removeEventListener('keydown', activity, true); };
   }, [checkUserAuth]);
 
   const logout = useCallback(async () => {
