@@ -20,7 +20,7 @@ import problemunderstanding from "@/assets/problem-understanding.webp";
 import teacherProblem from "@/assets/teacher-problem-1.webp";
 import problemrevision from "@/assets/problem-revision.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
-import { ShieldCheck, HeartHandshake, Scale, Play, Pause } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
 const COLORS = {
@@ -171,8 +171,6 @@ const PROBLEM_SLIDES = [
 ];
 const PROBLEM_MS = 4200;
 
-const MEET_WORDS = ["understands.", "remembers.", "grows with you.", "starts with where you are."];
-const MEET_WORD_MS = 3000;
 const MEET_IMG = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
 const MEET_SECTIONS = [
@@ -209,10 +207,12 @@ const JOURNEY_STEPS = [
 ];
 const JOURNEY_CARD_MS = 5000;
 
+/* Apple's values anatomy (education-initiative: "Our values lead the way"):
+   typographic columns, no icons — the type carries the trust. */
 const LX_TRUST_VALUES = [
-  { title: "Privacy", copy: "You choose what Visionary remembers and how you use it.", Icon: ShieldCheck, to: "/privacy" },
-  { title: "Safety", copy: "Age-aware guidance and human review help keep learning on track.", Icon: HeartHandshake, to: "/security" },
-  { title: "Responsibility", copy: "Visionary helps people learn, work, and create — it never works against them.", Icon: Scale, to: "/terms" },
+  { title: "Privacy", copy: "You choose what Visionary remembers and how you use it.", to: "/privacy" },
+  { title: "Safety", copy: "Age-aware guidance and human review help keep learning on track.", to: "/security" },
+  { title: "Responsibility", copy: "Visionary helps people learn, work, and create — it never works against them.", to: "/terms" },
 ];
 
 /* ═══════════════════════ SECTION VIEWS ═══════════════════════ */
@@ -238,16 +238,20 @@ import orgCut480 from "@/assets/hero-cutouts/organization-480w.webp";
 import orgCut800 from "@/assets/hero-cutouts/organization-800w.webp";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* The universal sentence, in the persona grammar: the product names itself,
-   then the cycle carries every journey — student, teacher, parent,
-   professional, organization — in Apple's cadence ("for students." →
-   "for teachers." → …), so the headline literally names who it's for. */
+/* Apple's universal hero grammar: a single declarative statement that
+   names the product's universal value and every category it serves — the
+   same pattern as /education-initiative/ ("Education moves learners, leaders,
+   innovators, communities and everyone forward.") and /education ("Designed
+   for every kind of learner."). No cycling, no fragmentation — one line,
+   one truth. */
+/* Apple's universal hero grammar: the product statement stays put on its line
+   ("One intelligence"), and the audience line cycles beneath it — for
+   students., for teachers., for parents., for professionals., for organizations.
+   — the Apple product-hero rhythm (static lead + moving sub-line). */
 const LANDING_HERO_WORDS = ["One intelligence"];
 
-/* Apple-grammar hero: a short benefit-led line (mirroring /education's
-   "Designed for every kind of learner" and /education-initiative's
-   "moves … everyone forward") that names every category the page serves.
-   NewPersona appends the trailing period itself, so the words carry none. */
+/* The cycling audience line below the static statement — the hero names
+   every category in turn. NewPersona appends the trailing period itself. */
 const HERO_CATEGORY_WORDS = ["for students", "for teachers", "for parents", "for professionals", "for organizations"];
 
 const cutSet = (w480, w800) => `${w480} 480w, ${w800} 800w`;
@@ -259,29 +263,34 @@ const LANDING_HERO_LINEUP = [
   { label: "Organization", src: orgCut800, srcSet: cutSet(orgCut480, orgCut800) },
 ];
 
+/* ── HERO ──
+   Apple's universal front door: "One intelligence" holds the stage, the
+   audience line cycles beneath it, and the five alpha cutouts rise from
+   the fold. The CTA pair are the only actions — the story lives below the
+   line-up, exactly like an Apple education product hero. */
 const LandingHeroSection = React.memo(function LandingHeroSection() {
   return (
     <PersonaHero
       words={LANDING_HERO_WORDS}
       animatedHeadlinePrefix="One intelligence"
       animatedHeadlineWords={HERO_CATEGORY_WORDS}
-      srSentence="One intelligence for students, teachers, parents, professionals, and organizations."
+      srSentence="One intelligence, for students, teachers, parents, professionals, and organizations."
       cast={LANDING_HERO_LINEUP}
       ctaLabel="Start learning"
       secondaryLabel="See how it works"
-      minDisplay={36}
+      minDisplay={42}
+      wordMs={2600}
     />
   );
 });
 
-/* 02 · PROBLEM — the first chapter slides over the pinned hero on the
-   house frosted glass. The Apple chapter anatomy: one centered statement,
-   one cinematic subject, one voice — nothing else on the stage. The
-   photography is studio-white, so it renders unframed on the page's own
-   white (the hero's language): the subject stands on the section floor,
-   edge-to-edge breathing, no card, no crop. All four subjects stay mounted
-   and crossfade — a keyed <img> remount refetched and flashed an empty
-   frame on every slide advance, worst on slow phones. */
+/* 02 · PROBLEM — Apple's education-initiative anatomy: one centered
+   declarative statement, one cinematic subject, one voice — nothing
+   else on the stage. The photography is studio-white, so it renders
+   unframed on the page's own white: the subject stands on the section
+   floor, edge-to-edge breathing, no card, no crop. The four subjects stay
+   mounted and crossfade — the dots let the reader pace it, exactly
+   like Apple's "Stories about educators" gallery. */
 function LandingProblemSection() {
   const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, 0);
   const { ref, visible } = useRevealContinuous();
@@ -369,216 +378,94 @@ function LandingPromiseSection() {
   );
 }
 
-/* 04 · MEET — the product, for whom: one frosted tablist pinned under the
-   nav (the glass motif carried through the page), one scroll-driven story
-   column, and the rotating word/phrase tickers. */
-const MeetHeading = React.memo(function MeetHeading({ section, index }) {
-  const blue = section.blues[index % section.blues.length];
+/* 04 · CATEGORY LINE-UP — Apple's product-page grid anatomy
+   (measured on /education: "From grade school to grad school."): the
+   chapter opener, then a clean row of category cards — each a full-bleed
+   image, a title, a subtitle, and a quiet "Learn more" link. No frosted
+   tab strip, no cycling words, no scroll-sync: the reader scans and clicks.
+   Apple's card law: the image fills the frame, text sits beneath it, no
+   overlay, no scrim. */
+const CategoryGridCard = React.memo(function CategoryGridCard({ title, subtitle, image, to, alt }) {
   return (
-    /* Apple's 48px section-header tier: -0.002em tracking, 1.08 leading */
-    <h3 className="font-semibold tracking-[-0.002em] leading-[1.08] text-[clamp(28px,3.1vw,48px)]" style={{ color: COLORS.ink }}>
-      {section.leadBlue ? (
-        <>
-          <span key={`l-${index}`} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{section.leadBlue[index % section.leadBlue.length]}</span>{" "}
-          {section.midBlack}{" "}
-          <span key={`b-${index}`} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{blue}</span>
-        </>
-      ) : (
-        <>
-          {section.leadBlack} {section.midBlack ? `${section.midBlack} ` : ""}
-          <span key={`b-${index}`} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{blue}</span>
-        </>
-      )}
-    </h3>
+    <Link
+      to={to}
+      className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+    >
+      <figure className="m-0">
+        <div className="relative overflow-hidden" style={{ borderRadius: "var(--radius-media)" }}>
+          <img
+            src={image}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+            className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            style={{ aspectRatio: "16/9" }}
+          />
+        </div>
+        <figcaption className="mt-6">
+          <h3 className="font-semibold tracking-[-0.002em] leading-[1.14] text-[clamp(22px,1.5vw,28px)]" style={{ color: COLORS.ink }}>
+            {title}
+          </h3>
+          <p className="mt-2 max-w-[24ch] font-normal tracking-[0] leading-[1.4] text-[17px]" style={{ color: COLORS.graphite }}>
+            {subtitle}
+          </p>
+          <span className="mt-4 inline-flex items-center gap-1 text-[17px] font-normal" style={{ color: COLORS.blue }}>
+            Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </span>
+        </figcaption>
+      </figure>
+    </Link>
   );
 });
 
-const MeetTabs = React.memo(function MeetTabs({ active, onSelect }) {
-  const tabRefs = useRef([]);
-  const stripRef = useRef(null);
-  /* Apple/Google segmented behavior on narrow screens: the chosen chip
-     slides to the center of the strip. Deterministic scrollTo math instead
-     of scrollIntoView — the page often smooth-scrolls at the same moment
-     (tab click → chapter), and browsers cancel scrollIntoView's own smooth
-     scroll mid-flight. Fired on click AND when the scroll-sync steps the
-     active chip, so the chip always leads the eye. */
-  const centerTab = useCallback((i) => {
-    const strip = stripRef.current;
-    const btn = tabRefs.current[i];
-    if (!strip || !btn || strip.scrollWidth <= strip.clientWidth) return;
-    /* Apple/Google segmented rule: the strip only moves when the chosen
-       chip is off-screen — a chip already in view stays put (no wiggle). */
-    const srect = strip.getBoundingClientRect();
-    const brect = btn.getBoundingClientRect();
-    if (brect.left >= srect.left && brect.right <= srect.right) return;
-    const target = btn.offsetLeft - (strip.clientWidth - btn.offsetWidth) / 2;
-    strip.scrollTo({ left: Math.max(0, Math.min(target, strip.scrollWidth - strip.clientWidth)), behavior: "smooth" });
-  }, []);
-  useEffect(() => { centerTab(active); }, [active, centerTab]);
-  const onKeyDown = (e) => {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-    e.preventDefault();
-    const dir = e.key === "ArrowRight" ? 1 : -1;
-    const next = (active + dir + MEET_SECTIONS.length) % MEET_SECTIONS.length;
-    onSelect(next);
-    tabRefs.current[next]?.focus();
-  };
-  return (
-    <div className="mx-auto w-full max-w-[1260px]">
-      {/* the strip scrolls horizontally on small screens — discovery stays
-          horizontal, never a squeezed desktop row. Width matches Apple's
-          measured product localnav (1260px @1440) so the pill reads as the
-          row's navigator, not a lonely narrow band. */}
-      <div
-        ref={stripRef}
-        className="flex h-[52px] w-full items-stretch overflow-x-auto rounded-[90px] border bg-white p-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        style={{ borderColor: COLORS.mist }}
-        role="group"
-        aria-label="Audiences"
-        onKeyDown={onKeyDown}
-      >
-        {MEET_SECTIONS.map((s, i) => (
-          <button
-            key={s.id}
-            ref={(n) => { tabRefs.current[i] = n; }}
-            type="button"
-            id={`meet-tab-${s.id}`}
-            aria-pressed={active === i}
-            tabIndex={0}
-            onClick={() => { onSelect(i); centerTab(i); }}
-            className={`flex h-full min-w-[104px] flex-none items-center justify-center rounded-[90px] px-4 text-[13px] tracking-[0.24px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#4285F4] sm:min-w-0 sm:flex-1 sm:text-[14px] ${active === i ? "font-medium" : "font-normal"}`}
-            style={{ backgroundColor: active === i ? COLORS.ink : "transparent", color: active === i ? "#ffffff" : COLORS.slate }}
-          >
-            {s.tab}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-});
+/* The category cards mapped from MEET_SECTIONS with their persona images */
+const CATEGORY_CARDS = MEET_SECTIONS.map((s, i) => ({
+  title: s.tab,
+  subtitle: s.copy,
+  image: MEET_IMG[i],
+  alt: s.alt,
+  to: s.to,
+}));
 
-const MeetCopy = React.memo(function MeetCopy({ section }) {
-  const { index } = useCycleIndex(section.blues.length, 3000);
+function LandingCategorySection() {
+  const { ref, visible } = useRevealContinuous();
   return (
-    <div className="max-w-[560px]">
-      <MeetHeading section={section} index={index} />
-      <p className="mt-[var(--gap-title-sub-display)] font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.graphite }}>{section.copy}</p>
-      {/* the audience CTA — Apple's pill spec: 44px tall, 17px label, 24px
-          side padding (measured "Buy"/"Learn more" buttons) */}
-      <Link
-        to={section.to}
-        className="mt-8 inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-6 text-[1.0625rem] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-      >
-        {section.link}
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-          <path d="M5 12h14" />
-          <path d="M13 6l6 6-6 6" />
-        </svg>
-      </Link>
-    </div>
-  );
-});
-
-function LandingMeetSection() {
-  const { index: wordIndex } = useCycleIndex(MEET_WORDS.length, MEET_WORD_MS);
-  /* the reveal ref rides the SECTION, not the header: the grid runs several
-     viewports deep, and keying the state to the header would wipe the story
-     while the reader is still inside it */
-  const { ref: revealRef, visible } = useRevealContinuous();
-  const { active, setStepRef, scrollToStep } = useActiveStep(MEET_SECTIONS.length);
-  const sectionRef = useRef(null);
-  const setSectionRef = (n) => { sectionRef.current = n; revealRef.current = n; };
-  const scrollToRow = useCallback((i) => {
-    scrollToStep(i);
-    /* all five chapters are now on the page — Apple product localnav law:
-       choosing a chip glides the reader to that chapter (smooth, anchored
-       below the pinned strip) instead of swapping a single hidden panel. */
-    const node = document.getElementById(`meet-panel-${MEET_SECTIONS[i].id}`);
-    node?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [scrollToStep]);
-  return (
-    <section ref={setSectionRef} data-section="04-meet" className="relative z-10 bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="04-meet" className="relative z-10 bg-white" style={{ fontFamily: fontStack }}>
       <div className="px-6">
         <FadeReveal visible={visible}>
-          {/* Apple's header rhythm: the kicker sits tight above the headline
-             (~12px), the subhead tight below (~16px) — one thought, not three
-             floating rows */}
-          <p className="text-center text-[18px] font-medium" style={{ color: COLORS.slate }}>Meet Visionary</p>
-          {/* the reserved slot: phrases only wrap below sm (desktop always
-              fits one line) — 2.7em covers two lines at the browser's real
-              1.32 line metrics, so the page never jumps when the word cycles */}
-          {/* Apple's 64px chapter-statement tier ("Get to know AirPods."):
-              64px from 1068px up, easing to 40px on phones — the product
-              chapter outranks the 56px story statements around it. */}
-          <h2 className="mt-[var(--gap-eyebrow-title-display)] flex min-h-[2.7em] items-center justify-center text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)] sm:min-h-0" style={{ color: COLORS.ink }}>
-            <span>
-              It{" "}
-              <span key={wordIndex} className="hero-fade-up inline-block" style={{ color: COLORS.blue }}>{MEET_WORDS[wordIndex]}</span>
-            </span>
+          <p className="text-center text-[17px] font-medium" style={{ color: COLORS.slate }}>Who it's for</p>
+          <h2 className="mx-auto mt-[var(--gap-eyebrow-title-display)] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch" }}>
+            One intelligence, five journeys.
           </h2>
           <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[720px] text-center font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.slate }}>
-            Visionary continues your journey instead of restarting it.
+            Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward.
           </p>
         </FadeReveal>
       </div>
-      {/* the local sub-nav — Apple's product-page pattern: a frosted band that
-          pins under the nav and scrolls the reader to each audience chapter.
-          The band earns room to read: after the strip, a full breath
-          (48px mobile / 80px desktop — Apple's localnav→first-chapter gap
-          measured on /iphone-15-pro-max) lets the first row land without
-          pressing against the control, so the rectangle reads as the
-          chapter's navigator, not a crowbar. */}
-      <div className="glass sticky top-[56px] z-30 mt-9 px-4 py-4 sm:px-6"><MeetTabs active={active} onSelect={scrollToRow} /></div>
-      <FadeSoft visible={visible}>
-        {/* the audience chapters — Apple's chapter-row anatomy: each row is
-            ONE composed object (copy + portrait) hanging centered under the
-            1260px strip above it, not two islands pinned to a 980px gutter.
-            Desktop: copy left / portrait right as a centered group — copy
-            block 560px wide, 64px between (Apple's measured copy→media gap),
-            the whole pair centered at max-w 1040px so it reads as a single
-            gesture under the pill. Rows breathe on the premium ladder
-            (48px mobile / 144px desktop). Phones: the copy leads and the
-            portrait follows beneath it with even rhythm (48px step), exactly
-            how an Apple product chapter reads top-to-bottom. The pinned tab
-            band drives the rows: whichever chapter the reader is inside
-            lights its chip, and the rows carry the step markers the band
-            watches. */}
-        <div className="mx-auto grid w-full max-w-[1260px] grid-cols-1 gap-y-14 px-4 pt-20 sm:px-10 sm:pt-20 lg:gap-y-0 lg:px-0 lg:pt-24">
-          {MEET_SECTIONS.map((s, i) => (
-            <div
-              key={s.id}
-              ref={setStepRef(i)}
-              data-step={i}
-              id={`meet-panel-${s.id}`}
-              role="region"
-              aria-label={`${s.tab} learning with Visionary`}
-              className={`mx-auto scroll-mt-36 lg:grid lg:max-w-[1040px] lg:grid-cols-[560px_minmax(0,1fr)] lg:items-center lg:gap-x-16 ${i > 0 ? "lg:pt-20" : ""}`}
-            >              <div>
-                <MeetCopy section={s} />
-              </div>
-              <figure className="m-0 mt-12 flex justify-center lg:mt-0 lg:justify-end">
-                <img
-                  src={MEET_IMG[i]}
-                  alt={s.alt}
-                  loading="lazy"
-                  decoding="async"
-                  draggable="false"
-                  style={{
-                    /* the page-wide floor dissolve — same as hero and problem */
-                    WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
-                    maskImage: "linear-gradient(to bottom, black 78%, transparent 97%)",
-                  }}
-                  className="h-auto w-full max-w-[360px] select-none sm:max-w-[420px] lg:max-w-[460px]"
-                />
-              </figure>
-            </div>
-          ))}
-        </div>
-      </FadeSoft>
+
+      {/* Apple's product grid: 3-up on desktop, 2-up on tablet, 1-on-phone.
+           Each card: full-bleed image, title, subtitle, "Learn more" link.
+           No border, no shadow, no chrome — the grid's own whitespace
+           carries the rhythm (Apple's measured 48px gap between cards). */}
+      <div className="mx-auto mt-20 grid w-full max-w-[1260px] grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 lg:px-0">
+        {CATEGORY_CARDS.map((card) => (
+          <CategoryGridCard
+            key={card.title}
+            title={card.title}
+            subtitle={card.subtitle}
+            image={card.image}
+            alt={card.alt}
+            to={card.to}
+          />
+        ))}
+      </div>
     </section>
   );
 }
-
 /* 06 · THE JOURNEY — Apple's education-initiative chapter anatomy: a left-aligned
    statement on the 40px highlights tier (32px on phones) that sits on Apple's
    measured content frame, then a VERTICAL stack of full-bleed story cards.
@@ -643,7 +530,7 @@ function LandingJourneySection() {
             the heading's left edge — the track carries the same gutter, so
             heading and cards share one spine. Apple's 40px tier carries zero
             tracking (measured Oct 2026). */}
-        <div className="px-6 lg:px-[clamp(24px,6.25vw,90px)]">
+        <div className="mx-auto w-full px-6 min-[735px]:max-w-[692px] min-[735px]:px-0 min-[1069px]:max-w-[980px]">
           <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch" }}>
             Life changes. Visionary keeps pace.
           </h2>
@@ -654,7 +541,8 @@ function LandingJourneySection() {
         {/* the card slide — the track bleeds to the viewport edge so the next
             card peeks, inviting the reader on (the Apple gallery signature) */}
         <div ref={trackRef} onScroll={onScroll} role="group" aria-roledescription="carousel" aria-label="The journey, one step at a time"
-          className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-pl-6 px-6 [scrollbar-width:none] sm:mt-16 lg:scroll-pl-[clamp(24px,6.25vw,90px)] lg:px-[clamp(24px,6.25vw,90px)] [&::-webkit-scrollbar]:hidden">
+          className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 [scrollbar-width:none] sm:mt-16 [&::-webkit-scrollbar]:hidden [scroll-padding-left:24px] min-[735px]:[padding-left:calc((100vw_-_692px)/2)] min-[735px]:[scroll-padding-left:calc((100vw_-_692px)/2)] min-[1069px]:[padding-left:calc((100vw_-_980px)/2)] min-[1069px]:[scroll-padding-left:calc((100vw_-_980px)/2)]"
+          style={{ paddingRight: 24 }}>
           {JOURNEY_STEPS.map((s, i) => (
               <figure key={s.title} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${JOURNEY_STEPS.length}: ${s.title}`}
                 className="relative m-0 flex w-[78%] flex-none snap-start flex-col overflow-hidden rounded-[18px] bg-[#F5F5F7] sm:w-[46%] lg:w-[56%] lg:max-w-[840px]">
@@ -698,14 +586,10 @@ function LandingJourneySection() {
 }
 
 /* ═══════════════════════ PAGE ═══════════════════════
-   The Vision Pro anatomy: the family stage pins to the viewport, the story
-   glides over it on frosted glass (problem), the thesis fades up
-   (promise), the product meets its five audiences (meet), the language
-   chapter, the journey on the one dark scene, trust, and the blue closer.
-   Sections stay direct children of main — the bridge's chapter contract
-   (hairlines, transparent joins, the dark scene) keys on that shape — each
-   carrying z-10 above the pinned hero. Routing lives in the nav and the
-   hero's audience row; depth lives on the pages those links open. */
+   The Vision Pro anatomy: the family stage pins to the viewport, the
+   story glides over it on frosted glass (problem), the thesis fades up
+   (promise), the category grid (line-up), the journey, the language
+   chapter, trust, and the blue closer. */
 export default function LandingPage() {
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
@@ -726,7 +610,7 @@ export default function LandingPage() {
         />
         <LandingProblemSection />
         <LandingPromiseSection />
-        <LandingMeetSection />
+        <LandingCategorySection />
         <LandingJourneySection />
         <PremiumLanguageSection
           chips={LG_CHIPS}

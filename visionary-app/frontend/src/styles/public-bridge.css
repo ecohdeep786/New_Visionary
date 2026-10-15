@@ -69,6 +69,14 @@ main > section[data-section="02-problem"],
   padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
 }
 
+/* the landing's category line-up sits between two white chapters and carries
+   its own grey ground — the surface change IS the chapter join, so the
+   hairline never reads (Apple's no-seam law). Landing-scoped: the persona
+   pages' own line-up keep their accepted join. */
+.page-landing main > section[data-section="13-explore"] {
+  border-top-color: transparent !important;
+}
+
 main > section[data-section="05-intelligence"]:not([data-surface="light"]),
 main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
   background: var(--scene-ink, #0a0d14) !important;

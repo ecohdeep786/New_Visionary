@@ -898,8 +898,8 @@ function PremiumTrustSection({ heading, sub, values }) {
                   className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
                   style={{ borderColor: `${COLORS.ink}1A` }}
                 >
-                  <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
-                  <h3 data-type="value-title" className="mt-4" style={{ color: COLORS.ink }}>
+                  {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />}
+                  <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: COLORS.ink }}>
                     {value.title}
                   </h3>
                   <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: COLORS.grey }}>

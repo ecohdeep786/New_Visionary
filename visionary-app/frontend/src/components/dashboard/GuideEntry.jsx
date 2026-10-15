@@ -43,5 +43,5 @@ export default function GuideEntry({
         material: ''
       })}>{copy("Remove context")}</button></div>}
   </div>;
-  return compact ? <details><summary className="v-button">{copy("Intent and context")}</summary>{fields}</details> : fields;
+  return compact ? <details className="guide-entry-compact"><summary>{copy("Intent and context")}</summary>{fields}</details> : fields;
 }

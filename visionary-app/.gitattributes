@@ -1,0 +1,2 @@
+# Patch evidence is byte-hashed; preserve its reviewed LF bytes on Windows.
+integration/upstream-patches/*.patch text eol=lf

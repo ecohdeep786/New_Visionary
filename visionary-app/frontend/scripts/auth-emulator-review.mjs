@@ -15,6 +15,7 @@ const baseline = await (await fetch('http://127.0.0.1:3035/__test/status')).json
 let activePage;
 try {
   const page = await browser.newPage(); activePage = page; await page.setViewport({ width: 1280, height: 900 });
+  page.setDefaultNavigationTimeout(90000);
   const errors = []; page.on('pageerror', error => errors.push(error.message));
   await page.setRequestInterception(true);
   page.on('request', request => {
@@ -50,7 +51,7 @@ try {
   await see('I am a Professional');
   await page.evaluate(() => [...document.querySelectorAll('button')].find(element => element.textContent.includes('I am a Professional')).click()); await click('Continue');
   await fill('input[type="text"]', 'Fixture Adult'); await page.select('select', 'adult'); await click('Continue');
-  await fill('input[type="text"]', 'Learn software engineering'); await click('Continue');
+  await see('Make Visionary work for you'); await click('Skip for now'); await see('Ready to start with Visionary?');
   await click('Start using Visionary');
   await page.waitForFunction(() => location.pathname === '/dashboard/home');
   // The introduction is a separate UI step; reload proves saved completion can resume.

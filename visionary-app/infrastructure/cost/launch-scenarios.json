@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "daysPerMonth": 30,
+  "hoursPerMonth": 730,
+  "fxInrPerUsdAssumption": 90,
+  "base": {
+    "mau": 100000, "dailyActiveFraction": 0.2, "coreCallsPerDauDay": 60, "aiTurnsPerDauDay": 4,
+    "inputTokensPerTurn": 3000, "outputTokensPerTurn": 700, "providerAttemptMultiplier": 1.1, "premiumRouteFraction": 0.02,
+    "apiMeanCoreSeconds": 0.25, "aiMeanSeconds": 12, "apiEffectiveConcurrency": 8, "aiEffectiveConcurrency": 4,
+    "apiMinInstances": 2, "aiMinInstances": 2, "minimumIdleHoursPerDay": 12, "runTimeOverheadMultiplier": 1.1,
+    "sqlVcpu": 4, "sqlMemoryGib": 16, "sqlAllocatedGib": 300, "sqlBackupUsedGib": 450,
+    "firestoreReadsPerApiRequest": 3, "firestoreWritesPerApiRequest": 0.25, "firestoreDeletesPerMau": 20,
+    "firestoreStoredGib": 10, "firestorePitrGib": 10, "firestoreBackupGib": 20,
+    "objectStoredGib": 500, "objectClassAOperations": 1000000, "objectClassBOperations": 10000000,
+    "publicDeliveredGibPerMau": 0.01, "ownedVideoMinutesPerMau": 0, "videoGibPerMinute": 0.02,
+    "cdnFillFraction": 0.15, "cdnLookupsPerMau": 30, "videoSegmentsPerMinute": 6,
+    "apiResponseKib": 8, "aiResponseKib": 4, "apiRequestKib": 2, "armorRules": 5,
+    "workerJobsPerMau": 2, "workerMeanSeconds": 2, "identityPlatformEnabled": true,
+    "otherCloudAllowanceUsd": 700, "businessToolsContentAllowanceUsd": 1500, "peopleOperationsAllowanceUsd": 12000,
+    "paidPersonalAccounts": 10000, "paidFamilyAccounts": 1000, "annualPayerFraction": 0.25,
+    "personalMonthlyInr": 299, "personalAnnualInr": 2990, "familyMonthlyInr": 499, "familyAnnualInr": 4990,
+    "gatewayFeeFraction": 0.02, "feeTaxFractionAssumption": 0.18, "contingencyFraction": 0.15
+  },
+  "scenarios": [
+    { "id": "pilot", "label": "10k MAU pilot", "overrides": { "mau": 10000, "apiEffectiveConcurrency": 1, "aiEffectiveConcurrency": 1, "apiMinInstances": 1, "aiMinInstances": 1, "sqlVcpu": 2, "sqlMemoryGib": 8, "sqlAllocatedGib": 100, "sqlBackupUsedGib": 150, "firestoreStoredGib": 2, "firestorePitrGib": 2, "firestoreBackupGib": 4, "objectStoredGib": 100, "objectClassAOperations": 100000, "objectClassBOperations": 1000000, "otherCloudAllowanceUsd": 200, "businessToolsContentAllowanceUsd": 500, "peopleOperationsAllowanceUsd": 4000, "paidPersonalAccounts": 1000, "paidFamilyAccounts": 100 } },
+    { "id": "growth", "label": "100k MAU growth", "overrides": {} },
+    { "id": "expensive-model", "label": "100k MAU / all premium model", "overrides": { "premiumRouteFraction": 1 } },
+    { "id": "owned-video", "label": "100k MAU /120 owned video minutes per MAU", "overrides": { "ownedVideoMinutesPerMau": 120, "objectStoredGib": 5000, "otherCloudAllowanceUsd": 3700 } }
+  ],
+  "notes": [
+    "All workload, payer mix, model routes, FX, fee tax, allowance and retention-size figures are illustrative management inputs, not a vendor quote or actual business result.",
+    "12h population activity window does not mean12h per-user foreground.60 core calls assume about20min foreground (40 polls+20 other calls); recalculate for longer sessions.",
+    "Cloud Run active time includes the product API waiting for AI. Explicit idle hours and minimum-instance floor are approximate and require billed-instance telemetry.",
+    "Storage sizes forecast total retained/index/version/backup bytes, not an approved deletion or retention policy.",
+    "Other-cloud allowance covers estimated Tasks/Scheduler/logging/CI/email/scan/backup/network extras; it is not a sum of verified SKU quotes.",
+    "Business tools/content and people/operations are explicit placeholders. Replace with actual staffing, licensing, support and security budgets.",
+    "Revenue is monthly-normalized before indirect taxes/discounts/churn; Family is charged per payer, not multiplied by six. Annual cash collection is different from normalized revenue.",
+    "No model/provider is selected by illustrative token prices. No response-cache savings or credits assumed. Voice/image/3D inference, live video, SMS/SSO, refunds/chargebacks and additional DR costs need separate sizing if not covered by allowances."
+  ]
+}

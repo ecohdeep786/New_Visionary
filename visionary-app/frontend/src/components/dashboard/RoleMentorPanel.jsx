@@ -1,3 +1,4 @@
+import {workspacePresentationCopy} from '@/lib/workspacePresentationCopy';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -88,7 +89,8 @@ function OrganizationPanel({ view }) {
   </>;
 }
 
-function RolePanel({ ctx }) {
+function RolePanel({ ctx, locale }) {
+  const ui = workspacePresentationCopy(locale);
   const [selection, setSelection] = useState('');
   const [revision, setRevision] = useState(0);
   const [notice, setNotice] = useState('');
@@ -101,10 +103,10 @@ function RolePanel({ ctx }) {
   const query = useQuery({ queryKey: ['role-mentor', ctx.personId, ctx.workspaceId, ctx.role, ctx.locale, selection, revision], queryFn: ({ signal }) => getRoleMentorView({ ...ctx, signal }, selection), retry: false, gcTime: 0 });
   if (query.error) return <section className="v-home-module"><h2 className="text-lg font-medium">Summary unavailable</h2><p className="v-notice v-error mt-3" role="alert">{query.error.message}</p><div className="flex flex-wrap gap-3 mt-4"><button className="v-button" onClick={() => query.refetch()}>Retry</button>{selection && <button className="v-button" onClick={() => setSelection('')}>Choose an available connection</button>}<Link className="v-button" to="/dashboard/connections">Manage connections</Link></div></section>;
   if (!query.data) return <section className="v-home-module" role="status" aria-busy="true">Loading your authorized summary…</section>;
-  return <section className="v-home-module">{query.data.role === 'teacher' && <TeacherPanel ctx={ctx} view={query.data} onSelect={setSelection} onNotice={setNotice}/>} {query.data.role === 'parent' && <ParentPanel view={query.data} onSelect={setSelection}/>} {query.data.role === 'professional' && <ProfessionalPanel ctx={ctx} view={query.data} onNotice={setNotice}/>} {query.data.role === 'organization' && <OrganizationPanel view={query.data}/>} {notice && <p role="status" className="v-notice mt-4">{notice}</p>}<p className="v-muted mt-5">Local preview · No live model, identity verification, or cloud synchronization.</p></section>;
+  return <details className="v-details v-role-overview"><summary>{ui(ctx.role)}</summary><div className="v-details-body">{query.data.role === 'teacher' && <TeacherPanel ctx={ctx} view={query.data} onSelect={setSelection} onNotice={setNotice}/>} {query.data.role === 'parent' && <ParentPanel view={query.data} onSelect={setSelection}/>} {query.data.role === 'professional' && <ProfessionalPanel ctx={ctx} view={query.data} onNotice={setNotice}/>} {query.data.role === 'organization' && <OrganizationPanel view={query.data}/>} {notice && <p role="status" className="v-notice mt-4">{notice}</p>}<p className="v-muted mt-5">Local preview · No live model, identity verification, or cloud synchronization.</p></div></details>;
 }
 
-export default function RoleMentorPanel({ ctx }) {
+export default function RoleMentorPanel({ ctx, locale = 'en' }) {
   if (!ctx || ctx.role === 'student') return null;
-  return <RolePanel key={`${ctx.personId}:${ctx.workspaceId}:${ctx.role}:${ctx.locale}`} ctx={ctx}/>;
+  return <RolePanel key={`${ctx.personId}:${ctx.workspaceId}:${ctx.role}:${ctx.locale}`} ctx={ctx} locale={locale}/>;
 }

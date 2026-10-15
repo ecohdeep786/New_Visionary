@@ -54,16 +54,18 @@ This command provisions new named local volumes. It does not run migrations, see
 
 Python 3.11+ is also required for ingestion, reranking and evaluation. The root Python requirements include `faiss-gpu`, so they cannot be treated as a portable Windows installation. Create a separate Python environment and choose the ingestion package's declared dependencies or a compatible Linux/GPU environment. Do not install those requirements into the frontend or the host's shared Python environment. Dependency resolution, pipeline execution and evaluation are separate checks from Go compilation.
 
-## Target runtime boundaries
+## Runtime boundaries
+
+D-075 supersedes the initial import-era topology with the [100,000-MAU system design](../docs/architecture/discussions/system-design.md), [backend/ML audit](../docs/architecture/discussions/backend-ml-audit.md), [operations](../docs/architecture/discussions/launch-operations.md) and [model strategy](../docs/architecture/discussions/ml-strategy.md). Account/onboarding/device sessions and Razorpay test billing are connected locally through Firebase/Firestore. Learning/linked-role APIs and ML remain integration work. Root `backend:dev` (existing `backend:auth:dev` alias) and `backend:start` select the current product app; imported package/Docker defaults select legacy code and are not launch instructions.
 
 ```text
 React/Vite web product
         | same-origin authenticated API, cancellation and request IDs
         v
-NestJS product backend --- application PostgreSQL / Redis
+NestJS product backend --- Firestore account/billing + future product PostgreSQL
         | server-owned ML request scoped to person/workspace/source
         v
-Go RAG gateway --- retrieval PostgreSQL/pgvector / Redis
+Private product-authorized AI --- retrieval PostgreSQL/pgvector / optional cache
         | embeddings, retrieval, grounding, generation, evaluation
         v
 Configured model providers
@@ -76,13 +78,13 @@ The product backend owns identity, workspace membership, authorization, consent,
 ## Integration sequence and acceptance
 
 1. **Import and reproducibility:** preserve source, resolve dependencies, compile each component, verify hashes and record concrete limitations. No real user records or upstream deployments are changed.
-2. **Account and workspace identity:** adopt real NestJS register/OTP/login/logout/me/profile operations, reconcile the frontend account DTO, and add durable five-role workspaces/memberships. Fix the frontend Promise/session consumer during this integration, with stale sign-in/sign-out response handling. The backend currently has category fields for student, teacher and organization; it does not provide the complete five-role workspace model.
+2. **Account and workspace identity:** retain the connected Firebase session/profile/onboarding and stale-response handling; do not reintroduce the old OTP/JWT identity. Implement durable five-role workspaces/memberships, guardian consent and scoped policy. Profile role selection does not authorize linked-role access.
 3. **Content and persistence:** reconcile catalog IDs, source versions, provenance, language availability and learner-safe DTOs. Implement owner-scoped persistence, optimistic revisions and idempotent writes. Migration/export is explicit and preserves browser originals until ownership and acknowledgments are verified.
-4. **Product backend to RAG:** define a dedicated service credential with audience, source/workspace restrictions and trusted user identity; reconcile deadlines/cancellation/SSE and output contracts. The backend currently calls OpenAI agents directly and does not call the imported RAG pipeline. Similar JWT shapes do not establish equivalent authorization.
+4. **Product backend to RAG:** define private service IAM plus product assertions with audience, source/workspace restrictions and trusted user identity; reconcile deadlines/cancellation/output contracts and repair session/cache isolation. The current connected app calls neither legacy direct-provider agents nor the imported RAG pipeline. Similar JWT shapes do not establish equivalent authorization.
 5. **One evaluated vertical slice:** sign in -> authorized curriculum -> explanation with valid sources -> contextual Ask -> check -> practice -> saved project -> reload/resume. Verify missing models, withdrawn sources, wrong workspace, failed save and cancellation. Extend to all roles after this works.
 6. **Controlled beta:** complete remaining device/language/accessibility acceptance, model/content evaluations, observability, retention/deletion, capacity and operational recovery. Claims come from measured evidence; imported README performance claims are historical upstream statements.
 
-`frontend/src/services/backendTransport.ts` already defines `content.syllabus`, `content.concept`, `teaching.request` and `mentor.turn`. There is no matching exchange endpoint in the imported NestJS API. Its `/api/auth/me` also returns a different user shape. A dedicated backend contract implementation and frontend adapter are required; a proxy or copied repository alone does not complete integration. Existing preview remains the current runtime until that cutover is implemented and verified.
+`frontend/src/services/backendTransport.ts` defines `content.syllabus`, `content.concept`, `teaching.request` and `mentor.turn`. No matching connected exchange endpoint exists yet. Dedicated authorized contracts and frontend adapters are required; a proxy or copied repository alone does not complete integration. Learning previews remain browser-local until that cutover is implemented and verified; this does not describe the already connected auth/account/test-billing runtime.
 
 ## Credential remediation
 

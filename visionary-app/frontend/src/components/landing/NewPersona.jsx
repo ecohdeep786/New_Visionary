@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import { HERO_SRCSETS, HERO_SIZES } from "@/lib/heroVariants";
 import "@/components/landing/cast.css";
 
@@ -46,9 +47,10 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
       {secondaryLabel && (
         <Link
           to={secondaryTo}
-          className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#dadce0] bg-white px-5 text-[16px] font-normal tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
+          className="inline-flex items-center gap-1 text-[17px] font-normal tracking-[0] leading-[1.2] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
         >
           {secondaryLabel}
+          <ChevronRight className="h-[18px] w-[18px]" strokeWidth={2.5} />
         </Link>
       )}
     </div>
@@ -183,7 +185,7 @@ export default function NewPersona({
               >
                 {hasAnimatedHeadline ? (
                   /* Apple's stacked hero lines: the statement reads as its own
-                     line, the journey word below it — the same masked-line
+                     line, the audience line below it — the same masked-line
                      rhythm as an education-init headline. */
                   <>
                     <span className="block text-balance">{animatedHeadlinePrefix}</span>
@@ -191,8 +193,18 @@ export default function NewPersona({
                       {animatedHeadlineWords[animatedIndex]}.
                     </span>
                   </>
+                ) : staticHeadline ? (
+                  /* Apple's universal grammar: the product statement on one
+                     line, the audience on the next — both in the accent
+                     gradient, balanced as one composed headline. */
+                  <>
+                    <span className="block text-balance accent-gradient">{words[0]}</span>
+                    <span className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
+                      {staticHeadline}
+                    </span>
+                  </>
                 ) : (
-                  <span className="accent-gradient">{staticHeadline || words[0]}</span>
+                  <span className="accent-gradient">{words[0]}</span>
                 )}
               </span>
               <span className="sr-only">{srSentence}</span>

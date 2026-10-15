@@ -4,7 +4,8 @@ import { createHash, createHmac, randomBytes } from 'node:crypto';
 import { getFirestore, Firestore, Timestamp } from 'firebase-admin/firestore';
 import { FirebaseAdminService } from '../firebase/firebase-admin.service';
 import { onboardingProfile, publicProfile } from './profile';
-import { BILLING_ACCOUNTS, freeBillingAccount } from '../../billing/billing-account';
+import { freeBillingAccount } from '../../billing/billing-account';
+import { ACCOUNT_STORAGE_VERSION, LEGACY_BILLING_ACCOUNTS, billingDocument, deviceDocument, deviceRecord, eventDocument, identitySnapshot } from './account-storage';
 
 const ABSOLUTE_MS = 8 * 60 * 60 * 1000;
 const IDLE_MS = 30 * 60 * 1000;
@@ -66,20 +67,32 @@ export class FirebaseProductService implements OnModuleDestroy {
       const db = this.db(), account = db.collection('visionary_accounts').doc(identity.uid), session = db.collection('visionary_auth_sessions').doc(sessionId);
       return db.runTransaction(async tx => {
         const snapshot = await tx.get(account);
-        const billingRef = db.collection(BILLING_ACCOUNTS).doc(identity.uid), billing = await tx.get(billingRef);
+        if (snapshot.data()?.uid && snapshot.data().uid !== identity.uid) throw new ConflictException('Your account identity needs recovery.');
+        const billingRef = billingDocument(db, identity.uid), billing = await tx.get(billingRef);
+        const legacy = !billing.exists ? await tx.get(db.collection(LEGACY_BILLING_ACCOUNTS).doc(identity.uid)) : null;
         const oldRef = previous && /^[a-f0-9]{64}$/.test(previous.device || '') ? db.collection('visionary_auth_sessions').doc(digest(previous.device)) : null;
         const old = oldRef ? (await tx.get(oldRef)).data() : null;
+        const oldDevice = old?.uid === identity.uid ? (await tx.get(deviceDocument(db, identity.uid, digest(previous.device)))).data() : null;
+        if (legacy?.exists || snapshot.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your account storage upgrade must finish before sign-in. Your saved details are retained.');
         const data = snapshot.exists ? snapshot.data() : { email: identity.email, full_name: identity.name || '', onboarding: { status: 'pending' }, version: 0, createdAt: Timestamp.fromMillis(now) };
-        const refreshed = { ...data, email: identity.email, lastSignInAt: Timestamp.fromMillis(now) };
+        const refreshed = { ...data, uid: identity.uid, storageVersion: ACCOUNT_STORAGE_VERSION, identity: { ...data.identity, ...identitySnapshot(identity.uid, identity, now) }, email: identity.email, lastSignInAt: Timestamp.fromMillis(now) };
         if (billing.data()?.uid && billing.data().uid !== identity.uid) throw new ConflictException('Your billing identity needs recovery. No account changes were saved.');
         if (!billing.exists) tx.create(billingRef, freeBillingAccount(identity.uid, now));
         else if (!billing.data().uid || !billing.data().basePlan) tx.set(billingRef, { ...billing.data(), uid: identity.uid, basePlan: 'start', schemaVersion: 1 });
         tx.set(account, refreshed);
-        if (old && old.uid === identity.uid && old.cookieHash === digest(previous.cookie || '') && !old.revokedAt) tx.update(oldRef, { revokedAt: Timestamp.fromMillis(now) });
-        tx.create(session, { uid: identity.uid, cookieHash: digest(cookie), lastSeen: now, expires: now + ABSOLUTE_MS, expiresAt: Timestamp.fromMillis(now + ABSOLUTE_MS) });
+        if (old && old.uid === identity.uid && old.cookieHash === digest(previous.cookie || '') && !old.revokedAt) {
+          const revoked = { ...old, revokedAt: Timestamp.fromMillis(now) };
+          tx.update(oldRef, { revokedAt: revoked.revokedAt });
+          tx.set(deviceDocument(db, identity.uid, digest(previous.device)), deviceRecord(identity.uid, digest(previous.device), revoked, oldDevice));
+        }
+        const sessionData = { uid: identity.uid, cookieHash: digest(cookie), lastSeen: now, createdAt: Timestamp.fromMillis(now), expires: now + ABSOLUTE_MS, expiresAt: Timestamp.fromMillis(now + ABSOLUTE_MS), provider: identity.firebase?.sign_in_provider || 'unknown', ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512) };
+        tx.create(session, sessionData);
+        tx.create(deviceDocument(db, identity.uid, sessionId), deviceRecord(identity.uid, sessionId, sessionData));
         const event = db.collection('visionary_auth_events').doc();
-        tx.create(event, { uid: identity.uid, sessionId, type: 'sign_in', firstAccountSignIn: !snapshot.exists, provider: identity.firebase?.sign_in_provider || 'unknown',
-          ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512), createdAt: Timestamp.fromMillis(now) });
+        const eventData = { uid: identity.uid, sessionId, type: 'sign_in', firstAccountSignIn: !snapshot.exists, provider: identity.firebase?.sign_in_provider || 'unknown',
+          ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512), createdAt: Timestamp.fromMillis(now) };
+        tx.create(event, eventData);
+        tx.create(eventDocument(db, identity.uid, event.id.split('/').at(-1)), eventData);
         return publicProfile(identity.uid, refreshed);
       });
     });
@@ -94,8 +107,14 @@ export class FirebaseProductService implements OnModuleDestroy {
       const ref = this.db().collection('visionary_auth_sessions').doc(sessionId);
       await this.db().runTransaction(async tx => {
         const snapshot = await tx.get(ref), data = snapshot.data();
+        const account = await tx.get(this.db().collection('visionary_accounts').doc(identity.uid));
+        const deviceRef = deviceDocument(this.db(), identity.uid, sessionId), savedDevice = touch ? (await tx.get(deviceRef)).data() : null;
+        if (account.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your account storage upgrade is in progress.');
         if (!data || data.revokedAt || data.uid !== identity.uid || data.cookieHash !== digest(cookie) || data.expires <= now || !Number.isFinite(data.lastSeen) || now - data.lastSeen >= IDLE_MS) throw new UnauthorizedException('Your session ended. Sign in again.');
-        if (touch) tx.update(ref, { lastSeen: now });
+        if (touch) {
+          tx.update(ref, { lastSeen: now });
+          tx.set(deviceRef, deviceRecord(identity.uid, sessionId, { ...data, lastSeen: now }, savedDevice));
+        }
       });
     });
     return { uid: identity.uid, sessionId };
@@ -105,6 +124,21 @@ export class FirebaseProductService implements OnModuleDestroy {
       const account = await this.db().collection('visionary_accounts').doc(uid).get();
       if (!account.exists) throw new ConflictException('Your account profile is missing. Sign in again to recover it.');
       return publicProfile(uid, account.data());
+    });
+  }
+  async accountDetails(uid: string) {
+    return this.database(async () => {
+      const snapshot = await this.db().collection('visionary_accounts').doc(uid).get();
+      if (!snapshot.exists) throw new ConflictException('Your account profile is missing.');
+      const data = snapshot.data(), identity = data.identity || {}, onboarding = data.onboarding || {};
+      if (data.uid && data.uid !== uid) throw new ConflictException('Your account identity needs recovery.');
+      const iso = (value: any) => value?.toDate?.().toISOString() || null;
+      return { profile: publicProfile(uid, data),
+        identity: { uid, email: data.email || '', emailVerified: typeof identity.emailVerified === 'boolean' ? identity.emailVerified : null,
+          displayName: identity.displayName || null, phoneNumber: identity.phoneNumber || null, photoURL: identity.photoURL || null,
+          provider: identity.provider || null, providerIds: identity.providerIds || [], createdAt: iso(data.createdAt), lastSignInAt: iso(data.lastSignInAt), lastVerifiedAt: iso(identity.lastVerifiedAt) },
+        onboarding: { status: onboarding.status || 'pending', version: onboarding.version || null, completedAt: iso(onboarding.completedAt),
+          introduction: { status: onboarding.introduction?.status || 'pending', completedAt: iso(onboarding.introduction?.completedAt) } } };
     });
   }
   async completeOnboarding(uid: string, input: unknown) {
@@ -164,8 +198,15 @@ export class FirebaseProductService implements OnModuleDestroy {
         const snapshot = await tx.get(ref);
         if (snapshot.exists && (expectedUid ? snapshot.data().uid !== expectedUid : !cookie || snapshot.data().cookieHash !== digest(cookie))) throw new ConflictException('The signed-in account changed. Reload before signing out.');
         if (snapshot.exists && !snapshot.data().revokedAt) {
-          tx.update(ref, { revokedAt: Timestamp.now() });
-          if (metadata) tx.create(this.db().collection('visionary_auth_events').doc(), { uid: snapshot.data().uid, sessionId: digest(device), type: 'sign_out', ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512), createdAt: Timestamp.now() });
+          const savedDevice = (await tx.get(deviceDocument(this.db(), snapshot.data().uid, digest(device)))).data();
+          const revoked: any = { ...snapshot.data(), revokedAt: Timestamp.now() };
+          tx.update(ref, { revokedAt: revoked.revokedAt });
+          tx.set(deviceDocument(this.db(), revoked.uid, digest(device)), deviceRecord(revoked.uid, digest(device), revoked, savedDevice));
+          if (metadata) {
+            const event = this.db().collection('visionary_auth_events').doc();
+            const data = { uid: revoked.uid, sessionId: digest(device), type: 'sign_out', ip: metadata.ip.slice(0, 64), userAgent: metadata.userAgent.slice(0, 512), createdAt: revoked.revokedAt };
+            tx.create(event, data); tx.create(eventDocument(this.db(), revoked.uid, event.id.split('/').at(-1)), data);
+          }
         }
       });
     });

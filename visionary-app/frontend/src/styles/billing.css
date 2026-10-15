@@ -65,3 +65,50 @@
   .billing-invoice-items thead { display: table-header-group; }
   .billing-invoice-footer { display: block !important; }
 }
+.billing-page { max-width: 1100px; margin-inline: auto; gap: 32px; padding-block: 36px; }
+.billing-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.billing-eyebrow, .billing-plan-kicker { font-size: 10px; letter-spacing: .13em; font-weight: 500; color: var(--v-muted, #69717c); }
+.billing-heading .v-title { margin-top: 10px; letter-spacing: -.04em; font-size: 32px; font-weight: 500; }
+.billing-test-badge { display: inline-flex; gap: 7px; align-items: center; font-size: 11px; color: var(--v-muted, #69717c); padding: 8px 10px; background: var(--v-canvas, #f4f6f8); border-radius: 8px; }
+.visionary-workspace .billing-page > .billing-current { border: 0; border-radius: 22px; background: var(--v-canvas, #f4f6f8); padding: 28px; }
+.billing-current h2 { letter-spacing: -.04em; }
+.billing-current > .v-muted { font-size: 11px; }
+.billing-options > div:first-child h2 { font-size: 18px; letter-spacing: -.02em; }
+.billing-plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.billing-page .billing-plan { display: flex; flex-direction: column; border: 1px solid var(--v-border, #e3e7ec); border-radius: 22px; padding: 26px; box-shadow: none; }
+.billing-page .billing-plan-featured { border-color: #93b3d9; background: linear-gradient(160deg, #f2f7fd 0%, var(--v-surface, #fff) 65%); }
+.billing-plan h3 { margin-top: 16px; font-size: 22px; letter-spacing: -.03em; }
+.billing-preview .billing-plan h2 { font-size: 22px; letter-spacing: -.03em; }
+.billing-preview > .billing-heading { display: block; }
+.billing-plan > p.my-4 { margin: 24px 0 6px; font-size: 34px; letter-spacing: -.04em; }
+.billing-plan > p.my-4 span { letter-spacing: 0; font-size: 12px; }
+.billing-plan > .v-muted { font-size: 12px; }
+.billing-plan ul { flex: 1; padding-block: 4px; margin-block: 24px; font-size: 13px; line-height: 1.6; }
+.billing-plan li svg { width: 14px; margin-top: 3px; color: #60836e; }
+.billing-plan .v-button { justify-content: center; border-radius: 12px; min-height: 44px; }
+.billing-plan-featured .v-button:not(:disabled) { background: #245b9f; border-color: #245b9f; color: #fff; }
+.billing-plan > p.mt-auto { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.billing-plan-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 20px 0 8px; color: var(--v-muted, #69717c); font-size: 12px; }
+.billing-plan-footer a { color: var(--v-text, #34465c); }
+.billing-details { color: var(--v-muted, #69717c); font-size: 12px; line-height: 1.8; margin-top: 12px; }
+.billing-details summary { cursor: pointer; }
+.billing-details > p { max-width: 680px; margin-top: 10px; }
+.billing-page .billing-invoices { border: 1px solid var(--v-border, #e3e7ec); border-radius: 22px; padding: 26px; }
+.billing-invoices > .v-muted { font-size: 12px; }
+.billing-review { border-radius: 24px; padding: 28px; gap: 20px; }
+.billing-review > p.text-3xl { padding-block: 12px; letter-spacing: -.03em; }
+.billing-review .v-button { justify-content: center; border-radius: 12px; min-height: 44px; }
+.billing-review label { border-top: 1px solid var(--v-border, #e3e7ec); padding-top: 18px; }
+.billing-review-facts { font-size: 13px; line-height: 1.9; color: var(--v-muted, #60646c); }
+.billing-review .billing-details { margin-top: -8px; }
+.billing-test-note { font-size: 12px; line-height: 1.7; background: var(--v-canvas, #f4f6f8); color: var(--v-muted, #60646c); border-radius: 10px; padding: 12px 14px; }
+@media (prefers-color-scheme: dark) {
+  .billing-page .billing-plan-featured { background: linear-gradient(160deg, #21334d 0%, var(--v-surface) 70%); }
+}
+@media (max-width: 760px) {
+  .billing-page { padding-block: 24px; gap: 24px; }
+  .billing-plan-grid { grid-template-columns: 1fr; }
+  .billing-page .billing-plan, .billing-page > .billing-current, .billing-page .billing-invoices { padding: 22px; }
+  .billing-plan ul { margin-block: 16px; }
+  .billing-heading .v-title { font-size: 28px; }
+}

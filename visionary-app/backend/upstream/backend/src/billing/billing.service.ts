@@ -5,6 +5,7 @@ import { BILLING_PLANS, CATALOG_VERSION, externalId, offer, recordInput } from '
 import { BillingRepository } from './billing.repository';
 import { freeBillingAccount } from './billing-account';
 import { invoiceDocument } from './invoice';
+import { BILLING_QUEUE, LEGACY_BILLING_ACCOUNTS } from '../auth/firebase-product/account-storage';
 import { PaymentProviderError, RazorpayProvider, validSignature } from './razorpay.provider';
 
 const terminal = new Set(['cancelled', 'completed', 'expired']);
@@ -31,12 +32,18 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
   private async update(uid: string, change: (current: any, tx: FirebaseFirestore.Transaction) => any) {
     return this.repo.transaction(async tx => {
       const ref = this.repo.account(uid), snapshot = await tx.get(ref);
+      const account = await tx.get(this.repo.db().collection('visionary_accounts').doc(uid));
+      const legacy = !snapshot.exists ? await tx.get(this.repo.db().collection(LEGACY_BILLING_ACCOUNTS).doc(uid)) : null;
+      if (legacy?.exists || account.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Your saved account storage upgrade must finish before payment.');
       const current: any = snapshot.data() || freeBillingAccount(uid);
       if (current.uid && current.uid !== uid) throw new ServiceUnavailableException('Billing identity could not be verified.');
       const next = await change(current, tx);
       if (!next) return current;
       const saved = { ...next, uid, basePlan: 'start', schemaVersion: 1, revision: current.revision + 1, updatedAt: Date.now() };
-      tx.set(ref, saved); return saved;
+      tx.set(ref, saved);
+      // Global operational index; account data remains under the verified UID.
+      tx.set(this.repo.queue(uid), { uid, nextSyncAt: saved.nextSyncAt || null, revision: saved.revision });
+      return saved;
     });
   }
   private view(uid: string, data: any) {
@@ -315,10 +322,16 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
       if (existing.exists) { if (existing.data().digest !== digest) throw new ConflictException('Payment event identity conflict.'); return; }
       const account = mapping?.merchant === fingerprint(settings.keyId) ? this.repo.account(mapping.uid) : null;
       const saved = account ? await tx.get(account) : null;
+      const owner = account ? await tx.get(this.repo.db().collection('visionary_accounts').doc(mapping.uid)) : null;
+      if (owner?.data()?.storageMigration?.status === 'copying') throw new ServiceUnavailableException('Account storage upgrade in progress; retry notification.');
       const pending = [...new Set([...(saved?.data()?.paymentAdjustments || []), ...(/^pay_[A-Za-z0-9]+$/.test(paymentId || '') ? [paymentId] : [])])];
       if (pending.length > 100) throw new ServiceUnavailableException('Payment adjustment processing is busy. Retry this notification.');
       tx.create(event, { digest, event: String(payload.event || '').slice(0, 100), receivedAt: Date.now(), subscriptionId: subscriptionId || null, uid: mapping?.uid || null, state: account ? 'accepted' : 'unmapped' });
-      if (saved?.exists) tx.update(account, { nextSyncAt: Date.now(), paymentAdjustments: pending });
+      if (saved?.exists) {
+        const nextSyncAt = Date.now();
+        tx.update(account, { nextSyncAt, paymentAdjustments: pending });
+        tx.set(this.repo.queue(mapping.uid), { uid: mapping.uid, nextSyncAt, revision: saved.data().revision || 0 });
+      }
     });
     return { received: true };
   }
@@ -337,7 +350,7 @@ export class BillingService implements OnModuleInit, OnModuleDestroy {
     let processed = 0, failed = 0;
     try {
       this.provider.settings();
-      const due = await this.repo.db().collection('visionary_billing_test_accounts').where('nextSyncAt', '<=', Date.now()).limit(20).get();
+      const due = await this.repo.db().collection(BILLING_QUEUE).where('nextSyncAt', '>', 0).where('nextSyncAt', '<=', Date.now()).limit(20).get();
       const startedAt = Date.now();
       for (const row of due.docs) {
         if (this.stopping || Date.now() - startedAt > 45000) break;

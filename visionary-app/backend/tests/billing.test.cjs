@@ -57,6 +57,23 @@ test('only completed adult setup can create a provider subscription', async () =
   assert.equal(f.creates(), 0);
 });
 
+test('unmigrated billing cannot create a second subscription or an empty Free account', async () => {
+  const f = fixture(); f.rows.set('visionary_billing_test_accounts/adult', { uid: 'adult', subscription: { id: 'sub_legacy' } });
+  await assert.rejects(f.create(), error => error.getStatus() === 503);
+  await assert.rejects(f.service.account('adult'), error => error.getStatus() === 503);
+  assert.equal(f.creates(), 0); assert.equal(f.rows.has('visionary_accounts/adult/billing/test'), false);
+});
+
+test('the global due index reconciles canonical nested billing and webhook intake updates both atomically', async () => {
+  const f = fixture(), checkout = await f.create(); f.pay(checkout.subscriptionId);
+  f.rows.get('visionary_billing_test_queue/adult').nextSyncAt = Date.now() - 1;
+  assert.equal((await f.service.reconcileDue(true)).processed, 1);
+  assert.equal((await f.service.account('adult')).plan, 'personal');
+  const raw = Buffer.from(JSON.stringify({ event: 'subscription.charged', payload: { subscription: { entity: { id: checkout.subscriptionId } } } }));
+  await f.service.webhook(raw, createHmac('sha256', webhookSecret).update(raw).digest('hex'), 'event_queue');
+  assert.equal(f.rows.get('visionary_billing_test_queue/adult').nextSyncAt, f.rows.get('visionary_accounts/adult/billing/test').nextSyncAt);
+});
+
 test('pending or halted payments do not advertise a saved checkout the server cannot reopen', async () => {
   for (const status of ['pending', 'halted']) {
     const f = fixture(), c = await f.create(); f.subscriptions.get(c.subscriptionId).status = status;
@@ -71,20 +88,20 @@ test('Free is persisted once under the verified account ID; concurrent reads nev
   const f = fixture();
   const values = await Promise.all([f.service.account('adult'), f.service.account('adult')]);
   assert.equal(values[0].plan, 'start'); assert.deepEqual(values[0].entitlement, values[1].entitlement);
-  const saved = f.rows.get('visionary_billing_test_accounts/adult');
+  const saved = f.rows.get('visionary_accounts/adult/billing/test');
   assert.equal(saved.uid, 'adult'); assert.equal(saved.basePlan, 'start'); assert.equal(saved.revision, 0);
   assert.equal(f.creates(), 0); assert.equal(saved.subscription, null); assert.deepEqual(saved.invoices, []);
   const other = await f.service.account('other'); assert.equal(other.uid, 'other'); assert.equal(other.plan, 'start');
-  assert.equal(f.rows.get('visionary_billing_test_accounts/other').uid, 'other');
+  assert.equal(f.rows.get('visionary_accounts/other/billing/test').uid, 'other');
 });
 
 test('legacy account backfill preserves paid history and rejects mismatched persisted identity', async () => {
   const f = fixture(), c = await f.create(); f.pay(c.subscriptionId); await f.service.sync('adult', true);
-  const saved = f.rows.get('visionary_billing_test_accounts/adult'), original = structuredClone(saved.subscription);
+  const saved = f.rows.get('visionary_accounts/adult/billing/test'), original = structuredClone(saved.subscription);
   delete saved.uid; delete saved.basePlan;
   assert.equal((await f.service.account('adult')).plan, 'personal');
-  assert.deepEqual(f.rows.get('visionary_billing_test_accounts/adult').subscription, original);
-  f.rows.get('visionary_billing_test_accounts/adult').uid = 'foreign';
+  assert.deepEqual(f.rows.get('visionary_accounts/adult/billing/test').subscription, original);
+  f.rows.get('visionary_accounts/adult/billing/test').uid = 'foreign';
   await assert.rejects(f.service.account('adult'), error => error.getStatus() === 503);
 });
 test('concurrent submits create one subscription and recover the same checkout on another device', async () => {
@@ -95,7 +112,7 @@ test('concurrent submits create one subscription and recover the same checkout o
 });
 test('timeout after provider creation is reconciled by saved attempt and never repeats the POST', async () => {
   const f = fixture(); f.failCreation(); await assert.rejects(f.create()); assert.equal(f.creates(), 1);
-  const record = f.rows.get('visionary_billing_test_accounts/adult'); record.attempt.createdAt -= 31000;
+  const record = f.rows.get('visionary_accounts/adult/billing/test'); record.attempt.createdAt -= 31000;
   const recovered = await f.create(); assert.equal(recovered.subscriptionId, 'sub_fixture1'); assert.equal(f.creates(), 1);
 });
 test('a closed checkout command cannot create another subscription when replayed later', async () => {

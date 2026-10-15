@@ -18,8 +18,8 @@ export default function ClassCard({
   const locale = copyWorkspace?.preferences.interfaceLocale || 'en';
   const copy = primaryWorkspaceCopy(locale);
   const color = classroom.color;
-  return <Link to={`/dashboard/class/${classroom.id}`} className="flex flex-col rounded-2xl overflow-hidden bg-white border border-[#dadce0]/60 hover:shadow-md transition-all">
-      <div className="h-28 p-5 flex flex-col justify-end" style={{
+  return <Link to={`/dashboard/class/${classroom.id}`} className="v-class-card flex flex-col rounded-2xl overflow-hidden bg-white border border-[#dadce0]/60 hover:shadow-md transition-all">
+      <div className="v-class-card-cover h-28 p-5 flex flex-col justify-end" style={{
       ...classColors(color)
     }}>
         <h3 className="text-lg font-medium leading-tight line-clamp-2">{classroom.name}</h3>

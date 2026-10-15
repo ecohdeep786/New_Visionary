@@ -1,3 +1,6 @@
+import WorkspaceDetails from '@/components/dashboard/WorkspaceDetails';
+import {workspacePresentationCopy} from '@/lib/workspacePresentationCopy';
+import GuideMark from '@/components/dashboard/GuideMark';
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import GettingStarted from '@/components/onboarding/GettingStarted';
 import {homeCopy} from '@/lib/homeCopy';
@@ -21,6 +24,7 @@ export default function DecisionHome() {
   const {ctx,data:workspaceData,revision,error:workspaceError} = useWorkspace();
   const locale=workspaceData?.preferences.interfaceLocale||'en';
   const copy=homeCopy(locale);
+  const ui=workspacePresentationCopy(locale);
   const guideAvailable = ctx?.role !== 'organization' || organizationPathAllowed({permissions:[]}, '/dashboard/ask');
   const [transitionError,setTransitionError] = useState('');
   const [planError,setPlanError]=useState('');
@@ -46,8 +50,7 @@ export default function DecisionHome() {
   const presentation = getStagePresentation(ctx);
   const stageTier = presentation.tier;
   return <div className={`v-page v-home stage-${stageTier}`} lang={locale}>
-    <header className="v-home-header"><div><p className="v-home-eyebrow">{workspace}</p><h1 className="v-title">{copy('Welcome back, {name}.',{name})}</h1><div className="v-home-context"><p className="v-home-boundary">{boundary}</p>{['student','professional'].includes(ctx.role)&&<StagePresentationSummary presentation={presentation} locale={locale}/>}</div></div><span className="v-home-local-label">{copy("Saved on this device")}</span></header>
-    <GettingStarted />
+    <header className="v-home-header"><div><p className="v-home-eyebrow">{workspace}</p><h1 className="v-title">{copy('Welcome back, {name}.',{name})}</h1><div className="v-home-context"><p className="v-home-boundary">{boundary}</p>{['student','professional'].includes(ctx.role)&&<StagePresentationSummary presentation={presentation} locale={locale}/>}</div></div><div className="v-home-header-tools"><GettingStarted /><span className="v-home-local-label">{copy("Saved on this device")}</span></div></header>
     {query.isFetching && <p className="v-muted" role="status">{copy("Updating your next step…")}</p>}
     <section className="v-home-priority" aria-labelledby="next-step-title" data-role={ctx.role}>
       <div className="v-home-priority-copy">
@@ -80,10 +83,10 @@ export default function DecisionHome() {
       </div>)}
     </section>)}</div>}
     {ctx.role==='student'&&<details className="v-home-module v-home-memory"><summary>{copy("Things I remember about you")}</summary><p className="v-muted">{copy("Only from your saved activity this week. These are observations, not an AI assessment.")}</p>{observations?.length?<ul className="mt-3 space-y-2">{observations.map(item=><li key={item.id} className="text-sm" lang="en">{item.text}</li>)}</ul>:<p className="v-muted mt-3">{copy(memoryEnabled?'No weekly observations yet. Start a learning unit or practice step to build your own history.':'Learning memory is off for this workspace. You can change it in Personalization.')}</p>}<Link className="v-button mt-4" to="/dashboard/privacy">{copy("View or clear memory")}</Link></details>}
-    {['student','professional'].includes(ctx.role)&&<StageSuggestionEntry ctx={ctx} locale={locale}/>}<RoleMentorPanel ctx={ctx}/>
-    {guideAvailable && <section className="v-home-module" aria-labelledby="home-guide"><div className="v-home-row"><div><h2 id="home-guide">{copy("Need help along the way?")}</h2><p className="v-muted">{copy("Ask a question or continue a saved conversation.")}</p></div><Link className="v-button" to="/dashboard/ask"><Sparkles size={18} aria-hidden="true"/>{copy("Ask Visionary Guide")}</Link></div></section>}
+    {['student','professional'].includes(ctx.role)&&<StageSuggestionEntry ctx={ctx} locale={locale}/>}<RoleMentorPanel ctx={ctx} locale={locale}/>
+    {guideAvailable && <section className="v-home-guide" aria-labelledby="home-guide"><GuideMark size={32}/><div><h2 id="home-guide">{copy("Need help along the way?")}</h2><p className="v-muted">{copy("Ask a question or continue a saved conversation.")}</p></div><Link className="v-button" to="/dashboard/ask">{copy("Ask Visionary Guide")}<ArrowRight size={16} aria-hidden="true"/></Link></section>}
     {setupNote && <p className="v-home-empty">{setupNote}</p>}
-    <p className="v-muted">{copy("Local preview · Saved on this device. No live model or cloud sync.")}</p>
+    <WorkspaceDetails title={ui("local")}><p className="v-muted">{copy("Local preview · Saved on this device. No live model or cloud sync.")}</p></WorkspaceDetails>
   </div>;
 }
 

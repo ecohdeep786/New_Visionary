@@ -5,7 +5,8 @@ const root = path.resolve(__dirname, '..'), req = createRequire(path.join(root, 
 const { ConfigService } = req('@nestjs/config');
 const { FirebaseAdminService } = req('./dist/src/auth/firebase/firebase-admin.service.js');
 const { FirebaseProductService } = req('./dist/src/auth/firebase-product/firebase-product.service.js');
-const { BILLING_ACCOUNTS, freeBillingAccount } = req('./dist/src/billing/billing-account.js');
+const { freeBillingAccount } = req('./dist/src/billing/billing-account.js');
+const { billingDocument, LEGACY_BILLING_ACCOUNTS } = req('./dist/src/auth/firebase-product/account-storage.js');
 if (process.argv.slice(2).some(value => value !== '--apply')) throw Error('Use no flag for inspection or --apply for missing defaults.');
 const settings = req('dotenv').parse(fs.readFileSync(path.join(root, 'backend/upstream/backend/.env')));
 if (settings.BILLING_MODE !== 'test') throw Error('This backfill is for the current test billing ledger only.');
@@ -21,9 +22,11 @@ const config = new ConfigService(settings), admin = new FirebaseAdminService(con
       try { identity = await admin.getAuth().getUser(account.id); }
       catch (error) { if (error.code === 'auth/user-not-found') { totals.ineligible++; continue; } throw error; }
       if (identity.disabled || !identity.emailVerified || identity.uid !== account.id) { totals.ineligible++; continue; }
-      const ref = db.collection(BILLING_ACCOUNTS).doc(identity.uid);
+      const ref = billingDocument(db, identity.uid);
       const result = await db.runTransaction(async tx => {
         const snapshot = await tx.get(ref), data = snapshot.data();
+        const legacy = !data ? await tx.get(db.collection(LEGACY_BILLING_ACCOUNTS).doc(identity.uid)) : null;
+        if (legacy?.exists) return 'conflicts';
         if (data?.uid && data.uid !== identity.uid) return 'conflicts';
         if (!data) { if (apply) tx.create(ref, freeBillingAccount(identity.uid)); return 'created'; }
         if (data.uid !== identity.uid || data.basePlan !== 'start') {

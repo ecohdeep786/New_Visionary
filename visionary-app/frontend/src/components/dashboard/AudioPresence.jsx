@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { AudioLines, MessageCircle, Mic, MicOff, X } from 'lucide-react';
+import { MessageCircle, Mic, MicOff, X } from 'lucide-react';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
+import GuideMark from './GuideMark';
+import { GUIDE_WINGS } from './guideIdentity';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { useCanAnimate } from '@/hooks/useMotionPreferences';
 import { newConversation, updateConversation, updatePreferences } from '@/services/workspaceService';
@@ -10,7 +12,7 @@ import { sendMentorTurn } from '@/services/mentorCompanionService';
 import { cancelSpeech, getSessionAudioOverride, getVoiceCapabilities, getVoiceMode, startListening, stopListening, speak, subscribeVoiceMode, setSessionAudioOverride } from '@/services/voiceService';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-// Two selectable visual presences for one shared Guide, not separate models or memories.
+  // Two color presentations for one shared Guide, not separate models or memories.
 // The single shell instance sits by the desktop rail and in the mobile app bar. Tapping
 // it announces availability without navigating. Audio behavior remains governed by
 // browser support, permission and the workspace preference; animation is not proof
@@ -21,11 +23,6 @@ const STATUS_TEXT = {
   speaking: 'Speaking.',
   denied: 'Microphone access is blocked in the browser. Audio is unavailable until it is allowed.',
   unsupported: 'This browser does not support audio interaction. Text works everywhere.',
-};
-const GREETINGS = {
-  en: 'I am your Intelligence — for you, always available.',
-  hi: 'मैं आपकी बुद्धिमत्ता हूँ — हर समय, आपके लिए उपलब्ध।',
-  bn: 'আমি আপনার বুদ্ধিমত্তা — সবসময়, আপনার জন্য উপলব্ধ।',
 };
 
 export default function AudioPresence() {
@@ -49,11 +46,8 @@ export default function AudioPresence() {
   const audioCtxRef = useRef(null);
   const frameRef = useRef(0);
   const levelRef = useRef(0);
-  const barsRef = useRef([0.3, 0.3, 0.3, 0.3]);
   const canAnimate = useCanAnimate();
-  const bornAt = useRef(0);
   ctxRef.current = ctx;
-  if (ctx && !bornAt.current) bornAt.current = performance.now();
   const effective = data ? (audioOverride ?? data.preferences?.voice !== false) : false;
   const animation = data?.preferences?.agiAnimation === 'girl' ? 'girl' : 'boy';
   const available = Boolean(ctx && data);
@@ -105,8 +99,7 @@ export default function AudioPresence() {
   function summon() {
     const request = ctxRef.current;
     if (!request) return;
-    const line = GREETINGS[request.locale] || GREETINGS.en;
-    setNotice(line);
+    setNotice('');
   }
 
   function queueSend(transcript) {
@@ -140,7 +133,7 @@ export default function AudioPresence() {
 
   function choosePresentation(next) {
     if (!ctxRef.current || next === presentationRef.current) return;
-    try { updatePreferences(ctxRef.current, { agiAnimation: next }); setNotice('Visual presence updated. Your conversations and learning stay together.'); }
+    try { updatePreferences(ctxRef.current, { agiAnimation: next }); setNotice('Appearance saved.'); }
     catch (error) { setNotice(error.message || 'The visual preference could not be saved.'); }
   }
 
@@ -164,7 +157,7 @@ export default function AudioPresence() {
     streamRef.current?.getTracks().forEach(track => track.stop());
     audioCtxRef.current?.close().catch(() => {});
     streamRef.current = null; audioCtxRef.current = null; analyserRef.current = null;
-    levelRef.current = 0; barsRef.current = [0.3, 0.3, 0.3, 0.3];
+    levelRef.current = 0;
   }
 
   function endVoiceSession() {
@@ -204,130 +197,40 @@ export default function AudioPresence() {
     let running = true;
     // Reuse meter buffers throughout the session instead of allocating per frame.
     const waveform = new Uint8Array(512);
-    const frequencies = new Uint8Array(256);
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = canvas.offsetWidth * ratio; canvas.height = canvas.offsetHeight * ratio;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      // Resizing clears the bitmap. Redraw the still frame for reduced motion too.
       cancelAnimationFrame(frameRef.current);
       frameRef.current = requestAnimationFrame(draw);
     };
     const draw = time => {
       if (!running) return;
-      const W = canvas.offsetWidth; const H = canvas.offsetHeight;
-      const cx = W / 2; const cy = H / 2; const R = Math.min(W, H) / 2 - 1;
+      const W = canvas.offsetWidth, H = canvas.offsetHeight;
       context.clearRect(0, 0, W, H);
       const listening = mode === 'listening' || mode === 'speaking';
-      const ready = !listening;
-      const motion = canAnimate && listening ? 1 : 0;
-      // A spoken reply has no live microphone signal (half-duplex), so use a gentle
-      // cadence only while speech synthesis is actually in the speaking state.
-      const cadence = mode === 'speaking'
-        ? 0.5 + 0.25 * Math.sin(time / 155 * motion) + 0.25 * Math.sin(time / 330 * motion)
-        : 0;
       let level = 0;
-      if (listening) {
+      if (canAnimate && listening) {
         if (mode === 'listening' && analyserRef.current) {
           analyserRef.current.getByteTimeDomainData(waveform);
           let sum = 0;
-          for (let index = 0; index < waveform.length; index++) { const value = (waveform[index] - 128) / 128; sum += value * value; }
+          for (const sample of waveform) sum += ((sample - 128) / 128) ** 2;
           level = Math.min(1, Math.sqrt(sum / waveform.length) * 4);
-        }
-        const floor = mode === 'speaking' ? 0.3 + cadence * 0.55 : 0.3;
-        levelRef.current = Math.max(levelRef.current * 0.88, level, floor);
-      } else levelRef.current = ready ? 0.16 : 0.06;
-      const dim = effective ? 1 : 0.55;
-      const age = time - bornAt.current;
-      const bloom = motion ? Math.max(0, 1 - age / 180) : 0;
-
-      if (animation === 'girl') {
-        // "Vision Girl" - four glowing blue bars rippling like a voice equalizer, no
-        // panel behind them: the bars and their glow are the whole element.
-        if (listening && analyserRef.current) {
-          analyserRef.current.getByteFrequencyData(frequencies);
-          const groups = [[2, 10], [10, 26], [26, 58], [58, 120]];
-          for (let bar = 0; bar < 4; bar++) {
-            const [from, to] = groups[bar];
-            let sum = 0;
-            for (let index = from; index < to; index++) sum += frequencies[index];
-            const value = Math.min(1, sum / (to - from) / 200);
-            barsRef.current[bar] = Math.max(barsRef.current[bar] * 0.8, value, 0.2);
-          }
-        } else {
-          for (let bar = 0; bar < 4; bar++) {
-            const ripple = mode === 'speaking'
-              ? 0.28 * Math.sin(time / 180 * motion + bar * 1.15) + 0.12 * Math.sin(time / 390 * motion + bar * 0.7)
-              : ready ? 0.18 * Math.sin(time / 480 * motion + bar * 1.05) : 0;
-            barsRef.current[bar] = Math.max(0.2, Math.min(1, 0.34 + ripple));
-          }
-        }
-        // The resting composition from the reference: bar three is the tallest.
-        const rest = [0.52, 0.66, 0.92, 0.68];
-        const barWidths = [0.155, 0.17, 0.185, 0.165];
-        const gaps = [0.035, 0.03, 0.035];
-        let totalWidth = 0;
-        for (let bar = 0; bar < 4; bar++) totalWidth += W * barWidths[bar];
-        totalWidth += (W * gaps[0] + W * gaps[1] + W * gaps[2]);
-        let cursor = cx - totalWidth / 2;
-        for (let bar = 0; bar < 4; bar++) {
-          const width = W * barWidths[bar];
-          const height = H * 0.72 * rest[bar] * (0.78 + barsRef.current[bar] * 0.55);
-          const x = cursor; const y = cy - height / 2;
-          const barGradient = context.createLinearGradient(0, y, 0, y + height);
-          barGradient.addColorStop(0, `rgba(138, 180, 248, ${0.98 * dim})`);
-          barGradient.addColorStop(1, `rgba(59, 120, 246, ${0.92 * dim})`);
-          context.fillStyle = barGradient;
-          context.shadowColor = 'rgba(66, 133, 244, 0.7)';
-          context.shadowBlur = 8;
-          context.beginPath();
-          if (context.roundRect) context.roundRect(x, y, width, height, width / 2); else context.rect(x, y, width, height);
-          context.fill();
-          context.shadowBlur = 0;
-          cursor += width + W * (gaps[bar] ?? gaps[2]);
-        }
-      } else {
-        // "Vision Boy" - the soft sky sphere exactly like the reference: bright cloud
-        // light across the top half, deep blue toward the bottom; drift only in a
-        // live voice session when motion is allowed.
-        const sky = context.createLinearGradient(0, cy - R, 0, cy + R);
-        sky.addColorStop(0, `rgba(233, 244, 255, ${dim})`);
-        sky.addColorStop(0.45, `rgba(147, 193, 252, ${dim})`);
-        sky.addColorStop(0.78, `rgba(66, 133, 244, ${dim})`);
-        sky.addColorStop(1, `rgba(37, 99, 235, ${dim})`);
-        context.fillStyle = sky;
-        context.beginPath(); context.arc(cx, cy, R, 0, Math.PI * 2); context.fill();
-        context.save();
-        context.beginPath(); context.arc(cx, cy, R - 0.5, 0, Math.PI * 2); context.clip();
-        // Cloud light: a wide bright sky band across the top plus luminous masses
-        // traveling across the upper half, wrapping around.
-        context.globalCompositeOperation = 'lighter';
-        const topBand = context.createLinearGradient(0, cy - R, 0, cy - R * 0.1);
-        topBand.addColorStop(0, `rgba(255, 255, 255, ${(0.5 + levelRef.current * 0.2) * dim})`);
-        topBand.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        context.fillStyle = topBand;
-        context.fillRect(0, cy - R, W, R * 0.9);
-        for (let cloud = 0; cloud < 4; cloud++) {
-          const travel = ((time * 0.000018 * (60 + cloud * 24) * motion + cloud * 0.37) % 1.3) - 0.15;
-          const cloudX = -R * 0.2 + travel * (W + R * 0.4);
-          const cloudY = cy - R * (0.42 - cloud * 0.16) + Math.sin(time / 1900 + cloud * 1.7) * R * 0.07 * motion;
-          const cloudR = R * (0.46 - cloud * 0.07) * (1 + levelRef.current * 0.3 + bloom * 0.15);
-          const cloudGlow = context.createRadialGradient(cloudX, cloudY, 0, cloudX, cloudY, cloudR);
-          cloudGlow.addColorStop(0, `rgba(255, 255, 255, ${(0.5 - cloud * 0.12) * dim})`);
-          cloudGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
-          context.fillStyle = cloudGlow;
-          context.beginPath(); context.arc(cloudX, cloudY, cloudR, 0, Math.PI * 2); context.fill();
-        }
-        // The listening glow at the heart of the sphere.
-        const heart = context.createRadialGradient(cx, cy + R * 0.05, 0, cx, cy + R * 0.05, R * (0.34 + levelRef.current * 0.5 + bloom * 0.2));
-        heart.addColorStop(0, `rgba(255, 255, 255, ${(0.45 + levelRef.current * 0.5) * dim})`);
-        heart.addColorStop(1, 'rgba(147, 197, 253, 0)');
-        context.fillStyle = heart;
-        context.beginPath(); context.arc(cx, cy + R * 0.05, R * (0.34 + levelRef.current * 0.5 + bloom * 0.2), 0, Math.PI * 2); context.fill();
-        context.globalCompositeOperation = 'source-over';
-        context.restore();
+        } else if (mode === 'speaking') level = .25 + .15 * Math.sin(time / 260);
       }
-
+      levelRef.current = canAnimate && listening ? Math.max(levelRef.current * .88, level) : 0;
+      const scale = Math.min(W, H) / 64 * (.86 + levelRef.current * .12);
+      context.save();
+      context.translate(W / 2 - 32 * scale, H / 2 - 32 * scale);
+      context.scale(scale, scale);
+      context.fillStyle = animation === 'girl' ? '#6654bd' : '#3473bd';
+      context.globalAlpha = effective ? 1 : .55;
+      context.fill(new Path2D(GUIDE_WINGS[0]));
+      context.globalAlpha *= .68;
+      context.fill(new Path2D(GUIDE_WINGS[1]));
+      context.globalAlpha = effective ? 1 : .55;
+      context.beginPath(); context.arc(32, 14, 4, 0, Math.PI * 2); context.fill();
+      context.restore();
       if (canAnimate && listening) frameRef.current = requestAnimationFrame(draw);
     };
     resize();
@@ -341,29 +244,27 @@ export default function AudioPresence() {
     ? 'Audio interaction is off. The animation is only an availability indicator; the microphone is not active.'
     : capabilities.recognition || capabilities.synthesis ? STATUS_TEXT[mode] : STATUS_TEXT.unsupported;
   const shortStatus = !effective ? 'Audio off' : mode === 'listening' ? 'Listening' : mode === 'speaking' ? 'Speaking' : mode === 'denied' ? 'Microphone blocked' : capabilities.recognition ? 'Ready for voice' : 'Text available';
-  const previewMotion = { animationPlayState: canAnimate && effective && (mode === 'listening' || mode === 'speaking') ? 'running' : 'paused' };
   return <Popover open={panelOpen} onOpenChange={open => { setPanelOpen(open); if (!open) { endVoiceSession(); setProcessing(false); } }}><PopoverTrigger asChild><button
     type="button"
     className={`v-audio-orb-button ${animation === 'girl' ? 'v-audio-girl' : 'v-audio-boy'}`}
     data-audio-state={!effective ? 'off' : mode}
     onClick={summon}
-    aria-label={`Open Visionary voice panel. ${animation === 'girl' ? 'Vision Girl' : 'Vision Boy'}. ${shortStatus}.`}
+    aria-label={`Open Visionary voice panel. ${animation === 'girl' ? 'Indigo' : 'Blue'}. ${shortStatus}.`}
     title={`Visionary Guide · ${shortStatus}`}
   >
     <span className="v-audio-glyph"><canvas ref={canvasRef} aria-hidden="true" /></span><span className="v-audio-name" aria-hidden="true">Guide</span>
-    {!panelOpen && (notice || (caption && mode === 'listening')) && <span className="v-audio-caption" aria-hidden="true">{notice || caption}</span>}
+
     {!panelOpen && <span role="status" className="sr-only">{status}</span>}
-  </button></PopoverTrigger><PopoverContent side="top" align="start" sideOffset={16} className="workspace-voice-panel" style={{maxHeight:'min(90dvh, var(--radix-popover-content-available-height))',overflowY:'auto'}} aria-labelledby="visionary-voice-title">
-    <div className="workspace-voice-panel-head sticky top-0 z-10 bg-white"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Your voice presence</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
+  </button></PopoverTrigger><PopoverContent side="top" align="start" sideOffset={16} collisionPadding={12} className="workspace-voice-panel" style={{maxHeight:'min(90dvh, var(--radix-popover-content-available-height))',overflowY:'auto'}} aria-labelledby="visionary-voice-title">
+    <div className="workspace-voice-panel-head"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Talk with Guide</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
     <span className={`workspace-voice-state state-${!effective ? 'off' : mode}`}><span aria-hidden="true" />{shortStatus}</span>
-    <p className="workspace-voice-intro">Vision Boy and Vision Girl are two visual styles for the same Guide. Your learning and conversations stay together.</p>
-    <p className="v-muted">Start listening uses your microphone to turn speech into an editable question. Your browser may use its speech service. You can stop at any time or use text without microphone access.</p>
+
+    <div className="guide-voice-emblem"><GuideMark size={76} className={animation === 'girl' ? 'guide-mark-indigo' : ''} /></div><p className="workspace-voice-intro">Speak, review, then send.</p>
     <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'listening' || mode === 'speaking' || processing ? () => { endVoiceSession(); setProcessing(false); } : beginListening} disabled={!capabilities.recognition}>{mode === 'listening' || mode === 'speaking' || processing ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{!capabilities.recognition ? 'Voice input unavailable' : mode === 'listening' || mode === 'speaking' || processing ? 'Stop voice session' : mode === 'denied' ? 'Retry microphone' : 'Start listening'}</button><button className="v-button" disabled={!capabilities.recognition && !capabilities.synthesis} onClick={toggleAudio}>{effective ? 'Turn audio off' : 'Turn audio on'}</button><Link className="v-button" to="/dashboard/ask" state={{initialQuestion:caption}} onClick={() => { endVoiceSession(); setSessionAudioOverride(false); setAudioOverride(false); setProcessing(false); setPanelOpen(false); }}><MessageCircle size={17} aria-hidden="true" />Use text instead</Link></div>
-    <div className={`workspace-voice-preview ${animation === 'girl' ? 'is-girl' : 'is-boy'} ${!effective ? 'is-off' : ''} ${mode === 'listening' && effective ? 'is-listening' : ''} ${mode === 'speaking' && effective ? 'is-speaking' : ''}`} aria-hidden="true"><span className="workspace-voice-preview-glow" /><span className="workspace-voice-preview-orb" style={previewMotion} /><span className="workspace-voice-preview-bars">{[0, 1, 2, 3].map(index => <i key={index} style={previewMotion} />)}</span></div>
     <p className="workspace-voice-now" role="status">{processing ? 'Preparing your reply. Stop the session to cancel.' : mode === 'listening' ? 'Listening. Your question will appear below for review.' : caption ? 'Question ready to review. Edit it or send when ready.' : status}</p>
     {notice && <p className="v-notice" role="status">{notice}</p>}
     {caption && <section className="mt-3"><label className="text-sm">Review spoken question<textarea aria-label="Review spoken question" className="v-field mt-2" value={caption} maxLength={6000} disabled={processing} onChange={event => { stopListening(); detachAnalyser(); setCaption(event.target.value); }} /></label><p className="v-muted mt-2">Review or edit your words before sending. Speech is not sent automatically.</p><button className="v-button mt-3" disabled={processing || !caption.trim()} onClick={() => sendTurn(caption)}>{processing ? 'Preparing reply…' : 'Send spoken question'}</button></section>}
-    <div className="workspace-voice-choices" role="group" aria-label="Visual presence"><button type="button" aria-pressed={animation === 'boy'} onClick={() => choosePresentation('boy')}><span className="workspace-voice-choice-mark is-boy" aria-hidden="true" />Vision Boy</button><button type="button" aria-pressed={animation === 'girl'} onClick={() => choosePresentation('girl')}><span className="workspace-voice-choice-mark is-girl" aria-hidden="true"><i /><i /><i /><i /></span>Vision Girl</button></div>
-    <p className="workspace-voice-footnote"><AudioLines size={14} aria-hidden="true" />Voice uses this browser. Teaching AI is not connected in the local preview.</p>
+    <details className="guide-voice-details"><summary>Voice & appearance</summary><p className="v-muted">Your browser’s speech service turns microphone audio into text. Nothing is sent to Guide until you choose Send. Both styles use the same Guide.</p><div className="workspace-voice-choices" role="group" aria-label="Visual presence"><button type="button" aria-pressed={animation === 'boy'} onClick={() => choosePresentation('boy')}><GuideMark size={22} />Blue</button><button type="button" aria-pressed={animation === 'girl'} onClick={() => choosePresentation('girl')}><GuideMark size={22} className="guide-mark-indigo" />Indigo</button></div>
+    <p className="workspace-voice-footnote">Local preview · Teaching AI is not connected.</p></details>
   </PopoverContent></Popover>;
 }

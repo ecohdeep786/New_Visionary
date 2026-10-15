@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { backendRuntimeArgs } from './backend-runtime.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [component = 'doctor', action = 'build', ...extra] = process.argv.slice(2);
@@ -26,21 +27,23 @@ if (component === 'doctor') {
   console.log('Local infrastructure: infrastructure/local/compose.yml');
   console.log(`Backend Node: ${process.version}; ${backendNodeSupported ? 'supported for Firebase Admin' : 'use supported Node 22 or 24 LTS; Node 24 recommended'}`);
   console.log(`ML Go 1.25: ${!windows || fs.existsSync(go) ? 'available; verify with ml:build' : 'missing; run scripts/setup-toolchains.ps1'}`);
-  console.log('Live frontend/backend/ML connection: pending authenticated API and workspace integration.');
+  console.log('Connected product API: Firebase account/onboarding/device sessions and Razorpay test billing.');
+  console.log('Learning/workspace authorization and ML integration: pending; imported legacy runtimes are reference-only.');
 } else if (component === 'backend') {
   if (!backendNodeSupported) throw new Error('Firebase Admin requires a supported backend runtime. Use Node 22 or 24 LTS (24 recommended).');
   if (!backendNpm) throw new Error('Run this task through npm.');
   const cwd = path.join(root, 'backend/upstream/backend');
   const env = windows ? { PATH: `${nodeDirectory};${process.env.PATH}` } : {};
-  if (action === 'auth-dev') {
-    run(backendNode, ['--watch', '-r', 'ts-node/register', 'src/main-auth.ts'], cwd, env);
+  const runtimeArgs = backendRuntimeArgs(action);
+  if (runtimeArgs) {
+    run(backendNode, [...runtimeArgs, ...extra], cwd, env);
     process.exit(0);
   }
   if (action === 'firebase-check') {
     run(backendNode, [path.join(root, 'scripts/firebase-check.cjs'), ...extra], cwd, env);
     process.exit(0);
   }
-  const args = action === 'install' ? ['ci', '--ignore-scripts', '--no-audit', '--no-fund'] : action === 'generate' ? ['run', 'prisma:generate'] : action === 'build' ? ['run', 'build'] : action === 'dev' ? ['run', 'start:dev'] : null;
+  const args = action === 'install' ? ['ci', '--ignore-scripts', '--no-audit', '--no-fund'] : action === 'generate' ? ['run', 'prisma:generate'] : action === 'build' ? ['run', 'build'] : null;
   if (!args) throw new Error(`Unknown backend action: ${action}`);
   if (action === 'install') {
     run(backendNode, [backendNpm, ...args], cwd, env);

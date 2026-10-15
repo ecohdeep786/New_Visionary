@@ -19,6 +19,7 @@ import OrganizationBilling from '@/pages/dashboard/OrganizationBilling';
 import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
 import './workspace-design.css';
+import '@/styles/workspace-premium.css';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Ellipsis } from "lucide-react";
 import { shellCopy } from './shellCopy';
