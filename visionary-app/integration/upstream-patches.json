@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "patches": [
+    {
+      "id": "2026-10-14-firebase-sdk",
+      "date": "2026-10-14",
+      "decision": "D-060",
+      "reason": "Founder-authorized Firebase Admin 14.5.0 installation; requires Node 22+, so select supported Node 22/24 and update backend Node version/deployment source from obsolete Node 20. No cloud deployment or account operation.",
+      "diff": "integration/upstream-patches/2026-10-14-firebase-sdk.patch",
+      "diffSha256": "4dc6687e9742db854ada9f4f846f77eabb685909545b59e82175c36ab517ec32",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/package.json",
+          "beforeSha256": "fdc6411feb75079e63b8b4271f9c9b62eee4da17892f59d1b0af2ae1727dcbd3",
+          "afterSha256": "1af824286b4a3264acbeb572980be2002f9011eabe78ef5d21f8fcb5fc3f6224"
+        },
+        {
+          "source": "backend",
+          "path": "backend/package-lock.json",
+          "beforeSha256": "b586139252bca414561ebd243c94b638ca2db0fd7f0705452325b2cc3c87f95b",
+          "afterSha256": "adf2864153b92e52cf3afbfa8f09a553d5b2e672567ad62deb706ab9166f261b"
+        },
+        {
+          "source": "backend",
+          "path": "deploy/Dockerfile.backend",
+          "beforeSha256": "fcc4bf38b7e236beb90b1038d3b673aa2c0f274f41ef01ae0d2ea9c20d07434d",
+          "afterSha256": "c5c9011591fdd6a39c3ee69a5352bf2fc655eb18ff0d673243e0e8a34e105624"
+        },
+        {
+          "source": "backend",
+          "path": ".nvmrc",
+          "beforeSha256": "18c97a2f2ed009a2d996ebe3c5306ff0c47cb200533be01616f5e54d7b76ff72",
+          "afterSha256": "f6bca0e7f46a94bd3349fdb86511cbec4a9091e409b62dd2d6b8c1fdb9a3ce00"
+        },
+        {
+          "source": "backend",
+          "path": ".node-version",
+          "beforeSha256": "18c97a2f2ed009a2d996ebe3c5306ff0c47cb200533be01616f5e54d7b76ff72",
+          "afterSha256": "f6bca0e7f46a94bd3349fdb86511cbec4a9091e409b62dd2d6b8c1fdb9a3ce00"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-14-firebase-admin-provider",
+      "date": "2026-10-14",
+      "decision": "D-062",
+      "reason": "Register/export a lazy Firebase Admin provider after founder-supplied project credential and Identity Platform confirmation; retain existing auth routes/guards until session cutover.",
+      "diff": "integration/upstream-patches/2026-10-14-firebase-admin-provider.patch",
+      "diffSha256": "dee468d03fc1ddf0feed6f681a78cf2dc9834d5ff02afb3d54fee94017a7add4",
+      "files": [
+        {
+          "source": "backend",
+          "path": "backend/src/auth/auth.module.ts",
+          "beforeSha256": "578eafbc8970fdfffa7b7d7a92e6d5a837c1acaa7d7de72065dd6f290e5c1cce",
+          "afterSha256": "787ac18e79d9c37410346c1f472eb58cae63920c32d26930ae50282633e9f8b3"
+        }
+      ]
+    }
+  ]
+}

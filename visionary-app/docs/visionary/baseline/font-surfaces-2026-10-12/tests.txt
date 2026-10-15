@@ -1,0 +1,17 @@
+✔ teacher review drafts keep only the current attempt and survive a failed local write (6.2435ms)
+✔ reviewed lesson → assignment → learner submission → returned feedback stays connected and scoped (70.2941ms)
+✔ visiting the dashboard never creates a streak or changes inputs (2.9815ms)
+✔ grades are normalized against assignment points without write-side effects (0.64ms)
+✔ priority sorting preserves high priority and real activity makes a streak (28.6374ms)
+✔ practice scoring cannot exceed its question count (0.3374ms)
+✔ auth returns only to internal dashboard paths (1.7625ms)
+✔ preview account isolation, consent, persistence, and idempotent onboarding (6.6711ms)
+✔ onboarding keeps a competitive goal without inventing exam subjects (1.1456ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 756.7055

@@ -1,9 +1,27 @@
 #env
 .env
 .env.*
+.secrets/
+**/*firebase-adminsdk*.json
 
 # Logs
 /logs
+/artifacts/*
+!/artifacts/README.md
+!/artifacts/legacy/
+artifacts/legacy/*
+!/artifacts/legacy/root/
+!/artifacts/legacy/dev/
+artifacts/legacy/root/*
+artifacts/legacy/dev/*
+!artifacts/legacy/root/audit-report.json
+!artifacts/legacy/root/l0-report.json
+!artifacts/legacy/dev/null
+!artifacts/legacy/root/tmp-corner.png
+!artifacts/legacy/root/tmp-corner2.json
+!artifacts/legacy/root/tmp-corner2.png
+!artifacts/legacy/root/tmp-our-corner.json
+!artifacts/legacy/root/tmp-our-corner.png
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -29,3 +47,22 @@ dist-ssr
 
 .env
 .vite
+nul
+
+# Imported components own their dependency/build checks and local environments.
+.tools/
+**/__pycache__/
+**/.pytest_cache/
+**/.venv/
+**/.cache/
+**/.turbo/
+reverse-engineering/upstream/skills/
+
+# Reviewed configuration templates are source; actual credentials stay ignored.
+!.env.example
+!.env.*.example
+!**/.env.example
+!**/.env.*.example
+
+# Local executables built from imported Go services.
+ml/upstream/services/**/*.exe

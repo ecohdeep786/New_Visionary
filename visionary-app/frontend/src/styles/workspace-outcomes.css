@@ -1,0 +1,45 @@
+/* Recorded outcomes, scoped to the authenticated product. No ornamental rewards. */
+.visionary-workspace .v-progress-overview {
+  border-inline-start: 3px solid var(--v-action);
+}
+.visionary-workspace .v-progress-overview .v-evidence-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+.visionary-workspace .v-learning-milestone {
+  padding: 1rem;
+  border: 1px solid var(--v-border);
+  border-radius: var(--v-radius-control);
+  background: var(--v-soft);
+}
+.visionary-workspace .v-learning-milestone-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.visionary-workspace .v-learning-milestone-heading > svg {flex: none; margin-top: .2em; color: var(--v-action)}
+.visionary-workspace .v-learning-milestone-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  margin-top: .875rem;
+  list-style: none;
+  padding: 0;
+}
+.visionary-workspace .v-learning-milestone-item {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: .5rem;
+  font-size: .875rem;
+  line-height: 1.6;
+  color: var(--v-muted);
+}
+.visionary-workspace .v-learning-milestone-item > svg {flex: none; margin-top: .2em}
+.visionary-workspace .v-learning-milestone-item[data-recorded="true"] {color: var(--v-text)}
+.visionary-workspace .v-learning-milestone-item[data-recorded="true"] > svg {color: var(--v-action)}
+@media (forced-colors: active) {
+  .visionary-workspace .v-learning-milestone {border-color: CanvasText}
+  .visionary-workspace .v-progress-overview {border-inline-start-color: Highlight}
+}

@@ -1,0 +1,105 @@
+/* Local font files — self-hosted, no external dependency.
+   Font weights 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold).
+   Google Sans Flex includes genuine 600 for Apple-style semibold headings.
+   600 weight is served from /fonts/ on the same origin.
+   The original faces remain unchanged for fixed heroes. Public content
+   adds a genuine local 600 face under a CSS alias of the same family.
+   Google Sans Flex is the public-facing font stack; Google Sans
+   is the product/internal stack. Both serve from /fonts/ on the same origin. */
+
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('/fonts/GoogleSansFlex-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('/fonts/GoogleSansFlex-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('/fonts/GoogleSansFlex-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('/fonts/GoogleSansFlex-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/GoogleSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/GoogleSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/GoogleSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-public: 'Google Sans Flex', 'Google Sans', sans-serif;
+  --font-public-content: 'Google Sans Flex Content', 'Google Sans Flex', 'Google Sans', sans-serif;
+  --font-product: 'Google Sans', sans-serif;
+  --font-brand: var(--font-public);
+}
+
+/* Same Google Sans Flex glyph family, isolated so adding a genuine 600
+   content face cannot alter existing fixed heroes or navigation. */
+@font-face {
+  font-family: 'Google Sans Flex Content';
+  src: url('/fonts/GoogleSansFlex-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex Content';
+  src: url('/fonts/GoogleSansFlex-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex Content';
+  src: url('/fonts/GoogleSansFlex-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Google Sans Flex Content';
+  src: url('/fonts/GoogleSansFlex-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Body inheritance covers portals (including tooltips and toasts) outside the
+   shell. The selector stops matching as soon as the product is unmounted. */
+body:has(.visionary-workspace, [data-font-surface="product"]),
+.visionary-workspace,
+[data-font-surface="product"] {
+  --font-brand: var(--font-product);
+  font-family: var(--font-product);
+}

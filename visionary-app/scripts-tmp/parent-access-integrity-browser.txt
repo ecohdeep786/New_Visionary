@@ -1,8 +1,0 @@
-Skip to content
-404
-Page Not Found
-
-The page "dashboard/plans" could not be found in this application.
-
-Go Home
-[]

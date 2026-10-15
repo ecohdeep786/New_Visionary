@@ -1,0 +1,1 @@
+PASS Google Sans product/body/controls/menus/tooltips, Google Sans Flex public, independent tokens, SPA restoration and internal fallback markers at 390/1440.

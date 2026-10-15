@@ -1,0 +1,2435 @@
+{
+  "Date": "2026-10-13",
+  "Moves": [
+    {
+      "From": "src",
+      "To": "frontend/src"
+    },
+    {
+      "From": "public",
+      "To": "frontend/public"
+    },
+    {
+      "From": "tests",
+      "To": "frontend/tests"
+    },
+    {
+      "From": "node_modules",
+      "To": "frontend/node_modules"
+    },
+    {
+      "From": "dist",
+      "To": "frontend/dist"
+    },
+    {
+      "From": "package.json",
+      "To": "frontend/package.json"
+    },
+    {
+      "From": "package-lock.json",
+      "To": "frontend/package-lock.json"
+    },
+    {
+      "From": "index.html",
+      "To": "frontend/index.html"
+    },
+    {
+      "From": "vite.config.js",
+      "To": "frontend/vite.config.js"
+    },
+    {
+      "From": "eslint.config.js",
+      "To": "frontend/eslint.config.js"
+    },
+    {
+      "From": "jsconfig.json",
+      "To": "frontend/jsconfig.json"
+    },
+    {
+      "From": "tsconfig.domain.json",
+      "To": "frontend/tsconfig.domain.json"
+    },
+    {
+      "From": "tailwind.config.js",
+      "To": "frontend/tailwind.config.js"
+    },
+    {
+      "From": "postcss.config.js",
+      "To": "frontend/postcss.config.js"
+    },
+    {
+      "From": "components.json",
+      "To": "frontend/components.json"
+    },
+    {
+      "From": "scripts/design-quality-review.mjs",
+      "To": "frontend/scripts/design-quality-review.mjs"
+    },
+    {
+      "From": "scripts/font-surface-review.mjs",
+      "To": "frontend/scripts/font-surface-review.mjs"
+    },
+    {
+      "From": "scripts/navigation-quality-review.mjs",
+      "To": "frontend/scripts/navigation-quality-review.mjs"
+    },
+    {
+      "From": "integration/compose.local.yml",
+      "To": "infrastructure/local/compose.yml"
+    },
+    {
+      "From": "integration/init-databases.sql",
+      "To": "infrastructure/local/init-databases.sql"
+    },
+    {
+      "From": "tmp",
+      "To": "artifacts/tmp"
+    },
+    {
+      "From": "scripts-tmp",
+      "To": "artifacts/legacy/scripts-tmp"
+    },
+    {
+      "From": "dev",
+      "To": "artifacts/legacy/dev"
+    },
+    {
+      "From": "audit-report.json",
+      "To": "artifacts/legacy/root/audit-report.json"
+    },
+    {
+      "From": "l0-report.json",
+      "To": "artifacts/legacy/root/l0-report.json"
+    },
+    {
+      "From": "tmp-corner.png",
+      "To": "artifacts/legacy/root/tmp-corner.png"
+    },
+    {
+      "From": "tmp-corner2.json",
+      "To": "artifacts/legacy/root/tmp-corner2.json"
+    },
+    {
+      "From": "tmp-corner2.png",
+      "To": "artifacts/legacy/root/tmp-corner2.png"
+    },
+    {
+      "From": "tmp-our-corner.json",
+      "To": "artifacts/legacy/root/tmp-our-corner.json"
+    },
+    {
+      "From": "tmp-our-corner.png",
+      "To": "artifacts/legacy/root/tmp-our-corner.png"
+    }
+  ],
+  "PreservedFiles": [
+    {
+      "Path": "frontend/src/App.css",
+      "Sha256": "c2571ce7245629994b8adc84f6c48e1920f047a4e7e29c89a4aeb51eeb1b5433"
+    },
+    {
+      "Path": "frontend/src/App.jsx",
+      "Sha256": "a97fa5621d0e62d795a8b5152e83fac8a576a75cb016d5e4c82fc3cce4b9568b"
+    },
+    {
+      "Path": "frontend/src/index.css",
+      "Sha256": "c195bcf116c92aa9b19df709d1a40f01a9084d5909dd4bcec4b454a93394d6d0"
+    },
+    {
+      "Path": "frontend/src/main.jsx",
+      "Sha256": "17a369aa0cc0246f66b2af877783a428dc8a87ea6cc725dd7c269df0baf26309"
+    },
+    {
+      "Path": "frontend/src/api/appClient.js",
+      "Sha256": "89c4f476012db945b487e8b1bf1b8893be8a745a4fad926f4cecf2114051cec2"
+    },
+    {
+      "Path": "frontend/src/api/base44Client.js",
+      "Sha256": "6dd9b2e961a2bac1cb4b08b7f2908cab79a2434d1efe438b20f7ce36e105bc0c"
+    },
+    {
+      "Path": "frontend/src/api/demoFixtures.js",
+      "Sha256": "bdd3290212dadaa83d37c6c53f23b17acb9c81e6f35038fa695e6319f02acf98"
+    },
+    {
+      "Path": "frontend/src/api/previewPermissions.js",
+      "Sha256": "d12912001b7b32bb2cbc89b5fe1e6413d65d819a3df0a13bb7da3b879a557273"
+    },
+    {
+      "Path": "frontend/src/assets/achievenment-achieve.webp",
+      "Sha256": "a5e868174b69c035004f18a0b829f282ddc8a18bf16d5e32512e93d71ecb386e"
+    },
+    {
+      "Path": "frontend/src/assets/achivenment-build.webp",
+      "Sha256": "dff97719d407133fa03fab76d9196df87f4af1c7667a433ed4711b07eb17cd91"
+    },
+    {
+      "Path": "frontend/src/assets/org-face-main-1600w.webp",
+      "Sha256": "3fc83a0ce84de7cef40ab1fc3dff6e354bc3446ff9877a2bfef9f5064630d1a8"
+    },
+    {
+      "Path": "frontend/src/assets/org-face-main-2400w.webp",
+      "Sha256": "8520da41eab3b3dc8df0d13e5b8b402c0f692375900d44ec241fb4c2359bfed3"
+    },
+    {
+      "Path": "frontend/src/assets/org-face-main-800w.webp",
+      "Sha256": "5d947a54cae41f02054aff3483b3e6856e8379c1f3fe2016404acde679674126"
+    },
+    {
+      "Path": "frontend/src/assets/organization-face-main.webp",
+      "Sha256": "28dd8dc6fd7615c7def577dab0e921ae19db6dde7761c4b841e286bb80f8b9ed"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-1-1600w.webp",
+      "Sha256": "588059839dfa46d51eb1d737a7890f56aaea28028c79fb3e0ad8c54d71163984"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-1.webp",
+      "Sha256": "0e76b7f373fc05d15e9b59d9003e1ce4113f5a4a55546f9eebf3d453b9515012"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-2-1600w.webp",
+      "Sha256": "0034f3aee44c0e79885b86286b1ba850c15c97f7b63e83a2b549b497f8420183"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-2.webp",
+      "Sha256": "2c70bac8a8eeba3cda53ebdaffa6fd1b805b6b3e17f1d24ed8923c4ba9c249ea"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-3-1600w.webp",
+      "Sha256": "893904af92b7fa66d6f65613e6ea22f738966e27be1348ae8239e578f3ade73b"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-3.webp",
+      "Sha256": "a9921d68794f781ce1423a97a3affb6fe459d52098b0428601f250dfae8485ff"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-4-1600w.webp",
+      "Sha256": "06bae332bba7f102d32e3b959f4b1472872e4cc7f9fdb609a4fc44d0fef18606"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-4.webp",
+      "Sha256": "6000688a0ed685df7ff32231bc88db5b7faeeea809b508c859cef997a2c98a37"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-5-1600w.webp",
+      "Sha256": "305573a0569c46c319ed39083dc23afc778d2fd4a2a195c2bf102b2b5db0cd03"
+    },
+    {
+      "Path": "frontend/src/assets/organization-problem-5.webp",
+      "Sha256": "e50b37ee805cefd5cdead969892481b20b66bc172ac7ad7d3be143e067bf9a76"
+    },
+    {
+      "Path": "frontend/src/assets/parent-face-main.webp",
+      "Sha256": "88a21bf5d2c2820ece8dfe843cb0e81f3c2b3467bcdc51c21cdaa4b9633d2e26"
+    },
+    {
+      "Path": "frontend/src/assets/parent-hero-main-1600w.webp",
+      "Sha256": "6d912cdb6111d38b8e6dce9dc7ae37f4661f5ff0f3930eb50b4cc5ddfa2a70e5"
+    },
+    {
+      "Path": "frontend/src/assets/parent-hero-main-2400w.webp",
+      "Sha256": "85c7adc1f9a51e1d87aa71731f30afe83d2439bf831a0faa039d08340989bad4"
+    },
+    {
+      "Path": "frontend/src/assets/parent-hero-main-800w.webp",
+      "Sha256": "083c5e6773776147dfa8f7f8af168322e23a1034714035aa213028121578a057"
+    },
+    {
+      "Path": "frontend/src/assets/pro-face-main-1600w.webp",
+      "Sha256": "a78be02f44a7a20b3b9e4eb5a8bd9bf879c868d31755c9331d7327f72343c33e"
+    },
+    {
+      "Path": "frontend/src/assets/pro-face-main-2400w.webp",
+      "Sha256": "be272e33aa8a39c4fb330fed269e2618e6a66c373bd51fa3675692e286fb6d99"
+    },
+    {
+      "Path": "frontend/src/assets/pro-face-main-800w.webp",
+      "Sha256": "7da13db601fb827c71746d26e1f5d341a1db3a4466525cfa4b527f3ecf9e20a0"
+    },
+    {
+      "Path": "frontend/src/assets/problem-exam.webp",
+      "Sha256": "47c0d4595a829545b54e144f4ece8754e09fecab8adb76c0f740d9c5cc5947b9"
+    },
+    {
+      "Path": "frontend/src/assets/problem-practice.webp",
+      "Sha256": "4b653ec66eca6afe6889fdce0e9f5bc5218d81029af969ee8b3922a3469d7480"
+    },
+    {
+      "Path": "frontend/src/assets/problem-revision.webp",
+      "Sha256": "087c084476751a80beea07e015d26a211676db713127875a7c3d7c2d418f642b"
+    },
+    {
+      "Path": "frontend/src/assets/problem-understanding.webp",
+      "Sha256": "ac8bd490392a5e88e9f4c40f728bbc02d58e3bd01219f132c0597876d55e74d7"
+    },
+    {
+      "Path": "frontend/src/assets/professional-face-main.webp",
+      "Sha256": "64cb505408630432937b90b97b523c77a22168c92410d3e6900a6cf4886fb76d"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-1-1600w.webp",
+      "Sha256": "e8c326abcf8e0e1e8bb5d824a630c59301cdf282f2464e3632414ab0555ad6ef"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-1.webp",
+      "Sha256": "bce0c736e371cc4ed246e664c67174496c369680fa6eb2f3a8fbfdc9fb67700a"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-2-1600w.webp",
+      "Sha256": "b159ca7e5115124006b6d836c1c51c060f018665841c3b09fc78f1a42d98d1c3"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-2.webp",
+      "Sha256": "b3064f3a02cc24bd8ed547bae257d5972a1b8047519f3b4b6deadee7af824154"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-3-1600w.webp",
+      "Sha256": "b159b49abe019997aa649a428211f9749d109ee90d7b52c057db739778c696f1"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-3.webp",
+      "Sha256": "273145840ac378aeaed415e5a4df486b529fafd13de560bfad7699636a09dba4"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-4-1600w.webp",
+      "Sha256": "753e3aa1ade55f4834fcc2c6ad716701a2d17fcbe8b1a1f16fae200986c341d6"
+    },
+    {
+      "Path": "frontend/src/assets/professional-problem-4.webp",
+      "Sha256": "5da16a646ea0305fca38cdbd9373ed0d43ee825502406cc0c4aae0da329649b7"
+    },
+    {
+      "Path": "frontend/src/assets/Remembering.webp",
+      "Sha256": "6ae5e7b56eaaf10befec5dd9c5eaa882567b402bc9f2bafa1f32e12821eddf6a"
+    },
+    {
+      "Path": "frontend/src/assets/student-competitive.webp",
+      "Sha256": "de046106806fa2721e0bb5df4fe4dec7cce9ae60f3b24f03bb8f18f5a4cd97e1"
+    },
+    {
+      "Path": "frontend/src/assets/student-face-main.webp",
+      "Sha256": "ddba761dcaca7451972505751c2534a67a529061b68e922c9f2cab5c15491200"
+    },
+    {
+      "Path": "frontend/src/assets/student-hero-main-1600w.webp",
+      "Sha256": "0288355d35439dddbeb33fe80fb58afa795d03e453a40fe81f8e08f7e601b965"
+    },
+    {
+      "Path": "frontend/src/assets/student-hero-main-2400w.webp",
+      "Sha256": "d81e40b9325243d3664bce20c9f4d2236eca1ce02883e075ce3c3e376b2cd250"
+    },
+    {
+      "Path": "frontend/src/assets/student-hero-main-800w.webp",
+      "Sha256": "92a049fc74d0e0a9bcb1f3bc56e79608b001df1a47ee264e01347b46402322bf"
+    },
+    {
+      "Path": "frontend/src/assets/student-higher.webp",
+      "Sha256": "0d667d1266d9950c7b95e5d6f7a8878d9611cfa63ad3baacd849505a220d7614"
+    },
+    {
+      "Path": "frontend/src/assets/student-primary.webp",
+      "Sha256": "2e0ca72a1790e091e8bd3123ee9c5a8027f5fac9e5f20ee44cbbb9b6ecf373de"
+    },
+    {
+      "Path": "frontend/src/assets/student-secondary.webp",
+      "Sha256": "4d35c4f24f159ea717a09671132afdc968dfd235def9c96b99cec5e793933a3c"
+    },
+    {
+      "Path": "frontend/src/assets/student-vocational.webp",
+      "Sha256": "b3d89de01dd3d355fbe43b50a706707281f7754e8f6191562e22fbc187d7b332"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-face-main.webp",
+      "Sha256": "06cc435e1f058d87f2eac431c0e1aa131827bdac0ff9aab1647f464e93eddf48"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-hero-main-1600w.webp",
+      "Sha256": "f19bc62574ee46a3836b32805107f6a3e94d09e806d8fd05d58144a79f5af99d"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-hero-main-2400w.webp",
+      "Sha256": "51a986263fe96df9381f8a1c9ea32fec4b8072eda945c9bcfd0bdd0d628345ef"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-hero-main-800w.webp",
+      "Sha256": "4a0bf1da85a60c3d5c232684c91e4a330a23bd39524358ced8b33f649d4e7a35"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-problem-1.webp",
+      "Sha256": "6e15a96a293ed21b1ec00498b4fdde412c4a2729a708191c30184ae9fa00b9b8"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-problem-2.webp",
+      "Sha256": "66b9d9fcd2d980cbbe1679db5c767addf9a1369ff8071228a062d23d8bf76d9f"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-problem-3.webp",
+      "Sha256": "5f18ae1113c6e1266b082dbafd74b3384ca07a1142b898b8da6f8d10a51a1185"
+    },
+    {
+      "Path": "frontend/src/assets/teacher-problem-4.webp",
+      "Sha256": "9e65c68cfe25932daaff366e2d3e562e4f3e1434eb9fb77c3b32bdce83939dd0"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/organization-480w.webp",
+      "Sha256": "b10fece5a3ea3dff833f04b9bb80612a499abf38a74e6b9c47bb19bd7cd0b692"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/organization-800w.webp",
+      "Sha256": "394a02d1dacb22f6b6c2a59968fe324fc8324afcbde8aabdb2f147cfe9e3284e"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/organization-hard-480w.webp",
+      "Sha256": "0bdaca3a97d477a78cb80ab3fac12e44a65c851db895d5a4f7a601c7cb720622"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/organization-hard-800w.webp",
+      "Sha256": "4ac059e773aad211c4e1cc7ac069bdb722701da138a10ac7b51eb3594ee727df"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/parent-480w.webp",
+      "Sha256": "30ac5977a1e942b8d20a1a3d0e12c8633296c1f1bf13d1399c8c2ba608877a90"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/parent-800w.webp",
+      "Sha256": "ded60a477f159d6a9bc5d6ff8ca9ff379ba8dc1513e35dc9dcb9dbaf3441dc25"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/parent-hard-480w.webp",
+      "Sha256": "f788568d3e3069018c4ddd68ed745c480cf7b9670af7d5c92625ce743e0b41fd"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/parent-hard-800w.webp",
+      "Sha256": "482b51dd1e19925f8ad2ee701c22fd61a1349f50372a18a2f77bb4b3a2f6fcf0"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/professional-480w.webp",
+      "Sha256": "b55ac94da35219365ed4f1dc7dc08889da7d7c9d723dfb0491b726483a55b8b2"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/professional-800w.webp",
+      "Sha256": "d117a33f64c9ff0ea5b23bc07a6f0c2325835a0b387c3b38e31973e54cbab334"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/professional-hard-480w.webp",
+      "Sha256": "66cd9af4840ba1eda67b0d30a22d54bc2be13e6404ef6fdd70340022a68e3f4f"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/professional-hard-800w.webp",
+      "Sha256": "2cb9561998e19c282f7769f0a8adf93977d75a9dce5eb5a6895e1d9e3658a6d5"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/student-480w.webp",
+      "Sha256": "470a50a4a5504068e637a5776cb7a2c9dbc8059ddf13c710fa031a23937642fb"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/student-800w.webp",
+      "Sha256": "8537f69aff496ce26d7b36d91ae0301541cf8f722a07295248c5d3ef5cf4cca8"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/student-hard-480w.webp",
+      "Sha256": "12a22cfecc42b46f4cb70af6786606ba323ee98ce1367c58ed04baec55ce0a34"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/student-hard-800w.webp",
+      "Sha256": "d3be69ee0254385c7bc94b024e9d2b2877d2022710d1ed30a3b7e4324e774175"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/teacher-480w.webp",
+      "Sha256": "865f678c8b949d7b4e12339d6c71ccdf7ed1daf879e0a9964a4d2865efd79b97"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/teacher-800w.webp",
+      "Sha256": "22ed929636f72bd76afff60dec9e4420bb363c64c74d5938c80e6ebe5c0b3720"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/teacher-hard-480w.webp",
+      "Sha256": "e7854e7150e88ab7a9deff42b212c1d1cd0eeaf4719412e9b76efa642389d03c"
+    },
+    {
+      "Path": "frontend/src/assets/hero-cutouts/teacher-hard-800w.webp",
+      "Sha256": "ea66fe7fdc2f913827487126dedfdb51b4840f1d20878d8d5c3428d5dc61512f"
+    },
+    {
+      "Path": "frontend/src/components/AuthLayout.jsx",
+      "Sha256": "22ce00488c8168178cd250250d1c32965f3452908e3bb36adfa592e16ab8fecb"
+    },
+    {
+      "Path": "frontend/src/components/GoogleIcon.jsx",
+      "Sha256": "d495d2e51d1af99441352363106b38ea86e42de46a3891b3e2c21ce7d352eb8f"
+    },
+    {
+      "Path": "frontend/src/components/OnboardingGate.jsx",
+      "Sha256": "6a939333addb7e16ac3b1e7ca1ec339fb036d1688c6d8cbe1069f05f1e10163b"
+    },
+    {
+      "Path": "frontend/src/components/ProtectedRoute.jsx",
+      "Sha256": "e529ba3b0e6dfb43537c813a2f9900ab485fe8a9a89f7d3ab357b4e01dd2b804"
+    },
+    {
+      "Path": "frontend/src/components/ScrollToTop.jsx",
+      "Sha256": "c4d44d3609c17beb996208db93150e09aedc6e736142d051da4cca066af16331"
+    },
+    {
+      "Path": "frontend/src/components/SocialAuthButtons.jsx",
+      "Sha256": "1c63ee4bb89eecaf0f7d2c5fb2ff406ee2503dc4473db9befcdc7f37a606be32"
+    },
+    {
+      "Path": "frontend/src/components/UserNotRegisteredError.jsx",
+      "Sha256": "e7bded348861597c663e4855b90ba1204d3ca8a2ba5e87a43d149c5a853fb7ff"
+    },
+    {
+      "Path": "frontend/src/components/VisionaryLogo.jsx",
+      "Sha256": "5725d7b7c4574d8663acd7eaca102a330ee656613582ee2c3c3c9e0f378106ba"
+    },
+    {
+      "Path": "frontend/src/components/auth/AuthUI.jsx",
+      "Sha256": "7ef101933eeee12580b8e230152c67c75e749207f72558b4dfbc309ee410a57a"
+    },
+    {
+      "Path": "frontend/src/components/auth/LanguageSelector.jsx",
+      "Sha256": "134fdee2224c10b1e6b2d8cf64746becbbf67f6bd8211d72d9b713a8cc7438c1"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AchievementsCard.jsx",
+      "Sha256": "11c3e7a416fe54f86f60ac5831f99336b27320a66dacd867c02005590c50dc48"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AGIHero.jsx",
+      "Sha256": "cce306fb8f4136fab73fdcc729db3c4ad3d4b540bc2d0d5752dc6c35b4b5fd75"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AGIInsightCard.jsx",
+      "Sha256": "699c3e3b23e8b80187042ac6d359d9809c22a01e6bb3222d49546624d99b8dc4"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AITeacherHero.jsx",
+      "Sha256": "563efebc496f7cf863699bba82aca462056736628427d5133cafbb027044c33f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AssignedCurriculumOutline.jsx",
+      "Sha256": "ef4eccea0ac47a6c7284c3741ea6be18390fa7ade423602b55eda0d9065c6a91"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AssignLesson.jsx",
+      "Sha256": "745e2aee0532f9dac8b4e0de69cff50f50427f8b3677d78ff17c1dd26b9a2ca9"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/AudioPresence.jsx",
+      "Sha256": "1452d777d2be32e5cfdd0c0bc55c15a0ecfd08cdc11c98b7a31e379f0871f6ac"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/BreathingExercise.jsx",
+      "Sha256": "430ba058cf68844f710620f7e0ee7bac11410085dd4925b91a3be9f15a2d6b04"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/BuildHero.jsx",
+      "Sha256": "25e106f231dcc09b59208db7f795efebef1c1a864e20bf6f7685e26693520619"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ChallengeCard.jsx",
+      "Sha256": "87a1e68dfbaeed7b63328f525248daed0b4cce6db90c7a7dbed3dbe8e35bc274"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ClassCurriculum.jsx",
+      "Sha256": "e2956f2f46f70ec400d4ef05a8d6f040207630cc45016c580b7effa8e3dc537d"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ClassPromotion.jsx",
+      "Sha256": "fa04441f6378b1b630549c98dfaddc4d8f9e950e959a118cc7407d1c8fb9dae3"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ClassworkProjectSubmission.jsx",
+      "Sha256": "6723afcefde896742ecf149a16589c24e05c51591e307a57ab1c85a612677746"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CollapsibleSection.jsx",
+      "Sha256": "b2deff032d8fa001d249c7ed6e5d99ea04e221b76b9427064f1b63702995e902"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CommunityTab.jsx",
+      "Sha256": "e4f26ab72ae1705d47e278fdce395852b8c2d9fc5b5f377d35bdfc1f432f4dfd"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ConceptCard.jsx",
+      "Sha256": "3ac5f7a883801ba7a13b2c500a93071e79a6db89a8e1d7ac27046b2698af25af"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ContentIssueReport.jsx",
+      "Sha256": "48de94992333698103e1e9898bc95a1220531162be499ed85a6105bdcf6ea0cc"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ContinueCard.jsx",
+      "Sha256": "e995a54733dd917feb1e95eb759a3bfc8a542df78254baa9b01705467d17573f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CriterionFeedback.jsx",
+      "Sha256": "1913a18ad9515d4b6b91b8914148dfcf6fa2589a4f140c5d7fc41380925ce306"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CubeLearningEntry.jsx",
+      "Sha256": "ac2dbf0fe31258c946469e1f704f3fbde55c6be2b4799b96f321c6e926f28bc7"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CurriculumBridgePlan.jsx",
+      "Sha256": "1cad3b78e32c463a0651f76d4700f116303e3e4acd340fb6f41d47544648bb2d"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CurriculumPracticeEditor.jsx",
+      "Sha256": "0201426fcfd670c3045b42db867b5a987ecdbff8ccfad21df94e6e05a0ad96bb"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/CurriculumTemplateEditor.jsx",
+      "Sha256": "095dfa4583c6ce010741dc80bfcb742a51430d836a5ddfcef8a5b0373442e23c"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DailyBriefing.jsx",
+      "Sha256": "9f6d478b9e1ac66af241088c547195760226e38169cb0ea50f439fb2752d83a0"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DailyProgressStrip.jsx",
+      "Sha256": "d11dbeebc20befc4c8ec31ed29fa120c7715e85a6b3c9f3106634db71f079fd4"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DashboardCards.jsx",
+      "Sha256": "6bd476003674463908426b7d2f36e9c2a571b6f06c149c7cdfa9a4892239babd"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DashboardLayout.jsx",
+      "Sha256": "3b1bfe425956f7a145ed56e42c2dd88ae1b0a35ccfb3e309e0b894a9ec83e1cc"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DashboardSidebar.jsx",
+      "Sha256": "7b3c8008d7a4341e1e62dfee64b2a33df7fcb283b3293baba6b4cd22add4c45c"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DashboardTopbar.jsx",
+      "Sha256": "2a15e94279aa56e254491078f802507703c63f9f10e5bc5182e00a8e1d5b497f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/DataDiagramRepresentation.jsx",
+      "Sha256": "aceb2c204be8f68d4691cd355e2b7ac7d0a0dda78b3b3806711d91910590ee03"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/EmptyState.jsx",
+      "Sha256": "87145baba5edaeaf40d865c945eb179e6fef09e9b80491c6111392f0e4516f67"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ExamReadinessCard.jsx",
+      "Sha256": "433bf2e64ba5748351b1475677bed3c1a6310e5db9b4ca6cadb2d4689fefb781"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/FamilyBilling.jsx",
+      "Sha256": "4ce18bcd6270ee8c3736f107dac56b4110523b213822a781f9ea832c060f0a56"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/FamilyProgress.jsx",
+      "Sha256": "43674d91d640a406d3d20b50c0c655ba596c7cf62d084f3107ff4265e02fbbda"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/FloatingAskButton.jsx",
+      "Sha256": "e121c69bcff07e5c04e4ecfc0244f95e2312f9ada1efe1939a18b0bd430cb005"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/GamificationSection.jsx",
+      "Sha256": "d409683482bebb23c3e78e9824d869ef1571dd2da8053ba06a1c37223a4b4a2b"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/GetStartedCard.jsx",
+      "Sha256": "dc10ba608035e8b762948df752b2a23040d5b7d0f9f0ad17fa26b4534db8a586"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/GuideActivity.jsx",
+      "Sha256": "03c074009a60c08e8ed8901c50cae325188457baa95c3bf54085d5218ac6fecd"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/GuideEntry.jsx",
+      "Sha256": "642aff2f75bb57d574abbb88072fa2428cfe0abe814ab63402b3a9061aa4bce5"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/JourneyCatalogue.jsx",
+      "Sha256": "a4f711336810729db60d9be2dc3db59c13493705b6f59e252c1f229f9634b209"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/JourneyPreview.jsx",
+      "Sha256": "87db90c28588e8687e6f87ca1d02a12ca7bcbe1a58ecea00b95d8c6f6606452f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LaggingTopicsCard.jsx",
+      "Sha256": "9cb40948a9e255f0fdea1f171cf3591da9e2c7571d764035afdb05f36f806adc"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LearnerGoals.jsx",
+      "Sha256": "313009f9d0797b21abf18dfcf5baa1398bfaacb75ebc358eebd20f65c255aafe"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LearningAttemptHistory.jsx",
+      "Sha256": "bd311504d4caa6241f7a615ae81670d4adfcde8f3dc1b35708678960ccc1ddd9"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LearningMilestone.jsx",
+      "Sha256": "19d2e5a043798d749e026795c8e0aa8807e5b90d86d6b91caa0d8134505ceb39"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LearningPrerequisites.jsx",
+      "Sha256": "1ac47b47794e7f678afceb413b403c5d35a0785dbbff18346b944593f8ae90f3"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LearningRepresentation.jsx",
+      "Sha256": "3c1df5713e9de620d97eb5ab05fed6ec4367aec9b0de8a1fc44bc3d5dfb3192b"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LearningSubjectShelf.jsx",
+      "Sha256": "deab201690ecafef319dc7d8bdface0ce3086ef148867804227fc67d0be48839"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LessonChecksEditor.jsx",
+      "Sha256": "3e0521b39b0ec77d6a8f99919cce7d1d6b1c9b930cb8bb2c4a3da721fed9f282"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LessonObjectivePicker.jsx",
+      "Sha256": "1c012b314b7e90271bdaaf6fae7c00eb64f8bec530a4f0ad40bc94daf9656f43"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LessonObjectivePreview.jsx",
+      "Sha256": "759b2a86d012bf8798826f041e21051ce56a3a979e9b9844b9caa9695715de10"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/LocalDataPreview.jsx",
+      "Sha256": "05bc080945ab41f4ffcfed54eabbf197bb5301bf45b84f6846372c464cecfad6"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/MarketTrends.jsx",
+      "Sha256": "a3abf6fdf6c13873a6ec82c4c0011f7856952205d1c3e49b6db7db85e61eb5fb"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/MasteryMap.jsx",
+      "Sha256": "cafb226723ddc828911d35e1142f1fdb0f5e6e3d5c3724a821df67b0a8fdbc66"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/MentorGreeting.jsx",
+      "Sha256": "7d4d845a674448085b398696c284fa9767b781cd02cee2c6e72d6f01b938bb9c"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/NumberLineRepresentation.jsx",
+      "Sha256": "bca8d1e22fb5ee2aa9a4b9d73baca5da7628a01168c26bda22f635e3d505d3a1"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/OrganizationContentDelivery.jsx",
+      "Sha256": "a37cdf314b269aa7732f2323b25c42a7b74c106675b99edafe2cd049294e7f87"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/OrganizationEvidencePanel.jsx",
+      "Sha256": "ff360c3a51be3bd31bac95bb3b41472a473c76aa35463c2808e214f778a4f0c1"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/OrganizationPermissionSelect.jsx",
+      "Sha256": "592e80ac1923820ff93b12849cbfab709b7c21ef132c3b27d5cf8e146a7c68ef"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ParentClassworkDigest.jsx",
+      "Sha256": "3cd0d0b631716872a17f43acfcc7d78ad710093c3067ed3f624a7a301a070eb8"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ParentProjectSharing.jsx",
+      "Sha256": "b91290e980346a3043b1cc4dc8fbe902e7dd5bd9cc6facae1c9373cc3a5bf890"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/PersonalizedPathCard.jsx",
+      "Sha256": "855a15ea146bb1dbf58d24669cb6e17d99d38152b93be1ce5602d3e0e8626c11"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/PricingCard.jsx",
+      "Sha256": "78aa241b1a3b53cda63cbcc102adab5cdd925fda689c6cf6f9ad37cde4291fce"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx",
+      "Sha256": "10f945ffb8049f47c2803b6ff8a81a0a8bb20ded6706c28a72c9271b6bdbfbbd"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ProgressCard.jsx",
+      "Sha256": "1b728c950e121eb569109fd4f0c76f4750af5540ea2088d49ba13e2c9daa7683"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ProgressListCard.jsx",
+      "Sha256": "cf5aef53b3a110923e23c289951598313abfb929badee2c11da2cf5a91a3c3a5"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ProgressOverview.jsx",
+      "Sha256": "03a94aaffffe7a019a0064a3dfc8a436baefc6fba8409c24ff781d11cf6c79ed"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ProjectCard.jsx",
+      "Sha256": "3cb2b2a3643e12e98059000f9f40481c8d1b36b7ef0fbd85af96420ab8d50f89"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ProjectCriteria.jsx",
+      "Sha256": "6b0fa72c6b60105710eb3957105655728a52bbd181b53e9da705877b0f304ba4"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/ReferralCard.jsx",
+      "Sha256": "ec08daa62559fb008d5031135c965e5630f9e8fc4920b554ac22253638202e4f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/RoleGreeting.jsx",
+      "Sha256": "0833e42e3a5794cecc2fb1ed1e18da0c019380096f2a7f0e3fe9efb2a40c970f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/RoleMentorPanel.jsx",
+      "Sha256": "48ade56416c6f0baa890ecee485bb8516e04f04f8169c6c5aebe38bdd46b1ce2"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/shellCopy.js",
+      "Sha256": "c868f77e94f26e4b2f6c1bcb7809c101f52bea7ee3cd3c36c22dd0f551f7be7c"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/StageChangeDetails.jsx",
+      "Sha256": "9a9081c226397089e59d9f14436efa740c28e1bf268b31dbe377fc3f803c6ae0"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/StagePresentationSummary.jsx",
+      "Sha256": "ddadd08021071186f91f766c771327644fcec2a92108fcf769b7fb35418355d7"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/StageProfileEditor.jsx",
+      "Sha256": "07eaf278a85121b2ced8fc4505fea81bb32cca3e3e8f5033530cceda886b3b7f"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/StreakCard.jsx",
+      "Sha256": "d55d45541aef65c98c6b9e653c7ccd7f5a79219484547616791dbc9837aa117d"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/SubjectIllustration.jsx",
+      "Sha256": "8c69a2e1fb27fabc63cf23f21f1efa1f701e9ae3e4eb3b5b3f6406ab3ce9fd1d"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/TeacherContentInbox.jsx",
+      "Sha256": "4a61a843492272cd54151cd3ede2c06acb5a5c9e90b3da3566a1d3f938efaa57"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/TodayPlanCard.jsx",
+      "Sha256": "04dde264f66c8a0c0389b85f4ccd01471f98bff28cc4de7a5c07fea5fcdc5056"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/UnderstandingMeter.jsx",
+      "Sha256": "d549aafa491408bbe9dfe40bdc1d99ea387a55b7777ad81c96c197cba88f30ea"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/UpNextCard.jsx",
+      "Sha256": "b0fefbc35927eaa98233b6c49abbd9a10bdb65c63f63421c34d10f5ab597acc3"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/workspace-design.css",
+      "Sha256": "7a76c5b414b4fcaafe09f20931f556a8ca372032dc4a0796299004000da0f0d9"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/workspace.css",
+      "Sha256": "8a5f622553aa546eed4f1eba3aff42f779a7e50aa04e5a957c38f12b16f9559b"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/WorkspaceEmptyState.jsx",
+      "Sha256": "a566d43244531923cd1f970e25c8478a7a77ebdde10f92bffa8a8f70d262fc02"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/WorkspaceIntro.jsx",
+      "Sha256": "d502a16db4de53b81f74c8506abc6624b6a8d0454623b91594cc9860769e3eb8"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/WorkspaceNotifications.jsx",
+      "Sha256": "061d1f3672d721f3eec7ffab9f7fbe7cefafe5bf66c8f7477854f18c82b63441"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/WorkspaceSwitcher.jsx",
+      "Sha256": "1e990e09b2de5b26a9e4468bd40f169b71aba9b9d4b8005765460fa95aa2b252"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/ConceptNavigator.jsx",
+      "Sha256": "638e9c5c3a8ded9d1f3930591dc7f1edebcaa0f31c4330e4e94ab6c55b01741b"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/ContentsDropdown.jsx",
+      "Sha256": "4ac9d0642a1d3ff50d33b2daf3a467416f38080dff2e4a610b87e0167d0bfb84"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/CourseIntro.jsx",
+      "Sha256": "3b0e5f29979a4ac4bb6a3e2348992989c7c11cdd233dd939c4710d73aa8f75fd"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/CourseViewer.jsx",
+      "Sha256": "a168181419716f31bc64c20c61b34d3f09070d4f07b7ea249f26876cea4c5ec6"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/QuestionBar.jsx",
+      "Sha256": "c13acd83793d08efd528dd34b7d1bef5d060b4275b4ef4bc0e061be61ec37429"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/SubjectHeroBanner.jsx",
+      "Sha256": "864b5db2a92e596bc6028e31aaf19f03d0572ea1aeb52d0beb5b62ad0929bbb3"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/SubjectPills.jsx",
+      "Sha256": "c11cea228d62a2202fb9a2e1be35f78b4a7ca9677e9b1a301cfcf2a7f44f8e47"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/learn/TopicCard.jsx",
+      "Sha256": "0bc7df047dd618604c5251773908daa8b2fe8e40f5690824c50c4acd883e6c11"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/practice/QuizView.jsx",
+      "Sha256": "4560c541557b088565814b770de4eb1d69559d7b97a0c7b92c1d346794d124c7"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/AssignmentGrader.jsx",
+      "Sha256": "c1fffbd399eb8f6a95762d09e78f8f60d4687bd416f49edd8b85a42de76c8413"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/ClassCard.jsx",
+      "Sha256": "fcb9f85464fe60812f81ad1715064a8110cb33f51ff95d26e3f84a361910c6ae"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/CreateClassModal.jsx",
+      "Sha256": "eb8fe96d5afecd8af9da78480276f6729f813e2bb581ceecc7201de4489ca4a3"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx",
+      "Sha256": "9dd81bf9fea260e643c815d898bbb033f941ac611b285d0de1793e8f2241b2a4"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx",
+      "Sha256": "f7352c62de3f0ce348a8bd716598bdc9fa1c27e5b9c2f923cde94f05c86430c7"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/tabs/ClassworkTab.jsx",
+      "Sha256": "31c4972a90c1be03c1b645a388b8903f349e974045fdd33df3d3c176fe9aad64"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/tabs/InsightsTab.jsx",
+      "Sha256": "db1238c6e9473e4f611109a6e7bd30e70c03f23ce9ca3908fe34724a70fecc07"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/tabs/KnowledgeHeatmap.jsx",
+      "Sha256": "4ef0dbb53471378a5ebf9c1ea1c1c878b23e86ac01e129f3c407cc38f7fc5e03"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/tabs/PeopleTab.jsx",
+      "Sha256": "68c6d3379aa8013724daba1498372cfe9b7d3062f19f9789153f77b5154dd496"
+    },
+    {
+      "Path": "frontend/src/components/dashboard/teacher/tabs/StreamTab.jsx",
+      "Sha256": "88d01bbbec41031fbc1c424aaa1055368aeb2af5dfbfab3c4d92b2f64f93b898"
+    },
+    {
+      "Path": "frontend/src/components/landing/AboutUsHero.jsx",
+      "Sha256": "400a77b8496deac2ba8e9c33e166035408a64053c0544385025c6f90ad248ec7"
+    },
+    {
+      "Path": "frontend/src/components/landing/Breadcrumb.jsx",
+      "Sha256": "640679d067c5813d859a6d32d1ed006f220dacbef855e138736281ebe1260e7c"
+    },
+    {
+      "Path": "frontend/src/components/landing/cast.css",
+      "Sha256": "5f0710ee71ce3cba01a9bef7b249ff13cf63a947bf9a38b8998a8abee9a61406"
+    },
+    {
+      "Path": "frontend/src/components/landing/HeroFanCards.jsx",
+      "Sha256": "f7a4d91b7a4ef7c4f5501ab2fc46f8fd6083a2e0cc67ad64471138baf22e039f"
+    },
+    {
+      "Path": "frontend/src/components/landing/LandingFAQ.jsx",
+      "Sha256": "32491cf2121839b7bc51cd951518e6b65c7540bffbc3b7309942d5380bb88bab"
+    },
+    {
+      "Path": "frontend/src/components/landing/LandingFooter.jsx",
+      "Sha256": "21077b8111466f47222c7cad58d786222ddc37ccc25d86d4b8750f2197b95f80"
+    },
+    {
+      "Path": "frontend/src/components/landing/LandingNav.jsx",
+      "Sha256": "a16b2d90b8ebc0cafa75ce31daf9dd68502b7d4161271049d9b2b425c703a0a4"
+    },
+    {
+      "Path": "frontend/src/components/landing/LazyImage.jsx",
+      "Sha256": "34ebafce7d29e6a4183707ea6a1839b7ae4989e61d3c93f84b08df39b9939d41"
+    },
+    {
+      "Path": "frontend/src/components/landing/NewPersona.jsx",
+      "Sha256": "2eabb074acd4f995161d23802827e2443afcb045ed7ab7e7ba328319a5ae1f1d"
+    },
+    {
+      "Path": "frontend/src/components/landing/PolicyTabs.jsx",
+      "Sha256": "9a10ab3ed6b0cee67c3b47db170d0a2158a6f4cb7339796d250487eeb99c2f7d"
+    },
+    {
+      "Path": "frontend/src/components/landing/SpotIllustration.jsx",
+      "Sha256": "d9388a4999f0f0e2984c48830cdf50dee9cfdfadf566414e41a5922d6e4e960d"
+    },
+    {
+      "Path": "frontend/src/components/landing/ValuesStrip.jsx",
+      "Sha256": "a8536cd862079a4fae02b21f5873e41bd74232e8b382dc2e896c6addb3c412b0"
+    },
+    {
+      "Path": "frontend/src/components/landing/persona/PersonaSections.jsx",
+      "Sha256": "e5b02dab48e51cde62c3af31ce4e0bc633524c3065fde8bf7454216381058bbc"
+    },
+    {
+      "Path": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
+      "Sha256": "c7b0bee4b3cab5f98b42e7bdc81558a4f470cffe0ee162b7200aeee000afb790"
+    },
+    {
+      "Path": "frontend/src/components/landing/system/hooks.js",
+      "Sha256": "9107a9cecffdc87206a127bc77467b3ebc10422fcedcc964454985c01863132d"
+    },
+    {
+      "Path": "frontend/src/components/landing/system/tokens.js",
+      "Sha256": "009c0092a9ddb92fc830bd891acd55ddd01ed7471df11ca8b36373f8080df5b2"
+    },
+    {
+      "Path": "frontend/src/components/landing/system/ui.jsx",
+      "Sha256": "ffd468e1cbbe798a763bdaf442f7b1a3cc985ade448fdad04967b032cd8ef507"
+    },
+    {
+      "Path": "frontend/src/components/landing/system/useSheetStack.js",
+      "Sha256": "4ea6ff42869e859145ea5b1d02c25cc5927c0c9526adbae449b921f322e4152b"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/ChipMultiSelect.jsx",
+      "Sha256": "f8c917ead9532d195b0f9d514e0cf412c16047136b098b6051c6cdb2e8cab741"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/ChoiceGrid.jsx",
+      "Sha256": "031e20952c0a76eb3cb14b0bc34d25b883783f2708e1d62ef41d51b603bbf5af"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/OnboardingLayout.jsx",
+      "Sha256": "391e18063eb5d56010c26fc332220dbb396dc8ba8259bc9ff7444aee85490412"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/StarRating.jsx",
+      "Sha256": "ca5f1e574bf1d72666c0471539f8020053bfddcbd2131499ec75e96340436901"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/stepConfigs.jsx",
+      "Sha256": "45c32b6b81656239c6952e3cf7beff641b791b352bc26d2a399ac9f80d23aa64"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/SubjectContextInput.jsx",
+      "Sha256": "e64b4d3af2f0c82a4ae7b6054e8703637cf0b3e2200d30110b08c6c251e44d78"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/AGIIntro.jsx",
+      "Sha256": "e4d1ce29b311ffa0a0a399d9bfb0a93e82bbedd4f5bb0b0737aefbe25438fdff"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/IdentitySelection.jsx",
+      "Sha256": "284eea07295d1bb124968690c29aa598c6c4c9a568416e5a727e71d9000da4de"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/org/OrgInfo.jsx",
+      "Sha256": "d4bbbb258cf250466043b43000d5c4bdeeb859277c542c0f89f62638180e809f"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/student/CurriculumSummary.jsx",
+      "Sha256": "21ca713d91f9a96823998943155272134355957e2d11d930797d6b632bcfd1bd"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/student/StudentContextForm.jsx",
+      "Sha256": "501252624516d30e83a9d86ff907d67d40f9d46f19db0a5e96cc51b951a331da"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/student/StudyRoutine.jsx",
+      "Sha256": "3de7ec9ceb8ff39b42d04f1f031c1c475226b9c764403238dcc7167c619d3c1b"
+    },
+    {
+      "Path": "frontend/src/components/onboarding/steps/student/SubjectConfidence.jsx",
+      "Sha256": "dc00d879f3e15a2e2bf12a97bfe4013df03819613ae1666ff3f2e8b8eca92ae4"
+    },
+    {
+      "Path": "frontend/src/components/ui/accordion.jsx",
+      "Sha256": "478490060e2a3d511e1b5d1a7d65439bbb992e4e1e99d5f0709f325173453156"
+    },
+    {
+      "Path": "frontend/src/components/ui/alert-dialog.jsx",
+      "Sha256": "fe21928546b77773543f93d7c4382094fd771403cf9b3d3928c572e72d9ece97"
+    },
+    {
+      "Path": "frontend/src/components/ui/alert.jsx",
+      "Sha256": "809a0b3300cf85221cd2e667e2cd1970a138bdaa57ef512c81a39a2188dfc13d"
+    },
+    {
+      "Path": "frontend/src/components/ui/aspect-ratio.jsx",
+      "Sha256": "62f29cd87c19f52d403dc2d17823849db2c8cbd541c9f96de20ef13e58d379db"
+    },
+    {
+      "Path": "frontend/src/components/ui/avatar.jsx",
+      "Sha256": "9439196219d33dff8562912552c59e878dbb6cf7aa32f5d17bccdb9bb90efaa5"
+    },
+    {
+      "Path": "frontend/src/components/ui/badge.jsx",
+      "Sha256": "fc8b4e031c04004ec0b19cdb90efcadfb26f2287c8d6798523c271bf96e090cf"
+    },
+    {
+      "Path": "frontend/src/components/ui/breadcrumb.jsx",
+      "Sha256": "51bbb35125c05ef01517d866cc9d79dfd5d63355da68d3bfb4121d97fec8ddeb"
+    },
+    {
+      "Path": "frontend/src/components/ui/button.jsx",
+      "Sha256": "516a4f55d8aae0e6d226a0402dc06932ded402039b4acb2f71dd9c9dbeda4a0b"
+    },
+    {
+      "Path": "frontend/src/components/ui/calendar.jsx",
+      "Sha256": "a64221b7b0b3bfd4d08cf5f9026d620cb6b4e84718ded755e67a59aa6ea0d24e"
+    },
+    {
+      "Path": "frontend/src/components/ui/card.jsx",
+      "Sha256": "93f9674c69410d360fbba260dce1f63f987624b08a8dd39c999e4ca81740a548"
+    },
+    {
+      "Path": "frontend/src/components/ui/carousel.jsx",
+      "Sha256": "caf08f7734405a1ab1aef53134108aea75c747c3c22c888789beeb47cd83594c"
+    },
+    {
+      "Path": "frontend/src/components/ui/chart.jsx",
+      "Sha256": "02950e47ad8c44b41e823887774cb8088becceaf542f68965cf375dfc9eb2cce"
+    },
+    {
+      "Path": "frontend/src/components/ui/checkbox.jsx",
+      "Sha256": "b2b6819b326af045bedca84f081de6e49c7bf086110835b5b893d903ef0ec44b"
+    },
+    {
+      "Path": "frontend/src/components/ui/collapsible.jsx",
+      "Sha256": "bc854800960ef4129d4679a7c4a6b5091e7038adc03698e4529d0c9b5af0d831"
+    },
+    {
+      "Path": "frontend/src/components/ui/command.jsx",
+      "Sha256": "85bde4762ddfcb0daef8c24bf899d3b4cb270e5a55d635a4c8852ee786bbbe2f"
+    },
+    {
+      "Path": "frontend/src/components/ui/context-menu.jsx",
+      "Sha256": "9f2f66eea8cc632fac137b0ef47841c6fa81ebc7d7afbd8064605b444998569a"
+    },
+    {
+      "Path": "frontend/src/components/ui/dialog.jsx",
+      "Sha256": "50e591a0280119277ef41564f3baef8f8e5bf23b8c2871c18345b72c400fbfd6"
+    },
+    {
+      "Path": "frontend/src/components/ui/drawer.jsx",
+      "Sha256": "ef7864b5bef151b48d8c2a480a9dbf91a0bf0c5a9b3d29d27dd2912bf64afd12"
+    },
+    {
+      "Path": "frontend/src/components/ui/dropdown-menu.jsx",
+      "Sha256": "5888a783e926273b78f8e69399e2b1d31d966230cafa52f21764266158d31c92"
+    },
+    {
+      "Path": "frontend/src/components/ui/form.jsx",
+      "Sha256": "6fb5b37dd37b719ebdc7ee5d4a2b8995fe7ece1296646508ec98af0d992f3080"
+    },
+    {
+      "Path": "frontend/src/components/ui/hover-card.jsx",
+      "Sha256": "b0b8f53c1fc20f4c410c1949b1abe612489da7b34374e7f3ec876d5285b33e33"
+    },
+    {
+      "Path": "frontend/src/components/ui/input-otp.jsx",
+      "Sha256": "9cb80ea26ca7fe046dd336b75f875b7baed2a285753f4ff18b9442ba8843ec52"
+    },
+    {
+      "Path": "frontend/src/components/ui/input.jsx",
+      "Sha256": "02932b64ab7b05099d42aaf8a733622dfe1d3abec681a299f68fdbdf7ce09ac0"
+    },
+    {
+      "Path": "frontend/src/components/ui/label.jsx",
+      "Sha256": "6a429ead60a45fa3705de0bd705d4ca08c77009ab4fbfefbb321b40b4b7ce86d"
+    },
+    {
+      "Path": "frontend/src/components/ui/menubar.jsx",
+      "Sha256": "dd0235a15a65cc36c763e613d05ddfe26e2977bb28c84f98e90c865ca1474937"
+    },
+    {
+      "Path": "frontend/src/components/ui/navigation-menu.jsx",
+      "Sha256": "e3ae735c975f2d046bedde7c0428fc32d8c7e7e43a8e4605e120e8ef5a6244b5"
+    },
+    {
+      "Path": "frontend/src/components/ui/pagionation.jsx",
+      "Sha256": "30c62c8579e0661792bdfec1967bd815be4a70af3d45ec5e507275f9dbe34a4e"
+    },
+    {
+      "Path": "frontend/src/components/ui/popover.jsx",
+      "Sha256": "6da6b28bd13c1a07889320c2baf8657f2a0cb9c210851e144d4a063e4a9b6bae"
+    },
+    {
+      "Path": "frontend/src/components/ui/progress.jsx",
+      "Sha256": "dd92e4b6189242c5bf42249e0bbe2258e3cf7f6054f732063e7deedc84ac12fd"
+    },
+    {
+      "Path": "frontend/src/components/ui/radio-group.jsx",
+      "Sha256": "58b832a7a8842ec8ec1bcd5115b4fa19487fbc1ff8a5ebd9a6c00b746668f9d2"
+    },
+    {
+      "Path": "frontend/src/components/ui/resizable.jsx",
+      "Sha256": "329ee38682a0a54b2b2d3f50e9a5148fcaf013d6739791d27ca6bb4a04769a2a"
+    },
+    {
+      "Path": "frontend/src/components/ui/scroll-area.jsx",
+      "Sha256": "deac8e89bafcdedeb795ed43a524e70cef654978102b0c854b75f9826f524520"
+    },
+    {
+      "Path": "frontend/src/components/ui/select.jsx",
+      "Sha256": "0098cd61ccf4cbbf4cb95e019f8a6b6d6e737d129b97098c300c2f7418d83b08"
+    },
+    {
+      "Path": "frontend/src/components/ui/separator.jsx",
+      "Sha256": "0e01021eb735c6f4f8c0c6b3a9f99dd8428fe837c1a12b7d8be441e5a7d53030"
+    },
+    {
+      "Path": "frontend/src/components/ui/sheet.jsx",
+      "Sha256": "11e4eb6ebaead7ee8fba30fd07d2dea3077ec8a58385bada78076bc7500a3674"
+    },
+    {
+      "Path": "frontend/src/components/ui/sidebar.jsx",
+      "Sha256": "fbc50e3d08df813d10094953469d56acfe9608997f1520ab9fa9dec67202c948"
+    },
+    {
+      "Path": "frontend/src/components/ui/skeleton.jsx",
+      "Sha256": "b5cbabb0e4b7c98654c527fc33ea501ecd708c9ea2079458945a85ef3416cf7c"
+    },
+    {
+      "Path": "frontend/src/components/ui/slider.jsx",
+      "Sha256": "13a9ab62370c58be57848de7100de3e5bbfcdf4a669bbfb635b7ccb11c6b1de1"
+    },
+    {
+      "Path": "frontend/src/components/ui/sooner.jsx",
+      "Sha256": "a92398f457a0e43fd3640ce72fb22f626ffc812701496bba623651333bf0f23b"
+    },
+    {
+      "Path": "frontend/src/components/ui/switch.jsx",
+      "Sha256": "d3692433ca2fcb3bd74b587cd096942c5582452a6a95ddaf1806dceda899d592"
+    },
+    {
+      "Path": "frontend/src/components/ui/table.jsx",
+      "Sha256": "5a64292b865d5fc40675f65c5a84122f17e0719602f5737fbda01a4d529a9a2d"
+    },
+    {
+      "Path": "frontend/src/components/ui/tabs.jsx",
+      "Sha256": "efefae7020ecab8eac458a60b684569f0b1c7adac0e8622fbe9b9cec9ef588cf"
+    },
+    {
+      "Path": "frontend/src/components/ui/textarea.jsx",
+      "Sha256": "6f3185e51b3496a17a97a41ce577ea03e9525c3ece24a890c9f783e1c9833774"
+    },
+    {
+      "Path": "frontend/src/components/ui/toast.jsx",
+      "Sha256": "22cffc9af4e0047dc496a4278385848977068b4caaab33f4081afcc9dee04144"
+    },
+    {
+      "Path": "frontend/src/components/ui/toaster.jsx",
+      "Sha256": "a00ceffa66fb276095cf6a2f5d052927e529d77b777db36d5b5703acf484146d"
+    },
+    {
+      "Path": "frontend/src/components/ui/toggle-group.jsx",
+      "Sha256": "34c31985d46f4e1c85b98d2db879f8c89c245cac7fd8e0c0030efaf769d0af0b"
+    },
+    {
+      "Path": "frontend/src/components/ui/toggle.jsx",
+      "Sha256": "1a4d7a483e843c69a2cd65f189a66f31dfd5660846d64100ed74b78fb99d493b"
+    },
+    {
+      "Path": "frontend/src/components/ui/tooltip.jsx",
+      "Sha256": "5c4e99fe6b80e658d165cb01e0204b67ab944ab53ce438d8b411705744bfb58f"
+    },
+    {
+      "Path": "frontend/src/components/ui/use-toast.jsx",
+      "Sha256": "94b77bb2a4ee2d9c126f318685a3e1ab0dc746ceb568ff26a1bb57494cc62d51"
+    },
+    {
+      "Path": "frontend/src/data/landingCategories.js",
+      "Sha256": "e1bd91f08baea64414fecb6b98cc0ee48a37875d8cc544e777074f6a603f09ef"
+    },
+    {
+      "Path": "frontend/src/data/legalMeta.js",
+      "Sha256": "c5f1a2cb510d84fd3eee10b758074f0a18e240a39b5faf645f2f71a34aba3eed"
+    },
+    {
+      "Path": "frontend/src/data/pricingConfig.js",
+      "Sha256": "ea27e124c5d8db12b025d45744540dd3cc28709bf0ae9b0f506f2026d1644e6a"
+    },
+    {
+      "Path": "frontend/src/domain/curriculumTemplate.ts",
+      "Sha256": "96a4483e752e33f8172d54e36338b050faf667bc158831e0397b9b091289c610"
+    },
+    {
+      "Path": "frontend/src/domain/lessonObjective.ts",
+      "Sha256": "16f837cc969a7b58dc71c06b359d6c8712c86da48eac70c6a891a8acabc6a14a"
+    },
+    {
+      "Path": "frontend/src/domain/workspace.ts",
+      "Sha256": "0cfac80d8db116302bd29744710dd9964c555b01f186703aee8ae797fc4c3bd5"
+    },
+    {
+      "Path": "frontend/src/hooks/use-mobile.jsx",
+      "Sha256": "45f02b034691fc6fcd9761106f521464bd81c139bc7f122811590fb22e1a3c42"
+    },
+    {
+      "Path": "frontend/src/hooks/useClassRecords.js",
+      "Sha256": "857f11f5015632bab5b789dde4647dbf6492de1fb4336bea83970ee30f2c6812"
+    },
+    {
+      "Path": "frontend/src/hooks/useMotionPreferences.js",
+      "Sha256": "eb9806d788f4a57eb953a7dc522e9f3ca3f81e37682c65413fbec5ae91e6f067"
+    },
+    {
+      "Path": "frontend/src/hooks/useStudentData.js",
+      "Sha256": "538351a8f1a032f76d40e41bcf6a32b7ca0979d2ef15023e6dadec97093ea420"
+    },
+    {
+      "Path": "frontend/src/hooks/useThemeColor.jsx",
+      "Sha256": "8e14109d620aad7d18b6a854bed988d8e813ca07eca6a08a5736a6d864faa605"
+    },
+    {
+      "Path": "frontend/src/hooks/useWorkspace.js",
+      "Sha256": "47cc88b7c312312ec0e8014c1f864ca749190351577e2705e424da71a04b44c5"
+    },
+    {
+      "Path": "frontend/src/hooks/useWorkspaceScroll.js",
+      "Sha256": "44672aa0b8576dcceee66e846254f8150561b69543268a61f981e0914bfe3bc2"
+    },
+    {
+      "Path": "frontend/src/lib/assetRecovery.js",
+      "Sha256": "426c6ab81afa4adff63f57763d5464220ceb4bb75c17efe7bc576a8be376e3a9"
+    },
+    {
+      "Path": "frontend/src/lib/assignmentAvailability.d.ts",
+      "Sha256": "f3d8140be2a80bd2219eb15b3f20b24c95256f787a85737e3a4ae23cc7849b06"
+    },
+    {
+      "Path": "frontend/src/lib/assignmentAvailability.js",
+      "Sha256": "b70a9b240014b14e2a6d7db73eecc0b3adafb3356cded0fd4bd6097bb22621ff"
+    },
+    {
+      "Path": "frontend/src/lib/AuthContext.jsx",
+      "Sha256": "e91bdbe6fb2bcbdd0ba9d680c6d601239379328ee304c69781d6a6a7cd8cab6a"
+    },
+    {
+      "Path": "frontend/src/lib/authReturnTo.js",
+      "Sha256": "22ddd19a4e518013a52d1f520201d5fbb020d746ae927a14846c153fe130cc0e"
+    },
+    {
+      "Path": "frontend/src/lib/classAssessment.js",
+      "Sha256": "a467d1329b1f5debdae19593c1bf58785e73c75a22fbb359d18736946f9ff1d3"
+    },
+    {
+      "Path": "frontend/src/lib/classColors.js",
+      "Sha256": "e247b293bfc720ad661edbecf93288adf60153691c358cd19b9e5728a1d33e6b"
+    },
+    {
+      "Path": "frontend/src/lib/classTabCopy.js",
+      "Sha256": "57efa53f67f52ddf0bbb60a439bcd131a39282c7aed1592fbab40d7aa0c04571"
+    },
+    {
+      "Path": "frontend/src/lib/classworkCopy.js",
+      "Sha256": "65d35b30256196a20e193d105e757951dd38a27390e5673f3176763430ed78cf"
+    },
+    {
+      "Path": "frontend/src/lib/classworkProject.js",
+      "Sha256": "dba6918e5aa405e6f38f5bc08cebeaf7a792e33f176592a27bdfff8cf3ff6ae4"
+    },
+    {
+      "Path": "frontend/src/lib/classworkRubric.js",
+      "Sha256": "0b3cb3592fe57edffb744809c8e1301cd526958c604f202cdf179f224b790dc5"
+    },
+    {
+      "Path": "frontend/src/lib/classworkSource.js",
+      "Sha256": "8e2f6c0b24dfec7159e0122e1fec939be11b84c6eeb1933bef0b8fda412e80dc"
+    },
+    {
+      "Path": "frontend/src/lib/cohortCopy.js",
+      "Sha256": "479a9db09f9e0d83d16629f743926b73773491eebe51e9d7056372d5fd4331ad"
+    },
+    {
+      "Path": "frontend/src/lib/connectionAvailability.d.ts",
+      "Sha256": "22d8133458e359a1c1a255c0ea1e77b0b34bbc7a7f0c782b2e6809f1b87ae664"
+    },
+    {
+      "Path": "frontend/src/lib/connectionAvailability.js",
+      "Sha256": "d28be422ddbf9b1ef93f23fe84edfa22998f8c76b1216568f944d9b23e9535f6"
+    },
+    {
+      "Path": "frontend/src/lib/curriculumPublication.js",
+      "Sha256": "2a59cb07a8448c5ccc909cf82f726ddd1b2fac72102815f66dda7d54f0b9c7b0"
+    },
+    {
+      "Path": "frontend/src/lib/dashboardNavigation.js",
+      "Sha256": "0757994b6aaeb02551c68b746720bd4681b0f41c404bcb702927d7035eb534ad"
+    },
+    {
+      "Path": "frontend/src/lib/downloadText.js",
+      "Sha256": "c1943dbb888213bc27934b3a23b081252099a2098c9026a8db7bb4bea67bef4c"
+    },
+    {
+      "Path": "frontend/src/lib/fontSurface.js",
+      "Sha256": "075fdd015bf069428009d23b1b0b9fd890ac9260462d02b19ff19a42aa116f89"
+    },
+    {
+      "Path": "frontend/src/lib/guideCopy.js",
+      "Sha256": "1d45efe311b6f0a76b98e86f0e367057cc3602a8ad1857233059ba3307146dff"
+    },
+    {
+      "Path": "frontend/src/lib/heroVariants.js",
+      "Sha256": "5f6214d6a157d12ee3d3d1180dd50b36a7e0750a4c4f3c8605ed2c3b9d58f2a5"
+    },
+    {
+      "Path": "frontend/src/lib/homeCopy.d.ts",
+      "Sha256": "50b1bfea410f320c456dd13448a57efd855f67cfdd775f50469e41b19660f6d9"
+    },
+    {
+      "Path": "frontend/src/lib/homeCopy.js",
+      "Sha256": "c220c60af5b876f202a7fb044ec4b0469eca407a4fcbdfe5249524928812735d"
+    },
+    {
+      "Path": "frontend/src/lib/homeEngagement.js",
+      "Sha256": "f175cbb6bdf9f7b61b1f73ef59840c0cce045f21b044010db108f64d6c3aaa91"
+    },
+    {
+      "Path": "frontend/src/lib/learnerGoalCopy.js",
+      "Sha256": "dad661d7a82797537ca9ec99513e95186019964bcda49a663a41ae60951acb8f"
+    },
+    {
+      "Path": "frontend/src/lib/learningCatalogue.d.ts",
+      "Sha256": "eab860ac4d64f88ebc4720f2c2a07b411c784ad14397dbe95bcafe10fbb6bb71"
+    },
+    {
+      "Path": "frontend/src/lib/learningCatalogue.js",
+      "Sha256": "9a9a7d15df4ed4c044c59492dd37479571f13c057a293f41efdc007e64afd4b5"
+    },
+    {
+      "Path": "frontend/src/lib/learningCatalogueCopy.js",
+      "Sha256": "76eefef91753c940279d43e6d18a933cf6708a58e188192667b1078b15664225"
+    },
+    {
+      "Path": "frontend/src/lib/learningCopy.js",
+      "Sha256": "d2e97f85277f9be54b62e1d9770cc5bab6e9c6482da2bbe8b9cf92367332aa54"
+    },
+    {
+      "Path": "frontend/src/lib/learningMetrics.js",
+      "Sha256": "8a3a4b9ae59233185d6374d8366ecb7e2de23c1a20e536d049e3278c644e3f66"
+    },
+    {
+      "Path": "frontend/src/lib/learningMilestoneCopy.js",
+      "Sha256": "ffb36ac428b35bf35a937bcf0560c3feddff8e19cda872d991b2857666844fb3"
+    },
+    {
+      "Path": "frontend/src/lib/learningProfile.js",
+      "Sha256": "cd8f57ed9b89686ca07fb275b5e6d94b0eed0617451dc5b6e9debf0d655c2d60"
+    },
+    {
+      "Path": "frontend/src/lib/learningProgressCopy.js",
+      "Sha256": "4b191a678ca2ee970b4db0658d1197be6fc6245d4b056bca161efefbeec02bb2"
+    },
+    {
+      "Path": "frontend/src/lib/learningSurfaceCopy.js",
+      "Sha256": "16f6803a61a74e0d37decacc567829fa381efe87a995b89e4e971a67ca69bdc9"
+    },
+    {
+      "Path": "frontend/src/lib/legacyLearningCopy.js",
+      "Sha256": "1a93efd0dfb29d62b8e7bfc37d10f3d4f55e9be4909fd0f6ae1cca51d33b511b"
+    },
+    {
+      "Path": "frontend/src/lib/navigationPresentation.js",
+      "Sha256": "6056c4bfa538561d8db684ac339af6a045ac20e734422d3356bd6bb8cec62344"
+    },
+    {
+      "Path": "frontend/src/lib/notificationCopy.js",
+      "Sha256": "ddfaf6dd8864e214aa16a9012a9ba864d41aa51430b67c185d06f6e2d5d09fe1"
+    },
+    {
+      "Path": "frontend/src/lib/onboardingLearningContext.d.ts",
+      "Sha256": "946aaf99d08253c75a68e80050b0f0dd6342398974aec0004c78e1db187e5725"
+    },
+    {
+      "Path": "frontend/src/lib/onboardingLearningContext.js",
+      "Sha256": "db69839445a86dcc7d084acb9beb9f6de79a804f87c44bad6d5775e1bd7c4d06"
+    },
+    {
+      "Path": "frontend/src/lib/organizationAuthorCopy.js",
+      "Sha256": "7a6b7f9364f9c06ee81b557f6878a44d8977536804696bff57402c2cdcd0346a"
+    },
+    {
+      "Path": "frontend/src/lib/organizationCopy.js",
+      "Sha256": "de7e519bce0cb0e5aca3639021535a2fb82b4b1f217f7ba5fda064b4c73c483b"
+    },
+    {
+      "Path": "frontend/src/lib/PageMeta.jsx",
+      "Sha256": "59e48d4340f9f679bafce25c1d2ce57e2845a2b95d9c346cc23940a805371aa6"
+    },
+    {
+      "Path": "frontend/src/lib/PageNotFound.jsx",
+      "Sha256": "e109eb000ad81c836deade0cf69a99feba3a731141be4672913c94395af8c800"
+    },
+    {
+      "Path": "frontend/src/lib/parentCopy.js",
+      "Sha256": "a3f488eea3587deac286a1f687df461cef9b7539d20e1c0fa1faa893a2edff43"
+    },
+    {
+      "Path": "frontend/src/lib/practiceExercises.js",
+      "Sha256": "067f59173db7d4feb2b6e39b66166f31df83cb73f52292936c6c54162ceb27aa"
+    },
+    {
+      "Path": "frontend/src/lib/primaryWorkspaceCopy.js",
+      "Sha256": "c3180b99497a32b7335d762190b599e56ab316fecd0972ffc59e5b9013814235"
+    },
+    {
+      "Path": "frontend/src/lib/privacyCopy.js",
+      "Sha256": "5b88fa61fa2724b38e99bc830cbc766b8510c2418c8068d1da11394368d118e4"
+    },
+    {
+      "Path": "frontend/src/lib/productAccess.js",
+      "Sha256": "ca3cbb52ac6308bb7d1e2674c24bd974a32643801eea488feb23a3b9c38027ff"
+    },
+    {
+      "Path": "frontend/src/lib/professionalCopy.js",
+      "Sha256": "244d27e62d52e1fd74bca3ad86412d6e1c2af8f216b25613b31ff3e9457c3d93"
+    },
+    {
+      "Path": "frontend/src/lib/profileCopy.js",
+      "Sha256": "9ade3694141643cfd3d0e92ac1646128df997050f89fe46155d11b3287c53083"
+    },
+    {
+      "Path": "frontend/src/lib/projectCopy.js",
+      "Sha256": "45d01dfddb07023ace3b5f1113f48de1919bca52b809b3ec20fa65074d2ca3a3"
+    },
+    {
+      "Path": "frontend/src/lib/query-client.js",
+      "Sha256": "a4d8c5aa674dfc41cadd4eea3ee7cbfb364629ed37d1a551579bdf0fa0f08154"
+    },
+    {
+      "Path": "frontend/src/lib/representationEngagementCopy.js",
+      "Sha256": "1d54f77d0a9110fc2b81e5a7ae4942e699b7fa4e3fa4fa4816a308852605c235"
+    },
+    {
+      "Path": "frontend/src/lib/roleNotificationCopy.js",
+      "Sha256": "fffbf1d7d777afc88af317d3f9e986bd60f8aaa7b5ed0e2dd480917600ebf36b"
+    },
+    {
+      "Path": "frontend/src/lib/routeMeta.js",
+      "Sha256": "d4ea46f71f65db5db90e655f36fe6636364780b74156fdb11ce74da72821c1c5"
+    },
+    {
+      "Path": "frontend/src/lib/RoutePrefetcher.jsx",
+      "Sha256": "5970bf76c5bdd17dfa04083304983019c09871ba69ca4486e689608358225fb1"
+    },
+    {
+      "Path": "frontend/src/lib/settingsCopy.js",
+      "Sha256": "e27276610eb5ec8fc3259a6c9c7ec9918e941f188ce2ce32d7d1c20f4d678bc8"
+    },
+    {
+      "Path": "frontend/src/lib/stageCopy.js",
+      "Sha256": "53bfd3c559ba755414c07a0c27843320fd956ca6a9c8ab48afec95aa65facca7"
+    },
+    {
+      "Path": "frontend/src/lib/supportCopy.js",
+      "Sha256": "60aac0a68cb782417796522b9ba1685de68b2a588a176477818506de0fdefab5"
+    },
+    {
+      "Path": "frontend/src/lib/teacherCopy.js",
+      "Sha256": "48fe610ff9d7014a4cd11fc45eb5e68523b02150c81f1c9b6095f8e47efb2de5"
+    },
+    {
+      "Path": "frontend/src/lib/utils.js",
+      "Sha256": "6ce2ce4709cffd1d7f1d1a6f40e24a72aae6786aba0774faa849f569051893dd"
+    },
+    {
+      "Path": "frontend/src/lib/workspaceStrings.js",
+      "Sha256": "47670dbc47744b730ad5abf1560943e160eed136d83029e13fcd4e9ee68537c1"
+    },
+    {
+      "Path": "frontend/src/pages/DemoPreview.jsx",
+      "Sha256": "6efe6e1ef5e0294aaa7d4125e364c7222567b3835ba8f65c1f3ddd43051e9f69"
+    },
+    {
+      "Path": "frontend/src/pages/ForgotPassword.jsx",
+      "Sha256": "23a81c2b73767213abbcd5fd0ad45181de3a4df4ce424ecd7be44ba466a4a116"
+    },
+    {
+      "Path": "frontend/src/pages/ForgotUserId.jsx",
+      "Sha256": "b4783bf75ee2f149847820f2c49df51efae804ed11a0bdd72ea57beb3babdeff"
+    },
+    {
+      "Path": "frontend/src/pages/Landing.jsx",
+      "Sha256": "6daa337617a2cc928d9735a22778c0ce5c357927687c39bacf63a1e161e611f0"
+    },
+    {
+      "Path": "frontend/src/pages/Login.jsx",
+      "Sha256": "e8ce36710ee157225d8066879b09dcf3b9c16f612cc5edfe4a3e2d950faeb6c4"
+    },
+    {
+      "Path": "frontend/src/pages/OAuthConsent.jsx",
+      "Sha256": "9144eb2fcf86d115e30f89e4b7141c40da238b5c44d79a70d3d72f43c0c5fb3e"
+    },
+    {
+      "Path": "frontend/src/pages/Onboarding.jsx",
+      "Sha256": "191faa234e22649009965ff783e2090546b77b37987a6a6d0ad956bfa9b985df"
+    },
+    {
+      "Path": "frontend/src/pages/Register.jsx",
+      "Sha256": "d8b0cdb3205c76915251bc818dbff13a252bced605cfb43373c2d7c96d5145d9"
+    },
+    {
+      "Path": "frontend/src/pages/ResetPassword.jsx",
+      "Sha256": "5e6730afc17536c7aa45524ba40c1c653e7249894cdbafd3ce338f0ba536f6d1"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ArtifactStudio.jsx",
+      "Sha256": "158c698d01bb6d68c2bb958a7a50feef0a866d36c44c8174fa9350d0bb19366a"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Ask.jsx",
+      "Sha256": "783391e4cb3dc8084a355df1f66dc6ede3ac4331b09b1c74fbe20a782f388e17"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Build.jsx",
+      "Sha256": "5f19cc2aae482469d3e1ce7f335eb13510f1f251b43e937655dcfce6a23ad070"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Children.jsx",
+      "Sha256": "dc2595c7861043ca2600b87e55ecd198cb7718545038125f36a8bcd23a025b42"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ClassDetail.jsx",
+      "Sha256": "2a949dfbdc02c45727a95515ae35ea3565dd9f6648d29dc12245fece135f94be"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ClassworkLearningPlayer.jsx",
+      "Sha256": "2ebc7d3e7ba87f75486d99a127e789a4afe9871339065f70aef02e3b459bc50a"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ClassworkStudy.jsx",
+      "Sha256": "35e870d6b0b4491c8055da72bfb1c1873fb872f9af673b9192a97bc7fb7c95eb"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Cohorts.jsx",
+      "Sha256": "1fad549f0e3ccd7eaace378b2e0e974d84cdfdaa611d32c0510dd5651decac9f"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Connections.jsx",
+      "Sha256": "2726efa0b16b47f2e168fb6e207530bb8b26eaf305340e37a269b944bb998207"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/DashboardHome.jsx",
+      "Sha256": "0cade026d11d0fa9554e23c7e69c93849cb44cc57cedf92884bc4fb2974d067d"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/DecisionHome.jsx",
+      "Sha256": "2f271d94cb57666dd73a115b0fc73f8134fea01925a655fdc8936468a51b6cc4"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Explore.jsx",
+      "Sha256": "ee9908a062887cd08eecba51d96c6b202429fe7c4e84da32154360c4e174bc30"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Guide.jsx",
+      "Sha256": "a5aa83b6748a40a3ac8189bb655a228b6e03fe76e7e0c01f3b258ff36b86c407"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Learn.jsx",
+      "Sha256": "ee4e42b2bb9db385e30b68df31fdcab3b312666d5c936fb406d4e4d156c7490b"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Learners.jsx",
+      "Sha256": "2ecdc3cf37f59837f93fc5ab68e39104bc73bd9c017054d5e054aa3c8b17c938"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/LearningProgress.jsx",
+      "Sha256": "d081e8518eda2ae056afd2f52f66c7b9f8f91ea43aada8459e3cf0e6e5f22083"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/LearningWorkspace.jsx",
+      "Sha256": "79b56d684170b00c415a90f363ad1f67557c4dd4002ae359d06c9a60b3f4d493"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationAccessHome.jsx",
+      "Sha256": "f03061f5738012debfc0cb14de6df347a3a3a3c046d80406194938644f62399b"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationAudit.jsx",
+      "Sha256": "07d9f0f491fc3419700ee0d5b377f41a35f790eaea70d3727f2d78acbc14bce9"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationBilling.jsx",
+      "Sha256": "c51082874e4e908653b96fac454b0b37022643166dbeb144631d27a1def1b6ee"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationContent.jsx",
+      "Sha256": "aaa0754616e2c66e7d2631499311fe2c996244d2c46add535c8fd5fd76218b5f"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationCurriculum.jsx",
+      "Sha256": "7b261e837576e1e1b9f0774fa45f21acac4f812e3feeab02a5785209cbc903b1"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationNotifications.jsx",
+      "Sha256": "ffb95c92cfd8f2afb1867ab5279bd50c3dc888e489272f57b338673738135ce2"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/OrganizationSettings.jsx",
+      "Sha256": "5f8073813f08e396062dcb0c1c3e9ddd8299d2ad20672ffe978468093c783806"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ParentNotifications.jsx",
+      "Sha256": "60f8f2a173525c04c586c7cf7ea4f76e04bfae50458f6c9dbeb2d0340b832e5f"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ParentReport.jsx",
+      "Sha256": "f7c7c6ff1dd15349e5e381af425e9a779e33069a98738a060c37e24dc843ab99"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ParentReportAsk.jsx",
+      "Sha256": "6514f1aaa772336c61f4a2fa2c8f1d5cbdac312005bac53aa11aa26c8f59030c"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Plans.jsx",
+      "Sha256": "fb6d562c5f2daff665f32edb5d0d53e8c3e56252d6b071f30b8f1a881b35ff42"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Practice.jsx",
+      "Sha256": "f448619ea7f9a8c571816022b8d86f93e6d694929c09dc25deb6dff6d8a2721d"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/ProfessionalCareer.jsx",
+      "Sha256": "eacb56527b7dcae4fc2cae6cc752e244ece7b4bfba84f70414a52f0dce19e9f0"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Profile.jsx",
+      "Sha256": "e14486d8544dbee7ab48583b2fb778af4ccc4d9ac3ac8e5d95f3e17f4316f7b0"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/RoleWorkspace.jsx",
+      "Sha256": "872690bbf55717750e04d5396a7beaaa7bc5ae63152adfb5f705c40466e6468c"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Settings.jsx",
+      "Sha256": "a2443f314019315bd45fd05dac7f127c1190334d6fe4bf77c2237b8d7c5c1cd9"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/StudentClasses.jsx",
+      "Sha256": "776019fd61a88fa8cfc4328d4757c6ebae0a7ea087994fd4e0969213edbdca40"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Subscription.jsx",
+      "Sha256": "b4a686b47cde19153d7fff09ab7e1d1ccc74c16dbb22854e8f9ded956d9a0f6b"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/Support.jsx",
+      "Sha256": "fecb1f6a50a227b265269304cd931743e735b5d8f7f1d057566bc3dacff7479c"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/TopicDetail.jsx",
+      "Sha256": "439c91f5bc664201f40504a9ba1a9022e77292bdbb6ec39875f121673616d9a3"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/WorkspaceTools.jsx",
+      "Sha256": "ae0eb5784fcd836a094b8a1f3e04ab6265caba463635ff60725929d3086174b9"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/role/OrgHome.jsx",
+      "Sha256": "ffd918b04d5008a536f0fb9fd731397ca59bdd38a5e356018f9460dd4f67fb02"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/role/ParentHome.jsx",
+      "Sha256": "c56a3a04e76eeeb4caa17c69e5a0b6c3026ec414d89dcce1ed94695e7e965753"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/role/StudentHome.jsx",
+      "Sha256": "a300274053af17576aca4b329496df4885b6941713a27ad1d03c20cf218a074d"
+    },
+    {
+      "Path": "frontend/src/pages/dashboard/role/TeacherHome.jsx",
+      "Sha256": "d635f051d6a99dce0419930e09bfb90a9c3e473e903c58a7fc71afd9ea711deb"
+    },
+    {
+      "Path": "frontend/src/pages/landing/AboutUsPage.jsx",
+      "Sha256": "8a022b240ece0c9ffb684969df661bb4bc116147e2d63bd98cf6feeae08d7b22"
+    },
+    {
+      "Path": "frontend/src/pages/landing/AccessibilityPage.jsx",
+      "Sha256": "81ed5ab0e8d3495f4ad2b37cf8cc012bbbe5ef40eb47010ef411e2287b0fdb82"
+    },
+    {
+      "Path": "frontend/src/pages/landing/AILearningPage.jsx",
+      "Sha256": "bf733e21b309c22396260851efe4299867bf7131e1e3fa8656cea890a71f3dfe"
+    },
+    {
+      "Path": "frontend/src/pages/landing/CareersPage.jsx",
+      "Sha256": "83e741b0844e2b74d0152a2779187ef2f3188c47f4bef976d8c9e3ff65a178e8"
+    },
+    {
+      "Path": "frontend/src/pages/landing/CoachingPage.jsx",
+      "Sha256": "72eddedc2e2faef223da606ef129f50742c4ad46a503413ef16b6f0f2c64b41b"
+    },
+    {
+      "Path": "frontend/src/pages/landing/CollegePage.jsx",
+      "Sha256": "c6b14c4a54d3d5b3c5f3e87cfbca788aff493ab59f33fab95cb14a43b0240029"
+    },
+    {
+      "Path": "frontend/src/pages/landing/CommunityPage.jsx",
+      "Sha256": "ac93841357db501ae9b40d2c9cf87dd57cd732a99e4f636d0a8973c86043f02f"
+    },
+    {
+      "Path": "frontend/src/pages/landing/ContactPage.jsx",
+      "Sha256": "764a057a3d69ae87055b6f72941df352a530d8213e180972c3053053257e7b17"
+    },
+    {
+      "Path": "frontend/src/pages/landing/CookiesPage.jsx",
+      "Sha256": "07f2d7b47f6c58607a7ee7b639b574a3b441be8c9d526c79eb00dd08b58ad4a5"
+    },
+    {
+      "Path": "frontend/src/pages/landing/DownloadPage.jsx",
+      "Sha256": "5bb13af855c8c60861b9310acf824124efbff912b2b24ae0182ef65e5857be02"
+    },
+    {
+      "Path": "frontend/src/pages/landing/OrganizationPage.jsx",
+      "Sha256": "13275c6a9f3fd40d93e997212ef268400d15d4de11c0ca40cc1c50f9446dce52"
+    },
+    {
+      "Path": "frontend/src/pages/landing/ParentPage.jsx",
+      "Sha256": "0b65fac9e87b2f68791bd571008d64416738c55fdb26c9f7f328f48564c3c276"
+    },
+    {
+      "Path": "frontend/src/pages/landing/PartnersPage.jsx",
+      "Sha256": "a35257867dff0c247b5ee67fdbb0aa358500f4c66c376d7d605e960e7452b0ae"
+    },
+    {
+      "Path": "frontend/src/pages/landing/PrivacyPage.jsx",
+      "Sha256": "eea5873a9afd76f005821baaaa4407e304fdae117b1a730b6c4cc139d2434566"
+    },
+    {
+      "Path": "frontend/src/pages/landing/ReferralPage.jsx",
+      "Sha256": "6086f6c5b6d04954816f2c7397e876f2a34a77d25f747850eca2c3ec06c0133e"
+    },
+    {
+      "Path": "frontend/src/pages/landing/ResearchNewsPage.jsx",
+      "Sha256": "f6bc9b161dec87f6a4387dae29b4c8af02c865d87e6daa903899ccdb889603ce"
+    },
+    {
+      "Path": "frontend/src/pages/landing/SafetyPage.jsx",
+      "Sha256": "3f393d7a704609d594e8ff4b733ad4ee73c5bfd90146c4b089e620bdcd410c04"
+    },
+    {
+      "Path": "frontend/src/pages/landing/SchoolPage.jsx",
+      "Sha256": "2ac261968628111c5341248351f78410cf55ae338d8e4d608886299465f281eb"
+    },
+    {
+      "Path": "frontend/src/pages/landing/SecurityPage.jsx",
+      "Sha256": "01a6d21d4c009f22e8652f4adba39cb220e9328d4483e5502c294a36b87e0960"
+    },
+    {
+      "Path": "frontend/src/pages/landing/StudentPage.jsx",
+      "Sha256": "6d6ebbcc129c2125cd1879ac06c8cea4770dbfceed641a7acd5124f7df49b06c"
+    },
+    {
+      "Path": "frontend/src/pages/landing/TeacherPage.jsx",
+      "Sha256": "47792429d81d888108621be6e4437c24ddc560dbb113fede2c55689ca5d17541"
+    },
+    {
+      "Path": "frontend/src/pages/landing/TermsPage.jsx",
+      "Sha256": "eaa66fcc65448f2c649294e93efee58ddc50324bcb6d1fcb1edd141cd549b366"
+    },
+    {
+      "Path": "frontend/src/pages/landing/UpdatesPage.jsx",
+      "Sha256": "e82ea5339749f27ea9ee4c3ac123275ca64383e2995af129ae1fa998d055f0f8"
+    },
+    {
+      "Path": "frontend/src/services/artifactEditorDraft.ts",
+      "Sha256": "d5c13b005bc15dae36454bb9905b2119088e7ec065f208bce07f54153d7d56a0"
+    },
+    {
+      "Path": "frontend/src/services/assignedCurriculumOutline.js",
+      "Sha256": "210bb8475492b71ff507cb52409c5522860c38a1982313150282aea875184b51"
+    },
+    {
+      "Path": "frontend/src/services/backendTransport.ts",
+      "Sha256": "de608e810c54b697b2c5f0db5f9f1bd7d051a6d1141ac283d0aa6ea5e16a2b3b"
+    },
+    {
+      "Path": "frontend/src/services/classCurriculumService.js",
+      "Sha256": "03e338a7814b5b24c0dfaba520f40c7f729e074049777af441aa5204bb56f094"
+    },
+    {
+      "Path": "frontend/src/services/classroomService.js",
+      "Sha256": "507a6d6a5e3c86866d9a85ac894b7dc3160f02dd749421c7dba4f52eeca39ebd"
+    },
+    {
+      "Path": "frontend/src/services/classworkDraftService.js",
+      "Sha256": "6d957893519b8c86d18bfcc1f44669711a6f680e4b42c0ea8df5685da88ce4d7"
+    },
+    {
+      "Path": "frontend/src/services/classworkPlayerService.js",
+      "Sha256": "8a543f97411cc65c2b912bb0ab6c02106f7bdb1d34ab3946d69e3983d059bacd"
+    },
+    {
+      "Path": "frontend/src/services/classworkStudyService.js",
+      "Sha256": "e2effc8e18f7ddd8d24fb1de84ce8b0c9064aac957764ddff568532c613b609a"
+    },
+    {
+      "Path": "frontend/src/services/communityService.ts",
+      "Sha256": "9ae7c6a7734ffcfa3f5351d6dd0b1ef56196b52a6ca8bccd2770c77bf57be960"
+    },
+    {
+      "Path": "frontend/src/services/contentRepository.ts",
+      "Sha256": "7acd9484043835893167f742c0a9f1913acc68de3249c917e693670186dde1ac"
+    },
+    {
+      "Path": "frontend/src/services/curriculumBridgeService.ts",
+      "Sha256": "2c0acc0e5ca2f915aafc8b9894cbe130081c4992131c0eeb99312d5fe7db88b1"
+    },
+    {
+      "Path": "frontend/src/services/curriculumPracticeSource.js",
+      "Sha256": "2daff609674c953971d08ca5c64c7bc9cd6ff10b26d507aa7c4c66204face10a"
+    },
+    {
+      "Path": "frontend/src/services/curriculumTemplate.ts",
+      "Sha256": "8cf6c4582be4f296b54a00405b692ed53ea88622acf0a7574149eb72fdf40a9d"
+    },
+    {
+      "Path": "frontend/src/services/dailyPlanService.ts",
+      "Sha256": "6ba7653369d3bc2c5f3bd0ea36cf508f745e85aa06dc4c01c98df88596227b91"
+    },
+    {
+      "Path": "frontend/src/services/guideEntryService.ts",
+      "Sha256": "fabecd44a7f04ec1e24deeb685dd46d46e8337f37bc9f5c8e0e0c55c903d9a44"
+    },
+    {
+      "Path": "frontend/src/services/homeService.ts",
+      "Sha256": "aad082fb62e85a928887f99f757a9e39ce5bb59c7c990faf2898cec969a5e5e3"
+    },
+    {
+      "Path": "frontend/src/services/journeyEligibility.ts",
+      "Sha256": "ac2f39b1d755db3f711a3a8f25ac6dae56463d0b77bf14fbdd34efb4075a5a4b"
+    },
+    {
+      "Path": "frontend/src/services/journeys.ts",
+      "Sha256": "6733ced3e06206d883f0ed28cc4be654fdb44af951b787465e230df1ed6e22fe"
+    },
+    {
+      "Path": "frontend/src/services/learningPipelineService.ts",
+      "Sha256": "0460aa81233a4fd9177f683bc736ba49a2780d8dcf178d03c2bc07fb5ed0c622"
+    },
+    {
+      "Path": "frontend/src/services/learningProgressService.ts",
+      "Sha256": "7ad5c9067b0ea34915eb2c22735c825e5011364d479819fc31e81d5e31db1d43"
+    },
+    {
+      "Path": "frontend/src/services/legacyConnections.ts",
+      "Sha256": "d2e199bc0b3f2a070b3da50efcbdec5cdacb83beac955c12f629624de7986c83"
+    },
+    {
+      "Path": "frontend/src/services/lessonObjective.ts",
+      "Sha256": "1a368a3382c0bb1b9c1604b16d2bd46521ec9b52738ad7eb3b8d2fb9fe79aa92"
+    },
+    {
+      "Path": "frontend/src/services/localAuxiliaryReview.ts",
+      "Sha256": "642f98da7783935bfb63c31a72ed8821f10bf1cac78b3d9bf4c456f0c95b6dc8"
+    },
+    {
+      "Path": "frontend/src/services/localMigrationService.ts",
+      "Sha256": "b975dc9c77dca1c2007a2463e9ea0ab7caea54eba95143686813d84131b08321"
+    },
+    {
+      "Path": "frontend/src/services/mentorCompanionService.ts",
+      "Sha256": "0966312d3acd9c81e9ed0fd768689e0b1b986fcef80c84397a079b713c955ac6"
+    },
+    {
+      "Path": "frontend/src/services/mentorModelService.ts",
+      "Sha256": "18296ce2385bfb9b9c033cd0e1443d838d38d13d5251e116b6dc1f2311d3b8c0"
+    },
+    {
+      "Path": "frontend/src/services/mentorStateService.ts",
+      "Sha256": "0bdd2b148ce67717c12cb5f7d3b5014a72cfb9373b777b38e0c751555203de2d"
+    },
+    {
+      "Path": "frontend/src/services/organizationBillingService.js",
+      "Sha256": "c2af6b4ccf950a4c34d7c174f2570270aba22a4df918037ddab067718e2b706f"
+    },
+    {
+      "Path": "frontend/src/services/organizationContentIntegrity.ts",
+      "Sha256": "642d9c5b8fe6ba910d7dbc86e1621d224defdbeeb413e518c59441aa195040ff"
+    },
+    {
+      "Path": "frontend/src/services/organizationPolicy.d.ts",
+      "Sha256": "efe863aa04702d8229358b93935989772864d3c2d15216e05ac7aa27ad7fc539"
+    },
+    {
+      "Path": "frontend/src/services/organizationPolicy.js",
+      "Sha256": "c04d5270fa1b89239b32df19e50af7319dd23b9fb8caa3fd608549f2f706a7dc"
+    },
+    {
+      "Path": "frontend/src/services/parentNotificationService.ts",
+      "Sha256": "15303688e89c2512ff0a8aa9bbb47c146b5f883f34a717903176967ca8b61165"
+    },
+    {
+      "Path": "frontend/src/services/parentReportAskService.ts",
+      "Sha256": "395e959e8828800195ed79a32e081005088505fd6a776c4d5fe2ad3b78d167a5"
+    },
+    {
+      "Path": "frontend/src/services/parentSummaryIntegrity.ts",
+      "Sha256": "89423fe66092154ecf03eb62ded4f86494d347ef1b725056433aa3b923e1fea4"
+    },
+    {
+      "Path": "frontend/src/services/portfolioReviewDraft.ts",
+      "Sha256": "b5e9b7aad2534ede66ecb385e14fe60c8ae35bfe5f427edb6d11b835c450fcda"
+    },
+    {
+      "Path": "frontend/src/services/portfolioReviewIntegrity.ts",
+      "Sha256": "0ecb285d3fb4c7d556941c9a5cb2d407e7e1917bead24807b780eee87b3d5ae2"
+    },
+    {
+      "Path": "frontend/src/services/resourceEditorDraft.ts",
+      "Sha256": "678fcd055f105c32f0ecc02078996c38fc3fb0f1575483aba93a6f039f12546e"
+    },
+    {
+      "Path": "frontend/src/services/reviewDraftService.js",
+      "Sha256": "8f80732e09c7e1aade55f14960bbb413ee2bc5b1903a6760fd39bbe5105e1408"
+    },
+    {
+      "Path": "frontend/src/services/roleMentorService.ts",
+      "Sha256": "6e072ecb76665aac9921f5f2361a3f8a4d96d6753dac9a2440c5410dadc442a1"
+    },
+    {
+      "Path": "frontend/src/services/stageEditorDraft.js",
+      "Sha256": "7de7b04e02b4d65d7ddf39e37c90bc85483c8e06a028a410c33eabe6084364e1"
+    },
+    {
+      "Path": "frontend/src/services/stagePresentation.ts",
+      "Sha256": "2fa51a41c623d50d69c2a757f9e8d2c9ece2076f78a38fc6bbd88d7c172f36b0"
+    },
+    {
+      "Path": "frontend/src/services/stageTransitionService.ts",
+      "Sha256": "2ea5060df18b70d77150e8d363d2af190a2801ee450e27c70ccc9dd444376e1a"
+    },
+    {
+      "Path": "frontend/src/services/teachingInterface.ts",
+      "Sha256": "52e8dca91bdf933bc8273c3d4972b6e550bd501d71eeefbbf9713861e6f8675c"
+    },
+    {
+      "Path": "frontend/src/services/voiceService.ts",
+      "Sha256": "0cc7ce56f07a3e801616ca9dbf7a293e8ff6c30cdcf5b98d2ef7435619e75713"
+    },
+    {
+      "Path": "frontend/src/services/workspaceService.ts",
+      "Sha256": "914da338f9f11707837330bc2e8bd7116c32730698e695c281584dcd8df6bddc"
+    },
+    {
+      "Path": "frontend/src/styles/apple-reference-notes.md",
+      "Sha256": "a75adc4e59739fdc713914b579edb67853672ca1a2263e7ef3456ece4162fad5"
+    },
+    {
+      "Path": "frontend/src/styles/apple-typography.css",
+      "Sha256": "9635799b33d919a5f114b674c044cc0b0affa699a7b8c25fcf74aaf19910fe51"
+    },
+    {
+      "Path": "frontend/src/styles/premium.css",
+      "Sha256": "8693877b25215038095dd5869a948cb55d35996f73fdf09809aea14c7c6df6c7"
+    },
+    {
+      "Path": "frontend/src/styles/public-bridge.css",
+      "Sha256": "2621b9c6f1e29e58812d9e62c5f2472d16cc2281d2c7f3765db973405b58b91b"
+    },
+    {
+      "Path": "frontend/src/styles/public-icons.css",
+      "Sha256": "81f64d538871b73635e71904a8f8f19248607e4382d78c6e18803e5f643aec8a"
+    },
+    {
+      "Path": "frontend/src/styles/public-system.css",
+      "Sha256": "e87255ea5ce2b0b563f7185f68b3df2385a8ff4fa2d511f5facaa55a548293b4"
+    },
+    {
+      "Path": "frontend/src/styles/README.md",
+      "Sha256": "693e92bed407f49fd43792e2dae4b65a325284c8f5c19ed9f65d0316da61790c"
+    },
+    {
+      "Path": "frontend/src/styles/rhythm.css",
+      "Sha256": "2b0a8573fed5d24faac93fef381193ae36c31c916c574b8979f37ed7f7028807"
+    },
+    {
+      "Path": "frontend/src/styles/tokens.css",
+      "Sha256": "97d01875d9fce7e0ef584dc057b98f6d622b6c6f71fa095f5dbe66c09ef9a28c"
+    },
+    {
+      "Path": "frontend/src/styles/workspace-outcomes.css",
+      "Sha256": "bca46aa68794c6a37ac4e4562a1e65919a7429155af58bdb235abe9ef5dec05b"
+    },
+    {
+      "Path": "frontend/src/styles/workspace-typography.css",
+      "Sha256": "f42e571a30b143a9b2d7642b5d4819bd6ab1145d78cfda4097a8f4e75be097b6"
+    },
+    {
+      "Path": "frontend/src/utils/index.ts",
+      "Sha256": "c27c1dc47b24693f410767b6b99f89d544195cdd9c1d349212436476b73a3065"
+    },
+    {
+      "Path": "frontend/public/favicon.png",
+      "Sha256": "267933d43fca99f73432d82bdd7f48a85a6105418b574cfdfa7f805ee93ccf16"
+    },
+    {
+      "Path": "frontend/public/favicon.svg",
+      "Sha256": "2055782a57c9b42b3f46b7ff5f302bbe326efcf4b6a7f16be1cc65b6fa80f86c"
+    },
+    {
+      "Path": "frontend/public/manifest.json",
+      "Sha256": "8d1037c7cd217966e1884aa7495d403a004f4e8827bc6a05fd0c21d41d2fa469"
+    },
+    {
+      "Path": "frontend/public/og-image.jpg",
+      "Sha256": "56bfeec0422899acaf1d43ada209d795f29167a6a9ddcdad978de75095b270b2"
+    },
+    {
+      "Path": "frontend/public/og-organization.jpg",
+      "Sha256": "97dd1acc7a172329b600f8f8c0c3e9027fd87c5178e734f168e0e704a31fdd0b"
+    },
+    {
+      "Path": "frontend/public/og-parent.jpg",
+      "Sha256": "ea0d0944c94a83c46499c9b16fda5423d0c79333de55fe08b6005cff96501c99"
+    },
+    {
+      "Path": "frontend/public/og-professional.jpg",
+      "Sha256": "0b23948f446642d9570fcd497caaf3e022e270cd454005f1791c1a60c8ca708a"
+    },
+    {
+      "Path": "frontend/public/og-student.jpg",
+      "Sha256": "5f76f9ac7ede6f28b3e94076a6cabe9cc711c55fd02271e511eb86bad8f4f449"
+    },
+    {
+      "Path": "frontend/public/og-teacher.jpg",
+      "Sha256": "52ea8229ba5b7798897023eb5f955d941efecbe03da5f7950187cddff1709a7d"
+    },
+    {
+      "Path": "frontend/public/reference-card-preview.png",
+      "Sha256": "4138d2835f9628e11a1ff0c6ee27ac459dc71bb912a3a49d6f7a6deb5f22d32e"
+    },
+    {
+      "Path": "frontend/public/reference-card.jpeg",
+      "Sha256": "fc2b50208bc60b40f4dfed0788fadeb9f4a9de66b9ac2ade5f2f538204a10f4f"
+    },
+    {
+      "Path": "frontend/public/robots.txt",
+      "Sha256": "262f9935e304beca83210a6c632d3bb3b9b2d0a75a2e820585b1012a98a918ec"
+    },
+    {
+      "Path": "frontend/public/sitemap.xml",
+      "Sha256": "0060cf8273603eba8eea039981cc2784d613305660813726e63650953b2a2169"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSans-Bold.ttf",
+      "Sha256": "380ac194dd12a1290f9091b5178381e42b2f834e5d7d1b4f729df7c459cc9baf"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSans-Medium.ttf",
+      "Sha256": "81af36b42b8c5f66fb29fe04995d43ba3c6589b62ad34e9fe428fb2c162715a5"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSans-Regular.ttf",
+      "Sha256": "03db9870a5505f83d81c828768642b816bef24ac615501856de5b2ff1038c0f0"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSansFlex-Bold.ttf",
+      "Sha256": "0274f533639613e4f76352ec9a537049c2042dc9d646dd82d0a8ed4c45bd4e8a"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSansFlex-Medium.ttf",
+      "Sha256": "57d61bba609846324d21608a356efe817b02cfaf724dd6b1c42d35f6169f9e6a"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSansFlex-OFL.txt",
+      "Sha256": "fc13d69f63e36d284b6e383d4d1463d8ad404f0aa065e57cf961252d51063137"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSansFlex-Regular.ttf",
+      "Sha256": "1a5608fc557dca87bbe97ccba8974a5ac99fc87346a8745fc83d5ea06486f99b"
+    },
+    {
+      "Path": "frontend/public/fonts/GoogleSansFlex-Semibold.ttf",
+      "Sha256": "8b11adac519d26808d65064cc0f8533740bcc8377905dbd04741c90bb36d3b6c"
+    },
+    {
+      "Path": "frontend/public/fonts/README.md",
+      "Sha256": "458b7a2a86aad7fe8443958d1be28b0625eca17926c26f77984728082ceaa2e3"
+    },
+    {
+      "Path": "frontend/tests/artifact-conflict.test.mjs",
+      "Sha256": "0580266045933044fc83eac80228d5680e97cee9d18b2309956b184e2f333149"
+    },
+    {
+      "Path": "frontend/tests/assigned-outline.test.mjs",
+      "Sha256": "674eecfb5deb74fc288b659fbe3caac190805f49a8410937d0fdad13b7c8a48f"
+    },
+    {
+      "Path": "frontend/tests/backend-transport.test.mjs",
+      "Sha256": "6d40567251e5699d00066559cf4631436d7592588676ca2909802a1b50c12500"
+    },
+    {
+      "Path": "frontend/tests/class-assessment.test.mjs",
+      "Sha256": "f0d9c788c4769c0b74348cba2f378d84869dea78bcf585ff0194d6225673905f"
+    },
+    {
+      "Path": "frontend/tests/class-curriculum.test.mjs",
+      "Sha256": "b1c7c2cfcffc0d05b02801040060c8d11d17cd87b737999cc4b9adb55702d57e"
+    },
+    {
+      "Path": "frontend/tests/classroom-scope.test.mjs",
+      "Sha256": "3f2f4d14f16a54904fac19722fae1aa5b07bb82d14ddd251c6d8e2eb24dbfcd2"
+    },
+    {
+      "Path": "frontend/tests/classwork-handoff.test.mjs",
+      "Sha256": "27287468271afda4921f8aec3c827c7c458abd6e02a5d21ab21035f3edbb088e"
+    },
+    {
+      "Path": "frontend/tests/classwork-practice-boundary.test.mjs",
+      "Sha256": "cb9b1c22abb1347e383f969c6d236594f121a7fc547c3020113d30483e5372da"
+    },
+    {
+      "Path": "frontend/tests/classwork-project.test.mjs",
+      "Sha256": "792f8ca4c00265c5ff2d6c06c25ed26a4a4eeed8d06675bd67c1462c042bc7a0"
+    },
+    {
+      "Path": "frontend/tests/classwork-read-boundary.test.mjs",
+      "Sha256": "c074794c74e6ce8217d6d1e7da5cd4c9d35cfc0800b4654c307b756302e6b660"
+    },
+    {
+      "Path": "frontend/tests/classwork-review-commit.test.mjs",
+      "Sha256": "3ddf9d84038ca05ff6d1bf0976b885d2c6b17817ab12c05e990751d4fae0b521"
+    },
+    {
+      "Path": "frontend/tests/classwork-study.test.mjs",
+      "Sha256": "09eebbf13f2f39efa0a8318038ce46bb739d62eb344cf59b6a23be86f1059f71"
+    },
+    {
+      "Path": "frontend/tests/classwork-submit-boundary.test.mjs",
+      "Sha256": "ee9b475be9b2bc186ac2b1809206674f4669697d01f99a207707deb26890b6bf"
+    },
+    {
+      "Path": "frontend/tests/community.test.mjs",
+      "Sha256": "cbaaf4b762510dbf62302c360a8097392be7bfbc559510165ab19abaad2837f0"
+    },
+    {
+      "Path": "frontend/tests/connection-integrity.test.mjs",
+      "Sha256": "2f60cec855bd23758627c8bfd35928446e38276eab9e3acfb7429d3cf061c04d"
+    },
+    {
+      "Path": "frontend/tests/connections.test.mjs",
+      "Sha256": "0ff8a5dc11117339edc2f2312263ce84a574a580788d9f759eafdaa2985fb424"
+    },
+    {
+      "Path": "frontend/tests/content-teaching.test.mjs",
+      "Sha256": "0387479fcfc526d94344888a7ccf1eeb785a158b86772b7bfbcd55e84fa87d27"
+    },
+    {
+      "Path": "frontend/tests/criterion-feedback.test.mjs",
+      "Sha256": "6260b69fd6d8fc7dc1c32529f48e8ebb5df8f1c32c77c015aa5c1a0422d1432d"
+    },
+    {
+      "Path": "frontend/tests/curriculum-bridge.test.mjs",
+      "Sha256": "17631e614536955d5a8e170f3138bcb427a6e2945b543fe7cdce984c8eee9cb0"
+    },
+    {
+      "Path": "frontend/tests/curriculum-category-acceptance.test.mjs",
+      "Sha256": "f6e2c35dbc97d0aca3f1820130f9b6171c3d1b3a223a5a4dbc15ac7f320fe005"
+    },
+    {
+      "Path": "frontend/tests/curriculum-practice.test.mjs",
+      "Sha256": "ac9e123b6317b58d6015c83be018a2f41413652d09ed28db10d66a7d7a481d79"
+    },
+    {
+      "Path": "frontend/tests/curriculum-structure.test.mjs",
+      "Sha256": "10982f7ae51170f71d117233b13468ddf9b6d81f8c748a3bf627d6afd803308a"
+    },
+    {
+      "Path": "frontend/tests/daily-plan.test.mjs",
+      "Sha256": "d6fe2e01be77c547aacd4f145e10eff06f6bbb556e98e0f6ba92c9253b9b134e"
+    },
+    {
+      "Path": "frontend/tests/debug-undo.mjs",
+      "Sha256": "42f7371fe2e03655e1504b2f5e7f93fcdacda70be03f515691dce623393b3abc"
+    },
+    {
+      "Path": "frontend/tests/entity-recovery.test.mjs",
+      "Sha256": "0de2b16587e9749dc479c948a490c49739ffb16a675c5acf65ecd62b66e3de8d"
+    },
+    {
+      "Path": "frontend/tests/guide.test.mjs",
+      "Sha256": "7af041c74d8014cbd9ab176ee4cff4a43cebf3980c118a52f71492b5c2ae762e"
+    },
+    {
+      "Path": "frontend/tests/home-engagement.test.mjs",
+      "Sha256": "01e0f338c278cfd2ba8b3a0ba5333c0192538491bfddab7809e61806ba6341d5"
+    },
+    {
+      "Path": "frontend/tests/home-interface-language.test.mjs",
+      "Sha256": "d5c4f204efaa77e6bedd14fec9d1815b0a670b66899d268706fd3eec20490867"
+    },
+    {
+      "Path": "frontend/tests/home.test.mjs",
+      "Sha256": "a9cfc2651f373f5e6bb38a91f7d81cd636225105cb8b7aa28f4a79dfbe1436e5"
+    },
+    {
+      "Path": "frontend/tests/learning-catalogue.test.mjs",
+      "Sha256": "00a1b69462c0f34bf886e4bcc4c07f1bf8c5c99f666f07ae55463759c9133dc2"
+    },
+    {
+      "Path": "frontend/tests/learning-pipeline.test.mjs",
+      "Sha256": "bd028997e575f3aadff5342bc550a64d4247846810b151c938c4fc59249c20fa"
+    },
+    {
+      "Path": "frontend/tests/learning-progress.test.mjs",
+      "Sha256": "c61e9d459a948c86f603bc244b9f65f842b4b876eb6821ebbd890edfcb3a7d91"
+    },
+    {
+      "Path": "frontend/tests/learning-source-recovery.test.mjs",
+      "Sha256": "0911e164080c5db69a27d62f053c1450af10f8469459117b12e9b82e259fa838"
+    },
+    {
+      "Path": "frontend/tests/lesson-objective.test.mjs",
+      "Sha256": "cdde7be37a68e41da6078f95debfa5400894944766182c834e9ff743a9c6a6a3"
+    },
+    {
+      "Path": "frontend/tests/local-migration.test.mjs",
+      "Sha256": "3cca7e8ce352286dbf0f8e0a59a46841401598718f75627d1bd4e85185dd0c95"
+    },
+    {
+      "Path": "frontend/tests/mentor-companion.test.mjs",
+      "Sha256": "11f22c25fc22aefbdc7b7fb8a1eab8fc0f3fac2a389a2a2b7aa479e7edd1b359"
+    },
+    {
+      "Path": "frontend/tests/mentor-model.test.mjs",
+      "Sha256": "8e38bdcc6bf33472862ac10f181ed7e47b804f82c7cf8fbc4edac59625797de3"
+    },
+    {
+      "Path": "frontend/tests/mentor-state.test.mjs",
+      "Sha256": "af740c4e08bc50f3953679ae3b37c72214df97a6e8258ef3e841495d4ffd52ad"
+    },
+    {
+      "Path": "frontend/tests/navigation-presentation.test.mjs",
+      "Sha256": "54df8bf31f104252f2588db3fd12f48f927f20927aae4eda24d8e0f06e557b1a"
+    },
+    {
+      "Path": "frontend/tests/notification-recovery.test.mjs",
+      "Sha256": "d31b13d3416d9bae6e4f2778906bffcc6b5ec9e1d9d26f21bce0b28fb3953b6f"
+    },
+    {
+      "Path": "frontend/tests/onboarding-context.test.mjs",
+      "Sha256": "3ae63ec1da0f33f9532d2bec7a787a7bab80f71c68aeb0c81fe32ad56f35e2ab"
+    },
+    {
+      "Path": "frontend/tests/organization-audit.test.mjs",
+      "Sha256": "ed52f0d7b02b69e5ceadd3aa7c9ab25cc1f10f031b7594a6bd0237219cd64b74"
+    },
+    {
+      "Path": "frontend/tests/organization-cohort.test.mjs",
+      "Sha256": "a492bf2b5fb2773aa56a6152e729b869289b3c4f9496246c2aa815547316561b"
+    },
+    {
+      "Path": "frontend/tests/organization-content.test.mjs",
+      "Sha256": "6a2806d43cd987cbb233e1969a4aa07854a4dfdadbaacf3272f6e0b275b26049"
+    },
+    {
+      "Path": "frontend/tests/organization-invitations.test.mjs",
+      "Sha256": "0b85c0412a9f87c910d0ae4ff71ddb60c55b307a14211b8e6a79277dd2a59298"
+    },
+    {
+      "Path": "frontend/tests/organization-permissions.test.mjs",
+      "Sha256": "ac949fa3cd18fa257e49df59c43bcf742d0ed19ee12e0e4cc033787d1dc7882e"
+    },
+    {
+      "Path": "frontend/tests/organization-settings.test.mjs",
+      "Sha256": "34eb564ad4775f21be998c3d7495b9b9aa5b726a2d3e7c15346923aa7d035b2e"
+    },
+    {
+      "Path": "frontend/tests/organization-updates.test.mjs",
+      "Sha256": "4fbe04f9d8bd2da103070205e91e4d1c7bdc941e40fe109945de0f45aeb873fa"
+    },
+    {
+      "Path": "frontend/tests/parent-classwork-boundary.test.mjs",
+      "Sha256": "86ca87312850e6550f74dfaa534a548c34edfaee6a34652e76eacfc6245905e2"
+    },
+    {
+      "Path": "frontend/tests/parent-goal-sharing.test.mjs",
+      "Sha256": "a8113a6a00773c2b7c963c700f9b100d6b00b44076f064a447856dc8614fec15"
+    },
+    {
+      "Path": "frontend/tests/parent-notifications.test.mjs",
+      "Sha256": "c9bc5d12238e45c29ddce10779cff770796c87a4f8268392eba53afe30632a77"
+    },
+    {
+      "Path": "frontend/tests/parent-project-sharing.test.mjs",
+      "Sha256": "219b7cea24d02b9278e0a8b10fe23451be554d300db27b8d821859a926e049f1"
+    },
+    {
+      "Path": "frontend/tests/parent-report-ask.test.mjs",
+      "Sha256": "20b74a0d807ce388ab2d5679a9fe5589490397c8b1c2def19dac7ef2c8892728"
+    },
+    {
+      "Path": "frontend/tests/portfolio-review-recovery.test.mjs",
+      "Sha256": "5c57ebe5c938a0074f47b4b7cb1b0c93b97d19ff8ac5208a3b2b725169da74f1"
+    },
+    {
+      "Path": "frontend/tests/professional-career-recovery.test.mjs",
+      "Sha256": "5bd0494dbc4b13bb7ccb422887dd672eb8c15506871484982fc92ce633c82a4f"
+    },
+    {
+      "Path": "frontend/tests/professional-portfolio-review.test.mjs",
+      "Sha256": "47cdff1128679b3c45c45bab87dec9bd33cc636e1b56205414d1cffd4a8281f9"
+    },
+    {
+      "Path": "frontend/tests/professional-sponsored.test.mjs",
+      "Sha256": "931d1b4f0548d48ececdec7a4252798731c37d33d68061129e44244d0a189c42"
+    },
+    {
+      "Path": "frontend/tests/profile-update.test.mjs",
+      "Sha256": "1061c854388472e6b241b7672fce26bde1b86097398761d03f3a6d5458d89ecd"
+    },
+    {
+      "Path": "frontend/tests/publication-boundary.test.mjs",
+      "Sha256": "c90a6f818c92c414ac41309aafbad27865360c587d987a2fb8cd5c99faed6dde"
+    },
+    {
+      "Path": "frontend/tests/resource-editor.test.mjs",
+      "Sha256": "13837c175dac34b7e86902701dbba71e78563a91e10f84e6ed97d619b2b9cad4"
+    },
+    {
+      "Path": "frontend/tests/review-draft-boundary.test.mjs",
+      "Sha256": "b7caa8004f53d230f7c0564ad46d225431ccd93457dbf0a0d336f0126b601f21"
+    },
+    {
+      "Path": "frontend/tests/role-mentor.test.mjs",
+      "Sha256": "9c3f2afe82ab1b7cfe4a11361ba4a1c81ee3da56b32785d2f96ad7b24818e138"
+    },
+    {
+      "Path": "frontend/tests/stage-presentation.test.mjs",
+      "Sha256": "582190757f7a824bc4d6e054ae7b6ef6f4a8b8288843c56847136f4971e9a749"
+    },
+    {
+      "Path": "frontend/tests/stage-transition.test.mjs",
+      "Sha256": "9bf5d5f83dea6973da257303878d142c128ed9b122b8b596a5928049d01f8da0"
+    },
+    {
+      "Path": "frontend/tests/teacher-assignment-boundary.test.mjs",
+      "Sha256": "e213122f2eead671f6b148667d7976c3a7623454c5d2895313eaf6e06d023636"
+    },
+    {
+      "Path": "frontend/tests/voice.test.mjs",
+      "Sha256": "86e68b72b92399aaf6813eb3c315c649601a908ca4cec24286679a30959c6ce8"
+    },
+    {
+      "Path": "frontend/tests/workspace-role-entry.test.mjs",
+      "Sha256": "24001d0ea691b807398758343cf279f5ccac71a374eb2d22787ecac58974f9d6"
+    },
+    {
+      "Path": "frontend/tests/workspace.test.mjs",
+      "Sha256": "7200618d2043c9b6e630efba29ed3e481066fbf3d0ad1d498e3c7a242018648c"
+    },
+    {
+      "Path": "frontend/tests/fixtures/classCurriculum.mjs",
+      "Sha256": "cb1dc277ac99a196de6a6c727ea7741f632cfe2745fefd7f02b45c86a3eaf160"
+    },
+    {
+      "Path": "frontend/tests/fixtures/connectedContext.mjs",
+      "Sha256": "14c8c82dcc9d44e1aff50efb5f0af284986aa7db044adbae9d657d5ebe735eef"
+    }
+  ]
+}

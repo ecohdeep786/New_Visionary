@@ -1,0 +1,14 @@
+{
+  "node": {
+    "version": "20.20.2",
+    "url": "https://nodejs.org/dist/v20.20.2/node-v20.20.2-win-x64.zip",
+    "sha256": "dc3700fdd57a63eedb8fd7e3c7baaa32e6a740a1b904167ff4204bc68ed8bf77",
+    "directory": ".tools/node20/node-v20.20.2-win-x64"
+  },
+  "go": {
+    "version": "1.25.14",
+    "url": "https://go.dev/dl/go1.25.14.windows-amd64.zip",
+    "sha256": "119044a92b3987c341cd6aebb256676dd4780d292f7b4e72a3e9976677841697",
+    "directory": ".tools/go125/go"
+  }
+}

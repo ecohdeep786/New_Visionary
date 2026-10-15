@@ -1,0 +1,7 @@
+{
+  "type": "service_account",
+  "project_id": "demo-other-project",
+  "client_email": "synthetic@example.invalid",
+  "private_key": "synthetic-private-material",
+  "private_key_id": "synthetic"
+}

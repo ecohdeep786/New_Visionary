@@ -1,0 +1,74 @@
+/* Internal product typography consumes the shared product font token. Public display
+   helpers stay in apple-typography.css; the workspace uses a compact rem scale.
+   Include portals because dialogs and menus are mounted outside the shell. */
+:is(.visionary-workspace, body:has(.visionary-workspace) :is([role="dialog"], [role="menu"])) {
+  --v-type-body: 1rem;
+  --v-type-control: .875rem;
+  --v-type-label: .8125rem;
+  --v-type-meta: .75rem;
+  font-family: var(--font-product);
+  font-size: var(--v-type-body);
+  line-height: var(--lh-body, 1.5);
+  font-optical-sizing: auto;
+}
+
+/* These older components still declare pixels. Keep their intended hierarchy
+   while allowing the browser's default text size to scale every text role. */
+.visionary-workspace .v-field {font-size: var(--v-type-control)}
+.visionary-workspace .guide-composer textarea {font-size: var(--v-type-body)}
+.visionary-workspace .learning-cube span {font-size: 1.25rem}
+.visionary-workspace .v-home-module h2 {font-size: 1.25rem}
+.visionary-workspace :is(.v-home-secondary,.v-home-reason,.v-home-empty,.guide-entry-label,.guide-entry-option,.guide-entry-context,.v-person-avatar,.v-connection-request > summary,.v-chapter-number) {font-size: var(--v-type-control)}
+.visionary-workspace .v-people-heading h2 {font-size: 1.375rem}
+.visionary-workspace .v-classwork-row > div:first-child > div:nth-child(2) > p:first-child {font-size: var(--v-type-body)}
+.visionary-workspace :is(.v-class-code > p,.v-learning-step) {font-size: var(--v-type-meta)}
+.visionary-workspace .v-learning-step > span {font-size: .6875rem}
+.visionary-workspace .v-chapter-row {font-size: var(--v-type-body)}
+.visionary-workspace .v-lesson .v-learning-step {font-size: var(--v-type-label)}
+.visionary-workspace .v-audio-name {font-size: var(--v-type-meta)}
+.visionary-workspace.workspace-shell.stage-foundational {font-size: 1.0625rem}
+.visionary-workspace.workspace-shell.stage-foundational :is(.v-button,.v-muted) {font-size: .9375rem}
+.visionary-workspace.workspace-shell.stage-foundational .v-home-row-title {font-size: 1.0625rem}
+
+body:has(.visionary-workspace) .workspace-voice-panel h2 {font-size: 1.375rem}
+body:has(.visionary-workspace) :is(.workspace-voice-eyebrow,.workspace-voice-state,.workspace-voice-now,.workspace-voice-footnote) {font-size: .75rem}
+body:has(.visionary-workspace) :is(.workspace-voice-intro,.workspace-voice-choices button) {font-size: .8125rem}
+body:has(.visionary-workspace) .workspace-voice-actions .v-button {font-size: .875rem}
+
+/* Legacy utility consumers, including portal content, also scale with text.
+   The 13px rule needs important because public-bridge.css sets it globally. */
+:is(.visionary-workspace, body:has(.visionary-workspace) :is([role="dialog"], [role="menu"])) {
+  & [class~="text-[11px]"] {font-size: .75rem}
+  & [class~="text-[12px]"] {font-size: .75rem}
+  & [class~="text-[13px]"] {font-size: .8125rem!important}
+  & [class~="text-[14px]"] {font-size: .875rem}
+  & [class~="text-[14.5px]"] {font-size: .90625rem!important}
+  & [class~="text-[15px]"] {font-size: .9375rem}
+  & [class~="text-[16px]"] {font-size: 1rem}
+  & [class~="text-[16.5px]"] {font-size: 1.03125rem!important}
+  & [class~="text-[17px]"] {font-size: 1.0625rem!important}
+  & [class~="text-[17.5px]"] {font-size: 1.09375rem!important}
+}
+
+/* Shared public rhythm uses display-sized gaps. Restore the declared utility
+   rhythm inside the workspace rather than importing marketing proportions. */
+.visionary-workspace #main :is(h1,h2) + p.mt-6 {margin-top: 1.5rem!important}
+.visionary-workspace #main p + h2.mt-4 {margin-top: 1rem!important}
+.visionary-workspace #main p.uppercase {font-size: var(--v-type-label)!important;line-height: 1.5!important}
+
+/* :lang matches inherited language too, so translated titles and portalled
+   content receive readable leading; mixed-language English runs keep theirs. */
+:is(.visionary-workspace, body:has(.visionary-workspace) :is([role="dialog"], [role="menu"])) :is(:lang(hi),:lang(bn),:lang(pa),:lang(mr),:lang(ta),:lang(te),:lang(gu),:lang(kn)) {
+  font-family: var(--font-product);
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+body:has(.visionary-workspace) :is([role="dialog"],[role="menu"]):is(:lang(hi),:lang(bn),:lang(pa),:lang(mr),:lang(ta),:lang(te),:lang(gu),:lang(kn)) {line-height: 1.7}
+:is(.visionary-workspace, body:has(.visionary-workspace) :is([role="dialog"], [role="menu"])) :is(h1,h2,h3,.v-title,.guide-entry-title):is(:lang(hi),:lang(bn),:lang(pa),:lang(mr),:lang(ta),:lang(te),:lang(gu),:lang(kn)) {line-height: 1.5}
+
+@media(max-width:767px) {
+  .visionary-workspace .v-field,
+  body:has(.visionary-workspace) [role="dialog"] :is(input,select,textarea) {font-size: 1rem}
+  .visionary-workspace .v-lesson .v-learning-step {font-size: .75rem}
+  .visionary-workspace .workspace-bottom-nav > * {font-size: .75rem}
+}

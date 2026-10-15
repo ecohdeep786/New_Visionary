@@ -1,0 +1,385 @@
+{
+  "samples": [
+    {
+      "role": "student",
+      "scheme": "light",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "light",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "light",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "light",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "dark",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "dark",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "dark",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "scheme": "dark",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "student",
+      "largeText": {
+        "overflow": false,
+        "guideInside": true,
+        "guideBeforeAccount": true
+      }
+    },
+    {
+      "role": "student",
+      "populated": true,
+      "width": 390,
+      "priority": "Next for you\n\nUnderstand cube volume\n\nContinue from practice. Your answers and position are saved on this device.\n\nContinue learning\nOpen learning outline\nWhy this?\nChange plan"
+    },
+    {
+      "role": "student",
+      "populated": true,
+      "width": 1440,
+      "priority": "Next for you\n\nUnderstand cube volume\n\nContinue from practice. Your answers and position are saved on this device.\n\nContinue learning\nOpen learning outline\nWhy this?\nChange plan"
+    },
+    {
+      "role": "teacher",
+      "scheme": "light",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "light",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "light",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "light",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "dark",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "dark",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "dark",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "scheme": "dark",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "teacher",
+      "largeText": {
+        "overflow": false,
+        "guideInside": true,
+        "guideBeforeAccount": true
+      }
+    },
+    {
+      "role": "parent",
+      "scheme": "light",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "light",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "light",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "light",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "dark",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "dark",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "dark",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "scheme": "dark",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "parent",
+      "largeText": {
+        "overflow": false,
+        "guideInside": true,
+        "guideBeforeAccount": true
+      }
+    },
+    {
+      "role": "professional",
+      "scheme": "light",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "light",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "light",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "light",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "dark",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "dark",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "dark",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "scheme": "dark",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "professional",
+      "largeText": {
+        "overflow": false,
+        "guideInside": true,
+        "guideBeforeAccount": true
+      }
+    },
+    {
+      "role": "organization",
+      "scheme": "light",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "light",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "light",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "light",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "dark",
+      "width": 320,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "dark",
+      "width": 390,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "dark",
+      "width": 768,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "scheme": "dark",
+      "width": 1440,
+      "documentOverflow": false,
+      "mainOverflow": false,
+      "font": "\"Google Sans\", sans-serif"
+    },
+    {
+      "role": "organization",
+      "largeText": {
+        "overflow": false,
+        "guideInside": true,
+        "guideBeforeAccount": true
+      }
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "desktop search label/shortcut",
+    "five-role navigation groups",
+    "secondary rail/phone selection",
+    "More expansion/Escape focus",
+    "keyboard search",
+    "Hindi/Bengali grouping"
+  ]
+}

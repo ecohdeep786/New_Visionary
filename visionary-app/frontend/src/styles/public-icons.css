@@ -1,0 +1,102 @@
+/* Public UI glyphs, measured against Apple Education / Watch / Vision Pro.
+   All values live here. Lucide remains the existing pictogram library; custom
+   controls opt into public-icon. Logos, charts and illustration SVGs do not.
+   The content boundary deliberately excludes complete fixed hero stages. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) {
+  --icon-inline: 1em;
+  --icon-meta: 0.875rem;
+  --icon-small: 1.0625rem;
+  --icon-medium: 1.25rem;
+  --icon-feature: 1.5rem;
+  --icon-large: 2.5rem;
+  --icon-control-size: 2.25rem;
+  --icon-control-glyph: 1.5rem;
+  --icon-plus: 1.25rem;
+  --icon-stroke: 1.75;
+  --icon-control-stroke: 2;
+  --icon-plus-stroke: 3;
+  --icon-link-gap: 0.3em;
+  --icon-control-border: 2px;
+  --icon-control-color: #86868b;
+}
+
+/* Normal pictograms have a consistent stroke; explicit size utilities map to
+   shared roles instead of each component owning a pixel value. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(svg.lucide, svg.public-icon) {
+  width: var(--public-icon-size, var(--icon-feature)) !important;
+  height: var(--public-icon-size, var(--icon-feature)) !important;
+  flex-shrink: 0;
+  stroke-width: var(--icon-stroke);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(svg.lucide, svg.public-icon):is(.h-3, .h-3\.5, .h-4, .public-icon-meta) {
+  --public-icon-size: var(--icon-meta);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(svg.lucide, svg.public-icon):is(.h-5, [class*="h-[18px]"], [class*="h-[20px]"], .public-icon-medium) {
+  --public-icon-size: var(--icon-medium);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(svg.lucide, svg.public-icon):is(.h-7, .h-8, .h-9, .h-10, .public-icon-large) {
+  --public-icon-size: var(--icon-large);
+}
+
+/* Inline icons inherit the text's size. Match Apple's 0.3em link spacing,
+   with no fixed-size jump between body and editorial links. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, .public-text-link):has(> :is(svg.lucide, svg.public-icon, svg[viewBox="0 0 24 24"][stroke])) {
+  column-gap: var(--icon-link-gap) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(a, button, label, .public-text-link) > :is(svg.lucide, svg.public-icon, svg[viewBox="0 0 24 24"][stroke]) {
+  width: var(--icon-inline) !important;
+  height: var(--icon-inline) !important;
+  flex-shrink: 0;
+  stroke-width: var(--icon-stroke);
+}
+
+/* Existing gallery buttons are recognized by accessible action names. New
+   shared controls can opt in with public-icon-control. Dot selectors and
+   full-card buttons never match because they have no direct glyph child. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) button:is(.public-icon-control, [aria-label^="Previous"], [aria-label^="Next"], [aria-label^="Play"], [aria-label^="Pause"]):has(> svg):not(:has(> :is(span, p, div, img))) {
+  width: var(--icon-control-size) !important;
+  height: var(--icon-control-size) !important;
+  min-width: var(--icon-control-size) !important;
+  min-height: var(--icon-control-size) !important;
+  padding: 0 !important;
+  border: var(--icon-control-border) solid currentColor !important;
+  color: var(--icon-control-color) !important;
+  border-radius: 50% !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) button:is(.public-icon-control, [aria-label^="Previous"], [aria-label^="Next"], [aria-label^="Play"], [aria-label^="Pause"]):has(> svg):not(:has(> :is(span, p, div, img))) > :is(svg.public-icon, svg.lucide, svg) {
+  width: var(--icon-control-glyph) !important;
+  height: var(--icon-control-glyph) !important;
+  stroke-width: var(--icon-control-stroke);
+}
+
+/* Watch accordion glyph: a 17px-wide compact chevron, independent of the
+   title's responsive feature size. Lucide's 24-unit box includes whitespace. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) button[aria-expanded] > :is(svg.lucide-chevron-down, svg.lucide-chevron-up, svg.public-icon-chevron) {
+  width: var(--icon-feature) !important;
+  height: var(--icon-feature) !important;
+  stroke-width: var(--icon-control-stroke);
+}
+
+/* The story card plus is a 20px glyph in a 36px circle; the story remains
+   the click target. Size the affordance, never the entire image button. */
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-card-control {
+  width: var(--icon-control-size) !important;
+  height: var(--icon-control-size) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) .public-card-control > svg.public-icon-plus {
+  width: var(--icon-plus) !important;
+  height: var(--icon-plus) !important;
+  stroke-width: var(--icon-plus-stroke);
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [role="dialog"] button[aria-label="Close"]:has(> svg) {
+  width: var(--icon-control-size) !important;
+  height: var(--icon-control-size) !important;
+}
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) [role="dialog"] button[aria-label="Close"] > :is(svg.public-icon, svg.lucide, svg) {
+  width: var(--icon-medium) !important;
+  height: var(--icon-medium) !important;
+  stroke-width: var(--icon-control-stroke);
+}

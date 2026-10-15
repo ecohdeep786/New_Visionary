@@ -1,0 +1,171 @@
+[
+  {
+    "persona": "Riya · Exam preparation",
+    "headings": [
+      "Welcome back, Riya.",
+      "Choose something to understand",
+      "Need help along the way?"
+    ],
+    "text": "Learner\n\nWelcome back, Riya.\n\nSharing is always scoped\n\nSaved on this device\nCompetitive exam preparation\n\nNext for you\n\nChoose something to understand\n\nBegin with one idea, explore it, then put it to use.\n\nChoose a learning journey\nExplore a project\nWhy this?\nThings I remember about you\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nThis view uses your saved learning stage and activity. Suggested session lengths are optional; they do not assess your ability.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Kabir · Higher education",
+    "headings": [
+      "Welcome back, Kabir.",
+      "Choose something to understand",
+      "Need help along the way?"
+    ],
+    "text": "Learner\n\nWelcome back, Kabir.\n\nSharing is always scoped\n\nSaved on this device\nHigher education\n\nNext for you\n\nChoose something to understand\n\nBegin with one idea, explore it, then put it to use.\n\nChoose a learning journey\nExplore a project\nWhy this?\nThings I remember about you\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nThis view uses your saved learning stage and activity. Suggested session lengths are optional; they do not assess your ability.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Dev · Independent teacher",
+    "headings": [
+      "Welcome back, Dev.",
+      "Prepare your next lesson",
+      "Teaching workspace",
+      "Need help along the way?"
+    ],
+    "text": "Teacher\n\nWelcome back, Dev.\n\nSharing is always scoped\n\nSaved on this device\n\nNext for you\n\nPrepare your next lesson\n\nReview the objective, explanation and checks before sharing with a class.\n\nOpen preparation\nView classwork\nWhy this?\nTeaching workspace\nYour own growth\n\nClass evidence and your own learning stay separate. Private learner doubts are not included.\n\nNo assigned class is connected. You can prepare independently or connect a class.\n\nOpen classes\nOpen lesson drafts\nQuiz, lesson plan, and teacher coach\n\nYour own growth: 0 capabilities with recorded activity. This is separate from the class summary.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Dev · School Work · Classes",
+    "headings": [
+      "Your classes",
+      " Your teaching overview "
+    ],
+    "text": "Your classes\n\nCreate a class, add students, and start teaching\n\nCreate class\nYour teaching overview\n\n1 submissions ready for your feedback. Open a class and choose Classwork to review and return work.\n\nOpen class\n\n1\n\nClasses\n\n1\n\nStudents\n\n1\n\nAssignments\n\nSpace, shape and reasoning\n1 students\nGrow as a teacher",
+    "url": "http://127.0.0.1:5174/dashboard/classes",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Dev · School Work · People",
+    "headings": [
+      "Space, shape and reasoning",
+      "Teachers",
+      "Students"
+    ],
+    "text": "Space, shape and reasoning\nSpace, shape and reasoning\n\nShare this class code\n\nDEMO-CUBE\n\nStream\nClasswork\nCurriculum\nPeople\nInsights\nCommunity\nTeachers\nD\n\nDev\n\nteacher@visionary.test\n\nStudents\n\n1 connected · 0 invited\n\nInvite students\nA\n\nAarav\n\nminor-cbse@visionary.test\n\nConnected\nRecord class promotion",
+    "url": "http://127.0.0.1:5174/dashboard/class/demo-class-cube?section=people",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Dev · School Work · Curriculum empty",
+    "headings": [
+      "Space, shape and reasoning",
+      "Published class curriculum"
+    ],
+    "text": "Space, shape and reasoning\nSpace, shape and reasoning\n\nShare this class code\n\nDEMO-CUBE\n\nStream\nClasswork\nCurriculum\nPeople\nInsights\nCommunity\nPublished class curriculum\n\nExplore the complete chapter plan your teacher published. Each copy keeps its reviewed source version. Opening an objective does not submit work or demonstrate mastery.\n\nReview a curriculum for publication\n\nNo structured curriculum deliveries are available in this Work workspace.\n\nNo complete curriculum has been published for this class yet. Assigned work remains in your learning outline.\n\nRecord class promotion",
+    "url": "http://127.0.0.1:5174/dashboard/class/demo-class-cube?section=curriculum",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Anika · Parent of two",
+    "headings": [
+      "Welcome back, Anika.",
+      "A little clarity for Aarav’s week",
+      "Your child’s week",
+      "Need help along the way?"
+    ],
+    "text": "Parent\n\nWelcome back, Anika.\n\nSharing is always scoped\n\nSaved on this device\n\nNext for you\n\nA little clarity for Aarav’s week\n\nNo guided-learning activity was shared in this period. Ask what they would like to explore next.\n\nView shared report\nChoose a child\nWhy this?\nYour child’s week\n\nRead-only progress shared with you. Private questions, conversations, notes, and drafts remain private.\n\nChild\nAarav\nMaya\n\nLast 7 days · Rule-based observations from shared evidence, not a model assessment.\n\nNo learning activity has been shared for this period. Ask what they would like to explore, without treating missing activity as a problem.\n\n0 completed applications in this period.\n\nShared learning evidence\nManage child connections\nOpen shared report\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Anika · Maya · Last 30 days",
+    "headings": [
+      "Their learning, in context",
+      "Maya’s overview",
+      "Progress and retention",
+      "Applications and projects",
+      "Assigned work and teacher updates",
+      "Goals and transitions"
+    ],
+    "text": "Return to children\nTheir learning, in context\n\nShared learning summaries, not private conversations. This local report is updated when you open it.\n\nChild\nAarav\nMaya\nReport period\nLast 7 days\nLast 30 days\n\nLast 30 days · Source: active progress-summary sharing on this device\n\nMaya’s overview\n\nNo guided-learning activity was shared in this period. Ask what they would like to explore next.\n\n0 completed guided-learning activities. Completion shows participation; it does not establish mastery.\n\nAsk about this report\nProgress and retention\n\nRecorded checks and review evidence in this period. No activity is not a score for ability.\n\n0 of 0 recorded answers correct across 0 concepts.\n\nNo guided journey was updated in this period.\n\nShared observations\n\nNo retained observations were shared for this period.\n\nApplications and projects\n\n0 completed guided applications in this period.\n\nOnly summaries the learner explicitly shared with this parent appear below. They are fixed copies and may predate the selected activity period. Project documents, drafts and personal notes remain private.\n\nNo project summary has been explicitly shared with this parent.\n\nAssigned work and teacher updates\n\nReturned-work titles and upcoming due dates only. Answers, grades and private feedback are excluded.\n\nReturned classwork\n\nLast 30 days · Shared progress summary from this device. Answers, grades and private teacher feedback are not included.\n\nNo classwork was returned in this period. This does not describe the learner’s ability.\n\nDue in the next 7 days\n\nNo upcoming classwork due date is recorded for this learner’s active classes.\n\nGoals and transitions\n\nNo class transition was shared in this period.\n\nThe learner chooses which goal summaries to share. These fixed copies may predate the selected activity period; private notes stay with the learner.\n\nNo learner goal has been explicitly shared with this parent workspace. Ask the learner what they would like support with.",
+    "url": "http://127.0.0.1:5174/dashboard/reports?child=demo-bengali&period=30",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Anika · contextual Ask",
+    "headings": [
+      "Ask about Maya’s learning",
+      "What would help you support them?"
+    ],
+    "text": "Parent workspace · shared report\n\nAsk about Maya’s learning\n\nLast 30 days · Guidance from consented summary counts. Private conversations, answers, grades and drafts are excluded.\n\nWhat would help you support them?\nWhat does this evidence mean?\nWhat could I ask their teacher?\nWhat support activity can we try at home?\nYour question\n\nThis local helper covers these three topics using only the selected child’s currently shared summary. Other questions need a connected teaching service. Your question and its reply are not saved.\n\nGet guidance\nReturn to shared report",
+    "url": "http://127.0.0.1:5174/dashboard/ask?child=demo-bengali&period=30",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Ira · Employer-sponsored · Personal",
+    "headings": [
+      "Welcome back, Ira.",
+      "Give your next skill a clear purpose",
+      "Your next capability",
+      "Need help along the way?"
+    ],
+    "text": "Professional\n\nWelcome back, Ira.\n\nSharing is always scoped\n\nSaved on this device\nProfessional learning\n\nNext for you\n\nGive your next skill a clear purpose\n\nChoose a work problem or career goal to guide your learning.\n\nSet a skill goal\nExplore learning\nWhy this?\nYour next capability\n\nYour target guides the same learning, practice, and building loop. An employer does not gain access to this personal evidence.\n\nNo skill gap has been assessed yet. Choose a target, then build evidence through practice and projects.\n\nSet a career target\nBuild your portfolio\nCareer workspace\n\n0 saved projects · Share work explicitly; do not paste confidential employer material.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nCareer suggestions use only your saved goal and recorded work. No hiring assessment or live model is connected.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Ira · Company Work · Learn empty",
+    "headings": [
+      "Your learning outline",
+      "Your capabilities"
+    ],
+    "text": "Explore and understand\n\nYour learning outline\n\nConnect a skill goal to concepts, practice and portfolio work.\n\nYour capabilities\n\nYour current learning context\n\nNo subjects are listed for this context yet. Add a subject below or try an authored sample.\n\nChoose a capability\nSkill or capability (optional)\nAdd goal and level\nOpen my outline\nTry authored workplace sample\n\nNo capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.\n\nOpen previous saved topics and examples",
+    "url": "http://127.0.0.1:5174/dashboard/learn",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "School administrator",
+    "headings": [
+      "Welcome back, School.",
+      "Bring your people together",
+      "Organization readiness"
+    ],
+    "text": "My organization\n\nWelcome back, School.\n\nOnly connected work belongs here\n\nSaved on this device\n\nNext for you\n\nBring your people together\n\nStart with invitations, then organize connected people into cohorts.\n\nManage people\nReview cohorts\nWhy this?\nOrganization readiness\n\nOperational totals and explicitly shared class evidence only. Individual personal learning is not included.\n\nAll saved local class records. Learner denominator: distinct active enrollments in linked classes.\n\nLinked classes\n2\nActive memberships\n4\nLearners in linked classes\n2\nSubmissions awaiting review\nHidden\n\nPeople and permissions\n\n4 active memberships\n\nOpen\nPeople and permissions\n\nCohorts\n\n0 saved groups\n\nOpen\nCohorts\n\nCurriculum\n\n0 reviewed mappings\n\nOpen\nCurriculum\n\nTeaching library\n\n0 reviewed resources\n\nOpen\nTeaching library\n\nLearning totals are hidden for groups or concepts with fewer than 5 contributing learners.\n\nShared concept totals\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1275
+  },
+  {
+    "persona": "School administrator · Cohorts empty with roster",
+    "headings": [
+      "Cohorts",
+      "Start with one learning group"
+    ],
+    "text": "Cohorts\n\nGive a connected group a shared purpose, without merging their personal work.\n\nCreate cohort\n\n4 accepted members · 2 explicitly linked classes. Manage peopleRefresh roster\n\nSearch cohorts\nStart with one learning group\n\nConnect people, choose a clear purpose, and link the classes that support it.",
+    "url": "http://127.0.0.1:5174/dashboard/cohorts",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "persona": "Company learning administrator",
+    "headings": [
+      "Welcome back, Company.",
+      "Bring your people together",
+      "Organization readiness"
+    ],
+    "text": "My organization\n\nWelcome back, Company.\n\nOnly connected work belongs here\n\nSaved on this device\n\nNext for you\n\nBring your people together\n\nStart with invitations, then organize connected people into cohorts.\n\nManage people\nReview cohorts\nWhy this?\nOrganization readiness\n\nOperational totals and explicitly shared class evidence only. Individual personal learning is not included.\n\nAll saved local class records. Learner denominator: distinct active enrollments in linked classes.\n\nLinked classes\n0\nActive memberships\n1\nLearners in linked classes\n0\nSubmissions awaiting review\nHidden\n\nPeople and permissions\n\n1 active memberships\n\nOpen\nPeople and permissions\n\nCohorts\n\n0 saved groups\n\nOpen\nCohorts\n\nCurriculum\n\n0 reviewed mappings\n\nOpen\nCurriculum\n\nTeaching library\n\n0 reviewed resources\n\nOpen\nTeaching library\n\nLearning totals are hidden for groups or concepts with fewer than 5 contributing learners.\n\nShared concept totals\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "url": "http://127.0.0.1:5174/dashboard/home",
+    "viewport": 1280,
+    "width": 1275
+  }
+]

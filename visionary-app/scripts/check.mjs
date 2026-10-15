@@ -1,0 +1,18 @@
+import { spawnSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+for (const file of ['verify-layout.mjs', 'verify-imports.mjs']) {
+  const result = spawnSync(process.execPath, [path.join(root, 'scripts', file)], { cwd: root, stdio: 'inherit' });
+  if (result.error) throw result.error;
+  if (result.status !== 0) process.exit(result.status ?? 1);
+}
+const scriptTests = spawnSync(process.execPath, ['--test', path.join(root, 'scripts/tests/upstream-patches.test.mjs')], { cwd: root, stdio: 'inherit' });
+if (scriptTests.error) throw scriptTests.error;
+if (scriptTests.status !== 0) process.exit(scriptTests.status ?? 1);
+for (const task of ['lint', 'typecheck', 'test', 'build']) {
+  const result = spawnSync(process.execPath, [path.join(root, 'scripts/frontend.mjs'), task], { cwd: root, stdio: 'inherit', env: process.env });
+  if (result.error) throw result.error;
+  if (result.status !== 0) process.exit(result.status ?? 1);
+}

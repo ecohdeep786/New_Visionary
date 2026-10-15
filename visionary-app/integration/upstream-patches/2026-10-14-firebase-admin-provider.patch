@@ -1,0 +1,24 @@
+diff --git a/backend/upstream/backend/src/auth/auth.module.ts b/backend/upstream/backend/src/auth/auth.module.ts
+index 510230e..c2bb9bd 100644
+--- a/backend/upstream/backend/src/auth/auth.module.ts
++++ b/backend/upstream/backend/src/auth/auth.module.ts
+@@ -7,9 +7,11 @@ import { AuthService } from "./auth.service";
+ import { JwtStrategy } from "./strategies/jwt.strategy";
+ import { GoogleStrategy } from "./strategies/google.strategy";
+ import { EmailModule } from "../email/email.module";
++import { FirebaseAdminModule } from "./firebase/firebase-admin.module";
+ 
+ @Module({
+   imports: [
++    FirebaseAdminModule,
+     EmailModule,
+     PassportModule,
+     JwtModule.registerAsync({
+@@ -22,6 +24,6 @@ import { EmailModule } from "../email/email.module";
+   ],
+   controllers: [AuthController],
+   providers: [AuthService, JwtStrategy, GoogleStrategy],
+-  exports: [AuthService, JwtModule],
++  exports: [AuthService, JwtModule, FirebaseAdminModule],
+ })
+ export class AuthModule {}

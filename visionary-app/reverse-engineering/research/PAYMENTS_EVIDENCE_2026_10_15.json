@@ -1,0 +1,126 @@
+{
+  "scope": "Anonymous public observations; private architecture and actual payment lifecycle unverified",
+  "runs": [
+    {
+      "runId": "2026-10-15T06-14-14-072Z",
+      "results": [
+        {
+          "id": "google-one-plans",
+          "url": "https://one.google.com/about/plans",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-14-14-072Z/google-one-plans.evidence.json",
+          "sha256": "c1af78da631ae48466e3593a171898b1b8330547f2a4c582d44890ec84b9901a",
+          "exitCode": 0,
+          "complete": true,
+          "cleanup": "terminated-owned-process",
+          "failedSteps": []
+        },
+        {
+          "id": "google-one-family",
+          "url": "https://support.google.com/googleone/answer/9004015?hl=en",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-14-14-072Z/google-one-family.evidence.json",
+          "sha256": "b3298420d799916b69d47e59b1d4614fa6a3c16052c628a4904eb6e0929319dc",
+          "exitCode": 1,
+          "complete": false,
+          "cleanup": "incomplete",
+          "errorCode": "cleanup_incomplete",
+          "failedSteps": [
+            {
+              "stepId": "public-content",
+              "status": "failed",
+              "error": "Analysis operation timed out after 15000ms: capture_browser_scenario"
+            }
+          ]
+        },
+        {
+          "id": "google-one-cancellation",
+          "url": "https://support.google.com/googleone/answer/9056360?hl=en",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-14-14-072Z/google-one-cancellation.evidence.json",
+          "sha256": "7cf0be2828cb6d2b6c248440f616744c254616a6d9dae9fa6e03dd91a2045aa0",
+          "exitCode": 0,
+          "complete": false,
+          "cleanup": "terminated-owned-process",
+          "failedSteps": [
+            {
+              "stepId": "public-content",
+              "status": "failed",
+              "error": "Analysis operation timed out after 15000ms: capture_browser_scenario"
+            }
+          ]
+        },
+        {
+          "id": "workspace-billing",
+          "url": "https://knowledge.workspace.google.com/admin/billing/compare-flexible-and-annual-fixed-term-payment-plans",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-14-14-072Z/workspace-billing.evidence.json",
+          "sha256": "382a5441ec724fb66751c8661b541c5fb9810d9b1d77cb65ab362330d4bab3e6",
+          "exitCode": 0,
+          "complete": true,
+          "cleanup": "terminated-owned-process",
+          "failedSteps": []
+        },
+        {
+          "id": "apple-notifications",
+          "url": "https://developer.apple.com/documentation/appstoreservernotifications/receiving-app-store-server-notifications",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-14-14-072Z/apple-notifications.evidence.json",
+          "sha256": "b060a26bb1714792eba1aed431d01a926049c442265ac8449702056ebe3caba4",
+          "exitCode": 0,
+          "complete": true,
+          "cleanup": "terminated-owned-process",
+          "failedSteps": []
+        }
+      ]
+    },
+    {
+      "runId": "2026-10-15T06-16-01-043Z",
+      "results": [
+        {
+          "id": "google-one-family",
+          "url": "https://support.google.com/googleone/answer/9004015?hl=en",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-16-01-043Z/google-one-family.evidence.json",
+          "sha256": "943bc7f5710630877d9e60046b77084f7b90e57b470dbf36577d2d2dffacc87c",
+          "exitCode": 0,
+          "complete": false,
+          "cleanup": "terminated-owned-process",
+          "failedSteps": [
+            {
+              "stepId": "public-content",
+              "status": "failed",
+              "error": "Analysis operation timed out after 15000ms: capture_browser_scenario"
+            }
+          ]
+        },
+        {
+          "id": "google-one-cancellation",
+          "url": "https://support.google.com/googleone/answer/9056360?hl=en",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-16-01-043Z/google-one-cancellation.evidence.json",
+          "sha256": "27d2d7fe0a2eabea7a175a548f74d79a4956039b11e21fa0de5190ef055ac6fa",
+          "exitCode": 0,
+          "complete": false,
+          "cleanup": "terminated-owned-process",
+          "failedSteps": [
+            {
+              "stepId": "public-content",
+              "status": "failed",
+              "error": "Analysis operation timed out after 15000ms: capture_browser_scenario"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "runId": "2026-10-15T06-19-17-283Z",
+      "results": [
+        {
+          "id": "google-one-family",
+          "url": "https://support.google.com/googleone/answer/9004015?hl=en",
+          "evidencePath": "artifacts/research/payments/2026-10-15T06-19-17-283Z/google-one-family.evidence.json",
+          "sha256": "8ce0c470d351f7376470c1766368ee4242d9727c6f0430be78fbee0cff072d72",
+          "exitCode": 1,
+          "complete": false,
+          "cleanup": "incomplete",
+          "errorCode": "cleanup_incomplete",
+          "failedSteps": []
+        }
+      ]
+    }
+  ]
+}

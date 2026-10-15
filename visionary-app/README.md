@@ -1,41 +1,46 @@
-# Visionary App
+# Visionary product
 
-Visionary public site and internal learning workspace, built with React and Vite.
+The web product, application backend, ML pipeline and engineering research share this product root. Each component owns its source, dependencies and checks. Existing frontend journeys define the product behavior that backend APIs and model workflows must support.
 
-## Prerequisites
+## Repository layout
 
-1. Clone the repository.
-2. Navigate to `visionary-app`.
-3. Install dependencies: `npm install`.
-
-## Run Locally
-
-```bash
-npm run dev
+```text
+visionary-app/
+├── frontend/             React/Vite application, assets, configs and tests
+├── backend/              Application API, identity and persistence source
+├── ml/                   RAG services, ingestion and model evaluations
+├── reverse-engineering/  REA toolkit and feature-research evidence
+├── integration/          Cross-component contracts and upstream provenance
+├── infrastructure/       Local infrastructure and reviewed deployment work
+├── docs/                 Product contract, status and architecture discussions
+├── scripts/              Product commands and source-maintenance tools
+├── artifacts/            Local reports, screenshots and retained scratch files
+└── .tools/               Ignored project-local runtimes
 ```
 
-Open the local URL printed by Vite.
+Read [repository ownership](docs/architecture/README.md) and [the frontend-to-service domain map](docs/architecture/PRODUCT_DOMAINS.md). Product requirements and evidence remain in [docs/visionary](docs/visionary/README.md).
 
-## Internal Workspace
+## Development commands
 
-The authenticated workspace starts at `/dashboard/home`, after role-based onboarding.
-It supports personal learning alongside optional class, family, and organization connections.
-This is a browser-local frontend preview, not production authentication or cloud storage.
-Use fictional data only. AI, payment processing, usage metering, and ad delivery are not connected.
+Run from this directory. Existing frontend commands continue to work:
 
-See [the internal product handoff](docs/visionary/README.md) and [the current product status](docs/visionary/CURRENT_PRODUCT_STATUS.md) for architecture, QA evidence, open work, and launch requirements.
-
-## Checks
-
-```bash
+```powershell
+npm run frontend:install  # Fresh checkout: install the frontend lock
+npm run dev              # Vite serves frontend/; default port 5173
+npm run build            # Production output: frontend/dist/
+npm run preview
 npm run lint
 npm run typecheck
-node --test tests/workspace.test.mjs
+npm test                 # All frontend service tests
+npm run check            # Layout/import checks, then frontend checks in sequence
 ```
 
-## Build And Preview
+You can also run commands directly inside `frontend/`. Its package lock and installed dependencies were relocated together; no dependency upgrade is part of this restructure. The root npm package only dispatches commands and has no runtime dependencies. `npm ci` at the root installs that command package; `npm run frontend:install` installs the web application.
 
-```bash
-npm run build
-npm run preview
-```
+Backend, ML and analysis-tool commands remain `backend:install`, `backend:build`, `ml:install`, `ml:build`, `ml:test`, `rea:install`, `rea:build`, `rea` and `product:doctor`. See [the integration handoff](integration/README.md) and [infrastructure setup](infrastructure/README.md) before starting services or applying schemas. Upstream source is pinned and checked by `product:verify-imports`; environments remain independent.
+
+## Current runtime and next discussions
+
+The workspace starts at `/dashboard/home` after role-based onboarding. Firebase-mode identity, server device sessions and saved Firestore account/onboarding state are connected locally. Start `npm run backend:auth:dev` alongside `npm run dev`; use `http://localhost:5173`. Read [the auth contract](integration/FIREBASE_AUTH_CONTRACT.md) for setup, tested recovery flows and remaining provider/deployment gates. [Razorpay test billing](integration/PAYMENTS_CONTRACT.md) connects authenticated monthly/annual checkout, persisted subscription state, Family billing benefits and test invoices. Live money/tax invoicing is disabled. Learning workspaces, organization membership, model responses and delivery remain separate integration work; their local previews are for fictional data.
+
+System design, scale, tech stack, cloud/DevOps, MLOps and testing have a [discussion index](docs/architecture/discussions/README.md). Existing specifications and historical evidence retain their documentation locations. Future implementation follows reviewed contracts and shared product-domain vocabulary.
