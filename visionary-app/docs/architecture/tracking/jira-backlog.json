@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
-  "sourceSha256": "480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff",
+  "sourceSha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146",
   "targetProject": {
     "name": "Team AGI",
     "key": "KAN",
@@ -16,10 +16,10 @@
   },
   "syncPolicy": "Search each stable sourceId label before creating; retain issue keys after every successful write. On an ambiguous create, search before retry. Never recreate an issue solely because scheduling failed.",
   "totals": {
-    "issues": 123,
+    "issues": 137,
     "locallyComplete": 12,
-    "openLaunch": 106,
-    "later": 5
+    "openLaunch": 119,
+    "later": 6
   },
   "phases": [
     {
@@ -178,6 +178,298 @@
     {
       "blocks": "AI-12",
       "blocked": "AI-09"
+    },
+    {
+      "blocks": "SCOPE-03",
+      "blocked": "SYNC-01"
+    },
+    {
+      "blocks": "DATA-06",
+      "blocked": "SYNC-01"
+    },
+    {
+      "blocks": "JOB-01",
+      "blocked": "SYNC-01"
+    },
+    {
+      "blocks": "SYNC-01",
+      "blocked": "SYNC-02"
+    },
+    {
+      "blocks": "CACHE-01",
+      "blocked": "SYNC-02"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-06"
+    },
+    {
+      "blocks": "CACHE-01",
+      "blocked": "AI-05"
+    },
+    {
+      "blocks": "AI-03",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-05",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-06",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-07",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "JOB-02",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "BUILD-04",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "LEARN-05"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "BUILD-08"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "AI-13"
+    },
+    {
+      "blocks": "AI-11",
+      "blocked": "AI-13"
+    },
+    {
+      "blocks": "AI-13",
+      "blocked": "RELEASE-04"
+    },
+    {
+      "blocks": "DATA-03",
+      "blocked": "LEARN-01"
+    },
+    {
+      "blocks": "CONTENT-04",
+      "blocked": "LEARN-01"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "ROLE-04"
+    },
+    {
+      "blocks": "DATA-04",
+      "blocked": "ROLE-01"
+    },
+    {
+      "blocks": "LEARN-02",
+      "blocked": "LEARN-03"
+    },
+    {
+      "blocks": "LEARN-08",
+      "blocked": "BUILD-03"
+    },
+    {
+      "blocks": "FILE-03",
+      "blocked": "BUILD-05"
+    },
+    {
+      "blocks": "BUILD-01",
+      "blocked": "BUILD-04"
+    },
+    {
+      "blocks": "BUILD-04",
+      "blocked": "BUILD-08"
+    },
+    {
+      "blocks": "BUILD-06",
+      "blocked": "ROLE-03"
+    },
+    {
+      "blocks": "ROLE-01",
+      "blocked": "ROLE-02"
+    },
+    {
+      "blocks": "ROLE-02",
+      "blocked": "ROLE-03"
+    },
+    {
+      "blocks": "ROLE-03",
+      "blocked": "ROLE-07"
+    },
+    {
+      "blocks": "ROLE-04",
+      "blocked": "ROLE-07"
+    },
+    {
+      "blocks": "ROLE-06",
+      "blocked": "ROLE-07"
+    },
+    {
+      "blocks": "AI-07",
+      "blocked": "BILL-04"
+    },
+    {
+      "blocks": "BILL-04",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-06",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "BUILD-08",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-07",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "ROLE-08"
+    },
+    {
+      "blocks": "ROLE-08",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "CONTENT-06",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "AI-09",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "CONTENT-01",
+      "blocked": "CONTENT-08"
+    },
+    {
+      "blocks": "DATA-01",
+      "blocked": "CONTENT-08"
+    },
+    {
+      "blocks": "CONTENT-08",
+      "blocked": "LEARN-09"
+    },
+    {
+      "blocks": "LEARN-08",
+      "blocked": "LEARN-09"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "LEARN-10"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "LEARN-10"
+    },
+    {
+      "blocks": "LEARN-02",
+      "blocked": "LEARN-11"
+    },
+    {
+      "blocks": "JOB-01",
+      "blocked": "LEARN-11"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "LEARN-11"
+    },
+    {
+      "blocks": "LEARN-08",
+      "blocked": "LEARN-12"
+    },
+    {
+      "blocks": "CONTENT-08",
+      "blocked": "LEARN-12"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-12"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "AI-04",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "CONTENT-05",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "AI-15",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "SCOPE-03",
+      "blocked": "AI-16"
+    },
+    {
+      "blocks": "CONTENT-03",
+      "blocked": "AI-16"
+    },
+    {
+      "blocks": "SYNC-01",
+      "blocked": "AI-16"
+    },
+    {
+      "blocks": "SCOPE-05",
+      "blocked": "SAFE-01"
+    },
+    {
+      "blocks": "SAFE-01",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "SAFE-01",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "LEARN-10",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-11",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-12",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "AI-16",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "AI-13",
+      "blocked": "LATER-06"
+    },
+    {
+      "blocks": "PRIV-01",
+      "blocked": "LATER-06"
+    },
+    {
+      "blocks": "RELEASE-04",
+      "blocked": "LATER-06"
     }
   ],
   "issues": [
@@ -822,6 +1114,54 @@
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
     },
     {
+      "sourceId": "SYNC-01",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[SYNC-01] Implement authorized durable change/run observation across account, billing and every released workspace domain: owning-store event/outbox records, opaque scoped cursors, orde",
+      "description": "Implement authorized durable change/run observation across account, billing and every released workspace domain: owning-store event/outbox records, opaque scoped cursors, ordered revisions, replay/refetch and expiry semantics. Start with bounded polling and SSE where streaming is needed; WebSocket requires an explicit bidirectional need. Reauthorize connect/reconnect/delivery; a socket event never executes a command or proves commit.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-sync-01",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SYNC-02",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[SYNC-02] Connect every released frontend adapter to the shared account/workspace sync coordinator: validate response schemas, reject stale identity/policy/revision results, deduplicate",
+      "description": "Connect every released frontend adapter to the shared account/workspace sync coordinator: validate response schemas, reject stale identity/policy/revision results, deduplicate events, invalidate/refetch exact query scopes, recover gaps/offline drafts/conflicts, and verify two devices. Test disconnect, duplicate/reordered events, account switch, revocation and reconnect storms with bounded backoff/connections; cross-browser storage events are not cross-device sync.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-sync-02",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CACHE-01",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[CACHE-01] Define product-wide browser/API/CDN/cache behavior per feature: canonical datastore and revision, scope/key including UID/workspace/policy/source/locale, invalidation/revocati",
+      "description": "Define product-wide browser/API/CDN/cache behavior per feature: canonical datastore and revision, scope/key including UID/workspace/policy/source/locale, invalidation/revocation, bounds and cache-down fallback. Keep private responses out of shared CDN caches and entitlement/consent decisions authoritative. No server cache is a valid launch default; enable Redis only after measured need and isolation tests, without adding a data-deletion TTL policy.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-cache-01",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
       "sourceId": "FILE-01",
       "phase": "P03",
       "issueType": "Task",
@@ -998,6 +1338,22 @@
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
     },
     {
+      "sourceId": "CONTENT-08",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-08] Implement reviewed concept/prerequisite DAG curation and source-versioned curriculum/exam views: preserve canonical concepts, official school/exam metadata, approved professio",
+      "description": "Implement reviewed concept/prerequisite DAG curation and source-versioned curriculum/exam views: preserve canonical concepts, official school/exam metadata, approved professional/institutional sources, edition/current-syllabus/verification provenance and rollback. Reject cycles; distinguish reviewed, provisional and unavailable coverage; a gap queue cannot invent an official syllabus or promise an unstaffed replacement deadline.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-08",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
       "sourceId": "LEARN-01",
       "phase": "P05",
       "issueType": "Story",
@@ -1121,6 +1477,70 @@
       "labels": [
         "visionary-launch",
         "visionary-id-learn-08",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-09",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-09] Integrate the product-owned learner-knowledge policy kernel with authorized SQL repositories, immutable assessed receipts and transactional projection/outbox updates. Version/",
+      "description": "Integrate the product-owned learner-knowledge policy kernel with authorized SQL repositories, immutable assessed receipts and transactional projection/outbox updates. Version/calibrate BKT parameters by permitted task/source/criteria; handle replay, gaps and model rebuilds across devices. Knowledge probability remains an estimate, separate from passed checks, assessed mastery, self-review and Build completion; inspectable evidence and held-out calibration precede mastery claims.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-09",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-10",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-10] Integrate the deterministic VATS explanation → validated check → assessed result → different-strategy remediation loop with durable session revisions and existing UI adapters.",
+      "description": "Integrate the deterministic VATS explanation → validated check → assessed result → different-strategy remediation loop with durable session revisions and existing UI adapters. Stop or suggest permitted human review after at most three failed checks, preserve draft/resume/cancellation and source policy, and never fabricate a teacher contact, automatic escalation, taught/mastered flag or a successful unverified result. The local pure kernel is partial evidence, not a connected feature.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-10",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-11",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-11] Implement versioned, durable review scheduling from assessed evidence with bounded baseline SRS rules, due-queue projections, command deduplication, timezone/quiet/preference ",
+      "description": "Implement versioned, durable review scheduling from assessed evidence with bounded baseline SRS rules, due-queue projections, command deduplication, timezone/quiet/preference handling and two-device recovery. Calibrate forgetting estimates before personalized claims; separate self-rating from assessment, preserve manual control and avoid unvalidated exponential scheduling or retention TTLs.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-11",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-12",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-12] Implement only the released assessment modes: fixed source/criteria/official-paper snapshots, server-owned answers/scoring, durable sectional timing and interrupted mock resum",
+      "description": "Implement only the released assessment modes: fixed source/criteria/official-paper snapshots, server-owned answers/scoring, durable sectional timing and interrupted mock resume, plus evidence-qualified exam-weighted readiness with missing-data/coverage labels. Rank predictions require a validated permitted reference distribution and remain unavailable otherwise; professional scenarios use capability/rubric vocabulary and never award a credential automatically.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-12",
         "visionary-phase-p05"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
@@ -1441,6 +1861,70 @@
       "labels": [
         "visionary-launch",
         "visionary-id-ai-12",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-13",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-13] Define and run a versioned product-capability scorecard for novel learning/Build tasks: reasoning, planning/replanning, permitted memory, tool execution, feedback-driven corre",
+      "description": "Define and run a versioned product-capability scorecard for novel learning/Build tasks: reasoning, planning/replanning, permitted memory, tool execution, feedback-driven correction and transfer across released tasks/languages. Use held-out task families, contamination controls, human/teacher baselines where appropriate, repeated trials and observed final state; separate product reliability from broad AGI/generalization evidence and set reviewed thresholds before release.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-13",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-14",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-14] Implement the AIRA deterministic teaching/workflow orchestrator over the durable run protocol: one context owner, typed allowlisted tools, server policy checks per call, pinne",
+      "description": "Implement the AIRA deterministic teaching/workflow orchestrator over the durable run protocol: one context owner, typed allowlisted tools, server policy checks per call, pinned source/model/prompt/tool versions, bounded branches/retries, checkpoint/restart, explicit pause/resume/approval and stop conditions, and exactly one accepted product side effect with measured usage. No open-ended autonomous agent, charging, publishing, grading or private-data access; model plans/memory remain provisional.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-14",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-15",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-15] Implement AIRA P0–P3 context assembly and evidence-backed memory observations behind the current scoped conversation boundary: immutable server constitution/policy, permitted ",
+      "description": "Implement AIRA P0–P3 context assembly and evidence-backed memory observations behind the current scoped conversation boundary: immutable server constitution/policy, permitted learner/context snapshot, bounded current-session history and authorized retrieval. Required factual grounding must not be dropped to meet a token/latency budget; abstain or use approved authored material. Preserve provenance/correction/disable controls, label onboarding facts, return fewer observations when evidence is insufficient, and separate all five role/workspace/purpose/language contexts without automatic training.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-15",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-16",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-16] Implement a versioned approved representation/scene registry and structured action protocol tied to permitted concept/source/run revisions: bounded parameters and allowlisted ",
+      "description": "Implement a versioned approved representation/scene registry and structured action protocol tied to permitted concept/source/run revisions: bounded parameters and allowlisted read-only math/scene operations, no generated JavaScript/URLs or raw-token execution. Synchronize approved narration/events with replay/cancellation and stale-run rejection; provide keyboard/text/2D/reduced-motion/device fallbacks, and evaluate only actually released scene/language coverage before advertising 3D or voice capability.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-16",
         "visionary-phase-p07"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
@@ -1830,6 +2314,22 @@
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
     },
     {
+      "sourceId": "SAFE-01",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[SAFE-01] Implement and qualify a reviewed, localized safeguarding route separate from normal teaching: input/output checks, age/journey eligibility, truthful support/reporting and actu",
+      "description": "Implement and qualify a reviewed, localized safeguarding route separate from normal teaching: input/output checks, age/journey eligibility, truthful support/reporting and actual configured escalation channels. Evaluate contextual crisis/abuse and false positives/negatives beyond keyword matching; do not auto-notify an alleged abuser or disclose private learner text to a guardian. Keep unsupported minors/adult journeys blocked until approved admission/consent, and never equate an NLI score with safety or legal compliance.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-safe-01",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
       "sourceId": "ACCEPT-01",
       "phase": "P11",
       "issueType": "Task",
@@ -2145,6 +2645,22 @@
       "labels": [
         "visionary-launch",
         "visionary-id-later-05",
+        "visionary-phase-later"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LATER-06",
+      "phase": "LATER",
+      "issueType": "Task",
+      "summary": "[LATER-06] Before online pedagogy experimentation, implement approved purpose/eligibility, stable scoped assignment, reviewed held-out/control cohorts, predeclared educational outcomes a",
+      "description": "Before online pedagogy experimentation, implement approved purpose/eligibility, stable scoped assignment, reviewed held-out/control cohorts, predeclared educational outcomes and statistical analysis, versioned exposure records, hard guardrail kill switches and human promotion/rollback. Exclude safety/consent/pricing manipulation paths; a posterior increase, arbitrary p-value or raw interaction count cannot automatically promote a model or trigger training.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Later",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-later-06",
         "visionary-phase-later"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."

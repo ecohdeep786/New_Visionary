@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
+  ArrowUpRight,
   Briefcase,
   Compass,
   Home,
@@ -14,6 +15,7 @@ import {
 
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgHero from "@/assets/pro-face-main-1600w.webp";
 import imgStory from "@/assets/student-competitive.webp";
 import imgStrip1 from "@/assets/problem-revision.webp";
@@ -35,7 +37,7 @@ const C = {
   graphite: "#3c4043",
   slate: "#5f6368",
   mist: "#dadce0",
-  line: "#dadce0",
+  line: "rgba(18, 19, 23, 0.12)",
   hover: "#f8f9fa",
   selBg: "#e8f0fe",
   blue: "#4285F4",
@@ -142,8 +144,8 @@ function CareersRail({ active }) {
           return (
             <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
               onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
-              className={`flex w-[68px] flex-col items-center gap-1.5 rounded-2xl px-1 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
-                isActive ? "bg-[#e8f0fe] text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f8f9fa]"
+              className={`flex w-[68px] flex-col items-center gap-1.5 rounded-[14px] px-1 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
+                isActive ? "bg-[#f5f5f7] text-[#0b57d0]" : "text-[#3c4043] hover:text-[#121317]"
               }`}>
               <Icon className="h-[22px] w-[22px]" strokeWidth={1.8} aria-hidden="true" />
               <span className="text-[12px] leading-none">{item.label}</span>
@@ -166,7 +168,7 @@ function MobileRail({ active }) {
             <a key={item.id} href={`#${item.id}`} aria-current={isActive ? "true" : undefined}
               onClick={(event) => { event.preventDefault(); scrollToSection(item.id); }}
               className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
-                isActive ? "bg-[#e8f0fe] font-medium text-[#0b57d0]" : "text-[#3c4043] hover:bg-[#f8f9fa]"
+                isActive ? "bg-[#f5f5f7] font-medium text-[#0b57d0]" : "text-[#3c4043] hover:text-[#121317]"
               }`}>
               <Icon className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
               {item.label}
@@ -194,7 +196,7 @@ function HeroCard({ idPrefix = "hero" }) {
     window.location.href = `mailto:${CAREERS_EMAIL}?subject=${subject}&body=${body}`;
   };
 
-  const field = "h-12 w-full rounded-full border border-[#dadce0] bg-white px-5 text-[15px] text-[#121317] outline-none transition-colors placeholder:text-[#80868b] focus:border-[#4285F4] focus:ring-2 focus:ring-[#4285F4]/25";
+  const field = "h-12 w-full rounded-full bg-[#f5f5f7] px-5 text-[15px] text-[#121317] outline-none transition-colors placeholder:text-[#86868b] focus:bg-white focus:ring-2 focus:ring-[#4285F4]/30";
 
   return (
     <form onSubmit={submit} noValidate>
@@ -204,11 +206,14 @@ function HeroCard({ idPrefix = "hero" }) {
       <div className="mt-8 space-y-5">
         <div>
           <label htmlFor={`${idPrefix}-area`} className="mb-2 block text-[14px] text-[#5f6368]">Interested in</label>
-          <select id={`${idPrefix}-area`} value={area} onChange={(event) => setArea(event.target.value)}
-            className={`${field} appearance-none pr-10`}>
-            {AREAS.map((a) => <option key={a.title} value={a.title}>{a.title}</option>)}
-            <option value="Something else">Something else</option>
-          </select>
+          <div className="relative">
+            <select id={`${idPrefix}-area`} value={area} onChange={(event) => setArea(event.target.value)}
+              className={`${field} appearance-none pr-12`}>
+              {AREAS.map((a) => <option key={a.title} value={a.title}>{a.title}</option>)}
+              <option value="Something else">Something else</option>
+            </select>
+            <ChevronIcon className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 rotate-90 text-[#5f6368]" />
+          </div>
         </div>
         <div>
           <label htmlFor={`${idPrefix}-email`} className="mb-2 block text-[14px] text-[#5f6368]">Your email</label>
@@ -217,14 +222,12 @@ function HeroCard({ idPrefix = "hero" }) {
             className={field} />
         </div>
       </div>
-      {/* google.com card curve — tint sweeps into the card corner and the
-          form's submit button floats in it with breath (card wrappers are the
-          positioned ancestors, so this pins to the card's bottom-right) */}
-      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[264px] rounded-tl-[16px] bg-white" />
-      <button type="submit"
-        className="absolute bottom-3 right-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-8 text-[15px] font-medium text-white shadow-[0_1px_3px_rgba(60,64,67,0.3)] transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]">
-        Introduce yourself <ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </button>
+      <div className="mt-8">
+        <button type="submit"
+          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[16px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto">
+          Introduce yourself <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        </button>
+      </div>
     </form>
   );
 }
@@ -233,7 +236,7 @@ export default function CareersPage() {
   const active = useScrollSpy();
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-careers min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <div className="lg:flex">
         <CareersRail active={active} />
@@ -244,19 +247,19 @@ export default function CareersPage() {
             {/* HERO — full-bleed photograph with the overlapping white card
                 (Google careers home). Desktop: card floats left over the photo.
                 Mobile: card drops below the photo with the same overlap. */}
-            <section id="overview" className="scroll-mt-32">
+            <section id="overview" data-section="01-hero" className="scroll-mt-32">
               <div className="relative h-[380px] overflow-hidden sm:h-[480px] lg:h-[600px]">
                 <img src={imgHero} alt="A Visionary team member at work"
                   loading="eager" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
                 <div aria-hidden="true" className="absolute inset-0 hidden bg-gradient-to-r from-black/10 to-transparent lg:block" />
                 {/* Desktop card */}
-                <div className="absolute left-10 top-1/2 hidden w-[640px] -translate-y-1/2 overflow-hidden rounded-2xl bg-white p-9 pb-24 shadow-[0_8px_28px_rgba(0,0,0,0.22)] lg:block xl:left-16 xl:w-[700px]">
+                <div className="absolute left-10 top-1/2 hidden w-[640px] -translate-y-1/2 rounded-[30px] bg-white p-8 shadow-[0_20px_50px_rgba(18,19,23,0.16)] lg:block xl:left-16 xl:w-[700px]">
                   <HeroCard idPrefix="hero-desktop" />
                 </div>
               </div>
               {/* Mobile card */}
               <div className="relative z-10 mx-auto -mt-40 max-w-[680px] px-4 sm:px-6 lg:hidden">
-                <div className="relative overflow-hidden rounded-2xl bg-white p-6 pb-24 shadow-[0_8px_28px_rgba(0,0,0,0.18)] sm:p-8 sm:pb-24">
+                <div className="rounded-[30px] bg-white p-6 sm:p-8 shadow-[0_20px_50px_rgba(18,19,23,0.16)]">
                   <HeroCard idPrefix="hero-mobile" />
                 </div>
               </div>
@@ -277,7 +280,7 @@ export default function CareersPage() {
             </section>
 
             {/* WHY US — centered header (Teams-page pattern) + three cards */}
-            <section id="why" className="scroll-mt-32 px-4 pb-20 pt-6 sm:px-6 lg:px-10 lg:pb-28">
+            <section id="why" data-section="02-why" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
@@ -287,29 +290,31 @@ export default function CareersPage() {
                     We are a small team solving a real learning problem: helping someone turn confusion into understanding.
                   </p>
                 </div>
-                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {[
-                    { icon: Code2, title: "Meaningful problems", copy: "Work tied to helping learners get through difficult ideas and apply what they learn." },
-                    { icon: Lightbulb, title: "Early-stage impact", copy: "Your decisions ship to real learners quickly, with visible effect." },
-                    { icon: UsersRound, title: "Learning-centered", copy: "Product, design, and engineering work shaped by teaching and curriculum expertise." },
-                  ].map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <article key={item.title} className="rounded-xl g-card p-7">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
-                          <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-                        </div>
-                        <h3 className="mt-5 text-[19px] font-medium leading-[1.3] text-[#121317]">{item.title}</h3>
-                        <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">{item.copy}</p>
-                      </article>
-                    );
-                  })}
+                <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {[
+                      { icon: Code2, title: "Meaningful problems", copy: "Work tied to helping learners get through difficult ideas and apply what they learn." },
+                      { icon: Lightbulb, title: "Early-stage impact", copy: "Your decisions ship to real learners quickly, with visible effect." },
+                      { icon: UsersRound, title: "Learning-centered", copy: "Product, design, and engineering work shaped by teaching and curriculum expertise." },
+                    ].map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <article key={item.title} className="rounded-[20px] bg-white p-6 sm:p-7">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
+                            <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                          </div>
+                          <h3 className="mt-5 text-[19px] font-medium leading-[1.3] text-[#121317]">{item.title}</h3>
+                          <p className="mt-2 text-[15px] leading-[1.65] text-[#5f6368]">{item.copy}</p>
+                        </article>
+                      );
+                    })}
+                  </div>
                 </div>
               </Reveal>
             </section>
 
             {/* TEAMS — the careers.google.com photo-card grid */}
-            <section id="teams" className="scroll-mt-32 px-4 pb-20 sm:px-6 lg:px-10 lg:pb-28">
+            <section id="teams" data-section="03-teams" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
@@ -319,36 +324,36 @@ export default function CareersPage() {
                     Together, we build a product that helps people keep what they learn. These are areas of work, not advertised vacancies. Current openings, if any, are listed below.
                   </p>
                 </div>
-                <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {AREAS.map((area) => (
-                    <article key={area.title} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] g-card">
-                      <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
-                      <div className="flex flex-1 flex-col p-7 pb-16">
-                        <h3 className="text-[21px] font-normal leading-[1.3] text-[#121317]">{area.title}</h3>
-                        <p className="mt-2 text-[15px] leading-[1.6] text-[#5f6368]">{area.desc}</p>
-                        <div className="mt-auto pt-6">
-                          <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Careers — ${area.title}`)}`}
-                            className="inline-flex items-center gap-1.5 text-[15px] font-medium text-[#4285F4] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm">
-                            Introduce yourself
-                          </a>
+                <div className="mt-12 rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {AREAS.map((area) => (
+                      <article key={area.title} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white">
+                        <img src={area.photo} alt={area.alt} loading="lazy" decoding="async" className="h-[180px] w-full object-cover" />
+                        <div className="flex flex-1 flex-col p-7 pb-16">
+                          <h3 className="text-[28px] font-normal leading-[1.3] text-[#121317]">{area.title}</h3>
+                          <p className="mt-2 text-[15px] leading-[1.6] text-[#5f6368]">{area.desc}</p>
+                          <div className="mt-auto pt-6">
+                            <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent(`Careers — ${area.title}`)}`}
+                              className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                              Introduce yourself
+                              <ChevronIcon className="h-4 w-4" />
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                      {/* google.com card curve — a page-background cutout sweeps into the
-                          bottom-right corner and the card's arrow floats in it with breath */}
-                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
-                      <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center">
-                        <ArrowRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
-                      </Link>
-                    </article>
-                  ))}
+                        <Link to="/about" aria-label={`Learn more about ${area.title}`} className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center">
+                          <ArrowRight className="h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                        </Link>
+                      </article>
+                    ))}
+                  </div>
                 </div>
               </Reveal>
             </section>
             {/* HOW WE HIRE — the story-page pattern: full-column photograph,
                 centered caps eyebrow, huge centered headline, article body */}
-            <section id="hiring" className="scroll-mt-32 bg-[#f8f9fa] px-4 pb-24 pt-14 sm:px-6 lg:px-10 lg:pb-32">
+            <section id="hiring" data-section="04-hiring" className="scroll-mt-32 bg-[#f5f5f7] px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[1240px]">
-                <div className="overflow-hidden">
+                <div className="overflow-hidden rounded-[20px]">
                   <img src={imgStory} alt="A student writing through a problem at her desk"
                     loading="lazy" decoding="async" className="aspect-[16/8] w-full object-cover" />
                 </div>
@@ -361,10 +366,10 @@ export default function CareersPage() {
                     We are a small, early-stage team, so the process stays simple and honest at every step. Four steps, real people, no tricks.
                   </p>
                 </div>
-                <ol className="mx-auto mt-12 max-w-[760px] border-t border-[#dadce0]">
+                <ol className="mx-auto mt-12 max-w-[760px] border-t border-[rgba(18,19,23,0.12)]">
                   {HIRING_STEPS.map((step) => (
-                    <li key={step.n} className="grid grid-cols-[48px_1fr] gap-4 border-b border-[#dadce0] py-6 sm:grid-cols-[64px_240px_1fr] sm:gap-6">
-                      <span className="text-[14px] font-medium tabular-nums text-[#4285F4]">{step.n}</span>
+                    <li key={step.n} className="grid grid-cols-[48px_1fr] gap-4 border-b border-[rgba(18,19,23,0.12)] py-6 sm:grid-cols-[64px_240px_1fr] sm:gap-6">
+                      <span className="text-[14px] font-medium tabular-nums text-[#0b57d0]">{step.n}</span>
                       <h3 className="text-[19px] font-normal leading-[1.35] text-[#121317]">{step.title}</h3>
                       <p className="col-start-2 text-[15px] leading-[1.65] text-[#5f6368] sm:col-start-3">{step.copy}</p>
                     </li>
@@ -374,7 +379,7 @@ export default function CareersPage() {
             </section>
 
             {/* OPEN ROLES — the jobs hub, honestly empty */}
-            <section id="roles" className="scroll-mt-32 px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-32">
+            <section id="roles" data-section="05-roles" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[1240px]">
                 <div className="mx-auto max-w-[760px] text-center">
                   <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
@@ -384,30 +389,34 @@ export default function CareersPage() {
                     This page is the single source for openings. When a role opens, it will be listed here first.
                   </p>
                 </div>
-                <div className="mx-auto mt-12 max-w-[760px] rounded-xl g-card p-8 sm:p-10">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
-                    <Briefcase className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-                  </div>
-                  <h3 className="mt-6 text-[24px] font-normal leading-[1.3] text-[#121317]">No public roles listed right now.</h3>
-                  <p className="mt-3 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368]">
-                    There are no public vacancies at the moment. You can still introduce yourself: the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
-                  </p>
-                  <div className="mt-6 flex flex-wrap items-center gap-6">
-                    <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
-                      className="text-[15px] font-medium text-[#4285F4] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm">
-                      Introduce yourself by email
-                    </a>
-                    <a href="#hiring" onClick={(event) => { event.preventDefault(); scrollToSection("hiring"); }}
-                      className="text-[15px] font-medium text-[#4285F4] transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] rounded-sm">
-                      How our process works
-                    </a>
+                <div className="mx-auto mt-12 max-w-[760px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6">
+                  <div className="rounded-[20px] bg-white p-8 sm:p-10">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
+                      <Briefcase className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-6 text-[28px] font-normal leading-[1.3] text-[#121317]">No public roles listed right now.</h3>
+                    <p className="mt-3 max-w-[560px] text-[15px] leading-[1.65] text-[#5f6368]">
+                      There are no public vacancies at the moment. You can still introduce yourself: the work you share helps us know who to reach when something opens. Sending an introduction is not an application to a listed vacancy and does not guarantee a response.
+                    </p>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2">
+                      <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                        Introduce yourself by email
+                        <ChevronIcon className="h-4 w-4" />
+                      </a>
+                      <a href="#hiring" onClick={(event) => { event.preventDefault(); scrollToSection("hiring"); }}
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                        How our process works
+                        <ChevronIcon className="h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </Reveal>
             </section>
 
             {/* CONTACT — fair process, accessibility, and how to reach us */}
-            <section id="contact" className="scroll-mt-32 border-t border-[#dadce0] px-4 py-24 lg:py-32 sm:px-6 lg:px-10 lg:py-24">
+            <section id="contact" data-section="06-contact" className="scroll-mt-32 px-4 sm:px-6 lg:px-10">
               <Reveal className="mx-auto grid max-w-[1240px] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
                 <div>
                   <h2 className="text-[30px] font-normal leading-[1.2] tracking-[-0.03em] text-[#121317] sm:text-[38px]">
@@ -420,7 +429,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     If you need an accessible format or an adjustment to a hiring conversation, email{" "}
-                    <a className="rounded-sm font-medium text-[#4285F4] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                    <a className="rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                       href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("Accessibility request (Careers)")}`}>
                       careers@visionary.org.in
                     </a>{" "}
@@ -428,7 +437,7 @@ export default function CareersPage() {
                   </p>
                   <p>
                     For accessibility information about the product, visit{" "}
-                    <Link className="rounded-sm font-medium text-[#4285F4] underline underline-offset-4 transition-colors hover:text-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" to="/accessibility">
+                    <Link className="rounded-sm font-medium text-[#0066cc] underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" to="/accessibility">
                       Visionary accessibility
                     </Link>.
                   </p>
@@ -437,7 +446,7 @@ export default function CareersPage() {
             </section>
 
             {/* CLOSING CTA */}
-            <section className="border-t border-[#dadce0] px-4 py-24 text-center sm:px-6 lg:px-10 lg:py-32">
+            <section data-section="07-cta" className="bg-[#f5f5f7] px-4 text-center sm:px-6 lg:px-10">
               <Reveal className="mx-auto max-w-[840px]">
                 <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
                   What you learn here should stay with you.
@@ -447,11 +456,12 @@ export default function CareersPage() {
                 </p>
                 <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a href={`mailto:${CAREERS_EMAIL}?subject=${encodeURIComponent("General introduction — Visionary")}`}
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#4285F4] px-8 text-[15px] font-medium text-white transition-all hover:bg-[#1765cc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.98]">
-                    Email the careers team <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto">
+                    Email the careers team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </a>
-                  <Link to="/about" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-7 text-[15px] text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                  <Link to="/about" className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
                     About Visionary
+                    <ChevronIcon className="h-4 w-4" />
                   </Link>
                 </div>
               </Reveal>

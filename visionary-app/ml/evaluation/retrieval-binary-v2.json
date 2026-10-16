@@ -1,0 +1,19 @@
+{
+  "contract": "retrieval-binary-v2",
+  "definition": "Binary relevance. Deduplicate candidate IDs in first-occurrence order before K; gold IDs form a set. Recall has unique hits/unique gold; MRR uses normalized ranking; NDCG uses log2(rank+1) and ideal min(unique candidates, unique gold). Empty inputs and non-positive K yield zero recall. No relevance ties/graded gains or candidate scores are implied.",
+  "fixtures": [
+    {"name":"perfect","retrieved":["a","b"],"relevant":["a","b"],"k":2,"recall":1,"mrr":1,"ndcg":1},
+    {"name":"rank-two","retrieved":["x","a"],"relevant":["a"],"k":2,"recall":1,"mrr":0.5,"ndcg":0.6309297535714574},
+    {"name":"rank-three","retrieved":["x","y","a"],"relevant":["a"],"k":3,"recall":1,"mrr":0.3333333333333333,"ndcg":0.5},
+    {"name":"miss","retrieved":["x"],"relevant":["a"],"k":1,"recall":0,"mrr":0,"ndcg":0},
+    {"name":"duplicate-candidate","retrieved":["a","a","a"],"relevant":["a"],"k":3,"recall":1,"mrr":1,"ndcg":1},
+    {"name":"duplicate-gold","retrieved":["a"],"relevant":["a","a"],"k":1,"recall":1,"mrr":1,"ndcg":1},
+    {"name":"deduplicate-before-k","retrieved":["a","a","b"],"relevant":["a","b"],"k":2,"recall":1,"mrr":1,"ndcg":1},
+    {"name":"duplicate-irrelevant","retrieved":["x","x","a","b"],"relevant":["a","b"],"k":2,"recall":0.5,"mrr":0.5,"ndcg":0.6934264036172708},
+    {"name":"short-ranking","retrieved":["a"],"relevant":["a","b"],"k":5,"recall":0.5,"mrr":1,"ndcg":1},
+    {"name":"empty-candidate","retrieved":[],"relevant":["a"],"k":1,"recall":0,"mrr":0,"ndcg":0},
+    {"name":"empty-gold","retrieved":["a"],"relevant":[],"k":1,"recall":0,"mrr":0,"ndcg":0},
+    {"name":"zero-k","retrieved":["a"],"relevant":["a"],"k":0,"recall":0,"mrr":1,"ndcg":1},
+    {"name":"negative-k","retrieved":["a"],"relevant":["a"],"k":-1,"recall":0,"mrr":1,"ndcg":1}
+  ]
+}

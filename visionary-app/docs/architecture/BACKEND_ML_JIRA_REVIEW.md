@@ -2,6 +2,8 @@
 
 16 October 2026 · D-084 · [implementation tracker](BACKEND_LAUNCH_CHECKLIST.md) · [Jira](tracking/JIRA_SYNC.md).
 
+This report retains the D-084 review snapshot. D-086 [founder reconciliation](FOUNDER_SPEC_RECONCILIATION.md) records the later changes: local retrieval metric repair and NLI batch-response rejection now have passing tests; the complete model/gateway integration and historical-report qualification remain open. The [feature delivery matrix](FEATURE_DELIVERY_MATRIX.md) now maps 137 tasks plus 15 epics. Do not treat the original reproductions below as the current behavior of the repaired pure functions/client.
+
 **The connected foundation is account/setup/test billing/feedback. The imported ML is a collection of reusable RAG components and prototypes, with blocking correctness, privacy and integration gaps. Learning/Build domain persistence and evaluated production AI are still implementation work. There is no evidence establishing AGI capability.**
 
 This fresh review follows the active backend import graph, account/payment authority, old identity/document/orchestrator paths, frontend domain transport, ML gateway/session/cache, retrieval filters, ingestion, reranker/NLI, quality export and evaluation code. It compares those observations with all 136 existing Jira items and their descriptions across two result pages, then reads back all 138 items after amendments. It is a critical-path source review with isolated reproductions, not an assertion that every imported file/model binary was audited or that a deployed system passed penetration, educational or capacity testing. Credentials, real learner records and model APIs are not read/called by the probes.

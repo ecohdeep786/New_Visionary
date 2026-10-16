@@ -61,6 +61,7 @@ if (component === 'doctor') {
     const args = action === 'install' ? ['mod', 'download'] : action === 'test' ? ['test', './...'] : ['build', './...'];
     run(go, args, path.join(root, 'ml/upstream', target), { GOTOOLCHAIN: 'local', GOMAXPROCS: process.env.GOMAXPROCS ?? '2' });
   }
+  if (action === 'test') run(process.execPath, [path.join(root, 'scripts/vats.mjs'), 'test'], root);
 } else if (component === 'rea') {
   const cwd = path.join(root, 'reverse-engineering/upstream');
   if (action === 'cli') run(process.execPath, ['scripts/rea.mjs', ...extra], cwd);

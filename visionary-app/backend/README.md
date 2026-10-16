@@ -1,5 +1,9 @@
 # Application backend
 
+D-087 [VATS contract](../integration/VATS_CONTRACT.md) keeps identity, permissions, assessment receipts and state commits here. The [pedagogy-proposal boundary](upstream/backend/src/learning/pedagogy-proposal.ts) rejects stale/cross-scope ML suggestions and cannot create mastery or skip current checks. It is a tested pure module, not a registered endpoint. Follow the [seven-layer delivery plan](../docs/architecture/VATS_IMPLEMENTATION.md) before connecting ML workers or changing store ownership.
+
+D-086 adds a product-owned [learning policy kernel](upstream/backend/src/learning/teaching-policy.ts) with [offline tests](tests/teaching-policy.test.cjs). It is not wired to the active auth app or a datastore: authorized receipt transactions, calibrated criteria, controllers, UI and two-device acceptance remain open. See the [founder reconciliation](../docs/architecture/FOUNDER_SPEC_RECONCILIATION.md).
+
 Next implementation chunks and launch gates: [backend launch checklist](../docs/architecture/BACKEND_LAUNCH_CHECKLIST.md), supported by the [current-state evidence](../docs/architecture/BACKEND_LAUNCH_EVIDENCE.md). Existing local auth/account/test billing stays the foundation while domain services are added.
 
 D-082 adds [owner-bound account feedback](../integration/FEEDBACK_CONTRACT.md) to this same runtime, with transactional submission/retry/admission and owner pagination. The dashboard offers an optional translated feedback control. See the [backend/ML execution handoff](../docs/architecture/IMPLEMENTATION_HANDOFF.md) and [Jira sync status](../docs/architecture/tracking/JIRA_SYNC.md); full support/operator/hosted acceptance remains open.

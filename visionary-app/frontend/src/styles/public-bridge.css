@@ -117,6 +117,69 @@ main > section[data-section="02-problem"],
   border-top-color: transparent !important;
 }
 
+/* Partners — the enquiry story rides one white ground: the carousel, the
+   access grid, the journey and the FAQ join without a seam (Apple's
+   no-seam law). The grey bands (includes, statement, closing CTA) change
+   surface, so they keep the whisper hairline. */
+.page-partners main > section[data-section="02-what"],
+.page-partners main > section[data-section="03-who"],
+.page-partners main > section[data-section="06-journey"],
+.page-partners main > section[data-section="09-faq"] {
+  border-top-color: transparent !important;
+}
+
+/* Contact — the guidance story rides one white ground: the resources and FAQ
+   chapters join without a seam; the grey help band, routes, grievance and
+   hygiene bands change surface and keep the whisper hairline. */
+.page-contact main > section[data-section="02-resources"],
+.page-contact main > section[data-section="03-faq"] {
+  border-top-color: transparent !important;
+}
+
+/* Careers — the white chapters (why, teams, contact) join the strip and each
+   other without a seam; the grey hiring band and grey closing CTA change
+   surface, so they keep the whisper hairline. */
+.page-careers main > section[data-section="02-why"],
+.page-careers main > section[data-section="03-teams"],
+.page-careers main > section[data-section="06-contact"] {
+  border-top-color: transparent !important;
+}
+
+/* Updates — the editorial top rides one white ground: the featured lead story,
+   the latest listing and the evidence band join without a seam (Apple's
+   no-seam law). The grey signup band and the white contact strip change
+   surface, so they keep the whisper hairline. The contact one-liner is a
+   strip, not a chapter — it carries the compact-band rhythm. */
+.page-updates main > section[data-section="02-featured"],
+.page-updates main > section[data-section="03-latest"],
+.page-updates main > section[data-section="04-evidence"] {
+  border-top-color: transparent !important;
+}
+
+.page-updates main > section[data-section="06-contact"] {
+  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
+/* Research — the white chapters (mission, quote band, latest, domains, origin)
+   ride one white ground and join without a seam (Apple's no-seam law). The
+   grey areas band, the white projects chapter after it, and the grey
+   responsible band change surface, so they keep the whisper hairline. */
+.page-research main > section[data-section="02-mission"],
+.page-research main > section[data-section="03-quote"],
+.page-research main > section[data-section="04-latest"],
+.page-research main > section[data-section="07-domains"],
+.page-research main > section[data-section="08-origin"] {
+  border-top-color: transparent !important;
+}
+
+/* Community — the statement and the find-a-community chapter ride the white
+   ground under the sticky jump bar and join it without a seam (Apple's
+   no-seam law). The grey more-ways band and the grey closing CTA change
+   surface, so they keep the whisper hairline. */
+.page-community main > section[data-section="02-find"] {
+  border-top-color: transparent !important;
+}
+
 main > section[data-section="05-intelligence"]:not([data-surface="light"]),
 main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
   background: var(--scene-ink, #0a0d14) !important;

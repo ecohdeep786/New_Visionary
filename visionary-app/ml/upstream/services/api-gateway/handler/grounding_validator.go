@@ -12,7 +12,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
+	"strings"
 	"sync"
 	"time"
 
@@ -62,18 +64,18 @@ type BatchValidateRequest struct {
 
 // ClaimResult is a single claim validation result.
 type ClaimResult struct {
-	Claim         string  `json:"claim"`
-	IsGrounded    bool    `json:"is_grounded"`
+	Claim          string  `json:"claim"`
+	IsGrounded     bool    `json:"is_grounded"`
 	GroundingScore float64 `json:"grounding_score"`
-	BestChunkIdx  int     `json:"best_chunk_idx"`
-	Label         string  `json:"label"`
+	BestChunkIdx   int     `json:"best_chunk_idx"`
+	Label          string  `json:"label"`
 }
 
 // BatchValidateResponse is the response from /batch-validate.
 type BatchValidateResponse struct {
-	Results             []ClaimResult `json:"results"`
-	OverallGroundingScore float64     `json:"overall_grounding_score"`
-	ProcessingTimeMS    float64       `json:"processing_time_ms"`
+	Results               []ClaimResult `json:"results"`
+	OverallGroundingScore float64       `json:"overall_grounding_score"`
+	ProcessingTimeMS      float64       `json:"processing_time_ms"`
 }
 
 // SplitSentences calls the NLI service to properly split text into sentences
@@ -117,6 +119,14 @@ func (c *NLIClient) BatchValidateClaims(ctx context.Context, claims, contextChun
 	if len(claims) == 0 {
 		return &BatchValidateResponse{}, nil
 	}
+	if len(contextChunks) == 0 || len(contextChunks) > 20 || len(claims) > 200 {
+		return nil, fmt.Errorf("grounding requires bounded claims and source context")
+	}
+	for _, claim := range claims {
+		if strings.TrimSpace(claim) == "" {
+			return nil, fmt.Errorf("grounding requires nonempty claims")
+		}
+	}
 
 	// Process in batches to avoid overwhelming the service
 	var allResults []ClaimResult
@@ -146,33 +156,63 @@ func (c *NLIClient) BatchValidateClaims(ctx context.Context, claims, contextChun
 
 		resp, err := c.client.Do(req)
 		if err != nil {
-			log.Warn().Err(err).Msg("NLI service unavailable, skipping grounding validation")
-			// FIX P1: Return permissive results when NLI service is down (fail-open, not fail-closed)
-			for _, claim := range batch {
-				allResults = append(allResults, ClaimResult{
-					Claim:         claim,
-					IsGrounded:    true,
-					GroundingScore: 1.0,
-					Label:         "unknown",
-				})
-			}
-			overallScore = 1.0
-			break
+			// Unavailable validation is not evidence. Discard any partial batches.
+			return nil, fmt.Errorf("grounding validation unavailable: %w", err)
 		}
 		// FIX P0: Close body IMMEDIATELY, not deferred in a loop (FD leak)
-		body, readErr := io.ReadAll(resp.Body)
+		body, readErr := io.ReadAll(io.LimitReader(resp.Body, (1<<20)+1))
 		resp.Body.Close()
 		if readErr != nil {
 			return nil, fmt.Errorf("read batch-validate response: %w", readErr)
 		}
+		if len(body) > 1<<20 {
+			return nil, fmt.Errorf("grounding response exceeds limit")
+		}
 
 		if resp.StatusCode != http.StatusOK {
-			return nil, fmt.Errorf("batch-validate returned %d: %s", resp.StatusCode, string(body))
+			return nil, fmt.Errorf("batch-validate returned status %d", resp.StatusCode)
 		}
 
 		var result BatchValidateResponse
 		if err := json.Unmarshal(body, &result); err != nil {
 			return nil, fmt.Errorf("decode batch-validate response: %w", err)
+		}
+		// Zero values are valid data, not proof that required fields were sent.
+		var presence struct {
+			Results []map[string]json.RawMessage `json:"results"`
+			Overall *float64                     `json:"overall_grounding_score"`
+		}
+		if err := json.Unmarshal(body, &presence); err != nil || presence.Overall == nil {
+			return nil, fmt.Errorf("grounding response omits required evidence")
+		}
+		if len(result.Results) != len(batch) || !validGroundingProbability(result.OverallGroundingScore) {
+			return nil, fmt.Errorf("grounding response has incomplete claims or invalid score")
+		}
+		grounded := 0
+		for i, claim := range result.Results {
+			for _, field := range []string{"claim", "is_grounded", "grounding_score", "best_chunk_idx", "label"} {
+				value, exists := presence.Results[i][field]
+				if !exists || bytes.Equal(bytes.TrimSpace(value), []byte("null")) {
+					return nil, fmt.Errorf("grounding response omits required claim evidence")
+				}
+			}
+			if claim.Claim != batch[i] || !validGroundingProbability(claim.GroundingScore) || claim.BestChunkIdx < 0 || claim.BestChunkIdx >= len(contextChunks) {
+				return nil, fmt.Errorf("grounding response has invalid claim evidence")
+			}
+			if claim.Label != "entailment" && claim.Label != "neutral" && claim.Label != "contradiction" {
+				return nil, fmt.Errorf("grounding response has unknown validation label")
+			}
+			if claim.IsGrounded {
+				if claim.Label != "entailment" || claim.GroundingScore == 0 {
+					return nil, fmt.Errorf("grounding result contradicts its label")
+				}
+				grounded++
+			}
+		}
+		// The service contract reports the proportion of grounded claims, rounded
+		// to four decimals, rather than a model's self-reported confidence.
+		if math.Abs(result.OverallGroundingScore-float64(grounded)/float64(len(batch))) > 0.0001 {
+			return nil, fmt.Errorf("grounding aggregate contradicts claim results")
 		}
 
 		allResults = append(allResults, result.Results...)
@@ -186,15 +226,19 @@ func (c *NLIClient) BatchValidateClaims(ctx context.Context, claims, contextChun
 	}
 
 	return &BatchValidateResponse{
-		Results:             allResults,
+		Results:               allResults,
 		OverallGroundingScore: overallScore,
-		ProcessingTimeMS:    0,
+		ProcessingTimeMS:      0,
 	}, nil
+}
+
+func validGroundingProbability(score float64) bool {
+	return !math.IsNaN(score) && !math.IsInf(score, 0) && score >= 0 && score <= 1
 }
 
 // GroundingResult is the result of grounding validation for a response.
 type GroundingResult struct {
-	GroundingScore    float64  `json:"grounding_score"`    // 0.0–1.0
+	GroundingScore    float64  `json:"grounding_score"` // 0.0–1.0
 	TotalClaims       int      `json:"total_claims"`
 	GroundedClaims    int      `json:"grounded_claims"`
 	UngroundedClaims  int      `json:"ungrounded_claims"`
@@ -205,7 +249,7 @@ type GroundingResult struct {
 
 // groundingHistogram is a package-level Prometheus histogram for grounding scores.
 var (
-	groundingHist    prometheus.Histogram
+	groundingHist     prometheus.Histogram
 	groundingHistOnce sync.Once
 )
 
@@ -261,13 +305,13 @@ func (v *GroundingValidator) Validate(ctx context.Context, responseText string, 
 
 	var claims []string
 	for _, sent := range sentences {
-		if len(sent) >= 15 {
+		if strings.TrimSpace(sent) != "" {
 			claims = append(claims, sent)
 		}
 	}
 
 	if len(claims) == 0 {
-		return &GroundingResult{GroundingScore: 1.0}, nil
+		return &GroundingResult{GroundingScore: 0, Warning: "No claims were verified."}, nil
 	}
 
 	validation, err := nliClient.BatchValidateClaims(ctx, claims, contextChunks)

@@ -35,6 +35,7 @@
     "ml:install": "node scripts/product.mjs ml install",
     "ml:build": "node scripts/product.mjs ml build",
     "ml:test": "node scripts/product.mjs ml test",
+    "ml:vats:test": "node scripts/vats.mjs test",
     "rea:install": "node scripts/product.mjs rea install",
     "rea:build": "node scripts/product.mjs rea build",
     "rea": "node scripts/product.mjs rea cli"

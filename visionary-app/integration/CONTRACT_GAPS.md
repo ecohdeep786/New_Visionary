@@ -1,5 +1,7 @@
 # Contracts to reconcile before live cutover
 
+D-087 adds the offline [VATS pedagogy proposal contract](VATS_CONTRACT.md) and [seven-layer delivery mapping](../docs/architecture/VATS_IMPLEMENTATION.md). Current product runtime remains auth/account/test billing/feedback. Pure learner/teaching policy, ML strategy proposals and backend binding checks exist locally; there are no new learning HTTP/SQL/provider connections. Legacy teaching/model implementations in the historical table are reference candidates, not registered product endpoints.
+
 Updated15 October2026, D-075. These are observed current integration boundaries, not newly implemented APIs. The founder authorized backend/ML work; the [source audit](../docs/architecture/discussions/backend-ml-audit.md) and [100,000-MAU design](../docs/architecture/discussions/system-design.md) now guide the next slices.
 
 16 October2026, D-082: [account feedback v1](FEEDBACK_CONTRACT.md) is now implemented in the product runtime and connected frontend control. It uses verified UID-owned Firestore records; it does not connect the legacy ML feedback handler, grant operator access or complete the remaining support/privacy/hosted gates. The [execution handoff](../docs/architecture/IMPLEMENTATION_HANDOFF.md) records the fresh backend/ML review and next dependencies.

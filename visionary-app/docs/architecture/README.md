@@ -1,10 +1,14 @@
 # Repository structure and ownership
 
+D-087 implementation direction: [VATS seven-layer ownership, actual code and ordered Jira delivery](VATS_IMPLEMENTATION.md), with [machine-readable task/layer mapping](tracking/vats-delivery.json) and [backend↔ML contract](../../integration/VATS_CONTRACT.md). Both Document03 variants are reconciled; AIRA coordinates these seven capabilities. Product integration and broad AGI evidence remain separate gates.
+
 Implementation tracker: [backend-to-launch checklist](BACKEND_LAUNCH_CHECKLIST.md), with [completed/partial/source evidence](BACKEND_LAUNCH_EVIDENCE.md). Work is broken into dependency-ordered chunks and explicit launch gates.
 
 Execution handoff: [current backend/ML wiring and next slices](IMPLEMENTATION_HANDOFF.md), [Jira synchronization state](tracking/JIRA_SYNC.md) and [account feedback contract](../../integration/FEEDBACK_CONTRACT.md).
 
 Fresh D-084 review: [backend/ML findings, isolated reproductions and Jira closure criteria](BACKEND_ML_JIRA_REVIEW.md). Imported ML remains disconnected; this review does not certify model quality or AGI capability.
+
+D-086 founder reconciliation: [37 source documents, per-file decisions and deterministic VATS/AIRA delivery](FOUNDER_SPEC_RECONCILIATION.md), including tested local policy/metric/client changes and the remaining durable integration. The [feature delivery trace](FEATURE_DELIVERY_MATRIX.md) maps 137 tasks across frontend, APIs, data, jobs, cache, real-time and AI; product/capability acceptance remain separate.
 
 Current baseline: [final architecture recommendation and release evidence](FINAL_ARCHITECTURE_RECOMMENDATION.md), consolidated after the founder's reference reviews. Implementation and measured acceptance remain staged work.
 

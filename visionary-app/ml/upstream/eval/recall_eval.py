@@ -5,6 +5,7 @@ Evaluates retrieval quality using Recall@K, MRR, and NDCG metrics.
 """
 
 import json
+import math
 import argparse
 from typing import List, Dict, Any
 from dataclasses import dataclass
@@ -36,19 +37,27 @@ def load_eval_set(filepath: str) -> List[QAPair]:
     return qa_pairs
 
 
+METRIC_CONTRACT = "retrieval-binary-v2"
+
+
+def _unique_ids(values: List[str]) -> List[str]:
+    """Canonical ranking: first occurrence of each ID, before applying K."""
+    return list(dict.fromkeys(values))
+
+
 def calculate_recall_at_k(retrieved: List[str], relevant: List[str], k: int) -> float:
     """Calculate Recall@K."""
-    if not retrieved or not relevant:
+    if not retrieved or not relevant or not isinstance(k, int) or isinstance(k, bool) or k <= 0:
         return 0.0
     
     # Limit to top-k
-    retrieved = retrieved[:k]
+    retrieved = _unique_ids(retrieved)[:k]
     
     # Count hits
     relevant_set = set(relevant)
     hits = sum(1 for r in retrieved if r in relevant_set)
     
-    return hits / len(relevant)
+    return hits / len(relevant_set)
 
 
 def calculate_mrr(retrieved: List[str], relevant: List[str]) -> float:
@@ -59,7 +68,7 @@ def calculate_mrr(retrieved: List[str], relevant: List[str]) -> float:
     relevant_set = set(relevant)
     
     # Find first relevant result
-    for i, r in enumerate(retrieved):
+    for i, r in enumerate(_unique_ids(retrieved)):
         if r in relevant_set:
             return 1.0 / (i + 1)
     
@@ -72,13 +81,14 @@ def calculate_ndcg(retrieved: List[str], relevant: List[str]) -> float:
         return 0.0
     
     relevant_set = set(relevant)
+    retrieved = _unique_ids(retrieved)
     
     # DCG
-    dcg = sum(1.0 / (i + 2) for i, r in enumerate(retrieved) if r in relevant_set)
+    dcg = sum(1.0 / math.log2(i + 2) for i, r in enumerate(retrieved) if r in relevant_set)
     
     # Ideal DCG
     ideal_retrieved = list(relevant_set)[:len(retrieved)]
-    idcg = sum(1.0 / (i + 2) for i in range(len(ideal_retrieved)))
+    idcg = sum(1.0 / math.log2(i + 2) for i in range(len(ideal_retrieved)))
     
     return dcg / idcg if idcg > 0 else 0.0
 
@@ -124,6 +134,7 @@ def evaluate_retrieval(
     
     # Aggregate metrics
     results = {
+        'metric_contract': METRIC_CONTRACT,
         'recall_at_k': {
             f'recall@{k}': sum(values) / len(values) if values else 0.0
             for k, values in metrics['recall'].items()
@@ -142,8 +153,11 @@ def main():
     parser.add_argument('--top-k', nargs='+', type=int, default=[1, 3, 5, 10],
                        help='K values for Recall@K')
     parser.add_argument('--verbose', action='store_true', help='Print progress')
+    parser.add_argument('--demo', action='store_true', help='Explicitly run synthetic retrieval, never a model-quality benchmark')
     
     args = parser.parse_args()
+    if not args.demo:
+        parser.error('This CLI uses dummy retrieval. Pass --demo for synthetic metrics only, or integrate authorized real retrieval before benchmarking.')
     
     # Load eval set
     print(f"Loading eval set from {args.eval_set}...")
@@ -166,13 +180,11 @@ def main():
     
     # Print results
     print("\n" + "="*65)
-    print("Evaluation Results")
+    print("Synthetic demo results — not a retrieval quality benchmark")
     print("="*65)
     print(f"Queries: {results['num_queries']}")
-    print(f"Recall@1:  {results['recall_at_k']['recall@1']:.4f}")
-    print(f"Recall@3:  {results['recall_at_k']['recall@3']:.4f}")
-    print(f"Recall@5:  {results['recall_at_k']['recall@5']:.4f}")
-    print(f"Recall@10: {results['recall_at_k']['recall@10']:.4f}")
+    for name, value in results['recall_at_k'].items():
+        print(f"{name}: {value:.4f}")
     print(f"MRR:       {results['mrr']:.4f}")
     print(f"NDCG:      {results['ndcg']:.4f}")
     print("="*65)

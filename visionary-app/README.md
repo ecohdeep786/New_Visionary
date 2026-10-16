@@ -8,7 +8,7 @@ The web product, application backend, ML pipeline and engineering research share
 visionary-app/
 ├── frontend/             React/Vite application, assets, configs and tests
 ├── backend/              Application API, identity and persistence source
-├── ml/                   RAG services, ingestion and model evaluations
+├── ml/                   VATS policies/evaluation and pinned RAG candidates
 ├── reverse-engineering/  Pinned REA toolkit and setup guide
 ├── research/             Visionary study scripts, reports and evidence indexes
 ├── integration/          Cross-component contracts and upstream provenance

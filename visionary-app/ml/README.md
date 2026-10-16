@@ -1,4 +1,8 @@
-# ML and retrieval
+# Visionary ML — VATS
+
+The product ML direction is the seven-layer [Visionary Adaptive Teaching System](vats/README.md), with [layer ownership/evidence](vats/layers.json) and [step-by-step backend/Jira delivery](../docs/architecture/VATS_IMPLEMENTATION.md). Product-owned policies live in `vats/`; shared local metric contracts live in `evaluation/`. `upstream/` remains a pinned library of RAG candidates. It is not the complete VATS engine or the product startup path. Current additions are offline policy/binding tests; provider, persistence and UI integration remain open.
+
+D-086 local repairs: [retrieval-binary-v2 fixtures](evaluation/retrieval-binary-v2.json) qualify metric math consistently in Python/Go; the dummy evaluation CLI now requires explicit `--demo`. NLI batch validation rejects unavailable/incomplete/invalid evidence instead of returning grounded success. These changes have [recorded upstream patch provenance](../integration/upstream-patches.json). Full caller/stream/cache policy, source/ownership guards, quality export, actual provider evaluation and serving acceptance remain open; the imported gateway stays disconnected. The D-084 findings below are the historical reproduction, not the current repaired pure-function/client behavior. See the [full reconciliation](../docs/architecture/FOUNDER_SPEC_RECONCILIATION.md).
 
 Complete tracked RAG pipeline source imported from `visionaryorg/ragpipeline-master`, commit `f7fffc39b7894e3b6e82e3a3015b8140b1f2a363`, under `upstream/`. Known embedded credentials in scripts/reports were redacted; the original model/service source and Go module boundaries are retained.
 

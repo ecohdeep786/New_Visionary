@@ -7,74 +7,74 @@ import (
 
 func TestCalculateRecallAtK(t *testing.T) {
 	tests := []struct {
-		name     string
+		name      string
 		retrieved []string
-		relevant []string
-		k        int
-		want     float64
+		relevant  []string
+		k         int
+		want      float64
 	}{
 		{
-			name:     "perfect recall",
+			name:      "perfect recall",
 			retrieved: []string{"a", "b", "c"},
-			relevant: []string{"a", "b", "c"},
-			k:        3,
-			want:     1.0,
+			relevant:  []string{"a", "b", "c"},
+			k:         3,
+			want:      1.0,
 		},
 		{
-			name:     "partial recall",
+			name:      "partial recall",
 			retrieved: []string{"a", "b", "d"},
-			relevant: []string{"a", "b", "c"},
-			k:        3,
-			want:     2.0 / 3.0,
+			relevant:  []string{"a", "b", "c"},
+			k:         3,
+			want:      2.0 / 3.0,
 		},
 		{
-			name:     "no recall",
+			name:      "no recall",
 			retrieved: []string{"d", "e", "f"},
-			relevant: []string{"a", "b", "c"},
-			k:        3,
-			want:     0.0,
+			relevant:  []string{"a", "b", "c"},
+			k:         3,
+			want:      0.0,
 		},
 		{
-			name:     "recall at k=1",
+			name:      "recall at k=1",
 			retrieved: []string{"a", "b", "c"},
-			relevant: []string{"a", "b", "c"},
-			k:        1,
-			want:     1.0 / 3.0,
+			relevant:  []string{"a", "b", "c"},
+			k:         1,
+			want:      1.0 / 3.0,
 		},
 		{
-			name:     "k exceeds retrieved length",
+			name:      "k exceeds retrieved length",
 			retrieved: []string{"a", "b"},
-			relevant: []string{"a", "b", "c"},
-			k:        5,
-			want:     2.0 / 3.0,
+			relevant:  []string{"a", "b", "c"},
+			k:         5,
+			want:      2.0 / 3.0,
 		},
 		{
-			name:     "empty retrieved",
+			name:      "empty retrieved",
 			retrieved: []string{},
-			relevant: []string{"a", "b"},
-			k:        3,
-			want:     0.0,
+			relevant:  []string{"a", "b"},
+			k:         3,
+			want:      0.0,
 		},
 		{
-			name:     "empty relevant",
+			name:      "empty relevant",
 			retrieved: []string{"a", "b"},
-			relevant: []string{},
-			k:        3,
-			want:     0.0,
+			relevant:  []string{},
+			k:         3,
+			want:      0.0,
 		},
 		{
-			name:     "both empty",
+			name:      "both empty",
 			retrieved: []string{},
-			relevant: []string{},
-			k:        3,
-			want:     0.0,
+			relevant:  []string{},
+			k:         3,
+			want:      0.0,
 		},
 		{
-			name:     "duplicates in retrieved",
+			name:      "duplicates in retrieved",
 			retrieved: []string{"a", "a", "a"},
-			relevant: []string{"a"},
-			k:        3,
-			want:     3.0, // counts each duplicate hit
+			relevant:  []string{"a"},
+			k:         3,
+			want:      1.0, // one relevant ID can contribute at most one hit
 		},
 	}
 
@@ -91,52 +91,52 @@ func TestCalculateRecallAtK(t *testing.T) {
 
 func TestCalculateMRR(t *testing.T) {
 	tests := []struct {
-		name     string
+		name      string
 		retrieved []string
-		relevant []string
-		want     float64
+		relevant  []string
+		want      float64
 	}{
 		{
-			name:     "first result relevant",
+			name:      "first result relevant",
 			retrieved: []string{"a", "b", "c"},
-			relevant: []string{"a", "b"},
-			want:     1.0,
+			relevant:  []string{"a", "b"},
+			want:      1.0,
 		},
 		{
-			name:     "second result relevant",
+			name:      "second result relevant",
 			retrieved: []string{"x", "a", "b"},
-			relevant: []string{"a", "b"},
-			want:     0.5,
+			relevant:  []string{"a", "b"},
+			want:      0.5,
 		},
 		{
-			name:     "third result relevant",
+			name:      "third result relevant",
 			retrieved: []string{"x", "y", "a"},
-			relevant: []string{"a"},
-			want:     1.0 / 3.0,
+			relevant:  []string{"a"},
+			want:      1.0 / 3.0,
 		},
 		{
-			name:     "no relevant results",
+			name:      "no relevant results",
 			retrieved: []string{"x", "y", "z"},
-			relevant: []string{"a", "b"},
-			want:     0.0,
+			relevant:  []string{"a", "b"},
+			want:      0.0,
 		},
 		{
-			name:     "empty retrieved",
+			name:      "empty retrieved",
 			retrieved: []string{},
-			relevant: []string{"a"},
-			want:     0.0,
+			relevant:  []string{"a"},
+			want:      0.0,
 		},
 		{
-			name:     "empty relevant",
+			name:      "empty relevant",
 			retrieved: []string{"a", "b"},
-			relevant: []string{},
-			want:     0.0,
+			relevant:  []string{},
+			want:      0.0,
 		},
 		{
-			name:     "single relevant at end",
+			name:      "single relevant at end",
 			retrieved: []string{"d", "c", "b", "a"},
-			relevant: []string{"a"},
-			want:     0.25,
+			relevant:  []string{"a"},
+			want:      0.25,
 		},
 	}
 
@@ -153,52 +153,52 @@ func TestCalculateMRR(t *testing.T) {
 
 func TestCalculateNDCG(t *testing.T) {
 	tests := []struct {
-		name     string
+		name      string
 		retrieved []string
-		relevant []string
-		want     float64
+		relevant  []string
+		want      float64
 	}{
 		{
-			name:     "perfect ranking",
+			name:      "perfect ranking",
 			retrieved: []string{"a", "b", "c"},
-			relevant: []string{"a", "b", "c"},
-			want:     1.0,
+			relevant:  []string{"a", "b", "c"},
+			want:      1.0,
 		},
 		{
-			name:     "partial ranking",
+			name:      "partial ranking",
 			retrieved: []string{"x", "a", "b"},
-			relevant: []string{"a", "b"},
-			want:     0.6934264036172708,
+			relevant:  []string{"a", "b"},
+			want:      0.6934264036172708,
 		},
 		{
-			name:     "no relevant results",
+			name:      "no relevant results",
 			retrieved: []string{"x", "y", "z"},
-			relevant: []string{"a", "b"},
-			want:     0.0,
+			relevant:  []string{"a", "b"},
+			want:      0.0,
 		},
 		{
-			name:     "empty retrieved",
+			name:      "empty retrieved",
 			retrieved: []string{},
-			relevant: []string{"a"},
-			want:     0.0,
+			relevant:  []string{"a"},
+			want:      0.0,
 		},
 		{
-			name:     "empty relevant",
+			name:      "empty relevant",
 			retrieved: []string{"a", "b"},
-			relevant: []string{},
-			want:     0.0,
+			relevant:  []string{},
+			want:      0.0,
 		},
 		{
-			name:     "single relevant first",
+			name:      "single relevant first",
 			retrieved: []string{"a", "x", "y"},
-			relevant: []string{"a"},
-			want:     1.0,
+			relevant:  []string{"a"},
+			want:      1.0,
 		},
 		{
-			name:     "retrieved longer than relevant",
+			name:      "retrieved longer than relevant",
 			retrieved: []string{"a", "b", "x"},
-			relevant: []string{"a", "b"},
-			want:     1.0,
+			relevant:  []string{"a", "b"},
+			want:      1.0,
 		},
 	}
 

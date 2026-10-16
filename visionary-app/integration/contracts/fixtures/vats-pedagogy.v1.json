@@ -1,0 +1,850 @@
+{
+  "contract": "vats-pedagogy.v1",
+  "policy": "doc03-reference-v1",
+  "fixtures": [
+    {
+      "name": "beginner",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "state_based_strategy",
+        "targetConceptId": "newton",
+        "strategy": "worked_example",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "language-hypothesis",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "language_barrier",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "state_based_strategy",
+        "targetConceptId": "newton",
+        "strategy": "analogy",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "high-estimate-still-needs-assessment",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.99,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "state_based_strategy",
+        "targetConceptId": "newton",
+        "strategy": "practice",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "middle-band",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.6,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "state_based_strategy",
+        "targetConceptId": "newton",
+        "strategy": "socratic",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "approved-visual",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": true,
+          "approvedVisualAvailable": true,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "state_based_strategy",
+        "targetConceptId": "newton",
+        "strategy": "visual",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "different-strategy-after-failure",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 1,
+          "maxFailedChecks": 3,
+          "previousStrategy": "worked_example",
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "state_based_strategy",
+        "targetConceptId": "newton",
+        "strategy": "socratic",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "earliest-prerequisite-gap",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [
+              "vectors"
+            ],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          },
+          {
+            "conceptId": "vectors",
+            "prerequisites": [
+              "units"
+            ],
+            "pKnown": 0.7,
+            "assessedCount": 2
+          },
+          {
+            "conceptId": "units",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 2
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "teach",
+        "reason": "prerequisite_gap",
+        "targetConceptId": "units",
+        "strategy": "worked_example",
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "prior-is-not-assessed-evidence",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [
+              "vectors"
+            ],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          },
+          {
+            "conceptId": "vectors",
+            "prerequisites": [
+              "units"
+            ],
+            "pKnown": 0.7,
+            "assessedCount": 2
+          },
+          {
+            "conceptId": "units",
+            "prerequisites": [],
+            "pKnown": 0.99,
+            "assessedCount": 0
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "assess_prior",
+        "reason": "insufficient_evidence",
+        "targetConceptId": "units",
+        "strategy": null,
+        "requiresAssessment": true,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "await-check",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "check",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "await_response",
+        "reason": "check_pending",
+        "targetConceptId": "newton",
+        "strategy": null,
+        "requiresAssessment": false,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "passed-check-is-not-mastery",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "check_passed",
+          "failedChecks": 0,
+          "maxFailedChecks": 3,
+          "previousStrategy": null,
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "check_complete",
+        "reason": "assessed_check_passed",
+        "targetConceptId": "newton",
+        "strategy": null,
+        "requiresAssessment": false,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "bounded-review",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 3,
+          "maxFailedChecks": 3,
+          "previousStrategy": "worked_example",
+          "allowedStrategies": [
+            "socratic",
+            "worked_example",
+            "analogy",
+            "visual",
+            "practice"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "review",
+        "reason": "failure_bound",
+        "targetConceptId": "newton",
+        "strategy": null,
+        "requiresAssessment": false,
+        "answerPolicy": "hints_only"
+      }
+    },
+    {
+      "name": "no-allowed-alternative",
+      "request": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "nodes": [
+          {
+            "conceptId": "newton",
+            "prerequisites": [],
+            "pKnown": 0.2,
+            "assessedCount": 1
+          }
+        ],
+        "teaching": {
+          "phase": "explain",
+          "failedChecks": 1,
+          "maxFailedChecks": 3,
+          "previousStrategy": "worked_example",
+          "allowedStrategies": [
+            "worked_example"
+          ]
+        },
+        "observations": {
+          "errorClass": "conceptual_gap",
+          "firstEncounter": false,
+          "approvedVisualAvailable": false,
+          "hintsOnly": true
+        }
+      },
+      "expected": {
+        "contractVersion": "vats-pedagogy.v1",
+        "requestId": "synthetic-request",
+        "scope": {
+          "uid": "synthetic-uid",
+          "workspaceId": "personal",
+          "sessionId": "synthetic-session",
+          "conceptId": "newton",
+          "sourceVersion": "source-v1",
+          "criteriaVersion": "rubric-v1",
+          "graphVersion": "graph-v1",
+          "policyVersion": "doc03-reference-v1",
+          "learnerRevision": 4,
+          "loopRevision": 2
+        },
+        "action": "review",
+        "reason": "no_alternative",
+        "targetConceptId": "newton",
+        "strategy": null,
+        "requiresAssessment": false,
+        "answerPolicy": "hints_only"
+      }
+    }
+  ]
+}

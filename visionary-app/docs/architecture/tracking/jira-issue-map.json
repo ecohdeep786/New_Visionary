@@ -9,18 +9,23 @@
   },
   "source": {
     "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
-    "sha256": "480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff"
+    "sha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146"
   },
-  "verifiedAt": "2026-10-16T15:48:45Z",
+  "verifiedAt": "2026-10-16T20:11:17.203Z",
   "summary": {
-    "total": 138,
+    "total": 152,
+    "tasks": 137,
     "epics": 15,
-    "tasks": 123,
     "byStatus": {
       "Done": 13,
-      "To Do": 119,
-      "Idea": 6
+      "To Do": 129,
+      "Idea": 7,
+      "Testing": 1,
+      "In Progress": 2
     },
+    "dependencyLinks": 105,
+    "phaseDependencyLinks": 30,
+    "taskDependencyLinks": 75,
     "nowTasks": [
       "KAN-28",
       "KAN-30",
@@ -30,9 +35,6 @@
       "KAN-37",
       "KAN-45"
     ],
-    "dependencyLinks": 32,
-    "phaseDependencyLinks": 30,
-    "taskDependencyLinks": 2,
     "paginationComplete": true,
     "errors": []
   },
@@ -1036,7 +1038,7 @@
       "key": "KAN-137",
       "type": "Bug",
       "parent": "KAN-9",
-      "status": "To Do",
+      "status": "Testing",
       "queue": "Next",
       "url": "https://visionary-team.atlassian.net/browse/KAN-137"
     },
@@ -1047,6 +1049,118 @@
       "status": "To Do",
       "queue": "Next",
       "url": "https://visionary-team.atlassian.net/browse/KAN-138"
+    },
+    "SYNC-01": {
+      "key": "KAN-139",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-139"
+    },
+    "SYNC-02": {
+      "key": "KAN-140",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-140"
+    },
+    "CACHE-01": {
+      "key": "KAN-141",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-141"
+    },
+    "AI-13": {
+      "key": "KAN-142",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-142"
+    },
+    "AI-14": {
+      "key": "KAN-143",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-143"
+    },
+    "CONTENT-08": {
+      "key": "KAN-144",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-144"
+    },
+    "LEARN-09": {
+      "key": "KAN-145",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "In Progress",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-145"
+    },
+    "LEARN-10": {
+      "key": "KAN-146",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "In Progress",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-146"
+    },
+    "LEARN-11": {
+      "key": "KAN-147",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-147"
+    },
+    "LEARN-12": {
+      "key": "KAN-148",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-148"
+    },
+    "AI-15": {
+      "key": "KAN-149",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-149"
+    },
+    "AI-16": {
+      "key": "KAN-150",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-150"
+    },
+    "SAFE-01": {
+      "key": "KAN-151",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-151"
+    },
+    "LATER-06": {
+      "key": "KAN-152",
+      "type": "Task",
+      "parent": "KAN-15",
+      "status": "Idea",
+      "queue": "Later",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-152"
     }
   },
   "dependencies": [
@@ -1261,6 +1375,123 @@
         "paginationComplete": true,
         "errors": []
       }
+    },
+    {
+      "decision": "D-084",
+      "verifiedAt": "2026-10-16T15:48:45Z",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff"
+      },
+      "summary": {
+        "total": 138,
+        "epics": 15,
+        "tasks": 123,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 119,
+          "Idea": 6
+        },
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "dependencyLinks": 32,
+        "phaseDependencyLinks": 30,
+        "taskDependencyLinks": 2,
+        "paginationComplete": true,
+        "errors": []
+      }
+    },
+    {
+      "decision": "D-085",
+      "verifiedAt": "2026-10-16T16:51:23Z",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "45211f838a6bac760462f810d693e1680b05619bfbec59381135a7f7e2111abb"
+      },
+      "summary": {
+        "total": 143,
+        "epics": 15,
+        "tasks": 128,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 124,
+          "Idea": 6
+        },
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "dependencyLinks": 75,
+        "phaseDependencyLinks": 30,
+        "taskDependencyLinks": 45,
+        "paginationComplete": true,
+        "errors": []
+      },
+      "deliveryReview": {
+        "decision": "D-085",
+        "path": "docs/architecture/FEATURE_DELIVERY_MATRIX.md",
+        "manifest": "docs/architecture/tracking/feature-delivery.json",
+        "features": 18,
+        "layers": 11,
+        "taskDescriptionsVerified": 128,
+        "noNewCompletion": true
+      }
+    },
+    {
+      "decision": "D-086",
+      "verifiedAt": "2026-10-16T19:42:49.015Z",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146"
+      },
+      "summary": {
+        "total": 152,
+        "tasks": 137,
+        "epics": 15,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 129,
+          "Idea": 7,
+          "Testing": 1,
+          "In Progress": 2
+        },
+        "dependencyLinks": 105,
+        "phaseDependencyLinks": 30,
+        "taskDependencyLinks": 75,
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "paginationComplete": true,
+        "errors": []
+      },
+      "deliveryReview": {
+        "decision": "D-086",
+        "path": "docs/architecture/FEATURE_DELIVERY_MATRIX.md",
+        "manifest": "docs/architecture/tracking/feature-delivery.json",
+        "features": 18,
+        "layers": 11,
+        "taskDescriptionsVerified": 137,
+        "founderDescriptionsUpdated": 82,
+        "noNewCompletion": true
+      }
     }
   ],
   "taskDependencies": [
@@ -1275,6 +1506,444 @@
       "blockedSourceId": "AI-09",
       "blocks": "KAN-138",
       "blocked": "KAN-91"
+    },
+    {
+      "sourceId": "SCOPE-03",
+      "blockedSourceId": "SYNC-01",
+      "blocks": "KAN-30",
+      "blocked": "KAN-139"
+    },
+    {
+      "sourceId": "DATA-06",
+      "blockedSourceId": "SYNC-01",
+      "blocks": "KAN-41",
+      "blocked": "KAN-139"
+    },
+    {
+      "sourceId": "JOB-01",
+      "blockedSourceId": "SYNC-01",
+      "blocks": "KAN-53",
+      "blocked": "KAN-139"
+    },
+    {
+      "sourceId": "SYNC-01",
+      "blockedSourceId": "SYNC-02",
+      "blocks": "KAN-139",
+      "blocked": "KAN-140"
+    },
+    {
+      "sourceId": "CACHE-01",
+      "blockedSourceId": "SYNC-02",
+      "blocks": "KAN-141",
+      "blocked": "KAN-140"
+    },
+    {
+      "sourceId": "SYNC-02",
+      "blockedSourceId": "LEARN-06",
+      "blocks": "KAN-140",
+      "blocked": "KAN-72"
+    },
+    {
+      "sourceId": "CACHE-01",
+      "blockedSourceId": "AI-05",
+      "blocks": "KAN-141",
+      "blocked": "KAN-87"
+    },
+    {
+      "sourceId": "AI-03",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-85",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "AI-05",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-87",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "AI-06",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-88",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "AI-07",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-89",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "JOB-02",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-54",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "BUILD-04",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-78",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "AI-14",
+      "blockedSourceId": "LEARN-05",
+      "blocks": "KAN-143",
+      "blocked": "KAN-71"
+    },
+    {
+      "sourceId": "AI-14",
+      "blockedSourceId": "BUILD-08",
+      "blocks": "KAN-143",
+      "blocked": "KAN-82"
+    },
+    {
+      "sourceId": "AI-14",
+      "blockedSourceId": "AI-13",
+      "blocks": "KAN-143",
+      "blocked": "KAN-142"
+    },
+    {
+      "sourceId": "AI-11",
+      "blockedSourceId": "AI-13",
+      "blocks": "KAN-137",
+      "blocked": "KAN-142"
+    },
+    {
+      "sourceId": "AI-13",
+      "blockedSourceId": "RELEASE-04",
+      "blocks": "KAN-142",
+      "blocked": "KAN-127"
+    },
+    {
+      "sourceId": "DATA-03",
+      "blockedSourceId": "LEARN-01",
+      "blocks": "KAN-38",
+      "blocked": "KAN-67"
+    },
+    {
+      "sourceId": "CONTENT-04",
+      "blockedSourceId": "LEARN-01",
+      "blocks": "KAN-63",
+      "blocked": "KAN-67"
+    },
+    {
+      "sourceId": "DATA-05",
+      "blockedSourceId": "ROLE-04",
+      "blocks": "KAN-40",
+      "blocked": "KAN-96"
+    },
+    {
+      "sourceId": "DATA-04",
+      "blockedSourceId": "ROLE-01",
+      "blocks": "KAN-39",
+      "blocked": "KAN-93"
+    },
+    {
+      "sourceId": "LEARN-02",
+      "blockedSourceId": "LEARN-03",
+      "blocks": "KAN-68",
+      "blocked": "KAN-69"
+    },
+    {
+      "sourceId": "LEARN-08",
+      "blockedSourceId": "BUILD-03",
+      "blocks": "KAN-74",
+      "blocked": "KAN-77"
+    },
+    {
+      "sourceId": "FILE-03",
+      "blockedSourceId": "BUILD-05",
+      "blocks": "KAN-58",
+      "blocked": "KAN-79"
+    },
+    {
+      "sourceId": "BUILD-01",
+      "blockedSourceId": "BUILD-04",
+      "blocks": "KAN-75",
+      "blocked": "KAN-78"
+    },
+    {
+      "sourceId": "BUILD-04",
+      "blockedSourceId": "BUILD-08",
+      "blocks": "KAN-78",
+      "blocked": "KAN-82"
+    },
+    {
+      "sourceId": "BUILD-06",
+      "blockedSourceId": "ROLE-03",
+      "blocks": "KAN-80",
+      "blocked": "KAN-95"
+    },
+    {
+      "sourceId": "ROLE-01",
+      "blockedSourceId": "ROLE-02",
+      "blocks": "KAN-93",
+      "blocked": "KAN-94"
+    },
+    {
+      "sourceId": "ROLE-02",
+      "blockedSourceId": "ROLE-03",
+      "blocks": "KAN-94",
+      "blocked": "KAN-95"
+    },
+    {
+      "sourceId": "ROLE-03",
+      "blockedSourceId": "ROLE-07",
+      "blocks": "KAN-95",
+      "blocked": "KAN-99"
+    },
+    {
+      "sourceId": "ROLE-04",
+      "blockedSourceId": "ROLE-07",
+      "blocks": "KAN-96",
+      "blocked": "KAN-99"
+    },
+    {
+      "sourceId": "ROLE-06",
+      "blockedSourceId": "ROLE-07",
+      "blocks": "KAN-98",
+      "blocked": "KAN-99"
+    },
+    {
+      "sourceId": "AI-07",
+      "blockedSourceId": "BILL-04",
+      "blocks": "KAN-89",
+      "blocked": "KAN-105"
+    },
+    {
+      "sourceId": "BILL-04",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-105",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "LEARN-06",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-72",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "BUILD-08",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-82",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "LEARN-07",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-73",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "SYNC-02",
+      "blockedSourceId": "ROLE-08",
+      "blocks": "KAN-140",
+      "blocked": "KAN-100"
+    },
+    {
+      "sourceId": "ROLE-08",
+      "blockedSourceId": "ACCEPT-02",
+      "blocks": "KAN-100",
+      "blocked": "KAN-118"
+    },
+    {
+      "sourceId": "CONTENT-06",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-65",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "AI-09",
+      "blockedSourceId": "ACCEPT-04",
+      "blocks": "KAN-91",
+      "blocked": "KAN-120"
+    },
+    {
+      "sourceId": "SYNC-02",
+      "blockedSourceId": "ACCEPT-04",
+      "blocks": "KAN-140",
+      "blocked": "KAN-120"
+    },
+    {
+      "sourceId": "CONTENT-01",
+      "blockedSourceId": "CONTENT-08",
+      "blocks": "KAN-60",
+      "blocked": "KAN-144"
+    },
+    {
+      "sourceId": "DATA-01",
+      "blockedSourceId": "CONTENT-08",
+      "blocks": "KAN-36",
+      "blocked": "KAN-144"
+    },
+    {
+      "sourceId": "CONTENT-08",
+      "blockedSourceId": "LEARN-09",
+      "blocks": "KAN-144",
+      "blocked": "KAN-145"
+    },
+    {
+      "sourceId": "LEARN-08",
+      "blockedSourceId": "LEARN-09",
+      "blocks": "KAN-74",
+      "blocked": "KAN-145"
+    },
+    {
+      "sourceId": "LEARN-09",
+      "blockedSourceId": "LEARN-10",
+      "blocks": "KAN-145",
+      "blocked": "KAN-146"
+    },
+    {
+      "sourceId": "AI-14",
+      "blockedSourceId": "LEARN-10",
+      "blocks": "KAN-143",
+      "blocked": "KAN-146"
+    },
+    {
+      "sourceId": "LEARN-02",
+      "blockedSourceId": "LEARN-11",
+      "blocks": "KAN-68",
+      "blocked": "KAN-147"
+    },
+    {
+      "sourceId": "JOB-01",
+      "blockedSourceId": "LEARN-11",
+      "blocks": "KAN-53",
+      "blocked": "KAN-147"
+    },
+    {
+      "sourceId": "LEARN-09",
+      "blockedSourceId": "LEARN-11",
+      "blocks": "KAN-145",
+      "blocked": "KAN-147"
+    },
+    {
+      "sourceId": "LEARN-08",
+      "blockedSourceId": "LEARN-12",
+      "blocks": "KAN-74",
+      "blocked": "KAN-148"
+    },
+    {
+      "sourceId": "CONTENT-08",
+      "blockedSourceId": "LEARN-12",
+      "blocks": "KAN-144",
+      "blocked": "KAN-148"
+    },
+    {
+      "sourceId": "SYNC-02",
+      "blockedSourceId": "LEARN-12",
+      "blocks": "KAN-140",
+      "blocked": "KAN-148"
+    },
+    {
+      "sourceId": "LEARN-09",
+      "blockedSourceId": "AI-15",
+      "blocks": "KAN-145",
+      "blocked": "KAN-149"
+    },
+    {
+      "sourceId": "AI-04",
+      "blockedSourceId": "AI-15",
+      "blocks": "KAN-86",
+      "blocked": "KAN-149"
+    },
+    {
+      "sourceId": "DATA-05",
+      "blockedSourceId": "AI-15",
+      "blocks": "KAN-40",
+      "blocked": "KAN-149"
+    },
+    {
+      "sourceId": "CONTENT-05",
+      "blockedSourceId": "AI-15",
+      "blocks": "KAN-64",
+      "blocked": "KAN-149"
+    },
+    {
+      "sourceId": "AI-15",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-149",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "SCOPE-03",
+      "blockedSourceId": "AI-16",
+      "blocks": "KAN-30",
+      "blocked": "KAN-150"
+    },
+    {
+      "sourceId": "CONTENT-03",
+      "blockedSourceId": "AI-16",
+      "blocks": "KAN-62",
+      "blocked": "KAN-150"
+    },
+    {
+      "sourceId": "SYNC-01",
+      "blockedSourceId": "AI-16",
+      "blocks": "KAN-139",
+      "blocked": "KAN-150"
+    },
+    {
+      "sourceId": "SCOPE-05",
+      "blockedSourceId": "SAFE-01",
+      "blocks": "KAN-32",
+      "blocked": "KAN-151"
+    },
+    {
+      "sourceId": "SAFE-01",
+      "blockedSourceId": "AI-14",
+      "blocks": "KAN-151",
+      "blocked": "KAN-143"
+    },
+    {
+      "sourceId": "SAFE-01",
+      "blockedSourceId": "ACCEPT-04",
+      "blocks": "KAN-151",
+      "blocked": "KAN-120"
+    },
+    {
+      "sourceId": "LEARN-10",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-146",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "LEARN-11",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-147",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "LEARN-12",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-148",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "AI-16",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-150",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "AI-13",
+      "blockedSourceId": "LATER-06",
+      "blocks": "KAN-142",
+      "blocked": "KAN-152"
+    },
+    {
+      "sourceId": "PRIV-01",
+      "blockedSourceId": "LATER-06",
+      "blocks": "KAN-110",
+      "blocked": "KAN-152"
+    },
+    {
+      "sourceId": "RELEASE-04",
+      "blockedSourceId": "LATER-06",
+      "blocks": "KAN-127",
+      "blocked": "KAN-152"
     }
   ],
   "acceptanceReview": {
@@ -1291,6 +1960,120 @@
       "KAN-127",
       "KAN-135"
     ],
+    "noNewCompletion": true
+  },
+  "deliveryReview": {
+    "decision": "D-086",
+    "path": "docs/architecture/FEATURE_DELIVERY_MATRIX.md",
+    "manifest": "docs/architecture/tracking/feature-delivery.json",
+    "features": 18,
+    "layers": 11,
+    "taskDescriptionsVerified": 137,
+    "founderDescriptionsUpdated": 82,
+    "noNewCompletion": true
+  },
+  "founderReview": {
+    "decision": "D-086",
+    "path": "docs/architecture/FOUNDER_SPEC_RECONCILIATION.md",
+    "ledger": "docs/architecture/tracking/founder-spec-review.json",
+    "sourceFiles": 37,
+    "topics": 35,
+    "images": 39,
+    "updatedKeys": [
+      "KAN-18",
+      "KAN-28",
+      "KAN-29",
+      "KAN-30",
+      "KAN-31",
+      "KAN-32",
+      "KAN-34",
+      "KAN-36",
+      "KAN-38",
+      "KAN-40",
+      "KAN-41",
+      "KAN-43",
+      "KAN-44",
+      "KAN-45",
+      "KAN-47",
+      "KAN-50",
+      "KAN-51",
+      "KAN-139",
+      "KAN-140",
+      "KAN-60",
+      "KAN-62",
+      "KAN-65",
+      "KAN-144",
+      "KAN-67",
+      "KAN-68",
+      "KAN-71",
+      "KAN-74",
+      "KAN-145",
+      "KAN-146",
+      "KAN-147",
+      "KAN-148",
+      "KAN-77",
+      "KAN-80",
+      "KAN-81",
+      "KAN-83",
+      "KAN-84",
+      "KAN-85",
+      "KAN-86",
+      "KAN-88",
+      "KAN-90",
+      "KAN-92",
+      "KAN-137",
+      "KAN-138",
+      "KAN-142",
+      "KAN-143",
+      "KAN-149",
+      "KAN-150",
+      "KAN-93",
+      "KAN-94",
+      "KAN-95",
+      "KAN-96",
+      "KAN-97",
+      "KAN-98",
+      "KAN-99",
+      "KAN-101",
+      "KAN-105",
+      "KAN-106",
+      "KAN-107",
+      "KAN-108",
+      "KAN-109",
+      "KAN-110",
+      "KAN-111",
+      "KAN-112",
+      "KAN-114",
+      "KAN-116",
+      "KAN-151",
+      "KAN-119",
+      "KAN-121",
+      "KAN-124",
+      "KAN-125",
+      "KAN-126",
+      "KAN-127",
+      "KAN-128",
+      "KAN-129",
+      "KAN-130",
+      "KAN-131",
+      "KAN-135",
+      "KAN-152",
+      "KAN-53",
+      "KAN-64",
+      "KAN-120",
+      "KAN-117"
+    ],
+    "noNewCompletion": true
+  },
+  "vatsReview": {
+    "decision": "D-087",
+    "path": "docs/architecture/VATS_IMPLEMENTATION.md",
+    "manifest": "docs/architecture/tracking/vats-delivery.json",
+    "registry": "ml/vats/layers.json",
+    "layers": 7,
+    "taskDescriptionsVerified": 137,
+    "labelsVerified": 137,
+    "planningOrderVerified": true,
     "noNewCompletion": true
   }
 }

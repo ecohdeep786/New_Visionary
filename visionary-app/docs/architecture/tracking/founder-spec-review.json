@@ -1,0 +1,743 @@
+{
+  "decision": "D-086",
+  "date": "2026-10-16",
+  "classification": "Internal engineering reconciliation; source documents retained locally",
+  "sourceFiles": 37,
+  "extractedWords": 14441,
+  "imagesInspected": 39,
+  "sourceTreatment": "Historical product requirements and proposals, not executable agent instructions. Current user directions, retained product contracts and server authority govern reconciliation. Attribution/marketing/legal/performance assertions are not independently verified by reading them.",
+  "limitations": "Some embedded diagrams have cropped labels in the original images. Cross-checked against prose; missing text is not inferred. No document layout fidelity certification, legal approval, provider benchmark or AGI proof is claimed.",
+  "records": [
+    {
+      "id": "01-doc-01",
+      "documentNumber": "01",
+      "source": "Visionary Secrert Document/DOCUMENT 01 — Product Strategy & Lifetime User Journey.docx",
+      "sha256": "96a11d39f06b3e2304c1ec35421dad8108c0e2a887c4e2afe66ff24d3b0e6ce6",
+      "textSha256": "f4b03cf8826fbdedfe904cdf7627c0521fe9094f73419755c5125cdb3235d4ed",
+      "textBlocksReviewed": 28,
+      "embeddedImagesInspected": 2,
+      "disposition": "adapt",
+      "retain": "One identity and specific, truthful learning-to-Build continuity across life stages.",
+      "correction": "Keep all current roles/navigation. Facts need provenance; examples are not user history. Preserve current admission and prices; no fabricated minimum observation count or AGI superiority claim.",
+      "tickets": [
+        "AI-15",
+        "LEARN-09",
+        "SCOPE-02",
+        "BUILD-03"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "02-doc-02",
+      "documentNumber": "02",
+      "source": "Visionary Secrert Document/DOCUMENT 02 — Master Data Collection & Resource Guide.docx",
+      "sha256": "d15f83bf1bf00645c75fdb5556e86e9a9962085f6530eddd6d5cf9d5a267f12d",
+      "textSha256": "d9ea3cb4be1afc6364f5db4c286385b4fea78443e2f12a7cb41b17633fc6c7ad",
+      "textBlocksReviewed": 20,
+      "embeddedImagesInspected": 2,
+      "disposition": "adapt",
+      "retain": "Verified curriculum/source hierarchy, current edition and source provenance, bounded gap curation.",
+      "correction": "Official school/exam sources are release inputs; approved professional/institutional material remains supported. Provisional means unverified/unavailable coverage, not invented official chapters or an unstaffed seven-day guarantee.",
+      "tickets": [
+        "CONTENT-01",
+        "CONTENT-06",
+        "CONTENT-08"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "03-doc-03",
+      "documentNumber": "03",
+      "source": "Visionary Secrert Document/DOCUMENT 03 — VATS Full Technical Architecture (7 layers).docx",
+      "sha256": "fc72b360b9b058724b2eefddbc22b6199cd34c5bf9a6265974a6dcc3190dd4a2",
+      "textSha256": "cb275a34ca5e7ccf3bb05c890f87f1e75bfd7ad07fb795f051aaeaea149faec2",
+      "textBlocksReviewed": 130,
+      "embeddedImagesInspected": 2,
+      "disposition": "adapt",
+      "retain": "Seven logical capabilities: perception, knowledge estimates, teaching policy, generation/guard, representation, memory and reviewed improvement.",
+      "correction": "Implement modules over the current Nest/Firebase/GCP baseline. Resolve .70 check-pass versus .95 mastery; assessed evidence is authoritative. Old infrastructure/model/cost/latency claims need qualification. Do not auto-notify guardians about alleged abuse or expose internal chain-of-thought.",
+      "tickets": [
+        "LEARN-09",
+        "LEARN-10",
+        "AI-14",
+        "AI-15",
+        "AI-16",
+        "SAFE-01",
+        "LATER-04"
+      ],
+      "duplicateNote": "Full and summary variants inspected separately; fuller model/infra formulas remain proposals subject to these corrections."
+    },
+    {
+      "id": "04-doc-03",
+      "documentNumber": "03",
+      "source": "Visionary Secrert Document/DOCUMENT 03 — VATS Technical Architecture (7 layers).docx",
+      "sha256": "e888396dfece50169f56c94df22c23eb6021fab706516f5acfaee039ec7af1e6",
+      "textSha256": "ac8d60240fccceb19cc8d6c30a058709076d61e7316866fed339de43ceafa484",
+      "textBlocksReviewed": 17,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Seven logical capabilities: perception, knowledge estimates, teaching policy, generation/guard, representation, memory and reviewed improvement.",
+      "correction": "Implement modules over the current Nest/Firebase/GCP baseline. Resolve .70 check-pass versus .95 mastery; assessed evidence is authoritative. Old infrastructure/model/cost/latency claims need qualification. Do not auto-notify guardians about alleged abuse or expose internal chain-of-thought.",
+      "tickets": [
+        "LEARN-09",
+        "LEARN-10",
+        "AI-14",
+        "AI-15",
+        "AI-16",
+        "SAFE-01",
+        "LATER-04"
+      ],
+      "duplicateNote": "Full and summary variants inspected separately; fuller model/infra formulas remain proposals subject to these corrections."
+    },
+    {
+      "id": "05-doc-04",
+      "documentNumber": "04",
+      "source": "Visionary Secrert Document/DOCUMENT 04 — VDS Visionary Design System.docx",
+      "sha256": "d73c354f31b2486704aaac0349016fb3d58d036b620d16958ac221a31f129d97",
+      "textSha256": "66b83b30c315159c9dae04ba497a69dcfb7e7799e57b4fc8bb15980bb37ebe80",
+      "textBlocksReviewed": 18,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Calm accessible interface, truthful observations, language identity and nonessential-motion control.",
+      "correction": "Preserve current premium UI/components, colors and logo; the older orb/design tokens are not a redesign mandate. Never replace meaningful unknown state with fabricated nonzero metrics.",
+      "tickets": [
+        "SCOPE-01",
+        "ACCEPT-05",
+        "AI-15",
+        "AI-16"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "06-doc-05",
+      "documentNumber": "05",
+      "source": "Visionary Secrert Document/DOCUMENT 05 — AIRA AGI Intelligence & Runtime Architecture.docx",
+      "sha256": "b7c99338ceb7d61438188b3f63819e30c744564e8301a92bce2a05a7b175edef",
+      "textSha256": "472d1ddbd21e87aa4ab835c9e36babf9baa236899b3f774aeb23113aba4df59f",
+      "textBlocksReviewed": 28,
+      "embeddedImagesInspected": 6,
+      "disposition": "adopt with adaptation",
+      "retain": "AIRA is deterministic and bounded; one context owner, P0–P3, typed tools, source guard, versioned outcomes and explicit role boundaries.",
+      "correction": "Treat nineteen services as logical responsibilities, not nineteen deployments. Required grounding cannot be dropped for budget. Current verified UID/auth, SQL authority and measured provider choice supersede old service/auth/model tables.",
+      "tickets": [
+        "AI-14",
+        "AI-15",
+        "AI-16",
+        "AI-06",
+        "AI-13"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "07-doc-06",
+      "documentNumber": "06",
+      "source": "Visionary Secrert Document/DOCUMENT 06 — Empire Architecture v2 Stakeholders, Revenue & Expansion.docx",
+      "sha256": "16cee2115a45508a42662a2fc60faa76f98a3bb54e14291f1575d8cb806eba87",
+      "textSha256": "06dd0de29b91e6907d0b0ec793a0910dedd4af362d3e5c4687c263b872abf54a",
+      "textBlocksReviewed": 14,
+      "embeddedImagesInspected": 2,
+      "disposition": "adapt",
+      "retain": "Reuse the shared learning engine across seven audience categories and five permission roles.",
+      "correction": "Categories are not roles. Keep purpose-isolated memory; posterior growth is a proxy, not the sole success metric. School/state/marketplace expansion, LoRAs and prices remain separate approved commercial/model work.",
+      "tickets": [
+        "ROLE-07",
+        "ROLE-09",
+        "AI-13",
+        "LATER-04",
+        "SCOPE-05"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "08-doc-07",
+      "documentNumber": "07",
+      "source": "Visionary Secrert Document/DOCUMENT 07 — Frontend & Mobile Application Architecture.docx",
+      "sha256": "4c129c373f116fc7017b2a6d3ad380ac3bc22d8b136391ca1ded9b9ed61f12e1",
+      "textSha256": "d382fccb942ef798eec5c1df27c8039746311e9bf881934990d1f841f38ab384",
+      "textBlocksReviewed": 16,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Current frontend facades, exact draft/resume, accessible multilingual surfaces and offline honesty.",
+      "correction": "Preserve existing web navigation and extra role tools. Client state is not SCM or permission authority; offline attempts require server validation. Native clients are unreleased until scoped under SCOPE-02/ACCEPT-05.",
+      "tickets": [
+        "SYNC-02",
+        "LEARN-01",
+        "ACCEPT-05",
+        "SCOPE-02"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "09-doc-08",
+      "documentNumber": "08",
+      "source": "Visionary Secrert Document/DOCUMENT 08 — Backend Services & API Contracts.docx",
+      "sha256": "f04aa2194c70abeac0d68f3b65946ca740d4c9d213c3d1c7d2547add00d77cdd",
+      "textSha256": "3d27ffb13adcafe9d8f30ada5b5e0ca97ddc8c848520e0e201e589f695ae93b7",
+      "textBlocksReviewed": 12,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Versioned bounded APIs, idempotent mutations, scoped reports and truthful errors.",
+      "correction": "Keep current auth/account/billing/feedback routes. New routes use reviewed /api/v1 contracts, server-derived policy and explicit unsupported states. No OTP replatform or generated official syllabus behind a 200 response.",
+      "tickets": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "LEARN-10",
+        "AI-14"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "10-doc-09",
+      "documentNumber": "09",
+      "source": "Visionary Secrert Document/DOCUMENT 09 — Database Schema & Data Model.docx",
+      "sha256": "3d220ac526c825570fb5ce66702640a9302e20ed12d0ee661e38f064ed1df605",
+      "textSha256": "1dc4b8c9d2ec50dd751c786a9de6fa485a94874971b8e329824f1c6a2224f01f",
+      "textBlocksReviewed": 11,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Durable knowledge estimates, reviewed source graph, due review, immutable evidence and scoped reports.",
+      "correction": "Use canonical Firebase UID and current store ownership; no duplicate identity or parent_id permission shortcut. SQL receipt/projection/outbox constraints and approved erasure policy precede implementation; cache is optional, not authority.",
+      "tickets": [
+        "DATA-01",
+        "DATA-05",
+        "DATA-06",
+        "LEARN-09",
+        "LEARN-11"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "11-doc-10",
+      "documentNumber": "10",
+      "source": "Visionary Secrert Document/DOCUMENT 10 — ML Pipeline & Fine-tuning Playbook.docx",
+      "sha256": "9c1ae1483c5c2e9685171252099f1b580fded72bf4087fced497391748a19a02",
+      "textSha256": "ef909756db72571419a1ccd9662ac0555a7a1c0bb9bcc0bc6b0a1d87ad214200",
+      "textBlocksReviewed": 12,
+      "embeddedImagesInspected": 1,
+      "disposition": "defer training; adopt evaluation",
+      "retain": "Versioned evidence/rights, independent evaluations, registry/canary/rollback and model comparison.",
+      "correction": "No automatic raw-dialogue collection, weekly fine-tune, sample-count trigger or fixed old model. Session feedback and pseudonymous IDs do not establish training consent or anonymization; founder strategy and qualified data remain required.",
+      "tickets": [
+        "AI-01",
+        "AI-02",
+        "AI-11",
+        "AI-12",
+        "LATER-04"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "12-doc-11",
+      "documentNumber": "11",
+      "source": "Visionary Secrert Document/DOCUMENT 11 — Knowledge-Graph Curation & Syllabus Mapping SOP.docx",
+      "sha256": "6cee0181aaf9cb18cc59aa9825349b265979705575fba88821a6fdf208a89673",
+      "textSha256": "a618b311d00739baa9f00ef520d1f392c11c392deff22841f1d5bd80a90cc767",
+      "textBlocksReviewed": 14,
+      "embeddedImagesInspected": 1,
+      "disposition": "adopt with adaptation",
+      "retain": "Canonical concepts, acyclic prerequisites, exam views and reviewed publication snapshots.",
+      "correction": "Check actual current official source/edition/rights. Keep source/translation views distinct without duplicating identities; do not promise full board/exam coverage or arbitrary curation dates.",
+      "tickets": [
+        "CONTENT-01",
+        "CONTENT-03",
+        "CONTENT-06",
+        "CONTENT-08"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "13-doc-12",
+      "documentNumber": "12",
+      "source": "Visionary Secrert Document/DOCUMENT 12 — Onboarding & Personalization Spec.docx",
+      "sha256": "ab5ac754a7da196c492ca677b8492b4409ab9a2ae53547671a654c02dc60ed9e",
+      "textSha256": "db2e042bfbe6d8c5ac6e1ad70050eed6a56bff1b125de6f927b3ce23bd968190",
+      "textBlocksReviewed": 12,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Onboarding facts initialize honest context and next-step reasons; retain unsupported-source states.",
+      "correction": "Preserve the connected onboarding, identity/admission and current role fields. Label self-reported preferences; guest fallback cannot invent authenticated ownership or bypass payment auth.",
+      "tickets": [
+        "DONE-03",
+        "DATA-03",
+        "AI-15",
+        "SCOPE-07"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "14-doc-13",
+      "documentNumber": "13",
+      "source": "Visionary Secrert Document/DOCUMENT 13 — LEARN App Specification.docx",
+      "sha256": "bdb886bdb5d5b182bc36f80dfaf6f537d9c536556da074c7462a56cf00a71918",
+      "textSha256": "689c91371694560ed07ab9b87e50c78f263dbb022c8c08fe6e3af1fab1aa2c0d",
+      "textBlocksReviewed": 16,
+      "embeddedImagesInspected": 0,
+      "disposition": "adopt with adaptation",
+      "retain": "Concept teaching followed by a criterion-backed check, different remediation, bounded attempts and resume.",
+      "correction": "Do not mark taught/mastered from consumption, model confidence or probability alone. Treat prerequisites and supported representations as versioned eligible content; no generated provisional syllabus or forced 3D.",
+      "tickets": [
+        "LEARN-08",
+        "LEARN-09",
+        "LEARN-10",
+        "CONTENT-08",
+        "AI-16"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "15-doc-14",
+      "documentNumber": "14",
+      "source": "Visionary Secrert Document/DOCUMENT 14 — ASK App Specification.docx",
+      "sha256": "01257f54a6c3c8fc332e78b24c06abbfb5d2b3186a6ab75fb8d2099ab20a0398",
+      "textSha256": "eb3b8e771931fe5d6b7f184d68a08b009c60a8facc5b101274a66eca6c62cbcc",
+      "textBlocksReviewed": 16,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Owned contextual conversations, specific suggestions, preserved drafts and honest degraded states.",
+      "correction": "Discussing a topic does not raise assessed mastery. Preserve typed response adapters and source checks; no fabricated history or silent language fallback. Voice/photo remain separately qualified modalities.",
+      "tickets": [
+        "LEARN-05",
+        "AI-04",
+        "AI-08",
+        "AI-15",
+        "AI-10"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "16-doc-15",
+      "documentNumber": "15",
+      "source": "Visionary Secrert Document/DOCUMENT 15 — PRACTICE App Specification.docx",
+      "sha256": "b8381e7926b08ff4a301d2879c9a329ddeffd80d54e9e7d9041ae5b95c53951e",
+      "textSha256": "846cdd68502a69422c28a64ccce6efb26d0c06027bc08b90cf6b23103185acac",
+      "textBlocksReviewed": 11,
+      "embeddedImagesInspected": 0,
+      "disposition": "adopt with adaptation",
+      "retain": "Assessed practice, meaningful debrief, bounded diagnosis/remediation and due review.",
+      "correction": "Errors are reviewable hypotheses, not personal diagnoses. Validate IRT/adaptive policy before use; protect answer keys, separate self-review and enforce immutable scoring. Mocks need explicit timed-session evidence.",
+      "tickets": [
+        "LEARN-02",
+        "LEARN-08",
+        "LEARN-10",
+        "LEARN-11",
+        "LEARN-12"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "17-doc-16",
+      "documentNumber": "16",
+      "source": "Visionary Secrert Document/DOCUMENT 16 — BUILD App Specification.docx",
+      "sha256": "f1f9f4d040d7067d7d4869f62a9d1d49a17b70dd6438d2dd8e2612f613367b44",
+      "textSha256": "6f825e5f77cda58db52964e59e8ea01b7686e6835457c98881323e32c7510633",
+      "textBlocksReviewed": 15,
+      "embeddedImagesInspected": 0,
+      "disposition": "adapt",
+      "retain": "Learning evidence can suggest guided briefs; private artifacts support exact-revision review, export and explicit sharing.",
+      "correction": "Keep blank projects. Example 14/3 counts are not protected live values. Completion/peer-teaching is application evidence until assessed; no automatic mastery, credential, public share or IP/marketplace transfer.",
+      "tickets": [
+        "BUILD-03",
+        "BUILD-06",
+        "BUILD-07",
+        "LEARN-08",
+        "ROLE-05"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "18-doc-17",
+      "documentNumber": "17",
+      "source": "Visionary Secrert Document/DOCUMENT 17 — TEACHER Experience Specification (1).docx",
+      "sha256": "019d2c0d0377f75e4f74b3d2c57dab0b8df9a527408346ef95c6ad6a021ac39a",
+      "textSha256": "9439aca011bdf69c159b64205853e57f902c817da15f2c518c21dcfa8fcf971f",
+      "textBlocksReviewed": 11,
+      "embeddedImagesInspected": 0,
+      "disposition": "adopt with adaptation",
+      "retain": "Teacher-owned preparation/review and class evidence projections separate from personal teacher learning.",
+      "correction": "No teacher default access to private doubts. No automatic quiz publication or dedicated LoRA assumption. Heatmap and teaching-efficacy estimates need calibrated criteria and suppression; live class mode requires its own accepted scope.",
+      "tickets": [
+        "ROLE-01",
+        "ROLE-02",
+        "ROLE-03",
+        "ROLE-07",
+        "AI-13",
+        "SCOPE-02"
+      ],
+      "duplicateNote": "Both files inspected; same extracted text, different DOCX bytes. One shared requirement set; originals retained."
+    },
+    {
+      "id": "19-doc-17",
+      "documentNumber": "17",
+      "source": "Visionary Secrert Document/DOCUMENT 17 — TEACHER Experience Specification.docx",
+      "sha256": "08573af06cc62711c15616d95c6a25277a6f66afe532a09bbe2d4ca8c29c6bf2",
+      "textSha256": "9439aca011bdf69c159b64205853e57f902c817da15f2c518c21dcfa8fcf971f",
+      "textBlocksReviewed": 11,
+      "embeddedImagesInspected": 0,
+      "disposition": "adopt with adaptation",
+      "retain": "Teacher-owned preparation/review and class evidence projections separate from personal teacher learning.",
+      "correction": "No teacher default access to private doubts. No automatic quiz publication or dedicated LoRA assumption. Heatmap and teaching-efficacy estimates need calibrated criteria and suppression; live class mode requires its own accepted scope.",
+      "tickets": [
+        "ROLE-01",
+        "ROLE-02",
+        "ROLE-03",
+        "ROLE-07",
+        "AI-13",
+        "SCOPE-02"
+      ],
+      "duplicateNote": "Both files inspected; same extracted text, different DOCX bytes. One shared requirement set; originals retained."
+    },
+    {
+      "id": "20-doc-18",
+      "documentNumber": "18",
+      "source": "Visionary Secrert Document/DOCUMENT 18 — PARENT Experience Specification.docx",
+      "sha256": "17956d0f4b7e22d61ec39e9bf75602217ca7767408759931baea58398f2705f1",
+      "textSha256": "84264799b5037d1f1fe0dc0476c388a210b09a3e4b34da9c2313b4bfd3928151",
+      "textBlocksReviewed": 10,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Verified guardian relationships, fixed scoped summaries, honest billing receipts and actionable guidance.",
+      "correction": "Family payment grants no learning access. No default raw SCM/chat access, cross-child comparison or parent priority override; recheck scope/expiry on delivery. Examples are never copied as real records.",
+      "tickets": [
+        "ROLE-04",
+        "ROLE-07",
+        "DATA-05",
+        "BILL-08"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "21-doc-19",
+      "documentNumber": "19",
+      "source": "Visionary Secrert Document/DOCUMENT 19 — Professional & Organization Experience Spec.docx",
+      "sha256": "34bd57709d09bce8e491d2e00206f796f7a1e7038f49f6d26657d910e55ce72d",
+      "textSha256": "f1c15fd2a868de2d7f4ac35cdf9734c86fb38ab87fa090d10fe079d23b72a164",
+      "textBlocksReviewed": 21,
+      "embeddedImagesInspected": 2,
+      "disposition": "adopt with adaptation",
+      "retain": "Professional capability/evidence vocabulary; explicit employer shares; organization least privilege and reviewed publication.",
+      "correction": "No school vocabulary forced on adults, implicit employer data access or certificate from a probability. Bulk imports, external LMS and whitelabel require explicit released scope and current contract evidence.",
+      "tickets": [
+        "ROLE-05",
+        "ROLE-06",
+        "ROLE-07",
+        "ROLE-09",
+        "LEARN-12"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "22-doc-20",
+      "documentNumber": "20",
+      "source": "Visionary Secrert Document/DOCUMENT 20 — Assessment & Exam-Readiness Engine.docx",
+      "sha256": "69f0f367b1eb7e62d8c452bd7fdf9fcecce5cf5d8fd44a5f4f5c2823f57075d4",
+      "textSha256": "20028d2103f78f5910a9f7d1d34fd9de0ea5e8f94cf23941c245e589649492a0",
+      "textBlocksReviewed": 18,
+      "embeddedImagesInspected": 0,
+      "disposition": "adapt",
+      "retain": "Fixed mock/section timing, reproducible scoring and qualified source-weighted readiness.",
+      "correction": "Missing coverage remains visible; probabilities and exam weights need calibration/provenance. No rank band without an approved reference distribution, no promised admission/credential and no timer reset on reconnect.",
+      "tickets": [
+        "LEARN-08",
+        "LEARN-12",
+        "CONTENT-08",
+        "AI-13"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "23-doc-21",
+      "documentNumber": "21",
+      "source": "Visionary Secrert Document/DOCUMENT 21 — 3D Visualization Library & Scene Protocol.docx",
+      "sha256": "7657742b4279923dfea0836ba2f2defc3779ff46b910c73b75a148f7f1b506cb",
+      "textSha256": "911b4cbb206b209b3b8f488ccfed83e7135f1ce604993ef4f2aee522c707c7b9",
+      "textBlocksReviewed": 14,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Approved interactive representations with synchronized narration and accessible device fallbacks.",
+      "correction": "Use structured allowlisted scene events, not direct raw SCENE-token execution or generated code/URLs. Keep current renderer; evaluate real released library/device coverage before 3D performance claims.",
+      "tickets": [
+        "AI-16",
+        "AI-10",
+        "SYNC-01",
+        "ACCEPT-05"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "24-doc-22",
+      "documentNumber": "22",
+      "source": "Visionary Secrert Document/DOCUMENT 22 — Memory & Spaced-Repetition System Spec.docx",
+      "sha256": "fa52c9ce645c478460ce3cbc5ff21276303c7ac5c62ab6f79cc642225d330d49",
+      "textSha256": "7c5d5e43ac2c59db9910e141dc0611416be164a5adb719eef95a3f94d8fc0ce6",
+      "textBlocksReviewed": 17,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Inspectable purpose-scoped memory, provenance, correction/control and durable review queues.",
+      "correction": "A single UID is not one globally pooled memory. Preserve records under the current instruction; no imported TTL/purge. Use a versioned baseline schedule and validate forgetting estimates instead of the unqualified exponential formula.",
+      "tickets": [
+        "AI-04",
+        "AI-15",
+        "LEARN-11",
+        "PRIV-01",
+        "PRIV-02"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "25-doc-23",
+      "documentNumber": "23",
+      "source": "Visionary Secrert Document/DOCUMENT 23 — Safety, Guardrails & Child Protection Spec.docx",
+      "sha256": "e6d7dcd8c236d2fe6a88894d273a4f50909b45dcf9e8c181f573126b2ddf2f44",
+      "textSha256": "d1ff906a9a2765b387322ddd51a908a1093cb943618ca56f2f61f84146d8cc77",
+      "textBlocksReviewed": 18,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Separate safeguarding, age/journey eligibility, safe support and meaningful output/citation checks.",
+      "correction": "Keywords/NLI are insufficient guarantees. Review contextual abuse/crisis and localized responses; no unsafe automatic guardian disclosure, fabricated contact or blanket suppression of legitimate educational topics. Existing unsupported minors remain blocked.",
+      "tickets": [
+        "SAFE-01",
+        "DATA-09",
+        "AI-06",
+        "PRIV-05"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "26-doc-24",
+      "documentNumber": "24",
+      "source": "Visionary Secrert Document/DOCUMENT 24 — Privacy, DPDP Compliance & Data Governance.docx",
+      "sha256": "c9687703ceef89ed435ef1c61d454bb4bb04922d39c66d3e2a9983bfdf80d281",
+      "textSha256": "f32060da3ef4967f95cd5b79104bfe61428a50249645d1337f8f65b270ff3acf",
+      "textBlocksReviewed": 17,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt; legal qualification open",
+      "retain": "Purpose minimization, consent/revocation, owner controls, audited support and recovery-safe data workflows.",
+      "correction": "Old legal timelines, AWS-only geography, anonymization and backup-erasure claims are not current legal approval. Validate requirements with accountable review; preserve current data and no automatic training/purge.",
+      "tickets": [
+        "PRIV-01",
+        "PRIV-02",
+        "PRIV-03",
+        "PRIV-07",
+        "AI-02"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "27-doc-25",
+      "documentNumber": "25",
+      "source": "Visionary Secrert Document/DOCUMENT 25 — Security Architecture & Threat Model.docx",
+      "sha256": "34223a9e229e615c306ff8d3993d81712d4bf0fb8d781a3193baecd285a8ed22",
+      "textSha256": "f38f90a558eab94fc7391faedec7e8aab5f9490f12d5d307a8065f18cb13ed78",
+      "textBlocksReviewed": 10,
+      "embeddedImagesInspected": 1,
+      "disposition": "adopt with adaptation",
+      "retain": "Server authority, least privilege, scoped service identity, artifact integrity, rate limits and recovery tests.",
+      "correction": "OTP/email/role claims alone do not authorize relationships. Keep current session/device/Origin/CSRF boundary. Test actual hosting/service routes; diagrams, encryption labels and an NLI check do not prove security.",
+      "tickets": [
+        "AI-03",
+        "DATA-08",
+        "PLAT-03",
+        "RELEASE-06"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "28-doc-26",
+      "documentNumber": "26",
+      "source": "Visionary Secrert Document/DOCUMENT 26 — Performance & Device Optimization.docx",
+      "sha256": "d0b5d7642ab1bc896282acfe3d73f9d3be32d94e2012bbd5764d6229e953f7ea",
+      "textSha256": "a2e15794d3ed7788d276102fbed57541445d0daed9bd36b170e7b6adba801ef6",
+      "textBlocksReviewed": 11,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Low-end device and accessible fallback profiling, bounded streaming/cancellation and honest offline behavior.",
+      "correction": "Treat old TTFT/fps/memory numbers as proposed measurement targets, not observed service guarantees. Foreground bounded observation and background suspension/consented notifications differ; do not add busy polling.",
+      "tickets": [
+        "SYNC-01",
+        "SYNC-02",
+        "ACCEPT-05",
+        "RELEASE-01",
+        "RELEASE-04"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "29-doc-27",
+      "documentNumber": "27",
+      "source": "Visionary Secrert Document/DOCUMENT 27 — Analytics, Metrics & OKF Dashboard.docx",
+      "sha256": "05da5a7f9644ff8c1adbdbcd3c20a2662d03b33577a4f24ba5da8d9907ea8d3c",
+      "textSha256": "0f4fa9104811c7cc30b3a472e83f028635da1566bd091ffddb696c3773319228",
+      "textBlocksReviewed": 17,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Observed learning/task outcomes, minimized versioned event schemas, quality/latency/cost and scoped aggregates.",
+      "correction": "Do not turn every interaction into raw training data or optimize a model posterior alone. Separate durable business evidence from optional analytics and protected security audit; suppress small groups and validate metric math.",
+      "tickets": [
+        "AI-11",
+        "AI-12",
+        "AI-13",
+        "PLAT-07",
+        "ROLE-07"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "30-doc-28",
+      "documentNumber": "28",
+      "source": "Visionary Secrert Document/DOCUMENT 28 — A B Testing & Experimentation Framework.docx",
+      "sha256": "58556cdd5611a9566d5ec1653ceca20f658525edec3c7cd79fdf47169c01d2f8",
+      "textSha256": "8a4ec36710c4cbfd83d1cf50efde428e8c1ecd7249f6fe50417e1218a3db39d7",
+      "textBlocksReviewed": 16,
+      "embeddedImagesInspected": 1,
+      "disposition": "defer online experiments",
+      "retain": "Reviewed flags, control cohorts, declared outcomes, guardrail stops and human promotion.",
+      "correction": "No automatic p-value/posterior winner or experimentation on safety/consent. Initial launch can use a pinned approved policy; online experiments require explicit eligibility/purpose and statistical review.",
+      "tickets": [
+        "LATER-06",
+        "PLAT-06",
+        "AI-13",
+        "RELEASE-07"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "31-doc-29",
+      "documentNumber": "29",
+      "source": "Visionary Secrert Document/DOCUMENT 29 — Growth, Referral & Word-of-Mouth Engine.docx",
+      "sha256": "fa12bd5e1d1ac5f150010266458f6a85ccd2632d13269bf300c4653755700106",
+      "textSha256": "0bab3d55267fd1337de3df08eac9575d11e401bf18210c0399fcc65dc51d5114",
+      "textBlocksReviewed": 13,
+      "embeddedImagesInspected": 1,
+      "disposition": "defer growth expansion",
+      "retain": "Outcome-based, non-spam referrals and explicitly approved sharing can be considered later.",
+      "correction": "No contact harvesting, device fingerprinting, assumed waitlist/CAC or old launch date. Decide scope under existing public-control/privacy/commercial gates; do not advertise rewards before fraud/ledger/rights work is separately accepted.",
+      "tickets": [
+        "SCOPE-01",
+        "SCOPE-05",
+        "PRIV-07",
+        "BILL-04"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "32-doc-30",
+      "documentNumber": "30",
+      "source": "Visionary Secrert Document/DOCUMENT 30 — Monetization & Billing Implementation.docx",
+      "sha256": "fc7aa463b1eef5dc70c146d611d739bf59a973afafa205fe00b5cb42cabcbe15",
+      "textSha256": "d59420c4e08a51aec1bb4895ced95c1ebb80ee1a7ac81e47f4a2afe6f64f2daa",
+      "textBlocksReviewed": 13,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt",
+      "retain": "Server billing/entitlement authority, immutable receipts, reconciliation and no learning-data loss on lapse.",
+      "correction": "Keep current test prices/plans/auth, Family boundaries and invoices. No automatic live money, new refund/proration/GST policy, unbounded unlimited model usage or copied old commercial promises.",
+      "tickets": [
+        "BILL-04",
+        "BILL-05",
+        "BILL-06",
+        "BILL-07",
+        "BILL-08"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "33-doc-31",
+      "documentNumber": "31",
+      "source": "Visionary Secrert Document/DOCUMENT 31 — Marketplace & Creator Economy Spec.docx",
+      "sha256": "5a9ee5cee8e77b379e3dfa67dce044e190151b90afad62f6d2e27fb35e160275",
+      "textSha256": "e139444951c531c95a65dc9243270420866267a54343755283d21202bad7a44e",
+      "textBlocksReviewed": 15,
+      "embeddedImagesInspected": 0,
+      "disposition": "defer marketplace expansion",
+      "retain": "Any future creator distribution needs rights, moderation, explicit approval and reconciled payouts.",
+      "correction": "No automatic public publish/IP transfer or launch dependency. Contract/KYC/tax/refund and dedicated implementation scope must be approved before enabling a marketplace; current private teacher library remains.",
+      "tickets": [
+        "SCOPE-01",
+        "SCOPE-05",
+        "ROLE-09",
+        "BILL-06",
+        "CONTENT-03"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "34-doc-32",
+      "documentNumber": "32",
+      "source": "Visionary Secrert Document/DOCUMENT 32 — Government (B2G) & Institutional Playbook.docx",
+      "sha256": "fd8fee94d9fe9cd37233310ad80cd9f8ace3c6a9e742dec3f8cb00fd98cf9e7b",
+      "textSha256": "d37fdd7cfa79bad360538c54da6a2e61b24d736c425ae27bea1a8fd78bcf5bec",
+      "textBlocksReviewed": 17,
+      "embeddedImagesInspected": 0,
+      "disposition": "defer institutional expansion",
+      "retain": "Tenant isolation, actual pilot outcome evidence and approved integrations/aggregates.",
+      "correction": "No claim of school/state contracts, registry integration or a fixed AWS region as compliance proof. Existing organization features remain; procurement, residency, offline/native and whitelabel need reviewed future scope.",
+      "tickets": [
+        "ROLE-09",
+        "SCOPE-02",
+        "PLAT-01",
+        "RELEASE-07"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "35-doc-33",
+      "documentNumber": "33",
+      "source": "Visionary Secrert Document/DOCUMENT 33 — 22-Language Expansion & Localization Spec.docx",
+      "sha256": "b1a64ed06ab47a461e9c0cfc4b332ff52d90827a47f173c73d7f0ebc74050ba3",
+      "textSha256": "a396c6da6dc1ff1f5a900fd2edcc8642ccc51d36d3cfddedc94912f72dfda31a",
+      "textBlocksReviewed": 18,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt; expand only after qualification",
+      "retain": "Keep language/source/output identity distinct, avoid silent fallback and test scripts/modalities.",
+      "correction": "Preserve current released locales. Six/22-language and ASR/TTS coverage are not implied by translated UI or model names; inspect actual source/teacher/device cases per released slice.",
+      "tickets": [
+        "SCOPE-02",
+        "CONTENT-06",
+        "AI-01",
+        "AI-10",
+        "ACCEPT-05"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "36-doc-34",
+      "documentNumber": "34",
+      "source": "Visionary Secrert Document/DOCUMENT 34 — QA, Testing & Release Engineering.docx",
+      "sha256": "4caebf92718567c7ce08f8f140ae2b17c5953cbf5cf5004b5930adc721e4bed8",
+      "textSha256": "a3a3bd6280cf87a3a0adb4a43de392f18c20354c4ec77ec44031a99ce46782df",
+      "textBlocksReviewed": 16,
+      "embeddedImagesInspected": 1,
+      "disposition": "adopt with adaptation",
+      "retain": "Cross-role deny tests, model/prompt/source regression, device evidence and state-preserving rollback.",
+      "correction": "Coverage percentages, a 500-case benchmark or unit pass alone are insufficient. Require held-out outcome evidence, reproducible environments and real released-device acceptance; keep safety independent of experiment arms.",
+      "tickets": [
+        "PLAT-06",
+        "ACCEPT-03",
+        "ACCEPT-05",
+        "AI-13",
+        "RELEASE-05"
+      ],
+      "duplicateNote": null
+    },
+    {
+      "id": "37-doc-35",
+      "documentNumber": "35",
+      "source": "Visionary Secrert Document/DOCUMENT 35 — Launch Runbook (September 1 Beta).docx",
+      "sha256": "1a89993b5d825e8f61174e65b9a52c0f410aee050a8491ad6b0ec3aae5c4dcbd",
+      "textSha256": "c5b680a417cdc3f557774e36bacf9f7885f9c7e544a2a6ac1402a253a889a95c",
+      "textBlocksReviewed": 20,
+      "embeddedImagesInspected": 1,
+      "disposition": "adapt; replace dated schedule",
+      "retain": "Controlled cohorts, measured capacity/provider/quality/recovery and honest degraded operation.",
+      "correction": "September date, waitlist, retention and event-count targets are historical assumptions. Launch only against measured gates; no automatic training threshold or invented fallback explanation, safety result or unlimited autoscaling.",
+      "tickets": [
+        "RELEASE-01",
+        "RELEASE-02",
+        "RELEASE-03",
+        "RELEASE-04",
+        "RELEASE-07",
+        "RELEASE-08"
+      ],
+      "duplicateNote": null
+    }
+  ]
+}

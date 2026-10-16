@@ -1,5 +1,5 @@
 // Package analytics provides RAG evaluation metrics including Recall@K, MRR, and NDCG.
-// Ported from Python eval/recall_eval.py with equivalent functionality.
+// Metric contract retrieval-binary-v2 is shared with Python eval/recall_eval.py.
 package analytics
 
 import (
@@ -9,19 +9,36 @@ import (
 
 // QAPair represents a question-answer pair for evaluation.
 type QAPair struct {
-	Question       string   `json:"question"`
-	Answer         string   `json:"answer"`
-	Grade          int      `json:"grade"`
-	Subject        string   `json:"subject"`
-	GoldChunkIDs   []string `json:"gold_chunk_ids"`
+	Question     string   `json:"question"`
+	Answer       string   `json:"answer"`
+	Grade        int      `json:"grade"`
+	Subject      string   `json:"subject"`
+	GoldChunkIDs []string `json:"gold_chunk_ids"`
+}
+
+const MetricContract = "retrieval-binary-v2"
+
+// Canonical ranking keeps the first occurrence of every ID before applying K.
+func uniqueIDs(ids []string) []string {
+	seen := make(map[string]struct{}, len(ids))
+	result := make([]string, 0, len(ids))
+	for _, id := range ids {
+		if _, exists := seen[id]; !exists {
+			seen[id] = struct{}{}
+			result = append(result, id)
+		}
+	}
+	return result
 }
 
 // CalculateRecallAtK calculates Recall@K metric.
 // Recall@K measures the proportion of relevant items retrieved in top-K results.
 func CalculateRecallAtK(retrieved []string, relevant []string, k int) float64 {
-	if len(retrieved) == 0 || len(relevant) == 0 {
+	if len(retrieved) == 0 || len(relevant) == 0 || k <= 0 {
 		return 0.0
 	}
+	retrieved = uniqueIDs(retrieved)
+	relevant = uniqueIDs(relevant)
 
 	// Limit to top-k
 	if k < len(retrieved) {
@@ -50,6 +67,7 @@ func CalculateMRR(retrieved []string, relevant []string) float64 {
 	if len(retrieved) == 0 || len(relevant) == 0 {
 		return 0.0
 	}
+	retrieved = uniqueIDs(retrieved)
 
 	relevantSet := make(map[string]struct{}, len(relevant))
 	for _, r := range relevant {
@@ -72,6 +90,8 @@ func CalculateNDCG(retrieved []string, relevant []string) float64 {
 	if len(retrieved) == 0 || len(relevant) == 0 {
 		return 0.0
 	}
+	retrieved = uniqueIDs(retrieved)
+	relevant = uniqueIDs(relevant)
 
 	relevantSet := make(map[string]struct{}, len(relevant))
 	for _, r := range relevant {
@@ -91,7 +111,7 @@ func CalculateNDCG(retrieved []string, relevant []string) float64 {
 	if idealCount > len(retrieved) {
 		idealCount = len(retrieved)
 	}
-	
+
 	idcg := 0.0
 	for i := 0; i < idealCount; i++ {
 		idcg += 1.0 / math.Log2(float64(i+2))
@@ -106,10 +126,11 @@ func CalculateNDCG(retrieved []string, relevant []string) float64 {
 
 // RetrievalMetrics holds all retrieval evaluation metrics.
 type RetrievalMetrics struct {
-	RecallAtK map[int]float64 `json:"recall_at_k"`
-	MRR       float64         `json:"mrr"`
-	NDCG      float64         `json:"ndcg"`
-	NumQueries int            `json:"num_queries"`
+	Contract   string          `json:"metric_contract"`
+	RecallAtK  map[int]float64 `json:"recall_at_k"`
+	MRR        float64         `json:"mrr"`
+	NDCG       float64         `json:"ndcg"`
+	NumQueries int             `json:"num_queries"`
 }
 
 // EvaluateRetrieval evaluates retrieval quality for multiple QA pairs.
@@ -145,9 +166,10 @@ func EvaluateRetrieval(qaPairs []QAPair, retrievalFunc func(query string, grade 
 
 	// Aggregate metrics into final result
 	aggregated := &RetrievalMetrics{
-		RecallAtK: make(map[int]float64),
-		MRR:       0.0,
-		NDCG:      0.0,
+		Contract:   MetricContract,
+		RecallAtK:  make(map[int]float64),
+		MRR:        0.0,
+		NDCG:       0.0,
 		NumQueries: len(qaPairs),
 	}
 

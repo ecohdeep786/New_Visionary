@@ -1,0 +1,4766 @@
+{
+  "schemaVersion": 1,
+  "decision": "D-086",
+  "founderReview": "docs/architecture/tracking/founder-spec-review.json",
+  "sourceSha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146",
+  "targetState": true,
+  "scope": "Every exposed route/control must still be enumerated under SCOPE-01; this feature-family map does not certify every category/language/provider. Data/API names are targets unless explicitly connected. The founder-spec reconciliation preserves current journeys and a deterministic teaching runtime.",
+  "sharedLayers": {
+    "frontend": "Preserve the current route/facade, accessibility and released locale/category/role behavior. Runtime-validate DTOs; show loading/empty/partial/denied/revoked/conflict/unavailable/retry honestly and preserve recoverable drafts.",
+    "api": "Versioned command/query schema, bounded JSON/files, errors/cursors and timeout; stable mutation ID plus payload digest; conditional revision; no automatic retry with a new command ID after ambiguous commit.",
+    "authority": "Verified Firebase UID/session/device, expected account and mutation Origin/CSRF; server-derived workspace membership, purpose/consent/source policy. IDs and events locate data but never grant permission.",
+    "database": "One authoritative store per invariant. Firestore owns account/billing; PostgreSQL owns domain/membership/evidence/run state, linked by the same UID. Private objects hold bytes. Cross-store effects use durable idempotent reconciliation, not an assumed distributed transaction.",
+    "jobs": "When asynchronous: owning-store outbox, private task identity, leases/fencing, bounded retries/deadline, cancellation, restart/ack recovery and exactly one accepted completion. Mark no-job operations explicitly; never add queues just for a diagram.",
+    "cache": "Default to no shared private-response cache. If enabled: UID/workspace/policy/resource/source/model/locale versioned key as applicable, bounded entries, reauthorization/invalidation and cache-down fallback. CDN only for approved public assets. Cache expiry is not permission or a record-retention policy.",
+    "realtime": "HTTPS commands remain authoritative. Durable ordered change/run events are observations; bounded polling baseline and SSE where required. Define auth/connect/reconnect/output checks, heartbeat/backoff/backpressure, duplicate/gap/cursor-expiry handling, refetch and two-device convergence. WebSocket requires reviewed bidirectional need; current browser storage events are local only.",
+    "ml": "Only explicitly allowed tasks call the private model/tool adapter. Pin input/source/prompt/model/tool versions, bounded usage and scoped memory; validate output/citations/outcomes and recheck permission before delivery/acceptance. No ML involvement is a valid explicit choice.",
+    "entitlements": "Server checks current feature entitlement and fleet/UID/workspace admission before expensive work. Unique usage reservation/ledger/settlement; plans/Family benefits never confer educational or organization authority.",
+    "operations": "Per-feature redacted correlation traces, latency/error/queue/unit-cost metrics, quota limits and failure diagnosis; schema/config compatibility, backups/restore, canary/rollback and named launch acceptance. No raw private prompt/payment context in routine telemetry.",
+    "acceptance": "Meaningful UI→real API→authoritative store→read/resume tests; two devices where state persists, wrong actor/workspace/source/consent denial, concurrency/idempotency, disconnect/restart and dependency outages. Attach exact change, environment, tests/results and rollout evidence; local fixtures cannot close hosted/provider gates."
+  },
+  "features": [
+    {
+      "id": "public",
+      "name": "Public discovery and purchase entry",
+      "routes": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/help",
+        "/professional",
+        "/how-it-works",
+        "/organization",
+        "/download",
+        "/about",
+        "/pricing",
+        "/career",
+        "/careers",
+        "/research",
+        "/community",
+        "/contact",
+        "/partners",
+        "/updates",
+        "/referral",
+        "/safety",
+        "/privacy",
+        "/terms",
+        "/security",
+        "/accessibility",
+        "/cookies"
+      ],
+      "frontend": [
+        "frontend/src/App.jsx",
+        "frontend/src/pages/landing/AILearningPage.jsx"
+      ],
+      "tickets": [
+        "SCOPE-01",
+        "SCOPE-02",
+        "SCOPE-07",
+        "BILL-08",
+        "PRIV-05",
+        "PRIV-07"
+      ],
+      "api": "Public approved catalog/static content; existing /api/billing/catalog. Purchase saves safe intent, then verified auth/onboarding and authenticated checkout. Inventory contact/community/referral/download controls; connect their reviewed service or label unavailable.",
+      "database": "Approved public publication/catalog projections; no public access to account/profile/payment records. Submitted support data uses its separate authorized purpose.",
+      "jobs": "Only actual approved support/communication submissions enqueue work; passive page navigation has no job.",
+      "cache": "Public hashed assets CDN; revalidate HTML/catalog revisions. Never cache personalized checkout or auth return publicly.",
+      "realtime": "No public socket. Refetch approved catalog; continue purchase through account/billing status.",
+      "ml": "No model call required for browsing/pricing or purchase authority.",
+      "outcome": "Every exposed public control has a truthful destination/state; signed-out purchase resumes once after sign-in and never charges twice."
+    },
+    {
+      "id": "account",
+      "name": "Identity, onboarding, profile and devices",
+      "routes": [
+        "/signin",
+        "/login",
+        "/register",
+        "/forgot-password",
+        "/forgot-user-id",
+        "/reset-password",
+        "/auth/action",
+        "/onboarding",
+        "/dashboard/profile",
+        "/dashboard/settings"
+      ],
+      "frontend": [
+        "frontend/src/lib/AuthContext.jsx",
+        "frontend/src/pages/Onboarding.jsx",
+        "frontend/src/pages/dashboard/Profile.jsx"
+      ],
+      "tickets": [
+        "DONE-02",
+        "DONE-03",
+        "DONE-04",
+        "SCOPE-07",
+        "DATA-03",
+        "DATA-09",
+        "PLAT-05",
+        "BILL-08"
+      ],
+      "api": "Connected /api/auth/** and /api/account/** controllers retain compatibility; provider verification/reset matrix and SQL personal-workspace provisioning are additional acceptance.",
+      "database": "Firestore visionary_accounts/{uid} and device/session records; minimal SQL persons(uid)/provisioning linkage. Same UID on every device; role preference never creates membership.",
+      "jobs": "Cross-store provisioning/recovery and approved delivery only; session verification stays on its authoritative request path.",
+      "cache": "No shared auth/profile cache; clear account-scoped queries on logout/switch/revocation.",
+      "realtime": "Refetch session/account/device state after focus/reconnect. Durable account change observation must not replace session validity checks.",
+      "ml": "No model authenticates a person or decides admission.",
+      "outcome": "Provider return, expiry, account switch, interrupted onboarding/provisioning and revoked device recover safely on a second device."
+    },
+    {
+      "id": "workspaces",
+      "name": "Connections, consent and workspace switching",
+      "routes": [
+        "/dashboard/connections",
+        "/dashboard/settings"
+      ],
+      "frontend": [
+        "frontend/src/services/workspaceService.ts",
+        "frontend/src/pages/dashboard/Connections.jsx",
+        "frontend/src/components/dashboard/WorkspaceSwitcher.jsx"
+      ],
+      "tickets": [
+        "DATA-01",
+        "DATA-02",
+        "DATA-03",
+        "DATA-04",
+        "DATA-05",
+        "DATA-06",
+        "DATA-07",
+        "DATA-08",
+        "DATA-09",
+        "ROLE-08"
+      ],
+      "api": "Target workspace list/activation, invitation accept/revoke and explicit purpose/consent commands with actor/policy/revision checks.",
+      "database": "SQL persons, workspaces, memberships, consent_grants/share_grants, command_results/audit/outbox. Current selected workspace is per device, not a global permission.",
+      "jobs": "Invitation/delivery and revocation propagation through durable outbox; verify policy at worker completion.",
+      "cache": "Partition by UID/workspace/policy; permission withdrawal invalidates pending/cache-derived access.",
+      "realtime": "Membership/consent change hints trigger authorized refetch; device A switching workspace must not switch device B.",
+      "ml": "Supplies only permitted context; private memory never crosses workspaces by selection alone.",
+      "outcome": "Pending/expired/revoked invitations, concurrent role changes and in-flight output are denied consistently across devices."
+    },
+    {
+      "id": "sources",
+      "name": "Catalog, curriculum and source publication",
+      "routes": [
+        "/dashboard/explore",
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId",
+        "/dashboard/curriculum",
+        "/dashboard/library"
+      ],
+      "frontend": [
+        "frontend/src/services/contentRepository.ts",
+        "frontend/src/pages/dashboard/OrganizationCurriculum.jsx",
+        "frontend/src/pages/dashboard/OrganizationContent.jsx"
+      ],
+      "tickets": [
+        "CONTENT-01",
+        "CONTENT-02",
+        "CONTENT-03",
+        "CONTENT-04",
+        "CONTENT-05",
+        "CONTENT-06",
+        "CONTENT-07",
+        "FILE-01",
+        "FILE-02",
+        "FILE-03",
+        "FILE-04",
+        "ROLE-06",
+        "AI-06",
+        "CONTENT-08"
+      ],
+      "api": "Target eligible catalog/concept/source-version queries; upload→scan→review→publish/withdraw commands. Preserve content.syllabus/content.concept facade operations.",
+      "database": "SQL source_versions/publications/content_nodes and immutable manifests; private GCS generations; approved released-language/source pointers.",
+      "jobs": "Private bounded scan/parse/chunk/embed/evaluate with provenance and atomic publication pointers.",
+      "cache": "Only permission-filtered source/release/version/locale cache; withdraw stops new retrieval and pending delivery.",
+      "realtime": "Publication/withdrawal revision changes refetch eligible catalog; progress/status events never publish incomplete sources.",
+      "ml": "Approved ingestion/retrieval only; evaluate released category/language segmentation and citation offsets.",
+      "outcome": "No unreviewed/withdrawn/private source appears in search, citations, model context, downloads or second-device catalog."
+    },
+    {
+      "id": "learn",
+      "name": "Learning sessions and resume",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/LearningWorkspace.jsx",
+        "frontend/src/services/learningPipelineService.ts",
+        "frontend/src/services/backendTransport.ts"
+      ],
+      "tickets": [
+        "LEARN-01",
+        "LEARN-06",
+        "LEARN-07",
+        "CONTENT-04",
+        "SYNC-01",
+        "SYNC-02",
+        "LEARN-09",
+        "LEARN-10"
+      ],
+      "api": "Target owned learning session/checkpoint/resume commands and source-pinned concept queries behind existing facades.",
+      "database": "SQL owned session/checkpoint/source revision and command outcomes; local originals retained until reviewed migration.",
+      "jobs": "Checkpoint save is transactional; derived projections use outbox if asynchronous.",
+      "cache": "UID/workspace/source/session revision keys; separate unsaved draft from committed checkpoint.",
+      "realtime": "Authorized cursor/refetch, independent per-device navigation, concurrent checkpoint conflict and offline recovery.",
+      "ml": "Authored learning works without generation; any assistance follows Ask/Guide gates.",
+      "outcome": "Concept→check/practice→private project→save→second-device resume; no lost original draft or false saved state."
+    },
+    {
+      "id": "ask",
+      "name": "Visionary Ask and grounded assistance",
+      "routes": [
+        "/dashboard/home",
+        "/dashboard/ask",
+        "/dashboard/learn/:topicId"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/DashboardHome.jsx",
+        "frontend/src/services/teachingInterface.ts",
+        "frontend/src/services/backendTransport.ts"
+      ],
+      "tickets": [
+        "LEARN-05",
+        "AI-01",
+        "AI-02",
+        "AI-03",
+        "AI-04",
+        "AI-05",
+        "AI-06",
+        "AI-07",
+        "AI-08",
+        "AI-09",
+        "AI-10",
+        "AI-11",
+        "AI-12",
+        "AI-13",
+        "AI-14",
+        "BILL-04",
+        "LATER-04",
+        "AI-15",
+        "AI-16",
+        "SAFE-01"
+      ],
+      "api": "Target teaching-runs/conversation commands mapping teaching.request; bounded synchronous teaching deadline and explicit partial/final/error schema.",
+      "database": "SQL conversations/ai_runs/turns, source manifest, usage reservation/ledger and immutable candidate/result evidence.",
+      "jobs": "Bounded request cancellation; durable long work uses run/outbox protocol instead of extending teaching timeout.",
+      "cache": "AI-05 scoped cache remains off until isolation proof; never a global query→answer cache.",
+      "realtime": "SSE only for authorized partial observation with truthful final validation; reconnect uses persisted run/snapshot; no success on validator failure.",
+      "ml": "Permitted retrieval, model adapter, bounded tools, grounding/schema/citation checks and explicit unknown/unavailable. The imported NLI client repair is locally tested; gateway streaming, cache and authority integration remain unaccepted.",
+      "outcome": "Useful source-correct answer on released tasks; abstention/recovery, wrong-source denial, bounded cost and no cross-conversation access."
+    },
+    {
+      "id": "guide",
+      "name": "Guide, planning and permitted memory",
+      "routes": [
+        "/dashboard/home",
+        "/dashboard/learn",
+        "/dashboard/personalization",
+        "/dashboard/privacy"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/Guide.jsx",
+        "frontend/src/services/mentorModelService.ts",
+        "frontend/src/services/mentorStateService.ts",
+        "frontend/src/services/guideEntryService.ts"
+      ],
+      "tickets": [
+        "LEARN-04",
+        "LEARN-05",
+        "AI-04",
+        "AI-06",
+        "AI-07",
+        "AI-08",
+        "AI-13",
+        "AI-14",
+        "PRIV-01",
+        "AI-15",
+        "LEARN-10",
+        "LEARN-11"
+      ],
+      "api": "Target mentor-turns/plans/allowed-action proposals mapping mentor.turn; current Guide is an embedded UI, not an invented /dashboard/guide route.",
+      "database": "Owned conversations/goals/plans and approved-purpose memory with evidence/provenance/version; separate personal/company/guardian context.",
+      "jobs": "Durable plan/tool checkpoints when needed; explicit pause/resume and stop rules. No autonomous submission/grade/payment.",
+      "cache": "No unscoped personal-memory cache; current policy and memory preference checked on each use.",
+      "realtime": "Plan/run changes refetch; old-context actions rejected after device workspace/account change.",
+      "ml": "Evaluate planning/replanning, permitted recall, explanation and transfer; generated memory/plan stays provisional until permitted acceptance.",
+      "outcome": "User can understand and accept the next step, correct a plan and resume without leaked memory or invented assessed progress."
+    },
+    {
+      "id": "practice",
+      "name": "Checks, practice and assessed evidence",
+      "routes": [
+        "/dashboard/practice",
+        "/dashboard/learn/:topicId"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/Practice.jsx",
+        "frontend/src/services/learningPipelineService.ts",
+        "frontend/src/services/curriculumPracticeSource.js"
+      ],
+      "tickets": [
+        "LEARN-02",
+        "LEARN-08",
+        "CONTENT-06",
+        "BUILD-03",
+        "LEARN-09",
+        "LEARN-10",
+        "LEARN-11",
+        "LEARN-12"
+      ],
+      "api": "Target owned attempt/answer/complete with immutable criteria/source version, stable mutation key and protected answer keys.",
+      "database": "SQL attempts/evidence_events and versioned rubric/feedback; client pass/completed flags never create trusted evidence.",
+      "jobs": "Authoritative scoring/check commit; optional reviewed remediation outside the scoring authority.",
+      "cache": "Never place answer keys or other learner attempts in public/shared payloads; version derived evidence queries.",
+      "realtime": "Attempt/evidence revision observation with deduplicated submit and stale-score rejection.",
+      "ml": "Hints/remediation are candidates; measured reasoning and teacher-reviewed rubrics qualify any model-assisted assessment.",
+      "outcome": "Duplicate/late answers, forged scores, changed rubric and interrupted completion cannot award incorrect mastery or guided eligibility."
+    },
+    {
+      "id": "progress",
+      "name": "Home, progress, goals and discovery",
+      "routes": [
+        "/dashboard/home",
+        "/dashboard/progress",
+        "/dashboard/explore",
+        "/dashboard/growth"
+      ],
+      "frontend": [
+        "frontend/src/services/homeService.ts",
+        "frontend/src/services/learningProgressService.ts",
+        "frontend/src/services/dailyPlanService.ts",
+        "frontend/src/pages/dashboard/LearningProgress.jsx"
+      ],
+      "tickets": [
+        "LEARN-03",
+        "LEARN-04",
+        "LEARN-06",
+        "ROLE-07",
+        "LEARN-09",
+        "LEARN-11",
+        "LEARN-12"
+      ],
+      "api": "Target owned progress/home/due-review/goal commands with understandable recommendation reasons.",
+      "database": "Versioned projections from immutable evidence; plans/preferences distinct from assessed results; bounded owner/period queries.",
+      "jobs": "Idempotent projection/rebuild and review scheduling, never overwriting source evidence.",
+      "cache": "Revisioned owner/workspace/projection keys; mark stale/rebuilding states and refetch from evidence-backed authority.",
+      "realtime": "Evidence changes invalidate exact projection scopes; offline/stale results cannot overwrite newer progress.",
+      "ml": "Evaluated recommendations may propose steps; model confidence, media consumption and self-review remain distinct from mastery.",
+      "outcome": "Progress is reproducible from accepted evidence and consistent after retry/rebuild/two-device resume."
+    },
+    {
+      "id": "build",
+      "name": "Build, private projects and reviewed proposals",
+      "routes": [
+        "/dashboard/build"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/ArtifactStudio.jsx",
+        "frontend/src/services/artifactEditorDraft.ts",
+        "frontend/src/services/reviewDraftService.js"
+      ],
+      "tickets": [
+        "BUILD-01",
+        "BUILD-02",
+        "BUILD-03",
+        "BUILD-04",
+        "BUILD-05",
+        "BUILD-06",
+        "BUILD-07",
+        "BUILD-08",
+        "FILE-01",
+        "FILE-02",
+        "FILE-03",
+        "FILE-04",
+        "AI-07",
+        "AI-13",
+        "AI-14",
+        "SYNC-01",
+        "SYNC-02",
+        "LATER-01",
+        "LATER-02",
+        "LATER-03",
+        "AI-15",
+        "AI-16"
+      ],
+      "api": "Target project/revision/draft/run/proposal accept/reject/share/export contracts from Build DATA_AND_CONTRACTS. Mutations stay HTTPS and bind base revision.",
+      "database": "Target build_projects/revisions/briefs/runs/proposals/events/share_grants/usage/outbox, immutable private object manifests. DATA-01 resolves final DDL names before migration.",
+      "jobs": "Durable run/lease/fence/checkpoint/cancel/restart; bounded isolated export. Arbitrary execution/app previews/deployment remain later gates.",
+      "cache": "Separate per-tab original-base drafts from immutable committed revision and run snapshots; stale proposals cannot update head.",
+      "realtime": "Authorized run sequence via polling/SSE; bounded stdout, gap recovery, cursor expiry and persisted terminal state. A stream does not save/accept a proposal.",
+      "ml": "Bounded generation/critique/tools on permitted context; exact-revision proposal needs user acceptance. No automatic share/submit/deploy/mastery.",
+      "outcome": "Create→save→run→review→conditional accept→export/share exact revision→resume on second device, with cancellation/conflict/revocation failure cases."
+    },
+    {
+      "id": "classroom",
+      "name": "Teacher preparation, classes and submissions",
+      "routes": [
+        "/dashboard/classes",
+        "/dashboard/class/:classId",
+        "/dashboard/prepare",
+        "/dashboard/library",
+        "/dashboard/learners",
+        "/dashboard/cohorts"
+      ],
+      "frontend": [
+        "frontend/src/services/classroomService.js",
+        "frontend/src/pages/dashboard/ClassDetail.jsx",
+        "frontend/src/pages/dashboard/ClassworkStudy.jsx",
+        "frontend/src/pages/dashboard/Learners.jsx",
+        "frontend/src/pages/dashboard/Cohorts.jsx"
+      ],
+      "tickets": [
+        "ROLE-01",
+        "ROLE-02",
+        "ROLE-03",
+        "ROLE-07",
+        "ROLE-08",
+        "BUILD-06",
+        "PRIV-04"
+      ],
+      "api": "Target verified class/enrollment/assignment publish/schedule/submit/review/return/request-revision commands; fixed assignment and submission copy.",
+      "database": "SQL class/enrollment/assignment_versions/submissions/feedback_revisions, retained immutable attempts and audit; no email/role picker authority.",
+      "jobs": "Approved schedule/delivery/projection via outbox with timezone/idempotency; submit/review uses authoritative transaction.",
+      "cache": "Teacher only sees permitted submitted copies/fields; private learner drafts/chat excluded; invalidate enrollment/review revisions.",
+      "realtime": "Assignment/submission/return status refetch; scoped events on revocation and teacher/learner reconnect.",
+      "ml": "Reviewed preparation/feedback candidates; server/human assessment owns released grade and action authority.",
+      "outcome": "Teacher publish→learner submit→teacher review/return→learner revision with preserved history and wrong-class denial."
+    },
+    {
+      "id": "guardian",
+      "name": "Guardian relationships and summaries",
+      "routes": [
+        "/dashboard/child",
+        "/dashboard/reports",
+        "/dashboard/notifications"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/Children.jsx",
+        "frontend/src/pages/dashboard/ParentReport.jsx",
+        "frontend/src/services/parentReportAskService.ts",
+        "frontend/src/services/parentSummaryIntegrity.ts"
+      ],
+      "tickets": [
+        "DATA-09",
+        "ROLE-04",
+        "ROLE-07",
+        "ROLE-08",
+        "BUILD-06",
+        "SAFE-01"
+      ],
+      "api": "Target verified guardian-link and purpose/period/field-scoped fixed-summary/goal/digest operations.",
+      "database": "SQL relationship/consent/share grants and fixed report snapshots with expiry/revocation evidence; billing Family is separate.",
+      "jobs": "Only approved digest/summary generation; reauthorize recipient and purpose at delivery.",
+      "cache": "No child chat/draft cache access; purpose/period/policy scoped summary and immediate future-access withdrawal.",
+      "realtime": "Grant expiry/revocation closes observation and refetches allowed summaries; reconsent does not revive an old share.",
+      "ml": "Guidance only from the allowed summary, never hidden child conversation/private history.",
+      "outcome": "Verified guardian sees only explicitly shared fields; expiry/revocation and Family payer status cannot bypass consent."
+    },
+    {
+      "id": "professional",
+      "name": "Career, personal/company boundaries and portfolios",
+      "routes": [
+        "/dashboard/career",
+        "/dashboard/growth",
+        "/dashboard/build",
+        "/dashboard/connections"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/ProfessionalCareer.jsx",
+        "frontend/src/services/portfolioReviewIntegrity.ts",
+        "frontend/src/services/workspaceService.ts"
+      ],
+      "tickets": [
+        "ROLE-05",
+        "ROLE-08",
+        "BUILD-06",
+        "BUILD-07",
+        "ROLE-09"
+      ],
+      "api": "Target career goals/self-review/company membership and exact-revision portfolio-share commands.",
+      "database": "SQL personal/company memberships, private goals, versioned self-review and explicit share grants; no implicit employer ownership.",
+      "jobs": "Reviewed share/delivery/report jobs with current consent and exact revision.",
+      "cache": "Personal/company query and memory namespaces remain distinct; employer withdrawal invalidates only agreed access.",
+      "realtime": "Per-device context and owned portfolio/share revisions; reject stale company/personal responses.",
+      "ml": "Evidence-grounded skill/project guidance; self-review is not a credential or assessed mastery.",
+      "outcome": "Personal work remains private through joining/leaving employer, sharing/revoking portfolio and second-device resume."
+    },
+    {
+      "id": "organization",
+      "name": "Organization people, curriculum, analytics and audit",
+      "routes": [
+        "/dashboard/people",
+        "/dashboard/cohorts",
+        "/dashboard/curriculum",
+        "/dashboard/library",
+        "/dashboard/analytics",
+        "/dashboard/insights",
+        "/dashboard/audit",
+        "/dashboard/settings"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/RoleWorkspace.jsx",
+        "frontend/src/pages/dashboard/OrganizationCurriculum.jsx",
+        "frontend/src/components/dashboard/OrganizationEvidencePanel.jsx",
+        "frontend/src/pages/dashboard/OrganizationAudit.jsx"
+      ],
+      "tickets": [
+        "ROLE-06",
+        "ROLE-07",
+        "ROLE-08",
+        "ROLE-09",
+        "CONTENT-03",
+        "CONTENT-05"
+      ],
+      "api": "Target least-privilege organization invitations/roles/cohorts/publication/settings/aggregate/audit commands and paginated queries.",
+      "database": "SQL organization memberships/publications/suppressed aggregate/report snapshots/audit; final schema reviewed under DATA-01.",
+      "jobs": "Bounded publication/projection/delivery with policy/version checks and aggregate suppression.",
+      "cache": "Organization/policy/release scoped projections; never leak small-group/private student records via aggregates.",
+      "realtime": "Role/publication/report revision hints and authorized refetch; withdraw stops pending output.",
+      "ml": "Only approved-source/aggregate assistance under scoped policy; no unrestricted administrator learner dump.",
+      "outcome": "Publish/withdraw and role changes propagate correctly; private personal learning/grades remain outside unauthorized organizational access."
+    },
+    {
+      "id": "billing",
+      "name": "Plans, subscription, entitlement and invoices",
+      "routes": [
+        "/pricing",
+        "/dashboard/subscription",
+        "/dashboard/settings"
+      ],
+      "frontend": [
+        "frontend/src/services/billingClient.js",
+        "frontend/src/components/dashboard/ConnectedBilling.jsx",
+        "frontend/src/components/dashboard/BillingInvoice.jsx",
+        "frontend/src/components/dashboard/FamilyBilling.jsx"
+      ],
+      "tickets": [
+        "DONE-05",
+        "DONE-06",
+        "DONE-07",
+        "BILL-01",
+        "BILL-02",
+        "BILL-03",
+        "BILL-04",
+        "BILL-05",
+        "BILL-06",
+        "BILL-07",
+        "BILL-08",
+        "AI-07"
+      ],
+      "api": "Connected /api/billing/** and payer account invoice APIs; test checkout/verify/sync/cancel/raw signed webhook contracts retained. Hosted/live acceptance separate.",
+      "database": "UID Firestore billing commands/subscription/provider events/immutable payer invoices; unique usage ledger ties request/workspace to current payer/entitlement without duplicating authority in SQL.",
+      "jobs": "Per-account test reconciliation/outbox/Tasks and provider-rate-aware retry; no startup/scaling side-effect charges.",
+      "cache": "Payment state/entitlement always authoritative; no public cache of private receipts or inferred paid success from client widget/event.",
+      "realtime": "Authorized billing revision refetch on second device; webhook can be late/reordered, unknown stays pending until reconciled.",
+      "ml": "No model decides payment success, refunds, grants or charges; server usage admission precedes calls.",
+      "outcome": "Auth→Free default→test purchase→verified entitlement→payer-only invoice→second device, duplicate/reordered/refund/cancel and expired-session recovery."
+    },
+    {
+      "id": "notifications",
+      "name": "Notification and communication preferences",
+      "routes": [
+        "/dashboard/notifications",
+        "/dashboard/settings"
+      ],
+      "frontend": [
+        "frontend/src/components/dashboard/WorkspaceNotifications.jsx",
+        "frontend/src/services/parentNotificationService.ts",
+        "frontend/src/pages/dashboard/OrganizationNotifications.jsx"
+      ],
+      "tickets": [
+        "PRIV-04",
+        "JOB-01",
+        "JOB-02",
+        "SYNC-01",
+        "SYNC-02"
+      ],
+      "api": "Target authorized inbox pagination/read/preferences and reviewed delivery commands; explicit selected channel/provider acceptance.",
+      "database": "Owned durable inbox/read/preferences and source event/recipient/policy/version dedupe; separate from business state.",
+      "jobs": "Outbox delivery with idempotency/quiet preference/retry and current recipient permission.",
+      "cache": "Owner/workspace/policy/inbox revision and bounded unread projection; no private material in public email links.",
+      "realtime": "Notification hints/refetch with gap recovery; duplicates never execute underlying business action.",
+      "ml": "No model required for notification delivery; any generated message is separately reviewed/minimized.",
+      "outcome": "Read/preference state converges across devices; revoked recipient and failed delivery cannot leak data or lose committed business state."
+    },
+    {
+      "id": "privacy",
+      "name": "Privacy, memory controls and data requests",
+      "routes": [
+        "/dashboard/privacy",
+        "/dashboard/personalization",
+        "/dashboard/settings",
+        "/privacy"
+      ],
+      "frontend": [
+        "frontend/src/pages/dashboard/WorkspaceTools.jsx",
+        "frontend/src/services/mentorStateService.ts",
+        "frontend/src/services/localMigrationService.ts"
+      ],
+      "tickets": [
+        "PRIV-01",
+        "PRIV-02",
+        "PRIV-03",
+        "PRIV-04",
+        "PRIV-05",
+        "PRIV-06",
+        "PRIV-07",
+        "AI-02",
+        "AI-04",
+        "AI-12",
+        "AI-15",
+        "SAFE-01",
+        "LATER-06"
+      ],
+      "api": "Target explicit authorized purpose/preferences/export and separately approved deletion commands, job status/download. Current keep-data/no-purge instruction remains; no deletion is executed by planning.",
+      "database": "UID-scoped job manifests, consent/purpose versions/audit and approved policy/tombstones spanning Firestore/SQL/objects/providers; preserve required historical records.",
+      "jobs": "Reviewed export/deletion saga with bounded resumption/reconciliation; revoke new access first, restore respects current policy.",
+      "cache": "Revocation covers queries/objects/model contexts and derived caches; cache policy never invents a record retention TTL.",
+      "realtime": "Owner-only job progress and terminal artifact refetch; signed URLs have explicit residual validity or authenticated gateway.",
+      "ml": "No automatic private-data training; memory preferences/current rights checked; no raw global quality export.",
+      "outcome": "Only verified owner gets a bounded export; permissions and recovery remain correct across requests/backups; future deletion waits for approved policy/authorization."
+    },
+    {
+      "id": "feedback",
+      "name": "Optional feedback, support and improvement",
+      "routes": [
+        "/dashboard/support",
+        "/dashboard/*"
+      ],
+      "frontend": [
+        "frontend/src/components/dashboard/FeedbackPrompt.jsx",
+        "frontend/src/services/feedbackClient.js",
+        "frontend/src/pages/dashboard/Support.jsx"
+      ],
+      "tickets": [
+        "DONE-12",
+        "PRIV-05",
+        "PRIV-06",
+        "AI-02",
+        "AI-12"
+      ],
+      "api": "Connected POST/GET /api/account/feedback retains strict minimized fields/dedupe; future support operator/triage/export contract is separate.",
+      "database": "Firestore UID feedback/feedbackState/command records; approved support/audit records retain owner/purpose and scoped operator access.",
+      "jobs": "No automatic Jira/private learner-note export or training; reviewed support/triage only with approved purpose.",
+      "cache": "No shared feedback/note cache; ambiguous submission keeps draft and replays original key.",
+      "realtime": "Receipt/history refetch; no socket needed to confirm a feedback commit. Do not interrupt learning/checkout with prompts.",
+      "ml": "Optional reviewed improvement/evaluation loop; negative rating and generated correction are not ground-truth training labels.",
+      "outcome": "Optional short feedback→confirmed one record or recoverable retry; authorized support with no raw-context capture or learner-note leakage."
+    }
+  ],
+  "sharedSourceIds": [
+    "SCOPE-01",
+    "SCOPE-02",
+    "SCOPE-03",
+    "SCOPE-04",
+    "SCOPE-05",
+    "SCOPE-06",
+    "SCOPE-07",
+    "SCOPE-08",
+    "DATA-01",
+    "DATA-02",
+    "DATA-03",
+    "DATA-04",
+    "DATA-05",
+    "DATA-06",
+    "DATA-07",
+    "DATA-08",
+    "DATA-09",
+    "PLAT-01",
+    "PLAT-02",
+    "PLAT-03",
+    "PLAT-04",
+    "PLAT-05",
+    "PLAT-06",
+    "PLAT-07",
+    "PLAT-08",
+    "JOB-01",
+    "JOB-02",
+    "JOB-03",
+    "SYNC-01",
+    "SYNC-02",
+    "CACHE-01",
+    "PRIV-01",
+    "PRIV-02",
+    "PRIV-03",
+    "PRIV-04",
+    "PRIV-05",
+    "PRIV-06",
+    "PRIV-07",
+    "ACCEPT-01",
+    "ACCEPT-02",
+    "ACCEPT-03",
+    "ACCEPT-04",
+    "ACCEPT-05",
+    "ACCEPT-06",
+    "ACCEPT-07",
+    "RELEASE-01",
+    "RELEASE-02",
+    "RELEASE-03",
+    "RELEASE-04",
+    "RELEASE-05",
+    "RELEASE-06",
+    "RELEASE-07",
+    "RELEASE-08",
+    "DONE-01",
+    "DONE-08",
+    "DONE-09",
+    "DONE-10",
+    "DONE-11",
+    "LATER-05",
+    "SAFE-01"
+  ],
+  "capabilityChecks": [
+    {
+      "id": "reasoning",
+      "criterion": "Novel concept/problem tasks with permitted evidence; independent rubric/teacher correctness review",
+      "tickets": [
+        "AI-01",
+        "AI-06",
+        "AI-13",
+        "LEARN-08"
+      ]
+    },
+    {
+      "id": "planning",
+      "criterion": "Multi-step Learn/Build goals, changed constraints, pause/restart and replanning; inspect final saved outcome",
+      "tickets": [
+        "AI-13",
+        "AI-14",
+        "BUILD-04",
+        "BUILD-08"
+      ]
+    },
+    {
+      "id": "memory",
+      "criterion": "Permitted recall and correction under current purpose; negative cross-user/workspace and revocation tests",
+      "tickets": [
+        "AI-04",
+        "AI-12",
+        "AI-13",
+        "DATA-05"
+      ]
+    },
+    {
+      "id": "tool use",
+      "criterion": "Typed allowlisted tools, server authority at every step, idempotent side effects and bounded failure recovery",
+      "tickets": [
+        "AI-06",
+        "AI-07",
+        "AI-14",
+        "JOB-02"
+      ]
+    },
+    {
+      "id": "learning and transfer",
+      "criterion": "Held-out task families and released languages; feedback correction versus memorization; no training without rights/strategy",
+      "tickets": [
+        "AI-01",
+        "AI-13",
+        "CONTENT-06",
+        "LATER-04"
+      ]
+    },
+    {
+      "id": "uncertainty and recovery",
+      "criterion": "Detect unsupported/failed validation, abstain/degrade truthfully, recover without invented success",
+      "tickets": [
+        "AI-06",
+        "AI-08",
+        "AI-09",
+        "AI-13"
+      ]
+    },
+    {
+      "id": "modalities",
+      "criterion": "Perception/generation only for explicitly released voice/image/structured tasks, with device/locale/cost tests",
+      "tickets": [
+        "AI-10",
+        "AI-13",
+        "ACCEPT-05"
+      ]
+    },
+    {
+      "id": "operational reliability",
+      "criterion": "Cross-device durability/authority, latency, cost per completed task and rollback; separate from intelligence score",
+      "tickets": [
+        "SYNC-01",
+        "SYNC-02",
+        "CACHE-01",
+        "RELEASE-04"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "blocks": "AI-11",
+      "blocked": "AI-01"
+    },
+    {
+      "blocks": "AI-12",
+      "blocked": "AI-09"
+    },
+    {
+      "blocks": "SCOPE-03",
+      "blocked": "SYNC-01"
+    },
+    {
+      "blocks": "DATA-06",
+      "blocked": "SYNC-01"
+    },
+    {
+      "blocks": "JOB-01",
+      "blocked": "SYNC-01"
+    },
+    {
+      "blocks": "SYNC-01",
+      "blocked": "SYNC-02"
+    },
+    {
+      "blocks": "CACHE-01",
+      "blocked": "SYNC-02"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-06"
+    },
+    {
+      "blocks": "CACHE-01",
+      "blocked": "AI-05"
+    },
+    {
+      "blocks": "AI-03",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-05",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-06",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-07",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "JOB-02",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "BUILD-04",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "LEARN-05"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "BUILD-08"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "AI-13"
+    },
+    {
+      "blocks": "AI-11",
+      "blocked": "AI-13"
+    },
+    {
+      "blocks": "AI-13",
+      "blocked": "RELEASE-04"
+    },
+    {
+      "blocks": "DATA-03",
+      "blocked": "LEARN-01"
+    },
+    {
+      "blocks": "CONTENT-04",
+      "blocked": "LEARN-01"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "ROLE-04"
+    },
+    {
+      "blocks": "DATA-04",
+      "blocked": "ROLE-01"
+    },
+    {
+      "blocks": "LEARN-02",
+      "blocked": "LEARN-03"
+    },
+    {
+      "blocks": "LEARN-08",
+      "blocked": "BUILD-03"
+    },
+    {
+      "blocks": "FILE-03",
+      "blocked": "BUILD-05"
+    },
+    {
+      "blocks": "BUILD-01",
+      "blocked": "BUILD-04"
+    },
+    {
+      "blocks": "BUILD-04",
+      "blocked": "BUILD-08"
+    },
+    {
+      "blocks": "BUILD-06",
+      "blocked": "ROLE-03"
+    },
+    {
+      "blocks": "ROLE-01",
+      "blocked": "ROLE-02"
+    },
+    {
+      "blocks": "ROLE-02",
+      "blocked": "ROLE-03"
+    },
+    {
+      "blocks": "ROLE-03",
+      "blocked": "ROLE-07"
+    },
+    {
+      "blocks": "ROLE-04",
+      "blocked": "ROLE-07"
+    },
+    {
+      "blocks": "ROLE-06",
+      "blocked": "ROLE-07"
+    },
+    {
+      "blocks": "AI-07",
+      "blocked": "BILL-04"
+    },
+    {
+      "blocks": "BILL-04",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-06",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "BUILD-08",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-07",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "ROLE-08"
+    },
+    {
+      "blocks": "ROLE-08",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "CONTENT-06",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "AI-09",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "CONTENT-01",
+      "blocked": "CONTENT-08"
+    },
+    {
+      "blocks": "DATA-01",
+      "blocked": "CONTENT-08"
+    },
+    {
+      "blocks": "CONTENT-08",
+      "blocked": "LEARN-09"
+    },
+    {
+      "blocks": "LEARN-08",
+      "blocked": "LEARN-09"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "LEARN-10"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "LEARN-10"
+    },
+    {
+      "blocks": "LEARN-02",
+      "blocked": "LEARN-11"
+    },
+    {
+      "blocks": "JOB-01",
+      "blocked": "LEARN-11"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "LEARN-11"
+    },
+    {
+      "blocks": "LEARN-08",
+      "blocked": "LEARN-12"
+    },
+    {
+      "blocks": "CONTENT-08",
+      "blocked": "LEARN-12"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-12"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "AI-04",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "CONTENT-05",
+      "blocked": "AI-15"
+    },
+    {
+      "blocks": "AI-15",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "SCOPE-03",
+      "blocked": "AI-16"
+    },
+    {
+      "blocks": "CONTENT-03",
+      "blocked": "AI-16"
+    },
+    {
+      "blocks": "SYNC-01",
+      "blocked": "AI-16"
+    },
+    {
+      "blocks": "SCOPE-05",
+      "blocked": "SAFE-01"
+    },
+    {
+      "blocks": "SAFE-01",
+      "blocked": "AI-14"
+    },
+    {
+      "blocks": "SAFE-01",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "LEARN-10",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-11",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-12",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "AI-16",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "AI-13",
+      "blocked": "LATER-06"
+    },
+    {
+      "blocks": "PRIV-01",
+      "blocked": "LATER-06"
+    },
+    {
+      "blocks": "RELEASE-04",
+      "blocked": "LATER-06"
+    }
+  ],
+  "tasks": [
+    {
+      "sourceId": "DONE-01",
+      "jiraKey": "KAN-16",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-02",
+      "jiraKey": "KAN-17",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "account"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-03",
+      "jiraKey": "KAN-18",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "account"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-04",
+      "jiraKey": "KAN-19",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "account"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-05",
+      "jiraKey": "KAN-20",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-06",
+      "jiraKey": "KAN-21",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-07",
+      "jiraKey": "KAN-22",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-08",
+      "jiraKey": "KAN-23",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-09",
+      "jiraKey": "KAN-24",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-10",
+      "jiraKey": "KAN-25",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-11",
+      "jiraKey": "KAN-26",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DONE-12",
+      "jiraKey": "KAN-27",
+      "phase": "FOUNDATION",
+      "localComplete": true,
+      "scope": "feature",
+      "features": [
+        "feedback"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-01",
+      "jiraKey": "KAN-28",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "public"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "jiraKey": "KAN-29",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "public"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-03",
+      "jiraKey": "KAN-30",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [
+        "SYNC-01",
+        "AI-16"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-04",
+      "jiraKey": "KAN-31",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-05",
+      "jiraKey": "KAN-32",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [
+        "SAFE-01"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-06",
+      "jiraKey": "KAN-33",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-07",
+      "jiraKey": "KAN-34",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "public",
+        "account"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SCOPE-08",
+      "jiraKey": "KAN-35",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-01",
+      "jiraKey": "KAN-36",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [
+        "CONTENT-08"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-02",
+      "jiraKey": "KAN-37",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-03",
+      "jiraKey": "KAN-38",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "account",
+        "workspaces"
+      ],
+      "blocks": [
+        "LEARN-01"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-04",
+      "jiraKey": "KAN-39",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [
+        "ROLE-01"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-05",
+      "jiraKey": "KAN-40",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [
+        "ROLE-04",
+        "AI-15"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-06",
+      "jiraKey": "KAN-41",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [
+        "SYNC-01"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-07",
+      "jiraKey": "KAN-42",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-08",
+      "jiraKey": "KAN-43",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "workspaces"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "DATA-09",
+      "jiraKey": "KAN-44",
+      "phase": "P01",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "account",
+        "workspaces",
+        "guardian"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-01",
+      "jiraKey": "KAN-45",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-02",
+      "jiraKey": "KAN-46",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-03",
+      "jiraKey": "KAN-47",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-04",
+      "jiraKey": "KAN-48",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-05",
+      "jiraKey": "KAN-49",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "account"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-06",
+      "jiraKey": "KAN-50",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-07",
+      "jiraKey": "KAN-51",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PLAT-08",
+      "jiraKey": "KAN-52",
+      "phase": "P02",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "JOB-01",
+      "jiraKey": "KAN-53",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "notifications"
+      ],
+      "blocks": [
+        "SYNC-01",
+        "LEARN-11"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "JOB-02",
+      "jiraKey": "KAN-54",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "notifications"
+      ],
+      "blocks": [
+        "AI-14"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "JOB-03",
+      "jiraKey": "KAN-55",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SYNC-01",
+      "jiraKey": "KAN-139",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "learn",
+        "build",
+        "notifications"
+      ],
+      "blocks": [
+        "SYNC-02",
+        "AI-16"
+      ],
+      "blockedBy": [
+        "SCOPE-03",
+        "DATA-06",
+        "JOB-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SYNC-02",
+      "jiraKey": "KAN-140",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "learn",
+        "build",
+        "notifications"
+      ],
+      "blocks": [
+        "LEARN-06",
+        "ROLE-08",
+        "ACCEPT-04",
+        "LEARN-12"
+      ],
+      "blockedBy": [
+        "SYNC-01",
+        "CACHE-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CACHE-01",
+      "jiraKey": "KAN-141",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [
+        "SYNC-02",
+        "AI-05"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "FILE-01",
+      "jiraKey": "KAN-56",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "FILE-02",
+      "jiraKey": "KAN-57",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "FILE-03",
+      "jiraKey": "KAN-58",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "build"
+      ],
+      "blocks": [
+        "BUILD-05"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "FILE-04",
+      "jiraKey": "KAN-59",
+      "phase": "P03",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-01",
+      "jiraKey": "KAN-60",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources"
+      ],
+      "blocks": [
+        "CONTENT-08"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-02",
+      "jiraKey": "KAN-61",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-03",
+      "jiraKey": "KAN-62",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "organization"
+      ],
+      "blocks": [
+        "AI-16"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-04",
+      "jiraKey": "KAN-63",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "learn"
+      ],
+      "blocks": [
+        "LEARN-01"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-05",
+      "jiraKey": "KAN-64",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "organization"
+      ],
+      "blocks": [
+        "AI-15"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-06",
+      "jiraKey": "KAN-65",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "practice"
+      ],
+      "blocks": [
+        "ACCEPT-05"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-07",
+      "jiraKey": "KAN-66",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "CONTENT-08",
+      "jiraKey": "KAN-144",
+      "phase": "P04",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources"
+      ],
+      "blocks": [
+        "LEARN-09",
+        "LEARN-12"
+      ],
+      "blockedBy": [
+        "CONTENT-01",
+        "DATA-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-01",
+      "jiraKey": "KAN-67",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "DATA-03",
+        "CONTENT-04"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-02",
+      "jiraKey": "KAN-68",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "practice"
+      ],
+      "blocks": [
+        "LEARN-03",
+        "LEARN-11"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-03",
+      "jiraKey": "KAN-69",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "progress"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "LEARN-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-04",
+      "jiraKey": "KAN-70",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "guide",
+        "progress"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-05",
+      "jiraKey": "KAN-71",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "AI-14"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-06",
+      "jiraKey": "KAN-72",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "progress"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "blockedBy": [
+        "SYNC-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-07",
+      "jiraKey": "KAN-73",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-08",
+      "jiraKey": "KAN-74",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "practice"
+      ],
+      "blocks": [
+        "BUILD-03",
+        "LEARN-09",
+        "LEARN-12"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-09",
+      "jiraKey": "KAN-145",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "practice",
+        "progress"
+      ],
+      "blocks": [
+        "LEARN-10",
+        "LEARN-11",
+        "AI-15"
+      ],
+      "blockedBy": [
+        "CONTENT-08",
+        "LEARN-08"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-10",
+      "jiraKey": "KAN-146",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "guide",
+        "practice"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "blockedBy": [
+        "LEARN-09",
+        "AI-14"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-11",
+      "jiraKey": "KAN-147",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "guide",
+        "practice",
+        "progress"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "blockedBy": [
+        "LEARN-02",
+        "JOB-01",
+        "LEARN-09"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-12",
+      "jiraKey": "KAN-148",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "practice",
+        "progress"
+      ],
+      "blocks": [
+        "ACCEPT-05"
+      ],
+      "blockedBy": [
+        "LEARN-08",
+        "CONTENT-08",
+        "SYNC-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-01",
+      "jiraKey": "KAN-75",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [
+        "BUILD-04"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-02",
+      "jiraKey": "KAN-76",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-03",
+      "jiraKey": "KAN-77",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "practice",
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "LEARN-08"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-04",
+      "jiraKey": "KAN-78",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [
+        "AI-14",
+        "BUILD-08"
+      ],
+      "blockedBy": [
+        "BUILD-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-05",
+      "jiraKey": "KAN-79",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "FILE-03"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-06",
+      "jiraKey": "KAN-80",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build",
+        "classroom",
+        "guardian",
+        "professional"
+      ],
+      "blocks": [
+        "ROLE-03"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-07",
+      "jiraKey": "KAN-81",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build",
+        "professional"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-08",
+      "jiraKey": "KAN-82",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "blockedBy": [
+        "AI-14",
+        "BUILD-04"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-01",
+      "jiraKey": "KAN-83",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "AI-11"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-02",
+      "jiraKey": "KAN-84",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "privacy",
+        "feedback"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-03",
+      "jiraKey": "KAN-85",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [
+        "AI-14"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-04",
+      "jiraKey": "KAN-86",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide",
+        "privacy"
+      ],
+      "blocks": [
+        "AI-15"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-05",
+      "jiraKey": "KAN-87",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [
+        "AI-14"
+      ],
+      "blockedBy": [
+        "CACHE-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-06",
+      "jiraKey": "KAN-88",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "ask",
+        "guide"
+      ],
+      "blocks": [
+        "AI-14"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-07",
+      "jiraKey": "KAN-89",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide",
+        "build",
+        "billing"
+      ],
+      "blocks": [
+        "AI-14",
+        "BILL-04"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-08",
+      "jiraKey": "KAN-90",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-09",
+      "jiraKey": "KAN-91",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [
+        "ACCEPT-04"
+      ],
+      "blockedBy": [
+        "AI-12"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-10",
+      "jiraKey": "KAN-92",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-11",
+      "jiraKey": "KAN-137",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [
+        "AI-01",
+        "AI-13"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-12",
+      "jiraKey": "KAN-138",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "privacy",
+        "feedback"
+      ],
+      "blocks": [
+        "AI-09"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-13",
+      "jiraKey": "KAN-142",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide",
+        "build"
+      ],
+      "blocks": [
+        "RELEASE-04",
+        "LATER-06"
+      ],
+      "blockedBy": [
+        "AI-14",
+        "AI-11"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-14",
+      "jiraKey": "KAN-143",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide",
+        "build"
+      ],
+      "blocks": [
+        "LEARN-05",
+        "BUILD-08",
+        "AI-13",
+        "LEARN-10"
+      ],
+      "blockedBy": [
+        "AI-03",
+        "AI-05",
+        "AI-06",
+        "AI-07",
+        "JOB-02",
+        "BUILD-04",
+        "AI-15",
+        "SAFE-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-15",
+      "jiraKey": "KAN-149",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "guide",
+        "build",
+        "privacy"
+      ],
+      "blocks": [
+        "AI-14"
+      ],
+      "blockedBy": [
+        "LEARN-09",
+        "AI-04",
+        "DATA-05",
+        "CONTENT-05"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-16",
+      "jiraKey": "KAN-150",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "build"
+      ],
+      "blocks": [
+        "ACCEPT-05"
+      ],
+      "blockedBy": [
+        "SCOPE-03",
+        "CONTENT-03",
+        "SYNC-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-01",
+      "jiraKey": "KAN-93",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "classroom"
+      ],
+      "blocks": [
+        "ROLE-02"
+      ],
+      "blockedBy": [
+        "DATA-04"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-02",
+      "jiraKey": "KAN-94",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "classroom"
+      ],
+      "blocks": [
+        "ROLE-03"
+      ],
+      "blockedBy": [
+        "ROLE-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-03",
+      "jiraKey": "KAN-95",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "classroom"
+      ],
+      "blocks": [
+        "ROLE-07"
+      ],
+      "blockedBy": [
+        "BUILD-06",
+        "ROLE-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-04",
+      "jiraKey": "KAN-96",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "guardian"
+      ],
+      "blocks": [
+        "ROLE-07"
+      ],
+      "blockedBy": [
+        "DATA-05"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-05",
+      "jiraKey": "KAN-97",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "professional"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-06",
+      "jiraKey": "KAN-98",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "sources",
+        "organization"
+      ],
+      "blocks": [
+        "ROLE-07"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-07",
+      "jiraKey": "KAN-99",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "progress",
+        "classroom",
+        "guardian",
+        "organization"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "ROLE-03",
+        "ROLE-04",
+        "ROLE-06"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-08",
+      "jiraKey": "KAN-100",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "workspaces",
+        "classroom",
+        "guardian",
+        "professional",
+        "organization"
+      ],
+      "blocks": [
+        "ACCEPT-02"
+      ],
+      "blockedBy": [
+        "SYNC-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-09",
+      "jiraKey": "KAN-101",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "professional",
+        "organization"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-01",
+      "jiraKey": "KAN-102",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-02",
+      "jiraKey": "KAN-103",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-03",
+      "jiraKey": "KAN-104",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-04",
+      "jiraKey": "KAN-105",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask",
+        "billing"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "blockedBy": [
+        "AI-07"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-05",
+      "jiraKey": "KAN-106",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-06",
+      "jiraKey": "KAN-107",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-07",
+      "jiraKey": "KAN-108",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BILL-08",
+      "jiraKey": "KAN-109",
+      "phase": "P09",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "public",
+        "account",
+        "billing"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-01",
+      "jiraKey": "KAN-110",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "guide",
+        "privacy"
+      ],
+      "blocks": [
+        "LATER-06"
+      ],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-02",
+      "jiraKey": "KAN-111",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "privacy"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-03",
+      "jiraKey": "KAN-112",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "privacy"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-04",
+      "jiraKey": "KAN-113",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "classroom",
+        "notifications",
+        "privacy"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-05",
+      "jiraKey": "KAN-114",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "public",
+        "privacy",
+        "feedback"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-06",
+      "jiraKey": "KAN-115",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "privacy",
+        "feedback"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "PRIV-07",
+      "jiraKey": "KAN-116",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "public",
+        "privacy"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "SAFE-01",
+      "jiraKey": "KAN-151",
+      "phase": "P10",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [
+        "ask",
+        "guardian",
+        "privacy"
+      ],
+      "blocks": [
+        "AI-14",
+        "ACCEPT-04"
+      ],
+      "blockedBy": [
+        "SCOPE-05"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-01",
+      "jiraKey": "KAN-117",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [
+        "BILL-04",
+        "LEARN-06",
+        "BUILD-08",
+        "LEARN-07",
+        "LEARN-10",
+        "LEARN-11"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-02",
+      "jiraKey": "KAN-118",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [
+        "ROLE-08"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-03",
+      "jiraKey": "KAN-119",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-04",
+      "jiraKey": "KAN-120",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [
+        "AI-09",
+        "SYNC-02",
+        "SAFE-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-05",
+      "jiraKey": "KAN-121",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [
+        "CONTENT-06",
+        "LEARN-12",
+        "AI-16"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-06",
+      "jiraKey": "KAN-122",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-07",
+      "jiraKey": "KAN-123",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-01",
+      "jiraKey": "KAN-124",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-02",
+      "jiraKey": "KAN-125",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-03",
+      "jiraKey": "KAN-126",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-04",
+      "jiraKey": "KAN-127",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [
+        "LATER-06"
+      ],
+      "blockedBy": [
+        "AI-13"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-05",
+      "jiraKey": "KAN-128",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-06",
+      "jiraKey": "KAN-129",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-07",
+      "jiraKey": "KAN-130",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "RELEASE-08",
+      "jiraKey": "KAN-131",
+      "phase": "P12",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LATER-01",
+      "jiraKey": "KAN-132",
+      "phase": "LATER",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LATER-02",
+      "jiraKey": "KAN-133",
+      "phase": "LATER",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LATER-03",
+      "jiraKey": "KAN-134",
+      "phase": "LATER",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LATER-04",
+      "jiraKey": "KAN-135",
+      "phase": "LATER",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "ask"
+      ],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LATER-05",
+      "jiraKey": "KAN-136",
+      "phase": "LATER",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [],
+      "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LATER-06",
+      "jiraKey": "KAN-152",
+      "phase": "LATER",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "privacy"
+      ],
+      "blocks": [],
+      "blockedBy": [
+        "AI-13",
+        "PRIV-01",
+        "RELEASE-04"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    }
+  ]
+}

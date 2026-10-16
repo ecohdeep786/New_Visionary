@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
 import LandingFAQ from "@/components/landing/LandingFAQ";
 import SpotIllustration from "@/components/landing/SpotIllustration";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import imgM1 from "@/assets/student-primary.webp";
 import imgM2 from "@/assets/student-vocational.webp";
 import imgM3 from "@/assets/organization-problem-3-1600w.webp";
@@ -21,11 +22,13 @@ import imgM11 from "@/assets/student-higher.webp";
 import imgM12 from "@/assets/organization-problem-1-1600w.webp";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* ═══ Tokens — the shared Material dialect (#121317 ink, #4285F4/#0b57d0
-   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
+/* ═══ Tokens — the public dialect (#121317 ink, #0b57d0 actions, #f5f5f7
+   trays, white rounded-[20px] cards, ink pills). ═══ */
 
 /* Dual-row image marquee — the company-info-top pattern: rows circulating
-   anticlockwise (top row drifts left, bottom row drifts right). Decorative. */
+   anticlockwise (top row drifts left, bottom row drifts right). Decorative.
+   Tiles load eagerly on purpose: the strip is wider than any viewport, so
+   lazy tiles sat blank until the drift carried them into view. */
 const MARQUEE_TOP = [
   { img: imgM1, alt: "" }, { img: imgM2, alt: "" }, { img: imgM3, alt: "" },
   { img: imgM4, alt: "" }, { img: imgM5, alt: "" }, { img: imgM6, alt: "" },
@@ -48,8 +51,8 @@ function PhotoMarquee() {
         <div key={row.cls} className="overflow-hidden">
           <div className={`flex w-max ${row.cls}`}>
             {[...row.photos, ...row.photos].map((photo, i) => (
-              <div key={row.cls + i} className="mr-4 shrink-0 overflow-hidden rounded-2xl">
-                <img src={photo.img} alt="" loading="lazy" decoding="async" className="h-[190px] w-[300px] object-cover" />
+              <div key={row.cls + i} className="mr-6 shrink-0 overflow-hidden rounded-[24px]">
+                <img src={photo.img} alt="" decoding="async" className="h-[190px] w-[300px] object-cover" />
               </div>
             ))}
           </div>
@@ -155,56 +158,56 @@ function scrollToSection(id) {
 
 export default function CommunityPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-community min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <main id="main">
         <Breadcrumb page="Community" />
 
         {/* HERO — the communities.google layout: centered statement first,
             then the full-width fanned card strip with paging */}
-        <section className="relative overflow-hidden border-b border-[#dadce0] bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
+        <section data-section="01-hero" className="relative overflow-hidden bg-white" style={{ paddingTop: "calc(64px + 40px)", paddingBottom: "40px" }}>
           <div className="mx-auto max-w-[1240px] px-6 sm:px-8 lg:px-10">
             <p className="text-center text-[12px] font-medium uppercase tracking-[0.15em] text-[#5f6368]">Visionary communities</p>
             <div className="mx-auto mt-6 max-w-[1000px] text-center">
               <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
                 Communities and programs for everyone <span className="accent-gradient">learning together.</span>
               </h1>
-              <p className="mx-auto mt-7 max-w-[720px] text-[19px] leading-[1.55] text-[#3c4043] sm:text-[22px]">
+              <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#5f6368]">
                 Class-scoped spaces where learners, teachers, and families grow together, kept safe by teachers.
               </p>
-              <div className="mt-9 flex flex-wrap justify-center gap-4">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <a href="#learners" onClick={(event) => { event.preventDefault(); scrollToSection("learners"); }}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b57d0] px-7 text-[15px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
                   Find your community
                 </a>
-                <Link to="/safety" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-6 text-[15px] font-medium text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                  Community safety <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                  Community safety
+                  <ChevronIcon className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
             </div>
           </div>
-          <div className="mt-6">
+          <div className="mt-14">
             <PhotoMarquee />
           </div>
         </section>
 
         {/* ANCHOR CHIPS — the reference's pill nav under the hero */}
-        <nav aria-label="Community sections" className="sticky top-14 z-30 border-b border-[#dadce0] bg-white/95 backdrop-blur">
+        <nav aria-label="Community sections" className="sticky top-14 z-30 border-b border-[rgba(18,19,23,0.12)] bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1240px] items-center gap-2 overflow-x-auto px-4 py-3 sm:px-8 lg:justify-center lg:px-10">
             {ANCHORS.map((anchor) => (
               <a key={anchor.id} href={`#${anchor.id}`}
                 onClick={(event) => { event.preventDefault(); scrollToSection(anchor.id); }}
-                className="shrink-0 rounded-full border border-[#dadce0] bg-white px-4 py-2 text-[13px] font-medium text-[#3c4043] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                className="shrink-0 rounded-full px-4 py-2 text-[14px] font-medium text-[#5f6368] transition-colors hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
                 {anchor.label}
               </a>
             ))}
           </div>
         </nav>
-        {/*__AREAS__*/}
 
         {/* FIND A COMMUNITY — the reference's alternating label + program-card
             areas, with playful accent strokes beside the heading */}
-        <section className="px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section data-section="02-find" className="px-6 sm:px-8 lg:px-10">
           <Reveal className="relative mx-auto max-w-[720px] text-center">
             <svg aria-hidden="true" viewBox="0 0 120 60" className="absolute -right-16 -top-8 hidden h-14 w-28 lg:block">
               <path d="M8 50 C 40 12, 78 8, 112 22" fill="none" stroke="#4285F4" strokeWidth="5" strokeLinecap="round" />
@@ -218,27 +221,27 @@ export default function CommunityPage() {
             {AREAS.map((area) => (
               <div key={area.id} id={area.id} className="scroll-mt-36 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
                 <div className="lg:sticky lg:top-40 lg:self-start">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full" style={{ backgroundColor: area.tint, color: area.iconColor }}>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
                     <area.icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                   <h3 className="mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317]">{area.title}</h3>
                   <p className="mt-4 max-w-[380px] text-[16px] leading-[1.7] text-[#5f6368]">{area.copy}</p>
                 </div>
-                <div className="grid gap-5 sm:grid-cols-2">
-                  {area.cards.map((card) => (
-                    <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                      <div className="flex h-[150px] items-center justify-center" style={{ backgroundColor: card.tint }}>
-                        <SpotIllustration subject={card.subject} className="h-24 w-24" />
-                      </div>
-                      <div className="flex flex-1 flex-col p-6 pb-14">
-                        <h4 className="text-[18px] font-medium leading-[1.35] text-[#121317]">{card.title}</h4>
-                        <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
-                      </div>
-                      {/* google.com card curve — the card's own tint sweeps into the corner and its arrow floats in it with breath */}
-                      <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-white" />
-                      <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#4285F4] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
-                    </Link>
-                  ))}
+                <div className="rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-8">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {area.cards.map((card) => (
+                      <Link key={card.title} to={card.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                        <div className="flex h-[150px] items-center justify-center">
+                          <SpotIllustration subject={card.subject} className="h-24 w-24" />
+                        </div>
+                        <div className="flex flex-1 flex-col p-6 pb-16">
+                          <h4 className="text-[18px] font-semibold leading-[1.35] text-[#121317]">{card.title}</h4>
+                          <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{card.copy}</p>
+                        </div>
+                        <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -246,7 +249,7 @@ export default function CommunityPage() {
         </section>
 
         {/* MORE WAYS TO ENGAGE */}
-        <section id="more" className="scroll-mt-36 border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="more" data-section="03-more" className="scroll-mt-36 bg-[#f5f5f7] px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
@@ -256,18 +259,17 @@ export default function CommunityPage() {
                 Keep your journey moving with the product and the people around it.
               </p>
             </div>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {MORE.map((item) => (
-                <Link key={item.title} to={item.to} className="group relative flex h-full flex-col overflow-hidden rounded-2xl g-card bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                  <div className="flex h-[160px] items-center justify-center" style={{ backgroundColor: item.tint }}>
+                <Link key={item.title} to={item.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
+                  <div className="flex h-[160px] items-center justify-center">
                     <SpotIllustration subject={item.subject} className="h-24 w-24" />
                   </div>
-                  <div className="flex flex-1 flex-col p-6 pb-14">
+                  <div className="flex flex-1 flex-col p-6 pb-16">
                     <h3 className="text-[20px] font-medium leading-[1.3] text-[#121317]">{item.title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.6] text-[#5f6368]">{item.copy}</p>
                   </div>
-                  <div aria-hidden="true" className="absolute bottom-0 right-0 h-[56px] w-[92px] rounded-tl-[20px] bg-[#f8f9fa]" />
-                  <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 text-[#4285F4] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" /></div>
+                  <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
                 </Link>
               ))}
             </div>
@@ -275,7 +277,7 @@ export default function CommunityPage() {
         </section>
 
         {/* FAQ — the reference's accordion with circular controls */}
-        <section id="faq" className="scroll-mt-36 px-6 py-24 lg:py-32 sm:px-8 lg:px-10 lg:py-32">
+        <section id="faq" data-section="04-faq" className="scroll-mt-36 px-6 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[840px]">
             <h2 className="text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
               Have questions? We've got answers.
@@ -285,7 +287,7 @@ export default function CommunityPage() {
         </section>
 
         {/* CLOSING CTA */}
-        <section className="border-t border-[#dadce0] px-6 py-24 lg:py-32 text-center sm:px-8 lg:px-10 lg:py-32">
+        <section data-section="05-closing" className="bg-[#f5f5f7] px-6 text-center sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[720px]">
             <h2 className="text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]">
               Bring your class together.
@@ -294,11 +296,12 @@ export default function CommunityPage() {
               Communities grow around real learning. Start with the loop, and the space builds itself around it.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/register" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b57d0] px-8 text-[15px] font-medium text-white hover:bg-[#0842a0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+              <Link to="/register" className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto">
                 Get started
               </Link>
-              <Link to="/safety" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#dadce0] px-6 text-[15px] font-medium text-[#121317] transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
-                Read community safety <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              <Link to="/safety" className="group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4">
+                Read community safety
+                <ChevronIcon className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </Reveal>

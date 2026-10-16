@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { deliveryDependencies } from './launch-delivery-data.mjs';
 
 const dependencies = { P00: [], P01: ['P00'], P02: ['P00'], P03: ['P01', 'P02'], P04: ['P01', 'P03'], P05: ['P01', 'P04'], P06: ['P01', 'P03', 'P05'], P07: ['P01', 'P03', 'P04'], P08: ['P01'], P09: ['P02', 'P03'], P10: ['P00'], P11: ['P00', 'P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08', 'P09', 'P10'], P12: ['P11'] };
 const now = new Set(['SCOPE-01', 'SCOPE-03', 'SCOPE-04', 'SCOPE-06', 'DATA-01', 'DATA-02', 'PLAT-01']);
@@ -41,7 +42,7 @@ export function launchBacklog(markdown) {
       note: 'Now identifies the first queue, not simultaneous assignments or promised delivery dates. Re-estimate after the first durable slice. Track blockers separately from completion.' },
     syncPolicy: 'Search each stable sourceId label before creating; retain issue keys after every successful write. On an ambiguous create, search before retry. Never recreate an issue solely because scheduling failed.',
     totals: { issues: issues.length, locallyComplete: issues.filter(item => item.localComplete).length, openLaunch: issues.filter(item => !item.localComplete && item.phase !== 'LATER').length, later: issues.filter(item => item.phase === 'LATER').length },
-    phases: [...groups.values()], taskDependencies: [{ blocks: 'AI-11', blocked: 'AI-01' }, { blocks: 'AI-12', blocked: 'AI-09' }], issues };
+    phases: [...groups.values()], taskDependencies: deliveryDependencies, issues };
 }
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
