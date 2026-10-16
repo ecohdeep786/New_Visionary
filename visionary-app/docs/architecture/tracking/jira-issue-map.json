@@ -1,0 +1,1296 @@
+{
+  "schemaVersion": 1,
+  "site": "https://visionary-team.atlassian.net",
+  "project": {
+    "key": "KAN",
+    "name": "Team AGI",
+    "id": "10000",
+    "newProjectCreated": false
+  },
+  "source": {
+    "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+    "sha256": "480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff"
+  },
+  "verifiedAt": "2026-10-16T15:48:45Z",
+  "summary": {
+    "total": 138,
+    "epics": 15,
+    "tasks": 123,
+    "byStatus": {
+      "Done": 13,
+      "To Do": 119,
+      "Idea": 6
+    },
+    "nowTasks": [
+      "KAN-28",
+      "KAN-30",
+      "KAN-31",
+      "KAN-33",
+      "KAN-36",
+      "KAN-37",
+      "KAN-45"
+    ],
+    "dependencyLinks": 32,
+    "phaseDependencyLinks": 30,
+    "taskDependencyLinks": 2,
+    "paginationComplete": true,
+    "errors": []
+  },
+  "calendarDatesCommitted": false,
+  "workInProgressGuidance": 2,
+  "workInProgressEnforcedInJira": false,
+  "views": {
+    "all": "https://visionary-team.atlassian.net/jira/software/projects/KAN/list?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20%22visionary-launch%22%20ORDER%20BY%20key%20ASC",
+    "now": "https://visionary-team.atlassian.net/jira/software/projects/KAN/list?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20%22visionary-now%22%20AND%20issuetype%20!%3D%20Epic%20ORDER%20BY%20created%20ASC",
+    "next": "https://visionary-team.atlassian.net/jira/software/projects/KAN/list?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20%22visionary-next%22%20AND%20issuetype%20!%3D%20Epic%20ORDER%20BY%20created%20ASC",
+    "later": "https://visionary-team.atlassian.net/jira/software/projects/KAN/list?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20%22visionary-later%22%20AND%20issuetype%20!%3D%20Epic%20ORDER%20BY%20created%20ASC",
+    "complete": "https://visionary-team.atlassian.net/jira/software/projects/KAN/list?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20%22visionary-local-complete%22%20AND%20issuetype%20!%3D%20Epic%20ORDER%20BY%20created%20ASC"
+  },
+  "epics": {
+    "FOUNDATION": "KAN-1",
+    "P00": "KAN-2",
+    "P01": "KAN-3",
+    "P02": "KAN-4",
+    "P03": "KAN-5",
+    "P04": "KAN-6",
+    "P05": "KAN-7",
+    "P06": "KAN-8",
+    "P07": "KAN-9",
+    "P08": "KAN-10",
+    "P09": "KAN-11",
+    "P10": "KAN-12",
+    "P11": "KAN-13",
+    "P12": "KAN-14",
+    "LATER": "KAN-15"
+  },
+  "issues": {
+    "DONE-01": {
+      "key": "KAN-16",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-16"
+    },
+    "DONE-02": {
+      "key": "KAN-17",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-17"
+    },
+    "DONE-03": {
+      "key": "KAN-18",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-18"
+    },
+    "DONE-04": {
+      "key": "KAN-19",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-19"
+    },
+    "DONE-05": {
+      "key": "KAN-20",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-20"
+    },
+    "DONE-06": {
+      "key": "KAN-21",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-21"
+    },
+    "DONE-07": {
+      "key": "KAN-22",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-22"
+    },
+    "DONE-08": {
+      "key": "KAN-23",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-23"
+    },
+    "DONE-09": {
+      "key": "KAN-24",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-24"
+    },
+    "DONE-10": {
+      "key": "KAN-25",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-25"
+    },
+    "DONE-11": {
+      "key": "KAN-26",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-26"
+    },
+    "DONE-12": {
+      "key": "KAN-27",
+      "type": "Task",
+      "parent": "KAN-1",
+      "status": "Done",
+      "queue": "Recorded foundation",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-27"
+    },
+    "SCOPE-01": {
+      "key": "KAN-28",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-28"
+    },
+    "SCOPE-02": {
+      "key": "KAN-29",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-29"
+    },
+    "SCOPE-03": {
+      "key": "KAN-30",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-30"
+    },
+    "SCOPE-04": {
+      "key": "KAN-31",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-31"
+    },
+    "SCOPE-05": {
+      "key": "KAN-32",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-32"
+    },
+    "SCOPE-06": {
+      "key": "KAN-33",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-33"
+    },
+    "SCOPE-07": {
+      "key": "KAN-34",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-34"
+    },
+    "SCOPE-08": {
+      "key": "KAN-35",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-35"
+    },
+    "DATA-01": {
+      "key": "KAN-36",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-36"
+    },
+    "DATA-02": {
+      "key": "KAN-37",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-37"
+    },
+    "DATA-03": {
+      "key": "KAN-38",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-38"
+    },
+    "DATA-04": {
+      "key": "KAN-39",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-39"
+    },
+    "DATA-05": {
+      "key": "KAN-40",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-40"
+    },
+    "DATA-06": {
+      "key": "KAN-41",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-41"
+    },
+    "DATA-07": {
+      "key": "KAN-42",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-42"
+    },
+    "DATA-08": {
+      "key": "KAN-43",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-43"
+    },
+    "DATA-09": {
+      "key": "KAN-44",
+      "type": "Task",
+      "parent": "KAN-3",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-44"
+    },
+    "PLAT-01": {
+      "key": "KAN-45",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Now",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-45"
+    },
+    "PLAT-02": {
+      "key": "KAN-46",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-46"
+    },
+    "PLAT-03": {
+      "key": "KAN-47",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-47"
+    },
+    "PLAT-04": {
+      "key": "KAN-48",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-48"
+    },
+    "PLAT-05": {
+      "key": "KAN-49",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-49"
+    },
+    "PLAT-06": {
+      "key": "KAN-50",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-50"
+    },
+    "PLAT-07": {
+      "key": "KAN-51",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-51"
+    },
+    "PLAT-08": {
+      "key": "KAN-52",
+      "type": "Task",
+      "parent": "KAN-4",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-52"
+    },
+    "JOB-01": {
+      "key": "KAN-53",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-53"
+    },
+    "JOB-02": {
+      "key": "KAN-54",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-54"
+    },
+    "JOB-03": {
+      "key": "KAN-55",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-55"
+    },
+    "FILE-01": {
+      "key": "KAN-56",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-56"
+    },
+    "FILE-02": {
+      "key": "KAN-57",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-57"
+    },
+    "FILE-03": {
+      "key": "KAN-58",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-58"
+    },
+    "FILE-04": {
+      "key": "KAN-59",
+      "type": "Task",
+      "parent": "KAN-5",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-59"
+    },
+    "CONTENT-01": {
+      "key": "KAN-60",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-60"
+    },
+    "CONTENT-02": {
+      "key": "KAN-61",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-61"
+    },
+    "CONTENT-03": {
+      "key": "KAN-62",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-62"
+    },
+    "CONTENT-04": {
+      "key": "KAN-63",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-63"
+    },
+    "CONTENT-05": {
+      "key": "KAN-64",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-64"
+    },
+    "CONTENT-06": {
+      "key": "KAN-65",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-65"
+    },
+    "CONTENT-07": {
+      "key": "KAN-66",
+      "type": "Task",
+      "parent": "KAN-6",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-66"
+    },
+    "LEARN-01": {
+      "key": "KAN-67",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-67"
+    },
+    "LEARN-02": {
+      "key": "KAN-68",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-68"
+    },
+    "LEARN-03": {
+      "key": "KAN-69",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-69"
+    },
+    "LEARN-04": {
+      "key": "KAN-70",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-70"
+    },
+    "LEARN-05": {
+      "key": "KAN-71",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-71"
+    },
+    "LEARN-06": {
+      "key": "KAN-72",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-72"
+    },
+    "LEARN-07": {
+      "key": "KAN-73",
+      "type": "Task",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-73"
+    },
+    "LEARN-08": {
+      "key": "KAN-74",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-74"
+    },
+    "BUILD-01": {
+      "key": "KAN-75",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-75"
+    },
+    "BUILD-02": {
+      "key": "KAN-76",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-76"
+    },
+    "BUILD-03": {
+      "key": "KAN-77",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-77"
+    },
+    "BUILD-04": {
+      "key": "KAN-78",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-78"
+    },
+    "BUILD-05": {
+      "key": "KAN-79",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-79"
+    },
+    "BUILD-06": {
+      "key": "KAN-80",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-80"
+    },
+    "BUILD-07": {
+      "key": "KAN-81",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-81"
+    },
+    "BUILD-08": {
+      "key": "KAN-82",
+      "type": "Task",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-82"
+    },
+    "AI-01": {
+      "key": "KAN-83",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-83"
+    },
+    "AI-02": {
+      "key": "KAN-84",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-84"
+    },
+    "AI-03": {
+      "key": "KAN-85",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-85"
+    },
+    "AI-04": {
+      "key": "KAN-86",
+      "type": "Bug",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-86"
+    },
+    "AI-05": {
+      "key": "KAN-87",
+      "type": "Bug",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-87"
+    },
+    "AI-06": {
+      "key": "KAN-88",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-88"
+    },
+    "AI-07": {
+      "key": "KAN-89",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-89"
+    },
+    "AI-08": {
+      "key": "KAN-90",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-90"
+    },
+    "AI-09": {
+      "key": "KAN-91",
+      "type": "Bug",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-91"
+    },
+    "AI-10": {
+      "key": "KAN-92",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-92"
+    },
+    "ROLE-01": {
+      "key": "KAN-93",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-93"
+    },
+    "ROLE-02": {
+      "key": "KAN-94",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-94"
+    },
+    "ROLE-03": {
+      "key": "KAN-95",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-95"
+    },
+    "ROLE-04": {
+      "key": "KAN-96",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-96"
+    },
+    "ROLE-05": {
+      "key": "KAN-97",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-97"
+    },
+    "ROLE-06": {
+      "key": "KAN-98",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-98"
+    },
+    "ROLE-07": {
+      "key": "KAN-99",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-99"
+    },
+    "ROLE-08": {
+      "key": "KAN-100",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-100"
+    },
+    "ROLE-09": {
+      "key": "KAN-101",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-101"
+    },
+    "BILL-01": {
+      "key": "KAN-102",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-102"
+    },
+    "BILL-02": {
+      "key": "KAN-103",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-103"
+    },
+    "BILL-03": {
+      "key": "KAN-104",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-104"
+    },
+    "BILL-04": {
+      "key": "KAN-105",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-105"
+    },
+    "BILL-05": {
+      "key": "KAN-106",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-106"
+    },
+    "BILL-06": {
+      "key": "KAN-107",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-107"
+    },
+    "BILL-07": {
+      "key": "KAN-108",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-108"
+    },
+    "BILL-08": {
+      "key": "KAN-109",
+      "type": "Task",
+      "parent": "KAN-11",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-109"
+    },
+    "PRIV-01": {
+      "key": "KAN-110",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-110"
+    },
+    "PRIV-02": {
+      "key": "KAN-111",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-111"
+    },
+    "PRIV-03": {
+      "key": "KAN-112",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-112"
+    },
+    "PRIV-04": {
+      "key": "KAN-113",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-113"
+    },
+    "PRIV-05": {
+      "key": "KAN-114",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-114"
+    },
+    "PRIV-06": {
+      "key": "KAN-115",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-115"
+    },
+    "PRIV-07": {
+      "key": "KAN-116",
+      "type": "Task",
+      "parent": "KAN-12",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-116"
+    },
+    "ACCEPT-01": {
+      "key": "KAN-117",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-117"
+    },
+    "ACCEPT-02": {
+      "key": "KAN-118",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-118"
+    },
+    "ACCEPT-03": {
+      "key": "KAN-119",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-119"
+    },
+    "ACCEPT-04": {
+      "key": "KAN-120",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-120"
+    },
+    "ACCEPT-05": {
+      "key": "KAN-121",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-121"
+    },
+    "ACCEPT-06": {
+      "key": "KAN-122",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-122"
+    },
+    "ACCEPT-07": {
+      "key": "KAN-123",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-123"
+    },
+    "RELEASE-01": {
+      "key": "KAN-124",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-124"
+    },
+    "RELEASE-02": {
+      "key": "KAN-125",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-125"
+    },
+    "RELEASE-03": {
+      "key": "KAN-126",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-126"
+    },
+    "RELEASE-04": {
+      "key": "KAN-127",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-127"
+    },
+    "RELEASE-05": {
+      "key": "KAN-128",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-128"
+    },
+    "RELEASE-06": {
+      "key": "KAN-129",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-129"
+    },
+    "RELEASE-07": {
+      "key": "KAN-130",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-130"
+    },
+    "RELEASE-08": {
+      "key": "KAN-131",
+      "type": "Task",
+      "parent": "KAN-14",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-131"
+    },
+    "LATER-01": {
+      "key": "KAN-132",
+      "type": "Task",
+      "parent": "KAN-15",
+      "status": "Idea",
+      "queue": "Later",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-132"
+    },
+    "LATER-02": {
+      "key": "KAN-133",
+      "type": "Task",
+      "parent": "KAN-15",
+      "status": "Idea",
+      "queue": "Later",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-133"
+    },
+    "LATER-03": {
+      "key": "KAN-134",
+      "type": "Task",
+      "parent": "KAN-15",
+      "status": "Idea",
+      "queue": "Later",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-134"
+    },
+    "LATER-04": {
+      "key": "KAN-135",
+      "type": "Task",
+      "parent": "KAN-15",
+      "status": "Idea",
+      "queue": "Later",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-135"
+    },
+    "LATER-05": {
+      "key": "KAN-136",
+      "type": "Task",
+      "parent": "KAN-15",
+      "status": "Idea",
+      "queue": "Later",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-136"
+    },
+    "AI-11": {
+      "key": "KAN-137",
+      "type": "Bug",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-137"
+    },
+    "AI-12": {
+      "key": "KAN-138",
+      "type": "Bug",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-138"
+    }
+  },
+  "dependencies": [
+    {
+      "fromPhase": "P00",
+      "toPhase": "P01",
+      "blocks": "KAN-2",
+      "blocked": "KAN-3"
+    },
+    {
+      "fromPhase": "P00",
+      "toPhase": "P02",
+      "blocks": "KAN-2",
+      "blocked": "KAN-4"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P03",
+      "blocks": "KAN-3",
+      "blocked": "KAN-5"
+    },
+    {
+      "fromPhase": "P02",
+      "toPhase": "P03",
+      "blocks": "KAN-4",
+      "blocked": "KAN-5"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P04",
+      "blocks": "KAN-3",
+      "blocked": "KAN-6"
+    },
+    {
+      "fromPhase": "P03",
+      "toPhase": "P04",
+      "blocks": "KAN-5",
+      "blocked": "KAN-6"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P05",
+      "blocks": "KAN-3",
+      "blocked": "KAN-7"
+    },
+    {
+      "fromPhase": "P04",
+      "toPhase": "P05",
+      "blocks": "KAN-6",
+      "blocked": "KAN-7"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P06",
+      "blocks": "KAN-3",
+      "blocked": "KAN-8"
+    },
+    {
+      "fromPhase": "P03",
+      "toPhase": "P06",
+      "blocks": "KAN-5",
+      "blocked": "KAN-8"
+    },
+    {
+      "fromPhase": "P05",
+      "toPhase": "P06",
+      "blocks": "KAN-7",
+      "blocked": "KAN-8"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P07",
+      "blocks": "KAN-3",
+      "blocked": "KAN-9"
+    },
+    {
+      "fromPhase": "P03",
+      "toPhase": "P07",
+      "blocks": "KAN-5",
+      "blocked": "KAN-9"
+    },
+    {
+      "fromPhase": "P04",
+      "toPhase": "P07",
+      "blocks": "KAN-6",
+      "blocked": "KAN-9"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P08",
+      "blocks": "KAN-3",
+      "blocked": "KAN-10"
+    },
+    {
+      "fromPhase": "P02",
+      "toPhase": "P09",
+      "blocks": "KAN-4",
+      "blocked": "KAN-11"
+    },
+    {
+      "fromPhase": "P03",
+      "toPhase": "P09",
+      "blocks": "KAN-5",
+      "blocked": "KAN-11"
+    },
+    {
+      "fromPhase": "P00",
+      "toPhase": "P10",
+      "blocks": "KAN-2",
+      "blocked": "KAN-12"
+    },
+    {
+      "fromPhase": "P00",
+      "toPhase": "P11",
+      "blocks": "KAN-2",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P01",
+      "toPhase": "P11",
+      "blocks": "KAN-3",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P02",
+      "toPhase": "P11",
+      "blocks": "KAN-4",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P03",
+      "toPhase": "P11",
+      "blocks": "KAN-5",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P04",
+      "toPhase": "P11",
+      "blocks": "KAN-6",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P05",
+      "toPhase": "P11",
+      "blocks": "KAN-7",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P06",
+      "toPhase": "P11",
+      "blocks": "KAN-8",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P07",
+      "toPhase": "P11",
+      "blocks": "KAN-9",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P08",
+      "toPhase": "P11",
+      "blocks": "KAN-10",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P09",
+      "toPhase": "P11",
+      "blocks": "KAN-11",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P10",
+      "toPhase": "P11",
+      "blocks": "KAN-12",
+      "blocked": "KAN-13"
+    },
+    {
+      "fromPhase": "P11",
+      "toPhase": "P12",
+      "blocks": "KAN-13",
+      "blocked": "KAN-14"
+    }
+  ],
+  "sourceHistory": [
+    {
+      "decision": "D-083",
+      "verifiedAt": "2026-10-16T15:25:07Z",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "f539c3bd9ae88919bb96a3be26eab69da2ef24985a64db8c1ce43a074b99b916"
+      },
+      "summary": {
+        "total": 136,
+        "epics": 15,
+        "tasks": 121,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 117,
+          "Idea": 6
+        },
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "dependencyLinks": 30,
+        "paginationComplete": true,
+        "errors": []
+      }
+    }
+  ],
+  "taskDependencies": [
+    {
+      "sourceId": "AI-11",
+      "blockedSourceId": "AI-01",
+      "blocks": "KAN-137",
+      "blocked": "KAN-83"
+    },
+    {
+      "sourceId": "AI-12",
+      "blockedSourceId": "AI-09",
+      "blocks": "KAN-138",
+      "blocked": "KAN-91"
+    }
+  ],
+  "acceptanceReview": {
+    "decision": "D-084",
+    "path": "docs/architecture/BACKEND_ML_JIRA_REVIEW.md",
+    "updatedKeys": [
+      "KAN-83",
+      "KAN-84",
+      "KAN-85",
+      "KAN-86",
+      "KAN-88",
+      "KAN-90",
+      "KAN-91",
+      "KAN-127",
+      "KAN-135"
+    ],
+    "noNewCompletion": true
+  }
+}

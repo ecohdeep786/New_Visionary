@@ -26,6 +26,8 @@ visionary_accounts/{firebaseUid}                 user document
   |
   +-- devices/{deviceSessionHash}              browser-session metadata/lifecycle
   +-- authEvents/{eventId}                     retained sign-in/out history
+  +-- feedback/{commandId}                     D-082 immutable submitted rating/note
+  +-- feedbackState/admission                  bounded server-only hourly counter
 ```
 
 Identity metadata includes UID, email/verification, provider/provider IDs, last verification time and optional name/phone/photo claims received from Firebase. Firebase Authentication remains the credential authority. Unverified registration remains Auth-only until verified product sign-in; it creates no product session or payment access.
@@ -49,8 +51,11 @@ Legacy `visionary_billing_test_accounts/{uid}` and its children remain retained 
 | `GET /api/account/overview` | UID, allowlisted identity/profile, onboarding state, effective billing and record links |
 | `GET /api/account/devices?limit=20&after={id}` | Owned browser sessions, current-session flag and active/expired/revoked state |
 | `GET /api/account/invoices?limit=20&after={id}` | Owned invoice history beyond the50-item cache |
+| `GET /api/account/feedback?limit=20&after={id}` | D-082 owned feedback receipts/notes; internal counters and fingerprints excluded |
 
 All require verified bound session/device cookies and matching `X-Visionary-Account`. Reads do not extend idle expiry. A supplied query UID/name cannot change ownership. Page sizes are1–50, ordered by document ID with a `nextCursor`; this is stable identity pagination rather than chronological ordering. Existing owner-only billing invoice detail/printing remains connected.
+
+D-082: `POST /api/account/feedback` additionally requires Origin/CSRF and a bounded versioned command. It atomically saves a UID-owned immutable feedback record plus hourly admission, recovering the same receipt on exact retry. [Feedback v1](FEEDBACK_CONTRACT.md) specifies schema, privacy/recovery and remaining hosted/export/operator acceptance; it does not confer training consent or permission to inspect another account.
 
 A Family beneficiary reads their own benefits and invoice documents, not the payer's invoices or other members' activity. No staff role, cross-user admin endpoint or expanded guardian/classroom permission is introduced. The founder can inspect the hierarchy through existing authorized Firestore Console/IAM access. Client Firestore rules remain deny-all; backend authorization/projections govern responses.
 

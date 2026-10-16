@@ -2,6 +2,8 @@
 
 Updated15 October2026, D-075. These are observed current integration boundaries, not newly implemented APIs. The founder authorized backend/ML work; the [source audit](../docs/architecture/discussions/backend-ml-audit.md) and [100,000-MAU design](../docs/architecture/discussions/system-design.md) now guide the next slices.
 
+16 October2026, D-082: [account feedback v1](FEEDBACK_CONTRACT.md) is now implemented in the product runtime and connected frontend control. It uses verified UID-owned Firestore records; it does not connect the legacy ML feedback handler, grant operator access or complete the remaining support/privacy/hosted gates. The [execution handoff](../docs/architecture/IMPLEMENTATION_HANDOFF.md) records the fresh backend/ML review and next dependencies.
+
 Firebase Authentication, verified server/device sessions, profile/onboarding and canonical UID-owned Firestore account storage are connected locally. Razorpay test billing, invoices and Family billing benefits are connected through the same product runtime. See [auth](FIREBASE_AUTH_CONTRACT.md), [billing](PAYMENTS_CONTRACT.md) and [account storage](USER_ACCOUNT_STORAGE.md) for actual evidence and remaining hosted/provider gates. The old JWT/Prisma application remains an imported reference, not the current identity runtime.
 
 | Boundary | Product contract | Current implementation | Remaining integration work |

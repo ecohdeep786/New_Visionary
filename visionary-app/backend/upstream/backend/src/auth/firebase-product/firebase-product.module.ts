@@ -8,6 +8,8 @@ import { BillingService } from '../../billing/billing.service';
 import { BillingRepository } from '../../billing/billing.repository';
 import { RazorpayProvider } from '../../billing/razorpay.provider';
 import { AccountController } from './account.controller';
+import { FeedbackController } from '../../feedback/feedback.controller';
+import { FeedbackService } from '../../feedback/feedback.service';
 
-@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [FirebaseProductController, BillingController, AccountController], providers: [FirebaseProductService, BillingService, BillingRepository, RazorpayProvider] })
+@Module({ imports: [ConfigModule.forRoot({ isGlobal: true }), FirebaseAdminModule], controllers: [FirebaseProductController, BillingController, AccountController, FeedbackController], providers: [FirebaseProductService, BillingService, BillingRepository, RazorpayProvider, FeedbackService] })
 export class FirebaseProductModule {}

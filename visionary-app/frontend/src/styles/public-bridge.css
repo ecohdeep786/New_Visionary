@@ -90,6 +90,33 @@ main > section[data-section="02-problem"],
   border-top-color: transparent !important;
 }
 
+/* Pricing — its chapters ride one white ground: the persona strip, the
+   comparison table and the FAQ join without a seam (Apple's no-seam law).
+   The final CTA changes surface, so it keeps the whisper hairline. */
+.page-pricing main > section[data-section="02-persona"],
+.page-pricing main > section[data-section="03-compare"],
+.page-pricing main > section[data-section="04-faq"] {
+  border-top-color: transparent !important;
+}
+
+/* Download — the platform chapter follows the exempt hero on the same white
+   ground; the join is invisible (Apple's no-seam law). The sync band changes
+   surface, so it keeps the whisper hairline. */
+.page-download main > section[data-section="02-platforms"] {
+  border-top-color: transparent !important;
+}
+
+/* About — every chapter rides the white ground: mission, journey, impact,
+   roles and explore join without a seam (Apple's no-seam law). The final CTA
+   changes surface, so it keeps the whisper hairline. */
+.page-about main > section[data-section="02-mission"],
+.page-about main > section[data-section="03-journey"],
+.page-about main > section[data-section="04-impact"],
+.page-about main > section[data-section="05-roles"],
+.page-about main > section[data-section="06-explore"] {
+  border-top-color: transparent !important;
+}
+
 main > section[data-section="05-intelligence"]:not([data-surface="light"]),
 main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
   background: var(--scene-ink, #0a0d14) !important;

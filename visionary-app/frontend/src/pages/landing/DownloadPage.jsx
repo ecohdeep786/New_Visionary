@@ -7,16 +7,17 @@ import {
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#ffffff",
+  surface: "#f5f5f7",
   blue: "#4285F4",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
-  mist: "#dadce0",
+  mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
 
@@ -96,7 +97,7 @@ function DownloadHeroSection() {
     document.getElementById("platforms")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-24 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-24 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Download</p>
         <h1 className="mx-auto mt-4 max-w-[1080px] text-center font-normal tracking-[-0.045em] leading-[1.06] text-[48px] sm:text-[64px] lg:text-[76px]" style={{ color: COLORS.ink }}>
@@ -107,9 +108,10 @@ function DownloadHeroSection() {
         </p>
 
         {/* The choice — Web or App */}
-        <div className="mx-auto mt-14 grid w-full max-w-[880px] grid-cols-1 gap-6 sm:grid-cols-2">
-          <div className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-8 pb-20" style={{ borderColor: COLORS.mist }}>
-            <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+        <div className="mx-auto mt-12 w-full max-w-[880px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
+            <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
               <Globe className="h-5 w-5" strokeWidth={1.8} />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Continue on web</h2>
@@ -120,15 +122,14 @@ function DownloadHeroSection() {
             <div aria-hidden="true" className="absolute bottom-0 right-0 h-[72px] w-[220px] rounded-tl-[24px] bg-white" />
             <Link
               to="/register"
-              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
-              style={{ backgroundColor: COLORS.blue }}
+              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[15px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             >
               Open Visionary
             </Link>
           </div>
 
-          <div className="relative flex flex-col overflow-hidden rounded-[24px] border bg-white p-8 pb-20" style={{ borderColor: COLORS.mist }}>
-            <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+          <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-white p-8 pb-20">
+            <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
               <Download className="h-5 w-5" strokeWidth={1.8} />
             </span>
             <h2 className="mt-[calc(clamp(20px,2vw,26px)*1.2)] font-medium tracking-[0] leading-[1.15] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>Get the app</h2>
@@ -139,11 +140,11 @@ function DownloadHeroSection() {
             <button
               type="button"
               onClick={scrollToPlatforms}
-              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full border bg-white px-8 font-medium tracking-[0.24px] text-[15px] transition-colors hover:bg-[#121317]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-              style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+              className="absolute bottom-3 right-3 inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[15px] text-[#121317] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
             >
               See platforms
             </button>
+          </div>
           </div>
         </div>
       </FadeReveal>
@@ -156,7 +157,7 @@ function DownloadPlatformsSection() {
   const { ref, visible } = useRevealOnce();
   const detected = useDetectedPlatform();
   return (
-    <section ref={ref} id="platforms" className="relative scroll-mt-24 bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
+    <section ref={ref} id="platforms" data-section="02-platforms" className="relative scroll-mt-24 bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>Supported platforms</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Choose your platform.</h2>
@@ -169,25 +170,22 @@ function DownloadPlatformsSection() {
           )}
         </p>
 
-        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-12 w-full max-w-[1240px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {PLATFORMS.map((p) => {
             const isRecommended = detected === p.id;
             return (
               <div
                 key={p.id}
                 id={p.id}
-                className="relative flex flex-col scroll-mt-24 rounded-[24px] border bg-white p-7 transition-all duration-300"
-                style={{
-                  borderColor: isRecommended ? COLORS.blue : COLORS.mist,
-                  /*boxShadow: isRecommended ? "0 12px 32px rgba(66,133,244,0.14)" : "0 8px 24px rgba(60,64,67,0.06)",*/
-                }}
+                className="relative flex flex-col scroll-mt-24 rounded-[20px] bg-white p-7"
               >
                 {isRecommended && (
-                  <span className="absolute right-5 top-5 rounded-full px-3 py-1 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ backgroundColor: COLORS.blue, color: "#ffffff" }}>
+                  <span className="absolute right-5 top-5 rounded-full bg-[#121317] px-2.5 py-1 text-[12px] font-medium leading-none text-white">
                     Recommended
                   </span>
                 )}
-                <span className="flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+                <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
                   <p.Icon className="h-5 w-5" strokeWidth={1.8} />
                 </span>
                 <h3 className="mt-5 font-medium tracking-[0] leading-[1.15] text-[20px]" style={{ color: COLORS.ink }}>{p.name}</h3>
@@ -195,8 +193,7 @@ function DownloadPlatformsSection() {
                 {p.kind === "web" ? (
                   <Link
                     to={p.href}
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full px-6 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317]"
-                    style={{ backgroundColor: COLORS.blue }}
+                    className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-[#121317] px-6 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                   >
                     {p.action}
                   </Link>
@@ -206,8 +203,7 @@ function DownloadPlatformsSection() {
                     type="button"
                     aria-disabled="true"
                     title="Available at launch"
-                    className="mt-6 inline-flex h-11 items-center justify-center rounded-full border px-6 font-medium tracking-[0.24px] text-[14px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] opacity-60"
-                    style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
+                    className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-6 font-medium tracking-[0.24px] text-[14px] text-[#9AA0A6] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
                   >
                     {p.action}
                   </button>
@@ -215,6 +211,7 @@ function DownloadPlatformsSection() {
               </div>
             );
           })}
+          </div>
         </div>
       </FadeReveal>
     </section>
@@ -240,13 +237,13 @@ function DownloadNotifySection() {
   return (
     <section ref={ref} className="relative bg-white px-6 pb-24" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
-        <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[24px] border p-8 text-center" style={{ borderColor: COLORS.mist }}>
+        <div className="mx-auto flex w-full max-w-[680px] flex-col items-center rounded-[30px] bg-[#f5f5f7] p-8 text-center lg:p-10">
           <p className="font-medium tracking-[0] leading-[1.25] text-[22px]" style={{ color: COLORS.ink }}>Be first in line at launch.</p>
           <p className="mt-2 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>
             Native apps are in final testing. We'll email you the moment your platform is ready.
           </p>
           {status === "success" ? (
-            <p role="status" className="mt-6 w-full rounded-[14px] border px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>
+            <p role="status" className="mt-6 w-full rounded-[14px] bg-white px-5 py-4 font-normal tracking-[0] text-[14px]" style={{ color: COLORS.ink }}>
               Your email app opened a request for <span className="font-medium">{email}</span>. Review it and send when ready.
             </p>
           ) : (
@@ -269,8 +266,7 @@ function DownloadNotifySection() {
                 />
                 <button
                   type="submit"
-                  className="inline-flex h-12 shrink-0 items-center justify-center rounded-full px-8 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#121317] disabled:opacity-70"
-                  style={{ backgroundColor: COLORS.blue }}
+                  className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-[#121317] px-8 font-medium tracking-[0.24px] text-[14px] text-white transition-all hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:opacity-70"
                 >
                   Prepare email request
                 </button>
@@ -297,7 +293,7 @@ function DownloadSyncSection() {
     return () => clearInterval(id);
   }, []);
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
+    <section ref={ref} data-section="03-sync" className="relative px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <p className={`mx-auto max-w-[1400px] text-center font-normal tracking-[0] leading-[1.075] text-[clamp(24px,2.78vw,40px)] transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`} style={{ color: COLORS.ink }}>
         Start on one device.{" "}
         <span key={index} className="hero-fade-up inline-block capitalize" style={{ color: COLORS.blue }}>{SYNC_WORDS[index]}</span>{" "}
@@ -314,17 +310,19 @@ function DownloadSyncSection() {
 function DownloadRequirementsSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="04-requirements" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <p className="text-center font-normal uppercase tracking-[0.43px] leading-[14px] text-[12px]" style={{ color: COLORS.grey }}>System requirements</p>
         <h2 className="text-center font-normal tracking-[-0.025em] leading-[1.15] text-[30px] sm:text-[36px] lg:text-[42px]" style={{ color: COLORS.ink, marginTop: "calc(var(--fs-h2) * 0.29)" }}>What you need to run Visionary.</h2>
-        <div className="mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-12 w-full max-w-[1240px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {REQUIREMENTS.map((r) => (
-            <div key={r.platform} className="rounded-[24px] border bg-white p-7" style={{ borderColor: COLORS.mist }}>
+            <div key={r.platform} className="rounded-[20px] bg-white p-7">
               <h3 className="font-medium tracking-[0] leading-[1.15] text-[18px]" style={{ color: COLORS.ink }}>{r.platform}</h3>
               <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{r.req}</p>
             </div>
           ))}
+          </div>
         </div>
       </FadeReveal>
     </section>
@@ -335,7 +333,7 @@ function DownloadRequirementsSection() {
 function DownloadTrustBand() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 pb-24" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
+    <section ref={ref} className="relative px-6 py-12" style={{ backgroundColor: COLORS.white, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto flex w-fit max-w-full flex-col items-center gap-4 rounded-full px-10 py-6 sm:flex-row" style={{ backgroundColor: COLORS.surface }}>
           <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} style={{ color: COLORS.blue }} />
@@ -352,30 +350,23 @@ function DownloadTrustBand() {
 function DownloadCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
+    <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>
           Still deciding? The web is one click away.
         </h2>
-        <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          No install, no waiting. Open Visionary in your browser and pick up the app whenever you're ready.
-        </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            to="/register"
-            className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-            style={{ backgroundColor: COLORS.blue }}
-          >
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Continue on web
           </Link>
-          <Link
-            to="/how-it-works"
-            className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5"
-            style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}
-          >
+          <Link to="/how-it-works" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See how it works
+            <ChevronIcon className="h-4 w-4" />
           </Link>
         </div>
+        <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
+          No install, no waiting. Pick up the app whenever you're ready.
+        </p>
       </div>
     </section>
   );
@@ -397,7 +388,7 @@ export default function DownloadPage() {
 
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-download min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Download" />
       <main id="main">

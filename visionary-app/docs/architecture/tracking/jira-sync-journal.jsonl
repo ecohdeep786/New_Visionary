@@ -1,0 +1,313 @@
+{"kind":"sync","version":1,"site":"https://visionary-team.atlassian.net","projectKey":"KAN","projectName":"Team AGI","source":"docs/architecture/BACKEND_LAUNCH_CHECKLIST.md","sourceSha256":"f539c3bd9ae88919bb96a3be26eab69da2ef24985a64db8c1ce43a074b99b916"}
+{"kind":"epic","sourceId":"FOUNDATION","key":"KAN-1"}
+{"kind":"status","key":"KAN-1","status":"Done"}
+{"kind":"epic","sourceId":"P00","key":"KAN-2"}
+{"kind":"status","key":"KAN-2","status":"To Do"}
+{"kind":"epic","sourceId":"P01","key":"KAN-3"}
+{"kind":"status","key":"KAN-3","status":"To Do"}
+{"kind":"epic","sourceId":"P02","key":"KAN-4"}
+{"kind":"status","key":"KAN-4","status":"To Do"}
+{"kind":"epic","sourceId":"P03","key":"KAN-5"}
+{"kind":"status","key":"KAN-5","status":"To Do"}
+{"kind":"epic","sourceId":"P04","key":"KAN-6"}
+{"kind":"status","key":"KAN-6","status":"To Do"}
+{"kind":"epic","sourceId":"P05","key":"KAN-7"}
+{"kind":"status","key":"KAN-7","status":"To Do"}
+{"kind":"epic","sourceId":"P06","key":"KAN-8"}
+{"kind":"status","key":"KAN-8","status":"To Do"}
+{"kind":"epic","sourceId":"P07","key":"KAN-9"}
+{"kind":"status","key":"KAN-9","status":"To Do"}
+{"kind":"epic","sourceId":"P08","key":"KAN-10"}
+{"kind":"status","key":"KAN-10","status":"To Do"}
+{"kind":"epic","sourceId":"P09","key":"KAN-11"}
+{"kind":"status","key":"KAN-11","status":"To Do"}
+{"kind":"epic","sourceId":"P10","key":"KAN-12"}
+{"kind":"status","key":"KAN-12","status":"To Do"}
+{"kind":"epic","sourceId":"P11","key":"KAN-13"}
+{"kind":"status","key":"KAN-13","status":"To Do"}
+{"kind":"epic","sourceId":"P12","key":"KAN-14"}
+{"kind":"status","key":"KAN-14","status":"To Do"}
+{"kind":"epic","sourceId":"LATER","key":"KAN-15"}
+{"kind":"issue","sourceId":"DONE-01","phase":"FOUNDATION","key":"KAN-16","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-16","status":"Done"}
+{"kind":"issue","sourceId":"DONE-02","phase":"FOUNDATION","key":"KAN-17","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-17","status":"Done"}
+{"kind":"issue","sourceId":"DONE-03","phase":"FOUNDATION","key":"KAN-18","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-18","status":"Done"}
+{"kind":"issue","sourceId":"DONE-04","phase":"FOUNDATION","key":"KAN-19","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-19","status":"Done"}
+{"kind":"issue","sourceId":"DONE-05","phase":"FOUNDATION","key":"KAN-20","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-20","status":"Done"}
+{"kind":"issue","sourceId":"DONE-06","phase":"FOUNDATION","key":"KAN-21","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-21","status":"Done"}
+{"kind":"issue","sourceId":"DONE-07","phase":"FOUNDATION","key":"KAN-22","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-22","status":"Done"}
+{"kind":"issue","sourceId":"DONE-08","phase":"FOUNDATION","key":"KAN-23","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-23","status":"Done"}
+{"kind":"issue","sourceId":"DONE-09","phase":"FOUNDATION","key":"KAN-24","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-24","status":"Done"}
+{"kind":"issue","sourceId":"DONE-10","phase":"FOUNDATION","key":"KAN-25","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-25","status":"Done"}
+{"kind":"issue","sourceId":"DONE-11","phase":"FOUNDATION","key":"KAN-26","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-26","status":"Done"}
+{"kind":"issue","sourceId":"DONE-12","phase":"FOUNDATION","key":"KAN-27","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-27","status":"Done"}
+{"kind":"issue","sourceId":"SCOPE-01","phase":"P00","key":"KAN-28","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-28","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-02","phase":"P00","key":"KAN-29","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-29","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-03","phase":"P00","key":"KAN-30","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-30","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-04","phase":"P00","key":"KAN-31","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-31","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-05","phase":"P00","key":"KAN-32","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-32","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-06","phase":"P00","key":"KAN-33","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-33","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-07","phase":"P00","key":"KAN-34","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-34","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-08","phase":"P00","key":"KAN-35","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-35","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-01","phase":"P01","key":"KAN-36","parent":"KAN-3","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-36","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-02","phase":"P01","key":"KAN-37","parent":"KAN-3","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-37","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-03","phase":"P01","key":"KAN-38","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-38","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-04","phase":"P01","key":"KAN-39","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-39","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-05","phase":"P01","key":"KAN-40","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-40","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-06","phase":"P01","key":"KAN-41","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-41","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-07","phase":"P01","key":"KAN-42","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-42","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-08","phase":"P01","key":"KAN-43","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-43","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-09","phase":"P01","key":"KAN-44","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-44","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-01","phase":"P02","key":"KAN-45","parent":"KAN-4","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-45","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-02","phase":"P02","key":"KAN-46","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-46","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-03","phase":"P02","key":"KAN-47","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-47","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-04","phase":"P02","key":"KAN-48","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-48","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-05","phase":"P02","key":"KAN-49","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-49","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-06","phase":"P02","key":"KAN-50","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-50","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-07","phase":"P02","key":"KAN-51","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-51","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-08","phase":"P02","key":"KAN-52","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-52","status":"To Do"}
+{"kind":"issue","sourceId":"JOB-01","phase":"P03","key":"KAN-53","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-53","status":"To Do"}
+{"kind":"issue","sourceId":"JOB-02","phase":"P03","key":"KAN-54","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-54","status":"To Do"}
+{"kind":"issue","sourceId":"JOB-03","phase":"P03","key":"KAN-55","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-55","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-01","phase":"P03","key":"KAN-56","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-56","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-02","phase":"P03","key":"KAN-57","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-57","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-03","phase":"P03","key":"KAN-58","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-58","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-04","phase":"P03","key":"KAN-59","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-59","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-01","phase":"P04","key":"KAN-60","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-60","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-02","phase":"P04","key":"KAN-61","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-61","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-03","phase":"P04","key":"KAN-62","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-62","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-04","phase":"P04","key":"KAN-63","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-63","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-05","phase":"P04","key":"KAN-64","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-64","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-06","phase":"P04","key":"KAN-65","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-65","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-07","phase":"P04","key":"KAN-66","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-66","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-01","phase":"P05","key":"KAN-67","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-67","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-02","phase":"P05","key":"KAN-68","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-68","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-03","phase":"P05","key":"KAN-69","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-69","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-04","phase":"P05","key":"KAN-70","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-70","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-05","phase":"P05","key":"KAN-71","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-71","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-06","phase":"P05","key":"KAN-72","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-72","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-07","phase":"P05","key":"KAN-73","parent":"KAN-7","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-73","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-08","phase":"P05","key":"KAN-74","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-74","status":"To Do","recoveredAfterTimeout":true}
+{"kind":"issue","sourceId":"BUILD-01","phase":"P06","key":"KAN-75","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-75","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-02","phase":"P06","key":"KAN-76","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-76","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-03","phase":"P06","key":"KAN-77","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-77","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-04","phase":"P06","key":"KAN-78","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-78","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-05","phase":"P06","key":"KAN-79","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-79","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-06","phase":"P06","key":"KAN-80","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-80","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-07","phase":"P06","key":"KAN-81","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-81","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-08","phase":"P06","key":"KAN-82","parent":"KAN-8","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-82","status":"To Do"}
+{"kind":"issue","sourceId":"AI-01","phase":"P07","key":"KAN-83","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-83","status":"To Do"}
+{"kind":"issue","sourceId":"AI-02","phase":"P07","key":"KAN-84","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-84","status":"To Do"}
+{"kind":"issue","sourceId":"AI-03","phase":"P07","key":"KAN-85","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-85","status":"To Do"}
+{"kind":"issue","sourceId":"AI-04","phase":"P07","key":"KAN-86","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-86","status":"To Do"}
+{"kind":"issue","sourceId":"AI-05","phase":"P07","key":"KAN-87","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-87","status":"To Do"}
+{"kind":"issue","sourceId":"AI-06","phase":"P07","key":"KAN-88","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-88","status":"To Do"}
+{"kind":"issue","sourceId":"AI-07","phase":"P07","key":"KAN-89","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-89","status":"To Do"}
+{"kind":"issue","sourceId":"AI-08","phase":"P07","key":"KAN-90","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-90","status":"To Do"}
+{"kind":"issue","sourceId":"AI-09","phase":"P07","key":"KAN-91","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-91","status":"To Do"}
+{"kind":"issue","sourceId":"AI-10","phase":"P07","key":"KAN-92","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-92","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-01","phase":"P08","key":"KAN-93","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-93","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-02","phase":"P08","key":"KAN-94","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-94","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-03","phase":"P08","key":"KAN-95","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-95","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-04","phase":"P08","key":"KAN-96","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-96","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-05","phase":"P08","key":"KAN-97","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-97","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-06","phase":"P08","key":"KAN-98","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-98","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-07","phase":"P08","key":"KAN-99","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-99","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-08","phase":"P08","key":"KAN-100","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-100","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-09","phase":"P08","key":"KAN-101","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-101","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-01","phase":"P09","key":"KAN-102","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-102","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-02","phase":"P09","key":"KAN-103","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-103","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-03","phase":"P09","key":"KAN-104","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-104","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-04","phase":"P09","key":"KAN-105","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-105","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-05","phase":"P09","key":"KAN-106","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-106","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-06","phase":"P09","key":"KAN-107","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-107","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-07","phase":"P09","key":"KAN-108","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-108","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-08","phase":"P09","key":"KAN-109","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-109","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-01","phase":"P10","key":"KAN-110","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-110","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-02","phase":"P10","key":"KAN-111","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-111","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-03","phase":"P10","key":"KAN-112","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-112","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-04","phase":"P10","key":"KAN-113","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-113","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-05","phase":"P10","key":"KAN-114","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-114","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-06","phase":"P10","key":"KAN-115","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-115","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-07","phase":"P10","key":"KAN-116","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-116","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-01","phase":"P11","key":"KAN-117","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-117","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-02","phase":"P11","key":"KAN-118","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-118","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-03","phase":"P11","key":"KAN-119","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-119","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-04","phase":"P11","key":"KAN-120","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-120","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-05","phase":"P11","key":"KAN-121","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-121","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-06","phase":"P11","key":"KAN-122","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-122","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-07","phase":"P11","key":"KAN-123","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-123","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-01","phase":"P12","key":"KAN-124","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-124","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-02","phase":"P12","key":"KAN-125","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-125","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-03","phase":"P12","key":"KAN-126","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-126","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-04","phase":"P12","key":"KAN-127","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-127","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-05","phase":"P12","key":"KAN-128","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-128","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-06","phase":"P12","key":"KAN-129","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-129","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-07","phase":"P12","key":"KAN-130","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-130","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-08","phase":"P12","key":"KAN-131","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-131","status":"To Do"}
+{"kind":"issue","sourceId":"LATER-01","phase":"LATER","key":"KAN-132","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-02","phase":"LATER","key":"KAN-133","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-03","phase":"LATER","key":"KAN-134","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-04","phase":"LATER","key":"KAN-135","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-05","phase":"LATER","key":"KAN-136","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P01","blocks":"KAN-2","blocked":"KAN-3"}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P02","blocks":"KAN-2","blocked":"KAN-4"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P03","blocks":"KAN-3","blocked":"KAN-5"}
+{"kind":"dependency","fromPhase":"P02","toPhase":"P03","blocks":"KAN-4","blocked":"KAN-5"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P04","blocks":"KAN-3","blocked":"KAN-6"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P04","blocks":"KAN-5","blocked":"KAN-6"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P05","blocks":"KAN-3","blocked":"KAN-7"}
+{"kind":"dependency","fromPhase":"P04","toPhase":"P05","blocks":"KAN-6","blocked":"KAN-7"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P06","blocks":"KAN-3","blocked":"KAN-8"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P06","blocks":"KAN-5","blocked":"KAN-8"}
+{"kind":"dependency","fromPhase":"P05","toPhase":"P06","blocks":"KAN-7","blocked":"KAN-8"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P07","blocks":"KAN-3","blocked":"KAN-9"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P07","blocks":"KAN-5","blocked":"KAN-9"}
+{"kind":"dependency","fromPhase":"P04","toPhase":"P07","blocks":"KAN-6","blocked":"KAN-9"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P08","blocks":"KAN-3","blocked":"KAN-10"}
+{"kind":"dependency","fromPhase":"P02","toPhase":"P09","blocks":"KAN-4","blocked":"KAN-11"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P09","blocks":"KAN-5","blocked":"KAN-11"}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P10","blocks":"KAN-2","blocked":"KAN-12"}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P11","blocks":"KAN-2","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P11","blocks":"KAN-3","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P02","toPhase":"P11","blocks":"KAN-4","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P11","blocks":"KAN-5","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P04","toPhase":"P11","blocks":"KAN-6","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P05","toPhase":"P11","blocks":"KAN-7","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P06","toPhase":"P11","blocks":"KAN-8","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P07","toPhase":"P11","blocks":"KAN-9","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P08","toPhase":"P11","blocks":"KAN-10","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P09","toPhase":"P11","blocks":"KAN-11","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P10","toPhase":"P11","blocks":"KAN-12","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P11","toPhase":"P12","blocks":"KAN-13","blocked":"KAN-14"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-83","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-84","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-85","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-86","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-88","criteriaCount":4,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-90","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-91","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-127","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-135","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"issue","decision":"D-084","sourceId":"AI-11","phase":"P07","key":"KAN-137","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-084","sourceId":"AI-11","key":"KAN-137","status":"To Do"}
+{"kind":"issue","decision":"D-084","sourceId":"AI-12","phase":"P07","key":"KAN-138","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-084","sourceId":"AI-12","key":"KAN-138","status":"To Do"}
+{"kind":"task_dependency","decision":"D-084","sourceId":"AI-11","blocks":"KAN-137","blocked":"KAN-83"}
+{"kind":"task_dependency","decision":"D-084","sourceId":"AI-12","blocks":"KAN-138","blocked":"KAN-91"}
+{"kind":"source_update","decision":"D-084","previousSha256":"f539c3bd9ae88919bb96a3be26eab69da2ef24985a64db8c1ce43a074b99b916","sha256":"480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff","addedSourceIds":["AI-11","AI-12"],"acceptanceUpdated":["KAN-83","KAN-84","KAN-85","KAN-86","KAN-88","KAN-90","KAN-91","KAN-127","KAN-135"],"reason":"Fresh source/probe audit; no imported code activated or defects marked fixed."}

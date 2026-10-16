@@ -2,6 +2,8 @@
 
 Next implementation chunks and launch gates: [backend launch checklist](../docs/architecture/BACKEND_LAUNCH_CHECKLIST.md), supported by the [current-state evidence](../docs/architecture/BACKEND_LAUNCH_EVIDENCE.md). Existing local auth/account/test billing stays the foundation while domain services are added.
 
+D-082 adds [owner-bound account feedback](../integration/FEEDBACK_CONTRACT.md) to this same runtime, with transactional submission/retry/admission and owner pagination. The dashboard offers an optional translated feedback control. See the [backend/ML execution handoff](../docs/architecture/IMPLEMENTATION_HANDOFF.md) and [Jira sync status](../docs/architecture/tracking/JIRA_SYNC.md); full support/operator/hosted acceptance remains open.
+
 Organization backend imported from `visionaryorg/visionary-dev`, commit `81e861be4a87b8af02c9f986d6874e82be20b1b7`. Code and legacy Prisma schema live in `upstream/backend/`; imported deployment references live in `upstream/deploy/`. They are not current product deployment instructions.
 
 From the product root, use `npm run backend:install` and `npm run backend:build` with supported installed Node22/24 LTS (24 recommended). Source imports and dependency installation do not start a server, apply migrations, send email or connect a model.

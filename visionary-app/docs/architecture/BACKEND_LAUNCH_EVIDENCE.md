@@ -2,7 +2,11 @@
 
 16 October 2026 · D-081 · companion to the [execution checklist](BACKEND_LAUNCH_CHECKLIST.md). This is a scoped source/evidence inventory, not a production certification or exhaustive security audit.
 
+D-082,16 October2026: the active module additionally registers account feedback. [Feedback v1](../../integration/FEEDBACK_CONTRACT.md) implements verified UID submission/owner pagination, atomic request deduplication/hourly admission and the translated optional dashboard prompt. Fresh backend build and61 backend/runtime/backlog tests pass;14 relevant frontend service tests, frontend typecheck/lint/build and layout/import verification pass. The isolated browser fixture confirms commit-with-lost-receipt → retained note → explicit retry → one saved submission, with keyboard focus restored on close. Production Firestore, actual devices, staff support and privacy/export acceptance remain open. The [execution handoff](IMPLEMENTATION_HANDOFF.md) and [Jira sync record](tracking/JIRA_SYNC.md) distinguish current work from remaining gates. The checklist now has12 scoped locally complete tasks,104 open launch tasks and5 later tasks.
+
 ## Classification at this checkpoint
+
+D-084, 16 October 2026: [fresh backend/ML/Jira review](BACKEND_ML_JIRA_REVIEW.md) follows current and imported authority/ML paths and reproduces false-success grounding and evaluation-metric defects without model or cloud calls. Selected ML library tests pass (cached Go results); three backend module-boundary and two backlog tests pass. This does not establish educational/provider/hosted readiness. Two new open bugs and nine refined descriptions are read back in Jira: 123 tasks (12 local Done, 106 launch To Do, 5 later Idea), plus 15 epics. D-081/082 test results above and below retain their original historical scope. Imported source and all account/history data remain unchanged.
 
 | Area | Current status | Evidence and interpretation |
 | --- | --- | --- |

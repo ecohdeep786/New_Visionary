@@ -27,6 +27,7 @@ Scope and evidence references are in the [current-state ledger](BACKEND_LAUNCH_E
 - [x] **DONE-09** — Frontend learning, teaching, project, classroom, guardian and professional workflows provide product rules and regression examples. Their local previews are not production backend implementations.
 - [x] **DONE-10** — Backend/ML source classification and the API-first model strategy are documented. Useful imported ML components are available for controlled adaptation; the old gateway remains disconnected.
 - [x] **DONE-11** — Local infrastructure definitions, prepared Firestore rules, hosting handoffs, workload/cost planning and architecture diagrams exist. Product GCP deployment and measured growth capacity remain open.
+- [x] **DONE-12** — D-082 adds optional account feedback through the connected dashboard/API, with UID-owned Firestore records, atomic deduplication/admission, owner pagination and isolated service/browser recovery tests. Full support/operator/privacy/hosted acceptance remains open; see [feedback contract](../../integration/FEEDBACK_CONTRACT.md).
 
 ## Milestones and dependencies
 
@@ -152,6 +153,10 @@ Dependencies permit engineering streams to proceed together; they do not authori
 - [ ] **AI-08** — Reconcile the existing whole-request teaching deadline and cancellation with provider work; long Build jobs use their own durable protocol. Preserve partial/final distinction and disconnect cleanup.
 - [ ] **AI-09** — Remove raw private-text logging; test classroom/NAT fairness, provider429/outage, policy revocation mid-run, prompt injection, scoped memory and source withdrawal before production connection.
 - [ ] **AI-10** — Implement any released voice/image/structured-activity operations with explicit schemas, permitted context, device/locale recovery and separate cost limits; unreleased modalities stay unavailable.
+- [ ] **AI-11** — Repair and version retrieval evaluation metrics before provider/corpus comparisons: deduplicate or reject repeated candidate/gold IDs, use consistent logarithmic NDCG and valid K/empty-input rules, and prove Python/Go parity with independent hand-calculated fixtures. Existing imported evaluators can report Recall@K above1 and disagree on NDCG.
+- [ ] **AI-12** — Keep legacy raw-text quality collection/export disconnected; replace it only with an approved purpose, scoped operator authority/audit and consent/rights/minimization policy. Ordinary learner authentication must not allow cross-user quality export or convert feedback/conversations into training data; preserve current keep-data instruction.
+
+D-084 source-to-ticket review: [backend/ML readiness and closure criteria](BACKEND_ML_JIRA_REVIEW.md) adds concrete acceptance to the existing AI-01/02/03/04/06/08/09, RELEASE-04 and LATER-04 tickets. AI-11 and AI-12 are two additional source-backed repair tasks, not completed capabilities. Keep imported ML disconnected until these and the existing scope/source/usage gates pass.
 
 ## P08 — Finish every released role backend
 
@@ -191,6 +196,8 @@ A hosted test beta may close BILL-01–04 without enabling real money. A paid la
 - [ ] **PRIV-03** — Test restore against deletion/consent tombstones and current policy, so backup recovery cannot revive prohibited access or erased derived records.
 - [ ] **PRIV-04** — Implement durable in-app notification/read/preference state and approved email delivery, with idempotency, quiet/retry handling and no private data in public links/logs. Verify real selected delivery channels.
 - [ ] **PRIV-05** — Implement support cases/reporting, scoped operator access, reason/audit and incident/abuse response. No unrestricted user dump or default operator impersonation.
+
+D-082 partial PRIV-05: account feedback submission and owner records are implemented and tested locally (DONE-12). Support cases, authorized triage/operator audit, export/disclosure policy and hosted acceptance remain open; feedback is not automatically copied to Jira or model training.
 - [ ] **PRIV-06** — Protect exports, object links, search results, error messages and telemetry through negative authorization tests; include log/backup/access-review and secret-rotation procedures.
 - [ ] **PRIV-07** — Complete required launch privacy/commercial disclosures and content/model/provider rights review with accountable owners; record approvals separately from engineering tests.
 

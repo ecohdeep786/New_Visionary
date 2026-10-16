@@ -2,6 +2,10 @@
 
 Implementation tracker: [backend-to-launch checklist](BACKEND_LAUNCH_CHECKLIST.md), with [completed/partial/source evidence](BACKEND_LAUNCH_EVIDENCE.md). Work is broken into dependency-ordered chunks and explicit launch gates.
 
+Execution handoff: [current backend/ML wiring and next slices](IMPLEMENTATION_HANDOFF.md), [Jira synchronization state](tracking/JIRA_SYNC.md) and [account feedback contract](../../integration/FEEDBACK_CONTRACT.md).
+
+Fresh D-084 review: [backend/ML findings, isolated reproductions and Jira closure criteria](BACKEND_ML_JIRA_REVIEW.md). Imported ML remains disconnected; this review does not certify model quality or AGI capability.
+
 Current baseline: [final architecture recommendation and release evidence](FINAL_ARCHITECTURE_RECOMMENDATION.md), consolidated after the founder's reference reviews. Implementation and measured acceptance remain staged work.
 
 Architecture review: [grouped platform map](diagrams/PLATFORM_ARCHITECTURE.md), [numbered request paths](diagrams/REQUEST_PATHS.md) and [scale/recovery](diagrams/RESILIENCE_AND_SCALE.md), with [current implementation gaps and next steps](VISUAL_REVIEW.md).

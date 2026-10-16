@@ -1,0 +1,2153 @@
+{
+  "schemaVersion": 1,
+  "source": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+  "sourceSha256": "480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff",
+  "targetProject": {
+    "name": "Team AGI",
+    "key": "KAN",
+    "site": "https://visionary-team.atlassian.net",
+    "note": "Founder supplied the existing KAN project URL; use its verified project instead of creating a duplicate project."
+  },
+  "schedule": {
+    "mode": "Dependency-ordered solo-founder queue",
+    "workInProgressLimit": 2,
+    "datesCommitted": false,
+    "note": "Now identifies the first queue, not simultaneous assignments or promised delivery dates. Re-estimate after the first durable slice. Track blockers separately from completion."
+  },
+  "syncPolicy": "Search each stable sourceId label before creating; retain issue keys after every successful write. On an ambiguous create, search before retry. Never recreate an issue solely because scheduling failed.",
+  "totals": {
+    "issues": 123,
+    "locallyComplete": 12,
+    "openLaunch": 106,
+    "later": 5
+  },
+  "phases": [
+    {
+      "id": "FOUNDATION",
+      "summary": "What is already done — scoped local foundation",
+      "dependencies": [],
+      "issueType": "Epic",
+      "label": "visionary-phase-foundation"
+    },
+    {
+      "id": "P00",
+      "summary": "P00 — Define the release and executable contracts",
+      "dependencies": [],
+      "issueType": "Epic",
+      "label": "visionary-phase-p00"
+    },
+    {
+      "id": "P01",
+      "summary": "P01 — Implement durable identity linkage, data and permission authority",
+      "dependencies": [
+        "P00"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p01"
+    },
+    {
+      "id": "P02",
+      "summary": "P02 — Establish product-owned staging and delivery",
+      "dependencies": [
+        "P00"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p02"
+    },
+    {
+      "id": "P03",
+      "summary": "P03 — Implement durable jobs and protected files",
+      "dependencies": [
+        "P01",
+        "P02"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p03"
+    },
+    {
+      "id": "P04",
+      "summary": "P04 — Publish authoritative curriculum and sources",
+      "dependencies": [
+        "P01",
+        "P03"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p04"
+    },
+    {
+      "id": "P05",
+      "summary": "P05 — Connect durable Learn, Practice, Progress and Guide state",
+      "dependencies": [
+        "P01",
+        "P04"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p05"
+    },
+    {
+      "id": "P06",
+      "summary": "P06 — Connect durable Build",
+      "dependencies": [
+        "P01",
+        "P03",
+        "P05"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p06"
+    },
+    {
+      "id": "P07",
+      "summary": "P07 — Qualify and connect private AI/ML",
+      "dependencies": [
+        "P01",
+        "P03",
+        "P04"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p07"
+    },
+    {
+      "id": "P08",
+      "summary": "P08 — Finish every released role backend",
+      "dependencies": [
+        "P01"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p08"
+    },
+    {
+      "id": "P09",
+      "summary": "P09 — Complete hosted billing and paid-release acceptance",
+      "dependencies": [
+        "P02",
+        "P03"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p09"
+    },
+    {
+      "id": "P10",
+      "summary": "P10 — Privacy, notifications, support and operational data",
+      "dependencies": [
+        "P00"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p10"
+    },
+    {
+      "id": "P11",
+      "summary": "P11 — Integrate and accept the whole released product",
+      "dependencies": [
+        "P00",
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p11"
+    },
+    {
+      "id": "P12",
+      "summary": "P12 — Prove capacity, recovery, economics and launch operation",
+      "dependencies": [
+        "P11"
+      ],
+      "issueType": "Epic",
+      "label": "visionary-phase-p12"
+    },
+    {
+      "id": "LATER",
+      "summary": "Later capabilities — separate from the current launch baseline",
+      "dependencies": [],
+      "issueType": "Epic",
+      "label": "visionary-phase-later"
+    }
+  ],
+  "taskDependencies": [
+    {
+      "blocks": "AI-11",
+      "blocked": "AI-01"
+    },
+    {
+      "blocks": "AI-12",
+      "blocked": "AI-09"
+    }
+  ],
+  "issues": [
+    {
+      "sourceId": "DONE-01",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-01] Repository ownership, independent component environments, pinned imports and patch provenance are established. The product command selects the connected backend entrypoint.",
+      "description": "Repository ownership, independent component environments, pinned imports and patch provenance are established. The product command selects the connected backend entrypoint.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-01",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-02",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-02] Firebase identity exchange and verified device-bound server sessions exist, with Origin/CSRF/expected-account protections and device revocation behavior.",
+      "description": "Firebase identity exchange and verified device-bound server sessions exist, with Origin/CSRF/expected-account protections and device revocation behavior.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-02",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-03",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-03] Validated onboarding/profile/introduction state is saved against the authenticated UID. Onboarding role selection remains a preference, not verified membership.",
+      "description": "Validated onboarding/profile/introduction state is saved against the authenticated UID. Onboarding role selection remains a preference, not verified membership.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-03",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-04",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-04] The UID-owned Firestore account tree and paginated owner-only account/device/invoice APIs exist. Future learning/project records are not yet in this connected domain backend.",
+      "description": "The UID-owned Firestore account tree and paginated owner-only account/device/invoice APIs exist. Future learning/project records are not yet in this connected domain backend.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-04",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-05",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-05] Free defaults and authenticated monthly/annual Razorpay test subscription commands, verification, cancellation and durable reconciliation exist.",
+      "description": "Free defaults and authenticated monthly/annual Razorpay test subscription commands, verification, cancellation and durable reconciliation exist.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-05",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-06",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-06] Owner-bound test invoices retain charge-time customer/service/payment information and support the simplified frontend/print journey. Live legal/tax invoicing remains open.",
+      "description": "Owner-bound test invoices retain charge-time customer/service/payment information and support the simplified frontend/print journey. Live legal/tax invoicing remains open.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-06",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-07",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-07] Accepted Family billing-benefit workflows exist and preserve payer/beneficiary boundaries. They do not grant guardian access to learning records.",
+      "description": "Accepted Family billing-benefit workflows exist and preserve payer/beneficiary boundaries. They do not grant guardian access to learning records.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-07",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-08",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-08] Local auth/account/billing tests and browser/emulator harnesses exist. Fixture/provider/emulator evidence has explicit limits; hosted end-to-end acceptance remains open.",
+      "description": "Local auth/account/billing tests and browser/emulator harnesses exist. Fixture/provider/emulator evidence has explicit limits; hosted end-to-end acceptance remains open.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-08",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-09",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-09] Frontend learning, teaching, project, classroom, guardian and professional workflows provide product rules and regression examples. Their local previews are not production bac",
+      "description": "Frontend learning, teaching, project, classroom, guardian and professional workflows provide product rules and regression examples. Their local previews are not production backend implementations.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-09",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-10",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-10] Backend/ML source classification and the API-first model strategy are documented. Useful imported ML components are available for controlled adaptation; the old gateway remain",
+      "description": "Backend/ML source classification and the API-first model strategy are documented. Useful imported ML components are available for controlled adaptation; the old gateway remains disconnected.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-10",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-11",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-11] Local infrastructure definitions, prepared Firestore rules, hosting handoffs, workload/cost planning and architecture diagrams exist. Product GCP deployment and measured growt",
+      "description": "Local infrastructure definitions, prepared Firestore rules, hosting handoffs, workload/cost planning and architecture diagrams exist. Product GCP deployment and measured growth capacity remain open.",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-11",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "DONE-12",
+      "phase": "FOUNDATION",
+      "issueType": "Task",
+      "summary": "[DONE-12] D-082 adds optional account feedback through the connected dashboard/API, with UID-owned Firestore records, atomic deduplication/admission, owner pagination and isolated servi",
+      "description": "D-082 adds optional account feedback through the connected dashboard/API, with UID-owned Firestore records, atomic deduplication/admission, owner pagination and isolated service/browser recovery tests. Full support/operator/privacy/hosted acceptance remains open; see [feedback contract](../../integration/FEEDBACK_CONTRACT.md).",
+      "localComplete": true,
+      "suggestedStatus": "Done",
+      "queue": "Recorded foundation",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-done-12",
+        "visionary-phase-foundation"
+      ],
+      "completionRule": "Scoped local evidence only; hosted/provider/load acceptance is separate."
+    },
+    {
+      "sourceId": "SCOPE-01",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-01] Inventory every exposed route/control by learner category, five roles, language and operation; classify connected, preview, missing and intentionally unreleased behavior.",
+      "description": "Inventory every exposed route/control by learner category, five roles, language and operation; classify connected, preview, missing and intentionally unreleased behavior.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-01",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-02] Fix the launch coverage matrix: curriculum/source/language availability, age/admission boundaries, linked-role verification and unsupported-content states. All exposed categor",
+      "description": "Fix the launch coverage matrix: curriculum/source/language availability, age/admission boundaries, linked-role verification and unsupported-content states. All exposed categories need accepted coverage.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-02",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-03",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-03] Write versioned OpenAPI/runtime schemas, errors, pagination, mutation identity, expected revisions and event cursors; retain existing auth/account/billing route compatibility.",
+      "description": "Write versioned OpenAPI/runtime schemas, errors, pagination, mutation identity, expected revisions and event cursors; retain existing auth/account/billing route compatibility.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-03",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-04",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-04] Map each operation to actor/workspace/object/source/consent authority and owning datastore. Include lists, downloads, exports, background jobs and support access.",
+      "description": "Map each operation to actor/workspace/object/source/consent authority and owning datastore. Include lists, downloads, exports, background jobs and support access.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-04",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-05",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-05] Assign owners for content rights, retention/deletion, model data handling, billing/commercial terms, incident response and release acceptance; record unresolved decisions as b",
+      "description": "Assign owners for content rights, retention/deletion, model data handling, billing/commercial terms, incident response and release acceptance; record unresolved decisions as blockers.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-05",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-06",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-06] Turn existing frontend invariants into backend contract/deny cases; select the first released curriculum/language/source and synthetic fixtures for a vertical slice.",
+      "description": "Turn existing frontend invariants into backend contract/deny cases; select the first released curriculum/language/source and synthetic fixtures for a vertical slice.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-06",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-07",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-07] Fix the released sign-in/provider matrix, including organization SSO/phone if offered; configure and test every exposed method instead of relying on an enabled-looking fronten",
+      "description": "Fix the released sign-in/provider matrix, including organization SSO/phone if offered; configure and test every exposed method instead of relying on an enabled-looking frontend control.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-07",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-08",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-08] Specify per-route JSON/stream limits. The current 24 KiB parser limit needs reconciliation with bounded project/submission text; keep files outside JSON and never solve it wit",
+      "description": "Specify per-route JSON/stream limits. The current 24 KiB parser limit needs reconciliation with bounded project/submission text; keep files outside JSON and never solve it with unlimited bodies/base64.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-08",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-01",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-01] Review product SQL DDL and indexes for UID linkage, workspaces/memberships, consent, sources/releases, sessions/evidence, classrooms/projects and operational records; exclude ",
+      "description": "Review product SQL DDL and indexes for UID linkage, workspaces/memberships, consent, sources/releases, sessions/evidence, classrooms/projects and operational records; exclude legacy account/plan authority.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-01",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-02",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-02] Add versioned migrations, separate migration/runtime identities, bounded resumable backfills, compatibility checks and rollback. Use empty synthetic staging before touching ex",
+      "description": "Add versioned migrations, separate migration/runtime identities, bounded resumable backfills, compatibility checks and rollback. Use empty synthetic staging before touching existing records.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-02",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-03",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-03] Provision personal workspaces idempotently from the verified UID with pending/recovery state across Firestore/SQL; preserve current account/profile/billing records and IDs.",
+      "description": "Provision personal workspaces idempotently from the verified UID with pending/recovery state across Firestore/SQL; preserve current account/profile/billing records and IDs.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-03",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-04",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-04] Implement invitations, acceptance, verified organization/classroom roles and lifecycle history. A role picker, email match, guessed ID or browser record cannot establish permi",
+      "description": "Implement invitations, acceptance, verified organization/classroom roles and lifecycle history. A role picker, email match, guessed ID or browser record cannot establish permission.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-04",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-05",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-05] Implement consent/share purpose, expiry/revocation and policy versions. Recheck sensitive mutations/delivery; revocation must affect pending jobs, caches and newly requested d",
+      "description": "Implement consent/share purpose, expiry/revocation and policy versions. Recheck sensitive mutations/delivery; revocation must affect pending jobs, caches and newly requested downloads.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-05",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-06",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-06] Add scoped command results, conditional revisions, trusted timestamps, unique constraints, transactional outbox and deletion tombstones; reject same command key with a changed",
+      "description": "Add scoped command results, conditional revisions, trusted timestamps, unique constraints, transactional outbox and deletion tombstones; reject same command key with a changed payload.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-06",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-07",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-07] Implement owner-scoped repositories/DTOs and paginated UID account/domain overview projections; redact private security fields and avoid one unlimited user-history document.",
+      "description": "Implement owner-scoped repositories/DTOs and paginated UID account/domain overview projections; redact private security fields and avoid one unlimited user-history document.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-07",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-08",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-08] Prove wrong UID/workspace/role, concurrent grants/revocation, stale writes and account-switch races; bound total instances × connection pools and recover cleanly after reconne",
+      "description": "Prove wrong UID/workspace/role, concurrent grants/revocation, stale writes and account-switch races; bound total instances × connection pools and recover cleanly after reconnect.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-08",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "DATA-09",
+      "phase": "P01",
+      "issueType": "Task",
+      "summary": "[DATA-09] Implement the approved age/admission and guardian-first account/linking workflow before supporting currently blocked minors; never bypass admission using client age or role fl",
+      "description": "Implement the approved age/admission and guardian-first account/linking workflow before supporting currently blocked minors; never bypass admission using client age or role flags.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-data-09",
+        "visionary-phase-p01"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-01",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-01] Create reviewed product IaC/environment configuration for GCP identities/network, data, storage, compute, edge, queues and protection; do not apply imported legacy Terraform/C",
+      "description": "Create reviewed product IaC/environment configuration for GCP identities/network, data, storage, compute, edge, queues and protection; do not apply imported legacy Terraform/Compose as product deployment.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Now",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-01",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-02",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-02] Build a minimal product image using the current entrypoint. Exclude desktop credentials, research, obsolete deploy scripts and fixture routes; validate startup configuration, ",
+      "description": "Build a minimal product image using the current entrypoint. Exclude desktop credentials, research, obsolete deploy scripts and fixture routes; validate startup configuration, probes, shutdown and timeouts.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-02",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-03",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-03] Configure ADC/workload identity, least-privilege service accounts and Secret Manager rotation; isolate environments and validate the existing named Firestore database rather t",
+      "description": "Configure ADC/workload identity, least-privilege service accounts and Secret Manager rotation; isolate environments and validate the existing named Firestore database rather than guessing it.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-03",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-04",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-04] Configure canonical HTTPS origin, TLS, edge/WAF/rate controls and API/static routing. Prove no API-to-SPA fallback, private-response CDN caching or direct-origin bypass.",
+      "description": "Configure canonical HTTPS origin, TLS, edge/WAF/rate controls and API/static routing. Prove no API-to-SPA fallback, private-response CDN caching or direct-origin bypass.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-04",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-05",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-05] Prove hosted session cookies, proxy/origin/CSRF behavior, authorized auth domains and chosen real sign-in/verification/reset delivery. Emulator evidence is insufficient for pr",
+      "description": "Prove hosted session cookies, proxy/origin/CSRF behavior, authorized auth domains and chosen real sign-in/verification/reset delivery. Emulator evidence is insufficient for provider acceptance.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-05",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-06",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-06] Add product CI: component tests/builds, provenance/secrets/dependency checks, API/schema compatibility, immutable image release, staging smoke, canary and rollback.",
+      "description": "Add product CI: component tests/builds, provenance/secrets/dependency checks, API/schema compatibility, immutable image release, staging smoke, canary and rollback.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-06",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-07",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-07] Add redacted traces/metrics, latency/error/queue/cost dashboards, synthetic health checks and alerts. Keep prompt bodies, payment secrets and raw private learning text out of ",
+      "description": "Add redacted traces/metrics, latency/error/queue/cost dashboards, synthetic health checks and alerts. Keep prompt bodies, payment secrets and raw private learning text out of routine logs.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-07",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PLAT-08",
+      "phase": "P02",
+      "issueType": "Task",
+      "summary": "[PLAT-08] Enable and verify backups/PITR/object protection, restore identities and environment runbooks before persistent real-user data is admitted. Deploy first with synthetic data.",
+      "description": "Enable and verify backups/PITR/object protection, restore identities and environment runbooks before persistent real-user data is admitted. Deploy first with synthetic data.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-plat-08",
+        "visionary-phase-p02"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "JOB-01",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[JOB-01] Implement owning-store outbox dispatch, private authenticated task delivery, per-workload queues, bounded retry/backoff and recovery after commit/dispatch/ack crashes.",
+      "description": "Implement owning-store outbox dispatch, private authenticated task delivery, per-workload queues, bounded retry/backoff and recovery after commit/dispatch/ack crashes.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-job-01",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "JOB-02",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[JOB-02] Add leases, attempt fencing, idempotent completion, deadlines, cancellation, quarantine of failed cleanup and a sweeper for orphaned/stuck work.",
+      "description": "Add leases, attempt fencing, idempotent completion, deadlines, cancellation, quarantine of failed cleanup and a sweeper for orphaned/stuck work.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-job-02",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "JOB-03",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[JOB-03] Enforce per-user/workspace and fleet admission limits, queue fairness, provider budgets and retry ceilings; expose durable status/events with replay/refetch semantics.",
+      "description": "Enforce per-user/workspace and fleet admission limits, queue fairness, provider budgets and retry ceilings; expose durable status/events with replay/refetch semantics.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-job-03",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "FILE-01",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[FILE-01] Implement authorized upload intent → private quarantine → complete/digest/type/size verification → scan → ready lifecycle; handle resumable failures and bounded parser/archive",
+      "description": "Implement authorized upload intent → private quarantine → complete/digest/type/size verification → scan → ready lifecycle; handle resumable failures and bounded parser/archive output.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-file-01",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "FILE-02",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[FILE-02] Store immutable object generations/manifests and verify references before database commit; collect unattached objects safely without deleting retained revisions/submissions.",
+      "description": "Store immutable object generations/manifests and verify references before database commit; collect unattached objects safely without deleting retained revisions/submissions.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-file-02",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "FILE-03",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[FILE-03] Implement private downloads, exports and revocation behavior. Use an authenticated gateway where immediate revocation is required; document signed-link residual validity.",
+      "description": "Implement private downloads, exports and revocation behavior. Use an authenticated gateway where immediate revocation is required; document signed-link residual validity.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-file-03",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "FILE-04",
+      "phase": "P03",
+      "issueType": "Task",
+      "summary": "[FILE-04] Prove unauthorized reads, URL/path traversal, unsupported formats, scan failures, object loss, duplicate completion and deletion races; isolate converters/parsers from account",
+      "description": "Prove unauthorized reads, URL/path traversal, unsupported formats, scan failures, object loss, duplicate completion and deletion races; isolate converters/parsers from account/payment credentials.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-file-04",
+        "visionary-phase-p03"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-01",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-01] Implement stable curriculum/book/chapter/topic/concept IDs and source provider/version, rights, owner/visibility, grade/category and authored-language metadata.",
+      "description": "Implement stable curriculum/book/chapter/topic/concept IDs and source provider/version, rights, owner/visibility, grade/category and authored-language metadata.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-01",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-02",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-02] Implement bounded scan/parse/chunk/embed/evaluate jobs with provenance and page/section offsets; preserve embedding model/dimension and transformation versions.",
+      "description": "Implement bounded scan/parse/chunk/embed/evaluate jobs with provenance and page/section offsets; preserve embedding model/dimension and transformation versions.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-02",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-03",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-03] Add draft/review/release/withdrawal/restore lifecycle and atomic publication/index pointer changes; incomplete ingestion cannot appear published.",
+      "description": "Add draft/review/release/withdrawal/restore lifecycle and atomic publication/index pointer changes; incomplete ingestion cannot appear published.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-03",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-04",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-04] Connect catalog/concept adapters to reviewed server DTOs; preserve locale/source-language distinctions, authoring representations and clear unsupported/unavailable states.",
+      "description": "Connect catalog/concept adapters to reviewed server DTOs; preserve locale/source-language distinctions, authoring representations and clear unsupported/unavailable states.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-04",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-05",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-05] Enforce source/workspace/publication filtering before keyword/vector retrieval and cache lookup; withdrawal stops new access and pending output.",
+      "description": "Enforce source/workspace/publication filtering before keyword/vector retrieval and cache lookup; withdrawal stops new access and pending output.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-05",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-06",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-06] Evaluate coverage and retrieval on every released category/language, including Hindi/Bengali segmentation where released. Frontend category labels do not establish content sup",
+      "description": "Evaluate coverage and retrieval on every released category/language, including Hindi/Bengali segmentation where released. Frontend category labels do not establish content support.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-06",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "CONTENT-07",
+      "phase": "P04",
+      "issueType": "Task",
+      "summary": "[CONTENT-07] Preserve official approved embeds where suitable; add owned media processing/delivery only when released content requires it and rights, privacy and cost gates pass.",
+      "description": "Preserve official approved embeds where suitable; add owned media processing/delivery only when released content requires it and rights, privacy and cost gates pass.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-content-07",
+        "visionary-phase-p04"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-01",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-01] Implement owned learning sessions, selected source/revision, checkpoints and resume cursors behind current frontend facades; preserve unsaved local recovery visibly.",
+      "description": "Implement owned learning sessions, selected source/revision, checkpoints and resume cursors behind current frontend facades; preserve unsaved local recovery visibly.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-01",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-02",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-02] Persist checks, answers, attempts, rubric/evidence references and revision history; validate eligibility server-side and deduplicate repeat submissions.",
+      "description": "Persist checks, answers, attempts, rubric/evidence references and revision history; validate eligibility server-side and deduplicate repeat submissions.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-02",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-03",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-03] Implement versioned mastery/progress/review projections from immutable evidence; distinguish consumption, attempts, self-review and assessed outcomes.",
+      "description": "Implement versioned mastery/progress/review projections from immutable evidence; distinguish consumption, attempts, self-review and assessed outcomes.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-03",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-04",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-04] Persist permitted goals/daily plans/review scheduling and eligible discovery results with understandable reasons; a rebuilding projection must not overwrite evidence.",
+      "description": "Persist permitted goals/daily plans/review scheduling and eligible discovery results with understandable reasons; a rebuilding projection must not overwrite evidence.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-04",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-05",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-05] Add owned Ask/Guide/conversation state and typed model-response adapters. Keep disconnected/blocked/partial states truthful until P07 is accepted.",
+      "description": "Add owned Ask/Guide/conversation state and typed model-response adapters. Keep disconnected/blocked/partial states truthful until P07 is accepted.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-05",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-06",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-06] Add authorized change cursors/refetch, stale-response rejection, independent workspace selection per device, offline/conflict recovery and sign-out/account-switch handling.",
+      "description": "Add authorized change cursors/refetch, stale-response rejection, independent workspace selection per device, offline/conflict recovery and sign-out/account-switch handling.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-06",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-07",
+      "phase": "P05",
+      "issueType": "Task",
+      "summary": "[LEARN-07] Verify concept → check/practice → private project → save → second-device resume, including source withdrawal, concurrent edits, failed saves and session expiry.",
+      "description": "Verify concept → check/practice → private project → save → second-device resume, including source withdrawal, concurrent edits, failed saves and session expiry.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-07",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-08",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-08] Evaluate checks/practice using server-owned versioned criteria and protected answer keys. Client pass/score/completion flags cannot create verified evidence or unlock a guided",
+      "description": "Evaluate checks/practice using server-owned versioned criteria and protected answer keys. Client pass/score/completion flags cannot create verified evidence or unlock a guided project.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-08",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-01",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-01] Implement private projects, immutable revisions/manifests, conditional draft saves, history and restore-as-new-revision with actor/workspace ownership.",
+      "description": "Implement private projects, immutable revisions/manifests, conditional draft saves, history and restore-as-new-revision with actor/workspace ownership.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-01",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-02",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-02] Preserve per-tab original-base draft recovery and compare/resolve conflicts. Import local originals only through reviewed ownership mapping, idempotent transfer and count/dige",
+      "description": "Preserve per-tab original-base draft recovery and compare/resolve conflicts. Import local originals only through reviewed ownership mapping, idempotent transfer and count/digest verification.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-02",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-03",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-03] Implement verified guided briefs pinned to objective/source/rubric/check/practice evidence; keep blank projects available without guided-learning gates.",
+      "description": "Implement verified guided briefs pinned to objective/source/rubric/check/practice evidence; keep blank projects available without guided-learning gates.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-03",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-04",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-04] Add durable run/status/event and proposal accept/reject contracts. AI proposals are bound to a base revision; new edits or revoked permission block acceptance.",
+      "description": "Add durable run/status/event and proposal accept/reject contracts. AI proposals are bound to a base revision; new edits or revoked permission block acceptance.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-04",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-05",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-05] Connect explicit saved-revision Markdown/document export and supported assets through P03; generation/preview cannot silently save, share, submit or deploy.",
+      "description": "Connect explicit saved-revision Markdown/document export and supported assets through P03; generation/preview cannot silently save, share, submit or deploy.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-05",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-06",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-06] Implement exact-revision accepted-recipient sharing, consent-bound parent summaries and classroom-copy bridge; private drafts/conversations/history stay private.",
+      "description": "Implement exact-revision accepted-recipient sharing, consent-bound parent summaries and classroom-copy bridge; private drafts/conversations/history stay private.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-06",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-07",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-07] Preserve completion criteria and professional self-review versioning; application evidence remains unverified until assessment and never awards mastery automatically.",
+      "description": "Preserve completion criteria and professional self-review versioning; application evidence remains unverified until assessment and never awards mastery automatically.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-07",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-08",
+      "phase": "P06",
+      "issueType": "Task",
+      "summary": "[BUILD-08] Prove duplicate accept, stale proposal, cancellation/restart, account switch, restore/export failure and revoked share behavior through real API adapters on two devices.",
+      "description": "Prove duplicate accept, stale proposal, cancellation/restart, account switch, restore/export failure and revoked share behavior through real API adapters on two devices.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-08",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-01",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-01] Benchmark candidate APIs on permitted sources, teaching quality, English/Hindi/Bengali or actual released languages, citation correctness, safety, latency, quotas and total pe",
+      "description": "Benchmark candidate APIs on permitted sources, teaching quality, English/Hindi/Bengali or actual released languages, citation correctness, safety, latency, quotas and total per-use cost; pin the selected route/version.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-01",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-02",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-02] Review selected provider purpose/region/retention/tools and contract settings; minimize sent data and approve any fallback separately before routing learner data to it.",
+      "description": "Review selected provider purpose/region/retention/tools and contract settings; minimize sent data and approve any fallback separately before routing learner data to it.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-02",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-03",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-03] Replace imported HMAC/browser-claim trust with private service identity and audience/expiry/run-bound authorized context. ML cannot grant membership, consent, plans, publicati",
+      "description": "Replace imported HMAC/browser-claim trust with private service identity and audience/expiry/run-bound authorized context. ML cannot grant membership, consent, plans, publication or grades.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-03",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-04",
+      "phase": "P07",
+      "issueType": "Bug",
+      "summary": "[AI-04] Enforce conversation UID/workspace ownership on every get/append/delete/context request. A supplied session ID or UUID is insufficient authorization.",
+      "description": "Enforce conversation UID/workspace ownership on every get/append/delete/context request. A supplied session ID or UUID is insufficient authorization.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-04",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-05",
+      "phase": "P07",
+      "issueType": "Bug",
+      "summary": "[AI-05] Disable unsafe global exact/semantic/template caches. Add only scoped, source/policy/version-aware, reauthorized caching after isolation and revocation tests pass.",
+      "description": "Disable unsafe global exact/semantic/template caches. Add only scoped, source/policy/version-aware, reauthorized caching after isolation and revocation tests pass.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-05",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-06",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-06] Implement permission-filtered retrieval, pinned context/prompt/tool versions and schema/citation/locale/allowed-action validation; treat uploaded/source text as untrusted inpu",
+      "description": "Implement permission-filtered retrieval, pinned context/prompt/tool versions and schema/citation/locale/allowed-action validation; treat uploaded/source text as untrusted input.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-06",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-07",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-07] Implement atomic usage reservation, bounded context/tokens/tool loops/attempts, measured usage ledger, terminal settlement and ambiguous-timeout reconciliation without duplica",
+      "description": "Implement atomic usage reservation, bounded context/tokens/tool loops/attempts, measured usage ledger, terminal settlement and ambiguous-timeout reconciliation without duplicate user debit.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-07",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-08",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-08] Reconcile the existing whole-request teaching deadline and cancellation with provider work; long Build jobs use their own durable protocol. Preserve partial/final distinction ",
+      "description": "Reconcile the existing whole-request teaching deadline and cancellation with provider work; long Build jobs use their own durable protocol. Preserve partial/final distinction and disconnect cleanup.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-08",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-09",
+      "phase": "P07",
+      "issueType": "Bug",
+      "summary": "[AI-09] Remove raw private-text logging; test classroom/NAT fairness, provider429/outage, policy revocation mid-run, prompt injection, scoped memory and source withdrawal before produ",
+      "description": "Remove raw private-text logging; test classroom/NAT fairness, provider429/outage, policy revocation mid-run, prompt injection, scoped memory and source withdrawal before production connection.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-09",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-10",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-10] Implement any released voice/image/structured-activity operations with explicit schemas, permitted context, device/locale recovery and separate cost limits; unreleased modalit",
+      "description": "Implement any released voice/image/structured-activity operations with explicit schemas, permitted context, device/locale recovery and separate cost limits; unreleased modalities stay unavailable.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-10",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-11",
+      "phase": "P07",
+      "issueType": "Bug",
+      "summary": "[AI-11] Repair and version retrieval evaluation metrics before provider/corpus comparisons: deduplicate or reject repeated candidate/gold IDs, use consistent logarithmic NDCG and vali",
+      "description": "Repair and version retrieval evaluation metrics before provider/corpus comparisons: deduplicate or reject repeated candidate/gold IDs, use consistent logarithmic NDCG and valid K/empty-input rules, and prove Python/Go parity with independent hand-calculated fixtures. Existing imported evaluators can report Recall@K above1 and disagree on NDCG.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-11",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-12",
+      "phase": "P07",
+      "issueType": "Bug",
+      "summary": "[AI-12] Keep legacy raw-text quality collection/export disconnected; replace it only with an approved purpose, scoped operator authority/audit and consent/rights/minimization policy. ",
+      "description": "Keep legacy raw-text quality collection/export disconnected; replace it only with an approved purpose, scoped operator authority/audit and consent/rights/minimization policy. Ordinary learner authentication must not allow cross-user quality export or convert feedback/conversations into training data; preserve current keep-data instruction.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-12",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-01",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-01] Implement verified teacher/class ownership, enrollment/join/invitation lifecycle and workspace actions; independently check each class, attachment and learner operation.",
+      "description": "Implement verified teacher/class ownership, enrollment/join/invitation lifecycle and workspace actions; independently check each class, attachment and learner operation.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-01",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-02",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-02] Implement fixed assignment/objective/source/rubric publication, scheduling/timezones, close/archive/restore and supported response types.",
+      "description": "Implement fixed assignment/objective/source/rubric publication, scheduling/timezones, close/archive/restore and supported response types.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-02",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-03",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-03] Implement immutable submission copies, duplicate-safe submit, teacher draft/release/return/request-revision and retained attempt/feedback history; no silent resubmission repla",
+      "description": "Implement immutable submission copies, duplicate-safe submit, teacher draft/release/return/request-revision and retained attempt/feedback history; no silent resubmission replacement.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-03",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-04",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-04] Implement verified guardian relationships, granular purpose/expiry and explicit fixed summaries/goals/classwork digests. Revocation/reconsent never revives old shares.",
+      "description": "Implement verified guardian relationships, granular purpose/expiry and explicit fixed summaries/goals/classwork digests. Revocation/reconsent never revives old shares.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-04",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-05",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-05] Implement separate professional personal/company records, sponsored membership and explicit portfolio/project shares; employer access does not include private personal learnin",
+      "description": "Implement separate professional personal/company records, sponsored membership and explicit portfolio/project shares; employer access does not include private personal learning.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-05",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-06",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-06] Implement organization membership/invitations/roles, approved curriculum delivery/publication, settings permissions and scoped audited administrative actions.",
+      "description": "Implement organization membership/invitations/roles, approved curriculum delivery/publication, settings permissions and scoped audited administrative actions.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-06",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-07",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-07] Implement authorized teacher/guardian/organization reports with provenance, permitted periods and approved aggregation/suppression rules; exclude private learner chat and draf",
+      "description": "Implement authorized teacher/guardian/organization reports with provenance, permitted periods and approved aggregation/suppression rules; exclude private learner chat and drafts by default.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-07",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-08",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-08] Connect every released role screen to backend adapters and test pending/expired/revoked membership while reads/writes/jobs are in flight, across all released categories/langua",
+      "description": "Connect every released role screen to backend adapters and test pending/expired/revoked membership while reads/writes/jobs are in flight, across all released categories/languages.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-08",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-09",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-09] Reconcile organization-sponsored entitlement requirements with real approved commercial contracts; a seat-request preview cannot invent institutional billing or administrative",
+      "description": "Reconcile organization-sponsored entitlement requirements with real approved commercial contracts; a seat-request preview cannot invent institutional billing or administrative authority.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-09",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-01",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-01] Deploy and accept the existing test runtime on canonical HTTPS ingress; verify real auth return, cookies and real test-merchant checkout with durable storage and a second devi",
+      "description": "Deploy and accept the existing test runtime on canonical HTTPS ingress; verify real auth return, cookies and real test-merchant checkout with durable storage and a second device.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-01",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-02",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-02] Register actual test webhooks after an ingress exists, preserve raw signed bytes/limits, and prove duplicate/reordered/late/refund/dispute notifications and reconciliation aft",
+      "description": "Register actual test webhooks after an ingress exists, preserve raw signed bytes/limits, and prove duplicate/reordered/late/refund/dispute notifications and reconciliation after restart.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-02",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-03",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-03] Replace the bounded test-volume scanner with growth-appropriate per-account Tasks/outbox, private job identity, backlog monitoring, leases and merchant-rate-aware retry caps.",
+      "description": "Replace the bounded test-volume scanner with growth-appropriate per-account Tasks/outbox, private job identity, backlog monitoring, leases and merchant-rate-aware retry caps.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-03",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-04",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-04] Connect authoritative entitlement and actual AI/feature usage admission. Plan display, checkout intent and paid actions must agree across devices; unknown provider state stays",
+      "description": "Connect authoritative entitlement and actual AI/feature usage admission. Plan display, checkout intent and paid actions must agree across devices; unknown provider state stays pending.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-04",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-05",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-05] Define and implement the released renewal/failure/grace/cancel/refund/dispute/plan-change/payment-method behavior and recovery. Unreleased changes must not be advertised as wo",
+      "description": "Define and implement the released renewal/failure/grace/cancel/refund/dispute/plan-change/payment-method behavior and recovery. Unreleased changes must not be advertised as working.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-05",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-06",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-06] Obtain reviewed seller/tax/invoice/refund/commercial policy and recurring-method acceptance for the actual merchant. Preserve immutable original invoices and accurate refunds;",
+      "description": "Obtain reviewed seller/tax/invoice/refund/commercial policy and recurring-method acceptance for the actual merchant. Preserve immutable original invoices and accurate refunds; do not invent legal fields.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-06",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-07",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-07] Implement explicit separately configured live mode/records/secrets/plan provisioning and acceptance. Retain UID but never convert test transactions into live history; startup/",
+      "description": "Implement explicit separately configured live mode/records/secrets/plan provisioning and acceptance. Retain UID but never convert test transactions into live history; startup/scaling cannot provision plans or charges.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-07",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BILL-08",
+      "phase": "P09",
+      "issueType": "Task",
+      "summary": "[BILL-08] Prove auth-required purchase, expired-session recovery, idempotent retry, Free defaults, one Family payer, beneficiary revocation and payer-only invoice access. Family benefit",
+      "description": "Prove auth-required purchase, expired-session recovery, idempotent retry, Free defaults, one Family payer, beneficiary revocation and payer-only invoice access. Family benefits never grant learning/guardian access.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-bill-08",
+        "visionary-phase-p09"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-01",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-01] Approve purpose/minimization/retention by data class, including auth/device metadata, learning text, source files, billing/audit and model artifacts; define supported age/admi",
+      "description": "Approve purpose/minimization/retention by data class, including auth/device metadata, learning text, source files, billing/audit and model artifacts; define supported age/admission/guardian flows.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-01",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-02",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-02] Implement authenticated bounded export/deletion jobs across Firestore, SQL, objects, provider artifacts and caches; stop new work/downloads first and verify completion/reconci",
+      "description": "Implement authenticated bounded export/deletion jobs across Firestore, SQL, objects, provider artifacts and caches; stop new work/downloads first and verify completion/reconciliation.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-02",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-03",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-03] Test restore against deletion/consent tombstones and current policy, so backup recovery cannot revive prohibited access or erased derived records.",
+      "description": "Test restore against deletion/consent tombstones and current policy, so backup recovery cannot revive prohibited access or erased derived records.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-03",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-04",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-04] Implement durable in-app notification/read/preference state and approved email delivery, with idempotency, quiet/retry handling and no private data in public links/logs. Verif",
+      "description": "Implement durable in-app notification/read/preference state and approved email delivery, with idempotency, quiet/retry handling and no private data in public links/logs. Verify real selected delivery channels.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-04",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-05",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-05] Implement support cases/reporting, scoped operator access, reason/audit and incident/abuse response. No unrestricted user dump or default operator impersonation.",
+      "description": "Implement support cases/reporting, scoped operator access, reason/audit and incident/abuse response. No unrestricted user dump or default operator impersonation.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-05",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-06",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-06] Protect exports, object links, search results, error messages and telemetry through negative authorization tests; include log/backup/access-review and secret-rotation procedur",
+      "description": "Protect exports, object links, search results, error messages and telemetry through negative authorization tests; include log/backup/access-review and secret-rotation procedures.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-06",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "PRIV-07",
+      "phase": "P10",
+      "issueType": "Task",
+      "summary": "[PRIV-07] Complete required launch privacy/commercial disclosures and content/model/provider rights review with accountable owners; record approvals separately from engineering tests.",
+      "description": "Complete required launch privacy/commercial disclosures and content/model/provider rights review with accountable owners; record approvals separately from engineering tests.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-priv-07",
+        "visionary-phase-p10"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-01",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-01] Exercise public pricing → auth/verification → onboarding → Free profile → test subscription → invoice → learning → project → second-device resume on the hosted system.",
+      "description": "Exercise public pricing → auth/verification → onboarding → Free profile → test subscription → invoice → learning → project → second-device resume on the hosted system.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-01",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-02",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-02] Exercise teacher assignment → learner fixed submission → teacher review/revision, guardian permitted summary, professional/employer share and organization publication/withdraw",
+      "description": "Exercise teacher assignment → learner fixed submission → teacher review/revision, guardian permitted summary, professional/employer share and organization publication/withdrawal through real server authorization.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-02",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-03",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-03] Run wrong-user/workspace/role/object, consent expiry, source withdrawal, stale response, concurrent write, changed account and background-output denial cases for every endpoin",
+      "description": "Run wrong-user/workspace/role/object, consent expiry, source withdrawal, stale response, concurrent write, changed account and background-output denial cases for every endpoint family.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-03",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-04",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-04] Verify degraded states for SQL/object/model/provider outages, interrupted workers, duplicate/reordered delivery, invalid uploads and cancellation; preserve drafts and avoid fa",
+      "description": "Verify degraded states for SQL/object/model/provider outages, interrupted workers, duplicate/reordered delivery, invalid uploads and cancellation; preserve drafts and avoid false success or duplicate side effects.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-04",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-05",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-05] Complete released category/source/language coverage, real device/keyboard/screen-reader/mobile and recovery journeys. Native apps are a separate future client, not implied by ",
+      "description": "Complete released category/source/language coverage, real device/keyboard/screen-reader/mobile and recovery journeys. Native apps are a separate future client, not implied by responsive web tests.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-05",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-06",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-06] Verify production builds cannot activate fictional data, fixture routes, emulator bypasses or legacy identity/model startup. Retire old dependencies/routes only after replacem",
+      "description": "Verify production builds cannot activate fictional data, fixture routes, emulator bypasses or legacy identity/model startup. Retire old dependencies/routes only after replacement coverage and recorded provenance patches.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-06",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-07",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-07] Rehearse reviewed schema/local-data migration with originals retained, counts/digests/ownership checks, canary cutover and rollback; exactly one executor owns each side-effect",
+      "description": "Rehearse reviewed schema/local-data migration with originals retained, counts/digests/ownership checks, canary cutover and rollback; exactly one executor owns each side-effecting command.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-07",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-01",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-01] Replace workload guesses with beta request/token/duration/byte distributions; include polling, synchronized class starts, retries and additional Build demand without double-co",
+      "description": "Replace workload guesses with beta request/token/duration/byte distributions; include polling, synchronized class starts, retries and additional Build demand without double-counting turns.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-01",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-02",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-02] Run realistic data/index load and soak tests against the selected baseline: 150 core requests/s and 16.7 AI runs/s sustained, 300/33.4 burst, plus explicitly selected Build tr",
+      "description": "Run realistic data/index load and soak tests against the selected baseline: 150 core requests/s and 16.7 AI runs/s sustained, 300/33.4 burst, plus explicitly selected Build traffic and school-start scenario.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-02",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-03",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-03] Obtain actual provider quotas; prove instance/pool/concurrency/admission ceilings, tenant fairness, queue drain and user-visible throttling under spikes and dependency failure",
+      "description": "Obtain actual provider quotas; prove instance/pool/concurrency/admission ceilings, tenant fairness, queue drain and user-visible throttling under spikes and dependency failure.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-03",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-04",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-04] Measure useful-answer/artifact quality, latency/error budgets and cost per completed task including failed attempts, storage/egress, support and operations. Apply enforced spe",
+      "description": "Measure useful-answer/artifact quality, latency/error budgets and cost per completed task including failed attempts, storage/egress, support and operations. Apply enforced spend admission, not alerts alone.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-04",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-05",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-05] Execute SQL/Firestore/object restore, reconnect, region-outage procedure, deletion replay, payment reconciliation and deployment rollback against the stated RPO/RTO objectives",
+      "description": "Execute SQL/Firestore/object restore, reconnect, region-outage procedure, deletion replay, payment reconciliation and deployment rollback against the stated RPO/RTO objectives.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-05",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-06",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-06] Complete release-path security/dependency/image reviews, controlled access review, secret rotation and incident/support/on-call runbooks with named responders.",
+      "description": "Complete release-path security/dependency/image reviews, controlled access review, secret rotation and incident/support/on-call runbooks with named responders.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-06",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-07",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-07] Accept production origin/merchant/model/source/environment configuration and required privacy/commercial evidence; release a controlled cohort with stop/rollback criteria and ",
+      "description": "Accept production origin/merchant/model/source/environment configuration and required privacy/commercial evidence; release a controlled cohort with stop/rollback criteria and observed error/cost budgets.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-07",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "RELEASE-08",
+      "phase": "P12",
+      "issueType": "Task",
+      "summary": "[RELEASE-08] Expand gradually toward the growth target only after measured gates pass. Record final scope, configuration, release evidence, known limitations and accountable launch accepta",
+      "description": "Expand gradually toward the growth target only after measured gates pass. Record final scope, configuration, release evidence, known limitations and accountable launch acceptance.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-release-08",
+        "visionary-phase-p12"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LATER-01",
+      "phase": "LATER",
+      "issueType": "Task",
+      "summary": "[LATER-01] Arbitrary code execution: qualified separate runtime/project/network/IAM, supply-chain/resource/egress/metadata controls, cancellation/cleanup tests and incremental budgets.",
+      "description": "Arbitrary code execution: qualified separate runtime/project/network/IAM, supply-chain/resource/egress/metadata controls, cancellation/cleanup tests and incremental budgets.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Later",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-later-01",
+        "visionary-phase-later"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LATER-02",
+      "phase": "LATER",
+      "issueType": "Task",
+      "summary": "[LATER-02] Generated HTML/app previews: separate cookieless origin, restrictive sandbox/CSP, bounded authenticated message bridge and real browser abuse/recovery tests.",
+      "description": "Generated HTML/app previews: separate cookieless origin, restrictive sandbox/CSP, bounded authenticated message bridge and real browser abuse/recovery tests.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Later",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-later-02",
+        "visionary-phase-later"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LATER-03",
+      "phase": "LATER",
+      "issueType": "Task",
+      "summary": "[LATER-03] Public deployment and generated-app storage/connectors: immutable release approval, scoped capability proxy, revocation, abuse response, schema/tenant boundaries and explicit ",
+      "description": "Public deployment and generated-app storage/connectors: immutable release approval, scoped capability proxy, revocation, abuse response, schema/tenant boundaries and explicit cost/age policy.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Later",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-later-03",
+        "visionary-phase-later"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LATER-04",
+      "phase": "LATER",
+      "issueType": "Task",
+      "summary": "[LATER-04] Own-model serving/fine-tuning: licensed/consented data, measured quality/economic advantage, GPU/MLOps/security/on-call readiness; foundation-model training is outside the ini",
+      "description": "Own-model serving/fine-tuning: licensed/consented data, measured quality/economic advantage, GPU/MLOps/security/on-call readiness; foundation-model training is outside the initial launch baseline.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Later",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-later-04",
+        "visionary-phase-later"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LATER-05",
+      "phase": "LATER",
+      "issueType": "Task",
+      "summary": "[LATER-05] Redis/specialized vector/search infrastructure, replicas/sharding, additional regions or a second cloud: introduce only for a demonstrated access-pattern, capacity, latency or",
+      "description": "Redis/specialized vector/search infrastructure, replicas/sharding, additional regions or a second cloud: introduce only for a demonstrated access-pattern, capacity, latency or recovery requirement.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Later",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-later-05",
+        "visionary-phase-later"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    }
+  ]
+}

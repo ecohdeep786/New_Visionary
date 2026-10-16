@@ -15,7 +15,7 @@ export class AccountController extends ProductRequestAuthority {
     const { uid } = await this.commandAccount(req, false);
     const [details, billing] = await Promise.all([this.service.accountDetails(uid), this.billing.account(uid)]);
     return { uid, asOf: new Date().toISOString(), ...details, billing,
-      records: { devices: '/api/account/devices', invoices: '/api/account/invoices' } };
+      records: { devices: '/api/account/devices', invoices: '/api/account/invoices', feedback: '/api/account/feedback' } };
   }
   private async page(collection: string, after?: string, size?: string) {
     if (after !== undefined && (typeof after !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(after)) || size !== undefined && (typeof size !== 'string' || !/^(?:[1-9]|[1-4][0-9]|50)$/.test(size))) throw new BadRequestException('Use a valid account page cursor and a limit from 1 to 50.');
