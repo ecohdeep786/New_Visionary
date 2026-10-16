@@ -34,7 +34,7 @@
     "Storage sizes forecast total retained/index/version/backup bytes, not an approved deletion or retention policy.",
     "Other-cloud allowance covers estimated Tasks/Scheduler/logging/CI/email/scan/backup/network extras; it is not a sum of verified SKU quotes.",
     "Business tools/content and people/operations are explicit placeholders. Replace with actual staffing, licensing, support and security budgets.",
-    "Revenue is monthly-normalized before indirect taxes/discounts/churn; Family is charged per payer, not multiplied by six. Annual cash collection is different from normalized revenue.",
+    "Revenue is monthly-normalized before indirect taxes/discounts/churn; Family is charged per payer, not multiplied by six. Billing payers and product MAU are independent populations: a paying account may be inactive. Annual cash collection is different from normalized revenue.",
     "No model/provider is selected by illustrative token prices. No response-cache savings or credits assumed. Voice/image/3D inference, live video, SMS/SSO, refunds/chargebacks and additional DR costs need separate sizing if not covered by allowances."
   ]
 }

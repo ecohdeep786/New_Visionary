@@ -49,7 +49,6 @@ export function estimate(config, rates, scenario) {
   for (const key of ['daysPerMonth', 'hoursPerMonth', 'fxInrPerUsdAssumption']) if (!(config[key] > 0)) throw new Error(`${key} must be positive.`);
   for (const key of ['mau', 'paidPersonalAccounts', 'paidFamilyAccounts', 'apiMinInstances', 'aiMinInstances']) if (!Number.isSafeInteger(p[key])) throw new Error(`${key} must be an integer.`);
   if (p.minimumIdleHoursPerDay > 24 || p.providerAttemptMultiplier < 1 || p.runTimeOverheadMultiplier < 1) throw new Error('Invalid idle/overhead assumption.');
-  if (p.paidPersonalAccounts + p.paidFamilyAccounts > p.mau) throw new Error('Payer accounts exceed scenario MAU.');
   const dau = p.mau * p.dailyActiveFraction;
   const coreRequests = dau * p.coreCallsPerDauDay * config.daysPerMonth;
   const turns = dau * p.aiTurnsPerDauDay * config.daysPerMonth;
@@ -101,7 +100,7 @@ export function estimate(config, rates, scenario) {
 }
 
 export function renderReport(config, rates, results) {
-  const usd = value => '$' + value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const usd = value => value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   const count = value => value.toLocaleString('en-US', { maximumFractionDigits: 0 });
   const lines = ['# Generated cost scenarios', '', 'Generated from versioned inputs by `npm run cost:report`. Prices checked ' + rates.verifiedOn + '; USD gross planning only. No vendor quote, live billing change or deployment.', '',
     'Models, FX, staff/content/tools, utilization and unresolved network SKUs are explicit assumptions. Compare the same workload/availability before choosing a cloud. See [method and controls](CLOUD_AND_COST.md).', '',

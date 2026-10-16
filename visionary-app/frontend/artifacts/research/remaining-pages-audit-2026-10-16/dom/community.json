@@ -1,0 +1,446 @@
+{
+ "route": "/community",
+ "title": "Community | Visionary",
+ "docH": 5592,
+ "overflowX": 0,
+ "headings": [
+  {
+   "tag": "h1",
+   "sec": "section@181",
+   "text": "Communities and programs for everyone learning together.",
+   "cls": "max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]",
+   "fs": "76px",
+   "lh": "80.56px",
+   "fw": "400",
+   "ls": "-3.42px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 960
+  },
+  {
+   "tag": "h2",
+   "sec": "section@1212",
+   "text": "Find a community that's right for you",
+   "cls": "text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]",
+   "fs": "64px",
+   "lh": "68px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 720
+  },
+  {
+   "tag": "h3",
+   "sec": "section@1212",
+   "text": "Communities for learners",
+   "cls": "mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317]",
+   "fs": "28px",
+   "lh": "32px",
+   "fw": "600",
+   "ls": "0.196px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 470
+  },
+  {
+   "tag": "h3",
+   "sec": "section@1212",
+   "text": "Guided by teachers",
+   "cls": "mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317]",
+   "fs": "28px",
+   "lh": "32px",
+   "fw": "600",
+   "ls": "0.196px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 470
+  },
+  {
+   "tag": "h3",
+   "sec": "section@1212",
+   "text": "For families and organizations",
+   "cls": "mt-5 text-[28px] font-normal leading-[1.2] tracking-[-0.025em] text-[#121317]",
+   "fs": "28px",
+   "lh": "32px",
+   "fw": "600",
+   "ls": "0.196px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 470
+  },
+  {
+   "tag": "h2",
+   "sec": "more",
+   "text": "More ways to engage and learn",
+   "cls": "text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]",
+   "fs": "64px",
+   "lh": "68px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 720
+  },
+  {
+   "tag": "h3",
+   "sec": "more",
+   "text": "Get updates",
+   "cls": "text-[20px] font-medium leading-[1.3] text-[#121317]",
+   "fs": "17px",
+   "lh": "19.8333px",
+   "fw": "600",
+   "ls": "0.153px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 352
+  },
+  {
+   "tag": "h3",
+   "sec": "more",
+   "text": "Explore how it works",
+   "cls": "text-[20px] font-medium leading-[1.3] text-[#121317]",
+   "fs": "17px",
+   "lh": "19.8333px",
+   "fw": "600",
+   "ls": "0.153px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 352
+  },
+  {
+   "tag": "h3",
+   "sec": "more",
+   "text": "Get help",
+   "cls": "text-[20px] font-medium leading-[1.3] text-[#121317]",
+   "fs": "17px",
+   "lh": "19.8333px",
+   "fw": "600",
+   "ls": "0.153px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 352
+  },
+  {
+   "tag": "h2",
+   "sec": "faq",
+   "text": "Have questions? We've got answers.",
+   "cls": "text-center text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]",
+   "fs": "64px",
+   "lh": "68px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 840
+  },
+  {
+   "tag": "h2",
+   "sec": "section@4504",
+   "text": "Bring your class together.",
+   "cls": "text-[36px] font-normal leading-[1.12] tracking-[-0.03em] text-[#121317] sm:text-[48px]",
+   "fs": "64px",
+   "lh": "68px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 720
+  }
+ ],
+ "imgs": [
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-primary.webp",
+   "nat": "900x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-vocational.webp",
+   "nat": "899x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "organization-problem-3-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "problem-practice.webp",
+   "nat": "700x700",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "teacher-problem-2.webp",
+   "nat": "900x900",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-secondary.webp",
+   "nat": "0x0",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-primary.webp",
+   "nat": "900x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-vocational.webp",
+   "nat": "899x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "organization-problem-3-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "problem-practice.webp",
+   "nat": "700x700",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "teacher-problem-2.webp",
+   "nat": "900x900",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-secondary.webp",
+   "nat": "0x0",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-competitive.webp",
+   "nat": "900x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "problem-understanding.webp",
+   "nat": "700x700",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "organization-problem-2-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "professional-problem-1-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-higher.webp",
+   "nat": "900x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "organization-problem-1-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-competitive.webp",
+   "nat": "900x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "problem-understanding.webp",
+   "nat": "700x700",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "organization-problem-2-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "professional-problem-1-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "student-higher.webp",
+   "nat": "900x514",
+   "rect": "300x190",
+   "ratio": "1.58"
+  },
+  {
+   "broken": true,
+   "tag": "img",
+   "sec": "section@181",
+   "src": "organization-problem-1-1600w.webp",
+   "nat": "1600x1600",
+   "rect": "300x190",
+   "ratio": "1.58"
+  }
+ ],
+ "sections": [
+  {
+   "i": 0,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "104px/40px",
+   "bg": "rgb(255, 255, 255)",
+   "borderTop": "0px",
+   "h": 967,
+   "w": 1440
+  },
+  {
+   "i": 1,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "borderTop": "0px",
+   "h": 1593,
+   "w": 1440
+  },
+  {
+   "i": 2,
+   "tag": "section",
+   "id": "more",
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgb(248, 249, 250)",
+   "borderTop": "1px",
+   "h": 824,
+   "w": 1440
+  },
+  {
+   "i": 3,
+   "tag": "section",
+   "id": "faq",
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "borderTop": "0px",
+   "h": 874,
+   "w": 1440
+  },
+  {
+   "i": 4,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "borderTop": "1px",
+   "h": 552,
+   "w": 1440
+  }
+ ],
+ "kids": [
+  "nav.w-full.bg-white",
+  "section.relative.overflow-hidden.border-b",
+  "nav.sticky.top-14.z-30",
+  "section.px-6.py-24.lg:py-32",
+  "section#more.scroll-mt-36.border-t.border-[#dadce0]",
+  "section#faq.scroll-mt-36.px-6.py-24",
+  "section.border-t.border-[#dadce0].px-6"
+ ],
+ "failed": [
+  "500 http://localhost:5173/api/auth/me"
+ ],
+ "consoleErrors": [
+  "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+ ]
+}

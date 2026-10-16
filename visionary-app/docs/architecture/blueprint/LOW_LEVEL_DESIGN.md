@@ -69,7 +69,7 @@ parse allowed schema/body size
  -> account-epoch validation by client
 ```
 
-`ActorContext` carries verified UID, device session ID, workspace/membership IDs, allowed action set, policy revision, purpose, request ID and deadline. Do not persist/copy raw cookies or Firebase tokens into records. Reject missing/unknown scope. SQL runtime roles are non-owner/non-bypass; transaction-local security context is reset by transaction boundaries, with explicit tenant predicates and RLS defense in depth. Use separate migration and ingestion identities.
+`ActorContext` carries verified UID, device session ID, workspace/membership IDs, allowed action set, policy revision, purpose, request ID and deadline. Resolve workspace from the current authorized request/device context; another device's navigation must not change its role. Do not persist/copy raw cookies or Firebase tokens into records. Reject missing/unknown scope. SQL runtime roles are non-owner/non-bypass; transaction-local security context is reset by transaction boundaries, with explicit tenant predicates and RLS defense in depth. Use separate migration and ingestion identities.
 
 ## Atomic command algorithm
 

@@ -1,0 +1,188 @@
+{
+ "route": "/how-it-works",
+ "title": "How Visionary works",
+ "docH": 6592,
+ "overflowX": 0,
+ "headings": [
+  {
+   "tag": "h1",
+   "sec": "section@181",
+   "text": "How Visionary works.",
+   "cls": "mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px",
+   "fs": "64px",
+   "lh": "67.84px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 1007
+  },
+  {
+   "tag": "h3",
+   "sec": "section@465",
+   "text": "Stay connected.",
+   "cls": "mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]",
+   "fs": "40px",
+   "lh": "44px",
+   "fw": "600",
+   "ls": "normal",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 455
+  },
+  {
+   "tag": "h3",
+   "sec": "section@465",
+   "text": "Create your account.",
+   "cls": "mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]",
+   "fs": "40px",
+   "lh": "44px",
+   "fw": "600",
+   "ls": "normal",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 0
+  },
+  {
+   "tag": "h3",
+   "sec": "section@465",
+   "text": "Start as yourself.",
+   "cls": "mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]",
+   "fs": "40px",
+   "lh": "44px",
+   "fw": "600",
+   "ls": "normal",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 0
+  },
+  {
+   "tag": "h3",
+   "sec": "section@465",
+   "text": "Step into your space.",
+   "cls": "mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]",
+   "fs": "40px",
+   "lh": "44px",
+   "fw": "600",
+   "ls": "normal",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 0
+  },
+  {
+   "tag": "h2",
+   "sec": "section@3649",
+   "text": "One loop, goal.",
+   "cls": "mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px",
+   "fs": "72px",
+   "lh": "72px",
+   "fw": "600",
+   "ls": "-0.648px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 1133
+  },
+  {
+   "tag": "h2",
+   "sec": "section@4546",
+   "text": "One intelligence. Different ways to use it.",
+   "cls": "mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px",
+   "fs": "72px",
+   "lh": "72px",
+   "fw": "600",
+   "ls": "-0.648px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 1133
+  },
+  {
+   "tag": "h2",
+   "sec": "section@5492",
+   "text": "See it with your own question.",
+   "cls": "mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]",
+   "fs": "72px",
+   "lh": "72px",
+   "fw": "600",
+   "ls": "-0.648px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 1260
+  }
+ ],
+ "imgs": [],
+ "sections": [
+  {
+   "i": 0,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "112px/64px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "borderTop": "0px",
+   "h": 284,
+   "w": 1440
+  },
+  {
+   "i": 1,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "0px/0px",
+   "bg": "rgb(255, 255, 255)",
+   "borderTop": "0px",
+   "h": 3184,
+   "w": 1440
+  },
+  {
+   "i": 2,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgb(245, 246, 248)",
+   "borderTop": "0px",
+   "h": 897,
+   "w": 1440
+  },
+  {
+   "i": 3,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgb(255, 255, 255)",
+   "borderTop": "0px",
+   "h": 946,
+   "w": 1440
+  },
+  {
+   "i": 4,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "144px/144px",
+   "bg": "rgb(245, 246, 248)",
+   "borderTop": "0px",
+   "h": 563,
+   "w": 1440
+  }
+ ],
+ "kids": [
+  "section.relative.overflow-hidden.px-6",
+  "section.relative.bg-white.[overflow-x:clip]",
+  "section.relative.px-6.py-24",
+  "section.relative.bg-white.px-6",
+  "section.relative.px-6.py-24"
+ ],
+ "failed": [
+  "500 http://localhost:5173/api/auth/me"
+ ],
+ "consoleErrors": [
+  "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+ ]
+}

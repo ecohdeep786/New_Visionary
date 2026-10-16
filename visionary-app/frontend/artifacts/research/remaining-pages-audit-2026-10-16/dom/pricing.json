@@ -1,0 +1,260 @@
+{
+ "route": "/pricing",
+ "title": "Pricing | Visionary",
+ "docH": 5209,
+ "overflowX": 0,
+ "headings": [
+  {
+   "tag": "h1",
+   "sec": "section@181",
+   "text": "Plans for every journey.",
+   "cls": "mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px",
+   "fs": "64px",
+   "lh": "67.84px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 1007
+  },
+  {
+   "tag": "h3",
+   "sec": "section@181",
+   "text": "Start",
+   "cls": "text-[24px] font-semibold leading-[1.12] tracking-[0.009em]",
+   "fs": "24px",
+   "lh": "26.88px",
+   "fw": "600",
+   "ls": "0.216px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 235
+  },
+  {
+   "tag": "h3",
+   "sec": "section@181",
+   "text": "Personal",
+   "cls": "text-[24px] font-semibold leading-[1.12] tracking-[0.009em]",
+   "fs": "24px",
+   "lh": "26.88px",
+   "fw": "600",
+   "ls": "0.216px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 235
+  },
+  {
+   "tag": "h3",
+   "sec": "section@181",
+   "text": "Family",
+   "cls": "text-[24px] font-semibold leading-[1.12] tracking-[0.009em]",
+   "fs": "24px",
+   "lh": "26.88px",
+   "fw": "600",
+   "ls": "0.216px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 235
+  },
+  {
+   "tag": "h3",
+   "sec": "section@181",
+   "text": "Institution",
+   "cls": "text-[24px] font-semibold leading-[1.12] tracking-[0.009em]",
+   "fs": "24px",
+   "lh": "26.88px",
+   "fw": "600",
+   "ls": "0.216px",
+   "tt": "none",
+   "color": "rgb(18, 19, 23)",
+   "w": 235
+  },
+  {
+   "tag": "h2",
+   "sec": "section@1369",
+   "text": "Every journey has a plan.",
+   "cls": "mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px",
+   "fs": "72px",
+   "lh": "72px",
+   "fw": "600",
+   "ls": "-0.648px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 944
+  },
+  {
+   "tag": "h2",
+   "sec": "section@2123",
+   "text": "See exactly what you get.",
+   "cls": "mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px",
+   "fs": "72px",
+   "lh": "72px",
+   "fw": "600",
+   "ls": "-0.648px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 944
+  },
+  {
+   "tag": "h2",
+   "sec": "section@3421",
+   "text": "Questions about pricing, answered.",
+   "cls": "mt-[var(--gap-eyebrow-title-display)] max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[c",
+   "fs": "64px",
+   "lh": "68px",
+   "fw": "600",
+   "ls": "-0.576px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 480
+  },
+  {
+   "tag": "h2",
+   "sec": "section@4134",
+   "text": "Your journey is already happening, so start free.",
+   "cls": "mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]",
+   "fs": "72px",
+   "lh": "72px",
+   "fw": "600",
+   "ls": "-0.648px",
+   "tt": "none",
+   "color": "rgb(29, 29, 31)",
+   "w": 1133
+  }
+ ],
+ "imgs": [
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@1369",
+   "src": "student-face-main.webp",
+   "nat": "350x389",
+   "rect": "190x144",
+   "ratio": "1.32"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@1369",
+   "src": "teacher-face-main.webp",
+   "nat": "350x381",
+   "rect": "190x144",
+   "ratio": "1.32"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@1369",
+   "src": "parent-face-main.webp",
+   "nat": "349x368",
+   "rect": "190x144",
+   "ratio": "1.32"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@1369",
+   "src": "professional-face-main.webp",
+   "nat": "350x365",
+   "rect": "190x144",
+   "ratio": "1.32"
+  },
+  {
+   "broken": false,
+   "tag": "img",
+   "sec": "section@1369",
+   "src": "organization-face-main.webp",
+   "nat": "350x380",
+   "rect": "190x144",
+   "ratio": "1.32"
+  }
+ ],
+ "sections": [
+  {
+   "i": 0,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "112px/96px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "borderTop": "0px",
+   "h": 1188,
+   "w": 1440
+  },
+  {
+   "i": 1,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgb(255, 255, 255)",
+   "borderTop": "0px",
+   "h": 754,
+   "w": 1440
+  },
+  {
+   "i": 2,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "borderTop": "0px",
+   "h": 1134,
+   "w": 1440
+  },
+  {
+   "i": 3,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "48px/48px",
+   "bg": "rgb(255, 255, 255)",
+   "borderTop": "0px",
+   "h": 164,
+   "w": 1440
+  },
+  {
+   "i": 4,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgb(255, 255, 255)",
+   "borderTop": "0px",
+   "h": 713,
+   "w": 1440
+  },
+  {
+   "i": 5,
+   "tag": "section",
+   "id": null,
+   "dataSection": null,
+   "direct": true,
+   "py": "128px/128px",
+   "bg": "rgb(245, 246, 248)",
+   "borderTop": "0px",
+   "h": 539,
+   "w": 1440
+  }
+ ],
+ "kids": [
+  "section.relative.px-4.pb-20",
+  "section.relative.bg-white.px-6",
+  "section.relative.px-6.py-24",
+  "section.relative.bg-white.px-6",
+  "section.relative.bg-white.px-6",
+  "section.relative.px-6.py-24"
+ ],
+ "failed": [
+  "500 http://localhost:5173/api/auth/me"
+ ],
+ "consoleErrors": [
+  "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+ ]
+}

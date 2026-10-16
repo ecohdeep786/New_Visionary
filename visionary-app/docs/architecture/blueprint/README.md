@@ -1,12 +1,20 @@
 # Visionary end-to-end engineering blueprint
 
-15 October 2026 · D-076 · 100,000 monthly active users · architecture and cost planning, not a deployment.
+Implementation: [complete backend launch checklist](../BACKEND_LAUNCH_CHECKLIST.md) and [source/verification ledger](../BACKEND_LAUNCH_EVIDENCE.md).
+
+Decision baseline: [final architecture recommendation](../FINAL_ARCHITECTURE_RECOMMENDATION.md) consolidates the reference reviews, retained stack/ownership choices, operation-specific consistency and implementation exit gates.
+
+D-079 review entry point: [platform architecture](../diagrams/PLATFORM_ARCHITECTURE.md), [request paths](../diagrams/REQUEST_PATHS.md) and [resilience/scale](../diagrams/RESILIENCE_AND_SCALE.md). [Review findings](../VISUAL_REVIEW.md) distinguish diagram improvements from remaining implementation.
+
+Visual review: [overall, Learn/Teach and Build diagrams](../diagrams/README.md). D-078 adds a separate [Build system specification](../build/README.md) with its own contracts, lifecycle, execution gates and incremental cost scenarios while retaining this shared foundation.
+
+Research: 15 October 2026 · finalized: 16 October 2026 · D-076 · 100,000 monthly active users · architecture and cost planning, not a deployment.
 
 Start with the [system tree](SYSTEM_TREE.md). It connects product screens to requests, ownership, databases, workers and delivery. Then use the lower-level documents for implementation. This extends the [D-075 architecture](../discussions/system-design.md) after a public-evidence study of Google Classroom, Khan Academy and YouTube; it preserves the existing Firebase UID/account/test-payment implementation.
 
 | Chunk / question | Deliverable |
 | --- | --- |
-| 1. What can we establish about the reference products? | [Research findings, actual REA runs, primary sources and uncertainties](../../../reverse-engineering/research/SYSTEM_DESIGN_STUDY_2026_10_15.md) |
+| 1. What can we establish about the reference products? | [Research findings, actual REA runs, primary sources and uncertainties](../../../research/SYSTEM_DESIGN_STUDY_2026_10_15.md) |
 | 2. How does every part fit together? | [Complete system tree](SYSTEM_TREE.md) and [high-level design](HIGH_LEVEL_DESIGN.md) |
 | 3. What happens at request/data boundaries? | [Frontend/backend communication](COMMUNICATION.md) and [low-level design](LOW_LEVEL_DESIGN.md) |
 | 4. Which objects own rules and dependencies? | [Object-oriented design](OBJECT_DESIGN.md) |
@@ -30,4 +38,4 @@ Connected: Firebase identity exchange, server/device sessions, profile/onboardin
 
 ## Architecture completion versus product completion
 
-The blueprint answers tree/HLD/LLD/object/communication/cloud/cost questions with concrete target contracts and an executable planning calculator. It cannot recover private third-party implementation details or establish an actual100,000-user benchmark. Implementation follows staged migrations and acceptance; existing auth/payment authority and unrelated frontend work remain intact. No cloud resources, accounts, charges or model training are created by this study.
+The blueprint answers tree/HLD/LLD/object/communication/cloud/cost questions with concrete target contracts and an executable planning calculator. It cannot recover private third-party implementation details or establish an actual 100,000-user benchmark. Implementation follows staged migrations and acceptance; existing auth/payment authority and unrelated frontend work remain intact. No cloud resources, accounts, charges or model training are created by this study.

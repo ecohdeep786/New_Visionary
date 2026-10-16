@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import LandingNav from "@/components/landing/LandingNav";
 import LandingFooter from "@/components/landing/LandingFooter";
 import PersonaHero from "@/components/landing/NewPersona";
@@ -8,6 +7,7 @@ import {
   PremiumLanguageSection,
   PremiumTrustSection,
   PremiumCTASection,
+  PremiumExploreSection,
 } from "@/components/landing/persona/PremiumPersonaSections";
 // Hero images (above the fold) — loaded eagerly with high fetch priority
 import studentmeet from "@/assets/student-hero-main-1600w.webp";
@@ -20,6 +20,12 @@ import problemunderstanding from "@/assets/problem-understanding.webp";
 import teacherProblem from "@/assets/teacher-problem-1.webp";
 import problemrevision from "@/assets/problem-revision.webp";
 import proProblem from "@/assets/professional-problem-2.webp";
+// Journey card images — resolved imports so Vite rewrites them to servable,
+// hashed URLs (a raw "@/" string never passes through the build and 404s)
+import journeyPrimary from "@/assets/student-primary.webp";
+import journeySecondary from "@/assets/student-secondary.webp";
+import journeyVocational from "@/assets/student-vocational.webp";
+import journeyHigher from "@/assets/student-higher.webp";
 import { Play, Pause } from "lucide-react";
 
 /* ═══════════════════════ TOKENS ═══════════════════════ */
@@ -171,14 +177,18 @@ const PROBLEM_SLIDES = [
 ];
 const PROBLEM_MS = 4200;
 
-const MEET_IMG = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
+/* The five journeys — the landing's category router. Rendered with the
+   accepted line-up module (white cards on the grey ground): the studio
+   portrait shows WHOLE on its square field, the same anatomy every persona
+   page closes with — one card system across the entire product. */
+const ROUTER_IMAGES = [studentmeet, teachermeet, parentmeet, promeet, orgmeet];
 
-const MEET_SECTIONS = [
-  { id: "student", tab: "Student", leadBlack: "Understand", blues: ["what you're learning.", "why it matters.", "where you're stuck.", "what stays with you."], copy: "See the idea, practise it, and use it in the next thing you build.", link: "Explore student learning", to: "/student", alt: "Student studying with books" },
-  { id: "teacher", tab: "Teacher", leadBlack: "Know", blues: ["what your class is learning.", "who needs another explanation.", "who's ready to move forward.", "how to teach the next idea."], copy: "Plan, explain, and check understanding while the lesson is still in front of you.", link: "Explore teaching tools", to: "/teacher", alt: "Teacher presenting at a whiteboard" },
-  { id: "parent", tab: "Parent", leadBlack: "Know", blues: ["what your child is learning.", "where they need support.", "how they're growing.", "what to ask next."], copy: "See the progress behind the report and find a useful next step at home.", link: "Explore parent support", to: "/parent", alt: "Parent helping child with homework" },
-  { id: "professional", tab: "Professional", leadBlue: ["Learn", "Build"], midBlack: "what the work", blues: ["requires.", "rewards."], copy: "Turn a question, project, or new skill into work you can use.", link: "Explore professional work", to: "/professional", alt: "Professional writing notes beside a laptop" },
-  { id: "organization", tab: "Organization", leadBlack: "See", midBlack: "what your people are", blues: ["learning.", "building."], copy: "Give teams a shared view of learning across people, projects, and time.", link: "Explore organization learning", to: "/organization", alt: "Leader reviewing team progress on a tablet" },
+const ROUTER_CATEGORIES = [
+  { slug: "student", chip: "Student", copy: "See the idea, practise it, and use it in the next thing you build.", alt: "Student studying with books" },
+  { slug: "teacher", chip: "Teacher", copy: "Plan, explain, and check understanding while the lesson is still in front of you.", alt: "Teacher presenting at a whiteboard" },
+  { slug: "parent", chip: "Parent", copy: "See the progress behind the report and find a useful next step at home.", alt: "Parent helping child with homework" },
+  { slug: "professional", chip: "Professional", copy: "Turn a question, project, or new skill into work you can use.", alt: "Professional writing notes beside a laptop" },
+  { slug: "organization", chip: "Organization", copy: "Give teams a shared view of learning across people, projects, and time.", alt: "Leader reviewing team progress on a tablet" },
 ];
 
 const LG_CHIPS = [
@@ -197,13 +207,14 @@ const LG_QUESTIONS = [
 ];
 const LG_RING_MS = 3600;
 
-// Journey images — lazy-loaded via LazyImage component (below the fold)
-const JOURNEY_IMAGE_BASE = "/src/assets/student-";
+/* Journey cards — images are the resolved imports above (a raw string path
+   never passes through Vite's pipeline and 404s at runtime); lazy-loaded via
+   LazyImage below the fold. */
 const JOURNEY_STEPS = [
-  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: "@/assets/student-primary.webp", alt: "Child learning with a tablet outdoors", tone: "light" },
-  { title: "Grow", copy: "When you know more, you should be able to go further.", image: "@/assets/student-secondary.webp", alt: "Student growing their skills", tone: "light" },
-  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: "@/assets/student-vocational.webp", alt: "Person building a real project", tone: "light" },
-  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: "@/assets/student-higher.webp", alt: "Learner continuing their journey", tone: "dark" },
+  { title: "Adapt", copy: "When what you need changes, the way you learn can change with it.", image: journeyPrimary, alt: "Child learning with a tablet outdoors", tone: "light" },
+  { title: "Grow", copy: "When you know more, you should be able to go further.", image: journeySecondary, alt: "Student growing their skills", tone: "light" },
+  { title: "Create", copy: "When an idea becomes real, your intelligence should come with you.", image: journeyVocational, alt: "Person building a real project", tone: "light" },
+  { title: "Continue", copy: "Wherever you go next, you shouldn't have to begin again.", image: journeyHigher, alt: "Learner continuing their journey", tone: "dark" },
 ];
 const JOURNEY_CARD_MS = 5000;
 
@@ -378,92 +389,25 @@ function LandingPromiseSection() {
   );
 }
 
-/* 04 · CATEGORY LINE-UP — Apple's product-page grid anatomy
-   (measured on /education: "From grade school to grad school."): the
-   chapter opener, then a clean row of category cards — each a full-bleed
-   image, a title, a subtitle, and a quiet "Learn more" link. No frosted
-   tab strip, no cycling words, no scroll-sync: the reader scans and clicks.
-   Apple's card law: the image fills the frame, text sits beneath it, no
-   overlay, no scrim. */
-const CategoryGridCard = React.memo(function CategoryGridCard({ title, subtitle, image, to, alt }) {
+/* 04 · THE ROUTER — the five journeys, as one line-up. The landing's
+   category chapter renders with the accepted explore module verbatim (white
+   cards on the #f5f5f7 ground, the studio portrait whole on its square
+   field, the quiet blue link) — the same card system every persona page
+   closes with, so the product reads as one family. On the landing the
+   module sits mid-story as the router: after the promise, before the
+   journey. The grey ground is the chapter join — Apple carries no hairline
+   between chapters, the surface change does the work. (The heading lands on
+   the 64/68 card-chapter tier automatically: the bridge's card-chapter rule
+   keys off the line-up's data-card attribute.) */
+function LandingRouterSection() {
   return (
-    <Link
-      to={to}
-      className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-    >
-      <figure className="m-0">
-        <div className="relative overflow-hidden" style={{ borderRadius: "var(--radius-media)" }}>
-          <img
-            src={image}
-            alt={alt}
-            loading="lazy"
-            decoding="async"
-            draggable="false"
-            className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            style={{ aspectRatio: "16/9" }}
-          />
-        </div>
-        <figcaption className="mt-6">
-          <h3 className="font-semibold tracking-[-0.002em] leading-[1.14] text-[clamp(22px,1.5vw,28px)]" style={{ color: COLORS.ink }}>
-            {title}
-          </h3>
-          <p className="mt-2 max-w-[24ch] font-normal tracking-[0] leading-[1.4] text-[17px]" style={{ color: COLORS.graphite }}>
-            {subtitle}
-          </p>
-          <span className="mt-4 inline-flex items-center gap-1 text-[17px] font-normal" style={{ color: COLORS.blue }}>
-            Learn more
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
-              <path d="M9 6l6 6-6 6" />
-            </svg>
-          </span>
-        </figcaption>
-      </figure>
-    </Link>
-  );
-});
-
-/* The category cards mapped from MEET_SECTIONS with their persona images */
-const CATEGORY_CARDS = MEET_SECTIONS.map((s, i) => ({
-  title: s.tab,
-  subtitle: s.copy,
-  image: MEET_IMG[i],
-  alt: s.alt,
-  to: s.to,
-}));
-
-function LandingCategorySection() {
-  const { ref, visible } = useRevealContinuous();
-  return (
-    <section ref={ref} data-section="04-meet" className="relative z-10 bg-white" style={{ fontFamily: fontStack }}>
-      <div className="px-6">
-        <FadeReveal visible={visible}>
-          <p className="text-center text-[17px] font-medium" style={{ color: COLORS.slate }}>Who it's for</p>
-          <h2 className="mx-auto mt-[var(--gap-eyebrow-title-display)] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch" }}>
-            One intelligence, five journeys.
-          </h2>
-          <p className="mx-auto mt-[var(--gap-title-sub-display)] max-w-[720px] text-center font-normal tracking-[0] leading-[1.4] text-[18px]" style={{ color: COLORS.slate }}>
-            Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward.
-          </p>
-        </FadeReveal>
-      </div>
-
-      {/* Apple's product grid: 3-up on desktop, 2-up on tablet, 1-on-phone.
-           Each card: full-bleed image, title, subtitle, "Learn more" link.
-           No border, no shadow, no chrome — the grid's own whitespace
-           carries the rhythm (Apple's measured 48px gap between cards). */}
-      <div className="mx-auto mt-20 grid w-full max-w-[1260px] grid-cols-1 gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 lg:px-0">
-        {CATEGORY_CARDS.map((card) => (
-          <CategoryGridCard
-            key={card.title}
-            title={card.title}
-            subtitle={card.subtitle}
-            image={card.image}
-            alt={card.alt}
-            to={card.to}
-          />
-        ))}
-      </div>
-    </section>
+    <PremiumExploreSection
+      eyebrow="Who it's for"
+      heading={<>One intelligence, <span className="accent-gradient">five journeys.</span></>}
+      sub="Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to your stage and carries your progress forward."
+      categories={ROUTER_CATEGORIES}
+      images={ROUTER_IMAGES}
+    />
   );
 }
 /* 06 · THE JOURNEY — Apple's education-initiative chapter anatomy: a left-aligned
@@ -577,9 +521,13 @@ function LandingJourneySection() {
           </button>
         </div>
         <p aria-live="polite" className="sr-only">{`${JOURNEY_STEPS[active].title}. ${JOURNEY_STEPS[active].copy}`}</p>
-        <h3 className="mx-auto mt-24 max-w-[24ch] px-6 text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
+        {/* the chapter's closing statement — an h2 so it lands on the
+            chapter tier (72/72) like every sibling statement; as an h3 the
+            adapter flattened it to the 28px card-name tier and the line
+            read as a caption, not a close. */}
+        <h2 className="mx-auto mt-24 max-w-[24ch] px-6 text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           Built for who you are. Ready for <span style={{ color: COLORS.blue }}>who you become.</span>
-        </h3>
+        </h2>
       </div>
     </section>
   );
@@ -588,8 +536,8 @@ function LandingJourneySection() {
 /* ═══════════════════════ PAGE ═══════════════════════
    The Vision Pro anatomy: the family stage pins to the viewport, the
    story glides over it on frosted glass (problem), the thesis fades up
-   (promise), the category grid (line-up), the journey, the language
-   chapter, trust, and the blue closer. */
+   (promise), the five-journey router (the accepted line-up module on its
+   grey ground), the journey, the language chapter, trust, and the closer. */
 export default function LandingPage() {
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
@@ -610,7 +558,7 @@ export default function LandingPage() {
         />
         <LandingProblemSection />
         <LandingPromiseSection />
-        <LandingCategorySection />
+        <LandingRouterSection />
         <LandingJourneySection />
         <PremiumLanguageSection
           chips={LG_CHIPS}

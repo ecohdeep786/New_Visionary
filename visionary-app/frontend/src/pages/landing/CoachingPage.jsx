@@ -1,24 +1,25 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
-  UserPlus, Target, Compass, RefreshCw, Monitor, Laptop, Smartphone, Lock, ArrowRight,
+  UserPlus, Target, Compass, RefreshCw, Monitor, Laptop, Smartphone, Lock,
   GraduationCap, Users, HeartHandshake, Briefcase, Building2, MessageCircle, CircleCheck, Hammer, Sparkles,
 } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
 /* ═══ TOKENS (one system across all pages) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
+  surface: "#f5f5f7",
   blue: "#4285F4",
   grey: "#5f6368",
   lightGrey: "#9AA0A6",
-  mist: "#dadce0",
+  mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
-  soft: "#F5F6F8",
+  soft: "#f5f5f7",
 };
 
 /* ═══ TYPE SCALE — exact pricing page match ═══
@@ -193,18 +194,15 @@ const ROLES = [
   { id: "organization", tab: "Organization", prompt: "Where does my team need help?", ui: "Show me progress across the cohort.", outcome: "You find the gap. You step in before results drop." },
 ];
 
-/* ═══ MOCK SHELL ═══ */
-/* ═══ MOCK SHELL ═══ */
+/* ═══ MOCK SHELL — the product visual rides a grey module field: a flat
+   white card with no window chrome, Apple's card-in-module treatment ═══ */
 const MockShell = React.memo(function MockShell({ children, label }) {
   return (
-    <div className="w-full max-w-[440px] overflow-hidden rounded-[24px] border bg-white lg:max-w-none" style={{ borderColor: COLORS.mist }}>
-      <div className="flex items-center gap-2 border-b px-5 py-3" style={{ borderColor: COLORS.mist }}>
-        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
-        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.mist }} />
-        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS.blue }} />
-        <span className="ml-2 font-normal uppercase tracking-[0.43px] text-[12px]" style={{ color: COLORS.lightGrey }}>{label}</span>
+    <div className="w-full max-w-[440px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:max-w-none lg:p-10">
+      <div className="overflow-hidden rounded-[20px] bg-white p-6">
+        <p className="font-normal tracking-[0] text-[14px]" style={{ color: COLORS.lightGrey }}>{label}</p>
+        <div className="mt-5">{children}</div>
       </div>
-      <div className="p-6">{children}</div>
     </div>
   );
 });
@@ -345,7 +343,7 @@ function StepMock({ step, activeRole, activeSpace, authState, onPause, onResume 
 function HowHeroSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="01-hero" className="relative overflow-hidden px-6 pb-16 pt-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
           How <span className="accent-gradient">Visionary</span> works.
@@ -391,7 +389,7 @@ function HowJourneySection() {
             {a.blue} <span style={{ color: COLORS.ink }}>{a.title}</span>
           </h3>
           <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{a.do}</p>
-          <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>{a.micro}</p>
+          <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{a.micro}</p>
         </>
       );
     }
@@ -400,14 +398,14 @@ function HowJourneySection() {
         <BlueTag>{step.n} · {step.label}</BlueTag>
         <h3 className="mt-[calc(clamp(28px,2.78vw,40px)*0.714)] font-normal tracking-[0] leading-[1.08] text-[clamp(28px,2.78vw,40px)]" style={{ color: COLORS.ink }}>{step.title}</h3>
         <p className="mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{step.do}</p>
-        <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>{step.micro}</p>
+        <p className="mt-5 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ color: COLORS.grey }}>{step.micro}</p>
       </>
     );
   };
 
   return (
-    <section ref={headRef} className="relative bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 pb-24 pt-16 lg:grid-cols-[5fr_6fr] lg:gap-60 lg:px-0 lg:pt-24">
+    <section ref={headRef} data-section="04-journey" className="relative bg-white [overflow-x:clip]" style={{ fontFamily: fontStack }}>
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-16 px-6 lg:grid-cols-[5fr_6fr] lg:gap-60 lg:px-0">
         <div className="hidden lg:block">
           <div className="sticky top-14 flex h-[calc(100dvh-4rem)] items-center">
             <div
@@ -468,7 +466,7 @@ function HowLoopSection() {
   const stage = LOOP_STAGES[active];
 
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
+    <section ref={ref} data-section="05-loop" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">The learning loop</GreyTag>
         <h2 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
@@ -497,10 +495,7 @@ function HowLoopSection() {
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setActive(i)}
-                className="flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] tracking-[0.2px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
-                style={isActive
-                  ? { backgroundColor: COLORS.ink, borderColor: COLORS.ink, color: "#ffffff" }
-                  : { backgroundColor: "#ffffff", borderColor: `${COLORS.ink}26`, color: COLORS.grey }}
+                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${isActive ? "bg-[#121317] text-white" : "text-[#5f6368] hover:bg-white"}`}
               >
                 <st.Icon className="h-4 w-4" strokeWidth={1.8} />
                 {st.label}
@@ -510,15 +505,15 @@ function HowLoopSection() {
         </div>
 
         {/* keyed reveal per stage — approved motion (heroFadeUp), same grammar as the journey mocks */}
-        <div key={stage.id} className="hero-fade-up mx-auto mt-12 max-w-[760px] rounded-[24px] border bg-white p-8 text-center" style={{ borderColor: COLORS.mist }}>
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-[16px] border bg-white" style={{ borderColor: COLORS.mist, color: COLORS.blue }}>
+        <div key={stage.id} className="hero-fade-up mx-auto mt-12 max-w-[760px] rounded-[30px] bg-white p-8 text-center">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#f5f5f7]" style={{ color: COLORS.blue }}>
             <stage.Icon className="h-5 w-5" strokeWidth={1.8} />
           </span>
           <p className="mt-5 font-medium tracking-[0] leading-[1.2] text-[clamp(20px,2vw,26px)]" style={{ color: COLORS.ink }}>
             {stage.label}
           </p>
           <p className="mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]" style={{ color: COLORS.grey }}>{stage.copy}</p>
-          <p className="mt-5 text-[12px] tracking-[0.43px] uppercase" style={{ color: COLORS.lightGrey }}>
+          <p className="mt-5 font-normal tracking-[0] leading-[1.5] text-[14px]" style={{ color: COLORS.lightGrey }}>
             {stage.id === "check-2" ? "Step 5 of 8 · the loop keeps you moving" : `Step ${active + 1} of 8 · ${stage.id === "reflect" ? "then it begins again" : "then " + LOOP_STAGES[(active + 1) % 8].label.toLowerCase()}`}
           </p>
         </div>
@@ -540,77 +535,79 @@ function HowDifferentPeopleSection() {
   const [role, setRole] = useState(0);
   const scenario = ROLES[role];
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="06-people" className="relative rounded-t-[32px] bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <GreyTag className="text-center">Different people</GreyTag>
         <h2 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>
-          One intelligence. <span style={{ color: COLORS.ink }}>Different ways to use it.</span>
+          One intelligence. <span className="accent-gradient">Different ways to use it.</span>
         </h2>
         <p className="mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey, marginTop: "var(--gap-title-sub-display)" }}>
           The product doesn't change. What you're doing does.
         </p>
 
-        <div className="mx-auto mt-12 flex h-[52px] w-full max-w-[900px] items-stretch overflow-hidden rounded-[90px] border bg-white" style={{ borderColor: COLORS.mist }} role="tablist" aria-label="Roles">
+        <div className="mx-auto mt-12 flex h-[52px] w-full max-w-[900px] items-stretch overflow-x-auto rounded-full bg-[#f5f5f7] p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist" aria-label="Roles">
           {ROLES.map((r, i) => (
             <button key={r.id} type="button" role="tab" aria-selected={role === i} onClick={() => setRole(i)}
-              className={`flex h-full flex-1 items-center justify-center rounded-[90px] text-[12px] sm:text-[14px] tracking-[0.24px] transition-colors ${role === i ? "font-medium" : "font-normal hover:bg-[#f8f9fa]"}`}
-              style={{ backgroundColor: role === i ? COLORS.ink : "transparent", color: role === i ? "#ffffff" : COLORS.grey }}>
+              className={`flex h-full min-w-[92px] flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0] transition-colors sm:px-0 ${role === i ? "bg-[#121317] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-white"}`}>
               {r.tab}
             </button>
           ))}
         </div>
 
-        <div key={scenario.id} className="hero-fade-up mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-6 lg:grid-cols-2">
-          <div className="flex flex-col justify-center rounded-[24px] border bg-white p-8" style={{ borderColor: COLORS.mist }}>
+        <div key={scenario.id} className="hero-fade-up mx-auto mt-14 grid w-full max-w-[1240px] grid-cols-1 gap-10 lg:grid-cols-2">
+          <div className="flex flex-col justify-center">
             <BlueTag>{scenario.tab} — prompt</BlueTag>
             <p className="mt-4 font-medium tracking-[0] leading-[1.2] text-[clamp(22px,2.4vw,32px)]" style={{ color: COLORS.ink }}>"{scenario.prompt}"</p>
             <p className="mt-6 rounded-[16px] px-5 py-4 font-normal tracking-[0] leading-[1.6] text-[14px]" style={{ backgroundColor: COLORS.surface, color: COLORS.grey }}>
               {scenario.ui}
             </p>
             <p className="mt-6 font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.ink }}>{scenario.outcome}</p>
-            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex items-center gap-1 w-fit font-normal tracking-[0] text-[15px]" style={{ color: COLORS.blue }}>
-              See the {scenario.tab.toLowerCase()} page <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+            <Link to={`/${scenario.id === "organization" ? "organization" : scenario.id}`} className="mt-8 inline-flex w-fit items-center gap-1.5 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2">
+              See the {scenario.tab.toLowerCase()} page
+              <ChevronIcon className="h-4 w-4" />
             </Link>
           </div>
-          <div className="rounded-[24px] border bg-white p-2" style={{ borderColor: COLORS.mist }}>
-            <MockShell label={scenario.tab}>
-              <p className="font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>{scenario.prompt}</p>
-              <div className="mt-4 rounded-[12px] border px-4 py-3" style={{ borderColor: COLORS.mist }}>
-                <p className="text-[14px] tracking-[0]" style={{ color: COLORS.ink }}>{scenario.ui}</p>
-              </div>
-              <div className="mt-4 flex gap-2">
-                {["Understand", "Ask", "Try", "Continue"].map((m, i) => (
-                  <span key={m} className="rounded-full border px-3 py-1 text-[12px] tracking-[0.24px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.grey }}>{m}</span>
-                ))}
-              </div>
-              <p className="mt-5 text-[12px] tracking-[0]" style={{ color: COLORS.lightGrey }}>Same intelligence · shaped for {scenario.tab.toLowerCase()}</p>
-            </MockShell>
-          </div>
+          <MockShell label={scenario.tab}>
+            <p className="font-medium tracking-[0] text-[15px]" style={{ color: COLORS.ink }}>{scenario.prompt}</p>
+            <div className="mt-4 rounded-[12px] border px-4 py-3" style={{ borderColor: COLORS.mist }}>
+              <p className="text-[14px] tracking-[0]" style={{ color: COLORS.ink }}>{scenario.ui}</p>
+            </div>
+            <div className="mt-4 flex gap-2">
+              {["Understand", "Ask", "Try", "Continue"].map((m, i) => (
+                <span key={m} className="rounded-full border px-3 py-1 text-[12px] tracking-[0.24px]" style={{ borderColor: i === 0 ? COLORS.blue : COLORS.mist, color: i === 0 ? COLORS.blue : COLORS.grey }}>{m}</span>
+              ))}
+            </div>
+            <p className="mt-5 text-[12px] tracking-[0]" style={{ color: COLORS.lightGrey }}>Same intelligence · shaped for {scenario.tab.toLowerCase()}</p>
+          </MockShell>
         </div>
       </FadeReveal>
     </section>
   );
 }
 
-/* ═══ 07 · CTA — GREY tag (matches hero) ═══ */
+/* ═══ 07 · CTA — the closer bookends the hero: statement, one dark pill,
+   one quiet path, the small print beneath (Apple's product-hero anatomy) ═══ */
 function HowCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32 lg:px-[var(--frame-x)] lg:py-36" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
+    <section ref={ref} data-section="07-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
-        <GreyTag className="text-center">Get started</GreyTag>
-        <h2 className="mt-[calc(clamp(36px,5vw,72px)*0.444)] font-normal tracking-[-0.03em] leading-[1.12] text-[36px] sm:text-[48px]" style={{ color: COLORS.ink }}>See it with your own question.</h2>
+        <h2 className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, maxWidth: "24ch", marginInline: "auto" }}>See it with your own question.</h2>
         <p className="mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
           Ask a question. Try an idea. See where it takes you.
         </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/pricing" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+          <Link to="/pricing" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             See pricing
+            <ChevronIcon className="h-4 w-4" />
           </Link>
         </div>
+        <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
+          Free to start. Private by design.
+        </p>
       </div>
     </section>
   );
@@ -619,7 +616,7 @@ function HowCTASection() {
 /* ═══ PAGE ═══ */
 export default function CoachingPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-how-it-works min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="How it works" />
       <main id="main">

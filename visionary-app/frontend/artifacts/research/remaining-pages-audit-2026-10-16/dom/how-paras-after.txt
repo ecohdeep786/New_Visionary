@@ -1,0 +1,68 @@
+[
+ {
+  "label": "do p",
+  "fs": "18px", "fw": "400", "lh": "25px", "color": "rgb(18, 19, 23)",
+  "cls": "mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]",
+  "txt": "Your learning never resets. Visionar"
+ },
+ {
+  "label": "do p (signup)",
+  "fs": "18px", "fw": "400", "lh": "25px", "color": "rgb(18, 19, 23)",
+  "cls": "mt-[calc(clamp(28px,2.78vw,40px)*0.857)] font-normal tracking-[0] leading-[25px] text-[17.5px]",
+  "txt": "Sign up free with your email or Goog"
+ },
+ {
+  "label": "micro p",
+  "fs": "17px", "fw": "600", "lh": "20.2382px", "color": "rgb(154, 160, 166)",
+  "cls": "text-[12px] uppercase tracking-[0.43px]",
+  "txt": "Yesterday"
+ },
+ {
+  "label": "mock label",
+  "fs": "17px", "fw": "400", "lh": "20.2382px", "color": "rgb(154, 160, 166)",
+  "cls": "font-normal tracking-[0] text-[14px]",
+  "txt": "Sign up"
+ },
+ {
+  "label": "mock email label",
+  "fs": "17px", "fw": "400", "lh": "20.2382px", "color": "rgb(154, 160, 166)",
+  "cls": "text-[14px] tracking-[0]",
+  "txt": "Email address"
+ },
+ {
+  "label": "stage copy",
+  "fs": "17px", "fw": "400", "lh": "20.2382px", "color": "rgb(95, 99, 104)",
+  "cls": "mt-3 font-normal tracking-[0] leading-[1.6] text-[15px]",
+  "txt": "You set the goal"
+ },
+ {
+  "label": "stage micro",
+  "fs": "17px", "fw": "600", "lh": "20.2382px", "color": "rgb(154, 160, 166)",
+  "cls": "mt-5 font-normal tracking-[0] leading-[1.5] text-[14px]",
+  "txt": "Step 1 of 8"
+ },
+ {
+  "label": "loop sub",
+  "fs": "24px", "fw": "600", "lh": "28px", "ls": "0.216px", "color": "rgb(29, 29, 31)",
+  "cls": "mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]",
+  "txt": "Every subject in Visionary"
+ },
+ {
+  "label": "people sub",
+  "fs": "24px", "fw": "600", "lh": "28px", "ls": "0.216px", "color": "rgb(29, 29, 31)",
+  "cls": "mx-auto max-w-[760px] text-center font-normal tracking-[0] leading-[25px] text-[17.5px]",
+  "txt": "The product doesn"
+ },
+ {
+  "label": "cta sub",
+  "fs": "24px", "fw": "600", "lh": "28px", "ls": "0.216px", "color": "rgb(29, 29, 31)",
+  "cls": "mx-auto mt-[calc(clamp(36px,5vw,72px)*0.667)] max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]",
+  "txt": "Ask a question"
+ },
+ {
+  "label": "fine print",
+  "fs": "17px", "fw": "400", "lh": "20.2382px", "color": "rgb(95, 99, 104)",
+  "cls": "mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]",
+  "txt": "Free to start"
+ }
+]

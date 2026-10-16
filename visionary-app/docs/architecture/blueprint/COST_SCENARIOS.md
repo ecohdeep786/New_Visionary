@@ -24,7 +24,7 @@ Models, FX, staff/content/tools, utilization and unresolved network SKUs are exp
 | Contingency | $338.97 | $1,810.88 | $8,350.03 | $4,460.96 |
 | **Planning total** | $6,686.45 | $26,760.20 | $76,893.67 | $47,077.48 |
 | Normalized revenue assumption | $3,715.14 | $37,151.39 | $37,151.39 | $37,151.39 |
-| Revenue less planning total | $-2,971.31 | $10,391.19 | $-39,742.28 | $-9,926.09 |
+| Revenue less planning total | -$2,971.31 | $10,391.19 | -$39,742.28 | -$9,926.09 |
 | Planning total INR at assumed FX | 601,780 | 2,408,418 | 6,920,430 | 4,236,973 |
 | Total / MAU | $0.67 | $0.27 | $0.77 | $0.47 |
 | Model charge / logical turn | $0.00329 | $0.00329 | $0.02145 | $0.00329 |
@@ -42,7 +42,7 @@ No Cloud Run credits, named-Firestore free quota, promotion, response-cache savi
 - Storage sizes forecast total retained/index/version/backup bytes, not an approved deletion or retention policy.
 - Other-cloud allowance covers estimated Tasks/Scheduler/logging/CI/email/scan/backup/network extras; it is not a sum of verified SKU quotes.
 - Business tools/content and people/operations are explicit placeholders. Replace with actual staffing, licensing, support and security budgets.
-- Revenue is monthly-normalized before indirect taxes/discounts/churn; Family is charged per payer, not multiplied by six. Annual cash collection is different from normalized revenue.
+- Revenue is monthly-normalized before indirect taxes/discounts/churn; Family is charged per payer, not multiplied by six. Billing payers and product MAU are independent populations: a paying account may be inactive. Annual cash collection is different from normalized revenue.
 - No model/provider is selected by illustrative token prices. No response-cache savings or credits assumed. Voice/image/3D inference, live video, SMS/SSO, refunds/chargebacks and additional DR costs need separate sizing if not covered by allowances.
 
 ## Reproduce

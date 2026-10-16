@@ -4,6 +4,7 @@ The founder selected a 100,000-MAU growth launch for the system design on 15 Oct
 
 | Discussion | Questions | Deliverable |
 | --- | --- | --- |
+| [End-to-end engineering blueprint](../blueprint/README.md) | Reference-product research, complete tree, HLD/LLD/OOP, frontend/backend communication and cloud/cost | D-076 detailed design, dated public evidence and tested scenario calculator; target services remain implementation work |
 | [Firebase authentication design](firebase-auth-system-design.md) | Selected Firebase identity, existing project, consent, providers, abuse limits and device/account sync | Historical design; connected local runtime and remaining gates in [current auth contract](../../../integration/FIREBASE_AUTH_CONTRACT.md) |
 | [Initial authentication discussion](auth-system-design.md) | Observed source gaps and initial owned-identity alternative | Historical design/acceptance context; Firebase supersedes the identity recommendation |
 | [System design](system-design.md) | Domain/API/data ownership, role/consent boundaries, edge, sync, payments and recovery | D-075 launch architecture and implementation sequence; target features are distinguished from current runtime |

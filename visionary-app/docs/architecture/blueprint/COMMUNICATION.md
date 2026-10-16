@@ -33,6 +33,8 @@ Screen / component
 
 Keep rendering separate from networking and product authority. Current `AuthContext` cancels/clears query state on account/workspace change; preserve it when adding server-backed domain adapters. Existing `backendTransport.ts` supports `content.syllabus`, `content.concept`, `teaching.request`, `mentor.turn` but has no complete matching connected server endpoint. Implement an adapter translating those existing operations to reviewed routes, rather than rewriting every screen or pretending a proxy is sufficient.
 
+Workspace selection is scoped to the current request/device session. Device A may teach while Device B learns under the same UID; activating one context must not silently switch every other device. A synchronized last-used preference is only a navigation suggestion. Every requested workspace is still authorized independently.
+
 Use cache keys including authenticated UID, workspace, policy revision, resource ID/version and relevant locale. Distinguish local draft state from committed query data. A late response for a previous identity/workspace is discarded even if transport abort was ignored. Persist sensitive drafts only under the current account/workspace namespace and make sign-out handling explicit.
 
 ## Connected route inventory

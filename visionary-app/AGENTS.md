@@ -11,6 +11,7 @@ Start with `README.md`, `docs/architecture/README.md` and `docs/architecture/PRO
 - `backend/upstream/backend/`: pinned NestJS/Prisma implementation.
 - `ml/upstream/`: pinned Go/Python RAG implementation.
 - `reverse-engineering/`: local engineering analysis; upstream guidelines apply inside that toolkit.
+- `research/`: Visionary study scripts, reports, templates and evidence indexes; keep product architecture in `docs/architecture/` and raw captures in `artifacts/research/`.
 - `integration/`: cross-component contracts and source provenance.
 - `infrastructure/`: local service provisioning and future reviewed deployments.
 - `docs/visionary/`: product contract and append-only STATUS/DECISIONS/QA logs.

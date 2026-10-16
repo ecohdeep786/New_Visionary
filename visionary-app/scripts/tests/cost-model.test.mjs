@@ -32,6 +32,12 @@ test('revenue uses exact annual totals and charges a Family payer once', () => {
   near(estimate(config, rates, scenario({ paidPersonalAccounts: 0, paidFamilyAccounts: 1, annualPayerFraction: 0 })).normalizedRevenueInr, 499);
 });
 
+test('billing payers are independent of monthly active users', () => {
+  const value = estimate(config, rates, scenario({ mau: 100, paidPersonalAccounts: 200, paidFamilyAccounts: 0, annualPayerFraction: 0 }));
+  near(value.normalizedRevenueInr, 59800);
+  assert.equal(value.mau, 100);
+});
+
 test('concurrency estimates billed instance time and minimum idle is not added twice', () => {
   const input = { requests: 1000, requestSeconds: 12000, effectiveConcurrency: 1, minInstances: 0, idleHoursPerDay: 0, vcpu: 2, gib: 2 };
   const first = runCharge(input, rates.run, config), second = runCharge({ ...input, effectiveConcurrency: 4 }, rates.run, config);
@@ -70,4 +76,10 @@ test('zero usage stays finite, and the report preserves qualified totals and uni
   assert.match(markdown, /not a current exchange-rate quote/);
   assert.match(markdown, /Model charge \/ logical turn.*\$0\.\d{5}/);
   for (const result of results) assert.ok(Number.isFinite(result.total) && result.total > 0);
+});
+
+test('checked-in scenario report matches the calculator and dated inputs exactly', () => {
+  const expected = renderReport(config, rates, config.scenarios.map(s => estimate(config, rates, s)));
+  const actual = fs.readFileSync(new URL('../../docs/architecture/blueprint/COST_SCENARIOS.md', import.meta.url), 'utf8');
+  assert.equal(actual.replaceAll('\r\n', '\n'), expected);
 });

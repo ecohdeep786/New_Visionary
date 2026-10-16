@@ -1,5 +1,7 @@
 # Implementation sequence and acceptance
 
+Use the [D-081 execution checklist](../BACKEND_LAUNCH_CHECKLIST.md) as the task tracker and [current-state ledger](../BACKEND_LAUNCH_EVIDENCE.md) for evidence. This document retains the architectural sequence; the tracker adds stable IDs, owner responsibilities, dependencies and granular exit gates.
+
 The architecture/design/research/cost artifacts are delivered by D-076. This table is the remaining product build sequence; it does not imply the listed services are already connected. Retain [D-075 audit classifications](../discussions/backend-ml-audit.md) and [current local auth/payment evidence](../../../integration/USER_ACCOUNT_STORAGE.md).
 
 | Stage | Concrete implementation | Exit gate / rollback |
@@ -30,6 +32,6 @@ Validate origin/cookie/proxy behavior, named Firestore database, SQL edition/loc
 
 ## Operational readiness
 
-Use the detailed [release matrix](../discussions/launch-operations.md#release-test-matrix). Measure300/150-style workload values only against the exact selected test scenario; the current D-075 target remains150 core requests/s +16.7 AI runs/s sustained,300/33.4 burst. Update workload and cost inputs together when sessions/polling/voice/video change. Model stubs validate infrastructure separately from real provider quotas/quality/cost.
+Use the detailed [release matrix](../discussions/launch-operations.md#release-test-matrix). The current D-075 target remains 150 core requests/s +16.7 AI runs/s sustained, with 300/33.4 burst. Update workload and cost inputs together when sessions, polling, voice or video change. Model stubs validate infrastructure separately from real provider quotas, quality and cost.
 
 Owners before launch: product policy/education review, backend/data, frontend/accessibility, model evaluation, security/privacy, billing/commercial and on-call/cost operations. One person may cover several roles initially, but each release gate needs an accountable reviewer. No deployment date or team-size promise is inferred from100,000 MAU.

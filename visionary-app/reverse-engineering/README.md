@@ -1,4 +1,4 @@
-# Product research and REA
+# REA toolkit
 
 REA source imported from `morluto/rea`, commit `43738bec579fc69bab084bffa964916d43d43ed1`, under `upstream/`. Keep its MIT license, third-party notices and repository guidelines. It is an engineering toolkit outside the application backend and ML serving path.
 
@@ -14,4 +14,4 @@ REA is installed locally to this project. No global CLI, agent MCP registration,
 
 Google and Apple product studies should focus on specific user tasks and documented/publicly observable behavior. Keep evidence, observed behavior, inferred mechanism and unknowns separate. Record a feature requirement and acceptance criteria for Visionary; public behavior alone cannot establish a company's private backend or model architecture.
 
-Use [research/FEATURE_STUDY_TEMPLATE.md](research/FEATURE_STUDY_TEMPLATE.md) for each study. The initial candidate list is in [research/README.md](research/README.md). Results feed reviewed frontend/backend/ML work; REA is not shipped to users.
+Visionary study scripts, reports, templates and evidence indexes live in [the separate research folder](../research/README.md). Use its [study template](../research/FEATURE_STUDY_TEMPLATE.md) for new investigations. Product architecture and implementation plans live in [docs/architecture](../docs/architecture/README.md); raw local captures remain in `artifacts/research/`. Keep this folder for the pinned toolkit and its setup guide. REA is not shipped to users.

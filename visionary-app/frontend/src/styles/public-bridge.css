@@ -49,9 +49,15 @@ main > section[data-section="10-journey-flow"] {
 /* the journey chapter continues the language chapter's white field (07 is
    white too) — 07's bottom padding is the whole breath; adding more above
    the statement would read as a new chapter. No hairline. !important beats
-   the (0,2,1) base border/padding rule. */
+   the (0,2,1) base border/padding rule. Scoped to the DIRECT 07→06
+   adjacency: when the journey opens after a different surface (the landing's
+   grey 13-explore router), the surface change itself is the join — the
+   chapter keeps its own top breath there. */
 main > section[data-section="06-journey"] {
   border-top-color: transparent !important;
+}
+
+main > section[data-section="07-language"] + section[data-section="06-journey"] {
   padding-block-start: 0 !important;
 }
 
@@ -74,6 +80,13 @@ main > section[data-section="02-problem"],
    hairline never reads (Apple's no-seam law). Landing-scoped: the persona
    pages' own line-up keep their accepted join. */
 .page-landing main > section[data-section="13-explore"] {
+  border-top-color: transparent !important;
+}
+
+/* The how-it-works flow — the white "different people" chapter follows the
+   loop's grey ground; the surface change IS the join, so the hairline never
+   reads. Page-scoped: the chapter ids belong to this page alone. */
+.page-how-it-works main > section[data-section="06-people"] {
   border-top-color: transparent !important;
 }
 

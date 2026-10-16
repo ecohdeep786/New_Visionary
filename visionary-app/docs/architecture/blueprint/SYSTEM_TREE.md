@@ -157,7 +157,8 @@ infrastructure/
   cost/                            executable planning inputs, not cloud resources
   target GCP IaC/                  reviewed regional edge/data/runtime/queue stacks
 scripts/                           product commands, cost and integrity checks
-reverse-engineering/research/       evidence/research only, outside runtime
+reverse-engineering/upstream/       pinned REA toolkit only, outside runtime
+research/                          Visionary studies, reports and evidence indexes
 ```
 
 The physical module directory names can change during implementation; logical ownership and protocol/version rules are the required architecture. [Low-level design](LOW_LEVEL_DESIGN.md) defines the data/transaction boundary behind these names.

@@ -42,7 +42,7 @@ Cloud Run planning approximates active instance-seconds as summed request reside
 
 Database operations are estimated from requests and per-request read/write work; SQL compute/storage/backups are separate. SQL data must include indexes and growing evidence history.6M evidence events/month at2KiB/event including index overhead is roughly11.4GiB/month before replicas/backups. A retention-size forecast is not permission to retain student information indefinitely.
 
-Revenue uses exact annual totals/12 rather than rounded marketing equivalents. Family counts one payer rather than six full-price users, while all beneficiaries contribute workload. Institution revenue remains unpriced/contract-led. Normalized revenue differs from cash received and is before indirect taxes, discounts, refunds and churn. The planning remainder is not accounting profit.
+Revenue uses exact annual totals/12 rather than rounded marketing equivalents. Family counts one payer rather than six full-price users, while all beneficiaries contribute workload. Billing payers and active users are separate populations; an inactive payer still contributes subscription revenue. Institution revenue remains unpriced/contract-led. Normalized revenue differs from cash received and is before indirect taxes, discounts, refunds and churn. The planning remainder is not accounting profit.
 
 ## What the scenarios say
 

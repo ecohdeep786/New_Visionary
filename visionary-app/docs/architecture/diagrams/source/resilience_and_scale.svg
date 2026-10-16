@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1120" viewBox="0 0 1640 1120" role="img" aria-labelledby="title description" font-family="Arial, sans-serif">
+<title id="title">Visionary resilience and scaling</title><desc id="description">A target plan with bounded serving capacity, independent AI and workers, separate data authorities and reviewed operational controls. It is not a deployed or benchmarked system.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#63748a"/></marker></defs>
+<rect width="1640" height="1120" fill="#fff"/>
+<text x="30" y="39" text-anchor="start" font-size="28" font-weight="500" fill="#203047"><tspan x="30" dy="0">VISIONARY · Resilience and scale</tspan></text>
+<text x="30" y="70" text-anchor="start" font-size="16" font-weight="400" fill="#203047"><tspan x="30" dy="0">Target controls · MAU is not concurrency · capacity and recovery require measured release evidence</tspan></text>
+<text x="1600" y="39" text-anchor="end" font-size="16" font-weight="400" fill="#203047"><tspan x="1600" dy="0">D-079 · 16 October 2026</tspan></text>
+<rect x="60" y="360" width="1520" height="220" rx="12" fill="#fafbfd" stroke="#b8c4d2" stroke-width="1.4"/>
+<text x="78" y="385" text-anchor="start" font-size="15" font-weight="500" fill="#203047"><tspan x="78" dy="0">SERVING</tspan></text>
+<rect x="60" y="640" width="1040" height="190" rx="12" fill="#fafbfd" stroke="#b8c4d2" stroke-width="1.4"/>
+<text x="78" y="665" text-anchor="start" font-size="15" font-weight="500" fill="#203047"><tspan x="78" dy="0">STATE</tspan></text>
+<rect x="60" y="950" width="1520" height="100" rx="12" fill="#fafbfd" stroke="#b8c4d2" stroke-width="1.4"/>
+<text x="78" y="975" text-anchor="start" font-size="15" font-weight="500" fill="#203047"><tspan x="78" dy="0">OPERATIONS · measured release and recovery gates</tspan></text><path d="M820 190 V240" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M820 315 V393 H300 V420" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M820 393 V420" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M1020 480 H1140" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M300 540 V620 H235 V680" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M820 540 V610 H565 V680" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M820 610 H895 V680" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M565 790 V855 H1340 V790" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<path d="M1340 680 V540" fill="none" stroke="#63748a" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 5"/><g data-node="load" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><rect x="620" y="110" width="400" height="80" rx="8"/></g>
+<text x="820" y="135" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="820" dy="0">100,000 MAU planning population</tspan></text>
+<text x="820" y="159" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="820" dy="0">Measure peak requests and run duration</tspan></text>
+<g data-node="edge" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><rect x="620" y="240" width="400" height="75" rx="8"/></g>
+<text x="820" y="265" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="820" dy="0">Edge admission controls</tspan></text>
+<text x="820" y="289" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="820" dy="0">TLS / WAF / rate limits / public CDN</tspan></text>
+<g data-node="core" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><rect x="100" y="420" width="400" height="120" rx="8"/></g>
+<text x="300" y="445" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="300" dy="0">Account + payment paths</tspan></text>
+<text x="300" y="469" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="300" dy="0">Independent of model / learning-SQL availability</tspan><tspan x="300" dy="20">Shared-process saturation still needs controls</tspan></text>
+<g data-node="domain" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><rect x="620" y="420" width="400" height="120" rx="8"/></g>
+<text x="820" y="445" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="820" dy="0">Learning + project APIs</tspan></text>
+<text x="820" y="469" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="820" dy="0">Conditional writes / tenant-scoped queries</tspan><tspan x="820" dy="20">Instance caps × bounded SQL connection pools</tspan></text>
+<g data-node="ai" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><rect x="1140" y="420" width="400" height="120" rx="8"/></g>
+<text x="1340" y="445" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="1340" dy="0">Private AI / Build coordinator</tspan></text>
+<text x="1340" y="469" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="1340" dy="0">Separate deployment / provider quotas</tspan><tspan x="1340" dy="20">Token ceilings / deadline / cancellation</tspan></text>
+<g data-node="firestore" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><path d="M 100 693 C 100 675 370 675 370 693 L 370 777 C 370 795 100 795 100 777 Z"/><ellipse cx="235" cy="693" rx="135" ry="13"/></g>
+<text x="235" y="722" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="235" dy="0">Firestore</tspan></text>
+<text x="235" y="744" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="235" dy="0">Account / test billing</tspan><tspan x="235" dy="20">Authority and reconciliation</tspan></text>
+<g data-node="sql" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><path d="M 430 693 C 430 675 700 675 700 693 L 700 777 C 700 795 430 795 430 777 Z"/><ellipse cx="565" cy="693" rx="135" ry="13"/></g>
+<text x="565" y="722" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="565" dy="0">Regional HA PostgreSQL</tspan></text>
+<text x="565" y="744" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="565" dy="0">Learning / projects / outbox</tspan><tspan x="565" dy="20">HA is not cross-region recovery</tspan></text>
+<g data-node="objects" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><path d="M 760 693 C 760 675 1030 675 1030 693 L 1030 777 C 1030 795 760 795 760 777 Z"/><ellipse cx="895" cy="693" rx="135" ry="13"/></g>
+<text x="895" y="722" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="895" dy="0">Private object storage</tspan></text>
+<text x="895" y="744" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="895" dy="0">Version / digest / retention</tspan><tspan x="895" dy="20">Protected data delivery</tspan></text>
+<g data-node="tasks" fill="#eef3fa" stroke="#7187a6" stroke-width="1.4"><rect x="1140" y="680" width="400" height="110" rx="8"/></g>
+<text x="1340" y="705" text-anchor="middle" font-size="17" font-weight="500" fill="#203047"><tspan x="1340" dy="0">Outboxes → Tasks → private workers</tspan></text>
+<text x="1340" y="729" text-anchor="middle" font-size="15" font-weight="400" fill="#203047"><tspan x="1340" dy="0">Queue caps / leases / attempt fences</tspan><tspan x="1340" dy="20">Idempotent completion / recovery sweeper</tspan></text><text x="1080" y="467" text-anchor="middle" font-size="14" font-weight="400" fill="#203047" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round"><tspan x="1080" dy="0">bounded</tspan></text>
+<text x="1000" y="878" text-anchor="middle" font-size="14" font-weight="400" fill="#203047" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round"><tspan x="1000" dy="0">Committed outbox, duplicate-safe delivery</tspan></text>
+<text x="1395" y="620" text-anchor="middle" font-size="14" font-weight="400" fill="#203047" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round"><tspan x="1395" dy="0">Async work</tspan></text>
+<text x="320" y="1004" text-anchor="middle" font-size="16" font-weight="400" fill="#203047"><tspan x="320" dy="0">Redacted metrics / queue lag / spend caps</tspan><tspan x="320" dy="22">Alerts are not enforced admission limits</tspan></text>
+<text x="820" y="1004" text-anchor="middle" font-size="16" font-weight="400" fill="#203047"><tspan x="820" dy="0">Canary / rollback / immutable releases</tspan><tspan x="820" dy="22">Measure pools, quotas and saturation</tspan></text>
+<text x="1320" y="1004" text-anchor="middle" font-size="16" font-weight="400" fill="#203047"><tspan x="1320" dy="0">Backup / PITR / restore and deletion drills</tspan><tspan x="1320" dy="22">Reconcile revoked grants before serving</tspan></text>
+<text x="820" y="1092" text-anchor="middle" font-size="16" font-weight="400" fill="#203047"><tspan x="820" dy="0">Solid = request/data dependency · Dashed = durable work · All hosted controls remain targets</tspan></text>
+</svg>

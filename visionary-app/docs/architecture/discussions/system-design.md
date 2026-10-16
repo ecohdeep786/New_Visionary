@@ -6,6 +6,8 @@ Visionary needs one account across devices, trustworthy education records, clear
 
 This is the launch architecture and implementation sequence. It is not a claim that cloud resources, cross-device learning, role authorization or production AI already exist. The design applies public engineering principles; it does not claim access to Google's or Apple's internal systems. Capacity, operational acceptance and model decisions are in [launch operations](launch-operations.md) and [ML strategy](ml-strategy.md). Source findings and retirement decisions are in [the audit](backend-ml-audit.md).
 
+D-076 extends this with the [complete engineering blueprint](../blueprint/README.md): researched references, the full system tree, HLD, LLD, object design, frontend/backend communication, cloud comparison and executable cost scenarios.
+
 ## What exists and what changes
 
 | Area | Observed today | Launch design |

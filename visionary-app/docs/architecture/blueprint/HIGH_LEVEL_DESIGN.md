@@ -1,5 +1,7 @@
 # High-level design
 
+For a compact review of deployment, data and async boundaries, start with the [platform map](../diagrams/PLATFORM_ARCHITECTURE.md) and [numbered request paths](../diagrams/REQUEST_PATHS.md). The [review rationale](../VISUAL_REVIEW.md) maps the complete specifications and unresolved implementation work.
+
 Scope: end-to-end education product for100,000 MAU. This elaborates [D-075](../discussions/system-design.md); target components require implementation and acceptance. See [tree](SYSTEM_TREE.md) for every product category and [operations](../discussions/launch-operations.md) for workload/recovery objectives.
 
 ## C4 context: actors and trust
