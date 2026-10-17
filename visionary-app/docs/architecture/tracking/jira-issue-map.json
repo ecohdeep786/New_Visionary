@@ -9,23 +9,23 @@
   },
   "source": {
     "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
-    "sha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146"
+    "sha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8"
   },
-  "verifiedAt": "2026-10-16T20:11:17.203Z",
+  "verifiedAt": "2026-10-17T09:46:50.597Z",
   "summary": {
-    "total": 152,
-    "tasks": 137,
+    "total": 160,
+    "tasks": 145,
     "epics": 15,
     "byStatus": {
       "Done": 13,
-      "To Do": 129,
+      "To Do": 137,
       "Idea": 7,
       "Testing": 1,
       "In Progress": 2
     },
-    "dependencyLinks": 105,
+    "dependencyLinks": 163,
     "phaseDependencyLinks": 30,
-    "taskDependencyLinks": 75,
+    "taskDependencyLinks": 133,
     "nowTasks": [
       "KAN-28",
       "KAN-30",
@@ -1161,6 +1161,70 @@
       "status": "Idea",
       "queue": "Later",
       "url": "https://visionary-team.atlassian.net/browse/KAN-152"
+    },
+    "LEARN-13": {
+      "key": "KAN-153",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-153"
+    },
+    "BUILD-09": {
+      "key": "KAN-154",
+      "type": "Story",
+      "parent": "KAN-8",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-154"
+    },
+    "AI-17": {
+      "key": "KAN-155",
+      "type": "Story",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-155"
+    },
+    "AI-18": {
+      "key": "KAN-156",
+      "type": "Task",
+      "parent": "KAN-9",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-156"
+    },
+    "ACCEPT-08": {
+      "key": "KAN-157",
+      "type": "Task",
+      "parent": "KAN-13",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-157"
+    },
+    "SCOPE-09": {
+      "key": "KAN-158",
+      "type": "Task",
+      "parent": "KAN-2",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-158"
+    },
+    "LEARN-14": {
+      "key": "KAN-159",
+      "type": "Story",
+      "parent": "KAN-7",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-159"
+    },
+    "ROLE-10": {
+      "key": "KAN-160",
+      "type": "Story",
+      "parent": "KAN-10",
+      "status": "To Do",
+      "queue": "Next",
+      "url": "https://visionary-team.atlassian.net/browse/KAN-160"
     }
   },
   "dependencies": [
@@ -1490,6 +1554,109 @@
         "layers": 11,
         "taskDescriptionsVerified": 137,
         "founderDescriptionsUpdated": 82,
+        "noNewCompletion": true
+      }
+    },
+    {
+      "decision": "D-087",
+      "verifiedAt": "2026-10-16T20:11:17.203Z",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146"
+      },
+      "summary": {
+        "total": 152,
+        "tasks": 137,
+        "epics": 15,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 129,
+          "Idea": 7,
+          "Testing": 1,
+          "In Progress": 2
+        },
+        "dependencyLinks": 105,
+        "phaseDependencyLinks": 30,
+        "taskDependencyLinks": 75,
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "paginationComplete": true,
+        "errors": []
+      },
+      "vatsReview": {
+        "decision": "D-087",
+        "path": "docs/architecture/VATS_IMPLEMENTATION.md",
+        "manifest": "docs/architecture/tracking/vats-delivery.json",
+        "registry": "ml/vats/layers.json",
+        "layers": 7,
+        "taskDescriptionsVerified": 137,
+        "labelsVerified": 137,
+        "planningOrderVerified": true,
+        "noNewCompletion": true
+      }
+    },
+    {
+      "decision": "D-088",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "f17ce508a17c86c6f1da6596f91239e62b07cb2fd52b63780204f2d3cef1f540"
+      },
+      "verifiedAt": "2026-10-17T09:12:10.766Z",
+      "summary": {
+        "total": 157,
+        "tasks": 142,
+        "epics": 15,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 134,
+          "Idea": 7,
+          "Testing": 1,
+          "In Progress": 2
+        },
+        "dependencyLinks": 137,
+        "phaseDependencyLinks": 30,
+        "taskDependencyLinks": 107,
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "paginationComplete": true,
+        "errors": []
+      },
+      "vatsReview": {
+        "decision": "D-088",
+        "path": "docs/architecture/VATS_IMPLEMENTATION.md",
+        "manifest": "docs/architecture/tracking/vats-delivery.json",
+        "registry": "ml/vats/layers.json",
+        "layers": 7,
+        "taskDescriptionsVerified": 142,
+        "labelsVerified": 142,
+        "planningOrderVerified": true,
+        "noNewCompletion": true
+      },
+      "educationReview": {
+        "decision": "D-088",
+        "research": "research/EDUCATION_AGI_RESEARCH_2026_10_17.md",
+        "plan": "docs/architecture/EDUCATION_LAUNCH_PLAN.md",
+        "manifest": "docs/architecture/tracking/education-launch.json",
+        "tasksAdded": 5,
+        "descriptionsVerified": 142,
+        "generatedTracesReplaced": 137,
+        "requirementsRefined": 39,
+        "newNativeDependencies": 32,
+        "noRuntimeImplementation": true,
         "noNewCompletion": true
       }
     }
@@ -1944,6 +2111,354 @@
       "blockedSourceId": "LATER-06",
       "blocks": "KAN-127",
       "blocked": "KAN-152"
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "blockedSourceId": "AI-18",
+      "blocks": "KAN-29",
+      "blocked": "KAN-156"
+    },
+    {
+      "sourceId": "CONTENT-06",
+      "blockedSourceId": "AI-18",
+      "blocks": "KAN-65",
+      "blocked": "KAN-156"
+    },
+    {
+      "sourceId": "AI-02",
+      "blockedSourceId": "AI-18",
+      "blocks": "KAN-84",
+      "blocked": "KAN-156"
+    },
+    {
+      "sourceId": "AI-18",
+      "blockedSourceId": "AI-17",
+      "blocks": "KAN-156",
+      "blocked": "KAN-155"
+    },
+    {
+      "sourceId": "AI-10",
+      "blockedSourceId": "AI-17",
+      "blocks": "KAN-92",
+      "blocked": "KAN-155"
+    },
+    {
+      "sourceId": "AI-14",
+      "blockedSourceId": "AI-17",
+      "blocks": "KAN-143",
+      "blocked": "KAN-155"
+    },
+    {
+      "sourceId": "AI-08",
+      "blockedSourceId": "AI-17",
+      "blocks": "KAN-90",
+      "blocked": "KAN-155"
+    },
+    {
+      "sourceId": "AI-07",
+      "blockedSourceId": "AI-17",
+      "blocks": "KAN-89",
+      "blocked": "KAN-155"
+    },
+    {
+      "sourceId": "SYNC-01",
+      "blockedSourceId": "AI-17",
+      "blocks": "KAN-139",
+      "blocked": "KAN-155"
+    },
+    {
+      "sourceId": "FILE-03",
+      "blockedSourceId": "LEARN-13",
+      "blocks": "KAN-58",
+      "blocked": "KAN-153"
+    },
+    {
+      "sourceId": "DATA-05",
+      "blockedSourceId": "LEARN-13",
+      "blocks": "KAN-40",
+      "blocked": "KAN-153"
+    },
+    {
+      "sourceId": "CONTENT-03",
+      "blockedSourceId": "LEARN-13",
+      "blocks": "KAN-62",
+      "blocked": "KAN-153"
+    },
+    {
+      "sourceId": "LEARN-02",
+      "blockedSourceId": "LEARN-13",
+      "blocks": "KAN-68",
+      "blocked": "KAN-153"
+    },
+    {
+      "sourceId": "SYNC-02",
+      "blockedSourceId": "LEARN-13",
+      "blocks": "KAN-140",
+      "blocked": "KAN-153"
+    },
+    {
+      "sourceId": "BUILD-01",
+      "blockedSourceId": "BUILD-09",
+      "blocks": "KAN-75",
+      "blocked": "KAN-154"
+    },
+    {
+      "sourceId": "BUILD-04",
+      "blockedSourceId": "BUILD-09",
+      "blocks": "KAN-78",
+      "blocked": "KAN-154"
+    },
+    {
+      "sourceId": "AI-16",
+      "blockedSourceId": "BUILD-09",
+      "blocks": "KAN-150",
+      "blocked": "KAN-154"
+    },
+    {
+      "sourceId": "FILE-03",
+      "blockedSourceId": "BUILD-09",
+      "blocks": "KAN-58",
+      "blocked": "KAN-154"
+    },
+    {
+      "sourceId": "BUILD-09",
+      "blockedSourceId": "BUILD-08",
+      "blocks": "KAN-154",
+      "blocked": "KAN-82"
+    },
+    {
+      "sourceId": "LEARN-10",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-146",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "LEARN-11",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-147",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "BUILD-08",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-82",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "AI-13",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-142",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "AI-17",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-155",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "LEARN-13",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-153",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "ROLE-03",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-95",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "PLAT-02",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-46",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "AI-18",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-156",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "ACCEPT-08",
+      "blockedSourceId": "RELEASE-07",
+      "blocks": "KAN-157",
+      "blocked": "KAN-130"
+    },
+    {
+      "sourceId": "LEARN-13",
+      "blockedSourceId": "ACCEPT-04",
+      "blocks": "KAN-153",
+      "blocked": "KAN-120"
+    },
+    {
+      "sourceId": "AI-17",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-155",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "BUILD-09",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-154",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "blockedSourceId": "SCOPE-09",
+      "blocks": "KAN-29",
+      "blocked": "KAN-158"
+    },
+    {
+      "sourceId": "SCOPE-09",
+      "blockedSourceId": "BILL-04",
+      "blocks": "KAN-158",
+      "blocked": "KAN-105"
+    },
+    {
+      "sourceId": "SCOPE-09",
+      "blockedSourceId": "ROLE-09",
+      "blocks": "KAN-158",
+      "blocked": "KAN-101"
+    },
+    {
+      "sourceId": "SCOPE-09",
+      "blockedSourceId": "ACCEPT-05",
+      "blocks": "KAN-158",
+      "blocked": "KAN-121"
+    },
+    {
+      "sourceId": "DATA-01",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-36",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "DATA-06",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-41",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "CONTENT-08",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-144",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "LEARN-09",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-145",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "LEARN-11",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-147",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "SYNC-02",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-140",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "DATA-05",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-40",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "AI-15",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-149",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "PRIV-01",
+      "blockedSourceId": "LEARN-14",
+      "blocks": "KAN-110",
+      "blocked": "KAN-159"
+    },
+    {
+      "sourceId": "LEARN-14",
+      "blockedSourceId": "ACCEPT-01",
+      "blocks": "KAN-159",
+      "blocked": "KAN-117"
+    },
+    {
+      "sourceId": "LEARN-14",
+      "blockedSourceId": "ACCEPT-02",
+      "blocks": "KAN-159",
+      "blocked": "KAN-118"
+    },
+    {
+      "sourceId": "LEARN-14",
+      "blockedSourceId": "ACCEPT-04",
+      "blocks": "KAN-159",
+      "blocked": "KAN-120"
+    },
+    {
+      "sourceId": "DATA-03",
+      "blockedSourceId": "ROLE-10",
+      "blocks": "KAN-38",
+      "blocked": "KAN-160"
+    },
+    {
+      "sourceId": "DATA-05",
+      "blockedSourceId": "ROLE-10",
+      "blocks": "KAN-40",
+      "blocked": "KAN-160"
+    },
+    {
+      "sourceId": "LEARN-10",
+      "blockedSourceId": "ROLE-10",
+      "blocks": "KAN-146",
+      "blocked": "KAN-160"
+    },
+    {
+      "sourceId": "AI-15",
+      "blockedSourceId": "ROLE-10",
+      "blocks": "KAN-149",
+      "blocked": "KAN-160"
+    },
+    {
+      "sourceId": "ROLE-10",
+      "blockedSourceId": "ACCEPT-02",
+      "blocks": "KAN-160",
+      "blocked": "KAN-118"
+    },
+    {
+      "sourceId": "ROLE-10",
+      "blockedSourceId": "ACCEPT-08",
+      "blocks": "KAN-160",
+      "blocked": "KAN-157"
+    },
+    {
+      "sourceId": "PRIV-01",
+      "blockedSourceId": "ROLE-04",
+      "blocks": "KAN-110",
+      "blocked": "KAN-96"
+    },
+    {
+      "sourceId": "DATA-04",
+      "blockedSourceId": "ROLE-04",
+      "blocks": "KAN-39",
+      "blocked": "KAN-96"
+    },
+    {
+      "sourceId": "ROLE-04",
+      "blockedSourceId": "ACCEPT-02",
+      "blocks": "KAN-96",
+      "blocked": "KAN-118"
+    },
+    {
+      "sourceId": "ROLE-07",
+      "blockedSourceId": "ACCEPT-02",
+      "blocks": "KAN-99",
+      "blocked": "KAN-118"
     }
   ],
   "acceptanceReview": {
@@ -1963,14 +2478,16 @@
     "noNewCompletion": true
   },
   "deliveryReview": {
-    "decision": "D-086",
+    "decision": "D-090",
     "path": "docs/architecture/FEATURE_DELIVERY_MATRIX.md",
     "manifest": "docs/architecture/tracking/feature-delivery.json",
     "features": 18,
     "layers": 11,
-    "taskDescriptionsVerified": 137,
+    "taskDescriptionsVerified": 145,
     "founderDescriptionsUpdated": 82,
-    "noNewCompletion": true
+    "noNewCompletion": true,
+    "currentAddendaVerified": 33,
+    "unchangedTaskDescriptionsVerified": 112
   },
   "founderReview": {
     "decision": "D-086",
@@ -2066,14 +2583,39 @@
     "noNewCompletion": true
   },
   "vatsReview": {
-    "decision": "D-087",
+    "decision": "D-090",
     "path": "docs/architecture/VATS_IMPLEMENTATION.md",
     "manifest": "docs/architecture/tracking/vats-delivery.json",
     "registry": "ml/vats/layers.json",
     "layers": 7,
-    "taskDescriptionsVerified": 137,
-    "labelsVerified": 137,
+    "taskDescriptionsVerified": 145,
+    "labelsVerified": 145,
     "planningOrderVerified": true,
+    "noNewCompletion": true,
+    "jiraOrderMeaning": "Earlier numerical trace positions are dated snapshots; current dependency manifest governs order."
+  },
+  "educationReview": {
+    "decision": "D-088",
+    "research": "research/EDUCATION_AGI_RESEARCH_2026_10_17.md",
+    "plan": "docs/architecture/EDUCATION_LAUNCH_PLAN.md",
+    "manifest": "docs/architecture/tracking/education-launch.json",
+    "tasksAdded": 5,
+    "descriptionsVerified": 142,
+    "generatedTracesReplaced": 137,
+    "requirementsRefined": 39,
+    "newNativeDependencies": 32,
+    "noRuntimeImplementation": true,
+    "noNewCompletion": true
+  },
+  "lifelongReview": {
+    "decision": "D-090",
+    "contract": "integration/LIFELONG_EDUCATION_CONTRACT.md",
+    "tasksAdded": 3,
+    "requirementsRefined": 27,
+    "descriptionsUpdated": 33,
+    "descriptionsRetained": 112,
+    "newNativeDependencies": 26,
+    "noRuntimeImplementation": true,
     "noNewCompletion": true
   }
 }

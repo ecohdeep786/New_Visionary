@@ -180,6 +180,38 @@ main > section[data-section="02-problem"],
   border-top-color: transparent !important;
 }
 
+/* Referral — the how chapter joins the hero's white ground without a seam
+   (the illustration trio rides inside the hero composition, About/Community
+   anatomy). The grey point band, the white share chapter, the grey honesty
+   band, the FAQ and the closing all change surface, so they keep the whisper
+   hairline. The privacy one-liner is a strip, not a chapter — it carries the
+   compact-band rhythm. */
+.page-referral main > section[data-section="02-how"] {
+  border-top-color: transparent !important;
+}
+
+.page-referral main > section[data-section="07-privacy"] {
+  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
+/* Safety — the statement band and the protections story ride the hero's white
+   ground: the statement, the alternating rows, the checklist band and the
+   closing tray join without a seam (Apple's no-seam law). The grey family band
+   and the white reporting chapter change surface, so they keep the whisper
+   hairline. The trust-values strip and the quiet footer share one #f5f5f7
+   ground — the footer's Apple hairline is muted for that join, because a
+   hairline between identical surfaces is a seam, not a boundary. */
+.page-safety main > section[data-section="02-statement"],
+.page-safety main > section[data-section="03-protections"],
+.page-safety main > section[data-section="06-share"],
+.page-safety main > section[data-section="07-closing"] {
+  border-top-color: transparent !important;
+}
+
+aside[aria-label="Our commitments"] + footer {
+  border-top-color: transparent !important;
+}
+
 main > section[data-section="05-intelligence"]:not([data-surface="light"]),
 main > section[data-section="05-one-intelligence"]:not([data-surface="light"]) {
   background: var(--scene-ink, #0a0d14) !important;

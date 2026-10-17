@@ -752,3 +752,282 @@ added mechanically on the remaining pages — only where they add information.
 - The hero is text-only (no strip): the featured banner sits as its own chapter
   after the hero, unlike About/Community where a strip fills the fold.
 - Breadcrumb "Home › How it works › Updates" kept as-is (shared component).
+
+## 11 · `/referral` — `ReferralPage.jsx` — DONE (awaiting user review)
+
+### Chapters (bridge rhythm)
+- Eight sections marked: `01-hero` (exempt; authored paddings kept — the illustration
+  trio now rides inside the hero composition, About/Community anatomy), `02-how`
+  (#how), `03-point`, `04-share` (#share), `05-honesty`, `06-faq` (#faq),
+  `07-privacy`, `08-closing`; authored `py`, the `border-t`/`border-y
+  border-[#dadce0]` seams and the separate collage `<section>` removed in favour of
+  the bridge surface law (`page-referral` class added to the page root).
+- Joins (`page-referral` block added to `public-bridge.css`): `02-how` shares the
+  hero's white ground — transparent `rgba(0,0,0,0)`; the grey point band, white
+  share chapter, grey honesty band, FAQ and closing all change surface and keep the
+  whisper hairline.
+- `07-privacy` is a strip, not a chapter — compact band
+  `clamp(3.5rem, min(7vw, 10svh), 6rem)`; computes 90/90 @1440 (221px band total).
+- Page height 5894 → 6388 desktop @1440; 8919 mobile @390; overflowX 0.
+
+### Chrome → premium vocabulary
+- Hero: dek → approved hero tier (`text-[17.5px] leading-[25px]`, `max-w-[760px]`,
+  `mt-8`; computes 18/400/25); actions `mt-10 gap-4`; blue Copy pill → ink pill
+  (Copy/Check icons dropped; text feedback kept); outlined "How sharing works" →
+  quiet chevron link (hero tier 18/400). Status line `#0b57d0` → `#5f6368` (quiet
+  helper ink; no false link affordance).
+- Collage: moved from its own tucked `<section>` into `01-hero` (statement + trio =
+  the fold, matching About/Community); panels keep `rounded-[24px]` → bridge remap
+  r12; the `sm:mt-10` middle offset kept; `aria-hidden` moved onto the grid.
+- How steps: blue `rounded-full` circles → grey-fill `rounded-[14px]` tiles with
+  `#0b57d0` icons (strokeWidth 1.8; careers/contact tile law); outlined
+  "Copy the link now ↗" → quiet chevron link.
+- Destination cards: `rounded-2xl g-card` (r16 + shadow, overflow-hidden) → white
+  `rounded-[20px]` borderless; the 104px illustration mat's chrome dropped (bare
+  chip floats on white, community pattern); grid gap-4 → gap-3; the google.com
+  corner curve + icon-only corner link + raw-path "or /parent ↗" link → two inline
+  quiet chevron links per card ("Open the student page ›" / "or the parent page ›";
+  label strings added to the destination data, keeping the corner aria-label's
+  "Open" verb and the alt link's "or …" phrasing).
+- Share card: `rounded-2xl g-card` → white `rounded-[20px]`; label → 14/400 `#5f6368`
+  (careers label law); bordered square input → careers grey-fill `rounded-full` h-12
+  with `focus:bg-white` (readonly value stays `#5f6368`); blue Copy pill → ink pill;
+  outlined Share → download-anatomy grey pill `h-12` (Share2 icon dropped); outlined
+  "Open registration ↗" → quiet chevron link; status `#0b57d0` → `#5f6368`.
+- Honesty band: `#f8f9fa` → `#f5f5f7`; chips (r6 hairline `#dadce0`) → partners chip
+  grammar (`rounded-[12px]`, `rgba(18,19,23,0.12)` hairline, white).
+- FAQ: "More questions?" mailto → contact's EmailLink anatomy (quiet link +
+  `break-all` + `shrink-0` chevron; computes 17/400 h-44).
+- Privacy strip: `#f8f9fa` → `#f5f5f7`, authored border removed (bridge hairline).
+- Closing: `#e8f0fe` `rounded-[28px]` (remapped r12) → grey `#f5f5f7`
+  `rounded-[30px]` tray tier; white shadow pill → ink pill; outlined pill → quiet
+  chevron link; row gap-3 → gap-4.
+
+### Sub-heading law applied
+- Honesty copy (4 lines @24/600 before) escaped the `h2 + p` lead promotion via a
+  wrapper div → body 17/400 `#5f6368`; statement + quiet copy + guarantee chips now
+  read as the band family (updates evidence precedent).
+- How/point/FAQ/closing leads stay designed 24/600/28 subs (2–3 lines @1440, kept
+  per the law); hero dek dropped from 18/28.8 to the hero tier 18/400/25.
+
+### Verified
+- Sections table: `01-hero` exempt 64/64; `02`–`06` + `08` 158.4/158.4;
+  `07-privacy` 90/90; `02-how` join transparent `rgba(0,0,0,0)`; all surface-change
+  joins whisper `rgba(18,19,23,0.043)`; point/honesty/privacy compute
+  `rgb(245,245,247)`.
+- Type re-probe: h1 76/400; chapter h2s 64/600/68; designed subs 24/600/28; step h3
+  17/600; body 17/400 everywhere incl. the escaped honesty copy and both fine-print
+  notes; hero eyebrow + all chapter kickers 17/500 grey (adapter law); hero dek
+  18/400/25; hero quiet link 18/400 `#0066cc` h-48; chapter quiet links 17/400
+  `#0066cc` h-44.
+- Chrome re-probe: step tiles `rgb(245,245,247)` r12 + `rgb(11,87,208)` icons;
+  point cards white r20 no shadow, illustration mats bare (no bg/shadow); corner
+  curve + corner links gone (selectors missing); share input `rgb(245,245,247)`
+  r9999 h-48; ink pills `rgb(18,19,23)` h-48; grey pill `rgb(245,245,247)` h-48;
+  honesty chips r12 white; closing card `rgb(245,245,247)` r30.
+- Captures: 8 desktop segs + 12 mobile segs reviewed — hero + trio, steps, point
+  cards (two-link ladders), share card, honesty band, FAQ + mailto, compact privacy
+  strip, closer, footer all clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-referral-before.json` / `probe-referral-after.json`,
+  `captures/after/referral-after-seg00..07.jpg`,
+  `captures/after-mobile/referral-after-m-seg00..11.jpg` (before segs
+  `captures/before/referral-before-seg00..07.jpg`).
+
+### Open items (not defects, noted)
+- In non-hero sections the apple button law lands both pills' labels at 17/500/22
+  (the authored 15-class computes 16 only in the hero) — matches the approved
+  `/updates` submit exactly (re-verified from `probe-updates-after.json`).
+- The share input's value computes 17/400 (input body law) — unchanged from the
+  before state; the pill chrome is the only difference.
+- Destination cards carry two quiet links where the reference had one visible
+  raw-path link plus one icon-only corner link; the alt path's "or …" phrasing is
+  preserved and the primary reuses the corner link's "Open" verb.
+
+## 12 · `/safety` — `SafetyPage.jsx` + shared `ValuesStrip.jsx` — DONE (awaiting user review)
+
+### Chapters (bridge rhythm)
+- Seven sections marked: `01-hero` (exempt; authored paddings retuned to the hero
+  family `px-6 pb-14 pt-10 sm:px-8 lg:px-10 lg:pb-16 lg:pt-16` — 64/64 @1440),
+  `02-statement`, `03-protections` (#protections), `04-family` (#family),
+  `05-reporting` (#reporting), `06-share` (#share), `07-closing`; authored `py` and
+  the two `border-t border-[#dadce0]` (protections/family) removed in favour of the
+  bridge surface law; page root gains `page-safety`.
+- Joins (`page-safety` block added to `public-bridge.css`): statement, protections,
+  share and closing ride the hero's white ground — transparent `rgba(0,0,0,0)`;
+  the grey family band and the white reporting chapter change surface and keep the
+  whisper hairline `rgba(18,19,23,0.043)`.
+- New global seam rule `aside[aria-label="Our commitments"] + footer { border-top-color:
+  transparent }`: the trust strip and the quiet footer share one `#f5f5f7` ground, so
+  the footer's own top hairline is muted for that join (its inner directory hairline
+  stays — site chrome, same anatomy as every approved footer).
+- Page height 5887 → 6884 desktop @1440; 9784 mobile @390; overflowX 0.
+
+### Chrome → premium vocabulary
+- Hero: badge 56px blue `rounded-full` + shadow → grey-fill `rounded-[14px]` tile
+  with `#0b57d0` glyph (careers/contact tile law); dek → approved hero tier
+  (`text-[17.5px] leading-[25px]`, `max-w-[760px]`, `mt-8`; computes 18/400/25);
+  jump chips: the `AnchorChip` component (hairline pill 13/500) deleted → grey-fill
+  `chipPill` (`min-h-11 px-6 text-[15px] tracking-[0.24px]`; computes 16/500/44 —
+  hero tier); nav `mt-7 gap-2` → `mt-10 gap-4`.
+- Statement: icon tiles `g-card` + `shadow-[0_1px_3px…]` → grey-fill `rounded-[14px]
+  bg-[#f5f5f7]` with `#0b57d0` glyphs (radius computes 12 via the bridge remap);
+  copy stays the designed body 17/400 `#5f6368`.
+- Protections: `DeviceFrame` phone chrome (5px black border, notch, shadow, per-row
+  `tint`) → one borderless tinted panel (`rounded-[24px] bg-[#f5f5f7] py-16`,
+  max-w 320; radius computes 12) holding the 170px illustration; `tint` field
+  removed from all three rows.
+- Family cards: whole-card `Link`s (`rounded-2xl g-card` r16 + shadow, minH 280,
+  corner curve + `ArrowUpRight`) → `div` white `rounded-[20px]` borderless; icon
+  circle `#e8f0fe` → grey-fill `h-12 w-12 rounded-[14px]` + `#0b57d0`; inline quiet
+  chevron `Link` built from the row's existing `linkLabel`; grid gap-4 → gap-3;
+  kickers kept authored (adapter: 17/500 grey).
+- Reporting cards: same card conversion; the 120px tinted illustration mat's chrome
+  dropped (bare illustration floats on white, referral/community pattern); links →
+  inline quiet chevron `Link` from the existing `link.label`; `minH 340` kept.
+- Share band: `rounded-[28px] bg-[#e8f0fe]` (remapped r12) → grey `#f5f5f7`
+  `rounded-[30px]` tray; checklist items `bg-white/80` `rounded-2xl` → solid white
+  `rounded-[20px]`; blue pill → ink pill; outlined pill → quiet chevron link; green
+  check circles kept (`#188038` — the approved partners-table check anatomy).
+- Closing: blue band `rounded-[28px]` → grey `#f5f5f7` `rounded-[30px]` tray; white
+  shadow pill → ink pill; outlined pill → quiet chevron link; row gap-3 → gap-4.
+- `ValuesStrip` (shared by safety/security/privacy/accessibility): `#f8f9fa` +
+  `public-frame-wide` + bordered `rounded-2xl` cards → house container
+  (`max-w-[1240px]`, px-6/8/10) on the `#f5f5f7` ground with whisper border-t; cards
+  white `rounded-[20px]` borderless; tiles grey-fill `rounded-[12px]` + `#0b57d0`
+  glyphs; the current page marked with an INK tile + white glyph (was blue
+  `#4285F4` + tint); eyebrow 12/500 uppercase grey; labels 15/600, descs 14
+  `#5f6368`; the `C` token const removed.
+
+### Sub-heading law applied
+- Share copy (4 lines of 24/600 before) escaped the `h2 + p` lead promotion via a
+  wrapper div → body 17/400 `#5f6368`; the band now reads as the statement/chips
+  family (referral honesty precedent).
+- Family/reporting subs stay designed 24/600/28 chapter leads (3/2 lines @1440,
+  kept per the law); statement stays authored centered design with its body copy
+  under the icon row (no mechanical promotion); hero dek dropped from 16/27 to the
+  hero tier.
+
+### Verified
+- Sections table: `01-hero` exempt 64/64; `02`–`07` all 158.4/158.4 @1440; joins
+  02/03/06/07 transparent `rgba(0,0,0,0)`; 04/05 whisper `rgba(18,19,23,0.043)`;
+  family band computes `rgb(245,245,247)`; footer top hairline muted (strip→footer
+  seamless).
+- Type re-probe: h1 76/400; statement/closing h2s 64/600/68; share h2 28/600/32;
+  leads 24/600/28 (family + reporting); row h3s 28/600/32; card h3s 17/600; body
+  17/400 everywhere incl. the escaped share copy; hero dek 18/400/25 `#5f6368`;
+  jump chips 16/500 h-44; ink pills `rgb(18,19,23)` h-48.
+- Chrome re-probe: hero badge + statement tiles grey-fill `rgb(245,245,247)`;
+  device panels `rgb(245,245,247)` r12 h-298; family/reporting cards white r20, no
+  shadow; corner-curve + `ArrowUpRight` selectors missing; share band + closing
+  `rgb(245,245,247)` r30; share items white r20; values strip `rgb(245,245,247)`
+  r20 cards with ink current tile; quiet links 17/400 `rgb(0,102,204)` h-44.
+- Captures: 9 desktop segs + 14 mobile segs reviewed — hero + chips, statement,
+  three protection rows, family band, reporting cards, share band, last-updated,
+  closer, strip, footer all clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-safety-before.json` / `probe-safety-after.json`,
+  `captures/after/safety-after-seg00..08.jpg`,
+  `captures/after-mobile/safety-after-m-seg00..13.jpg` (before segs
+  `captures/before/safety-before-seg00..07.jpg`).
+
+### Open items (not defects, noted)
+- The phone-chrome metaphor was dropped by design (the frozen "quiet tinted
+  illustration panel" decision); the `DeviceFrame` diff is one block if the frame
+  is ever wanted back.
+- The family sub (3 lines @1440) degenerates to ~6 lines @390 — same behaviour as
+  the other approved pages' designed 24/600 subs (no mobile escape).
+- The `ValuesStrip` conversion ships on /safety first and now previews the treatment
+  for security/privacy/accessibility before those pages convert (shared component,
+  intentional).
+- "Last updated: September 2026" stays the bare line it always was (untouched by
+  the conversion); breadcrumb kept as-is (shared component).
+
+## 13 · `/privacy` — `PrivacyPage.jsx` + shared `PolicyTabs.jsx` — DONE (awaiting user review)
+
+### Document rhythm (legal treatment — no bridge chapters)
+- The legal five ride the quieter Apple-legal treatment: no `data-section` marks and
+  no bridge rhythm — the authored document paddings stay (article sections 64/64,
+  key-terms and related 80/80 @1440), so the long-form page reads denser and calmer
+  than the marketing chapters. First page of the legal five; sets the template for
+  terms/cookies/security/accessibility.
+- All authored hairlines (#dadce0/#dadce2: article divide, section-02 rows, section-03
+  list, FAQ container+rows, key-terms grid, related border-t, TOC note, hero effective
+  line, mobile TOC) → the house divider token `rgba(18,19,23,0.12)`.
+- Page height 8998 → 9236 desktop @1440; 13874 mobile @390; overflowX 0. (Growth =
+  the glance/related arrows' reserved `pb-16` zones, card height 192→240 / 124→157.)
+
+### Chrome → premium vocabulary
+- Policy tabs (shared component): track `#f1f3f4` → `#f5f5f7`; white shadow pill →
+  INK pill (`bg-[#121317] text-white`, shadow dropped; values-strip current-marker
+  law); active #202124 / inactive #5f6368 → white on ink / grey with ink hover;
+  focus ring #1a73e8 → house #4285F4.
+- Desktop TOC: active pill `#f7f8fa` → grey-fill `#f5f5f7` (number stays navy, title
+  ink); inactive rows inherit `#5f6368` with an ink text-shift hover (inline colour
+  styles replaced by class grammar); note hairline → 0.12.
+- Mobile TOC: bordered box + row dividers → grey-fill `rounded-[24px]` tray with
+  `rounded-[16px]` rows, active = white pill (navy number, ink title), inactive grey
+  text; the collapse control's border-b → 0.12.
+- Hero: action tile `bg-[#e8f0fe]` r12 → grey-fill `rounded-[14px]` (computes r12);
+  "Review data on this device" navy arrow link → quiet chevron link (hero tier
+  18/400 `#0066cc` h-44); dek → approved hero tier (`text-[17.5px] leading-[25px]`,
+  `max-w-[760px]`, `mt-8`; computes 18/400/25); effective-line hairline → 0.12.
+- IconTile (sections 01/02/04): 48px blue-tint circles → grey-fill `rounded-[14px]`
+  + navy glyphs.
+- At-a-glance cards: `g-card` r20 + shadow + corner curve + icon-only arrow → white
+  `rounded-[20px]` borderless, `p-6 pb-16`, plain navy `ArrowRight` bottom-6 right-6
+  (whole-card link law); tile 40px tint circle → 48px grey-fill r14.
+- Section 03 list: bordered r16 box → borderless flush list (top hairline + row
+  hairlines 0.12; cell padding dropped).
+- Section 04: three navy/grey arrow links → quiet chevron links; 01/04/06 cards
+  `g-card` r16 → white r20 (shadowless); inline sentence links ("Privacy settings",
+  "Grievance officer") → `#0066cc` with hover underline (careers law).
+- Section 06: contact strip `#f8f9fa` r18 → grey `#f5f5f7` `rounded-[30px]` tray;
+  blue mailto pill → ink pill.
+- Sections 07/10: single-column `g-card`s → grey-fill `rounded-[30px]` trays (an
+  invisible white card's `p-6/p-7` read as unexplained indent against the flush
+  document text; the tray makes the panel intentional — same anatomy as the 06 strip).
+- FAQ: container/row hairlines → 0.12; chevrons kept.
+- Key terms / related: grid + section hairlines → 0.12; related cards `g-card` r12 +
+  corner curve → white `rounded-[20px]` borderless with plain navy arrows; gap-4 → gap-3.
+
+### Sub-heading law applied
+- The document never stacks a mechanical second headline: section heads are single
+  28/600/32 headlines (the ≤30 h2 tier) with the body under them; the `h2 + p` lead
+  promotion cannot fire in the article (h2s live inside `SectionHeading` wrappers),
+  so every chapter reads title→body by construction. Hero dek dropped to the hero
+  tier; 04's designed paragraph keeps its authored treatment.
+
+### Verified
+- Sections table: `main > section` = key terms + related only, both unmarked →
+  authored 80/80 kept; related border-t 1px `rgba(18,19,23,0.12)`; article sections
+  64/64 unchanged; no unmarked-section bridge leakage.
+- Type re-probe: h1 76/400; section/terms/related h2s 28/600/32; card h3s 17/600;
+  hero dek 18/400/25 mt-32 w-760; quiet links 17/400 `#0066cc` h-44 (hero action
+  link hero-tier 18/400); FAQ q/a unchanged; body 17/400.
+- Chrome re-probe: tabs track `rgb(245,245,247)`, active ink `rgb(18,19,23)` no
+  shadow; TOC active `rgb(245,245,247)`; hero tile / IconTiles / glance tiles
+  `rgb(245,245,247)` r12; glance curves gone (selectors missing); c03 flush list
+  (pad 20/0, r0); cards r16→r20 shadowless; 06 strip r30 pad 32; ink pill h-48;
+  07/10 trays `rgb(245,245,247)` r30; related cards r20 white; borders 0.12
+  everywhere; values strip + footer unchanged (already converted).
+- Captures: 12 desktop segs + 19 mobile segs + the mobile TOC open-state shot
+  reviewed — tabs, TOC (desktop + open), hero + action row, promise row, glance
+  cards, 01–04, 03 flush list, 06 cards + ink pill, 07/10 trays, FAQ, key terms,
+  related cards, strip, footer all clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-privacy-before.json` / `probe-privacy-after.json`,
+  `captures/after/privacy-after-seg00..11.jpg`,
+  `captures/after-mobile/privacy-after-m-seg00..18.jpg` +
+  `privacy-after-toc-open.jpg` (before segs `captures/before/privacy-before-seg*.jpg`).
+
+### Open items (not defects, noted)
+- `PolicyTabs` conversion ships on /privacy first and previews the tabs treatment
+  for terms/cookies/security before those pages convert (shared component, same as
+  `ValuesStrip` on /safety).
+- During segmented captures the TOC active item can look stale after instant scroll
+  jumps (IntersectionObserver behaviour, unchanged from before).
+- The glance/related whole-card links keep the plain corner arrow because no inline
+  link label existed to convert (whole-card-link law).
+- Section-02/03/FAQ row hairlines sit at the same 0.12 as the section dividers; the
+  shift from #dadce0 is subtle by design (house divider token).

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
-  "sourceSha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146",
+  "sourceSha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8",
   "targetProject": {
     "name": "Team AGI",
     "key": "KAN",
@@ -16,9 +16,9 @@
   },
   "syncPolicy": "Search each stable sourceId label before creating; retain issue keys after every successful write. On an ambiguous create, search before retry. Never recreate an issue solely because scheduling failed.",
   "totals": {
-    "issues": 137,
+    "issues": 145,
     "locallyComplete": 12,
-    "openLaunch": 119,
+    "openLaunch": 127,
     "later": 6
   },
   "phases": [
@@ -470,6 +470,238 @@
     {
       "blocks": "RELEASE-04",
       "blocked": "LATER-06"
+    },
+    {
+      "blocks": "SCOPE-02",
+      "blocked": "AI-18"
+    },
+    {
+      "blocks": "CONTENT-06",
+      "blocked": "AI-18"
+    },
+    {
+      "blocks": "AI-02",
+      "blocked": "AI-18"
+    },
+    {
+      "blocks": "AI-18",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-10",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-08",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-07",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "SYNC-01",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "FILE-03",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "CONTENT-03",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "LEARN-02",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "BUILD-01",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "BUILD-04",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "AI-16",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "FILE-03",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "BUILD-09",
+      "blocked": "BUILD-08"
+    },
+    {
+      "blocks": "LEARN-10",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "LEARN-11",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "BUILD-08",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "AI-13",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "AI-17",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "LEARN-13",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "ROLE-03",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "PLAT-02",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "AI-18",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "ACCEPT-08",
+      "blocked": "RELEASE-07"
+    },
+    {
+      "blocks": "LEARN-13",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "AI-17",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "BUILD-09",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "SCOPE-02",
+      "blocked": "SCOPE-09"
+    },
+    {
+      "blocks": "SCOPE-09",
+      "blocked": "BILL-04"
+    },
+    {
+      "blocks": "SCOPE-09",
+      "blocked": "ROLE-09"
+    },
+    {
+      "blocks": "SCOPE-09",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "DATA-01",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "DATA-06",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "CONTENT-08",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "LEARN-11",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "AI-15",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "PRIV-01",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "LEARN-14",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-14",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "LEARN-14",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "DATA-03",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "LEARN-10",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "AI-15",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "ROLE-10",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "ROLE-10",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "PRIV-01",
+      "blocked": "ROLE-04"
+    },
+    {
+      "blocks": "DATA-04",
+      "blocked": "ROLE-04"
+    },
+    {
+      "blocks": "ROLE-04",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "ROLE-07",
+      "blocked": "ACCEPT-02"
     }
   ],
   "issues": [
@@ -789,6 +1021,22 @@
       "labels": [
         "visionary-launch",
         "visionary-id-scope-08",
+        "visionary-phase-p00"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "SCOPE-09",
+      "phase": "P00",
+      "issueType": "Task",
+      "summary": "[SCOPE-09] Resolve equitable-access and continuity policy for the released Free/paid/institution-supported journey: distinguish retained account/history/evidence/artifacts from bounded m",
+      "description": "Resolve equitable-access and continuity policy for the released Free/paid/institution-supported journey: distinguish retained account/history/evidence/artifacts from bounded model context and metered generation; define a meaningful funded Learn→check→Build path, low-bandwidth/shared-device needs and payment-lapse/resume behavior without deleting records or inferring income. Reconcile current seven-day-memory, paid-only Practice/Build/voice and broad-language copy with actual accepted coverage and server entitlement/usage configuration. Record decision owner, benefit matrix, cost scenarios and unresolved commercial decisions as release blockers; do not change prices, grant subsidies or advertise unqualified features from this planning task alone.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-scope-09",
         "visionary-phase-p00"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
@@ -1546,6 +1794,38 @@
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
     },
     {
+      "sourceId": "LEARN-13",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-13] Implement explicitly downloaded, rights-approved offline lesson/activity packs with immutable source/criteria/renderer versions, integrity checks, bounded device storage and v",
+      "description": "Implement explicitly downloaded, rights-approved offline lesson/activity packs with immutable source/criteria/renderer versions, integrity checks, bounded device storage and visible offline availability. Preserve pending answers/drafts with original base and command identity; server reauthorization and assessment on reconnect decide accepted evidence, never a local pass flag. Use reviewed offline-use leases and disclose revocation limitations for already downloaded bytes; account switch/session eligibility must not leak another user's material. Keep AI generation online unless a separate on-device capability is qualified. Test low connectivity, missing assets, expiry, source withdrawal, duplicate/out-of-order replay and two devices without data loss.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-13",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "LEARN-14",
+      "phase": "P05",
+      "issueType": "Story",
+      "summary": "[LEARN-14] Implement backend-owned lifelong stage/curriculum continuity over the same UID: versioned authorized promotion/change events, conditional current-profile revisions, reviewed s",
+      "description": "Implement backend-owned lifelong stage/curriculum continuity over the same UID: versioned authorized promotion/change events, conditional current-profile revisions, reviewed source/criteria mappings, retained prior sessions/evidence/projects and bridge gaps, preserved review due dates and fixed assignment labels, and post-commit plan/audience projections. Ordinary eligible progression may apply with notice/diff, Postpone 7 days and Undo 14 days; evidence inference alone is suggestion-only, and board/institution/safety-tier or larger jumps retain required confirmation. Undo preserves work created since and never rewrites grades or claims equivalent mastery from an unreviewed mapping. Recheck authority on in-flight jobs and institution exit; test concurrent devices, duplicate/reordered events, restart/lost receipt, long absence, changed source, unavailable mapping and rollback through existing UI adapters.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-learn-14",
+        "visionary-phase-p05"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
       "sourceId": "BUILD-01",
       "phase": "P06",
       "issueType": "Story",
@@ -1669,6 +1949,22 @@
       "labels": [
         "visionary-launch",
         "visionary-id-build-08",
+        "visionary-phase-p06"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "BUILD-09",
+      "phase": "P06",
+      "issueType": "Story",
+      "summary": "[BUILD-09] Implement Build Stage3 declarative learning artifacts: versioned allowlisted activity schemas, approved trusted renderers/representations, bounded validated parameters/assets ",
+      "description": "Implement Build Stage3 declarative learning artifacts: versioned allowlisted activity schemas, approved trusted renderers/representations, bounded validated parameters/assets and accessible preview over a fixed immutable project/proposal revision. Reject generated JavaScript/HTML execution, arbitrary URLs/network actions, unknown components and hidden answer keys; generation, preview, accept/save, export and sharing remain distinct authorized operations. Test malformed/deep/oversized manifests, injection, keyboard/screen-reader/mobile fallback, stale proposals, cancellation and cross-device resume. This does not enable the separate arbitrary-code/public-app runtime.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-build-09",
         "visionary-phase-p06"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
@@ -1930,6 +2226,38 @@
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
     },
     {
+      "sourceId": "AI-17",
+      "phase": "P07",
+      "issueType": "Story",
+      "summary": "[AI-17] Implement natural two-way voice tutoring and voice-guided Learn/Teach/Build over the same authorized AIRA session: explicit microphone consent/status, released ASR/TTS/locale/",
+      "description": "Implement natural two-way voice tutoring and voice-guided Learn/Teach/Build over the same authorized AIRA session: explicit microphone consent/status, released ASR/TTS/locale/provider adapters, short guarded teaching turns, interim-versus-final transcript and audio sequence IDs, interruption/stop/cancel acknowledgment, stale-audio suppression, correction/readback for uncertain numbers/units and text/caption/keyboard fallback. Final recognized speech is input, never assessment or permission authority; confirm consequential Build acceptance/share/export actions against the exact revision. Bound stream/deadline/concurrency/audio/token cost, reauthorize reconnect/output and retain only approved transcript/audio metadata; no always-on recording, voice cloning or automatic raw-audio training. Prove interrupted/reordered chunks, microphone loss, account switch, revocation and poor-network recovery on actual released devices.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-17",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "AI-18",
+      "phase": "P07",
+      "issueType": "Task",
+      "summary": "[AI-18] Establish the India speech/language qualification matrix and reproducible held-out licensed/consented evaluation corpus before enabling voice: independent interface/input/sour",
+      "description": "Establish the India speech/language qualification matrix and reproducible held-out licensed/consented evaluation corpus before enabling voice: independent interface/input/source/output language and script identity; released Indian-language/code-switched/romanized cases, regional accents, noisy/low-bandwidth devices, mathematical signs/numbers/units and pedagogical meaning. Record source/model/prompt/ASR/TTS versions, split/leakage checks, recognition and critical-semantic errors, intelligibility/pronunciation, uncertainty/clarification, latency/cancellation and per-completed-task cost; compare candidate routes with qualified reviewers using preapproved thresholds. Dataset/model language counts do not establish our product coverage. Do not identify speakers, clone voices, infer eligibility or send unapproved user recordings to providers; unsupported slices remain explicit.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-ai-18",
+        "visionary-phase-p07"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
       "sourceId": "ROLE-01",
       "phase": "P08",
       "issueType": "Story",
@@ -2069,6 +2397,22 @@
       "labels": [
         "visionary-launch",
         "visionary-id-role-09",
+        "visionary-phase-p08"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ROLE-10",
+      "phase": "P08",
+      "issueType": "Story",
+      "summary": "[ROLE-10] Implement teachers' private ongoing subject/pedagogy learning and evidence-based coaching through explicit personal goals, scoped assessed practice, teach-back/Build and refle",
+      "description": "Implement teachers' private ongoing subject/pedagogy learning and evidence-based coaching through explicit personal goals, scoped assessed practice, teach-back/Build and reflection checkpoints, understandable recommendation reasons and manual correction. Keep personal learning/memory separate from class preparation, learner reports and organization employment; use only currently permitted class summaries for an explicitly chosen teaching goal. Replace random-tip behavior only when the evaluated connected adapter is accepted; unavailable evidence yields an authored, clearly generic suggestion. Prove personal/class workspace switching, changed employment, revocation, two-device resume and independent teacher-usefulness/outcome review; no inferred teaching-quality ranking, credential or disclosure of private learner doubts.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-role-10",
         "visionary-phase-p08"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
@@ -2437,6 +2781,22 @@
       "labels": [
         "visionary-launch",
         "visionary-id-accept-07",
+        "visionary-phase-p11"
+      ],
+      "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."
+    },
+    {
+      "sourceId": "ACCEPT-08",
+      "phase": "P11",
+      "issueType": "Task",
+      "summary": "[ACCEPT-08] Approve and execute a consented, privately controlled educational-outcome pilot for each released learner/teacher/professional slice before general launch: source/rubric-pinne",
+      "description": "Approve and execute a consented, privately controlled educational-outcome pilot for each released learner/teacher/professional slice before general launch: source/rubric-pinned baseline and assisted work plus independent unassisted novel/transfer tasks and delayed retention, teach-back/Build revision quality, teacher preparation/review usefulness, accessible voice/text/offline recovery and group-level failure/uncertainty analysis. Predeclare eligibility, task splits, leakage controls, human/teacher review, feasible evidence/sample rationale, thresholds and stop criteria; report uncertainty and unsupported slices without invented scores or causal/superiority claims. Separate learner gains, system reliability/cost and broad AGI capability; no unattended live experiments, automatic model promotion or raw-dialogue training. Keep pilot data purpose-scoped and minors unavailable until admission/consent is accepted.",
+      "localComplete": false,
+      "suggestedStatus": "To Do",
+      "queue": "Next",
+      "labels": [
+        "visionary-launch",
+        "visionary-id-accept-08",
         "visionary-phase-p11"
       ],
       "completionRule": "Close only against source-checklist exit criteria and retained test/environment evidence."

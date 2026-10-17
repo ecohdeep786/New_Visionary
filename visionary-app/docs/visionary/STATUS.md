@@ -1287,3 +1287,28 @@ Add product-owned ML pedagogy proposal code and backend binding,12 independent s
 All137 Jira tasks have complete preserved-prefix D-087 layer/order traces and exact merged labels. Final readback100+52 at20:11:17UTC verifies152 unique items, unchanged parents/types/titles/statuses/phase epics, all105 reciprocal blocker directions and valid task order. Status totals unchanged:13 Done,129 To Do,2 In Progress,1 Testing,7 Idea including epics. No new issue/Done or scheduling settings. One confirmed update's local journal append fails transiently; read KAN-134 back and append its record without repeating the Jira edit. Final137 unique trace records match all successful updates.
 
 Fresh backend build and68 offline backend/runtime tests pass. Root ml:test passes selected Go libraries (cached existing package results) plus three VATS/three metric Python tests. Thirteen tracking/provenance tests, layout/import checks pass; baseline remains3842 files plus3 intentional patches/10 changed originals. Current verifier confirms all37 original source hashes,137 exact descriptions/labels, native link preservation, source/manifest agreement and local document links. No browser/real-device, hosted/provider/educational/cognitive benchmark, production data/payment change, training, deployment, data purge or AGI proof. Evidence: artifacts/qa/vats-alignment-2026-10-16/.
+
+
+## 2026-10-17 — D-088: Education research, separate Build coverage and final implementation backlog
+
+Deliver research/EDUCATION_AGI_RESEARCH_2026_10_17.md and docs/architecture/EDUCATION_LAUNCH_PLAN.md with primary-source findings/access limits, connected seven-capability VATS/AIRA loop, India voice/meaning and offline behavior, all five Build stages and prerequisite-gated backend/ML/frontend implementation chunks. Add current education-launch.json for every task's requirement/refinement, real Jira key, feature family, eleven delivery layers, VATS applicability and planning prerequisites. Existing journeys remain intact.
+
+Create five open tasks KAN-153–157, update142 task descriptions/labels with original substantive requirements retained, replace137 verified generated old traces and refine39 requirements. Add32 native links. Final 100+57-row read-back at09:12:10UTC verifies157 unique items,142 tasks/15 epics,137 reciprocal Blocks and acyclic107-task-edge order. Status totals:13 Done,134 To Do,2 In Progress,1 Testing,7 Idea including epics. No existing status/type/parent/title changes or expanded completion. First planned open task remains SCOPE-01/KAN-28.
+
+Fresh16 planning/provenance tests, layout and import integrity checks pass.3842 baseline imported files retain3 intentional patch records/10 changed originals; no lock or upstream runtime change. Current research-only verifier checks exact normalized descriptions, preserved original prefixes/special suffixes, merged labels, all original native links, parent/type/status/title and generated source agreement. Evidence: artifacts/qa/education-launch-2026-10-17/. No backend/ML runtime implementation or fresh hosted/model/voice/educational/capacity result is claimed. Broader AGI remains an independently measured ambition, not a release label established by this backlog.
+
+
+## 2026-10-17 — D-089: Vision compared with actual product and delivery plan
+
+Deliver docs/architecture/VISION_ALIGNMENT_REVIEW.md and refresh CURRENT_PRODUCT_STATUS.md with current local-runtime/planning context. Existing product contract matches a connected lifelong journey; actual integrated account/test-billing foundation, frontend/service previews and pure ML policies are distinguished from durable education/role/model delivery. Identify concrete pricing/access, child admission, stage continuity and role-specific guidance gaps without claiming the whole vision is implemented. Use the saved D-088 09:12:10UTC Jira snapshot for coverage; no fresh Jira read-back or mutation in this audit.
+
+Verify all local document links, referenced source task IDs and eight direct source anchors. No runtime changes justify new backend/ML/frontend test runs; no feature, price or permission changed. New evidence: artifacts/qa/vision-alignment-2026-10-17/. Preserve unrelated ongoing public/frontend work and all D-088 records.
+
+
+## 2026-10-17 — D-090: Lifelong delivery requirements and Jira reconciliation complete
+
+Deliver integration/LIFELONG_EDUCATION_CONTRACT.md with logical records, stage transition states/authority/recovery, explicit equity-policy acceptance, teacher personal learning, parent actions and prerequisite school-admission behavior. Refresh the existing checklist, feature matrix, VATS registry, current launch plan/status and backend/ML handoff. New source tasks SCOPE-09/LEARN-14/ROLE-10 are KAN-158/159/160, each To Do. No user-facing price/benefit or runtime capability changes.
+
+Fresh Jira read-back100+60 at09:46:50UTC verifies160 unique items:145 tasks/15 epics,33 complete preserved-prefix description updates and112 unchanged task descriptions,145 VATS applicability/parent/type/source label sets, all15 unchanged epics and163 reciprocal native blockers. All137 old links remain,26 added. Status totals including epics:13 Done,137 To Do,2 In Progress,1 Testing,7 Idea. No existing metadata change or expanded completion. Current133 task prerequisites are acyclic; first open remains SCOPE-01/KAN-28.
+
+Fresh19 planning/provenance tests pass; layout/import checks pass3842 baseline files plus3 intentional patches/10 changed originals. New education manifest generation is idempotent and retains earlier research requirements. Current verification and source/link/log evidence are in artifacts/qa/lifelong-delivery-2026-10-17/. No runtime/provider/hosted/educational/AGI result is claimed.

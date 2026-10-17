@@ -1,5 +1,9 @@
 # Repository structure and ownership
 
+D-090 current continuation: [lifelong education delivery contract](../../integration/LIFELONG_EDUCATION_CONTRACT.md) reconciles the [vision audit](VISION_ALIGNMENT_REVIEW.md) with three focused tasks and explicit existing-task acceptance. The current [launch plan](EDUCATION_LAUNCH_PLAN.md) and [Jira record](tracking/JIRA_SYNC.md) cover 145 tasks/15 epics and 163 native dependencies. All original requirements, current journeys and seven VATS boundaries remain. Earlier dated counts below are historical checkpoints; no runtime capability or new Done is implied.
+
+D-088 current handoff: [India education, natural voice, offline continuity and staged Build launch](EDUCATION_LAUNCH_PLAN.md), based on [primary-source AGI/education research](../../research/EDUCATION_AGI_RESEARCH_2026_10_17.md). [Verified Jira tracking](tracking/JIRA_SYNC.md) covers 142 tasks and 15 epics with 137 dependencies. The [implementation manifest](tracking/education-launch.json) connects every task to VATS, feature families, prerequisites and eleven delivery layers. This is planning evidence; no runtime feature or AGI achievement is claimed. Earlier paragraphs retain their dated scope.
+
 D-087 implementation direction: [VATS seven-layer ownership, actual code and ordered Jira delivery](VATS_IMPLEMENTATION.md), with [machine-readable task/layer mapping](tracking/vats-delivery.json) and [backend↔ML contract](../../integration/VATS_CONTRACT.md). Both Document03 variants are reconciled; AIRA coordinates these seven capabilities. Product integration and broad AGI evidence remain separate gates.
 
 Implementation tracker: [backend-to-launch checklist](BACKEND_LAUNCH_CHECKLIST.md), with [completed/partial/source evidence](BACKEND_LAUNCH_EVIDENCE.md). Work is broken into dependency-ordered chunks and explicit launch gates.

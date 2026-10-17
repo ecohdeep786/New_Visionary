@@ -1,8 +1,9 @@
 {
   "schemaVersion": 1,
-  "decision": "D-086",
+  "decision": "D-090",
+  "launchPlan": "docs/architecture/EDUCATION_LAUNCH_PLAN.md",
   "founderReview": "docs/architecture/tracking/founder-spec-review.json",
-  "sourceSha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146",
+  "sourceSha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8",
   "targetState": true,
   "scope": "Every exposed route/control must still be enumerated under SCOPE-01; this feature-family map does not certify every category/language/provider. Data/API names are targets unless explicitly connected. The founder-spec reconciliation preserves current journeys and a deterministic teaching runtime.",
   "sharedLayers": {
@@ -198,7 +199,11 @@
         "SYNC-01",
         "SYNC-02",
         "LEARN-09",
-        "LEARN-10"
+        "LEARN-10",
+        "LEARN-13",
+        "AI-17",
+        "AI-18",
+        "LEARN-14"
       ],
       "api": "Target owned learning session/checkpoint/resume commands and source-pinned concept queries behind existing facades.",
       "database": "SQL owned session/checkpoint/source revision and command outcomes; local originals retained until reviewed migration.",
@@ -241,7 +246,9 @@
         "LATER-04",
         "AI-15",
         "AI-16",
-        "SAFE-01"
+        "SAFE-01",
+        "AI-17",
+        "AI-18"
       ],
       "api": "Target teaching-runs/conversation commands mapping teaching.request; bounded synchronous teaching deadline and explicit partial/final/error schema.",
       "database": "SQL conversations/ai_runs/turns, source manifest, usage reservation/ledger and immutable candidate/result evidence.",
@@ -278,7 +285,11 @@
         "PRIV-01",
         "AI-15",
         "LEARN-10",
-        "LEARN-11"
+        "LEARN-11",
+        "AI-17",
+        "AI-18",
+        "LEARN-14",
+        "ROLE-10"
       ],
       "api": "Target mentor-turns/plans/allowed-action proposals mapping mentor.turn; current Guide is an embedded UI, not an invented /dashboard/guide route.",
       "database": "Owned conversations/goals/plans and approved-purpose memory with evidence/provenance/version; separate personal/company/guardian context.",
@@ -308,7 +319,11 @@
         "LEARN-09",
         "LEARN-10",
         "LEARN-11",
-        "LEARN-12"
+        "LEARN-12",
+        "LEARN-13",
+        "AI-17",
+        "AI-18",
+        "LEARN-14"
       ],
       "api": "Target owned attempt/answer/complete with immutable criteria/source version, stable mutation key and protected answer keys.",
       "database": "SQL attempts/evidence_events and versioned rubric/feedback; client pass/completed flags never create trusted evidence.",
@@ -340,7 +355,8 @@
         "ROLE-07",
         "LEARN-09",
         "LEARN-11",
-        "LEARN-12"
+        "LEARN-12",
+        "LEARN-14"
       ],
       "api": "Target owned progress/home/due-review/goal commands with understandable recommendation reasons.",
       "database": "Versioned projections from immutable evidence; plans/preferences distinct from assessed results; bounded owner/period queries.",
@@ -383,7 +399,12 @@
         "LATER-02",
         "LATER-03",
         "AI-15",
-        "AI-16"
+        "AI-16",
+        "BUILD-09",
+        "AI-17",
+        "AI-18",
+        "LEARN-14",
+        "ROLE-10"
       ],
       "api": "Target project/revision/draft/run/proposal accept/reject/share/export contracts from Build DATA_AND_CONTRACTS. Mutations stay HTTPS and bind base revision.",
       "database": "Target build_projects/revisions/briefs/runs/proposals/events/share_grants/usage/outbox, immutable private object manifests. DATA-01 resolves final DDL names before migration.",
@@ -418,7 +439,10 @@
         "ROLE-07",
         "ROLE-08",
         "BUILD-06",
-        "PRIV-04"
+        "PRIV-04",
+        "AI-17",
+        "AI-18",
+        "ROLE-10"
       ],
       "api": "Target verified class/enrollment/assignment publish/schedule/submit/review/return/request-revision commands; fixed assignment and submission copy.",
       "database": "SQL class/enrollment/assignment_versions/submissions/feedback_revisions, retained immutable attempts and audit; no email/role picker authority.",
@@ -477,7 +501,8 @@
         "ROLE-08",
         "BUILD-06",
         "BUILD-07",
-        "ROLE-09"
+        "ROLE-09",
+        "LEARN-14"
       ],
       "api": "Target career goals/self-review/company membership and exact-revision portfolio-share commands.",
       "database": "SQL personal/company memberships, private goals, versioned self-review and explicit share grants; no implicit employer ownership.",
@@ -710,7 +735,9 @@
     "DONE-10",
     "DONE-11",
     "LATER-05",
-    "SAFE-01"
+    "SAFE-01",
+    "ACCEPT-08",
+    "SCOPE-09"
   ],
   "capabilityChecks": [
     {
@@ -1093,6 +1120,238 @@
     {
       "blocks": "RELEASE-04",
       "blocked": "LATER-06"
+    },
+    {
+      "blocks": "SCOPE-02",
+      "blocked": "AI-18"
+    },
+    {
+      "blocks": "CONTENT-06",
+      "blocked": "AI-18"
+    },
+    {
+      "blocks": "AI-02",
+      "blocked": "AI-18"
+    },
+    {
+      "blocks": "AI-18",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-10",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-14",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-08",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "AI-07",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "SYNC-01",
+      "blocked": "AI-17"
+    },
+    {
+      "blocks": "FILE-03",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "CONTENT-03",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "LEARN-02",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-13"
+    },
+    {
+      "blocks": "BUILD-01",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "BUILD-04",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "AI-16",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "FILE-03",
+      "blocked": "BUILD-09"
+    },
+    {
+      "blocks": "BUILD-09",
+      "blocked": "BUILD-08"
+    },
+    {
+      "blocks": "LEARN-10",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "LEARN-11",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "BUILD-08",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "AI-13",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "AI-17",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "LEARN-13",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "ROLE-03",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "PLAT-02",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "AI-18",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "ACCEPT-08",
+      "blocked": "RELEASE-07"
+    },
+    {
+      "blocks": "LEARN-13",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "AI-17",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "BUILD-09",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "SCOPE-02",
+      "blocked": "SCOPE-09"
+    },
+    {
+      "blocks": "SCOPE-09",
+      "blocked": "BILL-04"
+    },
+    {
+      "blocks": "SCOPE-09",
+      "blocked": "ROLE-09"
+    },
+    {
+      "blocks": "SCOPE-09",
+      "blocked": "ACCEPT-05"
+    },
+    {
+      "blocks": "DATA-01",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "DATA-06",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "CONTENT-08",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "LEARN-09",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "LEARN-11",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "SYNC-02",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "AI-15",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "PRIV-01",
+      "blocked": "LEARN-14"
+    },
+    {
+      "blocks": "LEARN-14",
+      "blocked": "ACCEPT-01"
+    },
+    {
+      "blocks": "LEARN-14",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "LEARN-14",
+      "blocked": "ACCEPT-04"
+    },
+    {
+      "blocks": "DATA-03",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "DATA-05",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "LEARN-10",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "AI-15",
+      "blocked": "ROLE-10"
+    },
+    {
+      "blocks": "ROLE-10",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "ROLE-10",
+      "blocked": "ACCEPT-08"
+    },
+    {
+      "blocks": "PRIV-01",
+      "blocked": "ROLE-04"
+    },
+    {
+      "blocks": "DATA-04",
+      "blocked": "ROLE-04"
+    },
+    {
+      "blocks": "ROLE-04",
+      "blocked": "ACCEPT-02"
+    },
+    {
+      "blocks": "ROLE-07",
+      "blocked": "ACCEPT-02"
     }
   ],
   "tasks": [
@@ -1420,7 +1679,10 @@
       "features": [
         "public"
       ],
-      "blocks": [],
+      "blocks": [
+        "AI-18",
+        "SCOPE-09"
+      ],
       "blockedBy": [],
       "layers": [
         "frontend",
@@ -1583,6 +1845,35 @@
       ]
     },
     {
+      "sourceId": "SCOPE-09",
+      "jiraKey": "KAN-158",
+      "phase": "P00",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [
+        "BILL-04",
+        "ROLE-09",
+        "ACCEPT-05"
+      ],
+      "blockedBy": [
+        "SCOPE-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
       "sourceId": "DATA-01",
       "jiraKey": "KAN-36",
       "phase": "P01",
@@ -1592,7 +1883,8 @@
         "workspaces"
       ],
       "blocks": [
-        "CONTENT-08"
+        "CONTENT-08",
+        "LEARN-14"
       ],
       "blockedBy": [],
       "layers": [
@@ -1645,7 +1937,8 @@
         "workspaces"
       ],
       "blocks": [
-        "LEARN-01"
+        "LEARN-01",
+        "ROLE-10"
       ],
       "blockedBy": [],
       "layers": [
@@ -1672,7 +1965,8 @@
         "workspaces"
       ],
       "blocks": [
-        "ROLE-01"
+        "ROLE-01",
+        "ROLE-04"
       ],
       "blockedBy": [],
       "layers": [
@@ -1700,7 +1994,10 @@
       ],
       "blocks": [
         "ROLE-04",
-        "AI-15"
+        "AI-15",
+        "LEARN-13",
+        "LEARN-14",
+        "ROLE-10"
       ],
       "blockedBy": [],
       "layers": [
@@ -1727,7 +2024,8 @@
         "workspaces"
       ],
       "blocks": [
-        "SYNC-01"
+        "SYNC-01",
+        "LEARN-14"
       ],
       "blockedBy": [],
       "layers": [
@@ -1851,7 +2149,9 @@
       "localComplete": false,
       "scope": "product-wide",
       "features": [],
-      "blocks": [],
+      "blocks": [
+        "ACCEPT-08"
+      ],
       "blockedBy": [],
       "layers": [
         "frontend",
@@ -2098,7 +2398,8 @@
       ],
       "blocks": [
         "SYNC-02",
-        "AI-16"
+        "AI-16",
+        "AI-17"
       ],
       "blockedBy": [
         "SCOPE-03",
@@ -2134,7 +2435,9 @@
         "LEARN-06",
         "ROLE-08",
         "ACCEPT-04",
-        "LEARN-12"
+        "LEARN-12",
+        "LEARN-13",
+        "LEARN-14"
       ],
       "blockedBy": [
         "SYNC-01",
@@ -2243,7 +2546,9 @@
         "build"
       ],
       "blocks": [
-        "BUILD-05"
+        "BUILD-05",
+        "LEARN-13",
+        "BUILD-09"
       ],
       "blockedBy": [],
       "layers": [
@@ -2349,7 +2654,8 @@
         "organization"
       ],
       "blocks": [
-        "AI-16"
+        "AI-16",
+        "LEARN-13"
       ],
       "blockedBy": [],
       "layers": [
@@ -2433,7 +2739,8 @@
         "practice"
       ],
       "blocks": [
-        "ACCEPT-05"
+        "ACCEPT-05",
+        "AI-18"
       ],
       "blockedBy": [],
       "layers": [
@@ -2486,7 +2793,8 @@
       ],
       "blocks": [
         "LEARN-09",
-        "LEARN-12"
+        "LEARN-12",
+        "LEARN-14"
       ],
       "blockedBy": [
         "CONTENT-01",
@@ -2545,7 +2853,8 @@
       ],
       "blocks": [
         "LEARN-03",
-        "LEARN-11"
+        "LEARN-11",
+        "LEARN-13"
       ],
       "blockedBy": [],
       "layers": [
@@ -2743,7 +3052,8 @@
       "blocks": [
         "LEARN-10",
         "LEARN-11",
-        "AI-15"
+        "AI-15",
+        "LEARN-14"
       ],
       "blockedBy": [
         "CONTENT-08",
@@ -2775,7 +3085,9 @@
         "practice"
       ],
       "blocks": [
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "ACCEPT-08",
+        "ROLE-10"
       ],
       "blockedBy": [
         "LEARN-09",
@@ -2807,7 +3119,9 @@
         "progress"
       ],
       "blocks": [
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "ACCEPT-08",
+        "LEARN-14"
       ],
       "blockedBy": [
         "LEARN-02",
@@ -2861,6 +3175,85 @@
       ]
     },
     {
+      "sourceId": "LEARN-13",
+      "jiraKey": "KAN-153",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "practice"
+      ],
+      "blocks": [
+        "ACCEPT-08",
+        "ACCEPT-04"
+      ],
+      "blockedBy": [
+        "FILE-03",
+        "DATA-05",
+        "CONTENT-03",
+        "LEARN-02",
+        "SYNC-02"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "LEARN-14",
+      "jiraKey": "KAN-159",
+      "phase": "P05",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "guide",
+        "practice",
+        "progress",
+        "build",
+        "professional"
+      ],
+      "blocks": [
+        "ACCEPT-01",
+        "ACCEPT-02",
+        "ACCEPT-04"
+      ],
+      "blockedBy": [
+        "DATA-01",
+        "DATA-06",
+        "CONTENT-08",
+        "LEARN-09",
+        "LEARN-11",
+        "SYNC-02",
+        "DATA-05",
+        "AI-15",
+        "PRIV-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
       "sourceId": "BUILD-01",
       "jiraKey": "KAN-75",
       "phase": "P06",
@@ -2870,7 +3263,8 @@
         "build"
       ],
       "blocks": [
-        "BUILD-04"
+        "BUILD-04",
+        "BUILD-09"
       ],
       "blockedBy": [],
       "layers": [
@@ -2951,7 +3345,8 @@
       ],
       "blocks": [
         "AI-14",
-        "BUILD-08"
+        "BUILD-08",
+        "BUILD-09"
       ],
       "blockedBy": [
         "BUILD-01"
@@ -3063,11 +3458,46 @@
         "build"
       ],
       "blocks": [
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "ACCEPT-08"
       ],
       "blockedBy": [
         "AI-14",
-        "BUILD-04"
+        "BUILD-04",
+        "BUILD-09"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "BUILD-09",
+      "jiraKey": "KAN-154",
+      "phase": "P06",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "build"
+      ],
+      "blocks": [
+        "BUILD-08",
+        "ACCEPT-05"
+      ],
+      "blockedBy": [
+        "BUILD-01",
+        "BUILD-04",
+        "AI-16",
+        "FILE-03"
       ],
       "layers": [
         "frontend",
@@ -3121,7 +3551,9 @@
         "privacy",
         "feedback"
       ],
-      "blocks": [],
+      "blocks": [
+        "AI-18"
+      ],
       "blockedBy": [],
       "layers": [
         "frontend",
@@ -3265,7 +3697,8 @@
       ],
       "blocks": [
         "AI-14",
-        "BILL-04"
+        "BILL-04",
+        "AI-17"
       ],
       "blockedBy": [],
       "layers": [
@@ -3292,7 +3725,9 @@
         "ask",
         "guide"
       ],
-      "blocks": [],
+      "blocks": [
+        "AI-17"
+      ],
       "blockedBy": [],
       "layers": [
         "frontend",
@@ -3346,7 +3781,9 @@
       "features": [
         "ask"
       ],
-      "blocks": [],
+      "blocks": [
+        "AI-17"
+      ],
       "blockedBy": [],
       "layers": [
         "frontend",
@@ -3432,7 +3869,8 @@
       ],
       "blocks": [
         "RELEASE-04",
-        "LATER-06"
+        "LATER-06",
+        "ACCEPT-08"
       ],
       "blockedBy": [
         "AI-14",
@@ -3467,7 +3905,8 @@
         "LEARN-05",
         "BUILD-08",
         "AI-13",
-        "LEARN-10"
+        "LEARN-10",
+        "AI-17"
       ],
       "blockedBy": [
         "AI-03",
@@ -3506,7 +3945,9 @@
         "privacy"
       ],
       "blocks": [
-        "AI-14"
+        "AI-14",
+        "LEARN-14",
+        "ROLE-10"
       ],
       "blockedBy": [
         "LEARN-09",
@@ -3539,12 +3980,90 @@
         "build"
       ],
       "blocks": [
-        "ACCEPT-05"
+        "ACCEPT-05",
+        "BUILD-09"
       ],
       "blockedBy": [
         "SCOPE-03",
         "CONTENT-03",
         "SYNC-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-17",
+      "jiraKey": "KAN-155",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "ask",
+        "guide",
+        "practice",
+        "build",
+        "classroom"
+      ],
+      "blocks": [
+        "ACCEPT-08",
+        "ACCEPT-05"
+      ],
+      "blockedBy": [
+        "AI-18",
+        "AI-10",
+        "AI-14",
+        "AI-08",
+        "AI-07",
+        "SYNC-01"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "AI-18",
+      "jiraKey": "KAN-156",
+      "phase": "P07",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "learn",
+        "ask",
+        "guide",
+        "practice",
+        "build",
+        "classroom"
+      ],
+      "blocks": [
+        "AI-17",
+        "ACCEPT-05"
+      ],
+      "blockedBy": [
+        "SCOPE-02",
+        "CONTENT-06",
+        "AI-02"
       ],
       "layers": [
         "frontend",
@@ -3628,7 +4147,8 @@
         "classroom"
       ],
       "blocks": [
-        "ROLE-07"
+        "ROLE-07",
+        "ACCEPT-08"
       ],
       "blockedBy": [
         "BUILD-06",
@@ -3658,10 +4178,13 @@
         "guardian"
       ],
       "blocks": [
-        "ROLE-07"
+        "ROLE-07",
+        "ACCEPT-02"
       ],
       "blockedBy": [
-        "DATA-05"
+        "DATA-05",
+        "PRIV-01",
+        "DATA-04"
       ],
       "layers": [
         "frontend",
@@ -3742,7 +4265,9 @@
         "guardian",
         "organization"
       ],
-      "blocks": [],
+      "blocks": [
+        "ACCEPT-02"
+      ],
       "blockedBy": [
         "ROLE-03",
         "ROLE-04",
@@ -3806,7 +4331,44 @@
         "organization"
       ],
       "blocks": [],
-      "blockedBy": [],
+      "blockedBy": [
+        "SCOPE-09"
+      ],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ROLE-10",
+      "jiraKey": "KAN-160",
+      "phase": "P08",
+      "localComplete": false,
+      "scope": "feature",
+      "features": [
+        "guide",
+        "build",
+        "classroom"
+      ],
+      "blocks": [
+        "ACCEPT-02",
+        "ACCEPT-08"
+      ],
+      "blockedBy": [
+        "DATA-03",
+        "DATA-05",
+        "LEARN-10",
+        "AI-15"
+      ],
       "layers": [
         "frontend",
         "api",
@@ -3910,7 +4472,8 @@
         "ACCEPT-01"
       ],
       "blockedBy": [
-        "AI-07"
+        "AI-07",
+        "SCOPE-09"
       ],
       "layers": [
         "frontend",
@@ -4039,7 +4602,9 @@
         "privacy"
       ],
       "blocks": [
-        "LATER-06"
+        "LATER-06",
+        "LEARN-14",
+        "ROLE-04"
       ],
       "blockedBy": [],
       "layers": [
@@ -4258,7 +4823,8 @@
         "BUILD-08",
         "LEARN-07",
         "LEARN-10",
-        "LEARN-11"
+        "LEARN-11",
+        "LEARN-14"
       ],
       "layers": [
         "frontend",
@@ -4283,7 +4849,11 @@
       "features": [],
       "blocks": [],
       "blockedBy": [
-        "ROLE-08"
+        "ROLE-08",
+        "LEARN-14",
+        "ROLE-10",
+        "ROLE-04",
+        "ROLE-07"
       ],
       "layers": [
         "frontend",
@@ -4333,7 +4903,9 @@
       "blockedBy": [
         "AI-09",
         "SYNC-02",
-        "SAFE-01"
+        "SAFE-01",
+        "LEARN-13",
+        "LEARN-14"
       ],
       "layers": [
         "frontend",
@@ -4360,7 +4932,11 @@
       "blockedBy": [
         "CONTENT-06",
         "LEARN-12",
-        "AI-16"
+        "AI-16",
+        "AI-18",
+        "AI-17",
+        "BUILD-09",
+        "SCOPE-09"
       ],
       "layers": [
         "frontend",
@@ -4408,6 +4984,41 @@
       "features": [],
       "blocks": [],
       "blockedBy": [],
+      "layers": [
+        "frontend",
+        "api",
+        "authority",
+        "database",
+        "jobs",
+        "cache",
+        "realtime",
+        "ml",
+        "entitlements",
+        "operations",
+        "acceptance"
+      ]
+    },
+    {
+      "sourceId": "ACCEPT-08",
+      "jiraKey": "KAN-157",
+      "phase": "P11",
+      "localComplete": false,
+      "scope": "product-wide",
+      "features": [],
+      "blocks": [
+        "RELEASE-07"
+      ],
+      "blockedBy": [
+        "LEARN-10",
+        "LEARN-11",
+        "BUILD-08",
+        "AI-13",
+        "AI-17",
+        "LEARN-13",
+        "ROLE-03",
+        "PLAT-02",
+        "ROLE-10"
+      ],
       "layers": [
         "frontend",
         "api",
@@ -4572,7 +5183,9 @@
       "scope": "product-wide",
       "features": [],
       "blocks": [],
-      "blockedBy": [],
+      "blockedBy": [
+        "ACCEPT-08"
+      ],
       "layers": [
         "frontend",
         "api",

@@ -1,6 +1,10 @@
 # Visionary internal product — current status
 
-Updated 2026-10-13. This is the single current audit and resume document. STATUS.md, DECISIONS.md and QA.md retain append-only evidence; VISIONARY_MASTER_v2.2.md is the product contract. AGI remains the ambition, not a demonstrated capability. Preserve src/pages/landing and all unrelated public work.
+D-090 current continuation: [lifelong delivery contract](../../integration/LIFELONG_EDUCATION_CONTRACT.md) and [updated execution plan](../architecture/EDUCATION_LAUNCH_PLAN.md) reconcile the vision audit into three new open tasks and 27 explicit requirement refinements. Fresh Jira verification covers 145 tasks/15 epics and 163 native dependencies; 33 task descriptions are extended and 112 remain unchanged. No new feature, price, admission permission, runtime integration or Done scope is introduced. Earlier dated checkpoints retain their evidence.
+
+Updated 2026-10-17. This is the current audit and resume document. STATUS.md, DECISIONS.md and QA.md retain append-only evidence; VISIONARY_MASTER_v2.2.md is the product contract. AGI remains the ambition, not a demonstrated capability. Preserve frontend/src/pages/landing and all unrelated public work.
+
+D-089 current vision review: [connected lifelong education alignment and concrete gaps](../architecture/VISION_ALIGNMENT_REVIEW.md). The product contract already covers life stages, five roles, Learn→Build and stage adaptation. Connected local runtime covers UID/auth/account/onboarding/device sessions, Free/test billing/invoices and optional feedback. Durable learning/ML, verified role relationships, child admission, curriculum/stage transition and hosted/outcome acceptance remain open. The [D-088 launch plan](../architecture/EDUCATION_LAUNCH_PLAN.md) and [verified Jira record](../architecture/tracking/JIRA_SYNC.md) cover 142 tasks/15 epics; D-089 additionally identifies explicit equity/pricing-copy, lifecycle-continuity and personalized teacher/parent guidance acceptance gaps. This audit changes no runtime or Jira item. Earlier dated checkpoints below retain their historical evidence; old backend-deferred statements are superseded by D-056 and later authorized work.
 
 ## Delivery order
 

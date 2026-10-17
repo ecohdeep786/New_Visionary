@@ -1,5 +1,7 @@
 # Visionary research
 
+[Education AGI research, 17 October 2026](EDUCATION_AGI_RESEARCH_2026_10_17.md) translates primary-source capability, learning and Indian-speech evidence into the [current implementation plan](../docs/architecture/EDUCATION_LAUNCH_PLAN.md). This is research/planning evidence, not provider qualification or AGI certification.
+
 [YouTube reference-page review, 16 October 2026](YOUTUBE_REFERENCE_REVIEW_2026_10_16.md) records the founder-supplied page review in the visible browser and the resulting architecture-presentation corrections. It is a critical comparison, not evidence of recovered private YouTube infrastructure. [Revised review maps and implementation priorities](../docs/architecture/VISUAL_REVIEW.md).
 
 Keep Visionary study scripts, reports, templates and evidence indexes here. The pinned [REA toolkit](../reverse-engineering/README.md) stays in `reverse-engineering/upstream/`; product [architecture and design](../docs/architecture/README.md) stay under `docs/architecture/`. Raw local captures remain in `artifacts/research/` with their original paths and hashes.

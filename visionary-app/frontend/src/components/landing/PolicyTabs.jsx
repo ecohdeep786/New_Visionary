@@ -5,8 +5,9 @@ import { Link, useLocation } from "react-router-dom";
  * across the Privacy / Terms / Cookies / Security policy pages. Each policy
  * keeps its own URL (deep links, breadcrumb, footer links all preserved)
  * while the centered pills make the four read as a single multi-section
- * policy experience. Pill style matches the product tab bar (active = white
- * pill on the grey track); pt-6/pb-2 give balanced breathing room around
+ * policy experience. Quiet house grammar: the current policy is an ink pill
+ * on the grey-fill track (values-strip current-marker law); pt-6/pb-2 give
+ * balanced breathing room around
  * the breadcrumb above and the policy content below.
  */
 const POLICIES = [
@@ -25,7 +26,7 @@ export default function PolicyTabs() {
           <div
             role="group"
             aria-label="Policy sections"
-            className="inline-flex max-w-full items-center gap-1 overflow-x-auto rounded-full bg-[#f1f3f4] p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="inline-flex max-w-full items-center gap-1 overflow-x-auto rounded-full bg-[#f5f5f7] p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {POLICIES.map(({ to, label }) => {
               const active = pathname === to;
@@ -34,10 +35,10 @@ export default function PolicyTabs() {
                   key={to}
                   to={to}
                   aria-current={active ? "page" : undefined}
-                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium tracking-[0.01em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] ${
+                  className={`shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-[14px] font-medium tracking-[0.01em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] ${
                     active
-                      ? "bg-white text-[#202124] shadow-[0_1px_3px_rgba(60,64,67,0.2)]"
-                      : "text-[#5f6368] hover:text-[#202124]"
+                      ? "bg-[#121317] text-white"
+                      : "text-[#5f6368] hover:text-[#121317]"
                   }`}
                 >
                   {label}

@@ -1,5 +1,7 @@
 # Frontend-to-service product domains
 
+D-088 extends these existing jobs with [natural voice, authorized offline work and trusted Build activities](EDUCATION_LAUNCH_PLAN.md). They use the same UID, roles, source permissions and server-owned assessment/artifact state. The [current task manifest](tracking/education-launch.json) records the 142-task delivery scope without replacing frontend journeys.
+
 Shared terminology comes from existing frontend routes and service boundaries. Backend/ML responsibilities include future work; existing imported capabilities and gaps remain in [CONTRACT_GAPS.md](../../integration/CONTRACT_GAPS.md).
 
 D-087 maps these product jobs to the [seven VATS capabilities and ordered implementation](VATS_IMPLEMENTATION.md). Backend authority, ML proposals and frontend presentation retain their separate responsibilities. Seven-layer applicability is recorded for every Jira source task; a feature family or layer label is not runtime completion.

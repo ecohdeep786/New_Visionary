@@ -1,5 +1,9 @@
 # VATS: seven layers, one connected product journey
 
+D-090: [lifelong continuity and role-guidance contract](../../integration/LIFELONG_EDUCATION_CONTRACT.md) supplies explicit stage/source transition, Free-context versus retained-history, teacher personal learning and current guardian/parent acceptance. Current generated scope is 145 tasks and 133 task prerequisites (163 including phase links). Seven layers remain unchanged; older Jira numerical ranks are dated snapshots and the current manifest governs order. No new ML runtime implementation is claimed.
+
+D-088, 17 October 2026: the [current education launch plan](EDUCATION_LAUNCH_PLAN.md) adds explicit voice/India qualification, offline continuity, declarative Build activities and independent educational outcomes. The registry and task mapping now cover 142 tasks, seven VATS capabilities and 107 task prerequisites; [Jira verification](tracking/JIRA_SYNC.md) includes 15 epics and 137 total native dependencies. The D-087 source/code evidence below remains historical; this research pass changes no runtime policy or integration. Three independent acceptance lanes remain: reliable software, educational outcomes and broader cognitive capability.
+
 16 October 2026 · D-087. The founder's “VTAS” refers to **Visionary Adaptive Teaching System (VATS)** in both Document03 variants. [ML ownership](../../ml/vats/README.md) · [layer evidence/exit registry](../../ml/vats/layers.json) · [full task mapping](tracking/vats-delivery.json) · [Jira](tracking/JIRA_SYNC.md) · [earlier 37-file review](FOUNDER_SPEC_RECONCILIATION.md).
 
 ## Decision and evidence

@@ -1,5 +1,7 @@
 # Build delivery, capacity, cost and acceptance
 
+D-088: [the current implementation handoff](../EDUCATION_LAUNCH_PLAN.md) maps all five stages to Jira, adds explicit BUILD-09/KAN-154 for Stage 3 and ACCEPT-08/KAN-157 for independently reviewed learning/teach-back/Build outcomes. BUILD-01–09 remain open launch work; LATER-01–03 retain execution/HTML/publication gates. Voice and offline reconnect demand must be included in actual capacity/cost tests.
+
 Target release gates · D-078 · [design](SYSTEM_DESIGN.md) · no cloud resources are created here.
 
 ## Delivery stages

@@ -1,6 +1,8 @@
 # Backend implementation and launch checklist
 
-16 October 2026 · D-081 · execution tracker for the [final architecture baseline](FINAL_ARCHITECTURE_RECOMMENDATION.md) and the 100,000-MAU growth target.
+17 October 2026 · D-090 · current execution tracker for the [final architecture baseline](FINAL_ARCHITECTURE_RECOMMENDATION.md), [education launch plan](EDUCATION_LAUNCH_PLAN.md), [lifelong delivery contract](../../integration/LIFELONG_EDUCATION_CONTRACT.md) and the 100,000-MAU growth target. Earlier checkpoints retain their dated evidence.
+
+D-090 reconciles the [lifelong vision audit](VISION_ALIGNMENT_REVIEW.md) with three focused deliverables and existing-task acceptance. The current 145 source tasks retain 12 historical local Done and 6 Later scopes; 127 launch tasks remain open. D-088's voice/India-language/offline/declarative-Build/educational-outcome scope remains. See the [research synthesis](../../research/EDUCATION_AGI_RESEARCH_2026_10_17.md) and current generated feature/VATS mappings. No planning count establishes implemented capacity, learning gains or broad AGI.
 
 The next milestone is one durable, authorized learning-to-project journey across two devices. Full product completion then extends the same foundation to every released category and all five role experiences. Preserve the existing frontend journeys while replacing preview persistence through reviewed adapters.
 
@@ -65,6 +67,7 @@ Dependencies permit engineering streams to proceed together; they do not authori
 - [ ] **SCOPE-06** — Turn existing frontend invariants into backend contract/deny cases; select the first released curriculum/language/source and synthetic fixtures for a vertical slice.
 - [ ] **SCOPE-07** — Fix the released sign-in/provider matrix, including organization SSO/phone if offered; configure and test every exposed method instead of relying on an enabled-looking frontend control.
 - [ ] **SCOPE-08** — Specify per-route JSON/stream limits. The current 24 KiB parser limit needs reconciliation with bounded project/submission text; keep files outside JSON and never solve it with unlimited bodies/base64.
+- [ ] **SCOPE-09** — Resolve equitable-access and continuity policy for the released Free/paid/institution-supported journey: distinguish retained account/history/evidence/artifacts from bounded model context and metered generation; define a meaningful funded Learn→check→Build path, low-bandwidth/shared-device needs and payment-lapse/resume behavior without deleting records or inferring income. Reconcile current seven-day-memory, paid-only Practice/Build/voice and broad-language copy with actual accepted coverage and server entitlement/usage configuration. Record decision owner, benefit matrix, cost scenarios and unresolved commercial decisions as release blockers; do not change prices, grant subsidies or advertise unqualified features from this planning task alone.
 
 ## P01 — Implement durable identity linkage, data and permission authority
 
@@ -138,7 +141,12 @@ Dependencies permit engineering streams to proceed together; they do not authori
 - [ ] **LEARN-11** — Implement versioned, durable review scheduling from assessed evidence with bounded baseline SRS rules, due-queue projections, command deduplication, timezone/quiet/preference handling and two-device recovery. Calibrate forgetting estimates before personalized claims; separate self-rating from assessment, preserve manual control and avoid unvalidated exponential scheduling or retention TTLs.
 - [ ] **LEARN-12** — Implement only the released assessment modes: fixed source/criteria/official-paper snapshots, server-owned answers/scoring, durable sectional timing and interrupted mock resume, plus evidence-qualified exam-weighted readiness with missing-data/coverage labels. Rank predictions require a validated permitted reference distribution and remain unavailable otherwise; professional scenarios use capability/rubric vocabulary and never award a credential automatically.
 
+- [ ] **LEARN-13** — Implement explicitly downloaded, rights-approved offline lesson/activity packs with immutable source/criteria/renderer versions, integrity checks, bounded device storage and visible offline availability. Preserve pending answers/drafts with original base and command identity; server reauthorization and assessment on reconnect decide accepted evidence, never a local pass flag. Use reviewed offline-use leases and disclose revocation limitations for already downloaded bytes; account switch/session eligibility must not leak another user's material. Keep AI generation online unless a separate on-device capability is qualified. Test low connectivity, missing assets, expiry, source withdrawal, duplicate/out-of-order replay and two devices without data loss.
+
+- [ ] **LEARN-14** — Implement backend-owned lifelong stage/curriculum continuity over the same UID: versioned authorized promotion/change events, conditional current-profile revisions, reviewed source/criteria mappings, retained prior sessions/evidence/projects and bridge gaps, preserved review due dates and fixed assignment labels, and post-commit plan/audience projections. Ordinary eligible progression may apply with notice/diff, Postpone 7 days and Undo 14 days; evidence inference alone is suggestion-only, and board/institution/safety-tier or larger jumps retain required confirmation. Undo preserves work created since and never rewrites grades or claims equivalent mastery from an unreviewed mapping. Recheck authority on in-flight jobs and institution exit; test concurrent devices, duplicate/reordered events, restart/lost receipt, long absence, changed source, unavailable mapping and rollback through existing UI adapters.
+
 ## P06 — Connect durable Build
+
 
 **Owner:** backend/frontend. **Exit:** current document Build is server-backed without weakening existing privacy/recovery rules.
 
@@ -150,6 +158,8 @@ Dependencies permit engineering streams to proceed together; they do not authori
 - [ ] **BUILD-06** — Implement exact-revision accepted-recipient sharing, consent-bound parent summaries and classroom-copy bridge; private drafts/conversations/history stay private.
 - [ ] **BUILD-07** — Preserve completion criteria and professional self-review versioning; application evidence remains unverified until assessment and never awards mastery automatically.
 - [ ] **BUILD-08** — Prove duplicate accept, stale proposal, cancellation/restart, account switch, restore/export failure and revoked share behavior through real API adapters on two devices.
+
+- [ ] **BUILD-09** — Implement Build Stage3 declarative learning artifacts: versioned allowlisted activity schemas, approved trusted renderers/representations, bounded validated parameters/assets and accessible preview over a fixed immutable project/proposal revision. Reject generated JavaScript/HTML execution, arbitrary URLs/network actions, unknown components and hidden answer keys; generation, preview, accept/save, export and sharing remain distinct authorized operations. Test malformed/deep/oversized manifests, injection, keyboard/screen-reader/mobile fallback, stale proposals, cancellation and cross-device resume. This does not enable the separate arbitrary-code/public-app runtime.
 
 ## P07 — Qualify and connect private AI/ML
 
@@ -174,6 +184,10 @@ Dependencies permit engineering streams to proceed together; they do not authori
 
 D-084 source-to-ticket review: [backend/ML readiness and closure criteria](BACKEND_ML_JIRA_REVIEW.md) adds concrete acceptance to the existing AI-01/02/03/04/06/08/09, RELEASE-04 and LATER-04 tickets. AI-11 and AI-12 are two additional source-backed repair tasks, not completed capabilities. Keep imported ML disconnected until these and the existing scope/source/usage gates pass.
 
+- [ ] **AI-17** — Implement natural two-way voice tutoring and voice-guided Learn/Teach/Build over the same authorized AIRA session: explicit microphone consent/status, released ASR/TTS/locale/provider adapters, short guarded teaching turns, interim-versus-final transcript and audio sequence IDs, interruption/stop/cancel acknowledgment, stale-audio suppression, correction/readback for uncertain numbers/units and text/caption/keyboard fallback. Final recognized speech is input, never assessment or permission authority; confirm consequential Build acceptance/share/export actions against the exact revision. Bound stream/deadline/concurrency/audio/token cost, reauthorize reconnect/output and retain only approved transcript/audio metadata; no always-on recording, voice cloning or automatic raw-audio training. Prove interrupted/reordered chunks, microphone loss, account switch, revocation and poor-network recovery on actual released devices.
+
+- [ ] **AI-18** — Establish the India speech/language qualification matrix and reproducible held-out licensed/consented evaluation corpus before enabling voice: independent interface/input/source/output language and script identity; released Indian-language/code-switched/romanized cases, regional accents, noisy/low-bandwidth devices, mathematical signs/numbers/units and pedagogical meaning. Record source/model/prompt/ASR/TTS versions, split/leakage checks, recognition and critical-semantic errors, intelligibility/pronunciation, uncertainty/clarification, latency/cancellation and per-completed-task cost; compare candidate routes with qualified reviewers using preapproved thresholds. Dataset/model language counts do not establish our product coverage. Do not identify speakers, clone voices, infer eligibility or send unapproved user recordings to providers; unsupported slices remain explicit.
+
 ## P08 — Finish every released role backend
 
 **Owner:** backend/frontend/product policy. **Exit:** role and relationship permissions are proved through actual server journeys.
@@ -187,6 +201,8 @@ D-084 source-to-ticket review: [backend/ML readiness and closure criteria](BACKE
 - [ ] **ROLE-07** — Implement authorized teacher/guardian/organization reports with provenance, permitted periods and approved aggregation/suppression rules; exclude private learner chat and drafts by default.
 - [ ] **ROLE-08** — Connect every released role screen to backend adapters and test pending/expired/revoked membership while reads/writes/jobs are in flight, across all released categories/languages.
 - [ ] **ROLE-09** — Reconcile organization-sponsored entitlement requirements with real approved commercial contracts; a seat-request preview cannot invent institutional billing or administrative authority.
+
+- [ ] **ROLE-10** — Implement teachers' private ongoing subject/pedagogy learning and evidence-based coaching through explicit personal goals, scoped assessed practice, teach-back/Build and reflection checkpoints, understandable recommendation reasons and manual correction. Keep personal learning/memory separate from class preparation, learner reports and organization employment; use only currently permitted class summaries for an explicitly chosen teaching goal. Replace random-tip behavior only when the evaluated connected adapter is accepted; unavailable evidence yields an authored, clearly generic suggestion. Prove personal/class workspace switching, changed employment, revocation, two-device resume and independent teacher-usefulness/outcome review; no inferred teaching-quality ranking, credential or disclosure of private learner doubts.
 
 ## P09 — Complete hosted billing and paid-release acceptance
 
@@ -231,6 +247,8 @@ Retain the founder's existing keep-data instruction: do not enable automatic TTL
 - [ ] **ACCEPT-05** — Complete released category/source/language coverage, real device/keyboard/screen-reader/mobile and recovery journeys. Native apps are a separate future client, not implied by responsive web tests.
 - [ ] **ACCEPT-06** — Verify production builds cannot activate fictional data, fixture routes, emulator bypasses or legacy identity/model startup. Retire old dependencies/routes only after replacement coverage and recorded provenance patches.
 - [ ] **ACCEPT-07** — Rehearse reviewed schema/local-data migration with originals retained, counts/digests/ownership checks, canary cutover and rollback; exactly one executor owns each side-effecting command.
+
+- [ ] **ACCEPT-08** — Approve and execute a consented, privately controlled educational-outcome pilot for each released learner/teacher/professional slice before general launch: source/rubric-pinned baseline and assisted work plus independent unassisted novel/transfer tasks and delayed retention, teach-back/Build revision quality, teacher preparation/review usefulness, accessible voice/text/offline recovery and group-level failure/uncertainty analysis. Predeclare eligibility, task splits, leakage controls, human/teacher review, feasible evidence/sample rationale, thresholds and stop criteria; report uncertainty and unsupported slices without invented scores or causal/superiority claims. Separate learner gains, system reliability/cost and broad AGI capability; no unattended live experiments, automatic model promotion or raw-dialogue training. Keep pilot data purpose-scoped and minors unavailable until admission/consent is accepted.
 
 ## P12 — Prove capacity, recovery, economics and launch operation
 

@@ -8,6 +8,7 @@ const dependencies = { P00: [], P01: ['P00'], P02: ['P00'], P03: ['P01', 'P02'],
 const now = new Set(['SCOPE-01', 'SCOPE-03', 'SCOPE-04', 'SCOPE-06', 'DATA-01', 'DATA-02', 'PLAT-01']);
 
 export function launchIssueType(sourceId, description) {
+  if (sourceId === 'AI-17') return 'Story';
   if (/^(LEARN|BUILD|ROLE)-/.test(sourceId) && !/^(?:Verify|Prove|Test)/.test(description)) return 'Story';
   if (['AI-04', 'AI-05', 'AI-09', 'AI-11', 'AI-12'].includes(sourceId)) return 'Bug';
   return 'Task';

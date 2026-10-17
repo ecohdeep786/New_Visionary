@@ -1,9 +1,10 @@
 {
   "schemaVersion": 1,
-  "decision": "D-087",
-  "sourceSha256": "359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146",
+  "decision": "D-090",
+  "launchPlan": "docs/architecture/EDUCATION_LAUNCH_PLAN.md",
+  "sourceSha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8",
   "registry": "ml/vats/layers.json",
-  "registrySha256": "bd4f7eff02cd34ab6ad8286ea3bee6a46930164d32a44a79806e845a69abc97d",
+  "registrySha256": "c3a3004e7fe6401e69fb8fb2feb529b7ea0d32320cf4958afbf8a2309589ddbf",
   "interpretation": "L1–L7 are product capability boundaries, not mandatory deployment units or proof of AGI. Layers on a shared enabler mean applicability, not implemented ML functionality.",
   "orderMeaning": "A prerequisite-compatible planning order, not dates, an assignment, a queue reorder or permission to bypass phase/shared release gates. Work can be prepared while blockers are open. Later capabilities retain separate approval.",
   "layers": [
@@ -26,7 +27,11 @@
         "CONTENT-08",
         "AI-03",
         "SAFE-01",
-        "ACCEPT-05"
+        "ACCEPT-05",
+        "AI-17",
+        "AI-18",
+        "LEARN-13",
+        "SCOPE-09"
       ]
     },
     {
@@ -48,7 +53,10 @@
         "LEARN-08",
         "LEARN-09",
         "LEARN-03",
-        "AI-13"
+        "AI-13",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10"
       ]
     },
     {
@@ -72,7 +80,12 @@
         "AI-15",
         "LEARN-08",
         "AI-13",
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "AI-17",
+        "AI-18",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10"
       ]
     },
     {
@@ -98,7 +111,10 @@
         "AI-07",
         "AI-08",
         "AI-11",
-        "AI-13"
+        "AI-13",
+        "AI-17",
+        "AI-18",
+        "ROLE-10"
       ]
     },
     {
@@ -120,7 +136,10 @@
         "AI-10",
         "SYNC-01",
         "SYNC-02",
-        "ACCEPT-05"
+        "ACCEPT-05",
+        "BUILD-09",
+        "AI-17",
+        "ROLE-10"
       ]
     },
     {
@@ -145,7 +164,11 @@
         "DATA-05",
         "SYNC-02",
         "ROLE-07",
-        "PRIV-01"
+        "PRIV-01",
+        "LEARN-13",
+        "AI-17",
+        "LEARN-14",
+        "ROLE-10"
       ]
     },
     {
@@ -172,7 +195,12 @@
         "PLAT-07",
         "RELEASE-04",
         "LATER-04",
-        "LATER-06"
+        "LATER-06",
+        "AI-18",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10",
+        "SCOPE-09"
       ]
     }
   ],
@@ -468,7 +496,10 @@
       "planningOrder": 14,
       "dependencyDepth": 0,
       "blockedBy": [],
-      "blocks": [],
+      "blocks": [
+        "AI-18",
+        "SCOPE-09"
+      ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -603,6 +634,33 @@
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
+      "sourceId": "SCOPE-09",
+      "jiraKey": "KAN-158",
+      "phase": "P00",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 21,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "SCOPE-02"
+      ],
+      "blocks": [
+        "BILL-04",
+        "ROLE-09",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
       "sourceId": "DATA-01",
       "jiraKey": "KAN-36",
       "phase": "P01",
@@ -617,11 +675,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 21,
+      "planningOrder": 22,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "CONTENT-08"
+        "CONTENT-08",
+        "LEARN-14"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -640,7 +699,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 22,
+      "planningOrder": 23,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -661,11 +720,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 23,
+      "planningOrder": 24,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "LEARN-01"
+        "LEARN-01",
+        "ROLE-10"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -684,11 +744,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 24,
+      "planningOrder": 25,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "ROLE-01"
+        "ROLE-01",
+        "ROLE-04"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -707,12 +768,15 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 25,
+      "planningOrder": 26,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
         "ROLE-04",
-        "AI-15"
+        "AI-15",
+        "LEARN-13",
+        "LEARN-14",
+        "ROLE-10"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -731,11 +795,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 26,
+      "planningOrder": 27,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "SYNC-01"
+        "SYNC-01",
+        "LEARN-14"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -754,7 +819,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 27,
+      "planningOrder": 28,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -775,7 +840,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 28,
+      "planningOrder": 29,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -796,7 +861,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 29,
+      "planningOrder": 30,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -817,7 +882,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 30,
+      "planningOrder": 31,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -838,10 +903,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 31,
+      "planningOrder": 32,
       "dependencyDepth": 0,
       "blockedBy": [],
-      "blocks": [],
+      "blocks": [
+        "ACCEPT-08"
+      ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -859,7 +926,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 32,
+      "planningOrder": 33,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -880,7 +947,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 33,
+      "planningOrder": 34,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -901,7 +968,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 34,
+      "planningOrder": 35,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -922,7 +989,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 35,
+      "planningOrder": 36,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -943,7 +1010,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 36,
+      "planningOrder": 37,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -964,7 +1031,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 37,
+      "planningOrder": 38,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -985,7 +1052,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 38,
+      "planningOrder": 39,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1007,7 +1074,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 39,
+      "planningOrder": 40,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1026,7 +1093,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 40,
+      "planningOrder": 41,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1045,11 +1112,13 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 41,
+      "planningOrder": 42,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "BUILD-05"
+        "BUILD-05",
+        "LEARN-13",
+        "BUILD-09"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1066,7 +1135,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 42,
+      "planningOrder": 43,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1087,7 +1156,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 43,
+      "planningOrder": 44,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1111,7 +1180,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 44,
+      "planningOrder": 45,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1134,7 +1203,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 45,
+      "planningOrder": 46,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1155,7 +1224,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 46,
+      "planningOrder": 47,
       "dependencyDepth": 1,
       "blockedBy": [
         "SCOPE-03",
@@ -1164,7 +1233,8 @@
       ],
       "blocks": [
         "SYNC-02",
-        "AI-16"
+        "AI-16",
+        "AI-17"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1183,7 +1253,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 47,
+      "planningOrder": 48,
       "dependencyDepth": 2,
       "blockedBy": [
         "SYNC-01",
@@ -1193,7 +1263,9 @@
         "LEARN-06",
         "ROLE-08",
         "ACCEPT-04",
-        "LEARN-12"
+        "LEARN-12",
+        "LEARN-13",
+        "LEARN-14"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1212,7 +1284,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 48,
+      "planningOrder": 49,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1235,7 +1307,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 49,
+      "planningOrder": 50,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1256,11 +1328,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 50,
+      "planningOrder": 51,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "AI-16"
+        "AI-16",
+        "LEARN-13"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1279,7 +1352,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 51,
+      "planningOrder": 52,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1302,7 +1375,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 52,
+      "planningOrder": 53,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1325,11 +1398,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 53,
+      "planningOrder": 54,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "ACCEPT-05"
+        "ACCEPT-05",
+        "AI-18"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1348,7 +1422,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 54,
+      "planningOrder": 55,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1369,7 +1443,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 55,
+      "planningOrder": 56,
       "dependencyDepth": 1,
       "blockedBy": [
         "CONTENT-01",
@@ -1377,7 +1451,8 @@
       ],
       "blocks": [
         "LEARN-09",
-        "LEARN-12"
+        "LEARN-12",
+        "LEARN-14"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1392,7 +1467,7 @@
         "L3",
         "L6"
       ],
-      "planningOrder": 56,
+      "planningOrder": 57,
       "dependencyDepth": 1,
       "blockedBy": [
         "DATA-03",
@@ -1412,12 +1487,13 @@
         "L3",
         "L7"
       ],
-      "planningOrder": 57,
+      "planningOrder": 58,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
         "LEARN-03",
-        "LEARN-11"
+        "LEARN-11",
+        "LEARN-13"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1432,7 +1508,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 58,
+      "planningOrder": 59,
       "dependencyDepth": 1,
       "blockedBy": [
         "LEARN-02"
@@ -1451,7 +1527,7 @@
         "L3",
         "L6"
       ],
-      "planningOrder": 59,
+      "planningOrder": 60,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1468,7 +1544,7 @@
         "L3",
         "L6"
       ],
-      "planningOrder": 60,
+      "planningOrder": 61,
       "dependencyDepth": 3,
       "blockedBy": [
         "SYNC-02"
@@ -1493,7 +1569,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 61,
+      "planningOrder": 62,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1512,7 +1588,7 @@
         "L3",
         "L7"
       ],
-      "planningOrder": 62,
+      "planningOrder": 63,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1531,7 +1607,7 @@
       "layers": [
         "L2"
       ],
-      "planningOrder": 63,
+      "planningOrder": 64,
       "dependencyDepth": 2,
       "blockedBy": [
         "CONTENT-08",
@@ -1540,7 +1616,8 @@
       "blocks": [
         "LEARN-10",
         "LEARN-11",
-        "AI-15"
+        "AI-15",
+        "LEARN-14"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1554,7 +1631,7 @@
         "L2",
         "L6"
       ],
-      "planningOrder": 64,
+      "planningOrder": 65,
       "dependencyDepth": 3,
       "blockedBy": [
         "LEARN-02",
@@ -1562,7 +1639,9 @@
         "LEARN-09"
       ],
       "blocks": [
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "ACCEPT-08",
+        "LEARN-14"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1578,7 +1657,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 65,
+      "planningOrder": 66,
       "dependencyDepth": 3,
       "blockedBy": [
         "LEARN-08",
@@ -1587,6 +1666,34 @@
       ],
       "blocks": [
         "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-13",
+      "jiraKey": "KAN-153",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L5",
+        "L6"
+      ],
+      "planningOrder": 67,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "FILE-03",
+        "DATA-05",
+        "CONTENT-03",
+        "LEARN-02",
+        "SYNC-02"
+      ],
+      "blocks": [
+        "ACCEPT-08",
+        "ACCEPT-04"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1605,11 +1712,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 66,
+      "planningOrder": 68,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "BUILD-04"
+        "BUILD-04",
+        "BUILD-09"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1628,7 +1736,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 67,
+      "planningOrder": 69,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1649,7 +1757,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 68,
+      "planningOrder": 70,
       "dependencyDepth": 1,
       "blockedBy": [
         "LEARN-08"
@@ -1672,14 +1780,15 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 69,
+      "planningOrder": 71,
       "dependencyDepth": 1,
       "blockedBy": [
         "BUILD-01"
       ],
       "blocks": [
         "AI-14",
-        "BUILD-08"
+        "BUILD-08",
+        "BUILD-09"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1698,7 +1807,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 70,
+      "planningOrder": 72,
       "dependencyDepth": 1,
       "blockedBy": [
         "FILE-03"
@@ -1721,7 +1830,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 71,
+      "planningOrder": 73,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1744,7 +1853,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 72,
+      "planningOrder": 74,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -1761,10 +1870,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 73,
+      "planningOrder": 75,
       "dependencyDepth": 0,
       "blockedBy": [],
-      "blocks": [],
+      "blocks": [
+        "AI-18"
+      ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -1782,7 +1893,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 74,
+      "planningOrder": 76,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1799,7 +1910,7 @@
       "layers": [
         "L6"
       ],
-      "planningOrder": 75,
+      "planningOrder": 77,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1817,7 +1928,7 @@
         "L4",
         "L6"
       ],
-      "planningOrder": 76,
+      "planningOrder": 78,
       "dependencyDepth": 1,
       "blockedBy": [
         "CACHE-01"
@@ -1836,7 +1947,7 @@
       "layers": [
         "L4"
       ],
-      "planningOrder": 77,
+      "planningOrder": 79,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1854,12 +1965,13 @@
         "L4",
         "L7"
       ],
-      "planningOrder": 78,
+      "planningOrder": 80,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
         "AI-14",
-        "BILL-04"
+        "BILL-04",
+        "AI-17"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -1875,10 +1987,12 @@
         "L5",
         "L6"
       ],
-      "planningOrder": 79,
+      "planningOrder": 81,
       "dependencyDepth": 0,
       "blockedBy": [],
-      "blocks": [],
+      "blocks": [
+        "AI-17"
+      ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -1891,10 +2005,12 @@
         "L1",
         "L5"
       ],
-      "planningOrder": 80,
+      "planningOrder": 82,
       "dependencyDepth": 0,
       "blockedBy": [],
-      "blocks": [],
+      "blocks": [
+        "AI-17"
+      ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -1907,7 +2023,7 @@
         "L4",
         "L7"
       ],
-      "planningOrder": 81,
+      "planningOrder": 83,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1926,7 +2042,7 @@
         "L4",
         "L7"
       ],
-      "planningOrder": 82,
+      "planningOrder": 84,
       "dependencyDepth": 1,
       "blockedBy": [
         "AI-11"
@@ -1943,7 +2059,7 @@
       "layers": [
         "L7"
       ],
-      "planningOrder": 83,
+      "planningOrder": 85,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
@@ -1962,7 +2078,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 84,
+      "planningOrder": 86,
       "dependencyDepth": 1,
       "blockedBy": [
         "AI-12"
@@ -1983,7 +2099,7 @@
         "L4",
         "L6"
       ],
-      "planningOrder": 85,
+      "planningOrder": 87,
       "dependencyDepth": 3,
       "blockedBy": [
         "LEARN-09",
@@ -1992,7 +2108,9 @@
         "CONTENT-05"
       ],
       "blocks": [
-        "AI-14"
+        "AI-14",
+        "LEARN-14",
+        "ROLE-10"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2005,7 +2123,7 @@
       "layers": [
         "L5"
       ],
-      "planningOrder": 86,
+      "planningOrder": 88,
       "dependencyDepth": 2,
       "blockedBy": [
         "SCOPE-03",
@@ -2013,6 +2131,62 @@
         "SYNC-01"
       ],
       "blocks": [
+        "ACCEPT-05",
+        "BUILD-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-09",
+      "jiraKey": "KAN-154",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 89,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "BUILD-01",
+        "BUILD-04",
+        "AI-16",
+        "FILE-03"
+      ],
+      "blocks": [
+        "BUILD-08",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-18",
+      "jiraKey": "KAN-156",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L3",
+        "L4",
+        "L5",
+        "L7"
+      ],
+      "planningOrder": 90,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "SCOPE-02",
+        "CONTENT-06",
+        "AI-02"
+      ],
+      "blocks": [
+        "AI-17",
         "ACCEPT-05"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
@@ -2028,7 +2202,7 @@
         "L3",
         "L6"
       ],
-      "planningOrder": 87,
+      "planningOrder": 91,
       "dependencyDepth": 1,
       "blockedBy": [
         "DATA-04"
@@ -2050,7 +2224,7 @@
         "L4",
         "L5"
       ],
-      "planningOrder": 88,
+      "planningOrder": 92,
       "dependencyDepth": 2,
       "blockedBy": [
         "ROLE-01"
@@ -2072,34 +2246,15 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 89,
+      "planningOrder": 93,
       "dependencyDepth": 3,
       "blockedBy": [
         "BUILD-06",
         "ROLE-02"
       ],
       "blocks": [
-        "ROLE-07"
-      ],
-      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
-    },
-    {
-      "sourceId": "ROLE-04",
-      "jiraKey": "KAN-96",
-      "phase": "P08",
-      "queue": "Next",
-      "kind": "capability",
-      "layers": [
-        "L2",
-        "L6"
-      ],
-      "planningOrder": 90,
-      "dependencyDepth": 1,
-      "blockedBy": [
-        "DATA-05"
-      ],
-      "blocks": [
-        "ROLE-07"
+        "ROLE-07",
+        "ACCEPT-08"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2115,7 +2270,7 @@
         "L4",
         "L6"
       ],
-      "planningOrder": 91,
+      "planningOrder": 94,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2136,33 +2291,12 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 92,
+      "planningOrder": 95,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
         "ROLE-07"
       ],
-      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
-    },
-    {
-      "sourceId": "ROLE-07",
-      "jiraKey": "KAN-99",
-      "phase": "P08",
-      "queue": "Next",
-      "kind": "capability",
-      "layers": [
-        "L2",
-        "L6",
-        "L7"
-      ],
-      "planningOrder": 93,
-      "dependencyDepth": 4,
-      "blockedBy": [
-        "ROLE-03",
-        "ROLE-04",
-        "ROLE-06"
-      ],
-      "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -2180,7 +2314,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 94,
+      "planningOrder": 96,
       "dependencyDepth": 3,
       "blockedBy": [
         "SYNC-02"
@@ -2200,9 +2334,11 @@
         "L4",
         "L6"
       ],
-      "planningOrder": 95,
-      "dependencyDepth": 0,
-      "blockedBy": [],
+      "planningOrder": 97,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "SCOPE-09"
+      ],
       "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2221,7 +2357,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 96,
+      "planningOrder": 98,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2242,7 +2378,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 97,
+      "planningOrder": 99,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2263,7 +2399,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 98,
+      "planningOrder": 100,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2284,10 +2420,11 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 99,
-      "dependencyDepth": 1,
+      "planningOrder": 101,
+      "dependencyDepth": 2,
       "blockedBy": [
-        "AI-07"
+        "AI-07",
+        "SCOPE-09"
       ],
       "blocks": [
         "ACCEPT-01"
@@ -2309,7 +2446,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 100,
+      "planningOrder": 102,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2330,7 +2467,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 101,
+      "planningOrder": 103,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2351,7 +2488,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 102,
+      "planningOrder": 104,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2372,7 +2509,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 103,
+      "planningOrder": 105,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2393,11 +2530,91 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 104,
+      "planningOrder": 106,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [
-        "LATER-06"
+        "LATER-06",
+        "LEARN-14",
+        "ROLE-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-14",
+      "jiraKey": "KAN-159",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 107,
+      "dependencyDepth": 4,
+      "blockedBy": [
+        "DATA-01",
+        "DATA-06",
+        "CONTENT-08",
+        "LEARN-09",
+        "LEARN-11",
+        "SYNC-02",
+        "DATA-05",
+        "AI-15",
+        "PRIV-01"
+      ],
+      "blocks": [
+        "ACCEPT-01",
+        "ACCEPT-02",
+        "ACCEPT-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-04",
+      "jiraKey": "KAN-96",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L6"
+      ],
+      "planningOrder": 108,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "DATA-05",
+        "PRIV-01",
+        "DATA-04"
+      ],
+      "blocks": [
+        "ROLE-07",
+        "ACCEPT-02"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-07",
+      "jiraKey": "KAN-99",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 109,
+      "dependencyDepth": 4,
+      "blockedBy": [
+        "ROLE-03",
+        "ROLE-04",
+        "ROLE-06"
+      ],
+      "blocks": [
+        "ACCEPT-02"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2416,7 +2633,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 105,
+      "planningOrder": 110,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2437,7 +2654,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 106,
+      "planningOrder": 111,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2458,7 +2675,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 107,
+      "planningOrder": 112,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2479,7 +2696,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 108,
+      "planningOrder": 113,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2500,7 +2717,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 109,
+      "planningOrder": 114,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2521,7 +2738,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 110,
+      "planningOrder": 115,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2542,7 +2759,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 111,
+      "planningOrder": 116,
       "dependencyDepth": 1,
       "blockedBy": [
         "SCOPE-05"
@@ -2568,7 +2785,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 112,
+      "planningOrder": 117,
       "dependencyDepth": 4,
       "blockedBy": [
         "AI-03",
@@ -2584,7 +2801,8 @@
         "LEARN-05",
         "BUILD-08",
         "AI-13",
-        "LEARN-10"
+        "LEARN-10",
+        "AI-17"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2600,7 +2818,7 @@
         "L4",
         "L6"
       ],
-      "planningOrder": 113,
+      "planningOrder": 118,
       "dependencyDepth": 5,
       "blockedBy": [
         "AI-14"
@@ -2620,14 +2838,16 @@
         "L4",
         "L6"
       ],
-      "planningOrder": 114,
+      "planningOrder": 119,
       "dependencyDepth": 5,
       "blockedBy": [
         "LEARN-09",
         "AI-14"
       ],
       "blocks": [
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "ACCEPT-08",
+        "ROLE-10"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2646,14 +2866,16 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 115,
+      "planningOrder": 120,
       "dependencyDepth": 5,
       "blockedBy": [
         "AI-14",
-        "BUILD-04"
+        "BUILD-04",
+        "BUILD-09"
       ],
       "blocks": [
-        "ACCEPT-01"
+        "ACCEPT-01",
+        "ACCEPT-08"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2672,7 +2894,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 116,
+      "planningOrder": 121,
       "dependencyDepth": 5,
       "blockedBy": [
         "AI-14",
@@ -2680,7 +2902,66 @@
       ],
       "blocks": [
         "RELEASE-04",
-        "LATER-06"
+        "LATER-06",
+        "ACCEPT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-17",
+      "jiraKey": "KAN-155",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 122,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "AI-18",
+        "AI-10",
+        "AI-14",
+        "AI-08",
+        "AI-07",
+        "SYNC-01"
+      ],
+      "blocks": [
+        "ACCEPT-08",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-10",
+      "jiraKey": "KAN-160",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 123,
+      "dependencyDepth": 6,
+      "blockedBy": [
+        "DATA-03",
+        "DATA-05",
+        "LEARN-10",
+        "AI-15"
+      ],
+      "blocks": [
+        "ACCEPT-02",
+        "ACCEPT-08"
       ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -2699,7 +2980,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 117,
+      "planningOrder": 124,
       "dependencyDepth": 6,
       "blockedBy": [
         "BILL-04",
@@ -2707,7 +2988,8 @@
         "BUILD-08",
         "LEARN-07",
         "LEARN-10",
-        "LEARN-11"
+        "LEARN-11",
+        "LEARN-14"
       ],
       "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
@@ -2727,10 +3009,14 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 118,
-      "dependencyDepth": 4,
+      "planningOrder": 125,
+      "dependencyDepth": 7,
       "blockedBy": [
-        "ROLE-08"
+        "ROLE-08",
+        "LEARN-14",
+        "ROLE-10",
+        "ROLE-04",
+        "ROLE-07"
       ],
       "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
@@ -2750,7 +3036,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 119,
+      "planningOrder": 126,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2771,12 +3057,14 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 120,
-      "dependencyDepth": 3,
+      "planningOrder": 127,
+      "dependencyDepth": 5,
       "blockedBy": [
         "AI-09",
         "SYNC-02",
-        "SAFE-01"
+        "SAFE-01",
+        "LEARN-13",
+        "LEARN-14"
       ],
       "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
@@ -2796,12 +3084,16 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 121,
-      "dependencyDepth": 4,
+      "planningOrder": 128,
+      "dependencyDepth": 6,
       "blockedBy": [
         "CONTENT-06",
         "LEARN-12",
-        "AI-16"
+        "AI-16",
+        "AI-18",
+        "AI-17",
+        "BUILD-09",
+        "SCOPE-09"
       ],
       "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
@@ -2821,7 +3113,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 122,
+      "planningOrder": 129,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2842,10 +3134,43 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 123,
+      "planningOrder": 130,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-08",
+      "jiraKey": "KAN-157",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 131,
+      "dependencyDepth": 7,
+      "blockedBy": [
+        "LEARN-10",
+        "LEARN-11",
+        "BUILD-08",
+        "AI-13",
+        "AI-17",
+        "LEARN-13",
+        "ROLE-03",
+        "PLAT-02",
+        "ROLE-10"
+      ],
+      "blocks": [
+        "RELEASE-07"
+      ],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
     {
@@ -2863,7 +3188,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 124,
+      "planningOrder": 132,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2884,7 +3209,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 125,
+      "planningOrder": 133,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2905,7 +3230,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 126,
+      "planningOrder": 134,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2926,7 +3251,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 127,
+      "planningOrder": 135,
       "dependencyDepth": 6,
       "blockedBy": [
         "AI-13"
@@ -2951,7 +3276,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 128,
+      "planningOrder": 136,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2972,7 +3297,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 129,
+      "planningOrder": 137,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -2993,9 +3318,11 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 130,
-      "dependencyDepth": 0,
-      "blockedBy": [],
+      "planningOrder": 138,
+      "dependencyDepth": 8,
+      "blockedBy": [
+        "ACCEPT-08"
+      ],
       "blocks": [],
       "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
     },
@@ -3014,7 +3341,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 131,
+      "planningOrder": 139,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -3030,7 +3357,7 @@
         "L3",
         "L4"
       ],
-      "planningOrder": 132,
+      "planningOrder": 140,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -3046,7 +3373,7 @@
         "L4",
         "L5"
       ],
-      "planningOrder": 133,
+      "planningOrder": 141,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -3064,7 +3391,7 @@
         "L5",
         "L6"
       ],
-      "planningOrder": 134,
+      "planningOrder": 142,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -3080,7 +3407,7 @@
         "L4",
         "L7"
       ],
-      "planningOrder": 135,
+      "planningOrder": 143,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -3098,7 +3425,7 @@
         "L6",
         "L7"
       ],
-      "planningOrder": 136,
+      "planningOrder": 144,
       "dependencyDepth": 0,
       "blockedBy": [],
       "blocks": [],
@@ -3114,7 +3441,7 @@
         "L3",
         "L7"
       ],
-      "planningOrder": 137,
+      "planningOrder": 145,
       "dependencyDepth": 7,
       "blockedBy": [
         "AI-13",

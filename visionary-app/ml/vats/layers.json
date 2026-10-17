@@ -1,71 +1,203 @@
 {
   "schemaVersion": 1,
-  "decision": "D-087",
+  "decision": "D-090",
   "architecture": "Visionary Adaptive Teaching System (VATS); VTAS is a founder alias",
   "runtime": "AIRA deterministic coordination; seven logical capabilities, not seven required deployments",
   "layers": [
     {
-      "id": "L1", "name": "Perception & Input", "owner": "ML parsing with backend admission",
+      "id": "L1",
+      "name": "Perception & Input",
+      "owner": "ML parsing with backend admission",
       "input": "Permitted text or explicitly released modality with independent input/interface/source/output locale and pinned source",
       "output": "Structured concept/intent/language hypotheses or clarification/unavailable; no authoritative age, role or grade inference",
-      "evidence": ["ml/upstream/services/query-understanding-service/parser/self_query.go", "ml/upstream/services/api-gateway/model/clarification.go"],
+      "evidence": [
+        "ml/upstream/services/query-understanding-service/parser/self_query.go",
+        "ml/upstream/services/api-gateway/model/clarification.go"
+      ],
       "current": "Disconnected query rewrite/intent/metadata candidates; no accepted VATS perception adapter or released ASR/OCR benchmark",
       "exit": "Schema/ambiguity tests, permitted source mapping, multilingual/code-switch/handwriting or voice evaluation only for released modalities; bound bytes/deadline/cost, no silent fallback",
-      "tickets": ["AI-10", "SCOPE-02", "SCOPE-03", "CONTENT-08", "AI-03", "SAFE-01", "ACCEPT-05"]
+      "tickets": [
+        "AI-10",
+        "SCOPE-02",
+        "SCOPE-03",
+        "CONTENT-08",
+        "AI-03",
+        "SAFE-01",
+        "ACCEPT-05",
+        "AI-17",
+        "AI-18",
+        "LEARN-13",
+        "SCOPE-09"
+      ]
     },
     {
-      "id": "L2", "name": "Student Cognition Model", "owner": "Backend evidence authority; ML consumes scoped projections",
+      "id": "L2",
+      "name": "Student Cognition Model",
+      "owner": "Backend evidence authority; ML consumes scoped projections",
       "input": "Immutable assessed receipts, approved concept DAG and source/criteria/model versions",
       "output": "Knowledge estimate and evidence provenance, qualified mastery projection, prerequisite hypotheses with unknown state retained",
-      "evidence": ["backend/upstream/backend/src/learning/teaching-policy.ts", "backend/tests/teaching-policy.test.cjs", "ml/vats/pedagogy.py"],
+      "evidence": [
+        "backend/upstream/backend/src/learning/teaching-policy.ts",
+        "backend/tests/teaching-policy.test.cjs",
+        "ml/vats/pedagogy.py"
+      ],
       "current": "Pure BKT policy and ML prerequisite proposal only; durable SQL, validated error classifier, calibration and live learner state are missing",
       "exit": "Atomic receipt/dedup/projection/outbox, replay/rebuild/calibration, source criteria scope and two-device acceptance; prior/model confidence/Build completion cannot establish mastery",
-      "tickets": ["CONTENT-08", "DATA-01", "LEARN-08", "LEARN-09", "LEARN-03", "AI-13"]
+      "tickets": [
+        "CONTENT-08",
+        "DATA-01",
+        "LEARN-08",
+        "LEARN-09",
+        "LEARN-03",
+        "AI-13",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10"
+      ]
     },
     {
-      "id": "L3", "name": "Adaptive Teaching Engine", "owner": "ML proposal policy; backend deterministic loop/commit",
+      "id": "L3",
+      "name": "Adaptive Teaching Engine",
+      "owner": "ML proposal policy; backend deterministic loop/commit",
       "input": "Current learner/loop revisions, prerequisite snapshot, approved pedagogy/visual set and reviewed error hypothesis",
       "output": "Scoped teach/assess-prior/await/check-complete/review proposal; never a receipt, mastery grant or automatic notification",
-      "evidence": ["ml/vats/pedagogy.py", "ml/vats/tests/test_pedagogy.py", "backend/upstream/backend/src/learning/pedagogy-proposal.ts", "backend/tests/pedagogy-proposal.test.cjs", "integration/contracts/fixtures/vats-pedagogy.v1.json"],
+      "evidence": [
+        "ml/vats/pedagogy.py",
+        "ml/vats/tests/test_pedagogy.py",
+        "backend/upstream/backend/src/learning/pedagogy-proposal.ts",
+        "backend/tests/pedagogy-proposal.test.cjs",
+        "integration/contracts/fixtures/vats-pedagogy.v1.json"
+      ],
       "current": "Deterministic uncalibrated reference strategy/prerequisite policy, pure bounded loop and server binding; not registered with a controller/worker/frontend",
       "exit": "Different remediation, at most three failed checks, assessed checks, stale proposal rejection, actual authorized durable flow and independently measured educational outcomes",
-      "tickets": ["LEARN-10", "AI-14", "AI-15", "LEARN-08", "AI-13", "ACCEPT-01"]
+      "tickets": [
+        "LEARN-10",
+        "AI-14",
+        "AI-15",
+        "LEARN-08",
+        "AI-13",
+        "ACCEPT-01",
+        "AI-17",
+        "AI-18",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10"
+      ]
     },
     {
-      "id": "L4", "name": "Model Stack & Grounding", "owner": "ML evaluated adapters behind backend authority",
+      "id": "L4",
+      "name": "Model Stack & Grounding",
+      "owner": "ML evaluated adapters behind backend authority",
       "input": "Pinned permitted context/prompt/model/tool policy with bounded usage and required sources",
       "output": "Validated candidate or truthful unavailable/blocked/partial result; same policy across batch/stream/cache",
-      "evidence": ["ml/upstream/services/api-gateway/handler/grounding_validator.go", "ml/upstream/services/api-gateway/handler/grounding_contract_test.go", "ml/upstream/services/vector-search-service/search/hybrid.go", "ml/evaluation/retrieval-binary-v2.json"],
+      "evidence": [
+        "ml/upstream/services/api-gateway/handler/grounding_validator.go",
+        "ml/upstream/services/api-gateway/handler/grounding_contract_test.go",
+        "ml/upstream/services/vector-search-service/search/hybrid.go",
+        "ml/evaluation/retrieval-binary-v2.json"
+      ],
       "current": "Disconnected RAG/retrieval/inference candidates; local NLI client and metric repairs do not qualify full gateway callers/stream/cache/source isolation",
       "exit": "Actual provider/corpus held-out comparisons, source-authorized retrieval, citations/formulas/safety checks, invalid/timeout rejection, cancellation, usage settlement and rollback; NLI is not truth",
-      "tickets": ["AI-01", "AI-02", "AI-03", "AI-05", "AI-06", "AI-07", "AI-08", "AI-11", "AI-13"]
+      "tickets": [
+        "AI-01",
+        "AI-02",
+        "AI-03",
+        "AI-05",
+        "AI-06",
+        "AI-07",
+        "AI-08",
+        "AI-11",
+        "AI-13",
+        "AI-17",
+        "AI-18",
+        "ROLE-10"
+      ]
     },
     {
-      "id": "L5", "name": "3D Concept Visualization", "owner": "Frontend rendering; backend manifest admission; ML representation proposal",
+      "id": "L5",
+      "name": "3D Concept Visualization",
+      "owner": "Frontend rendering; backend manifest admission; ML representation proposal",
       "input": "Approved concept/source/asset/scene versions, bounded typed parameters and device/accessibility preferences",
       "output": "Authorized representation or accessible text/2D fallback, with scoped sequence/revision recovery",
-      "evidence": ["frontend/src/components/dashboard/LearningRepresentation.jsx", "frontend/src/components/dashboard/NumberLineRepresentation.jsx", "frontend/src/components/dashboard/DataDiagramRepresentation.jsx"],
+      "evidence": [
+        "frontend/src/components/dashboard/LearningRepresentation.jsx",
+        "frontend/src/components/dashboard/NumberLineRepresentation.jsx",
+        "frontend/src/components/dashboard/DataDiagramRepresentation.jsx"
+      ],
       "current": "Existing frontend representations/previews; no accepted end-to-end ML scene registry/event protocol or measured full 3D coverage",
       "exit": "Published template/asset allowlist, parameter validation, synchronization/reconnect and real device/fallback tests; raw SCENE tokens/code/URLs never execute",
-      "tickets": ["AI-16", "CONTENT-03", "AI-10", "SYNC-01", "SYNC-02", "ACCEPT-05"]
+      "tickets": [
+        "AI-16",
+        "CONTENT-03",
+        "AI-10",
+        "SYNC-01",
+        "SYNC-02",
+        "ACCEPT-05",
+        "BUILD-09",
+        "AI-17",
+        "ROLE-10"
+      ]
     },
     {
-      "id": "L6", "name": "Memory & Personalization", "owner": "Backend durable purpose-scoped facts/review; ML minimized context",
+      "id": "L6",
+      "name": "Memory & Personalization",
+      "owner": "Backend durable purpose-scoped facts/review; ML minimized context",
       "input": "Permitted evidence, memory provenance/correction, conversation/run state and explicit relationship scopes",
       "output": "P0–P3 context, due review, owned resume and independently scoped reports; vectors/cache remain projections",
-      "evidence": ["backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts", "ml/upstream/services/api-gateway/session/session_manager.go", "frontend/src/services/mentorStateService.ts"],
+      "evidence": [
+        "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
+        "ml/upstream/services/api-gateway/session/session_manager.go",
+        "frontend/src/services/mentorStateService.ts"
+      ],
       "current": "Account/device baseline connected; imported Redis session/history and frontend memory previews are not authorized durable VATS memory",
       "exit": "SQL ownership/purpose/version controls, inspect/correct/disable, source withdrawal/revocation, no required grounding truncation, due queues and restart/two-device recovery; no imported TTL/purge",
-      "tickets": ["AI-04", "AI-15", "LEARN-01", "LEARN-04", "LEARN-11", "DATA-05", "SYNC-02", "ROLE-07", "PRIV-01"]
+      "tickets": [
+        "AI-04",
+        "AI-15",
+        "LEARN-01",
+        "LEARN-04",
+        "LEARN-11",
+        "DATA-05",
+        "SYNC-02",
+        "ROLE-07",
+        "PRIV-01",
+        "LEARN-13",
+        "AI-17",
+        "LEARN-14",
+        "ROLE-10"
+      ]
     },
     {
-      "id": "L7", "name": "Data Flywheel & Reviewed Improvement", "owner": "Backend permitted evidence; ML evaluation and accountable review",
+      "id": "L7",
+      "name": "Data Flywheel & Reviewed Improvement",
+      "owner": "Backend permitted evidence; ML evaluation and accountable review",
       "input": "Minimized versioned outcome/error records, optional feedback and explicitly eligible human-reviewed examples",
       "output": "Held-out evaluation sets, qualified outcomes/regressions and human release/rollback decisions; later licensed training candidates",
-      "evidence": ["backend/upstream/backend/src/feedback/feedback.service.ts", "ml/evaluation/test_retrieval_contract.py", "ml/upstream/shared/go/analytics/evaluator.go", "ml/upstream/services/api-gateway/handler/quality_pipeline.go"],
+      "evidence": [
+        "backend/upstream/backend/src/feedback/feedback.service.ts",
+        "ml/evaluation/test_retrieval_contract.py",
+        "ml/upstream/shared/go/analytics/evaluator.go",
+        "ml/upstream/services/api-gateway/handler/quality_pipeline.go"
+      ],
       "current": "Optional account feedback and local metric contracts exist; legacy raw quality/export stays disconnected; full reviewed dataset/evaluation/outcome loop is missing",
       "exit": "Launch has permitted outcome evidence and feedback→triage→human review→held-out evaluation→approved change→rollback; raw dialogue/hashed UID is not anonymous training consent",
-      "tickets": ["DONE-12", "AI-09", "AI-11", "AI-12", "AI-13", "PRIV-01", "PLAT-07", "RELEASE-04", "LATER-04", "LATER-06"]
+      "tickets": [
+        "DONE-12",
+        "AI-09",
+        "AI-11",
+        "AI-12",
+        "AI-13",
+        "PRIV-01",
+        "PLAT-07",
+        "RELEASE-04",
+        "LATER-04",
+        "LATER-06",
+        "AI-18",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10",
+        "SCOPE-09"
+      ]
     }
   ]
 }

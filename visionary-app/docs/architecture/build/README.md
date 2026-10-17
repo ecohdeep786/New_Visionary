@@ -1,5 +1,7 @@
 # Visionary Build architecture
 
+D-088, 17 October 2026: [current staged Build coverage and implementation handoff](../EDUCATION_LAUNCH_PLAN.md) verifies BUILD-01–08 / KAN-75–82 already exist as open launch work. [BUILD-09 / KAN-154](https://visionary-team.atlassian.net/browse/KAN-154) now explicitly owns Stage 3 trusted declarative activities; [AI-17 / KAN-155](https://visionary-team.atlassian.net/browse/KAN-155) adds voice-guided requests through the same exact-revision approval boundary. LATER-01–03 / KAN-132–134 retain isolated code, HTML and public release gates. None is marked complete by this review. The separate Build design below remains the target architecture.
+
 For the shared deployment/data context, begin with the [grouped platform map](../diagrams/PLATFORM_ARCHITECTURE.md) and [numbered request flow](../diagrams/REQUEST_PATHS.md). The Build-specific diagram below expands project/proposal/execution behavior.
 
 16 October 2026 · D-078 · target design for the 100,000-MAU growth launch.

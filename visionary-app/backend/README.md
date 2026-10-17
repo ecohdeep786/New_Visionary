@@ -1,5 +1,9 @@
 # Application backend
 
+D-090 [lifelong delivery contract](../integration/LIFELONG_EDUCATION_CONTRACT.md) defines the proposed owned profile/stage/mapping/receipt flow, reviewed admission/relationship boundaries and teacher/parent delivery acceptance. All 145 source tasks remain mapped to the current architecture; this contract/registry pass registers no controller, migration or new runtime benefit.
+
+D-088: [current education launch plan](../docs/architecture/EDUCATION_LAUNCH_PLAN.md) adds voice-turn/cancellation authority, rights-aware offline reconciliation and trusted activity revisions to the existing server-owned contracts. Its 142-task manifest and verified Jira dependencies are implementation requirements, not registered controllers or completed database work. Freeze the shared contracts before concurrent backend/ML feature implementation.
+
 D-087 [VATS contract](../integration/VATS_CONTRACT.md) keeps identity, permissions, assessment receipts and state commits here. The [pedagogy-proposal boundary](upstream/backend/src/learning/pedagogy-proposal.ts) rejects stale/cross-scope ML suggestions and cannot create mastery or skip current checks. It is a tested pure module, not a registered endpoint. Follow the [seven-layer delivery plan](../docs/architecture/VATS_IMPLEMENTATION.md) before connecting ML workers or changing store ownership.
 
 D-086 adds a product-owned [learning policy kernel](upstream/backend/src/learning/teaching-policy.ts) with [offline tests](tests/teaching-policy.test.cjs). It is not wired to the active auth app or a datastore: authorized receipt transactions, calibrated criteria, controllers, UI and two-device acceptance remain open. See the [founder reconciliation](../docs/architecture/FOUNDER_SPEC_RECONCILIATION.md).

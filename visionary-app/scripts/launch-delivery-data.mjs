@@ -24,6 +24,21 @@ export const deliveryDependencies = [
   ['SCOPE-05', 'SAFE-01'], ['SAFE-01', 'AI-14'], ['SAFE-01', 'ACCEPT-04'],
   ['LEARN-10', 'ACCEPT-01'], ['LEARN-11', 'ACCEPT-01'], ['LEARN-12', 'ACCEPT-05'], ['AI-16', 'ACCEPT-05'],
   ['AI-13', 'LATER-06'], ['PRIV-01', 'LATER-06'], ['RELEASE-04', 'LATER-06'],
+  ['SCOPE-02', 'AI-18'], ['CONTENT-06', 'AI-18'], ['AI-02', 'AI-18'],
+  ['AI-18', 'AI-17'], ['AI-10', 'AI-17'], ['AI-14', 'AI-17'], ['AI-08', 'AI-17'], ['AI-07', 'AI-17'], ['SYNC-01', 'AI-17'],
+  ['FILE-03', 'LEARN-13'], ['DATA-05', 'LEARN-13'], ['CONTENT-03', 'LEARN-13'], ['LEARN-02', 'LEARN-13'], ['SYNC-02', 'LEARN-13'],
+  ['BUILD-01', 'BUILD-09'], ['BUILD-04', 'BUILD-09'], ['AI-16', 'BUILD-09'], ['FILE-03', 'BUILD-09'], ['BUILD-09', 'BUILD-08'],
+  ['LEARN-10', 'ACCEPT-08'], ['LEARN-11', 'ACCEPT-08'], ['BUILD-08', 'ACCEPT-08'], ['AI-13', 'ACCEPT-08'], ['AI-17', 'ACCEPT-08'], ['LEARN-13', 'ACCEPT-08'], ['ROLE-03', 'ACCEPT-08'], ['PLAT-02', 'ACCEPT-08'],
+  ['AI-18', 'ACCEPT-05'], ['ACCEPT-08', 'RELEASE-07'], ['LEARN-13', 'ACCEPT-04'], ['AI-17', 'ACCEPT-05'], ['BUILD-09', 'ACCEPT-05'],
+  // D-090 lifelong continuity, access-policy and released school/role acceptance.
+  ['SCOPE-02', 'SCOPE-09'], ['SCOPE-09', 'BILL-04'], ['SCOPE-09', 'ROLE-09'], ['SCOPE-09', 'ACCEPT-05'],
+  ['DATA-01', 'LEARN-14'], ['DATA-06', 'LEARN-14'], ['CONTENT-08', 'LEARN-14'],
+  ['LEARN-09', 'LEARN-14'], ['LEARN-11', 'LEARN-14'], ['SYNC-02', 'LEARN-14'],
+  ['DATA-05', 'LEARN-14'], ['AI-15', 'LEARN-14'], ['PRIV-01', 'LEARN-14'],
+  ['LEARN-14', 'ACCEPT-01'], ['LEARN-14', 'ACCEPT-02'], ['LEARN-14', 'ACCEPT-04'],
+  ['DATA-03', 'ROLE-10'], ['DATA-05', 'ROLE-10'], ['LEARN-10', 'ROLE-10'], ['AI-15', 'ROLE-10'],
+  ['ROLE-10', 'ACCEPT-02'], ['ROLE-10', 'ACCEPT-08'],
+  ['PRIV-01', 'ROLE-04'], ['DATA-04', 'ROLE-04'], ['ROLE-04', 'ACCEPT-02'], ['ROLE-07', 'ACCEPT-02'],
 ].map(([blocks, blocked]) => ({ blocks, blocked }));
 
 export const sharedLayers = {
@@ -73,6 +88,24 @@ const founderExtensions = {
 };
 for (const feature of features) feature.tickets.push(...(founderExtensions[feature.id] || []));
 sharedSourceIds.push('SAFE-01');
+// D-088 makes the founder's voice/India/offline/Build learning outcomes explicit.
+const educationExtensions = {
+  learn: ['LEARN-13', 'AI-17', 'AI-18'], ask: ['AI-17', 'AI-18'],
+  guide: ['AI-17', 'AI-18'], practice: ['LEARN-13', 'AI-17', 'AI-18'],
+  build: ['BUILD-09', 'AI-17', 'AI-18'], classroom: ['AI-17', 'AI-18'],
+};
+for (const id of Object.keys(educationExtensions)) if (!features.some(f => f.id === id)) throw Error('Unknown education feature family ' + id);
+for (const feature of features) feature.tickets.push(...(educationExtensions[feature.id] || []));
+sharedSourceIds.push('ACCEPT-08');
+// D-090 uses the current journeys; lifecycle/admission/privacy keep one authority.
+const lifelongExtensions = {
+  learn: ['LEARN-14'], practice: ['LEARN-14'], progress: ['LEARN-14'],
+  guide: ['LEARN-14', 'ROLE-10'], build: ['LEARN-14', 'ROLE-10'],
+  classroom: ['ROLE-10'], professional: ['LEARN-14'],
+};
+for (const id of Object.keys(lifelongExtensions)) if (!features.some(f => f.id === id)) throw Error('Unknown lifelong feature family ' + id);
+for (const feature of features) feature.tickets.push(...(lifelongExtensions[feature.id] || []));
+sharedSourceIds.push('SCOPE-09');
 export const capabilityChecks = [
   ['reasoning', 'Novel concept/problem tasks with permitted evidence; independent rubric/teacher correctness review', ['AI-01', 'AI-06', 'AI-13', 'LEARN-08']],
   ['planning', 'Multi-step Learn/Build goals, changed constraints, pause/restart and replanning; inspect final saved outcome', ['AI-13', 'AI-14', 'BUILD-04', 'BUILD-08']],

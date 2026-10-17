@@ -1,5 +1,9 @@
 # Visionary Adaptive Teaching System (VATS)
 
+D-090 [lifelong delivery](../../integration/LIFELONG_EDUCATION_CONTRACT.md) keeps personal adaptation, authorized stage changes and globally reviewed model improvement separate. The registry/current manifests now cover 145 tasks with explicit teacher personal learning and stage/source continuity. ML proposals cannot promote an age/role, transfer mastery without reviewed evidence or turn context eviction into record deletion.
+
+D-088: [education research and current delivery plan](../../docs/architecture/EDUCATION_LAUNCH_PLAN.md) link the seven capabilities to 142 Jira tasks, including natural voice, India speech/meaning qualification, authorized offline attempts, trusted Build activities and a controlled educational pilot. `layers.json` is a planning/evidence registry. This update adds no serving endpoint, speech provider, model training or runtime capability.
+
 This is the product-owned ML policy/contract area. Doc03 calls the system **VATS**; VTAS in founder discussion refers to the same seven-layer architecture. [Seven-layer delivery plan](../../docs/architecture/VATS_IMPLEMENTATION.md) and [layer registry](layers.json) define ownership, existing evidence and open work. AIRA is the bounded runtime coordinating these capabilities, not an eighth layer.
 
 Current executable addition: `pedagogy.py` consumes a backend-created, pinned graph/learner/loop snapshot and proposes prerequisite assessment or a teaching strategy. It preserves unknown evidence, traces the earliest prerequisite gap, changes strategy after failure, supports approved visuals and stops within three failed checks. This is a deterministic **uncalibrated reference policy**, not a trained learner model or connected tutoring service. The backend validates request/session/source/criteria/graph/policy/revision binding before any use. Shared synthetic fixtures are in `integration/contracts/fixtures/vats-pedagogy.v1.json`.

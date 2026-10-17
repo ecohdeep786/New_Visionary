@@ -1,5 +1,7 @@
 # Build low-level data, contracts and object design
 
+D-088 implementation scope: [BUILD-09/KAN-154 and voice-guided revision controls](../EDUCATION_LAUNCH_PLAN.md) make trusted activity schemas, bounded renderer/asset manifests and explicit exact-revision approval work-ready. Arbitrary generated code/HTML and public release retain their separate gates. The contract below is still a target, not a connected API.
+
 Target specification, not a migration or connected API · [system design](SYSTEM_DESIGN.md).
 
 ## Ownership and keys
