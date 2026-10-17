@@ -1,0 +1,3177 @@
+{
+  "schemaVersion": 1,
+  "task": "SCOPE-01",
+  "classificationLevel": "conservative source-file and separately reviewed operation; no arbitrary callback proof",
+  "roles": [
+    "student",
+    "teacher",
+    "parent",
+    "professional",
+    "organization"
+  ],
+  "categories": [
+    "primary",
+    "secondary",
+    "higher-secondary",
+    "competitive",
+    "vocational",
+    "higher-education",
+    "independent-adult",
+    "professional",
+    "employer-sponsored"
+  ],
+  "interfaceLocales": [
+    "en",
+    "hi",
+    "bn"
+  ],
+  "teachingLocaleTypes": [
+    "en",
+    "hi",
+    "bn"
+  ],
+  "sourceLanguageQualification": "per published source/edition; no catalog coverage inferred",
+  "admission": "adult-only current server; guardian-first child admission pending",
+  "files": {
+    "frontend/src/App.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/auth/AuthUI.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/auth/EmailVerification.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/auth/LanguageSelector.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/AuthLayout.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/dashboard/AchievementsCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/AGIInsightCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/AITeacherHero.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/AssignedCurriculumOutline.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/AssignLesson.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/AudioPresence.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/BillingInvoice.jsx": {
+      "profile": "test-invoice-rendering",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Owner-selected TEST invoice rendering/print/download controls; invoice retrieval is the separate server billing operation.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/dashboard/BreathingExercise.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/BuildHero.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ChallengeCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ClassCurriculum.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ClassPromotion.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ClassworkProjectSubmission.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/CollapsibleSection.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/CommunityTab.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ConceptCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ConnectedBilling.jsx": {
+      "profile": "authenticated-test-billing",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated Razorpay TEST subscription/Family/invoice path exists. Live merchant money, legal invoicing, hosted webhook and real entitlements for learning are separate gates.",
+      "followUp": [
+        "BILL-01",
+        "BILL-04",
+        "BILL-08"
+      ],
+      "endpoints": [
+        "GET /api/billing/account",
+        "POST /api/billing/cancel",
+        "GET /api/billing/catalog",
+        "POST /api/billing/checkouts",
+        "POST /api/billing/family/accept",
+        "POST /api/billing/family/invitations",
+        "GET /api/billing/family/invitations/:id",
+        "POST /api/billing/family/leave",
+        "POST /api/billing/family/remove",
+        "GET /api/billing/invoices/:id",
+        "POST /api/billing/jobs/reconcile",
+        "POST /api/billing/sync",
+        "POST /api/billing/verify",
+        "POST /api/billing/webhooks/razorpay"
+      ]
+    },
+    "frontend/src/components/dashboard/ContentIssueReport.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ContinueCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/CubeLearningEntry.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/CurriculumBridgePlan.jsx": {
+      "profile": "local-stage-continuity",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Stage diff, bridge, postpone and undo controls use local journey records. Durable server transitions and evidence-bound mappings remain open.",
+      "followUp": [
+        "LEARN-14",
+        "DATA-06",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/CurriculumPracticeEditor.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/CurriculumTemplateEditor.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/DailyBriefing.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/DashboardCards.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/DashboardLayout.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/DashboardSidebar.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/DashboardTopbar.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/EmptyState.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/FamilyBilling.jsx": {
+      "profile": "authenticated-test-billing",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Authenticated Razorpay TEST subscription/Family/invoice path exists. Live merchant money, legal invoicing, hosted webhook and real entitlements for learning are separate gates.",
+      "followUp": [
+        "BILL-01",
+        "BILL-04",
+        "BILL-08"
+      ],
+      "endpoints": [
+        "GET /api/billing/account",
+        "POST /api/billing/cancel",
+        "GET /api/billing/catalog",
+        "POST /api/billing/checkouts",
+        "POST /api/billing/family/accept",
+        "POST /api/billing/family/invitations",
+        "GET /api/billing/family/invitations/:id",
+        "POST /api/billing/family/leave",
+        "POST /api/billing/family/remove",
+        "GET /api/billing/invoices/:id",
+        "POST /api/billing/jobs/reconcile",
+        "POST /api/billing/sync",
+        "POST /api/billing/verify",
+        "POST /api/billing/webhooks/razorpay"
+      ]
+    },
+    "frontend/src/components/dashboard/FamilyProgress.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/FeedbackPrompt.jsx": {
+      "profile": "account-feedback",
+      "state": "connected",
+      "execution": "server",
+      "reason": "UID-bound feedback submission and validated receipt exist; support case delivery, operator access and model training are separate.",
+      "followUp": [
+        "PRIV-05",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "POST /api/account/feedback"
+      ]
+    },
+    "frontend/src/components/dashboard/FloatingAskButton.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/GamificationSection.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/GetStartedCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/GuideActivity.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/GuideEntry.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/JourneyCatalogue.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LaggingTopicsCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/ConceptNavigator.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/ContentsDropdown.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/CourseIntro.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/CourseViewer.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/QuestionBar.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/SubjectHeroBanner.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/SubjectPills.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/learn/TopicCard.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LearnerGoals.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LearningAttemptHistory.jsx": {
+      "profile": "local-attempt-history",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Disclosure renders the current local attempt history; durable evidence, permission and cross-device history remain open.",
+      "followUp": [
+        "LEARN-02",
+        "LEARN-10",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LearningPrerequisites.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LearningRepresentation.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LearningSubjectShelf.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LessonChecksEditor.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LessonObjectivePicker.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LessonObjectivePreview.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/LocalDataPreview.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/MarketTrends.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/MentorGreeting.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/NumberLineRepresentation.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/OrganizationContentDelivery.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/OrganizationEvidencePanel.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/OrganizationPermissionSelect.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ParentClassworkDigest.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ParentProjectSharing.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/PersonalizedPathCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/practice/QuizView.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/PricingCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ProfessionalPortfolioReview.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ProjectCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/ProjectCriteria.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/ReferralCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/RoleMentorPanel.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/StageChangeDetails.jsx": {
+      "profile": "local-stage-continuity",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Stage diff, bridge, postpone and undo controls use local journey records. Durable server transitions and evidence-bound mappings remain open.",
+      "followUp": [
+        "LEARN-14",
+        "DATA-06",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/StagePresentationSummary.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/StageProfileEditor.jsx": {
+      "profile": "local-stage-continuity",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Stage diff, bridge, postpone and undo controls use local journey records. Durable server transitions and evidence-bound mappings remain open.",
+      "followUp": [
+        "LEARN-14",
+        "DATA-06",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/StreakCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/AssignmentGrader.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/ClassCard.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/CreateClassModal.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/tabs/ClassworkTab.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/tabs/InsightsTab.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/tabs/PeopleTab.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/tabs/StreamTab.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/TeacherInsightCard.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx": {
+      "profile": "authored-teacher-coaching",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Authored teaching tips/private learning UI exist; these are not an evaluated adaptive teacher-coaching service.",
+      "followUp": [
+        "ROLE-10",
+        "AI-15"
+      ]
+    },
+    "frontend/src/components/dashboard/TeacherContentInbox.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/TodayPlanCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/UnderstandingMeter.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/UpNextCard.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/dashboard/WorkspaceDetails.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/dashboard/WorkspaceNotifications.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/dashboard/WorkspaceSwitcher.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/components/landing/AboutUsHero.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/Breadcrumb.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/HeroFanCards.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LandingFAQ.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LandingFooter.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LandingNav.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/LazyImage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/NewPersona.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/PersonaSections.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/persona/PremiumPersonaSections.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/PolicyTabs.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/landing/system/ui.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/landing/ValuesStrip.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/ChipMultiSelect.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/ChoiceGrid.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/GettingStarted.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/OnboardingLayout.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/ProductSetupFields.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/StarRating.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/stepConfigs.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/steps/AGIIntro.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/onboarding/steps/IdentitySelection.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/steps/org/OrgInfo.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/steps/student/StudentContextForm.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/steps/student/StudyRoutine.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/steps/student/SubjectConfidence.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/onboarding/SubjectContextInput.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/components/ProtectedRoute.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/SocialAuthButtons.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/components/ui/accordion.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/breadcrumb.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/carousel.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/ui/command.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/context-menu.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/dropdown-menu.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/input-otp.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/input.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/ui/menubar.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/navigation-menu.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/pagionation.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/ui/radio-group.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/select.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/sidebar.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/ui/tabs.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/components/ui/textarea.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/ui/toast.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/components/ui/toggle-group.jsx": {
+      "profile": "client-widget-primitive",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Native/Radix disclosure or input primitive delegates its action/value to the caller; it grants no domain/server permission.",
+      "followUp": [
+        "SCOPE-06",
+        "ACCEPT-05"
+      ]
+    },
+    "frontend/src/lib/PageNotFound.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/AuthAction.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/pages/dashboard/ArtifactStudio.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Ask.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/dashboard/Build.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/dashboard/Children.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ClassDetail.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ClassworkLearningPlayer.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ClassworkStudy.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Cohorts.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Connections.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/DecisionHome.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Explore.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Guide.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Learn.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Learners.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/LearningProgress.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/LearningWorkspace.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationAccessHome.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationAudit.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationBilling.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationContent.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationCurriculum.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationNotifications.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/OrganizationSettings.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ParentNotifications.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ParentReport.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ParentReportAsk.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Plans.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Practice.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/ProfessionalCareer.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Profile.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/role/OrgHome.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/dashboard/role/ParentHome.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/dashboard/role/StudentHome.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/dashboard/role/TeacherHome.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/RoleWorkspace.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Settings.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/StudentClasses.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/Subscription.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/dashboard/Support.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/TopicDetail.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/dashboard/WorkspaceTools.jsx": {
+      "profile": "local-domain-workflow",
+      "state": "preview",
+      "execution": "browser-local",
+      "reason": "Domain UI/rehearsal exists; the selected runtime has no learning/classroom/project/relationship controller. Browser guards and local saves do not establish live permission or multi-device persistence.",
+      "followUp": [
+        "SCOPE-03",
+        "SCOPE-04",
+        "DATA-01",
+        "SYNC-02"
+      ]
+    },
+    "frontend/src/pages/DemoPreview.jsx": {
+      "profile": "development-scenario-only",
+      "state": "intentionally-unreleased",
+      "execution": "development-only",
+      "reason": "DemoPreview is imported only under import.meta.env.DEV. Fictional scenario selectors are excluded from production entry and are not real account admission.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/ForgotPassword.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/pages/ForgotUserId.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/pages/Landing.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/AboutUsPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/AccessibilityPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/AILearningPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/CareersPage.jsx": {
+      "profile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "reason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ]
+    },
+    "frontend/src/pages/landing/CoachingPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/CollegePage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/CommunityPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/ContactPage.jsx": {
+      "profile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "reason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ]
+    },
+    "frontend/src/pages/landing/CookiesPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/DownloadPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/OrganizationPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/ParentPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/PartnersPage.jsx": {
+      "profile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "reason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ]
+    },
+    "frontend/src/pages/landing/PrivacyPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/ReferralPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/ResearchNewsPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/SafetyPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/SchoolPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/SecurityPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/StudentPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/TeacherPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/TermsPage.jsx": {
+      "profile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "reason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ]
+    },
+    "frontend/src/pages/landing/UpdatesPage.jsx": {
+      "profile": "public-action-delivery-gap",
+      "state": "missing",
+      "execution": "client-only-or-unavailable",
+      "reason": "Public interaction/copy or device draft exists; the selected backend exposes no public enquiry/application/subscription delivery endpoint. Inspect operation gaps and literal link/event fields before promising delivery.",
+      "followUp": [
+        "PRIV-07",
+        "BILL-08"
+      ]
+    },
+    "frontend/src/pages/Login.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/pages/OAuthConsent.jsx": {
+      "profile": "retained-source-only",
+      "state": "intentionally-unreleased",
+      "execution": "not-route-reachable",
+      "reason": "No import path from any declared route entry; retained component/source is not evidence of an exposed feature.",
+      "followUp": [
+        "SCOPE-01",
+        "SCOPE-06"
+      ]
+    },
+    "frontend/src/pages/Onboarding.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/pages/Register.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    "frontend/src/pages/ResetPassword.jsx": {
+      "profile": "configured-account-flow",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Firebase/configured-provider account flow and server UID-bound session/profile path exist; provider setup, school admission and hosted acceptance remain separate. Mixed phone/SSO controls are listed as missing operations below.",
+      "followUp": [
+        "SCOPE-07",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    }
+  },
+  "operations": [
+    {
+      "id": "public-discovery",
+      "state": "connected",
+      "execution": "client",
+      "routes": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/help",
+        "/professional",
+        "/organization",
+        "/about",
+        "/how-it-works"
+      ],
+      "files": [
+        "frontend/src/pages/Landing.jsx"
+      ],
+      "reason": "Public presentation and navigation exist; product/curriculum claims require actual released coverage.",
+      "followUp": [
+        "SCOPE-02",
+        "PRIV-07"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "public-enquiry-careers-partners",
+      "state": "missing",
+      "execution": "client-or-mail-link",
+      "routes": [
+        "/contact",
+        "/careers",
+        "/partners"
+      ],
+      "files": [],
+      "reason": "No public delivery controller is registered. Device drafts, mail-client links and unavailable responses must not be treated as server-delivered applications/enquiries.",
+      "followUp": [
+        "PRIV-07"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "public-updates-distribution",
+      "state": "missing",
+      "execution": "client",
+      "routes": [
+        "/updates",
+        "/research",
+        "/community"
+      ],
+      "files": [],
+      "reason": "Public pages exist; no registered mailing/community/research publication service certifies distribution or membership.",
+      "followUp": [
+        "PRIV-07",
+        "CONTENT-05"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "download-installation",
+      "state": "intentionally-unreleased",
+      "execution": "web-navigation",
+      "routes": [
+        "/download"
+      ],
+      "files": [],
+      "reason": "Web access exists; native store/installer availability must be confirmed per target platform. The route is not evidence of shipped native apps.",
+      "followUp": [
+        "PRIV-07",
+        "ACCEPT-05"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "referral-sharing",
+      "state": "connected",
+      "execution": "client",
+      "routes": [
+        "/referral"
+      ],
+      "files": [],
+      "reason": "Standard signup link sharing exists; no referral attribution, reward ledger or contact harvesting is inferred.",
+      "followUp": [
+        "PRIV-07"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "auth-session-profile",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/login",
+        "/register",
+        "/auth/action",
+        "/onboarding",
+        "/dashboard/profile"
+      ],
+      "files": [
+        "frontend/src/api/firebase/serverAuth.js"
+      ],
+      "reason": "Configured Firebase identity exchange, UID-owned profile/onboarding and revocable server session exist. Roles are preferences until verified; live provider/hosted checks remain.",
+      "followUp": [
+        "SCOPE-07",
+        "DATA-04",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/auth/csrf",
+        "POST /api/auth/logout",
+        "GET /api/auth/me",
+        "POST /api/auth/onboarding",
+        "POST /api/auth/onboarding/introduction",
+        "PATCH /api/auth/profile",
+        "POST /api/auth/session"
+      ]
+    },
+    {
+      "id": "phone-organization-sso-qualification",
+      "state": "missing",
+      "execution": "provider-configuration",
+      "routes": [
+        "/login",
+        "/register"
+      ],
+      "files": [
+        "frontend/src/components/SocialAuthButtons.jsx"
+      ],
+      "reason": "Phone/organization and social controls require an explicit enabled-provider/configuration matrix and real provider acceptance; the icons do not certify availability.",
+      "followUp": [
+        "SCOPE-07"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "school-guardian-admission",
+      "state": "missing",
+      "execution": "server-policy",
+      "routes": [
+        "/register",
+        "/onboarding"
+      ],
+      "files": [
+        "frontend/src/api/firebase/serverAuth.js"
+      ],
+      "reason": "Current server admission is adult-only. Synthetic minor UI scenarios do not authorize a real schoolchild account. Guardian verification/admission services remain required.",
+      "followUp": [
+        "DATA-04",
+        "ROLE-04",
+        "SCOPE-02"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "account-records-devices",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/dashboard/settings",
+        "/dashboard/profile"
+      ],
+      "files": [
+        "backend/upstream/backend/src/auth/firebase-product/account.controller.ts"
+      ],
+      "reason": "Owner-only overview/device/invoice API handlers exist. No connected frontend account-records client was found; the user-facing binding and hosted account/device acceptance remain open.",
+      "followUp": [
+        "PRIV-01",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/account/devices",
+        "GET /api/account/invoices",
+        "GET /api/account/overview"
+      ]
+    },
+    {
+      "id": "subscription-test-checkout",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/pricing",
+        "/dashboard/subscription"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/ConnectedBilling.jsx"
+      ],
+      "reason": "Auth-required monthly/annual Razorpay TEST checkout, verify/sync/cancel and signed webhook handlers exist. No live payment or hosted webhook acceptance is claimed.",
+      "followUp": [
+        "BILL-01",
+        "BILL-02",
+        "BILL-08"
+      ],
+      "endpoints": [
+        "GET /api/billing/account",
+        "POST /api/billing/cancel",
+        "GET /api/billing/catalog",
+        "POST /api/billing/checkouts",
+        "POST /api/billing/family/accept",
+        "POST /api/billing/family/invitations",
+        "GET /api/billing/family/invitations/:id",
+        "POST /api/billing/family/leave",
+        "POST /api/billing/family/remove",
+        "GET /api/billing/invoices/:id",
+        "POST /api/billing/jobs/reconcile",
+        "POST /api/billing/sync",
+        "POST /api/billing/verify",
+        "POST /api/billing/webhooks/razorpay"
+      ]
+    },
+    {
+      "id": "test-invoice-and-family",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/dashboard/subscription"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/BillingInvoice.jsx",
+        "frontend/src/components/dashboard/FamilyBilling.jsx"
+      ],
+      "reason": "Payer test invoices and Family billing benefits are separate from educational guardian/membership permissions.",
+      "followUp": [
+        "BILL-03",
+        "BILL-04",
+        "ROLE-04"
+      ],
+      "endpoints": [
+        "POST /api/billing/family/accept",
+        "POST /api/billing/family/invitations",
+        "GET /api/billing/family/invitations/:id",
+        "POST /api/billing/family/leave",
+        "POST /api/billing/family/remove",
+        "GET /api/billing/invoices/:id"
+      ]
+    },
+    {
+      "id": "feedback-receipt",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/dashboard/support"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/FeedbackPrompt.jsx"
+      ],
+      "reason": "A current UID-bound submission returns a validated saved receipt; raw feedback is not automatically training data or a delivered support case.",
+      "followUp": [
+        "PRIV-05"
+      ],
+      "endpoints": [
+        "POST /api/account/feedback"
+      ]
+    },
+    {
+      "id": "workspace-role-switching",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard",
+        "/dashboard/home",
+        "/dashboard/connections"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/WorkspaceSwitcher.jsx"
+      ],
+      "reason": "Role/workspace previews and browser storage events exist; verified server memberships and device convergence remain open.",
+      "followUp": [
+        "DATA-03",
+        "DATA-04",
+        "SYNC-02"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "content-catalog-source-choice",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId",
+        "/dashboard/explore"
+      ],
+      "files": [
+        "frontend/src/services/contentRepository.ts"
+      ],
+      "reason": "Source-selection/curriculum interfaces and authored fixtures exist; licensed published content/catalog delivery is not registered in the runtime.",
+      "followUp": [
+        "CONTENT-01",
+        "CONTENT-03",
+        "CONTENT-08",
+        "LEARN-01"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "learning-check-practice-progress",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId",
+        "/dashboard/practice",
+        "/dashboard/progress"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/LearningWorkspace.jsx"
+      ],
+      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; server sessions, assessment and learning projections remain required.",
+      "followUp": [
+        "LEARN-02",
+        "LEARN-09",
+        "LEARN-10",
+        "SYNC-02"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "ask-guide-model-turn",
+      "state": "missing",
+      "execution": "unconnected-adapter",
+      "routes": [
+        "/dashboard/ask",
+        "/dashboard/home"
+      ],
+      "files": [
+        "frontend/src/services/teachingInterface.ts",
+        "frontend/src/services/mentorModelService.ts"
+      ],
+      "reason": "Configured product teaching/mentor adapters are absent by default. Honest not_connected state is implemented; no live model answer is certified.",
+      "followUp": [
+        "AI-01",
+        "AI-14",
+        "AI-13"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "voice-and-visual-learning",
+      "state": "preview",
+      "execution": "browser-device-and-authored",
+      "routes": [
+        "/dashboard/ask",
+        "/dashboard/learn/:topicId"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/AudioPresence.jsx",
+        "frontend/src/components/dashboard/LearningRepresentation.jsx"
+      ],
+      "reason": "Device speech and authored visual controls exist; speech/meaning evaluation, provider loop, accessibility and real device qualification remain separate.",
+      "followUp": [
+        "AI-17",
+        "AI-18",
+        "AI-16",
+        "ACCEPT-05"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "learn-to-build-private-project",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/build"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/ArtifactStudio.jsx"
+      ],
+      "reason": "Private document/rubric/revision UI and source-bound handoff exist locally; durable server projects/runs and proposal acceptance remain open.",
+      "followUp": [
+        "BUILD-01",
+        "BUILD-04",
+        "BUILD-08"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "build-execution-public-apps",
+      "state": "intentionally-unreleased",
+      "execution": "no-execution-service",
+      "routes": [
+        "/dashboard/build"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/ArtifactStudio.jsx"
+      ],
+      "reason": "Current document editor is not arbitrary code execution, public application hosting or a creator marketplace. Containment/distribution are separately gated.",
+      "followUp": [
+        "BUILD-09",
+        "LATER-01"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "stage-change-bridge-continuity",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/home",
+        "/dashboard/personalization"
+      ],
+      "files": [
+        "frontend/src/services/stageTransitionService.ts"
+      ],
+      "reason": "Notices/diffs/bridge/postpone7d/undo14d are local; transitions must become current-authority durable commands without deleting later work.",
+      "followUp": [
+        "LEARN-14",
+        "DATA-06"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "teacher-private-growth",
+      "state": "preview",
+      "execution": "authored-and-browser-local",
+      "routes": [
+        "/dashboard/growth",
+        "/dashboard/home"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/teacher/TeacherUpskillCard.jsx"
+      ],
+      "reason": "Authored tips and private growth preparation are not evidence-driven adaptive coaching.",
+      "followUp": [
+        "ROLE-10",
+        "AI-15"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "classroom-assignment-submission",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/classes",
+        "/dashboard/class/:classId",
+        "/dashboard/learners",
+        "/dashboard/prepare",
+        "/dashboard/library"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/teacher/tabs/ClassworkTab.jsx"
+      ],
+      "reason": "Current lesson/publication/classwork/submission/review fixtures retain scoped UI guards; server membership, assignment snapshots and receipts remain open.",
+      "followUp": [
+        "ROLE-01",
+        "ROLE-02",
+        "ROLE-03"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "parent-support-and-summary",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/child",
+        "/dashboard/reports"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/ParentReport.jsx"
+      ],
+      "reason": "Parent summaries and support actions require verified guardian scope, current consent and server-owned reports; billing Family access does not grant them.",
+      "followUp": [
+        "ROLE-04",
+        "ROLE-05"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "professional-career-and-portfolio",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/career",
+        "/dashboard/build"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/ProfessionalCareer.jsx"
+      ],
+      "reason": "Personal goals/projects/portfolio reviews are local; employer shares require distinct current grants and explicit distribution.",
+      "followUp": [
+        "ROLE-07",
+        "BUILD-06"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "organization-governance",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/people",
+        "/dashboard/cohorts",
+        "/dashboard/curriculum",
+        "/dashboard/analytics",
+        "/dashboard/insights",
+        "/dashboard/audit"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/RoleWorkspace.jsx"
+      ],
+      "reason": "Organization local governance/review/aggregate guards exist; server grants, release/withdrawal and report suppression must be integrated.",
+      "followUp": [
+        "ROLE-06",
+        "ROLE-07",
+        "ROLE-08"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "privacy-memory-export",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/privacy",
+        "/dashboard/settings",
+        "/dashboard/personalization"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/WorkspaceTools.jsx"
+      ],
+      "reason": "Device-local export/memory/preferences do not constitute account-wide server export/delete/retention or lifelong model memory.",
+      "followUp": [
+        "PRIV-01",
+        "PRIV-02",
+        "PRIV-03"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "notifications-and-support-delivery",
+      "state": "preview",
+      "execution": "browser-local",
+      "routes": [
+        "/dashboard/notifications",
+        "/dashboard/support"
+      ],
+      "files": [
+        "frontend/src/components/dashboard/WorkspaceNotifications.jsx"
+      ],
+      "reason": "Local inbox/preferences and support entry exist; durable authorized delivery/case/operator and outbound channels remain open.",
+      "followUp": [
+        "PRIV-04",
+        "PRIV-05",
+        "JOB-01"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "equitable-free-paid-continuity",
+      "state": "missing",
+      "execution": "commercial-and-server-policy",
+      "routes": [
+        "/pricing",
+        "/dashboard/subscription"
+      ],
+      "files": [
+        "frontend/src/data/pricingConfig.js"
+      ],
+      "reason": "Free/paid Practice/Build/voice and seven-day-memory/broad-language copy require reconciliation with retained history, actual source coverage and funded entitlement limits. No prices change in this audit.",
+      "followUp": [
+        "SCOPE-09",
+        "BILL-04",
+        "AI-07"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "offline-and-two-device-learning",
+      "state": "missing",
+      "execution": "server-sync-required",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/build"
+      ],
+      "files": [
+        "frontend/src/services/workspaceService.ts"
+      ],
+      "reason": "Browser storage is device-local. Durable revisions, replay/refetch and reviewed offline packs must precede real cross-device learning continuity.",
+      "followUp": [
+        "SYNC-01",
+        "SYNC-02",
+        "LEARN-13"
+      ],
+      "endpoints": []
+    },
+    {
+      "id": "account-records-ui-binding",
+      "state": "missing",
+      "execution": "frontend-binding",
+      "routes": [
+        "/dashboard/profile",
+        "/dashboard/settings"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/Profile.jsx",
+        "frontend/src/pages/dashboard/Settings.jsx"
+      ],
+      "reason": "Account record endpoints exist, but a frontend account overview/device-list client was not found in the current source. Do not infer cross-device management from the server handlers alone.",
+      "followUp": [
+        "SCOPE-03",
+        "PRIV-01"
+      ],
+      "endpoints": []
+    }
+  ],
+  "gaps": [
+    {
+      "id": "domain-runtime",
+      "finding": "Only auth/account/billing/feedback controllers are registered; no product learning/project/classroom/model endpoints are connected.",
+      "followUp": [
+        "SCOPE-03",
+        "DATA-01",
+        "AI-14",
+        "BUILD-01"
+      ]
+    },
+    {
+      "id": "provider-coverage",
+      "finding": "Provider controls, three internal locale types and nine synthetic category scenarios are not hosted provider or approved curriculum coverage.",
+      "followUp": [
+        "SCOPE-02",
+        "SCOPE-07",
+        "CONTENT-01",
+        "AI-18"
+      ]
+    },
+    {
+      "id": "admission-and-relationships",
+      "finding": "Real schoolchild/guardian admission and verified teaching/organization links remain separate from selected role labels and billing Family benefits.",
+      "followUp": [
+        "DATA-04",
+        "ROLE-04",
+        "ROLE-06"
+      ]
+    },
+    {
+      "id": "lifelong-continuity",
+      "finding": "Stage transitions, learning history, goals and private teacher coaching use local/authored workflows; durable adaptation and reviewed L7 remain open.",
+      "followUp": [
+        "LEARN-14",
+        "ROLE-10",
+        "AI-15"
+      ]
+    },
+    {
+      "id": "commercial-truth",
+      "finding": "Pricing metadata needs an accepted Free/paid coverage and retained-records policy before launch claims or commercial activation.",
+      "followUp": [
+        "SCOPE-09",
+        "BILL-04",
+        "BILL-08"
+      ]
+    },
+    {
+      "id": "hosted-release",
+      "finding": "GCP project visionary-research was supplied; no configured product pipeline, available GCP CLI, hosted URLs or live acceptance evidence was found.",
+      "followUp": [
+        "PLAT-01",
+        "PLAT-02",
+        "RELEASE-01"
+      ]
+    }
+  ]
+}

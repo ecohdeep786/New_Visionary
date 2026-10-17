@@ -1453,3 +1453,10 @@ Verified before-cleanup.bundle contains complete history and all five deleted ti
 
 
 D-093 clean-worker regression: the initial worker checkout failed patch evidence hashing. Full comparison found six import problems (three missing manifest-listed files and three Go files converted to CRLF), while all original-checkout bytes matched approved hashes. Preserve exact backend/ML snapshot and evidence bytes in Git. The index now matches498 backend/ML snapshot/evidence paths exactly; source diffs ignoring line endings are empty except the three newly tracked original template/fixture files. No provenance hashes changed. Repeat clean-worker integrity/layout and planning tests after fast-forward and controlled source refresh; retain final results in branch-workflow verification evidence.
+
+
+## 2026-10-17 — D-094: Source inventory acceptance and initial main synchronization
+
+Initial merge821915d has exactly the tested44917d4 dev source tree (18 script/527 frontend tests, lint/types/build passed). Worker full check passes18 script and532 frontend tests,0 failed, lint, both types, layout/import integrity and Vite build (20.51s). Last adjustment classifies dev-only scenario controls as unreleased and guards accidental production reachability; five focused tests pass again (3323.0711ms), followed by exact generated audit verification. Source inventory is newline-stable across Windows/Linux; tests cover commented/implicit/accessible/callback controls, mapped/index/redirect/dev routes, unknown dynamic routes, selected controller isolation, fake endpoint denial and role coverage.
+
+No auth session, production student record, payment, source right, domain API or model route is changed. Source-only audit does not certify device/locale/curriculum/provider quality or hosted runtime execution. GCP console returns Google sign-in; no CLI is available, so hosted services/deployment remain unverified. Worker evidence is artifacts/qa/kan-28/, including check.log and final source/link/integration receipts. Preserve original living-log bytes when appending; do not rewrite D-090/D-091 planning snapshots as completion evidence.

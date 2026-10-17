@@ -1334,3 +1334,10 @@ Founder requests main/production, dev/integration, removal of old branches and s
 
 
 D-093 clean-worker addendum: repair Git normalization and three omitted manifest fixtures/templates found during fresh-checkout checks. All backend/ML source bytes still match the existing approved manifest/patch ledger; original histories are retained. Sync the correction to the clean worker branches before handing them off. No new task implementation is claimed.
+
+
+## 2026-10-17 — D-094: First Jira implementation, KAN-28 / SCOPE-01
+
+Initial reviewed dev baseline is merged/published to main821915d. Work proceeds on codex/codex-tasks from44917d4. Deliver PRODUCT_SURFACE_AUDIT.md, the complete declaration/source inventory and explicit operation/file review registry, with a root check gate and focused regression coverage. Current inventory:68 routes,1637 controls/219 files,26 registered endpoints;5 roles,9 synthetic category scenarios and separate typed/advertised language dimensions. Connected source code is not hosted acceptance.
+
+Full worker check passes532 frontend tests,18 script tests, lint, both types, layout/import checks, audit drift check and production build. Final development-only classification refinement then passes all5 focused tests and audit verification. Jira KAN-28 moves from To Do to In Progress and Testing while integration/release receipts are collected. Broader backend/ML and actual cloud acceptance remain separate open tasks. GCP project is visionary-research; console needs user sign-in and CLI is absent.
