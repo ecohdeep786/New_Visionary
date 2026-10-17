@@ -16,6 +16,8 @@ Visionary is a live-user product. Local implementation checks are one part of re
 
 These are initial worker lanes, not task assignments or evidence that three tasks are ready. Use one active Jira task per lane. If more branches are needed, create a short-lived `codex/kan-<number>-<purpose>` branch from the current committed `dev`; record its worker and checkout in the issue. Do not share a checkout between active workers. Git worktrees share history but have independent files and indexes; uncommitted files in the primary checkout are not copied into worker checkouts. Ignored credentials and installed dependencies are not copied either.
 
+After checkout, run `node scripts/verify-layout.mjs` and `node scripts/verify-imports.mjs` from the product directory. Byte-hashed import snapshots and patch evidence must retain their exact reviewed bytes across Windows/Linux checkouts; product `.gitattributes` disables normalization for those paths. The manifest-listed environment examples are placeholder templates, not live configuration. A check failure is investigated before accepting the baseline; never replace provenance hashes merely to make it pass.
+
 ```text
 codex/codex-tasks   ─┐
 codex/deepseek-tasks ├─ review + checks → dev → release acceptance → main

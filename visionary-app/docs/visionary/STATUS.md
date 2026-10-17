@@ -1331,3 +1331,6 @@ Checked main-auth.ts, FirebaseProductModule and current ML integration notes. DE
 ## 2026-10-17 — D-093: Parallel-agent branch setup
 
 Founder requests main/production, dev/integration, removal of old branches and separate agent work reviewed into dev. Five obsolete remote branches deleted atomically after complete-bundle verification, with exact tips retained. Publish the completed planning/calendar baseline and branch workflow, then create separate Codex/DeepSeek/founder worker branches and checkouts. Original dev checkout and unrelated frontend edits remain in place; no product feature or Jira task is marked complete. See docs/architecture/BRANCH_WORKFLOW.md for task ownership, integration, release and recovery. Final operational readback is retained in the branch-workflow QA evidence.
+
+
+D-093 clean-worker addendum: repair Git normalization and three omitted manifest fixtures/templates found during fresh-checkout checks. All backend/ML source bytes still match the existing approved manifest/patch ledger; original histories are retained. Sync the correction to the clean worker branches before handing them off. No new task implementation is claimed.

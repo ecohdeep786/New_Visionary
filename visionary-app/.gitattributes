@@ -1,2 +1,5 @@
-# Patch evidence is byte-hashed; preserve its reviewed LF bytes on Windows.
-integration/upstream-patches/*.patch text eol=lf
+# Import snapshots and reviewed patch evidence are byte-hashed. Some evidence
+# contains mixed line endings from the original sources; never normalize it.
+integration/upstream-patches/*.patch -text
+backend/upstream/** -text
+ml/upstream/** -text
