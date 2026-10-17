@@ -1350,3 +1350,10 @@ D-094 final source acceptance: KAN-28 is Done in Jira. Corrected original-dev ve
 
 
 D-094 cloud follow-up: founder completes Google sign-in. Read-only project visionary-research console listings show no Cloud Run services and no Cloud Build triggers configured, with no filter applied. This supersedes the earlier sign-in blocker. Local GCP CLI/product pipeline remain absent; no cloud resource, API enablement, IAM grant, secret, repository connection or deployment is created. Other hosting products are not inspected. Update the audit/receipt and hand off platform work; no hosted product acceptance is claimed.
+
+
+## D-095 — Documentation organization and review handoff · 2026-10-17
+
+Implemented on codex/codex-tasks: docs entry/architecture/product/design/review/tracking indexes; nineteen canonical review/design documents relocated with verified bytes before relative-link edits; old-path compatibility pointers; mandatory separate-review workflow and reusable handoff template in docs/architecture/delivery/. Root and chained agent instructions link the workflow. Current execution/Jira pointers record KAN-28 Testing and preserve D-094 history; dated full-board/calendar snapshots and other tickets are unchanged.
+
+Verification: eighteen planning/feature/VATS/lifelong/backlog/calendar regressions pass; layout and all3,842 imported-file hashes plus three approved patches pass; current source audit passes unchanged. Nineteen move checkpoints and204 local document links pass with zero missing targets. Documentation changes only; frontend/backend/ML runtime tests and hosted journeys are not rerun or newly certified. Current candidate review is pending, with no reviewer invented. Review handoff: docs/architecture/delivery/D095_DOCUMENTATION_REVIEW.md. Integration/main promotion and next worker task wait for acceptance.

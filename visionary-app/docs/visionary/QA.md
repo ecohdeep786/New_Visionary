@@ -1469,3 +1469,10 @@ D-094 corrected release verification: inspect completed original-dev check exit0
 
 
 D-094 cloud follow-up: founder completes Google sign-in. Read-only project visionary-research console listings show no Cloud Run services and no Cloud Build triggers configured, with no filter applied. This supersedes the earlier sign-in blocker. Local GCP CLI/product pipeline remain absent; no cloud resource, API enablement, IAM grant, secret, repository connection or deployment is created. Other hosting products are not inspected. Update the audit/receipt and hand off platform work; no hosted product acceptance is claimed.
+
+
+## D-095 — Documentation moves and delivery policy verification · 2026-10-17
+
+Nineteen literal in-workspace moves verified SHA-256 equality before editing only relative Markdown links. Ledger distinguishes raw Windows checkpoint bytes, prior Git blob and LF content hashes; the first attempted Git-blob/raw-checkout comparison exposed the expected CRLF difference, corrected by explicit dual representation rather than changing source content. All204 checked local links resolve, including moved documents and new indexes/handoffs. git diff --check passes. node scripts/verify-layout.mjs and verify-imports.mjs pass; npm run scope:audit passes unchanged68 routes/1,637 control declarations/26 selected endpoints. Eighteen tests pass across feature-delivery, vats-delivery, education-launch, delivery-schedule, launch-backlog and lifelong-delivery.
+
+Evidence retained under ignored artifacts/qa/docs-organization-2026-10-17/. All original STATUS/DECISIONS/QA bytes remain prefixes. Operative master contracts, source generators, imported/frontend/backend/ML runtime files, historical full-board/calendar manifests and protected public docs are not changed. Jira transition41 returns actual Testing for KAN-28; comment10004 records missing independent approval. No separate reviewer has approved this candidate; pending review is explicit rather than inferred from these checks. No dev/main merge or hosted deployment performed for this change.

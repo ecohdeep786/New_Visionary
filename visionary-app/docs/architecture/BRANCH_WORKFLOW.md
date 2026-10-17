@@ -33,11 +33,24 @@ codex/founder-tasks ─┘
 
 ## Review and integration
 
+D-095, 17 October 2026: the founder requires review and verification before any agent task is marked Done or the worker starts its next implementation task. Use the [review handoff template](delivery/TASK_REVIEW_TEMPLATE.md) and record the actual candidate commit, evidence and reviewer decision in Jira and [current execution receipts](tracking/task-executions.json). The implementer cannot approve their own implementation. A different agent or the founder must perform and record the review; do not manufacture approval or assign a reviewer without acceptance. Product/human acceptance gates still require their specified reviewer.
+
+| Jira state | Entry/exit rule |
+| --- | --- |
+| To Do | Prerequisites, ownership and acceptance are checked before starting. |
+| In Progress | Worker implements and checks one owned scope. Failed review returns here. |
+| Testing | Candidate is committed and ready for separate review, relevant verification and integration checks. Pending review stays here even if local tests pass. |
+| Done | Reviewer approves the exact candidate; relevant verification and accepted `dev` integration are recorded. Hosted evidence is required when the task's acceptance demands it. |
+
+New code requires renewed approval/checks for the new candidate. Relevant `dev` changes, shared-contract changes or conflict resolutions require renewed integration review. The reviewer may also verify tests; author-run tests alone do not establish reviewer acceptance. An unresolved finding blocks Done.
+
 The worker pushes committed changes to its own branch and supplies the Jira key, base/head commits, changed contracts/migrations, relevant test results, remaining gaps and environment evidence. Commit messages include the Jira key. Never commit credentials, production data or local environment files.
 
 The integrator compares the branch against current `dev`, reviews changes, resolves overlapping contracts and runs the checks relevant to the affected components and integrated journey. Use a clean integration worktree or a clean primary checkout; do not merge into the primary checkout while its unrelated edits are unfinished. Merge accepted work into `dev` with a recorded task boundary, then push normally. Do not cherry-pick and merge the same task twice. A branch conflict is resolved and retested before integration.
 
 After integration, the worker fetches and fast-forwards its clean branch to the accepted `origin/dev` before its next task. With ordinary merge commits, the reviewed worker head remains an ancestor of `dev`. If this fast-forward is impossible, inspect the history before proceeding. A separate per-ticket branch can instead be deleted after its integration is verified.
+
+The integrator records the review decision, exact verified revision/environment, test evidence, integration commit and remaining linked gates, then transitions Jira to Done. Only then may that worker take its next implementation task. Check every prerequisite of dependent work; one accepted blocker does not clear all others. Independently owned tasks with accepted prerequisites may continue in parallel. This rule uses the existing Testing status; it does not install a Jira server transition validator, repository protection or CI enforcement. Calendar dates never move tasks automatically.
 
 Mark implementation/review progress accurately in Jira. Mark the task Done only for its stated acceptance scope. A foundation enabler can complete with its defined evidence; a user-facing launch feature also needs its required hosted end-to-end evidence. Local tests, an opened pull request, a branch merge or a calendar date alone do not establish production readiness. Contract completion and actual model/educational acceptance remain distinct.
 

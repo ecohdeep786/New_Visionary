@@ -25,6 +25,8 @@ Follow `docs/architecture/BRANCH_WORKFLOW.md` for agent delivery. `dev` owns int
 
 Before selecting the next task, check live Jira and `docs/architecture/tracking/task-executions.json` when present. Dated requirement/calendar manifests retain their checkpoint scope and are not a substitute for current accepted execution receipts. Enabler completion never closes linked hosted, provider, content, privacy or feature acceptance gates.
 
+D-095: start documentation at `docs/README.md`; new internal design handoffs belong in `docs/visionary/design/` and architecture reviews in `docs/architecture/reviews/`. Use `docs/architecture/delivery/TASK_REVIEW_TEMPLATE.md`. An implementer cannot approve their own work: a separate reviewer must record the exact reviewed commit and decision, with relevant verification/integration evidence. Keep pending review in Jira Testing; unresolved review findings return to In Progress. Only verified, accepted scope moves to Done. Each worker waits for acceptance before its next implementation task; dependent tasks also wait for all prerequisites. Never invent reviewer approval or treat this policy as installed server-side Jira/GitHub enforcement.
+
 Root `npm run dev`, `build`, `lint`, `typecheck` and `npm test` delegate to the frontend package. `npm run check` performs layout/import and frontend checks sequentially. Run relevant backend/ML/REA checks for changes to those components.
 
 Keep component locks and environments independent. Credentials stay in ignored configuration. Preserve upstream provenance and record intentional upstream patches. Align domain names and contracts with the frontend task map while retaining server authority and ML boundaries. Preserve unrelated work.

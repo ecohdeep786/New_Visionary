@@ -701,3 +701,10 @@ D-094 acceptance: native Jira KAN-28 is Done for the reviewed source-audit enabl
 
 
 D-094 cloud follow-up: founder completes Google sign-in. Read-only project visionary-research console listings show no Cloud Run services and no Cloud Build triggers configured, with no filter applied. This supersedes the earlier sign-in blocker. Local GCP CLI/product pipeline remain absent; no cloud resource, API enablement, IAM grant, secret, repository connection or deployment is created. Other hosting products are not inspected. Update the audit/receipt and hand off platform work; no hosted product acceptance is claimed.
+
+
+## D-095 — Documentation navigation and mandatory task review · 2026-10-17
+
+Founder requests understandable docs and review/verification before any agent task is Done or the next task begins. Group six architecture reviews under docs/architecture/reviews/ and thirteen internal design documents under docs/visionary/design/. Retain short old-path pointers for dated logs, generators and Jira references. Preserve operative contracts, generated paths, protected public-team documents and original three-log prefixes. docs/README.md is the entry; task-executions plus live Jira distinguish current execution from dated plans.
+
+Require a reviewer separate from the implementer, an exact reviewed candidate, relevant verification and accepted dev integration before Done. Each worker waits for acceptance before their next implementation task; independent owned work may proceed with accepted prerequisites. Use existing Jira Testing while pending, In Progress for requested changes. No Jira/GitHub server enforcement is installed. KAN-28 returns to Testing (transition41, comment10004) because its prior closure recorded local checks but no independent reviewer. Preserve D-094 closure/commit/test history; no rollback, deployment or new capability is inferred. This documentation candidate stays on the worker branch pending review; no next dependent implementation starts.

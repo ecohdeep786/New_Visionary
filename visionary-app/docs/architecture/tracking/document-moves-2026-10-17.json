@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "decision": "D-095",
+  "date": "2026-10-17",
+  "scope": "19 internal review/design documents; operative contracts, logs, generated outputs and protected public-team docs stay in place.",
+  "compatibility": "Old paths contain pointers; historical consumers and generators retain stable paths.",
+  "moves": [
+    {
+      "from": "docs/architecture/BACKEND_ML_JIRA_REVIEW.md",
+      "to": "docs/architecture/reviews/BACKEND_ML_JIRA_REVIEW.md",
+      "sourceSha256": "5da10522f6299e621c52ca2710941734b0d3f4a2b583dee3d3f993ceded42cc3",
+      "movedBytesVerified": true,
+      "canonicalSha256": "61b328cbc7aa7328fed3a6be53162f7d8c0ccc5021233fe7d9bde33ea0296f96",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "267b0b53aef5ee0d7900972115b4291425f63a5870b022cd3f81bcaf30d114a0",
+      "sourceLfSha256": "267b0b53aef5ee0d7900972115b4291425f63a5870b022cd3f81bcaf30d114a0",
+      "canonicalLfSha256": "f3458db90d9afb30aa85b5eb9ca5cdf426f73553aa01583bc64691b54feb54f4"
+    },
+    {
+      "from": "docs/architecture/FINAL_ARCHITECTURE_RECOMMENDATION.md",
+      "to": "docs/architecture/reviews/FINAL_ARCHITECTURE_RECOMMENDATION.md",
+      "sourceSha256": "c3bcee0896e0981517fd7d965eda4a65f67811c5f1900ac333c7944477185c6c",
+      "movedBytesVerified": true,
+      "canonicalSha256": "c7afc87e013aadaff7cb2f4ca1ac1170726510f1c95a088aeab919110ed02c96",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "46d1fdc33f978bdfa5918669ac20b7ca70ce9fd38abff08fa5c717d06a747550",
+      "sourceLfSha256": "46d1fdc33f978bdfa5918669ac20b7ca70ce9fd38abff08fa5c717d06a747550",
+      "canonicalLfSha256": "f5428ed2c57ffb7592cdb4c231e25125fd855fcd08783da9e48459e6f8d5a5d9"
+    },
+    {
+      "from": "docs/architecture/FOUNDER_SPEC_RECONCILIATION.md",
+      "to": "docs/architecture/reviews/FOUNDER_SPEC_RECONCILIATION.md",
+      "sourceSha256": "2650c24e859f0ad53883e47f8d6f1a65130bbadd1b44b0ccb6af84eefbb133e7",
+      "movedBytesVerified": true,
+      "canonicalSha256": "39c06285d00b3fb81ef7a1a5d1f1de8afd782604aef16d7d1300dbdb21f7ceec",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "80596c5f413162006baa9060f5bbdce97307da6e8a59c86c9412a363cd43176c",
+      "sourceLfSha256": "80596c5f413162006baa9060f5bbdce97307da6e8a59c86c9412a363cd43176c",
+      "canonicalLfSha256": "98e359e91017df1676d31055f1ec61e2e435b7c527fad86681ab1163520a5ac9"
+    },
+    {
+      "from": "docs/architecture/VISION_ALIGNMENT_REVIEW.md",
+      "to": "docs/architecture/reviews/VISION_ALIGNMENT_REVIEW.md",
+      "sourceSha256": "fbc8b71cb15b456109e8b7e7944423530d993496a5d2fa4a7e442e50c73c7642",
+      "movedBytesVerified": true,
+      "canonicalSha256": "5a6db5a4f457e005b5f93c956501b37d08b8fa1488aa1dad3a6034c4df985d21",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "99558ae2e18f9dce120ea6618079c01749c6313c23bd30b632f1e016e0536ffa",
+      "sourceLfSha256": "99558ae2e18f9dce120ea6618079c01749c6313c23bd30b632f1e016e0536ffa",
+      "canonicalLfSha256": "844a0c40e2c7faf71bc2cd244b0af272d7128e550585af4c18b0b86ac294e937"
+    },
+    {
+      "from": "docs/architecture/VISUAL_REVIEW.md",
+      "to": "docs/architecture/reviews/VISUAL_REVIEW.md",
+      "sourceSha256": "38c035f1b10e2d6329a6a69784d7b629d51017f571bafb4b7043984375a75c07",
+      "movedBytesVerified": true,
+      "canonicalSha256": "46fd0dbde1cf18fb13cf44d50eefb673441e5bff88bf56d2e82be3b8df51c684",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "bfccfa9971f2fbf3112708e33c2bc87bbbb3d36d87bdd6daf90c38424b1f6bd5",
+      "sourceLfSha256": "bfccfa9971f2fbf3112708e33c2bc87bbbb3d36d87bdd6daf90c38424b1f6bd5",
+      "canonicalLfSha256": "c40099f42245a2c430489c96789280168142862e88b72e8964eec7a0e53074dc"
+    },
+    {
+      "from": "docs/architecture/RESTRUCTURE_VERIFICATION.md",
+      "to": "docs/architecture/reviews/RESTRUCTURE_VERIFICATION.md",
+      "sourceSha256": "3def5b57b6d382d2f73c8f9a2f5c29fe60a81717c8f860f0407b47a3e16fdacb",
+      "movedBytesVerified": true,
+      "canonicalSha256": "3def5b57b6d382d2f73c8f9a2f5c29fe60a81717c8f860f0407b47a3e16fdacb",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "f70917b0d0a176f123d61a7133262948844a87b3450b462490bf749e29963070",
+      "sourceLfSha256": "f70917b0d0a176f123d61a7133262948844a87b3450b462490bf749e29963070",
+      "canonicalLfSha256": "f70917b0d0a176f123d61a7133262948844a87b3450b462490bf749e29963070"
+    },
+    {
+      "from": "docs/visionary/CATALOGUE_FRONTEND_HANDOFF.md",
+      "to": "docs/visionary/design/CATALOGUE_FRONTEND_HANDOFF.md",
+      "sourceSha256": "9d138538dee61cf80a71ec1178fc0ec04ff17f7ccc13a8216d6b28440413857b",
+      "movedBytesVerified": true,
+      "canonicalSha256": "2883a1925961fd1c0d8ed71c01a1b33ab7c268917b574f3826d267284ee7dc4e",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "07e9bae2da55c6b421ee4523e612e5eaadd94e7378e64e94d75eb34c3c216103",
+      "sourceLfSha256": "07e9bae2da55c6b421ee4523e612e5eaadd94e7378e64e94d75eb34c3c216103",
+      "canonicalLfSha256": "39ebc4a1012a0fdcdda959fba8e03aa80fd14f838935eaa9fd785d21b0067e53"
+    },
+    {
+      "from": "docs/visionary/DEEP_WORKSPACE_DESIGN_HANDOFF.md",
+      "to": "docs/visionary/design/DEEP_WORKSPACE_DESIGN_HANDOFF.md",
+      "sourceSha256": "66cd38bc6362e0754398c158f0ad06b222a97247f0580a9f7fd7734086eebfc5",
+      "movedBytesVerified": true,
+      "canonicalSha256": "9036561ec7e2a922e8a36dbf9d2ad7710b7918a02eeab0c21ccd76a49df6fe3e",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "e61526f234834f68527ed3054127abbd84a9166d7ea716348c144af3e4311915",
+      "sourceLfSha256": "e61526f234834f68527ed3054127abbd84a9166d7ea716348c144af3e4311915",
+      "canonicalLfSha256": "476b3f804030cd79c099a47c671503865e80a16f08c7853bad412c68ab31987b"
+    },
+    {
+      "from": "docs/visionary/DESIGN_HOME_HANDOFF.md",
+      "to": "docs/visionary/design/DESIGN_HOME_HANDOFF.md",
+      "sourceSha256": "d081cda3f7c5d7c5ccd32ffe7d32561196d0f1d03a2612f7cee60e9bcd1a123d",
+      "movedBytesVerified": true,
+      "canonicalSha256": "d081cda3f7c5d7c5ccd32ffe7d32561196d0f1d03a2612f7cee60e9bcd1a123d",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "da8263dbc00682920fa1d76112f61457f75d4f8915f3b1a226fa63f113f63edf",
+      "sourceLfSha256": "da8263dbc00682920fa1d76112f61457f75d4f8915f3b1a226fa63f113f63edf",
+      "canonicalLfSha256": "da8263dbc00682920fa1d76112f61457f75d4f8915f3b1a226fa63f113f63edf"
+    },
+    {
+      "from": "docs/visionary/DESIGN_INVENTORY.md",
+      "to": "docs/visionary/design/DESIGN_INVENTORY.md",
+      "sourceSha256": "53d956371b5bac4c8eddfc39348caeaba89fab0bb1a1f34b05c236d8bc0d97b4",
+      "movedBytesVerified": true,
+      "canonicalSha256": "53d956371b5bac4c8eddfc39348caeaba89fab0bb1a1f34b05c236d8bc0d97b4",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "0f91ac402eb876bd7678d3eb8f6886499c084c9a18dfb95f1ab924d04e705508",
+      "sourceLfSha256": "0f91ac402eb876bd7678d3eb8f6886499c084c9a18dfb95f1ab924d04e705508",
+      "canonicalLfSha256": "0f91ac402eb876bd7678d3eb8f6886499c084c9a18dfb95f1ab924d04e705508"
+    },
+    {
+      "from": "docs/visionary/DESIGN_QUALITY_HANDOFF.md",
+      "to": "docs/visionary/design/DESIGN_QUALITY_HANDOFF.md",
+      "sourceSha256": "9a728152d7b45c262cceff1d97fb27ff8c67980ebd2c18463886d37fd0dcc8db",
+      "movedBytesVerified": true,
+      "canonicalSha256": "2dbfee3d7ad1c4bda7b428bc6fc8b24ca9c683f1ea7998c80a6d2ce5a2c4d96e",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "3657bd6d9c7493158eec34b2859b4d767ef96080a669f77378e5cae61a33e753",
+      "sourceLfSha256": "3657bd6d9c7493158eec34b2859b4d767ef96080a669f77378e5cae61a33e753",
+      "canonicalLfSha256": "046bddfb8369c23aba1f0cc3db6252ec4ac431a28a8c3619a7a28ac7a2e81339"
+    },
+    {
+      "from": "docs/visionary/ENGAGEMENT_DESIGN_PLAN.md",
+      "to": "docs/visionary/design/ENGAGEMENT_DESIGN_PLAN.md",
+      "sourceSha256": "03b82c08c83c3b606a33d4f82cbb23f9b7f2bb37424a4f795656a8693cb505f7",
+      "movedBytesVerified": true,
+      "canonicalSha256": "03b82c08c83c3b606a33d4f82cbb23f9b7f2bb37424a4f795656a8693cb505f7",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "9460cfd6f665cb157503e0cad94521f4b6b884c70698c08992a7cd686688d169",
+      "sourceLfSha256": "9460cfd6f665cb157503e0cad94521f4b6b884c70698c08992a7cd686688d169",
+      "canonicalLfSha256": "9460cfd6f665cb157503e0cad94521f4b6b884c70698c08992a7cd686688d169"
+    },
+    {
+      "from": "docs/visionary/ENGAGEMENT_IMPLEMENTATION_HANDOFF.md",
+      "to": "docs/visionary/design/ENGAGEMENT_IMPLEMENTATION_HANDOFF.md",
+      "sourceSha256": "0ff5696e8cb741a9ea7cb36eb112c3e3886d93018e58c6c04849c87686adb83c",
+      "movedBytesVerified": true,
+      "canonicalSha256": "0b96998ae88e48b0b5c4f832e85838604da996c5c8b285d38ec4fc5d23e13335",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "c2ce44a402be64a64c6b8534aa2c55ad7b8cb57f5333654531a85b2bafff8080",
+      "sourceLfSha256": "c2ce44a402be64a64c6b8534aa2c55ad7b8cb57f5333654531a85b2bafff8080",
+      "canonicalLfSha256": "70a9d8508191a5fd392358b862e76452bc7894e4cfcbd78268075310d9190612"
+    },
+    {
+      "from": "docs/visionary/FRONTEND_DESIGN_HANDOFF.md",
+      "to": "docs/visionary/design/FRONTEND_DESIGN_HANDOFF.md",
+      "sourceSha256": "f94dcce3f9e3f6f55ae89e452cbcdaca2ecdb47f419a6751d000f3559d4bce19",
+      "movedBytesVerified": true,
+      "canonicalSha256": "b45816a810f34808823860c6deadf9d41a64990b82f4893dec9cbe95b612c333",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "35a54f70428635b3cecc25c4cb19395ebc5efc91ffff18bd0180a43b0503636c",
+      "sourceLfSha256": "35a54f70428635b3cecc25c4cb19395ebc5efc91ffff18bd0180a43b0503636c",
+      "canonicalLfSha256": "d6da49cc773168d47ddca9b276b94d87dbae9bf98bca84204ae0d951af85a56c"
+    },
+    {
+      "from": "docs/visionary/INTERNAL_DESIGN_HANDOFF.md",
+      "to": "docs/visionary/design/INTERNAL_DESIGN_HANDOFF.md",
+      "sourceSha256": "d2b5f373436feeecf6b7d3fad70d464ffc2690cba019c6a19a6b1ba9779da928",
+      "movedBytesVerified": true,
+      "canonicalSha256": "d2b5f373436feeecf6b7d3fad70d464ffc2690cba019c6a19a6b1ba9779da928",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "a7005def0877797b71b42aa3134ac6cf6543483915b6da3280057480ca0898b2",
+      "sourceLfSha256": "a7005def0877797b71b42aa3134ac6cf6543483915b6da3280057480ca0898b2",
+      "canonicalLfSha256": "a7005def0877797b71b42aa3134ac6cf6543483915b6da3280057480ca0898b2"
+    },
+    {
+      "from": "docs/visionary/PREMIUM_DESIGN_HANDOFF.md",
+      "to": "docs/visionary/design/PREMIUM_DESIGN_HANDOFF.md",
+      "sourceSha256": "b9fa06a6c423796e7921b115f2ee487f2162844f23f8f47dbf2efb60505f10d2",
+      "movedBytesVerified": true,
+      "canonicalSha256": "9a0ab7704e0b2453c997104d1579c363982881cc75862ddcc6f3bfe4783b907f",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "cd6a55f41bff14b4c204ec5bde0447a1d083acdc83eabfd55515357c5c07b8a1",
+      "sourceLfSha256": "cd6a55f41bff14b4c204ec5bde0447a1d083acdc83eabfd55515357c5c07b8a1",
+      "canonicalLfSha256": "db226c000ba10223e94e80fb0116b69cb5eaeac71cbdd30b4a39e22b0d607256"
+    },
+    {
+      "from": "docs/visionary/PREMIUM_WORKSPACE_HANDOFF.md",
+      "to": "docs/visionary/design/PREMIUM_WORKSPACE_HANDOFF.md",
+      "sourceSha256": "831e9aff2026386e2e2390676a6192202a7149ca50b1dcb5fc07bab505778ddf",
+      "movedBytesVerified": true,
+      "canonicalSha256": "831e9aff2026386e2e2390676a6192202a7149ca50b1dcb5fc07bab505778ddf",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "8391fcbd5222be39688dec1df8db62210d4a7cb4df984d9522aea91b7dd8fb0d",
+      "sourceLfSha256": "8391fcbd5222be39688dec1df8db62210d4a7cb4df984d9522aea91b7dd8fb0d",
+      "canonicalLfSha256": "8391fcbd5222be39688dec1df8db62210d4a7cb4df984d9522aea91b7dd8fb0d"
+    },
+    {
+      "from": "docs/visionary/REFERENCE_DESIGN_HANDOFF.md",
+      "to": "docs/visionary/design/REFERENCE_DESIGN_HANDOFF.md",
+      "sourceSha256": "8d7b555d5c13280348d87898221081d320c524ac49d4e69782ee318a62c584e6",
+      "movedBytesVerified": true,
+      "canonicalSha256": "a034dc96faedf654b6f7b718272ce54b211ac4781ca206e8a804311492950ffc",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "d34aba1038f9cd8df091f3d0d5952a7628226ed04a6abd2f69f3e6f4af84b4b6",
+      "sourceLfSha256": "d34aba1038f9cd8df091f3d0d5952a7628226ed04a6abd2f69f3e6f4af84b4b6",
+      "canonicalLfSha256": "135220b539b5d54552da0b943f51ddbcfaa4c10975bca2b00c9f7aad7a1c4ca1"
+    },
+    {
+      "from": "docs/visionary/UX_HOME_FLOW.md",
+      "to": "docs/visionary/design/UX_HOME_FLOW.md",
+      "sourceSha256": "4c24e2eb1691b3a2cd972faddaa1f71995078765f814432cc539f1bf512c3b80",
+      "movedBytesVerified": true,
+      "canonicalSha256": "4c24e2eb1691b3a2cd972faddaa1f71995078765f814432cc539f1bf512c3b80",
+      "changeAfterMove": "Relative Markdown links adjusted for the new directory when necessary; content otherwise retained.",
+      "originalGitBlobSha256": "b621c23b4bf4b67332646d13fde76f09a6fe9f55a7523737591f7e3c07dd17b8",
+      "sourceLfSha256": "b621c23b4bf4b67332646d13fde76f09a6fe9f55a7523737591f7e3c07dd17b8",
+      "canonicalLfSha256": "b621c23b4bf4b67332646d13fde76f09a6fe9f55a7523737591f7e3c07dd17b8"
+    }
+  ],
+  "hashMeaning": "sourceSha256/canonicalSha256 record local checkpoint bytes (Windows CRLF where present); originalGitBlobSha256 records the prior Git blob; LF hashes support cross-checkout content comparison. Byte equality was verified at each move before relative-link edits."
+}
