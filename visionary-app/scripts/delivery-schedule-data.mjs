@@ -1,0 +1,86 @@
+// D-091 estimates for remaining scoped work, not recorded hours or proven velocity.
+const rows={
+ SCOPE:[[10,4,20,12,2,10,8,6,2],[2,6,3,3,6,2,3,1,8]],
+ DATA:[[18,12,12,18,18,18,10,12,24],[2,2,2,3,3,2,2,2,6]],
+ PLAT:[[12,8,8,10,8,10,10,8],[3,2,2,2,2,2,2,3]],
+ JOB:[[18,16,12],[2,2,2]],SYNC:[[20,24],[2,3]],CACHE:[[8],[2]],FILE:[[18,10,14,10],[2,2,3,2]],
+ CONTENT:[[12,18,14,12,16,16,8,24],[4,2,4,2,2,6,4,8]],
+ LEARN:[[16,18,16,12,16,14,12,18,20,24,16,20,24,30],[1,2,2,2,2,1,2,3,3,4,2,3,4,4]],
+ BUILD:[[18,16,14,24,12,20,10,16,24],[2,2,2,2,2,3,2,3,4]],
+ AI:[[16,2,16,14,10,24,20,18,20,18,6,10,24,30,24,24,36,24],[6,8,2,2,1,4,2,2,3,3,2,6,8,4,4,4,6,10]],
+ ROLE:[[18,18,20,24,14,24,18,20,4,24],[3,3,3,6,3,4,4,4,8,6]],
+ BILL:[[8,10,18,14,18,2,10,12],[3,3,2,3,4,12,4,3]],
+ PRIV:[[2,20,12,18,16,16,2],[12,4,3,4,4,4,12]],SAFE:[[20],[8]],
+ ACCEPT:[[14,18,16,18,18,10,12,24],[4,6,4,4,8,2,4,16]],
+ RELEASE:[[10,24,12,16,20,14,10,10],[3,4,6,6,4,6,8,6]],
+ LATER:[[3,3,3,4,3,4],[2,2,2,4,2,4]],
+};
+export const effortEstimates=Object.fromEntries(Object.entries(rows).flatMap(([p,[a,h]])=>a.map((agentHours,i)=>[p+'-'+String(i+1).padStart(2,'0'),{agentHours,founderHours:h[i],basis:p==='LATER'?'Conditional scoping/review window only; implementation is not estimated.':'Remaining scoped implementation/qualification, reusing existing UI/policies; includes task tests, followed by founder acceptance.'}])));
+export const scheduleAssumptions={
+ startDate:'2026-10-17',timezone:'UTC',team:'One founder + one coding agent (user confirmed)',
+ agentHoursPerWorkday:8,founderHoursPerWorkday:4,workingWeekdays:[1,2,3,4,5,6],maxActiveTasks:2,
+ contingency:0.20,holidays:[],
+ assumption:'Capacity and effort are planning assumptions, not observed productivity. Start today; Sundays excluded. No Indian/public/personal holidays have been supplied. Reforecast after five completed tasks or any external delay; do not bypass acceptance to preserve dates.',
+ dateMeaning:'Native Jira dates are forecast acceptance targets; Later dates are conditional review windows only. No clock appointments, worklogs, assignees or automatic execution are created.',
+};
+// Additional declared sequencing for planning only; native Blocks remain unchanged.
+export const planningDependencies=[
+ ['SCOPE-01','SCOPE-02'],['SCOPE-01','SCOPE-03'],['SCOPE-03','SCOPE-04'],['SCOPE-04','DATA-01'],
+ ['SCOPE-05','PRIV-01'],['SCOPE-05','AI-02'],['SCOPE-03','SCOPE-08'],['SCOPE-04','SCOPE-06'],
+ ['DATA-01','DATA-02'],['DATA-02','DATA-03'],['DATA-03','DATA-04'],['DATA-04','DATA-05'],['DATA-02','DATA-06'],['DATA-03','DATA-07'],['DATA-05','DATA-08'],['PRIV-01','DATA-09'],['DATA-05','DATA-09'],['ROLE-04','DATA-09'],
+ ['SCOPE-03','PLAT-01'],['PLAT-01','PLAT-02'],['PLAT-01','PLAT-03'],['PLAT-03','PLAT-04'],['PLAT-04','PLAT-05'],['PLAT-02','PLAT-06'],['PLAT-03','PLAT-07'],['PLAT-03','PLAT-08'],
+ ['DATA-06','JOB-01'],['PLAT-03','JOB-01'],['JOB-01','JOB-02'],['JOB-02','JOB-03'],
+ ['DATA-05','FILE-01'],['JOB-02','FILE-01'],['FILE-01','FILE-02'],['FILE-02','FILE-03'],['FILE-03','FILE-04'],
+ ['SCOPE-02','CONTENT-01'],['FILE-01','CONTENT-02'],['CONTENT-01','CONTENT-02'],['CONTENT-02','CONTENT-03'],['CONTENT-03','CONTENT-04'],['CONTENT-03','CONTENT-05'],['CONTENT-05','CONTENT-06'],['CONTENT-03','CONTENT-07'],
+ ['DATA-06','LEARN-01'],['LEARN-01','LEARN-02'],['LEARN-02','LEARN-08'],['DATA-06','BUILD-01'],['BUILD-01','BUILD-02'],['BUILD-01','BUILD-07'],['LEARN-01','LEARN-04'],
+ ['DATA-05','AI-04'],['AI-02','AI-01'],['CONTENT-06','AI-01'],['AI-01','AI-06'],['CONTENT-05','AI-06'],['PLAT-03','AI-03'],['DATA-06','AI-07'],['JOB-02','AI-08'],['AI-02','AI-12'],['AI-08','AI-09'],['AI-16','AI-10'],
+ ['BUILD-05','BUILD-06'],['DATA-04','ROLE-06'],['DATA-05','ROLE-05'],['ROLE-06','ROLE-09'],
+ ['PLAT-05','BILL-01'],['BILL-01','BILL-02'],['JOB-02','BILL-03'],['BILL-04','BILL-05'],['BILL-06','BILL-07'],['BILL-05','BILL-07'],['BILL-07','BILL-08'],
+ ['SCOPE-05','BILL-06'],['SCOPE-05','PRIV-07'],['PRIV-01','PRIV-02'],['JOB-02','PRIV-02'],['PRIV-02','PRIV-03'],['PLAT-08','PRIV-03'],['JOB-01','PRIV-04'],['DATA-05','PRIV-05'],['PLAT-07','PRIV-06'],
+ ['LEARN-06','LEARN-07'],['BUILD-03','LEARN-07'],['BUILD-05','LEARN-07'],['PLAT-05','ACCEPT-01'],['ROLE-07','ROLE-08'],['DATA-09','ACCEPT-02'],
+ ['PRIV-06','ACCEPT-03'],['FILE-04','ACCEPT-04'],['AI-09','ACCEPT-03'],['PLAT-06','ACCEPT-06'],['DATA-08','ACCEPT-07'],
+ ['ACCEPT-01','RELEASE-01'],['RELEASE-01','RELEASE-02'],['PLAT-07','RELEASE-02'],['RELEASE-02','RELEASE-03'],['RELEASE-01','RELEASE-04'],['PLAT-08','RELEASE-05'],['PRIV-03','RELEASE-05'],['ACCEPT-06','RELEASE-06'],
+ ...Array.from({length:8},(_,i)=>['ACCEPT-'+String(i+1).padStart(2,'0'),'RELEASE-07']),
+ ...Array.from({length:6},(_,i)=>['RELEASE-'+String(i+1).padStart(2,'0'),'RELEASE-07']),
+ ['BILL-08','RELEASE-07'],['PRIV-07','RELEASE-07'],['RELEASE-07','RELEASE-08'],['SCOPE-07','PLAT-05'],
+ ...Array.from({length:6},(_,i)=>['RELEASE-08','LATER-'+String(i+1).padStart(2,'0')]),
+].map(([blocks,blocked])=>({blocks,blocked,kind:'planning-sequence'}));
+
+export const phaseChanges={
+ P00:{paths:['integration/contracts','docs/architecture'],backend:'Freeze API schemas, UID/role/source authority, admission/benefit matrix and bounds before domain wiring.',ml:'Define allowed inputs, provider/data-purpose review and held-out evaluation; no model serving or training.',frontend:'Inventory current controls and retain honest preview/unavailable states.'},
+ P01:{paths:['backend/upstream/backend/src','backend/tests','integration/contracts'],backend:'Add reviewed SQL migrations/repositories, same-UID provisioning, grants/consent, command receipts/outbox and guardian-first admission.',ml:'Consume versioned permitted read models only; no identity, grading or billing authority.',frontend:'Replace workspace/domain previews through current typed service facades after server gates.'},
+ P02:{paths:['infrastructure','scripts','backend/upstream/backend/src/main-auth.ts'],backend:'Product image/IAM/HTTPS/CI/observability/backups; use current entrypoint, not legacy application deployment.',ml:'Private worker identity/limits/observability contracts; provider serving requires later qualification.',frontend:'Verify hosted origin/auth routing and exclude fixture/emulator paths.'},
+ P03:{paths:['backend/upstream/backend/src','frontend/src/services','infrastructure'],backend:'Owning-store jobs/fencing, private files/exports, durable polling/SSE and scoped cache behavior.',ml:'Use bounded private jobs with current permission/source rechecks and cancellation.',frontend:'Connect current adapters to real revisions, replay/refetch, conflicts and two-device recovery.'},
+ P04:{paths:['backend/upstream/backend/src','ml/upstream','integration/contracts'],backend:'Source/catalog rights, publication pointers, versioned concepts/mappings and eligible retrieval.',ml:'Qualify imported ingestion/retrieval behind product adapters; record deliberate provenance patches before changes.',frontend:'Show actual supported sources/editions/medium and honest missing coverage.'},
+ P05:{paths:['backend/upstream/backend/src/learning','ml/vats','frontend/src/services'],backend:'Durable sessions/checks/criteria/evidence, knowledge/review projections, offline reconciliation and stage receipts.',ml:'Integrate permitted calibrated pedagogy/knowledge proposals only after authorized durable inputs and provider gates.',frontend:'Preserve current Learn/Practice/Progress/Guide and stage/bridge UX while replacing local persistence.'},
+ P06:{paths:['backend/upstream/backend/src','frontend/src/pages/dashboard/ArtifactStudio.jsx','integration/contracts'],backend:'Private revisioned projects/runs/proposals/assets, fixed-copy shares and declarative activity admission.',ml:'Source/rubric-bound suggestions and typed activity manifests; execution/publication stay separately gated.',frontend:'Current editor gains server saves, exact-revision approval/conflict recovery and trusted accessible preview.'},
+ P07:{paths:['ml/vats','ml/evaluation','ml/upstream','backend/upstream/backend/src/learning'],backend:'Private service/run identity, ownership, usage settlement, output validation and proposal/state authority.',ml:'Evaluate API routes and carefully adapt RAG; implement bounded AIRA/context/representation/voice/evals. Own-model training remains Later.',frontend:'Connect real Ask/Guide responses and qualified captions/mic/stop/visuals with truthful partial/error states.'},
+ P08:{paths:['backend/upstream/backend/src','frontend/src/services','ml/vats'],backend:'Verified class/guardian/org/work roles, immutable assignments/submissions, permitted reports and teacher-private learning.',ml:'Purpose-scoped preparation/coaching/support proposals; no private cross-role memory or automatic grade/contact.',frontend:'Connect existing five-role screens and test invite/revoke/exit, parent support and personal/class switching.'},
+ P09:{paths:['backend/upstream/backend/src/billing','frontend/src/components/dashboard','infrastructure'],backend:'Hosted webhook/reconciliation, actual usage/entitlements and separately reviewed live billing acceptance.',ml:'Reserve/settle measured usage under current entitlements; payment never grants educational permission.',frontend:'Accurate Free/paid offers, invoice ownership and pending/retry/lapse behavior.'},
+ P10:{paths:['backend/upstream/backend/src','frontend/src/services','ml/vats','infrastructure'],backend:'Purpose/admission policy, bounded data jobs, notification/support authorization and restore/revocation procedures.',ml:'Minimized reviewed feedback/safeguarding; raw export/training remains disconnected unless separately accepted.',frontend:'Clear consent/privacy/support actions and current relationship-aware notices.'},
+ P11:{paths:['backend/tests','frontend/tests','ml/vats','ml/evaluation','integration/contracts'],backend:'Fix observed cross-domain authorization, migration/replay and outage defects; attach exact environment evidence.',ml:'Run actual provider/cognitive/educational acceptance and eligible controlled pilot; a unit pass is insufficient.',frontend:'Exercise real UI→API→store→model→saved outcome on released devices/categories.'},
+ P12:{paths:['infrastructure','backend/tests','ml/evaluation','docs/architecture'],backend:'Measure load/quotas/pools/cost/restore/security and controlled configuration; release only accepted scope.',ml:'Actual model/provider quality, throughput, cancellation and unit cost under selected traffic.',frontend:'Verify limited-cohort journeys, degradation and support before increasing traffic.'},
+ LATER:{paths:['docs/architecture/build','ml','infrastructure'],backend:'Review scope/IAM/containment/tenant/commercial needs; no implementation activation from a calendar date.',ml:'Review own-model or experiment strategy only; no training/auto-promotion commitment.',frontend:'Review optional execution/HTML/public app scope; current private editor continues.'},
+};
+export const milestoneAnchors={
+ contracts:['SCOPE-01','SCOPE-02','SCOPE-03','SCOPE-04','SCOPE-05','SCOPE-06','SCOPE-08','SCOPE-09'],
+ durableRecords:['LEARN-01','LEARN-02','LEARN-08','BUILD-01','BUILD-02','BUILD-05','DATA-08','PLAT-05','PLAT-08'],
+ durableTextSlice:['LEARN-01','LEARN-02','LEARN-08','LEARN-09','LEARN-10','LEARN-05','LEARN-06','BUILD-01','BUILD-02','BUILD-03','BUILD-04','BUILD-05','PLAT-05'],
+ voiceActivitiesContinuity:['AI-17','AI-18','AI-16','BUILD-09','LEARN-13','LEARN-14'],
+ rolesAndCommercial:['ROLE-08','ROLE-09','ROLE-10','BILL-08','PRIV-07'],
+ controlledOutcomePilot:['ACCEPT-08'],releaseAcceptance:['RELEASE-07','RELEASE-08'],
+};
+export const externalGates={
+ 'SCOPE-09':'Founder-approved benefit/funding/coverage decision; no invented subsidy or price change.',
+ 'PRIV-01':'Reviewed actual admission/consent/data-purpose policy; no legal certification from this estimate.',
+ 'AI-01':'Approved provider/source access and qualified reviewer availability.',
+ 'AI-02':'Actual provider contract/data-treatment decision; outside approval lead time is unknown.',
+ 'AI-18':'Licensed/consented corpus and qualified language/meaning reviewers for released slices.',
+ 'CONTENT-01':'Rights and reviewed source ownership/edition; no broad syllabus promise.',
+ 'CONTENT-06':'Qualified curriculum/language review for accepted coverage.',
+ 'BILL-06':'Actual merchant/commercial/tax/refund approval; outside approval lead time is unknown.',
+ 'PRIV-07':'Accountable privacy/commercial/content/model rights approvals.',
+ 'ACCEPT-08':'Eligible participant/reviewer access and approved study protocol; 14-calendar-day observation allowance is provisional, not a validated retention window.',
+ 'RELEASE-03':'Actual cloud/model/provider quota approvals, no guaranteed approval date.',
+ 'RELEASE-07':'All configuration/evidence gates accepted; dates cannot authorize deployment or live money.',
+};

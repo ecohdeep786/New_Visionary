@@ -1312,3 +1312,22 @@ Deliver integration/LIFELONG_EDUCATION_CONTRACT.md with logical records, stage t
 Fresh Jira read-back100+60 at09:46:50UTC verifies160 unique items:145 tasks/15 epics,33 complete preserved-prefix description updates and112 unchanged task descriptions,145 VATS applicability/parent/type/source label sets, all15 unchanged epics and163 reciprocal native blockers. All137 old links remain,26 added. Status totals including epics:13 Done,137 To Do,2 In Progress,1 Testing,7 Idea. No existing metadata change or expanded completion. Current133 task prerequisites are acyclic; first open remains SCOPE-01/KAN-28.
 
 Fresh19 planning/provenance tests pass; layout/import checks pass3842 baseline files plus3 intentional patches/10 changed originals. New education manifest generation is idempotent and retains earlier research requirements. Current verification and source/link/log evidence are in artifacts/qa/lifelong-delivery-2026-10-17/. No runtime/provider/hosted/educational/AGI result is claimed.
+
+
+## 2026-10-17 — D-091: Full backlog calendar and backend/ML execution map
+
+Analyze all160 live KAN issues (145 tasks/15 epics) and current native board1/field metadata. User confirms founder+one agent. Deliver docs/architecture/DELIVERY_CALENDAR.md, tracking/delivery-schedule.json and deterministic effort/resource/dependency generator with four focused scheduling regressions. Every open task records estimated remaining agent/founder effort, source ownership and concrete backend/ML/frontend responsibility. Daily hours, working week, contingency and external waits are explicit unvalidated assumptions; no promised AGI or delivery date.
+
+Set147 native start/due pairs and corresponding preserved-prefix calendar notes:127 launch tasks,6 conditional Later review windows,14 phase rollups. Full100+60 read-back at14:40:07UTC confirms all dates/descriptions/labels and unchanged13 Done items, original160 metadata/assignees/statuses, empty native time tracking and163 native links. No new blockers, assignees, sprints, worklogs, statuses or completions. In-app Jira needs login, so browser calendar rendering remains unverified; the authenticated connector verifies saved fields.
+
+First task SCOPE-01 dated17–20October2026; initial internal durable-record/text-flow and full-scope acceptance forecasts are26January/9April/23November2027. Reforecast after five actual task completions or external delays.23 planning/provenance tests and layout/import checks pass. Native fields and prior requirements verified; runtime work starts separately after this planning handoff. Evidence: artifacts/qa/calendar-schedule-2026-10-17/.
+
+
+## 2026-10-17 — D-092: ML connection wording clarified
+
+Checked main-auth.ts, FirebaseProductModule and current ML integration notes. DELIVERY_CALENDAR.md now distinguishes temporary legacy gateway isolation from required frontend/backend/VATS/model/save/sync integration before AI feature release. Corrected the generator and regenerated documentation. No model route activated or deployment claimed; schedule manifest remains byte-identical.
+
+
+## 2026-10-17 — D-093: Parallel-agent branch setup
+
+Founder requests main/production, dev/integration, removal of old branches and separate agent work reviewed into dev. Five obsolete remote branches deleted atomically after complete-bundle verification, with exact tips retained. Publish the completed planning/calendar baseline and branch workflow, then create separate Codex/DeepSeek/founder worker branches and checkouts. Original dev checkout and unrelated frontend edits remain in place; no product feature or Jira task is marked complete. See docs/architecture/BRANCH_WORKFLOW.md for task ownership, integration, release and recovery. Final operational readback is retained in the branch-workflow QA evidence.

@@ -1,5 +1,7 @@
 # Visionary ML — VATS
 
+D-091 [delivery calendar](../docs/architecture/DELIVERY_CALENDAR.md) distinguishes early contract/evaluation work from source/RAG adaptation, durable VATS/AIRA integration, qualified voice and actual educational/provider acceptance. Each task records current backend/ML/frontend ownership. Training/own-model items receive conditional strategy-review windows only; no model-serving or training start is authorized by a date.
+
 D-088: [current education launch plan](../docs/architecture/EDUCATION_LAUNCH_PLAN.md) separates reliable software, independent learning outcomes and wider cognitive evidence. Voice, India qualification and reviewed L7 improvement are explicit tasks; own-model strategy/training remains separately gated. The current registry contains 142 task mappings; no provider/model/runtime integration was made in this research pass.
 
 The product ML direction is the seven-layer [Visionary Adaptive Teaching System](vats/README.md), with [layer ownership/evidence](vats/layers.json) and [step-by-step backend/Jira delivery](../docs/architecture/VATS_IMPLEMENTATION.md). Product-owned policies live in `vats/`; shared local metric contracts live in `evaluation/`. `upstream/` remains a pinned library of RAG candidates. It is not the complete VATS engine or the product startup path. Current additions are offline policy/binding tests; provider, persistence and UI integration remain open.

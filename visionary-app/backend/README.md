@@ -1,5 +1,7 @@
 # Application backend
 
+D-091 [calendar and component handoff](../docs/architecture/DELIVERY_CALENDAR.md) schedule contracts before backend data/authority, then jobs/files, source, learning/Build and linked-role integrations. Work stays under the existing pinned/product-owned boundaries with explicit patch provenance; no wholesale source deletion or automatic migration occurs. All dates are forecasts pending actual acceptance.
+
 D-090 [lifelong delivery contract](../integration/LIFELONG_EDUCATION_CONTRACT.md) defines the proposed owned profile/stage/mapping/receipt flow, reviewed admission/relationship boundaries and teacher/parent delivery acceptance. All 145 source tasks remain mapped to the current architecture; this contract/registry pass registers no controller, migration or new runtime benefit.
 
 D-088: [current education launch plan](../docs/architecture/EDUCATION_LAUNCH_PLAN.md) adds voice-turn/cancellation authority, rights-aware offline reconciliation and trusted activity revisions to the existing server-owned contracts. Its 142-task manifest and verified Jira dependencies are implementation requirements, not registered controllers or completed database work. Freeze the shared contracts before concurrent backend/ML feature implementation.

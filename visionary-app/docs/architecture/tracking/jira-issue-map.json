@@ -11,7 +11,7 @@
     "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
     "sha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8"
   },
-  "verifiedAt": "2026-10-17T09:46:50.597Z",
+  "verifiedAt": "2026-10-17T14:40:07.356Z",
   "summary": {
     "total": 160,
     "tasks": 145,
@@ -1659,6 +1659,51 @@
         "noRuntimeImplementation": true,
         "noNewCompletion": true
       }
+    },
+    {
+      "decision": "D-090",
+      "verifiedAt": "2026-10-17T09:46:50.597Z",
+      "source": {
+        "path": "docs/architecture/BACKEND_LAUNCH_CHECKLIST.md",
+        "sha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8"
+      },
+      "summary": {
+        "total": 160,
+        "tasks": 145,
+        "epics": 15,
+        "byStatus": {
+          "Done": 13,
+          "To Do": 137,
+          "Idea": 7,
+          "Testing": 1,
+          "In Progress": 2
+        },
+        "dependencyLinks": 163,
+        "phaseDependencyLinks": 30,
+        "taskDependencyLinks": 133,
+        "nowTasks": [
+          "KAN-28",
+          "KAN-30",
+          "KAN-31",
+          "KAN-33",
+          "KAN-36",
+          "KAN-37",
+          "KAN-45"
+        ],
+        "paginationComplete": true,
+        "errors": []
+      },
+      "lifelongReview": {
+        "decision": "D-090",
+        "contract": "integration/LIFELONG_EDUCATION_CONTRACT.md",
+        "tasksAdded": 3,
+        "requirementsRefined": 27,
+        "descriptionsUpdated": 33,
+        "descriptionsRetained": 112,
+        "newNativeDependencies": 26,
+        "noRuntimeImplementation": true,
+        "noNewCompletion": true
+      }
     }
   ],
   "taskDependencies": [
@@ -2617,5 +2662,27 @@
     "newNativeDependencies": 26,
     "noRuntimeImplementation": true,
     "noNewCompletion": true
+  },
+  "calendarSchedule": {
+    "decision": "D-091",
+    "path": "docs/architecture/DELIVERY_CALENDAR.md",
+    "manifest": "docs/architecture/tracking/delivery-schedule.json",
+    "userAuthorized": true,
+    "forecastDatesSet": true,
+    "datesArePromises": false,
+    "verifiedAt": "2026-10-17T14:40:07.356Z",
+    "calendarItems": 147,
+    "launchTasks": 127,
+    "laterReviewWindows": 6,
+    "phaseRollups": 14,
+    "unchangedDone": 13,
+    "taskRequirementsPreserved": true,
+    "nativeDependenciesUnchanged": 163,
+    "teamConfirmed": "one founder + one coding agent",
+    "dailyCapacityAssumed": {
+      "agent": 8,
+      "founder": 4
+    },
+    "browserVisualVerification": "Blocked by Atlassian login in IAB; API native field verification passed."
   }
 }

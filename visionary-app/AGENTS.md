@@ -21,6 +21,8 @@ Older frontend `src/`, `public/` and `tests/` paths are now relative to `fronten
 
 ## Working rules
 
+Follow `docs/architecture/BRANCH_WORKFLOW.md` for agent delivery. `dev` owns integration; `main` owns production release history. Each worker uses its own branch and checkout, with one identified Jira task at a time and agreed file/contract ownership. Do not merge over unrelated uncommitted work, force-push shared branches, or mark user-facing launch features complete from local tests alone. Review and relevant integration checks precede merging into `dev`; release acceptance precedes promotion to `main`.
+
 Root `npm run dev`, `build`, `lint`, `typecheck` and `npm test` delegate to the frontend package. `npm run check` performs layout/import and frontend checks sequentially. Run relevant backend/ML/REA checks for changes to those components.
 
 Keep component locks and environments independent. Credentials stay in ignored configuration. Preserve upstream provenance and record intentional upstream patches. Align domain names and contracts with the frontend task map while retaining server authority and ML boundaries. Preserve unrelated work.
