@@ -43,8 +43,11 @@
       },
       "hostedDeploymentVerified": false,
       "gcpProject": "visionary-research",
-      "deploymentBlocker": "Cloud console needs user sign-in; no authenticated CLI/product deployment pipeline is available in this workspace. Existing cloud services and URLs remain unknown.",
-      "linkedProductGatesRemainOpen": true
+      "deploymentBlocker": "Cloud Run services and Cloud Build triggers are not configured in the inspected project listings. Product environment/CI/IAM/secrets/deployment and hosted acceptance remain PLAT-01 and linked platform/release work.",
+      "linkedProductGatesRemainOpen": true,
+      "gcpConsoleAuthenticated": true,
+      "cloudRunServicesListed": 0,
+      "cloudBuildTriggersListed": 0
     }
   ]
 }
