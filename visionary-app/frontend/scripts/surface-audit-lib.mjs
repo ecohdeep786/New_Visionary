@@ -22,6 +22,9 @@ export function typeValues(text, name) {
 }
 
 export function inspectSource(file, text) {
+  // Canonicalize before extracting expression text, not only when hashing.
+  // Otherwise multiline callbacks produce different JSON on LF/CRLF checkouts.
+  text = text.replaceAll('\r\n', '\n');
   const sf = parse(file, text), imports = [], controls = [];
   if (sf.parseDiagnostics.length) throw new Error(`Cannot audit invalid syntax: ${file}`);
   walk(sf, node => {
