@@ -1,32 +1,50 @@
-# Architecture and engineering delivery
+# Repository structure and ownership
 
-Use this index by question rather than decision date. [Product requirements](../visionary/README.md) define the journeys; [current status](../visionary/CURRENT_PRODUCT_STATUS.md), live Jira and [execution receipts](tracking/task-executions.json) describe implementation progress. Target diagrams, layer labels and forecasts do not establish runtime or AGI capability.
+D-093 agent delivery: [branch ownership, isolated checkouts and review-to-release workflow](BRANCH_WORKFLOW.md). `dev` is integration, `main` is production history; Codex, DeepSeek and the founder use separate worker branches. The existing calendar remains the earlier one-agent forecast until capacity and task ownership are reforecast.
 
-## Understand the system
+D-091 calendar handoff: [full task dates, effort and backend/ML change map](DELIVERY_CALENDAR.md) with [machine-readable forecast](tracking/delivery-schedule.json). The founder confirmed one founder + one coding agent. All 127 open launch tasks, six conditional Later reviews and 14 phase rollups have native Jira start/due dates verified; 13 historical Done items retain their original records. Daily capacity/effort are assumptions, not demonstrated velocity or delivery promises. Dates never trigger implementation or release automatically.
 
-| Question | Read |
-| --- | --- |
-| What does each component own? | [Product domains](PRODUCT_DOMAINS.md), [repository layout](../../README.md), [integration contracts](../../integration/README.md) |
-| How do requests and data travel? | [Platform diagrams](diagrams/README.md), [numbered request paths](diagrams/REQUEST_PATHS.md), [communication contracts](blueprint/COMMUNICATION.md) |
-| Where are HLD, LLD, object design, cloud and cost decisions? | [Engineering blueprint](blueprint/README.md), [consolidated recommendation](reviews/FINAL_ARCHITECTURE_RECOMMENDATION.md) |
-| How does Build differ from Learn/Teach? | [Build architecture](build/README.md) |
-| How do the seven VATS layers connect? | [Implementation and ownership](VATS_IMPLEMENTATION.md), [backend↔ML contract](../../integration/VATS_CONTRACT.md), [layer exits](../../ml/vats/layers.json) |
-| What did the code and founder-document audits find? | [Review index](reviews/README.md) |
-| What supports the 100,000-MAU target? | [System design](discussions/system-design.md), [resilience/scale](diagrams/RESILIENCE_AND_SCALE.md), [launch operations](discussions/launch-operations.md). Measured load/hosted acceptance remains required. |
+D-090 current continuation: [lifelong education delivery contract](../../integration/LIFELONG_EDUCATION_CONTRACT.md) reconciles the [vision audit](VISION_ALIGNMENT_REVIEW.md) with three focused tasks and explicit existing-task acceptance. The current [launch plan](EDUCATION_LAUNCH_PLAN.md) and [Jira record](tracking/JIRA_SYNC.md) cover 145 tasks/15 epics and 163 native dependencies. All original requirements, current journeys and seven VATS boundaries remain. Earlier dated counts below are historical checkpoints; no runtime capability or new Done is implied.
 
-## Deliver a task
+D-088 current handoff: [India education, natural voice, offline continuity and staged Build launch](EDUCATION_LAUNCH_PLAN.md), based on [primary-source AGI/education research](../../research/EDUCATION_AGI_RESEARCH_2026_10_17.md). [Verified Jira tracking](tracking/JIRA_SYNC.md) covers 142 tasks and 15 epics with 137 dependencies. The [implementation manifest](tracking/education-launch.json) connects every task to VATS, feature families, prerequisites and eleven delivery layers. This is planning evidence; no runtime feature or AGI achievement is claimed. Earlier paragraphs retain their dated scope.
 
-1. Read [branch ownership and mandatory review](BRANCH_WORKFLOW.md).
-2. Check [current execution versus dated plans](tracking/README.md), live prerequisites and the [implementation handoff](IMPLEMENTATION_HANDOFF.md).
-3. Implement one owned scope, collect evidence and submit the [review template](delivery/TASK_REVIEW_TEMPLATE.md).
-4. Keep the issue in **Testing** while review/verification is pending. Reviewer approval and relevant integration verification precede **Done** and the next dependent task. [Current review handoff](delivery/D095_DOCUMENTATION_REVIEW.md).
+D-087 implementation direction: [VATS seven-layer ownership, actual code and ordered Jira delivery](VATS_IMPLEMENTATION.md), with [machine-readable task/layer mapping](tracking/vats-delivery.json) and [backend↔ML contract](../../integration/VATS_CONTRACT.md). Both Document03 variants are reconciled; AIRA coordinates these seven capabilities. Product integration and broad AGI evidence remain separate gates.
 
-Planning entry points: [launch checklist](BACKEND_LAUNCH_CHECKLIST.md), [source evidence](BACKEND_LAUNCH_EVIDENCE.md), [feature delivery matrix](FEATURE_DELIVERY_MATRIX.md), [education launch plan](EDUCATION_LAUNCH_PLAN.md) and [calendar](DELIVERY_CALENDAR.md). The calendar is the D-091 one-founder/one-agent forecast; additional worker branches do not automatically shorten it. Current account/auth/test-billing/feedback foundations and pending domain/model/hosted work retain their separate acceptance boundaries.
+Implementation tracker: [backend-to-launch checklist](BACKEND_LAUNCH_CHECKLIST.md), with [completed/partial/source evidence](BACKEND_LAUNCH_EVIDENCE.md). Work is broken into dependency-ordered chunks and explicit launch gates.
 
-## Files and history
+Execution handoff: [current backend/ML wiring and next slices](IMPLEMENTATION_HANDOFF.md), [Jira synchronization state](tracking/JIRA_SYNC.md) and [account feedback contract](../../integration/FEEDBACK_CONTRACT.md).
 
-`blueprint/`, `build/`, `diagrams/` and `discussions/` hold system design; `reviews/` holds dated assessments; `delivery/` holds review handoffs; `tracking/` holds structured plans and execution receipts. Generated root reports remain at stable paths. Old review filenames are compatibility pointers to their new canonical locations.
+Fresh D-084 review: [backend/ML findings, isolated reproductions and Jira closure criteria](BACKEND_ML_JIRA_REVIEW.md). Imported ML remains disconnected; this review does not certify model quality or AGI capability.
 
-Pinned backend/ML/REA imports keep independent dependencies and reviewed provenance. Use [backend](../../backend/README.md), [ML](../../ml/README.md), [frontend](../../frontend/README.md), [infrastructure](../../infrastructure/README.md) and [research](../../research/README.md) for component setup. Current ML/VATS integration is required for released AI journeys; the imported legacy model gateway is isolated until qualified, as explained by the implementation contracts.
+D-086 founder reconciliation: [37 source documents, per-file decisions and deterministic VATS/AIRA delivery](FOUNDER_SPEC_RECONCILIATION.md), including tested local policy/metric/client changes and the remaining durable integration. The [feature delivery trace](FEATURE_DELIVERY_MATRIX.md) maps 137 tasks across frontend, APIs, data, jobs, cache, real-time and AI; product/capability acceptance remain separate.
 
-[D-057 relocation evidence](reviews/RESTRUCTURE_VERIFICATION.md) and [original layout manifest](restructure-2026-10-13.json) retain the historical snapshot. Normal `product:verify-layout` allows intentional source evolution; `--preserved-source` checks that older relocation snapshot. Historical root `src/`, `public/` and `tests/` now mean `frontend/`; old `tmp/` captures moved to `artifacts/tmp/`. Do not rerun the one-time relocation script. [D-095 documentation moves](tracking/document-moves-2026-10-17.json) retain hashes and old-path compatibility; append-only logs remain unchanged except new entries.
+Current baseline: [final architecture recommendation and release evidence](FINAL_ARCHITECTURE_RECOMMENDATION.md), consolidated after the founder's reference reviews. Implementation and measured acceptance remain staged work.
+
+Architecture review: [grouped platform map](diagrams/PLATFORM_ARCHITECTURE.md), [numbered request paths](diagrams/REQUEST_PATHS.md) and [scale/recovery](diagrams/RESILIENCE_AND_SCALE.md), with [current implementation gaps and next steps](VISUAL_REVIEW.md).
+
+For visual review, use the [system-design diagrams](diagrams/README.md). The separate [Build architecture](build/README.md) extends the shared blueprint with durable projects, reviewed AI proposals and staged execution/preview boundaries after the Claude/ChatGPT/Gemini reference study.
+
+D-057, 13 October 2026: the founder requested a recognizable product structure before detailed system-design, scale, stack, cloud/DevOps, MLOps and testing discussions. Existing frontend jobs establish shared product vocabulary while backend and ML retain independent authority and runtime boundaries.
+
+| Directory | Ownership | Guide |
+| --- | --- | --- |
+| `frontend/` | Routes, UI, domain/service adapters, styles, assets, frontend tests/dependencies | [Frontend](../../frontend/README.md) |
+| `backend/` | Identity, workspaces, consent, authorization, application records and APIs | [Backend](../../backend/README.md) |
+| `ml/` | Ingestion, retrieval, orchestration, grounding and evaluation | [ML](../../ml/README.md) |
+| `reverse-engineering/` | Pinned REA toolkit and setup guide | [Toolkit](../../reverse-engineering/README.md) |
+| `research/` | Visionary study scripts, reports, templates and evidence indexes | [Research](../../research/README.md) |
+| `integration/` | Cross-component contracts, upstream locks and interface gaps | [Integration](../../integration/README.md) |
+| `infrastructure/` | Local provisioning and eventual reviewed deployment code | [Infrastructure](../../infrastructure/README.md) |
+| `docs/visionary/` | Product requirements, evidence and three living logs | [Current status](../visionary/CURRENT_PRODUCT_STATUS.md) |
+| `docs/architecture/discussions/` | System-design and engineering discussion material | [Index](discussions/README.md) |
+| `scripts/` | Product commands, integrity checks, imports and migrations | Root package scripts |
+| `artifacts/` | Retained scratch files, screenshots and reports | [Artifacts](../../artifacts/README.md) |
+| `.tools/` | Ignored project-local runtimes | Toolchain manifest |
+
+The actual application lives in `frontend/src/`; root commands preserve the existing developer workflow. Each component owns its package/module locks. Builds go to `frontend/dist/`. Local Compose and its SQL moved together to `infrastructure/local/`, preserving relative mounts.
+
+Use the [domain map](PRODUCT_DOMAINS.md) to name API operations, backend modules, model jobs and tests. Start with the [D-076 engineering blueprint](blueprint/README.md) for the complete tree, HLD/LLD/object design, frontend/backend communication, researched reference patterns and cloud/cost model. D-075 supplies the [100,000-MAU system design](discussions/system-design.md), [source audit](discussions/backend-ml-audit.md), [launch operations](discussions/launch-operations.md) and [model strategy](discussions/ml-strategy.md). Target services remain implementation work unless explicitly marked connected. Pinned imports retain their internal structure and hashes; relocation does not invent new services.
+
+`restructure-2026-10-13.json` records moves and pre-move hashes of 577 frontend source/asset/test files, including existing uncommitted typography edits. `product:verify-layout -- --preserved-source` verifies the relocation snapshot. Normal layout verification permits future intentional source changes. Historical paths in append-only logs are retained: root `src/`, `public/` and `tests/` now belong to `frontend/`; old `tmp/` evidence is under `artifacts/tmp/`; other scratch work is under `artifacts/legacy/`.
+
+The migration refuses existing destinations, verifies absolute endpoints remain inside the product, and uses literal moves. The product Vite server is restarted on the same port. Application files/assets are unchanged; configuration, command and link consumers are updated separately. Folder organization does not change account, model or cloud capabilities.

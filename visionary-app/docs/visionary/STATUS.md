@@ -1334,26 +1334,3 @@ Founder requests main/production, dev/integration, removal of old branches and s
 
 
 D-093 clean-worker addendum: repair Git normalization and three omitted manifest fixtures/templates found during fresh-checkout checks. All backend/ML source bytes still match the existing approved manifest/patch ledger; original histories are retained. Sync the correction to the clean worker branches before handing them off. No new task implementation is claimed.
-
-
-## 2026-10-17 — D-094: First Jira implementation, KAN-28 / SCOPE-01
-
-Initial reviewed dev baseline is merged/published to main821915d. Work proceeds on codex/codex-tasks from44917d4. Deliver PRODUCT_SURFACE_AUDIT.md, the complete declaration/source inventory and explicit operation/file review registry, with a root check gate and focused regression coverage. Current inventory:68 routes,1637 controls/219 files,26 registered endpoints;5 roles,9 synthetic category scenarios and separate typed/advertised language dimensions. Connected source code is not hosted acceptance.
-
-Full worker check passes532 frontend tests,18 script tests, lint, both types, layout/import checks, audit drift check and production build. Final development-only classification refinement then passes all5 focused tests and audit verification. Jira KAN-28 moves from To Do to In Progress and Testing while integration/release receipts are collected. Broader backend/ML and actual cloud acceptance remain separate open tasks. GCP project is visionary-research; console needs user sign-in and CLI is absent.
-
-
-D-094 integration refinement: correct checkout-dependent multiline event serialization detected in the original dev audit. Preserve current UI/backend source; canonicalize audit extraction and add a regression fixture. Recheck original dev before corrected release. Initial task source was published as593f2a2/mainf4e606c; neither is evidence of hosted deployment.
-
-
-D-094 final source acceptance: KAN-28 is Done in Jira. Corrected original-dev verification passes532 frontend/18 script tests, lint, both types, layout/import/audit and build17.32s. Implementation36933df is published to dev and main328239b with equal source trees. Current execution receipt: docs/architecture/tracking/task-executions.json. GCP deployment remains unverified; the founder will sign in to the console. All named domain/ML/content/operational gates remain open.
-
-
-D-094 cloud follow-up: founder completes Google sign-in. Read-only project visionary-research console listings show no Cloud Run services and no Cloud Build triggers configured, with no filter applied. This supersedes the earlier sign-in blocker. Local GCP CLI/product pipeline remain absent; no cloud resource, API enablement, IAM grant, secret, repository connection or deployment is created. Other hosting products are not inspected. Update the audit/receipt and hand off platform work; no hosted product acceptance is claimed.
-
-
-## D-095 — Documentation organization and review handoff · 2026-10-17
-
-Implemented on codex/codex-tasks: docs entry/architecture/product/design/review/tracking indexes; nineteen canonical review/design documents relocated with verified bytes before relative-link edits; old-path compatibility pointers; mandatory separate-review workflow and reusable handoff template in docs/architecture/delivery/. Root and chained agent instructions link the workflow. Current execution/Jira pointers record KAN-28 Testing and preserve D-094 history; dated full-board/calendar snapshots and other tickets are unchanged.
-
-Verification: eighteen planning/feature/VATS/lifelong/backlog/calendar regressions pass; layout and all3,842 imported-file hashes plus three approved patches pass; current source audit passes unchanged. Nineteen move checkpoints and204 local document links pass with zero missing targets. Documentation changes only; frontend/backend/ML runtime tests and hosted journeys are not rerun or newly certified. Current candidate review is pending, with no reviewer invented. Review handoff: docs/architecture/delivery/D095_DOCUMENTATION_REVIEW.md. Integration/main promotion and next worker task wait for acceptance.

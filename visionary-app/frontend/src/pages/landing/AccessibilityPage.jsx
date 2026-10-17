@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {
-  Accessibility as AccessibilityIcon, ArrowRight,
+  Accessibility as AccessibilityIcon, ArrowUpRight,
   Lock, Monitor, Smartphone, Tablet, UsersRound,
 } from "lucide-react";
 
@@ -11,10 +11,8 @@ import ValuesStrip from "@/components/landing/ValuesStrip";
 import SpotIllustration from "@/components/landing/SpotIllustration";
 import { fontStack } from "@/components/landing/system/tokens";
 
-/* ═══ Link grammar — the approved public ink pill / grey pill / chip, verbatim ═══ */
-const inkPill = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4";
-const greyPill = "inline-flex h-12 items-center justify-center rounded-full bg-[#f5f5f7] px-8 font-medium tracking-[0.24px] text-[15px] text-[#121317] transition-colors hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2";
-const chipPill = "inline-flex min-h-11 items-center rounded-full bg-[#f5f5f7] px-6 text-[15px] font-medium tracking-[0.24px] text-[#121317] transition-colors duration-200 hover:bg-[#e8e8ed] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4";
+/* ═══ Tokens — the shared Material dialect (#121317 ink, #0b57d0/#4285F4
+   actions, #dadce0 hairlines, pill buttons, rounded-2xl cards). ═══ */
 
 function Reveal({ children, className = "", delay = 0 }) {
   return (
@@ -29,7 +27,10 @@ function Reveal({ children, className = "", delay = 0 }) {
 
 function AnchorChip({ href, children }) {
   return (
-    <a href={href} className={chipPill}>
+    <a
+      href={href}
+      className="inline-flex min-h-9 items-center rounded-full border border-[#dadce0] bg-white px-4 text-[13px] font-medium text-[#5f6368] transition-colors hover:bg-[#f8f9fa] hover:text-[#121317] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+    >
       {children}
     </a>
   );
@@ -43,7 +44,7 @@ const CATEGORIES = [
     eyebrow: "Seeing and reading",
     title: <>Make information easier <span className="text-[#0b57d0]">to read.</span></>,
     intro: "Visual presentation decides whether information is easy to understand or difficult to reach.",
-    band: "bg-[#f5f5f7]",
+    band: "bg-[#f8f9fa]",
     cards: [
       { title: "Clear structure", copy: "Information stays structured when people enlarge text, zoom the page, or change how they view it." },
       { title: "Readable contrast", copy: "Clear hierarchy, readable typography, sufficient contrast, and meaningful labels throughout." },
@@ -69,7 +70,7 @@ const CATEGORIES = [
     eyebrow: "Motor and navigation",
     title: <>Operated the way <span className="text-[#0b57d0]">you already do.</span></>,
     intro: "An accessible interface is also an interface that can be operated predictably.",
-    band: "bg-[#f5f5f7]",
+    band: "bg-[#f8f9fa]",
     cards: [
       { title: "Keyboard navigation", copy: "The experience supports keyboard interaction with a logical navigation order." },
       { title: "Visible focus", copy: "Clear focus states show where you are, what changed, and what you can do next." },
@@ -133,15 +134,18 @@ export default function AccessibilityPage() {
             <h1 className="mt-4 text-[48px] font-normal leading-[1.06] tracking-[-0.045em] sm:text-[64px] lg:text-[76px] text-[#121317]">
               Help every learner learn <span className="accent-gradient">how they learn best.</span>
             </h1>
-            <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#5f6368]">
+            <p className="mx-auto mt-6 max-w-[680px] text-[17px] leading-[1.6] text-[#5f6368] sm:text-[18px]">
               One product, many ways in: vision, hearing, movement, thinking, and language on the device you have.
             </p>
-            <div className="mt-10 flex justify-center">
-              <Link to="/register" className={inkPill}>
+            <div className="mt-8 flex justify-center">
+              <Link
+                to="/register"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              >
                 Explore what's built in
               </Link>
             </div>
-            <nav aria-label="On this page" className="mt-6 flex flex-wrap justify-center gap-4">
+            <nav aria-label="On this page" className="mt-7 flex flex-wrap justify-center gap-2">
               <AnchorChip href="#vision">Seeing and reading</AnchorChip>
               <AnchorChip href="#voice">Hearing and speaking</AnchorChip>
               <AnchorChip href="#motor">Motor and navigation</AnchorChip>
@@ -152,7 +156,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* STATEMENT BAND — text + illustration (the 2-up statement pattern) */}
-        <section className="border-y border-[rgba(18,19,23,0.12)] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
+        <section className="border-y border-[#dadce0] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
           <Reveal className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="max-w-[560px]">
               <p className="text-[26px] font-normal leading-[1.25] tracking-[-0.025em] text-[#121317] sm:text-[36px]">
@@ -187,7 +191,7 @@ export default function AccessibilityPage() {
               </div>
               <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {category.cards.map(({ title, copy }) => (
-                  <article key={title} className="flex min-h-[190px] flex-col rounded-[20px] bg-white p-6">
+                  <article key={title} className={`flex min-h-[190px] flex-col rounded-2xl g-card ${category.band === "bg-white" ? "" : "bg-white"} p-6`}>
                     <h3 className="text-[16px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
                     <p className="mt-2 text-[14px] leading-[1.65] text-[#5f6368]">{copy}</p>
                   </article>
@@ -200,7 +204,7 @@ export default function AccessibilityPage() {
         {/* SYNC SHOWPIECE — one person, every device, end to end encrypted */}
         <section id="sync" aria-labelledby="sync-title" className="scroll-mt-28 px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto max-w-[1240px]">
-            <div className="grid items-center gap-10 rounded-[30px] bg-[#f5f5f7] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+            <div className="grid items-center gap-10 rounded-[28px] bg-[#e8f0fe] p-8 sm:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               <div>
                 <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Sync &amp; devices</p>
                 <h2 id="sync-title" className="mt-3 text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
@@ -209,29 +213,35 @@ export default function AccessibilityPage() {
                 <p className="mt-5 max-w-[560px] text-[15px] leading-[1.75] text-[#3c4043] sm:text-[16px]">
                   Sign in with your Sync Encrypted ID and your learning follows you, end to end encrypted. Your questions, progress, and memory arrive as they were, and only you can open them. Start on a school laptop, continue on a phone, finish on a home desktop.
                 </p>
-                <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#121317]">
+                <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#121317]/20 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#121317]">
                   <Lock className="h-4 w-4 text-[#188038]" aria-hidden="true" />
                   End to end encrypted. The key stays with you
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to="/security" className={inkPill}>
+                  <Link
+                    to="/security"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b57d2] px-6 text-[14px] font-medium text-white transition-all hover:bg-[#0a4cb8] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  >
                     How sync works
                   </Link>
-                  <Link to="/dashboard/settings" className={greyPill}>
+                  <Link
+                    to="/dashboard/settings"
+                    className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                  >
                     Review your devices
                   </Link>
                 </div>
               </div>
               <div>
-                <div className="relative flex flex-wrap items-center justify-center gap-4 sm:flex-nowrap sm:gap-6">
-                  <span aria-hidden="true" className="absolute left-8 right-8 top-1/2 hidden -translate-y-1/2 border-t-2 border-dashed border-[#d2d2d7] sm:block" />
+                <div className="relative flex items-center justify-center gap-4 sm:gap-6">
+                  <span aria-hidden="true" className="absolute left-8 right-8 top-1/2 hidden -translate-y-1/2 border-t-2 border-dashed border-[#a8c7fa] sm:block" />
                   {[
                     { Icon: Monitor, label: "Computer" },
                     { Icon: Tablet, label: "Tablet" },
                     { Icon: Smartphone, label: "Phone" },
                   ].map(({ Icon, label }) => (
-                    <div key={label} className="relative z-10 flex w-28 flex-col items-center gap-3 rounded-[20px] bg-white p-4 text-center sm:w-32">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
+                    <div key={label} className="relative z-10 flex w-28 flex-col items-center gap-3 rounded-2xl g-card p-4 text-center shadow-[0_1px_3px_rgba(60,64,67,0.1)] sm:w-32">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                         <Icon className="h-6 w-6" strokeWidth={1.7} aria-hidden="true" />
                       </span>
                       <span className="text-[13px] font-medium text-[#121317]">{label}</span>
@@ -250,7 +260,7 @@ export default function AccessibilityPage() {
         </section>
 
         {/* GET STARTED — the reference's own-pace resource split */}
-        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[rgba(18,19,23,0.12)] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section id="resources" aria-labelledby="resources-title" className="scroll-mt-28 border-t border-[#dadce0] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
             <div>
               <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#5f6368]">Resources</p>
@@ -261,36 +271,36 @@ export default function AccessibilityPage() {
                 Move at your own speed. Every resource below is free to read, and the team answers every barrier report.
               </p>
             </div>
-            <div className="border-t border-[rgba(18,19,23,0.12)]">
+            <div className="overflow-hidden rounded-2xl g-card">
               {RESOURCES.map(({ to, label, desc }, i) => (
                 <Link
                   key={to}
                   to={to}
-                  className={`group flex items-center gap-4 py-5 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset ${i < RESOURCES.length - 1 ? "border-b border-[rgba(18,19,23,0.12)]" : ""}`}
+                  className={`group flex items-center gap-4 bg-white px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset ${i < RESOURCES.length - 1 ? "border-b border-[#dadce0]" : ""}`}
                 >
                   <span className="min-w-0 flex-1">
                     <span className="block text-[15px] font-medium text-[#121317]">{label}</span>
                     <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">{desc}</span>
                   </span>
-                  <ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
                 </Link>
               ))}
               <a
                 href="mailto:accessibility@visionary.org.in"
-                className="group flex items-center gap-4 border-t border-[rgba(18,19,23,0.12)] py-5 transition-colors hover:bg-[#f5f5f7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
+                className="group flex items-center gap-4 border-t border-[#dadce0] bg-[#f8f9fa] px-6 py-5 transition-colors hover:bg-[#f8f9fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-inset"
               >
                 <span className="min-w-0 flex-1">
                   <span className="block text-[15px] font-medium text-[#121317]">Tell us what is missing</span>
                   <span className="mt-0.5 block text-[14px] leading-[1.6] text-[#5f6368]">Describe the task and the barrier: accessibility@visionary.org.in</span>
                 </span>
-                <ArrowRight className="h-5 w-5 shrink-0 text-[#0b57d0] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" aria-hidden="true" />
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#9aa0a6] transition-colors group-hover:text-[#0b57d0]" aria-hidden="true" />
               </a>
             </div>
           </Reveal>
         </section>
 
         {/* COMMITMENT — the reference's three-column promise */}
-        <section aria-labelledby="commitment-title" className="border-t border-[rgba(18,19,23,0.12)] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <section aria-labelledby="commitment-title" className="border-t border-[#dadce0] px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="mx-auto max-w-[1240px]">
             <div className="mx-auto max-w-[720px] text-center">
               <h2 id="commitment-title" className="text-[30px] font-normal leading-[1.15] tracking-[-0.03em] text-[#121317] sm:text-[42px]">
@@ -302,8 +312,8 @@ export default function AccessibilityPage() {
             </div>
             <div className="mt-12 grid gap-4 md:grid-cols-3">
               {COMMITMENT.map(({ Icon, title, copy }) => (
-                <article key={title} className="flex min-h-[220px] flex-col rounded-[20px] bg-white p-6 sm:p-7">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#f5f5f7] text-[#0b57d0]">
+                <article key={title} className="flex min-h-[220px] flex-col rounded-2xl g-card p-6 sm:p-7">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f0fe] text-[#0b57d0]">
                     <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                   </span>
                   <h3 className="mt-5 text-[17px] font-medium leading-[1.4] text-[#121317]">{title}</h3>
@@ -317,7 +327,7 @@ export default function AccessibilityPage() {
         {/* CLOSING — the reference's blue DNA band */}
         <section aria-labelledby="closing-title" className="px-6 pb-24 sm:px-8 lg:px-10">
           <Reveal className="mx-auto max-w-[1240px]">
-            <div className="rounded-[30px] bg-[#f5f5f7] px-8 py-16 text-center sm:px-12 lg:py-20">
+            <div className="relative overflow-hidden rounded-[28px] bg-[#e8f0fe] px-8 py-16 text-center sm:px-12 lg:py-20">
               <h2 id="closing-title" className="mx-auto max-w-[720px] text-[clamp(28px,3.6vw,46px)] font-normal leading-[1.1] tracking-[-0.03em] text-[#121317]">
                 Accessibility is part of <span className="text-[#0b57d0]">our design DNA.</span>
               </h2>
@@ -325,10 +335,16 @@ export default function AccessibilityPage() {
                 Visionary grows from the idea that people learn differently. Accessibility makes that idea real, and your feedback builds it.
               </p>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-                <a href="mailto:accessibility@visionary.org.in" className={inkPill}>
-                  Email the accessibility team
+                <a
+                  href="mailto:accessibility@visionary.org.in"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-medium text-[#0b57d2] shadow-[0_1px_3px_rgba(60,64,67,0.2)] transition-all hover:shadow-[0_2px_8px_rgba(32,33,36,0.16)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                >
+                  Email the accessibility team <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <Link to="/how-it-works" className={greyPill}>
+                <Link
+                  to="/how-it-works"
+                  className="inline-flex min-h-11 items-center rounded-full border border-[#121317]/30 px-6 text-[14px] font-medium text-[#121317] transition-colors hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]"
+                >
                   Explore the product
                 </Link>
               </div>

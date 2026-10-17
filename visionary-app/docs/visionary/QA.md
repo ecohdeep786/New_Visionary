@@ -1453,26 +1453,3 @@ Verified before-cleanup.bundle contains complete history and all five deleted ti
 
 
 D-093 clean-worker regression: the initial worker checkout failed patch evidence hashing. Full comparison found six import problems (three missing manifest-listed files and three Go files converted to CRLF), while all original-checkout bytes matched approved hashes. Preserve exact backend/ML snapshot and evidence bytes in Git. The index now matches498 backend/ML snapshot/evidence paths exactly; source diffs ignoring line endings are empty except the three newly tracked original template/fixture files. No provenance hashes changed. Repeat clean-worker integrity/layout and planning tests after fast-forward and controlled source refresh; retain final results in branch-workflow verification evidence.
-
-
-## 2026-10-17 — D-094: Source inventory acceptance and initial main synchronization
-
-Initial merge821915d has exactly the tested44917d4 dev source tree (18 script/527 frontend tests, lint/types/build passed). Worker full check passes18 script and532 frontend tests,0 failed, lint, both types, layout/import integrity and Vite build (20.51s). Last adjustment classifies dev-only scenario controls as unreleased and guards accidental production reachability; five focused tests pass again (3323.0711ms), followed by exact generated audit verification. Source inventory is newline-stable across Windows/Linux; tests cover commented/implicit/accessible/callback controls, mapped/index/redirect/dev routes, unknown dynamic routes, selected controller isolation, fake endpoint denial and role coverage.
-
-No auth session, production student record, payment, source right, domain API or model route is changed. Source-only audit does not certify device/locale/curriculum/provider quality or hosted runtime execution. GCP console returns Google sign-in; no CLI is available, so hosted services/deployment remain unverified. Worker evidence is artifacts/qa/kan-28/, including check.log and final source/link/integration receipts. Preserve original living-log bytes when appending; do not rewrite D-090/D-091 planning snapshots as completion evidence.
-
-
-D-094 integration correction: the first original-dev audit detected multiline callback strings serialized with checkout-specific CRLF even though their digests were canonical. Mainf4e606c had already received the identical worker tree before that failure was inspected; no hosted deployment occurred. Normalize source text before extracting every expression and strengthen the LF/CRLF fixture with a multiline callback. All5 focused tests pass after repair, and complete original/worker source inventories compare structurally equal. The corrected dev check must pass before the next main promotion.
-
-
-D-094 corrected release verification: inspect completed original-dev check exit0 before promotion. All532 frontend and18 script tests pass,0 failures; lint/types/layout/import/audit pass, build17.32s. Dev36933df is published and main328239b has exactly the same treeac449a72013ceab86976424d04778e0155c494e4. Jira comment10001 records precise source-only acceptance and open gates; transition51 returns Done for KAN-28. No hosted deployment is claimed. Closure metadata does not change the tested application/audit implementation.
-
-
-D-094 cloud follow-up: founder completes Google sign-in. Read-only project visionary-research console listings show no Cloud Run services and no Cloud Build triggers configured, with no filter applied. This supersedes the earlier sign-in blocker. Local GCP CLI/product pipeline remain absent; no cloud resource, API enablement, IAM grant, secret, repository connection or deployment is created. Other hosting products are not inspected. Update the audit/receipt and hand off platform work; no hosted product acceptance is claimed.
-
-
-## D-095 — Documentation moves and delivery policy verification · 2026-10-17
-
-Nineteen literal in-workspace moves verified SHA-256 equality before editing only relative Markdown links. Ledger distinguishes raw Windows checkpoint bytes, prior Git blob and LF content hashes; the first attempted Git-blob/raw-checkout comparison exposed the expected CRLF difference, corrected by explicit dual representation rather than changing source content. All204 checked local links resolve, including moved documents and new indexes/handoffs. git diff --check passes. node scripts/verify-layout.mjs and verify-imports.mjs pass; npm run scope:audit passes unchanged68 routes/1,637 control declarations/26 selected endpoints. Eighteen tests pass across feature-delivery, vats-delivery, education-launch, delivery-schedule, launch-backlog and lifelong-delivery.
-
-Evidence retained under ignored artifacts/qa/docs-organization-2026-10-17/. All original STATUS/DECISIONS/QA bytes remain prefixes. Operative master contracts, source generators, imported/frontend/backend/ML runtime files, historical full-board/calendar manifests and protected public docs are not changed. Jira transition41 returns actual Testing for KAN-28; comment10004 records missing independent approval. No separate reviewer has approved this candidate; pending review is explicit rather than inferred from these checks. No dev/main merge or hosted deployment performed for this change.

@@ -21,10 +21,6 @@ visionary-app/
 
 Read [repository ownership](docs/architecture/README.md) and [the frontend-to-service domain map](docs/architecture/PRODUCT_DOMAINS.md). Product requirements and evidence remain in [docs/visionary](docs/visionary/README.md).
 
-Use the [documentation map](docs/README.md) to distinguish requirements, system design, current execution and historical evidence. Every worker submits the [review handoff](docs/architecture/delivery/TASK_REVIEW_TEMPLATE.md); separate review and relevant verification precede Jira Done and the worker's next implementation task.
-
-The [current source surface audit](docs/architecture/PRODUCT_SURFACE_AUDIT.md) maps exposed routes/controls to role, category, locale and integration boundaries. Run `npm run scope:audit`; after explicit review, `npm run scope:audit:write` refreshes its generated snapshots. The audit is included in `npm run check` and does not certify hosted feature readiness.
-
 ## Development commands
 
 Run from this directory. Existing frontend commands continue to work:

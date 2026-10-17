@@ -11,9 +11,6 @@ for (const file of ['verify-layout.mjs', 'verify-imports.mjs']) {
 const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
 if (scriptTests.error) throw scriptTests.error;
 if (scriptTests.status !== 0) process.exit(scriptTests.status ?? 1);
-const surfaceCheck = spawnSync(process.execPath, [path.join(root, 'scripts/surface-audit.mjs')], { cwd: root, stdio: 'inherit' });
-if (surfaceCheck.error) throw surfaceCheck.error;
-if (surfaceCheck.status !== 0) process.exit(surfaceCheck.status ?? 1);
 for (const task of ['lint', 'typecheck', 'test', 'build']) {
   const result = spawnSync(process.execPath, [path.join(root, 'scripts/frontend.mjs'), task], { cwd: root, stdio: 'inherit', env: process.env });
   if (result.error) throw result.error;
