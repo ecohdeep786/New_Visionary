@@ -3166,12 +3166,24 @@
     },
     {
       "id": "hosted-release",
-      "finding": "GCP project visionary-research was supplied; no configured product pipeline, available GCP CLI, hosted URLs or live acceptance evidence was found.",
+      "finding": "Authenticated console inspection lists no Cloud Run services and no Cloud Build triggers in visionary-research. No product deployment pipeline exists in this repository; dev/production hosting, IAM, secrets, health and rollback acceptance remain open. Other hosting products were not inspected.",
       "followUp": [
         "PLAT-01",
         "PLAT-02",
         "RELEASE-01"
       ]
     }
-  ]
+  ],
+  "deploymentEvidence": {
+    "project": "visionary-research",
+    "observedAt": "2026-10-17T18:00:46.155Z",
+    "consoleAuthenticated": true,
+    "cloudRunServicesListed": 0,
+    "cloudBuildTriggersListed": 0,
+    "serviceUrl": "https://console.cloud.google.com/run/services?project=visionary-research",
+    "triggerUrl": "https://console.cloud.google.com/cloud-build/triggers?project=visionary-research",
+    "scope": "Read-only console listings; no filters applied, no resource creation. Other hosting products were not inspected.",
+    "localGcpCliAvailable": false,
+    "hostedProductDeploymentVerified": false
+  }
 }
