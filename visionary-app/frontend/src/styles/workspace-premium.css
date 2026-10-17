@@ -1,0 +1,152 @@
+/* D-074: the Ask page's restraint, applied to the shared internal page grammar.
+   Task content, source/status notices and permission controls are never clamped. */
+.visionary-workspace .workspace-surface > .v-page,
+.visionary-workspace .workspace-surface > form.v-page {
+  max-width: 1160px;
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 48px) 64px;
+  gap: 28px;
+}
+.visionary-workspace .v-page > header:not(.v-lesson-header):not(.v-home-header) {
+  border-bottom: 0;
+  padding-bottom: 4px;
+}
+.visionary-workspace .v-workspace-intro {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.visionary-workspace .v-workspace-intro-copy {flex: 1; width: auto; min-width: 0}
+.visionary-workspace .v-workspace-intro .v-title {margin-top: 0}
+.visionary-workspace .v-workspace-intro .v-section-label {margin-bottom: 6px}
+.visionary-workspace .v-workspace-intro-actions {
+  position: static;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 10px;
+  margin-top: 0;
+  max-width: 100%;
+}
+.visionary-workspace .v-page-symbol {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: var(--v-soft);
+  color: var(--v-action);
+}
+/* Reserve a real footer for Guide, so the launcher cannot cover navigation. */
+@media (min-width: 768px) {
+  .visionary-workspace #dashboard-navigation {padding-bottom: 88px}
+  .visionary-workspace #dashboard-navigation .workspace-navigation {padding-bottom: 12px}
+}
+.visionary-workspace .v-card {padding: 24px; box-shadow: none}
+.visionary-workspace .v-list-row {gap: 20px; padding-block: 18px}
+.visionary-workspace .v-list-row:first-child {padding-top: 0}
+.visionary-workspace .v-list-row:last-child {padding-bottom: 0; border-bottom: 0}
+.visionary-workspace .v-details {min-width: 0; border-top: 1px solid var(--v-border)}
+.visionary-workspace .v-details > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 0;
+  cursor: pointer;
+  list-style: none;
+  color: var(--v-muted);
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.visionary-workspace .v-details > summary::-webkit-details-marker {display: none}
+.visionary-workspace .v-details > summary::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-inline-start: auto;
+  margin-inline-end: 4px;
+  flex: none;
+}
+.visionary-workspace .v-details[open] > summary::after {transform: rotate(225deg)}
+.visionary-workspace .v-details > summary:hover {color: var(--v-action)}
+.visionary-workspace .v-details-body {padding: 4px 0 20px; min-width: 0}
+.visionary-workspace .v-details-body > .v-muted + .v-muted {margin-top: 12px}
+.visionary-workspace summary:focus-visible {outline: 2px solid var(--v-action); outline-offset: 4px; border-radius: 6px}
+.visionary-workspace .v-home-header-tools {display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex: none}
+.visionary-workspace .v-home-header-tools > button {min-height: 44px; padding: 8px 0; font-size: .8125rem}
+.visionary-workspace .v-home-priority {padding: 28px 32px; grid-template-columns: minmax(0, 1fr) 112px; background: var(--v-canvas)}
+.visionary-workspace .v-home-priority-art {width: 112px; height: 112px}
+.visionary-workspace .v-home-priority-copy {gap: 12px}
+.visionary-workspace .v-home-modules {gap: 24px}
+.visionary-workspace .v-home-guide {display: flex; align-items: center; gap: 16px; padding: 20px 0; border-top: 1px solid var(--v-border)}
+.visionary-workspace .v-home-guide > div {flex: 1; min-width: 0}
+.visionary-workspace .v-home-guide h2 {font-size: 1rem; font-weight: 500; margin: 0}
+.visionary-workspace .v-home-guide .v-muted {margin-top: 4px}
+.visionary-workspace .v-home-guide > .guide-mark {flex: none}
+.visionary-workspace .v-role-overview .v-details-body {padding-top: 12px}
+.visionary-workspace .v-empty-state {min-height: 220px; padding: 32px 20px; gap: 12px}
+.visionary-workspace .v-empty-illustration-square {width: 72px; height: 72px}
+.visionary-workspace .v-project-document {height: 80px; background: var(--v-canvas)}
+.visionary-workspace .v-project-grid {grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr))}
+.visionary-workspace .v-project-card {padding: 20px; border-radius: 18px}
+.visionary-workspace .v-catalogue-controls {gap: 16px}
+.visionary-workspace .v-catalogue-controls .v-outline-selector form {max-width: none; margin-top: 12px; background: var(--v-canvas); border-color: transparent; padding: 24px}
+.visionary-workspace .v-catalogue-controls .v-outline-selector form > label {max-width: none}
+.visionary-workspace .v-subject-card {border-radius: 18px; padding: 18px; min-height: 96px}
+.visionary-workspace .v-book-card {border-radius: 18px}
+.visionary-workspace .v-outline-summary {background: var(--v-canvas); border-radius: 20px; padding: 24px}
+.visionary-workspace .v-outline-art {width: 88px; height: 88px}
+.visionary-workspace .v-learning-options {margin-top: 8px}
+.visionary-workspace .v-learning-options .v-button {margin-top: 12px}
+.visionary-workspace .v-support-topics {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px}
+.visionary-workspace .v-support-topics .v-details {align-self: start}
+.visionary-workspace .v-support-start {background: var(--v-canvas); border-color: transparent}
+.visionary-workspace .v-filter-bar {display: flex; flex-wrap: wrap; align-items: center; gap: 12px}
+.visionary-workspace .v-filter-bar > label {flex: 1; min-width: min(100%, 220px)}
+.visionary-workspace .v-filter-bar select {width: auto; max-width: 100%}
+.visionary-workspace .v-class-stats {padding: 18px 0; border-block: 1px solid var(--v-border); background: transparent}
+.visionary-workspace .v-class-card {border-color: var(--v-border); box-shadow: none; transition: border-color var(--v-motion), background-color var(--v-motion)}
+.visionary-workspace .v-class-card:hover {border-color: var(--v-action-border); box-shadow: none}
+.visionary-workspace .v-class-card-cover {min-height: 112px; height: auto; padding: 24px}
+.visionary-workspace .v-report-section {margin-top: 0}
+.visionary-workspace .v-report-section > summary {min-height: 64px; color: var(--v-text)}
+.visionary-workspace .v-report-section .v-report-heading {font-size: 1rem; font-weight: 500; margin: 0}
+.visionary-workspace .v-report-section .v-report-heading > span {width: 36px; height: 36px; border-radius: 12px; background: var(--v-canvas)}
+.visionary-workspace .v-profile-page > .v-card {max-width: 840px; width: 100%}
+.visionary-workspace .v-trust-art,.visionary-workspace .v-career-illustration {width: 64px; height: 64px}
+@media (min-width: 1024px) {
+  .visionary-workspace .v-home-modules {grid-template-columns: repeat(2, minmax(0, 1fr))}
+  .visionary-workspace .v-home-module:has(.v-home-plan-row) {grid-column: 1 / -1}
+}
+@media (max-width: 767px) {
+  .visionary-workspace :is(.workspace-bottom-link,.workspace-bottom-more) {padding-inline: 0}
+  .visionary-workspace :is(.workspace-bottom-link,.workspace-bottom-more) > span:last-child {overflow-wrap: normal; word-break: normal}
+  .visionary-workspace .workspace-surface > .v-page,
+  .visionary-workspace .workspace-surface > form.v-page {padding: 24px 20px 40px; gap: 24px}
+  .visionary-workspace .v-workspace-intro {flex-wrap: wrap; gap: 14px; align-items: flex-start}
+  .visionary-workspace .v-page-symbol {width: 44px; height: 44px; border-radius: 14px}
+  .visionary-workspace .v-workspace-intro-actions {width: 100%; margin-top: 2px}
+  .visionary-workspace .v-workspace-intro .v-title {font-size: 1.625rem}
+  .visionary-workspace .v-card {padding: 20px}
+  .visionary-workspace .v-home-header {gap: 16px}
+  .visionary-workspace .v-home-header-tools {flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px}
+  .visionary-workspace .v-home-priority {grid-template-columns: minmax(0, 1fr); padding: 24px}
+  .visionary-workspace .v-home-priority-art {display: none}
+  .visionary-workspace .v-home-guide {flex-wrap: wrap}
+  .visionary-workspace .v-home-guide > div {flex-basis: calc(100% - 60px)}
+  .visionary-workspace .v-home-guide > .v-button {margin-inline-start: 48px}
+  .visionary-workspace .v-support-topics {grid-template-columns: minmax(0, 1fr)}
+  .visionary-workspace .v-catalogue-controls .v-outline-selector form {padding: 20px}
+}
+@media (max-width: 359px) {
+  .visionary-workspace :is(.workspace-bottom-link,.workspace-bottom-more) {font-size: .6875rem}
+}
+@media (forced-colors: active) {
+  .visionary-workspace :is(.v-page-symbol,.v-home-priority,.v-support-start) {border: 1px solid CanvasText}
+}

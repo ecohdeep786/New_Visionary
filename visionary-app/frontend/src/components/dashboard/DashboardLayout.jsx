@@ -19,9 +19,12 @@ import OrganizationBilling from '@/pages/dashboard/OrganizationBilling';
 import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
 import './workspace-design.css';
+import '@/styles/workspace-premium.css';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Ellipsis } from "lucide-react";
 import { shellCopy } from './shellCopy';
+import FeedbackPrompt from './FeedbackPrompt';
+import { feedbackSurface } from '@/services/feedbackClient';
 
 export default function DashboardLayout() {
   const { user, activeWorkspace, workspaceError, retryWorkspace } = useAuth();
@@ -119,6 +122,7 @@ export default function DashboardLayout() {
         </SheetContent></Sheet>
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3">
           <div className="workspace-surface min-h-full overflow-hidden">{!permitted?<div className="v-page" lang={locale}><h1 className="v-title">{organizationCopy(locale,'Permission required')}</h1><p className="v-notice" role="alert">{organizationCopy(locale,'Your {role} permission does not include this section. Ask the organization owner to review access.',{role:organizationCopy(locale,policy.label)})}</p><NavLink to="/dashboard/home" className="v-button">{organizationCopy(locale,'Return to workspace')}</NavLink></div>:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<div lang={locale} className="v-page" role="status" aria-busy="true">{t("openingWorkspace")}</div>}><Outlet /></Suspense>}</div>
+          {permitted && <FeedbackPrompt key={ctx.personId+':'+ctx.workspaceId} accountId={ctx.personId} locale={locale} surface={feedbackSurface(location.pathname)}/>}
         </main>
       </div>
       <nav ref={mobileNavigation} lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className="workspace-bottom-link flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 px-2 text-xs"><span className="workspace-bottom-icon"><Icon aria-hidden="true" size={20}/></span><span>{item.label}</span></NavLink>;})}<button ref={mobileTrigger} aria-label={t("moreNavigation")} aria-haspopup="dialog" aria-controls="mobile-workspace-navigation" aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} aria-current={presented.mobileMoreActive ? 'true' : undefined} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 px-2 text-xs" onClick={()=>setMobileOpen(true)}><span className="workspace-bottom-icon"><Ellipsis aria-hidden="true" size={20}/></span><span>{t("more")}</span></button></nav>

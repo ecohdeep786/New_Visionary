@@ -1,0 +1,51 @@
+══ how-it-works
+  kickers: 14px/none/600 "Sign up" · 14px/none/600 "Start as yourself" · 14px/none/600 "Your space" · 17px/none/600 "Today" · 14px/none/600 "Connected" · 17px/none/600 "Yesterday"
+  small/off-ladder: (none)
+══ pricing
+  kickers: (none)
+  small/off-ladder: 12px <span> "2 months free" | 43.2px <span> "₹0" | 12px <p> "Free forever · no card required" | 12px <span> "Most popular" | 12px <p> "Billed yearly (₹2990) · 2 months free" | 12px <p> "Billed yearly (₹4990) · 2 months free" | 12px <p> "Pricing shaped with you · pilots available" | 12px <p> "Prices in INR · Taxes may apply · Education discou" | 20px <span> "Can I start free?"
+══ download
+  kickers: 17px/none/500 "Download" · 17px/none/600 "Supported platforms" · 14px/none/600 "Recommended" · 17px/none/600 "System requirements"
+  small/off-ladder: (none)
+══ about
+  kickers: 17px/none/500 "About Visionary" · 17px/none/600 "Why Visionary exists" · 17px/none/600 "Our mission" · 17px/none/600 "A life in motion" · 17px/none/600 "The difference we want to make" · 14px/none/600 "01 / The challenge"
+  small/off-ladder: 22px <span> "Students"
+══ careers
+  kickers: 17px/none/600 "How we hire"
+  small/off-ladder: (none)
+══ research
+  kickers: 17px/none/600 "Visionary Intelligence" · 17px/none/600 "For students" · 17px/none/600 "In the product" · 17px/none/600 "In the product" · 17px/none/600 "In the product" · 17px/none/600 "Next"
+  small/off-ladder: (none)
+══ community
+  kickers: 17px/none/500 "Visionary communities"
+  small/off-ladder: 22px <p> "Class-scoped spaces where learners, teachers, and "
+══ contact
+  kickers: 17px/none/600 "Help center" · 17px/none/600 "Product" · 17px/none/600 "Community" · 17px/none/600 "Safety" · 17px/none/600 "Contact routes" · 17px/none/600 "Product and account questions"
+  small/off-ladder: (none)
+══ partners
+  kickers: 17px/none/500 "Visionary partnerships" · 14px/none/600 "Schools & systems" · 14px/none/600 "Technology teams" · 14px/none/600 "Regional & language experts" · 14px/none/600 "Institutions & organizations" · 14px/none/600 "Conversation"
+  small/off-ladder: 12px <th> "What is included"
+══ updates
+  kickers: 17px/none/500 "News & updates" · 14px/none/600 "Featured" · 14px/none/600 "Languages & access" · 17px/none/600 "The changes, by category" · 14px/none/600 "Product updates" · 14px/none/600 "Languages and access"
+  small/off-ladder: (none)
+══ referral
+  kickers: 17px/none/500 "Referral programme" · 17px/none/600 "Sending an invite" · 17px/none/600 "Pointing them well" · 17px/none/600 "Ready to share?" · 14px/none/600 "No tracking" · 14px/none/600 "No codes"
+  small/off-ladder: (none)
+══ safety
+  kickers: 17px/none/600 "Age-aware experiences" · 17px/none/600 "Safe by default" · 17px/none/600 "Private by design" · 17px/none/600 "For parents" · 17px/none/600 "For families" · 17px/none/600 "For organizations"
+  small/off-ladder: (none)
+══ privacy
+  kickers: 12px/uppercase/500 "In this policy" · 17px/none/500 "Privacy policy" · 12px/uppercase/500 "In this policy" · 17px/none/600 "Start here" · 12px/none/600 "01" · 12px/none/600 "02"
+  small/off-ladder: 12px <div> "In this policy" | 12px <span> "01" | 12px <span> "02" | 12px <span> "03" | 12px <span> "04" | 12px <span> "05" | 12px <span> "06" | 12px <span> "07" | 12px <span> "08" | 12px <span> "09" | 12px <span> "10" | 12px <span> "In this policy" | 12px <div> "01" | 12px <div> "02" | 12px <div> "03" | 12px <div> "04" | 12px <div> "05" | 12px <div> "06" | 12px <div> "07" | 12px <div> "08" | 12px <div> "09" | 12px <div> "10"
+══ security
+  kickers: 12px/uppercase/500 "In this policy" · 17px/none/500 "Security" · 12px/uppercase/500 "In this policy" · 17px/none/600 "Start here" · 12px/none/600 "01" · 12px/none/600 "02"
+  small/off-ladder: 12px <div> "In this policy" | 12px <span> "01" | 12px <span> "02" | 12px <span> "03" | 12px <span> "04" | 12px <span> "05" | 12px <span> "06" | 12px <span> "07" | 12px <span> "08" | 12px <span> "09" | 12px <span> "10" | 12px <span> "In this policy" | 12px <div> "01" | 12px <div> "02" | 12px <div> "03" | 12px <div> "04" | 12px <div> "Identity" | 12px <div> "Scope" | 12px <div> "05" | 12px <div> "Privacy" | 12px <div> "Account" | 12px <div> "06" | 12px <div> "07" | 12px <div> "08" | 12px <div> "09"
+══ terms
+  kickers: 12px/uppercase/500 "In this policy" · 17px/none/500 "Terms of service" · 12px/uppercase/500 "In this policy" · 17px/none/600 "Start here" · 12px/none/600 "01" · 12px/none/600 "02"
+  small/off-ladder: 12px <div> "In this policy" | 12px <span> "01" | 12px <span> "02" | 12px <span> "03" | 12px <span> "04" | 12px <span> "05" | 12px <span> "06" | 12px <span> "07" | 12px <span> "08" | 12px <span> "09" | 12px <span> "10" | 12px <span> "11" | 12px <span> "12" | 12px <span> "In this policy" | 12px <div> "01" | 12px <div> "02" | 12px <div> "03" | 12px <div> "04" | 12px <div> "05" | 12px <div> "06" | 12px <div> "07" | 12px <div> "08" | 12px <div> "09" | 12px <div> "10" | 12px <div> "11"
+══ accessibility
+  kickers: 17px/none/500 "Accessibility" · 17px/none/600 "Seeing and reading" · 17px/none/600 "Hearing and speaking" · 17px/none/600 "Motor and navigation" · 17px/none/600 "Language and understanding" · 17px/none/600 "Sync & devices"
+  small/off-ladder: (none)
+══ cookies
+  kickers: 12px/uppercase/500 "In this policy" · 17px/none/500 "Cookie policy" · 12px/uppercase/500 "In this policy" · 17px/none/600 "Start here" · 12px/none/600 "01" · 12px/none/600 "02"
+  small/off-ladder: 12px <div> "In this policy" | 12px <span> "01" | 12px <span> "02" | 12px <span> "03" | 12px <span> "04" | 12px <span> "05" | 12px <span> "06" | 12px <span> "In this policy" | 12px <div> "01" | 12px <div> "02" | 12px <div> "03" | 12px <div> "04" | 12px <div> "05" | 12px <div> "06"

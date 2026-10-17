@@ -3,6 +3,8 @@ import { projectCopy } from '@/lib/projectCopy';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Plus, Save, ArrowLeft, ArrowUpRight, FileText, History, Share2, Shapes } from 'lucide-react';
+import WorkspaceDetails from '@/components/dashboard/WorkspaceDetails';
+import {workspacePresentationCopy} from '@/lib/workspacePresentationCopy';
 import WorkspaceIntro from '@/components/dashboard/WorkspaceIntro';
 import ProjectCriteria from '@/components/dashboard/ProjectCriteria';
 import ParentProjectSharing from '@/components/dashboard/ParentProjectSharing';
@@ -263,7 +265,7 @@ const [params] = useSearchParams();
       setBaseRevision(artifactRevision(saved));
       setNotice(message);
     }} /></div>;
-  return <div className="v-page" lang={locale}><WorkspaceIntro eyebrow={t("Create and reflect")} title={t("Build something of your own")} description={t("Bring your ideas, evidence, and experiments together.")} icon={Shapes}><button className="v-button primary" onClick={() => {
+  return <div className="v-page v-build-page" lang={locale}><WorkspaceIntro eyebrow={t("Create and reflect")} title={t("Build something of your own")} description={t("Bring your ideas, evidence, and experiments together.")} icon={Shapes}><button className="v-button primary" onClick={() => {
         try {
           const newProject = saveArtifact(ctx, {
             title: 'Untitled project',
@@ -282,7 +284,7 @@ const [params] = useSearchParams();
             message: cause.message
           });
         }
-      }}><Plus size={16} />{t("New project")}</button></WorkspaceIntro><p className="v-muted">{t("Start from a verified learning unit for a connected project, or make a private blank project.")}{" "}<Link className="v-action-link" to="/dashboard/learn">{t("Open learning outline")}</Link></p>{notice && <p role={noticeFailed?"alert":"status"} lang={noticeLocale} className={noticeFailed?"v-notice v-error":"v-notice"}>{noticeText}</p>}<div className="flex flex-wrap gap-3"><label className="min-w-0 flex-1"><span className="sr-only">{t("Search projects")}</span><input className="v-field" placeholder={t("Search projects")} value={query} onChange={e => setQuery(e.target.value)} /></label><select aria-label={t("Project status")} className="v-field !w-auto" value={filter} onChange={e => setFilter(e.target.value)}>{['all', 'draft', 'in-progress', 'completed'].map(v => <option key={v} value={v}>{t(v)}</option>)}</select></div><section className="v-card"><h2 className="mb-3 text-lg font-medium">{t("My projects")}</h2>{rows.length ? <div className="v-project-grid">{rows.map(a => <button className="v-project-card" key={a.id} onClick={() => {
+      }}><Plus size={16} />{t("New project")}</button></WorkspaceIntro><WorkspaceDetails title={workspacePresentationCopy(locale)("projects")}><p className="v-muted">{t("Start from a verified learning unit for a connected project, or make a private blank project.")}{" "}<Link className="v-action-link" to="/dashboard/learn">{t("Open learning outline")}</Link></p></WorkspaceDetails>{notice && <p role={noticeFailed?"alert":"status"} lang={noticeLocale} className={noticeFailed?"v-notice v-error":"v-notice"}>{noticeText}</p>}<div className="v-filter-bar"><label className="min-w-0 flex-1"><span className="sr-only">{t("Search projects")}</span><input className="v-field" placeholder={t("Search projects")} value={query} onChange={e => setQuery(e.target.value)} /></label><select aria-label={t("Project status")} className="v-field !w-auto" value={filter} onChange={e => setFilter(e.target.value)}>{['all', 'draft', 'in-progress', 'completed'].map(v => <option key={v} value={v}>{t(v)}</option>)}</select></div><section className="v-card"><h2 className="mb-3 text-lg font-medium">{t("My projects")}</h2>{rows.length ? <div className="v-project-grid">{rows.map(a => <button className="v-project-card" key={a.id} onClick={() => {
         setNotice('');
         openSavedArtifact(a);
       }}><span className="v-project-document" aria-hidden="true"><FileText size={44} strokeWidth={1.4}/></span><div><h3>{a.title}</h3><p className="v-project-card-meta"><span>{t(a.status)}</span><span aria-hidden="true">·</span><span>{t(a.visibility)}</span></p></div><span className="v-project-card-action">{t("Open")}<ArrowUpRight size={18} aria-hidden="true"/></span></button>)}</div> : <div className="v-workspace-empty"><SpotIllustration subject={query || filter !== 'all' ? "compass" : "build"} className="v-empty-illustration v-empty-illustration-square"/><p className="font-medium">{query || filter !== 'all' ? t("No matching projects") : t("Your first project starts here")}</p><p className="v-muted mt-2">{query || filter !== 'all' ? t("Try a different title or status.") : t("Create a blank project or continue a concept in Learn. Your work stays yours.")}</p></div>}</section>{received.length > 0 && <section className="v-card"><h2 className="text-lg font-medium">{t("Shared with me")}</h2>{received.map(a => <details className="mt-5" key={a.id}><summary className="cursor-pointer text-sm font-medium">{a.title} · {a.from}</summary><p className="v-muted mt-2">{a.sharedVersion ? t('Shared saved copy from {date}. Later private edits are not shown.', {

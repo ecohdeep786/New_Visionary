@@ -4,6 +4,7 @@ import { ArrowRight, Check, ChevronDown, Minus, Sparkles } from "lucide-react";
 import LandingNav from "@/components/landing/LandingNav";
 import Breadcrumb from "@/components/landing/Breadcrumb";
 import LandingFooter from "@/components/landing/LandingFooter";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import studentImage from "@/assets/student-face-main.webp";
 import teacherImage from "@/assets/teacher-face-main.webp";
 import parentImage from "@/assets/parent-face-main.webp";
@@ -14,12 +15,12 @@ import organizationImage from "@/assets/organization-face-main.webp";
 /* ═══ DESIGN TOKENS (same system) ═══ */
 const COLORS = {
   ink: "#121317",
-  surface: "#F5F6F8",
+  surface: "#f5f5f7",
   blue: "#4285F4",
   grey: "#5f6368",
   slate: "#5f6368",
   lightGrey: "#9AA0A6",
-  mist: "#dadce0",
+  mist: "rgba(18,19,23,0.12)",
   white: "#ffffff",
 };
 const PERSONA_IMAGES = {
@@ -65,44 +66,43 @@ import { billingPath } from '@/lib/billingIntent';
 import { fontStack } from "@/components/landing/system/tokens";
 
 
-/* ═══ Billing toggle — same pill language as site tabs ═══ */
+/* ═══ Billing toggle — same ink-pill language as site tabs ═══ */
 const BillingToggle = React.memo(function BillingToggle({ billing, onChange }) {
   return (
-    <div className="flex w-fit max-w-full items-stretch rounded-full border bg-white p-1" style={{ borderColor: COLORS.mist }} role="group" aria-label="Billing period">
-      {["monthly", "annual"].map((b) => (
-        <button
-          key={b}
-          type="button"
-          aria-pressed={billing === b}
-          onClick={() => onChange(b)}
-          className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0.1px] transition-colors sm:px-5 ${billing === b ? "font-medium" : "font-normal hover:bg-[#f5f8ff]"}`}
-          style={{ backgroundColor: billing === b ? "#e8f0fe" : "transparent", color: billing === b ? "#0b57d0" : COLORS.slate }}
-        >
-          {b === "monthly" ? "Monthly" : "Annual"}
-          {b === "annual" && (
-            <span className="rounded-full bg-[#e6f4ea] px-2 py-0.5 text-[12px] font-medium tracking-[0.1px] text-[#137333]">
-              2 months free
-            </span>
-          )}
-        </button>
-      ))}
+    <div className="flex w-fit max-w-full items-stretch rounded-full bg-white p-1" role="group" aria-label="Billing period">
+      {["monthly", "annual"].map((b) => {
+        const active = billing === b;
+        return (
+          <button
+            key={b}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onChange(b)}
+            className={`flex min-h-10 items-center justify-center gap-2 rounded-full px-4 text-[14px] tracking-[0] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-5 ${active ? "bg-[#121317] font-medium text-white" : "font-normal text-[#5f6368] hover:bg-[#f5f5f7]"}`}
+          >
+            {b === "monthly" ? "Monthly" : "Annual"}
+            {b === "annual" && (
+              <span className={`rounded-full px-2 py-0.5 text-[12px] font-medium tracking-[0] ${active ? "bg-white/15 text-white" : "bg-[#f5f5f7] text-[#5f6368]"}`}>
+                2 months free
+              </span>
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 });
 
-/* ═══ Plan card ═══ */
+/* ═══ Plan card — a quiet white module on the grey field; the recommended
+   plan is the one with the ink chip and the ink pill ═══ */
 const PlanCard = React.memo(function PlanCard({ plan, billing }) {
   const price = billing === "annual" ? plan.annual : plan.monthly;
   return (
     <div
-      className="relative flex h-full flex-col rounded-[24px] border bg-white p-6 transition-colors sm:p-7 xl:p-8"
-      style={{
-        borderColor: plan.highlight ? "#1967D2" : "#e0e3e7",
-        boxShadow: plan.highlight ? "0 0 0 1px #1967D2" : "none",
-      }}
+      className="relative flex h-full flex-col rounded-[20px] bg-white p-6 sm:p-7 xl:p-8"
     >
       <div className="mb-2 flex h-6 items-center">
-        {plan.badge && <span className="rounded-full bg-[#e8f0fe] px-2.5 py-1 text-[12px] font-medium leading-none text-[#1967D2]">{plan.badge}</span>}
+        {plan.badge && <span className="rounded-full bg-[#121317] px-2.5 py-1 text-[12px] font-medium leading-none text-white">{plan.badge}</span>}
       </div>
       <h3 className="text-[24px] font-semibold leading-[1.12] tracking-[0.009em]" style={{ color: COLORS.ink }}>{plan.name}</h3>
       <p className="mt-2 min-h-[44px] font-normal leading-[1.5] text-[14px]" style={{ color: COLORS.grey }}>{plan.tagline}</p>
@@ -132,15 +132,16 @@ const PlanCard = React.memo(function PlanCard({ plan, billing }) {
 
       <Link
         to={['personal', 'family'].includes(plan.id) ? billingPath(plan.id, billing) : plan.to}
-        className={`mt-5 inline-flex h-12 items-center justify-center rounded-full px-5 text-center font-medium tracking-[0.1px] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
-          plan.highlight ? "text-white hover:bg-[#185abc] active:scale-[0.99] focus-visible:ring-[#1967D2]" : "hover:bg-[#e8f0fe] focus-visible:ring-[#1967D2]"
+        className={`mt-5 inline-flex h-12 items-center justify-center rounded-full px-5 text-center font-medium tracking-[0] text-[15px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+          plan.highlight
+            ? "bg-[#121317] text-white hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98]"
+            : "bg-[#f5f5f7] text-[#121317] hover:bg-[#e8e8ed] active:scale-[0.98]"
         }`}
-        style={plan.highlight ? { backgroundColor: "#1967D2" } : { border: "1px solid #a8c7fa", color: "#1967D2" }}
       >
         {plan.cta}
       </Link>
 
-      <p className="mt-7 border-t pt-6 text-[13px] font-medium" style={{ borderColor: "#dadce0", color: COLORS.ink }}>What’s included</p>
+      <p className="mt-7 border-t pt-6 text-[14px] font-medium" style={{ borderColor: COLORS.mist, color: COLORS.ink }}>What’s included</p>
       <ul className="mt-4 space-y-3">
         {plan.features.map((f) => (
           <li key={f} className="flex items-start gap-3">
@@ -158,7 +159,7 @@ function PricingPlansSection() {
   const { ref, visible } = useRevealOnce();
   const [billing, setBilling] = useState("annual");
   return (
-    <section ref={ref} className="relative px-4 pb-20 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-24 lg:pt-28" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="01-hero" className="relative px-4 pb-20 pt-24 sm:px-6 lg:px-[var(--frame-x)] lg:pb-24 lg:pt-28" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto max-w-[1440px] text-center">
           <h1 className="mx-auto max-w-[24ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>
@@ -168,7 +169,7 @@ function PricingPlansSection() {
             Start free. Find the right fit for yourself, your family, or your organization.
           </p>
         </div>
-        <div className="mx-auto mt-12 w-full max-w-[1440px] rounded-[28px] p-3 sm:p-5 lg:p-7">
+        <div className="mx-auto mt-12 w-full max-w-[1440px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
           <div className="flex flex-col items-center gap-3 px-2 pb-6 sm:px-1 lg:pb-8">
             <BillingToggle billing={billing} onChange={setBilling} />
           </div>
@@ -188,12 +189,13 @@ function PricingPlansSection() {
 function PricingPersonaSection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="02-persona" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h2 className="mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>Every journey has a plan.</h2>
-        <div className="mx-auto mt-12 grid w-full max-w-[1280px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mx-auto mt-12 w-full max-w-[1280px] rounded-[30px] bg-[#f5f5f7] p-4 sm:p-6 lg:p-10">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {PERSONA_PLANS.map((p) => (
-            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[24px] border bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:border-[#4285F4] hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]" style={{ borderColor: COLORS.mist }}>
+            <Link key={p.persona} to={p.to} className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-6 pb-16 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(60,64,67,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4]">
               <div className="mb-5 flex h-36 items-center justify-center overflow-hidden rounded-[18px] bg-white">
                 <img src={PERSONA_IMAGES[p.persona]} alt="" loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
               </div>
@@ -205,6 +207,7 @@ function PricingPersonaSection() {
               <div className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center"><ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ color: COLORS.blue }} aria-hidden="true" /></div>
             </Link>
           ))}
+          </div>
         </div>
       </FadeReveal>
     </section>
@@ -221,14 +224,14 @@ function PricingComparisonSection() {
   const { ref, visible } = useRevealOnce();
   return (
     
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{fontFamily: fontStack }}>
+    <section ref={ref} data-section="03-compare" className="relative px-6" style={{fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <h2 className="mx-auto max-w-[20ch] text-balance text-center font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink, marginTop: "var(--gap-eyebrow-title-display)" }}>See exactly what you get.</h2>
         <p className="mx-auto mt-6 max-w-[1240px] text-right text-[12px] text-[#5f6368] md:hidden">Scroll to compare all plans →</p>
-        <div className="mx-auto mt-10 w-full max-w-[1240px] overflow-x-auto rounded-[24px] border bg-white md:mt-12" style={{ borderColor: COLORS.mist }}>
+        <div className="mx-auto mt-10 w-full max-w-[1240px] overflow-x-auto rounded-[20px] md:mt-12">
           <table className="w-full min-w-[760px] border-collapse text-center">
             <thead>
-              <tr className="border-b bg-[#f8fafd]" style={{ borderColor: COLORS.mist }}>
+              <tr className="border-b bg-[#f5f5f7]" style={{ borderColor: COLORS.mist }}>
                 <th scope="col" className="px-6 py-6 text-left font-medium tracking-[0] text-[16px]" style={{ color: COLORS.ink }}>Features</th>
                 {["Start", "Personal", "Family", "Institution"].map((h) => (
                   <th key={h} scope="col" className="px-6 py-6 font-medium tracking-[0] text-[16px]" style={{ color: h === "Personal" ? COLORS.blue : COLORS.ink }}>{h}</th>
@@ -276,7 +279,7 @@ function PricingFAQSection() {
   const [open, setOpen] = useState(-1);
   const toggle = useCallback((i) => setOpen((cur) => (cur === i ? -1 : i)), []);
   return (
-    <section ref={ref} className="relative bg-white px-6 py-24 lg:py-32" style={{ fontFamily: fontStack }}>
+    <section ref={ref} data-section="04-faq" className="relative bg-white px-6" style={{ fontFamily: fontStack }}>
       <FadeReveal visible={visible}>
         <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
@@ -307,24 +310,25 @@ function PricingFAQSection() {
 }
 
 
-/* ═══ 07 · FINAL CTA ═══ */
+/* ═══ 07 · FINAL CTA — statement, one ink pill, one quiet path ═══ */
 function PricingCTASection() {
   const { ref, visible } = useRevealOnce();
   return (
-    <section ref={ref} className="relative px-6 py-24 lg:py-32" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
+    <section ref={ref} data-section="05-cta" className="relative rounded-t-[32px] px-6" style={{ backgroundColor: COLORS.surface, fontFamily: fontStack }}>
       <div className={`mx-auto max-w-[1500px] text-center transition-all duration-700 ease-google ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}>
         <h2 className="mx-auto max-w-[24ch] text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]" style={{ color: COLORS.ink }}>Your journey is already happening, so start free.</h2>
-        <p className="mx-auto mt-5 max-w-[760px] font-normal tracking-[0] leading-[25px] text-[17.5px]" style={{ color: COLORS.grey }}>
-          Begin with a question today. Upgrade only when Visionary has earned it.
-        </p>
-        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link to="/register" className="inline-flex h-14 items-center justify-center rounded-full px-12 font-medium tracking-[0] text-[16px] text-white transition-all hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2" style={{ backgroundColor: COLORS.blue }}>
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link to="/register" className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#121317] px-7 font-medium tracking-[0.24px] text-[17px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Get started
           </Link>
-          <Link to="/contact" className="inline-flex h-14 items-center justify-center rounded-full border px-10 font-medium tracking-[0] text-[16px] transition-colors hover:bg-[#121317]/5" style={{ borderColor: `${COLORS.ink}4D`, color: COLORS.ink }}>
+          <Link to="/contact" className="inline-flex h-12 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-[18px] font-medium tracking-[0] text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 max-[390px]:w-full max-[390px]:max-w-[320px]">
             Talk to sales
+            <ChevronIcon className="h-4 w-4" />
           </Link>
         </div>
+        <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
+          Upgrade only when Visionary has earned it.
+        </p>
       </div>
     </section>
   );
@@ -333,7 +337,7 @@ function PricingCTASection() {
 /* ═══ PAGE — universal for all users, quiet footer ═══ */
 export default function AILearningPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: fontStack }}>
+    <div className="page-pricing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
       <LandingNav />
       <Breadcrumb page="Pricing" />
       <main id="main">

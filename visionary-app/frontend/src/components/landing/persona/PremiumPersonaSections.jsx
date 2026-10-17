@@ -898,8 +898,8 @@ function PremiumTrustSection({ heading, sub, values }) {
                   className={`stagger-child py-10 first:pt-0 lg:py-0 lg:px-10 lg:first:pl-0 lg:last:pr-0 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}
                   style={{ borderColor: `${COLORS.ink}1A` }}
                 >
-                  <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />
-                  <h3 data-type="value-title" className="mt-4" style={{ color: COLORS.ink }}>
+                  {value.Icon && <value.Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} style={{ color: COLORS.ink }} />}
+                  <h3 data-type="value-title" className={value.Icon ? "mt-4" : "mt-0"} style={{ color: COLORS.ink }}>
                     {value.title}
                   </h3>
                   <p data-type="value-body" className="mt-2 max-w-[35ch] text-balance" style={{ color: COLORS.grey }}>
@@ -1036,7 +1036,11 @@ const PremiumExploreCard = React.memo(function PremiumExploreCard({ category, im
   );
 });
 
-function PremiumExploreSection({ heading, categories, images }) {
+/* Props: heading (node), categories, images. Optional eyebrow + sub render
+   the same left-spined chapter header the site's other chapters carry — the
+   landing's router uses them; persona pages pass neither, so their line-up
+   header stays exactly the measured "Explore the line-up." anatomy. */
+function PremiumExploreSection({ heading, categories, images, eyebrow, sub }) {
   const { ref } = useRevealOnce();
   const { trackRef, canPrev, canNext, scrollByCard, update } = useScrollTrack();
 
@@ -1073,12 +1077,25 @@ function PremiumExploreSection({ heading, categories, images }) {
       <ScrollReveal>
         <RevealItem idx={0}>
           <div className="mx-auto w-full max-w-[1265px] px-6 lg:px-[80px]">
+            {eyebrow && (
+              <p className="text-[17px] font-medium" style={{ color: COLORS.grey }}>
+                {eyebrow}
+              </p>
+            )}
             <h2
               className="text-balance font-semibold tracking-[-0.009em] leading-[1.06] text-[clamp(40px,5vw,64px)]"
-              style={{ color: COLORS.ink, maxWidth: "20ch" }}
+              style={{ color: COLORS.ink, maxWidth: "20ch", marginTop: eyebrow ? "var(--gap-eyebrow-title-display)" : undefined }}
             >
               {heading}
             </h2>
+            {sub && (
+              <p
+                className="text-balance mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]"
+                style={{ color: COLORS.grey }}
+              >
+                {sub}
+              </p>
+            )}
           </div>
         </RevealItem>
         <RevealItem idx={1} className="stagger-group">

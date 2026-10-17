@@ -1,0 +1,13 @@
+{
+  "dateUtc": "2026-10-16",
+  "tool": "project-local REA6.4.0 capture-browser-scenario",
+  "scope": "Anonymous public documents/publications in an empty temporary browser profile; no login, account operation, consent click, user traffic, secrets or private API inspection. Browser evidence does not establish private system architecture.",
+  "records": [
+    { "target": "classroom", "kind": "public-browser-attempt", "complete": true, "cleanup": "terminated-owned-process", "errorCode": null, "evidencePath": "artifacts/research/system-design/2026-10-16T04-42-54-600Z/classroom.evidence.json", "sha256": "5021c0a04db78f115ca9ecb7c437a74ea221de5332c68c375c3d27ee9b5e552a" },
+    { "target": "khan-academy", "kind": "public-browser-attempt", "complete": true, "cleanup": "terminated-owned-process", "errorCode": null, "evidencePath": "artifacts/research/system-design/2026-10-16T04-42-54-600Z/khan-academy.evidence.json", "sha256": "d68e0326668158533925383e4691b224cdf9bb98f905113185e8455c7c525387" },
+    { "target": "youtube", "kind": "public-browser-attempt", "complete": true, "cleanup": "terminated-owned-process", "errorCode": null, "evidencePath": "artifacts/research/system-design/2026-10-16T04-42-54-600Z/youtube.evidence.json", "sha256": "19312642797232e5d3926f463666dea384589d4058f8213c06c1dd0484df634e" }
+  ],
+  "browser": "Provider-owned Chromium 154.0.8037.57 from the local Puppeteer cache; each capture reports cleanup terminated-owned-process.",
+  "artifactStates": "Each evidence envelope captures the final URL, DOM (132–275 KiB) and accessibility tree (5–31 KiB), and both scenario steps complete.",
+  "observedResourceCheck": "A read-only process inspection after the runs found no Chrome/Chromium process and no Chrome command line containing REA; no user-owned browser process was stopped."
+}

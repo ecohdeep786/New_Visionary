@@ -1,0 +1,5 @@
+# Import snapshots and reviewed patch evidence are byte-hashed. Some evidence
+# contains mixed line endings from the original sources; never normalize it.
+integration/upstream-patches/*.patch -text
+backend/upstream/** -text
+ml/upstream/** -text

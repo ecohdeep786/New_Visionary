@@ -25,6 +25,51 @@ function fixture() {
 const setup = { full_name: 'Fixture Adult', identity: 'student', education_stage: 'higher_ed', age_band: 'adult', subjects: ['Mathematics'], institution_type: 'college', degree_program: 'B.Sc', department: 'Mathematics', semester: 'Semester 1', career_goal: 'research' };
 const metadata = { ip: '127.0.0.1', userAgent: 'Fixture browser' };
 
+test('same-named users keep separate UIDs while independent device sessions and onboarding share one account', async () => {
+  const f = fixture(); f.identity.name = 'Same name';
+  const first = await f.service.signIn('fixture-token', metadata), second = await f.service.signIn('fixture-token', { ip: '127.0.0.2', userAgent: 'Other fixture browser' });
+  assert.equal(first.profile.id, second.profile.id); assert.notEqual(first.device, second.device);
+  const root = `visionary_accounts/${first.profile.id}`;
+  assert.equal(f.rows.get(root).storageVersion, 2); assert.equal(f.rows.get(root).identity.uid, first.profile.id);
+  const device = f.rows.get(`${root}/devices/${hash(first.device)}`);
+  assert.equal(device.uid, first.profile.id); assert.equal(device.observedIp, metadata.ip); assert.equal(device.userAgent, metadata.userAgent);
+  assert.equal(device.cookieHash, undefined); assert.equal(JSON.stringify(device).includes(first.cookie), false);
+  await f.service.completeOnboarding(first.profile.id, setup);
+  assert.equal((await f.service.me(second.profile.id)).onboarding_complete, true);
+  await f.service.logout(first.device, first.profile.id);
+  assert.ok(f.rows.get(`${root}/devices/${hash(first.device)}`).revokedAt);
+  assert.equal(f.rows.get(`${root}/devices/${hash(second.device)}`).revokedAt, null);
+  f.identity.uid = 'second-person'; f.identity.email = 'other@example.test';
+  const other = await f.service.signIn('other-token', metadata);
+  assert.notEqual(other.profile.id, first.profile.id); assert.equal(other.profile.full_name, 'Same name');
+  assert.equal(other.profile.onboarding_complete, false); assert.equal(f.rows.get(root).profile.full_name, setup.full_name);
+});
+
+test('legacy billing and an unfinished migration fail closed without replacing paid state with Free', async () => {
+  const f = fixture(), paid = { uid: f.identity.uid, revision: 8, subscription: { id: 'sub_keep' } };
+  f.rows.set(`visionary_billing_test_accounts/${f.identity.uid}`, paid);
+  await assert.rejects(f.service.signIn('fixture-token', metadata), error => error.getStatus() === 503);
+  assert.deepEqual(f.rows.get(`visionary_billing_test_accounts/${f.identity.uid}`), paid);
+  assert.equal(f.rows.has(`visionary_accounts/${f.identity.uid}/billing/test`), false);
+  f.rows.delete(`visionary_billing_test_accounts/${f.identity.uid}`);
+  const session = await f.service.signIn('fixture-token', metadata);
+  f.rows.get(`visionary_accounts/${f.identity.uid}`).storageMigration = { status: 'copying' };
+  await assert.rejects(f.service.authenticate(session.cookie, session.device), error => error.getStatus() === 503);
+  await assert.rejects(f.service.signIn('fixture-token', metadata), error => error.getStatus() === 503);
+});
+
+test('activity and logout preserve recovered metadata when a legacy session lacks browser fields', async () => {
+  const f = fixture(), session = await f.service.signIn('fixture-token', metadata);
+  const sessionKey = `visionary_auth_sessions/${hash(session.device)}`, deviceKey = `visionary_accounts/${f.identity.uid}/devices/${hash(session.device)}`;
+  const saved = f.rows.get(sessionKey), firstSeen = f.rows.get(deviceKey).firstSeenAt;
+  for (const key of ['provider', 'ip', 'userAgent', 'createdAt']) delete saved[key];
+  await f.service.authenticate(session.cookie, session.device);
+  assert.deepEqual(f.rows.get(deviceKey).firstSeenAt, firstSeen);
+  assert.equal(f.rows.get(deviceKey).provider, 'password'); assert.equal(f.rows.get(deviceKey).observedIp, metadata.ip);
+  await f.service.logout(session.device, f.identity.uid);
+  assert.equal(f.rows.get(deviceKey).userAgent, metadata.userAgent); assert.ok(f.rows.get(deviceKey).revokedAt);
+});
+
 test('short product setup accepts essential role data without optional interview questions', () => {
   const basics = {full_name:'Adult',age_band:'adult',preferred_language:'English'};
   for (const fields of [{identity:'student',education_stage:'higher_ed'}, {identity:'professional'}, {identity:'teacher',teacher_category:'coaching',medium:'English'}, {identity:'parent',medium:'English'}, {identity:'organization',org_type:'training',org_name:'Example'}]) {
@@ -62,21 +107,21 @@ test('verified UID creates one pending account; repeated login preserves complet
   assert.equal(session.profile.onboarding_complete, false); assert.equal(session.profile.id, 'fixture-adult');
   const finished = await service.completeOnboarding(session.profile.id, setup); assert.equal(finished.onboarding_complete, true);
   const again = await service.signIn('fixture-token', metadata); assert.equal(again.profile.onboarding_complete, true); assert.equal(again.profile.full_name, setup.full_name);
-  assert.equal([...rows.keys()].filter(k => k.startsWith('visionary_accounts/')).length, 1);
+  assert.equal([...rows.keys()].filter(k => /^visionary_accounts\/[^/]+$/.test(k)).length, 1);
   const event = [...rows].find(([k]) => k.startsWith('visionary_auth_events/'))[1];
   assert.equal(event.ip, metadata.ip); assert.equal(event.provider, 'password'); assert.ok(event.createdAt); assert.equal(event.expiresAt, undefined); assert.equal(JSON.stringify(event).includes('fixture-token'), false);
 });
 
 test('verified first sign-in atomically creates Free billing under the Auth UID without resetting a paid account', async () => {
   const f = fixture(), first = await f.service.signIn('fixture-token', metadata);
-  const key = `visionary_billing_test_accounts/${first.profile.id}`, billing = f.rows.get(key);
+  const key = `visionary_accounts/${first.profile.id}/billing/test`, billing = f.rows.get(key);
   assert.equal(billing.uid, f.identity.uid); assert.equal(billing.basePlan, 'start');
   assert.equal(billing.subscription, null); assert.equal(billing.attempt, null); assert.deepEqual(billing.invoices, []);
   const paid = { ...billing, revision: 7, subscription: { id: 'sub_saved', paidThrough: 9999999999 }, invoices: [{ id: 'inv_saved' }] };
   f.rows.set(key, paid);
   await f.service.signIn('fixture-token', metadata);
   assert.deepEqual(f.rows.get(key), paid);
-  assert.equal([...f.rows.keys()].filter(key => key.startsWith('visionary_billing_test_accounts/')).length, 1);
+  assert.equal([...f.rows.keys()].filter(key => /^visionary_accounts\/[^/]+\/billing\/test$/.test(key)).length, 1);
 });
 test('unverified or stale sign-in cannot write an account or start a session', async () => {
   const { service, identity, rows } = fixture(); identity.email_verified = false;

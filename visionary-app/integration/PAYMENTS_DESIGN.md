@@ -1,6 +1,6 @@
 # Proposed connected billing design
 
-15 October 2026. Historical proposal from the [payment study](../reverse-engineering/research/PAYMENTS_STUDY_2026_10_15.md). D-069 implements the bounded Razorpay test slice in [PAYMENTS_CONTRACT.md](PAYMENTS_CONTRACT.md); that contract distinguishes implemented behavior from remaining release work. Auth/onboarding is the connected foundation described in [PAYMENTS_AUTH_HANDOFF.md](PAYMENTS_AUTH_HANDOFF.md). This proposal alone does not establish implementation of every endpoint, policy or acceptance case below.
+15 October 2026. Historical proposal from the [payment study](../research/PAYMENTS_STUDY_2026_10_15.md). D-069 implements the bounded Razorpay test slice in [PAYMENTS_CONTRACT.md](PAYMENTS_CONTRACT.md); that contract distinguishes implemented behavior from remaining release work. Auth/onboarding is the connected foundation described in [PAYMENTS_AUTH_HANDOFF.md](PAYMENTS_AUTH_HANDOFF.md). This proposal alone does not establish implementation of every endpoint, policy or acceptance case below.
 
 ## Ownership and first slice
 

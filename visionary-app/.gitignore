@@ -66,3 +66,7 @@ reverse-engineering/upstream/skills/
 
 # Local executables built from imported Go services.
 ml/upstream/services/**/*.exe
+
+# Build architecture is source documentation, not generated build output.
+!docs/architecture/build/
+!docs/architecture/build/**

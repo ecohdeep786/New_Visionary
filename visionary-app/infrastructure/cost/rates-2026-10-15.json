@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-10-15",
+  "currency": "USD",
+  "region": "asia-south1",
+  "scope": "Gross on-demand planning rates. No credits, commitments, free tiers, tax or actual invoice equivalence assumed. Models and unresolved network SKUs are scenario assumptions.",
+  "sources": {
+    "run": "https://cloud.google.com/run/pricing",
+    "sql": "https://cloud.google.com/sql/pricing",
+    "firestore": "https://cloud.google.com/firestore/pricing",
+    "storage": "https://cloud.google.com/storage/pricing",
+    "cdn": "https://cloud.google.com/cdn/pricing",
+    "loadBalancer": "https://cloud.google.com/load-balancing/pricing",
+    "armor": "https://cloud.google.com/armor/pricing",
+    "identity": "https://cloud.google.com/identity-platform/pricing",
+    "gateway": "https://razorpay.com/pricing/"
+  },
+  "run": { "cpuSecond": 0.000024, "gibSecond": 0.0000025, "idleCpuSecond": 0.0000025, "idleGibSecond": 0.0000025, "millionRequests": 0.4 },
+  "sql": { "haCpuHour": 0.0991, "haGibHour": 0.0168, "haSsdGibMonth": 0.408, "backupGibMonth": 0.096 },
+  "firestore": { "reads100k": 0.035, "writes100k": 0.104, "deletes100k": 0.012, "storedGibMonth": 0.104, "pitrGibMonth": 0.1731, "backupGibMonth": 0.035 },
+  "storage": { "standardGibMonth": 0.02, "classA1000": 0.005, "classB1000": 0.0004 },
+  "cdn": { "outboundGibTiers": [{ "upTo": 10240, "rate": 0.09 }, { "upTo": 153600, "rate": 0.06 }, { "upTo": 1024000, "rate": 0.05 }, { "upTo": null, "rate": 0.04 }], "fillGib": 0.02, "lookups10000": 0.0075 },
+  "edge": { "globalForwardingRuleGroupHour": 0.025, "armorPolicyHour": 0.006849315, "armorRuleHour": 0.001369863, "armorMillionRequests": 0.75 },
+  "identity": { "tiers": [{ "upTo": 50000, "rate": 0 }, { "upTo": 100000, "rate": 0.0055 }, { "upTo": 1000000, "rate": 0.0046 }, { "upTo": 10000000, "rate": 0.0032 }, { "upTo": null, "rate": 0.0025 }] },
+  "assumptionsNotVendorQuotes": { "apiInternetEgressGib": 0.12, "globalAlbProcessedGib": 0.01, "fastInputMillionTokens": 0.3, "fastOutputMillionTokens": 2.5, "premiumInputMillionTokens": 3, "premiumOutputMillionTokens": 15 },
+  "caveats": [
+    "Cloud SQL Enterprise general-purpose dedicated core, explicitly selected edition; HA rates already include redundancy. Additional replicas/extended support are excluded unless budgeted separately.",
+    "Cloud Run request billing, Mumbai Tier1. Billed instance time is estimated using effective concurrency and idle floors; actual metering/startup/tail overlap must replace assumptions.",
+    "Firestore Standard named database has no free quota. Count document/index/transaction/listener/retry work, not one read per API request.",
+    "CDN rates assume Asia-Pacific destination with in-region cache fill. Do not substitute for other destination/miss/private-origin paths.",
+    "Global ALB India processing and non-CDN internet egress are unresolved exact SKU assumptions. Do not charge the same API egress again under Cloud Run.",
+    "Identity Platform rates apply only if enabled; basic Firebase non-phone auth differs. SMS/SAML/OIDC require separate inputs.",
+    "Razorpay published standard successful-payment fee is2% plus applicable GST; actual merchant/subscription contract, refunds and exceptions require confirmation. Fee tax and FX are assumptions."
+  ]
+}

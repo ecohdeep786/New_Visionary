@@ -1,3 +1,5 @@
+import WorkspaceDetails from '@/components/dashboard/WorkspaceDetails';
+import {workspacePresentationCopy} from '@/lib/workspacePresentationCopy';
 import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import SpotIllustration from '@/components/landing/SpotIllustration';
 import { learningCopy, learningDate } from '@/lib/learningCopy';
@@ -128,6 +130,7 @@ function CurriculumLearningWorkspace({
   const locale = data?.preferences.interfaceLocale || 'en';
   const copy = learningCopy(locale);
   const catalogueCopy = learningCatalogueCopy(locale);
+  const ui = workspacePresentationCopy(locale);
   const milestoneCopy = learningMilestoneCopy(locale);
   const {
     user
@@ -447,7 +450,7 @@ function CurriculumLearningWorkspace({
   <div className="flex flex-wrap gap-3"><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask a doubt \xB7 keep my place")}</Link><Link className="v-button" to="/dashboard/home">{copy("Save and return Home")}</Link></div>
   <ContentIssueReport key={`${concept.id}:${unit.locale}`} ctx={ctx} concept={concept} locale={unit.locale} />
  </div>;
-  return <div className="v-page" lang={locale}><WorkspaceIntro eyebrow={practice ? copy("Review and strengthen") : copy("Explore and understand")} title={practice ? copy("Your next practice") : foundational ? catalogueCopy('Let’s learn') : copy("Your learning outline")} description={practice ? copy("Revisit what you have already checked. Your results and next step stay connected to Learn.") : professional ? copy("Connect a skill goal to concepts, practice and portfolio work.") : foundational ? catalogueCopy('Pick a subject, then choose a book.') : copy("Subjects become chapters, concepts, checks and projects\u2014with your place kept at every step.")} icon={practice ? Target : BookOpen} />{status}
+  return <div className="v-page v-learn-page" lang={locale}><WorkspaceIntro eyebrow={practice ? copy("Review and strengthen") : copy("Explore and understand")} title={practice ? copy("Your next practice") : foundational ? catalogueCopy('Let’s learn') : copy("Your learning outline")} description={practice ? copy("Revisit what you have already checked. Your results and next step stay connected to Learn.") : professional ? copy("Connect a skill goal to concepts, practice and portfolio work.") : foundational ? catalogueCopy('Pick a subject, then choose a book.') : copy("Subjects become chapters, concepts, checks and projects\u2014with your place kept at every step.")} icon={practice ? Target : BookOpen} />{status}
   {classContext && <div className="v-notice flex flex-wrap items-center justify-between gap-3"><div><p className="font-medium">{copy('Learning alongside {name}', {
             name: classContext.name
           })}</p><p className="v-muted mt-1 hidden sm:block">{copy("This outline uses your class subject. Assignments and teacher feedback remain in Classes.")}</p></div><Link className="v-button" to={`/dashboard/classes?class=${encodeURIComponent(classContext.id)}`}>{copy("Classwork")}</Link></div>}
@@ -551,9 +554,12 @@ function CurriculumLearningWorkspace({
           })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
                 ...selection,
                 [key]: e.target.value
-              })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form><p className="v-muted mt-4">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p></details>}
-  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try a multi-book sample')}<ArrowRight size={16} aria-hidden="true"/></button>}
+              })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form></details>}
   </div>
+  <WorkspaceDetails title={ui("learn")} className="v-learning-options">
+  {!practice && <p className="v-muted">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p>}
+  {!practice && !professional && !fromClassId && <button type="button" className="v-button self-start" disabled={busy} onClick={()=>openOutline(SAMPLE_LIBRARY_SELECTION)}>{catalogueCopy('Try a multi-book sample')}<ArrowRight size={16} aria-hidden="true"/></button>}
   <Link className="v-button self-start" to={practice ? '/dashboard/practice?legacy=1' : '/dashboard/learn?legacy=1'}>{copy("Open previous saved topics and examples")}</Link>
+  </WorkspaceDetails>
  </div>;
 }

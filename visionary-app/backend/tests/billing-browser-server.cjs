@@ -41,7 +41,7 @@ Module({ controllers: [BillingController], providers: [{ provide: ConfigService,
   app.use('/__test/storage-check', (request, response) => {
     const uid = request.cookies?.['visionary-session'];
     if (!/^billing-review-[a-z0-9-]+$/.test(uid || '')) return response.status(401).end();
-    const saved = memory.rows.get(`visionary_billing_test_accounts/${uid}`);
+    const saved = memory.rows.get(`visionary_accounts/${uid}/billing/test`);
     response.json({ uidMatches: saved?.uid === uid, basePlan: saved?.basePlan, hasSubscription: !!saved?.subscription, invoiceCount: saved?.invoices?.length || 0, ...(real ? {} : { providerCreateCount: sequence }) });
   });
   app.use('/__test/complete', (request, response) => {
@@ -57,7 +57,7 @@ Module({ controllers: [BillingController], providers: [{ provide: ConfigService,
   app.use('/__test/cleanup', async (_request, response) => {
     let cancelled = 0;
     if (real) for (const [key, value] of memory.rows) {
-      if (!key.startsWith('visionary_billing_test_accounts/') || !value.subscription?.id) continue;
+      if (!/^visionary_accounts\/[^/]+\/billing\/test$/.test(key) || !value.subscription?.id) continue;
       const sub = await provider.getSubscription(value.subscription.id);
       if (sub.notes?.visionary_attempt !== value.attempt?.id) continue;
       if (!['cancelled', 'expired', 'completed'].includes(sub.status)) {

@@ -47,13 +47,13 @@ function ChildrenContent({scope}) {
   }
   return <div className="v-page" lang={locale}>
   <header><h1 className="v-title">{t("Your children")}</h1><p className="v-muted mt-2">{t("A separate, permission-based connection for each learner.")}</p></header>
-  <section className="v-card"><h2 className="text-lg font-medium">{t("Request progress sharing")}</h2><p className="v-muted mt-3">{t("The learner\u2019s local account must accept before summaries appear. This preview does not verify guardianship. Do not enter real child information.")}</p><form className="mt-5 flex flex-wrap gap-3" onSubmit={event => {
+  <details className="v-details" open={!relationships.length}><summary>{t("Request progress sharing")}</summary><div className="v-details-body"><p className="v-muted mt-3">{t("The learner\u2019s local account must accept before summaries appear. This preview does not verify guardianship. Do not enter real child information.")}</p><form className="mt-5 flex flex-wrap gap-3" onSubmit={event => {
         event.preventDefault();
         act(() => {
           requestRelationship(ctx, email, 'guardian');
           setEmail('');
         }, 'Local request saved. No email or verification service was contacted.');
-      }}><label className="min-w-0 flex-1"><span className="sr-only">{t("Learner demo email")}</span><input type="email" className="v-field" required placeholder="learner@visionary.test" value={email} onChange={event => setEmail(event.target.value)} /></label><button className="v-button">{t("Request sharing")}</button></form></section>
+      }}><label className="min-w-0 flex-1"><span className="sr-only">{t("Learner demo email")}</span><input type="email" className="v-field" required placeholder="learner@visionary.test" value={email} onChange={event => setEmail(event.target.value)} /></label><button className="v-button">{t("Request sharing")}</button></form></div></details>
   {notice && <p lang={noticeError?'en':locale} role={noticeError ? 'alert' : 'status'} className={`v-notice ${noticeError ? 'v-error' : ''}`}>{noticeError?notice:t(notice)}</p>}
   <section className="v-card"><h2 className="text-lg font-medium">{t("Connections and history")}</h2><p className="v-muted mt-2">{t("Only a currently accepted progress connection opens a report.")}</p>{relationships.length ? relationships.map(row => {
         const canView = row.status === 'active' && shared.has(row.to);

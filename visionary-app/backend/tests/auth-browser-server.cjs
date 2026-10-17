@@ -19,7 +19,7 @@ Module({ controllers: [FirebaseProductController], providers: [{ provide: Fireba
   const app = await NestFactory.create(FixtureModule, { logger: false }); app.use(requireBackend('cookie-parser')()); app.setGlobalPrefix('api');
   app.use('/__test/status', (_req, res) => {
     const records = [...memory.rows];
-    res.json({ accounts: records.filter(([key]) => key.startsWith('visionary_accounts/')).length,
+    res.json({ accounts: records.filter(([key]) => /^visionary_accounts\/[^/]+$/.test(key)).length,
       events: records.filter(([key]) => key.startsWith('visionary_auth_events/')).map(([, value]) => ({ type: value.type, hasIp: !!value.ip, hasBrowser: !!value.userAgent })),
       sessions: records.filter(([key]) => key.startsWith('visionary_auth_sessions/')).map(([, value]) => ({ revoked: !!value.revokedAt })) });
   });

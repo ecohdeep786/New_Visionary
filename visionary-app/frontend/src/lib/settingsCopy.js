@@ -1,11 +1,11 @@
 const translations={
  hi:{
-  'Previous appearance — shown as Vision Boy':'पिछला रूप — Vision Boy के रूप में दिखता है',
+  'Previous appearance — shown as Blue':'पिछला रूप — नीले रंग में दिखता है',
   'The account accent changed in another tab. Your choice is still here.':'दूसरे टैब में खाते का रंग बदला है। आपका चयन यहाँ रखा गया है।', 'Use saved account accent':'सहेजा गया रंग उपयोग करें',
   'Make Guide work for you':'Guide को अपनी ज़रूरत के अनुसार बनाएँ',
   'Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.':'आपकी प्राथमिकताएँ इस कार्यक्षेत्र पर लागू होती हैं। यह स्थानीय पूर्वावलोकन है; क्लाउड सुरक्षा का सत्यापन नहीं हुआ है।',
   'Language and accessibility':'भाषा और सुलभता', 'Teaching language':'शिक्षण की भाषा', 'Interface language':'इंटरफ़ेस की भाषा',
-  'Guide appearance':'Guide का रूप', 'Vision Boy — the sky sphere':'Vision Boy — नीला गोला', 'Vision Girl — the glowing bars':'Vision Girl — चमकती पट्टियाँ', 'Orb':'गोला', 'Voice':'आवाज़',
+  'Guide appearance':'Guide का रूप', 'Blue':'नीला', 'Indigo':'इंडिगो', 'Orb':'गोला', 'Voice':'आवाज़',
   'Open the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.':'Guide खोलकर रूप और माइक्रोफ़ोन की स्थिति देखें। सभी रूपों में बातचीत और अध्ययन एक ही रहता है।',
   'Teaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.':'चुने गए अध्ययन में अनुवादित सामग्री उपलब्ध है। इंटरफ़ेस का अनुवाद जारी है; बाकी लेबल अंग्रेज़ी में रहते हैं।',
   'Show source-language explanation alongside teaching':'शिक्षण के साथ स्रोत की भाषा में व्याख्या दिखाएँ', 'Prefer text alternatives':'पाठ के विकल्पों को प्राथमिकता दें', 'Use my explicit preferences for personalization':'निजीकरण के लिए मेरी चुनी हुई प्राथमिकताएँ उपयोग करें',
@@ -19,12 +19,12 @@ const translations={
   blue:'नीला',green:'हरा',red:'लाल',amber:'अंबर',purple:'बैंगनी',teal:'नीलहरा',
  },
  bn:{
-  'Previous appearance — shown as Vision Boy':'আগের রূপ — Vision Boy হিসেবে দেখা যায়',
+  'Previous appearance — shown as Blue':'আগের রূপ — নীল রঙে দেখা যায়',
   'The account accent changed in another tab. Your choice is still here.':'অন্য ট্যাবে অ্যাকাউন্টের রং বদলেছে। আপনার নির্বাচন এখানে রাখা আছে।', 'Use saved account accent':'সংরক্ষিত রং ব্যবহার করুন',
   'Make Guide work for you':'Guide-কে নিজের প্রয়োজন অনুযায়ী সাজান',
   'Your preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.':'আপনার পছন্দ এই কর্মক্ষেত্রে প্রযোজ্য। এটি স্থানীয় প্রিভিউ; ক্লাউড নিরাপত্তা যাচাই করা হয়নি।',
   'Language and accessibility':'ভাষা ও প্রবেশগম্যতা', 'Teaching language':'শিক্ষণের ভাষা', 'Interface language':'ইন্টারফেসের ভাষা',
-  'Guide appearance':'Guide-এর রূপ', 'Vision Boy — the sky sphere':'Vision Boy — নীল গোলক', 'Vision Girl — the glowing bars':'Vision Girl — উজ্জ্বল দণ্ড', 'Orb':'গোলক', 'Voice':'কণ্ঠ',
+  'Guide appearance':'Guide-এর রূপ', 'Blue':'নীল', 'Indigo':'ইন্ডিগো', 'Orb':'গোলক', 'Voice':'কণ্ঠ',
   'Open the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.':'রূপ ও মাইক্রোফোনের অবস্থা দেখতে Guide খুলুন। সব রূপে একই কথোপকথন ও শেখা থাকে।',
   'Teaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.':'নির্বাচিত অধ্যয়নে অনূদিত বিষয়বস্তু আছে। ইন্টারফেসের অনুবাদ চলছে; বাকি লেবেল ইংরেজিতে থাকে।',
   'Show source-language explanation alongside teaching':'শিক্ষণের সঙ্গে উৎসের ভাষায় ব্যাখ্যা দেখান', 'Prefer text alternatives':'পাঠ্য বিকল্পকে অগ্রাধিকার দিন', 'Use my explicit preferences for personalization':'ব্যক্তিগতকরণের জন্য আমার নির্বাচিত পছন্দ ব্যবহার করুন',

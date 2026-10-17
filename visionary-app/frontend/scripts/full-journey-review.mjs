@@ -15,7 +15,8 @@ const fakeSDK = `window.Razorpay=class{constructor(o){this.o=o}on(){}close(){thi
 async function newPage(context, width = 1280) {
   const page = await context.newPage(); activePage = page; await page.setViewport({ width, height: width < 500 ? 844 : 960 });
   page.setDefaultNavigationTimeout(90000);
-  page.on('pageerror', error => errors.push(error.message));
+  page.on('pageerror', error => errors.push(error.stack || error.message));
+  page.on('requestfailed', request => { if (request.url().startsWith(emulator)) console.error('Emulator request failed:', new URL(request.url()).pathname, request.failure()?.errorText); });
   await page.setRequestInterception(true);
   page.on('request', request => {
     if (request.url() === 'https://checkout.razorpay.com/v1/checkout.js') return request.respond({ status: 200, contentType: 'application/javascript', body: fakeSDK });
@@ -50,9 +51,10 @@ try {
   assert.match(new URL(page.url()).searchParams.get('returnTo'), /plan=personal&billing=annual/);
   const free = await records(page); assert.equal(free.sameAuthUid, true); assert.equal(free.basePlan, 'start'); assert.equal(free.subscribed, false); assert.equal(free.providerCreates, 0);
   results.push({ scenario: 'public annual pricing to real emulator registration, verified email and UID-bound Free account', passed: true });
+  await see(page, 'Make Visionary your own');
   await page.evaluate(() => [...document.querySelectorAll('button')].find(node => node.textContent.includes('I am a Professional')).click()); await click(page, 'Continue');
   await fill(page, 'input[type="text"]', 'Journey Review'); await page.select('select', 'adult'); await click(page, 'Continue');
-  await fill(page, 'input[type="text"]', 'Learn software engineering'); await click(page, 'Continue'); await click(page, 'Start using Visionary');
+  await see(page, 'Make Visionary work for you'); await click(page, 'Skip for now'); await see(page, 'Ready to start with Visionary?'); await click(page, 'Start using Visionary');
   await page.waitForSelector('[data-billing-review]'); assert.equal(await page.$$eval('[role="dialog"]', nodes => nodes.length), 1);
   assert.match(await page.$eval('[data-billing-review]', node => node.innerText), /2,990/); assert.equal(await page.$('#getting-started-title'), null);
   results.push({ scenario: 'saved onboarding returns to one explicit annual payment review without overlapping welcome dialog', passed: true });
@@ -82,6 +84,20 @@ try {
   await signIn(page); await see(page, 'Paid period confirmed'); const recovered = await records(page); assert.equal(recovered.invoices, 1); assert.equal(recovered.invoiceUidMatches, true); assert.equal(recovered.providerCreates, 1);
   await page.screenshot({ path: path.join(output, 'reauthenticated-paid-account.png'), fullPage: true });
   results.push({ scenario: 'expired billing session reauthenticates into the same subscription and receipt without a retry loop', passed: true });
+  const accountViews = await page.evaluate(async () => {
+    const profile = await fetch('/api/auth/me').then(response => response.json());
+    const read = async path => { const response = await fetch(path, { headers: { 'X-Visionary-Account': profile.id } }); if (!response.ok) throw Error('Account record read failed'); return response.json(); };
+    return { overview: await read('/api/account/overview'), devices: await read('/api/account/devices'), invoices: await read('/api/account/invoices') };
+  });
+  assert.equal(accountViews.overview.uid, accountViews.overview.identity.uid);
+  assert.equal(accountViews.overview.uid, accountViews.overview.profile.id);
+  assert.equal(accountViews.overview.uid, accountViews.overview.billing.uid);
+  assert.equal(accountViews.overview.onboarding.status, 'complete');
+  assert.ok(accountViews.devices.items.length >= 3); assert.equal(accountViews.devices.items.filter(device => device.current).length, 1);
+  assert.ok(accountViews.devices.items.some(device => device.status === 'active'));
+  assert.equal(accountViews.invoices.items.length, 1);
+  assert.doesNotMatch(JSON.stringify(accountViews), /cookieHash|idToken|private_key/);
+  results.push({ scenario: 'one authenticated account overview joins identity, onboarding, billing and device history without security credentials', passed: true });
   assert.deepEqual(errors, []); await fs.writeFile(path.join(output, 'results.json'), JSON.stringify({ identity: 'real Firebase Auth Emulator', database: 'transactional memory', payments: 'fictional provider', results, pageErrors: errors }, null, 2));
   console.log(JSON.stringify({ scenarios: results.length, pageErrors: errors.length, providerCreates: recovered.providerCreates, invoiceUidMatches: recovered.invoiceUidMatches }));
 } catch (error) {

@@ -1,0 +1,68 @@
+── how-it-works (/how-it-works) · H=6592px · secs=5 · overflowX=0px
+   h2 sizes: [72,72,72]  h3 sizes: [40,40,40,40]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── pricing (/pricing) · H=5209px · secs=6 · overflowX=0px
+   h2 sizes: [72,72,64,72]  h3 sizes: [24,24,24,24]
+   imgs=5 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── download (/download) · H=4374px · secs=7 · overflowX=0px
+   h2 sizes: [28,28,28,28,64]  h3 sizes: [17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── about (/about) · H=7522px · secs=7 · overflowX=0px
+   h2 sizes: [72,64,64,64,64,64]  h3 sizes: [17,17,17,17,28,28,28,17,17,17,17,17,17,17,17,17]
+   imgs=9 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── careers (/careers) · H=6471px · secs=8 · overflowX=0px
+   h2 sizes: [64,64,64,64,28,64]  h3 sizes: [28,28,28,17,17,17,17,17,17,28,28,28,28,17]
+   imgs=12 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── research (/research) · H=10718px · secs=10 · overflowX=0px
+   h2 sizes: [28,64,64,64,64,64,64,64]  h3 sizes: [17,17,17,28,28,28,28,28,17,17,17,28,28,17]
+   imgs=13 broken=11 → student-hero-main-1600w.webp | teacher-hero-main-1600w.webp | parent-hero-main-1600w.webp | pro-face-main-1600w.webp | org-face-main-1600w.webp | problem-practice.webp | problem-understanding.webp | organization-problem-2-1600w.webp | problem-understanding.webp | teacher-problem-2.webp | organization-problem-3-1600w.webp
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── community (/community) · H=5592px · secs=5 · overflowX=0px
+   h2 sizes: [64,64,64,64]  h3 sizes: [28,28,28,17,17,17]
+   imgs=24 broken=8 → student-secondary.webp | student-primary.webp | student-vocational.webp | student-secondary.webp | student-competitive.webp | professional-problem-1-1600w.webp | student-higher.webp | organization-problem-1-1600w.webp
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── contact (/contact) · H=5388px · secs=7 · overflowX=0px
+   h2 sizes: [64,64,64,64,28,28,28]  h3 sizes: [17,17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── partners (/partners) · H=8220px · secs=10 · overflowX=0px
+   h2 sizes: [64,64,64,28,64,64,28,64,64]  h3 sizes: [17,17,17,28,28,28,28,17,17,17,28,28,28,28]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── updates (/updates) · H=4351px · secs=6 · overflowX=0px
+   h2 sizes: [28,64,28,64]  h3 sizes: [17,17,17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── referral (/referral) · H=5894px · secs=9 · overflowX=0px
+   h2 sizes: [64,64,64,64,64,64]  h3 sizes: [17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── safety (/safety) · H=5887px · secs=7 · overflowX=0px
+   h2 sizes: [64,64,64,64,28,64]  h3 sizes: [28,28,28,17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── privacy (/privacy) · H=8996px · secs=2 · overflowX=0px
+   h2 sizes: [28,28,28,28,28,28,28,28,28,28,28,28,28]  h3 sizes: [17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── security (/security) · H=8272px · secs=2 · overflowX=0px
+   h2 sizes: [28,28,28,28,28,28,28,28,28,28,28,28,28]  h3 sizes: [17,17,17,17,17,17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── terms (/terms) · H=8420px · secs=2 · overflowX=0px
+   h2 sizes: [28,28,28,28,28,28,28,28,28,28,28,28,28,28,28]  h3 sizes: []
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── accessibility (/accessibility) · H=6667px · secs=10 · overflowX=0px
+   h2 sizes: [28,28,28,28,28,28,28,64]  h3 sizes: [17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1
+── cookies (/cookies) · H=5987px · secs=2 · overflowX=0px
+   h2 sizes: [28,28,28,28,28,28,28,28,28]  h3 sizes: [17,17,17,17,17,17]
+   imgs=0 broken=0
+   failed=1 → 500 http://localhost:5173/api/auth/me consoleErr=1

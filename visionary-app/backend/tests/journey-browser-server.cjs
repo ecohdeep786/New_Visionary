@@ -11,6 +11,7 @@ const { FirebaseProductService } = req('./dist/src/auth/firebase-product/firebas
 const { FirebaseProductController } = req('./dist/src/auth/firebase-product/firebase-product.controller.js');
 const { BillingService } = req('./dist/src/billing/billing.service.js'), { BillingController } = req('./dist/src/billing/billing.controller.js');
 const { BillingRepository } = req('./dist/src/billing/billing.repository.js'), { RazorpayProvider } = req('./dist/src/billing/razorpay.provider.js');
+const { AccountController } = req('./dist/src/auth/firebase-product/account.controller.js');
 const { billingMemory } = require('./fixtures/billing-memory.cjs');
 const secret = 'whole-journey-only-payment-secret';
 const config = new ConfigService({ FIREBASE_PROJECT_ID: 'demo-visionary-auth', FIREBASE_PROJECT_KIND: 'emulator', FIREBASE_AUTH_EMULATOR_HOST: '127.0.0.1:9099', AUTH_PUBLIC_ORIGIN: 'http://127.0.0.1:5175', AUTH_RATE_LIMIT_KEY: 'whole-journey-only-rate-limit-secret', BILLING_MODE: 'test', RAZORPAY_KEY_ID: 'rzp_test_journey', RAZORPAY_KEY_SECRET: secret, RAZORPAY_WEBHOOK_SECRET: 'whole-journey-only-webhook', RAZORPAY_PLAN_PERSONAL_MONTHLY: 'plan_personalmonth', RAZORPAY_PLAN_PERSONAL_ANNUAL: 'plan_personalyear', RAZORPAY_PLAN_FAMILY_MONTHLY: 'plan_familymonth', RAZORPAY_PLAN_FAMILY_ANNUAL: 'plan_familyyear' });
@@ -29,7 +30,7 @@ provider.request = async (method, resource, body) => {
 };
 const repo = new BillingRepository(auth), billing = new BillingService(repo, provider, auth);
 class FixtureModule {}
-Module({ controllers: [FirebaseProductController, BillingController], providers: [{ provide: FirebaseAdminService, useValue: admin }, { provide: FirebaseProductService, useValue: auth }, { provide: ConfigService, useValue: config }, { provide: BillingService, useValue: billing }] })(FixtureModule);
+Module({ controllers: [FirebaseProductController, BillingController, AccountController], providers: [{ provide: FirebaseAdminService, useValue: admin }, { provide: FirebaseProductService, useValue: auth }, { provide: ConfigService, useValue: config }, { provide: BillingService, useValue: billing }] })(FixtureModule);
 (async () => {
   const app = await NestFactory.create(FixtureModule, { logger: false, bodyParser: false });
   const { raw, json } = req('express'); app.use('/api/billing/webhooks/razorpay', raw({ type: 'application/json', limit: '256kb' })); app.use(json({ limit: '24kb' })); app.use(req('cookie-parser')());
@@ -37,13 +38,13 @@ Module({ controllers: [FirebaseProductController, BillingController], providers:
   const endpoint = handler => async (request, response, next) => { try { await handler(request, response, next); } catch (error) { response.status(error.getStatus?.() || 500).json({ message: 'Isolated journey request failed.' }); } };
   app.use('/__test/status', (_request, response) => {
     const rows = [...memory.rows];
-    response.json({ accounts: rows.filter(([key]) => key.startsWith('visionary_accounts/')).length, providerCreates: sequence,
+    response.json({ accounts: rows.filter(([key]) => /^visionary_accounts\/[^/]+$/.test(key)).length, providerCreates: sequence,
       events: rows.filter(([key]) => key.startsWith('visionary_auth_events/')).map(([, value]) => ({ type: value.type, hasIp: !!value.ip, hasBrowser: !!value.userAgent })),
       sessions: rows.filter(([key]) => key.startsWith('visionary_auth_sessions/')).map(([, value]) => ({ revoked: !!value.revokedAt })) });
   });
   app.use('/api/__test/record-check', endpoint(async (request, response) => {
-    const { uid } = await current(request), data = memory.rows.get(`visionary_billing_test_accounts/${uid}`);
-    const documents = [...memory.rows].filter(([key]) => key.startsWith(`visionary_billing_test_accounts/${uid}/invoices/`));
+    const { uid } = await current(request), data = memory.rows.get(`visionary_accounts/${uid}/billing/test`);
+    const documents = [...memory.rows].filter(([key]) => key.startsWith(`visionary_accounts/${uid}/billing/test/invoices/`));
     response.json({ sameAuthUid: data?.uid === uid && memory.rows.has(`visionary_accounts/${uid}`), basePlan: data?.basePlan, subscribed: !!data?.subscription, invoices: documents.length, invoiceUidMatches: documents.every(([, value]) => value.uid === uid && value.billingAccountId === uid), providerCreates: sequence });
   }));
   app.use('/api/__test/expire-session', endpoint(async (request, response) => { const identity = await current(request); memory.rows.get(`visionary_auth_sessions/${identity.sessionId}`).lastSeen = 0; response.json({ expired: true }); }));

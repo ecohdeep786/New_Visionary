@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-16",
+  "scope": "Anonymous official documents; public contract evidence, not private architecture.",
+  "records": [
+    {
+      "target": "claude",
+      "url": "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them",
+      "exitCode": 1,
+      "signal": null,
+      "durationMs": 4738,
+      "complete": false,
+      "cleanup": "unknown",
+      "errorCode": "invalid_request",
+      "evidencePath": "artifacts/research/build/2026-10-16T05-14-08-943Z/claude.evidence.json",
+      "sha256": "54a95a41a795cd9ef0693abab47e663fdbb4d8b70c20d9ffa98c6420ef3700ef",
+      "documentMarker": "What are artifacts"
+    },
+    {
+      "target": "claude",
+      "url": "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them",
+      "exitCode": 1,
+      "signal": null,
+      "durationMs": 8618,
+      "complete": false,
+      "cleanup": "incomplete",
+      "errorCode": "cleanup_incomplete",
+      "evidencePath": "artifacts/research/build/2026-10-16T05-14-26-462Z/claude.evidence.json",
+      "sha256": "f3ba478901ef1b84586bd59fb098b463090eb6b24932bff21ffd743b5825cae5",
+      "documentMarker": "What are artifacts"
+    },
+    {
+      "target": "chatgpt",
+      "url": "https://learn.chatgpt.com/docs/artifacts-viewer",
+      "exitCode": 1,
+      "signal": null,
+      "durationMs": 13108,
+      "complete": false,
+      "cleanup": "incomplete",
+      "errorCode": "cleanup_incomplete",
+      "evidencePath": "artifacts/research/build/2026-10-16T05-15-11-065Z/chatgpt.evidence.json",
+      "sha256": "d074e72dec735a10c8886f6359f6c466f4a3074aa9be1be5b30e9cca1c3d35e3",
+      "documentMarker": "Work with files"
+    },
+    {
+      "target": "gemini",
+      "url": "https://support.google.com/gemini/answer/16047321?hl=en",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 10421,
+      "complete": true,
+      "cleanup": "terminated-owned-process",
+      "errorCode": null,
+      "evidencePath": "artifacts/research/build/2026-10-16T05-15-36-452Z/gemini.evidence.json",
+      "sha256": "a6dffaaa2c7bde902221d68c65688dc2abf411d6f4c0d81ce11ca8c2e0693052",
+      "documentMarker": "Create docs, apps"
+    }
+  ]
+}

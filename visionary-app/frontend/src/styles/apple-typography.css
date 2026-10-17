@@ -460,10 +460,13 @@
   letter-spacing: 0.011em !important;
 }
 
-/* Large editorial card statements: 40/44, 32/36, 28/32. */
+/* Large editorial card statements: 40/44, 32/36, 28/32. The clamp match is
+   scoped to text-size utilities — a statement's own type decides the tier;
+   margin calcs that merely reference the clamp expression (HAT gap locking)
+   must never promote body copy to the statement tier. */
 
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h3,p)[class*="text-[40px]"],
-#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h3,p)[class*="clamp(28px,2.78vw,40px)"],
+#main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) :is(h3,p)[class*="text-[clamp(28px,2.78vw,40px)]"],
 #main:not(.visionary-workspace #main):not([data-font-surface="product"] #main) :where(section:not([data-section="01-hero"]):not(:has(h1)):not([data-section="01-hero"] section):not(section:has(h1) section)) p[class*="clamp(28px,3.1vw,48px)"] {
   font-size: var(--fs-large-card) !important;
   line-height: var(--lh-large-card) !important;

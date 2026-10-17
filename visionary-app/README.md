@@ -8,8 +8,9 @@ The web product, application backend, ML pipeline and engineering research share
 visionary-app/
 ├── frontend/             React/Vite application, assets, configs and tests
 ├── backend/              Application API, identity and persistence source
-├── ml/                   RAG services, ingestion and model evaluations
-├── reverse-engineering/  REA toolkit and feature-research evidence
+├── ml/                   VATS policies/evaluation and pinned RAG candidates
+├── reverse-engineering/  Pinned REA toolkit and setup guide
+├── research/             Visionary study scripts, reports and evidence indexes
 ├── integration/          Cross-component contracts and upstream provenance
 ├── infrastructure/       Local infrastructure and reviewed deployment work
 ├── docs/                 Product contract, status and architecture discussions
@@ -41,6 +42,6 @@ Backend, ML and analysis-tool commands remain `backend:install`, `backend:build`
 
 ## Current runtime and next discussions
 
-The workspace starts at `/dashboard/home` after role-based onboarding. Firebase-mode identity, server device sessions and saved Firestore account/onboarding state are connected locally. Start `npm run backend:auth:dev` alongside `npm run dev`; use `http://localhost:5173`. Read [the auth contract](integration/FIREBASE_AUTH_CONTRACT.md) for setup, tested recovery flows and remaining provider/deployment gates. [Razorpay test billing](integration/PAYMENTS_CONTRACT.md) connects authenticated monthly/annual checkout, persisted subscription state, Family billing benefits and test invoices. Live money/tax invoicing is disabled. Learning workspaces, organization membership, model responses and delivery remain separate integration work; their local previews are for fictional data.
+The workspace starts at `/dashboard/home` after role-based onboarding. Firebase-mode identity, server device sessions and saved Firestore account/onboarding state are connected locally. Start `npm run backend:dev` (or its existing `backend:auth:dev` alias) alongside `npm run dev`; use `http://localhost:5173`. After `backend:build`, `backend:start` selects the connected production entrypoint. Imported backend package startup/deployment commands belong to the retired legacy application. Read [the auth contract](integration/FIREBASE_AUTH_CONTRACT.md) for setup, tested recovery flows and remaining provider/deployment gates. [Razorpay test billing](integration/PAYMENTS_CONTRACT.md) connects authenticated monthly/annual checkout, persisted subscription state, Family billing benefits and test invoices. Live money/tax invoicing is disabled. Learning workspaces, organization membership, model responses and delivery remain separate integration work; their local previews are for fictional data.
 
-System design, scale, tech stack, cloud/DevOps, MLOps and testing have a [discussion index](docs/architecture/discussions/README.md). Existing specifications and historical evidence retain their documentation locations. Future implementation follows reviewed contracts and shared product-domain vocabulary.
+The [complete engineering blueprint](docs/architecture/blueprint/README.md) includes the researched reference products, full system tree, HLD/LLD/object design, frontend/backend communication, cloud comparison and executable cost scenarios. Run `npm run cost:estimate`, `cost:report` or `cost:test` for the planning model. The [100,000-MAU system design](docs/architecture/discussions/system-design.md) links the backend/ML audit, capacity/GCP operations and API-first model strategy. The [discussion index](docs/architecture/discussions/README.md) separates current implementation from target architecture. Future implementation follows reviewed contracts and shared product-domain vocabulary.

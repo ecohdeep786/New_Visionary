@@ -13,7 +13,7 @@ const copy={
    ['Voice and text','Start listening explicitly in Guide and review recognized words before Send. Stop or close Guide to end input. Text stays available when device input fails or permission is denied. Device recognition quality still requires acceptance testing.','Open Ask'],
    ['Recover unfinished work','Reopen the same workspace and browser tab for supported editor drafts. If saving fails, keep the page open, export edits and retry. Review a newer saved version before replacing it. Local recovery is not cloud backup.','Review storage and export'],
    ['Stored records','This browser stores the preview records. Clearing browser data can remove them. Privacy provides exports and supporting-record ownership review; this does not migrate data or certify server security.','Open Privacy'],
-   ['Connected services','Authored samples and local evidence rules work here. Model inference, cloud identity and storage, cross-device sync, production speech, payments and ad delivery are not connected. Frontend behavior does not demonstrate AGI capability.','Review plans and usage'],
+   ['Connected services','Check Plans for your account’s billing status. Learning records here are a local preview. Model responses and production voice are not connected.','Review plans and usage'],
   ]},
  hi:{title:'आपके कार्यक्षेत्र के लिए सहायता',intro:'सक्रिय कार्यक्षेत्र के लिए अगला कदम चुनें। इस पूर्वावलोकन के रिकॉर्ड इसी ब्राउज़र में सहेजे जाते हैं।',loading:'कार्य क्षेत्र की सहायता पढ़ी जा रही है…',restricted:'यह भाग आपके संगठन की अनुमति के बाहर है। स्वामी पहुँच की समीक्षा कर सकता है।',
   roles:{
@@ -29,7 +29,7 @@ const copy={
    ['आवाज़ और पाठ','Guide में स्वयं सुनना शुरू करें और भेजने से पहले पहचाने गए शब्द जाँचें। रोकने या Guide बंद करने पर इनपुट रुकता है। उपकरण विफल होने या अनुमति न मिलने पर पाठ उपलब्ध रहता है। वास्तविक उपकरणों पर पहचान की गुणवत्ता की जाँच बाकी है।','प्रश्न पूछें'],
    ['अधूरा काम वापस पाएँ','समर्थित संपादक ड्राफ़्ट उसी कार्यक्षेत्र और ब्राउज़र टैब में फिर खोलें। सहेजना विफल हो तो पेज खुला रखें, संपादन निर्यात करें और फिर प्रयास करें। बदलने से पहले नए सहेजे गए संस्करण को जाँचें। स्थानीय रिकवरी क्लाउड बैकअप नहीं है।','संग्रह और निर्यात देखें'],
    ['सहेजे गए रिकॉर्ड','पूर्वावलोकन के रिकॉर्ड इस ब्राउज़र में रहते हैं। ब्राउज़र डेटा साफ़ करने पर वे हट सकते हैं। गोपनीयता में निर्यात और सहायक रिकॉर्ड के स्वामित्व की समीक्षा है; यह डेटा स्थानांतरण या सर्वर सुरक्षा का प्रमाण नहीं है।','गोपनीयता खोलें'],
-   ['जुड़ी सेवाएँ','लेखित नमूने और स्थानीय साक्ष्य नियम काम करते हैं। मॉडल, क्लाउड पहचान और संग्रह, उपकरणों के बीच सिंक, उत्पादन वाणी, भुगतान और विज्ञापन वितरण जुड़े नहीं हैं। फ़्रंटएंड का व्यवहार AGI क्षमता का प्रमाण नहीं है।','प्लान और उपयोग देखें'],
+   ['जुड़ी सेवाएँ','अपने खाते के भुगतान की स्थिति प्लान में देखें। यहाँ अध्ययन के रिकॉर्ड स्थानीय पूर्वावलोकन हैं। मॉडल के जवाब और प्रोडक्शन वॉइस अभी जुड़े नहीं हैं।','प्लान और उपयोग देखें'],
   ]},
  bn:{title:'আপনার কর্মক্ষেত্রের সাহায্য',intro:'সক্রিয় কর্মক্ষেত্রের জন্য পরের পদক্ষেপ বেছে নিন। এই প্রিভিউয়ের রেকর্ড এই ব্রাউজারে সংরক্ষিত থাকে।',loading:'কর্মক্ষেত্রের সাহায্য পড়া হচ্ছে…',restricted:'এই অংশ আপনার প্রতিষ্ঠানের অনুমতির বাইরে। মালিক প্রবেশাধিকার পর্যালোচনা করতে পারেন।',
   roles:{
@@ -45,7 +45,7 @@ const copy={
    ['কণ্ঠ ও পাঠ্য','Guide-এ নিজে শোনা শুরু করুন এবং পাঠানোর আগে শনাক্ত শব্দ দেখুন। থামালে বা Guide বন্ধ করলে ইনপুট শেষ হয়। ডিভাইস ব্যর্থ হলে বা অনুমতি না পেলে পাঠ্য থাকে। আসল ডিভাইসে শনাক্তকরণের মান যাচাই বাকি আছে।','প্রশ্ন করুন'],
    ['অসমাপ্ত কাজ ফিরিয়ে আনুন','সমর্থিত সম্পাদকের খসড়া একই কর্মক্ষেত্র ও ব্রাউজার ট্যাবে আবার খুলুন। সংরক্ষণ ব্যর্থ হলে পেজ খোলা রাখুন, সম্পাদনা রপ্তানি করুন ও আবার চেষ্টা করুন। প্রতিস্থাপনের আগে নতুন সংরক্ষিত সংস্করণ দেখুন। স্থানীয় পুনরুদ্ধার ক্লাউড ব্যাকআপ নয়।','সংরক্ষণ ও রপ্তানি দেখুন'],
    ['সংরক্ষিত রেকর্ড','প্রিভিউয়ের রেকর্ড এই ব্রাউজারে থাকে। ব্রাউজারের ডেটা মুছলে সেগুলি হারাতে পারে। গোপনীয়তায় রপ্তানি ও সহায়ক রেকর্ডের মালিকানা পর্যালোচনা আছে; এতে ডেটা স্থানান্তর বা সার্ভারের নিরাপত্তা প্রমাণ হয় না।','গোপনীয়তা খুলুন'],
-   ['যুক্ত পরিষেবা','লিখিত নমুনা ও স্থানীয় প্রমাণের নিয়ম কাজ করে। মডেল, ক্লাউড পরিচয় ও সংরক্ষণ, ডিভাইসের মধ্যে সিঙ্ক, উৎপাদনের কণ্ঠ, অর্থপ্রদান ও বিজ্ঞাপন বিতরণ যুক্ত নেই। ফ্রন্টএন্ডের আচরণ AGI সক্ষমতার প্রমাণ নয়।','প্ল্যান ও ব্যবহার দেখুন'],
+   ['যুক্ত পরিষেবা','আপনার অ্যাকাউন্টের বিলিং অবস্থা প্ল্যানে দেখুন। এখানকার শেখার রেকর্ড স্থানীয় প্রিভিউ। মডেলের উত্তর ও প্রোডাকশন ভয়েস এখনও যুক্ত নেই।','প্ল্যান ও ব্যবহার দেখুন'],
   ]},
 };
 export const supportCopy=locale=>copy[locale]||copy.en;

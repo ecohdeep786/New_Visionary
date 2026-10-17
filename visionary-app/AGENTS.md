@@ -11,6 +11,7 @@ Start with `README.md`, `docs/architecture/README.md` and `docs/architecture/PRO
 - `backend/upstream/backend/`: pinned NestJS/Prisma implementation.
 - `ml/upstream/`: pinned Go/Python RAG implementation.
 - `reverse-engineering/`: local engineering analysis; upstream guidelines apply inside that toolkit.
+- `research/`: Visionary study scripts, reports, templates and evidence indexes; keep product architecture in `docs/architecture/` and raw captures in `artifacts/research/`.
 - `integration/`: cross-component contracts and source provenance.
 - `infrastructure/`: local service provisioning and future reviewed deployments.
 - `docs/visionary/`: product contract and append-only STATUS/DECISIONS/QA logs.
@@ -19,6 +20,8 @@ Start with `README.md`, `docs/architecture/README.md` and `docs/architecture/PRO
 Older frontend `src/`, `public/` and `tests/` paths are now relative to `frontend/`. D-056 authorizes backend/ML work; D-057 records this relocation. Do not open or modify `docs/Frontend(Head Of Product Agent)/` for internal-product work.
 
 ## Working rules
+
+Follow `docs/architecture/BRANCH_WORKFLOW.md` for agent delivery. `dev` owns integration; `main` owns production release history. Each worker uses its own branch and checkout, with one identified Jira task at a time and agreed file/contract ownership. Do not merge over unrelated uncommitted work, force-push shared branches, or mark user-facing launch features complete from local tests alone. Review and relevant integration checks precede merging into `dev`; release acceptance precedes promotion to `main`.
 
 Root `npm run dev`, `build`, `lint`, `typecheck` and `npm test` delegate to the frontend package. `npm run check` performs layout/import and frontend checks sequentially. Run relevant backend/ML/REA checks for changes to those components.
 

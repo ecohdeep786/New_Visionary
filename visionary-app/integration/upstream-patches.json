@@ -56,6 +56,40 @@
           "afterSha256": "787ac18e79d9c37410346c1f472eb58cae63920c32d26930ae50282633e9f8b3"
         }
       ]
+    },
+    {
+      "id": "2026-10-16-ml-evidence-correctness",
+      "date": "2026-10-16",
+      "decision": "D-086",
+      "reason": "Founder-authorized specification reconciliation: versioned duplicate-safe binary retrieval metrics and unavailable/invalid NLI response rejection. Imported gateway remains disconnected; full caller/stream/cache authority gates are open. No provider/model/data or baseline-lock change.",
+      "diff": "integration/upstream-patches/2026-10-16-ml-evidence-correctness.patch",
+      "diffSha256": "19976e4a2daa37fa348dc8d5dc1fd8b6156226792b96feef6e50a6dc12ceae38",
+      "files": [
+        {
+          "source": "ml",
+          "path": "eval/recall_eval.py",
+          "beforeSha256": "e81918625b70dae629383bedefee955608e432edf2cc4dcfc33d78eed3a5a0a0",
+          "afterSha256": "7426ee7788e6659fb326bf59fde6eb6c638bc842b10220f15a2361f6cd388a1f"
+        },
+        {
+          "source": "ml",
+          "path": "shared/go/analytics/evaluator.go",
+          "beforeSha256": "25d00609a9b9d943b7006e8926548d2d011df5088b0b1516acd91dbba21d3f19",
+          "afterSha256": "187d5e828785171609be0c9af8cc7211c2cec20291ab983e2dbb801aee7af975"
+        },
+        {
+          "source": "ml",
+          "path": "shared/go/analytics/evaluator_test.go",
+          "beforeSha256": "6faf0f6c0283ba0aad48684642194dd67550b34c3de5565dfeced3a856d77b13",
+          "afterSha256": "6ad83f4c44ca2be357dd6eab054bd0db4c4db0e2e49edca8dbb189f14171c8da"
+        },
+        {
+          "source": "ml",
+          "path": "services/api-gateway/handler/grounding_validator.go",
+          "beforeSha256": "a09d7d0cb683261de6d9b19eede142f395cb0e2a230fdb1fdeb82aa1208d0be2",
+          "afterSha256": "186c229ae7860e09b5851993177a582f3237298e477aa9ae9a04fb15bc154459"
+        }
+      ]
     }
   ]
 }

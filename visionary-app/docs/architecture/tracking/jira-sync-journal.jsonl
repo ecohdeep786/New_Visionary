@@ -1,0 +1,1166 @@
+{"kind":"sync","version":1,"site":"https://visionary-team.atlassian.net","projectKey":"KAN","projectName":"Team AGI","source":"docs/architecture/BACKEND_LAUNCH_CHECKLIST.md","sourceSha256":"f539c3bd9ae88919bb96a3be26eab69da2ef24985a64db8c1ce43a074b99b916"}
+{"kind":"epic","sourceId":"FOUNDATION","key":"KAN-1"}
+{"kind":"status","key":"KAN-1","status":"Done"}
+{"kind":"epic","sourceId":"P00","key":"KAN-2"}
+{"kind":"status","key":"KAN-2","status":"To Do"}
+{"kind":"epic","sourceId":"P01","key":"KAN-3"}
+{"kind":"status","key":"KAN-3","status":"To Do"}
+{"kind":"epic","sourceId":"P02","key":"KAN-4"}
+{"kind":"status","key":"KAN-4","status":"To Do"}
+{"kind":"epic","sourceId":"P03","key":"KAN-5"}
+{"kind":"status","key":"KAN-5","status":"To Do"}
+{"kind":"epic","sourceId":"P04","key":"KAN-6"}
+{"kind":"status","key":"KAN-6","status":"To Do"}
+{"kind":"epic","sourceId":"P05","key":"KAN-7"}
+{"kind":"status","key":"KAN-7","status":"To Do"}
+{"kind":"epic","sourceId":"P06","key":"KAN-8"}
+{"kind":"status","key":"KAN-8","status":"To Do"}
+{"kind":"epic","sourceId":"P07","key":"KAN-9"}
+{"kind":"status","key":"KAN-9","status":"To Do"}
+{"kind":"epic","sourceId":"P08","key":"KAN-10"}
+{"kind":"status","key":"KAN-10","status":"To Do"}
+{"kind":"epic","sourceId":"P09","key":"KAN-11"}
+{"kind":"status","key":"KAN-11","status":"To Do"}
+{"kind":"epic","sourceId":"P10","key":"KAN-12"}
+{"kind":"status","key":"KAN-12","status":"To Do"}
+{"kind":"epic","sourceId":"P11","key":"KAN-13"}
+{"kind":"status","key":"KAN-13","status":"To Do"}
+{"kind":"epic","sourceId":"P12","key":"KAN-14"}
+{"kind":"status","key":"KAN-14","status":"To Do"}
+{"kind":"epic","sourceId":"LATER","key":"KAN-15"}
+{"kind":"issue","sourceId":"DONE-01","phase":"FOUNDATION","key":"KAN-16","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-16","status":"Done"}
+{"kind":"issue","sourceId":"DONE-02","phase":"FOUNDATION","key":"KAN-17","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-17","status":"Done"}
+{"kind":"issue","sourceId":"DONE-03","phase":"FOUNDATION","key":"KAN-18","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-18","status":"Done"}
+{"kind":"issue","sourceId":"DONE-04","phase":"FOUNDATION","key":"KAN-19","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-19","status":"Done"}
+{"kind":"issue","sourceId":"DONE-05","phase":"FOUNDATION","key":"KAN-20","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-20","status":"Done"}
+{"kind":"issue","sourceId":"DONE-06","phase":"FOUNDATION","key":"KAN-21","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-21","status":"Done"}
+{"kind":"issue","sourceId":"DONE-07","phase":"FOUNDATION","key":"KAN-22","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-22","status":"Done"}
+{"kind":"issue","sourceId":"DONE-08","phase":"FOUNDATION","key":"KAN-23","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-23","status":"Done"}
+{"kind":"issue","sourceId":"DONE-09","phase":"FOUNDATION","key":"KAN-24","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-24","status":"Done"}
+{"kind":"issue","sourceId":"DONE-10","phase":"FOUNDATION","key":"KAN-25","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-25","status":"Done"}
+{"kind":"issue","sourceId":"DONE-11","phase":"FOUNDATION","key":"KAN-26","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-26","status":"Done"}
+{"kind":"issue","sourceId":"DONE-12","phase":"FOUNDATION","key":"KAN-27","parent":"KAN-1","issueType":"Task","queue":"Recorded foundation","localComplete":true}
+{"kind":"status","key":"KAN-27","status":"Done"}
+{"kind":"issue","sourceId":"SCOPE-01","phase":"P00","key":"KAN-28","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-28","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-02","phase":"P00","key":"KAN-29","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-29","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-03","phase":"P00","key":"KAN-30","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-30","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-04","phase":"P00","key":"KAN-31","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-31","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-05","phase":"P00","key":"KAN-32","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-32","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-06","phase":"P00","key":"KAN-33","parent":"KAN-2","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-33","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-07","phase":"P00","key":"KAN-34","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-34","status":"To Do"}
+{"kind":"issue","sourceId":"SCOPE-08","phase":"P00","key":"KAN-35","parent":"KAN-2","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-35","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-01","phase":"P01","key":"KAN-36","parent":"KAN-3","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-36","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-02","phase":"P01","key":"KAN-37","parent":"KAN-3","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-37","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-03","phase":"P01","key":"KAN-38","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-38","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-04","phase":"P01","key":"KAN-39","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-39","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-05","phase":"P01","key":"KAN-40","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-40","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-06","phase":"P01","key":"KAN-41","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-41","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-07","phase":"P01","key":"KAN-42","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-42","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-08","phase":"P01","key":"KAN-43","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-43","status":"To Do"}
+{"kind":"issue","sourceId":"DATA-09","phase":"P01","key":"KAN-44","parent":"KAN-3","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-44","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-01","phase":"P02","key":"KAN-45","parent":"KAN-4","issueType":"Task","queue":"Now","localComplete":false}
+{"kind":"status","key":"KAN-45","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-02","phase":"P02","key":"KAN-46","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-46","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-03","phase":"P02","key":"KAN-47","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-47","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-04","phase":"P02","key":"KAN-48","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-48","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-05","phase":"P02","key":"KAN-49","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-49","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-06","phase":"P02","key":"KAN-50","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-50","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-07","phase":"P02","key":"KAN-51","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-51","status":"To Do"}
+{"kind":"issue","sourceId":"PLAT-08","phase":"P02","key":"KAN-52","parent":"KAN-4","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-52","status":"To Do"}
+{"kind":"issue","sourceId":"JOB-01","phase":"P03","key":"KAN-53","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-53","status":"To Do"}
+{"kind":"issue","sourceId":"JOB-02","phase":"P03","key":"KAN-54","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-54","status":"To Do"}
+{"kind":"issue","sourceId":"JOB-03","phase":"P03","key":"KAN-55","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-55","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-01","phase":"P03","key":"KAN-56","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-56","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-02","phase":"P03","key":"KAN-57","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-57","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-03","phase":"P03","key":"KAN-58","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-58","status":"To Do"}
+{"kind":"issue","sourceId":"FILE-04","phase":"P03","key":"KAN-59","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-59","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-01","phase":"P04","key":"KAN-60","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-60","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-02","phase":"P04","key":"KAN-61","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-61","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-03","phase":"P04","key":"KAN-62","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-62","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-04","phase":"P04","key":"KAN-63","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-63","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-05","phase":"P04","key":"KAN-64","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-64","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-06","phase":"P04","key":"KAN-65","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-65","status":"To Do"}
+{"kind":"issue","sourceId":"CONTENT-07","phase":"P04","key":"KAN-66","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-66","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-01","phase":"P05","key":"KAN-67","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-67","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-02","phase":"P05","key":"KAN-68","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-68","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-03","phase":"P05","key":"KAN-69","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-69","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-04","phase":"P05","key":"KAN-70","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-70","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-05","phase":"P05","key":"KAN-71","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-71","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-06","phase":"P05","key":"KAN-72","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-72","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-07","phase":"P05","key":"KAN-73","parent":"KAN-7","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-73","status":"To Do"}
+{"kind":"issue","sourceId":"LEARN-08","phase":"P05","key":"KAN-74","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-74","status":"To Do","recoveredAfterTimeout":true}
+{"kind":"issue","sourceId":"BUILD-01","phase":"P06","key":"KAN-75","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-75","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-02","phase":"P06","key":"KAN-76","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-76","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-03","phase":"P06","key":"KAN-77","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-77","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-04","phase":"P06","key":"KAN-78","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-78","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-05","phase":"P06","key":"KAN-79","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-79","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-06","phase":"P06","key":"KAN-80","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-80","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-07","phase":"P06","key":"KAN-81","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-81","status":"To Do"}
+{"kind":"issue","sourceId":"BUILD-08","phase":"P06","key":"KAN-82","parent":"KAN-8","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-82","status":"To Do"}
+{"kind":"issue","sourceId":"AI-01","phase":"P07","key":"KAN-83","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-83","status":"To Do"}
+{"kind":"issue","sourceId":"AI-02","phase":"P07","key":"KAN-84","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-84","status":"To Do"}
+{"kind":"issue","sourceId":"AI-03","phase":"P07","key":"KAN-85","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-85","status":"To Do"}
+{"kind":"issue","sourceId":"AI-04","phase":"P07","key":"KAN-86","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-86","status":"To Do"}
+{"kind":"issue","sourceId":"AI-05","phase":"P07","key":"KAN-87","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-87","status":"To Do"}
+{"kind":"issue","sourceId":"AI-06","phase":"P07","key":"KAN-88","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-88","status":"To Do"}
+{"kind":"issue","sourceId":"AI-07","phase":"P07","key":"KAN-89","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-89","status":"To Do"}
+{"kind":"issue","sourceId":"AI-08","phase":"P07","key":"KAN-90","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-90","status":"To Do"}
+{"kind":"issue","sourceId":"AI-09","phase":"P07","key":"KAN-91","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-91","status":"To Do"}
+{"kind":"issue","sourceId":"AI-10","phase":"P07","key":"KAN-92","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-92","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-01","phase":"P08","key":"KAN-93","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-93","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-02","phase":"P08","key":"KAN-94","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-94","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-03","phase":"P08","key":"KAN-95","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-95","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-04","phase":"P08","key":"KAN-96","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-96","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-05","phase":"P08","key":"KAN-97","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-97","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-06","phase":"P08","key":"KAN-98","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-98","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-07","phase":"P08","key":"KAN-99","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-99","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-08","phase":"P08","key":"KAN-100","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-100","status":"To Do"}
+{"kind":"issue","sourceId":"ROLE-09","phase":"P08","key":"KAN-101","parent":"KAN-10","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-101","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-01","phase":"P09","key":"KAN-102","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-102","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-02","phase":"P09","key":"KAN-103","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-103","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-03","phase":"P09","key":"KAN-104","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-104","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-04","phase":"P09","key":"KAN-105","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-105","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-05","phase":"P09","key":"KAN-106","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-106","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-06","phase":"P09","key":"KAN-107","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-107","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-07","phase":"P09","key":"KAN-108","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-108","status":"To Do"}
+{"kind":"issue","sourceId":"BILL-08","phase":"P09","key":"KAN-109","parent":"KAN-11","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-109","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-01","phase":"P10","key":"KAN-110","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-110","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-02","phase":"P10","key":"KAN-111","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-111","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-03","phase":"P10","key":"KAN-112","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-112","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-04","phase":"P10","key":"KAN-113","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-113","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-05","phase":"P10","key":"KAN-114","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-114","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-06","phase":"P10","key":"KAN-115","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-115","status":"To Do"}
+{"kind":"issue","sourceId":"PRIV-07","phase":"P10","key":"KAN-116","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-116","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-01","phase":"P11","key":"KAN-117","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-117","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-02","phase":"P11","key":"KAN-118","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-118","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-03","phase":"P11","key":"KAN-119","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-119","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-04","phase":"P11","key":"KAN-120","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-120","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-05","phase":"P11","key":"KAN-121","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-121","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-06","phase":"P11","key":"KAN-122","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-122","status":"To Do"}
+{"kind":"issue","sourceId":"ACCEPT-07","phase":"P11","key":"KAN-123","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-123","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-01","phase":"P12","key":"KAN-124","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-124","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-02","phase":"P12","key":"KAN-125","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-125","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-03","phase":"P12","key":"KAN-126","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-126","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-04","phase":"P12","key":"KAN-127","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-127","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-05","phase":"P12","key":"KAN-128","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-128","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-06","phase":"P12","key":"KAN-129","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-129","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-07","phase":"P12","key":"KAN-130","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-130","status":"To Do"}
+{"kind":"issue","sourceId":"RELEASE-08","phase":"P12","key":"KAN-131","parent":"KAN-14","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","key":"KAN-131","status":"To Do"}
+{"kind":"issue","sourceId":"LATER-01","phase":"LATER","key":"KAN-132","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-02","phase":"LATER","key":"KAN-133","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-03","phase":"LATER","key":"KAN-134","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-04","phase":"LATER","key":"KAN-135","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"issue","sourceId":"LATER-05","phase":"LATER","key":"KAN-136","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P01","blocks":"KAN-2","blocked":"KAN-3"}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P02","blocks":"KAN-2","blocked":"KAN-4"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P03","blocks":"KAN-3","blocked":"KAN-5"}
+{"kind":"dependency","fromPhase":"P02","toPhase":"P03","blocks":"KAN-4","blocked":"KAN-5"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P04","blocks":"KAN-3","blocked":"KAN-6"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P04","blocks":"KAN-5","blocked":"KAN-6"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P05","blocks":"KAN-3","blocked":"KAN-7"}
+{"kind":"dependency","fromPhase":"P04","toPhase":"P05","blocks":"KAN-6","blocked":"KAN-7"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P06","blocks":"KAN-3","blocked":"KAN-8"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P06","blocks":"KAN-5","blocked":"KAN-8"}
+{"kind":"dependency","fromPhase":"P05","toPhase":"P06","blocks":"KAN-7","blocked":"KAN-8"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P07","blocks":"KAN-3","blocked":"KAN-9"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P07","blocks":"KAN-5","blocked":"KAN-9"}
+{"kind":"dependency","fromPhase":"P04","toPhase":"P07","blocks":"KAN-6","blocked":"KAN-9"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P08","blocks":"KAN-3","blocked":"KAN-10"}
+{"kind":"dependency","fromPhase":"P02","toPhase":"P09","blocks":"KAN-4","blocked":"KAN-11"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P09","blocks":"KAN-5","blocked":"KAN-11"}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P10","blocks":"KAN-2","blocked":"KAN-12"}
+{"kind":"dependency","fromPhase":"P00","toPhase":"P11","blocks":"KAN-2","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P01","toPhase":"P11","blocks":"KAN-3","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P02","toPhase":"P11","blocks":"KAN-4","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P03","toPhase":"P11","blocks":"KAN-5","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P04","toPhase":"P11","blocks":"KAN-6","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P05","toPhase":"P11","blocks":"KAN-7","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P06","toPhase":"P11","blocks":"KAN-8","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P07","toPhase":"P11","blocks":"KAN-9","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P08","toPhase":"P11","blocks":"KAN-10","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P09","toPhase":"P11","blocks":"KAN-11","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P10","toPhase":"P11","blocks":"KAN-12","blocked":"KAN-13"}
+{"kind":"dependency","fromPhase":"P11","toPhase":"P12","blocks":"KAN-13","blocked":"KAN-14"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-83","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-84","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-85","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-86","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-88","criteriaCount":4,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-90","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-91","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-127","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"acceptance_update","decision":"D-084","key":"KAN-135","criteriaCount":3,"source":"docs/architecture/BACKEND_ML_JIRA_REVIEW.md"}
+{"kind":"issue","decision":"D-084","sourceId":"AI-11","phase":"P07","key":"KAN-137","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-084","sourceId":"AI-11","key":"KAN-137","status":"To Do"}
+{"kind":"issue","decision":"D-084","sourceId":"AI-12","phase":"P07","key":"KAN-138","parent":"KAN-9","issueType":"Bug","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-084","sourceId":"AI-12","key":"KAN-138","status":"To Do"}
+{"kind":"task_dependency","decision":"D-084","sourceId":"AI-11","blocks":"KAN-137","blocked":"KAN-83"}
+{"kind":"task_dependency","decision":"D-084","sourceId":"AI-12","blocks":"KAN-138","blocked":"KAN-91"}
+{"kind":"source_update","decision":"D-084","previousSha256":"f539c3bd9ae88919bb96a3be26eab69da2ef24985a64db8c1ce43a074b99b916","sha256":"480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff","addedSourceIds":["AI-11","AI-12"],"acceptanceUpdated":["KAN-83","KAN-84","KAN-85","KAN-86","KAN-88","KAN-90","KAN-91","KAN-127","KAN-135"],"reason":"Fresh source/probe audit; no imported code activated or defects marked fixed."}
+{"kind":"issue","decision":"D-085","sourceId":"SYNC-01","phase":"P03","key":"KAN-139","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-085","sourceId":"SYNC-01","key":"KAN-139","status":"To Do"}
+{"kind":"issue","decision":"D-085","sourceId":"SYNC-02","phase":"P03","key":"KAN-140","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-085","sourceId":"SYNC-02","key":"KAN-140","status":"To Do"}
+{"kind":"issue","decision":"D-085","sourceId":"CACHE-01","phase":"P03","key":"KAN-141","parent":"KAN-5","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-085","sourceId":"CACHE-01","key":"KAN-141","status":"To Do"}
+{"kind":"issue","decision":"D-085","sourceId":"AI-13","phase":"P07","key":"KAN-142","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-085","sourceId":"AI-13","key":"KAN-142","status":"To Do"}
+{"kind":"issue","decision":"D-085","sourceId":"AI-14","phase":"P07","key":"KAN-143","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-085","sourceId":"AI-14","key":"KAN-143","status":"To Do"}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-01","key":"KAN-16","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-02","key":"KAN-17","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-03","key":"KAN-18","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-04","key":"KAN-19","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-05","key":"KAN-20","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-06","key":"KAN-21","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-07","key":"KAN-22","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-08","key":"KAN-23","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-09","key":"KAN-24","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-10","key":"KAN-25","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-11","key":"KAN-26","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DONE-12","key":"KAN-27","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-01","key":"KAN-28","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-02","key":"KAN-29","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-03","key":"KAN-30","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-04","key":"KAN-31","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-05","key":"KAN-32","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-06","key":"KAN-33","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-07","key":"KAN-34","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SCOPE-08","key":"KAN-35","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-01","key":"KAN-36","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-02","key":"KAN-37","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-03","key":"KAN-38","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-04","key":"KAN-39","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-05","key":"KAN-40","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-06","key":"KAN-41","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-07","key":"KAN-42","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-08","key":"KAN-43","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"DATA-09","key":"KAN-44","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-01","key":"KAN-45","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-02","key":"KAN-46","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-03","key":"KAN-47","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-04","key":"KAN-48","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-05","key":"KAN-49","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-06","key":"KAN-50","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-07","key":"KAN-51","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PLAT-08","key":"KAN-52","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"JOB-01","key":"KAN-53","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"JOB-02","key":"KAN-54","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"JOB-03","key":"KAN-55","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SYNC-01","key":"KAN-139","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"SYNC-02","key":"KAN-140","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CACHE-01","key":"KAN-141","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"FILE-01","key":"KAN-56","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"FILE-02","key":"KAN-57","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"FILE-03","key":"KAN-58","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"FILE-04","key":"KAN-59","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-01","key":"KAN-60","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-02","key":"KAN-61","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-03","key":"KAN-62","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-04","key":"KAN-63","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-05","key":"KAN-64","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-06","key":"KAN-65","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"CONTENT-07","key":"KAN-66","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-01","key":"KAN-67","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-02","key":"KAN-68","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-03","key":"KAN-69","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-04","key":"KAN-70","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-05","key":"KAN-71","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-06","key":"KAN-72","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-07","key":"KAN-73","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LEARN-08","key":"KAN-74","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-01","key":"KAN-75","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-02","key":"KAN-76","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-03","key":"KAN-77","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-04","key":"KAN-78","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-05","key":"KAN-79","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-06","key":"KAN-80","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-07","key":"KAN-81","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BUILD-08","key":"KAN-82","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-01","key":"KAN-83","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-02","key":"KAN-84","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-03","key":"KAN-85","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-04","key":"KAN-86","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-05","key":"KAN-87","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-06","key":"KAN-88","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-07","key":"KAN-89","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-08","key":"KAN-90","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-09","key":"KAN-91","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-10","key":"KAN-92","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-11","key":"KAN-137","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-12","key":"KAN-138","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-13","key":"KAN-142","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"AI-14","key":"KAN-143","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-01","key":"KAN-93","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-02","key":"KAN-94","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-03","key":"KAN-95","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-04","key":"KAN-96","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-05","key":"KAN-97","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-06","key":"KAN-98","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-07","key":"KAN-99","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-08","key":"KAN-100","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ROLE-09","key":"KAN-101","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-01","key":"KAN-102","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-02","key":"KAN-103","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-03","key":"KAN-104","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-04","key":"KAN-105","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-05","key":"KAN-106","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-06","key":"KAN-107","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-07","key":"KAN-108","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"BILL-08","key":"KAN-109","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-01","key":"KAN-110","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-02","key":"KAN-111","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-03","key":"KAN-112","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-04","key":"KAN-113","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-05","key":"KAN-114","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-06","key":"KAN-115","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"PRIV-07","key":"KAN-116","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-01","key":"KAN-117","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-02","key":"KAN-118","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-03","key":"KAN-119","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-04","key":"KAN-120","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-05","key":"KAN-121","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-06","key":"KAN-122","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"ACCEPT-07","key":"KAN-123","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-01","key":"KAN-124","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-02","key":"KAN-125","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-03","key":"KAN-126","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-04","key":"KAN-127","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-05","key":"KAN-128","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-06","key":"KAN-129","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-07","key":"KAN-130","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"RELEASE-08","key":"KAN-131","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LATER-01","key":"KAN-132","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LATER-02","key":"KAN-133","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LATER-03","key":"KAN-134","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LATER-04","key":"KAN-135","originalDescriptionRetained":true}
+{"kind":"delivery_trace","decision":"D-085","sourceId":"LATER-05","key":"KAN-136","originalDescriptionRetained":true}
+{"kind":"task_dependency","decision":"D-085","sourceId":"SCOPE-03","blockedSourceId":"SYNC-01","blocks":"KAN-30","blocked":"KAN-139"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"DATA-06","blockedSourceId":"SYNC-01","blocks":"KAN-41","blocked":"KAN-139"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"JOB-01","blockedSourceId":"SYNC-01","blocks":"KAN-53","blocked":"KAN-139"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"SYNC-01","blockedSourceId":"SYNC-02","blocks":"KAN-139","blocked":"KAN-140"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"CACHE-01","blockedSourceId":"SYNC-02","blocks":"KAN-141","blocked":"KAN-140"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"SYNC-02","blockedSourceId":"LEARN-06","blocks":"KAN-140","blocked":"KAN-72"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"CACHE-01","blockedSourceId":"AI-05","blocks":"KAN-141","blocked":"KAN-87"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-03","blockedSourceId":"AI-14","blocks":"KAN-85","blocked":"KAN-143"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-05","blockedSourceId":"AI-14","blocks":"KAN-87","blocked":"KAN-143"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-06","blockedSourceId":"AI-14","blocks":"KAN-88","blocked":"KAN-143"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-07","blockedSourceId":"AI-14","blocks":"KAN-89","blocked":"KAN-143"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"JOB-02","blockedSourceId":"AI-14","blocks":"KAN-54","blocked":"KAN-143"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"BUILD-04","blockedSourceId":"AI-14","blocks":"KAN-78","blocked":"KAN-143"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-14","blockedSourceId":"LEARN-05","blocks":"KAN-143","blocked":"KAN-71"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-14","blockedSourceId":"BUILD-08","blocks":"KAN-143","blocked":"KAN-82"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-14","blockedSourceId":"AI-13","blocks":"KAN-143","blocked":"KAN-142"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-11","blockedSourceId":"AI-13","blocks":"KAN-137","blocked":"KAN-142"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-13","blockedSourceId":"RELEASE-04","blocks":"KAN-142","blocked":"KAN-127"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"DATA-03","blockedSourceId":"LEARN-01","blocks":"KAN-38","blocked":"KAN-67"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"CONTENT-04","blockedSourceId":"LEARN-01","blocks":"KAN-63","blocked":"KAN-67"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"DATA-05","blockedSourceId":"ROLE-04","blocks":"KAN-40","blocked":"KAN-96"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"DATA-04","blockedSourceId":"ROLE-01","blocks":"KAN-39","blocked":"KAN-93"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"LEARN-02","blockedSourceId":"LEARN-03","blocks":"KAN-68","blocked":"KAN-69"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"LEARN-08","blockedSourceId":"BUILD-03","blocks":"KAN-74","blocked":"KAN-77"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"FILE-03","blockedSourceId":"BUILD-05","blocks":"KAN-58","blocked":"KAN-79"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"BUILD-01","blockedSourceId":"BUILD-04","blocks":"KAN-75","blocked":"KAN-78"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"BUILD-04","blockedSourceId":"BUILD-08","blocks":"KAN-78","blocked":"KAN-82"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"BUILD-06","blockedSourceId":"ROLE-03","blocks":"KAN-80","blocked":"KAN-95"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"ROLE-01","blockedSourceId":"ROLE-02","blocks":"KAN-93","blocked":"KAN-94"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"ROLE-02","blockedSourceId":"ROLE-03","blocks":"KAN-94","blocked":"KAN-95"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"ROLE-03","blockedSourceId":"ROLE-07","blocks":"KAN-95","blocked":"KAN-99"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"ROLE-04","blockedSourceId":"ROLE-07","blocks":"KAN-96","blocked":"KAN-99"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"ROLE-06","blockedSourceId":"ROLE-07","blocks":"KAN-98","blocked":"KAN-99"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-07","blockedSourceId":"BILL-04","blocks":"KAN-89","blocked":"KAN-105"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"BILL-04","blockedSourceId":"ACCEPT-01","blocks":"KAN-105","blocked":"KAN-117"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"LEARN-06","blockedSourceId":"ACCEPT-01","blocks":"KAN-72","blocked":"KAN-117"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"BUILD-08","blockedSourceId":"ACCEPT-01","blocks":"KAN-82","blocked":"KAN-117"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"LEARN-07","blockedSourceId":"ACCEPT-01","blocks":"KAN-73","blocked":"KAN-117"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"SYNC-02","blockedSourceId":"ROLE-08","blocks":"KAN-140","blocked":"KAN-100"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"ROLE-08","blockedSourceId":"ACCEPT-02","blocks":"KAN-100","blocked":"KAN-118"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"CONTENT-06","blockedSourceId":"ACCEPT-05","blocks":"KAN-65","blocked":"KAN-121"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"AI-09","blockedSourceId":"ACCEPT-04","blocks":"KAN-91","blocked":"KAN-120"}
+{"kind":"task_dependency","decision":"D-085","sourceId":"SYNC-02","blockedSourceId":"ACCEPT-04","blocks":"KAN-140","blocked":"KAN-120"}
+{"kind":"source_update","decision":"D-085","previousSha256":"480d57650f37268be070e4de5af00f114f362c11c9e250fe0cc7eca57160d4ff","sha256":"2fcc904da38d5cdaeeb02f93fe9da6d5e672522019f31b2aa9d360ce9c0f4cc6","addedSourceIds":["SYNC-01","SYNC-02","CACHE-01","AI-13","AI-14"],"deliveryTraces":128,"featureFamilies":18,"layers":11,"taskDependencies":45,"reason":"End-to-end feature traceability; software delivery and AGI capability remain separate evidence gates."}
+{"kind":"source_update","decision":"D-085","previousSha256":"2fcc904da38d5cdaeeb02f93fe9da6d5e672522019f31b2aa9d360ce9c0f4cc6","sha256":"45211f838a6bac760462f810d693e1680b05619bfbec59381135a7f7e2111abb","reason":"Final checklist delivery-index paragraph; task requirements and counts unchanged."}
+{"kind":"issue","decision":"D-086","sourceId":"CONTENT-08","phase":"P04","key":"KAN-144","parent":"KAN-6","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"CONTENT-08","key":"KAN-144","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"LEARN-09","phase":"P05","key":"KAN-145","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"LEARN-09","key":"KAN-145","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"LEARN-10","phase":"P05","key":"KAN-146","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"LEARN-10","key":"KAN-146","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"LEARN-11","phase":"P05","key":"KAN-147","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"LEARN-11","key":"KAN-147","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"LEARN-12","phase":"P05","key":"KAN-148","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"LEARN-12","key":"KAN-148","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"AI-15","phase":"P07","key":"KAN-149","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"AI-15","key":"KAN-149","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"AI-16","phase":"P07","key":"KAN-150","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"AI-16","key":"KAN-150","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"SAFE-01","phase":"P10","key":"KAN-151","parent":"KAN-12","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-086","sourceId":"SAFE-01","key":"KAN-151","status":"To Do"}
+{"kind":"issue","decision":"D-086","sourceId":"LATER-06","phase":"LATER","key":"KAN-152","parent":"KAN-15","issueType":"Task","queue":"Later","localComplete":false}
+{"kind":"description","decision":"D-086","sourceId":"DONE-03","key":"KAN-18","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SCOPE-01","key":"KAN-28","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SCOPE-02","key":"KAN-29","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SCOPE-03","key":"KAN-30","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SCOPE-04","key":"KAN-31","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SCOPE-05","key":"KAN-32","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SCOPE-07","key":"KAN-34","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"DATA-01","key":"KAN-36","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"DATA-03","key":"KAN-38","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"DATA-05","key":"KAN-40","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"DATA-06","key":"KAN-41","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"DATA-08","key":"KAN-43","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"DATA-09","key":"KAN-44","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PLAT-01","key":"KAN-45","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PLAT-03","key":"KAN-47","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PLAT-06","key":"KAN-50","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PLAT-07","key":"KAN-51","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SYNC-01","key":"KAN-139","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SYNC-02","key":"KAN-140","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"CONTENT-01","key":"KAN-60","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"CONTENT-03","key":"KAN-62","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"CONTENT-06","key":"KAN-65","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"CONTENT-08","key":"KAN-144","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-01","key":"KAN-67","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-02","key":"KAN-68","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-05","key":"KAN-71","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-08","key":"KAN-74","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-09","key":"KAN-145","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-10","key":"KAN-146","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-11","key":"KAN-147","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LEARN-12","key":"KAN-148","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BUILD-03","key":"KAN-77","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BUILD-06","key":"KAN-80","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BUILD-07","key":"KAN-81","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-01","key":"KAN-83","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-02","key":"KAN-84","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-03","key":"KAN-85","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-04","key":"KAN-86","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-06","key":"KAN-88","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-08","key":"KAN-90","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-10","key":"KAN-92","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-11","key":"KAN-137","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-12","key":"KAN-138","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-13","key":"KAN-142","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-14","key":"KAN-143","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-15","key":"KAN-149","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"AI-16","key":"KAN-150","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-01","key":"KAN-93","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-02","key":"KAN-94","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-03","key":"KAN-95","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-04","key":"KAN-96","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-05","key":"KAN-97","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-06","key":"KAN-98","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-07","key":"KAN-99","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ROLE-09","key":"KAN-101","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BILL-04","key":"KAN-105","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BILL-05","key":"KAN-106","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BILL-06","key":"KAN-107","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BILL-07","key":"KAN-108","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"BILL-08","key":"KAN-109","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PRIV-01","key":"KAN-110","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PRIV-02","key":"KAN-111","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PRIV-03","key":"KAN-112","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PRIV-05","key":"KAN-114","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"PRIV-07","key":"KAN-116","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"SAFE-01","key":"KAN-151","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ACCEPT-03","key":"KAN-119","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"ACCEPT-05","key":"KAN-121","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-01","key":"KAN-124","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-02","key":"KAN-125","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-03","key":"KAN-126","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-04","key":"KAN-127","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-05","key":"KAN-128","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-06","key":"KAN-129","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-07","key":"KAN-130","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"RELEASE-08","key":"KAN-131","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LATER-04","key":"KAN-135","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"description","decision":"D-086","sourceId":"LATER-06","key":"KAN-152","scope":"founder source reconciliation and current end-to-end trace"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"CONTENT-01","blocked":"CONTENT-08","from":"KAN-60","to":"KAN-144","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"DATA-01","blocked":"CONTENT-08","from":"KAN-36","to":"KAN-144","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"CONTENT-08","blocked":"LEARN-09","from":"KAN-144","to":"KAN-145","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-08","blocked":"LEARN-09","from":"KAN-74","to":"KAN-145","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-09","blocked":"LEARN-10","from":"KAN-145","to":"KAN-146","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"AI-14","blocked":"LEARN-10","from":"KAN-143","to":"KAN-146","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-02","blocked":"LEARN-11","from":"KAN-68","to":"KAN-147","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"JOB-01","blocked":"LEARN-11","from":"KAN-53","to":"KAN-147","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-09","blocked":"LEARN-11","from":"KAN-145","to":"KAN-147","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-08","blocked":"LEARN-12","from":"KAN-74","to":"KAN-148","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"CONTENT-08","blocked":"LEARN-12","from":"KAN-144","to":"KAN-148","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"SYNC-02","blocked":"LEARN-12","from":"KAN-140","to":"KAN-148","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-09","blocked":"AI-15","from":"KAN-145","to":"KAN-149","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"AI-04","blocked":"AI-15","from":"KAN-86","to":"KAN-149","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"DATA-05","blocked":"AI-15","from":"KAN-40","to":"KAN-149","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"CONTENT-05","blocked":"AI-15","from":"KAN-64","to":"KAN-149","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"AI-15","blocked":"AI-14","from":"KAN-149","to":"KAN-143","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"SCOPE-03","blocked":"AI-16","from":"KAN-30","to":"KAN-150","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"CONTENT-03","blocked":"AI-16","from":"KAN-62","to":"KAN-150","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"SYNC-01","blocked":"AI-16","from":"KAN-139","to":"KAN-150","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"SCOPE-05","blocked":"SAFE-01","from":"KAN-32","to":"KAN-151","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"SAFE-01","blocked":"AI-14","from":"KAN-151","to":"KAN-143","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"SAFE-01","blocked":"ACCEPT-04","from":"KAN-151","to":"KAN-120","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-10","blocked":"ACCEPT-01","from":"KAN-146","to":"KAN-117","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-11","blocked":"ACCEPT-01","from":"KAN-147","to":"KAN-117","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"LEARN-12","blocked":"ACCEPT-05","from":"KAN-148","to":"KAN-121","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"AI-16","blocked":"ACCEPT-05","from":"KAN-150","to":"KAN-121","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"AI-13","blocked":"LATER-06","from":"KAN-142","to":"KAN-152","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"PRIV-01","blocked":"LATER-06","from":"KAN-110","to":"KAN-152","linkType":"Blocks"}
+{"kind":"dependency","decision":"D-086","level":"task","blocks":"RELEASE-04","blocked":"LATER-06","from":"KAN-127","to":"KAN-152","linkType":"Blocks"}
+{"kind":"status","decision":"D-086","sourceId":"AI-11","key":"KAN-137","status":"Testing"}
+{"kind":"status","decision":"D-086","sourceId":"LEARN-09","key":"KAN-145","status":"In Progress"}
+{"kind":"status","decision":"D-086","sourceId":"LEARN-10","key":"KAN-146","status":"In Progress"}
+{"kind":"source_update","decision":"D-086","sha256":"359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146","source":"docs/architecture/BACKEND_LAUNCH_CHECKLIST.md","tasks":137,"notes":"37 founder DOCX reconciled; nine new tasks,78 scoped description updates and30 added task dependencies; no new Done."}
+{"kind":"description","decision":"D-086","sourceId":"JOB-01","key":"KAN-53","scope":"current dependency endpoint acceptance trace"}
+{"kind":"description","decision":"D-086","sourceId":"CONTENT-05","key":"KAN-64","scope":"current dependency endpoint acceptance trace"}
+{"kind":"description","decision":"D-086","sourceId":"ACCEPT-04","key":"KAN-120","scope":"current dependency endpoint acceptance trace"}
+{"kind":"description","decision":"D-086","sourceId":"ACCEPT-01","key":"KAN-117","scope":"current dependency endpoint acceptance trace"}
+{"kind":"source_update","decision":"D-086","sha256":"359121f7266e3a23c5b88eb864d0d62c933e4ba743035add2338c2c2a8650146","source":"docs/architecture/BACKEND_LAUNCH_CHECKLIST.md","tasks":137,"notes":"Final scope: nine creates,82 preserved-prefix description updates including all changed dependency endpoints,30 added links; no new Done."}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-01","key":"KAN-16","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-02","key":"KAN-17","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-03","key":"KAN-18","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-04","key":"KAN-19","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-05","key":"KAN-20","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-06","key":"KAN-21","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-07","key":"KAN-22","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-08","key":"KAN-23","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-09","key":"KAN-24","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-10","key":"KAN-25","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-11","key":"KAN-26","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DONE-12","key":"KAN-27","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-01","key":"KAN-28","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-02","key":"KAN-29","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-03","key":"KAN-30","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-04","key":"KAN-31","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-05","key":"KAN-32","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-06","key":"KAN-33","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-07","key":"KAN-34","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SCOPE-08","key":"KAN-35","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-01","key":"KAN-36","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-02","key":"KAN-37","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-03","key":"KAN-38","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-04","key":"KAN-39","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-05","key":"KAN-40","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-06","key":"KAN-41","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-07","key":"KAN-42","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-08","key":"KAN-43","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"DATA-09","key":"KAN-44","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-01","key":"KAN-45","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-02","key":"KAN-46","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-03","key":"KAN-47","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-04","key":"KAN-48","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-05","key":"KAN-49","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-06","key":"KAN-50","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-07","key":"KAN-51","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PLAT-08","key":"KAN-52","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CACHE-01","key":"KAN-141","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"FILE-01","key":"KAN-56","layers":["vats-l1","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"FILE-02","key":"KAN-57","layers":["vats-l1","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"FILE-03","key":"KAN-58","layers":["vats-l1","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"FILE-04","key":"KAN-59","layers":["vats-l1","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"JOB-01","key":"KAN-53","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"JOB-02","key":"KAN-54","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"JOB-03","key":"KAN-55","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SYNC-01","key":"KAN-139","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SYNC-02","key":"KAN-140","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-01","key":"KAN-60","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-02","key":"KAN-61","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-03","key":"KAN-62","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-04","key":"KAN-63","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-05","key":"KAN-64","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-06","key":"KAN-65","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-07","key":"KAN-66","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"CONTENT-08","key":"KAN-144","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-01","key":"KAN-67","layers":["vats-l2","vats-l3","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-02","key":"KAN-68","layers":["vats-l2","vats-l3","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-03","key":"KAN-69","layers":["vats-l2","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-04","key":"KAN-70","layers":["vats-l2","vats-l3","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-06","key":"KAN-72","layers":["vats-l2","vats-l3","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-07","key":"KAN-73","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-08","key":"KAN-74","layers":["vats-l2","vats-l3","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-09","key":"KAN-145","layers":["vats-l2"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-11","key":"KAN-147","layers":["vats-l2","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-12","key":"KAN-148","layers":["vats-l2","vats-l3","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-01","key":"KAN-75","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-02","key":"KAN-76","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-03","key":"KAN-77","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-04","key":"KAN-78","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-05","key":"KAN-79","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-06","key":"KAN-80","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-07","key":"KAN-81","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-02","key":"KAN-84","layers":["vats-l4","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-03","key":"KAN-85","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-04","key":"KAN-86","layers":["vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-05","key":"KAN-87","layers":["vats-l4","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-06","key":"KAN-88","layers":["vats-l4"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-07","key":"KAN-89","layers":["vats-l4","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-08","key":"KAN-90","layers":["vats-l1","vats-l4","vats-l5","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-10","key":"KAN-92","layers":["vats-l1","vats-l5"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-11","key":"KAN-137","layers":["vats-l4","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-01","key":"KAN-83","layers":["vats-l4","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-12","key":"KAN-138","layers":["vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-09","key":"KAN-91","layers":["vats-l4","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-15","key":"KAN-149","layers":["vats-l3","vats-l4","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-16","key":"KAN-150","layers":["vats-l5"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-01","key":"KAN-93","layers":["vats-l2","vats-l3","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-02","key":"KAN-94","layers":["vats-l2","vats-l3","vats-l4","vats-l5"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-03","key":"KAN-95","layers":["vats-l2","vats-l3","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-04","key":"KAN-96","layers":["vats-l2","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-05","key":"KAN-97","layers":["vats-l2","vats-l3","vats-l4","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-06","key":"KAN-98","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-07","key":"KAN-99","layers":["vats-l2","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-08","key":"KAN-100","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ROLE-09","key":"KAN-101","layers":["vats-l4","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-01","key":"KAN-102","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-02","key":"KAN-103","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-03","key":"KAN-104","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-04","key":"KAN-105","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-05","key":"KAN-106","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-06","key":"KAN-107","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-07","key":"KAN-108","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BILL-08","key":"KAN-109","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-01","key":"KAN-110","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-02","key":"KAN-111","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-03","key":"KAN-112","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-04","key":"KAN-113","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-05","key":"KAN-114","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-06","key":"KAN-115","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"PRIV-07","key":"KAN-116","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"SAFE-01","key":"KAN-151","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-14","key":"KAN-143","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-05","key":"KAN-71","layers":["vats-l1","vats-l3","vats-l4","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LEARN-10","key":"KAN-146","layers":["vats-l2","vats-l3","vats-l4","vats-l6"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"BUILD-08","key":"KAN-82","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"AI-13","key":"KAN-142","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-01","key":"KAN-117","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-02","key":"KAN-118","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-03","key":"KAN-119","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-04","key":"KAN-120","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-05","key":"KAN-121","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-06","key":"KAN-122","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"ACCEPT-07","key":"KAN-123","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-01","key":"KAN-124","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-02","key":"KAN-125","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-03","key":"KAN-126","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-04","key":"KAN-127","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-05","key":"KAN-128","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-06","key":"KAN-129","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-07","key":"KAN-130","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"RELEASE-08","key":"KAN-131","layers":["vats-l1","vats-l2","vats-l3","vats-l4","vats-l5","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LATER-01","key":"KAN-132","layers":["vats-l3","vats-l4"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LATER-02","key":"KAN-133","layers":["vats-l4","vats-l5"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LATER-03","key":"KAN-134","layers":["vats-l3","vats-l4","vats-l5","vats-l6"],"noStatusChange":true,"recoveredAfterReadback":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LATER-04","key":"KAN-135","layers":["vats-l4","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LATER-05","key":"KAN-136","layers":["vats-l2","vats-l4","vats-l6","vats-l7"],"noStatusChange":true}
+{"kind":"vats_trace","decision":"D-087","sourceId":"LATER-06","key":"KAN-152","layers":["vats-l3","vats-l7"],"noStatusChange":true}
+{"kind":"issue","decision":"D-088","sourceId":"LEARN-13","key":"KAN-153","parent":"KAN-7","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-088","sourceId":"LEARN-13","key":"KAN-153","status":"To Do"}
+{"kind":"issue","decision":"D-088","sourceId":"BUILD-09","key":"KAN-154","parent":"KAN-8","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-088","sourceId":"BUILD-09","key":"KAN-154","status":"To Do"}
+{"kind":"issue","decision":"D-088","sourceId":"AI-17","key":"KAN-155","parent":"KAN-9","issueType":"Story","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-088","sourceId":"AI-17","key":"KAN-155","status":"To Do"}
+{"kind":"issue","decision":"D-088","sourceId":"AI-18","key":"KAN-156","parent":"KAN-9","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-088","sourceId":"AI-18","key":"KAN-156","status":"To Do"}
+{"kind":"issue","decision":"D-088","sourceId":"ACCEPT-08","key":"KAN-157","parent":"KAN-13","issueType":"Task","queue":"Next","localComplete":false}
+{"kind":"status","decision":"D-088","sourceId":"ACCEPT-08","key":"KAN-157","status":"To Do"}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-01","key":"KAN-16","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-02","key":"KAN-17","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-03","key":"KAN-18","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-04","key":"KAN-19","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-05","key":"KAN-20","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-06","key":"KAN-21","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-07","key":"KAN-22","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-08","key":"KAN-23","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-09","key":"KAN-24","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-10","key":"KAN-25","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-11","key":"KAN-26","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DONE-12","key":"KAN-27","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-01","key":"KAN-28","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-02","key":"KAN-29","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-03","key":"KAN-30","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-04","key":"KAN-31","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-05","key":"KAN-32","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-06","key":"KAN-33","replacedGeneratedTrace":true,"noStatusChange":true,"recoveredAfterJournalFailure":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-07","key":"KAN-34","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SCOPE-08","key":"KAN-35","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-01","key":"KAN-36","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-02","key":"KAN-37","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-03","key":"KAN-38","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-04","key":"KAN-39","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-05","key":"KAN-40","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-06","key":"KAN-41","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-07","key":"KAN-42","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-08","key":"KAN-43","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"DATA-09","key":"KAN-44","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-01","key":"KAN-45","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-02","key":"KAN-46","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-03","key":"KAN-47","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-04","key":"KAN-48","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-05","key":"KAN-49","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-06","key":"KAN-50","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-07","key":"KAN-51","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PLAT-08","key":"KAN-52","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CACHE-01","key":"KAN-141","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"FILE-01","key":"KAN-56","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"FILE-02","key":"KAN-57","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"FILE-03","key":"KAN-58","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"FILE-04","key":"KAN-59","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"JOB-01","key":"KAN-53","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"JOB-02","key":"KAN-54","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"JOB-03","key":"KAN-55","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SYNC-01","key":"KAN-139","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SYNC-02","key":"KAN-140","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-01","key":"KAN-60","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-02","key":"KAN-61","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-03","key":"KAN-62","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-04","key":"KAN-63","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-05","key":"KAN-64","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-06","key":"KAN-65","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-07","key":"KAN-66","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"CONTENT-08","key":"KAN-144","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-01","key":"KAN-67","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-02","key":"KAN-68","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-03","key":"KAN-69","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-04","key":"KAN-70","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-06","key":"KAN-72","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-07","key":"KAN-73","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-08","key":"KAN-74","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-09","key":"KAN-145","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-11","key":"KAN-147","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-12","key":"KAN-148","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-13","key":"KAN-153","replacedGeneratedTrace":false,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-01","key":"KAN-75","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-02","key":"KAN-76","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-03","key":"KAN-77","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-04","key":"KAN-78","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-05","key":"KAN-79","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-06","key":"KAN-80","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-07","key":"KAN-81","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-02","key":"KAN-84","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-03","key":"KAN-85","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-04","key":"KAN-86","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-05","key":"KAN-87","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-06","key":"KAN-88","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-07","key":"KAN-89","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-08","key":"KAN-90","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-10","key":"KAN-92","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-11","key":"KAN-137","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-01","key":"KAN-83","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-12","key":"KAN-138","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-09","key":"KAN-91","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-15","key":"KAN-149","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-16","key":"KAN-150","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-09","key":"KAN-154","replacedGeneratedTrace":false,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-18","key":"KAN-156","replacedGeneratedTrace":false,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-01","key":"KAN-93","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-02","key":"KAN-94","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-03","key":"KAN-95","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-04","key":"KAN-96","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-05","key":"KAN-97","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-06","key":"KAN-98","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-07","key":"KAN-99","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-08","key":"KAN-100","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ROLE-09","key":"KAN-101","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-01","key":"KAN-102","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-02","key":"KAN-103","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-03","key":"KAN-104","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-04","key":"KAN-105","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-05","key":"KAN-106","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-06","key":"KAN-107","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-07","key":"KAN-108","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BILL-08","key":"KAN-109","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-01","key":"KAN-110","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-02","key":"KAN-111","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-03","key":"KAN-112","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-04","key":"KAN-113","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-05","key":"KAN-114","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-06","key":"KAN-115","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"PRIV-07","key":"KAN-116","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"SAFE-01","key":"KAN-151","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-14","key":"KAN-143","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-05","key":"KAN-71","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LEARN-10","key":"KAN-146","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"BUILD-08","key":"KAN-82","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-13","key":"KAN-142","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"AI-17","key":"KAN-155","replacedGeneratedTrace":false,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-01","key":"KAN-117","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-02","key":"KAN-118","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-03","key":"KAN-119","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-04","key":"KAN-120","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-05","key":"KAN-121","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-06","key":"KAN-122","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-07","key":"KAN-123","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"ACCEPT-08","key":"KAN-157","replacedGeneratedTrace":false,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-01","key":"KAN-124","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-02","key":"KAN-125","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-03","key":"KAN-126","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-04","key":"KAN-127","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-05","key":"KAN-128","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-06","key":"KAN-129","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-07","key":"KAN-130","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"RELEASE-08","key":"KAN-131","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LATER-01","key":"KAN-132","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LATER-02","key":"KAN-133","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LATER-03","key":"KAN-134","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LATER-04","key":"KAN-135","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LATER-05","key":"KAN-136","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"education_trace","decision":"D-088","sourceId":"LATER-06","key":"KAN-152","replacedGeneratedTrace":true,"noStatusChange":true}
+{"kind":"task_dependency","decision":"D-088","from":"SCOPE-02","to":"AI-18","blocks":"KAN-29","blocked":"KAN-156"}
+{"kind":"task_dependency","decision":"D-088","from":"CONTENT-06","to":"AI-18","blocks":"KAN-65","blocked":"KAN-156"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-02","to":"AI-18","blocks":"KAN-84","blocked":"KAN-156"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-18","to":"AI-17","blocks":"KAN-156","blocked":"KAN-155"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-10","to":"AI-17","blocks":"KAN-92","blocked":"KAN-155"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-14","to":"AI-17","blocks":"KAN-143","blocked":"KAN-155"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-08","to":"AI-17","blocks":"KAN-90","blocked":"KAN-155"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-07","to":"AI-17","blocks":"KAN-89","blocked":"KAN-155"}
+{"kind":"task_dependency","decision":"D-088","from":"SYNC-01","to":"AI-17","blocks":"KAN-139","blocked":"KAN-155"}
+{"kind":"task_dependency","decision":"D-088","from":"FILE-03","to":"LEARN-13","blocks":"KAN-58","blocked":"KAN-153"}
+{"kind":"task_dependency","decision":"D-088","from":"DATA-05","to":"LEARN-13","blocks":"KAN-40","blocked":"KAN-153"}
+{"kind":"task_dependency","decision":"D-088","from":"CONTENT-03","to":"LEARN-13","blocks":"KAN-62","blocked":"KAN-153"}
+{"kind":"task_dependency","decision":"D-088","from":"LEARN-02","to":"LEARN-13","blocks":"KAN-68","blocked":"KAN-153"}
+{"kind":"task_dependency","decision":"D-088","from":"SYNC-02","to":"LEARN-13","blocks":"KAN-140","blocked":"KAN-153"}
+{"kind":"task_dependency","decision":"D-088","from":"BUILD-01","to":"BUILD-09","blocks":"KAN-75","blocked":"KAN-154"}
+{"kind":"task_dependency","decision":"D-088","from":"BUILD-04","to":"BUILD-09","blocks":"KAN-78","blocked":"KAN-154"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-16","to":"BUILD-09","blocks":"KAN-150","blocked":"KAN-154"}
+{"kind":"task_dependency","decision":"D-088","from":"FILE-03","to":"BUILD-09","blocks":"KAN-58","blocked":"KAN-154"}
+{"kind":"task_dependency","decision":"D-088","from":"BUILD-09","to":"BUILD-08","blocks":"KAN-154","blocked":"KAN-82"}
+{"kind":"task_dependency","decision":"D-088","from":"LEARN-10","to":"ACCEPT-08","blocks":"KAN-146","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"LEARN-11","to":"ACCEPT-08","blocks":"KAN-147","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"BUILD-08","to":"ACCEPT-08","blocks":"KAN-82","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-13","to":"ACCEPT-08","blocks":"KAN-142","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-17","to":"ACCEPT-08","blocks":"KAN-155","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"LEARN-13","to":"ACCEPT-08","blocks":"KAN-153","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"ROLE-03","to":"ACCEPT-08","blocks":"KAN-95","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"PLAT-02","to":"ACCEPT-08","blocks":"KAN-46","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-18","to":"ACCEPT-05","blocks":"KAN-156","blocked":"KAN-121"}
+{"kind":"task_dependency","decision":"D-088","from":"ACCEPT-08","to":"RELEASE-07","blocks":"KAN-157","blocked":"KAN-130"}
+{"kind":"task_dependency","decision":"D-088","from":"LEARN-13","to":"ACCEPT-04","blocks":"KAN-153","blocked":"KAN-120"}
+{"kind":"task_dependency","decision":"D-088","from":"AI-17","to":"ACCEPT-05","blocks":"KAN-155","blocked":"KAN-121"}
+{"kind":"task_dependency","decision":"D-088","from":"BUILD-09","to":"ACCEPT-05","blocks":"KAN-154","blocked":"KAN-121"}
+{"kind":"source_update","decision":"D-088","sourceSha256":"f17ce508a17c86c6f1da6596f91239e62b07cb2fd52b63780204f2d3cef1f540","tasks":142,"totalItems":157,"dependencyLinks":137,"readAt":"2026-10-17T09:12:10.766Z"}
+{"kind":"create","decision":"D-090","sourceId":"SCOPE-09","key":"KAN-158","parent":"KAN-2","type":"Task"}
+{"kind":"create","decision":"D-090","sourceId":"LEARN-14","key":"KAN-159","parent":"KAN-7","type":"Story"}
+{"kind":"create","decision":"D-090","sourceId":"ROLE-10","key":"KAN-160","parent":"KAN-10","type":"Story"}
+{"kind":"status","decision":"D-090","sourceId":"SCOPE-09","key":"KAN-158","status":"To Do"}
+{"kind":"status","decision":"D-090","sourceId":"LEARN-14","key":"KAN-159","status":"To Do"}
+{"kind":"status","decision":"D-090","sourceId":"ROLE-10","key":"KAN-160","status":"To Do"}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SCOPE-01","key":"KAN-28","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SCOPE-02","key":"KAN-29","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SCOPE-03","key":"KAN-30","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SCOPE-04","key":"KAN-31","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SCOPE-09","key":"KAN-158","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"DATA-01","key":"KAN-36","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"DATA-03","key":"KAN-38","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"DATA-04","key":"KAN-39","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"DATA-05","key":"KAN-40","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"DATA-06","key":"KAN-41","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SYNC-02","key":"KAN-140","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"CONTENT-08","key":"KAN-144","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"LEARN-04","key":"KAN-70","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"LEARN-09","key":"KAN-145","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"LEARN-11","key":"KAN-147","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"AI-15","key":"KAN-149","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ROLE-06","key":"KAN-98","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ROLE-08","key":"KAN-100","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ROLE-09","key":"KAN-101","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"BILL-04","key":"KAN-105","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"PRIV-01","key":"KAN-110","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"LEARN-14","key":"KAN-159","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ROLE-04","key":"KAN-96","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ROLE-07","key":"KAN-99","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"SAFE-01","key":"KAN-151","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"LEARN-10","key":"KAN-146","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ROLE-10","key":"KAN-160","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ACCEPT-01","key":"KAN-117","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ACCEPT-02","key":"KAN-118","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ACCEPT-04","key":"KAN-120","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ACCEPT-05","key":"KAN-121","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"ACCEPT-08","key":"KAN-157","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"lifelong_trace","decision":"D-090","sourceId":"RELEASE-04","key":"KAN-127","preservedOriginalDescription":true,"noStatusChange":true}
+{"kind":"task_dependency","decision":"D-090","from":"SCOPE-02","to":"SCOPE-09","blocks":"KAN-29","blocked":"KAN-158"}
+{"kind":"task_dependency","decision":"D-090","from":"SCOPE-09","to":"BILL-04","blocks":"KAN-158","blocked":"KAN-105"}
+{"kind":"task_dependency","decision":"D-090","from":"SCOPE-09","to":"ROLE-09","blocks":"KAN-158","blocked":"KAN-101"}
+{"kind":"task_dependency","decision":"D-090","from":"SCOPE-09","to":"ACCEPT-05","blocks":"KAN-158","blocked":"KAN-121"}
+{"kind":"task_dependency","decision":"D-090","from":"DATA-01","to":"LEARN-14","blocks":"KAN-36","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"DATA-06","to":"LEARN-14","blocks":"KAN-41","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"CONTENT-08","to":"LEARN-14","blocks":"KAN-144","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"LEARN-09","to":"LEARN-14","blocks":"KAN-145","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"LEARN-11","to":"LEARN-14","blocks":"KAN-147","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"SYNC-02","to":"LEARN-14","blocks":"KAN-140","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"DATA-05","to":"LEARN-14","blocks":"KAN-40","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"AI-15","to":"LEARN-14","blocks":"KAN-149","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"PRIV-01","to":"LEARN-14","blocks":"KAN-110","blocked":"KAN-159"}
+{"kind":"task_dependency","decision":"D-090","from":"LEARN-14","to":"ACCEPT-01","blocks":"KAN-159","blocked":"KAN-117"}
+{"kind":"task_dependency","decision":"D-090","from":"LEARN-14","to":"ACCEPT-02","blocks":"KAN-159","blocked":"KAN-118"}
+{"kind":"task_dependency","decision":"D-090","from":"LEARN-14","to":"ACCEPT-04","blocks":"KAN-159","blocked":"KAN-120"}
+{"kind":"task_dependency","decision":"D-090","from":"DATA-03","to":"ROLE-10","blocks":"KAN-38","blocked":"KAN-160"}
+{"kind":"task_dependency","decision":"D-090","from":"DATA-05","to":"ROLE-10","blocks":"KAN-40","blocked":"KAN-160"}
+{"kind":"task_dependency","decision":"D-090","from":"LEARN-10","to":"ROLE-10","blocks":"KAN-146","blocked":"KAN-160"}
+{"kind":"task_dependency","decision":"D-090","from":"AI-15","to":"ROLE-10","blocks":"KAN-149","blocked":"KAN-160"}
+{"kind":"task_dependency","decision":"D-090","from":"ROLE-10","to":"ACCEPT-02","blocks":"KAN-160","blocked":"KAN-118"}
+{"kind":"task_dependency","decision":"D-090","from":"ROLE-10","to":"ACCEPT-08","blocks":"KAN-160","blocked":"KAN-157"}
+{"kind":"task_dependency","decision":"D-090","from":"PRIV-01","to":"ROLE-04","blocks":"KAN-110","blocked":"KAN-96"}
+{"kind":"task_dependency","decision":"D-090","from":"DATA-04","to":"ROLE-04","blocks":"KAN-39","blocked":"KAN-96"}
+{"kind":"task_dependency","decision":"D-090","from":"ROLE-04","to":"ACCEPT-02","blocks":"KAN-96","blocked":"KAN-118"}
+{"kind":"task_dependency","decision":"D-090","from":"ROLE-07","to":"ACCEPT-02","blocks":"KAN-99","blocked":"KAN-118"}
+{"kind":"source_update","decision":"D-090","sourceSha256":"b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8","tasks":145,"totalItems":160,"dependencyLinks":163,"readAt":"2026-10-17T09:46:50.597Z"}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-01","key":"KAN-28","startDate":"2026-10-17","dueDate":"2026-10-20","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-02","key":"KAN-29","startDate":"2026-10-21","dueDate":"2026-10-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-03","key":"KAN-30","startDate":"2026-10-24","dueDate":"2026-10-28","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-04","key":"KAN-31","startDate":"2026-10-29","dueDate":"2026-10-31","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-05","key":"KAN-32","startDate":"2026-10-19","dueDate":"2026-10-24","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-06","key":"KAN-33","startDate":"2026-11-02","dueDate":"2026-11-04","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-07","key":"KAN-34","startDate":"2026-11-06","dueDate":"2026-11-09","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-08","key":"KAN-35","startDate":"2026-11-03","dueDate":"2026-11-05","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SCOPE-09","key":"KAN-158","startDate":"2026-10-28","dueDate":"2026-11-02","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-01","key":"KAN-36","startDate":"2026-11-07","dueDate":"2026-11-11","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-02","key":"KAN-37","startDate":"2026-11-12","dueDate":"2026-11-16","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-03","key":"KAN-38","startDate":"2026-11-17","dueDate":"2026-11-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-04","key":"KAN-39","startDate":"2026-11-21","dueDate":"2026-11-26","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-05","key":"KAN-40","startDate":"2026-11-27","dueDate":"2026-12-01","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-06","key":"KAN-41","startDate":"2026-11-18","dueDate":"2026-11-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-07","key":"KAN-42","startDate":"2027-07-15","dueDate":"2027-07-20","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-08","key":"KAN-43","startDate":"2026-12-02","dueDate":"2026-12-04","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"DATA-09","key":"KAN-44","startDate":"2027-07-23","dueDate":"2027-07-30","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-01","key":"KAN-45","startDate":"2026-11-11","dueDate":"2026-11-13","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-02","key":"KAN-46","startDate":"2027-07-05","dueDate":"2027-07-08","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-03","key":"KAN-47","startDate":"2026-11-14","dueDate":"2026-11-17","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-04","key":"KAN-48","startDate":"2026-11-25","dueDate":"2026-11-27","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-05","key":"KAN-49","startDate":"2026-11-30","dueDate":"2026-12-02","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-06","key":"KAN-50","startDate":"2027-07-31","dueDate":"2027-08-03","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-07","key":"KAN-51","startDate":"2027-08-04","dueDate":"2027-08-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PLAT-08","key":"KAN-52","startDate":"2026-12-03","dueDate":"2026-12-07","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"JOB-01","key":"KAN-53","startDate":"2026-12-05","dueDate":"2026-12-09","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"JOB-02","key":"KAN-54","startDate":"2026-12-10","dueDate":"2026-12-15","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"JOB-03","key":"KAN-55","startDate":"2027-08-13","dueDate":"2027-08-17","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SYNC-01","key":"KAN-139","startDate":"2027-01-11","dueDate":"2027-01-15","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SYNC-02","key":"KAN-140","startDate":"2027-01-18","dueDate":"2027-01-22","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CACHE-01","key":"KAN-141","startDate":"2027-01-06","dueDate":"2027-01-09","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"FILE-01","key":"KAN-56","startDate":"2026-12-17","dueDate":"2026-12-21","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"FILE-02","key":"KAN-57","startDate":"2026-12-23","dueDate":"2026-12-25","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"FILE-03","key":"KAN-58","startDate":"2026-12-28","dueDate":"2026-12-31","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"FILE-04","key":"KAN-59","startDate":"2027-08-12","dueDate":"2027-08-14","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-01","key":"KAN-60","startDate":"2026-12-08","dueDate":"2026-12-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-02","key":"KAN-61","startDate":"2026-12-25","dueDate":"2026-12-29","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-03","key":"KAN-62","startDate":"2026-12-30","dueDate":"2027-01-04","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-04","key":"KAN-63","startDate":"2027-01-05","dueDate":"2027-01-07","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-05","key":"KAN-64","startDate":"2027-01-25","dueDate":"2027-01-29","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-06","key":"KAN-65","startDate":"2027-02-01","dueDate":"2027-02-06","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-07","key":"KAN-66","startDate":"2027-08-16","dueDate":"2027-08-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"CONTENT-08","key":"KAN-144","startDate":"2027-01-28","dueDate":"2027-02-04","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-01","key":"KAN-67","startDate":"2027-01-08","dueDate":"2027-01-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-02","key":"KAN-68","startDate":"2027-01-14","dueDate":"2027-01-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-03","key":"KAN-69","startDate":"2027-08-18","dueDate":"2027-08-21","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-04","key":"KAN-70","startDate":"2027-08-20","dueDate":"2027-08-24","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-05","key":"KAN-71","startDate":"2027-03-31","dueDate":"2027-04-03","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-06","key":"KAN-72","startDate":"2027-02-05","dueDate":"2027-02-09","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-07","key":"KAN-73","startDate":"2027-08-23","dueDate":"2027-08-26","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-08","key":"KAN-74","startDate":"2027-01-22","dueDate":"2027-01-26","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-09","key":"KAN-145","startDate":"2027-02-08","dueDate":"2027-02-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-10","key":"KAN-146","startDate":"2027-04-03","dueDate":"2027-04-09","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-11","key":"KAN-147","startDate":"2027-03-17","dueDate":"2027-03-22","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-12","key":"KAN-148","startDate":"2027-08-25","dueDate":"2027-08-30","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-13","key":"KAN-153","startDate":"2027-03-26","dueDate":"2027-04-02","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LEARN-14","key":"KAN-159","startDate":"2027-05-06","dueDate":"2027-05-13","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-01","key":"KAN-75","startDate":"2026-12-14","dueDate":"2026-12-17","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-02","key":"KAN-76","startDate":"2026-12-19","dueDate":"2026-12-24","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-03","key":"KAN-77","startDate":"2027-02-11","dueDate":"2027-02-15","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-04","key":"KAN-78","startDate":"2027-02-13","dueDate":"2027-02-18","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-05","key":"KAN-79","startDate":"2027-01-02","dueDate":"2027-01-05","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-06","key":"KAN-80","startDate":"2027-05-12","dueDate":"2027-05-15","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-07","key":"KAN-81","startDate":"2027-08-28","dueDate":"2027-08-31","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-08","key":"KAN-82","startDate":"2027-07-08","dueDate":"2027-07-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BUILD-09","key":"KAN-154","startDate":"2027-04-23","dueDate":"2027-04-29","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-01","key":"KAN-83","startDate":"2027-03-03","dueDate":"2027-03-08","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-02","key":"KAN-84","startDate":"2027-02-17","dueDate":"2027-02-22","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-03","key":"KAN-85","startDate":"2027-02-19","dueDate":"2027-02-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-04","key":"KAN-86","startDate":"2027-02-23","dueDate":"2027-02-26","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-05","key":"KAN-87","startDate":"2027-02-25","dueDate":"2027-02-27","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-06","key":"KAN-88","startDate":"2027-03-10","dueDate":"2027-03-16","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-07","key":"KAN-89","startDate":"2027-02-27","dueDate":"2027-03-03","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-08","key":"KAN-90","startDate":"2027-04-07","dueDate":"2027-04-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-09","key":"KAN-91","startDate":"2027-09-04","dueDate":"2027-09-08","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-10","key":"KAN-92","startDate":"2027-04-19","dueDate":"2027-04-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-11","key":"KAN-137","startDate":"2026-11-05","dueDate":"2026-11-06","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-12","key":"KAN-138","startDate":"2027-08-31","dueDate":"2027-09-03","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-13","key":"KAN-142","startDate":"2027-07-10","dueDate":"2027-07-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-14","key":"KAN-143","startDate":"2027-03-22","dueDate":"2027-03-29","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-15","key":"KAN-149","startDate":"2027-03-05","dueDate":"2027-03-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-16","key":"KAN-150","startDate":"2027-04-10","dueDate":"2027-04-16","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-17","key":"KAN-155","startDate":"2027-04-30","dueDate":"2027-05-08","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"AI-18","key":"KAN-156","startDate":"2027-04-15","dueDate":"2027-04-22","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-01","key":"KAN-93","startDate":"2027-05-15","dueDate":"2027-05-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-02","key":"KAN-94","startDate":"2027-05-22","dueDate":"2027-05-27","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-03","key":"KAN-95","startDate":"2027-05-28","dueDate":"2027-06-01","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-04","key":"KAN-96","startDate":"2027-06-12","dueDate":"2027-06-21","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-05","key":"KAN-97","startDate":"2027-09-01","dueDate":"2027-09-04","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-06","key":"KAN-98","startDate":"2027-05-18","dueDate":"2027-05-25","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-07","key":"KAN-99","startDate":"2027-06-22","dueDate":"2027-06-26","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-08","key":"KAN-100","startDate":"2027-06-28","dueDate":"2027-07-02","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-09","key":"KAN-101","startDate":"2027-05-26","dueDate":"2027-05-31","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ROLE-10","key":"KAN-160","startDate":"2027-07-01","dueDate":"2027-07-07","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-01","key":"KAN-102","startDate":"2027-09-08","dueDate":"2027-09-10","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-02","key":"KAN-103","startDate":"2027-09-13","dueDate":"2027-09-15","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-03","key":"KAN-104","startDate":"2027-09-09","dueDate":"2027-09-13","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-04","key":"KAN-105","startDate":"2027-06-01","dueDate":"2027-06-04","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-05","key":"KAN-106","startDate":"2027-06-05","dueDate":"2027-06-10","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-06","key":"KAN-107","startDate":"2027-06-03","dueDate":"2027-06-10","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-07","key":"KAN-108","startDate":"2027-06-11","dueDate":"2027-06-15","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"BILL-08","key":"KAN-109","startDate":"2027-06-17","dueDate":"2027-06-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-01","key":"KAN-110","startDate":"2027-04-27","dueDate":"2027-05-03","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-02","key":"KAN-111","startDate":"2027-09-14","dueDate":"2027-09-20","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-03","key":"KAN-112","startDate":"2027-09-21","dueDate":"2027-09-24","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-04","key":"KAN-113","startDate":"2027-09-17","dueDate":"2027-09-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-05","key":"KAN-114","startDate":"2027-09-24","dueDate":"2027-09-29","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-06","key":"KAN-115","startDate":"2027-09-27","dueDate":"2027-10-01","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"PRIV-07","key":"KAN-116","startDate":"2027-06-21","dueDate":"2027-06-26","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"SAFE-01","key":"KAN-151","startDate":"2027-03-13","dueDate":"2027-03-20","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-01","key":"KAN-117","startDate":"2027-09-30","dueDate":"2027-10-05","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-02","key":"KAN-118","startDate":"2027-10-02","dueDate":"2027-10-07","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-03","key":"KAN-119","startDate":"2027-10-06","dueDate":"2027-10-11","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-04","key":"KAN-120","startDate":"2027-10-08","dueDate":"2027-10-14","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-05","key":"KAN-121","startDate":"2027-10-12","dueDate":"2027-10-18","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-06","key":"KAN-122","startDate":"2027-10-15","dueDate":"2027-10-19","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-07","key":"KAN-123","startDate":"2027-10-19","dueDate":"2027-10-22","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"ACCEPT-08","key":"KAN-157","startDate":"2027-07-20","dueDate":"2027-08-11","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-01","key":"KAN-124","startDate":"2027-10-20","dueDate":"2027-10-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-02","key":"KAN-125","startDate":"2027-10-27","dueDate":"2027-11-02","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-03","key":"KAN-126","startDate":"2027-11-03","dueDate":"2027-11-06","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-04","key":"KAN-127","startDate":"2027-10-30","dueDate":"2027-11-08","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-05","key":"KAN-128","startDate":"2027-10-23","dueDate":"2027-10-28","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-06","key":"KAN-129","startDate":"2027-11-08","dueDate":"2027-11-12","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-07","key":"KAN-130","startDate":"2027-11-13","dueDate":"2027-11-18","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"RELEASE-08","key":"KAN-131","startDate":"2027-11-19","dueDate":"2027-11-23","scheduleKind":"implementation-forecast","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER-01","key":"KAN-132","startDate":"2027-11-24","dueDate":"2027-11-25","scheduleKind":"conditional-review","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER-02","key":"KAN-133","startDate":"2027-11-24","dueDate":"2027-11-26","scheduleKind":"conditional-review","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER-03","key":"KAN-134","startDate":"2027-11-26","dueDate":"2027-11-27","scheduleKind":"conditional-review","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER-04","key":"KAN-135","startDate":"2027-11-27","dueDate":"2027-11-30","scheduleKind":"conditional-review","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER-05","key":"KAN-136","startDate":"2027-11-29","dueDate":"2027-11-30","scheduleKind":"conditional-review","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER-06","key":"KAN-152","startDate":"2027-12-01","dueDate":"2027-12-03","scheduleKind":"conditional-review","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P00","key":"KAN-2","startDate":"2026-10-17","dueDate":"2026-11-09","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P01","key":"KAN-3","startDate":"2026-11-07","dueDate":"2027-07-30","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P02","key":"KAN-4","startDate":"2026-11-11","dueDate":"2027-08-12","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P03","key":"KAN-5","startDate":"2026-12-05","dueDate":"2027-08-17","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P04","key":"KAN-6","startDate":"2026-12-08","dueDate":"2027-08-19","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P05","key":"KAN-7","startDate":"2027-01-08","dueDate":"2027-08-30","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P06","key":"KAN-8","startDate":"2026-12-14","dueDate":"2027-08-31","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P07","key":"KAN-9","startDate":"2026-11-05","dueDate":"2027-09-08","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P08","key":"KAN-10","startDate":"2027-05-15","dueDate":"2027-09-04","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P09","key":"KAN-11","startDate":"2027-06-01","dueDate":"2027-09-15","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P10","key":"KAN-12","startDate":"2027-03-13","dueDate":"2027-10-01","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P11","key":"KAN-13","startDate":"2027-07-20","dueDate":"2027-10-22","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"P12","key":"KAN-14","startDate":"2027-10-20","dueDate":"2027-11-23","scheduleKind":"phase-rollup","noStatusChange":true}
+{"kind":"calendar_schedule","decision":"D-091","sourceId":"LATER","key":"KAN-15","startDate":"2027-11-24","dueDate":"2027-12-03","scheduleKind":"conditional-review-rollup","noStatusChange":true}
+{"kind":"calendar_verified","decision":"D-091","readAt":"2026-10-17T14:40:07.356Z","totalItems":160,"calendarItems":147,"nativeLinksPreserved":163,"noStatusChange":true}

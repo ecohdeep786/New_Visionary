@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+import { lifelongRefinements, lifelongNewIds, lifelongContract } from '../../scripts/lifelong-delivery-data.mjs';
+import { vatsTrace } from '../../scripts/vats-delivery.mjs';
+import { ticketTrace } from '../../scripts/feature-delivery.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'),qa='artifacts/qa/lifelong-delivery-2026-10-17';
+const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8')),prefix='docs/architecture/tracking/';
+const f=read(prefix+'feature-delivery.json'),v=read(prefix+'vats-delivery.json'),map=read(prefix+'jira-issue-map.json'),before=read(qa+'/jira-before.json'),seed=read(qa+'/jira-seed.json');
+const existing=new Set(before.issues.flatMap(n=>(n.fields.issuelinks||[]).filter(l=>l.type.name==='Blocks'&&l.outwardIssue).map(l=>n.key+'>'+l.outwardIssue.key)));
+const additions=f.dependencies.filter(d=>!existing.has(map.issues[d.blocks].key+'>'+map.issues[d.blocked].key));assert.equal(additions.length,26);
+const ids=new Set([...Object.keys(lifelongRefinements),...lifelongNewIds,...additions.flatMap(d=>[d.blocks,d.blocked])]);
+const updates=v.tasks.filter(t=>ids.has(t.sourceId)).map(t=>{
+ const row=seed.issues.find(n=>n.key===t.jiraKey);assert.ok(row,t.sourceId);assert.ok(!row.fields.description.includes('## D-090 — Lifelong delivery reconciliation'),'Already updated '+t.sourceId);
+ const refinement=lifelongRefinements[t.sourceId]||'Retain the original requirement. The current native prerequisites and scoped acceptance link this deliverable to the lifelong-education contract.';
+ const current='## D-090 — Lifelong delivery reconciliation\n\nEarlier D-088 traces and numerical planning positions are dated checkpoints. This addendum and the current source manifests govern updated prerequisites and acceptance.\n\n'+refinement+'\n\nTarget contract: '+lifelongContract+'. Existing journey/UID/role/source/privacy/test-billing behavior is preserved. This is implementation acceptance, not a feature grant, completed runtime or AGI claim.\n\n'+vatsTrace(t,v,map);
+ const cross=lifelongNewIds.includes(t.sourceId)?'\n\n'+ticketTrace(f.tasks.find(i=>i.sourceId===t.sourceId),f,map):'';
+ return {sourceId:t.sourceId,key:t.jiraKey,originalDescription:row.fields.description,description:row.fields.description+'\n\n'+current+cross,labels:[...new Set([...row.fields.labels,...t.layers.map(l=>'vats-'+l.toLowerCase()),'vats-seven-layer','visionary-lifelong'])]};
+});
+fs.writeFileSync(path.join(root,qa,'jira-updates.json'),JSON.stringify(updates,null,2)+'\n');
+fs.writeFileSync(path.join(root,qa,'new-dependencies.json'),JSON.stringify(additions.map(d=>({...d,from:map.issues[d.blocks].key,to:map.issues[d.blocked].key})),null,2)+'\n');
+console.log(JSON.stringify({targetedDescriptions:updates.length,requirementsRefined:Object.keys(lifelongRefinements).length,newDependencies:additions.length,untouchedTaskDescriptions:v.tasks.length-updates.length}));

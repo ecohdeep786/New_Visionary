@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import HeroFanCards from "@/components/landing/HeroFanCards";
+import { ChevronIcon } from "@/components/landing/persona/PersonaSections";
 import { fontStack } from "@/components/landing/system/tokens";
 
 
@@ -20,15 +20,15 @@ const STRIP_CARDS = FAN_GROUPS.flatMap((group) => [
   ...group.subs.map(([label, subject]) => ({ to: group.to, label, subject, tint: group.tint })),
 ]);
 
-/* ── ArrowLink ── */
+/* ── ArrowLink — the site's quiet link: ink blue with the chevron ── */
 function ArrowLink({ to, children, className = "" }) {
   return (
     <Link
       to={to}
-      className={`group inline-flex min-h-11 items-center gap-2 rounded-sm text-[15px] font-medium text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-4 ${className}`}
+      className={`group inline-flex min-h-11 items-center gap-1.5 rounded-sm text-[17px] font-normal tracking-[0] text-[#0066cc] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4 ${className}`}
     >
       {children}
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+      <ChevronIcon className="h-4 w-4" />
     </Link>
   );
 }
@@ -38,7 +38,8 @@ function ArrowLink({ to, children, className = "" }) {
 export default function AboutUsHero() {
   return (
     <section
-      className="relative overflow-hidden border-b border-[#e8eaed] bg-white"
+      data-section="01-hero"
+      className="relative overflow-hidden bg-white"
       style={{
         fontFamily: fontStack,
         paddingTop: "calc(64px + 168px)",
@@ -51,13 +52,13 @@ export default function AboutUsHero() {
           <h1 className="max-w-[960px] text-[48px] font-normal leading-[1.06] tracking-[-0.045em] text-[#121317] sm:text-[64px] lg:text-[76px]">
             Helping people turn questions into <span className="accent-gradient">understanding.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-[760px] text-[20px] leading-[1.55] text-[#3c4043] sm:text-[24px]">
+          <p className="mx-auto mt-8 max-w-[760px] text-[17.5px] leading-[25px] text-[#5f6368]">
             A learning product for people who want to understand, practise, and apply what they learn.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
               to="/how-it-works"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium text-white transition-colors duration-200 hover:bg-[#2c2d31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#121317] px-7 text-[15px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:scale-[1.01] hover:bg-[#2c2d31] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-4"
             >
               See how it works
             </Link>

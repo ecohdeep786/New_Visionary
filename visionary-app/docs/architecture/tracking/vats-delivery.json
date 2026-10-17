@@ -1,0 +1,3455 @@
+{
+  "schemaVersion": 1,
+  "decision": "D-090",
+  "launchPlan": "docs/architecture/EDUCATION_LAUNCH_PLAN.md",
+  "sourceSha256": "b016b6c36a7f7cada1e5bd7f918e2d4f024dcbdb681ed8555daf41f6dc6e7ef8",
+  "registry": "ml/vats/layers.json",
+  "registrySha256": "c3a3004e7fe6401e69fb8fb2feb529b7ea0d32320cf4958afbf8a2309589ddbf",
+  "interpretation": "L1–L7 are product capability boundaries, not mandatory deployment units or proof of AGI. Layers on a shared enabler mean applicability, not implemented ML functionality.",
+  "orderMeaning": "A prerequisite-compatible planning order, not dates, an assignment, a queue reorder or permission to bypass phase/shared release gates. Work can be prepared while blockers are open. Later capabilities retain separate approval.",
+  "layers": [
+    {
+      "id": "L1",
+      "name": "Perception & Input",
+      "owner": "ML parsing with backend admission",
+      "input": "Permitted text or explicitly released modality with independent input/interface/source/output locale and pinned source",
+      "output": "Structured concept/intent/language hypotheses or clarification/unavailable; no authoritative age, role or grade inference",
+      "evidence": [
+        "ml/upstream/services/query-understanding-service/parser/self_query.go",
+        "ml/upstream/services/api-gateway/model/clarification.go"
+      ],
+      "current": "Disconnected query rewrite/intent/metadata candidates; no accepted VATS perception adapter or released ASR/OCR benchmark",
+      "exit": "Schema/ambiguity tests, permitted source mapping, multilingual/code-switch/handwriting or voice evaluation only for released modalities; bound bytes/deadline/cost, no silent fallback",
+      "tickets": [
+        "AI-10",
+        "SCOPE-02",
+        "SCOPE-03",
+        "CONTENT-08",
+        "AI-03",
+        "SAFE-01",
+        "ACCEPT-05",
+        "AI-17",
+        "AI-18",
+        "LEARN-13",
+        "SCOPE-09"
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "Student Cognition Model",
+      "owner": "Backend evidence authority; ML consumes scoped projections",
+      "input": "Immutable assessed receipts, approved concept DAG and source/criteria/model versions",
+      "output": "Knowledge estimate and evidence provenance, qualified mastery projection, prerequisite hypotheses with unknown state retained",
+      "evidence": [
+        "backend/upstream/backend/src/learning/teaching-policy.ts",
+        "backend/tests/teaching-policy.test.cjs",
+        "ml/vats/pedagogy.py"
+      ],
+      "current": "Pure BKT policy and ML prerequisite proposal only; durable SQL, validated error classifier, calibration and live learner state are missing",
+      "exit": "Atomic receipt/dedup/projection/outbox, replay/rebuild/calibration, source criteria scope and two-device acceptance; prior/model confidence/Build completion cannot establish mastery",
+      "tickets": [
+        "CONTENT-08",
+        "DATA-01",
+        "LEARN-08",
+        "LEARN-09",
+        "LEARN-03",
+        "AI-13",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10"
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "Adaptive Teaching Engine",
+      "owner": "ML proposal policy; backend deterministic loop/commit",
+      "input": "Current learner/loop revisions, prerequisite snapshot, approved pedagogy/visual set and reviewed error hypothesis",
+      "output": "Scoped teach/assess-prior/await/check-complete/review proposal; never a receipt, mastery grant or automatic notification",
+      "evidence": [
+        "ml/vats/pedagogy.py",
+        "ml/vats/tests/test_pedagogy.py",
+        "backend/upstream/backend/src/learning/pedagogy-proposal.ts",
+        "backend/tests/pedagogy-proposal.test.cjs",
+        "integration/contracts/fixtures/vats-pedagogy.v1.json"
+      ],
+      "current": "Deterministic uncalibrated reference strategy/prerequisite policy, pure bounded loop and server binding; not registered with a controller/worker/frontend",
+      "exit": "Different remediation, at most three failed checks, assessed checks, stale proposal rejection, actual authorized durable flow and independently measured educational outcomes",
+      "tickets": [
+        "LEARN-10",
+        "AI-14",
+        "AI-15",
+        "LEARN-08",
+        "AI-13",
+        "ACCEPT-01",
+        "AI-17",
+        "AI-18",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10"
+      ]
+    },
+    {
+      "id": "L4",
+      "name": "Model Stack & Grounding",
+      "owner": "ML evaluated adapters behind backend authority",
+      "input": "Pinned permitted context/prompt/model/tool policy with bounded usage and required sources",
+      "output": "Validated candidate or truthful unavailable/blocked/partial result; same policy across batch/stream/cache",
+      "evidence": [
+        "ml/upstream/services/api-gateway/handler/grounding_validator.go",
+        "ml/upstream/services/api-gateway/handler/grounding_contract_test.go",
+        "ml/upstream/services/vector-search-service/search/hybrid.go",
+        "ml/evaluation/retrieval-binary-v2.json"
+      ],
+      "current": "Disconnected RAG/retrieval/inference candidates; local NLI client and metric repairs do not qualify full gateway callers/stream/cache/source isolation",
+      "exit": "Actual provider/corpus held-out comparisons, source-authorized retrieval, citations/formulas/safety checks, invalid/timeout rejection, cancellation, usage settlement and rollback; NLI is not truth",
+      "tickets": [
+        "AI-01",
+        "AI-02",
+        "AI-03",
+        "AI-05",
+        "AI-06",
+        "AI-07",
+        "AI-08",
+        "AI-11",
+        "AI-13",
+        "AI-17",
+        "AI-18",
+        "ROLE-10"
+      ]
+    },
+    {
+      "id": "L5",
+      "name": "3D Concept Visualization",
+      "owner": "Frontend rendering; backend manifest admission; ML representation proposal",
+      "input": "Approved concept/source/asset/scene versions, bounded typed parameters and device/accessibility preferences",
+      "output": "Authorized representation or accessible text/2D fallback, with scoped sequence/revision recovery",
+      "evidence": [
+        "frontend/src/components/dashboard/LearningRepresentation.jsx",
+        "frontend/src/components/dashboard/NumberLineRepresentation.jsx",
+        "frontend/src/components/dashboard/DataDiagramRepresentation.jsx"
+      ],
+      "current": "Existing frontend representations/previews; no accepted end-to-end ML scene registry/event protocol or measured full 3D coverage",
+      "exit": "Published template/asset allowlist, parameter validation, synchronization/reconnect and real device/fallback tests; raw SCENE tokens/code/URLs never execute",
+      "tickets": [
+        "AI-16",
+        "CONTENT-03",
+        "AI-10",
+        "SYNC-01",
+        "SYNC-02",
+        "ACCEPT-05",
+        "BUILD-09",
+        "AI-17",
+        "ROLE-10"
+      ]
+    },
+    {
+      "id": "L6",
+      "name": "Memory & Personalization",
+      "owner": "Backend durable purpose-scoped facts/review; ML minimized context",
+      "input": "Permitted evidence, memory provenance/correction, conversation/run state and explicit relationship scopes",
+      "output": "P0–P3 context, due review, owned resume and independently scoped reports; vectors/cache remain projections",
+      "evidence": [
+        "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
+        "ml/upstream/services/api-gateway/session/session_manager.go",
+        "frontend/src/services/mentorStateService.ts"
+      ],
+      "current": "Account/device baseline connected; imported Redis session/history and frontend memory previews are not authorized durable VATS memory",
+      "exit": "SQL ownership/purpose/version controls, inspect/correct/disable, source withdrawal/revocation, no required grounding truncation, due queues and restart/two-device recovery; no imported TTL/purge",
+      "tickets": [
+        "AI-04",
+        "AI-15",
+        "LEARN-01",
+        "LEARN-04",
+        "LEARN-11",
+        "DATA-05",
+        "SYNC-02",
+        "ROLE-07",
+        "PRIV-01",
+        "LEARN-13",
+        "AI-17",
+        "LEARN-14",
+        "ROLE-10"
+      ]
+    },
+    {
+      "id": "L7",
+      "name": "Data Flywheel & Reviewed Improvement",
+      "owner": "Backend permitted evidence; ML evaluation and accountable review",
+      "input": "Minimized versioned outcome/error records, optional feedback and explicitly eligible human-reviewed examples",
+      "output": "Held-out evaluation sets, qualified outcomes/regressions and human release/rollback decisions; later licensed training candidates",
+      "evidence": [
+        "backend/upstream/backend/src/feedback/feedback.service.ts",
+        "ml/evaluation/test_retrieval_contract.py",
+        "ml/upstream/shared/go/analytics/evaluator.go",
+        "ml/upstream/services/api-gateway/handler/quality_pipeline.go"
+      ],
+      "current": "Optional account feedback and local metric contracts exist; legacy raw quality/export stays disconnected; full reviewed dataset/evaluation/outcome loop is missing",
+      "exit": "Launch has permitted outcome evidence and feedback→triage→human review→held-out evaluation→approved change→rollback; raw dialogue/hashed UID is not anonymous training consent",
+      "tickets": [
+        "DONE-12",
+        "AI-09",
+        "AI-11",
+        "AI-12",
+        "AI-13",
+        "PRIV-01",
+        "PLAT-07",
+        "RELEASE-04",
+        "LATER-04",
+        "LATER-06",
+        "AI-18",
+        "ACCEPT-08",
+        "LEARN-14",
+        "ROLE-10",
+        "SCOPE-09"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "sourceId": "DONE-01",
+      "jiraKey": "KAN-16",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 1,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-02",
+      "jiraKey": "KAN-17",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 2,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-03",
+      "jiraKey": "KAN-18",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 3,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-04",
+      "jiraKey": "KAN-19",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 4,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-05",
+      "jiraKey": "KAN-20",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 5,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-06",
+      "jiraKey": "KAN-21",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 6,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-07",
+      "jiraKey": "KAN-22",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 7,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-08",
+      "jiraKey": "KAN-23",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 8,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-09",
+      "jiraKey": "KAN-24",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 9,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-10",
+      "jiraKey": "KAN-25",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 10,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-11",
+      "jiraKey": "KAN-26",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 11,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "DONE-12",
+      "jiraKey": "KAN-27",
+      "phase": "FOUNDATION",
+      "queue": "Recorded foundation",
+      "kind": "historical-local",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 12,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Historical local scope only; does not certify a complete VATS layer."
+    },
+    {
+      "sourceId": "SCOPE-01",
+      "jiraKey": "KAN-28",
+      "phase": "P00",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 13,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "jiraKey": "KAN-29",
+      "phase": "P00",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 14,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-18",
+        "SCOPE-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-03",
+      "jiraKey": "KAN-30",
+      "phase": "P00",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 15,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "SYNC-01",
+        "AI-16"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-04",
+      "jiraKey": "KAN-31",
+      "phase": "P00",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 16,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-05",
+      "jiraKey": "KAN-32",
+      "phase": "P00",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 17,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "SAFE-01"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-06",
+      "jiraKey": "KAN-33",
+      "phase": "P00",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 18,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-07",
+      "jiraKey": "KAN-34",
+      "phase": "P00",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 19,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-08",
+      "jiraKey": "KAN-35",
+      "phase": "P00",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 20,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SCOPE-09",
+      "jiraKey": "KAN-158",
+      "phase": "P00",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 21,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "SCOPE-02"
+      ],
+      "blocks": [
+        "BILL-04",
+        "ROLE-09",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-01",
+      "jiraKey": "KAN-36",
+      "phase": "P01",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 22,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "CONTENT-08",
+        "LEARN-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-02",
+      "jiraKey": "KAN-37",
+      "phase": "P01",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 23,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-03",
+      "jiraKey": "KAN-38",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 24,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "LEARN-01",
+        "ROLE-10"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-04",
+      "jiraKey": "KAN-39",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 25,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ROLE-01",
+        "ROLE-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-05",
+      "jiraKey": "KAN-40",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 26,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ROLE-04",
+        "AI-15",
+        "LEARN-13",
+        "LEARN-14",
+        "ROLE-10"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-06",
+      "jiraKey": "KAN-41",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 27,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "SYNC-01",
+        "LEARN-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-07",
+      "jiraKey": "KAN-42",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 28,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-08",
+      "jiraKey": "KAN-43",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 29,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "DATA-09",
+      "jiraKey": "KAN-44",
+      "phase": "P01",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 30,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-01",
+      "jiraKey": "KAN-45",
+      "phase": "P02",
+      "queue": "Now",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 31,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-02",
+      "jiraKey": "KAN-46",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 32,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ACCEPT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-03",
+      "jiraKey": "KAN-47",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 33,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-04",
+      "jiraKey": "KAN-48",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 34,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-05",
+      "jiraKey": "KAN-49",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 35,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-06",
+      "jiraKey": "KAN-50",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 36,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-07",
+      "jiraKey": "KAN-51",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 37,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PLAT-08",
+      "jiraKey": "KAN-52",
+      "phase": "P02",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 38,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CACHE-01",
+      "jiraKey": "KAN-141",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 39,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "SYNC-02",
+        "AI-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "FILE-01",
+      "jiraKey": "KAN-56",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 40,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "FILE-02",
+      "jiraKey": "KAN-57",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 41,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "FILE-03",
+      "jiraKey": "KAN-58",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 42,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "BUILD-05",
+        "LEARN-13",
+        "BUILD-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "FILE-04",
+      "jiraKey": "KAN-59",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 43,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "JOB-01",
+      "jiraKey": "KAN-53",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 44,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "SYNC-01",
+        "LEARN-11"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "JOB-02",
+      "jiraKey": "KAN-54",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 45,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "JOB-03",
+      "jiraKey": "KAN-55",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 46,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SYNC-01",
+      "jiraKey": "KAN-139",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 47,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "SCOPE-03",
+        "DATA-06",
+        "JOB-01"
+      ],
+      "blocks": [
+        "SYNC-02",
+        "AI-16",
+        "AI-17"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SYNC-02",
+      "jiraKey": "KAN-140",
+      "phase": "P03",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 48,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "SYNC-01",
+        "CACHE-01"
+      ],
+      "blocks": [
+        "LEARN-06",
+        "ROLE-08",
+        "ACCEPT-04",
+        "LEARN-12",
+        "LEARN-13",
+        "LEARN-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-01",
+      "jiraKey": "KAN-60",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 49,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "CONTENT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-02",
+      "jiraKey": "KAN-61",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 50,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-03",
+      "jiraKey": "KAN-62",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 51,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-16",
+        "LEARN-13"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-04",
+      "jiraKey": "KAN-63",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 52,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "LEARN-01"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-05",
+      "jiraKey": "KAN-64",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 53,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-15"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-06",
+      "jiraKey": "KAN-65",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 54,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ACCEPT-05",
+        "AI-18"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-07",
+      "jiraKey": "KAN-66",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 55,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "CONTENT-08",
+      "jiraKey": "KAN-144",
+      "phase": "P04",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 56,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "CONTENT-01",
+        "DATA-01"
+      ],
+      "blocks": [
+        "LEARN-09",
+        "LEARN-12",
+        "LEARN-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-01",
+      "jiraKey": "KAN-67",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6"
+      ],
+      "planningOrder": 57,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "DATA-03",
+        "CONTENT-04"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-02",
+      "jiraKey": "KAN-68",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L7"
+      ],
+      "planningOrder": 58,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "LEARN-03",
+        "LEARN-11",
+        "LEARN-13"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-03",
+      "jiraKey": "KAN-69",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 59,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "LEARN-02"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-04",
+      "jiraKey": "KAN-70",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6"
+      ],
+      "planningOrder": 60,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-06",
+      "jiraKey": "KAN-72",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6"
+      ],
+      "planningOrder": 61,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "SYNC-02"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-07",
+      "jiraKey": "KAN-73",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 62,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-08",
+      "jiraKey": "KAN-74",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L7"
+      ],
+      "planningOrder": 63,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "BUILD-03",
+        "LEARN-09",
+        "LEARN-12"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-09",
+      "jiraKey": "KAN-145",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2"
+      ],
+      "planningOrder": 64,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "CONTENT-08",
+        "LEARN-08"
+      ],
+      "blocks": [
+        "LEARN-10",
+        "LEARN-11",
+        "AI-15",
+        "LEARN-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-11",
+      "jiraKey": "KAN-147",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L6"
+      ],
+      "planningOrder": 65,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "LEARN-02",
+        "JOB-01",
+        "LEARN-09"
+      ],
+      "blocks": [
+        "ACCEPT-01",
+        "ACCEPT-08",
+        "LEARN-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-12",
+      "jiraKey": "KAN-148",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 66,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "LEARN-08",
+        "CONTENT-08",
+        "SYNC-02"
+      ],
+      "blocks": [
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-13",
+      "jiraKey": "KAN-153",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L5",
+        "L6"
+      ],
+      "planningOrder": 67,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "FILE-03",
+        "DATA-05",
+        "CONTENT-03",
+        "LEARN-02",
+        "SYNC-02"
+      ],
+      "blocks": [
+        "ACCEPT-08",
+        "ACCEPT-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-01",
+      "jiraKey": "KAN-75",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 68,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "BUILD-04",
+        "BUILD-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-02",
+      "jiraKey": "KAN-76",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 69,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-03",
+      "jiraKey": "KAN-77",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 70,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "LEARN-08"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-04",
+      "jiraKey": "KAN-78",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 71,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "BUILD-01"
+      ],
+      "blocks": [
+        "AI-14",
+        "BUILD-08",
+        "BUILD-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-05",
+      "jiraKey": "KAN-79",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 72,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "FILE-03"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-06",
+      "jiraKey": "KAN-80",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 73,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ROLE-03"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-07",
+      "jiraKey": "KAN-81",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 74,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-02",
+      "jiraKey": "KAN-84",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 75,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-18"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-03",
+      "jiraKey": "KAN-85",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 76,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-04",
+      "jiraKey": "KAN-86",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L6"
+      ],
+      "planningOrder": 77,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-15"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-05",
+      "jiraKey": "KAN-87",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L6"
+      ],
+      "planningOrder": 78,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "CACHE-01"
+      ],
+      "blocks": [
+        "AI-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-06",
+      "jiraKey": "KAN-88",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4"
+      ],
+      "planningOrder": 79,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-14"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-07",
+      "jiraKey": "KAN-89",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L7"
+      ],
+      "planningOrder": 80,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-14",
+        "BILL-04",
+        "AI-17"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-08",
+      "jiraKey": "KAN-90",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L4",
+        "L5",
+        "L6"
+      ],
+      "planningOrder": 81,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-17"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-10",
+      "jiraKey": "KAN-92",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L5"
+      ],
+      "planningOrder": 82,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-17"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-11",
+      "jiraKey": "KAN-137",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L7"
+      ],
+      "planningOrder": 83,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-01",
+        "AI-13"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-01",
+      "jiraKey": "KAN-83",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L7"
+      ],
+      "planningOrder": 84,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "AI-11"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-12",
+      "jiraKey": "KAN-138",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L7"
+      ],
+      "planningOrder": 85,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "AI-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-09",
+      "jiraKey": "KAN-91",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 86,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "AI-12"
+      ],
+      "blocks": [
+        "ACCEPT-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-15",
+      "jiraKey": "KAN-149",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "planningOrder": 87,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "LEARN-09",
+        "AI-04",
+        "DATA-05",
+        "CONTENT-05"
+      ],
+      "blocks": [
+        "AI-14",
+        "LEARN-14",
+        "ROLE-10"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-16",
+      "jiraKey": "KAN-150",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L5"
+      ],
+      "planningOrder": 88,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "SCOPE-03",
+        "CONTENT-03",
+        "SYNC-01"
+      ],
+      "blocks": [
+        "ACCEPT-05",
+        "BUILD-09"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-09",
+      "jiraKey": "KAN-154",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 89,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "BUILD-01",
+        "BUILD-04",
+        "AI-16",
+        "FILE-03"
+      ],
+      "blocks": [
+        "BUILD-08",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-18",
+      "jiraKey": "KAN-156",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L3",
+        "L4",
+        "L5",
+        "L7"
+      ],
+      "planningOrder": 90,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "SCOPE-02",
+        "CONTENT-06",
+        "AI-02"
+      ],
+      "blocks": [
+        "AI-17",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-01",
+      "jiraKey": "KAN-93",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6"
+      ],
+      "planningOrder": 91,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "DATA-04"
+      ],
+      "blocks": [
+        "ROLE-02"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-02",
+      "jiraKey": "KAN-94",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "planningOrder": 92,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "ROLE-01"
+      ],
+      "blocks": [
+        "ROLE-03"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-03",
+      "jiraKey": "KAN-95",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 93,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "BUILD-06",
+        "ROLE-02"
+      ],
+      "blocks": [
+        "ROLE-07",
+        "ACCEPT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-05",
+      "jiraKey": "KAN-97",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "planningOrder": 94,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-06",
+      "jiraKey": "KAN-98",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 95,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "ROLE-07"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-08",
+      "jiraKey": "KAN-100",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 96,
+      "dependencyDepth": 3,
+      "blockedBy": [
+        "SYNC-02"
+      ],
+      "blocks": [
+        "ACCEPT-02"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-09",
+      "jiraKey": "KAN-101",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L4",
+        "L6"
+      ],
+      "planningOrder": 97,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "SCOPE-09"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-01",
+      "jiraKey": "KAN-102",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 98,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-02",
+      "jiraKey": "KAN-103",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 99,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-03",
+      "jiraKey": "KAN-104",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 100,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-04",
+      "jiraKey": "KAN-105",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 101,
+      "dependencyDepth": 2,
+      "blockedBy": [
+        "AI-07",
+        "SCOPE-09"
+      ],
+      "blocks": [
+        "ACCEPT-01"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-05",
+      "jiraKey": "KAN-106",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 102,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-06",
+      "jiraKey": "KAN-107",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 103,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-07",
+      "jiraKey": "KAN-108",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 104,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BILL-08",
+      "jiraKey": "KAN-109",
+      "phase": "P09",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 105,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-01",
+      "jiraKey": "KAN-110",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 106,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [
+        "LATER-06",
+        "LEARN-14",
+        "ROLE-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-14",
+      "jiraKey": "KAN-159",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 107,
+      "dependencyDepth": 4,
+      "blockedBy": [
+        "DATA-01",
+        "DATA-06",
+        "CONTENT-08",
+        "LEARN-09",
+        "LEARN-11",
+        "SYNC-02",
+        "DATA-05",
+        "AI-15",
+        "PRIV-01"
+      ],
+      "blocks": [
+        "ACCEPT-01",
+        "ACCEPT-02",
+        "ACCEPT-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-04",
+      "jiraKey": "KAN-96",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L6"
+      ],
+      "planningOrder": 108,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "DATA-05",
+        "PRIV-01",
+        "DATA-04"
+      ],
+      "blocks": [
+        "ROLE-07",
+        "ACCEPT-02"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-07",
+      "jiraKey": "KAN-99",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 109,
+      "dependencyDepth": 4,
+      "blockedBy": [
+        "ROLE-03",
+        "ROLE-04",
+        "ROLE-06"
+      ],
+      "blocks": [
+        "ACCEPT-02"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-02",
+      "jiraKey": "KAN-111",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 110,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-03",
+      "jiraKey": "KAN-112",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 111,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-04",
+      "jiraKey": "KAN-113",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 112,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-05",
+      "jiraKey": "KAN-114",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 113,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-06",
+      "jiraKey": "KAN-115",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 114,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "PRIV-07",
+      "jiraKey": "KAN-116",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 115,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "SAFE-01",
+      "jiraKey": "KAN-151",
+      "phase": "P10",
+      "queue": "Next",
+      "kind": "shared-enabler",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 116,
+      "dependencyDepth": 1,
+      "blockedBy": [
+        "SCOPE-05"
+      ],
+      "blocks": [
+        "AI-14",
+        "ACCEPT-04"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-14",
+      "jiraKey": "KAN-143",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 117,
+      "dependencyDepth": 4,
+      "blockedBy": [
+        "AI-03",
+        "AI-05",
+        "AI-06",
+        "AI-07",
+        "JOB-02",
+        "BUILD-04",
+        "AI-15",
+        "SAFE-01"
+      ],
+      "blocks": [
+        "LEARN-05",
+        "BUILD-08",
+        "AI-13",
+        "LEARN-10",
+        "AI-17"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-05",
+      "jiraKey": "KAN-71",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "planningOrder": 118,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "AI-14"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LEARN-10",
+      "jiraKey": "KAN-146",
+      "phase": "P05",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "planningOrder": 119,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "LEARN-09",
+        "AI-14"
+      ],
+      "blocks": [
+        "ACCEPT-01",
+        "ACCEPT-08",
+        "ROLE-10"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "BUILD-08",
+      "jiraKey": "KAN-82",
+      "phase": "P06",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 120,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "AI-14",
+        "BUILD-04",
+        "BUILD-09"
+      ],
+      "blocks": [
+        "ACCEPT-01",
+        "ACCEPT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-13",
+      "jiraKey": "KAN-142",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 121,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "AI-14",
+        "AI-11"
+      ],
+      "blocks": [
+        "RELEASE-04",
+        "LATER-06",
+        "ACCEPT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "AI-17",
+      "jiraKey": "KAN-155",
+      "phase": "P07",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L1",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 122,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "AI-18",
+        "AI-10",
+        "AI-14",
+        "AI-08",
+        "AI-07",
+        "SYNC-01"
+      ],
+      "blocks": [
+        "ACCEPT-08",
+        "ACCEPT-05"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ROLE-10",
+      "jiraKey": "KAN-160",
+      "phase": "P08",
+      "queue": "Next",
+      "kind": "capability",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 123,
+      "dependencyDepth": 6,
+      "blockedBy": [
+        "DATA-03",
+        "DATA-05",
+        "LEARN-10",
+        "AI-15"
+      ],
+      "blocks": [
+        "ACCEPT-02",
+        "ACCEPT-08"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-01",
+      "jiraKey": "KAN-117",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 124,
+      "dependencyDepth": 6,
+      "blockedBy": [
+        "BILL-04",
+        "LEARN-06",
+        "BUILD-08",
+        "LEARN-07",
+        "LEARN-10",
+        "LEARN-11",
+        "LEARN-14"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-02",
+      "jiraKey": "KAN-118",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 125,
+      "dependencyDepth": 7,
+      "blockedBy": [
+        "ROLE-08",
+        "LEARN-14",
+        "ROLE-10",
+        "ROLE-04",
+        "ROLE-07"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-03",
+      "jiraKey": "KAN-119",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 126,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-04",
+      "jiraKey": "KAN-120",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 127,
+      "dependencyDepth": 5,
+      "blockedBy": [
+        "AI-09",
+        "SYNC-02",
+        "SAFE-01",
+        "LEARN-13",
+        "LEARN-14"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-05",
+      "jiraKey": "KAN-121",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 128,
+      "dependencyDepth": 6,
+      "blockedBy": [
+        "CONTENT-06",
+        "LEARN-12",
+        "AI-16",
+        "AI-18",
+        "AI-17",
+        "BUILD-09",
+        "SCOPE-09"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-06",
+      "jiraKey": "KAN-122",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 129,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-07",
+      "jiraKey": "KAN-123",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 130,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "ACCEPT-08",
+      "jiraKey": "KAN-157",
+      "phase": "P11",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 131,
+      "dependencyDepth": 7,
+      "blockedBy": [
+        "LEARN-10",
+        "LEARN-11",
+        "BUILD-08",
+        "AI-13",
+        "AI-17",
+        "LEARN-13",
+        "ROLE-03",
+        "PLAT-02",
+        "ROLE-10"
+      ],
+      "blocks": [
+        "RELEASE-07"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-01",
+      "jiraKey": "KAN-124",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 132,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-02",
+      "jiraKey": "KAN-125",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 133,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-03",
+      "jiraKey": "KAN-126",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 134,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-04",
+      "jiraKey": "KAN-127",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 135,
+      "dependencyDepth": 6,
+      "blockedBy": [
+        "AI-13"
+      ],
+      "blocks": [
+        "LATER-06"
+      ],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-05",
+      "jiraKey": "KAN-128",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 136,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-06",
+      "jiraKey": "KAN-129",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 137,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-07",
+      "jiraKey": "KAN-130",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 138,
+      "dependencyDepth": 8,
+      "blockedBy": [
+        "ACCEPT-08"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "RELEASE-08",
+      "jiraKey": "KAN-131",
+      "phase": "P12",
+      "queue": "Next",
+      "kind": "release-gate",
+      "layers": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 139,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LATER-01",
+      "jiraKey": "KAN-132",
+      "phase": "LATER",
+      "queue": "Later",
+      "kind": "later",
+      "layers": [
+        "L3",
+        "L4"
+      ],
+      "planningOrder": 140,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LATER-02",
+      "jiraKey": "KAN-133",
+      "phase": "LATER",
+      "queue": "Later",
+      "kind": "later",
+      "layers": [
+        "L4",
+        "L5"
+      ],
+      "planningOrder": 141,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LATER-03",
+      "jiraKey": "KAN-134",
+      "phase": "LATER",
+      "queue": "Later",
+      "kind": "later",
+      "layers": [
+        "L3",
+        "L4",
+        "L5",
+        "L6"
+      ],
+      "planningOrder": 142,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LATER-04",
+      "jiraKey": "KAN-135",
+      "phase": "LATER",
+      "queue": "Later",
+      "kind": "later",
+      "layers": [
+        "L4",
+        "L7"
+      ],
+      "planningOrder": 143,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LATER-05",
+      "jiraKey": "KAN-136",
+      "phase": "LATER",
+      "queue": "Later",
+      "kind": "later",
+      "layers": [
+        "L2",
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "planningOrder": 144,
+      "dependencyDepth": 0,
+      "blockedBy": [],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    },
+    {
+      "sourceId": "LATER-06",
+      "jiraKey": "KAN-152",
+      "phase": "LATER",
+      "queue": "Later",
+      "kind": "later",
+      "layers": [
+        "L3",
+        "L7"
+      ],
+      "planningOrder": 145,
+      "dependencyDepth": 7,
+      "blockedBy": [
+        "AI-13",
+        "PRIV-01",
+        "RELEASE-04"
+      ],
+      "blocks": [],
+      "closure": "Complete this scoped feature/enabler with the existing 11-layer delivery acceptance, current source/criteria/policy and linked layer exits. A model output is not a committed outcome."
+    }
+  ]
+}

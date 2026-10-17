@@ -437,8 +437,8 @@ export default function StudentClasses() {
         </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {connectedClasses.map(c => {
         const count = (assignments || []).filter(a => a.class_id === c.id).length;
-        return <button key={c.id} onClick={() => setOpenClassId(c.id)} className="text-left flex flex-col bg-white rounded-2xl border border-[#dadce0] overflow-hidden hover:shadow-md transition-all">
-                <div className="p-6" style={{
+        return <button key={c.id} onClick={() => setOpenClassId(c.id)} className="v-class-card text-left flex flex-col bg-white rounded-2xl border border-[#dadce0] overflow-hidden hover:shadow-md transition-all">
+                <div className="v-class-card-cover p-6" style={{
             ...classColors(c.color || accent)
           }}>
                   <h3 className="text-[18px] font-medium text-white tracking-tight">{c.name}</h3>

@@ -49,9 +49,15 @@ main > section[data-section="10-journey-flow"] {
 /* the journey chapter continues the language chapter's white field (07 is
    white too) — 07's bottom padding is the whole breath; adding more above
    the statement would read as a new chapter. No hairline. !important beats
-   the (0,2,1) base border/padding rule. */
+   the (0,2,1) base border/padding rule. Scoped to the DIRECT 07→06
+   adjacency: when the journey opens after a different surface (the landing's
+   grey 13-explore router), the surface change itself is the join — the
+   chapter keeps its own top breath there. */
 main > section[data-section="06-journey"] {
   border-top-color: transparent !important;
+}
+
+main > section[data-section="07-language"] + section[data-section="06-journey"] {
   padding-block-start: 0 !important;
 }
 
@@ -67,6 +73,143 @@ main > section[data-section="06-journey"] {
 main > section[data-section="02-problem"],
 .page-landing main > section[data-section="03-promise"] {
   padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
+/* the landing's category line-up sits between two white chapters and carries
+   its own grey ground — the surface change IS the chapter join, so the
+   hairline never reads (Apple's no-seam law). Landing-scoped: the persona
+   pages' own line-up keep their accepted join. */
+.page-landing main > section[data-section="13-explore"] {
+  border-top-color: transparent !important;
+}
+
+/* The how-it-works flow — the white "different people" chapter follows the
+   loop's grey ground; the surface change IS the join, so the hairline never
+   reads. Page-scoped: the chapter ids belong to this page alone. */
+.page-how-it-works main > section[data-section="06-people"] {
+  border-top-color: transparent !important;
+}
+
+/* Pricing — its chapters ride one white ground: the persona strip, the
+   comparison table and the FAQ join without a seam (Apple's no-seam law).
+   The final CTA changes surface, so it keeps the whisper hairline. */
+.page-pricing main > section[data-section="02-persona"],
+.page-pricing main > section[data-section="03-compare"],
+.page-pricing main > section[data-section="04-faq"] {
+  border-top-color: transparent !important;
+}
+
+/* Download — the platform chapter follows the exempt hero on the same white
+   ground; the join is invisible (Apple's no-seam law). The sync band changes
+   surface, so it keeps the whisper hairline. */
+.page-download main > section[data-section="02-platforms"] {
+  border-top-color: transparent !important;
+}
+
+/* About — every chapter rides the white ground: mission, journey, impact,
+   roles and explore join without a seam (Apple's no-seam law). The final CTA
+   changes surface, so it keeps the whisper hairline. */
+.page-about main > section[data-section="02-mission"],
+.page-about main > section[data-section="03-journey"],
+.page-about main > section[data-section="04-impact"],
+.page-about main > section[data-section="05-roles"],
+.page-about main > section[data-section="06-explore"] {
+  border-top-color: transparent !important;
+}
+
+/* Partners — the enquiry story rides one white ground: the carousel, the
+   access grid, the journey and the FAQ join without a seam (Apple's
+   no-seam law). The grey bands (includes, statement, closing CTA) change
+   surface, so they keep the whisper hairline. */
+.page-partners main > section[data-section="02-what"],
+.page-partners main > section[data-section="03-who"],
+.page-partners main > section[data-section="06-journey"],
+.page-partners main > section[data-section="09-faq"] {
+  border-top-color: transparent !important;
+}
+
+/* Contact — the guidance story rides one white ground: the resources and FAQ
+   chapters join without a seam; the grey help band, routes, grievance and
+   hygiene bands change surface and keep the whisper hairline. */
+.page-contact main > section[data-section="02-resources"],
+.page-contact main > section[data-section="03-faq"] {
+  border-top-color: transparent !important;
+}
+
+/* Careers — the white chapters (why, teams, contact) join the strip and each
+   other without a seam; the grey hiring band and grey closing CTA change
+   surface, so they keep the whisper hairline. */
+.page-careers main > section[data-section="02-why"],
+.page-careers main > section[data-section="03-teams"],
+.page-careers main > section[data-section="06-contact"] {
+  border-top-color: transparent !important;
+}
+
+/* Updates — the editorial top rides one white ground: the featured lead story,
+   the latest listing and the evidence band join without a seam (Apple's
+   no-seam law). The grey signup band and the white contact strip change
+   surface, so they keep the whisper hairline. The contact one-liner is a
+   strip, not a chapter — it carries the compact-band rhythm. */
+.page-updates main > section[data-section="02-featured"],
+.page-updates main > section[data-section="03-latest"],
+.page-updates main > section[data-section="04-evidence"] {
+  border-top-color: transparent !important;
+}
+
+.page-updates main > section[data-section="06-contact"] {
+  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
+/* Research — the white chapters (mission, quote band, latest, domains, origin)
+   ride one white ground and join without a seam (Apple's no-seam law). The
+   grey areas band, the white projects chapter after it, and the grey
+   responsible band change surface, so they keep the whisper hairline. */
+.page-research main > section[data-section="02-mission"],
+.page-research main > section[data-section="03-quote"],
+.page-research main > section[data-section="04-latest"],
+.page-research main > section[data-section="07-domains"],
+.page-research main > section[data-section="08-origin"] {
+  border-top-color: transparent !important;
+}
+
+/* Community — the statement and the find-a-community chapter ride the white
+   ground under the sticky jump bar and join it without a seam (Apple's
+   no-seam law). The grey more-ways band and the grey closing CTA change
+   surface, so they keep the whisper hairline. */
+.page-community main > section[data-section="02-find"] {
+  border-top-color: transparent !important;
+}
+
+/* Referral — the how chapter joins the hero's white ground without a seam
+   (the illustration trio rides inside the hero composition, About/Community
+   anatomy). The grey point band, the white share chapter, the grey honesty
+   band, the FAQ and the closing all change surface, so they keep the whisper
+   hairline. The privacy one-liner is a strip, not a chapter — it carries the
+   compact-band rhythm. */
+.page-referral main > section[data-section="02-how"] {
+  border-top-color: transparent !important;
+}
+
+.page-referral main > section[data-section="07-privacy"] {
+  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
+/* Safety — the statement band and the protections story ride the hero's white
+   ground: the statement, the alternating rows, the checklist band and the
+   closing tray join without a seam (Apple's no-seam law). The grey family band
+   and the white reporting chapter change surface, so they keep the whisper
+   hairline. The trust-values strip and the quiet footer share one #f5f5f7
+   ground — the footer's Apple hairline is muted for that join, because a
+   hairline between identical surfaces is a seam, not a boundary. */
+.page-safety main > section[data-section="02-statement"],
+.page-safety main > section[data-section="03-protections"],
+.page-safety main > section[data-section="06-share"],
+.page-safety main > section[data-section="07-closing"] {
+  border-top-color: transparent !important;
+}
+
+aside[aria-label="Our commitments"] + footer {
+  border-top-color: transparent !important;
 }
 
 main > section[data-section="05-intelligence"]:not([data-surface="light"]),

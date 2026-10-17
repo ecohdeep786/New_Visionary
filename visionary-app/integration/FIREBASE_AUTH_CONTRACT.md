@@ -45,9 +45,11 @@ Profile response is an allowlisted product projection, not an Admin user record.
 
 | Collection | Contents | Lifetime / boundary |
 | --- | --- | --- |
-| `visionary_accounts/{uid}` | Verified email, display name, selected learning/role preferences, server-owned onboarding state/version, creation/latest sign-in times | Retained account; no passwords, ID/session tokens or private keys |
+| `visionary_accounts/{uid}` | UID/storageVersion2, verified identity metadata, email/name, validated role preferences, onboarding state/version, creation/latest sign-in | Canonical retained account; no passwords, ID/session tokens or private keys |
+| `visionary_accounts/{uid}/devices/{deviceHash}` | First/last seen, provider, observed IP/User-Agent and expiry/revocation for one browser session | Atomically synchronized with its server-only session lookup; no cookie hash/raw credentials |
+| `visionary_accounts/{uid}/authEvents/{eventId}` | Owned retained sign-in/out history | Same transaction as the global security index; no token/cookie data |
 | `visionary_auth_sessions/{deviceHash}` | UID, cookie hash, last activity, absolute expiry/revocation timestamp |8-hour access; retained history, revoked on logout |
-| `visionary_auth_events/{randomId}` | UID, session hash, sign-in provider, server-observed IP, bounded User-Agent, timestamp |Retained as requested; server security access only |
+| `visionary_auth_events/{randomId}` | UID, session hash, sign-in provider, server-observed IP, bounded User-Agent, timestamp |Retained security index; same event also lives beneath the UID |
 | `visionary_auth_limits/{hmac}` | Counter and expiresAt; subject/window keyed with persistent server secret |2-minute logical counter expiry, retained records; atomic20/minute observed-IP session budget,10/minute UID session budget,20/minute profile-command budget |
 
 Those budgets cover owned session/profile endpoints, not direct Firebase Web SDK signup/password/OAuth traffic. Firebase quotas, enumeration protection, password policy, reCAPTCHA/App Check where applicable, edge controls and cost alerts need console/deployment verification. Do not claim a comprehensive DDoS defense or a configurable Firebase password-attempt lockout.

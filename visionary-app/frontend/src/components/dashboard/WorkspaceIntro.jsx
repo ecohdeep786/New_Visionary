@@ -1,10 +1,11 @@
 export default function WorkspaceIntro({ eyebrow, title, description, children, icon: Icon }) {
   return <header className="v-workspace-intro">
+    {Icon && <span className="v-page-symbol" aria-hidden="true"><Icon size={24} strokeWidth={1.6}/></span>}
     <div className="v-workspace-intro-copy">
-      <p className="v-section-label">{Icon && <Icon size={18} strokeWidth={1.75} aria-hidden="true"/>}{eyebrow}</p>
+      {eyebrow && <p className="v-section-label">{eyebrow}</p>}
       <h1 className="v-title">{title}</h1>
-      <p className="v-muted">{description}</p>
-      {children && <div className="v-workspace-intro-actions">{children}</div>}
+      {description && <p className="v-muted">{description}</p>}
     </div>
+    {children && <div className="v-workspace-intro-actions">{children}</div>}
   </header>;
 }

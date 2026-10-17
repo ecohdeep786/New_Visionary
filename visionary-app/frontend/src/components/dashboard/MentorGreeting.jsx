@@ -1,6 +1,7 @@
+import GuideMark from './GuideMark';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { mentorGreeting } from '@/services/mentorCompanionService';
 
@@ -22,7 +23,7 @@ export default function MentorGreeting() {
   if (!ctx || !greeting) return null;
   const copy = COPY[ctx.locale] || COPY.en;
   return <section className="v-mentor-continuation" aria-labelledby="mentor-greeting-title">
-    <span className="v-mentor-mark"><Sparkles size={20} aria-hidden="true" /></span>
+    <span className="v-mentor-mark"><GuideMark size={22} /></span>
     <div className="v-mentor-copy">
       <h3 id="mentor-greeting-title" className="v-mentor-label">{copy.title}</h3>
       <p className="v-mentor-next">{greeting.text}</p>

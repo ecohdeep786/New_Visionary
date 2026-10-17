@@ -24,6 +24,7 @@ const backend = `http://127.0.0.1:${port}`, results = [], errors = [];
 const fakeSDK = `window.Razorpay=class{constructor(o){this.o=o;this.events={}}on(n,f){this.events[n]=f}close(){this.o.modal.ondismiss()}async open(){if(window.__paymentOutcome==='dismiss'){this.o.modal.ondismiss();return}if(window.__paymentOutcome==='failed'){this.events['payment.failed']?.();this.o.modal.ondismiss();return}const r=await fetch('/__test/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscriptionId:this.o.subscription_id})});this.o.handler(await r.json())}};`;
 async function pageFor(uid = 'billing-review-owner', width = 1440) {
   const context = await browser.createBrowserContext(), page = await context.newPage();
+  page.setDefaultNavigationTimeout(90000);
   await page.evaluateOnNewDocument(() => {
     window.__billingPolicyViolations = [];
     document.addEventListener('securitypolicyviolation', event => {
@@ -32,7 +33,7 @@ async function pageFor(uid = 'billing-review-owner', width = 1440) {
   });
   await page.setViewport({ width, height: width < 500 ? 844 : 1000 });
   await page.setRequestInterception(true);
-  page.on('pageerror', error => errors.push(error.message));
+  page.on('pageerror', error => errors.push(error.stack || error.message));
   page.on('request', async request => {
     try {
       if (!real && request.url() === 'https://checkout.razorpay.com/v1/checkout.js') return await request.respond({ status: 200, contentType: 'application/javascript', body: fakeSDK });
