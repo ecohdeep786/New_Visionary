@@ -18425,7 +18425,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n                setSelected(lang.code);\r\n                setOpen(false);\r\n              }}"
+          "expression": "{() => {\n                setSelected(lang.code);\n                setOpen(false);\n              }}"
         }
       ],
       "calls": [
@@ -18826,7 +18826,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n      setNotice('');\r\n      setFailed(false);\r\n      setClassId('');\r\n      setOpen(true);\r\n    }}"
+          "expression": "{() => {\n      setNotice('');\n      setFailed(false);\n      setClassId('');\n      setOpen(true);\n    }}"
         }
       ],
       "calls": [
@@ -18916,7 +18916,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{value => {\r\n      if (!busy) setOpen(value);\r\n    }}"
+          "expression": "{value => {\n      if (!busy) setOpen(value);\n    }}"
         }
       ],
       "calls": [
@@ -23097,7 +23097,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change(question.id, {\r\n          prompt: event.target.value\r\n        })}"
+          "expression": "{event => change(question.id, {\n          prompt: event.target.value\n        })}"
         }
       ],
       "calls": [
@@ -23148,7 +23148,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change(question.id, {\r\n          options: question.options.map((value, i) => i === position ? event.target.value : value)\r\n        })}"
+          "expression": "{event => change(question.id, {\n          options: question.options.map((value, i) => i === position ? event.target.value : value)\n        })}"
         }
       ],
       "calls": [
@@ -23200,7 +23200,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change(question.id, {\r\n          answerIndex: Number(event.target.value)\r\n        })}"
+          "expression": "{event => change(question.id, {\n          answerIndex: Number(event.target.value)\n        })}"
         }
       ],
       "calls": [
@@ -23252,7 +23252,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => change(question.id, {\r\n          options: [...question.options, '']\r\n        })}"
+          "expression": "{() => change(question.id, {\n          options: [...question.options, '']\n        })}"
         }
       ],
       "calls": [
@@ -23303,7 +23303,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => change(question.id, {\r\n          options: question.options.slice(0, -1),\r\n          answerIndex: question.answerIndex === question.options.length - 1 ? -1 : question.answerIndex\r\n        })}"
+          "expression": "{() => change(question.id, {\n          options: question.options.slice(0, -1),\n          answerIndex: question.answerIndex === question.options.length - 1 ? -1 : question.answerIndex\n        })}"
         }
       ],
       "calls": [
@@ -23407,7 +23407,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onChange([...questions, {\r\n      id: crypto.randomUUID(),\r\n      prompt: '',\r\n      options: ['', '', '', ''],\r\n      answerIndex: -1\r\n    }])}"
+          "expression": "{() => onChange([...questions, {\n      id: crypto.randomUUID(),\n      prompt: '',\n      options: ['', '', '', ''],\n      answerIndex: -1\n    }])}"
         }
       ],
       "calls": [
@@ -23555,7 +23555,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change({\r\n          ...value,\r\n          [group]: {\r\n            ...value[group],\r\n            [key]: event.target.value\r\n          }\r\n        })}"
+          "expression": "{event => change({\n          ...value,\n          [group]: {\n            ...value[group],\n            [key]: event.target.value\n          }\n        })}"
         }
       ],
       "calls": [
@@ -23606,7 +23606,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => chapterChange(chapter.id, {\r\n          title: event.target.value\r\n        })}"
+          "expression": "{event => chapterChange(chapter.id, {\n          title: event.target.value\n        })}"
         }
       ],
       "calls": [
@@ -23657,7 +23657,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => chapterChange(chapter.id, {\r\n          sourceSection: event.target.value\r\n        })}"
+          "expression": "{event => chapterChange(chapter.id, {\n          sourceSection: event.target.value\n        })}"
         }
       ],
       "calls": [
@@ -23708,7 +23708,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => objectiveChange(chapter.id, item.id, {\r\n            title: event.target.value\r\n          })}"
+          "expression": "{event => objectiveChange(chapter.id, item.id, {\n            title: event.target.value\n          })}"
         }
       ],
       "calls": [
@@ -23759,7 +23759,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => objectiveChange(chapter.id, item.id, {\r\n            explanation: event.target.value\r\n          })}"
+          "expression": "{event => objectiveChange(chapter.id, item.id, {\n            explanation: event.target.value\n          })}"
         }
       ],
       "calls": [
@@ -23810,7 +23810,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => objectiveChange(chapter.id, item.id, {\r\n              prerequisiteIds: event.target.checked ? [...item.prerequisiteIds, row.id] : item.prerequisiteIds.filter(id => id !== row.id)\r\n            })}"
+          "expression": "{event => objectiveChange(chapter.id, item.id, {\n              prerequisiteIds: event.target.checked ? [...item.prerequisiteIds, row.id] : item.prerequisiteIds.filter(id => id !== row.id)\n            })}"
         }
       ],
       "calls": [
@@ -23862,7 +23862,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => {\r\n                const kind = event.target.value;\r\n                objectiveChange(chapter.id, item.id, {\r\n                  representations: item.representations.map(row => row.id === view.id ? {\r\n                    id: row.id,\r\n                    kind,\r\n                    alternative: row.alternative,\r\n                    ...(kind === 'number-line' ? {\r\n                      numberLine: {\r\n                        minimum: 0,\r\n                        maximum: 1,\r\n                        divisions: 8,\r\n                        initial: 0\r\n                      }\r\n                    } : {})\r\n                  } : row)\r\n                });\r\n              }}"
+          "expression": "{event => {\n                const kind = event.target.value;\n                objectiveChange(chapter.id, item.id, {\n                  representations: item.representations.map(row => row.id === view.id ? {\n                    id: row.id,\n                    kind,\n                    alternative: row.alternative,\n                    ...(kind === 'number-line' ? {\n                      numberLine: {\n                        minimum: 0,\n                        maximum: 1,\n                        divisions: 8,\n                        initial: 0\n                      }\n                    } : {})\n                  } : row)\n                });\n              }}"
         }
       ],
       "calls": [
@@ -23914,7 +23914,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => objectiveChange(chapter.id, item.id, {\r\n                representations: item.representations.map(row => row.id === view.id ? {\r\n                  ...row,\r\n                  alternative: event.target.value\r\n                } : row)\r\n              })}"
+          "expression": "{event => objectiveChange(chapter.id, item.id, {\n                representations: item.representations.map(row => row.id === view.id ? {\n                  ...row,\n                  alternative: event.target.value\n                } : row)\n              })}"
         }
       ],
       "calls": [
@@ -23966,7 +23966,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => objectiveChange(chapter.id, item.id, {\r\n                  representations: item.representations.map(row => row.id === view.id ? {\r\n                    ...row,\r\n                    numberLine: {\r\n                      ...row.numberLine,\r\n                      [key]: Number(event.target.value)\r\n                    }\r\n                  } : row)\r\n                })}"
+          "expression": "{event => objectiveChange(chapter.id, item.id, {\n                  representations: item.representations.map(row => row.id === view.id ? {\n                    ...row,\n                    numberLine: {\n                      ...row.numberLine,\n                      [key]: Number(event.target.value)\n                    }\n                  } : row)\n                })}"
         }
       ],
       "calls": [
@@ -24019,7 +24019,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => objectiveChange(chapter.id, item.id, {\r\n              representations: item.representations.filter(row => row.id !== view.id)\r\n            })}"
+          "expression": "{() => objectiveChange(chapter.id, item.id, {\n              representations: item.representations.filter(row => row.id !== view.id)\n            })}"
         }
       ],
       "calls": [
@@ -24071,7 +24071,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => objectiveChange(chapter.id, item.id, {\r\n            representations: [...item.representations, {\r\n              id: crypto.randomUUID(),\r\n              kind: 'text',\r\n              alternative: 'Add an accessible explanation of this view.'\r\n            }]\r\n          })}"
+          "expression": "{() => objectiveChange(chapter.id, item.id, {\n            representations: [...item.representations, {\n              id: crypto.randomUUID(),\n              kind: 'text',\n              alternative: 'Add an accessible explanation of this view.'\n            }]\n          })}"
         }
       ],
       "calls": [
@@ -24123,7 +24123,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => objectiveChange(chapter.id, item.id, {\r\n                  criteria: item.criteria.map(row => row.id === criterion.id ? {\r\n                    ...row,\r\n                    [key]: event.target.value\r\n                  } : row)\r\n                })}"
+          "expression": "{event => objectiveChange(chapter.id, item.id, {\n                  criteria: item.criteria.map(row => row.id === criterion.id ? {\n                    ...row,\n                    [key]: event.target.value\n                  } : row)\n                })}"
         }
       ],
       "calls": [
@@ -24175,7 +24175,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => objectiveChange(chapter.id, item.id, {\r\n              criteria: item.criteria.filter(row => row.id !== criterion.id)\r\n            })}"
+          "expression": "{() => objectiveChange(chapter.id, item.id, {\n              criteria: item.criteria.filter(row => row.id !== criterion.id)\n            })}"
         }
       ],
       "calls": [
@@ -24227,7 +24227,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => objectiveChange(chapter.id, item.id, {\r\n            criteria: [...item.criteria, {\r\n              id: crypto.randomUUID(),\r\n              label: '',\r\n              prompt: ''\r\n            }]\r\n          })}"
+          "expression": "{() => objectiveChange(chapter.id, item.id, {\n            criteria: [...item.criteria, {\n              id: crypto.randomUUID(),\n              label: '',\n              prompt: ''\n            }]\n          })}"
         }
       ],
       "calls": [
@@ -24279,7 +24279,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{practice => objectiveChange(chapter.id, item.id, {\r\n          practice\r\n        })}"
+          "expression": "{practice => objectiveChange(chapter.id, item.id, {\n          practice\n        })}"
         }
       ],
       "calls": [
@@ -24381,7 +24381,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => chapterChange(chapter.id, {\r\n          objectives: [...chapter.objectives, objective()]\r\n        })}"
+          "expression": "{() => chapterChange(chapter.id, {\n          objectives: [...chapter.objectives, objective()]\n        })}"
         }
       ],
       "calls": [
@@ -24484,7 +24484,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => change({\r\n      ...value,\r\n      chapters: [...value.chapters, {\r\n        id: crypto.randomUUID(),\r\n        title: '',\r\n        sourceSection: '',\r\n        objectives: []\r\n      }]\r\n    })}"
+          "expression": "{() => change({\n      ...value,\n      chapters: [...value.chapters, {\n        id: crypto.randomUUID(),\n        title: '',\n        sourceSection: '',\n        objectives: []\n      }]\n    })}"
         }
       ],
       "calls": [
@@ -24929,7 +24929,7 @@
       "events": [
         {
           "event": "onCloseAutoFocus",
-          "expression": "{event => {\r\n          event.preventDefault();\r\n          const target = navigationSelected.current ? document.getElementById('main') : window.matchMedia('(min-width: 768px)').matches ? document.querySelector('[aria-controls=\"dashboard-navigation\"]') : mobileTrigger.current;\r\n          target?.focus({ preventScroll: true });\r\n          navigationSelected.current = false;\r\n        }}"
+          "expression": "{event => {\n          event.preventDefault();\n          const target = navigationSelected.current ? document.getElementById('main') : window.matchMedia('(min-width: 768px)').matches ? document.querySelector('[aria-controls=\"dashboard-navigation\"]') : mobileTrigger.current;\n          target?.focus({ preventScroll: true });\n          navigationSelected.current = false;\n        }}"
         }
       ],
       "calls": [
@@ -26381,7 +26381,7 @@
       "events": [
         {
           "event": "onCloseAutoFocus",
-          "expression": "{event => {\r\n        event.preventDefault();\r\n        const target = searchNavigated.current ? document.getElementById('main') : searchOrigin.current?.isConnected ? searchOrigin.current : searchTrigger.current;\r\n        target?.focus({ preventScroll: true });\r\n        searchNavigated.current = false;\r\n      }}"
+          "expression": "{event => {\n        event.preventDefault();\n        const target = searchNavigated.current ? document.getElementById('main') : searchOrigin.current?.isConnected ? searchOrigin.current : searchTrigger.current;\n        target?.focus({ preventScroll: true });\n        searchNavigated.current = false;\n      }}"
         }
       ],
       "calls": [
@@ -26452,7 +26452,7 @@
         },
         {
           "event": "onKeyDown",
-          "expression": "{event => {\r\n          if (event.nativeEvent.isComposing) return;\r\n          if (event.key === 'ArrowDown') { event.preventDefault(); resultsRef.current?.querySelector('button')?.focus(); }\r\n          if (event.key === 'ArrowUp') { event.preventDefault(); resultsRef.current?.querySelector('button:last-child')?.focus(); }\r\n          if (event.key === 'Enter' && results.length === 1) { event.preventDefault(); openResult(results[0].to); }\r\n        }}"
+          "expression": "{event => {\n          if (event.nativeEvent.isComposing) return;\n          if (event.key === 'ArrowDown') { event.preventDefault(); resultsRef.current?.querySelector('button')?.focus(); }\n          if (event.key === 'ArrowUp') { event.preventDefault(); resultsRef.current?.querySelector('button:last-child')?.focus(); }\n          if (event.key === 'Enter' && results.length === 1) { event.preventDefault(); openResult(results[0].to); }\n        }}"
         }
       ],
       "calls": [
@@ -26522,7 +26522,7 @@
       "events": [
         {
           "event": "onKeyDown",
-          "expression": "{event => {\r\n          if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;\r\n          const buttons = [...resultsRef.current.querySelectorAll('button')];\r\n          const index = buttons.indexOf(document.activeElement);\r\n          if (index === -1) return;\r\n          event.preventDefault();\r\n          const next = index + (event.key === 'ArrowDown' ? 1 : -1);\r\n          (buttons[next] || searchInput.current)?.focus();\r\n        }}"
+          "expression": "{event => {\n          if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;\n          const buttons = [...resultsRef.current.querySelectorAll('button')];\n          const index = buttons.indexOf(document.activeElement);\n          if (index === -1) return;\n          event.preventDefault();\n          const next = index + (event.key === 'ArrowDown' ? 1 : -1);\n          (buttons[next] || searchInput.current)?.focus();\n        }}"
         }
       ],
       "calls": [
@@ -27568,7 +27568,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n          locale: e.target.value\r\n        })}"
+          "expression": "{e => update({\n          locale: e.target.value\n        })}"
         }
       ],
       "calls": [
@@ -27603,7 +27603,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n          representation: e.target.value\r\n        })}"
+          "expression": "{e => update({\n          representation: e.target.value\n        })}"
         }
       ],
       "calls": [
@@ -27638,7 +27638,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => update({\r\n        interrupted: false\r\n      })}"
+          "expression": "{() => update({\n        interrupted: false\n      })}"
         }
       ],
       "calls": [
@@ -27734,7 +27734,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => update({\r\n          stage: 'checking'\r\n        })}"
+          "expression": "{() => update({\n          stage: 'checking'\n        })}"
         }
       ],
       "calls": [
@@ -27769,7 +27769,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n              canvas: {\r\n                ...session.canvas,\r\n                size: Number(e.target.value)\r\n              }\r\n            })}"
+          "expression": "{e => update({\n              canvas: {\n                ...session.canvas,\n                size: Number(e.target.value)\n              }\n            })}"
         }
       ],
       "calls": [
@@ -27805,7 +27805,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n              canvas: {\r\n                ...session.canvas,\r\n                rotation: Number(e.target.value)\r\n              }\r\n            })}"
+          "expression": "{e => update({\n              canvas: {\n                ...session.canvas,\n                rotation: Number(e.target.value)\n              }\n            })}"
         }
       ],
       "calls": [
@@ -27841,7 +27841,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => update({\r\n            canvas: {\r\n              size: 3,\r\n              rotation: 25\r\n            }\r\n          })}"
+          "expression": "{() => update({\n            canvas: {\n              size: 3,\n              rotation: 25\n            }\n          })}"
         }
       ],
       "calls": [
@@ -27876,7 +27876,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n              canvas: {\r\n                ...session.canvas,\r\n                size: Number(e.target.value)\r\n              }\r\n            })}"
+          "expression": "{e => update({\n              canvas: {\n                ...session.canvas,\n                size: Number(e.target.value)\n              }\n            })}"
         }
       ],
       "calls": [
@@ -27912,7 +27912,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => {\r\n                setAnswer(e.target.value);\r\n                setFeedback(null);\r\n              }}"
+          "expression": "{e => {\n                setAnswer(e.target.value);\n                setFeedback(null);\n              }}"
         }
       ],
       "calls": [
@@ -28014,7 +28014,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n            setFeedback(null);\r\n            update({\r\n              stage: 'remediating'\r\n            });\r\n          }}"
+          "expression": "{() => {\n            setFeedback(null);\n            update({\n              stage: 'remediating'\n            });\n          }}"
         }
       ],
       "calls": [
@@ -28050,7 +28050,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            saveArtifact(ctx, {\r\n              title: journey.project,\r\n              body: journey.projectBrief,\r\n              journeyId: journey.id\r\n            });\r\n            setSavedProject(true);\r\n          } catch (e) {\r\n            setError(e.message);\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            saveArtifact(ctx, {\n              title: journey.project,\n              body: journey.projectBrief,\n              journeyId: journey.id\n            });\n            setSavedProject(true);\n          } catch (e) {\n            setError(e.message);\n          }\n        }}"
         }
       ],
       "calls": [
@@ -28116,7 +28116,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n            confidence: Number(e.target.value)\r\n          })}"
+          "expression": "{e => update({\n            confidence: Number(e.target.value)\n          })}"
         }
       ],
       "calls": [
@@ -28181,7 +28181,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            beginReview(ctx, session.id);\r\n          } catch (e) {\r\n            setError(e.message);\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            beginReview(ctx, session.id);\n          } catch (e) {\n            setError(e.message);\n          }\n        }}"
         }
       ],
       "calls": [
@@ -28217,7 +28217,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => update({\r\n        stage: stages[Math.max(0, stageIndex - 1)]\r\n      })}"
+          "expression": "{() => update({\n        stage: stages[Math.max(0, stageIndex - 1)]\n      })}"
         }
       ],
       "calls": [
@@ -28286,7 +28286,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => update({\r\n        notes: e.target.value\r\n      })}"
+          "expression": "{e => update({\n        notes: e.target.value\n      })}"
         }
       ],
       "calls": [
@@ -28321,7 +28321,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        if(update({interrupted:true}))onAsk();\r\n      }}"
+          "expression": "{() => {\n        if(update({interrupted:true}))onAsk();\n      }}"
         }
       ],
       "calls": [
@@ -28357,7 +28357,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onChange({\r\n          ...value,\r\n          intent: intent.id\r\n        })}"
+          "expression": "{() => onChange({\n          ...value,\n          intent: intent.id\n        })}"
         }
       ],
       "calls": [
@@ -28392,7 +28392,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onChange({\r\n          ...value,\r\n          source: id\r\n        })}"
+          "expression": "{() => onChange({\n          ...value,\n          source: id\n        })}"
         }
       ],
       "calls": [
@@ -28427,7 +28427,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => onChange({\r\n        ...value,\r\n        material: e.target.value\r\n      })}"
+          "expression": "{e => onChange({\n        ...value,\n        material: e.target.value\n      })}"
         }
       ],
       "calls": [
@@ -28462,7 +28462,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onChange({\r\n        ...value,\r\n        source: 'topic',\r\n        material: ''\r\n      })}"
+          "expression": "{() => onChange({\n        ...value,\n        source: 'topic',\n        material: ''\n      })}"
         }
       ],
       "calls": [
@@ -28953,7 +28953,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => {\r\n          setQuestion(e.target.value);\r\n          setSaved(false);\r\n        }}"
+          "expression": "{e => {\n          setQuestion(e.target.value);\n          setSaved(false);\n        }}"
         }
       ],
       "calls": [
@@ -30914,7 +30914,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => onChange([...checks, {\r\n        id: crypto.randomUUID(),\r\n        prompt: ''\r\n      }])}"
+          "expression": "{() => onChange([...checks, {\n        id: crypto.randomUUID(),\n        prompt: ''\n      }])}"
         }
       ],
       "calls": [
@@ -30962,7 +30962,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => onChange(checks.map(item => item.id === check.id ? {\r\n          ...item,\r\n          prompt: event.target.value\r\n        } : item))}"
+          "expression": "{event => onChange(checks.map(item => item.id === check.id ? {\n          ...item,\n          prompt: event.target.value\n        } : item))}"
         }
       ],
       "calls": [
@@ -31150,7 +31150,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => changeSelection({\r\n          [key]: event.target.value\r\n        })}"
+          "expression": "{event => changeSelection({\n          [key]: event.target.value\n        })}"
         }
       ],
       "calls": [
@@ -31197,7 +31197,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => {\r\n          sequence.current++;\r\n          setLocale(event.target.value);\r\n          setLoaded(null);\r\n          setConceptId('');\r\n          setBusy(false);\r\n          setError('');\r\n        }}"
+          "expression": "{event => {\n          sequence.current++;\n          setLocale(event.target.value);\n          setLoaded(null);\n          setConceptId('');\n          setBusy(false);\n          setError('');\n        }}"
         }
       ],
       "calls": [
@@ -31293,7 +31293,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => {\r\n            sequence.current++;\r\n            setConceptId(event.target.value);\r\n            setBusy(false);\r\n          }}"
+          "expression": "{event => {\n            sequence.current++;\n            setConceptId(event.target.value);\n            setBusy(false);\n          }}"
         }
       ],
       "calls": [
@@ -31386,7 +31386,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        sequence.current++;\r\n        setBusy(false);\r\n        onChange(null);\r\n      }}"
+          "expression": "{() => {\n        sequence.current++;\n        setBusy(false);\n        onChange(null);\n      }}"
         }
       ],
       "calls": [
@@ -32434,7 +32434,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n              setCurrentQ(0); setSelectedAnswer(null); setQuizState(\"answering\");\r\n              setShowHint(false); setAttemptCount(0); setScore(0); setQuizCompleted(false);\r\n            }}"
+          "expression": "{() => {\n              setCurrentQ(0); setSelectedAnswer(null); setQuizState(\"answering\");\n              setShowHint(false); setAttemptCount(0); setScore(0); setQuizCompleted(false);\n            }}"
         }
       ],
       "calls": [
@@ -32832,7 +32832,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n      try { onHistoryRefresh(savedArtifact().portfolioReviews); setError(''); }\r\n      catch (failure) { setError(failure.message); }\r\n    }}"
+          "expression": "{() => {\n      try { onHistoryRefresh(savedArtifact().portfolioReviews); setError(''); }\n      catch (failure) { setError(failure.message); }\n    }}"
         }
       ],
       "calls": [
@@ -33064,7 +33064,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change({\r\n                ...draft,\r\n                ratings: {\r\n                  ...draft.ratings,\r\n                  [rule.id]: {\r\n                    ...draft.ratings[rule.id],\r\n                    rating: event.target.value\r\n                  }\r\n                }\r\n              })}"
+          "expression": "{event => change({\n                ...draft,\n                ratings: {\n                  ...draft.ratings,\n                  [rule.id]: {\n                    ...draft.ratings[rule.id],\n                    rating: event.target.value\n                  }\n                }\n              })}"
         }
       ],
       "calls": [
@@ -33100,7 +33100,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change({\r\n                ...draft,\r\n                ratings: {\r\n                  ...draft.ratings,\r\n                  [rule.id]: {\r\n                    ...draft.ratings[rule.id],\r\n                    note: event.target.value\r\n                  }\r\n                }\r\n              })}"
+          "expression": "{event => change({\n                ...draft,\n                ratings: {\n                  ...draft.ratings,\n                  [rule.id]: {\n                    ...draft.ratings[rule.id],\n                    note: event.target.value\n                  }\n                }\n              })}"
         }
       ],
       "calls": [
@@ -33136,7 +33136,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => change({\r\n              ...draft,\r\n              body: event.target.value\r\n            })}"
+          "expression": "{event => change({\n              ...draft,\n              body: event.target.value\n            })}"
         }
       ],
       "calls": [
@@ -34647,7 +34647,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        try {\r\n          downloadText('visionary-stage-editor-backup.txt', readStageEditorBackup(ctx));\r\n        } catch (failure) {\r\n          setError(failure.message);\r\n        }\r\n      }}"
+          "expression": "{() => {\n        try {\n          downloadText('visionary-stage-editor-backup.txt', readStageEditorBackup(ctx));\n        } catch (failure) {\n          setError(failure.message);\n        }\n      }}"
         }
       ],
       "calls": [
@@ -35170,7 +35170,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n    if (!open && !busyId) onClose();\r\n  }}"
+          "expression": "{open => {\n    if (!open && !busyId) onClose();\n  }}"
         }
       ],
       "calls": [
@@ -35234,7 +35234,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{async () => {\r\n            try {\r\n              for (const s of submissions) clearReviewDraft(ctx, assignment.id, s.id);\r\n              setReload(value => value + 1);\r\n            } catch (failure) {\r\n              setError(failure.message);\r\n            }\r\n          }}"
+          "expression": "{async () => {\n            try {\n              for (const s of submissions) clearReviewDraft(ctx, assignment.id, s.id);\n              setReload(value => value + 1);\n            } catch (failure) {\n              setError(failure.message);\n            }\n          }}"
         }
       ],
       "calls": [
@@ -35328,7 +35328,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => updateField(s, 'criterion_feedback', {\r\n                  ...s.criterion_feedback,\r\n                  [item.id]: {\r\n                    rating: event.target.value,\r\n                    note: s.criterion_feedback?.[item.id]?.note || ''\r\n                  }\r\n                })}"
+          "expression": "{event => updateField(s, 'criterion_feedback', {\n                  ...s.criterion_feedback,\n                  [item.id]: {\n                    rating: event.target.value,\n                    note: s.criterion_feedback?.[item.id]?.note || ''\n                  }\n                })}"
         }
       ],
       "calls": [
@@ -35361,7 +35361,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => updateField(s, 'criterion_feedback', {\r\n                  ...s.criterion_feedback,\r\n                  [item.id]: {\r\n                    rating: s.criterion_feedback?.[item.id]?.rating || '',\r\n                    note: event.target.value\r\n                  }\r\n                })}"
+          "expression": "{event => updateField(s, 'criterion_feedback', {\n                  ...s.criterion_feedback,\n                  [item.id]: {\n                    rating: s.criterion_feedback?.[item.id]?.rating || '',\n                    note: event.target.value\n                  }\n                })}"
         }
       ],
       "calls": [
@@ -35555,7 +35555,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n    if (!open && !busy) onClose();\r\n  }}"
+          "expression": "{open => {\n    if (!open && !busy) onClose();\n  }}"
         }
       ],
       "calls": [
@@ -35625,7 +35625,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setForm(current => ({\r\n            ...current,\r\n            [key]: e.target.value\r\n          }))}"
+          "expression": "{e => setForm(current => ({\n            ...current,\n            [key]: e.target.value\n          }))}"
         }
       ],
       "calls": [
@@ -35661,7 +35661,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => setForm(current => ({\r\n              ...current,\r\n              color\r\n            }))}"
+          "expression": "{() => setForm(current => ({\n              ...current,\n              color\n            }))}"
         }
       ],
       "calls": [
@@ -35926,7 +35926,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setForm({\r\n        ...form,\r\n        title: e.target.value\r\n      })}"
+          "expression": "{e => setForm({\n        ...form,\n        title: e.target.value\n      })}"
         }
       ],
       "calls": [
@@ -35959,7 +35959,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setForm({\r\n        ...form,\r\n        description: e.target.value\r\n      })}"
+          "expression": "{e => setForm({\n        ...form,\n        description: e.target.value\n      })}"
         }
       ],
       "calls": [
@@ -35992,7 +35992,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setForm({\r\n            ...form,\r\n            due_date: e.target.value\r\n          })}"
+          "expression": "{e => setForm({\n            ...form,\n            due_date: e.target.value\n          })}"
         }
       ],
       "calls": [
@@ -36025,7 +36025,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setForm({\r\n            ...form,\r\n            points: e.target.value\r\n          })}"
+          "expression": "{e => setForm({\n            ...form,\n            points: e.target.value\n          })}"
         }
       ],
       "calls": [
@@ -36062,7 +36062,7 @@
         },
         {
           "event": "onKeyDown",
-          "expression": "{e => {\r\n            if (e.key === \"Enter\") {\r\n              e.preventDefault();\r\n              addTopic();\r\n            }\r\n          }}"
+          "expression": "{e => {\n            if (e.key === \"Enter\") {\n              e.preventDefault();\n              addTopic();\n            }\n          }}"
         }
       ],
       "calls": [
@@ -36635,7 +36635,7 @@
       "events": [
         {
           "event": "onClose",
-          "expression": "{() => {\r\n      setGrading(null);\r\n      load();\r\n    }}"
+          "expression": "{() => {\n      setGrading(null);\n      load();\n    }}"
         }
       ],
       "calls": [
@@ -36949,7 +36949,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => setText(copy('Welcome to {name}! You’ll find assignments in Classwork and class updates here. I’m looking forward to learning together.', {\r\n          name: classroom?.name || copy('our class')\r\n        }))}"
+          "expression": "{() => setText(copy('Welcome to {name}! You’ll find assignments in Classwork and class updates here. I’m looking forward to learning together.', {\n          name: classroom?.name || copy('our class')\n        }))}"
         }
       ],
       "calls": [
@@ -44544,7 +44544,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => {\r\n      setText(event.target.value);\r\n      updateData('subjects', [...new Set(event.target.value.split(',').map(value => value.trim().slice(0, 100)).filter(Boolean))]);\r\n    }}"
+          "expression": "{event => {\n      setText(event.target.value);\n      updateData('subjects', [...new Set(event.target.value.split(',').map(value => value.trim().slice(0, 100)).filter(Boolean))]);\n    }}"
         }
       ],
       "calls": [
@@ -45716,7 +45716,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{(event) => {\r\n        onClick?.(event)\r\n        toggleSidebar()\r\n      }}"
+          "expression": "{(event) => {\n        onClick?.(event)\n        toggleSidebar()\n      }}"
         }
       ],
       "calls": [
@@ -46109,7 +46109,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        if (save()) setDraft(null);\r\n      }}"
+          "expression": "{() => {\n        if (save()) setDraft(null);\n      }}"
         }
       ],
       "calls": [
@@ -46182,7 +46182,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          if (save()) setSharing(true);\r\n        }}"
+          "expression": "{() => {\n          if (save()) setSharing(true);\n        }}"
         }
       ],
       "calls": [
@@ -46219,7 +46219,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          if (save()) setParentSharing(true);\r\n        }}"
+          "expression": "{() => {\n          if (save()) setParentSharing(true);\n        }}"
         }
       ],
       "calls": [
@@ -46319,7 +46319,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            const latest = snapshot(ctx).artifacts.find(item => item.id === draft.id);\r\n            if (!latest) throw Error('The saved project is unavailable. Your editor remains open.');\r\n            clearArtifactEditorDraft(ctx, draft.id);\r\n            setDraft(latest);\r\n            setBaseRevision(artifactRevision(latest));\r\n            setConflict(false);\r\n            setRecovered(false);\r\n            setNotice('Latest saved version loaded; previous editor edits discarded.');\r\n          } catch (error) {\r\n            setNotice({\r\n              error: true,\r\n              message: error.message\r\n            });\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            const latest = snapshot(ctx).artifacts.find(item => item.id === draft.id);\n            if (!latest) throw Error('The saved project is unavailable. Your editor remains open.');\n            clearArtifactEditorDraft(ctx, draft.id);\n            setDraft(latest);\n            setBaseRevision(artifactRevision(latest));\n            setConflict(false);\n            setRecovered(false);\n            setNotice('Latest saved version loaded; previous editor edits discarded.');\n          } catch (error) {\n            setNotice({\n              error: true,\n              message: error.message\n            });\n          }\n        }}"
         }
       ],
       "calls": [
@@ -46364,7 +46364,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            const copy = saveArtifact(ctx, {\r\n              title: draft.title + ' (recovered copy)',\r\n              body: draft.body,\r\n              milestones: [false, false, false],\r\n              status: 'in-progress',\r\n              projectBrief: draft.projectBrief,\r\n              rubric: draft.rubric\r\n            });\r\n            setDraft(copy);\r\n            setBaseRevision(artifactRevision(copy));\r\n            setConflict(false);\r\n            setRecovered(false);\r\n            try {\r\n              clearArtifactEditorDraft(ctx, draft.id);\r\n              setNotice('Your edits were saved as a separate private draft. The newer original was kept.');\r\n            } catch {\r\n              setNotice('Your separate private draft is saved. The old editor backup could not be removed; it may appear again when you open the original.');\r\n            }\r\n          } catch (error) {\r\n            setNotice({\r\n              error: true,\r\n              message: error.message\r\n            });\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            const copy = saveArtifact(ctx, {\n              title: draft.title + ' (recovered copy)',\n              body: draft.body,\n              milestones: [false, false, false],\n              status: 'in-progress',\n              projectBrief: draft.projectBrief,\n              rubric: draft.rubric\n            });\n            setDraft(copy);\n            setBaseRevision(artifactRevision(copy));\n            setConflict(false);\n            setRecovered(false);\n            try {\n              clearArtifactEditorDraft(ctx, draft.id);\n              setNotice('Your edits were saved as a separate private draft. The newer original was kept.');\n            } catch {\n              setNotice('Your separate private draft is saved. The old editor backup could not be removed; it may appear again when you open the original.');\n            }\n          } catch (error) {\n            setNotice({\n              error: true,\n              message: error.message\n            });\n          }\n        }}"
         }
       ],
       "calls": [
@@ -46407,7 +46407,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        try {\r\n          clearArtifactEditorDraft(ctx, draft.id);\r\n          const saved = data.artifacts.find(item => item.id === draft.id);\r\n          if (saved) {\r\n            setDraft(saved);\r\n            setBaseRevision(artifactRevision(saved));\r\n            setConflict(false);\r\n            setRecovered(false);\r\n            setNotice(\"Recovered edits discarded; the last saved project is shown.\");\r\n          }\r\n        } catch (cause) {\r\n          setNotice({\r\n            error: true,\r\n            message: cause.message\r\n          });\r\n        }\r\n      }}"
+          "expression": "{() => {\n        try {\n          clearArtifactEditorDraft(ctx, draft.id);\n          const saved = data.artifacts.find(item => item.id === draft.id);\n          if (saved) {\n            setDraft(saved);\n            setBaseRevision(artifactRevision(saved));\n            setConflict(false);\n            setRecovered(false);\n            setNotice(\"Recovered edits discarded; the last saved project is shown.\");\n          }\n        } catch (cause) {\n          setNotice({\n            error: true,\n            message: cause.message\n          });\n        }\n      }}"
         }
       ],
       "calls": [
@@ -46450,7 +46450,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n        ...draft,\r\n        title: e.target.value\r\n      })}"
+          "expression": "{e => setDraft({\n        ...draft,\n        title: e.target.value\n      })}"
         }
       ],
       "calls": [
@@ -46486,7 +46486,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n            ...draft,\r\n            body: e.target.value\r\n          })}"
+          "expression": "{e => setDraft({\n            ...draft,\n            body: e.target.value\n          })}"
         },
         {
           "event": "onBlur",
@@ -46526,7 +46526,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{(id, value) => setDraft({\r\n      ...draft,\r\n      rubric: {\r\n        ...draft.rubric,\r\n        responses: {\r\n          ...draft.rubric.responses,\r\n          [id]: value\r\n        }\r\n      }\r\n    })}"
+          "expression": "{(id, value) => setDraft({\n      ...draft,\n      rubric: {\n        ...draft.rubric,\n        responses: {\n          ...draft.rubric.responses,\n          [id]: value\n        }\n      }\n    })}"
         }
       ],
       "calls": [
@@ -46562,7 +46562,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => {\r\n          const milestones = [...draft.milestones];\r\n          milestones[i] = e.target.checked;\r\n          setDraft({\r\n            ...draft,\r\n            milestones\r\n          });\r\n        }}"
+          "expression": "{e => {\n          const milestones = [...draft.milestones];\n          milestones[i] = e.target.checked;\n          setDraft({\n            ...draft,\n            milestones\n          });\n        }}"
         }
       ],
       "calls": [
@@ -46598,7 +46598,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n          ...draft,\r\n          status: e.target.value\r\n        })}"
+          "expression": "{e => setDraft({\n          ...draft,\n          status: e.target.value\n        })}"
         }
       ],
       "calls": [
@@ -46642,7 +46642,7 @@
         },
         {
           "event": "onChange",
-          "expression": "{(saved, message) => {\r\n      setDraft(saved);\r\n      setBaseRevision(artifactRevision(saved));\r\n      setNotice(message);\r\n    }}"
+          "expression": "{(saved, message) => {\n      setDraft(saved);\n      setBaseRevision(artifactRevision(saved));\n      setNotice(message);\n    }}"
         }
       ],
       "calls": [
@@ -46846,7 +46846,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          setDraft({\r\n            ...draft,\r\n            body: v.body\r\n          });\r\n          setShowVersions(false);\r\n          setNotice('Previous version restored in the editor. Save to keep it.');\r\n        }}"
+          "expression": "{() => {\n          setDraft({\n            ...draft,\n            body: v.body\n          });\n          setShowVersions(false);\n          setNotice('Previous version restored in the editor. Save to keep it.');\n        }}"
         }
       ],
       "calls": [
@@ -46954,7 +46954,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            stopSharingArtifact(ctx, draft.id);\r\n            setDraft({\r\n              ...draft,\r\n              visibility: 'private',\r\n              sharedWith: []\r\n            });\r\n            setNotice('Sharing stopped. Your own document is retained.');\r\n          } catch (e) {\r\n            setNotice({\r\n              error: true,\r\n              message: e.message\r\n            });\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            stopSharingArtifact(ctx, draft.id);\n            setDraft({\n              ...draft,\n              visibility: 'private',\n              sharedWith: []\n            });\n            setNotice('Sharing stopped. Your own document is retained.');\n          } catch (e) {\n            setNotice({\n              error: true,\n              message: e.message\n            });\n          }\n        }}"
         }
       ],
       "calls": [
@@ -47022,7 +47022,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            const shared = shareArtifact(ctx, draft.id, recipient, JSON.stringify([draft.updatedAt, draft.title, draft.body]));\r\n            setDraft(shared);\r\n            setSharing(false);\r\n            setNotice('Saved copy shared with this accepted local connection. Later edits need a new confirmation.');\r\n          } catch (e) {\r\n            setNotice({\r\n              error: true,\r\n              message: e.message\r\n            });\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            const shared = shareArtifact(ctx, draft.id, recipient, JSON.stringify([draft.updatedAt, draft.title, draft.body]));\n            setDraft(shared);\n            setSharing(false);\n            setNotice('Saved copy shared with this accepted local connection. Later edits need a new confirmation.');\n          } catch (e) {\n            setNotice({\n              error: true,\n              message: e.message\n            });\n          }\n        }}"
         }
       ],
       "calls": [
@@ -47070,7 +47070,7 @@
         },
         {
           "event": "onChange",
-          "expression": "{(saved, message) => {\r\n      setDraft(saved);\r\n      setBaseRevision(artifactRevision(saved));\r\n      setNotice(message);\r\n    }}"
+          "expression": "{(saved, message) => {\n      setDraft(saved);\n      setBaseRevision(artifactRevision(saved));\n      setNotice(message);\n    }}"
         }
       ],
       "calls": [
@@ -47109,7 +47109,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        try {\r\n          const newProject = saveArtifact(ctx, {\r\n            title: 'Untitled project',\r\n            body: '',\r\n            milestones: [false, false, false],\r\n            status: 'draft'\r\n          });\r\n          setDraft(newProject);\r\n          setBaseRevision(artifactRevision(newProject));\r\n          setConflict(false);\r\n          setRecovered(false);\r\n          setNotice('New draft saved on this device.');\r\n        } catch (cause) {\r\n          setNotice({\r\n            error: true,\r\n            message: cause.message\r\n          });\r\n        }\r\n      }}"
+          "expression": "{() => {\n        try {\n          const newProject = saveArtifact(ctx, {\n            title: 'Untitled project',\n            body: '',\n            milestones: [false, false, false],\n            status: 'draft'\n          });\n          setDraft(newProject);\n          setBaseRevision(artifactRevision(newProject));\n          setConflict(false);\n          setRecovered(false);\n          setNotice('New draft saved on this device.');\n        } catch (cause) {\n          setNotice({\n            error: true,\n            message: cause.message\n          });\n        }\n      }}"
         }
       ],
       "calls": [
@@ -47253,7 +47253,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        setNotice('');\r\n        openSavedArtifact(a);\r\n      }}"
+          "expression": "{() => {\n        setNotice('');\n        openSavedArtifact(a);\n      }}"
         }
       ],
       "calls": [
@@ -48129,7 +48129,7 @@
       "events": [
         {
           "event": "onSubmit",
-          "expression": "{event => {\r\n        event.preventDefault();\r\n        act(() => {\r\n          requestRelationship(ctx, email, 'guardian');\r\n          setEmail('');\r\n        }, 'Local request saved. No email or verification service was contacted.');\r\n      }}"
+          "expression": "{event => {\n        event.preventDefault();\n        act(() => {\n          requestRelationship(ctx, email, 'guardian');\n          setEmail('');\n        }, 'Local request saved. No email or verification service was contacted.');\n      }}"
         }
       ],
       "calls": [
@@ -50172,7 +50172,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        open({\r\n          title: '',\r\n          body: '',\r\n          kind: 'cohort',\r\n          members: [],\r\n          classIds: [],\r\n          status: 'draft'\r\n        });\r\n      }}"
+          "expression": "{() => {\n        open({\n          title: '',\n          body: '',\n          kind: 'cohort',\n          members: [],\n          classIds: [],\n          status: 'draft'\n        });\n      }}"
         }
       ],
       "calls": [
@@ -50346,7 +50346,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          open({\r\n            ...r,\r\n            members: r.members || [],\r\n            classIds: r.classIds || []\r\n          });\r\n        }}"
+          "expression": "{() => {\n          open({\n            ...r,\n            members: r.members || [],\n            classIds: r.classIds || []\n          });\n        }}"
         }
       ],
       "calls": [
@@ -50382,7 +50382,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            archiveResource(ctx, r.id);\r\n          } catch (e) {\r\n            setNotice(e.message);\r\n            setFailed(true);\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            archiveResource(ctx, r.id);\n          } catch (e) {\n            setNotice(e.message);\n            setFailed(true);\n          }\n        }}"
         }
       ],
       "calls": [
@@ -50420,7 +50420,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n      if (!open && !busy) setDraft(null);\r\n    }}"
+          "expression": "{open => {\n      if (!open && !busy) setDraft(null);\n    }}"
         }
       ],
       "calls": [
@@ -50492,7 +50492,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n              ...draft,\r\n              title: e.target.value\r\n            })}"
+          "expression": "{e => setDraft({\n              ...draft,\n              title: e.target.value\n            })}"
         }
       ],
       "calls": [
@@ -50528,7 +50528,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n              ...draft,\r\n              body: e.target.value\r\n            })}"
+          "expression": "{e => setDraft({\n              ...draft,\n              body: e.target.value\n            })}"
         }
       ],
       "calls": [
@@ -50843,7 +50843,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{value => {\r\n            try {\r\n              changeOrganizationCapability(ctx, r.id, value);\r\n              setNotice('Administrative permission saved locally.');\r\n              setNoticeError(false);\r\n            } catch (error) {\r\n              setNotice(error.message);\r\n              setNoticeError(true);\r\n            }\r\n          }}"
+          "expression": "{value => {\n            try {\n              changeOrganizationCapability(ctx, r.id, value);\n              setNotice('Administrative permission saved locally.');\n              setNoticeError(false);\n            } catch (error) {\n              setNotice(error.message);\n              setNoticeError(true);\n            }\n          }}"
         }
       ],
       "calls": [
@@ -51922,7 +51922,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          setSide(3);\r\n          setRotation(35);\r\n        }}"
+          "expression": "{() => {\n          setSide(3);\n          setRotation(35);\n        }}"
         }
       ],
       "calls": [
@@ -52109,11 +52109,11 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => {\r\n      setInput(e.target.value);\r\n      try {\r\n        const c = ensureConversation();\r\n        updateConversation(ctx, c.id, {\r\n          draft: e.target.value\r\n        });\r\n      } catch (error) {\r\n        setError(error.message);\r\n      }\r\n    }}"
+          "expression": "{e => {\n      setInput(e.target.value);\n      try {\n        const c = ensureConversation();\n        updateConversation(ctx, c.id, {\n          draft: e.target.value\n        });\n      } catch (error) {\n        setError(error.message);\n      }\n    }}"
         },
         {
           "event": "onBlur",
-          "expression": "{() => {\r\n      if (conversation) try {\r\n        updateConversation(ctx, conversation.id, {\r\n          draft: input\r\n        });\r\n      } catch (e) {\r\n        setError(e.message);\r\n      }\r\n    }}"
+          "expression": "{() => {\n      if (conversation) try {\n        updateConversation(ctx, conversation.id, {\n          draft: input\n        });\n      } catch (e) {\n        setError(e.message);\n      }\n    }}"
         }
       ],
       "calls": [
@@ -52574,7 +52574,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{value => {\r\n                try {\r\n                  saveAskContext(ctx, ensureConversation().id, value);\r\n                  setError('');\r\n                } catch (e) {\r\n                  setError(e.message);\r\n                }\r\n              }}"
+          "expression": "{value => {\n                try {\n                  saveAskContext(ctx, ensureConversation().id, value);\n                  setError('');\n                } catch (e) {\n                  setError(e.message);\n                }\n              }}"
         }
       ],
       "calls": [
@@ -52744,7 +52744,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{value => {\r\n            try {\r\n              saveAskContext(ctx, conversation.id, value);\r\n              setError('');\r\n            } catch (e) {\r\n              setError(e.message);\r\n            }\r\n          }}"
+          "expression": "{value => {\n            try {\n              saveAskContext(ctx, conversation.id, value);\n              setError('');\n            } catch (e) {\n              setError(e.message);\n            }\n          }}"
         }
       ],
       "calls": [
@@ -53001,7 +53001,7 @@
       "events": [
         {
           "event": "onCloseAutoFocus",
-          "expression": "{event => {\r\n          event.preventDefault();\r\n          const target = pane === 'activity' && hasActivity && window.matchMedia('(max-width: 1199px)').matches ? activityTab.current : historyTrigger.current;\r\n          target?.focus();\r\n        }}"
+          "expression": "{event => {\n          event.preventDefault();\n          const target = pane === 'activity' && hasActivity && window.matchMedia('(max-width: 1199px)').matches ? activityTab.current : historyTrigger.current;\n          target?.focus();\n        }}"
         }
       ],
       "calls": [
@@ -53073,7 +53073,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{event => {\r\n              deleteTrigger.current = event.currentTarget;\r\n              setDeleting(c.id);\r\n            }}"
+          "expression": "{event => {\n              deleteTrigger.current = event.currentTarget;\n              setDeleting(c.id);\n            }}"
         }
       ],
       "calls": [
@@ -53143,7 +53143,7 @@
       "events": [
         {
           "event": "onCloseAutoFocus",
-          "expression": "{event => {\r\n          event.preventDefault();\r\n          (deleteTrigger.current?.isConnected ? deleteTrigger.current : historyTitle.current)?.focus();\r\n        }}"
+          "expression": "{event => {\n          event.preventDefault();\n          (deleteTrigger.current?.isConnected ? deleteTrigger.current : historyTitle.current)?.focus();\n        }}"
         }
       ],
       "calls": [
@@ -53214,7 +53214,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n            try {\r\n              removeConversation(ctx, deleting);\r\n              if (selected === deleting) {\r\n                setSelected(null);\r\n                setCanvasPath('');\r\n                setInput('');\r\n              }\r\n              setDeleting(null);\r\n              setError('');\r\n            } catch (e) {\r\n              setError(e.message);\r\n            }\r\n          }}"
+          "expression": "{() => {\n            try {\n              removeConversation(ctx, deleting);\n              if (selected === deleting) {\n                setSelected(null);\n                setCanvasPath('');\n                setInput('');\n              }\n              setDeleting(null);\n              setError('');\n            } catch (e) {\n              setError(e.message);\n            }\n          }}"
         }
       ],
       "calls": [
@@ -53254,7 +53254,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        setError(\"\");try{const backup=getResourceEditorDraft(workspaceCtx,draftKey);if(backup&&backup.draft.body===subject)setTitle(backup.draft.title);}catch(error){setError(error.message);}\r\n        setDialogOpen(true);\r\n      }}"
+          "expression": "{() => {\n        setError(\"\");try{const backup=getResourceEditorDraft(workspaceCtx,draftKey);if(backup&&backup.draft.body===subject)setTitle(backup.draft.title);}catch(error){setError(error.message);}\n        setDialogOpen(true);\n      }}"
         }
       ],
       "calls": [
@@ -53356,7 +53356,7 @@
       "events": [
         {
           "event": "onSelect",
-          "expression": "{name => {\r\n          setParams({\r\n            subject: name\r\n          });\r\n          setFilter(\"all\");\r\n          setQuery(\"\");\r\n        }}"
+          "expression": "{name => {\n          setParams({\n            subject: name\n          });\n          setFilter(\"all\");\n          setQuery(\"\");\n        }}"
         }
       ],
       "calls": [
@@ -53544,7 +53544,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n              setQuery(\"\");\r\n              setFilter(\"all\");\r\n            }}"
+          "expression": "{() => {\n              setQuery(\"\");\n              setFilter(\"all\");\n            }}"
         }
       ],
       "calls": [
@@ -53930,7 +53930,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n      if (!open) setSelected(null);\r\n    }}"
+          "expression": "{open => {\n      if (!open) setSelected(null);\n    }}"
         }
       ],
       "calls": [
@@ -54675,7 +54675,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        try {\r\n          workspaceIdentity(ctx);\r\n          downloadText('current-activity-view.json', JSON.stringify({\r\n            title: unit.title,\r\n            stage: unit.stage,\r\n            source: unit.sourceContext,\r\n            question: unit.question ? {\r\n              id: unit.question.id,\r\n              prompt: unit.question.prompt,\r\n              options: unit.question.options\r\n            } : undefined,\r\n            selectedIndex: answer === '' ? undefined : Number(answer)\r\n          }, null, 2), 'application/json');\r\n        } catch (failure) {\r\n          setError(failure.message);\r\n        }\r\n      }}"
+          "expression": "{() => {\n        try {\n          workspaceIdentity(ctx);\n          downloadText('current-activity-view.json', JSON.stringify({\n            title: unit.title,\n            stage: unit.stage,\n            source: unit.sourceContext,\n            question: unit.question ? {\n              id: unit.question.id,\n              prompt: unit.question.prompt,\n              options: unit.question.options\n            } : undefined,\n            selectedIndex: answer === '' ? undefined : Number(answer)\n          }, null, 2), 'application/json');\n        } catch (failure) {\n          setError(failure.message);\n        }\n      }}"
         }
       ],
       "calls": [
@@ -54814,7 +54814,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n    setSourceExportError('');try {exportSavedActivity();}catch(failure){setSourceExportError(failure.message);}\r\n  }}"
+          "expression": "{() => {\n    setSourceExportError('');try {exportSavedActivity();}catch(failure){setSourceExportError(failure.message);}\n  }}"
         }
       ],
       "calls": [
@@ -55381,7 +55381,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => {\r\n              setAnswer(e.target.value);\r\n              try {\r\n                const saved = saveLearningAnswerDraft(ctx, unit.id, Number(e.target.value), JSON.stringify(unit.question), unit.practiceRound);\r\n                setUnit(saved);\r\n                setError('');\r\n              } catch (failure) {\r\n                setError(failure.message);\r\n              }\r\n            }}"
+          "expression": "{e => {\n              setAnswer(e.target.value);\n              try {\n                const saved = saveLearningAnswerDraft(ctx, unit.id, Number(e.target.value), JSON.stringify(unit.question), unit.practiceRound);\n                setUnit(saved);\n                setError('');\n              } catch (failure) {\n                setError(failure.message);\n              }\n            }}"
         }
       ],
       "calls": [
@@ -55423,7 +55423,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => run(() => changeUnit(() => answerLearningQuestion(ctx, unit.id, Number(answer), {\r\n          version: JSON.stringify(unit.question),\r\n          round: unit.practiceRound\r\n        })))}"
+          "expression": "{() => run(() => changeUnit(() => answerLearningQuestion(ctx, unit.id, Number(answer), {\n          version: JSON.stringify(unit.question),\n          round: unit.practiceRound\n        })))}"
         }
       ],
       "calls": [
@@ -55464,7 +55464,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => run(async () => {\r\n              await createLearningProject(ctx, unit.id);\r\n              setUnit(getLearningUnit(ctx, unit.id));\r\n            })}"
+          "expression": "{() => run(async () => {\n              await createLearningProject(ctx, unit.id);\n              setUnit(getLearningUnit(ctx, unit.id));\n            })}"
         }
       ],
       "calls": [
@@ -55789,7 +55789,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => run(async () => {\r\n          const review = await startLearningUnit(ctx, unit.conceptId, unit.classId);\r\n          setParams({\r\n            ...(unit.classId ? {\r\n              fromClass: unit.classId\r\n            } : {}),\r\n            ...(chapter ? {\r\n              chapter: chapter.id\r\n            } : {}),\r\n            unit: review.id\r\n          });\r\n        })}"
+          "expression": "{() => run(async () => {\n          const review = await startLearningUnit(ctx, unit.conceptId, unit.classId);\n          setParams({\n            ...(unit.classId ? {\n              fromClass: unit.classId\n            } : {}),\n            ...(chapter ? {\n              chapter: chapter.id\n            } : {}),\n            unit: review.id\n          });\n        })}"
         }
       ],
       "calls": [
@@ -55995,7 +55995,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => run(async () => {\r\n          if (u.stage === 'completed') {\r\n            const fresh = await startLearningUnit(ctx, u.conceptId, u.classId);\r\n            setParams({\r\n              unit: fresh.id\r\n            });\r\n            return;\r\n          }\r\n          if (u.stage === 'practice' && u.question && !u.answer) {\r\n            setParams({\r\n              unit: u.id\r\n            });\r\n            return;\r\n          }\r\n          await nextLearningQuestion(ctx, u.id, true);\r\n          setParams({\r\n            unit: u.id\r\n          });\r\n        })}"
+          "expression": "{() => run(async () => {\n          if (u.stage === 'completed') {\n            const fresh = await startLearningUnit(ctx, u.conceptId, u.classId);\n            setParams({\n              unit: fresh.id\n            });\n            return;\n          }\n          if (u.stage === 'practice' && u.question && !u.answer) {\n            setParams({\n              unit: u.id\n            });\n            return;\n          }\n          await nextLearningQuestion(ctx, u.id, true);\n          setParams({\n            unit: u.id\n          });\n        })}"
         }
       ],
       "calls": [
@@ -56302,7 +56302,7 @@
       "events": [
         {
           "event": "onSubmit",
-          "expression": "{e => {\r\n          e.preventDefault();\r\n          run(async () => {\r\n            await getContentRepository(ctx).renameProvisional(chapter.id, rename);\r\n            const next = {\r\n              ...chapter,\r\n              title: rename\r\n            };\r\n            setChapter(next);\r\n            setSyllabus({\r\n              ...syllabus,\r\n              chapters: syllabus.chapters.map(c => c.id === next.id ? next : c)\r\n            });\r\n          });\r\n        }}"
+          "expression": "{e => {\n          e.preventDefault();\n          run(async () => {\n            await getContentRepository(ctx).renameProvisional(chapter.id, rename);\n            const next = {\n              ...chapter,\n              title: rename\n            };\n            setChapter(next);\n            setSyllabus({\n              ...syllabus,\n              chapters: syllabus.chapters.map(c => c.id === next.id ? next : c)\n            });\n          });\n        }}"
         }
       ],
       "calls": [
@@ -56548,7 +56548,7 @@
       "events": [
         {
           "event": "onSubmit",
-          "expression": "{e => {\r\n        e.preventDefault();\r\n        openOutline(selection);\r\n      }}"
+          "expression": "{e => {\n        e.preventDefault();\n        openOutline(selection);\n      }}"
         }
       ],
       "calls": [
@@ -56586,7 +56586,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setSelection({\r\n            ...selection,\r\n            subject: e.target.value\r\n          })}"
+          "expression": "{e => setSelection({\n            ...selection,\n            subject: e.target.value\n          })}"
         }
       ],
       "calls": [
@@ -56653,7 +56653,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setSelection({\r\n                ...selection,\r\n                [key]: e.target.value\r\n              })}"
+          "expression": "{e => setSelection({\n                ...selection,\n                [key]: e.target.value\n              })}"
         }
       ],
       "calls": [
@@ -57265,7 +57265,7 @@
       "events": [
         {
           "event": "onSubmit",
-          "expression": "{event => {\r\n          event.preventDefault();\r\n          perform(() => {\r\n            requestOrganizationSeats(ctx, Number(seats), purpose);\r\n            setSeats('');\r\n            setPurpose('');\r\n          }, 'Seat request saved locally for owner review.');\r\n        }}"
+          "expression": "{event => {\n          event.preventDefault();\n          perform(() => {\n            requestOrganizationSeats(ctx, Number(seats), purpose);\n            setSeats('');\n            setPurpose('');\n          }, 'Seat request saved locally for owner review.');\n        }}"
         }
       ],
       "calls": [
@@ -57910,7 +57910,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          setQuery('');\r\n          setFilter('all');\r\n        }}"
+          "expression": "{() => {\n          setQuery('');\n          setFilter('all');\n        }}"
         }
       ],
       "calls": [
@@ -57962,7 +57962,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{value => {\r\n      if (!value) {\r\n        if (unsaved) {\r\n          setNotice('Save your draft or choose Discard unsaved edits before closing.');\r\n          setFailure(true);\r\n        } else setDraft(null);\r\n      }\r\n    }}"
+          "expression": "{value => {\n      if (!value) {\n        if (unsaved) {\n          setNotice('Save your draft or choose Discard unsaved edits before closing.');\n          setFailure(true);\n        } else setDraft(null);\n      }\n    }}"
         }
       ],
       "calls": [
@@ -58066,7 +58066,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => setDraft({\r\n              ...draft,\r\n              title: event.target.value\r\n            })}"
+          "expression": "{event => setDraft({\n              ...draft,\n              title: event.target.value\n            })}"
         }
       ],
       "calls": [
@@ -58117,7 +58117,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => setDraft({\r\n              ...draft,\r\n              body: event.target.value\r\n            })}"
+          "expression": "{event => setDraft({\n              ...draft,\n              body: event.target.value\n            })}"
         }
       ],
       "calls": [
@@ -58168,7 +58168,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => setDraft({\r\n              ...draft,\r\n              source: event.target.value\r\n            })}"
+          "expression": "{event => setDraft({\n              ...draft,\n              source: event.target.value\n            })}"
         }
       ],
       "calls": [
@@ -58219,7 +58219,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => setDraft({\r\n              ...draft,\r\n              language: event.target.value\r\n            })}"
+          "expression": "{event => setDraft({\n              ...draft,\n              language: event.target.value\n            })}"
         }
       ],
       "calls": [
@@ -58270,7 +58270,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{curriculumTemplate => setDraft({\r\n            ...draft,\r\n            curriculumTemplate\r\n          })}"
+          "expression": "{curriculumTemplate => setDraft({\n            ...draft,\n            curriculumTemplate\n          })}"
         }
       ],
       "calls": [
@@ -58370,7 +58370,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => perform(() => saveOrganizationContent(ctx, {\r\n            ...draft,\r\n            kind\r\n          }, draft.revision), 'Draft saved. Submit the saved revision when it is ready.')}"
+          "expression": "{() => perform(() => saveOrganizationContent(ctx, {\n            ...draft,\n            kind\n          }, draft.revision), 'Draft saved. Submit the saved revision when it is ready.')}"
         }
       ],
       "calls": [
@@ -58473,7 +58473,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => setChecks({\r\n                    ...checks,\r\n                    [key]: event.target.checked\r\n                  })}"
+          "expression": "{event => setChecks({\n                    ...checks,\n                    [key]: event.target.checked\n                  })}"
         }
       ],
       "calls": [
@@ -59091,7 +59091,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => setSeed({\r\n            nonce: crypto.randomUUID(),\r\n            title: [row.subject, row.group].filter(Boolean).join(' · '),\r\n            body: ['Learner group: ' + (row.group || 'Review required'), 'Subject: ' + (row.subject || 'Review required'), 'Earlier objective notes:', row.objectives || 'Add learning objectives before submission.', 'Review source sections and prerequisite sequence before approval.'].join('\\n\\n')\r\n          })}"
+          "expression": "{() => setSeed({\n            nonce: crypto.randomUUID(),\n            title: [row.subject, row.group].filter(Boolean).join(' · '),\n            body: ['Learner group: ' + (row.group || 'Review required'), 'Subject: ' + (row.subject || 'Review required'), 'Earlier objective notes:', row.objectives || 'Add learning objectives before submission.', 'Review source sections and prerequisite sequence before approval.'].join('\\n\\n')\n          })}"
         }
       ],
       "calls": [
@@ -59134,7 +59134,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => perform(() => updatePreferences(ctx, {\r\n          notifications: event.target.value\r\n        }), 'Preference saved locally. No delivery has been scheduled.')}"
+          "expression": "{event => perform(() => updatePreferences(ctx, {\n          notifications: event.target.value\n        }), 'Preference saved locally. No delivery has been scheduled.')}"
         }
       ],
       "calls": [
@@ -59629,7 +59629,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => edit({\r\n          kind: event.target.value\r\n        })}"
+          "expression": "{event => edit({\n          kind: event.target.value\n        })}"
         }
       ],
       "calls": [
@@ -59662,7 +59662,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => edit({\r\n          contentLanguage: event.target.value\r\n        })}"
+          "expression": "{event => edit({\n          contentLanguage: event.target.value\n        })}"
         }
       ],
       "calls": [
@@ -59695,7 +59695,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => edit({\r\n          teacherDeliveryEnabled: event.target.checked\r\n        })}"
+          "expression": "{event => edit({\n          teacherDeliveryEnabled: event.target.checked\n        })}"
         }
       ],
       "calls": [
@@ -60053,7 +60053,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => save({\r\n            notifications: event.target.value\r\n          })}"
+          "expression": "{event => save({\n            notifications: event.target.value\n          })}"
         }
       ],
       "calls": [
@@ -60100,7 +60100,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => save({\r\n            notificationLocale: event.target.value\r\n          })}"
+          "expression": "{event => save({\n            notificationLocale: event.target.value\n          })}"
         }
       ],
       "calls": [
@@ -61398,7 +61398,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          setNotice('');setNoticeError(false);setSelected(plan);\r\n          setOutcome('active');\r\n        }}"
+          "expression": "{() => {\n          setNotice('');setNoticeError(false);setSelected(plan);\n          setOutcome('active');\n        }}"
         }
       ],
       "calls": [
@@ -61487,7 +61487,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n      if (!open) setSelected(null);\r\n    }}"
+          "expression": "{open => {\n      if (!open) setSelected(null);\n    }}"
         }
       ],
       "calls": [
@@ -61842,7 +61842,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{() => setAnswers(current => ({\r\n              ...current,\r\n              [index]: answer\r\n            }))}"
+          "expression": "{() => setAnswers(current => ({\n              ...current,\n              [index]: answer\n            }))}"
         }
       ],
       "calls": [
@@ -64663,7 +64663,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        setJoinStatus(\"\");\r\n        setShowJoin(true);\r\n      }}"
+          "expression": "{() => {\n        setJoinStatus(\"\");\n        setShowJoin(true);\n      }}"
         }
       ],
       "calls": [
@@ -64759,7 +64759,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        try {\r\n          downloadText('visionary-saved-classwork-drafts.txt', localStorage.getItem(draftKey) || '');\r\n        } catch {\r\n          setDraftError('Saved draft backup could not be read. Your current editor remains available.');\r\n        }\r\n      }}"
+          "expression": "{() => {\n        try {\n          downloadText('visionary-saved-classwork-drafts.txt', localStorage.getItem(draftKey) || '');\n        } catch {\n          setDraftError('Saved draft backup could not be read. Your current editor remains available.');\n        }\n      }}"
         }
       ],
       "calls": [
@@ -64794,7 +64794,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        try {\r\n          const saved = readClassworkDrafts(ctx);\r\n          setDrafts(saved);\r\n          draftBases.current = Object.fromEntries(Object.entries(saved).map(([id, row]) => [id, classworkDraftRevision(row)]));\r\n          setDraftStorageReadable(true);\r\n          setDraftError('');\r\n        } catch (failure) {\r\n          setDraftError(failure.message);\r\n        }\r\n      }}"
+          "expression": "{() => {\n        try {\n          const saved = readClassworkDrafts(ctx);\n          setDrafts(saved);\n          draftBases.current = Object.fromEntries(Object.entries(saved).map(([id, row]) => [id, classworkDraftRevision(row)]));\n          setDraftStorageReadable(true);\n          setDraftError('');\n        } catch (failure) {\n          setDraftError(failure.message);\n        }\n      }}"
         }
       ],
       "calls": [
@@ -64867,7 +64867,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n        setJoinStatus(\"\");\r\n        setShowJoin(true);\r\n      }}"
+          "expression": "{() => {\n        setJoinStatus(\"\");\n        setShowJoin(true);\n      }}"
         }
       ],
       "calls": [
@@ -65071,7 +65071,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{event => updateDraft(a.id, {\r\n                    ...draft,\r\n                    answers: {\r\n                      ...draft.answers,\r\n                      [check.id]: event.target.value\r\n                    }\r\n                  })}"
+          "expression": "{event => updateDraft(a.id, {\n                    ...draft,\n                    answers: {\n                      ...draft.answers,\n                      [check.id]: event.target.value\n                    }\n                  })}"
         }
       ],
       "calls": [
@@ -65104,7 +65104,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => updateDraft(a.id, {\r\n                ...draft,\r\n                text: e.target.value\r\n              })}"
+          "expression": "{e => updateDraft(a.id, {\n                ...draft,\n                text: e.target.value\n              })}"
         }
       ],
       "calls": [
@@ -65137,7 +65137,7 @@
       "events": [
         {
           "event": "onSubmitted",
-          "expression": "{saved => {\r\n                setSubmissions(previous => [saved, ...previous.filter(item => item.id !== saved.id)]);\r\n                window.dispatchEvent(new CustomEvent('visionary:workspace-change'));\r\n              }}"
+          "expression": "{saved => {\n                setSubmissions(previous => [saved, ...previous.filter(item => item.id !== saved.id)]);\n                window.dispatchEvent(new CustomEvent('visionary:workspace-change'));\n              }}"
         }
       ],
       "calls": [
@@ -65300,7 +65300,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n      if (!open) closeJoin();\r\n    }}"
+          "expression": "{open => {\n      if (!open) closeJoin();\n    }}"
         }
       ],
       "calls": [
@@ -65985,7 +65985,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          openResource({\r\n            title: j.title,\r\n            body: `Objective\\n${j.objective}\\n\\nExplanation\\n${j.explanation}\\n\\nActivity\\n${j.exploration}\\n\\nCheck\\n${j.questions[0].prompt}\\n\\nSource\\nVisionary demonstration content — review before assigning.`,\r\n            kind: config.kind,\r\n            status: 'draft',\r\n            audience: 'Personal'\r\n          });\r\n          setFormError('');\r\n        }}"
+          "expression": "{() => {\n          openResource({\n            title: j.title,\n            body: `Objective\\n${j.objective}\\n\\nExplanation\\n${j.explanation}\\n\\nActivity\\n${j.exploration}\\n\\nCheck\\n${j.questions[0].prompt}\\n\\nSource\\nVisionary demonstration content — review before assigning.`,\n            kind: config.kind,\n            status: 'draft',\n            audience: 'Personal'\n          });\n          setFormError('');\n        }}"
         }
       ],
       "calls": [
@@ -66080,7 +66080,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          openResource(r);\r\n        }}"
+          "expression": "{() => {\n          openResource(r);\n        }}"
         }
       ],
       "calls": [
@@ -66127,7 +66127,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            archiveResource(ctx, r.id);\r\n            setFormError('');\r\n            setNotice(r.status === 'archived' ? 'Restored to drafts.' : 'Archived. Use Restore to bring it back.');\r\n          } catch (cause) {\r\n            setFormError(cause.message);\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            archiveResource(ctx, r.id);\n            setFormError('');\n            setNotice(r.status === 'archived' ? 'Restored to drafts.' : 'Archived. Use Restore to bring it back.');\n          } catch (cause) {\n            setFormError(cause.message);\n          }\n        }}"
         }
       ],
       "calls": [
@@ -66224,7 +66224,7 @@
       "events": [
         {
           "event": "onOpenChange",
-          "expression": "{open => {\r\n      if (!open) setDraft(null);\r\n    }}"
+          "expression": "{open => {\n      if (!open) setDraft(null);\n    }}"
         }
       ],
       "calls": [
@@ -66311,7 +66311,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n              try {\r\n                clearResourceEditorDraft(ctx, draft.id);\r\n                const latest = data.resources.find(row => row.id === draft.id);\r\n                if (!latest) throw Error(\"The latest resource is unavailable.\");\r\n                setDraft(latest);\r\n                setBaseRevision(resourceRevision(latest));\r\n                setConflict(false);\r\n                setRecovered(false);\r\n                setFormError(\"\");\r\n              } catch (cause) {\r\n                setFormError(cause.message);\r\n              }\r\n            }}"
+          "expression": "{() => {\n              try {\n                clearResourceEditorDraft(ctx, draft.id);\n                const latest = data.resources.find(row => row.id === draft.id);\n                if (!latest) throw Error(\"The latest resource is unavailable.\");\n                setDraft(latest);\n                setBaseRevision(resourceRevision(latest));\n                setConflict(false);\n                setRecovered(false);\n                setFormError(\"\");\n              } catch (cause) {\n                setFormError(cause.message);\n              }\n            }}"
         }
       ],
       "calls": [
@@ -66366,7 +66366,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n              ...draft,\r\n              title: e.target.value\r\n            })}"
+          "expression": "{e => setDraft({\n              ...draft,\n              title: e.target.value\n            })}"
         }
       ],
       "calls": [
@@ -66413,7 +66413,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n              ...draft,\r\n              body: e.target.value\r\n            })}"
+          "expression": "{e => setDraft({\n              ...draft,\n              body: e.target.value\n            })}"
         }
       ],
       "calls": [
@@ -66460,7 +66460,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{objectiveSnapshot => setDraft(current => current ? {\r\n            ...current,\r\n            objectiveSnapshot,\r\n            status: 'draft'\r\n          } : current)}"
+          "expression": "{objectiveSnapshot => setDraft(current => current ? {\n            ...current,\n            objectiveSnapshot,\n            status: 'draft'\n          } : current)}"
         }
       ],
       "calls": [
@@ -66507,7 +66507,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{checks => setDraft({\r\n            ...draft,\r\n            checks\r\n          })}"
+          "expression": "{checks => setDraft({\n            ...draft,\n            checks\n          })}"
         }
       ],
       "calls": [
@@ -66554,7 +66554,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n                ...draft,\r\n                status: e.target.value\r\n              })}"
+          "expression": "{e => setDraft({\n                ...draft,\n                status: e.target.value\n              })}"
         }
       ],
       "calls": [
@@ -66601,7 +66601,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => setDraft({\r\n                ...draft,\r\n                audience: e.target.value\r\n              })}"
+          "expression": "{e => setDraft({\n                ...draft,\n                audience: e.target.value\n              })}"
         }
       ],
       "calls": [
@@ -67058,7 +67058,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => {\r\n          try {\r\n            deleteMemory(ctx);\r\n            setConfirm(false);\r\n            setFailed(false);\r\n            setNotice('Local learning memory cleared. Previously retained observations will not be reconstructed.');\r\n          } catch (error) {\r\n            setFailed(true);\r\n            setNotice(error.message);\r\n          }\r\n        }}"
+          "expression": "{() => {\n          try {\n            deleteMemory(ctx);\n            setConfirm(false);\n            setFailed(false);\n            setNotice('Local learning memory cleared. Previously retained observations will not be reconstructed.');\n          } catch (error) {\n            setFailed(true);\n            setNotice(error.message);\n          }\n        }}"
         }
       ],
       "calls": [
@@ -67108,7 +67108,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => savePreferences({\r\n              [key]: e.target.value\r\n            })}"
+          "expression": "{e => savePreferences({\n              [key]: e.target.value\n            })}"
         }
       ],
       "calls": [
@@ -67155,7 +67155,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => savePreferences({\r\n            agiAnimation: e.target.value\r\n          }, 'Guide appearance saved on this device.')}"
+          "expression": "{e => savePreferences({\n            agiAnimation: e.target.value\n          }, 'Guide appearance saved on this device.')}"
         }
       ],
       "calls": [
@@ -67202,7 +67202,7 @@
       "events": [
         {
           "event": "onChange",
-          "expression": "{e => savePreferences({\r\n            [key]: e.target.checked\r\n          })}"
+          "expression": "{e => savePreferences({\n            [key]: e.target.checked\n          })}"
         }
       ],
       "calls": [
@@ -67289,7 +67289,7 @@
       "events": [
         {
           "event": "onClick",
-          "expression": "{() => savePreferences({\r\n          memory: false,\r\n          bilingual: false,\r\n          lowBandwidth: false,\r\n          locale: 'en',\r\n          interfaceLocale: 'en'\r\n        }, 'Personalization preferences reset. Conversations and learning evidence were kept.')}"
+          "expression": "{() => savePreferences({\n          memory: false,\n          bilingual: false,\n          lowBandwidth: false,\n          locale: 'en',\n          interfaceLocale: 'en'\n        }, 'Personalization preferences reset. Conversations and learning evidence were kept.')}"
         }
       ],
       "calls": [

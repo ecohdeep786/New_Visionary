@@ -8,7 +8,9 @@ test('JSX control inventory sees implicit, accessible and callback controls with
   const source = `// <button onClick={phantom}/>
   const View=()=> <><button onClick={save}/><a href='/next'>Next</a>
   <summary>Details</summary><Menu.Trigger/><Menu.Item/><div role="button"/>
-  <Choice onValueChange={value=>save(value)}/><input {...props}/><div>Text</div></>;`;
+  <Choice onValueChange={value=>{
+    save(value);
+  }}/><input {...props}/><div>Text</div></>;`;
   const scan = inspectSource('fixture.jsx', source);
   assert.equal(scan.controls.length, 8);
   assert.deepEqual(scan.controls[0].events, [{ event: 'onClick', expression: '{save}' }]);
