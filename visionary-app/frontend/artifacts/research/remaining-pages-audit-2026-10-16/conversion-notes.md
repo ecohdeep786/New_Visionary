@@ -1031,3 +1031,283 @@ added mechanically on the remaining pages — only where they add information.
   link label existed to convert (whole-card-link law).
 - Section-02/03/FAQ row hairlines sit at the same 0.12 as the section dividers; the
   shift from #dadce0 is subtle by design (house divider token).
+
+## 14 · `/terms` — `TermsPage.jsx` (shared `PolicyTabs.jsx` already converted) — DONE (awaiting user review)
+
+### Document rhythm (legal treatment — no bridge chapters)
+- Same quieter Apple-legal treatment as /privacy (§13): no `data-section` marks, no
+  bridge rhythm, no `page-*` block — authored document paddings stay (article sections
+  64/64, key-terms and related 80/80 @1440).
+- All authored hairlines (#dadce0/#dadce2: article divide, section-02 row, TOC note,
+  hero effective line, mobile TOC collapse, key-terms grid, related border-t) →
+  `rgba(18,19,23,0.12)`.
+- Page height 8420 → 8579 desktop @1440; 12007 mobile @390; overflowX 0. (Growth =
+  the glance/related arrows' reserved `pb-16` zones and the quiet links' h-44 hit areas.)
+- This page carries no `ValuesStrip` (authored) — related → quiet footer with the
+  footer's own border-t at the surface change (standard quiet footer, untouched).
+
+### Chrome → premium vocabulary (what §13 didn't already cover)
+- `BulletList` (sections 02/03/06/09): `g-card` r16 white box → grey-fill
+  `rounded-[30px] bg-[#f5f5f7] p-6` tray (the §13 07/10 tray law — an invisible white
+  box reads as unexplained indent against flush document text).
+- `Note` callouts (sections 01/04/07/11): `#f8f9fa` r16 `px-5 py-5 sm:px-6` → grey-fill
+  `rounded-[30px] bg-[#f5f5f7] px-6 py-5` (same tray family, text-only padding;
+  computed padding unchanged 20/24).
+- `LearnMoreRow` ×2 (05 → /privacy, 07 → /pricing): navy arrow links → quiet chevron
+  links (hit area moved to h-44 link, margin to the wrapper div).
+- Section 12 mailto (authored `text-[20px]` navy + h-5 arrow) → quiet chevron link with
+  `break-all` email + shrink-0 chevron (privacy 06 mail-row anatomy).
+- Hero action link is itself the mailto (`legal@visionary.org.in`) → quiet link
+  (hero tier 18/400 `#0066cc` h-44, chevron).
+- Everything else follows §13 exactly: PolicyTabs (shared, already converted); desktop
+  TOC active grey-fill + class grammar; mobile TOC grey `rounded-[24px]` tray +
+  `rounded-[16px]` rows (active white pill, navy number); hero dek → approved hero tier
+  (`text-[17.5px] leading-[25px]`, `max-w-[760px]`, `mt-8`; computes 18/400/25); action
+  tile `bg-[#e8f0fe]` r12 → grey-fill `rounded-[14px]`; glance cards `g-card` r20 +
+  shadow + white corner curve → white `rounded-[20px]` borderless `p-6 pb-16` with plain
+  navy `ArrowRight` bottom-6 right-6 (whole-card-link law), tile 40px tint circle → 48px
+  grey-fill r14; related cards `g-card` r12 + curve → white r20 + plain arrows,
+  gap-4 → gap-3.
+
+### Verified
+- Sections table: `main > section` = key terms + related only, both unmarked →
+  authored 80/80 kept; related border-t 1px `rgba(18,19,23,0.12)`; article sections
+  64/64 unchanged; no unmarked-section bridge leakage.
+- Diff probe (before → after, every delta intended, nothing else):
+  docH 8420 → 8579; TOC active `rgb(245,245,247)`, inactive grey, note hairline 0.12;
+  hero dek lh 30.6 → 25, margin 15.2 → 32, w 640 → 760; hero tile → grey; hero action
+  link 14/500 navy → 18/400 `#0066cc` h-44; effective-line 0.12; glance card shadow →
+  null, pad-bottom 64 (h 190 → 238), tile grey r12 48, curve + arrow wrapper missing;
+  note-01 + lists 02/03/06/09 grey `rgb(245,245,247)` r30 shadowless; 05/07 learn-more
+  links h-44; 12 mail h-44 (r4 from `rounded-sm`); terms grid + related border 0.12;
+  related card r20 shadowless, curve gone (h 341 → 353 section); overflowX 0.
+- Captures: 11 desktop segs + 16 mobile segs + the mobile TOC open-state shot reviewed
+  — tabs, hero + action row, promise row, glance cards, 02/03 trays, notes + trays,
+  05/07 quiet links, 08, 09 tray, 11, 12 mail, key terms, related cards, footer clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-terms-before.json` / `probe-terms-after.json`,
+  `captures/after/terms-after-seg00..10.jpg`,
+  `captures/after-mobile/terms-after-m-seg00..15.jpg` + `terms-after-toc-open.jpg`
+  (before segs `captures/before/terms-before-seg*.jpg`).
+
+### Open items (not defects, noted)
+- Notes and bullet trays share the one grey r30 tray family on purpose; notes read as
+  asides via copy scale, not a different surface.
+- The glance/related whole-card links keep the plain corner arrow because no inline
+  link label existed to convert (whole-card-link law, same as §13).
+- TOC active item can look stale in segmented captures after instant scroll jumps
+  (IntersectionObserver behaviour, unchanged from before).
+
+## 15 · `/cookies` — `CookiesPage.jsx` (shared `PolicyTabs.jsx` already converted) — DONE (awaiting user review)
+
+### Document rhythm (legal treatment — no bridge chapters)
+- Same quieter Apple-legal treatment as §13/§14: no `data-section` marks, no bridge
+  rhythm, no `page-*` block — authored document paddings stay (article sections
+  64/64, key terms and related 80/80 @1440).
+- All authored hairlines (#dadce0/#dadce2: article divide, TOC note, hero effective
+  line, mobile TOC collapse, key-terms grid, related border-t) →
+  `rgba(18,19,23,0.12)`.
+- Page height 5987 → 6124 desktop @1440; 8954 mobile @390; overflowX 0. No
+  `ValuesStrip` (authored) — related → quiet footer with its own border-t.
+
+### Chrome → premium vocabulary (what §13/§14 didn't already cover)
+- Hero action is a quiet **button** (not a link): "Set your cookie choices" →
+  `quietLink` grammar + chevron (h-44 hit area; onClick scroll to 04 unchanged).
+- The interactive preferences panel (04): `rounded-[24px] g-card` (computed r12 +
+  shadow) → grey-fill `rounded-[30px]` tray; inner row dividers → 0.12; switches:
+  on-track `#0b57d0` → ink `#121317`, off-track `#bdc1c6` → `#d2d2d7` (muted house
+  grey); the essential row stays disabled-on; Save button navy → ink pill (verbatim
+  `inkPill`, h-48); the aria-live status line → house green `#188038` (the kept
+  check-circle green, PartnersPage precedent).
+- Flush list (03): bordered r16 table → borderless flush list (container border-t
+  0.12, row hairlines 0.12, cell padding dropped).
+- Note (01) `#f8f9fa` r16 → grey r30 tray (`px-6 py-5`); 02 principle cards
+  `g-card` r16 + tint-circle IconTiles → white r20 shadowless + grey-fill r14 tiles;
+  05/06 panels `g-card` r16 → grey-fill r30 trays (same family as §13 06/07/10);
+  06 mailto + LearnMoreRow → quiet chevron links (h-44).
+- Everything else follows §13/§14: tabs (shared); desktop + mobile TOC anatomy;
+  hero dek → approved tier (`text-[17.5px] leading-[25px]`, `max-w-[760px]`, `mt-8`);
+  hero action tile → grey-fill `rounded-[14px]`; glance cards → white r20 `p-6 pb-16`
+  with plain navy corner arrows (curves removed), tiles 48 grey r14; related cards
+  → white r20 + plain arrows, gap-4 → gap-3.
+
+### Verified
+- Sections table: `main > section` = key terms + related only, both unmarked →
+  authored 80/80 kept; related border-t 1px `rgba(18,19,23,0.12)`; article sections
+  64/64 unchanged.
+- Diff probe (before → after, every delta intended, nothing else): docH 5987 → 6124;
+  TOC active `rgb(245,245,247)`, inactive grey, note hairline 0.12; hero dek
+  lh 30.6 → 25 (now one line at w-760); action button 14/500 navy → 18/400
+  `#0066cc` h-44; effective-line 0.12; glance card shadow → null, pad-bottom 64
+  (h 190 → 238), tile grey r12 48, curves gone; note-01 grey r30; c02 cards r20
+  shadowless, tiles grey r12; c03 wrap r0 border-t 0.12, rows pad 20/0 with 0.12 row
+  hairlines (h 233 → 256); c04 panel grey r30 shadowless, switches ink
+  `rgb(18,19,23)` / `rgb(210,210,215)`, save pill ink h-48 (w 129 → 153), status
+  `rgb(24,128,56)`; c05/c06 trays grey r30; c06 mail + lm-06 h-44; key-terms +
+  related 0.12; related card r20 shadowless p-6 pb-16, curves gone; overflowX 0.
+- Captures: 8 desktop segs + 12 mobile segs + the mobile TOC open-state shot
+  reviewed — tabs, hero + action row, promise row, glance cards, 01 note tray,
+  02 cards, 03 flush list, 04 panel (rows, switches, ink pill), 05 tray, 06 tray +
+  quiet links, key terms, related cards, footer clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-cookies-before.json` / `probe-cookies-after.json`,
+  `captures/after/cookies-after-seg00..07.jpg`,
+  `captures/after-mobile/cookies-after-m-seg00..11.jpg` + `cookies-after-toc-open.jpg`
+  (before segs `captures/before/cookies-before-seg*.jpg`).
+
+### Open items (not defects, noted)
+- The Save-confirmation green `#188038` is the only non-navy accent added; it reuses
+  the kept check-circle green for positive states (no new palette).
+- The 04 panel is the legal five's only interactive surface; its mechanics
+  (localStorage persistence, role="switch", disabled essential row) are untouched.
+- TOC active item can look stale in segmented captures after instant scroll jumps
+  (IntersectionObserver behaviour, unchanged from before).
+
+## 16 · `/security` — `SecurityPage.jsx` (shared `PolicyTabs.jsx` already converted) — DONE (awaiting user review)
+
+### Document rhythm (legal treatment — no bridge chapters)
+- Same quieter Apple-legal treatment as §13–§15: no `data-section` marks, no bridge
+  rhythm, no `page-*` block — authored document paddings stay (article sections
+  64/64, key terms and related 80/80 @1440).
+- All authored hairlines (#dadce0/#dadce2: article divide, TOC note, hero effective
+  line, mobile TOC collapse, key-terms grid, related border-t) →
+  `rgba(18,19,23,0.12)`.
+- Page height 8274 → 8460 desktop @1440; 12240 mobile @390; overflowX 0.
+  `ValuesStrip` present (authored, already converted) — the strip → quiet footer
+  join stays seamless via the shared seam rule (no hairline at the surface change).
+
+### Chrome → premium vocabulary (what §13–§15 didn't already cover)
+- `SecurityCard` grids (04, 05): `rounded-[16px] g-card` (computed r12 + shadow) →
+  white `rounded-[20px]` shadowless; IconTile `#e8f0fe` circle → grey-fill
+  `rounded-[14px]` (computes r12) 48px.
+- Note callouts (6×: 01/02/03/04/06/07) `#f8f9fa` r16 → grey-fill `rounded-[30px]`
+  tray `px-6 py-5` (the §13/§14 note family).
+- Stacked single-column panels (7×: 08 ×4 "Our security commitments", 09 ×3 sync
+  rows) `rounded-[16px] g-card p-5 sm:p-6` → grey-fill `rounded-[30px]` trays with
+  authored padding kept (single-column-box → tray law, §13 06/07/10 precedent).
+- 09 action pair: navy primary pill (h-44) → verbatim `inkPill` (ink, h-48);
+  bordered secondary pill → verbatim `greyPill` (grey fill, borderless, px-8) —
+  the three consts are the house link grammar (`quietLink`/`inkPill` identical to
+  §13–§15 pages; `greyPill` from `ReferralPage.jsx`).
+- LearnMoreRow + hero mailto + 07/10 mailto rows → quiet chevron links
+  (`quietLink` + `ChevronIcon` h-4); the two text-[20px] mailto rows got
+  `break-all` + `shrink-0` chevron (§14 12-mailto precedent).
+- Everything else follows §13–§15: tabs (shared); desktop + mobile TOC anatomy
+  (active grey fill / white pill, 0.12 hairlines); hero dek → approved tier
+  (`text-[17.5px] leading-[25px]`, `max-w-[760px]`, `mt-8`); hero action tile →
+  grey `rounded-[14px]`; glance cards → white r20 `p-6 pb-16` with plain navy
+  corner arrows (curves removed), tiles 48 grey r14; related cards → white r20 +
+  plain arrows, gap-4 → gap-3.
+
+### Verified
+- Sections table: `main > section` = key terms + related only, both unmarked →
+  authored 80/80 kept; related border-t 1px `rgba(18,19,23,0.12)`; every article
+  section keeps its authored padding.
+- Diff probe (before → after, every delta intended, nothing else): docH 8274 → 8460;
+  TOC active `rgb(245,245,247)`, inactive grey, note hairline 0.12; hero dek
+  lh 30.6 → 25, margin 15.2 → 32, w 640 → 760 (h 61 → 50); action tile grey;
+  hero action link 14/500 navy → 18/400 `#0066cc` h-44; effective-line 0.12;
+  glance card shadow → null, pad-bottom 64 (h 190 → 238), tile grey r12 48,
+  curves gone; sec-02 + notes 0.12; note-01/04 grey r30; card-04 r20 shadowless,
+  tile grey r12; 08 + 09 stacks white r16 shadowed → grey r30 shadowless (7 panels);
+  lm-sync/lm-help h-44 (margin moved to wrapper); pill-primary navy h-44 → ink h-48
+  px-7 (w 267 → 275); pill-secondary transparent 1px-border h-44 → grey-fill
+  borderless h-48 px-8 (w 198 → 212); mail-07/10 h-44 (r4 from `rounded-sm`);
+  key-terms + related 0.12; related card r20 shadowless p-6 pb-16 (h 145 → 157),
+  curves gone; overflowX 0.
+- Captures: 11 desktop segs + 17 mobile segs + the mobile TOC open-state shot
+  reviewed — tabs + hero, action row + glance cards, 01/02 notes, 04/05
+  SecurityCards, 08 commitments stack, 09 sync stack + pills + quiet link,
+  07/10 quiet mailtos, key terms, related cards, ValuesStrip → footer join clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-security-before.json` / `probe-security-after.json`,
+  `captures/after/security-after-seg00..10.jpg`,
+  `captures/after-mobile/security-after-m-seg00..16.jpg` + `security-after-toc-open.jpg`
+  (before segs `captures/before/security-before-seg*.jpg`).
+
+### Open items (not defects, noted)
+- The 08/09 stacks are the legal five's only multi-panel single-column groups; each
+  panel became its own grey r30 tray (structure preserved, spacing kept at space-y-4).
+- The glance/related whole-card links keep the plain corner arrow because no inline
+  link label existed to convert (whole-card-link law, same as §13).
+- TOC active item can look stale in segmented captures after instant scroll jumps
+  (IntersectionObserver behaviour, unchanged from before).
+
+## 17 · `/accessibility` — `AccessibilityPage.jsx` — DONE (awaiting user review)
+
+### Document rhythm (legal treatment — no bridge chapters)
+- Same quieter Apple-legal treatment as §13–§16: no `data-section` marks, no bridge
+  rhythm, no `page-*` block — every authored padding kept (hero 64/56, statement
+  128/128, category bands + sync/resources/commitment 96/96, closing 0/96 @1440).
+  The page carries no PolicyTabs and no TOC (authored); the hero anchor chips are
+  its on-page navigation.
+- Authored hairlines (#dadce0 / #dadce2: statement border-y, resources + commitment
+  border-t, resource-row separators) → `rgba(18,19,23,0.12)`.
+- `ValuesStrip` present (authored, already converted) — strip → quiet footer join
+  clean via the shared seam rule.
+
+### Chrome → premium vocabulary
+- Hero: dek → approved tier (`text-[17.5px] leading-[25px]`, `max-w-[760px]`,
+  `mt-8`; centered, `mx-auto` kept); navy CTA pill → verbatim `inkPill` (h-48;
+  actions row `mt-8` → `mt-10`); the five outlined anchor chips → verbatim
+  `chipPill` (grey fill, borderless; row `mt-7 gap-2` → `mt-6 gap-4`, centered —
+  chips now wrap 3+2 at 1440, see open items).
+- Category bands (vision/motor): `#f8f9fa` → house grey `#f5f5f7`; all 16 category
+  cards `rounded-2xl g-card` (r16 + shadow) → white `rounded-[20px]` shadowless
+  (white on the grey bands, flat columns on the white bands — house card law).
+- Sync showpiece: tint panel `rounded-[28px]` `#e8f0fe` (computed r12) → grey
+  `rounded-[30px]` tray; lock chip `border + bg-white/80` → borderless solid white;
+  pill pair → verbatim `inkPill` + `greyPill`; dashed connector `#a8c7fa` → house
+  muted grey `#d2d2d7`; device cards `g-card` + bespoke shadow → white r20
+  shadowless; device tiles 48 `#e8f0fe` circles → grey r14 (computes r12). Green
+  "Encrypted" locks kept (check-mark green).
+- Resources panel: bordered link list + `ArrowUpRight` → flush hairline list
+  (container border-t 0.12, rows `px-6` → `px-0`, row hairlines 0.12, tinted mail
+  row fill dropped, its single hairline kept) with plain navy `ArrowRight` +
+  `group-hover:translate-x-1`; hover `#f8f9fa` → `#f5f5f7`.
+- Commitment: 3 cards → white r20 shadowless; tint-circle tiles → grey r14.
+- Closing band: `rounded-[28px]` `#e8f0fe` → grey r30 tray (decorative
+  `relative/overflow-hidden` dropped); white shadow pill + `ArrowUpRight` → verbatim
+  `inkPill` (text-only, pill law); bordered pill → verbatim `greyPill`.
+
+### Defect fixed (pre-existing, mobile)
+- Under 640px the sync device trio (3×112px + gaps = 368px min-content) forced the
+  panel's single grid track past the viewport — paragraph/chip/pills clipped ~58px
+  at the screen edge (measured 400px content in a 342px tray). Fix: device row
+  `flex-wrap … sm:flex-nowrap` (2+1 centered trio under 640px; desktop re-capture
+  byte-identical, 9 segs / 6761px). Re-measured: content 278px, offsets 0; 390px
+  page sweep clean (only the global pointer-events-none toast layer overhangs,
+  present on every page).
+
+### Verified
+- Sections table: 10 direct sections, all unmarked → every authored padding kept;
+  statement/resources/commitment borders 1px `rgba(18,19,23,0.12)`.
+- Diff probe (before → after, every delta intended, nothing else): docH 6669 → 6761;
+  hero-dek lh 28.8 → 25, margin 15.2 → 32, w 680 → 760 (h 58 → 50); CTA navy h-44 →
+  ink h-48 px-7 (w 188 → 221); chips white 36px bordered/14 grey → grey 44px
+  borderless/16 ink (w 159 → 195; nav h 36 → 104, the 3+2 wrap); statement border
+  0.12; vision/motor bands `rgb(245,245,247)`; cards r16+shadow → r20 shadowless;
+  sync panel `#e8f0fe` r12 → grey r30 (h 478 → 480); chip borderless white
+  (h 38 → 36); pills ink h-48 (w 167 → 175) / grey h-48 (w 198 → 212); device cards
+  r20 shadowless; device tiles tint r9999 → grey r12; dash `#a8c7fa` → `#d2d2d7`;
+  resources panel white r16+shadow → border-t 0.12 only (r0, bg none, h 405 → 406);
+  rows hairline 0.12, pad 20/24 → 20/0; mail tint dropped; arrows `#9aa0a6` →
+  `#0b57d0`; commitment cards r20 shadowless, tiles grey r12; closing band grey r30
+  (h 451 → 455); close pills ink h-48 (w 270 → 256, icon dropped) / grey h-48
+  (w 194 → 208); overflowX 0.
+- Captures: 9 desktop segs + 16 mobile segs reviewed — hero + chips, statement,
+  category bands + cards, sync tray + device trio, flush resource list, commitment,
+  closing pills, strip → footer join clean.
+- Gate: eslint clean → tsc both configs clean → vite build clean → 527/527 tests.
+- Evidence: `probe-accessibility-before.json` / `probe-accessibility-after.json`,
+  `captures/after/accessibility-after-seg00..08.jpg`,
+  `captures/after-mobile/accessibility-after-m-seg00..15.jpg`
+  (before segs `captures/before/accessibility-before-seg00..08.jpg`).
+
+### Open items (not defects, noted)
+- The hero anchor chips wrap 3+2 at 1440 — five chips at the house chip size no
+  longer fit one 900px line; reads as a deliberate centered cluster.
+- The statement paragraph renders at the body tier through the approved
+  cross-cutting statement-tier selector (pre-existing, unchanged by this pass).
+- `/accessibility` is the legal five's only page without PolicyTabs/TOC (authored);
+  no `page-*` bridge block added, per the legal treatment.
