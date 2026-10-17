@@ -1463,3 +1463,6 @@ No auth session, production student record, payment, source right, domain API or
 
 
 D-094 integration correction: the first original-dev audit detected multiline callback strings serialized with checkout-specific CRLF even though their digests were canonical. Mainf4e606c had already received the identical worker tree before that failure was inspected; no hosted deployment occurred. Normalize source text before extracting every expression and strengthen the LF/CRLF fixture with a multiline callback. All5 focused tests pass after repair, and complete original/worker source inventories compare structurally equal. The corrected dev check must pass before the next main promotion.
+
+
+D-094 corrected release verification: inspect completed original-dev check exit0 before promotion. All532 frontend and18 script tests pass,0 failures; lint/types/layout/import/audit pass, build17.32s. Dev36933df is published and main328239b has exactly the same treeac449a72013ceab86976424d04778e0155c494e4. Jira comment10001 records precise source-only acceptance and open gates; transition51 returns Done for KAN-28. No hosted deployment is claimed. Closure metadata does not change the tested application/audit implementation.

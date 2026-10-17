@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "meaning": "Current scoped task execution receipts supplement dated requirement and capacity snapshots; read live Jira before assigning the next task. A source-enabler completion does not complete its linked product/release gates.",
+  "tasks": [
+    {
+      "sourceId": "SCOPE-01",
+      "jiraKey": "KAN-28",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-28",
+      "status": "Done",
+      "verifiedAt": "2026-10-17T17:56:50.838Z",
+      "scope": "Accepted source inventory and drift-check enabler only",
+      "branch": "codex/codex-tasks",
+      "implementationCommits": [
+        "593f2a210fd51d08b9859803d9e1cdf1b3a70c7d",
+        "36933dfedb33822feeded5254bf78a988984e46d"
+      ],
+      "acceptedImplementationDev": "36933dfedb33822feeded5254bf78a988984e46d",
+      "acceptedImplementationMain": "328239b616de4c7304081e8d09962ce87497957a",
+      "acceptedImplementationTree": "ac449a72013ceab86976424d04778e0155c494e4",
+      "checks": {
+        "frontendTests": 532,
+        "scriptTests": 18,
+        "failed": 0,
+        "lint": true,
+        "typecheck": true,
+        "build": true,
+        "buildSeconds": 17.32,
+        "audit": true
+      },
+      "artifacts": [
+        "docs/architecture/PRODUCT_SURFACE_AUDIT.md",
+        "docs/architecture/tracking/product-surface.json",
+        "integration/contracts/product-surface-review.json"
+      ],
+      "coverage": {
+        "routeEntries": 68,
+        "controlDeclarations": 1637,
+        "controlFiles": 219,
+        "registeredEndpoints": 26,
+        "reviewedOperationGroups": 30,
+        "roles": 5,
+        "syntheticCategoryScenarios": 9
+      },
+      "hostedDeploymentVerified": false,
+      "gcpProject": "visionary-research",
+      "deploymentBlocker": "Cloud console needs user sign-in; no authenticated CLI/product deployment pipeline is available in this workspace. Existing cloud services and URLs remain unknown.",
+      "linkedProductGatesRemainOpen": true
+    }
+  ]
+}

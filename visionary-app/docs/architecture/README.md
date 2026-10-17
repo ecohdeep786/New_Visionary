@@ -1,6 +1,6 @@
 # Repository structure and ownership
 
-D-094 / KAN-28: [current route, control and operation audit](PRODUCT_SURFACE_AUDIT.md), [full machine-readable declarations](tracking/product-surface.json) and [review boundaries](../../integration/contracts/product-surface-review.json). `npm run scope:audit` checks drift as part of `npm run check`. Source-level connection, browser-local rehearsal and actual hosted acceptance are separate states; current ML/domain and cloud release gaps remain explicit.
+D-094 / KAN-28: [current route, control and operation audit](PRODUCT_SURFACE_AUDIT.md), [full machine-readable declarations](tracking/product-surface.json) and [review boundaries](../../integration/contracts/product-surface-review.json). The source-audit enabler is accepted; [current execution receipts](tracking/task-executions.json) and live Jira supplement the dated requirement/calendar snapshots below. `npm run scope:audit` checks drift as part of `npm run check`. Source-level connection, browser-local rehearsal and actual hosted acceptance are separate states; current ML/domain and cloud release gaps remain explicit.
 
 D-093 agent delivery: [branch ownership, isolated checkouts and review-to-release workflow](BRANCH_WORKFLOW.md). `dev` is integration, `main` is production history; Codex, DeepSeek and the founder use separate worker branches. The existing calendar remains the earlier one-agent forecast until capacity and task ownership are reforecast.
 
