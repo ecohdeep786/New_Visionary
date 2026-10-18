@@ -76,5 +76,12 @@ test('the checked inventory includes every current declaration without granting 
   assert.deepEqual(surface.review.interfaceLocales, ['en', 'hi', 'bn']);
   assert.ok(surface.review.operations.some(o => o.id === 'ask-guide-model-turn' && o.state === 'missing'));
   assert.ok(surface.review.operations.some(o => o.id === 'account-records-ui-binding' && o.state === 'missing'));
-  assert.ok(surface.endpoints.every(e => !/learn|model|project|classroom/.test(e.path)));
+  assert.ok(surface.endpoints.every(e => !/model|project|classroom/.test(e.path)));
+  // Learning endpoints are permitted only as the one reviewed durable-loop operation;
+  // model, project and classroom endpoints stay blocked until their own reviews.
+  const durable = surface.endpoints.filter(e => e.path.startsWith('/api/account/learning/'));
+  const durableOperation = surface.review.operations.find(o => o.id === 'durable-teaching-loop-sessions');
+  assert.equal(durableOperation.state, 'connected');
+  assert.equal(durableOperation.execution, 'server');
+  assert.deepEqual(durable.map(e => `${e.method} ${e.path}`).toSorted(), durableOperation.endpoints.toSorted());
 });

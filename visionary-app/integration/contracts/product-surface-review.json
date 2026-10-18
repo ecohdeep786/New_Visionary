@@ -2817,7 +2817,7 @@
       "files": [
         "frontend/src/pages/dashboard/LearningWorkspace.jsx"
       ],
-      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; server sessions, assessment and learning projections remain required.",
+      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; the owner-scoped durable loop is recorded separately below, and hosted learning projections remain required.",
       "followUp": [
         "LEARN-02",
         "LEARN-09",
@@ -2825,6 +2825,37 @@
         "SYNC-02"
       ],
       "endpoints": []
+    },
+    {
+      "id": "durable-teaching-loop-sessions",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId",
+        "/dashboard/practice",
+        "/dashboard/progress"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/LearningWorkspace.jsx",
+        "frontend/src/services/learningSessionClient.js"
+      ],
+      "reason": "A signed-in owner records one authored check at a time, the server scores the selection against its stored key and an identical command replays after a lost response. Locally verified only: no hosted run, SQL owning store, authoritative content/criteria service or cross-device acceptance is claimed.",
+      "followUp": [
+        "LEARN-08",
+        "LEARN-09",
+        "LEARN-10",
+        "SYNC-01",
+        "SYNC-02"
+      ],
+      "endpoints": [
+        "GET /api/account/learning/sessions",
+        "POST /api/account/learning/sessions",
+        "GET /api/account/learning/sessions/:sessionId",
+        "POST /api/account/learning/sessions/:sessionId/checks",
+        "POST /api/account/learning/sessions/:sessionId/assessments",
+        "POST /api/account/learning/sessions/:sessionId/cancel"
+      ]
     },
     {
       "id": "ask-guide-model-turn",

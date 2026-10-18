@@ -1,6 +1,6 @@
 import { BadRequestException, ConflictException, HttpException, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { FieldPath, Firestore } from 'firebase-admin/firestore';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { FirebaseProductService } from '../auth/firebase-product/firebase-product.service';
 import { accountPath } from '../auth/firebase-product/account-storage';
 import { TeachingLoop, TeachingPolicyError, presentTeachingCheck, recordTeachingCheck, startTeachingLoop, teachingLoopState } from './teaching-policy';
@@ -70,7 +70,8 @@ export class LearningService {
       return db.runTransaction(async tx => {
         const previous = await tx.get(receiptRef);
         if (previous.exists) return this.replay(previous.data(), uid, 'start', fingerprint);
-        const sessionRef = this.sessions(db, uid).doc(), sessionId = sessionRef.id, at = now();
+        // Explicit identifier: the client and controller validate one opaque UUID shape.
+        const sessionId = randomUUID(), sessionRef = this.sessions(db, uid).doc(sessionId), at = now();
         const loop = startTeachingLoop({ uid, workspaceId: command.workspaceId, conceptId: command.conceptId,
           sourceVersion: command.sourceVersion, criteriaVersion: command.criteriaVersion }, sessionId, command.maxFailedChecks);
         const data = { schemaVersion: 1, uid, sessionId, workspaceId: command.workspaceId,
