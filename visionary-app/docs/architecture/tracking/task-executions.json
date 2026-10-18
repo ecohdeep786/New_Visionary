@@ -89,30 +89,50 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "In Progress",
-      "scope": "Source-backed candidate launch coverage matrix and fail-closed diagnosis/drift checks; founder release matrix acceptance and domain/provider/source gates remain open.",
+      "status": "Testing",
+      "scope": "All exposed roles/categories/curriculum choices retained; source-pinned engineering coverage candidate under independent technical review. Whole accepted release matrix and source/provider/admission/commercial evidence remain open.",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix/visionary-app",
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
-      "jiraCommentId": "10021",
-      "jiraTransitionId": "21",
+      "jiraCommentId": "10026",
+      "jiraTransitionId": "41",
       "review": {
-        "state": "not-submitted",
-        "candidateScope": "Engineering candidate only; accepted first release matrix still required."
+        "state": "approved-engineering-only",
+        "implementer": "Codex",
+        "reviewer": "account_structure_review",
+        "candidateCommit": "ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0",
+        "candidateScope": "Engineering contract/check/report only; full release-matrix acceptance remains open.",
+        "previousCandidate": "973918b49d98fb2bee03697b86c0685e2dc5fcec",
+        "previousDecision": "changes requested",
+        "finding": "P2 later source mutation could pass after a matrix-only rehash; repaired through independent reviewed source pins and re-submitted.",
+        "findingReportCommit": "d1c4f799e54008c30e75cd62eef284f8377da284",
+        "approvedCommit": "ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0",
+        "reviewerReportCommit": "af9001a36bcdc9ff3045862cae59bb30e1bf8c91",
+        "evidence": "docs/architecture/delivery/KAN29_INDEPENDENT_REVIEW.md",
+        "decisionAt": "2026-10-18T15:41:41.196Z",
+        "findingResolved": true,
+        "wholeTaskAccepted": false
       },
       "branch": "codex/codex-kan-29-coverage-matrix",
       "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
       "checks": {
-        "coverageTests": 8,
+        "coverageTests": 12,
         "diagnosticCombinations": 9720,
-        "rootCheck": true,
-        "scriptTests": 26,
-        "frontendTests": 532,
+        "allScriptRegressions": 48,
         "failed": 0,
-        "lint": true,
-        "typecheck": true,
-        "build": true,
-        "buildSeconds": 31.1
+        "coverageCheck": true,
+        "fullRootCheck": {
+          "exitCode": 0,
+          "startedAtCommit": "973918b49d98fb2bee03697b86c0685e2dc5fcec",
+          "scriptTestsBeforeRepair": 29,
+          "frontendTests": 532,
+          "lint": true,
+          "typecheck": true,
+          "build": true,
+          "buildSecondsRounded": 106,
+          "note": "Tooling-only repair occurred during the unchanged frontend test/build phases. Replacement tooling separately passes all48 script cases; this is not claimed as an untouched full run at replacement SHA."
+        },
+        "runtimeChangedAfterFullCheckStart": false
       },
       "ownedFiles": [
         "integration/contracts/launch-coverage.v1.json",
@@ -122,9 +142,21 @@
         "docs/architecture/LAUNCH_COVERAGE_MATRIX.md",
         "docs/architecture/delivery/KAN29_COVERAGE_REVIEW.md",
         "package.json",
-        "scripts/check.mjs"
+        "scripts/check.mjs",
+        "docs/visionary/design/KAN29_LAUNCH_COVERAGE_DECISIONS.md"
       ],
-      "implementationCheckpoint": "1b1d42efe6d6ea44c17cfb87d139f30c6f3769f8"
+      "implementationCheckpoint": "ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0",
+      "founderScope": {
+        "allExposedCategoriesAndCurriculumChoices": true,
+        "sourceEditionRightsProviderAcceptance": false,
+        "acceptedRealLearningSlices": 0
+      },
+      "integration": {
+        "state": "not-integrated",
+        "branch": "dev",
+        "currentDev": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+        "note": "Whole task acceptance is still open; technical approval alone is not a full release-matrix closeout."
+      }
     },
     {
       "sourceId": "AI-11",
