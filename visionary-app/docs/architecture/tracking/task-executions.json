@@ -97,14 +97,22 @@
       "jiraCommentId": "10021",
       "jiraTransitionId": "21",
       "review": {
-        "state": "not-submitted"
+        "state": "not-submitted",
+        "candidateScope": "Engineering candidate only; accepted first release matrix still required."
       },
       "branch": "codex/codex-kan-29-coverage-matrix",
       "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
       "checks": {
         "coverageTests": 8,
         "diagnosticCombinations": 9720,
-        "rootCheck": "running"
+        "rootCheck": true,
+        "scriptTests": 26,
+        "frontendTests": 532,
+        "failed": 0,
+        "lint": true,
+        "typecheck": true,
+        "build": true,
+        "buildSeconds": 31.1
       },
       "ownedFiles": [
         "integration/contracts/launch-coverage.v1.json",
@@ -115,7 +123,8 @@
         "docs/architecture/delivery/KAN29_COVERAGE_REVIEW.md",
         "package.json",
         "scripts/check.mjs"
-      ]
+      ],
+      "implementationCheckpoint": "1b1d42efe6d6ea44c17cfb87d139f30c6f3769f8"
     },
     {
       "sourceId": "AI-11",

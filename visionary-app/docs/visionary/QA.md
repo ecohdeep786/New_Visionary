@@ -1503,3 +1503,9 @@ D-099 acceptance receipt: separate reviewer account_structure_review approves ex
 
 
 D-099 cleanup receipt: accepted closeout93e27749a0eda8cdfc549d50d13125a928db3b75 is published at origin/dev/task branch; independent reviewer branch remains recoverable. Reviewer checkout is physically removed, and Git worktree list contains only primary dev. Required ignored reviewer preloader is byte-verified into primary artifacts/qa/kan161; live private-value-free evidence remains there. Dependency junctions are removed as links and primary component dependencies remain accessible. Git unregisters the completed implementation checkout but reports Filename too long while deleting its files. Automatic approval review rejects the verified extended-path recursive deletion with reason blocked by policy; no bypass/further deletion is attempted. The remaining codex-kan-161-account-structure folder is explicitly retained as a cleanup limitation, not an active worker. Database/source acceptance and native Jira Done are unchanged.
+
+
+## D-100 — KAN-29 first implementation checkpoint verification · 2026-10-18
+
+
+Implementation checkpoint1b1d42efe6d6ea44c17cfb87d139f30c6f3769f8 is pushed and remote-ref verified. Full npm run check exits0: normal layout/import integrity,26 script tests (including8 new coverage tests), independent coverage/source drift check, unchanged68-route/1637-control/26-endpoint audit, lint, both typechecks,532 frontend tests0fail and Vite build31.10seconds. Source inspection and CLI syntax/diff checks pass. No product source or live data/provider was changed. This supersedes the earlier running-check wording. KAN-29 remains In Progress; separate review and founder/source/provider release-matrix acceptance are still pending, with no new dev/main merge.
