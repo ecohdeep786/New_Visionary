@@ -56,3 +56,34 @@ The ignored reviewer preloader uses the baseline locked TypeScript/SDK runtime f
 Result: exit 1, 31 tests, 30 passed, 1 failed, 60.45 seconds. All account-storage service/HTTP and auth service/HTTP tests passed, as did the real Family departure regression. The sole failure is the combined injected-defects assertion `failed.recordDifferences >= 3` in account-directory.test.cjs. Fixture construction stores the same event object in both global and nested maps; mutating nested type also changes the supposed comparison source. Clone the second stored event so the intended third corruption actually exists. This is a test fixture defect rather than a source-verifier defect, but the failing required check still prevents approval.
 
 Reviewer decision for aab4568efdabfc55b903385a23bf06477f5cf7d5: **changes requested** pending corrected exact candidate and passing checks. `git diff --check` exit 0 on this replacement. No live reconciliation or dev integration authorized by this report yet.
+
+## Corrected candidate f28c4d088c21884a8169e9e66648f79b692c4c53
+
+The only change from aab4568efdabfc55b903385a23bf06477f5cf7d5 is cloning the nested test event. I reviewed that exact change and reran the affected directory suite against reviewed TypeScript:
+
+```text
+node --require ./artifacts/qa/review-ts-preloader.cjs --test backend/tests/account-directory.test.cjs
+```
+
+Result: exit 0, 5 tests passed, 0 failed, 11.98 seconds, 18 October 2026. Together with the unchanged account-storage/auth suites already independently passing (26 tests), all 31 relevant reviewer checks now pass. The affected rerun covers additive/replay preservation, wrong ownership/newer schema rejection, current mirror defects and actual Family departure. `git diff --check` passes for the full corrected candidate. The reviewer branch differs from the exact implementation only by this review document.
+
+There are no remaining actionable source findings. Normal backend build/test evidence remains pending at this checkpoint, so the final approval decision is recorded only after that evidence below.
+
+## Final source review — approved exact implementation 075e082fc084261ab7fbacc30bade178361d92db
+
+18 October 2026. Reviewer: account_structure_review, separate from implementer Codex. **Approved for the KAN-161 account hierarchy/directory and backend maintenance scope.** Both earlier findings are resolved. This decision covers only this exact implementation commit and the accepted scope; it does not complete future domain features or certify a hosted release.
+
+The changes since f28c4d088c21884a8169e9e66648f79b692c4c53 are a type-only DocumentReference annotation fixing TypeScript transaction overload inference and generated source-audit decorator offsets/controller hash. I inspected this entire delta. I independently verified the controller SHA-256 against product-surface.json and checked decorators at lines 14, 30 and 43. The annotation changes no runtime behavior. Full candidate diff check exits 0.
+
+Normal compiled verification reported by the implementer on this exact candidate, following the reviewer's independent direct-source checks above:
+
+- `npm run backend:build`: exit 0.
+- `node --test --test-concurrency=2 backend/tests/firebase-admin.test.cjs backend/tests/firebase-product.test.cjs backend/tests/account-storage.test.cjs backend/tests/account-directory.test.cjs backend/tests/billing.test.cjs backend/tests/feedback.test.cjs`: exit 0; 63 tests passed, 0 failed; 11.75 seconds. This includes the five directory tests through ordinary compiled output, positive/replay/failure and owner isolation, account/storage HTTP authority, preserved billing/Family behavior and feedback regression coverage.
+- Root `npm run check` so far: layout/import integrity, 18 script regression tests and regenerated unchanged-count product surface audit passed. Frontend lint/typecheck/test/build remain pending at the time of this source approval and must pass before accepting/publishing dev integration.
+- The implementer reports unchanged lock hashes verified before reusing corresponding baseline per-component dependency directories through junctions after a slow fresh-install attempt. Build output and reviewed sources belong to the task checkout. Production environment configuration was not copied.
+
+Verification result: **passed for exact-source/backend scope**, using independent direct-source functional checks plus inspected normal build/test evidence. No remaining actionable source findings. The canonical directory is an ownership/location schema, not activity or a permission grant. The additive reconciler changes only derived directory metadata; UID, profile, billing, history and domain authorities retain their existing paths and semantics. Current-tree checks now match actual billing queue scheduling semantics.
+
+Dev integration and remaining release/operational gates: pending and not certified by this approval. Complete the root check, compare exact approved source against current dev, check/publish the integrated result and record actual Jira receipts. Only then proceed with the scoped live read-only plan, additive directory apply, zero-write replay and current-tree readback; preserve no-deletion/no-provider-operation constraints. Live evidence has not been executed or claimed by this reviewer. Keep Jira Testing until relevant integrated verification and native Done criteria are satisfied. KAN-38/KAN-42 and other future domain/provider/privacy/hosted prerequisites remain open and receive no acceptance from this review.
+
+Rollback remains stopping directory reads/provisioning while preserving additive metadata and existing owning records. No reverse migration is needed. Later implementation changes require renewed exact-SHA review.
