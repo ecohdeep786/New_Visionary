@@ -52,3 +52,8 @@ Fresh npm ci operations were unusually slow and were explicitly interrupted, not
 ## Full check receipt
 
 At implementation075e082fc084261ab7fbacc30bade178361d92db, the complete npm run check exits0: layout/import integrity,18 script tests, unchanged68-route/1637-control/26-endpoint audit, frontend lint, both type configurations,532 frontend tests0fail and Vite production build29.14seconds. Normal backend build and63 compiled backend tests also pass. This supersedes the draft pending check states above. No hosted/provider/user-activity feature acceptance is inferred. Written separate review and live metadata reconciliation remain pending at this receipt.
+
+
+## Separate acceptance receipt
+
+account_structure_review independently approved exact implementation075e082fc084261ab7fbacc30bade178361d92db. The written decision is in KAN161_INDEPENDENT_REVIEW.md, published on its separate branch atcae90769732dcff26e6a1b0ea9b125a196c41dd0. Source/back-end verification passed; integrated/live/Jira receipts remain pending. This supersedes the draft reviewer-pending states above. Task headb983e612276573466abe4fa01cfe8e9e630be18c contains the approved runtime byte-identically plus review/evidence-only changes.

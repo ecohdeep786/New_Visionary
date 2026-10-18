@@ -1,6 +1,6 @@
 # Permanent account structure — KAN-161
 
-18 October 2026. Implementer: Codex. Review state: pending separate exact-commit review. This contract finalizes account organization; future domain functionality is not implemented by a directory entry.
+18 October 2026. Implementer: Codex. Review state: separately approved implementation075e082fc084261ab7fbacc30bade178361d92db; see the independent delivery review. This contract finalizes account organization; future domain functionality is not implemented by a directory entry.
 
 The founder requests one original account after authentication, with understandable sections for every activity. The canonical identity remains the verified Firebase UID. All devices and roles reuse it. There is one Firestore account root; connected private records are its children. Other owning stores use that same UID and a scoped account entry point, rather than creating a competing person account. The operative schema and full sixteen-section map are in [USER_ACCOUNT_STORAGE](../../../integration/USER_ACCOUNT_STORAGE.md).
 

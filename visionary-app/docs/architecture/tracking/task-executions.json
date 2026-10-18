@@ -158,10 +158,12 @@
       "baseCommit": "f92495eadba3a07b17adef73a70d43ac38dab547",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure/visionary-app",
       "review": {
-        "state": "pending",
+        "state": "approved",
         "implementer": "Codex",
         "reviewer": "account_structure_review",
-        "candidateCommit": "075e082fc084261ab7fbacc30bade178361d92db"
+        "approvedCommit": "075e082fc084261ab7fbacc30bade178361d92db",
+        "evidence": "docs/architecture/delivery/KAN161_INDEPENDENT_REVIEW.md",
+        "reviewBranchCommit": "cae90769732dcff26e6a1b0ea9b125a196c41dd0"
       },
       "hostedAcceptance": false,
       "implementationCommit": "075e082fc084261ab7fbacc30bade178361d92db",
