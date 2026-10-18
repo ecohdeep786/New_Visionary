@@ -6,9 +6,9 @@
       "sourceId": "SCOPE-01",
       "jiraKey": "KAN-28",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-28",
-      "status": "Testing",
+      "status": "Done",
       "verifiedAt": "2026-10-17T17:56:50.838Z",
-      "scope": "Implemented source inventory and drift-check enabler; pending independent review under D-095",
+      "scope": "QA-approved source-audit enabler; actual dev integration and Jira Done retained from D-096",
       "branch": "codex/codex-tasks",
       "implementationCommits": [
         "593f2a210fd51d08b9859803d9e1cdf1b3a70c7d",
@@ -49,15 +49,15 @@
       "cloudRunServicesListed": 0,
       "cloudBuildTriggersListed": 0,
       "review": {
-        "state": "pending",
+        "state": "approved",
         "implementer": "Codex",
-        "reviewer": null,
+        "reviewer": "qa-review (independent prior report)",
         "candidateCommit": "b829922d2d9250719ea71d70ed6f710e175cf27d",
         "requestedAt": "2026-10-17T18:16:28.377Z",
         "decisionAt": null,
-        "approvedCommit": null,
+        "approvedCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
         "reason": "Implementation/test history is retained. A reviewer separate from the implementing agent must inspect the exact source-audit candidate, evidence and current dev compatibility before renewed Done.",
-        "jiraCommentId": "10004"
+        "jiraCommentId": "10006"
       },
       "history": [
         {
@@ -75,7 +75,63 @@
           "jiraCommentId": "10004",
           "note": "Founder requires review and verification before Done/next task. No code rollback or hosted deployment; no approval fabricated."
         }
-      ]
+      ],
+      "integration": {
+        "commit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+        "branch": "dev",
+        "remotePublished": true,
+        "jiraCommentId": "10007",
+        "jiraTransitionId": "51",
+        "jiraReturnedStatus": "Done"
+      },
+      "worktree": null
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "jiraKey": "KAN-29",
+      "status": "To Do",
+      "scope": "Preparation only; runtime/matrix implementation has not started. Founder requests retirement of idle checkouts.",
+      "worktree": null,
+      "preparationBranch": "codex/kan-29-coverage-matrix",
+      "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
+      "jiraCommentId": "10015",
+      "jiraTransitionId": "21",
+      "review": {
+        "state": "not-submitted"
+      }
+    },
+    {
+      "sourceId": "AI-11",
+      "jiraKey": "KAN-137",
+      "status": "Testing",
+      "scope": "Deterministic retrieval-binary-v2 metric repair and Python/Go parity only",
+      "branch": "codex/qa-review-kan-137-metrics",
+      "independentlyReviewedSource": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+      "currentDevBase": "b6525e16b5cfbd45a1a0963cdcd62846eb992cf7",
+      "runtimeImplementationChanged": false,
+      "review": {
+        "state": "approved-existing-implementation",
+        "evidence": "docs/architecture/tracking/kan-137-qa-closeout.json",
+        "newCodeApprovalClaimed": false
+      },
+      "checks": {
+        "pythonTests": 3,
+        "sharedFixtures": 13,
+        "goAnalyticsSuites": 8,
+        "passed": true
+      },
+      "historicalBenchmarks": {
+        "recomputed": false,
+        "qualified": false,
+        "ledger": "ml/evaluation/historical-report-qualification.json"
+      },
+      "remainingGates": [
+        "KAN-83",
+        "KAN-142",
+        "KAN-143",
+        "KAN-127"
+      ],
+      "hostedAcceptance": false
     }
   ]
 }
