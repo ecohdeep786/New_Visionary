@@ -1,0 +1,25 @@
+{
+  "label": "final-professional-progress",
+  "details": [
+    {
+      "open": false,
+      "title": "About Your learning evidence"
+    },
+    {
+      "open": false,
+      "title": "Evidence sources and limits"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Your learning evidence",
+  "url": "http://127.0.0.1:5176/dashboard/progress",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

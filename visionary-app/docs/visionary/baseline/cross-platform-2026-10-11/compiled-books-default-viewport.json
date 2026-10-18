@@ -1,0 +1,20 @@
+{
+  "appearance": "system",
+  "bodyColor": "rgb(29, 29, 31)",
+  "bookCards": 2,
+  "chapters": 0,
+  "documentWidth": 637,
+  "focus": "main",
+  "lesson": false,
+  "styles": {
+    "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+    "size": "28px"
+  },
+  "surface": "rgb(255, 255, 255)",
+  "title": "Your books",
+  "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+  "viewport": {
+    "height": 785,
+    "width": 637
+  }
+}

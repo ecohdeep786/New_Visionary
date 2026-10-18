@@ -1,5 +1,5 @@
+import WorkspaceSkeleton from '@/components/dashboard/WorkspaceSkeleton';
 import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
-import SpotIllustration from '@/components/landing/SpotIllustration';
 import { learningCopy, learningDate } from '@/lib/learningCopy';
 import { requireBridgeObjective, getCurriculumBridge, startReviewedBridgeObjective } from '@/services/curriculumBridgeService';
 import { downloadText } from '@/lib/downloadText';
@@ -143,6 +143,7 @@ function CurriculumLearningWorkspace({
   const [topics, setTopics] = useState([]);
   const [unit, setUnit] = useState(null);
   const [concept, setConcept] = useState(null);
+  const [readerBook, setReaderBook] = useState('');
   const [classContext, setClassContext] = useState(null);
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState('');
@@ -167,6 +168,7 @@ function CurriculumLearningWorkspace({
     setBusy(true);
     setUnit(null);
     setConcept(null);
+    setReaderBook('');
     setSyllabus(null);
     setChapter(null);
     setTopics([]);
@@ -191,6 +193,7 @@ function CurriculumLearningWorkspace({
         }
         const path = getLearningWorkspace(ctx);
         const sourceOutline=saved.sourceContext ? getSavedCurriculumGraphs({...ctx,locale:saved.locale}).find(graph=>['board','classLevel','subject'].every(key=>graph.syllabus[key]===saved.sourceContext.selection[key]) && ['provider','sourceId','version'].every(key=>graph.syllabus.provenance?.[key]===saved.sourceContext.provenance[key]))?.syllabus : null;
+        if(live && sourceOutline){const parentChapter=sourceOutline.chapters.find(item=>item.topicIds.includes(content.topicId));setReaderBook(sourceOutline.textbooks.find(book=>book.id===parentChapter?.textbookId)?.title||'');}
         if (sourceOutline || chapterId && path.syllabusId) {
           const chapters = sourceOutline?.chapters || await repo.getChapters(path.syllabusId);
           const selected = chapterId ? chapters.find(item => item.id === chapterId) : chapters.find(item=>item.topicIds.includes(content.topicId));
@@ -321,12 +324,18 @@ function CurriculumLearningWorkspace({
     const savedActivity=getLearningUnit(ctx,unitId);downloadText('saved-activity-view.json',JSON.stringify({title:savedActivity.title,stage:savedActivity.stage,source:savedActivity.sourceContext,locale:savedActivity.locale,explanation:savedActivity.explanation,representation:savedActivity.representation,question:savedActivity.question?{id:savedActivity.question.id,prompt:savedActivity.question.prompt,options:savedActivity.question.options}:undefined,selectedIndex:learningAnswerSelection(savedActivity),attempts:savedActivity.attempts?.map(attempt=>({id:attempt.id,kind:attempt.kind,prompt:attempt.question.prompt,selectedIndex:attempt.selectedIndex,correct:attempt.correct,at:attempt.at}))},null,2),'application/json');
   }
   if (workspaceError || !ctx) return <div className="v-page" role={workspaceError ? 'alert' : 'status'} lang={locale}>{workspaceError || copy('Opening your learning workspace…')}</div>;
-  if (renderedWorkspaceId !== ctx.workspaceId) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening this workspace\u2026")}</div>;
-  if (unitId && unit?.id !== unitId && busy) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Restoring your saved learning activity\u2026")}</div>;
-  if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}>{copy("Opening your learning outline\u2026")}</div>;
+  if (renderedWorkspaceId !== ctx.workspaceId) return <div className="v-page" role="status" aria-busy="true" lang={locale}><WorkspaceSkeleton cards={unitId ? 1 : 3} label={copy("Opening this workspace\u2026")}/></div>;
+  if (unitId && unit?.id !== unitId && busy) return <div className="v-page" role="status" aria-busy="true" lang={locale}><WorkspaceSkeleton cards={unitId ? 1 : 3} label={copy("Restoring your saved learning activity\u2026")}/></div>;
+  if (!unitId && unit) return <div className="v-page" role="status" aria-busy="true" lang={locale}><WorkspaceSkeleton cards={unitId ? 1 : 3} label={copy("Opening your learning outline\u2026")}/></div>;
   if (activityConflict) return <div className="v-page" lang={locale}><h1 className="v-title">{copy('Saved activity changed')}</h1><p className="v-notice" role="alert">{copy('A newer version of this activity is saved. Reload it to continue with the latest language, view and recorded answers.')}</p><button className="v-button primary mt-4" onClick={() => setContentRetry(value => value + 1)}>{copy('Retry saved learning')}</button></div>;
   const professional = ctx.role === 'professional';
-  const foundational = ctx.role === 'student' && getStagePresentation(ctx).tier === 'foundational';
+  const presentation = getStagePresentation(ctx);
+  const contextLabels = presentation.stage === 'higher-education'
+    ? ['Add course context', 'Institution or course (optional)', 'Year / level (optional)']
+    : presentation.stage === 'competitive'
+      ? ['Add exam context', 'Exam (optional)', 'Preparation level (optional)']
+      : ['vocational', 'independent'].includes(presentation.stage)
+        ? ['Add learning context', 'Course or goal (optional)', 'Level (optional)'] : null;
   const outlineBooks = booksForOutline(syllabus,bookId,chapter?.id);
   let state, saved, reviewQueue;
   try {
@@ -377,7 +386,7 @@ function CurriculumLearningWorkspace({
   if (unitId && !unit && !busy) return <div className="v-page" lang={locale}><h1 className="v-title">{copy("Learning activity unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("Open your outline to choose an available concept. This link did not create or score an activity.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry activity")}</button></div></div>;
   if (unitId && unit && !concept && !busy) return <div className="v-page" lang={locale}><p className="v-home-eyebrow">{copy("Saved learning activity")}</p><h1 className="v-title mt-2">{copy("Teaching content unavailable")}</h1>{status}<p className="v-muted mt-4">{copy("This activity is still saved locally. No check, practice or mastery result was added while the content was unavailable.")}</p><div className="mt-5 flex flex-wrap gap-3"><Link className="v-button primary" to={outlineUrl}>{copy("Open learning outline")}</Link><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask about this activity")}</Link><button className="v-button" onClick={() => setContentRetry(value => value + 1)}>{copy("Retry content")}</button><button className="v-button" onClick={() => {try {exportSavedActivity();}catch(failure){setError(failure.message);}}}>{copy("Export current activity view")}</button></div></div>;
   if (unit && concept) return <div className="v-page v-lesson" lang={locale}>
-  <header className="v-lesson-header"><Link className="v-home-secondary v-lesson-back" to={outlineUrl}><ArrowLeft size={16} aria-hidden="true" />{copy("Learning outline")}</Link><div className="v-lesson-heading"><div><p className="v-home-eyebrow">{concept.status === 'sample' ? copy("Authored sample \xB7 Not official curriculum") : concept.status === 'provisional' ? copy("Provisional learning outline") : concept.provenance ? copy('Sourced curriculum · {provider} · version {version}', {
+  <header className="v-lesson-header"><Link className="v-home-secondary v-lesson-back" to={outlineUrl}><ArrowLeft size={16} aria-hidden="true" />{readerBook ? catalogueCopy('Back to book')+' · '+readerBook : copy("Learning outline")}</Link><div className="v-lesson-heading"><div><p className="v-home-eyebrow">{concept.status === 'sample' ? copy("Authored sample \xB7 Not official curriculum") : concept.status === 'provisional' ? copy("Provisional learning outline") : concept.provenance ? copy('Sourced curriculum · {provider} · version {version}', {
           provider: concept.provenance.provider,
           version: concept.provenance.version
         }) : copy("Saved curriculum \xB7 source details unavailable")}</p><h1 className="v-title mt-2" lang={concept.locale || undefined}>{concept.title}</h1><p className="v-muted mt-3">{copy("Your place is saved locally. Understanding is checked before guided practice and building.")}</p></div><label className="v-lesson-language text-sm">{copy("Teaching language")}<select aria-label={copy("Teaching language")} className="v-field mt-2" value={unit.locale} disabled={busy} onChange={e => run(() => chooseLanguage(e.target.value))}><option value="en">English</option><option value="hi">हिन्दी</option><option value="bn">বাংলা</option></select></label></div>{concept.languageUnavailable && <div className="v-notice mt-4" role="status"><p>{copy('This concept’s saved teaching content is not loaded in {language}. Your place and evidence remain saved. A teaching response requires the connected model.', {
@@ -444,7 +453,7 @@ function CurriculumLearningWorkspace({
   <div className="flex flex-wrap gap-3"><Link className="v-button" to={`/dashboard/ask?learning=${encodeURIComponent(unit.id)}`}>{copy("Ask a doubt \xB7 keep my place")}</Link><Link className="v-button" to="/dashboard/home">{copy("Save and return Home")}</Link></div>
   <ContentIssueReport key={`${concept.id}:${unit.locale}`} ctx={ctx} concept={concept} locale={unit.locale} />
  </div>;
-  return <div className="v-page" lang={locale}><WorkspaceIntro eyebrow={practice ? copy("Review and strengthen") : copy("Explore and understand")} title={practice ? copy("Your next practice") : foundational ? catalogueCopy('Let’s learn') : copy("Your learning outline")} description={practice ? copy("Revisit what you have already checked. Your results and next step stay connected to Learn.") : professional ? copy("Connect a skill goal to concepts, practice and portfolio work.") : foundational ? catalogueCopy('Pick a subject, then choose a book.') : copy("Subjects become chapters, concepts, checks and projects\u2014with your place kept at every step.")} icon={practice ? Target : BookOpen} />{status}
+  return <div className="v-page" lang={locale}><WorkspaceIntro eyebrow={practice ? copy("Review and strengthen") : outlineBooks.selected ? catalogueCopy('Book contents') : copy("Explore and understand")} title={practice ? copy("Your next practice") : outlineBooks.selected ? outlineBooks.selected.title : catalogueCopy('Choose a book')} description={practice ? copy("Revisit what you have already checked. Your results and next step stay connected to Learn.") : outlineBooks.selected ? catalogueCopy('Choose a chapter to see its lessons.') : catalogueCopy('Choose a book, then a chapter. Your saved work stays connected.')} instruction={!practice} icon={practice ? Target : BookOpen} />{status}
   {classContext && <div className="v-notice flex flex-wrap items-center justify-between gap-3"><div><p className="font-medium">{copy('Learning alongside {name}', {
             name: classContext.name
           })}</p><p className="v-muted mt-1 hidden sm:block">{copy("This outline uses your class subject. Assignments and teacher feedback remain in Classes.")}</p></div><Link className="v-button" to={`/dashboard/classes?class=${encodeURIComponent(classContext.id)}`}>{copy("Classwork")}</Link></div>}
@@ -476,7 +485,8 @@ function CurriculumLearningWorkspace({
             unit: u.id
           });
         })}>{u.stage === 'completed' ? copy("Start review") : u.stage === 'practice' && !u.answer ? copy("Resume practice") : copy('Practice')}</button></div>) : <WorkspaceEmptyState illustration="practice" heading="h3" title={copy("Start in Learn")} description={copy("Finish a comprehension check in Learn first. No weakness is inferred from an empty history.")}><Link className="v-button primary" to="/dashboard/learn">{copy("Start in Learn")}<ArrowRight size={16} /></Link></WorkspaceEmptyState>}</section>}
-  {!practice && !fromClassId && <LearningSubjectShelf ctx={ctx} locale={locale} selection={selection} busy={busy} professional={professional} onSelect={openOutline}/>}
+  {!practice && <div className="v-catalogue-workspace">
+  {!fromClassId && !outlineBooks.selected && <LearningSubjectShelf ctx={ctx} locale={locale} selection={selection} busy={busy} professional={professional} onSelect={openOutline}/>}
   {!practice && syllabus && <><section className="v-outline-summary" aria-label={copy("Subject chapters")}>
     <div className="v-outline-summary-copy"><h2 className="text-xl font-medium">{syllabus.subject}</h2>
     {(syllabus.board || syllabus.classLevel) && <p className="v-outline-context">{[syllabus.board,syllabus.classLevel].filter(Boolean).join(' · ')}</p>}
@@ -490,9 +500,8 @@ function CurriculumLearningWorkspace({
             sourceLanguage: languageNames[syllabus.contentLocale] || copy('Unavailable'),
             language: languageNames[ctx.locale]
           })}</p>}</div>
-    <SpotIllustration subject={professional ? 'briefcase' : 'learn'} className="v-outline-art"/>
    </section>
-   {outlineBooks.books.length ? <details className="v-outline-books" open={!outlineBooks.selected}><summary>{catalogueCopy('Books')} · {outlineBooks.books.length}</summary><div className="v-book-grid mt-4">{outlineBooks.books.map(book=><button className="v-book-card" key={book.id} aria-pressed={outlineBooks.selected?.id===book.id} disabled={busy} onClick={()=>setParams({...(fromClassId?{fromClass:fromClassId}:{}),catalogueSubject:selection.subject,catalogueBoard:selection.board,catalogueLevel:selection.classLevel,book:book.id})}><span className="v-book-cover" aria-hidden="true"><BookOpen size={32} strokeWidth={1.5}/></span><strong>{book.title}</strong><span className="v-muted">{book.chapterIds.length} {catalogueCopy(book.chapterIds.length === 1 ? 'chapter' : 'chapters')}</span><ArrowRight size={18} aria-hidden="true"/></button>)}</div></details> : <p className="v-muted">{catalogueCopy('No books in this outline yet.')}</p>}
+   {!outlineBooks.selected && (outlineBooks.books.length ? <section className="v-outline-books"><h2>{catalogueCopy('Choose a book')}</h2><div className="v-book-grid mt-4">{outlineBooks.books.map(book=><button className="v-book-card" key={book.id} disabled={busy} onClick={()=>setParams({...(fromClassId?{fromClass:fromClassId}:{}),catalogueSubject:selection.subject,catalogueBoard:selection.board,catalogueLevel:selection.classLevel,book:book.id})}><span className="v-book-cover" aria-hidden="true"><BookOpen size={32} strokeWidth={1.5}/></span><strong>{book.title}</strong><span className="v-muted">{book.chapterIds.length} {catalogueCopy(book.chapterIds.length === 1 ? 'chapter' : 'chapters')}</span><ArrowRight size={18} aria-hidden="true"/></button>)}</div></section> : <p className="v-muted">{catalogueCopy('No books in this outline yet.')}</p>)}
    {outlineBooks.selected && <><nav className="v-catalogue-trail" aria-label={catalogueCopy('Books')}><button disabled={busy} onClick={()=>setParams({...(fromClassId?{fromClass:fromClassId}:{}),catalogueSubject:selection.subject,catalogueBoard:selection.board,catalogueLevel:selection.classLevel})}>{catalogueCopy('All books')}</button><span aria-hidden="true">/</span><span>{outlineBooks.selected.title}</span></nav><div className="v-learning-browser" data-has-chapter={Boolean(chapter)}>
     <details open className="v-outline-chapters v-card">
       <summary className="cursor-pointer font-medium">{catalogueCopy('Book chapters')}</summary>
@@ -538,6 +547,7 @@ function CurriculumLearningWorkspace({
    </section>}
    </div></>}
   </>}
+  </div>}
   <div className="v-catalogue-controls">
   {!practice && <details open={!syllabus} className="v-outline-selector"><summary className="cursor-pointer font-medium">{professional ? copy("Choose a capability") : copy("Choose a subject")}</summary><form className="mt-5 grid gap-4" onSubmit={e => {
         e.preventDefault();
@@ -545,7 +555,7 @@ function CurriculumLearningWorkspace({
       }}><label className="max-w-xl text-sm">{professional ? copy("Skill or capability (optional)") : copy("Subject (optional)")}<input className="v-field mt-2" maxLength={100} placeholder={professional ? copy("For example, data interpretation") : copy("For example, mathematics")} value={selection.subject} onChange={e => setSelection({
             ...selection,
             subject: e.target.value
-          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
+          })} /></label><details className="max-w-xl"><summary className="cursor-pointer text-sm text-[#1967d2]">{professional ? copy("Add goal and level") : contextLabels ? catalogueCopy(contextLabels[0]) : copy("Add board and class")}</summary><div className="mt-4 grid gap-4 sm:grid-cols-2">{[['board', professional ? copy("Goal or industry (optional)") : contextLabels ? catalogueCopy(contextLabels[1]) : copy("Board (optional)")], ['classLevel', professional ? copy("Level (optional)") : contextLabels ? catalogueCopy(contextLabels[2]) : copy("Class / level (optional)")]].map(([key, label]) => <label className="text-sm" key={key}>{copy(label)}<input className="v-field mt-2" maxLength={100} value={selection[key]} onChange={e => setSelection({
                 ...selection,
                 [key]: e.target.value
               })} /></label>)}</div></details><div className="flex flex-wrap gap-3"><button className="v-button primary" disabled={busy}>{copy("Open my outline")}<ArrowRight size={16} /></button><button className="v-button" type="button" disabled={busy} onClick={() => openOutline(professional ? PROFESSIONAL_SAMPLE_SELECTION : SAMPLE_SELECTION)}>{copy(professional ? 'Try authored workplace sample' : 'Try authored learning sample')}</button></div></form><p className="v-muted mt-4">{copy(professional ? 'No capability yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.' : 'No subject yet? A numbered provisional outline keeps your place until sourced content is available. Teaching responses require a connected model.')}</p></details>}

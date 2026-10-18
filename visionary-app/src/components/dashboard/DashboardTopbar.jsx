@@ -1,7 +1,7 @@
 import {workspaceText} from '@/lib/workspaceStrings';
 import {organizationAccess} from '@/services/workspaceService';
 import {organizationPathAllowed} from '@/services/organizationPolicy';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search, Menu, Plus, HelpCircle, Settings, LogOut, UserCircle, Users, Crown, Bell, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
@@ -12,21 +12,21 @@ import { PRODUCT_ACCESS } from "@/lib/productAccess";
 import WorkspaceSwitcher from './WorkspaceSwitcher';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import WorkspaceSearch from './WorkspaceSearch';
+import { workspaceSearchCopy } from '@/lib/workspaceSearchCopy';
 
 export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpanded }) {
   const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const [searchError,setSearchError]=useState("");
+  const searchTrigger = useRef(null);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const student = useStudentData();
-  const { data: workspaceData, ctx } = useWorkspace();
+  const { data: workspaceData, ctx, refresh } = useWorkspace();
   const role = ctx?.role || user?.identity;
   const locale=workspaceData?.preferences.interfaceLocale||'en';const t=key=>workspaceText(locale,key);
-  const searchPrompt=t('search_'+role);
+  const searchPrompt=['student','teacher','professional','organization'].includes(role)?workspaceSearchCopy(locale)('search_'+role):t('search_'+role);
   let policy=null;try{if(ctx?.role==='organization')policy=organizationAccess(ctx);}catch{policy={permissions:[]};}
-  const allowed=to=>!policy||organizationPathAllowed(policy,to);
+  const allowed=(to,current=false)=>!policy||organizationPathAllowed(current?organizationAccess(ctx):policy,to);
   const connect = role === "student" ? { label: "Join a class", to: "/dashboard/classes?join=1" }
     : role === "professional" ? { label: "Set a career goal", to: "/dashboard/career" }
     : role === "teacher" ? { label: "Create a class", to: "/dashboard/classes?create=1" }
@@ -34,10 +34,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     : { label: "Add people", to: "/dashboard/people" };
   connect.label=t('connect_'+role);
   const plan = workspaceData?.subscription.plan || PRODUCT_ACCESS.plan;
-  const destinations = [...navigationFor(role,locale), ...secondaryNavigation(role,locale), { label: t("profile"), to: "/dashboard/profile" }, { label: t("settings"), to: "/dashboard/settings" },{label:t('support'),to:'/dashboard/support'},
-    ...(role === 'student' ? student.topics.map(t => ({ label: t.name, detail: t.subject, to: "/dashboard/learn/" + t.id })) : [])].filter(item=>allowed(item.to));
-  const results = destinations.filter(item => (item.label + " " + item.to + " " + (item.detail || "")).toLowerCase().includes(query.trim().toLowerCase())).slice(0, 12);
-  const openResult = (to) => { try{if(ctx?.role==='organization'&&!organizationPathAllowed(organizationAccess(ctx),to))throw Error('Your current permission does not include this destination.');setSearchError('');setSearchOpen(false);setQuery('');navigate(to);}catch(error){setSearchError(error.message);} };
+  const destinations = [...navigationFor(role,locale), ...secondaryNavigation(role,locale), { label: t("profile"), to: "/dashboard/profile" }, { label: t("settings"), to: "/dashboard/settings" },{label:t('support'),to:'/dashboard/support'}].filter(item=>allowed(item.to));
   useEffect(() => {
     const onShortcut = event => {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
@@ -52,7 +49,7 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
     <Link to="/dashboard/home" aria-label={t("visionaryHome")} className="workspace-brand shrink-0"><VisionaryLogo /></Link>
     <WorkspaceSwitcher />
     <div className="flex flex-1 justify-center sm:px-6">
-      <button onClick={() => setSearchOpen(true)} className="workspace-search-trigger flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label={searchPrompt}>
+      <button ref={searchTrigger} onClick={() => setSearchOpen(true)} className="workspace-search-trigger flex h-11 w-11 items-center justify-center gap-3 rounded-full bg-[#f1f5fb] text-[#5f6368] hover:bg-[#e8f0fd] sm:w-full sm:max-w-xl sm:justify-start sm:px-4" aria-label={searchPrompt}>
         <Search className="h-5 w-5 shrink-0" /><span className="hidden min-w-0 flex-1 truncate text-left text-sm sm:block">{searchPrompt}</span><kbd className="workspace-search-shortcut hidden text-xs sm:inline">Ctrl K</kbd>
       </button>
     </div>
@@ -77,13 +74,6 @@ export default function DashboardTopbar({ userName, onToggleSidebar, sidebarExpa
         <DropdownMenuItem onSelect={() => { logout(); navigate("/login", { replace: true }); }} className="workspace-account-item gap-3"><LogOut aria-hidden="true" />{t("signOut")}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-    <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
-      <DialogContent lang={locale} className="max-w-xl rounded-2xl">
-        <DialogHeader><DialogTitle lang={locale}>{t("searchTitle")}</DialogTitle><DialogDescription lang={locale}>{searchPrompt}. {t("searchScope")}</DialogDescription></DialogHeader>
-        <input autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder={searchPrompt} lang={locale} aria-label={t("searchInput")} className="v-field" />
-        {searchError&&<p lang="en" className="v-notice v-error" role="alert">{searchError}</p>}
-        <div className="max-h-[50vh] space-y-1 overflow-y-auto">{results.length ? results.map(item => <button key={item.to} onClick={() => openResult(item.to)} className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-[#e8f0fd]"><span>{item.label}</span><span className="ml-4 truncate text-xs text-[#5f6368]">{item.detail || t("page")}</span></button>) : <p className="px-4 py-6 text-sm text-[#5f6368]">{t("searchEmpty")}</p>}</div>
-      </DialogContent>
-    </Dialog>
+    <WorkspaceSearch open={searchOpen} onOpenChange={setSearchOpen} ctx={ctx} locale={locale} pages={destinations} student={student} allowed={allowed} refresh={refresh} trigger={searchTrigger}/>
   </header>;
 }

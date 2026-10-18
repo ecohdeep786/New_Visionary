@@ -1,0 +1,21 @@
+{
+  "label": "final-organization-people",
+  "details": [
+    {
+      "open": false,
+      "title": "Invite someone to your organization"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "People & connections",
+  "url": "http://127.0.0.1:5176/dashboard/people",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "label": "final-organization-settings",
+  "details": [],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Organization settings",
+  "url": "http://127.0.0.1:5176/dashboard/settings",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

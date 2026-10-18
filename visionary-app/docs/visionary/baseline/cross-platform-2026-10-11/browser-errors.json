@@ -1,0 +1,26 @@
+[
+  {
+    "level": "error",
+    "message": "ReferenceError: headShaded is not defined\n    at http://127.0.0.1:5173/src/components/landing/SpotIllustration.jsx:2730:23",
+    "timestamp": "2026-10-11T16:06:34.088Z",
+    "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-QCHXOAYK.js?v=66bfe2d2"
+  },
+  {
+    "level": "error",
+    "message": "ReferenceError: headShaded is not defined\n    at http://127.0.0.1:5173/src/components/landing/SpotIllustration.jsx:2730:23",
+    "timestamp": "2026-10-11T16:06:34.104Z",
+    "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-QCHXOAYK.js?v=66bfe2d2"
+  },
+  {
+    "level": "error",
+    "message": "The above error occurred in one of your React components:\n\n    at Lazy\n    at RenderedRoute (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Outlet (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7630:26)\n    at Suspense\n    at div\n    at main\n    at div\n    at div\n    at ThemeColorProvider (http://127.0.0.1:5173/src/hooks/useThemeColor.jsx:29:38)\n    at DashboardLayout (http://127.0.0.1:5173/src/components/dashboard/DashboardLayout.jsx:44:69)\n    at RenderedRoute (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Outlet (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7630:26)\n    at OnboardingGate (http://127.0.0.1:5173/src/components/OnboardingGate.jsx:22:20)\n    at RenderedRoute (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Outlet (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7630:26)\n    at ProtectedRoute (http://127.0.0.1:5173/src/components/ProtectedRoute.jsx:32:42)\n    at RenderedRoute (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:6758:26)\n    at Routes (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7700:3)\n    at PublicApp\n    at Suspense\n    at AppErrorBoundary (http://127.0.0.1:5173/src/App.jsx?t=1791733293238:31:1)\n    at Router (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:7639:13)\n    at BrowserRouter (http://127.0.0.1:5173/node_modules/.vite/deps/react-router-dom.js?v=66bfe2d2:10955:3)\n    at QueryClientProvider (http://127.0.0.1:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=66bfe2d2:26:30)\n    at AuthProvider (http://127.0.0.1:5173/src/lib/AuthContext.jsx:23:32)\n    at App\n\nReact will try to recreate this component tree from scratch using the error boundary you provided, AppErrorBoundary.",
+    "timestamp": "2026-10-11T16:06:34.104Z",
+    "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-SXRIVT2P.js?v=66bfe2d2"
+  },
+  {
+    "level": "error",
+    "message": "[Visionary Resilience Diagnostic]: ReferenceError: headShaded is not defined\n    at http://127.0.0.1:5173/src/components/landing/SpotIllustration.jsx:2730:23 Object",
+    "timestamp": "2026-10-11T16:06:34.104Z",
+    "url": "http://127.0.0.1:5173/src/App.jsx?t=1791733293238"
+  }
+]

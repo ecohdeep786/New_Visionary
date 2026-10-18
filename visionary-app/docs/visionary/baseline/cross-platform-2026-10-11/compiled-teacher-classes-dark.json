@@ -1,0 +1,20 @@
+{
+  "appearance": "dark",
+  "bodyColor": "rgb(237, 240, 245)",
+  "bookCards": 0,
+  "chapters": 0,
+  "documentWidth": 1280,
+  "focus": "main",
+  "lesson": false,
+  "styles": {
+    "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+    "size": "38.4046px"
+  },
+  "surface": "rgb(24, 28, 34)",
+  "title": "Your classes",
+  "url": "http://127.0.0.1:5176/dashboard/classes",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

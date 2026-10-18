@@ -1,0 +1,29 @@
+{
+  "label": "final-previous-practice-desktop",
+  "details": [
+    {
+      "open": false,
+      "title": "Why this?"
+    },
+    {
+      "open": false,
+      "title": "Why this?"
+    },
+    {
+      "open": false,
+      "title": "Why this?"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Practice",
+  "url": "http://127.0.0.1:5176/dashboard/practice?legacy=1",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

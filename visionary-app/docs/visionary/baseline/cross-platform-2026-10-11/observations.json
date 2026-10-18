@@ -1,0 +1,782 @@
+[
+  {
+    "label": "compiled-book-contents",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 1,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Geometry workbook",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6&book=sample%3Alibrary%3Ageometry-book",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-books-bn-phone-light",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "light",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 321,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "\"Noto Sans Bengali\", \"Kohinoor Bangla\", \"Nirmala UI\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "আপনার বই",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 850,
+        "width": 321
+      }
+    }
+  },
+  {
+    "label": "compiled-books-dark",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-books-default-viewport",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 637,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 785,
+        "width": 637
+      }
+    }
+  },
+  {
+    "label": "compiled-books-hi-phone-light",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "light",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 321,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "\"Noto Sans Devanagari\", \"Kohinoor Devanagari\", \"Nirmala UI\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "आपकी पुस्तकें",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 850,
+        "width": 321
+      }
+    }
+  },
+  {
+    "label": "compiled-books-system-desktop",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-chapter-selected",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 1,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Geometry workbook",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6&chapter=sample%3Alibrary%3Ageometry&book=sample%3Alibrary%3Ageometry-book",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-filter-return",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 1,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-fresh-learn-dark",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-organization-people-dark",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "People & connections",
+      "url": "http://127.0.0.1:5176/dashboard/people",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-parent-reports-dark",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Their learning, in context",
+      "url": "http://127.0.0.1:5176/dashboard/reports",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-professional-career-dark",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your next capability",
+      "url": "http://127.0.0.1:5176/dashboard/career",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-reader",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": true,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Understand cube volume",
+      "url": "http://127.0.0.1:5176/dashboard/learn?chapter=sample%3Alibrary%3Ageometry&book=sample%3Alibrary%3Ageometry-book&unit=8a2556c1-885d-432f-86aa-75a7b50ebfc6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "compiled-teacher-classes-dark",
+    "stage": "production",
+    "build": "index-D6f4oUt3.js",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your classes",
+      "url": "http://127.0.0.1:5176/dashboard/classes",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-book-contents",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 0,
+      "chapters": 1,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Geometry workbook",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6&book=sample%3Alibrary%3Ageometry-book",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-book-search",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 1,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-books-dark-corrected",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-books-dark-phone",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 321,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 321
+      }
+    }
+  },
+  {
+    "label": "source-books-dark",
+    "stage": "development",
+    "build": "development server",
+    "accepted": false,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-books-desktop",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 2,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-empty-books",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 637,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn",
+      "viewport": {
+        "height": 785,
+        "width": 637
+      }
+    }
+  },
+  {
+    "label": "source-filter-return-phone",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 1,
+      "chapters": 0,
+      "documentWidth": 321,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 321
+      }
+    }
+  },
+  {
+    "label": "source-no-match-phone",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 321,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "28px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your books",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+      "viewport": {
+        "height": 900,
+        "width": 321
+      }
+    }
+  },
+  {
+    "label": "source-organization-people-dark",
+    "stage": "development",
+    "build": "development server",
+    "accepted": false,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "People & connections",
+      "url": "http://127.0.0.1:5176/dashboard/people",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-parent-reports-dark",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Their learning, in context",
+      "url": "http://127.0.0.1:5176/dashboard/reports",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-personalization-dark",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Make Guide work for you",
+      "url": "http://127.0.0.1:5176/dashboard/personalization",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-professional-career-dark",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your next capability",
+      "url": "http://127.0.0.1:5176/dashboard/career",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-reader",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": true,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Understand cube volume",
+      "url": "http://127.0.0.1:5176/dashboard/learn?chapter=sample%3Alibrary%3Ageometry&book=sample%3Alibrary%3Ageometry-book&unit=8a2556c1-885d-432f-86aa-75a7b50ebfc6",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-selected-chapter",
+    "stage": "development",
+    "build": "development server",
+    "accepted": true,
+    "observation": {
+      "appearance": "system",
+      "bodyColor": "rgb(29, 29, 31)",
+      "bookCards": 0,
+      "chapters": 1,
+      "documentWidth": 1280,
+      "focus": "main",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(255, 255, 255)",
+      "title": "Geometry workbook",
+      "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6&chapter=sample%3Alibrary%3Ageometry&book=sample%3Alibrary%3Ageometry-book",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  },
+  {
+    "label": "source-teacher-classes-dark",
+    "stage": "development",
+    "build": "development server",
+    "accepted": false,
+    "observation": {
+      "appearance": "dark",
+      "bodyColor": "rgb(237, 240, 245)",
+      "bookCards": 0,
+      "chapters": 0,
+      "documentWidth": 1280,
+      "focus": "",
+      "lesson": false,
+      "styles": {
+        "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+        "size": "38.4046px"
+      },
+      "surface": "rgb(24, 28, 34)",
+      "title": "Your classes",
+      "url": "http://127.0.0.1:5176/dashboard/classes",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    }
+  }
+]

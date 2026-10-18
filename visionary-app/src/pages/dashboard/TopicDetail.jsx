@@ -98,9 +98,9 @@ export default function TopicDetail() {
     subject: topic.subject,
     topic: topic.name
   });
-  return <div className={focus ? "mx-auto flex w-full max-w-[1000px] flex-col gap-6 p-5 sm:p-8" : "mx-auto flex w-full max-w-[1280px] flex-col gap-6 p-5 sm:p-8"} lang={locale}>
+  return <div className="v-page v-previous-topic" lang={locale}>
       <div className={focus ? "mx-auto max-w-[1000px]" : ""}>
-        {!focus && <><Link to={`/dashboard/learn?subject=${encodeURIComponent(topic.subject)}`} className="mb-5 inline-flex items-center gap-2 text-sm text-[#5f6368] hover:text-[#0b57d2]"><ArrowLeft className="h-4 w-4" />{topic.subject}</Link><header className="mb-6"><p className="mb-2 text-xs font-medium text-[#5f6368]">{topic.chapter || copy("Your learning workspace")}</p><h1 className="text-2xl font-medium tracking-tight text-[#121317] sm:text-3xl">{topic.name}</h1></header></>}
+        {!focus && <><Link to={`/dashboard/learn?subject=${encodeURIComponent(topic.subject)}`} className="mb-5 inline-flex items-center gap-2 text-sm text-[#5f6368] hover:text-[#0b57d2]"><ArrowLeft className="h-4 w-4" />{topic.subject}</Link><header className="mb-6"><p className="mb-2 text-xs font-medium text-[#5f6368]">{topic.chapter || copy("Your learning workspace")}</p><h1 className="v-title">{topic.name}</h1></header></>}
         {bookmarkFailure && <p className="v-notice v-error" role="alert">{copy("Saved topics are unavailable. Your topics and bookmarks have not been changed.")} <button type="button" className="v-button" onClick={() => setBookmarkRetry(value => value + 1)}>{copy("Retry saved topics")}</button></p>}
         {error && <p role="alert" className="mb-4 rounded-lg bg-[#fce8e6] p-3 text-sm text-[#b3261e]">{error}</p>}
         <div className={focus ? "" : "grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_260px]"}>

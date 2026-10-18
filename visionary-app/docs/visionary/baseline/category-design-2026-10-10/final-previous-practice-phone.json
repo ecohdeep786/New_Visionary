@@ -1,0 +1,29 @@
+{
+  "label": "final-previous-practice-phone",
+  "details": [
+    {
+      "open": false,
+      "title": "Why this?"
+    },
+    {
+      "open": false,
+      "title": "Why this?"
+    },
+    {
+      "open": false,
+      "title": "Why this?"
+    }
+  ],
+  "documentWidth": 321,
+  "font": {
+    "size": "28px",
+    "weight": "400"
+  },
+  "mainWidth": 315,
+  "title": "Practice",
+  "url": "http://127.0.0.1:5176/dashboard/practice?legacy=1",
+  "viewport": {
+    "height": 900,
+    "width": 321
+  }
+}

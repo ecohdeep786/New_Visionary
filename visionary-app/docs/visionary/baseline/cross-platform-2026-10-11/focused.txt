@@ -1,0 +1,13 @@
+✔ single-book catalog never implicitly exposes chapters; explicit parent and saved chapter links still work (7.4438ms)
+✔ completion excludes old versions, classroom attempts and empty chapters (1.3374ms)
+✔ catalog uses owned source books, does not create learning units, and can filter without mutating source order (27.0973ms)
+✔ catalog keeps readable subjects after one source fails and stops after cancellation (54.0058ms)
+✔ theme choice is workspace scoped and invalid values do not replace preferences (7.8501ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 846.8856

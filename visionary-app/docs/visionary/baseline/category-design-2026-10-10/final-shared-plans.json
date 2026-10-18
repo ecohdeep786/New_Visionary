@@ -1,0 +1,16 @@
+{
+  "label": "final-shared-plans",
+  "details": [],
+  "documentWidth": 1435,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1190,
+  "title": " Plans & usage ",
+  "url": "http://127.0.0.1:5176/dashboard/subscription",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

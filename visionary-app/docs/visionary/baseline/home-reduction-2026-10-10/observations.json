@@ -1,0 +1,609 @@
+[
+  {
+    "label": "learner-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 36,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "learner-plan-options",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 36,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "learner-task-details",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\n\nContinue from explain. Your answers and position are saved on this device.\n\nThe most recently updated unfinished learning unit in this workspace.\n\nSaved learning activity\n\nRemove from today’s plan\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 65,
+    "openDisclosures": [
+      "Details and options"
+    ],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "learner-workspace-details",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace\n\nSharing is always scoped\n\nThis view uses your saved learning stage and activity. Suggested session lengths are optional; they do not assess your ability.\n\nLocal preview · Saved on this device. No live model or cloud sync.\n\nIndependent learning",
+    "mainWordCount": 75,
+    "openDisclosures": [
+      "About this workspace"
+    ],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "learner-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 36,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "learner-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 36,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "teacher-phone",
+    "artCount": 1,
+    "documentWidth": 321,
+    "mainText": "Teacher\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nPrepare your next lesson\nOpen preparation\nDetails and options\nTeaching overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 26,
+    "openDisclosures": [],
+    "priorityTitle": "Prepare your next lesson",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "teacher-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Teacher\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nPrepare your next lesson\nOpen preparation\nDetails and options\nTeaching overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 26,
+    "openDisclosures": [],
+    "priorityTitle": "Prepare your next lesson",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "teacher-overview",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Teacher\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nPrepare your next lesson\nOpen preparation\nDetails and options\nTeaching overview\nTeaching workspace\nYour own growth\n\nClass evidence and your own learning stay separate. Private learner doubts are not included.\n\nNo assigned class is connected. You can prepare independently or connect a class.\n\nOpen classes\nOpen lesson drafts\nQuiz, lesson plan, and teacher coach\n\nYour own growth: 0 capabilities with recorded activity. This is separate from the class summary.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 95,
+    "openDisclosures": [
+      "Teaching overview"
+    ],
+    "priorityTitle": "Prepare your next lesson",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "parent-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Parent\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nA little clarity for Aarav’s week\nView shared report\nChoose a child\nDetails and options\nShared family progress\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 33,
+    "openDisclosures": [],
+    "priorityTitle": "A little clarity for Aarav’s week",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "parent-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Parent\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nA little clarity for Aarav’s week\nView shared report\nChoose a child\nDetails and options\nShared family progress\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 33,
+    "openDisclosures": [],
+    "priorityTitle": "A little clarity for Aarav’s week",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "parent-overview-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Parent\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nA little clarity for Aarav’s week\nView shared report\nChoose a child\nDetails and options\nShared family progress\nYour child’s week\n\nRead-only progress shared with you. Private questions, conversations, notes, and drafts remain private.\n\nChild\nAarav\nMaya\n\nLast 7 days · Rule-based observations from shared evidence, not a model assessment.\n\nNo learning activity has been shared for this period. Ask what they would like to explore, without treating missing activity as a problem.\n\n0 completed applications in this period.\n\nShared learning evidence\nManage child connections\nOpen shared report\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 114,
+    "openDisclosures": [
+      "Shared family progress"
+    ],
+    "priorityTitle": "A little clarity for Aarav’s week",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "professional-phone",
+    "artCount": 1,
+    "documentWidth": 321,
+    "mainText": "Professional\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nGive your next skill a clear purpose\nSet a skill goal\nDetails and options\nCareer overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 31,
+    "openDisclosures": [],
+    "priorityTitle": "Give your next skill a clear purpose",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "professional-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Professional\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nGive your next skill a clear purpose\nSet a skill goal\nDetails and options\nCareer overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 31,
+    "openDisclosures": [],
+    "priorityTitle": "Give your next skill a clear purpose",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "professional-overview",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Professional\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nGive your next skill a clear purpose\nSet a skill goal\nDetails and options\nCareer overview\nYour next capability\n\nYour target guides the same learning, practice, and building loop. An employer does not gain access to this personal evidence.\n\nNo skill gap has been assessed yet. Choose a target, then build evidence through practice and projects.\n\nSet a career target\nBuild your portfolio\nCareer workspace\n\n0 saved projects · Share work explicitly; do not paste confidential employer material.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 104,
+    "openDisclosures": [
+      "Career overview"
+    ],
+    "priorityTitle": "Give your next skill a clear purpose",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "organization-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "My organization\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nBring your people together\nManage people\nDetails and options\nOrganization overview\nAbout this workspace",
+    "mainWordCount": 24,
+    "openDisclosures": [],
+    "priorityTitle": "Bring your people together",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "organization-phone",
+    "artCount": 1,
+    "documentWidth": 321,
+    "mainText": "My organization\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nBring your people together\nManage people\nDetails and options\nOrganization overview\nAbout this workspace",
+    "mainWordCount": 24,
+    "openDisclosures": [],
+    "priorityTitle": "Bring your people together",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "organization-overview-phone",
+    "artCount": 1,
+    "documentWidth": 315,
+    "mainText": "My organization\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nBring your people together\nManage people\nDetails and options\nOrganization overview\nOrganization readiness\n\nOperational totals and explicitly shared class evidence only. Individual personal learning is not included.\n\nAll saved local class records. Learner denominator: distinct active enrollments in linked classes.\n\nLinked classes\n0\nActive memberships\n0\nLearners in linked classes\n0\nSubmissions awaiting review\nHidden\n\nPeople and permissions\n\n0 active memberships\n\nOpen\nPeople and permissions\n\nCohorts\n\n0 saved groups\n\nOpen\nCohorts\n\nCurriculum\n\n0 reviewed mappings\n\nOpen\nCurriculum\n\nTeaching library\n\n0 reviewed resources\n\nOpen\nTeaching library\n\nLearning totals are hidden for groups or concepts with fewer than 5 contributing learners.\n\nShared concept totals\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nAbout this workspace",
+    "mainWordCount": 126,
+    "openDisclosures": [
+      "Organization overview"
+    ],
+    "priorityTitle": "Bring your people together",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "learner-hindi-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nफिर स्वागत है, Anika।\nस्थानीय प्रीव्यू\n\nआपका अगला कदम\n\nUnderstand cube volume\nसीखना जारी रखें\nप्रोजेक्ट खोलें\nविवरण और विकल्प\nआज की योजना\nFrontend search rehearsal\nयोजनाबद्ध\nआपके बारे में सहेजी जानकारी\nVisionary Guide से पूछें\nइस कार्यक्षेत्र के बारे में",
+    "mainWordCount": 42,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "योजनाबद्ध",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 27.18273162841797
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "learner-hindi-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Learner\n\nफिर स्वागत है, Anika।\nस्थानीय प्रीव्यू\n\nआपका अगला कदम\n\nUnderstand cube volume\nसीखना जारी रखें\nप्रोजेक्ट खोलें\nविवरण और विकल्प\nआज की योजना\nFrontend search rehearsal\nयोजनाबद्ध\nआपके बारे में सहेजी जानकारी\nVisionary Guide से पूछें\nइस कार्यक्षेत्र के बारे में",
+    "mainWordCount": 42,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "योजनाबद्ध",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 27.18273162841797
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "learner-bengali-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nআবার স্বাগত, Anika।\nস্থানীয় প্রিভিউ\n\nআপনার পরের ধাপ\n\nUnderstand cube volume\nশেখা চালিয়ে যান\nপ্রকল্প খুলুন\nবিবরণ ও বিকল্প\nআজকের পরিকল্পনা\nFrontend search rehearsal\nপরিকল্পিত\nআপনার সম্পর্কে সংরক্ষিত তথ্য\nVisionary Guide-কে জিজ্ঞাসা করুন\nএই কর্মক্ষেত্র সম্পর্কে",
+    "mainWordCount": 37,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "পরিকল্পিত",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 27.18273162841797
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "learner-bengali-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Learner\n\nআবার স্বাগত, Anika।\nস্থানীয় প্রিভিউ\n\nআপনার পরের ধাপ\n\nUnderstand cube volume\nশেখা চালিয়ে যান\nপ্রকল্প খুলুন\nবিবরণ ও বিকল্প\nআজকের পরিকল্পনা\nFrontend search rehearsal\nপরিকল্পিত\nআপনার সম্পর্কে সংরক্ষিত তথ্য\nVisionary Guide-কে জিজ্ঞাসা করুন\nএই কর্মক্ষেত্র সম্পর্কে",
+    "mainWordCount": 37,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "পরিকল্পিত",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 27.18273162841797
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-learner-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 36,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-learner-phone",
+    "artCount": 0,
+    "documentWidth": 321,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen projects\nDetails and options\nToday’s plan\nFrontend search rehearsal\nPlanned\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 36,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [
+      {
+        "meta": "Planned",
+        "title": "Frontend search rehearsal",
+        "titleHeight": 23.98616600036621
+      }
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-plan-removal",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learner\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nUnderstand cube volume\nContinue learning\nOpen learning outline\nDetails and options\nThings I remember about you\nAsk Visionary Guide\nAbout this workspace\n\nRemoved from today’s plan. Your saved work is kept.\n\nDismiss",
+    "mainWordCount": 41,
+    "openDisclosures": [],
+    "priorityTitle": "Understand cube volume",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-deferred-project-kept",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Create and reflect\n\nBuild something of your own\n\nBring your ideas, evidence, and experiments together.\n\nNew project\n\nStart from a verified learning unit for a connected project, or make a private blank project. Open learning outline\n\nSearch projects\nall\ndraft\nin-progress\ncompleted\nMy projects\nFrontend search rehearsal\n\ndraft\n·\nprivate\n\nOpen",
+    "mainWordCount": 51,
+    "openDisclosures": [],
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/build",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-resumed-unit",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Learning outline\n\nAuthored sample · Not official curriculum\n\nUnderstand cube volume\n\nYour place is saved locally. Understanding is checked before guided practice and building.\n\nTeaching language\nEnglish\nहिन्दी\nবাংলা\n1\nUnderstand\n2\nCheck\n3\nPractice\n4\nBuild\nUnderstand one idea\n\nRequest an explanation in your selected teaching language. If the service is disconnected, available authored sample content can still be used.\n\nStart this learning unit\nSee the idea another way\n\nYour view stays with this learning activity. Exploring it does not count as a correct answer.\n\nInteractive 3D\nRead description\n\n01 · Observe\n\n3\n\nTurn the cube to see its faces.\n\n02 · Change one thing\n\nMove the side-length slider and watch the volume change.\n\n3 × 3 × 3 = 27 cubic units\n\nSide length: 3 units\nRotation: 25°\nReset model\n03 · Predict the next change\nOptional · no score\nAsk a doubt · keep my place\nSave and return Home\nReport a content problem",
+    "mainWordCount": 157,
+    "openDisclosures": [],
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/learn?unit=8a2556c1-885d-432f-86aa-75a7b50ebfc6",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-teacher-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Teacher\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nPrepare your next lesson\nOpen preparation\nDetails and options\nLoading your authorized summary…\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 28,
+    "openDisclosures": [],
+    "priorityTitle": "Prepare your next lesson",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-parent-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Parent\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nA little clarity for Aarav’s week\nView shared report\nChoose a child\nDetails and options\nLoading your authorized summary…\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 34,
+    "openDisclosures": [],
+    "priorityTitle": "A little clarity for Aarav’s week",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-professional-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Professional\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nGive your next skill a clear purpose\nSet a skill goal\nDetails and options\nCareer overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 31,
+    "openDisclosures": [],
+    "priorityTitle": "Give your next skill a clear purpose",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "My organization\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nBring your people together\nManage people\nDetails and options\nOrganization overview\nAbout this workspace",
+    "mainWordCount": 24,
+    "openDisclosures": [],
+    "priorityTitle": "Bring your people together",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-teacher-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Teacher\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nPrepare your next lesson\nOpen preparation\nDetails and options\nTeaching overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 26,
+    "openDisclosures": [],
+    "priorityTitle": "Prepare your next lesson",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-parent-desktop",
+    "artCount": 0,
+    "documentWidth": 1440,
+    "mainText": "Parent\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nA little clarity for Aarav’s week\nView shared report\nChoose a child\nDetails and options\nShared family progress\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 33,
+    "openDisclosures": [],
+    "priorityTitle": "A little clarity for Aarav’s week",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-professional-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "Professional\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nGive your next skill a clear purpose\nSet a skill goal\nDetails and options\nCareer overview\nAsk Visionary Guide\nAbout this workspace",
+    "mainWordCount": 31,
+    "openDisclosures": [],
+    "priorityTitle": "Give your next skill a clear purpose",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-desktop",
+    "artCount": 1,
+    "documentWidth": 1440,
+    "mainText": "My organization\n\nWelcome back, Anika.\nLocal preview\n\nNext for you\n\nBring your people together\nManage people\nDetails and options\nOrganization overview\nAbout this workspace",
+    "mainWordCount": 24,
+    "openDisclosures": [],
+    "priorityTitle": "Bring your people together",
+    "rows": [],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  }
+]

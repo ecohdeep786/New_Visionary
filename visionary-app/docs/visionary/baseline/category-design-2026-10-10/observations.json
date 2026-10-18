@@ -1,0 +1,615 @@
+[
+  {
+    "label": "final-catalogue-chapter-desktop",
+    "details": [
+      {
+        "open": false,
+        "title": "About Your learning outline"
+      },
+      {
+        "open": false,
+        "title": "Change subject · Mathematics"
+      },
+      {
+        "open": false,
+        "title": "Books · 2"
+      },
+      {
+        "open": true,
+        "title": "Book chapters"
+      },
+      {
+        "open": false,
+        "title": "Choose a subject"
+      },
+      {
+        "open": false,
+        "title": "Add learning context"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Your learning outline",
+    "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6&chapter=sample%3Alibrary%3Ageometry&book=sample%3Alibrary%3Ageometry-book",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-learner-bengali-help-phone",
+    "details": [
+      {
+        "open": true,
+        "title": "আপনার শেখার রূপরেখা সম্পর্কে"
+      },
+      {
+        "open": true,
+        "title": "বিষয় বাছুন"
+      },
+      {
+        "open": false,
+        "title": "শেখার প্রসঙ্গ যোগ করুন"
+      }
+    ],
+    "documentWidth": 321,
+    "font": {
+      "size": "28px",
+      "weight": "400"
+    },
+    "mainWidth": 315,
+    "title": "আপনার শেখার রূপরেখা",
+    "url": "http://127.0.0.1:5176/dashboard/learn",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-learner-build",
+    "details": [
+      {
+        "open": false,
+        "title": "About Build something of your own"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Build something of your own",
+    "url": "http://127.0.0.1:5176/dashboard/build",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-learner-hindi-help-phone",
+    "details": [
+      {
+        "open": true,
+        "title": "आपकी अध्ययन रूपरेखा के बारे में"
+      },
+      {
+        "open": true,
+        "title": "विषय चुनें"
+      },
+      {
+        "open": false,
+        "title": "अध्ययन का संदर्भ जोड़ें"
+      }
+    ],
+    "documentWidth": 321,
+    "font": {
+      "size": "28px",
+      "weight": "400"
+    },
+    "mainWidth": 315,
+    "title": "आपकी अध्ययन रूपरेखा",
+    "url": "http://127.0.0.1:5176/dashboard/learn",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-learner-learn",
+    "details": [
+      {
+        "open": false,
+        "title": "About Your learning outline"
+      },
+      {
+        "open": true,
+        "title": "Choose a subject"
+      },
+      {
+        "open": false,
+        "title": "Add learning context"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Your learning outline",
+    "url": "http://127.0.0.1:5176/dashboard/learn",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-learner-practice",
+    "details": [
+      {
+        "open": false,
+        "title": "About Your next practice"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Your next practice",
+    "url": "http://127.0.0.1:5176/dashboard/practice",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-learner-progress",
+    "details": [
+      {
+        "open": false,
+        "title": "About Your learning evidence"
+      },
+      {
+        "open": false,
+        "title": "Evidence sources and limits"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Your learning evidence",
+    "url": "http://127.0.0.1:5176/dashboard/progress",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-audit",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Organization audit",
+    "url": "http://127.0.0.1:5176/dashboard/audit",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-billing",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Organization seats and billing",
+    "url": "http://127.0.0.1:5176/dashboard/subscription",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-cohorts",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Cohorts",
+    "url": "http://127.0.0.1:5176/dashboard/cohorts",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-content-phone",
+    "details": [],
+    "documentWidth": 321,
+    "font": {
+      "size": "28px",
+      "weight": "400"
+    },
+    "mainWidth": 315,
+    "title": "Organization content",
+    "url": "http://127.0.0.1:5176/dashboard/library",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-organization-content",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Organization content",
+    "url": "http://127.0.0.1:5176/dashboard/library",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-curriculum",
+    "details": [
+      {
+        "open": false,
+        "title": "Earlier subject drafts · unreviewed"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Reviewed curriculum templates",
+    "url": "http://127.0.0.1:5176/dashboard/curriculum",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-insights",
+    "details": [
+      {
+        "open": false,
+        "title": "About Institution analytics"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Institution analytics",
+    "url": "http://127.0.0.1:5176/dashboard/analytics",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-people",
+    "details": [
+      {
+        "open": false,
+        "title": "Invite someone to your organization"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "People & connections",
+    "url": "http://127.0.0.1:5176/dashboard/people",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-organization-settings",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Organization settings",
+    "url": "http://127.0.0.1:5176/dashboard/settings",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-previous-lab-desktop",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Small change. Another dimension.",
+    "url": "http://127.0.0.1:5176/dashboard/explore?legacy=1",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-previous-practice-desktop",
+    "details": [
+      {
+        "open": false,
+        "title": "Why this?"
+      },
+      {
+        "open": false,
+        "title": "Why this?"
+      },
+      {
+        "open": false,
+        "title": "Why this?"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Practice",
+    "url": "http://127.0.0.1:5176/dashboard/practice?legacy=1",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-previous-practice-phone",
+    "details": [
+      {
+        "open": false,
+        "title": "Why this?"
+      },
+      {
+        "open": false,
+        "title": "Why this?"
+      },
+      {
+        "open": false,
+        "title": "Why this?"
+      }
+    ],
+    "documentWidth": 321,
+    "font": {
+      "size": "28px",
+      "weight": "400"
+    },
+    "mainWidth": 315,
+    "title": "Practice",
+    "url": "http://127.0.0.1:5176/dashboard/practice?legacy=1",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-previous-topic-desktop",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Understanding cube volume",
+    "url": "http://127.0.0.1:5176/dashboard/learn/24d06976-279f-49b7-a7d8-2cf64937bcc9",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-previous-topic-phone",
+    "details": [],
+    "documentWidth": 321,
+    "font": {
+      "size": "28px",
+      "weight": "400"
+    },
+    "mainWidth": 315,
+    "title": "Understanding cube volume",
+    "url": "http://127.0.0.1:5176/dashboard/learn/24d06976-279f-49b7-a7d8-2cf64937bcc9",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-previous-topics-desktop",
+    "details": [
+      {
+        "open": false,
+        "title": "Why this?"
+      },
+      {
+        "open": false,
+        "title": "Why this?"
+      },
+      {
+        "open": false,
+        "title": "Why this?"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Learn",
+    "url": "http://127.0.0.1:5176/dashboard/learn?legacy=1",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-professional-career-phone",
+    "details": [
+      {
+        "open": false,
+        "title": "Your personal professional space"
+      },
+      {
+        "open": false,
+        "title": "Latest saved direction"
+      }
+    ],
+    "documentWidth": 321,
+    "font": {
+      "size": "28px",
+      "weight": "400"
+    },
+    "mainWidth": 315,
+    "title": "Your next capability",
+    "url": "http://127.0.0.1:5176/dashboard/career",
+    "viewport": {
+      "height": 900,
+      "width": 321
+    }
+  },
+  {
+    "label": "final-professional-progress",
+    "details": [
+      {
+        "open": false,
+        "title": "About Your learning evidence"
+      },
+      {
+        "open": false,
+        "title": "Evidence sources and limits"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Your learning evidence",
+    "url": "http://127.0.0.1:5176/dashboard/progress",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-shared-personalization",
+    "details": [
+      {
+        "open": false,
+        "title": "What Guide remembers"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Make Guide work for you",
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-shared-plans",
+    "details": [],
+    "documentWidth": 1435,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1190,
+    "title": " Plans & usage ",
+    "url": "http://127.0.0.1:5176/dashboard/subscription",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-shared-privacy",
+    "details": [
+      {
+        "open": false,
+        "title": "Recent retained activity (13)"
+      }
+    ],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Privacy & consent",
+    "url": "http://127.0.0.1:5176/dashboard/privacy",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "label": "final-shared-support",
+    "details": [],
+    "documentWidth": 1440,
+    "font": {
+      "size": "40px",
+      "weight": "400"
+    },
+    "mainWidth": 1195,
+    "title": "Help with your workspace",
+    "url": "http://127.0.0.1:5176/dashboard/support",
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  }
+]

@@ -2,6 +2,8 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getRoleMentorView, requestTeacherSupport, saveCareerTarget, saveTeacherPreparation } from '@/services/roleMentorService';
+import { homeCopy } from '@/lib/homeCopy';
+import HomeFeedback from '@/components/dashboard/HomeFeedback';
 
 function EvidenceTable({ rows, aggregate = false }) {
   if (!rows.length) return <p className="v-muted">No shared evidence yet. An empty history is not a learning gap.</p>;
@@ -88,7 +90,7 @@ function OrganizationPanel({ view }) {
   </>;
 }
 
-function RolePanel({ ctx }) {
+function RolePanel({ ctx, locale }) {
   const [selection, setSelection] = useState('');
   const [revision, setRevision] = useState(0);
   const [notice, setNotice] = useState('');
@@ -101,10 +103,11 @@ function RolePanel({ ctx }) {
   const query = useQuery({ queryKey: ['role-mentor', ctx.personId, ctx.workspaceId, ctx.role, ctx.locale, selection, revision], queryFn: ({ signal }) => getRoleMentorView({ ...ctx, signal }, selection), retry: false, gcTime: 0 });
   if (query.error) return <section className="v-home-module"><h2 className="text-lg font-medium">Summary unavailable</h2><p className="v-notice v-error mt-3" role="alert">{query.error.message}</p><div className="flex flex-wrap gap-3 mt-4"><button className="v-button" onClick={() => query.refetch()}>Retry</button>{selection && <button className="v-button" onClick={() => setSelection('')}>Choose an available connection</button>}<Link className="v-button" to="/dashboard/connections">Manage connections</Link></div></section>;
   if (!query.data) return <section className="v-home-module" role="status" aria-busy="true">Loading your authorized summary…</section>;
-  return <section className="v-home-module">{query.data.role === 'teacher' && <TeacherPanel ctx={ctx} view={query.data} onSelect={setSelection} onNotice={setNotice}/>} {query.data.role === 'parent' && <ParentPanel view={query.data} onSelect={setSelection}/>} {query.data.role === 'professional' && <ProfessionalPanel ctx={ctx} view={query.data} onNotice={setNotice}/>} {query.data.role === 'organization' && <OrganizationPanel view={query.data}/>} {notice && <p role="status" className="v-notice mt-4">{notice}</p>}<p className="v-muted mt-5">Local preview · No live model, identity verification, or cloud synchronization.</p></section>;
+  const title = {teacher:'Teaching overview',parent:'Shared family progress',professional:'Career overview',organization:'Organization overview'}[query.data.role];
+  return <><details className="v-home-module v-home-role-overview"><summary>{homeCopy(locale)(title)}</summary><div className="v-home-role-content" lang="en">{query.data.role === 'teacher' && <TeacherPanel ctx={ctx} view={query.data} onSelect={setSelection} onNotice={setNotice}/>} {query.data.role === 'parent' && <ParentPanel view={query.data} onSelect={setSelection}/>} {query.data.role === 'professional' && <ProfessionalPanel ctx={ctx} view={query.data} onNotice={setNotice}/>} {query.data.role === 'organization' && <OrganizationPanel view={query.data}/>}<p className="v-muted mt-5">Local preview · No live model, identity verification, or cloud synchronization.</p></div></details><HomeFeedback message={notice} onDismiss={setNotice} locale="en"/></>;
 }
 
-export default function RoleMentorPanel({ ctx }) {
+export default function RoleMentorPanel({ ctx, locale = 'en' }) {
   if (!ctx || ctx.role === 'student') return null;
-  return <RolePanel key={`${ctx.personId}:${ctx.workspaceId}:${ctx.role}:${ctx.locale}`} ctx={ctx}/>;
+  return <RolePanel key={`${ctx.personId}:${ctx.workspaceId}:${ctx.role}:${locale}`} ctx={ctx} locale={locale}/>;
 }

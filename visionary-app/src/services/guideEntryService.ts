@@ -34,7 +34,8 @@ function conversationView(conversation?: Conversation) {
   return {selected:conversation?.id||null,input:conversation?.draft||'',canvasPath:conversation?.canvasPath||'',pane:conversation?.sessionId||conversation?.canvasPath?'activity' as const:'conversation' as const};
 }
 /** A single route-entry snapshot prevents active-history hydration from overwriting an exact resume. */
-export function openGuideLocation(ctx: RequestContext, entry: {sessionId?:string|null;journeyId?:string|null;practice?:boolean;initialQuestion?:string;topic?:string|null}) {
+export function openGuideLocation(ctx: RequestContext, entry: {conversationId?:string|null;sessionId?:string|null;journeyId?:string|null;practice?:boolean;initialQuestion?:string;topic?:string|null}) {
+  if(entry.conversationId) return selectGuideConversation(ctx,entry.conversationId);
   if(entry.sessionId||entry.journeyId)return openGuideEntry(ctx,entry).view;
   const data=snapshot(ctx);
   const view=conversationView(data.conversations.find(c=>c.id===data.activeConversationId));

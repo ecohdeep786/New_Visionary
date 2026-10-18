@@ -5,6 +5,7 @@ import { getHome } from '../src/services/homeService.ts';
 import { getDailyPlan } from '../src/services/dailyPlanService.ts';
 import { startLearningUnit, selectLearningSyllabus } from '../src/services/learningPipelineService.ts';
 import { SAMPLE_SELECTION } from '../src/services/contentRepository.ts';
+import { homeCopy } from '../src/lib/homeCopy.js';
 
 const memory = new Map();
 globalThis.localStorage = { getItem:key => memory.get(key) ?? null, setItem:(key,value) => memory.set(key,String(value)), removeItem:key => memory.delete(key) };
@@ -62,4 +63,21 @@ test('authored project titles that match a UI message are never translated',asyn
   const plan=getDailyPlan(context);
   assert.equal(plan.steps.find(row=>row.kind==='build').title,'Prepare your next lesson');
   assert.equal((await getHome(context)).priority.title,'Prepare your next lesson');
+});
+
+test('plan status follows recorded completion while authored work stays unchanged across languages',async () => {
+  const context=ctx('student');
+  workspace.saveArtifact(context,{title:'Working model',body:'Private notes',milestones:[false,false,false],status:'in-progress'});
+  workspace.saveArtifact(context,{title:'Completed model',body:'Private notes',milestones:[true,true,true],status:'completed'});
+  for (const locale of ['en','hi','bn']) {
+    language('student',locale);
+    const before=memory.get('visionary_workspace_v2');
+    const home=await getHome(context);
+    const rows=home.modules.find(module=>module.id==='daily-plan').rows;
+    assert.equal(rows.find(row=>row.title==='Working model').status,homeCopy(locale)('Planned'));
+    assert.equal(rows.find(row=>row.title==='Completed model').status,homeCopy(locale)('Done today'));
+    assert.equal(rows.find(row=>row.title==='Completed model').deferId,undefined);
+    assert.equal(home.priority.empty,false);
+    assert.equal(memory.get('visionary_workspace_v2'),before);
+  }
 });

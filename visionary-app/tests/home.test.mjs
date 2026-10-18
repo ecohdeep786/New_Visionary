@@ -16,6 +16,7 @@ test('five role Homes offer direct role-safe next actions without creating conve
  for(const [role,destination] of Object.entries(destinations)){
   const home=await getHome(ctx(role));
   assert.equal(home.priority.action.path,`/dashboard/${destination}`);
+  assert.equal(home.priority.empty,true,'an unconfigured role has a first-use state');
   assert.ok(home.priority.reason);assert.ok(home.modules.length+2<=5);
   assert.equal(service.snapshot(ctx(role)).conversations.length,0);
  }
@@ -38,6 +39,7 @@ test('Home and deep link resume the exact session without resetting its snapshot
  assert.equal(result.conversation.id,second.id);
  assert.deepEqual(result.session,before);
  const home=await getHome(ctx());assert.match(home.priority.action.path,/ask\?session=/);
+ assert.equal(home.priority.empty,false,'a saved activity is not an empty state');
  assert.ok(!JSON.stringify(home).includes('keep notes'));
 });
 test('invalid and cross-workspace activity links create no blank conversation',()=>{

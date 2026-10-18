@@ -1,0 +1,15 @@
+✔ saved search resumes exact owned records without indexing private contents or changing storage (35.9589ms)
+✔ each role remains isolated, and forged contexts fail before exposing any titles (28.4731ms)
+✔ unreadable learning preserves other titles and originals, while an unreadable workspace fails closed (11.3383ms)
+✔ matching ranks exact titles, normalizes widths, accepts several words and deduplicates destinations (1.2666ms)
+✔ conversation deep links select the exact saved draft and reject removed or foreign ids without writes (44.7095ms)
+✔ new search states have explicit English, Hindi and Bengali copy (13.9612ms)
+✔ revoked company membership hides search titles and retains personal and company originals (17.9627ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3363.4668

@@ -1,0 +1,21 @@
+{
+  "label": "final-organization-insights",
+  "details": [
+    {
+      "open": false,
+      "title": "About Institution analytics"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Institution analytics",
+  "url": "http://127.0.0.1:5176/dashboard/analytics",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

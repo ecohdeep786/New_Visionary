@@ -2,6 +2,19 @@ import { primaryWorkspaceCopy } from './primaryWorkspaceCopy.js';
 
 // Interface copy only. Authored concept names, assignments and project text stay verbatim.
 const rows = [
+  ['Due {date}','अंतिम तारीख {date}','শেষ তারিখ {date}'],
+  ['Dismiss','बंद करें','বন্ধ করুন'],
+  ['Removed from today’s plan. Your saved work is kept.','आज की योजना से हटाया गया। आपका सहेजा कार्य सुरक्षित है।','আজকের পরিকল্পনা থেকে সরানো হয়েছে। আপনার সংরক্ষিত কাজ রাখা হয়েছে।'],
+  ['Planned','योजनाबद्ध','পরিকল্পিত'],
+  ['Done today','आज पूरा हुआ','আজ সম্পন্ন'],
+  ['Local preview','स्थानीय प्रीव्यू','স্থানীয় প্রিভিউ'],
+  ['Details and options','विवरण और विकल्प','বিবরণ ও বিকল্প'],
+  ['Details and actions for {title}','{title}: विवरण और कार्य','{title}: বিবরণ ও কাজ'],
+  ['About this workspace','इस कार्यक्षेत्र के बारे में','এই কর্মক্ষেত্র সম্পর্কে'],
+  ['Teaching overview','शिक्षण का अवलोकन','শিক্ষাদানের সারসংক্ষেপ'],
+  ['Shared family progress','परिवार की साझा प्रगति','পরিবারের ভাগ করা অগ্রগতি'],
+  ['Career overview','करियर का अवलोकन','কর্মজীবনের সারসংক্ষেপ'],
+  ['Organization overview','संगठन का अवलोकन','প্রতিষ্ঠানের সারসংক্ষেপ'],
   ['Change plan','योजना बदलें','পরিকল্পনা বদলান'],
   ['Open classwork','कक्षा का कार्य खोलें','ক্লাসের কাজ খুলুন'],
   ['{className}{due}. Open it to review and submit your work.','{className}{due}। कार्य देखने और जमा करने के लिए खोलें।','{className}{due}। কাজ পর্যালোচনা ও জমা দিতে খুলুন।'],

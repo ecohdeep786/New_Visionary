@@ -1,0 +1,21 @@
+{
+  "label": "final-shared-privacy",
+  "details": [
+    {
+      "open": false,
+      "title": "Recent retained activity (13)"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Privacy & consent",
+  "url": "http://127.0.0.1:5176/dashboard/privacy",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

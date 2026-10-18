@@ -1,0 +1,21 @@
+{
+  "label": "final-organization-curriculum",
+  "details": [
+    {
+      "open": false,
+      "title": "Earlier subject drafts · unreviewed"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Reviewed curriculum templates",
+  "url": "http://127.0.0.1:5176/dashboard/curriculum",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

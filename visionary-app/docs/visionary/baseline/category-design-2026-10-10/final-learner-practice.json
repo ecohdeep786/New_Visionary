@@ -1,0 +1,21 @@
+{
+  "label": "final-learner-practice",
+  "details": [
+    {
+      "open": false,
+      "title": "About Your next practice"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Your next practice",
+  "url": "http://127.0.0.1:5176/dashboard/practice",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

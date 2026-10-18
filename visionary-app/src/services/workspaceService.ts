@@ -124,7 +124,7 @@ export function changeFamilyInvitation(ctx:RequestContext,invitationId:string,st
  i.status=status;record(data,`Family billing ${status}`,i.id);write(db);
 }
 export async function getWorkspace(ctx:RequestContext){await wait(ctx);return snapshot(ctx);}
-export function updatePreferences(ctx:RequestContext,patch:Partial<WorkspaceData['preferences']>){const db=read();const data=access(db,ctx);data.preferences={...data.preferences,...patch};record(data,'Preferences updated',ctx.workspaceId);write(db);}
+export function updatePreferences(ctx:RequestContext,patch:Partial<WorkspaceData['preferences']>){if(patch.appearance!==undefined&&!['system','light','dark'].includes(patch.appearance))throw Error('Choose a supported theme.');const db=read();const data=access(db,ctx);data.preferences={...data.preferences,...patch};record(data,'Preferences updated',ctx.workspaceId);write(db);}
 export function newConversation(ctx:RequestContext,title='A new discovery') {const db=read();const data=access(db,ctx);const conversation:Conversation={id:id(),title,messages:[],draft:'',updatedAt:now(),useForPersonalization:false};data.conversations.unshift(conversation);data.activeConversationId=conversation.id;write(db);return conversation;}
 export function appendTeachingTurn(ctx:RequestContext,conversationId:string,input:string,response:string,locale:Locale,status:'ready'|'not_connected'|'blocked') {
  if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');

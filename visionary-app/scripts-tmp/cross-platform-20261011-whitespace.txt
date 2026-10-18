@@ -1,0 +1,12 @@
+warning: in the working copy of 'visionary-app/docs/visionary/CATEGORY_FLOW_ACCEPTANCE_2026_10_09.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/CURRENT_PRODUCT_STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/DECISIONS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/QA.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/ParentClassworkDigest.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/lib/learningCatalogueCopy.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/pages/dashboard/LearningWorkspace.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/pages/dashboard/ParentReport.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/pages/dashboard/ProfessionalCareer.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/pages/dashboard/WorkspaceTools.jsx', LF will be replaced by CRLF the next time Git touches it

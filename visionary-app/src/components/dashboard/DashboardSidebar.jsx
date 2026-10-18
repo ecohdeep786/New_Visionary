@@ -25,13 +25,13 @@ export default function DashboardSidebar({ expanded, onNavigate, onExpand }) {
     const Icon = item.icon;
     return <NavLink key={item.to} to={item.to} onClick={onNavigate}
       className={({ isActive }) => `workspace-nav-link group flex min-h-12 shrink-0 rounded-full transition-colors ${expanded ? `items-center gap-3 px-4 py-2.5${isActive ? " font-medium" : " hover:bg-[#eceef1]"}` : `flex-col items-center justify-center gap-1 px-1 py-2${isActive ? " font-medium" : ""}`}`}
-      style={({ isActive }) => ({ color: isActive ? "#0b57d2" : "#121317", backgroundColor: expanded && isActive ? "#e8f0fd" : undefined })}>
+      style={({ isActive }) => ({ color: isActive ? "var(--v-action)" : "var(--v-text)", backgroundColor: expanded && isActive ? "var(--v-soft)" : undefined })}>
       {({ isActive }) => <>
         <span className={`flex h-8 items-center justify-center rounded-full transition-colors ${expanded ? "w-auto" : "w-14"}${!expanded && !isActive ? " group-hover:bg-[#eceef1]" : ""}`}
-          style={!expanded && isActive ? { backgroundColor: "#e8f0fd" } : undefined}>
+          style={!expanded && isActive ? { backgroundColor: "var(--v-soft)" } : undefined}>
           <Icon aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={1.75} />
         </span>
-        <span className={expanded ? "text-sm" : "text-xs"} style={{ color: isActive ? "#4285F4" : undefined }}>{item.label}</span>
+        <span className={expanded ? "text-sm" : "text-xs"} style={{ color: isActive ? "var(--v-action)" : undefined }}>{item.label}</span>
       </>}
     </NavLink>;
   };

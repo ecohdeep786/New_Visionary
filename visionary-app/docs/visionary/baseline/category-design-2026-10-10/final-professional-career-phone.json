@@ -1,0 +1,25 @@
+{
+  "label": "final-professional-career-phone",
+  "details": [
+    {
+      "open": false,
+      "title": "Your personal professional space"
+    },
+    {
+      "open": false,
+      "title": "Latest saved direction"
+    }
+  ],
+  "documentWidth": 321,
+  "font": {
+    "size": "28px",
+    "weight": "400"
+  },
+  "mainWidth": 315,
+  "title": "Your next capability",
+  "url": "http://127.0.0.1:5176/dashboard/career",
+  "viewport": {
+    "height": 900,
+    "width": 321
+  }
+}

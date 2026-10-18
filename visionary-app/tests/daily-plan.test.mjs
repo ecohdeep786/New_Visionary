@@ -140,6 +140,8 @@ test('classwork without a due date remains actionable when no activity is open',
  localStorage.setItem('visionary_entity_Assignment', JSON.stringify(assignments));
  const home = await getHome(ctx('minor-cbse'));
  assert.equal(home.priority.id, 'classwork:undated-classwork');
+ assert.equal(home.priority.empty,false);
+ assert.equal(home.modules.find(module=>module.id==='daily-plan').rows.find(row=>row.id==='classwork:undated-classwork').status,'Planned');
  assert.equal(home.priority.source, 'Connected classwork');
 });
 

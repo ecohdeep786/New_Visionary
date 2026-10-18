@@ -1,0 +1,16 @@
+{
+  "label": "final-previous-lab-desktop",
+  "details": [],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Small change. Another dimension.",
+  "url": "http://127.0.0.1:5176/dashboard/explore?legacy=1",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

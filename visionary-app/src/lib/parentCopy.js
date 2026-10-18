@@ -1,6 +1,14 @@
 import {roleNotificationCopy} from './roleNotificationCopy.js';
 import {learningProgressText} from './learningProgressCopy.js';
 const entries=[
+ ['Report details','रिपोर्ट का विवरण','প্রতিবেদনের বিবরণ'],
+ ['Completed activities','पूरी हुई गतिविधियाँ','সম্পন্ন কাজ'],
+ ['Shared projects','साझा परियोजनाएँ','ভাগ করা প্রকল্প'],
+ ['Shared goals','साझा लक्ष्य','ভাগ করা লক্ষ্য'],
+ ['Shared copies may predate this period.','साझा प्रतियाँ इस अवधि से पहले की हो सकती हैं।','ভাগ করা অনুলিপি এই সময়ের আগের হতে পারে।'],
+ ['Unavailable','उपलब्ध नहीं','উপলব্ধ নয়'],
+ ['Only explicitly shared summaries','केवल स्पष्ट रूप से साझा सारांश','শুধু স্পষ্টভাবে ভাগ করা সারাংশ'],
+ ['Returned titles and upcoming due dates','लौटाए गए काम के शीर्षक और आगामी अंतिम तिथियाँ','ফেরত কাজের শিরোনাম ও আসন্ন শেষ তারিখ'],
  ['Return to children','बच्चों पर लौटें','সন্তান বিভাগে ফিরুন'],['Choose a shared report','साझा रिपोर्ट चुनें','ভাগ করা রিপোর্ট বেছে নিন'],
  ['No connected learners yet.','अभी कोई विद्यार्थी जुड़ा नहीं है।','এখনও কোনো শিক্ষার্থী সংযুক্ত নেই।'],
  ['Stop sharing','साझा करना बंद करें','ভাগ করা বন্ধ করুন'],

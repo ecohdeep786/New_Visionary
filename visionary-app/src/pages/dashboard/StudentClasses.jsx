@@ -1,5 +1,4 @@
-import SpotIllustration from '@/components/landing/SpotIllustration';
-import { classColors } from '@/lib/classColors';
+import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import { primaryWorkspaceCopy } from '@/lib/primaryWorkspaceCopy';
 import AssignedCurriculumOutline from '@/components/dashboard/AssignedCurriculumOutline';
 import ClassCurriculum from '@/components/dashboard/ClassCurriculum';
@@ -284,17 +283,17 @@ export default function StudentClasses() {
   const invitations = classes.filter(c => !activeClassIds.has(c.id) && enrollments.some(e => e.class_id === c.id && e.status === "invited"));
   const classAssignments = (assignments || []).filter(a => a.class_id === openClassId).sort((x, y) => (y.created_date || "").localeCompare(x.created_date || ""));
   return <div className="v-page" lang={locale}>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-[28px] font-medium text-[#121317] tracking-tight"> {copy("Your classes")} </h1>
+          <h1 className="v-title"> {copy("Your classes")} </h1>
           <p className="text-sm text-[#5f6368] mt-1"> {copy("Assignments, feedback, and class updates in one place")} </p>
         </div>
-        <button onClick={() => {
+        {connectedClasses.length > 0 && <button onClick={() => {
         setJoinStatus("");
         setShowJoin(true);
-      }} className="inline-flex h-10 items-center justify-center gap-2 self-start rounded-full border border-[#dadce0] bg-white px-5 text-sm font-medium text-[#0b57d2] transition-colors hover:bg-[#ffffff] sm:self-auto">
-          <Link2 className="h-4 w-4" /> {copy("Join class")} </button>
-      </div>
+      }} className="v-button self-start sm:self-auto">
+          <Link2 size={18} aria-hidden="true" /> {copy("Join class")} </button>}
+      </header>
 
       {error && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"> {copy(error)}  <button onClick={load} className="ml-2 font-medium underline"> {copy("Retry")} </button></p>}
       {loadError && <p role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"> {copy(loadError)}  <button onClick={load} className="ml-2 font-medium underline"> {copy("Retry class loading")} </button></p>}
@@ -317,23 +316,16 @@ export default function StudentClasses() {
       }}> {copy("Discard current edits and load saved drafts")} </button></div>}
       {invitations.length > 0 && <section aria-label={copy("Class invitations")} className="rounded-2xl border border-[#dadce0] bg-[#ffffff] p-5"><h2 className="font-medium text-[#121317]"> {copy("Class invitations")} </h2><div className="mt-3 space-y-3">{invitations.map(c => <div key={c.id} className="flex flex-wrap items-center justify-between gap-3"><div><p className="text-sm font-medium text-[#121317]">{c.name}</p><p className="text-xs text-[#5f6368]">{c.teacher_name || "Your teacher"} {copy("invited you to join")} </p></div><button disabled={joining} onClick={() => acceptInvitation(c)} className="h-10 rounded-full bg-[#0b57d2] px-5 text-sm font-medium text-white disabled:opacity-50"> {copy("Accept class")} </button></div>)}</div></section>}
 
-      {loading ? <div className="flex justify-center py-16">
+      {loading ? <div role="status" aria-label={copy("Your classes")} className="flex justify-center py-16">
           <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
-        </div> : loadError ? null : connectedClasses.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
-          <SpotIllustration subject="study" className="v-empty-illustration" />
-          <div>
-            <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
-            <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Join with a class code from your teacher. When you connect, assignments and feedback will appear here.")} </p>
-          </div>
+        </div> : loadError ? null : connectedClasses.length === 0 ? <WorkspaceEmptyState illustration="study" title={copy("No classes yet")} details={copy("Join with a class code from your teacher. When you connect, assignments and feedback will appear here.")}>
           <button onClick={() => {
         setJoinStatus("");
         setShowJoin(true);
-      }} className="inline-flex h-10 items-center gap-2 rounded-full px-5 text-sm font-medium text-white" style={{
-        backgroundColor: accent
-      }}><KeyRound className="h-4 w-4" /> {copy("Join with a code")} </button>
-        </div> : openClass && activeClassIds.has(openClass.id) ? <div className="flex flex-col gap-6">
+      }} className="v-button primary"><KeyRound size={18} aria-hidden="true" /> {copy("Join with a code")} </button>
+        </WorkspaceEmptyState> : openClass && activeClassIds.has(openClass.id) ? <div className="flex flex-col gap-6">
           <button onClick={() => setOpenClassId(null)} className="flex items-center gap-1.5 text-sm text-[#5f6368] hover:text-[#121317] self-start">
             <ChevronRight className="w-4 h-4 rotate-180" /> {copy("All classes")} </button>
 
@@ -434,18 +426,15 @@ export default function StudentClasses() {
                   </div>;
         })}
           </div>}
-        </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div> : <div className="v-class-grid">
           {connectedClasses.map(c => {
         const count = (assignments || []).filter(a => a.class_id === c.id).length;
-        return <button key={c.id} onClick={() => setOpenClassId(c.id)} className="text-left flex flex-col bg-white rounded-2xl border border-[#dadce0] overflow-hidden hover:shadow-md transition-all">
-                <div className="p-6" style={{
-            ...classColors(c.color || accent)
-          }}>
-                  <h3 className="text-[18px] font-medium text-white tracking-tight">{c.name}</h3>
-                  {c.section && <p className="text-sm mt-0.5">{c.section}</p>}
-                  {c.subject && <p className="text-sm mt-0.5">{c.subject}</p>}
+        return <button key={c.id} onClick={() => setOpenClassId(c.id)} className="v-class-card" title={[c.name,c.section,c.subject].filter(Boolean).join(' · ')}>
+                <div className="v-class-card-copy">
+                  <h3>{c.name}</h3>
+                  <p className="v-muted">{[c.section,c.subject].filter(Boolean).join(' · ')}</p>
                 </div>
-                <div className="flex items-center justify-between px-6 py-5">
+                <div className="v-class-card-footer">
                   <span className="text-sm text-[#5f6368]"> {copy(count===1?'{count} assignment':'{count} assignments', {
                 count
               })} </span>

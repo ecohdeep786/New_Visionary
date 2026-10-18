@@ -1,0 +1,18 @@
+{
+  "finalDocumentSince": "2026-10-10T14:55:49.893Z",
+  "afterFinalReload": [],
+  "history": [
+    {
+      "level": "error",
+      "message": "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5176/assets/Learn-CJK-5lpf.js",
+      "timestamp": "2026-10-10T14:49:51.824Z",
+      "url": "http://127.0.0.1:5176/assets/vendor-BryUNwad.js"
+    },
+    {
+      "level": "error",
+      "message": "[Visionary Resilience Diagnostic]: TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5176/assets/Learn-CJK-5lpf.js Object",
+      "timestamp": "2026-10-10T14:49:52.703Z",
+      "url": "http://127.0.0.1:5176/assets/index-DeuXM6i3.js"
+    }
+  ]
+}

@@ -20,6 +20,9 @@ import OrganizationBilling from '@/pages/dashboard/OrganizationBilling';
 import { getStagePresentation } from '@/services/stagePresentation';
 import './workspace.css';
 import './workspace-design.css';
+import './workspace-tokens.css';
+import WorkspaceSkeleton from './WorkspaceSkeleton';
+import WorkspaceConnectionStatus from './WorkspaceConnectionStatus';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Ellipsis } from "lucide-react";
 
@@ -50,12 +53,12 @@ export default function DashboardLayout() {
   useWorkspaceScroll(user?.id, activeWorkspace?.id, location.pathname, location.search, Boolean(activeWorkspace && !workspaceError && !scopeError));
   useEffect(()=>{
     if(!activeWorkspace)return;
-    const route=activeWorkspace.id+':'+location.pathname;
+    const route=activeWorkspace.id+':'+location.pathname+location.search;
     const changed=previousRoute.current&&previousRoute.current!==route;previousRoute.current=route;
     if(!changed)return;
     const frame=requestAnimationFrame(()=>{if(!document.querySelector('[role="dialog"][data-state="open"]'))document.getElementById('main')?.focus({preventScroll:true});});
     return()=>cancelAnimationFrame(frame);
-  },[location.pathname,activeWorkspace?.id]);
+  },[location.pathname,location.search,activeWorkspace?.id]);
   useEffect(() => { if(activeWorkspace&&user)saveLastPath({personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:'en'},location.pathname); },[location.pathname,activeWorkspace?.id]);
   const recoveryCopy=privacyCopy(locale);
   function recover(){retryWorkspace();refreshScope();}
@@ -71,8 +74,9 @@ export default function DashboardLayout() {
   let stageTier;try{stageTier=getStagePresentation({personId:user.id,workspaceId:activeWorkspace.id,role:activeWorkspace.role,locale:"en"}).tier;}catch(error){return unavailable(error.message);}
   const presented = presentNavigation(ctx.role,stageTier,navigation,secondaryNavigation(ctx.role,locale).filter(item=>!policy||organizationPathAllowed(policy,item.to)),location.pathname);
   return <ThemeColorProvider>
-    <div data-role={ctx.role} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
-      <DashboardTopbar userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
+    <div data-appearance={scopeData?.preferences.appearance || 'system'} data-role={ctx.role} data-area={location.pathname.split('/')[2] || 'home'} className={`visionary-workspace workspace-shell stage-${stageTier} flex h-dvh flex-col overflow-hidden text-[#121317]`}>
+      <DashboardTopbar key={ctx.personId+':'+ctx.workspaceId} userName={userName} sidebarExpanded={sidebarExpanded || mobileOpen} onToggleSidebar={() => window.matchMedia("(min-width: 768px)").matches ? setSidebarExpanded(v => !v) : setMobileOpen(v => !v)} />
+      <WorkspaceConnectionStatus/>
       <div className={`workspace-presence-anchor${sidebarExpanded ? " is-expanded" : ""}`}><AudioPresence /></div>
       <div className="flex min-h-0 flex-1 overflow-hidden">
         <div className="hidden h-full md:block"><DashboardSidebar expanded={sidebarExpanded} onExpand={() => setSidebarExpanded(true)} /></div>
@@ -81,7 +85,7 @@ export default function DashboardLayout() {
           <DashboardSidebar expanded onNavigate={() => setMobileOpen(false)} />
         </SheetContent></Sheet>
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 overflow-y-auto px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3">
-          <div className="workspace-surface min-h-full overflow-hidden">{!permitted?<div className="v-page" lang={locale}><h1 className="v-title">{organizationCopy(locale,'Permission required')}</h1><p className="v-notice" role="alert">{organizationCopy(locale,'Your {role} permission does not include this section. Ask the organization owner to review access.',{role:organizationCopy(locale,policy.label)})}</p><NavLink to="/dashboard/home" className="v-button">{organizationCopy(locale,'Return to workspace')}</NavLink></div>:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<div lang={locale} className="v-page" role="status" aria-busy="true">{t("openingWorkspace")}</div>}><Outlet /></Suspense>}</div>
+          <div className="workspace-surface min-h-full overflow-hidden">{!permitted?<div className="v-page" lang={locale}><h1 className="v-title">{organizationCopy(locale,'Permission required')}</h1><p className="v-notice" role="alert">{organizationCopy(locale,'Your {role} permission does not include this section. Ask the organization owner to review access.',{role:organizationCopy(locale,policy.label)})}</p><NavLink to="/dashboard/home" className="v-button">{organizationCopy(locale,'Return to workspace')}</NavLink></div>:policy&&activeWorkspace.organizationId&&location.pathname==='/dashboard/home'?<OrganizationAccessHome key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:policy&&location.pathname==='/dashboard/subscription'?<OrganizationBilling key={ctx.personId+':'+ctx.workspaceId} ctx={ctx} locale={locale}/>:<Suspense key={ctx.personId+":"+activeWorkspace.id+":"+location.pathname} fallback={<div lang={locale} className="v-page"><WorkspaceSkeleton label={t("openingWorkspace")}/></div>}><Outlet /></Suspense>}</div>
         </main>
       </div>
       <nav lang={locale} aria-label={t("mobileNavigation")} className="workspace-bottom-nav fixed inset-x-0 bottom-0 z-30 flex items-center justify-around border-t border-[#dadce0] bg-white md:hidden">{presented.mobile.map(item=>{const Icon=item.icon;return <NavLink key={item.key} to={item.to} className={({isActive})=>`flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs ${isActive?'bg-[#e8f0fd] font-medium text-[#1967d2]':'text-[#5f6368]'}`}><Icon aria-hidden="true" size={19}/>{item.label}</NavLink>;})}<button aria-label={t("moreNavigation")} aria-expanded={mobileOpen} data-active={presented.mobileMoreActive} className="workspace-bottom-more flex min-h-12 min-w-12 flex-col items-center justify-center gap-1 rounded-xl px-2 text-xs text-[#5f6368]" onClick={()=>setMobileOpen(true)}><Ellipsis aria-hidden="true" size={19}/>{t("more")}</button></nav>

@@ -1,4 +1,4 @@
-import SpotIllustration from '@/components/landing/SpotIllustration';
+import WorkspaceEmptyState from '@/components/dashboard/WorkspaceEmptyState';
 import { primaryWorkspaceCopy } from '@/lib/primaryWorkspaceCopy';
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -106,7 +106,7 @@ export default function TeacherHome() {
     icon: ClipboardList
   }];
   return <div className="v-page" lang={locale}>
-      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1><p className="v-muted mt-2">{copy("Create a class, add students, and start teaching")}</p></div><button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button></header>
+      <header className="flex flex-wrap items-start justify-between gap-4"><div><h1 className="v-title">{copy("Your classes")}</h1></div>{classes.length > 0 && <button onClick={()=>setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true"/>{copy("Create class")}</button>}</header>
 
       {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"> {copy(error)}  <button onClick={load} className="ml-2 font-medium underline"> {copy("Retry")} </button></div>}
       {!loading && !error && classes.length > 0 && <TeacherInsightCard accent={accent} classes={classes} assignmentCount={assignmentCount} pendingReviews={pendingReviews} />}
@@ -123,21 +123,13 @@ export default function TeacherHome() {
       })}
       </div>}
 
-      {loading ? <div className="flex items-center justify-center py-16">
+      {loading ? <div role="status" aria-label={copy("Your classes")} className="flex items-center justify-center py-16">
           <div className="w-8 h-8 border-4 border-[#dadce0] rounded-full animate-spin" style={{
         borderTopColor: accent
       }} />
-        </div> : error ? null : classes.length === 0 ? <div className="flex flex-col items-center gap-5 py-16 text-center">
-          <SpotIllustration subject="study" className="v-empty-illustration" />
-          <div>
-            <h3 className="text-[18px] font-medium text-[#121317] mb-2"> {copy("No classes yet")} </h3>
-            <p className="text-sm text-[#5f6368] max-w-sm leading-relaxed"> {copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")} </p>
-          </div>
-          <button onClick={() => setShowCreate(true)} className="inline-flex items-center gap-2 h-10 px-6 rounded-full text-sm font-medium text-white transition-colors" style={{
-        backgroundColor: accent
-      }}>
-            <Plus className="w-4 h-4" /> {copy("Create your first class")} </button>
-        </div> : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div> : error ? null : classes.length === 0 ? <WorkspaceEmptyState illustration="study" title={copy("No classes yet")} details={copy("Create your first class to post announcements, assign work tagged to concepts, and review recorded work, concept coverage, and feedback.")}>
+          <button onClick={() => setShowCreate(true)} className="v-button primary"><Plus size={18} aria-hidden="true" />{copy("Create your first class")}</button>
+        </WorkspaceEmptyState> : <div className="v-class-grid">
           {classes.map(c => <ClassCard key={c.id} classroom={c} />)}
         </div>}
 

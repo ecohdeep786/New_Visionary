@@ -1,0 +1,29 @@
+{
+  "label": "final-learner-hindi-help-phone",
+  "details": [
+    {
+      "open": true,
+      "title": "आपकी अध्ययन रूपरेखा के बारे में"
+    },
+    {
+      "open": true,
+      "title": "विषय चुनें"
+    },
+    {
+      "open": false,
+      "title": "अध्ययन का संदर्भ जोड़ें"
+    }
+  ],
+  "documentWidth": 321,
+  "font": {
+    "size": "28px",
+    "weight": "400"
+  },
+  "mainWidth": 315,
+  "title": "आपकी अध्ययन रूपरेखा",
+  "url": "http://127.0.0.1:5176/dashboard/learn",
+  "viewport": {
+    "height": 900,
+    "width": 321
+  }
+}

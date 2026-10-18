@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "colors": {
+    "light": {
+      "primary": "#0b57d2",
+      "onPrimary": "#ffffff",
+      "secondary": "#52627c",
+      "tertiary": "#66558f",
+      "surface": "#ffffff",
+      "surfaceContainer": "#f0f2f6",
+      "onSurface": "#1d1d1f",
+      "onSurfaceVariant": "#60646c",
+      "outline": "#747982",
+      "outlineVariant": "#dfe2e7",
+      "error": "#b3261e",
+      "errorContainer": "#fce8e6",
+      "success": "#146c2e",
+      "successContainer": "#e6f4ea",
+      "warning": "#805200",
+      "warningContainer": "#fff1cc",
+      "focus": "#0b57d2"
+    },
+    "dark": {
+      "primary": "#a8c7fa",
+      "onPrimary": "#062e6f",
+      "secondary": "#b8c7e3",
+      "tertiary": "#d1bcf3",
+      "surface": "#181c22",
+      "surfaceContainer": "#242a33",
+      "onSurface": "#edf0f5",
+      "onSurfaceVariant": "#b7bfcc",
+      "outline": "#8993a3",
+      "outlineVariant": "#46505f",
+      "error": "#ffb4ab",
+      "errorContainer": "#4b211f",
+      "success": "#8bda9e",
+      "successContainer": "#183c26",
+      "warning": "#f2c66b",
+      "warningContainer": "#3d3017",
+      "focus": "#a8c7fa"
+    }
+  },
+  "typography": {
+    "font": "system-ui / platform default",
+    "display": [
+      48,
+      400,
+      1.15
+    ],
+    "headline": [
+      40,
+      400,
+      1.25
+    ],
+    "title": [
+      24,
+      500,
+      1.4
+    ],
+    "body": [
+      16,
+      400,
+      1.65
+    ],
+    "reading": [
+      17,
+      400,
+      1.8
+    ],
+    "label": [
+      14,
+      500,
+      1.5
+    ],
+    "caption": [
+      12,
+      400,
+      1.7
+    ],
+    "code": [
+      15,
+      400,
+      1.65
+    ]
+  },
+  "spacing": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    40,
+    64
+  ],
+  "shape": {
+    "small": 8,
+    "field": 10,
+    "panel": 12,
+    "sheet": 24,
+    "pill": 999
+  },
+  "elevation": {
+    "surface": 0,
+    "overlay": "0 8px 32px #00000024"
+  },
+  "icons": [
+    16,
+    20,
+    24,
+    36
+  ],
+  "targets": {
+    "web": 44,
+    "coarse": 48,
+    "foundational": 52,
+    "iosPt": 44,
+    "androidDp": 48
+  },
+  "motion": {
+    "fast": 120,
+    "state": 160,
+    "enter": 180,
+    "emphasis": 220,
+    "ease": [
+      0.2,
+      0,
+      0,
+      1
+    ]
+  },
+  "breakpoints": {
+    "phone": 767,
+    "expanded": 1200
+  },
+  "appearance": [
+    "system",
+    "light",
+    "dark"
+  ]
+}

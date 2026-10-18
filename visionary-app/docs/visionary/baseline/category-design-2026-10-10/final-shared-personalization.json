@@ -1,0 +1,21 @@
+{
+  "label": "final-shared-personalization",
+  "details": [
+    {
+      "open": false,
+      "title": "What Guide remembers"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Make Guide work for you",
+  "url": "http://127.0.0.1:5176/dashboard/personalization",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

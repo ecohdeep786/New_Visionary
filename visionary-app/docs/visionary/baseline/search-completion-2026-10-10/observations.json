@@ -1,0 +1,250 @@
+[
+  {
+    "label": "compiled-populated-search-desktop",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nLearning activities\nUnderstand cube volume\nMathematics\nProjects\nFrontend search rehearsal\nConversations\nUnderstand cube volume\nPages\nHome\nLearn\nAsk\nPractice\nBuild\nClasses\nConnections\nProgress\n11 results\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Learner\n\nWelcome back, Anika.\n\nSharing is always scoped\n\nSaved on this device\nIndependent learning\n\nNext for you\n\nUnderstand cube volume\n\nContinue from explain. Your answers and position are saved on this device.\n\nContinue learning\nOpen projects\nWhy this?\nChange plan\nToday’s plan\n\nFrontend search rehearsal\n\nYour saved project remains in Build.\n\nOpen projects\n: Frontend search rehearsal\nNot today\n: Frontend search rehearsal\nThings I remember about you\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nThis view uses your saved learning stage and activity. Suggested session lengths are optional; they do not assess your ability.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-private-body-not-indexed",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nNo matching pages or saved work\n\nTry a shorter title or clear your search.\n\nClear search\n0 results\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Learner\n\nWelcome back, Anika.\n\nSharing is always scoped\n\nSaved on this device\nIndependent learning\n\nNext for you\n\nUnderstand cube volume\n\nContinue from explain. Your answers and position are saved on this device.\n\nContinue learning\nOpen projects\nWhy this?\nChange plan\nToday’s plan\n\nFrontend search rehearsal\n\nYour saved project remains in Build.\n\nOpen projects\n: Frontend search rehearsal\nNot today\n: Frontend search rehearsal\nThings I remember about you\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nThis view uses your saved learning stage and activity. Suggested session lengths are optional; they do not assess your ability.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-exact-project-reopen",
+    "focus": null,
+    "main": "Your project\nProjects\nVersions\nShare\nShare summary with parent\nSave\n\nYour project is private until you choose an accepted connection and confirm sharing.\n\nProject title\nYour working document\n\nSaves when you leave the editor or choose Save.\n\nArtifact preview\nFrontend search rehearsal\n\nFictional private search fixture. Bluebird blueprint stays out of search results.\n\nProject criteria\n\nNo concept-specific criteria were supplied for this project. Use the milestones and describe your evidence and limitations in the working document. Completion remains unverified.\n\nMilestones\nDefine the idea and success criteria\nCreate and check your artifact\nReflect on evidence and limitations\nProject status\nDraft\nIn progress\nCompleted\nAsk Visionary\nExport Markdown",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/build?artifact=58a3c09b-f9f9-443b-931f-896164a2f2a7",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-exact-learning-resume",
+    "focus": null,
+    "main": "Learning outline\n\nAuthored sample · Not official curriculum\n\nUnderstand cube volume\n\nYour place is saved locally. Understanding is checked before guided practice and building.\n\nTeaching language\nEnglish\nहिन्दी\nবাংলা\n1\nUnderstand\n2\nCheck\n3\nPractice\n4\nBuild\nUnderstand one idea\n\nRequest an explanation in your selected teaching language. If the service is disconnected, available authored sample content can still be used.\n\nStart this learning unit\nSee the idea another way\n\nYour view stays with this learning activity. Exploring it does not count as a correct answer.\n\nInteractive 3D\nRead description\n\n01 · Observe\n\n3\n\nTurn the cube to see its faces.\n\n02 · Change one thing\n\nMove the side-length slider and watch the volume change.\n\n3 × 3 × 3 = 27 cubic units\n\nSide length: 3 units\nRotation: 25°\nReset model\n03 · Predict the next change\nOptional · no score\nAsk a doubt · keep my place\nSave and return Home\nReport a content problem",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/learn?unit=8a2556c1-885d-432f-86aa-75a7b50ebfc6",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-exact-conversation-draft",
+    "focus": null,
+    "main": "Learner · Workspace view\n\nVisionary Guide\nReturn to Understand cube volume · Your position is saved\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr try an authored example\n3³\n= 27\nUnderstand cube volume\nStart exploring\n4/8 = 1/2\nMake sense of fractions\nStart exploring\n20\n30\n25\nTurn data into a decision\nStart exploring\nYour mentor checked in\n\nHere is where today starts: Understand cube volume. 1 more step follow it.\n\nFrom your saved records — not an AI assessment.\n\nContinue learning\nOpen projects\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview\n\nLearning outline\n\nAuthored sample · Not official curriculum\n\nUnderstand cube volume\n\nYour place is saved locally. Understanding is checked before guided practice and building.\n\nTeaching language\nEnglish\nहिन्दी\nবাংলা\n1\nUnderstand\n2\nCheck\n3\nPractice\n4\nBuild\nUnderstand one idea\n\nRequest an explanation in your selected teaching language. If the service is disconnected, available authored sample content can still be used.\n\nStart this learning unit\nSee the idea another way\n\nYour view stays with this learning activity. Exploring it does not count as a correct answer.\n\nInteractive 3D\nRead description\n\n01 · Observe\n\n3\n\nTurn the cube to see its faces.\n\n02 · Change one thing\n\nMove the side-length slider and watch the volume change.\n\n3 × 3 × 3 = 27 cubic units\n\nSide length: 3 units\nRotation: 25°\nReset model\n03 · Predict the next change\nOptional · no score\nAsk a doubt · keep my place\nSave and return Home\nReport a content problem",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/ask?conversation=2e429fe6-61ae-43ae-974e-e3d0ef6c8f49",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-conversation-reloaded",
+    "focus": null,
+    "main": "Learner · Workspace view\n\nVisionary Guide\nReturn to Understand cube volume · Your position is saved\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr try an authored example\n3³\n= 27\nUnderstand cube volume\nStart exploring\n4/8 = 1/2\nMake sense of fractions\nStart exploring\n20\n30\n25\nTurn data into a decision\nStart exploring\nYour mentor checked in\n\nHere is where today starts: Understand cube volume. 1 more step follow it.\n\nFrom your saved records — not an AI assessment.\n\nContinue learning\nOpen projects\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview\n\nLearning outline\n\nAuthored sample · Not official curriculum\n\nUnderstand cube volume\n\nYour place is saved locally. Understanding is checked before guided practice and building.\n\nTeaching language\nEnglish\nहिन्दी\nবাংলা\n1\nUnderstand\n2\nCheck\n3\nPractice\n4\nBuild\nUnderstand one idea\n\nRequest an explanation in your selected teaching language. If the service is disconnected, available authored sample content can still be used.\n\nStart this learning unit\nSee the idea another way\n\nYour view stays with this learning activity. Exploring it does not count as a correct answer.\n\nInteractive 3D\nRead description\n\n01 · Observe\n\n3\n\nTurn the cube to see its faces.\n\n02 · Change one thing\n\nMove the side-length slider and watch the volume change.\n\n3 × 3 × 3 = 27 cubic units\n\nSide length: 3 units\nRotation: 25°\nReset model\n03 · Predict the next change\nOptional · no score\nAsk a doubt · keep my place\nSave and return Home\nReport a content problem",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/ask?conversation=2e429fe6-61ae-43ae-974e-e3d0ef6c8f49",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-search-phone",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nLearning activities\nUnderstand cube volume\nMathematics\nProjects\nFrontend search rehearsal\nConversations\nUnderstand cube volume\nPages\nHome\nLearn\nAsk\nPractice\nBuild\nClasses\nConnections\nProgress\n11 results\nClose",
+    "dialogWidth": 358.0749206542969,
+    "focus": "Search pages and saved work",
+    "main": "Conversation\nActivity · Saved\n\nLearner · Workspace view\n\nVisionary Guide\nReturn to Understand cube volume · Your position is saved\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr try an authored example\n3³\n= 27\nUnderstand cube volume\nStart exploring\n4/8 = 1/2\nMake sense of fractions\nStart exploring\n20\n30\n25\nTurn data into a decision\nStart exploring\nYour mentor checked in\n\nHere is where today starts: Understand cube volume. 1 more step follow it.\n\nFrom your saved records — not an AI assessment.\n\nContinue learning\nOpen projects\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/ask?conversation=2e429fe6-61ae-43ae-974e-e3d0ef6c8f49",
+    "viewport": 390,
+    "width": 390
+  },
+  {
+    "label": "compiled-scope-isolation-Personal · Parent",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nNo matching pages or saved work\n\nTry a shorter title or clear your search.\n\nClear search\n0 results\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Return to children\nTheir learning, in context\n\nShared learning summaries, not private conversations. This local report is updated when you open it.\n\nChild\nAarav\nMaya\nReport period\nLast 7 days\nLast 30 days\n\nLast 7 days · Source: active progress-summary sharing on this device\n\nAarav’s overview\n\nNo guided-learning activity was shared in this period. Ask what they would like to explore next.\n\n0 completed guided-learning activities. Completion shows participation; it does not establish mastery.\n\nAsk about this report\nCompleted activities\n0\nShared projects\n0\nShared goals\n0\n\nShared copies may predate this period.\n\nProgress and retention\n\nRecorded checks and review evidence in this period. No activity is not a score for ability.\n\n0 of 0 recorded answers correct across 0 concepts.\n\nNo guided journey was updated in this period.\n\nShared observations\n\nNo retained observations were shared for this period.\n\nApplications and projects\nOnly explicitly shared summaries\nAssigned work and teacher updates\nReturned titles and upcoming due dates\nGoals and transitions\n\nNo class transition was shared in this period.\n\nThe learner chooses which goal summaries to share. These fixed copies may predate the selected activity period; private notes stay with the learner.\n\nNo learner goal has been explicitly shared with this parent workspace. Ask the learner what they would like support with.",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/reports",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-scope-isolation-Personal · Teacher",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nNo matching pages or saved work\n\nTry a shorter title or clear your search.\n\nClear search\n0 results\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Teacher\n\nWelcome back, Anika.\n\nSharing is always scoped\n\nSaved on this device\n\nNext for you\n\nPrepare your next lesson\n\nReview the objective, explanation and checks before sharing with a class.\n\nOpen preparation\nView classwork\nWhy this?\nTeaching workspace\nYour own growth\n\nClass evidence and your own learning stay separate. Private learner doubts are not included.\n\nNo assigned class is connected. You can prepare independently or connect a class.\n\nOpen classes\nOpen lesson drafts\nQuiz, lesson plan, and teacher coach\n\nYour own growth: 0 capabilities with recorded activity. This is separate from the class summary.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-scope-isolation-Personal · Professional",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nNo matching pages or saved work\n\nTry a shorter title or clear your search.\n\nClear search\n0 results\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Professional\n\nWelcome back, Anika.\n\nSharing is always scoped\n\nSaved on this device\nProfessional learning\n\nNext for you\n\nGive your next skill a clear purpose\n\nChoose a work problem or career goal to guide your learning.\n\nSet a skill goal\nExplore learning\nWhy this?\nYour next capability\n\nYour target guides the same learning, practice, and building loop. An employer does not gain access to this personal evidence.\n\nNo skill gap has been assessed yet. Choose a target, then build evidence through practice and projects.\n\nSet a career target\nBuild your portfolio\nCareer workspace\n\n0 saved projects · Share work explicitly; do not paste confidential employer material.\n\nLocal preview · No live model, identity verification, or cloud synchronization.\n\nNeed help along the way?\n\nAsk a question or continue a saved conversation.\n\nAsk Visionary Guide\n\nCareer suggestions use only your saved goal and recorded work. No hiring assessment or live model is connected.\n\nLocal preview · Saved on this device. No live model or cloud sync.",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/home",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-scope-isolation-Owner · My organization",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nNo matching pages or saved work\n\nTry a shorter title or clear your search.\n\nClear search\n0 results\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Organization\n\nInstitution analytics\n\nA focused view of your institution’s roster and explicitly linked classrooms.\n\nLinked classes\n0\nConnected people\n0\nClass assignments\n0\nScoped learning evidence\n\nOnly recorded work from active learners in explicitly linked classes. Personal projects and conversations are excluded.\n\nEvidence period\nLast 7 days\nLast 30 days\n\nLast 7 days of recorded class evidence. Current linked-class denominator: 0 active enrolled learners.\n\nPeriod participation is hidden below 5 contributors.\n\nCurrent submissions awaiting review: hidden below 5 enrolled learners. This operational count is current, not filtered by the evidence period.\n\nConcept totals require at least 5 contributing learners in the selected period. Smaller groups are hidden.\n\nNo concept total is available for this period. This does not describe any learner’s ability.\n\nNo linked classrooms yet\n\nRoster drafts do not create classroom access. Only classes explicitly linked to your institution will contribute to this report.\n\nManage people",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/analytics",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-search-Hindi",
+    "dialog": "अपने कार्यक्षेत्र में खोजें\n\nइस कार्यक्षेत्र के पृष्ठ नाम और सहेजे शीर्षक। दस्तावेज़ों और संदेशों में खोज नहीं होती।\n\nसीखने की गतिविधियाँ\nUnderstand cube volume\nMathematics\nप्रोजेक्ट\nFrontend search rehearsal\nबातचीत\nUnderstand cube volume\nपृष्ठ\nहोम\nसीखें\nपूछें\nअभ्यास\nबनाएँ\nकक्षाएँ\nसंपर्क\nप्रगति\n11 परिणाम\nTab से आगे जाएँ, Enter से खोलें और Escape से बंद करें।\nबंद करें",
+    "dialogWidth": 639.9928588867188,
+    "focus": "पृष्ठ और सहेजा काम खोजें",
+    "main": "Guide को अपनी ज़रूरत के अनुसार बनाएँ\n\nआपकी प्राथमिकताएँ इस कार्यक्षेत्र पर लागू होती हैं। यह स्थानीय पूर्वावलोकन है; क्लाउड सुरक्षा का सत्यापन नहीं हुआ है।\n\nआपका शिक्षा स्तर\n\nअपनी अध्ययन प्रोफ़ाइल बदलें। बोर्ड, संस्था और शिक्षा स्तर में बदलाव की पुष्टि आवश्यक है। इससे उम्र, सहमति या सुरक्षा अनुमतियाँ नहीं बदलतीं।\n\nवर्तमान शिक्षा स्तर की प्रोफ़ाइल देखेंहोम पर शिक्षा स्तर का अपडेट देखें\nभाषा और सुलभता\nशिक्षण की भाषा\nEnglish\nहिन्दी\nবাংলা\nइंटरफ़ेस की भाषा\nEnglish\nहिन्दी\nবাংলা\nGuide का रूप\nVision Boy — नीला गोला\nVision Girl — चमकती पट्टियाँ\n\nGuide खोलकर रूप और माइक्रोफ़ोन की स्थिति देखें। सभी रूपों में बातचीत और अध्ययन एक ही रहता है।\n\nचुने गए अध्ययन में अनुवादित सामग्री उपलब्ध है। इंटरफ़ेस का अनुवाद जारी है; बाकी लेबल अंग्रेज़ी में रहते हैं।\n\nशिक्षण के साथ स्रोत की भाषा में व्याख्या दिखाएँ\nपाठ के विकल्पों को प्राथमिकता दें\nनिजीकरण के लिए मेरी चुनी हुई प्राथमिकताएँ उपयोग करें\nऑडियो संवाद: Visionary से बात करें और उत्तर सुनें। ऑडियो चालू होने पर Guide सुनने और बोलने की स्थिति दिखाता है। ऑडियो बंद या अनुपलब्ध होने पर पाठ उपलब्ध रहता है।\nGuide क्या याद रखता है\n\nप्राथमिकता इस उपकरण पर सहेजी गई।",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "compiled-search-Bengali-narrow-phone",
+    "dialog": "আপনার কর্মক্ষেত্রে খুঁজুন\n\nএই কর্মক্ষেত্রের পৃষ্ঠার নাম এবং সংরক্ষিত শিরোনাম। নথি ও বার্তায় খোঁজা হয় না।\n\nশেখার কার্যকলাপ\nUnderstand cube volume\nMathematics\nপ্রজেক্ট\nFrontend search rehearsal\nকথোপকথন\nUnderstand cube volume\nপৃষ্ঠা\nহোম\nশিখুন\nজিজ্ঞাসা\nঅনুশীলন\nতৈরি করুন\nক্লাস\nসংযোগ\nঅগ্রগতি\n11 ফলাফল\nবন্ধ করুন",
+    "dialogWidth": 288.6092834472656,
+    "focus": "পৃষ্ঠা ও সংরক্ষিত কাজ খুঁজুন",
+    "main": "Guide-কে নিজের প্রয়োজন অনুযায়ী সাজান\n\nআপনার পছন্দ এই কর্মক্ষেত্রে প্রযোজ্য। এটি স্থানীয় প্রিভিউ; ক্লাউড নিরাপত্তা যাচাই করা হয়নি।\n\nআপনার শিক্ষার পর্যায়\n\nনিজের শেখার প্রোফাইল বদলান। বোর্ড, প্রতিষ্ঠান ও শিক্ষার পর্যায় বদলাতে নিশ্চিতকরণ প্রয়োজন। এতে বয়স, সম্মতি বা নিরাপত্তার অনুমতি বদলায় না।\n\nবর্তমান পর্যায়ের প্রোফাইল পর্যালোচনা করুনহোমে পর্যায়ের আপডেট দেখুন\nভাষা ও প্রবেশগম্যতা\nশিক্ষণের ভাষা\nEnglish\nहिन्दी\nবাংলা\nইন্টারফেসের ভাষা\nEnglish\nहिन्दी\nবাংলা\nGuide-এর রূপ\nVision Boy — নীল গোলক\nVision Girl — উজ্জ্বল দণ্ড\n\nরূপ ও মাইক্রোফোনের অবস্থা দেখতে Guide খুলুন। সব রূপে একই কথোপকথন ও শেখা থাকে।\n\nনির্বাচিত অধ্যয়নে অনূদিত বিষয়বস্তু আছে। ইন্টারফেসের অনুবাদ চলছে; বাকি লেবেল ইংরেজিতে থাকে।\n\nশিক্ষণের সঙ্গে উৎসের ভাষায় ব্যাখ্যা দেখান\nপাঠ্য বিকল্পকে অগ্রাধিকার দিন\nব্যক্তিগতকরণের জন্য আমার নির্বাচিত পছন্দ ব্যবহার করুন\nঅডিও কথোপকথন: Visionary-র সঙ্গে কথা বলুন ও উত্তর শুনুন। অডিও সক্রিয় হলে Guide শোনা ও বলার অবস্থা দেখায়। অডিও বন্ধ বা অনুপলব্ধ হলে পাঠ্য থাকে।\nGuide কী মনে রাখে\n\nপছন্দ এই ডিভাইসে সংরক্ষিত হয়েছে।",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-BIpwBhTS.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 321,
+    "width": 321
+  },
+  {
+    "label": "final-search-desktop",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nLearning activities\nUnderstand cube volume\nMathematics\nProjects\nFrontend search rehearsal\nConversations\nUnderstand cube volume\nPages\nHome\nLearn\nAsk\nPractice\nBuild\nClasses\nConnections\nProgress\nResults shown: 11\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Make Guide work for you\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nYour learning stage\n\nUpdate your personal learning profile. Board, institution and education-stage changes require confirmation. This does not change your age, consent or safety permissions.\n\nReview current stage profileView stage notice on Home\nLanguage and accessibility\nTeaching language\nEnglish\nहिन्दी\nবাংলা\nInterface language\nEnglish\nहिन्दी\nবাংলা\nGuide appearance\nVision Boy — the sky sphere\nVision Girl — the glowing bars\n\nOpen the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.\n\nTeaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.\n\nShow source-language explanation alongside teaching\nPrefer text alternatives\nUse my explicit preferences for personalization\nAudio interaction: speak with Visionary and hear replies. The Guide panel shows listening and speaking states when audio is active. Text remains available when audio is off or unavailable.\nWhat Guide remembers",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "final-search-phone",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nLearning activities\nUnderstand cube volume\nMathematics\nProjects\nFrontend search rehearsal\nConversations\nUnderstand cube volume\nPages\nHome\nLearn\nAsk\nPractice\nBuild\nClasses\nConnections\nProgress\nResults shown: 11\nClose",
+    "dialogWidth": 358.0749206542969,
+    "focus": "Search pages and saved work",
+    "main": "Make Guide work for you\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nYour learning stage\n\nUpdate your personal learning profile. Board, institution and education-stage changes require confirmation. This does not change your age, consent or safety permissions.\n\nReview current stage profileView stage notice on Home\nLanguage and accessibility\nTeaching language\nEnglish\nहिन्दी\nবাংলা\nInterface language\nEnglish\nहिन्दी\nবাংলা\nGuide appearance\nVision Boy — the sky sphere\nVision Girl — the glowing bars\n\nOpen the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.\n\nTeaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.\n\nShow source-language explanation alongside teaching\nPrefer text alternatives\nUse my explicit preferences for personalization\nAudio interaction: speak with Visionary and hear replies. The Guide panel shows listening and speaking states when audio is active. Text remains available when audio is off or unavailable.\nWhat Guide remembers",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 390,
+    "width": 390
+  },
+  {
+    "label": "final-secondary-notifications-page",
+    "focus": null,
+    "main": "Notifications\n\nUpdates saved in this workspace. No email, push or scheduled delivery is connected.\n\nSummary preference\nSummary frequency\nOff\nWeekly\nDaily\nUrgent only\nSaved updates\nShow updates\nAll updates\nUnread only\nYou’re up to date\n\nRelevant updates will appear here.\n\nOpen Home",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/notifications",
+    "viewport": 390,
+    "width": 390
+  },
+  {
+    "label": "final-search-Hindi",
+    "dialog": "अपने कार्यक्षेत्र में खोजें\n\nइस कार्यक्षेत्र के पृष्ठ नाम और सहेजे शीर्षक। दस्तावेज़ों और संदेशों में खोज नहीं होती।\n\nकोई पृष्ठ या सहेजा काम नहीं मिला\n\nछोटा शीर्षक खोजें या खोज साफ़ करें।\n\nखोज साफ़ करें\nदिखाए गए परिणाम: 0\nTab से आगे जाएँ, Enter से खोलें और Escape से बंद करें।\nबंद करें",
+    "dialogWidth": 639.9928588867188,
+    "focus": "पृष्ठ और सहेजा काम खोजें",
+    "main": "Guide को अपनी ज़रूरत के अनुसार बनाएँ\n\nआपकी प्राथमिकताएँ इस कार्यक्षेत्र पर लागू होती हैं। यह स्थानीय पूर्वावलोकन है; क्लाउड सुरक्षा का सत्यापन नहीं हुआ है।\n\nआपका शिक्षा स्तर\n\nअपनी अध्ययन प्रोफ़ाइल बदलें। बोर्ड, संस्था और शिक्षा स्तर में बदलाव की पुष्टि आवश्यक है। इससे उम्र, सहमति या सुरक्षा अनुमतियाँ नहीं बदलतीं।\n\nवर्तमान शिक्षा स्तर की प्रोफ़ाइल देखेंहोम पर शिक्षा स्तर का अपडेट देखें\nभाषा और सुलभता\nशिक्षण की भाषा\nEnglish\nहिन्दी\nবাংলা\nइंटरफ़ेस की भाषा\nEnglish\nहिन्दी\nবাংলা\nGuide का रूप\nVision Boy — नीला गोला\nVision Girl — चमकती पट्टियाँ\n\nGuide खोलकर रूप और माइक्रोफ़ोन की स्थिति देखें। सभी रूपों में बातचीत और अध्ययन एक ही रहता है।\n\nचुने गए अध्ययन में अनुवादित सामग्री उपलब्ध है। इंटरफ़ेस का अनुवाद जारी है; बाकी लेबल अंग्रेज़ी में रहते हैं।\n\nशिक्षण के साथ स्रोत की भाषा में व्याख्या दिखाएँ\nपाठ के विकल्पों को प्राथमिकता दें\nनिजीकरण के लिए मेरी चुनी हुई प्राथमिकताएँ उपयोग करें\nऑडियो संवाद: Visionary से बात करें और उत्तर सुनें। ऑडियो चालू होने पर Guide सुनने और बोलने की स्थिति दिखाता है। ऑडियो बंद या अनुपलब्ध होने पर पाठ उपलब्ध रहता है।\nGuide क्या याद रखता है\n\nप्राथमिकता इस उपकरण पर सहेजी गई।",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "final-search-Bengali-narrow",
+    "dialog": "আপনার কর্মক্ষেত্রে খুঁজুন\n\nএই কর্মক্ষেত্রের পৃষ্ঠার নাম এবং সংরক্ষিত শিরোনাম। নথি ও বার্তায় খোঁজা হয় না।\n\nশেখার কার্যকলাপ\nUnderstand cube volume\nMathematics\nপ্রজেক্ট\nFrontend search rehearsal\nকথোপকথন\nUnderstand cube volume\nপৃষ্ঠা\nহোম\nশিখুন\nজিজ্ঞাসা\nঅনুশীলন\nতৈরি করুন\nক্লাস\nসংযোগ\nঅগ্রগতি\nদেখানো ফলাফল: 11\nবন্ধ করুন",
+    "dialogWidth": 288.6092834472656,
+    "focus": "পৃষ্ঠা ও সংরক্ষিত কাজ খুঁজুন",
+    "main": "Guide-কে নিজের প্রয়োজন অনুযায়ী সাজান\n\nআপনার পছন্দ এই কর্মক্ষেত্রে প্রযোজ্য। এটি স্থানীয় প্রিভিউ; ক্লাউড নিরাপত্তা যাচাই করা হয়নি।\n\nআপনার শিক্ষার পর্যায়\n\nনিজের শেখার প্রোফাইল বদলান। বোর্ড, প্রতিষ্ঠান ও শিক্ষার পর্যায় বদলাতে নিশ্চিতকরণ প্রয়োজন। এতে বয়স, সম্মতি বা নিরাপত্তার অনুমতি বদলায় না।\n\nবর্তমান পর্যায়ের প্রোফাইল পর্যালোচনা করুনহোমে পর্যায়ের আপডেট দেখুন\nভাষা ও প্রবেশগম্যতা\nশিক্ষণের ভাষা\nEnglish\nहिन्दी\nবাংলা\nইন্টারফেসের ভাষা\nEnglish\nहिन्दी\nবাংলা\nGuide-এর রূপ\nVision Boy — নীল গোলক\nVision Girl — উজ্জ্বল দণ্ড\n\nরূপ ও মাইক্রোফোনের অবস্থা দেখতে Guide খুলুন। সব রূপে একই কথোপকথন ও শেখা থাকে।\n\nনির্বাচিত অধ্যয়নে অনূদিত বিষয়বস্তু আছে। ইন্টারফেসের অনুবাদ চলছে; বাকি লেবেল ইংরেজিতে থাকে।\n\nশিক্ষণের সঙ্গে উৎসের ভাষায় ব্যাখ্যা দেখান\nপাঠ্য বিকল্পকে অগ্রাধিকার দিন\nব্যক্তিগতকরণের জন্য আমার নির্বাচিত পছন্দ ব্যবহার করুন\nঅডিও কথোপকথন: Visionary-র সঙ্গে কথা বলুন ও উত্তর শুনুন। অডিও সক্রিয় হলে Guide শোনা ও বলার অবস্থা দেখায়। অডিও বন্ধ বা অনুপলব্ধ হলে পাঠ্য থাকে।\nGuide কী মনে রাখে\n\nপছন্দ এই ডিভাইসে সংরক্ষিত হয়েছে।",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 321,
+    "width": 321
+  },
+  {
+    "label": "final-private-text-exclusion",
+    "dialog": "Search your workspace\n\nPage names and saved titles in this workspace. Documents and messages are not searched.\n\nNo matching pages or saved work\n\nTry a shorter title or clear your search.\n\nClear search\nResults shown: 0\nUse Tab to move, Enter to open, and Escape to close.\nClose",
+    "dialogWidth": 639.9928588867188,
+    "focus": "Search pages and saved work",
+    "main": "Make Guide work for you\n\nYour preferences have a purpose and a visible scope. This is a local preview, not verified cloud security.\n\nYour learning stage\n\nUpdate your personal learning profile. Board, institution and education-stage changes require confirmation. This does not change your age, consent or safety permissions.\n\nReview current stage profileView stage notice on Home\nLanguage and accessibility\nTeaching language\nEnglish\nहिन्दी\nবাংলা\nInterface language\nEnglish\nहिन्दी\nবাংলা\nGuide appearance\nVision Boy — the sky sphere\nVision Girl — the glowing bars\n\nOpen the Guide control to preview either visual style and see the microphone state. The styles share the same conversations and learning.\n\nTeaching content is translated for curated journeys. Interface translation is being completed; unsupported labels remain in English.\n\nShow source-language explanation alongside teaching\nPrefer text alternatives\nUse my explicit preferences for personalization\nAudio interaction: speak with Visionary and hear replies. The Guide panel shows listening and speaking states when audio is active. Text remains available when audio is off or unavailable.\nWhat Guide remembers\n\nPreference saved on this device.",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/personalization",
+    "viewport": 1280,
+    "width": 1280
+  },
+  {
+    "label": "final-exact-conversation",
+    "focus": null,
+    "main": "Learner · Workspace view\n\nVisionary Guide\nReturn to Understand cube volume · Your position is saved\nWhat would you like help with?\nMessage Visionary Guide\nEnglish · Private to this workspace\nOr try an authored example\n3³\n= 27\nUnderstand cube volume\nStart exploring\n4/8 = 1/2\nMake sense of fractions\nStart exploring\n20\n30\n25\nTurn data into a decision\nStart exploring\nYour mentor checked in\n\nHere is where today starts: Understand cube volume. 1 more step follow it.\n\nFrom your saved records — not an AI assessment.\n\nContinue learning\nOpen projects\nIntent and context\n\nLocal preview. The teaching service is not connected unless a response is labelled connected. No cloud sync or real student records.About this preview\n\nLearning outline\n\nAuthored sample · Not official curriculum\n\nUnderstand cube volume\n\nYour place is saved locally. Understanding is checked before guided practice and building.\n\nTeaching language\nEnglish\nहिन्दी\nবাংলা\n1\nUnderstand\n2\nCheck\n3\nPractice\n4\nBuild\nUnderstand one idea\n\nRequest an explanation in your selected teaching language. If the service is disconnected, available authored sample content can still be used.\n\nStart this learning unit\nSee the idea another way\n\nYour view stays with this learning activity. Exploring it does not count as a correct answer.\n\nInteractive 3D\nRead description\n\n01 · Observe\n\n3\n\nTurn the cube to see its faces.\n\n02 · Change one thing\n\nMove the side-length slider and watch the volume change.\n\n3 × 3 × 3 = 27 cubic units\n\nSide length: 3 units\nRotation: 25°\nReset model\n03 · Predict the next change\nOptional · no score\nAsk a doubt · keep my place\nSave and return Home\nReport a content problem",
+    "scripts": [
+      "http://127.0.0.1:5176/assets/index-CtpcUbPc.js"
+    ],
+    "url": "http://127.0.0.1:5176/dashboard/ask?conversation=2e429fe6-61ae-43ae-974e-e3d0ef6c8f49",
+    "viewport": 1280,
+    "width": 1280
+  }
+]

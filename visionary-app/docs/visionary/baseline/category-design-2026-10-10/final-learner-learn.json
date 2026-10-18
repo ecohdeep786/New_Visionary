@@ -1,0 +1,29 @@
+{
+  "label": "final-learner-learn",
+  "details": [
+    {
+      "open": false,
+      "title": "About Your learning outline"
+    },
+    {
+      "open": true,
+      "title": "Choose a subject"
+    },
+    {
+      "open": false,
+      "title": "Add learning context"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Your learning outline",
+  "url": "http://127.0.0.1:5176/dashboard/learn",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

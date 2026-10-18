@@ -8,10 +8,10 @@ import { getStagePresentation } from './stagePresentation.ts';
 import { homeCopy } from '../lib/homeCopy.js';
 
 export interface HomeAction { label: string; path: string }
-export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction; deferId?: string }
+export interface HomeRow { id: string; title: string; titleLocale?: Locale; detail: string; action: HomeAction; deferId?: string; status?: string }
 export interface HomeModel {
   name: string; workspace: string; boundary: string; setupNote?: string; observations?: {id:string;text:string}[]; memoryEnabled?: boolean;
-  priority: HomeRow & { reason: string; source: string; updatedAt?: string; alternative: HomeAction };
+  priority: HomeRow & { reason: string; source: string; updatedAt?: string; alternative: HomeAction; empty?: boolean };
   modules: { id: string; title: string; rows: HomeRow[] }[];
 }
 const action = (label: string, area: string): HomeAction => ({label, path: `/dashboard/${area}`});
@@ -80,7 +80,7 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
       action: nextStep.action, alternative: pending.find(step => step.id !== nextStep.id)?.action ?? action('Open learning outline','learn'),
       reason: nextStep.reason, source: nextStep.source, updatedAt: nextStep.dueAt,
     };
-    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action,deferId:step.done?undefined:step.id}))});
+    if (plan.steps.length) model.modules.push({id:'daily-plan',title:'Today’s plan',rows:plan.steps.map(step=>({id:step.id,title:step.title,titleLocale:step.titleLocale,detail:step.detail,action:step.action,deferId:step.done?undefined:step.id,status:step.done?t('Done today'):step.dueAt?t('Due {date}',{date:new Date(step.dueAt).toLocaleDateString(locale)}):t('Planned')}))});
   } else if (ctx.role === 'teacher') {
     const lesson = resources.find(r => r.kind === 'lesson' && r.status === 'draft');
     model.priority = {id:lesson?.id || 'prepare',title:lesson ? t('Continue preparing {title}',{title:lesson.title}) : t('Prepare your next lesson'),detail:'Review the objective, explanation and checks before sharing with a class.',action:action('Open preparation','prepare'),alternative:action('View classwork','classes'),reason:lesson ? 'You have an unfinished lesson draft in this teacher workspace.' : 'Start with the idea you want your learners to understand.',source:lesson ? 'Saved lesson draft' : 'Your selected teacher role',updatedAt:lesson?.updatedAt};
@@ -93,6 +93,17 @@ export async function getHome(ctx: RequestContext): Promise<HomeModel> {
     const curriculum = resources.find(r => r.kind === 'curriculum' && r.status === 'reviewed');
     model.priority = {id:'organization',title:cohort ? curriculum ? t('Review your organization’s next steps') : t('Review the learning direction') : t('Bring your people together'),detail:cohort ? 'Connect curriculum and reviewed content to the groups you support.' : 'Start with invitations, then organize connected people into cohorts.',action:cohort ? action(curriculum ? 'Open insights' : 'Open curriculum',curriculum ? 'analytics' : 'curriculum') : action('Manage people','people'),alternative:action('Review cohorts','cohorts'),reason:cohort ? 'A cohort is saved in this workspace; a draft alone does not establish approved curriculum.' : 'No cohort has been saved in this workspace yet. People and permissions come first.',source:'Saved organization setup records'};
   }
+  // Illustration belongs to first-use/setup states, never a saved task or report.
+  // Use record presence rather than localized text or action destinations.
+  model.priority.empty = ctx.role === 'student'
+    ? ['start', 'profile-subject'].includes(model.priority.id) && !model.priority.updatedAt
+    : ctx.role === 'professional'
+      ? model.priority.id === 'career' && !model.priority.updatedAt
+      : ctx.role === 'teacher'
+        ? !resources.some(resource => resource.kind === 'lesson' && resource.status === 'draft')
+        : ctx.role === 'parent'
+          ? model.priority.id === 'connect'
+          : !resources.some(resource => resource.kind === 'cohort');
   // Foundational tier (young learners): fewer modules, plain-words detail, no jargon.
   if (presentation.tier === 'foundational') {
     model.modules = model.modules.filter(m => ['daily-plan', 'classwork'].includes(m.id)).slice(0, presentation.maxModules);

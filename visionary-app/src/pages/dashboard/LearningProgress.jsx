@@ -26,9 +26,9 @@ export default function LearningProgress({ ctx, data }) {
     <section className="v-card v-progress-controls" aria-labelledby="evidence-over-time">
       <h2 id="evidence-over-time" className="text-lg font-medium">{t('overTime')}</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2"><label className="text-sm">{t('period')}<select aria-label={t('period')} className="v-field mt-2" value={period} onChange={event => setPeriod(event.target.value === 'all' ? 'all' : Number(event.target.value))}><option value={7}>{t('seven')}</option><option value={30}>{t('thirty')}</option><option value="all">{t('all')}</option></select></label><label className="text-sm">{t('find')}<input aria-label={t('find')} className="v-field mt-2" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
-      <p className="v-muted mt-4">{t('policy')}</p>
+      <p className="v-muted mt-4">{({en:'Recorded activity, not an ability score.',hi:'दर्ज गतिविधि, क्षमता का अंक नहीं।',bn:'নথিভুক্ত কাজ, সক্ষমতার নম্বর নয়।'})[locale] || 'Recorded activity, not an ability score.'}</p>
       <p className="v-muted mt-2">{t('asOf')} <time dateTime={report.asOf}>{new Date(report.asOf).toLocaleString(locale)}</time> · {t('local')}</p>
-      <details className="v-evidence-source-notes"><summary>{SOURCE_LABEL[locale] || SOURCE_LABEL.en}</summary><p className="v-muted mt-3">{t('sources')}</p><p className="v-muted mt-2">{t('accuracy')}</p></details>
+      <details className="v-evidence-source-notes"><summary>{SOURCE_LABEL[locale] || SOURCE_LABEL.en}</summary><p className="v-muted mt-3">{t('policy')}</p><p className="v-muted mt-3">{t('sources')}</p><p className="v-muted mt-2">{t('accuracy')}</p></details>
     </section>
     {report.unavailable.length > 0 && <section className="v-notice v-error" role="alert"><h2 className="text-base font-medium">{t('unavailable')}</h2>{report.unavailable.map(item => <p className="mt-2 text-sm" key={item.source}><span lang="en">{item.source}: {item.message}</span></p>)}<button className="v-button mt-3" onClick={() => setRetry(retry + 1)}>{t('retry')}</button></section>}
     {rows.length ? rows.map(row => {

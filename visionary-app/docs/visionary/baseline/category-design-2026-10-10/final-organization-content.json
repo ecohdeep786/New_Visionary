@@ -1,0 +1,16 @@
+{
+  "label": "final-organization-content",
+  "details": [],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Organization content",
+  "url": "http://127.0.0.1:5176/dashboard/library",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

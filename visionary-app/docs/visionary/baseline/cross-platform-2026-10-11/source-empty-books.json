@@ -1,0 +1,20 @@
+{
+  "appearance": "system",
+  "bodyColor": "rgb(29, 29, 31)",
+  "bookCards": 0,
+  "chapters": 0,
+  "documentWidth": 637,
+  "focus": "",
+  "lesson": false,
+  "styles": {
+    "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", sans-serif",
+    "size": "28px"
+  },
+  "surface": "rgb(255, 255, 255)",
+  "title": "Your books",
+  "url": "http://127.0.0.1:5176/dashboard/learn",
+  "viewport": {
+    "height": 785,
+    "width": 637
+  }
+}

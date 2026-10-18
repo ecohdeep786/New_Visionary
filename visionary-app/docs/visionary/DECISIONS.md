@@ -253,3 +253,34 @@ Apply the founder’s requested five-role/category review to the existing intern
 A stale asset boundary needs document reload rather than another render of a rejected import; internal errors must not promise unsaved work survived. Observed exam demo mismatch also requires missing exam/higher-education/professional stage seeds, preserving later transitions and empty subject lists. No production curriculum or user capability is inferred.
 
 PRINCIPAL_DESIGN_REVIEW_2026_10_10.md distinguishes five-role source/route coverage, populated fictional interactions, final compiled checks and open human/device acceptance. No backend integration, toddler-independent-usability claim or Apple/Google/AGI certification. Public source edits are preserved.
+### D-052 — 2026-10-10: Overview and supporting detail in deeper workspaces
+
+Use native disclosures for supporting project/classwork and professional-boundary explanations while keeping the learner's main task, real metrics and source limitations visible. Child/period changes reset report disclosures. Classwork read failures remain outside collapsed content with Retry; project failures request an open detail. Shared counts must distinguish unavailable sources and explain fixed copies may predate the activity period. No permission/data handler changes.
+
+Apply one divided role metric structure, visible summary keyboard focus and existing responsive/reduced-motion tokens. Preserve original privacy text, evidence policy, current-context navigation and Visionary artwork. DEEPER_USABILITY_REVIEW_2026_10_10.md records 52 focused regressions and bounded source/compiled verification; broader human/state acceptance and backend work remain separate.
+
+### D-053 — 2026-10-10: Scoped saved-work discovery and exact conversation entry
+
+Complete the shared retrieval gap before backend integration. Search titles/subject metadata from authorized current-workspace activities, projects and conversations alongside pages/earlier learner topics; never index message/document bodies or unsaved backups. Match several words, normalize title text, rank and deduplicate; distinguish shown results from total availability. Preserve partial readable results with explicit learning/legacy source notices and Retry.
+
+Conversation deep links select the exact owned conversation before active-history fallback and retain its saved draft/canvas. Recheck saved-object existence and organization destination permission on click. Remount the top bar on person/workspace changes. Keep native dialog keyboard operation and explicit focus return/main focus, en/hi/bn copy and existing responsive/reduced-motion tokens. SHARED_SEARCH_HANDOFF_2026_10_10.md records490 regressions and bounded compiled coverage; broader full-frontend acceptance remains open.
+
+### D-054 — 2026-10-10 — Home reduction follows the founder's attached design brief
+
+Home has one job: choose/resume the next useful step. Preserve original explanatory and source text behind labelled controls, keep Local preview visible, and retain errors/consent-relevant stage notices. Use record-derived first-use state rather than localized copy to gate the existing Visionary illustration. Daily rows retain full authored accessible titles; visible ellipsis, right-aligned recorded status/date and a named overflow replace explanatory sentences and competing controls. Plan removal names today's plan and preserves the underlying work; success is a bottom snackbar and focus returns after scoped refetch. Role summary content remains available through native disclosures; new labels follow interface language independently of teaching language. Existing English expanded-role copy is marked explicitly and remains a wider translation task. Shared navigation, public source and backend scope are unchanged.
+
+HOME_REDUCTION_REVIEW_2026_10_10.md records the requested five-role A–D spec and qualitative seven-criterion review. Scores are design hypotheses, not human/device/user-study or whole-frontend certification.
+
+### D-055 — 2026-10-10: One design grammar across supported categories
+
+Use a centered 1040px workspace, 28–40/400 titles, 12px flat panels, 10px filled fields, primary pills and semantic 64px desktop / 40px phone section gaps. Catalogue hierarchy keeps 24px internally so the selected chapter action remains reachable. Optional introductory guidance uses localized native About disclosure; foundational Learn keeps its short instruction visible. Never collapse source failure, permission/consent or meaningful teaching/response content by a global CSS hiding rule.
+
+Replace colored class banners with neutral named destinations and actual metadata; retain full accessible names and detail headings. Keep school board/class keys, but present institution/course/year, exam/preparation and course/goal/level for the matching context. Preserve source/storage contracts, exact book/chapter/unit links and authorization. Previous saved-work routes inherit the same page grammar. Existing Visionary art is reserved for useful first use. CATEGORY_DESIGN_COMPLETION_2026_10_10.md supplies A–D review and supported-context mapping; scores remain qualitative.
+
+### D-056 — 2026-10-11: Platform-aware design and explicit book-first learning
+
+Fresh Learn presents course/subject groups and book destinations before any chapter or reader, including one-book courses. Explicit book/chapter and deliberate saved-work deep links retain their known source context. Book progress uses complete chapters from the exact source version, excluding classroom and obsolete attempts. Search/filter state is bounded and scoped to person/workspace/course; navigation preserves existing in-shell scroll and focuses main after query changes. Partial source failures expose Retry without discarding readable books. Missing progress is unavailable, not a fabricated zero.
+
+Use semantic light/dark/system roles, a platform system-font stack, restrained motion and static loading skeletons throughout the internal shell. Theme preferences use the existing scoped service, with invalid values rejected. Offline feedback describes local-cache limits. Web remains silent by default; optional native audio/haptic, Dynamic Type and dynamic color behavior are specified for future clients rather than simulated. Rendered dark-theme review corrected catalog headers, inactive sidebar text, the existing logo, teacher action links and connection badges. Public landing/auth and original :5173 records remain untouched.
+
+CROSS_PLATFORM_PRODUCT_DESIGN_2026_10_11.md delivers the requested 16-part specification for all supported five-role/stage screen families; DESIGN_TOKENS_2026_10_11.json supplies the token contract. Whole-product human/device/native and wider-state acceptance remains open before backend integration. No production parity, native certification or AGI claim.

@@ -1,0 +1,20 @@
+{
+  "appearance": "light",
+  "bodyColor": "rgb(29, 29, 31)",
+  "bookCards": 2,
+  "chapters": 0,
+  "documentWidth": 321,
+  "focus": "main",
+  "lesson": false,
+  "styles": {
+    "font": "\"Noto Sans Devanagari\", \"Kohinoor Devanagari\", \"Nirmala UI\", sans-serif",
+    "size": "28px"
+  },
+  "surface": "rgb(255, 255, 255)",
+  "title": "आपकी पुस्तकें",
+  "url": "http://127.0.0.1:5176/dashboard/learn?catalogueSubject=Mathematics&catalogueBoard=Sample+library&catalogueLevel=6",
+  "viewport": {
+    "height": 850,
+    "width": 321
+  }
+}

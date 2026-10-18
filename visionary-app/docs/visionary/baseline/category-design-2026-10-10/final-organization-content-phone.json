@@ -1,0 +1,16 @@
+{
+  "label": "final-organization-content-phone",
+  "details": [],
+  "documentWidth": 321,
+  "font": {
+    "size": "28px",
+    "weight": "400"
+  },
+  "mainWidth": 315,
+  "title": "Organization content",
+  "url": "http://127.0.0.1:5176/dashboard/library",
+  "viewport": {
+    "height": 900,
+    "width": 321
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "label": "final-shared-support",
+  "details": [],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Help with your workspace",
+  "url": "http://127.0.0.1:5176/dashboard/support",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

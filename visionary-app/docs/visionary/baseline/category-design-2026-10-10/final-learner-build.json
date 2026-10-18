@@ -1,0 +1,21 @@
+{
+  "label": "final-learner-build",
+  "details": [
+    {
+      "open": false,
+      "title": "About Build something of your own"
+    }
+  ],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Build something of your own",
+  "url": "http://127.0.0.1:5176/dashboard/build",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

@@ -12,6 +12,7 @@ import SubjectPills from "@/components/dashboard/learn/SubjectPills";
 import TopicCard from "@/components/dashboard/learn/TopicCard";
 import JourneyCatalogue from '@/components/dashboard/JourneyCatalogue';
 import LearningWorkspace from './LearningWorkspace';
+import BookCatalogue from './BookCatalogue';
 const filters = [{
   value: "all",
   label: "All topics"
@@ -30,7 +31,9 @@ const filters = [{
 }];
 export default function Learn() {
   const [params] = useSearchParams();const {ctx}=useWorkspace();
-  return params.get('legacy') === '1' || params.has('subject') && !params.has('unit') ? <LegacyLearn key={ctx?.personId+':'+ctx?.workspaceId}/> : <LearningWorkspace />;
+  if(params.get('legacy') === '1' || params.has('subject') && !params.has('unit'))return <LegacyLearn key={ctx?.personId+':'+ctx?.workspaceId}/>;
+  const key=ctx?.personId+':'+ctx?.workspaceId+':'+params.toString();
+  return ['unit','book','chapter','assignment','bridgeTransition','fromClass','setup'].some(name=>params.has(name)) ? <LearningWorkspace/> : <BookCatalogue key={key}/>;
 }
 function LegacyLearn() {
   const {
@@ -95,9 +98,9 @@ function LegacyLearn() {
       if(mutationScope.current===requestScope)setSaving(false);
     }
   }
-  return <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 p-5 sm:p-8" lang={locale}>
+  return <div className="v-page v-previous-learning" lang={locale}>
       <header className="flex flex-wrap items-start justify-between gap-4">
-        <div><h1 className="text-2xl font-medium tracking-tight text-[#121317]">{copy("Learn")}</h1><p className="mt-2 text-sm text-[#5f6368]">{copy("Follow your curiosity. Understand an idea, then put it to work.")}</p></div>
+        <div><h1 className="v-title">{copy("Learn")}</h1><p className="mt-2 text-sm text-[#5f6368]">{copy("Follow your curiosity. Understand an idea, then put it to work.")}</p></div>
         <button onClick={() => {
         setError("");try{const backup=getResourceEditorDraft(workspaceCtx,draftKey);if(backup&&backup.draft.body===subject)setTitle(backup.draft.title);}catch(error){setError(error.message);}
         setDialogOpen(true);

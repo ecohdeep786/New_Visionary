@@ -1,0 +1,16 @@
+{
+  "label": "final-previous-topic-desktop",
+  "details": [],
+  "documentWidth": 1440,
+  "font": {
+    "size": "40px",
+    "weight": "400"
+  },
+  "mainWidth": 1195,
+  "title": "Understanding cube volume",
+  "url": "http://127.0.0.1:5176/dashboard/learn/24d06976-279f-49b7-a7d8-2cf64937bcc9",
+  "viewport": {
+    "height": 1000,
+    "width": 1440
+  }
+}

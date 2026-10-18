@@ -96,6 +96,7 @@ function GuideConversation() {
     queryOpened.current = key;
     try {
       const next = params.get('learning') ? selectGuideConversation(ctx, prepareLearningConversation(ctx, params.get('learning'))) : openGuideLocation(ctx, {
+        conversationId: params.get('conversation'),
         journeyId: params.get('journey'),
         sessionId: params.get('session'),
         practice: params.get('stage') === 'practicing',
