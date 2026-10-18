@@ -2817,7 +2817,7 @@
       "files": [
         "frontend/src/pages/dashboard/LearningWorkspace.jsx"
       ],
-      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; server sessions, assessment and learning projections remain required.",
+      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; the durable server session/assessment loop and the account knowledge projection are recorded as separate local-run enablers below and are not yet bound to this UI.",
       "followUp": [
         "LEARN-02",
         "LEARN-09",
@@ -2825,6 +2825,24 @@
         "SYNC-02"
       ],
       "endpoints": []
+    },
+    {
+      "id": "knowledge-projection-calibration",
+      "state": "connected",
+      "execution": "server",
+      "routes": [],
+      "files": [],
+      "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
+      "followUp": [
+        "LEARN-10",
+        "DATA-01",
+        "SYNC-02"
+      ],
+      "endpoints": [
+        "POST /api/account/learning/knowledge/project",
+        "GET /api/account/learning/knowledge/projections",
+        "GET /api/account/learning/knowledge/models"
+      ]
     },
     {
       "id": "ask-guide-model-turn",

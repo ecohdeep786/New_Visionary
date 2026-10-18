@@ -17441,6 +17441,33 @@
     },
     {
       "method": "GET",
+      "path": "/api/account/learning/knowledge/models",
+      "controller": "KnowledgeProjectionController",
+      "handler": "models",
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 28,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/learning/knowledge/project",
+      "controller": "KnowledgeProjectionController",
+      "handler": "project",
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 14,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/account/learning/knowledge/projections",
+      "controller": "KnowledgeProjectionController",
+      "handler": "projections",
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 21,
+      "column": 3
+    },
+    {
+      "method": "GET",
       "path": "/api/account/overview",
       "controller": "AccountController",
       "handler": "overview",
@@ -78218,7 +78245,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sourceSha256": "75b7d3ab1c44191bf0c32c778dc2348b8710bcb952da99297de70a0cec6ab9a4"
+      "sourceSha256": "61597a04f9cf092a7948d3957f1de7452216614e087fbbab5281368f279775f0"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
@@ -78227,6 +78254,10 @@
     {
       "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
       "sourceSha256": "65f077538052d5d15bf79fda17dc3a38941f06db97f147137920a3fa99774dff"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "sourceSha256": "84520838bc7477cdb606a67457f73630172f0d8ceecd2d6d3b05e240d65c9ff8"
     },
     {
       "file": "backend/upstream/backend/src/main-auth.ts",
@@ -81052,7 +81083,7 @@
         "files": [
           "frontend/src/pages/dashboard/LearningWorkspace.jsx"
         ],
-        "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; server sessions, assessment and learning projections remain required.",
+        "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; the durable server session/assessment loop and the account knowledge projection are recorded as separate local-run enablers below and are not yet bound to this UI.",
         "followUp": [
           "LEARN-02",
           "LEARN-09",
@@ -81060,6 +81091,24 @@
           "SYNC-02"
         ],
         "endpoints": []
+      },
+      {
+        "id": "knowledge-projection-calibration",
+        "state": "connected",
+        "execution": "server",
+        "routes": [],
+        "files": [],
+        "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
+        "followUp": [
+          "LEARN-10",
+          "DATA-01",
+          "SYNC-02"
+        ],
+        "endpoints": [
+          "POST /api/account/learning/knowledge/project",
+          "GET /api/account/learning/knowledge/projections",
+          "GET /api/account/learning/knowledge/models"
+        ]
       },
       {
         "id": "ask-guide-model-turn",
@@ -81424,7 +81473,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 26,
+    "registeredEndpoints": 29,
     "controlDeclarations": 1637,
     "routeReachableDeclarations": 1479,
     "controlFiles": 219,
