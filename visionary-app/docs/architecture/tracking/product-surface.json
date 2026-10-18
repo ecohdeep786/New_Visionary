@@ -17409,7 +17409,7 @@
       "controller": "AccountController",
       "handler": "devices",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 29,
+      "line": 30,
       "column": 3
     },
     {
@@ -17436,7 +17436,7 @@
       "controller": "AccountController",
       "handler": "invoices",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 42,
+      "line": 43,
       "column": 3
     },
     {
@@ -17445,7 +17445,7 @@
       "controller": "AccountController",
       "handler": "overview",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 13,
+      "line": 14,
       "column": 3
     },
     {
@@ -78210,7 +78210,7 @@
   "backendSources": [
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "sourceSha256": "bff2ce7d4914d37816edf4071fd7afeddd6814988e42e7c0af72723b1a7bc6a4"
+      "sourceSha256": "20261356d1fe76dba161dc66ee571e204194291823cb41e5dda5205547328b42"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
