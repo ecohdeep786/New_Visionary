@@ -89,16 +89,33 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "To Do",
-      "scope": "Preparation only; runtime/matrix implementation has not started. Founder requests retirement of idle checkouts.",
-      "worktree": null,
+      "status": "In Progress",
+      "scope": "Source-backed candidate launch coverage matrix and fail-closed diagnosis/drift checks; founder release matrix acceptance and domain/provider/source gates remain open.",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix/visionary-app",
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
-      "jiraCommentId": "10015",
+      "jiraCommentId": "10021",
       "jiraTransitionId": "21",
       "review": {
         "state": "not-submitted"
-      }
+      },
+      "branch": "codex/codex-kan-29-coverage-matrix",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "checks": {
+        "coverageTests": 8,
+        "diagnosticCombinations": 9720,
+        "rootCheck": "running"
+      },
+      "ownedFiles": [
+        "integration/contracts/launch-coverage.v1.json",
+        "scripts/lib/launch-coverage.mjs",
+        "scripts/coverage-matrix.mjs",
+        "scripts/tests/launch-coverage.test.mjs",
+        "docs/architecture/LAUNCH_COVERAGE_MATRIX.md",
+        "docs/architecture/delivery/KAN29_COVERAGE_REVIEW.md",
+        "package.json",
+        "scripts/check.mjs"
+      ]
     },
     {
       "sourceId": "AI-11",
