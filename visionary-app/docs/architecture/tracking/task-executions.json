@@ -103,7 +103,7 @@
     {
       "sourceId": "AI-11",
       "jiraKey": "KAN-137",
-      "status": "Testing",
+      "status": "Done",
       "scope": "Deterministic retrieval-binary-v2 metric repair and Python/Go parity only",
       "branch": "codex/qa-review-kan-137-metrics",
       "independentlyReviewedSource": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
@@ -131,7 +131,17 @@
         "KAN-143",
         "KAN-127"
       ],
-      "hostedAcceptance": false
+      "hostedAcceptance": false,
+      "worktree": null,
+      "integration": {
+        "branch": "dev",
+        "commit": "7d69436c21c3020cb1c7680b225ff911283cd8ee",
+        "remotePublished": true,
+        "jiraCommentId": "10016",
+        "jiraTransitionId": "51",
+        "jiraReturnedStatus": "Done"
+      },
+      "cleanup": "Authorized after published closeout receipt; final inventory is recorded in append-only QA log."
     }
   ]
 }

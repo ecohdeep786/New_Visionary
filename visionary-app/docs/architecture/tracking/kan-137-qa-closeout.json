@@ -41,5 +41,15 @@
     }
   ],
   "goTopLevelTests": 8,
-  "goSharedFixtures": 13
+  "goSharedFixtures": 13,
+  "integration": {
+    "branch": "dev",
+    "commit": "7d69436c21c3020cb1c7680b225ff911283cd8ee",
+    "remotePublished": true,
+    "jiraCommentId": "10016",
+    "jiraTransitionId": "51",
+    "jiraReturnedStatus": "Done"
+  },
+  "nativeStatus": "Done",
+  "productLaunchOrModelAcceptance": false
 }
