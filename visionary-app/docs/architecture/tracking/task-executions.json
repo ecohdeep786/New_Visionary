@@ -147,6 +147,22 @@
         "publishedTaskBranchRetained": true,
         "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-18.json"
       }
+    },
+    {
+      "sourceId": "ACCOUNT-DIRECTORY-01",
+      "jiraKey": "KAN-161",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-161",
+      "status": "In Progress",
+      "scope": "Finalize UID ownership hierarchy; derived activity directory and additive current-tree maintenance. Future domain integration and hosted/provider gates remain open.",
+      "branch": "codex/codex-kan-161-account-structure",
+      "baseCommit": "f92495eadba3a07b17adef73a70d43ac38dab547",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure/visionary-app",
+      "review": {
+        "state": "not-submitted",
+        "implementer": "Codex",
+        "reviewer": null
+      },
+      "hostedAcceptance": false
     }
   ]
 }

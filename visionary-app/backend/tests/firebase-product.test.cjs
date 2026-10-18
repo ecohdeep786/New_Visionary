@@ -31,6 +31,8 @@ test('same-named users keep separate UIDs while independent device sessions and 
   assert.equal(first.profile.id, second.profile.id); assert.notEqual(first.device, second.device);
   const root = `visionary_accounts/${first.profile.id}`;
   assert.equal(f.rows.get(root).storageVersion, 2); assert.equal(f.rows.get(root).identity.uid, first.profile.id);
+  assert.equal(f.rows.get(`${root}/structure/account`).uid, first.profile.id);
+  assert.equal(f.rows.get(`${root}/structure/account`).sections.learning.availability, 'not-connected');
   const device = f.rows.get(`${root}/devices/${hash(first.device)}`);
   assert.equal(device.uid, first.profile.id); assert.equal(device.observedIp, metadata.ip); assert.equal(device.userAgent, metadata.userAgent);
   assert.equal(device.cookieHash, undefined); assert.equal(JSON.stringify(device).includes(first.cookie), false);
@@ -43,6 +45,16 @@ test('same-named users keep separate UIDs while independent device sessions and 
   const other = await f.service.signIn('other-token', metadata);
   assert.notEqual(other.profile.id, first.profile.id); assert.equal(other.profile.full_name, 'Same name');
   assert.equal(other.profile.onboarding_complete, false); assert.equal(f.rows.get(root).profile.full_name, setup.full_name);
+  assert.equal(f.rows.get(`visionary_accounts/${other.profile.id}/structure/account`).uid, other.profile.id);
+});
+
+test('foreign directory ownership prevents sign-in account writes rather than replacing another account structure', async () => {
+  const f = fixture(), root = `visionary_accounts/${f.identity.uid}`;
+  f.rows.set(`${root}/structure/account`, { uid: 'other', schemaVersion: 1 });
+  await assert.rejects(f.service.signIn('fixture-token', metadata), error => error.getStatus() === 409);
+  assert.equal(f.rows.has(root), false);
+  assert.equal(f.rows.has(`${root}/billing/test`), false);
+  assert.equal(f.rows.get(`${root}/structure/account`).uid, 'other');
 });
 
 test('legacy billing and an unfinished migration fail closed without replacing paid state with Free', async () => {
