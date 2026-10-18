@@ -1,6 +1,6 @@
 # KAN-29 independent engineering review
 
-Current decision: **changes requested** for exact candidate 973918b49d98fb2bee03697b86c0685e2dc5fcec. This review concerns the offline contract/tooling/report enabler only; the full launch-coverage task remains open regardless of technical approval.
+Current decision: **approved** exact engineering candidate ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0 for the offline contract/tooling/report enabler only. The historical finding below against 973918b49d98fb2bee03697b86c0685e2dc5fcec is resolved by this replacement. Full KAN-29 launch-matrix/source/provider/admission/product acceptance remains open; this approval must not mark the whole task Done.
 
 - Jira/source: KAN-29 / SCOPE-02. Live Jira read on 18 October 2026 returned Testing.
 - Implementer: Codex (/root). Reviewer: account_structure_review, separate agent; I accept responsibility for this independent review and the checks attributed to me.
@@ -38,3 +38,28 @@ Reviewer decision: changes requested for the exact candidate above. Verification
 Frontend/API/backend/store/ML/cache/transport/device runtime changes are N/A: this is offline engineering tooling and has no app permission integration. Actual released-role/source/provider/admission and UI-to-owning-store outcomes remain required through linked gates. Hosted verification and data migration are N/A to this enabler. Rollback is reverting its contract/tooling/report/check wiring; no data rollback is needed.
 
 Dev integration commit/checks: pending, not performed here. Jira review/comment/transition receipt: parent integrator to record actual result. Full KAN-29 acceptance and dependent release prerequisites remain open. Separate engineering approval cannot supply human product/provider/source acceptance.
+
+
+## Replacement exact-SHA decision — approved engineering enabler only
+
+18 October 2026. Reviewer account_structure_review, separate from implementer Codex, approves exact implementation **ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0** for the KAN-29 engineering coverage contract/tooling/report scope. I accept responsibility for this decision. This supersedes the earlier changes-requested source decision, not the still-open human/domain/release acceptance gates.
+
+The replacement independently pins all seven reviewed producer/consumer/authority source revisions inside the checker. Source anchors in the data contract must match both actual normalized source bytes and these separately reviewed digests. A matrix-only rehash can no longer bless changed catalog semantics, aliases, inline consumer options or an altered authority source. The boundary is correctly documented as an exact reviewed snapshot, not a JavaScript data-flow analyzer. Future source changes deliberately need source inspection and renewed tooling/contract review. The previous incomplete semantic-drift guarantee is therefore repaired without an unreliable mutation-method denylist.
+
+I inspected the full replacement delta: checker pins, mutation regressions, generated explanation and implementer handoff. No frontend/backend/ML/product-runtime/package/check wiring changed after the previously reviewed candidate. My branch differs from this exact candidate only by this independent review document.
+
+Independent checks on the replacement:
+
+- `node --test scripts/tests/launch-coverage.test.mjs`: exit 0, 12 tests passed, 0 failed, 1.221 seconds. The new test rehashes changed content across all seven anchors; later BOARDS mutation and inline ProductSetupFields options are explicit cases. Existing grammar/required-gate/synthetic-release/authority tests remain meaningful.
+- `node scripts/coverage-matrix.mjs`: exit 0; 5 roles, 9 categories, 3 interface locales, 7 source anchors and 0 released slices. Report content matches its generated contract.
+- Repeated my original independent in-memory BOARDS.push reproduction plus a ProductSetupFields inline-board-option reproduction, each with its matrix digest refreshed. Both now throw reviewed source revision drift as expected; assertion command exits 0. No implementation file was edited to perform these checks.
+- Syntax checks for scripts/lib/launch-coverage.mjs, scripts/coverage-matrix.mjs and scripts/check.mjs: exit 0. Full base/replacement `git diff --check`: exit 0.
+
+Implementer verification, distinguished by exact source scope:
+
+- All 48 script regressions and coverage CLI pass on replacement ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0.
+- The normal full `npm run check` started against 973918b49d98fb2bee03697b86c0685e2dc5fcec and exited 0: layout/imports, 29 selected script tests at its initial phase, coverage/source inventory, unchanged 68 routes/1,637 controls/26 endpoints, lint, both typechecks, 532 frontend tests and Vite build (1 minute 46 seconds). The scripts-only replacement occurred while unchanged frontend tests/build ran. This is baseline full-pipeline plus replacement script evidence, not a falsely claimed complete rerun of every phase at the replacement SHA. The unchanged frontend/backend/ML/package/check tree and current replacement scripts justify the relevant verification scope.
+
+Verification result: **passed for the exact engineering enabler**. No remaining actionable source findings. Generated report/decision worksheet keep all five roles and nine categories in scope, do not invent rights/providers or minor admission, reserve meaningful failure/recovery requirements and explicitly distinguish offline diagnosis from product enforcement.
+
+Dev integration and acceptance disposition: integrator must compare the approved candidate with current dev, verify relevant integrated checks and publish only reviewed scope; no dev/main merge was performed by this reviewer. Parent integrator reports Jira comment10024/actual transition31 returned the finding to In Progress, and must record subsequent review/integration receipts truthfully. Technical approval may support a narrowly scoped engineering checkpoint. It does **not** accept or complete the full KAN-29 release matrix, source/edition rights, provider capability, guardian/linked-role admission, commercial/privacy disclosures, hosted delivery or dependent feature gates. Keep the task open pending its actual accountable product/source/provider/admission decisions and connected acceptance. No dependent task is certified ready by this report.
