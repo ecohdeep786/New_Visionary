@@ -79,5 +79,17 @@
     "reviewer": "account_structure_review",
     "approvedImplementation": "075e082fc084261ab7fbacc30bade178361d92db",
     "evidence": "docs/architecture/delivery/KAN161_INDEPENDENT_REVIEW.md"
+  },
+  "cleanup": {
+    "registeredExtraWorktrees": 0,
+    "reviewerWorktreeRemoved": true,
+    "taskWorktreeUnregistered": true,
+    "taskFolderRemainder": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure",
+    "taskFolderRemoved": false,
+    "dependencyJunctionsRemovedWithoutFollowingTargets": true,
+    "primaryDependenciesRetained": true,
+    "reviewPreloaderPreserved": "artifacts/qa/kan161/review-ts-preloader.cjs",
+    "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
+    "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
   }
 }

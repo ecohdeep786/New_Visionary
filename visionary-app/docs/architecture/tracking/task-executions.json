@@ -156,7 +156,7 @@
       "scope": "Finalize UID ownership hierarchy; derived activity directory and additive current-tree maintenance. Future domain integration and hosted/provider gates remain open.",
       "branch": "codex/codex-kan-161-account-structure",
       "baseCommit": "f92495eadba3a07b17adef73a70d43ac38dab547",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure/visionary-app",
+      "worktree": null,
       "review": {
         "state": "approved",
         "implementer": "Codex",
@@ -189,7 +189,19 @@
         "jiraTransitionId": "51",
         "jiraReturnedStatus": "Done"
       },
-      "liveEvidence": "docs/architecture/tracking/kan161-account-directory-closeout.json"
+      "liveEvidence": "docs/architecture/tracking/kan161-account-directory-closeout.json",
+      "cleanup": {
+        "registeredExtraWorktrees": 0,
+        "reviewerWorktreeRemoved": true,
+        "taskWorktreeUnregistered": true,
+        "taskFolderRemainder": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-161-account-structure",
+        "taskFolderRemoved": false,
+        "dependencyJunctionsRemovedWithoutFollowingTargets": true,
+        "primaryDependenciesRetained": true,
+        "reviewPreloaderPreserved": "artifacts/qa/kan161/review-ts-preloader.cjs",
+        "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
+        "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
+      }
     }
   ]
 }
