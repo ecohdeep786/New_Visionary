@@ -28,7 +28,7 @@ test('selector labels cannot become accepted source coverage or implicit languag
   }
 });
 
-test('literal extraction rejects dynamic or ambiguous catalogs after source hashes are refreshed', () => {
+test('literal extraction rejects dynamic or ambiguous declarations and rehash cannot bless a refactor', () => {
   assert.deepEqual(selectorValues('export const VALUES = [{ id: "[a]", label: "b]" }];', 'VALUES'), ['[a]']);
   assert.deepEqual(selectorValues('export const VALUES = ["en", "hi"].map((l) => ({ id: l, label: l }));', 'VALUES', 'strings'), ['en', 'hi']);
   for (const declaration of [
@@ -45,7 +45,19 @@ test('literal extraction rejects dynamic or ambiguous catalogs after source hash
   const file = 'frontend/src/components/onboarding/stepConfigs.jsx';
   const changed = read(file).replace('id: "CBSE"', 'id: "CBSE" + suffix');
   const candidate = copy(); candidate.sourceAnchors.find(anchor => anchor.file === file).sha256 = sha256(changed);
-  assert.throws(() => validateCoverage(candidate, anchor => anchor === file ? changed : read(anchor)), /non-literal selector/);
+  assert.throws(() => validateCoverage(candidate, anchor => anchor === file ? changed : read(anchor)), /reviewed source revision drift/);
+});
+
+test('matrix-only rehash cannot hide later catalog mutations or changed consumer/authority sources', () => {
+  for (const anchor of matrix.sourceAnchors) {
+    const file = anchor.file;
+    let changed = read(file) + '\n// changed after the reviewed snapshot\n';
+    if (file.endsWith('/stepConfigs.jsx')) changed = read(file) + '\nBOARDS.push({ id: "ExtraBoard", label: "Extra Board" });\n';
+    if (file.endsWith('/ProductSetupFields.jsx')) changed = read(file).replace('options={BOARDS}', 'options={[...BOARDS, { id: "ExtraBoard", label: "Extra Board" }]}');
+    assert.notEqual(changed, read(file));
+    const candidate = copy(); candidate.sourceAnchors.find(row => row.file === file).sha256 = sha256(changed);
+    assert.throws(() => validateCoverage(candidate, source => source === file ? changed : read(source)), /reviewed source revision drift/);
+  }
 });
 
 test('source anchors, actual category mappings and every required acceptance gate cannot be dropped', () => {
