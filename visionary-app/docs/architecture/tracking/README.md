@@ -5,6 +5,7 @@ Read live [Jira](https://visionary-team.atlassian.net/jira/software/projects/KAN
 | Record | Meaning | Update rule |
 | --- | --- | --- |
 | [task-executions.json](task-executions.json) | Current scoped execution, test and review receipts | Update after actual evidence/status changes. Preserve earlier closure history; never invent approval. |
+| [agent-worktrees.json](agent-worktrees.json) | Named task instances, ownership, published checkpoints and completed-task cleanup | Dated checkpoint; verify live Git/Jira. Follow the [fresh-instance lifecycle](../delivery/TASK_WORKTREES.md). |
 | [JIRA_SYNC.md](JIRA_SYNC.md) | Jira synchronization checkpoints | Read newest scope/date first; older board counts remain dated. |
 | [product-surface.json](product-surface.json) | Generated current source inventory | `npm run scope:audit:write` after explicit source review; `scope:audit` checks drift. [Readable report](../PRODUCT_SURFACE_AUDIT.md). |
 | [jira-backlog.json](jira-backlog.json), [jira-issue-map.json](jira-issue-map.json) | Requirements, issue mapping and dated full-board verification | Use source generators/verified Jira reconciliation; do not rewrite old counts as a new global read. |

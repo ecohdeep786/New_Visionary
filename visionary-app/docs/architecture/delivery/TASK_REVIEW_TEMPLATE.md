@@ -8,6 +8,8 @@ Acceptance scope: enabler / connected feature / release gate
 Implementer (person or agent):
 Reviewer: qa-review (record the actual reviewing agent identity; founder for required product decisions):
 Worker branch / base commit / candidate head commit:
+Agent/task worktree name and absolute path:
+Verified GitHub task ref / last pushed commit / unpushed backup status:
 Current dev commit / comparison range:
 Owned files, contracts and migrations:
 Prerequisites: live Jira keys and accepted evidence
@@ -29,6 +31,8 @@ Verifier identity, exact verified commit, environment and evidence:
 Dev integration commit and checks on the integrated result:
 Jira transition/comment receipt:
 Next dependent task and proof its other prerequisites are accepted:
+Required local evidence/config preserved outside the completed task folder:
+Completed worktree removal receipt / next fresh instance (after acceptance only):
 ```
 
 The implementer supplies evidence and requests review; they cannot approve their own implementation. D-096 assigns independent testing/review to qa-review. That agent can review code and tests, but cannot replace founder/product approval where acceptance requires a human decision. Do not record approval without the actual review. The reviewer may also perform verification; every required product/operational gate still applies. Post the final review in Jira against the exact SHA; the integrator checks live status and records the accepted integration before selecting dependent work.

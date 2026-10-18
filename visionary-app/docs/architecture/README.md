@@ -17,6 +17,7 @@ Use this index by question rather than decision date. [Product requirements](../
 ## Deliver a task
 
 1. Read [branch ownership and mandatory review](BRANCH_WORKFLOW.md).
+   Create a [named task worktree](delivery/TASK_WORKTREES.md), push its checkpoints, and remove the instance after verified completion; the next task gets a fresh instance.
 2. Check [current execution versus dated plans](tracking/README.md), live prerequisites and the [implementation handoff](IMPLEMENTATION_HANDOFF.md).
 3. Implement one owned scope, collect evidence and submit the [review template](delivery/TASK_REVIEW_TEMPLATE.md).
 4. Keep the issue in **Testing** while review/verification is pending. Reviewer approval and relevant integration verification precede **Done** and the next dependent task. [Current review handoff](delivery/D095_DOCUMENTATION_REVIEW.md).

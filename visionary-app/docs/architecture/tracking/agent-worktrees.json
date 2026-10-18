@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "decision": "D-097",
+  "asOf": "2026-10-18T09:19:13.773Z",
+  "meaning": "Task/owner checkpoint, not live Jira or continuous backup. Resolve worktreeRoot relative to repository root; query Git/Jira before acting. Current committed branch heads can advance after this snapshot.",
+  "worktreeRoot": "New_Visionary-worktrees",
+  "lifecycle": "fresh task instance -> verified GitHub checkpoints -> qa-review/fix/re-review -> accepted published dev integration -> actual Jira Done -> preserve needed local data/evidence -> remove completed worktree -> fresh next instance",
+  "taskInstances": [
+    {
+      "agent": "codex",
+      "jiraKey": "KAN-29",
+      "role": "implementation",
+      "directory": "codex-kan-29-coverage-matrix",
+      "branch": "codex/kan-29-coverage-matrix",
+      "baseCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+      "previousPublishedCheckpoint": "e74697654faa6e6f31fd661d972b74ce9f9e2007",
+      "jiraStatusAtCheckpoint": "In Progress",
+      "purpose": "Coverage-contract preparation; matrix implementation/acceptance still open."
+    },
+    {
+      "agent": "qa-review",
+      "jiraKey": "KAN-137",
+      "role": "review",
+      "directory": "qa-review-kan-137-metrics",
+      "branch": "codex/qa-review-kan-137-metrics",
+      "sourceBase": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+      "publishedEvidenceCheckpoint": "ec09a56269c046d8c445da1b3321ba26c3dcfead",
+      "jiraStatusAtCheckpoint": "Testing",
+      "purpose": "QA evidence backed up; WIP backup commit is not a new implementation approval or Done transition."
+    }
+  ],
+  "completedTasks": [
+    {
+      "jiraKey": "KAN-28",
+      "jiraStatus": "Done",
+      "reviewCommentId": "10006",
+      "integrationCommentId": "10007",
+      "approvedCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+      "includedInPublishedDev": true,
+      "activeTaskDirectory": null,
+      "cleanup": "Former generic Codex and QA folders held unfinished KAN-29/KAN-137. Relocated those tasks to named instances, preserved their bytes/evidence and removed the old generic folders. No unfinished task deleted."
+    }
+  ],
+  "preservedLegacyLanes": [
+    {
+      "directory": "deepseek",
+      "branch": "codex/deepseek-tasks",
+      "taskAssociation": "not inferred; owner must create a fresh named instance for its next Jira task"
+    },
+    {
+      "directory": "founder",
+      "branch": "codex/founder-tasks",
+      "taskAssociation": "not inferred; owner must create a fresh named instance for its next Jira task"
+    }
+  ],
+  "excludedReference": {
+    "branch": "codex/codex-tasks",
+    "commit": "cdcc5d5e2510ffe2b31ea580536f27f4e905bbc4",
+    "state": "preserved on GitHub; unreviewed and excluded from dev; no active task worktree"
+  },
+  "backupBoundary": "Pushed source commits/branch refs and appropriate QA evidence are recoverable from GitHub. Uncommitted changes, ignored settings/secrets and installed dependencies are not uploaded; preserve needed local-only files before removal."
+}

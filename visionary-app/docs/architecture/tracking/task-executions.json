@@ -108,7 +108,12 @@
       },
       "excludedUnreviewedCommits": [
         "cdcc5d5e2510ffe2b31ea580536f27f4e905bbc4"
-      ]
+      ],
+      "worktree": {
+        "activeDirectory": null,
+        "lifecycleDecision": "D-097",
+        "note": "No active KAN-28 task checkout remains. Unfinished KAN-29/KAN-137 were preserved in named instances; published approved dev commit unchanged."
+      }
     },
     {
       "sourceId": "SCOPE-02",
@@ -136,7 +141,14 @@
       "artifacts": [
         "docs/architecture/delivery/KAN29_COVERAGE_WORK_PLAN.md"
       ],
-      "hostedDeploymentVerified": false
+      "hostedDeploymentVerified": false,
+      "worktree": {
+        "agent": "codex",
+        "directory": "codex-kan-29-coverage-matrix",
+        "repositoryRelativeRoot": "New_Visionary-worktrees",
+        "freshPerTask": true,
+        "branch": "codex/kan-29-coverage-matrix"
+      }
     }
   ]
 }

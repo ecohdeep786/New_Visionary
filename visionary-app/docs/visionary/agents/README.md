@@ -4,6 +4,8 @@ D-095 current delivery rule: read [branch/review workflow](../../architecture/BR
 
 D-096: qa-review is the independent testing/review lane. Workers fix returned findings and resubmit a new exact SHA. The integrator verifies approval, current dev compatibility and actual Jira completion before that worker starts its next task. An earlier approval never covers an unreviewed later head.
 
+D-097: use [one named task worktree per agent/Jira role](../../architecture/delivery/TASK_WORKTREES.md), push source checkpoints and verify remote backup. After accepted/published dev integration and actual Done, preserve necessary local evidence/configuration and remove the completed task instance. The next task gets a fresh instance; never reuse a completed folder or treat uncommitted/ignored files as GitHub-backed source.
+
 Authority: v2.2 Parts U and V. Start with MASTER_SPEC, read v2.2 fully, your charter, and the last STATUS entry. Read DECISIONS and QA. Never infer shipped waves from file existence.
 
 Sequence per wave: **01-PM → 02-UX → 03-DesignSystem → 04-Frontend → 05-Motion → 06-A11y → 07-QA → Head-of-Product gate → 08-Release (Wave 6 only)**.

@@ -10,6 +10,8 @@ Start here. Documents describe different kinds of evidence; a design or schedule
 4. **What to work on:** [task tracking](architecture/tracking/README.md), live [Jira project](https://visionary-team.atlassian.net/jira/software/projects/KAN/list) and [implementation handoff](architecture/IMPLEMENTATION_HANDOFF.md). Check prerequisites before selecting work.
 5. **How to finish:** [branch and review workflow](architecture/BRANCH_WORKFLOW.md), then the [review handoff template](architecture/delivery/TASK_REVIEW_TEMPLATE.md). Implementation → Testing/review → verified integration → Done. Dependent work waits for acceptance.
 
+Each agent/Jira task uses a [fresh named worktree and pushed task branch](architecture/delivery/TASK_WORKTREES.md). After accepted integration and evidence preservation, remove that completed instance; create a new instance for the next task. [Task/owner checkpoint](architecture/tracking/agent-worktrees.json).
+
 ## Folder map
 
 ```text
