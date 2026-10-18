@@ -1,5 +1,7 @@
 # KAN-161 independent review
 
+Current decision: **approved** exact implementation 075e082fc084261ab7fbacc30bade178361d92db for KAN-161 source/backend scope; full root check passed. Earlier candidate findings below are historical and resolved. Dev integration, live additive verification and Jira Done remain separate pending receipts. See the final source review section.
+
 - Jira/source: KAN-161 / ACCOUNT-DIRECTORY-01. Live issue read on 18 October 2026: In Progress; source receipt agrees.
 - Acceptance scope: account-organization enabler and connected local metadata provisioning. Future domain, provider, payment, privacy and hosted gates remain open.
 - Implementer: Codex (/root).
@@ -79,11 +81,12 @@ Normal compiled verification reported by the implementer on this exact candidate
 
 - `npm run backend:build`: exit 0.
 - `node --test --test-concurrency=2 backend/tests/firebase-admin.test.cjs backend/tests/firebase-product.test.cjs backend/tests/account-storage.test.cjs backend/tests/account-directory.test.cjs backend/tests/billing.test.cjs backend/tests/feedback.test.cjs`: exit 0; 63 tests passed, 0 failed; 11.75 seconds. This includes the five directory tests through ordinary compiled output, positive/replay/failure and owner isolation, account/storage HTTP authority, preserved billing/Family behavior and feedback regression coverage.
-- Root `npm run check` so far: layout/import integrity, 18 script regression tests and regenerated unchanged-count product surface audit passed. Frontend lint/typecheck/test/build remain pending at the time of this source approval and must pass before accepting/publishing dev integration.
+- Root `npm run check`: exit 0. Layout/import integrity, 18 script regression tests, regenerated unchanged-count product surface audit, frontend lint, both typechecks, 532 frontend tests (0 failed), and Vite build (29.14 seconds) passed on this exact candidate. Final evidence supplied by the implementer before this report was completed.
 - The implementer reports unchanged lock hashes verified before reusing corresponding baseline per-component dependency directories through junctions after a slow fresh-install attempt. Build output and reviewed sources belong to the task checkout. Production environment configuration was not copied.
 
 Verification result: **passed for exact-source/backend scope**, using independent direct-source functional checks plus inspected normal build/test evidence. No remaining actionable source findings. The canonical directory is an ownership/location schema, not activity or a permission grant. The additive reconciler changes only derived directory metadata; UID, profile, billing, history and domain authorities retain their existing paths and semantics. Current-tree checks now match actual billing queue scheduling semantics.
 
-Dev integration and remaining release/operational gates: pending and not certified by this approval. Complete the root check, compare exact approved source against current dev, check/publish the integrated result and record actual Jira receipts. Only then proceed with the scoped live read-only plan, additive directory apply, zero-write replay and current-tree readback; preserve no-deletion/no-provider-operation constraints. Live evidence has not been executed or claimed by this reviewer. Keep Jira Testing until relevant integrated verification and native Done criteria are satisfied. KAN-38/KAN-42 and other future domain/provider/privacy/hosted prerequisites remain open and receive no acceptance from this review.
+Dev integration and remaining release/operational gates: pending and not certified by this approval. The candidate root check has passed; compare exact approved source against current dev, check/publish the integrated result and record actual Jira receipts. Only then proceed with the scoped live read-only plan, additive directory apply, zero-write replay and current-tree readback; preserve no-deletion/no-provider-operation constraints. Live evidence has not been executed or claimed by this reviewer. Keep Jira Testing until relevant integrated verification and native Done criteria are satisfied. KAN-38/KAN-42 and other future domain/provider/privacy/hosted prerequisites remain open and receive no acceptance from this review.
 
 Rollback remains stopping directory reads/provisioning while preserving additive metadata and existing owning records. No reverse migration is needed. Later implementation changes require renewed exact-SHA review.
+
