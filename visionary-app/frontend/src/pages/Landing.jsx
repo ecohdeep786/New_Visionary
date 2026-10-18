@@ -4,6 +4,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import PersonaHero from "@/components/landing/NewPersona";
 import LazyImage from "@/components/landing/LazyImage";
 import {
+  PremiumIntelligenceSection,
   PremiumLanguageSection,
   PremiumTrustSection,
   PremiumCTASection,
@@ -218,6 +219,27 @@ const JOURNEY_STEPS = [
 ];
 const JOURNEY_CARD_MS = 5000;
 
+/* The mechanism chapter's four beats — the umbrella voice of the loop every
+   category page is built around. Verbatim from the student page's
+   INTELLIGENCE_STEPS: the front door tells the loop once, for everyone. */
+const INTELLIGENCE_STEPS = [
+  { title: "Understand what you're learning.", copy: "Visionary continues from where you are, and every lesson becomes understanding." },
+  { title: "See it. Hear it.\nAsk it another way.", copy: "Open today's lesson. Visionary already understands where you are and where you're going next." },
+  { title: "Practice what you're learning.", copy: "Every answer becomes a chance to practise, with feedback that listens and adapts at your pace." },
+  { title: "Build from what you know.", copy: "Turn every lesson into real thinking, projects, and creative work that keeps growing with you." },
+];
+
+/* The closer's last-moment router — Apple's tail mini-router ("Explore X /
+   Shop X / More from X"): the five journeys re-offered, one quiet line
+   under the CTA pair. */
+const CTA_ROUTES = [
+  { label: "Student", to: "/student" },
+  { label: "Teacher", to: "/teacher" },
+  { label: "Parent", to: "/parent" },
+  { label: "Professional", to: "/professional" },
+  { label: "Organization", to: "/organization" },
+];
+
 /* Apple's values anatomy (education-initiative: "Our values lead the way"):
    typographic columns, no icons — the type carries the trust. */
 const LX_TRUST_VALUES = [
@@ -372,7 +394,7 @@ function LandingProblemSection() {
 /* 03 · PROMISE — not a section: a sentence. The turn of the story — the
    page speaks the what-if once, and the line behaves like Apple's intro
    beats: it fades up as the reader arrives, holds for the beat, then fades
-   back down and lets go as the product chapter (meet) arrives. It rides
+   back down and lets go as the mechanism chapter answers it below. It rides
    the same reveal band every other chapter uses, so it genuinely appears
    and disappears with the scroll — no pinned 200vh cinema, no staying. */
 function LandingPromiseSection() {
@@ -389,13 +411,25 @@ function LandingPromiseSection() {
   );
 }
 
-/* 04 · THE ROUTER — the five journeys, as one line-up. The landing's
+/* 05 · THE MECHANISM — the chapter every category page is built around,
+   told once for everyone. The promise line above asks the what-if; this
+   dark scene answers with the product's four-beat loop (understand →
+   another way → practise → build). Rendered with the accepted premium
+   module verbatim and the umbrella (student) voice — no new copy. The dark
+   pivot is the landing's light → dark → light rhythm (Apple's dark audience
+   path; Google's dark suite band), and the router's grey sheet seals over
+   it. */
+function LandingIntelligenceSection() {
+  return <PremiumIntelligenceSection steps={INTELLIGENCE_STEPS} sub="From the first question to using what you know." />;
+}
+
+/* 13 · THE ROUTER — the five journeys, as one line-up. The landing's
    category chapter renders with the accepted explore module verbatim (white
    cards on the #f5f5f7 ground, the studio portrait whole on its square
    field, the quiet blue link) — the same card system every persona page
    closes with, so the product reads as one family. On the landing the
-   module sits mid-story as the router: after the promise, before the
-   journey. The grey ground is the chapter join — Apple carries no hairline
+   module sits mid-story as the fork: after the mechanism, before the
+   language chapter. The grey ground is the chapter join — Apple carries no hairline
    between chapters, the surface change does the work. (The heading lands on
    the 64/68 card-chapter tier automatically: the bridge's card-chapter rule
    keys off the line-up's data-card attribute.) */
@@ -534,10 +568,12 @@ function LandingJourneySection() {
 }
 
 /* ═══════════════════════ PAGE ═══════════════════════
-   The Vision Pro anatomy: the family stage pins to the viewport, the
-   story glides over it on frosted glass (problem), the thesis fades up
-   (promise), the five-journey router (the accepted line-up module on its
-   grey ground), the journey, the language chapter, trust, and the closer. */
+   The front-door anatomy: the family stage pins to the viewport, the story
+   glides over it on frosted glass (problem), the thesis fades up (promise),
+   the mechanism chapter answers it in the dark (intelligence), the
+   five-journey router forks (the accepted line-up module on its grey
+   ground), then the language chapter, the journey, trust, and the closer —
+   with the five journeys re-offered once more under the CTA pair. */
 export default function LandingPage() {
   return (
     <div className="page-landing min-h-screen bg-white" style={{ fontFamily: fontStack }}>
@@ -558,8 +594,8 @@ export default function LandingPage() {
         />
         <LandingProblemSection />
         <LandingPromiseSection />
+        <LandingIntelligenceSection />
         <LandingRouterSection />
-        <LandingJourneySection />
         <PremiumLanguageSection
           chips={LG_CHIPS}
           questions={LG_QUESTIONS}
@@ -569,6 +605,7 @@ export default function LandingPage() {
           tail="."
           sub="Ask in the language you think in. The understanding that comes back is the same."
         />
+        <LandingJourneySection />
         <PremiumTrustSection
           heading={<>Your learning stays <span className="accent-gradient">yours.</span></>}
           sub="Your questions, conversations, ideas, and progress are personal. Visionary keeps it that way."
@@ -577,6 +614,7 @@ export default function LandingPage() {
         <PremiumCTASection
           heading="Your next step starts here."
           sub="Ask a question. Explore an idea. Start learning. Visionary is ready when you are."
+          routeLinks={CTA_ROUTES}
         />
       </main>
       {/* quiet variant: Apple's footer ends the page in air — no giant

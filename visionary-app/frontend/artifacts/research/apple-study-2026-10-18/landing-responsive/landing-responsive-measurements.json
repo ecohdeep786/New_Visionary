@@ -1,0 +1,470 @@
+[
+ {
+  "width": 390,
+  "vw": 390,
+  "docH": 10123,
+  "promise": {
+   "x": 24,
+   "w": 342,
+   "h": 49,
+   "size": "21px",
+   "weight": "600",
+   "lh": "24.36px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "What if your intelligence never forgot where"
+  },
+  "promiseSec": {
+   "padT": "93.6px",
+   "padB": "93.6px"
+  },
+  "problemSec": {
+   "padT": "93.6px",
+   "padB": "93.6px"
+  },
+  "problemH2": {
+   "x": 24,
+   "w": 342,
+   "h": 200,
+   "size": "40px",
+   "weight": "600",
+   "lh": "40px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Effort isn't the gap. Knowing whether unders"
+  },
+  "grid": {
+   "cols": "342px",
+   "w": 342,
+   "x": 24
+  },
+  "jh2": {
+   "x": 24,
+   "w": 342,
+   "h": 120,
+   "size": "40px",
+   "weight": "600",
+   "lh": "40px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Life changes. Visionary keeps pace."
+  },
+  "lead": {
+   "x": 24,
+   "w": 342,
+   "h": 100,
+   "size": "21px",
+   "weight": "600",
+   "lh": "25px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "When your world changes, the way you learn c"
+  },
+  "fig": {
+   "x": 24,
+   "w": 285,
+   "h": 214,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "AdaptWhen what you need changes, the way you"
+  },
+  "img": {
+   "x": 24,
+   "w": 285,
+   "h": 214,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "cap": {
+   "x": 48,
+   "w": 237,
+   "h": 27,
+   "size": "24px",
+   "weight": "600",
+   "lh": "27.36px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Adapt"
+  },
+  "play": {
+   "x": 24,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "nx": {
+   "x": 330,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  }
+ },
+ {
+  "width": 834,
+  "vw": 834,
+  "docH": 8775,
+  "promise": {
+   "x": 24,
+   "w": 786,
+   "h": 24,
+   "size": "21px",
+   "weight": "600",
+   "lh": "24.36px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "What if your intelligence never forgot where"
+  },
+  "promiseSec": {
+   "padT": "96px",
+   "padB": "96px"
+  },
+  "problemSec": {
+   "padT": "96px",
+   "padB": "96px"
+  },
+  "problemH2": {
+   "x": 71,
+   "w": 692,
+   "h": 168,
+   "size": "56px",
+   "weight": "600",
+   "lh": "56px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Effort isn't the gap. Knowing whether unders"
+  },
+  "grid": {
+   "cols": "334px 334px",
+   "w": 692,
+   "x": 71
+  },
+  "jh2": {
+   "x": 71,
+   "w": 692,
+   "h": 112,
+   "size": "56px",
+   "weight": "600",
+   "lh": "56px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Life changes. Visionary keeps pace."
+  },
+  "lead": {
+   "x": 71,
+   "w": 692,
+   "h": 50,
+   "size": "21px",
+   "weight": "600",
+   "lh": "25px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "When your world changes, the way you learn c"
+  },
+  "fig": {
+   "x": 71,
+   "w": 712,
+   "h": 445,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "AdaptWhen what you need changes, the way you"
+  },
+  "img": {
+   "x": 71,
+   "w": 712,
+   "h": 445,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "cap": {
+   "x": 103,
+   "w": 648,
+   "h": 27,
+   "size": "24px",
+   "weight": "600",
+   "lh": "27.36px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Adapt"
+  },
+  "play": {
+   "x": 71,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "nx": {
+   "x": 727,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  }
+ },
+ {
+  "width": 1024,
+  "vw": 1024,
+  "docH": 8382,
+  "promise": {
+   "x": 82,
+   "w": 860,
+   "h": 24,
+   "size": "21px",
+   "weight": "600",
+   "lh": "24.36px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "What if your intelligence never forgot where"
+  },
+  "promiseSec": {
+   "padT": "112.64px",
+   "padB": "112.64px"
+  },
+  "problemSec": {
+   "padT": "112.64px",
+   "padB": "112.64px"
+  },
+  "problemH2": {
+   "x": 166,
+   "w": 692,
+   "h": 168,
+   "size": "56px",
+   "weight": "600",
+   "lh": "56px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Effort isn't the gap. Knowing whether unders"
+  },
+  "grid": {
+   "cols": "334px 334px",
+   "w": 692,
+   "x": 166
+  },
+  "jh2": {
+   "x": 166,
+   "w": 692,
+   "h": 112,
+   "size": "56px",
+   "weight": "600",
+   "lh": "56px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Life changes. Visionary keeps pace."
+  },
+  "lead": {
+   "x": 166,
+   "w": 692,
+   "h": 50,
+   "size": "21px",
+   "weight": "600",
+   "lh": "25px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "When your world changes, the way you learn c"
+  },
+  "fig": {
+   "x": 166,
+   "w": 712,
+   "h": 445,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "AdaptWhen what you need changes, the way you"
+  },
+  "img": {
+   "x": 166,
+   "w": 712,
+   "h": 445,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "cap": {
+   "x": 198,
+   "w": 648,
+   "h": 27,
+   "size": "24px",
+   "weight": "600",
+   "lh": "27.36px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Adapt"
+  },
+  "play": {
+   "x": 166,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "nx": {
+   "x": 822,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  }
+ },
+ {
+  "width": 1440,
+  "vw": 1440,
+  "docH": 8549,
+  "promise": {
+   "x": 290,
+   "w": 860,
+   "h": 32,
+   "size": "28px",
+   "weight": "600",
+   "lh": "32.48px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "What if your intelligence never forgot where"
+  },
+  "promiseSec": {
+   "padT": "158.4px",
+   "padB": "158.4px"
+  },
+  "problemSec": {
+   "padT": "158.4px",
+   "padB": "158.4px"
+  },
+  "problemH2": {
+   "x": 230,
+   "w": 980,
+   "h": 216,
+   "size": "72px",
+   "weight": "600",
+   "lh": "72px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Effort isn't the gap. Knowing whether unders"
+  },
+  "grid": {
+   "cols": "227px 227px 227px 227px",
+   "w": 980,
+   "x": 230
+  },
+  "jh2": {
+   "x": 230,
+   "w": 980,
+   "h": 144,
+   "size": "72px",
+   "weight": "600",
+   "lh": "72px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Life changes. Visionary keeps pace."
+  },
+  "lead": {
+   "x": 230,
+   "w": 944,
+   "h": 56,
+   "size": "24px",
+   "weight": "600",
+   "lh": "28px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "When your world changes, the way you learn c"
+  },
+  "fig": {
+   "x": 230,
+   "w": 994,
+   "h": 513,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "AdaptWhen what you need changes, the way you"
+  },
+  "img": {
+   "x": 230,
+   "w": 994,
+   "h": 513,
+   "size": "17px",
+   "weight": "400",
+   "lh": "20.2382px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "cap": {
+   "x": 270,
+   "w": 914,
+   "h": 33,
+   "size": "28.8px",
+   "weight": "600",
+   "lh": "32.832px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": "Adapt"
+  },
+  "play": {
+   "x": 230,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  },
+  "nx": {
+   "x": 1174,
+   "w": 36,
+   "h": 36,
+   "size": "17px",
+   "weight": "400",
+   "lh": "22px",
+   "padT": "0px",
+   "padB": "0px",
+   "txt": ""
+  }
+ }
+]

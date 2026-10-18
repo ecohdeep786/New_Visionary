@@ -1311,3 +1311,102 @@ added mechanically on the remaining pages — only where they add information.
   cross-cutting statement-tier selector (pre-existing, unchanged by this pass).
 - `/accessibility` is the legal five's only page without PolicyTabs/TOC (authored);
   no `page-*` bridge block added, per the legal treatment.
+
+## 2026-10-18 — Landing restructure: post-hero story flow (Apple education-initiative anatomy)
+
+> **REVERTED the same day (2026-10-18).** Verdict: it does not match the product's
+> own story flow and what a company front door (Apple/Google-grade landing) does.
+> A landing page at `/` is where *every* audience arrives first; it must tell the
+> product's overall story, convince, and then route each visitor to their category
+> page (`/student` … `/organization`). Cloning the education-initiative editorial
+> anatomy was the wrong genre — the whole-page design (layout, structure, story
+> order) is being redone from R&D on our category pages + Apple/Google landings.
+> `Landing.jsx`, `public-bridge.css`, `product-surface.json` restored to baseline;
+> the attempt is archived as `apple-study-2026-10-18/landing-v1-restructure.patch`.
+> The measurements below remain valid R&D input for the redesign.
+
+### What changed
+- `src/pages/Landing.jsx` — post-hero flow rebuilt to the education-initiative
+  chapter anatomy; hero + glass untouched. New order: hero → glass → promise →
+  problem → journey → router → language → trust → CTA → footer.
+- Promise (03): the orphan 64px line is now the quiet intro — a `<p>` at
+  21→28px/600 ink, max-w 860, centered, accent span kept. It is a `<p>` on
+  purpose: the apple-typography `h2` laws own the section-h2 tiers, and Apple's
+  intro beats sit on the lead scale, not the chapter scale.
+- Problem (02): left-spined header (eyebrow + statement on the display tier —
+  the landing's established 72/56/40 chapter size, max-w 24ch) over a static
+  4-up story row: `grid-cols-1 → sm:2 → min-[1069px]:4`, gap 24/48, on the
+  980/692 spine. Each card = studio photo (aspect 4/5, dissolve mask into the
+  page white) + persona label + ink/blue pair line + grey quote. The carousel
+  was dropped: four tiles can never reach the spine, and the grid is Apple's
+  story-row signature.
+- Journey (06): left-spined header (statement + lead landing on the
+  editorial-lead tier — 24/28 600 ink by typography law) + horizontal gallery:
+  tiles 73vw / sm:712px / 69vw max 1000px, aspect 4/3 → 16/10 → 1000/516;
+  caption ON the media (bottom-left: title 24→32 white + 17px white/80) over a
+  bottom scrim; controls under the gallery on the spine — play/pause left, 36px
+  hairline paddle pair right. New `useGalleryTrack` hook (fraction-based index,
+  700ms scroll lock, canPrev/canNext, smooth scrollTo). Snap + autoplay (5s) +
+  closing statement kept. Track gutter uses `calc((100% − 980px)/2)` (was
+  100vw) so the first tile sits exactly on the header spine with a classic
+  scrollbar (fixes a 3px offset).
+- Router (13-explore) moved after the journey; bridge comments updated; the
+  compact-band rule for `02-problem` + landing `03-promise` deleted (both now
+  ride the shared section rhythm and the narrow-screen law).
+- Breakpoint fix: the story row's 4-up step is `min-[1069px]`, not `lg:` — at
+  1024/`lg` the 692 spine gave four 155px columns (measured); now 2×334.
+
+### Measured (Playwright/msedge, localhost:5173, Oct 18 2026)
+- 1440: docH 8549; promise 28/1-line; problem h2 72 w980; grid 227×4 w980;
+  journey h2 72; lead 24/28 w944; tile 994×513 on spine x230; caption 28.8.
+- 1024: grid 334×2 x166 (fixed), tile 712×445 x166; promise 21.
+- 834: grid 334×2 x71; tile 712×445 x71; lead 21/25; promise 21.
+- 390: single-column 342 grid; tile 285×214 (73vw, 4/3); promise 21/24.4 two
+  lines; section pad 93.6 (narrow law); controls x24.
+- Reveal band note (not a defect): `useRevealContinuous` observes the viewport
+  40–90% band, so capture scripts must scroll a chapter into that band; direct
+  anchor jumps above the band show the chapter unrevealed until the next scroll.
+
+### Verified
+- Gate: scope:audit:write refreshed → eslint clean → tsc both configs clean →
+  vite build clean → 532/532 tests.
+- Console: only the two known dev-noise messages (500 /api/auth/me; one React
+  `%s` prop warning).
+- Captures: `apple-study-2026-10-18/landing-desktop/` (1724 promise/problem/
+  journey/controls/router/full) and `apple-study-2026-10-18/landing-responsive/`
+  (390/834/1024/1440 full + segment shots + `landing-responsive-measurements.json`).
+
+## 2026-10-18 - Landing redesign R&D (post-revert)
+- Restored baseline verified; suite green (532/532). The previous education-
+  initiative-anatomy attempt stays archived as the reverted entry above.
+- Study 1 - our category pages: `artifacts/research/category-pages-study-2026-10-18/`
+  (student/teacher/parent/professional/organization maps at 1440 + teacher 390 +
+  full-page captures). Confirms one shared 10-chapter story skeleton; the
+  landing is missing the product's centrepiece "One intelligence." mechanism
+  chapter (05) and inverts the family order (language 07 before continuity 10).
+- Study 2 - landing genre: `artifacts/research/landing-genre-study-2026-10-18/`
+  (apple.com/in, /in/education, /in/ipad, edu.google.com maps + full captures).
+  Front-door grammar: hook -> what it is -> who it's for (mid-page audience
+  tiles) -> proof -> values -> start; dark centrepiece chapter marks the pivot.
+- Proposal: `docs/visionary/design/LANDING_REDESIGN_HANDOFF.md` - add the
+  mechanism chapter after the promise, keep the five-journey router as the
+  mid-page fork, language before continuity, CTA gains the five-journey
+  last-moment router. Founder approved and it was built the same day (entry
+  below).
+
+## 2026-10-18 - Landing redesign built (approved)
+- Built to `docs/visionary/design/LANDING_REDESIGN_HANDOFF.md`: the
+  `05-intelligence` chapter now renders after the promise (premium module
+  verbatim, student-page umbrella copy), language moved above continuity, and
+  the CTA gained the five-journey last-moment router (optional `routeLinks`
+  prop on the shared CTA; the category pages pass nothing and are unchanged).
+  Hero/glass, nav, footer and the category pages untouched.
+- Measured @1440 (Playwright/msedge): docH 11,393; order 01-hero / 02-problem /
+  03-promise / 05-intelligence (2,849) / 13-explore / 07-language / 06-journey /
+  11-trust / 12-cta; responsive maps at 1024/834/390 confirm the same order;
+  no page errors. Wrap polish: the route-row separators glue to the preceding
+  label, so no dot ever leads a line at 390.
+- Verified: scope:audit:write -> eslint clean -> tsc both configs clean -> vite
+  build clean -> 532/532 tests (final run after the wrap polish).
+- Evidence: `artifacts/research/landing-v2-2026-10-18/` (segment + responsive
+  captures, measurements.json); live tab reloaded.
