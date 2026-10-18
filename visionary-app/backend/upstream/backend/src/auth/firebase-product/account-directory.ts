@@ -1,4 +1,5 @@
 import { isDeepStrictEqual } from 'node:util';
+import type { DocumentReference } from 'firebase-admin/firestore';
 import { accountPath, ACCOUNT_STORAGE_VERSION } from './account-storage';
 
 export const ACCOUNT_DIRECTORY_VERSION = 1;
@@ -33,7 +34,7 @@ export function accountDirectory(uid: string) {
   };
 }
 
-export const directoryDocument = (db: any, uid: string) => db.collection(`${accountDirectory(uid).accountPath}/structure`).doc('account');
+export const directoryDocument = (db: any, uid: string): DocumentReference => db.collection(`${accountDirectory(uid).accountPath}/structure`).doc('account');
 
 export function directoryNeedsUpdate(uid: string, existing: any) {
   const expected = accountDirectory(uid);
