@@ -1,0 +1,83 @@
+{
+  "implementation": "075e082fc084261ab7fbacc30bade178361d92db",
+  "integration": "fe20cb454e3d1383687ed50ef2b8de1f10b4602b",
+  "checkedAt": "2026-10-18T14:52:17.425Z",
+  "plan": {
+    "mode": "inspect",
+    "accounts": 1,
+    "directoryChanges": 1,
+    "writes": 0,
+    "devices": 0,
+    "events": 0,
+    "invoices": 0,
+    "commands": 0,
+    "directoryDifferences": 0,
+    "ownershipConflicts": 0,
+    "recordDifferences": 0,
+    "deletions": 0,
+    "providerCalls": 0
+  },
+  "apply": {
+    "mode": "apply",
+    "accounts": 1,
+    "directoryChanges": 1,
+    "writes": 1,
+    "devices": 0,
+    "events": 0,
+    "invoices": 0,
+    "commands": 0,
+    "directoryDifferences": 0,
+    "ownershipConflicts": 0,
+    "recordDifferences": 0,
+    "deletions": 0,
+    "providerCalls": 0
+  },
+  "verified": {
+    "mode": "verify",
+    "accounts": 1,
+    "directoryChanges": 0,
+    "writes": 0,
+    "devices": 3,
+    "events": 3,
+    "invoices": 1,
+    "commands": 1,
+    "directoryDifferences": 0,
+    "ownershipConflicts": 0,
+    "recordDifferences": 0,
+    "deletions": 0,
+    "providerCalls": 0
+  },
+  "replay": {
+    "mode": "inspect",
+    "accounts": 1,
+    "directoryChanges": 0,
+    "writes": 0,
+    "devices": 0,
+    "events": 0,
+    "invoices": 0,
+    "commands": 0,
+    "directoryDifferences": 0,
+    "ownershipConflicts": 0,
+    "recordDifferences": 0,
+    "deletions": 0,
+    "providerCalls": 0
+  },
+  "preservation": {
+    "existingRecordsChecked": 31,
+    "changedExistingRecords": 0,
+    "unexpectedNewRecords": 0,
+    "addedDirectoryDocuments": 1
+  },
+  "task": "KAN-161",
+  "scope": "Canonical UID account hierarchy, derived directory and current-tree verification; future domains/hosted acceptance remain open",
+  "jira": {
+    "commentId": "10019",
+    "transitionId": "51",
+    "returnedStatus": "Done"
+  },
+  "review": {
+    "reviewer": "account_structure_review",
+    "approvedImplementation": "075e082fc084261ab7fbacc30bade178361d92db",
+    "evidence": "docs/architecture/delivery/KAN161_INDEPENDENT_REVIEW.md"
+  }
+}

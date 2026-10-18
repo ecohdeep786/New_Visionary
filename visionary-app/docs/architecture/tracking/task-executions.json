@@ -152,7 +152,7 @@
       "sourceId": "ACCOUNT-DIRECTORY-01",
       "jiraKey": "KAN-161",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-161",
-      "status": "Testing",
+      "status": "Done",
       "scope": "Finalize UID ownership hierarchy; derived activity directory and additive current-tree maintenance. Future domain integration and hosted/provider gates remain open.",
       "branch": "codex/codex-kan-161-account-structure",
       "baseCommit": "f92495eadba3a07b17adef73a70d43ac38dab547",
@@ -180,7 +180,16 @@
         "frontendBuild": true,
         "buildSeconds": 29.14
       },
-      "jiraCommentId": "10018"
+      "jiraCommentId": "10018",
+      "integration": {
+        "branch": "dev",
+        "commit": "fe20cb454e3d1383687ed50ef2b8de1f10b4602b",
+        "remotePublished": true,
+        "jiraCommentId": "10019",
+        "jiraTransitionId": "51",
+        "jiraReturnedStatus": "Done"
+      },
+      "liveEvidence": "docs/architecture/tracking/kan161-account-directory-closeout.json"
     }
   ]
 }
