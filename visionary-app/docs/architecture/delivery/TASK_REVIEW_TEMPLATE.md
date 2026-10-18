@@ -6,7 +6,7 @@ Copy this structure into the task's Jira review comment or a linked review docum
 Jira key / source ID:
 Acceptance scope: enabler / connected feature / release gate
 Implementer (person or agent):
-Reviewer (different person or agent; must explicitly accept responsibility):
+Reviewer: qa-review (record the actual reviewing agent identity; founder for required product decisions):
 Worker branch / base commit / candidate head commit:
 Current dev commit / comparison range:
 Owned files, contracts and migrations:
@@ -31,7 +31,7 @@ Jira transition/comment receipt:
 Next dependent task and proof its other prerequisites are accepted:
 ```
 
-The implementer supplies evidence and requests review; they cannot approve their own implementation. A separate agent can review code and tests, but cannot replace founder/product approval where acceptance requires a human decision. Do not assign a reviewer identity or approval without their actual review. The reviewer may also perform verification; every required product/operational gate still applies.
+The implementer supplies evidence and requests review; they cannot approve their own implementation. D-096 assigns independent testing/review to qa-review. That agent can review code and tests, but cannot replace founder/product approval where acceptance requires a human decision. Do not record approval without the actual review. The reviewer may also perform verification; every required product/operational gate still applies. Post the final review in Jira against the exact SHA; the integrator checks live status and records the accepted integration before selecting dependent work.
 
 Use the existing Jira **Testing** status for review and verification. Changes requested return the issue to **In Progress**. New code invalidates the previous approval for the changed candidate and requires review/checks again. Merge conflicts, changed shared contracts or relevant changes on `dev` require renewed integration review.
 

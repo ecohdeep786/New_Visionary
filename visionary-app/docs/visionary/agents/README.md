@@ -2,6 +2,8 @@
 
 D-095 current delivery rule: read [branch/review workflow](../../architecture/BRANCH_WORKFLOW.md) and use the [task review template](../../architecture/delivery/TASK_REVIEW_TEMPLATE.md). The implementer supplies evidence; a separate reviewer approves the exact candidate, with relevant verification and integration evidence before Jira Done. Pending review stays in Testing; changes requested return to In Progress. Each worker waits for acceptance before its next implementation task. The older frontend wave protocol below retains its scoped gates; it does not override current backend/ML authorization or permit self-approval.
 
+D-096: qa-review is the independent testing/review lane. Workers fix returned findings and resubmit a new exact SHA. The integrator verifies approval, current dev compatibility and actual Jira completion before that worker starts its next task. An earlier approval never covers an unreviewed later head.
+
 Authority: v2.2 Parts U and V. Start with MASTER_SPEC, read v2.2 fully, your charter, and the last STATUS entry. Read DECISIONS and QA. Never infer shipped waves from file existence.
 
 Sequence per wave: **01-PM → 02-UX → 03-DesignSystem → 04-Frontend → 05-Motion → 06-A11y → 07-QA → Head-of-Product gate → 08-Release (Wave 6 only)**.

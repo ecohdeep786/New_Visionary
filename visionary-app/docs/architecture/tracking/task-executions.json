@@ -1,14 +1,14 @@
 {
   "schemaVersion": 2,
-  "meaning": "Current scoped task execution and review receipts supplement dated requirement/capacity snapshots. Historical acceptedImplementation/verifiedAt/check fields retain D-094 evidence, not independent approval. Read live Jira before assignment. D-095 requires a separate reviewer, exact reviewed revision, passed relevant verification and accepted integration before Done.",
+  "meaning": "Current scoped execution/review receipts supplement dated plans. Read live Jira before assignment; a later unreviewed branch head is not accepted by an earlier exact-SHA approval. Historical acceptedImplementation/check fields retain their dated source-only evidence. qa-review tests/reviews; workers implement/fix; integrator records accepted dev integration and actual Jira Done before the next task.",
   "tasks": [
     {
       "sourceId": "SCOPE-01",
       "jiraKey": "KAN-28",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-28",
-      "status": "Testing",
+      "status": "Done",
       "verifiedAt": "2026-10-17T17:56:50.838Z",
-      "scope": "Implemented source inventory and drift-check enabler; pending independent review under D-095",
+      "scope": "QA-approved source inventory/drift-check enabler and D-095 documentation organization only",
       "branch": "codex/codex-tasks",
       "implementationCommits": [
         "593f2a210fd51d08b9859803d9e1cdf1b3a70c7d",
@@ -49,15 +49,16 @@
       "cloudRunServicesListed": 0,
       "cloudBuildTriggersListed": 0,
       "review": {
-        "state": "pending",
+        "state": "approved",
         "implementer": "Codex",
-        "reviewer": null,
-        "candidateCommit": "b829922d2d9250719ea71d70ed6f710e175cf27d",
+        "reviewer": "qa-review (automated QA gate)",
+        "candidateCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
         "requestedAt": "2026-10-17T18:16:28.377Z",
-        "decisionAt": null,
-        "approvedCommit": null,
-        "reason": "Implementation/test history is retained. A reviewer separate from the implementing agent must inspect the exact source-audit candidate, evidence and current dev compatibility before renewed Done.",
-        "jiraCommentId": "10004"
+        "decisionAt": "2026-10-18T08:31:17.696Z",
+        "approvedCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+        "reason": "Independent QA approval in native Jira comment10006; linked domain/model/hosted gates remain open. This is automated-agent review, not an assertion of founder human acceptance.",
+        "jiraCommentId": "10006",
+        "reviewerType": "agent"
       },
       "history": [
         {
@@ -74,8 +75,68 @@
           "jiraTransitionId": "41",
           "jiraCommentId": "10004",
           "note": "Founder requires review and verification before Done/next task. No code rollback or hosted deployment; no approval fabricated."
+        },
+        {
+          "decision": "D-096",
+          "status": "Done",
+          "at": "2026-10-18T08:50:12.010Z",
+          "jiraCommentId": "10007",
+          "jiraTransitionId": "51",
+          "approvedCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+          "reviewCommentId": "10006",
+          "note": "Actual Jira Done after exact QA-approved candidate was integrated/published to dev and relevant checks passed; unreviewed later head preserved and excluded."
         }
+      ],
+      "integration": {
+        "commit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+        "branch": "dev",
+        "remotePublished": true,
+        "checks": {
+          "layout": true,
+          "imports": true,
+          "scopeAudit": true,
+          "planningTests": 13,
+          "auditRegressionTests": 5,
+          "failed": 0
+        },
+        "jiraCommentId": "10007",
+        "jiraTransitionId": "51",
+        "jiraReturnedStatus": "Done",
+        "recordedAt": "2026-10-18T08:50:12.010Z",
+        "mainPromoted": false,
+        "hostedDeployed": false
+      },
+      "excludedUnreviewedCommits": [
+        "cdcc5d5e2510ffe2b31ea580536f27f4e905bbc4"
       ]
+    },
+    {
+      "sourceId": "SCOPE-02",
+      "jiraKey": "KAN-29",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-29",
+      "status": "In Progress",
+      "scope": "Coverage-contract preparation and source analysis; implementation/matrix acceptance not complete",
+      "worker": "Codex",
+      "branch": "codex/kan-29-coverage-matrix",
+      "baseCommit": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+      "precedingAcceptedTask": "KAN-28",
+      "prerequisites": {
+        "liveIncomingBlocks": [],
+        "manifestBlockedBy": [],
+        "parentPhase": "KAN-2",
+        "parentPhaseStillOpen": true
+      },
+      "review": {
+        "state": "not-submitted",
+        "reviewer": "qa-review",
+        "approvedCommit": null
+      },
+      "jiraCommentId": "10008",
+      "jiraTransitionId": "31",
+      "artifacts": [
+        "docs/architecture/delivery/KAN29_COVERAGE_WORK_PLAN.md"
+      ],
+      "hostedDeploymentVerified": false
     }
   ]
 }

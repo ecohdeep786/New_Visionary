@@ -13,6 +13,6 @@ Read live [Jira](https://visionary-team.atlassian.net/jira/software/projects/KAN
 | [founder-spec-review.json](founder-spec-review.json) | Historical source hashes and per-file reconciliation | Preserve source provenance and dated scope. |
 | [document-moves-2026-10-17.json](document-moves-2026-10-17.json) | D-095 documentation relocation ledger | Historical move verification, canonical destinations and compatibility pointers. |
 
-KAN-28 is **Testing**, awaiting a reviewer separate from its implementing agent under D-095. Its D-094 tests/commits remain recorded; the earlier Done event is historical. Other historical Done items and dated calendar records are unchanged by this focused update.
+D-096: KAN-28 is **Done** after qa-review approval of ec7bab9, verified/published dev integration and actual Jira transition51. KAN-29 is **In Progress** coverage-contract preparation. The D-095 Testing and earlier D-094 closure remain historical events. KAN-137 is still Testing in the current Jira read; an uncommitted report alone does not establish its closing transition. Other historical Done items and dated calendar records are unchanged.
 
 Use [branch workflow](../BRANCH_WORKFLOW.md) and the [review template](../delivery/TASK_REVIEW_TEMPLATE.md) for closure. A task may be Done for an explicitly scoped enabler while linked domain/model/hosted gates remain open, but only after that enabler has been reviewed and verified. Dependent work waits for accepted prerequisites.
