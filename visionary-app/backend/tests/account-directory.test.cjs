@@ -5,6 +5,8 @@ const { verifyAccountTree } = req('./dist/src/auth/firebase-product/account-tree
 const { deviceRecord } = req('./dist/src/auth/firebase-product/account-storage.js');
 const { Timestamp } = req('firebase-admin/firestore');
 const { billingMemory } = require('./fixtures/billing-memory.cjs');
+const { BillingService } = req('./dist/src/billing/billing.service.js');
+const { BillingRepository } = req('./dist/src/billing/billing.repository.js');
 
 function fixture() {
   const f = billingMemory(), uid = 'owner', root = `visionary_accounts/${uid}`;
@@ -66,7 +68,19 @@ test('current-tree audit ignores historical billing drift but detects current ow
   f.rows.get(`${f.root}/structure/account`).sections.projects.availability = 'connected';
   f.rows.get(`${f.root}/authEvents/event`).type = 'changed';
   f.rows.get(`${f.root}/devices/device`).cookieHash = 'must-be-rejected';
-  f.rows.get('visionary_billing_test_queue/owner').revision = 7;
+  f.rows.get('visionary_billing_test_queue/owner').nextSyncAt = 501;
   const failed = await verifyAccountTree(f.db, f.uid);
   assert.ok(failed.ownershipConflicts >= 2); assert.equal(failed.directoryDifferences, 1); assert.ok(failed.recordDifferences >= 3);
+});
+
+test('real Family departure may advance billing revision without invalidating the unchanged due queue', async () => {
+  const f = fixture(); await reconcileAccountDirectory(f.db, f.uid, true);
+  const saved = f.rows.get(`${f.root}/billing/test`); saved.familyMembers = [{ uid: 'member' }];
+  f.rows.set('visionary_billing_test_memberships/member', { owner: f.uid });
+  const service = new BillingService(new BillingRepository({ getDatabase: () => f.db }), {}, {});
+  service.account = async () => ({}); // Response projection only; run the real mutation.
+  await service.leaveFamily('member');
+  assert.equal(f.rows.get(`${f.root}/billing/test`).revision, 9);
+  assert.equal(f.rows.get('visionary_billing_test_queue/owner').revision, 8);
+  assert.equal((await verifyAccountTree(f.db, f.uid)).recordDifferences, 0);
 });

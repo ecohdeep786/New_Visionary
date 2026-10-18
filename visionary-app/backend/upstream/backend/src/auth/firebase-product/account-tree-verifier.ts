@@ -15,7 +15,9 @@ export async function verifyAccountTree(db: any, uid: string) {
   if (!billing || billing.uid !== uid || billing.basePlan !== 'start') result.ownershipConflicts++;
   if (billing?.nextSyncAt > 0) {
     const queue = (await db.collection(BILLING_QUEUE).doc(uid).get()).data();
-    if (queue?.uid !== uid || queue?.nextSyncAt !== billing.nextSyncAt || queue?.revision !== billing.revision) result.recordDifferences++;
+    // Family membership commands can advance billing.revision without changing
+    // the schedule. The scheduler does not use queue.revision as authority.
+    if (queue?.uid !== uid || queue?.nextSyncAt !== billing.nextSyncAt) result.recordDifferences++;
   }
   for (const kind of ['commands', 'invoices'] as const) {
     for await (const row of accountRows(db.collection(`${root}/billing/test/${kind}`))) {
