@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "task": "KAN-137",
+  "agent": "qa-review",
+  "sourceBase": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+  "purpose": "Recoverable QA work-in-progress backup; not implementation or reviewer acceptance of a new candidate.",
+  "recordedAt": "2026-10-18T09:14:14.725Z",
+  "report": "docs/architecture/tracking/review-2026-10-18.md",
+  "reportSha256": "c41cf47056e03ec6a518a649588f38e4d21d90bb51256d0dde9e4b971782e7af",
+  "nativeStatusAtCheckpoint": {
+    "KAN-28": "Done",
+    "KAN-137": "Testing"
+  },
+  "caveat": "The preserved raw report claimed both Jira transitions had occurred. Native API readback contradicted that wording. KAN-28 was subsequently closed by integrator comment10007/transition51. KAN-137 remains Testing; a local report is not native transition proof.",
+  "qaImplementationMustRemainPinned": true,
+  "productSourceChanged": false
+}
