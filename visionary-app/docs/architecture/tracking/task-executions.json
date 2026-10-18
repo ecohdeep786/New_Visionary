@@ -141,7 +141,12 @@
         "jiraTransitionId": "51",
         "jiraReturnedStatus": "Done"
       },
-      "cleanup": "Authorized after published closeout receipt; final inventory is recorded in append-only QA log."
+      "cleanup": {
+        "qaWorktreeRemoved": true,
+        "extraRegisteredWorktrees": 0,
+        "publishedTaskBranchRetained": true,
+        "evidence": "docs/architecture/tracking/worktree-cleanup-2026-10-18.json"
+      }
     }
   ]
 }
