@@ -3,15 +3,20 @@ import { createHash } from 'node:crypto';
 export const sha256 = text => createHash('sha256').update(text.replaceAll('\r\n', '\n')).digest('hex');
 const equalSet = (actual, expected) => Array.isArray(actual) && actual.length === expected.length && new Set(actual).size === actual.length && expected.every(value => actual.includes(value));
 const requireCondition = (condition, message) => { if (!condition) throw new Error(`Launch coverage: ${message}`); };
-const requiredAnchors = [
-  'integration/contracts/product-surface-review.json',
-  'frontend/src/components/onboarding/stepConfigs.jsx',
-  'frontend/src/components/onboarding/ProductSetupFields.jsx',
-  'frontend/src/domain/workspace.ts',
-  'frontend/tests/curriculum-category-acceptance.test.mjs',
-  'backend/upstream/backend/src/auth/firebase-product/profile.ts',
-  'frontend/src/lib/onboardingLearningContext.js',
-];
+// This is a reviewed snapshot, not a general JavaScript data-flow analyzer.
+// Pin both producers and consumers independently of the editable matrix. A
+// matrix-only rehash must not bless later mutations, aliases or inline options.
+// Updating these revisions requires source inspection and a new exact-SHA review.
+const reviewedSources = {
+  'integration/contracts/product-surface-review.json': 'f4e339d9b8836d3d473259caab5c5c2042d35f37980684c042ac300a096f02c0',
+  'frontend/src/components/onboarding/stepConfigs.jsx': 'aacb7dbccb8c704f15708a638701428ec411aad8e0559bf0b6950e59f840ba1c',
+  'frontend/src/components/onboarding/ProductSetupFields.jsx': '909ceb2cb2f7a4d4cda2935aab9c94efb8c66f4f802cf3d4abc534596f9327f8',
+  'frontend/src/domain/workspace.ts': 'cd820b052fc31c17c1f86f2c0919d259cb2b6019f0517f8d9f5100ca9eddb87d',
+  'frontend/tests/curriculum-category-acceptance.test.mjs': '8c7380c8b01a5aefb016fe527461a610740b5c8c186f37b60c4255ccf112d303',
+  'backend/upstream/backend/src/auth/firebase-product/profile.ts': 'fa05afdff5429cb192b3188501ae3a690fc89b0621228fb67d49daf2c6de0e9c',
+  'frontend/src/lib/onboardingLearningContext.js': 'db69839445a86dcc7d084acb9beb9f6de79a804f87c44bad6d5775e1bd7c4d06',
+};
+const requiredAnchors = Object.keys(reviewedSources);
 const categoryStages = { primary: 'school', secondary: 'school', 'higher-secondary': 'school', competitive: 'competitive', vocational: null, 'higher-education': 'higher_ed', 'independent-adult': 'professional', professional: 'professional', 'employer-sponsored': 'professional' };
 const commonGates = ['KAN-60', 'KAN-34', 'KAN-156', 'KAN-158', 'KAN-121', 'KAN-127', 'KAN-116'];
 const requiredGates = [...commonGates, 'KAN-44', 'KAN-96'];
@@ -72,6 +77,7 @@ export function validateCoverage(matrix, read) {
     const file = anchor?.file;
     requireCondition(typeof file === 'string' && /^(frontend\/(src|tests)\/|backend\/upstream\/backend\/src\/|integration\/contracts\/)/.test(file) && !file.includes('..') && !file.includes('\\') && !seen.has(file), 'invalid or duplicate source anchor');
     requireCondition(/^[a-f0-9]{64}$/.test(anchor.sha256) && sha256(read(file)) === anchor.sha256, `source drift: ${file}`);
+    requireCondition(anchor.sha256 === reviewedSources[file], `reviewed source revision drift: ${file}; matrix-only rehash is insufficient`);
     seen.add(file);
   }
   requireCondition(equalSet([...seen], requiredAnchors), 'required source anchors missing or replaced');
@@ -150,6 +156,7 @@ export function coverageReport(matrix) {
     '| Complete candidate / release-source-provider-and-founder-acceptance-required | Explain that current coverage is unqualified. | Require reviewed source/provider/admission/entitlement and product acceptance before learning delivery. |',
     '| Unknown dimension / unsupported-* | Identify the unsupported selection without a support claim. | Preserve input and offer only separately accepted choices. |');
   lines.push('', '## Product acceptance still required', '', 'Pin the first real release slices across role, age/admission, category, source ID/version/rights, board/exam/medium, six language identities, modality, device, connectivity and entitlements. Record accountable founder/source/provider/admission acceptance and actual UI-to-owning-store recovery/deny evidence. Current local account/test-billing availability is not learning coverage. The report preserves all exposed categories rather than silently removing unsupported ones. KAN-29 remains open until its stated accepted matrix exists. See [the decision worksheet](../visionary/design/KAN29_LAUNCH_COVERAGE_DECISIONS.md) for the concrete first-slice proposal and remaining decisions.', '', 'The inspector returns engineering reasons and always `runtimeAuthorization: false`; it is not wired to application permission checks. Existing backend UID, workspace, consent, source, billing and admission authority remains unchanged.', '', '## Source anchors', '');
+  lines.push('All seven normalized source revisions are also pinned independently in the checker. A matrix-only digest refresh cannot certify a changed producer, consumer or authority mapping; inspect the changed source and submit the updated tooling/contract for exact-SHA review.', '');
   for (const anchor of matrix.sourceAnchors) lines.push(`- \`${anchor.file}\` — normalized SHA-256 \`${anchor.sha256}\``);
   return lines.join('\n') + '\n';
 }
