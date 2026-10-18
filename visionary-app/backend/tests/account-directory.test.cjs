@@ -20,7 +20,7 @@ function fixture() {
   f.rows.set('visionary_auth_sessions/device', session);
   f.rows.set(`${root}/devices/device`, deviceRecord(uid, 'device', session));
   const event = { uid, sessionId: 'device', type: 'sign_in' };
-  f.rows.set('visionary_auth_events/event', event); f.rows.set(`${root}/authEvents/event`, event);
+  f.rows.set('visionary_auth_events/event', event); f.rows.set(`${root}/authEvents/event`, { ...event });
   return { ...f, uid, root };
 }
 
