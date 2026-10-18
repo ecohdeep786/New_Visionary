@@ -202,6 +202,37 @@
         "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
         "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
       }
+    },
+    {
+      "sourceId": "LEARN-10",
+      "jiraKey": "KAN-146",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-146",
+      "status": "Testing",
+      "scope": "Owner-scoped durable teaching loop in the existing product runtime: start/present/assess/cancel commands, server-side assessment against the stored authored key, immutable idempotent command receipts, scope/revision conflicts and the bounded three-failure stop. Signed-out and unconfigured journeys stay browser-local. Hosted Firestore/IAM, SQL owning store, authoritative content/criteria service, calibration and cross-device sync remain open.",
+      "branch": "codex/deepseek-kan-146-teaching-loop",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-146-teaching-loop",
+      "review": {
+        "state": "pending",
+        "implementer": "DeepSeek"
+      },
+      "hostedAcceptance": false,
+      "implementationCommit": "83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec",
+      "checks": {
+        "backendBuild": true,
+        "backendTests": 81,
+        "backendFailed": 0,
+        "rootCheck": true,
+        "scriptTests": 18,
+        "frontendTests": 544,
+        "frontendFailed": 0,
+        "lint": true,
+        "typecheck": true,
+        "frontendBuild": true,
+        "buildSeconds": 15.34
+      },
+      "jiraCommentId": null,
+      "liveEvidence": "integration/LEARNING_LOOP_CONTRACT.md"
     }
   ]
 }
