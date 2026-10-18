@@ -52,9 +52,27 @@ Current server activation is adult-only. Under-18 activation remains blocked unt
 | [KAN-127](https://visionary-team.atlassian.net/browse/KAN-127) | Measured capability/release acceptance with accountable reviewers and held-out evidence. |
 | [KAN-116](https://visionary-team.atlassian.net/browse/KAN-116) | Launch privacy/commercial disclosures and content/provider rights acceptance. |
 
+## Unsupported states and recovery to validate
+
+These are proposed product acceptance requirements for downstream wiring. The offline inspector supplies reason codes; it does not display these states or enforce product permissions.
+
+| Scenario / diagnostic reason | Required visible outcome | Recovery boundary |
+| --- | --- | --- |
+| Minor / guardian-admission-not-connected | Explain that verified guardian admission is required. | Preserve the current admission block; no DOB/profile bypass. |
+| Native / native-client-not-released | Identify native delivery as unavailable. | Offer the supported browser journey only when independently available. |
+| Offline or reconnecting / online-domain-authority-required | Show saved draft and pending server validation separately. | Reconnect, revalidate current UID/workspace/consent/source/revision and refetch; no silent inference or duplicate commit. |
+| Voice / speech-qualification-required | Explain that speech for the chosen language/script/device is not qualified. | Offer text only if that exact text slice is independently accepted and the user chooses it. |
+| Linked role / server-verified-relationship-required | Show the missing class/guardian/organization/employer verification. | Verify current scoped membership; never expose private learner history from a selected role. |
+| Vocational / category-source-mapping-required | Keep the category visible and identify missing curriculum mapping. | Obtain an accepted vocational/source mapping; never silently use professional content. |
+| School / school-board-required, state-board-state-required, school-class-required | Request the missing curriculum context. | Preserve input; board/state/class labels still require exact source edition and rights. |
+| Competitive / competitive-target-required | Request the target exam and exact syllabus/source context. | Other is a preference, not an approved exam or source. |
+| Missing provenance / source-and-language-provenance-required | Identify the missing source/version/language/script. | No substituted source, language or edition; retain the original selection. |
+| Complete candidate / release-source-provider-and-founder-acceptance-required | Explain that current coverage is unqualified. | Require reviewed source/provider/admission/entitlement and product acceptance before learning delivery. |
+| Unknown dimension / unsupported-* | Identify the unsupported selection without a support claim. | Preserve input and offer only separately accepted choices. |
+
 ## Product acceptance still required
 
-Pin the first real release slices across role, age/admission, category, source ID/version/rights, board/exam/medium, six language identities, modality, device, connectivity and entitlements. Record accountable founder/source/provider/admission acceptance and actual UI-to-owning-store recovery/deny evidence. Current local account/test-billing availability is not learning coverage. The report preserves all exposed categories rather than silently removing unsupported ones. KAN-29 remains open until its stated accepted matrix exists.
+Pin the first real release slices across role, age/admission, category, source ID/version/rights, board/exam/medium, six language identities, modality, device, connectivity and entitlements. Record accountable founder/source/provider/admission acceptance and actual UI-to-owning-store recovery/deny evidence. Current local account/test-billing availability is not learning coverage. The report preserves all exposed categories rather than silently removing unsupported ones. KAN-29 remains open until its stated accepted matrix exists. See [the decision worksheet](../visionary/design/KAN29_LAUNCH_COVERAGE_DECISIONS.md) for the concrete first-slice proposal and remaining decisions.
 
 The inspector returns engineering reasons and always `runtimeAuthorization: false`; it is not wired to application permission checks. Existing backend UID, workspace, consent, source, billing and admission authority remains unchanged.
 

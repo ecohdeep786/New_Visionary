@@ -185,6 +185,7 @@
       "released": false,
       "requiredGates": [
         "KAN-60",
+        "KAN-34",
         "KAN-44",
         "KAN-96",
         "KAN-156",
@@ -203,6 +204,7 @@
       "released": false,
       "requiredGates": [
         "KAN-60",
+        "KAN-34",
         "KAN-44",
         "KAN-96",
         "KAN-156",
@@ -221,6 +223,7 @@
       "released": false,
       "requiredGates": [
         "KAN-60",
+        "KAN-34",
         "KAN-44",
         "KAN-96",
         "KAN-156",

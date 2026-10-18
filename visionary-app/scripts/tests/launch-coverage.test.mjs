@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { coverageReport, inspectCoverageCase, validateCoverage } from '../lib/launch-coverage.mjs';
+import { coverageReport, inspectCoverageCase, selectorValues, sha256, validateCoverage } from '../lib/launch-coverage.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const matrix = JSON.parse(read('integration/contracts/launch-coverage.v1.json'));
@@ -26,6 +26,38 @@ test('selector labels cannot become accepted source coverage or implicit languag
   for (const mutate of [m => { m.catalog.boards[0] = 'Invented board'; }, m => { m.catalog.exams = ['JEE Main']; }, m => { m.catalog.languageChoices.pop(); }, m => { m.dimensions.languageAxes = ['interface', 'output']; }, m => { m.catalog.choicesAreCoverage = true; }]) {
     const candidate = copy(); mutate(candidate); assert.throws(() => validateCoverage(candidate, read));
   }
+});
+
+test('literal extraction rejects dynamic or ambiguous catalogs after source hashes are refreshed', () => {
+  assert.deepEqual(selectorValues('export const VALUES = [{ id: "[a]", label: "b]" }];', 'VALUES'), ['[a]']);
+  assert.deepEqual(selectorValues('export const VALUES = ["en", "hi"].map((l) => ({ id: l, label: l }));', 'VALUES', 'strings'), ['en', 'hi']);
+  for (const declaration of [
+    'export const VALUES = [{ id: "a" }, ...extra];',
+    'export const VALUES = [{ id: "a" + suffix }];',
+    'export const VALUES = [{ id: enabled ? "a" : "b" }];',
+    'export const VALUES = [{ id: "a", id: "b" }];',
+    'export const VALUES = [{ label: "id: fake" }];',
+    'export const VALUES = [/* { id: "a" } */ actual];',
+    'export const VALUES = [{ id: "a" }].filter(enabled);',
+    'export const VALUES = [{ id: "a" }].concat(extra);',
+  ]) assert.throws(() => selectorValues(declaration, 'VALUES'));
+  assert.throws(() => selectorValues('export const VALUES = ["a"].map((l) => ({ id: prefix + l, label: l }));', 'VALUES', 'strings'));
+  const file = 'frontend/src/components/onboarding/stepConfigs.jsx';
+  const changed = read(file).replace('id: "CBSE"', 'id: "CBSE" + suffix');
+  const candidate = copy(); candidate.sourceAnchors.find(anchor => anchor.file === file).sha256 = sha256(changed);
+  assert.throws(() => validateCoverage(candidate, anchor => anchor === file ? changed : read(anchor)), /non-literal selector/);
+});
+
+test('source anchors, actual category mappings and every required acceptance gate cannot be dropped', () => {
+  for (const mutate of [
+    m => { m.sourceAnchors.pop(); },
+    m => { m.categories.find(row => row.id === 'vocational').stage = 'professional'; },
+    m => { m.categories.find(row => row.id === 'primary').stage = 'higher_ed'; },
+    m => { m.gates = m.gates.filter(gate => gate.key !== 'KAN-116'); m.categories.forEach(row => { row.requiredGates = row.requiredGates.filter(key => key !== 'KAN-116'); }); },
+    m => { m.categories[0].requiredGates = ['KAN-60']; },
+    m => { m.categories[0].requiredGates = m.categories[0].requiredGates.filter(key => key !== 'KAN-34'); },
+    m => { m.categories[0].requiredGates.push('KAN-60'); },
+  ]) { const candidate = copy(); mutate(candidate); assert.throws(() => validateCoverage(candidate, read)); }
 });
 
 test('source changes and non-source/private/path-traversal anchors require explicit review', () => {
@@ -51,7 +83,19 @@ test('diagnostic cases distinguish unknown locale, guardian, speech, native, off
   assert.equal(reason({ role: 'parent', verifiedRelationship: true }), 'server-verified-relationship-required');
   assert.equal(reason({ category: 'employer-sponsored' }), 'server-verified-relationship-required');
   assert.equal(reason({ category: 'secondary', board: 'State' }), 'state-board-state-required');
+  assert.equal(reason({ category: 'primary' }), 'school-board-required');
+  assert.equal(reason({ category: 'primary', board: 'CBSE' }), 'school-class-required');
+  assert.equal(reason({ category: 'competitive' }), 'competitive-target-required');
+  assert.equal(reason({ category: 'vocational' }), 'category-source-mapping-required');
   assert.equal(reason({}), 'source-and-language-provenance-required');
+});
+
+test('curriculum context and source identifiers cannot masquerade as qualification', () => {
+  const source = { sourceId: 'claimed-source', sourceVersion: '1', sourceLanguage: 'en', inputLanguage: 'en', outputLanguage: 'en', script: 'Latn' };
+  for (const context of [{ category: 'primary', board: 'CBSE', class: 'Class 1' }, { category: 'competitive', exam: 'Other' }]) {
+    assert.equal(inspectCoverageCase(matrix, { ...adult, ...source, ...context }).reason, 'release-source-provider-and-founder-acceptance-required');
+  }
+  for (const value of [null, {}, [], 1, true, '   ']) assert.equal(inspectCoverageCase(matrix, { ...adult, ...source, sourceId: value }).reason, 'source-and-language-provenance-required');
 });
 
 test('all declared role/category/locale/admission/delivery combinations remain non-authorizing', () => {
