@@ -1,0 +1,61 @@
+✖ practice preparation rejects withdrawn enrollment during question hashing (2191.0014ms)
+✖ practice preparation rejects changed source during question hashing (293.0455ms)
+✖ practice preparation rejects cancelled navigation during question hashing (929.0605ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10840.8901
+
+✖ failing tests:
+
+test at tests\classwork-practice-boundary.test.mjs:15:88
+✖ practice preparation rejects withdrawn enrollment during question hashing (2191.0014ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:28:3
+      at async duringQuestionHash (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:12:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:20:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unavailable|changed|Cancelled/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-practice-boundary.test.mjs:15:88
+✖ practice preparation rejects changed source during question hashing (293.0455ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:28:3
+      at async duringQuestionHash (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:12:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:20:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unavailable|changed|Cancelled/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\classwork-practice-boundary.test.mjs:15:88
+✖ practice preparation rejects cancelled navigation during question hashing (929.0605ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:28:3
+      at async duringQuestionHash (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:12:6)
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:20:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unavailable|changed|Cancelled/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

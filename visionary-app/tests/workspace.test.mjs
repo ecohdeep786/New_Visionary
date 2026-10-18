@@ -16,8 +16,10 @@ globalThis.CustomEvent ??= class CustomEvent { constructor(type) { this.type = t
 
 test('teacher review drafts keep only the current attempt and survive a failed local write',()=>{
   memory.clear();
-  const teacher={workspaceId:'teacher-space',role:'teacher'};
-  const other={workspaceId:'other-space',role:'teacher'};
+  const first=bootstrapPerson({id:'draft-teacher',email:'draft-teacher@fixture.test',identity:'teacher'});
+  const second=bootstrapPerson({id:'other-teacher',email:'other-teacher@fixture.test',identity:'teacher'});
+  const teacher={personId:'draft-teacher',workspaceId:first.active,role:'teacher',locale:'en'};
+  const other={personId:'other-teacher',workspaceId:second.active,role:'teacher',locale:'en'};
   saveReviewDraft(teacher,'assignment','submission',1,'8','Explain the units');
   assert.deepEqual(getReviewDraft(teacher,'assignment','submission',1),{grade:'8',feedback:'Explain the units'});
   assert.equal(getReviewDraft(teacher,'assignment','submission',2),null);

@@ -177,3 +177,76 @@ Removing/changing a delivery before a pending publication commits rejects withou
 An upcoming parent due-date summary requires the selected child's active enrollment and a retained classroom. For a Work class, the child's corresponding learner role must have current accepted organization membership; pending, revoked, expired or unreadable membership cannot offer upcoming Work items. Missing classrooms are not treated as independent classes. No classwork, enrollment, membership or private learner record is rewritten by this projection.
 
 Returned-work history remains a separate consented historical summary, exposing only title/date within the selected period. Loss of current Work membership removes upcoming requirements without deleting that history or granting access to answers, grades or feedback. Parent progress consent remains necessary for either summary. Restored accepted membership makes the current due item available again; guardian renewal remains a new pending request requiring explicit learner acceptance. Failed stop/renew/accept writes retain records and notification history for explicit retry. No automatic repair, server authorization or real synchronization is introduced.
+
+### D-040 — Restricted administrative profiles and editor recovery (2026-10-05)
+
+Preserve the existing organization permission model and content editor. Imported capability values must be strings naming an own supported profile; inherited object properties and coerced values grant no administrative access. Apply current academic permission to every organization resource-editor backup operation, including new drafts; retain original bytes on denial and allow explicit recovery after access restoration. This closes two reproduced local service defects without a layout redesign or backend implementation. QA evidence is recorded in QA.md.
+
+### D-041 — Practice questions follow current source and saved rehearsal state (2026-10-05)
+
+Preparing an assigned practice question is an asynchronous operation because its content token is hashed. Re-read authorized source/questions and saved study after hashing. Changed access/source, cancellation or a competing round must reject rather than return the former question; a newer private question draft must be returned with its current revision. On the rendered study screen, a changed source removes obsolete question controls and offers explicit recovery, preserving owned study/export. Refresh and load results are scoped so older requests cannot restore a withdrawn view. Existing design grammar and source/interface-language distinction remain unchanged. This is local frontend enforcement; backend authorization remains independently required.
+
+### D-042 — Retained source identity must be complete and unambiguous (2026-10-05)
+
+Validate explicitly stored learning source context before reading or mutating its workspace. Incomplete selection/provenance fails closed with original bytes retained; legacy activities that never stored this field remain readable. Concept lookup and origin capture use the same reconciliation rule: cached occurrences must agree on curriculum selection and effective provider/source/version before language preference chooses a variant. Conflicting sources cannot silently resume or create an unpinned activity. Same-source authored language variants remain supported. Recovery uses existing unavailable-content/data screens and explicit restore/retry. Recorded progress remains available if activity metadata is unreadable, with resume links reported unavailable. No automatic deletion, migration, layout redesign or backend work.
+
+### D-043 — 2026-10-05: Private rehearsal grading follows the current authored bank
+
+Use the same post-hash source and saved-round recheck for preparing and grading private practice. Assignment identity alone cannot prove that its retained delivered practice bank is still available or unchanged. Changed questions/options/keys, removed delivery, withdrawn access, cancellation and competing rounds reject before a new attempt is written. Identical concurrent-answer replay returns the currently retained attempt once. Source conflicts remove obsolete practice controls and expose existing localized restore/retry and private backup export. Failed storage retains the selection for explicit retry. Private rehearsal never creates teacher submissions, grades or mastery evidence. No backend transaction, curriculum migration or public layout change.
+
+D-043 retained-delivery refinement: after the final asynchronous authorization read, synchronously re-read and validate the delivered bank before exposing questions. A removed or changed delivery must not return the earlier bank snapshot.
+
+### D-044 — 2026-10-05: Teacher review recovery uses current workspace access and preserves unreadable drafts
+
+Review-draft read/write/cleanup checks the owned teacher workspace and current accepted Work membership, and rejects cancellation. Validate the complete retained per-assignment collection before mutation; malformed selected or sibling rows remain unchanged for explicit valid-copy recovery. Older valid drafts may omit optional revision/criterion fields. This follows the existing workspace isolation boundary; backend authentication/authorization remains independent.
+
+Current review export rechecks workspace access and catches download failure in the dialog. Its error is separate from the existing review/save conflict, so original grade/feedback and explicit latest-review recovery remain available. A successful export clears its transient error without hiding the unresolved source conflict. No source migration, deletion, public redesign or backend implementation.
+
+
+### D-045 — 2026-10-05: Finish the automated acceptance pass and hand off real reviewer/device gates
+
+Keep interface language separate from the fixed authored project brief in Learn and Build. Persist optional artifact projectLocale, retain it in explicit separate-copy recovery, and include it in content revisions only when present so older artifacts retain their revision encoding. Existing rubric language may supply a known display fallback; never infer or translate the learner's document language. No new store, automatic migration or backend is introduced.
+
+Teacher review feedback uses the existing rounded field grammar as a full-width, resizable multiline control. This addresses horizontally clipped long feedback while retaining labels, 5000-character limit, backup, conflict/export and return/revision behavior. Prior linked-role teacher captures provide the inherited single-line comparison; acceptance-final-linked-role and Work captures record the multiline result. No public layout change.
+
+The development/preview Permissions-Policy permits same-origin microphone access while retaining browser permission and explicit Start listening. The previous blanket denial prevented the browser's same-origin microphone capability. Camera/geolocation and microphone access for foreign origins remain denied. Browser policy verification does not establish hardware, recognition connectivity or intelligible audio. Hosting must preserve the reviewed policy when deployment is implemented.
+
+The owner requested a prepared review handoff instead of supplying native/device reviewers in this turn. FRONTEND_TEAM_REVIEW_HANDOFF.md supplies setup, named review responsibilities, tasks and evidence format. Finish current automated suites and repository checks, then return the review-ready handoff. Actual native-language, physical-device and final product-owner acceptance are not inferred from automation. Backend stays deferred under the existing delivery order.
+
+## 2026-10-05 — D-046 saved teaching language and origin
+
+A saved explanation/question carries optional explanationLocale, explanationSource (adapter/authored) and questionLocale in the existing learning unit. Later feedback/remediation response status cannot relabel the saved payload or its source badge. An explicit teaching-language change replaces metadata with the selected authored content, or clears it when that content is absent. Question locale travels into attempt history and scored outcome language. Authored representation and project criteria use the content locale. Source pins, answer keys and scoring rules are unchanged.
+
+Readers accept older units without these fields using the existing display fallback; unavailable historical provenance cannot be reconstructed. Defined malformed values reject without overwriting originals. Export includes available payload/attempt language metadata and still excludes answer keys. No new storage namespace, automatic migration, translation or backend operation.
+
+This is a bounded frontend correction before team review. The D-045 snapshot remains historical; the D-046 manifest identifies the current build. Native quality, physical-device tasks and G1–G12 owner acceptance remain open.
+
+## 2026-10-06 — D-047 class-code clipboard recovery
+
+Class code copy feedback belongs to the current request and class view. Starting a copy clears prior success/failure; the button is disabled and marked busy until that request settles. Class refresh invalidates pending completions, so a delayed clipboard resolution cannot mark a newer code as copied. Each request rereads the authorized class and displays its latest code before copying; denied or unavailable clipboard leaves the visible code selectable for manual copy. Unmount also suppresses completion updates.
+
+This is a frontend status correction, not a clipboard cancellation mechanism: once a browser accepts a write, the app cannot retract the clipboard contents. A changed class requires a new explicit copy. Storage, membership, grading and source rules are unchanged. Actual device clipboard behavior and final frontend acceptance remain team review tasks; backend stays deferred.
+
+## 2026-10-06 — D-048 voice review preserves complete questions
+
+Completed recognition phrases accumulate in the current reviewed question; interim words are shown after the confirmed prefix without committing them twice. The existing recognition service rejects replayed finals and callbacks from stopped sessions. The review field and accumulation are capped at 6000 characters, preserving the existing prefix.
+
+Editing the review field ends the voice session before replacing its text. The user can explicitly start again to append more words; late callbacks cannot overwrite their edits. A successfully saved spoken turn clears the review field and confirmed prefix before a new question. A failed save retains the current words and recovery notice. No phrase is automatically sent. Scope/route changes clear both transient representations; no new storage or backend seam.
+
+Physical microphone/recognition quality, native-language copy and screen-reader behavior remain team acceptance work. This bounded correction uses controlled speech callbacks to verify frontend state, without requesting hardware audio.
+
+D-048 editor detail: the empty review remains mounted after manual deletion, with sending disabled until nonblank text is entered. This prevents clearing a question from removing its editor and allows an ordinary rewrite without reopening recognition. Successful send and scope/route change explicitly close the review. This state is transient; no new retained record.
+
+## 2026-10-06 — D-049 voice-panel interface and speech language
+
+Voice-panel controls, status text, review guidance, accessible names and known voice-device recovery messages use interfaceLocale through the new voiceCopy catalog. The portaled panel and trigger carry that interface language. Greeting notices, live transcript spans and the review field carry the selected speech/teaching language independently. The review language denotes the chosen input language, not automatic detection or translation of arbitrary manual edits. Visionary Guide/Vision Boy/Vision Girl remain product names.
+
+Notices retain message keys and optional source language rather than a rendered mixed-language string. Known voice errors localize; unknown local runtime errors retain their original English text and an English tag, with separately tagged localized recovery guidance. Greeting expiry still compares its own notice identity and cannot clear a newer error. Transcript accumulation, explicit send, capture cancellation and recovery behavior remain as D-048. No new retained store, schema, translation of teaching content or backend operation.
+
+English/Hindi/Bengali interface copy is implemented for team review, not native-approved. The team must review the new voice terminology, recovery meaning, script wrapping and real screen-reader pronunciation. Hardware recognition and final owner acceptance remain open.
+
+## 2026-10-06 — D-050 frozen frontend review candidate
+
+Finalize the existing browser-local frontend as a concrete team-review candidate before the founder-book/backend sequence. No application source changed in this pass. Preserve inherited public/internal edits and earlier evidence; isolate fresh outputs under scripts-tmp/frontend-final-. FRONTEND_REVIEW_SNAPSHOT.json records 734 candidate files and 22 scenario/driver inputs with SHA256 fingerprints, including the built assets and README. FRONTEND_FINAL_REVIEW.md is the current acceptance packet.
+
+Fresh broad automation passes on one build, rather than combining earlier snapshots as a current result. Native English/Hindi/Bengali meaning, actual accessibility/hardware tasks and final design/product-owner G1–G12 approval remain three OPEN review areas. These cannot be closed through synthetic callbacks or route counts. No backend commencement, release or whole-product certification is recorded.

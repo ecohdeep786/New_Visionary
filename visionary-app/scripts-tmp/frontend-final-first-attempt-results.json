@@ -1,0 +1,16 @@
+[
+  {
+    "name": "category-authored-languages-verify.mjs",
+    "log": "scripts-tmp/frontend-final-category-authored-languages-verify.txt",
+    "startedAt": "2026-10-06T14:25:54.934Z",
+    "finishedAt": "2026-10-06T14:34:07.489Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-source-integrity-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-source-integrity-verify.txt",
+    "startedAt": "2026-10-06T14:34:07.492Z",
+    "finishedAt": "2026-10-06T14:34:08.293Z",
+    "exitCode": 1
+  }
+]

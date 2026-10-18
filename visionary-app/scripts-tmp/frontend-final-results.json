@@ -1,0 +1,131 @@
+[
+  {
+    "name": "category-authored-languages-verify.mjs",
+    "log": "scripts-tmp/frontend-final-category-authored-languages-verify.txt",
+    "startedAt": "2026-10-06T14:25:54.934Z",
+    "finishedAt": "2026-10-06T14:34:07.489Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-source-integrity-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-source-integrity-verify.txt",
+    "startedAt": "2026-10-06T14:35:24.318Z",
+    "finishedAt": "2026-10-06T14:36:05.766Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-publication-boundary-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-publication-boundary-verify.txt",
+    "startedAt": "2026-10-06T14:36:05.770Z",
+    "finishedAt": "2026-10-06T14:36:36.704Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-linked-role-languages-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-linked-role-languages-verify.txt",
+    "startedAt": "2026-10-06T14:36:36.706Z",
+    "finishedAt": "2026-10-06T14:37:53.665Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-review-draft-work-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-review-draft-work-verify.txt",
+    "startedAt": "2026-10-06T14:37:53.667Z",
+    "finishedAt": "2026-10-06T14:39:37.914Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-governance-continuation-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-governance-continuation-verify.txt",
+    "startedAt": "2026-10-06T14:39:37.918Z",
+    "finishedAt": "2026-10-06T14:40:10.301Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-parent-classwork-boundary-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-parent-classwork-boundary-verify.txt",
+    "startedAt": "2026-10-06T14:40:10.303Z",
+    "finishedAt": "2026-10-06T14:40:49.152Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-navigation-focus-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-navigation-focus-verify.txt",
+    "startedAt": "2026-10-06T14:40:49.163Z",
+    "finishedAt": "2026-10-06T14:40:58.350Z",
+    "exitCode": 0
+  },
+  {
+    "name": "voice-language-verify.mjs",
+    "log": "scripts-tmp/frontend-final-voice-language-verify.txt",
+    "startedAt": "2026-10-06T14:40:58.353Z",
+    "finishedAt": "2026-10-06T14:41:55.806Z",
+    "exitCode": 0
+  },
+  {
+    "name": "voice-language-review-regression.mjs",
+    "log": "scripts-tmp/frontend-final-voice-language-review-regression.txt",
+    "startedAt": "2026-10-06T14:41:55.807Z",
+    "finishedAt": "2026-10-06T14:42:22.023Z",
+    "exitCode": 0
+  },
+  {
+    "name": "voice-review-lifecycle-verify.mjs",
+    "log": "scripts-tmp/frontend-final-voice-review-lifecycle-verify.txt",
+    "startedAt": "2026-10-06T14:42:22.025Z",
+    "finishedAt": "2026-10-06T14:42:44.962Z",
+    "exitCode": 0
+  },
+  {
+    "name": "class-copy-verify.mjs",
+    "log": "scripts-tmp/frontend-final-class-copy-verify.txt",
+    "startedAt": "2026-10-06T14:42:44.964Z",
+    "finishedAt": "2026-10-06T14:43:07.139Z",
+    "exitCode": 0
+  },
+  {
+    "name": "content-language-verify.mjs",
+    "log": "scripts-tmp/frontend-final-content-language-verify.txt",
+    "startedAt": "2026-10-06T14:43:07.140Z",
+    "finishedAt": "2026-10-06T14:43:47.749Z",
+    "exitCode": 0
+  },
+  {
+    "name": "frontend-learning-regression-verify.mjs",
+    "log": "scripts-tmp/frontend-final-frontend-learning-regression-verify.txt",
+    "startedAt": "2026-10-06T14:43:47.751Z",
+    "finishedAt": "2026-10-06T14:44:34.107Z",
+    "exitCode": 0
+  },
+  {
+    "name": "acceptance-public-font-clock-verify.mjs",
+    "log": "scripts-tmp/frontend-final-acceptance-public-font-clock-verify.txt",
+    "startedAt": "2026-10-06T14:44:34.109Z",
+    "finishedAt": "2026-10-06T14:47:31.103Z",
+    "exitCode": 0
+  },
+  {
+    "name": "frontend-route-regression-verify.mjs",
+    "locale": "en",
+    "log": "scripts-tmp/frontend-final-frontend-route-regression-verify-en.txt",
+    "startedAt": "2026-10-06T14:47:31.105Z",
+    "finishedAt": "2026-10-06T14:49:29.412Z",
+    "exitCode": 0
+  },
+  {
+    "name": "frontend-route-regression-verify.mjs",
+    "locale": "hi",
+    "log": "scripts-tmp/frontend-final-frontend-route-regression-verify-hi.txt",
+    "startedAt": "2026-10-06T14:49:29.413Z",
+    "finishedAt": "2026-10-06T14:50:44.686Z",
+    "exitCode": 0
+  },
+  {
+    "name": "frontend-route-regression-verify.mjs",
+    "locale": "bn",
+    "log": "scripts-tmp/frontend-final-frontend-route-regression-verify-bn.txt",
+    "startedAt": "2026-10-06T14:50:44.707Z",
+    "finishedAt": "2026-10-06T14:52:50.649Z",
+    "exitCode": 0
+  }
+]

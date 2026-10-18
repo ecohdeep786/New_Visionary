@@ -37,10 +37,28 @@ async function sourcePractice(ctx,assignmentId){
 }
 const publicQuestion=q=>({id:q.id,prompt:q.prompt,options:[...q.options]});
 async function questionRevision(question){const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(question)));return Array.from(new Uint8Array(hash),byte=>byte.toString(16).padStart(2,'0')).join('');}
-export async function getClassworkPractice(ctx,assignmentId){const view=await sourcePractice(ctx,assignmentId);const position=Math.min(view.study.position,view.questions.length-1);const question=view.questions[position];return {assignment:view.assignment,classroom:view.classroom,study:view.study,revision:view.revision,question:publicQuestion(question),questionRevision:await questionRevision(question),position,total:view.questions.length};}
-export async function answerClassworkPractice(ctx,{assignmentId,expectedRevision,expectedQuestionRevision,expectedRound,index}){
- const view=await sourcePractice(ctx,assignmentId);const question=view.questions[Math.min(view.study.position,view.questions.length-1)];const token=await questionRevision(question);if(expectedRound!==view.study.round)throw Error('This rehearsal round changed. Reload your saved study.');if(token!==expectedQuestionRevision)throw Error('This practice question changed. Your earlier attempts remain saved. Reload the current question.');if(!Number.isInteger(index)||!question.options[index])throw Error('Choose an available answer.');
- const latest=await getClassworkActivity(ctx,assignmentId);if(classworkActivityRevision(latest.assignment)!==classworkActivityRevision(view.assignment))throw Error('The assigned source changed before saving this rehearsal.');const duplicate=view.study.attempts.at(-1);if(duplicate?.questionRevision===token&&duplicate.round===view.study.round){if(duplicate.index!==index)throw Error('Review the saved result and start a new retry before answering again.');return {...state(ctx,view.assignment),correct:duplicate.correct};}
- const attempt={question:publicQuestion(question),questionRevision:token,round:view.study.round,index,correct:index===question.answerIndex,at:new Date().toISOString()};return {...write(ctx,view.assignment,{...view.study,attempts:[...view.study.attempts,attempt]},expectedRevision),correct:attempt.correct};
+async function checkedPracticeSource(ctx,assignmentId){try{return await sourcePractice(ctx,assignmentId);}catch(failure){if(failure.name!=='AbortError')failure.name='ClassworkPracticeSourceConflictError';throw failure;}}
+function practiceConflict(message){const failure=Error(message);failure.name='ClassworkPracticeSourceConflictError';return failure;}
+async function recheckPractice(ctx,assignmentId,view){
+ try{
+  const latest=await sourcePractice(ctx,assignmentId);
+  if(classworkActivityRevision(latest.assignment)!==classworkActivityRevision(view.assignment)||JSON.stringify(latest.questions)!==JSON.stringify(view.questions))throw Error('The assigned practice source changed. Reopen the latest activity; your saved study is retained.');
+  if(latest.study.position!==view.study.position||latest.study.round!==view.study.round)throw Error('Private practice changed in another screen. Reload your saved study before continuing.');
+  return latest;
+ }catch(failure){if(failure.name!=='AbortError')failure.name='ClassworkPracticeSourceConflictError';throw failure;}
 }
-export async function moveClassworkPractice(ctx,{assignmentId,expectedRevision,next}){const view=await sourcePractice(ctx,assignmentId);if(!Number.isInteger(next)||next<0||next>=view.questions.length)throw Error('Choose an available practice question.');return write(ctx,view.assignment,{...view.study,position:next,round:view.study.round+1},expectedRevision);}
+export async function getClassworkPractice(ctx,assignmentId){
+ const view=await checkedPracticeSource(ctx,assignmentId);const position=Math.min(view.study.position,view.questions.length-1);const question=view.questions[position];
+ const token=await questionRevision(question);
+ // Hashing yields to other tabs, navigation and access changes. Recheck the
+ // authorized source and saved round before exposing a prepared question.
+ const latest=await recheckPractice(ctx,assignmentId,view);
+ return {assignment:latest.assignment,classroom:latest.classroom,study:latest.study,revision:latest.revision,question:publicQuestion(question),questionRevision:token,position,total:latest.questions.length};
+}
+export async function answerClassworkPractice(ctx,{assignmentId,expectedRevision,expectedQuestionRevision,expectedRound,index}){
+ const view=await checkedPracticeSource(ctx,assignmentId);const question=view.questions[Math.min(view.study.position,view.questions.length-1)];const token=await questionRevision(question);if(expectedRound!==view.study.round)throw practiceConflict('This rehearsal round changed. Reload your saved study.');if(token!==expectedQuestionRevision)throw practiceConflict('This practice question changed. Your earlier attempts remain saved. Reload the current question.');if(!Number.isInteger(index)||!question.options[index])throw Error('Choose an available answer.');
+ const latest=await recheckPractice(ctx,assignmentId,view);
+ const duplicate=latest.study.attempts.at(-1);if(duplicate?.questionRevision===token&&duplicate.round===latest.study.round){if(duplicate.index!==index)throw Error('Review the saved result and start a new retry before answering again.');return {...state(ctx,latest.assignment),correct:duplicate.correct};}
+ const attempt={question:publicQuestion(question),questionRevision:token,round:latest.study.round,index,correct:index===question.answerIndex,at:new Date().toISOString()};return {...write(ctx,latest.assignment,{...latest.study,attempts:[...latest.study.attempts,attempt]},expectedRevision),correct:attempt.correct};
+}
+export async function moveClassworkPractice(ctx,{assignmentId,expectedRevision,next}){const view=await checkedPracticeSource(ctx,assignmentId);if(!Number.isInteger(next)||next<0||next>=view.questions.length)throw Error('Choose an available practice question.');return write(ctx,view.assignment,{...view.study,position:next,round:view.study.round+1},expectedRevision);}

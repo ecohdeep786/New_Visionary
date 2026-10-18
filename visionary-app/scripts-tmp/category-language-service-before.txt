@@ -1,0 +1,28 @@
+✖ authored project language survives saving and participates in edit conflicts without a rubric (195.3145ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1270.7262
+
+✖ failing tests:
+
+test at tests\learning-pipeline.test.mjs:39:1
+✖ authored project language survives saving and participates in edit conflicts without a rubric (195.3145ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 'hi'
+  
+      at TestContext.<anonymous> (file:///C:/Users/Administrator/.codex/worktrees/9f8b/New_Visionary/visionary-app/tests/learning-pipeline.test.mjs:50:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'hi',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

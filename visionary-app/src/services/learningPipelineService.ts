@@ -11,6 +11,7 @@ export interface LearningUnit {
  attempts?:{id:string;kind:'check'|'practice';question:ContentQuestion;selectedIndex:number;correct:boolean;at:string;locale?:Locale}[];
  checkPassed:boolean; practicePassed?:boolean; difficulty:number; practiceRound:number; question?:ContentQuestion;
  answer?:{index:number;correct:boolean;id:string}; response?:TeachingResponse; explanation?:string;
+ explanationLocale?:Locale; explanationSource?:'adapter'|'authored'; questionLocale?:Locale;
  answerDraft?:{questionVersion:string;round:number;index:number};
  conversationId?:string; artifactId?:string; updatedAt:string; pending?:LearningOutcome;
 }
@@ -21,7 +22,13 @@ const KEY='visionary_learning_pipeline_v1';
 const now=()=>workspaceNow().toISOString();
 function guard(ctx:RequestContext){const identity=workspaceIdentity(ctx);if(ctx.role==='professional'&&identity.person.ageBand!=='adult')throw Error('Professional journeys are available only to adult profiles. Use a general learning workspace.');if(ctx.signal?.aborted)throw new DOMException('Cancelled','AbortError');}
 function read():Store{const raw=localStorage.getItem(KEY);if(!raw)return{version:1,spaces:{}};try{const value=JSON.parse(raw);if(value.version!==1||!value.spaces||typeof value.spaces!=='object'||Array.isArray(value.spaces))throw Error();return value;}catch{throw Error('Your saved learning could not be read. No records were removed.');}}
-function own(db:Store,ctx:RequestContext){guard(ctx);const existing=db.spaces[ctx.workspaceId];if(existing!==undefined&&(!existing||typeof existing!=='object'||Array.isArray(existing)||!Array.isArray(existing.units)||existing.units.some(unit=>!unit||typeof unit.id!=='string'||!unit.id||typeof unit.conceptId!=='string'||typeof unit.title!=='string')||new Set(existing.units.map(unit=>unit.id)).size!==existing.units.length||(existing.selection!==undefined&&(!existing.selection||['board','classLevel','subject'].some(key=>typeof existing.selection![key as keyof ContentSelection]!=='string')))||(existing.syllabusId!==undefined&&typeof existing.syllabusId!=='string')))throw Error('Saved learning activities are incomplete or ambiguous. Original records were kept; retry after restoring a valid saved copy.');return existing??(db.spaces[ctx.workspaceId]={units:[]});}
+function validSourceContext(value:LearningUnit['sourceContext']){
+ if(value===undefined)return true; // Older activities predate source pinning.
+ if(!value||typeof value!=='object'||Array.isArray(value))return false;
+ const {selection,provenance}=value;
+ return Boolean(selection&&typeof selection==='object'&&!Array.isArray(selection)&&['board','classLevel','subject'].every(key=>typeof selection[key as keyof ContentSelection]==='string'&&selection[key as keyof ContentSelection].trim())&&provenance&&typeof provenance==='object'&&!Array.isArray(provenance)&&['provider','sourceId','version'].every(key=>typeof provenance[key as keyof ContentProvenance]==='string'&&provenance[key as keyof ContentProvenance].trim()));
+}
+function own(db:Store,ctx:RequestContext){guard(ctx);const existing=db.spaces[ctx.workspaceId];if(existing!==undefined&&(!existing||typeof existing!=='object'||Array.isArray(existing)||!Array.isArray(existing.units)||existing.units.some(unit=>!unit||typeof unit.id!=='string'||!unit.id||typeof unit.conceptId!=='string'||typeof unit.title!=='string'||!validSourceContext(unit.sourceContext)||(unit.explanationLocale!==undefined&&!['en','hi','bn'].includes(unit.explanationLocale))||(unit.questionLocale!==undefined&&!['en','hi','bn'].includes(unit.questionLocale))||(unit.explanationSource!==undefined&&!['adapter','authored'].includes(unit.explanationSource)))||new Set(existing.units.map(unit=>unit.id)).size!==existing.units.length||(existing.selection!==undefined&&(!existing.selection||['board','classLevel','subject'].some(key=>typeof existing.selection![key as keyof ContentSelection]!=='string')))||(existing.syllabusId!==undefined&&typeof existing.syllabusId!=='string')))throw Error('Saved learning activities are incomplete or ambiguous. Original records were kept; retry after restoring a valid saved copy.');return existing??(db.spaces[ctx.workspaceId]={units:[]});}
 function write(db:Store,ctx:RequestContext){guard(ctx);try{localStorage.setItem(KEY,JSON.stringify(db));}catch{throw Error('Learning changes could not be saved. Keep this page open and retry.');}if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('visionary:learning-change'));}
 function save(ctx:RequestContext,unit:LearningUnit){const db=read();const data=own(db,ctx);const index=data.units.findIndex(u=>u.id===unit.id);unit.updatedAt=now();if(index<0)data.units.push(unit);else data.units[index]=unit;write(db,ctx);return structuredClone(unit);}
 export function getLearningWorkspace(ctx:RequestContext){return structuredClone(own(read(),ctx));}
@@ -106,8 +113,8 @@ export async function updateLearningLanguage(ctx:RequestContext,id:string,locale
  assertCurrentLearningUnit(ctx,unit);
  unit.locale=locale;
  // A connected response belongs to its original language. Do not relabel it as a translation.
- if(concept.explanation)unit.explanation=concept.explanation;else delete unit.explanation;
- if(unit.question){const translated=[concept.check,...(concept.practice||[])].find(q=>q?.id===unit.question?.id);if(translated)unit.question=translated;else delete unit.question;}
+ if(concept.explanation){unit.explanation=concept.explanation;unit.explanationLocale=concept.locale||locale;unit.explanationSource='authored';}else{delete unit.explanation;delete unit.explanationLocale;delete unit.explanationSource;}
+ if(unit.question){const translated=[concept.check,...(concept.practice||[])].find(q=>q?.id===unit.question?.id);if(translated){unit.question=translated;unit.questionLocale=concept.locale||locale;}else{delete unit.question;delete unit.questionLocale;}}
  delete unit.response;
  return save(ctx,unit);
 }
@@ -120,11 +127,11 @@ export async function requestUnitTeaching(ctx:RequestContext,id:string,mode:Teac
  emitInteractionEvent(ctx,{app,action:'request',sessionId:id,conceptId:unit.conceptId,language:unit.locale,pedagogy,...curriculumFields(ctx,unit)});
  const response=await (mode==='practice'?api.requestPracticeQuestion(packet):mode==='feedback'?api.requestFeedback(packet):mode==='project'?api.requestProjectGuidance(packet):api.requestExplanation(packet));
  guard(ctx);await currentLearningSource(ctx,unit);unit.response=response;
- if(mode==='explanation'&&response.status!=='blocked')unit.explanation=response.status==='ready'?response.text:concept.explanation;
- if(mode==='practice'&&response.status!=='blocked')unit.question=response.question||(unit.stage==='check'?concept.check:concept.practice?.[Math.min(unit.difficulty-1,Math.max(0,(concept.practice?.length||1)-1))]);
+ if(mode==='explanation'&&response.status!=='blocked'){unit.explanation=response.status==='ready'?response.text:concept.explanation;if(unit.explanation){unit.explanationLocale=response.status==='ready'?response.locale:concept.locale||unit.locale;unit.explanationSource=response.status==='ready'?'adapter':'authored';}else{delete unit.explanationLocale;delete unit.explanationSource;}}
+ if(mode==='practice'&&response.status!=='blocked'){unit.question=response.question||(unit.stage==='check'?concept.check:concept.practice?.[Math.min(unit.difficulty-1,Math.max(0,(concept.practice?.length||1)-1))]);if(unit.question)unit.questionLocale=response.question?response.locale||unit.locale:concept.locale||unit.locale;else delete unit.questionLocale;}
  save(ctx,unit);emitInteractionEvent(ctx,{app,action:'response',sessionId:id,conceptId:unit.conceptId,language:unit.locale,latency:Date.now()-started,responseStatus:response.status,promptVersion:response.status==='ready'?response.promptVersion:undefined,pedagogy,...curriculumFields(ctx,unit)});return unit;
 }
-export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');await currentLearningSource(ctx,unit);if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
+export async function beginComprehension(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.response?.status==='blocked')throw Error('Teaching is paused for safety.');if(!unit.explanation)throw Error('An explanation is not available yet. Save a question while the teaching service is disconnected.');await currentLearningSource(ctx,unit);if(unit.answer)unit.practiceRound++;unit.stage='check';delete unit.answer;delete unit.answerDraft;delete unit.question;delete unit.questionLocale;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 /** An outbox retains a scored local answer if the separate cognition adapter cannot write. */
 export function flushLearningOutcome(ctx:RequestContext,id:string){const unit=getLearningUnit(ctx,id);if(unit.pending){recordLearningOutcome(ctx,unit.pending);delete unit.pending;save(ctx,unit);}return unit;}
 export async function answerLearningQuestion(ctx:RequestContext,id:string,index:number,expectedQuestion?:{version:string;round:number}){
@@ -134,13 +141,13 @@ export async function answerLearningQuestion(ctx:RequestContext,id:string,index:
  await currentLearningSource(ctx,unit);
  const correct=index===unit.question.answerIndex;const eventId=`${id}:${unit.stage}:${unit.practiceRound}:${unit.question.id}`;
  delete unit.answerDraft;unit.answer={index,correct,id:eventId};unit.checkPassed=unit.checkPassed||(unit.stage==='check'&&correct);unit.practicePassed=unit.practicePassed||(unit.stage==='practice'&&correct);unit.difficulty=Math.max(1,Math.min(5,unit.difficulty+(correct?1:-1)));
- if(!unit.attempts?.some(item=>item.id===eventId))unit.attempts=[...(unit.attempts||[]),{id:eventId,kind:unit.stage==='check'?'check':'practice',question:unit.question,selectedIndex:index,correct,at:now(),locale:unit.locale}];
- unit.pending={id:eventId,conceptId:unit.conceptId,kind:unit.stage==='check'?'check':'practice',correct:correct?1:0,total:1,verified:true,sessionId:id,language:unit.locale,classId:unit.classId,...curriculumFields(ctx,unit)};
+ if(!unit.attempts?.some(item=>item.id===eventId))unit.attempts=[...(unit.attempts||[]),{id:eventId,kind:unit.stage==='check'?'check':'practice',question:unit.question,selectedIndex:index,correct,at:now(),locale:unit.questionLocale||unit.locale}];
+ unit.pending={id:eventId,conceptId:unit.conceptId,kind:unit.stage==='check'?'check':'practice',correct:correct?1:0,total:1,verified:true,sessionId:id,language:unit.questionLocale||unit.locale,classId:unit.classId,...curriculumFields(ctx,unit)};
  save(ctx,unit);unit=flushLearningOutcome(ctx,id);
  if(!correct){const response=await getTeachingInterface(ctx).requestExplanation({input:'Re-explain this concept after an incorrect check.',conceptId:unit.conceptId,sessionId:id,language:unit.locale,difficulty:unit.difficulty});await currentLearningSource(ctx,unit);unit.response=response;save(ctx,unit);}
  return unit;
 }
-export async function nextLearningQuestion(ctx:RequestContext,id:string,practice=true){const unit=flushLearningOutcome(ctx,id);if(practice&&!unit.checkPassed)throw Error('Complete the comprehension check before practice. You can revisit the explanation at any time.');await currentLearningSource(ctx,unit);unit.stage=practice?'practice':'check';unit.practiceRound++;delete unit.answer;delete unit.answerDraft;delete unit.question;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
+export async function nextLearningQuestion(ctx:RequestContext,id:string,practice=true){const unit=flushLearningOutcome(ctx,id);if(practice&&!unit.checkPassed)throw Error('Complete the comprehension check before practice. You can revisit the explanation at any time.');await currentLearningSource(ctx,unit);unit.stage=practice?'practice':'check';unit.practiceRound++;delete unit.answer;delete unit.answerDraft;delete unit.question;delete unit.questionLocale;save(ctx,unit);return requestUnitTeaching(ctx,id,'practice');}
 export async function createLearningProject(ctx:RequestContext,id:string){
  const unit=flushLearningOutcome(ctx,id);if(!unit.checkPassed||!unit.practicePassed)throw Error('Complete a comprehension check and practice step before starting the guided project. Blank projects remain available in Build.');
  const artifacts=snapshot(ctx).artifacts;const existing=artifacts.find(a=>a.id===unit.artifactId)||artifacts.find(a=>a.learningSessionId===id&&a.conceptId===unit.conceptId);
@@ -148,8 +155,8 @@ export async function createLearningProject(ctx:RequestContext,id:string){
  const concept=await getContentRepository({...ctx,locale:unit.locale}).getConcept(unit.conceptId);if(!concept)throw Error('Project context unavailable.');
  assertLearningSource(unit,concept);
  assertCurrentLearningUnit(ctx,unit);
- const rubric=concept.project?.criteria?.length?{criteria:concept.project.criteria,responses:{},locale:unit.locale,sourceProvider:concept.provenance?.provider,sourceVersion:concept.provenance?.version}:undefined;
- const artifact=saveArtifact(ctx,{title:concept.project?.title||`Apply: ${concept.title}`,body:'',projectBrief:concept.project?.brief||'Define an outcome, create an artifact, and describe the evidence. Guidance is not connected yet.',conceptId:unit.conceptId,learningSessionId:id,rubric});
+ const rubric=concept.project?.criteria?.length?{criteria:concept.project.criteria,responses:{},locale:concept.locale||unit.locale,sourceProvider:concept.provenance?.provider,sourceVersion:concept.provenance?.version}:undefined;
+ const artifact=saveArtifact(ctx,{title:concept.project?.title||`Apply: ${concept.title}`,body:'',projectBrief:concept.project?.brief||'Define an outcome, create an artifact, and describe the evidence. Guidance is not connected yet.',projectLocale:concept.project?.brief ? concept.locale || unit.locale : 'en',conceptId:unit.conceptId,learningSessionId:id,rubric});
  unit.artifactId=artifact.id;unit.stage='build';save(ctx,unit);emitInteractionEvent(ctx,{id:`build-start:${id}`,app:'BUILD',action:'start',sessionId:id,conceptId:unit.conceptId,language:unit.locale});return artifact;
 }
 export function validateProjectCompletion(artifact:Artifact){

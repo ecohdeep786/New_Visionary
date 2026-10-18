@@ -1,0 +1,1 @@
+PASS production Permissions-Policy header and actual browser feature policy: same-origin microphone allowed; camera/geolocation denied. No hardware permission or capture requested.

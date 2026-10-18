@@ -1,0 +1,4 @@
+START category-authored-languages-verify
+PASS category-authored-languages-verify
+START acceptance-source-integrity-verify
+FAIL acceptance-source-integrity-verify

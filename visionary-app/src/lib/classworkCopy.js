@@ -1,6 +1,12 @@
 // Interface copy only. Authored prompts, responses and teacher feedback retain
 // their own source language and are never translated by this lookup.
 const copy={
+ 'This rehearsal round changed. Reload your saved study.':['यह अभ्यास चक्र बदल गया है। सहेजा अध्ययन फिर खोलें।','এই অনুশীলনের পর্ব বদলে গেছে। সংরক্ষিত পড়াশোনা আবার খুলুন।'],
+ 'This practice question changed. Your earlier attempts remain saved. Reload the current question.':['यह अभ्यास प्रश्न बदल गया है। आपके पिछले प्रयास सहेजे हैं। वर्तमान प्रश्न फिर खोलें।','এই অনুশীলনের প্রশ্ন বদলে গেছে। আপনার আগের প্রচেষ্টাগুলো সংরক্ষিত আছে। বর্তমান প্রশ্ন আবার খুলুন।'],
+ 'The assigned practice source changed. Reopen the latest activity; your saved study is retained.':['सौंपे गए अभ्यास का स्रोत बदल गया है। नया काम फिर खोलें; आपका सहेजा अध्ययन सुरक्षित है।','নির্ধারিত অনুশীলনের উৎস বদলে গেছে। সর্বশেষ কাজটি আবার খুলুন; আপনার সংরক্ষিত পড়াশোনা রাখা হয়েছে।'],
+ 'Private practice changed in another screen. Reload your saved study before continuing.':['निजी अभ्यास दूसरी स्क्रीन पर बदल गया है। आगे बढ़ने से पहले सहेजा अध्ययन फिर खोलें।','ব্যক্তিগত অনুশীলন অন্য একটি পর্দায় বদলে গেছে। এগোনোর আগে সংরক্ষিত পড়াশোনা আবার খুলুন।'],
+ 'Practice for the exact assigned reviewed curriculum is unavailable. The assigned copy and private study are retained.':['सौंपे गए समीक्षित पाठ्यक्रम का सटीक अभ्यास उपलब्ध नहीं है। निर्धारित प्रति और निजी अध्ययन सुरक्षित हैं।','নির্ধারিত পর্যালোচিত পাঠ্যক্রমের সঠিক অনুশীলন পাওয়া যাচ্ছে না। নির্ধারিত কপি এবং ব্যক্তিগত পড়াশোনা রাখা হয়েছে।'],
+ 'The assigned source changed. Your private study is retained. Reopen the current source before continuing.':['सौंपा गया स्रोत बदल गया है। आपका निजी अध्ययन सुरक्षित है। आगे बढ़ने से पहले वर्तमान स्रोत फिर खोलें।','নির্ধারিত উৎস বদলে গেছে। আপনার ব্যক্তিগত পড়াশোনা রাখা হয়েছে। এগোনোর আগে বর্তমান উৎস আবার খুলুন।'],
  'Opening your workspace…':['आपका कार्यक्षेत्र खुल रहा है…','আপনার কাজের স্থান খোলা হচ্ছে…'],
  'Class activity':['कक्षा की गतिविधि','শ্রেণির কাজ'],
  'Opening the saved assignment…':['सहेजा गया काम खुल रहा है…','সংরক্ষিত কাজ খোলা হচ্ছে…'],

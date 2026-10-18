@@ -1,0 +1,23 @@
+{
+  interfaceLanguage: null,
+  transcriptLanguage: null,
+  heading: 'Your voice presence'
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+null !== 'hi'
+
+    at file:///C:/Users/Administrator/.codex/worktrees/9f8b/New_Visionary/visionary-app/scripts-tmp/voice-language-before.mjs:3:1295 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: null,
+  expected: 'hi',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

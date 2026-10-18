@@ -1,0 +1,35 @@
+✔ period history excludes drafts and unverified application from accuracy and keeps exact original activity (33.906ms)
+✔ multiple earlier sessions group a stable objective once but each timeline link resumes its own session (25.041ms)
+✔ a period with no evidence distinguishes retained history from an entirely new workspace (4.6489ms)
+✔ incomplete activity source retains measured history but exposes no misleading resume link (2.6837ms)
+✔ unreadable source is partial, available earlier evidence remains visible and originals are preserved (5.6885ms)
+✔ duplicate or malformed evidence never becomes inflated or partially counted results (2.874ms)
+✔ owner/workspace authorization and cancellation apply before exposing any timeline (10.9704ms)
+✔ same objective across source versions groups counts but preserves both original activity links and versions (7.2599ms)
+✔ malformed earlier sessions cannot leave partial counts, and missing units do not remove readable evidence (2.5851ms)
+✔ incomplete retained source context blocks learning without replacing original records (56.8172ms)
+✔ legacy activities without source context remain readable (11.0183ms)
+✔ conflicting cached concept selection cannot start an unpinned activity (51.2569ms)
+✔ conflicting cached concept provenance cannot start an unpinned activity (4.7633ms)
+✔ same-source language variants keep their authored language and source pin (21.3954ms)
+✔ a changed source cannot create a project under an older learning unit (48.0269ms)
+✔ a changed source cannot erase the saved check or selection before retry fails (18.28ms)
+✔ source replacement during teaching cannot attach old teaching to an obsolete activity (11.3731ms)
+✔ a changed source cannot grade a previously displayed unanswered question (11.3378ms)
+✔ primary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (97.5136ms)
+✔ secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (102.5774ms)
+✔ higher-secondary: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (135.5724ms)
+✔ competitive: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (104.616ms)
+✔ vocational: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (101.2036ms)
+✔ higher-education: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (107.2791ms)
+✔ independent-adult: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (104.3071ms)
+✔ professional: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (124.8139ms)
+✔ employer-sponsored: sourced explanation, remediation, practice, criterion build and source replacement across en/hi/bn (169.0997ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2409.1858

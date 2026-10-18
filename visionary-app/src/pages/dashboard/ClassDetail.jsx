@@ -70,8 +70,13 @@ function ClassDetailContent({
   } = useAuth();
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [copying, setCopying] = useState(false);
+  const copyRevision = useRef(0);
   useEffect(() => {
     let current = true;
+    copyRevision.current++;
+    setCopied(false);
+    setCopying(false);
     if (firstRead.current) {
       setLoading(true);
       firstRead.current = false;
@@ -83,7 +88,6 @@ function ClassDetailContent({
         if (!current) return;
         const ownsClass = c && (c.teacher_email === user?.email || c.teacher_id === user?.id || c.created_by_id === user?.id || c.created_by === user?.email);
         setClassroom(ownsClass ? c : null);
-        setCopied(false);
       } catch {
         if (current) {
           setClassroom(null);
@@ -98,18 +102,27 @@ function ClassDetailContent({
     };
   }, [classId, user?.email, user?.id, ctx?.workspaceId, revision, retry]);
   const copyCode = async () => {
+    if (copying) return;
+    const request = ++copyRevision.current;
+    const current = () => mounted.current && request === copyRevision.current;
+    setCopied(false);
+    setError('');
+    setCopying(true);
     try {
       const latest = await base44.entities.Classroom.get(classId);
-      if (!mounted.current) return;
+      if (!current()) return;
       if (!latest || !(latest.teacher_email === user?.email || latest.teacher_id === user?.id || latest.created_by_id === user?.id || latest.created_by === user?.email)) {
         setClassroom(null);
         throw Error('Class unavailable');
       }
       if (typeof latest.join_code !== 'string' || !latest.join_code.trim()) throw Error('Class code unavailable');
+      setClassroom(latest);
       await navigator.clipboard.writeText(latest.join_code);
-      if (mounted.current) setCopied(true);
+      if (current()) setCopied(true);
     } catch {
-      if (mounted.current) setError("Copy is unavailable. Select the class code and copy it manually.");
+      if (current()) setError("Copy is unavailable. Select the class code and copy it manually.");
+    } finally {
+      if (current()) setCopying(false);
     }
   };
   if (ctx?.role === 'student' || ctx?.role === 'professional') return <Navigate to={"/dashboard/classes?class=" + classId} replace />;
@@ -151,7 +164,7 @@ function ClassDetailContent({
               room: classroom.room
             })}</p>}
           </div>
-          {classroom.join_code && <div className="rounded-xl border border-white/30 bg-white/10 px-4 py-3"><p className="text-[11px] font-medium uppercase tracking-wide text-white/90">{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide text-white">{classroom.join_code}</p><button onClick={copyCode} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-white hover:bg-white/20">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs text-white">{copy("Copied")}</p>}</div>}
+          {classroom.join_code && <div className="rounded-xl border border-white/30 bg-white/10 px-4 py-3"><p className="text-[11px] font-medium uppercase tracking-wide text-white/90">{copy("Share this class code")}</p><div className="mt-1 flex items-center gap-3"><p className="select-all font-mono text-sm font-medium tracking-wide text-white">{classroom.join_code}</p><button onClick={copyCode} disabled={copying} aria-busy={copying} aria-label={copy(copied ? "Class code copied" : "Copy class code")} className="min-h-11 min-w-11 rounded-full p-2 text-white hover:bg-white/20">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button></div>{copied && <p role="status" className="text-xs text-white">{copy("Copied")}</p>}</div>}
         </div>
       </div>
       {error && <p role="alert" className="text-sm text-[#b3261e]">{copy(error)}</p>}

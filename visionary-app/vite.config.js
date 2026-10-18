@@ -6,7 +6,8 @@ const securityHeaders = {
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
+  // Voice starts only from an explicit user action; browser permission still applies.
+  'Permissions-Policy': 'camera=(), geolocation=(), microphone=(self)',
   'Cross-Origin-Opener-Policy': 'same-origin',
   'Cross-Origin-Resource-Policy': 'same-origin',
 }

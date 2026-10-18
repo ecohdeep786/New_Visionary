@@ -1,0 +1,3 @@
+{"route":"/","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/student","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/teacher","width":390,"changedPixels":4300,"totalPixels":351000}

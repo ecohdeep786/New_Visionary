@@ -1,0 +1,36 @@
+{"route":"/","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/student","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/teacher","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/parent","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/professional","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/organization","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/pricing","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/privacy","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/login","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/student","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/teacher","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/parent","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/professional","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/organization","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/pricing","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/privacy","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/login","width":1440,"changedPixels":9480,"totalPixels":1296000}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: /login 1440 public output changed
+
+9480 !== 0
+
+    at file:///C:/Users/Administrator/.codex/worktrees/9f8b/New_Visionary/visionary-app/scripts-tmp/acceptance-public-clock-verify.mjs:30:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 9480,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

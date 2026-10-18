@@ -1,0 +1,13 @@
+Observed transcript: Give an example.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 5000ms exceeded.
+    at value (C:\Users\Administrator\.codex\worktrees\9f8b\New_Visionary\visionary-app\scripts-tmp\voice-review-verify.mjs:10:42)
+    at C:\Users\Administrator\.codex\worktrees\9f8b\New_Visionary\visionary-app\scripts-tmp\voice-review-verify.mjs:16:52 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

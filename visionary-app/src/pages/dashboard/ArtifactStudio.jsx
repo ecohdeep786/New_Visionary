@@ -155,6 +155,7 @@ const [params] = useSearchParams();
               milestones: [false, false, false],
               status: 'in-progress',
               projectBrief: draft.projectBrief,
+              projectLocale: draft.projectLocale,
               rubric: draft.rubric
             });
             setDraft(copy);
@@ -190,7 +191,7 @@ const [params] = useSearchParams();
             message: cause.message
           });
         }
-      }}>{t("Discard recovered edits")}</button></div>}<p className="v-notice">{ctx.role === 'professional' ? workspace?.organizationId ? t("This company workspace is separate from your personal projects. Share only reviewed work with an accepted connection.") : t("Keep workplace-sensitive information out of this local preview. Personal work is not shared with an employer automatically.") : t("Your project is private until you choose an accepted connection and confirm sharing.")}</p>{draft.projectBrief && <section className="v-card"><h2 className="text-lg font-medium">{t("Project brief")}</h2><p className="v-muted mt-2">{draft.projectBrief}</p></section>}<label className="text-sm">{t("Project title")}<input aria-label={t("Project title")} className="v-field mt-2" value={draft.title} onChange={e => setDraft({
+      }}>{t("Discard recovered edits")}</button></div>}<p className="v-notice">{ctx.role === 'professional' ? workspace?.organizationId ? t("This company workspace is separate from your personal projects. Share only reviewed work with an accepted connection.") : t("Keep workplace-sensitive information out of this local preview. Personal work is not shared with an employer automatically.") : t("Your project is private until you choose an accepted connection and confirm sharing.")}</p>{draft.projectBrief && <section className="v-card"><h2 className="text-lg font-medium">{t("Project brief")}</h2><p className="v-muted mt-2" lang={draft.projectLocale || draft.rubric?.locale || undefined}>{draft.projectBrief}</p></section>}<label className="text-sm">{t("Project title")}<input aria-label={t("Project title")} className="v-field mt-2" value={draft.title} onChange={e => setDraft({
         ...draft,
         title: e.target.value
       })} /></label><div className="grid gap-6 xl:grid-cols-[1.2fr_1fr]"><section><label className="text-sm">{t("Your working document")}<textarea aria-label={t("Your working document")} className="v-field mt-2 min-h-[360px] leading-7" value={draft.body} onChange={e => setDraft({

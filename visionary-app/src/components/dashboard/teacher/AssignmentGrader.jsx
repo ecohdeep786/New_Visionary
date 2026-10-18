@@ -8,6 +8,7 @@ import { base44 } from "@/api/base44Client";
 import { useWorkspace } from "@/hooks/useWorkspace";
 import { reviewClasswork } from "@/services/classroomService";
 import { getReviewDraft, saveReviewDraft, clearReviewDraft } from "@/services/reviewDraftService";
+import { workspaceIdentity } from "@/services/workspaceService";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 /**
@@ -32,11 +33,13 @@ export default function AssignmentGrader({
   const [busyId, setBusyId] = useState(null);
   const [reload, setReload] = useState(0);
   const [error, setError] = useState("");
+  const [exportError, setExportError] = useState('');
   useEffect(() => {
     let active = true;
     setLoading(true);
     setSubmissions([]);
     setError('');
+    setExportError('');
     setLoadFailed(false);
     (async () => {
       try {
@@ -122,6 +125,21 @@ export default function AssignmentGrader({
     }
     setBusyId(null);
   };
+  const exportCurrentReview = () => {
+    try {
+      workspaceIdentity(ctx);
+      downloadText('visionary-current-review-edits.json', JSON.stringify(submissions.map(s => ({
+        id: s.id,
+        attempt: s.attempt,
+        grade: s.grade,
+        feedback: s.feedback,
+        criterionFeedback: s.criterion_feedback
+      })), null, 2));
+      setExportError('');
+    } catch (failure) {
+      setExportError(failure.message);
+    }
+  };
   return <Dialog open onOpenChange={open => {
     if (!open && !busyId) onClose();
   }}>
@@ -135,13 +153,7 @@ export default function AssignmentGrader({
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
-          {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"><p lang="en">{error}</p><button disabled={!!busyId} className="v-button mt-3" onClick={() => downloadText('visionary-current-review-edits.json', JSON.stringify(submissions.map(s => ({
-            id: s.id,
-            attempt: s.attempt,
-            grade: s.grade,
-            feedback: s.feedback,
-            criterionFeedback: s.criterion_feedback
-          })), null, 2))}>{copy("Export current review edits")}</button><button disabled={!!busyId} className="v-button mt-3" onClick={async () => {
+          {error && <div role="alert" className="rounded-xl bg-[#fce8e6] p-4 text-sm text-[#b3261e]"><p lang="en">{error}</p>{exportError && <p lang="en" className="mt-2">{exportError}</p>}<button disabled={!!busyId} className="v-button mt-3" onClick={exportCurrentReview}>{copy("Export current review edits")}</button><button disabled={!!busyId} className="v-button mt-3" onClick={async () => {
             try {
               for (const s of submissions) clearReviewDraft(ctx, assignment.id, s.id);
               setReload(value => value + 1);
@@ -203,9 +215,9 @@ export default function AssignmentGrader({
               })} min="0" max={assignment.points || 100} value={s.grade ?? ""} onChange={e => updateField(s, "grade", e.target.value)} placeholder={copy("Grade")} className="w-20 h-11 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]" />
                     <span className="text-xs text-[#5f6368]">/ {assignment.points || 100}</span>
                   </div>
-                  <input aria-label={copy("Feedback for {name}", {
+                  <textarea rows={3} aria-label={copy("Feedback for {name}", {
               name: s.student_name || s.student_email
-            })} maxLength={5000} disabled={!!busyId} value={s.feedback || ""} onChange={e => updateField(s, "feedback", e.target.value)} placeholder={copy("Feedback (required for revision)")} className="min-w-0 flex-1 h-11 px-3 rounded-xl border border-[#dadce0] text-sm outline-none focus:border-[#4285F4]" />
+            })} maxLength={5000} disabled={!!busyId} value={s.feedback || ""} onChange={e => updateField(s, "feedback", e.target.value)} placeholder={copy("Feedback (required for revision)")} className="min-w-0 w-full resize-y px-3 py-2 rounded-xl border border-[#dadce0] text-sm leading-6 outline-none focus:border-[#4285F4]" />
                   <button onClick={() => returnSub(s)} disabled={!!busyId} className="inline-flex items-center justify-center gap-1.5 h-11 px-4 rounded-full text-sm font-medium text-white disabled:opacity-50 shrink-0" style={{
               backgroundColor: accent
             }}>

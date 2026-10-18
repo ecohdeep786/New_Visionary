@@ -1,0 +1,13 @@
+✔ practice preparation rejects withdrawn enrollment during question hashing (208.2431ms)
+✔ practice preparation rejects changed source during question hashing (251.9386ms)
+✔ practice preparation rejects cancelled navigation during question hashing (412.1389ms)
+✔ a question prepared during a newer private-question save returns the latest study revision (466.8102ms)
+✔ a question prepared for an older rehearsal round cannot return after a competing retry (230.201ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4065.6976

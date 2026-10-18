@@ -25,12 +25,14 @@ Use fictional data only. AI, payment processing, usage metering, and ad delivery
 
 See [the internal product handoff](docs/visionary/README.md) and [the current product status](docs/visionary/CURRENT_PRODUCT_STATUS.md) for architecture, QA evidence, open work, and launch requirements.
 
+The fixed frontend candidate and remaining team reviews are recorded in [the frontend final review packet](docs/visionary/FRONTEND_FINAL_REVIEW.md).
+
 ## Checks
 
 ```bash
 npm run lint
 npm run typecheck
-node --test tests/workspace.test.mjs
+node --test tests/*.test.mjs
 ```
 
 ## Build And Preview

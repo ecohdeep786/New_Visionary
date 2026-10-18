@@ -1,0 +1,19 @@
+{"route":"/","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/student","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/teacher","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/parent","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/professional","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/organization","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/pricing","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/privacy","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/login","width":390,"changedPixels":0,"totalPixels":351000}
+{"route":"/","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/student","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/teacher","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/parent","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/professional","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/organization","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/pricing","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/privacy","width":1440,"changedPixels":0,"totalPixels":1296000}
+{"route":"/login","width":1440,"changedPixels":0,"totalPixels":1296000}
+PASS 18 same-data public/auth viewport comparisons; unchanged pixels; no page errors. Scope: this internal patch against the pre-patch production dist, not historical public-team approval.

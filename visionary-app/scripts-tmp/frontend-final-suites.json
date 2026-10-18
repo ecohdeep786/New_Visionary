@@ -1,0 +1,18 @@
+[
+  "category-authored-languages-verify.mjs",
+  "acceptance-source-integrity-verify.mjs",
+  "acceptance-publication-boundary-verify.mjs",
+  "acceptance-linked-role-languages-verify.mjs",
+  "acceptance-review-draft-work-verify.mjs",
+  "acceptance-governance-continuation-verify.mjs",
+  "acceptance-parent-classwork-boundary-verify.mjs",
+  "acceptance-navigation-focus-verify.mjs",
+  "voice-language-verify.mjs",
+  "voice-language-review-regression.mjs",
+  "voice-review-lifecycle-verify.mjs",
+  "class-copy-verify.mjs",
+  "content-language-verify.mjs",
+  "frontend-learning-regression-verify.mjs",
+  "acceptance-public-font-clock-verify.mjs",
+  "frontend-route-regression-verify.mjs"
+]

@@ -12,7 +12,7 @@ export function organizationPolicy(user, invitations, now=Date.now()) {
  if(!user.organization_id)return {profile:'owner',...organizationProfiles.owner,organizationEmail:user.email};
  const membership=invitations.find(row=>row.organization_email===user.organization_id&&row.email===user.email&&row.role==='organization'&&connectionStatus(row,now)==='active');
  const profile=membership?.capability;
- if(!profile||profile==='owner'||!organizationProfiles[profile])return {profile:null,label:'No administrative permission assigned',organizationEmail:user.organization_id,permissions:[]};
+ if(typeof profile!=='string'||profile==='owner'||!Object.hasOwn(organizationProfiles,profile))return {profile:null,label:'No administrative permission assigned',organizationEmail:user.organization_id,permissions:[]};
  return {profile,...organizationProfiles[profile],organizationEmail:user.organization_id};
 }
 export function organizationPathAllowed(policy,path){

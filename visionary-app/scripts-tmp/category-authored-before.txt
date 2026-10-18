@@ -1,0 +1,18 @@
+FAIL primary en
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:4260/dashboard/learn", waiting until "domcontentloaded"
+
+    at C:\Users\Administrator\.codex\worktrees\9f8b\New_Visionary\visionary-app\scripts-tmp\category-authored-languages-verify.mjs:12:14 {
+  log: [
+    '  - navigating to "http://127.0.0.1:4260/dashboard/learn", waiting until "domcontentloaded"'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

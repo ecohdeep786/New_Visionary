@@ -1,0 +1,2 @@
+{"route":"/login","width":1440,"changedPixels":0,"totalPixels":1296000}
+PASS 18 same-data public/auth viewport comparisons; unchanged pixels; no page errors. Scope: fixed browser-clock 3000ms animation snapshot of this internal patch against the pre-patch production dist, not historical public-team approval.

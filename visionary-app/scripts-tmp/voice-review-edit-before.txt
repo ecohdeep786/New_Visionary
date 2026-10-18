@@ -1,0 +1,19 @@
+Observed transcript: Explain fractions. Give an example. Edited review.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: manual edit must stop recognition
+
+true !== false
+
+    at file:///C:/Users/Administrator/.codex/worktrees/9f8b/New_Visionary/visionary-app/scripts-tmp/voice-review-verify.mjs:18:82 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

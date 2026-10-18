@@ -1,0 +1,38 @@
+✔ practice preparation rejects withdrawn enrollment during question hashing (314.1127ms)
+✔ practice preparation rejects changed source during question hashing (745.9255ms)
+✔ practice preparation rejects cancelled navigation during question hashing (495.6844ms)
+✔ a question prepared during a newer private-question save returns the latest study revision (374.2857ms)
+✔ a question prepared for an older rehearsal round cannot return after a competing retry (370.1395ms)
+✔ practice answer rejects answer key changed during grading hash (288.1465ms)
+✔ practice answer rejects question options changed during grading hash (223.4776ms)
+✔ practice answer rejects removed delivery changed during grading hash (219.887ms)
+✔ practice answer rejects withdrawn enrollment during grading hash (222.7245ms)
+✔ practice answer rejects cancelled navigation during grading hash (235.5845ms)
+✔ practice answer rejects competing round during grading hash (133.6851ms)
+✔ a bank changed before grading removes the obsolete view through a source conflict (273.4302ms)
+✔ same-answer replay after a competing grading hash returns the retained attempt exactly once (158.5258ms)
+✖ bank removal during the final asynchronous source authorization cannot grade an earlier bank snapshot (96.9747ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5501.883
+
+✖ failing tests:
+
+test at tests\classwork-practice-boundary.test.mjs:100:1
+✖ bank removal during the final asynchronous source authorization cannot grade an earlier bank snapshot (96.9747ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/Administrator/New_Visionary/visionary-app/tests/classwork-practice-boundary.test.mjs:104:3)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unavailable|source changed/i,
+    operator: 'rejects',
+    diff: 'simple'
+  }

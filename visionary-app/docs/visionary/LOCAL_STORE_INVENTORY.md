@@ -2,6 +2,8 @@
 
 Updated 2026-09-30. This inventory describes browser records; it does not authorize deletion or implement server transfer. A namespace or sample-looking ID does not prove a record is disposable. Preserve authored work and consent history.
 
+2026-10-05 project-language addition: artifacts in `visionary_workspace_v2` may carry optional `projectLocale` for the fixed authored project brief. It survives save and explicit separate-copy recovery, and participates in the optimistic content revision. Older artifacts without it retain their original revision encoding; a known rubric locale remains a display fallback. The field does not describe or translate the learner's working document. No namespace, migration, deletion or server transfer is added.
+
 | Namespace | Shape / owner | Current service | Future replacement / review |
 | --- | --- | --- | --- |
 | `visionary_workspace_v2` | Version 2; people, active workspaces, per-workspace records, relationships. Organization resources live in the owner organization workspace; connected academic administrators share that scope. | workspaceService | Authenticated owners, workspace records, scoped resources and consent; server mapping required. Content review stores revision, source, language, author, history, approval checklist and earlier versions on the resource. |
@@ -108,3 +110,5 @@ Auxiliary classification correction: legacy response draft keys identify a perso
 
 
 2026-10-04 learner goal recovery: visionary_resource_editor_v1 retains new:learner-goal, existing goal-resource IDs, and new:learner-goal-share:<goalId> under the existing authenticated workspace/tab key. Private goal drafts contain authored title/body/id and base resource revision; pending summary drafts contain authored title/body/recipient and the source goal version. Recovery validates shape/length/revision metadata, preserves unreadable originals and permits explicit export/discard. Only separately confirmed consent-bound fixed copies enter resource/artifact parentSummaries. No new namespace, automatic migration or import is introduced.
+
+2026-10-05 — D-046: Existing visionary_learning_pipeline_v1 units add optional explanationLocale, explanationSource and questionLocale. These describe the saved payload, not the latest service status or interface preference. Attempts and pending scored outcomes use the actual question locale; export carries available language/origin metadata without keys. Missing fields remain compatible; invalid defined values fail closed and retain bytes. No namespace change, automatic migration or reconstruction of unknowable historical language.

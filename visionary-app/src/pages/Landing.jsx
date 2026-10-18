@@ -11,7 +11,9 @@ import orgmeet from "@/assets/org-face-main-1600w.webp";
 import problemunderstanding from "@/assets/problem-understanding.webp";
 import teacherSlide from "@/assets/teacher-hero-main-1600w.webp";
 import parentSlide from "@/assets/parent-hero-main-1600w.webp";
-import proSlide from "@/assets/pro-face-main-1600w.webp";
+import teacherProblem from "@/assets/teacher-problem-1.webp";
+import problemrevision from "@/assets/problem-revision.webp";
+import proProblem from "@/assets/professional-problem-2.webp";
 import cmAdapt from "@/assets/student-primary.webp";
 import cmGrow from "@/assets/student-secondary.webp";
 import cmCreate from "@/assets/student-vocational.webp";
@@ -161,10 +163,10 @@ function VoiceIcon({ className = "h-9 w-9", style }) {
 
 /* ═══════════════════════ MODELS ═══════════════════════ */
 const PROBLEM_SLIDES = [
-  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherSlide, alt: "Teacher addressing a full classroom" },
-  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: parentSlide, alt: "Parent reviewing a child's progress" },
+  { black: "Teaching everyone is possible.", blue: "Reaching everyone isn't", persona: "A teacher", quote: "I taught the whole class. Half of them still left lost.", image: teacherProblem, alt: "Teacher looking overwhelmed after class" },
+  { black: "Seeing progress is easy.", blue: "Knowing how to help isn't", persona: "A parent", quote: "The report card says fine. I still don't know how to help at home.", image: problemrevision, alt: "Parent reviewing a child's progress" },
   { black: "Accessing knowledge is easy.", blue: "Applying it isn't", persona: "A student", quote: "I watched eight hours of videos and still couldn't solve a single problem on my own.", image: problemunderstanding, alt: "Student studying alone with a tablet" },
-  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I have all the articles. I still can't turn them into the work.", image: proSlide, alt: "Professional applying knowledge at work" },
+  { black: "Knowledge is everywhere.", blue: "Turning it into capability isn't", persona: "A professional", quote: "I read every article. I still can't turn them into the work.", image: proProblem, alt: "Professional overwhelmed by learning resources" },
 ];
 const PROBLEM_MS = 4200;
 
@@ -273,7 +275,12 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
 
 /* 02 · PROBLEM — the first chapter slides over the pinned hero on the
    house frosted glass. The Apple chapter anatomy: one centered statement,
-   one cinematic image, one voice — nothing else on the stage. */
+   one cinematic subject, one voice — nothing else on the stage. The
+   photography is studio-white, so it renders unframed on the page's own
+   white (the hero's language): the subject stands on the section floor,
+   edge-to-edge breathing, no card, no crop. All four subjects stay mounted
+   and crossfade — a keyed <img> remount refetched and flashed an empty
+   frame on every slide advance, worst on slow phones. */
 function LandingProblemSection() {
   const { index, goTo } = useCycleIndex(PROBLEM_SLIDES.length, PROBLEM_MS);
   const { ref, visible } = useRevealContinuous();
@@ -282,27 +289,50 @@ function LandingProblemSection() {
     <section ref={ref} data-section="02-problem" className="relative z-10 overflow-hidden bg-white" style={{ fontFamily: FONT_FAMILY }}>
       <FadeReveal visible={visible}>
         <p className="sr-only">Stories from a teacher, a parent, a student, and a professional about the moment understanding breaks down.</p>
+        {/* the section's own --public-section-py (bridge contract) provides the
+            chapter's opening/closing breath — no inner padding here */}
         <div className="px-6">
           <p className="text-center uppercase" style={{ color: COLORS.slate }}>Why Visionary exists</p>
-          <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[calc(clamp(30px,3.8vw,56px)*0.6)] max-w-[900px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(30px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
+          <h2 key={`h-${index}`} className="hero-fade-up mx-auto mt-[clamp(14px,1.8vw,24px)] max-w-[980px] text-balance text-center font-medium tracking-[-0.009em] leading-[1.06] text-[clamp(28px,3.8vw,56px)]" style={{ color: COLORS.ink }}>
             {slide.black} <span style={{ color: COLORS.blue }}>{slide.blue}</span>.
           </h2>
         </div>
         <figure className="m-0">
-          <div key={`m-${index}`} className="hero-fade-up mx-auto mt-[clamp(32px,4vw,56px)] w-full max-w-[880px] px-6 [animation-delay:120ms] [animation-fill-mode:both]">
-            {/* Apple chapter-media sizing: a height-capped framed rectangle —
-                the whole chapter reads within one viewport. The hairline is
-                Apple's own #d2d2d7 token (measured live on apple.com). The
-                portrait-first photography needs the upper-third bias to keep
-                every face whole in the tighter crop. */}
-            <img src={slide.image} alt={slide.alt} loading="lazy" decoding="async" className="h-[clamp(260px,40svh,420px)] w-full rounded-[var(--radius-media)] border border-[#d2d2d7] object-cover object-[50%_28%]" />
+          {/* the chapter stage — one-viewport comprehension: statement, subject,
+              persona, quote all land inside the first screen, the way Apple's
+              compact chapters read in a single glance */}
+          <div className="relative mt-[clamp(24px,2.2vw,32px)] h-[clamp(280px,40svh,340px)] sm:h-[clamp(300px,36svh,340px)]">
+            {PROBLEM_SLIDES.map((s, i) => (
+              <img
+                key={s.alt}
+                src={s.image}
+                alt={i === index ? s.alt : ""}
+                aria-hidden={i !== index}
+                loading="eager"
+                decoding="async"
+                draggable="false"
+                style={{
+                  /* the studio photos' subjects touch their canvas edges;
+                     unframed, those cuts would read as hard lines — dissolve
+                     them into the page's own white (the hero's floor recipe).
+                     The img element is sized to the painted square (h-full
+                     w-auto, centered) so the mask tracks the photo, not the
+                     full-bleed band. */
+                  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+                  WebkitMaskComposite: "source-in",
+                  maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 78%, transparent 97%)",
+                  maskComposite: "intersect",
+                }}
+                className={`absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 select-none transition-opacity duration-700 ease-google motion-reduce:transition-none ${i === index ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
           </div>
-          <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-8 w-full max-w-[640px] px-6 text-center [animation-delay:200ms] [animation-fill-mode:both]">
-            <p className="font-medium tracking-[0] leading-[20px] text-[16px]" style={{ color: COLORS.ink }}>{slide.persona}</p>
-            <p className="mt-2 font-normal tracking-[0] leading-[1.4] text-[clamp(17px,1.46vw,21px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
+          <figcaption key={`q-${index}`} className="hero-fade-up mx-auto mt-[clamp(16px,2vw,24px)] w-full max-w-[640px] px-6 text-center [animation-delay:80ms] [animation-fill-mode:both]">
+            <p className="font-medium tracking-[0] leading-[20px] text-[15px]" style={{ color: COLORS.slate }}>{slide.persona}</p>
+            <p className="mt-2.5 font-normal tracking-[0] leading-[1.45] text-[clamp(17px,1.5vw,21px)]" style={{ color: COLORS.ink }}>{slide.quote}</p>
           </figcaption>
         </figure>
-        <div className="mt-10 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
+        <div className="mt-6 flex justify-center"><CarouselDots total={PROBLEM_SLIDES.length} active={index} onSelect={goTo} /></div>
       </FadeReveal>
     </section>
   );
@@ -711,8 +741,18 @@ export default function LandingPage() {
       <LandingNav />
       <main id="main">
         <LandingHeroSection />
-        {/* the glass sheet — the hero's first cover, the nav's own frost */}
-        <div aria-hidden="true" className="glass relative z-10 h-[clamp(140px,24svh,280px)] border-b border-[#121317]/10" />
+        {/* the glass sheet — the hero's first cover. The frost fades in from
+            its leading edge (mask), so the sheet never slices the pinned
+            headline mid-glyph: the family and copy dissolve into white the
+            way the hero's own floor dissolves them. */}
+        <div
+          aria-hidden="true"
+          className="glass relative z-10 h-[clamp(200px,30svh,340px)] border-b border-[#121317]/10"
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 62%)",
+          }}
+        />
         <LandingProblemSection />
         <LandingPromiseSection />
         <LandingMeetSection />

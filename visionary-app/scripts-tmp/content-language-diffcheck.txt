@@ -1,0 +1,13 @@
+warning: in the working copy of 'visionary-app/docs/visionary/CURRENT_PRODUCT_STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/DECISIONS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/FRONTEND_ACCEPTANCE_MATRIX.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/LOCAL_STORE_INVENTORY.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/PRODUCT_GATE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/QA.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/docs/visionary/STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/components/dashboard/teacher/AssignmentGrader.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/pages/dashboard/ArtifactStudio.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/src/services/learningPipelineService.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/tests/learning-pipeline.test.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/tests/learning-source-recovery.test.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'visionary-app/vite.config.js', LF will be replaced by CRLF the next time Git touches it

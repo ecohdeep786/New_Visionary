@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as workspace from '../src/services/workspaceService.ts';
 import {organizationPolicy,organizationPathAllowed} from '../src/services/organizationPolicy.js';
 import {previewPolicy} from '../src/api/previewPermissions.js';
+import {saveResourceEditorDraft,getResourceEditorDraft,clearResourceEditorDraft} from '../src/services/resourceEditorDraft.ts';
 import {getOrganizationAggregate} from '../src/services/mentorStateService.ts';
 import {organizationBilling,requestOrganizationSeats,changeOrganizationSeatRequest} from '../src/services/organizationBillingService.js';
 const memory=new Map();globalThis.localStorage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,String(value)),removeItem:key=>memory.delete(key)};globalThis.window={dispatchEvent(){}};globalThis.CustomEvent??=class{constructor(type){this.type=type;}};
@@ -10,6 +11,31 @@ const org={personId:'demo-school-admin',workspaceId:'demo-school-admin:organizat
 const member={personId:'demo-company-admin',workspaceId:'demo-company-admin:organization',role:'organization',locale:'en'};
 function grant(capability='analyst'){const invite=workspace.requestOrganizationInvite(org,'company-admin@visionary.test','organization','School',capability);workspace.changeOrganizationInvite(member,invite.id,'active');const user={id:member.personId,email:'company-admin@visionary.test',identity:'organization'};const space=workspace.bootstrapPerson(user).workspaces.find(row=>row.organizationId==='school-admin@visionary.test');workspace.selectWorkspace(member.personId,space.id);return {ctx:{...member,workspaceId:space.id},invite,user:{email:user.email,identity:'organization',organization_id:space.organizationId}};}
 beforeEach(()=>{memory.clear();workspace.configureMock({now:()=>new Date(),latency:0,fault:'none'});workspace.seedDemo('school-admin');});
+
+test('inherited or malformed administrative capability values fail closed',()=>{
+ const user={email:'member@test.invalid',identity:'organization',organization_id:'owner@test.invalid'};
+ for(const capability of ['__proto__','constructor','toString',['analyst'],{toString:()=> 'analyst'}]){
+  const policy=organizationPolicy(user,[{email:user.email,organization_email:user.organization_id,role:'organization',status:'active',capability}]);
+  assert.deepEqual(policy.permissions,[]);assert.equal(policy.profile,null);
+  assert.equal(organizationPathAllowed(policy,'/dashboard/curriculum'),false);
+ }
+});
+
+test('new organization editor backups are inaccessible after academic permission is removed and recover after restoration',()=>{
+ const {ctx,invite}=grant('academic-admin');
+ const key='new:organization-content';
+ saveResourceEditorDraft(ctx,key,{title:'Private unfinished objective',body:'Retained editorial notes'});
+ const before=localStorage.getItem('visionary_resource_editor_v1');
+ for(const profile of ['analyst','billing-admin']){
+  workspace.changeOrganizationCapability(org,invite.id,profile);
+  assert.throws(()=>getResourceEditorDraft(ctx,key),/permission/);
+  assert.throws(()=>saveResourceEditorDraft(ctx,key,{title:'Replacement',body:'Discarded'}),/permission/);
+  assert.throws(()=>clearResourceEditorDraft(ctx,key),/permission/);
+  assert.equal(localStorage.getItem('visionary_resource_editor_v1'),before);
+ }
+ workspace.changeOrganizationCapability(org,invite.id,'academic-admin');
+ assert.equal(getResourceEditorDraft(ctx,key).draft.body,'Retained editorial notes');
+});
 
 test('administrative profiles separate owner permissions, academic work, aggregates and billing',()=>{
  const {ctx,invite,user}=grant();const classes=[{id:'school',organization_email:'school-admin@visionary.test'},{id:'other',organization_email:'elsewhere@visionary.test'}];

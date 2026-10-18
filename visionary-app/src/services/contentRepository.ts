@@ -155,6 +155,15 @@ function validateGraph(graph: ContentGraph, connected: boolean) {
 }
 function eligible(ctx: RequestContext, concept: ContentConcept) { return concept.audience !== 'adult' || workspaceIdentity(ctx).person.ageBand === 'adult'; }
 function preferredGraph(graphs: ContentGraph[], locale: Locale) { return graphs.find(graph => graph.syllabus.contentLocale === locale) ?? graphs.find(graph => graph.syllabus.status === 'official') ?? graphs[0]; }
+function conceptGraph(graphs:ContentGraph[],conceptId:string,locale:Locale){
+ const matching=graphs.filter(graph=>graph.concepts.some(concept=>concept.id===conceptId));
+ const graph=preferredGraph(matching,locale);
+ if(!graph)return undefined;
+ const origin=(item:ContentGraph)=>item.concepts.find(concept=>concept.id===conceptId)?.provenance??item.syllabus.provenance;
+ const prior=origin(graph);
+ if(matching.some(item=>{const current=origin(item);return !same(item.syllabus,graph.syllabus)||current?.provider!==prior?.provider||current?.sourceId!==prior?.sourceId||current?.version!==prior?.version;}))throw Error('This concept has an ambiguous curriculum source. Original records were kept; restore a reviewed source with distinct concept identifiers before continuing.');
+ return graph;
+}
 function forLanguage(concept: ContentConcept, syllabus: ContentSyllabus, locale: Locale): ContentConcept {
  const sourceLocale = concept.locale ?? syllabus.contentLocale;
  const availableLocales = concept.availableLocales ?? syllabus.availableLocales;
@@ -174,9 +183,8 @@ export function getSavedCurriculumGraphs(ctx:RequestContext):ContentGraph[]{
  return structuredClone(graphs.map(graph=>({...graph,concepts:graph.concepts.filter(concept=>eligible(ctx,concept))})));
 }
 export function getSavedConceptOrigin(ctx:RequestContext,conceptId:string){
- const graphs=getSavedCurriculumGraphs(ctx).filter(graph=>graph.concepts.some(concept=>concept.id===conceptId));
- const graph=preferredGraph(graphs,ctx.locale);
- if(!graph||graphs.some(item=>!same(item.syllabus,graph.syllabus)))return undefined;
+ const graph=conceptGraph(getSavedCurriculumGraphs(ctx),conceptId,ctx.locale);
+ if(!graph)return undefined;
  const concept=graph.concepts.find(item=>item.id===conceptId)!;
  const provenance=concept.provenance||graph.syllabus.provenance;
  return provenance?{selection:{board:graph.syllabus.board,classLevel:graph.syllabus.classLevel,subject:graph.syllabus.subject},provenance:structuredClone(provenance)}:undefined;
@@ -184,7 +192,7 @@ export function getSavedConceptOrigin(ctx:RequestContext,conceptId:string){
 
 export function getContentRepository(ctx: RequestContext): ContentRepository {
  check(ctx);
- const graphForConcept = (db: ContentStore, id: string) => preferredGraph(space(db, ctx).graphs.filter(g => g.concepts.some(c => c.id === id)), ctx.locale);
+ const graphForConcept = (db: ContentStore, id: string) => conceptGraph(space(db, ctx).graphs,id,ctx.locale);
  const conceptFrom = (db: ContentStore, id: string) => graphForConcept(db, id)?.concepts.find(c => c.id === id);
  return {
   async getSyllabus(board, classLevel, subject) {

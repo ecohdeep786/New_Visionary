@@ -1,0 +1,25 @@
+{
+  "name": "visionary-voice-review-20261006",
+  "gitBase": "9bb628cd88dafc6c5eddb56d274317c8a070fdc3",
+  "node": "v24.19.0",
+  "assets": [
+    "index-Br_GkL8r.js",
+    "index-CCi_fr9v.css",
+    "vendor-B6QVRD5b.js"
+  ],
+  "files": {
+    "src/domain/workspace.ts": "3e20c2a215aebc4ef314ce2c64e9fced0eed1b512e765ce2134f0888816d4b24",
+    "src/services/workspaceService.ts": "a6af15dfaf0195b2231b44da39d36095957141fb07d5ea23142a8e433cd90eda",
+    "src/services/learningPipelineService.ts": "522095167160d43c08799ec8da1b3f4cef8b7f4e50bce5b1dce0c4032f24fa19",
+    "src/pages/dashboard/ArtifactStudio.jsx": "c9ad76e3ff5b82d1e7077c834f3b1d2519c1587e4e488b066e18ff89e8e80a9e",
+    "src/pages/dashboard/LearningWorkspace.jsx": "55f9e46493a01a6c2262d11b1b7b4dd1eb783c2fae1cbb5e6fbcbc6b6734fa9c",
+    "src/components/dashboard/teacher/AssignmentGrader.jsx": "599e784210bdfc90ebb560b16ee288340fe31dba4264c86fc2271410501d41c1",
+    "vite.config.js": "e64a8ffecec000e9134ea882d2cf3e03e79aefb2291fb47a9c3c10c9ca575adb",
+    "src/components/landing/AboutUsHero.jsx": "56abff3463057255d49e3a24c8ecf23d8dbd86dae27df63b59f61ffffad581fa",
+    "src/components/landing/NewPersona.jsx": "3168768e52116e6ba26b4681157feb02c41b30d82b64b1d7aa15b6f14913fd89",
+    "src/pages/Landing.jsx": "7a3c2e940ff99f2393ff6937d1456f9a9f58a03c09e9b4e32f6b8b2effe7c191",
+    "tests/learning-source-recovery.test.mjs": "1533629558fae0bc08d88dc93975b21724dd28b8ea7ccd0c6a39be3033a3aa22",
+    "src/pages/dashboard/ClassDetail.jsx": "d663d0143b62018c9775d3d494b92fad87cf47704f95c7aaf4f3ad32add79f9d",
+    "src/components/dashboard/AudioPresence.jsx": "de1fe94ee7617b043cff020e53f08d0e07c37225ec1c6d176996eef9a0df8189"
+  }
+}

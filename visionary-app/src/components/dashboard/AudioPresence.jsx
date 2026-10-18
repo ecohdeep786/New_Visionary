@@ -8,6 +8,7 @@ import { newConversation, updateConversation, updatePreferences } from '@/servic
 import { sendMentorTurn } from '@/services/mentorCompanionService';
 import { cancelSpeech, getSessionAudioOverride, getVoiceCapabilities, getVoiceMode, startListening, stopListening, speak, subscribeVoiceMode, setSessionAudioOverride } from '@/services/voiceService';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { voiceCopy, voiceCopyLocale } from '@/lib/voiceCopy';
 
 // Two selectable visual presences for one shared Guide, not separate models or memories.
 // The single shell instance sits by the desktop rail and in the mobile app bar. Tapping
@@ -29,9 +30,13 @@ const GREETINGS = {
 
 export default function AudioPresence() {
   const { ctx, data } = useWorkspace();
+  const locale = data?.preferences?.interfaceLocale || 'en';
+  const copy = voiceCopy(locale);
   const location = useLocation();
   const [mode, setMode] = useState(getVoiceMode());
   const [caption, setCaption] = useState('');
+  const [reviewing, setReviewing] = useState(false);
+  const confirmedCaption = useRef('');
   const [notice, setNotice] = useState('');
   const [panelOpen, setPanelOpen] = useState(false);
   const [audioOverride, setAudioOverride] = useState(getSessionAudioOverride());
@@ -82,14 +87,17 @@ export default function AudioPresence() {
       if (!conversationRef.current) conversationRef.current = newConversation(request).id;
       const response = await sendMentorTurn({ ...request, signal: controller.signal }, conversationRef.current, transcript, 'voice');
       if (controller.signal.aborted || revision !== voiceRevision.current) return;
-      if (response.text && !speak(response.text, request.locale)) setNotice('The reply is saved in Ask. Spoken output is unavailable; you can read it by text.');
+      confirmedCaption.current = '';
+      setCaption('');
+      setReviewing(false);
+      if (response.text && !speak(response.text, request.locale)) setNotice({ key: 'The reply is saved in Ask. Spoken output is unavailable; you can read it by text.' });
     } catch (error) {
       // Recoverable, never silent: the spoken words stay as a draft in the conversation
       // and the failure is announced; the transcript is not lost.
       if (controller.signal.aborted || revision !== voiceRevision.current) return;
       let saved = false;
       try { if (conversationRef.current) { updateConversation(request, conversationRef.current, { draft: transcript }); saved = true; } } catch { /* Current words remain in the review field. */ }
-      setNotice(`${error.message || 'The spoken request could not be sent.'} ${saved ? 'Your words are saved in Ask.' : 'Keep or copy your words from the review field.'}`);
+      setNotice({ key: error.message || 'The spoken request could not be sent.', recovery: saved ? 'Your words are saved in Ask.' : 'Keep or copy your words from the review field.' });
     } finally {
       if (revision === voiceRevision.current) { busyRef.current = false; setProcessing(false); turnAbort.current = null; }
     }
@@ -101,23 +109,37 @@ export default function AudioPresence() {
     const request = ctxRef.current;
     if (!request) return;
     const line = GREETINGS[request.locale] || GREETINGS.en;
-    setNotice(line);
-    const clear = () => setNotice(current => (current === line ? '' : current));
+    const greeting = { key: line, language: request.locale };
+    setNotice(greeting);
+    const clear = () => setNotice(current => (current === greeting ? '' : current));
     if (effective && getVoiceCapabilities().synthesis) speak(line, request.locale);
     setTimeout(clear, 4500);
   }
 
   function queueSend(transcript) {
-    setCaption(transcript);
+    confirmedCaption.current = appendTranscript(transcript);
+    setReviewing(true);
+    setCaption(confirmedCaption.current);
+  }
+
+  function appendTranscript(transcript) {
+    return (confirmedCaption.current ? `${confirmedCaption.current} ${transcript}` : transcript).slice(0, 6000);
+  }
+
+  function editTranscript(text) {
+    endVoiceSession();
+    confirmedCaption.current = text;
+    setCaption(text);
   }
 
   function startVoiceSession(request) {
     try {
       if (!request) return;
-      startListening({ lang: request.locale, onInterim: text => setCaption(text), onFinal: queueSend, onError: message => { detachAnalyser(); setNotice(message); } });
+      confirmedCaption.current = caption;
+      startListening({ lang: request.locale, onInterim: text => { setReviewing(true); setCaption(appendTranscript(text)); }, onFinal: queueSend, onError: message => { detachAnalyser(); setNotice({ key: message }); } });
       attachAnalyser();
     } catch (error) {
-      setNotice(error.message || 'Microphone unavailable. You can keep using text.');
+      setNotice({ key: error.message || 'Microphone unavailable. You can keep using text.' });
     }
   }
 
@@ -134,8 +156,8 @@ export default function AudioPresence() {
 
   function choosePresentation(next) {
     if (!ctxRef.current || next === presentationRef.current) return;
-    try { updatePreferences(ctxRef.current, { agiAnimation: next }); setNotice('Visual presence updated. Your conversations and learning stay together.'); }
-    catch (error) { setNotice(error.message || 'The visual preference could not be saved.'); }
+    try { updatePreferences(ctxRef.current, { agiAnimation: next }); setNotice({ key: 'Visual presence updated. Your conversations and learning stay together.' }); }
+    catch (error) { setNotice({ key: error.message || 'The visual preference could not be saved.' }); }
   }
 
   async function attachAnalyser() {
@@ -169,7 +191,7 @@ export default function AudioPresence() {
   // Audio preference enables replies; microphone capture always needs an explicit start.
   // A route, language or workspace change terminates the current session and late work.
   useEffect(() => {
-    endVoiceSession(); setProcessing(false); setCaption(''); setNotice('');
+    endVoiceSession(); setProcessing(false); confirmedCaption.current = ''; setCaption(''); setReviewing(false); setNotice('');
     return endVoiceSession;
   }, [ctx?.personId, ctx?.workspaceId, ctx?.locale, location.key]);
   useEffect(() => { if (!effective) { endVoiceSession(); setProcessing(false); } }, [effective]);
@@ -332,27 +354,30 @@ export default function AudioPresence() {
     ? 'Audio interaction is off. The animation is only an availability indicator; the microphone is not active.'
     : capabilities.recognition || capabilities.synthesis ? STATUS_TEXT[mode] : STATUS_TEXT.unsupported;
   const shortStatus = !effective ? 'Audio off' : mode === 'listening' ? 'Listening' : mode === 'speaking' ? 'Speaking' : mode === 'denied' ? 'Microphone blocked' : capabilities.recognition ? 'Ready for voice' : 'Text available';
+  const noticeText = notice ? notice.language ? notice.key : copy(notice.key) : '';
+  const noticeLocale = notice ? notice.language || voiceCopyLocale(locale, notice.key) : locale;
   return <Popover open={panelOpen} onOpenChange={open => { setPanelOpen(open); if (!open) { endVoiceSession(); setProcessing(false); } }}><PopoverTrigger asChild><button
     type="button"
+    lang={locale}
     className={`v-audio-orb-button ${animation === 'girl' ? 'v-audio-girl' : 'v-audio-boy'}`}
     data-audio-state={!effective ? 'off' : mode}
     onClick={summon}
-    aria-label={`Open Visionary voice panel. ${animation === 'girl' ? 'Vision Girl' : 'Vision Boy'}. ${shortStatus}.`}
-    title={`Visionary Guide · ${shortStatus}`}
+    aria-label={copy('Open Visionary voice panel. {presence}. {status}.', { presence: animation === 'girl' ? 'Vision Girl' : 'Vision Boy', status: copy(shortStatus) })}
+    title={`Visionary Guide · ${copy(shortStatus)}`}
   >
-    <span className="v-audio-glyph"><canvas ref={canvasRef} aria-hidden="true" /></span><span className="v-audio-name" aria-hidden="true">Guide</span>
-    {!panelOpen && (notice || (caption && mode === 'listening')) && <span className="v-audio-caption" aria-hidden="true">{notice || caption}</span>}
-    <span role="status" className="sr-only">{status}</span>
-  </button></PopoverTrigger><PopoverContent side="top" align="start" sideOffset={16} className="workspace-voice-panel" style={{maxHeight:'min(90dvh, var(--radix-popover-content-available-height))',overflowY:'auto'}} aria-labelledby="visionary-voice-title">
-    <div className="workspace-voice-panel-head sticky top-0 z-10 bg-white"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">Your voice presence</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label="Close voice panel"><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
-    <span className={`workspace-voice-state state-${!effective ? 'off' : mode}`}><span aria-hidden="true" />{shortStatus}</span>
-    <p className="workspace-voice-intro">Vision Boy and Vision Girl are two visual styles for the same Guide. Your learning and conversations stay together.</p>
-    <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'listening' || mode === 'speaking' || processing ? () => { endVoiceSession(); setProcessing(false); } : beginListening} disabled={!capabilities.recognition}>{mode === 'listening' || mode === 'speaking' || processing ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{!capabilities.recognition ? 'Voice input unavailable' : mode === 'listening' || mode === 'speaking' || processing ? 'Stop voice session' : mode === 'denied' ? 'Retry microphone' : 'Start listening'}</button><button className="v-button" disabled={!capabilities.recognition && !capabilities.synthesis} onClick={toggleAudio}>{effective ? 'Turn audio off' : 'Turn audio on'}</button><Link className="v-button" to="/dashboard/ask" state={{initialQuestion:caption}} onClick={() => { endVoiceSession(); setSessionAudioOverride(false); setAudioOverride(false); setProcessing(false); setPanelOpen(false); }}><MessageCircle size={17} aria-hidden="true" />Use text instead</Link></div>
+    <span className="v-audio-glyph"><canvas ref={canvasRef} aria-hidden="true" /></span><span className="v-audio-name" aria-hidden="true">{copy('Guide')}</span>
+    {!panelOpen && (notice || (caption && mode === 'listening')) && <span className="v-audio-caption" lang={notice ? noticeLocale : ctx.locale} aria-hidden="true">{noticeText || caption}</span>}
+    <span role="status" className="sr-only">{copy(status)}</span>
+  </button></PopoverTrigger><PopoverContent lang={locale} side="top" align="start" sideOffset={16} className="workspace-voice-panel" style={{maxHeight:'min(90dvh, var(--radix-popover-content-available-height))',overflowY:'auto'}} aria-labelledby="visionary-voice-title">
+    <div className="workspace-voice-panel-head sticky top-0 z-10 bg-white"><div><p className="workspace-voice-eyebrow">Visionary Guide</p><h2 id="visionary-voice-title">{copy('Your voice presence')}</h2></div><PopoverPrimitive.Close className="workspace-voice-close" aria-label={copy('Close voice panel')}><X size={18} aria-hidden="true" /></PopoverPrimitive.Close></div>
+    <span className={`workspace-voice-state state-${!effective ? 'off' : mode}`}><span aria-hidden="true" />{copy(shortStatus)}</span>
+    <p className="workspace-voice-intro">{copy('Vision Boy and Vision Girl are two visual styles for the same Guide. Your learning and conversations stay together.')}</p>
+    <div className="workspace-voice-actions"><button type="button" className="v-button primary" onClick={mode === 'listening' || mode === 'speaking' || processing ? () => { endVoiceSession(); setProcessing(false); } : beginListening} disabled={!capabilities.recognition}>{mode === 'listening' || mode === 'speaking' || processing ? <MicOff size={17} aria-hidden="true" /> : <Mic size={17} aria-hidden="true" />}{copy(!capabilities.recognition ? 'Voice input unavailable' : mode === 'listening' || mode === 'speaking' || processing ? 'Stop voice session' : mode === 'denied' ? 'Retry microphone' : 'Start listening')}</button><button className="v-button" disabled={!capabilities.recognition && !capabilities.synthesis} onClick={toggleAudio}>{copy(effective ? 'Turn audio off' : 'Turn audio on')}</button><Link className="v-button" to="/dashboard/ask" state={{initialQuestion:caption}} onClick={() => { endVoiceSession(); setSessionAudioOverride(false); setAudioOverride(false); setProcessing(false); setPanelOpen(false); }}><MessageCircle size={17} aria-hidden="true" />{copy('Use text instead')}</Link></div>
     <div className={`workspace-voice-preview ${animation === 'girl' ? 'is-girl' : 'is-boy'} ${!effective ? 'is-off' : ''} ${mode === 'listening' && effective ? 'is-listening' : ''} ${mode === 'speaking' && effective ? 'is-speaking' : ''}`} aria-hidden="true"><span className="workspace-voice-preview-glow" /><span className="workspace-voice-preview-orb" /><span className="workspace-voice-preview-bars"><i /><i /><i /><i /></span></div>
-    <p className="workspace-voice-now" role="status">{processing ? 'Preparing your reply. Stop the session to cancel.' : caption && mode === 'listening' ? `Hearing: ${caption}` : status}</p>
-    {notice && <p className="v-notice" role="status">{notice}</p>}
-    {caption && <section className="mt-3"><label className="text-sm">Review spoken question<textarea aria-label="Review spoken question" className="v-field mt-2" value={caption} maxLength={6000} disabled={processing} onChange={event => setCaption(event.target.value)} /></label><p className="v-muted mt-2">Review or edit your words before sending. Speech is not sent automatically.</p><button className="v-button mt-3" disabled={processing || !caption.trim()} onClick={() => sendTurn(caption)}>{processing ? 'Preparing reply…' : 'Send spoken question'}</button></section>}
-    <div className="workspace-voice-choices" role="group" aria-label="Visual presence"><button type="button" aria-pressed={animation === 'boy'} onClick={() => choosePresentation('boy')}><span className="workspace-voice-choice-mark is-boy" aria-hidden="true" />Vision Boy</button><button type="button" aria-pressed={animation === 'girl'} onClick={() => choosePresentation('girl')}><span className="workspace-voice-choice-mark is-girl" aria-hidden="true"><i /><i /><i /><i /></span>Vision Girl</button></div>
-    <p className="workspace-voice-footnote"><AudioLines size={14} aria-hidden="true" />Voice uses this browser. Teaching AI is not connected in the local preview.</p>
+    <p className="workspace-voice-now" role="status">{processing ? copy('Preparing your reply. Stop the session to cancel.') : caption && mode === 'listening' ? <>{copy('Hearing:')} <span lang={ctx.locale}>{caption}</span></> : copy(status)}</p>
+    {notice && <p className="v-notice" role="status" lang={noticeLocale}>{noticeText}{notice.recovery && <span lang={locale}> {copy(notice.recovery)}</span>}</p>}
+    {reviewing && <section className="mt-3"><label className="text-sm">{copy('Review spoken question')}<textarea lang={ctx.locale} aria-label={copy('Review spoken question')} className="v-field mt-2" value={caption} maxLength={6000} disabled={processing} onChange={event => editTranscript(event.target.value)} /></label><p className="v-muted mt-2">{copy('Review or edit your words before sending. Speech is not sent automatically.')} {copy('Editing stops listening. Start listening again to add more words.')}</p><button className="v-button mt-3" disabled={processing || !caption.trim()} onClick={() => sendTurn(caption)}>{copy(processing ? 'Preparing reply…' : 'Send spoken question')}</button></section>}
+    <div className="workspace-voice-choices" role="group" aria-label={copy('Visual presence')}><button type="button" aria-pressed={animation === 'boy'} onClick={() => choosePresentation('boy')}><span className="workspace-voice-choice-mark is-boy" aria-hidden="true" />Vision Boy</button><button type="button" aria-pressed={animation === 'girl'} onClick={() => choosePresentation('girl')}><span className="workspace-voice-choice-mark is-girl" aria-hidden="true"><i /><i /><i /><i /></span>Vision Girl</button></div>
+    <p className="workspace-voice-footnote"><AudioLines size={14} aria-hidden="true" />{copy('Voice uses this browser. Teaching AI is not connected in the local preview.')}</p>
   </PopoverContent></Popover>;
 }

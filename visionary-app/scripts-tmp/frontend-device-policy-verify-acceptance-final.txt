@@ -1,0 +1,2 @@
+{"headers":"camera=(), geolocation=(), microphone=(self)","policy":{"mic":true,"camera":false,"location":false,"externalMic":false}}
+PASS production response and actual browser feature policy: same-origin microphone permitted, foreign origins/camera/location denied. No hardware permission or recognition success is inferred.

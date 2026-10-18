@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at http://127.0.0.1:4254/dashboard/prepare
+Call log:
+  - navigating to "http://127.0.0.1:4254/dashboard/prepare", waiting until "domcontentloaded"
+
+    at C:\Users\Administrator\New_Visionary\visionary-app\scripts-tmp\practice-answer-linked-regression.mjs:34:13 {
+  log: [
+    '  - navigating to "http://127.0.0.1:4254/dashboard/prepare", waiting until "domcontentloaded"'
+  ],
+  name: 'Error'
+}
+
+Node.js v24.19.0

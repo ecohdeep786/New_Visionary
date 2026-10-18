@@ -36,6 +36,26 @@ async function startCubeSample() {
  return { request, unit: await pipeline.startLearningUnit(request, concepts[0].id), concept: concepts[0] };
 }
 
+test('authored project language survives saving and participates in edit conflicts without a rubric', async () => {
+ const request = {...ctx(), locale:'hi'};
+ await pipeline.selectLearningSyllabus(request, SAMPLE_SELECTION);
+ const unit = await pipeline.startLearningUnit(request, 'sample:fractions:concept');
+ await pipeline.requestUnitTeaching(request, unit.id, 'explanation');
+ let current = await pipeline.beginComprehension(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, current.question.answerIndex);
+ current = await pipeline.nextLearningQuestion(request, unit.id);
+ await pipeline.answerLearningQuestion(request, unit.id, current.question.answerIndex);
+ const artifact = await pipeline.createLearningProject(request, unit.id);
+ assert.equal(artifact.rubric, undefined);
+ assert.equal(artifact.projectLocale, 'hi');
+ const revision = workspace.artifactRevision(artifact);
+ const saved = workspace.saveArtifact(request, {...artifact, body:'Private working document'}, revision);
+ assert.equal(workspace.snapshot(request).artifacts.find(item=>item.id===saved.id).projectLocale, 'hi');
+ const copy = workspace.saveArtifact(request, {title:'Separate retained copy',body:saved.body,projectBrief:saved.projectBrief,projectLocale:saved.projectLocale});
+ assert.equal(copy.projectLocale,'hi');
+ assert.notEqual(workspace.artifactRevision(saved), workspace.artifactRevision({...saved,projectLocale:'bn'}));
+});
+
 test('late teaching cannot overwrite a newer saved language or representation',async()=>{
  const {request,unit}=await startCubeSample();
  let release,started;

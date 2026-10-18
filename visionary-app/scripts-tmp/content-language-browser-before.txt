@@ -1,0 +1,77 @@
+Skip to content
+Active workspace
+Personal · Learner
+Personal · Teacher
+Personal · Parent
+Personal · Professional
+Owner · My organization
+A
+Microphone idle. Text is always available.
+Learning outline
+
+Sourced curriculum · Synthetic source · version fixture-1
+
+Synthetic equal parts
+
+Your place is saved locally. Understanding is checked before guided practice and building.
+
+Teaching language
+English
+हिन्दी
+বাংলা
+
+This concept’s saved teaching content is not loaded in हिन्दी. Your place and evidence remain saved. A teaching response requires the connected model. The outline text is in English.
+
+Use available English teaching
+1
+Understand
+2
+Check
+3
+Practice
+4
+Build
+
+Visionary Guide की शिक्षण सेवा जुड़ी नहीं है। आपका कार्यक्षेत्र आपके प्रश्न और सीखने की प्रगति को इस उपकरण पर रख सकता है; मॉडल से कोई उत्तर नहीं बनाया गया है।
+
+Check understanding
+
+Difficulty 1 / 5 · 0/1 recorded correct answers
+
+आधा चुनें।
+आधा
+चौथाई
+
+Not yet. Review the idea and try a smaller step.
+
+Accuracy is evidence, not a claim of overall mastery.
+
+Retry understanding check
+Review explanation and model
+Review 1 saved attempts
+Ask a doubt · keep my place
+Save and return Home
+Report a content problem
+Home
+Learn
+Ask
+Practice
+More
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'en' !== 'hi'
+
+    at file:///C:/Users/Administrator/.codex/worktrees/9f8b/New_Visionary/visionary-app/scripts-tmp/content-language-verify.mjs:35:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'en',
+  expected: 'hi',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

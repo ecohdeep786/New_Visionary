@@ -1,0 +1,26 @@
+{"headers":"camera=(), geolocation=(), microphone=()","policy":{"mic":false,"camera":false,"location":false,"externalMic":false}}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    camera: false,
+    externalMic: false,
+    location: false,
++   mic: false
+-   mic: true
+  }
+
+    at file:///C:/Users/Administrator/.codex/worktrees/9f8b/New_Visionary/visionary-app/scripts-tmp/frontend-device-policy-verify.mjs:2:747 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: { mic: false, camera: false, location: false, externalMic: false },
+  expected: { mic: true, camera: false, location: false, externalMic: false },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
