@@ -18,10 +18,9 @@ COPY backend/upstream/backend/package.json backend/upstream/backend/package-lock
 RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY backend/upstream/backend/tsconfig*.json backend/upstream/backend/nest-cli.json ./
 COPY backend/upstream/backend/src/ ./src/
-COPY backend/upstream/backend/prisma/schema.prisma ./prisma/schema.prisma
-# Generate compile-time legacy types only; the product entrypoint never starts
-# Prisma or runs a database migration/seed. All lifecycle scripts stay disabled.
-RUN ./node_modules/.bin/prisma generate --schema ./prisma/schema.prisma && npm run build && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
+# Compile the selected product import graph with a stable dist/src path. The
+# unrelated legacy app/Prisma/ML startup graph is neither compiled nor started.
+RUN ./node_modules/.bin/tsc -p tsconfig.product.json && npm prune --omit=dev --ignore-scripts --no-audit --no-fund
 
 FROM node:24-bookworm-slim AS product
 ENV NODE_ENV=production PORT=8080 PUBLIC_ROOT=/app/public

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "incremental": false,
+    "declaration": false,
+    "sourceMap": false
+  },
+  "files": ["src/main-product.ts"],
+  "include": [],
+  "exclude": ["node_modules", "dist"]
+}

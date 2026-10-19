@@ -2507,6 +2507,19 @@
         "PATCH /api/auth/profile",
         "POST /api/auth/session"
       ]
+    },
+    "frontend/src/components/dashboard/CoverageAvailability.jsx": {
+      "profile": "connected-coverage-status",
+      "state": "connected",
+      "execution": "server",
+      "reason": "Reads authenticated owner coverage from the current Firestore release policy; translated status, category detail and retry preserve account/context. A summary never grants learning execution or proves source/provider qualification.",
+      "followUp": [
+        "SCOPE-02",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/account/coverage"
+      ]
     }
   },
   "operations": [
@@ -3114,6 +3127,30 @@
         "PRIV-01"
       ],
       "endpoints": []
+    },
+    {
+      "id": "learning-coverage",
+      "state": "connected",
+      "execution": "server",
+      "routes": [
+        "/dashboard/learn"
+      ],
+      "files": [
+        "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+        "backend/upstream/backend/src/launch-coverage/coverage.policy.ts",
+        "backend/upstream/backend/src/launch-coverage/coverage.repository.ts",
+        "frontend/src/services/coverageClient.js",
+        "frontend/src/components/dashboard/CoverageAvailability.jsx"
+      ],
+      "reason": "Owner-bound coverage summary and exact source/language/device check read current account and trusted release policy transactionally. Missing/expired/revoked or mismatched contexts fail closed; no execution grant. Live source qualification and hosted acceptance are separate.",
+      "followUp": [
+        "SCOPE-02",
+        "PLAT-01"
+      ],
+      "endpoints": [
+        "GET /api/account/coverage",
+        "POST /api/account/coverage/check"
+      ]
     }
   ],
   "gaps": [

@@ -14,7 +14,7 @@ Qualification is deliberately distinct from permission to execute learning. Ever
 
 ## User experience and recovery
 
-The Learn route reads live coverage in Firebase mode and shows translated English/Hindi/Bengali status, retry and all-category details. It keeps existing navigation, sample journeys, drafts and account features intact. Profile changes discard old results; stale account/selection reads are rejected by the client. The component refreshes on focus, visibility, reconnect and receipt expiry. Coverage outage is never shown as a qualified source. Source availability must be rechecked for the selected exact source through POST before downstream domain delivery; the summary is not a grant.
+The Learn route reads live coverage in Firebase mode and shows translated English/Hindi/Bengali status, retry and all-category details using the actual interface locale. It keeps existing navigation, sample journeys, drafts and account features intact. Profile/workspace changes discard old results; stale account/selection reads are rejected by the client. The component refreshes on focus, visibility, reconnect and explicit retry. Receipt expiry clears the result locally and requests refresh; it does not poll an idle service. Coverage outage is never shown as a qualified source. Source availability must be rechecked for the selected exact source through POST before downstream domain delivery; the summary is not a grant.
 
 ## Verification and deployment
 

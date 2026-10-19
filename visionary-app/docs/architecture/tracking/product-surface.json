@@ -6110,6 +6110,7 @@
         "frontend/src/components/dashboard/ClassworkProjectSubmission.jsx",
         "frontend/src/components/dashboard/ConnectedPlanBadge.jsx",
         "frontend/src/components/dashboard/ContentIssueReport.jsx",
+        "frontend/src/components/dashboard/CoverageAvailability.jsx",
         "frontend/src/components/dashboard/CriterionFeedback.jsx",
         "frontend/src/components/dashboard/DashboardLayout.jsx",
         "frontend/src/components/dashboard/DashboardSidebar.jsx",
@@ -6157,6 +6158,7 @@
         "frontend/src/lib/classworkRubric.js",
         "frontend/src/lib/classworkSource.js",
         "frontend/src/lib/connectionAvailability.js",
+        "frontend/src/lib/coverageCopy.js",
         "frontend/src/lib/curriculumPublication.js",
         "frontend/src/lib/dashboardNavigation.js",
         "frontend/src/lib/downloadText.js",
@@ -6197,6 +6199,7 @@
         "frontend/src/services/classworkPlayerService.js",
         "frontend/src/services/classworkStudyService.js",
         "frontend/src/services/contentRepository.ts",
+        "frontend/src/services/coverageClient.js",
         "frontend/src/services/curriculumBridgeService.ts",
         "frontend/src/services/curriculumPracticeSource.js",
         "frontend/src/services/curriculumTemplate.ts",
@@ -6258,6 +6261,8 @@
         "frontend/src/components/dashboard/ContentIssueReport.jsx:48:89",
         "frontend/src/components/dashboard/ContentIssueReport.jsx:49:7",
         "frontend/src/components/dashboard/ContentIssueReport.jsx:53:159",
+        "frontend/src/components/dashboard/CoverageAvailability.jsx:57:247",
+        "frontend/src/components/dashboard/CoverageAvailability.jsx:58:113",
         "frontend/src/components/dashboard/DashboardLayout.jsx:96:374",
         "frontend/src/components/dashboard/DashboardLayout.jsx:109:7",
         "frontend/src/components/dashboard/DashboardLayout.jsx:110:7",
@@ -6378,22 +6383,22 @@
         "frontend/src/pages/dashboard/ClassworkStudy.jsx:47:3625",
         "frontend/src/pages/dashboard/ClassworkStudy.jsx:47:3732",
         "frontend/src/pages/dashboard/ClassworkStudy.jsx:47:4118",
-        "frontend/src/pages/dashboard/Learn.jsx:101:9",
-        "frontend/src/pages/dashboard/Learn.jsx:109:159",
-        "frontend/src/pages/dashboard/Learn.jsx:110:323",
-        "frontend/src/pages/dashboard/Learn.jsx:111:60",
-        "frontend/src/pages/dashboard/Learn.jsx:117:14",
-        "frontend/src/pages/dashboard/Learn.jsx:118:9",
-        "frontend/src/pages/dashboard/Learn.jsx:121:193",
-        "frontend/src/pages/dashboard/Learn.jsx:123:96",
-        "frontend/src/pages/dashboard/Learn.jsx:133:21",
-        "frontend/src/pages/dashboard/Learn.jsx:144:44",
-        "frontend/src/pages/dashboard/Learn.jsx:147:41",
-        "frontend/src/pages/dashboard/Learn.jsx:153:7",
-        "frontend/src/pages/dashboard/Learn.jsx:155:34",
-        "frontend/src/pages/dashboard/Learn.jsx:155:147",
-        "frontend/src/pages/dashboard/Learn.jsx:155:505",
-        "frontend/src/pages/dashboard/Learn.jsx:155:622",
+        "frontend/src/pages/dashboard/Learn.jsx:102:9",
+        "frontend/src/pages/dashboard/Learn.jsx:110:159",
+        "frontend/src/pages/dashboard/Learn.jsx:111:323",
+        "frontend/src/pages/dashboard/Learn.jsx:112:60",
+        "frontend/src/pages/dashboard/Learn.jsx:118:14",
+        "frontend/src/pages/dashboard/Learn.jsx:119:9",
+        "frontend/src/pages/dashboard/Learn.jsx:122:193",
+        "frontend/src/pages/dashboard/Learn.jsx:124:96",
+        "frontend/src/pages/dashboard/Learn.jsx:134:21",
+        "frontend/src/pages/dashboard/Learn.jsx:145:44",
+        "frontend/src/pages/dashboard/Learn.jsx:148:41",
+        "frontend/src/pages/dashboard/Learn.jsx:154:7",
+        "frontend/src/pages/dashboard/Learn.jsx:156:34",
+        "frontend/src/pages/dashboard/Learn.jsx:156:147",
+        "frontend/src/pages/dashboard/Learn.jsx:156:505",
+        "frontend/src/pages/dashboard/Learn.jsx:156:622",
         "frontend/src/pages/dashboard/LearningWorkspace.jsx:106:228",
         "frontend/src/pages/dashboard/LearningWorkspace.jsx:106:347",
         "frontend/src/pages/dashboard/LearningWorkspace.jsx:109:550",
@@ -6480,7 +6485,8 @@
         "ask-guide-model-turn",
         "voice-and-visual-learning",
         "stage-change-bridge-continuity",
-        "offline-and-two-device-learning"
+        "offline-and-two-device-learning",
+        "learning-coverage"
       ]
     },
     {
@@ -17411,11 +17417,29 @@
   "endpoints": [
     {
       "method": "GET",
+      "path": "/api/account/coverage",
+      "controller": "AccountController",
+      "handler": "coverage",
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 15,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/coverage/check",
+      "controller": "AccountController",
+      "handler": "checkCoverage",
+      "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+      "line": 20,
+      "column": 3
+    },
+    {
+      "method": "GET",
       "path": "/api/account/devices",
       "controller": "AccountController",
       "handler": "devices",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 30,
+      "line": 42,
       "column": 3
     },
     {
@@ -17442,7 +17466,7 @@
       "controller": "AccountController",
       "handler": "invoices",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 43,
+      "line": 55,
       "column": 3
     },
     {
@@ -17451,7 +17475,7 @@
       "controller": "AccountController",
       "handler": "overview",
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "line": 14,
+      "line": 26,
       "column": 3
     },
     {
@@ -22913,6 +22937,65 @@
         "SCOPE-06"
       ],
       "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/dashboard/CoverageAvailability.jsx:57:247",
+      "file": "frontend/src/components/dashboard/CoverageAvailability.jsx",
+      "line": 57,
+      "column": 247,
+      "tag": "button",
+      "events": [
+        {
+          "event": "onClick",
+          "expression": "{() => setRetry(value => value + 1)}"
+        }
+      ],
+      "calls": [
+        "setRetry"
+      ],
+      "disabled": null,
+      "declarationSha256": "c2eaeca3597d773105b76ff18d345bf4853bed8742234bbdeafa867ab9b90c05",
+      "routeIds": [
+        "/dashboard/learn"
+      ],
+      "reviewProfile": "connected-coverage-status",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Reads authenticated owner coverage from the current Firestore release policy; translated status, category detail and retry preserve account/context. A summary never grants learning execution or proves source/provider qualification.",
+      "followUp": [
+        "SCOPE-02",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/account/coverage"
+      ],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/dashboard/CoverageAvailability.jsx:58:113",
+      "file": "frontend/src/components/dashboard/CoverageAvailability.jsx",
+      "line": 58,
+      "column": 113,
+      "tag": "summary",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "5801614635d55f12f3962356553db9d465b7aafa59e32a4df52adeaf6d01f537",
+      "routeIds": [
+        "/dashboard/learn"
+      ],
+      "reviewProfile": "connected-coverage-status",
+      "state": "connected",
+      "execution": "server",
+      "classificationReason": "Reads authenticated owner coverage from the current Firestore release policy; translated status, category detail and retry preserve account/context. A summary never grants learning execution or proves source/provider qualification.",
+      "followUp": [
+        "SCOPE-02",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [
+        "GET /api/account/coverage"
+      ],
       "hostedVerified": false
     },
     {
@@ -53281,9 +53364,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:101:9",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:102:9",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 101,
+      "line": 102,
       "column": 9,
       "tag": "button",
       "events": [
@@ -53317,9 +53400,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:109:159",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:110:159",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 109,
+      "line": 110,
       "column": 159,
       "tag": "button",
       "events": [
@@ -53350,9 +53433,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:110:323",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:111:323",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 110,
+      "line": 111,
       "column": 323,
       "tag": "button",
       "events": [
@@ -53383,9 +53466,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:111:60",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:112:60",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 111,
+      "line": 112,
       "column": 60,
       "tag": "SubjectPills",
       "events": [
@@ -53418,9 +53501,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:117:14",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:118:14",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 117,
+      "line": 118,
       "column": 14,
       "tag": "Link",
       "events": [],
@@ -53445,9 +53528,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:118:9",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:119:9",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 118,
+      "line": 119,
       "column": 9,
       "tag": "Link",
       "events": [],
@@ -53472,9 +53555,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:121:193",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:122:193",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 121,
+      "line": 122,
       "column": 193,
       "tag": "input",
       "events": [
@@ -53505,9 +53588,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:123:96",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:124:96",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 123,
+      "line": 124,
       "column": 96,
       "tag": "select",
       "events": [
@@ -53538,9 +53621,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:133:21",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:134:21",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 133,
+      "line": 134,
       "column": 21,
       "tag": "button",
       "events": [
@@ -53571,9 +53654,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:144:44",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:145:44",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 144,
+      "line": 145,
       "column": 44,
       "tag": "button",
       "events": [
@@ -53605,9 +53688,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:147:41",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:148:41",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 147,
+      "line": 148,
       "column": 41,
       "tag": "Link",
       "events": [],
@@ -53631,9 +53714,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:153:7",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:154:7",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 153,
+      "line": 154,
       "column": 7,
       "tag": "Dialog",
       "events": [
@@ -53662,9 +53745,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:155:34",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:156:34",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 155,
+      "line": 156,
       "column": 34,
       "tag": "form",
       "events": [
@@ -53693,9 +53776,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:155:147",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:156:147",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 155,
+      "line": 156,
       "column": 147,
       "tag": "input",
       "events": [
@@ -53726,9 +53809,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:155:505",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:156:505",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 155,
+      "line": 156,
       "column": 505,
       "tag": "button",
       "events": [
@@ -53759,9 +53842,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/dashboard/Learn.jsx:155:622",
+      "id": "frontend/src/pages/dashboard/Learn.jsx:156:622",
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "line": 155,
+      "line": 156,
       "column": 622,
       "tag": "button",
       "events": [],
@@ -76726,6 +76809,10 @@
       "sourceSha256": "8783a8099d54542953da91b863d43f400cf80b0eb5698f2209566fa81a5981a5"
     },
     {
+      "file": "frontend/src/components/dashboard/CoverageAvailability.jsx",
+      "sourceSha256": "48b801ea3b703ec89e54a05d5546654fc6080f9afb79dbc1a6a7f0bf94da15e2"
+    },
+    {
       "file": "frontend/src/components/dashboard/CriterionFeedback.jsx",
       "sourceSha256": "c55606facc94b7f1fa213d0812ed4c808f9607c6413cf3a3b0889311e53cf850"
     },
@@ -77558,6 +77645,10 @@
       "sourceSha256": "6271ed90fa40fb1f18c7cd8fe4121a704af107ec3c645569a16a3fb306991242"
     },
     {
+      "file": "frontend/src/lib/coverageCopy.js",
+      "sourceSha256": "1cc601f78f5ac13c88d759a7c4db2578b69b281238aa5a434c813b80b116f690"
+    },
+    {
       "file": "frontend/src/lib/curriculumPublication.js",
       "sourceSha256": "424d0a5cb2a773fa827a7140a22a9bdd41254733a1a74fc64f336abac43495e8"
     },
@@ -77811,7 +77902,7 @@
     },
     {
       "file": "frontend/src/pages/dashboard/Learn.jsx",
-      "sourceSha256": "60fe423d102e1c2e4a11372143b0e4810c81242709b616c3e479f22cef872d6f"
+      "sourceSha256": "40144e6f0a5b59e47da1f090aa1ab6830fcdd0b567b162ce5d6357ed8e8e294b"
     },
     {
       "file": "frontend/src/pages/dashboard/Learners.jsx",
@@ -78098,6 +78189,10 @@
       "sourceSha256": "abd3622f8b3c299fd8f49459f5e5a81a876520b8b023ea6e8df168c8ae68c465"
     },
     {
+      "file": "frontend/src/services/coverageClient.js",
+      "sourceSha256": "5d50393eefdd9ce0e153cdb16d3737d7c8681bb2f34c761155324c4fb0986614"
+    },
+    {
       "file": "frontend/src/services/curriculumBridgeService.ts",
       "sourceSha256": "125966a4bccfd36b8557bc8a5ebe4f21092a983a5300df929daafd8edaa67348"
     },
@@ -78245,7 +78340,7 @@
   "backendSources": [
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
-      "sourceSha256": "20261356d1fe76dba161dc66ee571e204194291823cb41e5dda5205547328b42"
+      "sourceSha256": "564d3c5b90bb1ad6640399ff1e78a9f0c8c7401e9f8e65e194f8a626ef4e8438"
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.controller.ts",
@@ -80777,6 +80872,19 @@
           "PATCH /api/auth/profile",
           "POST /api/auth/session"
         ]
+      },
+      "frontend/src/components/dashboard/CoverageAvailability.jsx": {
+        "profile": "connected-coverage-status",
+        "state": "connected",
+        "execution": "server",
+        "reason": "Reads authenticated owner coverage from the current Firestore release policy; translated status, category detail and retry preserve account/context. A summary never grants learning execution or proves source/provider qualification.",
+        "followUp": [
+          "SCOPE-02",
+          "PLAT-01"
+        ],
+        "endpoints": [
+          "GET /api/account/coverage"
+        ]
       }
     },
     "operations": [
@@ -81384,6 +81492,30 @@
           "PRIV-01"
         ],
         "endpoints": []
+      },
+      {
+        "id": "learning-coverage",
+        "state": "connected",
+        "execution": "server",
+        "routes": [
+          "/dashboard/learn"
+        ],
+        "files": [
+          "backend/upstream/backend/src/auth/firebase-product/account.controller.ts",
+          "backend/upstream/backend/src/launch-coverage/coverage.policy.ts",
+          "backend/upstream/backend/src/launch-coverage/coverage.repository.ts",
+          "frontend/src/services/coverageClient.js",
+          "frontend/src/components/dashboard/CoverageAvailability.jsx"
+        ],
+        "reason": "Owner-bound coverage summary and exact source/language/device check read current account and trusted release policy transactionally. Missing/expired/revoked or mismatched contexts fail closed; no execution grant. Live source qualification and hosted acceptance are separate.",
+        "followUp": [
+          "SCOPE-02",
+          "PLAT-01"
+        ],
+        "endpoints": [
+          "GET /api/account/coverage",
+          "POST /api/account/coverage/check"
+        ]
       }
     ],
     "gaps": [
@@ -81459,12 +81591,12 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 26,
-    "controlDeclarations": 1638,
-    "routeReachableDeclarations": 1480,
-    "controlFiles": 219,
+    "registeredEndpoints": 28,
+    "controlDeclarations": 1640,
+    "routeReachableDeclarations": 1482,
+    "controlFiles": 220,
     "states": {
-      "connected": 495,
+      "connected": 497,
       "preview": 931,
       "missing": 52,
       "intentionally-unreleased": 160

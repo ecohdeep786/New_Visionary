@@ -21,8 +21,6 @@
 !backend/upstream/backend/nest-cli.json
 !backend/upstream/backend/src/**
 !backend/upstream/backend/src/
-!backend/upstream/backend/prisma/
-!backend/upstream/backend/prisma/schema.prisma
 !infrastructure/
 !infrastructure/gcp/
 !infrastructure/gcp/Dockerfile

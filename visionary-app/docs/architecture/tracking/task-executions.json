@@ -89,19 +89,19 @@
     {
       "sourceId": "SCOPE-02",
       "jiraKey": "KAN-29",
-      "status": "Testing",
-      "scope": "All exposed roles/categories/curriculum choices retained; source-pinned engineering coverage candidate under independent technical review. Whole accepted release matrix and source/provider/admission/commercial evidence remain open.",
+      "status": "In Progress",
+      "scope": "Connected account coverage API and Learn availability UI, plus budget production composition. All exposed roles/categories retained. New runtime review and hosted verification pending; prior tooling-only approval does not cover this source.",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/codex-kan-29-coverage-matrix/visionary-app",
       "preparationBranch": "codex/kan-29-coverage-matrix",
       "preparationCheckpoint": "acb5900fd2a36f96fe132890fb910e5fa66b4534",
-      "jiraCommentId": "10026",
-      "jiraTransitionId": "41",
+      "jiraCommentId": "10028",
+      "jiraTransitionId": "31",
       "review": {
-        "state": "approved-engineering-only",
+        "state": "new-runtime-review-pending",
         "implementer": "Codex",
         "reviewer": "account_structure_review",
         "candidateCommit": "ac8f6abc3cf8f5c87ea0639d28ef011ac50a6fd0",
-        "candidateScope": "Engineering contract/check/report only; full release-matrix acceptance remains open.",
+        "candidateScope": "Earlier ac8f approval covers engineering tooling only. Connected runtime and deployment require a new exact-SHA review; full release-matrix acceptance remains open.",
         "previousCandidate": "973918b49d98fb2bee03697b86c0685e2dc5fcec",
         "previousDecision": "changes requested",
         "finding": "P2 later source mutation could pass after a matrix-only rehash; repaired through independent reviewed source pins and re-submitted.",
@@ -154,7 +154,7 @@
       "integration": {
         "state": "not-integrated",
         "branch": "dev",
-        "currentDev": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+        "currentDev": "c960aba02ad9c921058d07e3741195795b6d07ad",
         "note": "Whole task acceptance is still open; technical approval alone is not a full release-matrix closeout."
       }
     },
