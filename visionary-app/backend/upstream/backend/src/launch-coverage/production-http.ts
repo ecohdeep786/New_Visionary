@@ -17,7 +17,10 @@ export function configureProductionHttp(app: any, options: { publicRoot: string;
   app.use((_req: any, res: any, next: any) => {
     res.set({ 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Permissions-Policy': 'camera=(), geolocation=(), microphone=()', 'Cross-Origin-Opener-Policy': 'same-origin-allow-popups', 'Cross-Origin-Resource-Policy': 'same-origin', 'Content-Security-Policy': csp, 'Strict-Transport-Security': 'max-age=31536000' }); next();
   });
-  app.use('/healthz', (req: any, res: any, next: any) => ['GET', 'HEAD'].includes(req.method) && req.path === '/' ? res.status(200).json({ status: 'ok' }) : next());
+  const health = (req: any, res: any, next: any) => ['GET', 'HEAD'].includes(req.method) && req.path === '/' ? res.status(200).json({ status: 'ok' }) : next();
+  // Keep the container-local probe and expose an API probe for hosted checks.
+  app.use('/healthz', health);
+  app.use('/api/health', health);
   const files = serveStatic(options.publicRoot, { index: false, dotfiles: 'deny', fallthrough: true, setHeaders(res, file) { res.setHeader('Cache-Control', file.includes(`${join(options.publicRoot, 'assets')}`) ? 'public, max-age=31536000, immutable' : 'no-cache'); } });
   app.use((req: any, res: any, next: any) => {
     // Unknown /api paths must remain JSON errors, never the SPA HTML document.
