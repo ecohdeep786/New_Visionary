@@ -1409,3 +1409,7 @@ Independent runtime/packaging approval pins2d45f0780d3a30a1b889481d382482027d289
 ## KAN-29 live engineering checks — 2026-10-19
 
 Public budget host is running approved source2d45f078/image3cef290f: same-origin frontend/API, min0/max1,1CPU512MiB, no new fixed-cost backend services or DNS switch. Real synthetic Firebase session→one canonical account/nested modules→setup/read-back→two-device recovery/logout checks pass; identity disabled. Exact public liveness alias79797d1a independently approved; Linux replacement image build in progress. Full accepted curriculum/source/provider/admission/privacy/commercial matrix remains open, so KAN29 stays Testing. No premature Done/merge/worktree cleanup/next task. See docs/architecture/delivery/KAN29_LINUX_IMAGE_VERIFICATION.md and native Jira10036 for observed scope.
+
+## KAN-29 full scope retained after hosted verification — 2026-10-19
+
+Approved79797d1a/daddef811 is deployed with the budget limits. Real Firebase account-backed Learn desktop/mobile/reload/logout,9containerchecks and actual rollback/restore pass. The founder explicitly retains full KAN29 open until real source coverage is accepted. Engineering verification is recorded without claiming released learning sources; Jira10037 retains Testing and linked acceptance gates remain open. No dev/main integration, worktree removal or next task. See docs/architecture/delivery/KAN29_HOSTED_ACCEPTANCE.md.
