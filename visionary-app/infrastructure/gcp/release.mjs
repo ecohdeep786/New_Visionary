@@ -8,6 +8,8 @@ export const production = Object.freeze({
   runtime: 'visionary-product-runtime@visionary-fd6d2.iam.gserviceaccount.com',
   legacyOrigin: 'https://visionary-product-1022011629348.asia-south1.run.app',
   image: 'asia-south1-docker.pkg.dev/visionary-fd6d2/visionary-product/product',
+  legacyRevision: 'visionary-product-kan29-79797d1a',
+  legacyImage: 'asia-south1-docker.pkg.dev/visionary-fd6d2/visionary-product/product@sha256:c0cb8abed9d3f2e0ca5c9b409f114cd8dd899b357f6333dfe0e051073690787a',
   tag: 'ci-candidate', secret: 'visionary-product-auth-rate-limit',
 });
 const shaPattern = /^[a-f0-9]{40}$/;
@@ -47,8 +49,8 @@ export function verifyLegacyBaseline(revision) {
   const spec = revision.spec || {}, containers = spec.containers || [], container = containers[0];
   const env = Object.fromEntries((container?.env || []).map(row => [row.name, row.value ?? row.valueFrom]));
   const annotations = revision.metadata?.annotations || {};
-  if (containers.length !== 1 || spec.serviceAccountName !== production.runtime ||
-      !container.image.startsWith(production.image + '@sha256:') || env.NODE_ENV !== 'production' ||
+  if (revision.metadata?.name !== production.legacyRevision || containers.length !== 1 || spec.serviceAccountName !== production.runtime ||
+      container.image !== production.legacyImage || env.NODE_ENV !== 'production' ||
       env.AUTH_PUBLIC_ORIGIN !== production.legacyOrigin || env.AUTH_TRUST_PROXY_HOPS !== '1' ||
       env.FIREBASE_PROJECT_ID !== production.project || env.FIREBASE_PROJECT_KIND !== 'production' ||
       env.FIRESTORE_DATABASE_ID !== 'default' || env.FIREBASE_AUTH_DOMAIN !== 'visionary-fd6d2.firebaseapp.com' || env.BILLING_MODE !== 'test' ||

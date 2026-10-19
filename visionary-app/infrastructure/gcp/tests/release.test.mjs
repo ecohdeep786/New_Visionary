@@ -66,24 +66,33 @@ test('rollback validation rejects wrong origin/proxy/identity/secrets/image and 
   assert.throws(() => currentRevision({ status: { traffic: [{ revisionName: previous, percent: 50 }, { revisionName: revision, percent: 50 }] } }));
 });
 test('first main release accepts only the bounded existing KAN-29 service as a legacy rollback baseline', async () => {
-  const legacy = compatible(); legacy.metadata.name = previous;
+  const legacy = compatible(); legacy.metadata.name = production.legacyRevision; legacy.spec.containers[0].image = production.legacyImage;
   const oldEnv = legacy.spec.containers[0].env;
   oldEnv.splice(oldEnv.findIndex(x => x.name === 'VISIONARY_RELEASE_COMMIT'), 1);
   oldEnv.find(x => x.name === 'AUTH_PUBLIC_ORIGIN').value = production.legacyOrigin;
   oldEnv.find(x => x.name === 'AUTH_TRUST_PROXY_HOPS').value = '1';
-  assert.equal(verifyLegacyBaseline(legacy).revision, previous);
-  const f = fixture({ readRevision: async name => name === previous ? legacy : compatible(commit) });
+  assert.equal(verifyLegacyBaseline(legacy).revision, production.legacyRevision);
+  for (const mutate of [
+    r => { r.metadata.name = previous; },
+    r => { r.spec.containers[0].image = production.image + '@sha256:' + 'd'.repeat(64); },
+    r => { r.spec.containers[0].image = production.image + ':latest'; },
+    r => { r.spec.containers[0].image = production.image + '@sha256:broken'; },
+  ]) { const badImage = structuredClone(legacy); mutate(badImage); assert.throws(() => verifyLegacyBaseline(badImage)); }
+  const f = fixture({ readRevision: async name => name === production.legacyRevision ? legacy : compatible(commit) });
+  f.setCurrent(production.legacyRevision);
   const read = f.options.readService;
   f.options.readService = async () => { const service = await read(); service.metadata.annotations['run.googleapis.com/ingress'] = 'all'; return service; };
   const receipt = await deployRelease(f.options); assert.equal(receipt.previousCommit, null); assert.equal(receipt.previousIsLegacy, true);
+  assert.equal(receipt.previous, production.legacyRevision);
   assert.deepEqual(f.calls, ['main', 'deploy', 'candidate', 'main', 'traffic:' + revision, 'check:' + commit]);
   const bad = structuredClone(legacy); bad.spec.containers[0].env.find(x => x.name === 'AUTH_PUBLIC_ORIGIN').value = 'https://attacker.example';
   assert.throws(() => verifyLegacyBaseline(bad));
   let restored = false;
   const failing = fixture({
-    readRevision: async name => name === previous ? legacy : compatible(commit),
+    readRevision: async name => name === production.legacyRevision ? legacy : compatible(commit),
     candidateProbe: async () => { throw Error('candidate unavailable'); }, restoreLegacy: async () => { restored = true; },
   });
+  failing.setCurrent(production.legacyRevision);
   const readFailing = failing.options.readService;
   failing.options.readService = async () => { const service = await readFailing(); service.metadata.annotations['run.googleapis.com/ingress'] = 'all'; return service; };
   await assert.rejects(deployRelease(failing.options), /candidate unavailable/);
