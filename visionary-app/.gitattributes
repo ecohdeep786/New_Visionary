@@ -3,3 +3,4 @@
 integration/upstream-patches/*.patch -text
 backend/upstream/** -text
 ml/upstream/** -text
+infrastructure/gcp/*.sh text eol=lf
