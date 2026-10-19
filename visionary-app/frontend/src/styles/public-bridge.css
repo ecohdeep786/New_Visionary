@@ -61,19 +61,10 @@ main > section[data-section="07-language"] + section[data-section="06-journey"] 
   padding-block-start: 0 !important;
 }
 
-/* The problem chapter is a one-glance scene, not a full chapter, and the
-   landing's promise is a sentence, not a section — both carry Apple's
-   compact-band rhythm (measured Oct 2026): a tighter 56–90px band lets the
-   statement + subject + caption sit inside ~1.2 viewports on desktop while
-   the phone chapter stays compact. 02-struggle is a full chapter that
-   balances the sections below it, so it takes the shared rhythm instead.
-   03-promise is scoped to .page-landing because persona pages keep their
-   own full promise chapter. !important beats the (0,2,1) base rule and the
-   narrow-screen rule alike. */
-main > section[data-section="02-problem"],
-.page-landing main > section[data-section="03-promise"] {
-  padding-block: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
-}
+/* The problem chapter is the page's human-story chapter now (left statement
+   + white story card on the grey ground), so it carries the shared chapter
+   rhythm — the earlier compact-band override is retired. The surface change
+   from the dark intelligence chapter is the join; no hairline reads. */
 
 /* the landing's category line-up sits between two white chapters and carries
    its own grey ground — the surface change IS the chapter join, so the
@@ -91,14 +82,14 @@ main > section[data-section="02-problem"],
   border-top-color: transparent !important;
 }
 
-/* The return chapter answers the promise sentence on the same white field —
-   one story, one ground; only the chapter's own breath separates question
-   from answer, so the join borrows the promise's compact rhythm. The dark
-   promo below keeps its full opening breath as the next surface change.
-   Landing-scoped: the id is the landing's alone. */
-.page-landing main > section[data-section="04-return"] {
+/* The promise is the page's one black statement screen (the turn): the
+   chapter owns its full stage instead of the section rhythm — no padding,
+   no seam, one line centered on the dark ground. The return below opens a
+   new white surface, so it keeps the shared rhythm's full breath. Landing-
+   scoped: the id is the landing's alone. */
+.page-landing main > section[data-section="03-promise"] {
   border-top-color: transparent !important;
-  padding-block-start: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+  padding-block: 0 !important;
 }
 
 /* The how-it-works flow — the white "different people" chapter follows the

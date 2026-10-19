@@ -1,8 +1,8 @@
-# Landing — the designed experience (v5 spec)
+# Landing — the designed experience (v11 spec)
 
-Status: **built and verified (2026-10-19) — awaiting the founder's review of the refit as it renders on the page.** The founder's "continue" released the build; §4 was implemented in `Landing.jsx` with three measured refinements recorded in §8. v4's approved parts stand; the founder quote is approved and stays.
+Status: **built and verified (2026-10-19) — awaiting the founder's review of the rendered page.** v5's return refit stands (§4); v6 reworked the flow (§9); §10 rebuilt the close; §11 the problem chapter; §12 put every persona's door on the first screen; §13 the section-by-section Apple pass; §14 rebuilds the problem as Apple's story chapter, the return as a 2×2 values chapter, and binds the landing's card rows to the measured 48px card-chapter tier. Every word of copy is preserved (the five-journey route line moved from the return to the CTA).
 
-Date: 2026-10-19. Second R&D pass (live interaction study). Evidence: `frontend/artifacts/research/landing-final-study-2026-10-19/interaction/` — per-site filmstrips (a frame every 675px through each page), sticky/media/motion probes, CTA hover deltas (`interaction-probe.json`).
+Date: 2026-10-19. Fifth R&D pass (section anatomy: apple.com/apple-vision-pro, apple.com/in/education, apple.com/in/education-initiative at 1440 — section maps + filmstrips). Evidence: `frontend/artifacts/research/landing-v10-apple-reread-2026-10-19/` (`apple-reread.json`, filmstrips, `V10_REWORK.md`, verify crops). Fourth pass (close structure: apple.com/watch, beatsbydre.com, apple.com/airpods at 1440). Evidence: `frontend/artifacts/research/landing-apple-close-study-2026-10-19/` (`close-study.json`, filmstrips), plus `landing-v7-close-2026-10-19/`, `landing-v8-story-split-2026-10-19/` and `landing-v9-universal-entry-2026-10-19/` (persona walkthrough + audience-rail record). Third pass (formatting + flow): `landing-flow-study-2026-10-19/` (`FLOW_STUDY.md`). Second pass (interaction): `landing-final-study-2026-10-19/interaction/` — per-site filmstrips, sticky/media/motion probes, CTA hover deltas (`interaction-probe.json`).
 
 ---
 
@@ -52,19 +52,19 @@ Feel, in one line each:
 | Beat | The visitor's question | What they see | Felt quality | Doors |
 | --- | --- | --- | --- | --- |
 | 01 hero | What is this? | pinned stage: "One intelligence" + cycling audience line + five cutouts + CTA pair | arrival, scale | Start learning · See how it works |
+| 05 intelligence | What is it, alive? | immediately after the hero: the dark pivot — one intelligence over one morphing stage (**v6**) | understanding | See how it works → /how-it-works |
 | 02 problem | Is this about me? | "Why Visionary exists": statement + four real voices crossfading in studio photography, reader-paced | recognition | — (the story) |
-| 03 promise | What if? | one sentence, fading with the scroll | lift | — |
-| 04 return | What do I get back? | the founder's conviction + the four returns, each with its mark, its door, and the five-journey line | confidence | 4 cell doors + 5 journey links (**§4 refit**) |
-| 05 intelligence | How does it work? | the dark pivot: one intelligence over one morphing stage | power | See how it works → /how-it-works |
+| 03 promise | What if? | one black statement screen — the sentence owns the viewport (**v6**) | lift | — |
+| 04 return | What do I get back? | the founder's conviction at statement scale + the four returns, each with its mark, its door, and the five-journey line (**v6 scale**) | confidence | 4 cell doors + 5 journey links (**§4 refit**) |
 | 13 explore | Who is this for? | five journeys as one line-up of portraits | belonging | 5 persona pages |
 | 14 suite | Where do I go next? | four doors around the product in the same grey catalogue | orientation | Download · Pricing · Help · Updates |
 | 11 trust | Can I trust it? | your learning stays yours: Privacy · Safety · Security · Accessibility | safety | 4 pages |
 | 12 cta | What's my next step? | the invitation; "Free to start. Private by design." | invitation | Get started · Talk to our team |
 | footer | Who are they? | directory, language, legal | air | the whole site |
 
-**The light rhythm is already designed and stays:** white story run (01–04) → dark product pivot (05) → grey catalogue (13–14) → white trust (11) → grey close (12) → footer air (#F5F5F7). No new grounds.
+**The light rhythm (v6):** white hero → **black product pivot (05)** → white human story (02) → **black promise turn (03)** → white return (04) → grey catalogue (13–14) → white trust (11) → grey close (12) → footer air (#F5F5F7). No new grounds — the promise uses the existing `scene-dark` surface.
 
-**By the footer, the visitor has met** the promise (01–03), the return (04), the mechanism door (05), their journey (13), their next task (14), the trust (11), and the invitation (12). No chapter asks them to believe a number; every door opens a real page.
+**By the footer, the visitor has met** the product alive (05), the problem and the promise (02–03), the return (04), their journey (13), their next task (14), the trust (11), and the invitation (12). No chapter asks them to believe a number; every door opens a real page.
 
 ---
 
@@ -153,3 +153,254 @@ Flagged, not touched: the trust chapter's "Learn more" doors wrap within 1024–
 **8.4 Verified.** Gate: `scope:audit:write` (68 routes / 26 endpoints / **1,642** declarations — +2) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Live: 1440 / 1024 / 834 / 390 — exact chapter order, four marks, doors single-line with correct hrefs (`/student`, `/how-it-works`, `/how-it-works`, `/parent`), the five journey links, click-throughs land (`/student`, `/parent`), hover underline measured, reduced-motion pass captured, zero page errors, no horizontal overflow. docH 8,661 @1440 (v4: 8,525) · 8,284 @1024 · 9,062 @834 · 9,741 @390. Evidence: `frontend/artifacts/research/landing-v5-2026-10-19/` (`return-{1440,1024,834,390}.png`, `full-reduced-1440.png`, `landing-v5-verify.json`).
 
 **8.5 No commits** — the founder holds version commits.
+
+---
+
+## 9. v6 — the flow rework (2026-10-19, on the founder's flow review)
+
+### 9.0 The ask
+
+"we need to rework more hard … when they will scroll the page they will not get any about the page because first lot of text is there, not a flow is worked, not a fully apple design premium way to format as if you see in apple all page."
+
+The v5 page passed the content laws and still failed the **order and format**: the product arrived at 4.0 viewports behind 167 words and one image; the promise was a 325px strip.
+
+### 9.1 R&D pass 3 — formatting/flow (measured at 1440)
+
+Evidence: `frontend/artifacts/research/landing-flow-study-2026-10-19/` (`flow-study.json`, filmstrips, `FLOW_STUDY.md`). Per section: viewport height, words, largest type, media, sticky, ground.
+
+| | Apple home | Apple /iphone/ | Google home | About Google | `/` v5 |
+| --- | --- | --- | --- | --- | --- |
+| First story screen | 2,100px · 37 words · 7 media | 367px · 22 words · 8 media · 80px | one action | 158-word lead module | 844px · 19 words · 5 media |
+| Product start | hero (cards) | 1,317px · 1.46 vh | — | — | **3,601px · 4.0 vh** |
+| Story words / viewport | 16 | 29 | — | ~40 | **62 (02–04 corridor)** |
+| Promise beat | — | — | — | — | **325px · 0.36 vh · 9 words · 0 media** |
+| Ground rhythm | white cards / black features | white → black → alternating | white | white / warm cards | white ×3 → black |
+
+Laws added: **F1** show before explain (product within ~1.5 viewports) · **F2** a story viewport carries ~16–40 words · **F3** one idea per screen (~0.85–1.24 vh) · **F4** a statement owns a screen · **F5** ground changes pace the story.
+
+### 9.2 Built (`Landing.jsx` + `public-bridge.css`)
+
+1. **Product first.** `05-intelligence` moved from position 5 to position 2, directly after the hero's frosted seam. The first chapter after the hero carries 15 words + the product stage (was 49 words + one portrait, product still 1.3 vh away).
+2. **The promise is a black statement screen.** `scene-dark`, 702px at 1440 (78svh, min 460 / max 780), the nine words at chapter scale, the product's radial glow, `accent-gradient-on-dark`. The bridge gives the promise `padding-block: 0` (it owns its stage) and drops the obsolete promise→return same-field rule, so the return takes the shared full breath after the surface change.
+3. **The founder quote at statement scale.** `clamp(30px,3.7vw,54px)`, 1.18 leading, 30ch — the chapter 859 → 1,013px. The four returns, marks, doors and journey line untouched.
+4. Nothing else: no copy edits, no new assets, no new section, hero/glass untouched, no new ground colour.
+
+### 9.3 Measured result
+
+| | v5 | v6 |
+| --- | --- | --- |
+| Product starts at | 3,601px · 4.0 vh | **1,170px · 1.30 vh** |
+| First chapter after hero | 49 words · 1 media | **15 words · product stage** |
+| Promise | 325px · 0.36 vh · white strip | **702px · 0.78 vh · black statement** |
+| Return quote | 40px | **54px** |
+| docH @1440 | 8,661 | 9,193 |
+| Promise @1024 / 834 / 390 | — | 599 / 780 / 658px; type 56 / 56 / 40px |
+
+Gate: `scope:audit:write` (68 routes / 26 endpoints / **1,642** declarations) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Live: exact order at 1440/1024/834/390, promise bg `rgb(10,13,20)`, no overflow, no page errors (the dev `/api/auth/me` 500 is the absent backend, app-wide), reduced-motion pass. Evidence: `landing-v6-flow-2026-10-19/` (`full-warm-1440.jpg`, `full-reduced-1440.jpg`, `promise-*.jpg`, `intelligence-*.jpg`, `seam-*.jpg`, `04-return.jpg`).
+
+### 9.4 Founder calls (built as recommended — small swaps)
+
+1. Product-first order — one component move restores the v5 narrative order.
+2. Black promise — one class swap returns it to the white band.
+3. Quote at 54px — one clamp change.
+4. Still open from v5: the trust doors wrap in the 1024–1068 window (pre-existing); `lg:` → `min-[1069px]` on the values grid is the one-class fix.
+
+### 9.5 No commits — the founder holds version commits.
+
+---
+
+## 10. v7 — the close pass (2026-10-19, on the founder's Apple layout review)
+
+### 10.0 The ask
+
+The founder's close complaint: "see the cta section and before section of cta that all looking a text heavy clutter and user will get boring from page and they will left with overall page." Direction: visit apple.com / Apple Watch / Beats and match their premium structure and layout.
+
+### 10.1 R&D pass 4 — measured closes (1440)
+
+| | apple.com/watch | beatsbydre.com | apple.com/airpods |
+| --- | --- | --- | --- |
+| docH | 7,252 | 7,219 | 9,359 |
+| close anatomy | grey split feature card → 3-up family cards (28px) → utilities | compare split → legal → black "Join Our List" band → light footer | full-bleed rounded tiles on `#f5f5f7` → ask → footer |
+
+Extracted laws: (1) a close is one grey `#f5f5f7` panel, 28px radius, split header — statement left, quiet support line right; (2) the black ceremonial band: radial glow, white statement, quiet blue link, small print; (3) a utility row is one card per door, media inset, no detached ornaments. Evidence: `frontend/artifacts/research/landing-apple-close-study-2026-10-19/` (`close-study.json`, filmstrips).
+
+### 10.2 Built (landing-only variants; shared defaults byte-identical)
+
+1. **Trust → feature panel.** `PremiumTrustSection variant="feature"`: one grey `#f5f5f7` panel (28px), split header (statement left; support line right at ≥1069), 2×2 icon value grid (white 48px circles; Lock / HeartHandshake / ShieldCheck / Accessibility), divider hairline. Panel radius uses `rounded-[1.75rem]` because `public-bridge.css` hijacks `rounded-[28px]` to 12px `!important`.
+2. **CTA → the black band.** `PremiumCTASection variant="closing"`: `scene-dark` rgb(10,13,20), product-glow + two faint orbit rings, 72px white statement, 17px/400 `white/70` sub, white pill + `#2997ff` quiet link, small print. Square top: the seam law forces section radius 0.
+3. **Suite tiles unified.** One white card per door (inset grey media well + in-card arrow), removing the detached strip / floating notch; section height unchanged.
+
+### 10.3 Measured (v6 → v7)
+
+| | v6 | v7 |
+| --- | --- | --- |
+| Trust | three columns, no panel | **feature panel — 1,069px @1440** |
+| Suite | tiles + detached strip | **cohesive cards — 838px @1440** |
+| CTA | grey `#f5f5f7` band — 657px | **black band — 642px @1440** |
+| docH @1440 | 9,193 | 9,584 |
+
+Trust 1,069 / 1,048 / 959 / 1,102; suite 838 / 746 / 705 / 1,164; CTA 642 / 550 / 517 / 534 across 1440 / 1024 / 834 / 390. Persona pages verified untouched (`/student`: trust three columns 724px, no panel; CTA stays grey 657px). Gate: `scope:audit:write` (68 / 26 / **1,645**) → eslint clean → both typechecks clean → vite build clean (2,270 modules) → **532/532 tests**. Evidence: `landing-v7-close-2026-10-19/` (`final.json`, `trust-*`, `suite-*`, `cta-*` crops, `full-1440-final.jpg`, persona check shots).
+
+### 10.4 Founder calls
+
+1. Trust panel — one prop swaps back to the three-column tier for the persona pages.
+2. CTA band — the `variant` swap restores the grey close.
+3. Suite cards — the About page's tile treatment remains the shared default.
+
+### 10.5 No commits — the founder holds version commits.
+
+---
+
+## 11. v8 — the page-wide structure pass (2026-10-19, repeat ask)
+
+### 11.0 The ask
+
+"visit the apple.com, apple watch, apple beat … improve the every section and layout to match apple premium design and structure … again." Every chapter audited against the pass-4 references and the page's own laws; only the chapters the audit failed were changed.
+
+### 11.1 Audit — every chapter at 1440 (v8)
+
+| Chapter | Structure | Verdict | Action |
+| --- | --- | --- | --- |
+| 01-hero 844px | rotating persona + glass + portrait row | Apple hero grammar; untouched by direction | none |
+| 05-intelligence 1,117px | product-first dark stage, four beats, sticky | Apple product chapter (v6) | none |
+| 02-problem 1,033px | story split: face ↔ voice | **was statement + lone portrait; rebuilt** | story split |
+| 03-promise 702px | black statement screen | Apple's one-beat black screen (v6) | none |
+| 04-return 990px | founder quote + four returns + journey line | v5 refit; cells were 165px ribbons | gutters opened |
+| 13-explore 1,251px | 3.5-visible journey line-up | accepted module (portrait cards on grey) | none |
+| 14-suite 838px | four white cards, inset wells | v7 | none |
+| 11-trust 1,069px | grey feature panel, 2×2 values | v7 | none |
+| 12-cta 642px | black ceremonial close | v7 | none |
+| footer | approved directory | — | none |
+
+### 11.2 Built (`Landing.jsx`)
+
+1. **Problem → Apple's story split.** The chapter statement stays centered; below it, `public-editorial-frame` runs two columns at ≥1069 (476 / 440): the studio portrait left (480px stage; the mask now fades the top edge too — `transparent 0%, black 7%, black 78%, transparent 97%`), the pull-quote right at `clamp(24px,2.3vw,34px)` / 22ch, the persona under it, the pager under the quote (centered below 1069). Below 1069 the story stacks portrait → quote. Every word, image, persona and the 4.2s carousel untouched; a dot click swaps statement, quote, persona and image alt (probe-verified).
+2. **Return → readable cells.** Gutters `min-[1069px]:px-10 → px-6`: body text 165 → 196–221px, most titles back to one line. Marks, four columns, hairlines, editorial links and the journey line exactly as approved (v5).
+
+### 11.3 Measured (v7 → v8)
+
+| | v7 | v8 |
+| --- | --- | --- |
+| 02-problem | 1,247px | **1,033px — story split** |
+| 04-return | 1,013px | **990px — readable cells** |
+| docH @1440 | 9,584 | **9,347** |
+| docH @1024 / 834 / 390 | 9,357 / 9,261 / 10,060 | **9,306 / 9,133 / 10,099** |
+
+No horizontal overflow at any width. Console: the two pre-existing entries only (`/api/auth/me` 500 — absent dev backend; the `fetchPriority` prop warning at `NewPersona.jsx:127`). Persona pages untouched (no shared-module defaults changed). Gate: `scope:audit:write` (68 / 26 / **1,645**) → eslint clean → both typechecks clean → vite build clean (2,270 modules) → **532/532 tests**. Evidence: `landing-v8-story-split-2026-10-19/` (`full-1440-final.jpg`, `full-390-final.jpg`, `problem-*`, `viewport-04-return-*`, `problem-check.json`, `return-check.json`, `final.json`).
+
+### 11.4 Founder calls
+
+1. Problem split — one class swap mirrors the columns; a block revert restores the centered stage.
+2. Return gutters — `px-6 → px-10` restores the v5 gutters.
+
+### 11.5 No commits — the founder holds version commits.
+
+---
+
+## 12. v9 — the universal entry (2026-10-19, on the founder's persona review)
+
+### 12.0 The ask
+
+Walk the page as a first-time student, teacher, parent, professional, and organization; then make the universal front door fit every one of them in Apple's premium structure.
+
+### 12.1 The walkthrough (full text: `landing-v9-universal-entry-2026-10-19/UNIVERSAL_FIT.md`)
+
+The page's content answers all five personas — after they wait. The entry does not: one audience line cycles every 2.6s (10.4s to the organization), the cast is decoration, and no persona door sits on the first screen. Measured wait until "your" line: student 0s · teacher 2.6s · parent 5.2s · professional 7.8s · organization 10.4s.
+
+### 12.2 R&D — Apple's audience anatomy (measured live at 1440)
+
+- apple.com/in/education local nav: audience row `K–12 · Higher Education · College Students · Success Stories` — 12px/400 quiet links under a 21px/600 brand, visible before the hero.
+- apple.com/in/education-initiative hero: everyone named in one sentence, no cycling.
+
+Law: a universal page never makes an audience wait for a carousel; the row is quiet, visible, and always there.
+
+### 12.3 Built (landing-only)
+
+1. **The hero audience rail**: five quiet 14px links under the CTA pair — Students · Teachers · Parents · Professionals · Organizations — order locked to `HERO_CATEGORY_WORDS` (a preview always matches the label touched). Hover or focus previews that line and holds the cycle; leaving resumes; the click opens the persona page; the active label follows the cycle.
+2. **Reduced motion**: the audience line's auto-advance never starts under `prefers-reduced-motion`; the rail still chooses a line.
+3. **`NewPersona` gains an inert `audienceLinks` prop** — persona heroes never pass it and stay exactly as before (`/student` verified: rail count 0).
+4. Zero copy changes; labels are the footer's existing audience names. No new assets.
+
+### 12.4 Measured
+
+| | before | after |
+| --- | --- | --- |
+| Persona doors on the first screen | 0 | **5** |
+| Wait for the non-student lines | 2.6–10.4s | **hover / focus / tap — 0s** |
+
+No horizontal overflow at 375 / 390 / 834 / 1024 / 1440 / 1920; the rail clears the family by 85–231px. Behaviors verified live: hover "Teachers" → "for teachers."; leave → resumes; click "Organizations" → `/organization`; keyboard focus previews; reduced motion static with a working rail. Gate: `scope:audit:write` (68 / 26 / **1,646**) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Evidence: `landing-v9-universal-entry-2026-10-19/`.
+
+### 12.5 Founder calls
+
+1. Hero primary pill "Start learning" — one label swap if the hero should speak universally like the close.
+2. Organization story slide — new copy; held.
+3. Rail placement — under the CTA pair (built); Apple's local-nav bar position is a small move.
+
+### 12.6 No commits — the founder holds version commits.
+
+---
+
+## 13. v10 — the section-by-section Apple pass (2026-10-19)
+
+### 13.0 The ask
+
+Change the blue button to white; rework the next section to Apple's premium section style; then "What you get"; then the next sections, "and so on" — checking Apple's pages start to end.
+
+### 13.1 R&D — section maps measured live (`landing-v10-apple-reread-2026-10-19/`)
+
+- apple.com/in/education (9 sections / 7,405px): "Our values lead the way." = **statement + white cards, 28px radius, icon top-left, title, copy, Learn-more link**; black strip "From grade school to grad school." (771px).
+- apple.com/apple-vision-pro (12 sections / 32,700px): "Take a closer look." = statement + grey media cards on white; "Explore Apple Vision Pro accessories." = **statement over the card grid** on `#f5f5f7`.
+- Laws taken: a card section opens with a **statement**, never a small eyebrow; dark product bands carry a **white pill**, never a filled accent button.
+
+### 13.2 Built (landing-only)
+
+1. **Intelligence band (promo)**: the `#4285F4` pill becomes the dark-band **white pill** (ink text, hover `#f5f5f7`); the mark **floats bare** (`plain` prop drops the card border on the promo instance only) and the stage grows 520 → 560px. Measured: `rgb(66,133,244)` → `rgb(255,255,255)`, border `rgba(0,0,0,0)`.
+2. **"What you get" (04)**: the four returns become **Apple values cards** — grey `#f5f5f7`, 28px radius (`rounded-[1.75rem]`; the `rounded-[28px]` hijack), icon → title → copy → editorial door pinned to the card baseline; **4-up ≥1069 · 2-up ≥640 · stacked on the phone**; frame moves from the 980 editorial spine to the wide card frame (1265px / 80px gutters). Sections 990 → 1,051 @1440.
+3. **Suite "Explore further" (14)**: the 17px eyebrow promotes to the **Apple statement tier** above the grid — same words, one statement period; 64px @1440 · 56px @1024/834 · 40px @390. Section 838 → 886 @1440.
+
+### 13.3 Audited, unchanged
+
+Problem (02) matches the initiative story sections; promise (03) matches Apple's black strip; explore (13) is the shared module used verbatim by design; trust (11) / CTA (12) are the v7 Apple Watch / Beats anatomy.
+
+### 13.4 Measured
+
+docH 9,496 @1440 / 9,014 @1024 / 9,000 @834 / 10,271 @390 — no horizontal overflow anywhere; return doors align on one baseline; persona `/student` verified: no promo pill, no return cards, no suite statement.
+
+Gate: `scope:audit:write` (68 / 26 / **1,646**) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Evidence: `landing-v10-apple-reread-2026-10-19/`.
+
+### 13.5 No commits — the founder holds version commits.
+
+---
+
+## 14. v11 — the story chapter, the values chapter, the card-chapter tier (2026-10-19)
+
+### 14.0 The ask
+
+The "Why Visionary exists" chapter reads text-heavy — heading, sub, image, text as four stacked blocks, "apple never design like this"; "What you get" still not Apple; and check the "Who it's for" section's heading size. Full record: `frontend/artifacts/research/landing-v11-apple-statements-2026-10-19/V11_REWORK.md`.
+
+### 14.1 R&D — the heading tiers measured at four widths
+
+Probe: `apple-statements.json` (1440) + `apple-heading-breakpoints.json` (1024/834/390).
+
+- Education **card chapters** ("Real stories. Real impact.", "Our values lead the way.", "How to Buy."): **48/52 · 40/44 · 40/44 · 32/36**, no subheading.
+- Education-initiative **story chapters** ("Our work in education doesn't end here."): **64/68 · 56/60 · — · 40/44** with a **24/600** lead, then one white media card on the grey ground.
+- Vision Pro accessory row: 56/60 @1440 · 48/52 @1024.
+- The v10 landing was problem **72** (adapter display token), explore **64**, suite **64** (the adapter default overrode the 44 clamp), return quote **53.3**, cards **264px 4-up**.
+
+### 14.2 Built (landing-only; copy preserved)
+
+1. **Problem (02) — Apple's story chapter.** `#f5f5f7` ground; left 980 spine: 17px eyebrow, statement at **64/56/56/40** (`data-type="section"`), 24/600 one-line lead; then **one white 28px story card** — portrait on the card's white left field, quote/persona right — with the pager in a control row **below the card**. The v8 compact-band override is retired; the chapter takes the shared rhythm. 1,033 → **1,065** @1440, card 980×440.
+2. **Return (04) — the values chapter.** Quote **53.3 → 48** (natural wrap); four returns become **two broad cards per row** (545px each @1440) with **28px feature titles** over 19/23 copy; cards stay `#f5f5f7` / 28px / doors pinned. The five-journey route line moves **verbatim to the CTA** tail mini-router. 990 → **1,238** @1440.
+3. **Router (13) + suite (14) — the card-chapter tier.** New measured public role **`card-chapter`** (48/52 · 40/44 · 32/36; `--fs-card-chapter` / `--lh-card-chapter` tokens, role in the explicit-role layer). Explore heading **64 → 48**, intro **24/600 → 21/400** (`editorial-body`); suite statement **64 → 48**. The shared explore module gains optional `headingRole` / `subRole`; persona pages pass neither and keep 64/56/40 (verified).
+
+### 14.3 Measured
+
+docH **9,668** @1440 / 8,855 @1024 / 9,481 @834 / 10,365 @390 / 10,348 @375 — no horizontal overflow 375–1920. Structure: hero white → intelligence dark → problem grey → promise dark → return white → explore+suite grey → trust white → CTA dark. Persona pages: `/student`, `/teacher`, `/parent`, `/professional`, `/organization` explore h2 64 @1440 / 40 @390, no overflow.
+
+Gate: `scope:audit:write` (68 / 26 / **1,645**) → eslint clean → both typechecks clean → vite build clean → **532/532 tests**. Evidence: `landing-v11-apple-statements-2026-10-19/`.
+
+### 14.4 Flags for the founder
+
+The route line moved to the CTA (same words/links); the problem band is grey and takes the shared rhythm (+~170px at 1440); the suite heading is now the measured 48 tier; persona line-ups stay at 64 unless he wants the role applied there too.
+
+### 14.5 No commits — the founder holds version commits.

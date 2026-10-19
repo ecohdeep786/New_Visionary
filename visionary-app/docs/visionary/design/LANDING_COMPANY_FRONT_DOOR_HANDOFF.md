@@ -1,5 +1,9 @@
 # Landing v3 — the company front door (proposed 2026-10-19)
 
+> **Historical proposal.** This v3 handoff records the original structural
+> proposal. The current page and its v4–v6 build records are in
+> `LANDING_FINAL_FRONT_DOOR.md` and `LANDING_EXPERIENCE_SPEC.md` (v6 spec).
+
 **Status: proposed — awaiting founder review before build.** `/` currently ships
 the v2 story-chapter structure (built 2026-10-18, gate green). This proposal
 restructures the front door so it tells the **company's** story the way

@@ -1518,3 +1518,166 @@ added mechanically on the remaining pages — only where they add information.
   (v4 8,525), 8,284 @1024, 9,062 @834, 9,741 @390. Evidence:
   `artifacts/research/landing-v5-2026-10-19/`.
 - No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v6 (the flow rework; product first, black promise)
+- Founder's flow review: after the hero the page turns into text; the visitor
+  never learns what the product is; not Apple's premium flow/format. Third
+  R&D pass measured formatting/flow at 1440 (Apple home, /iphone/, google.com,
+  about.google, and our page): evidence + laws in
+  `artifacts/research/landing-flow-study-2026-10-19/FLOW_STUDY.md`.
+- Diagnosis: the product started at 4.0 viewports behind 167 words and one
+  image (Apple: 1.46 vh / 42 words); the promise was a 325px 9-word strip;
+  the return held 109 words with no media. The page passed the content laws
+  and failed the order/format.
+- Built: 05-intelligence moved to position 2 (the product answers on the
+  first scroll, 1,170px / 1.30 vh); 03-promise rebuilt as the page's one black
+  statement screen (scene-dark, 702px / 0.78 vh at 1440; 599/780/658 at
+  1024/834/390; the product glow + accent-gradient-on-dark); the founder
+  quote raised to clamp(30px,3.7vw,54px); the bridge promise padding rule
+  replaced and the obsolete promise->return same-field rule removed. No copy,
+  no new assets, no new section, hero/glass untouched.
+- Verified: scope:audit:write (68/26/1,642) -> eslint clean -> tsc both ->
+  vite build clean -> 532/532 tests; live 1440/1024/834/390 exact order
+  (hero -> intelligence -> problem -> promise -> return -> explore -> suite ->
+  trust -> cta), promise bg rgb(10,13,20), no overflow, no page errors (the
+  dev /api/auth/me 500 is the absent backend, app-wide), reduced-motion full
+  page. docH 9,193 @1440 (v5 8,661). Evidence:
+  `artifacts/research/landing-v6-flow-2026-10-19/`.
+- No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v7 (the close pass; Apple Watch/Beats structure)
+- Founder's close complaint: the CTA and the section before it read as "text
+  heavy clutter"; direction: match Apple's premium structure/layout (apple.com,
+  Apple Watch, Beats). Fourth R&D pass measured closes at 1440: apple.com/watch
+  (docH 7,252), beatsbydre.com (7,219), apple.com/airpods (9,359); evidence in
+  `artifacts/research/landing-apple-close-study-2026-10-19/` (`close-study.json`,
+  filmstrips).
+- Built as landing-only opt-in variants (shared modules' defaults
+  byte-identical - the five persona pages unchanged):
+  `PremiumTrustSection variant="feature"` - one grey #f5f5f7 panel (28px
+  radius), split header (statement left, quiet support line right at >=1069),
+  2x2 icon value grid (white 48px circles; Lock/HeartHandshake/ShieldCheck/
+  Accessibility), divider hairline;
+  `PremiumCTASection variant="closing"` - the Beats black closing band
+  (scene-dark rgb(10,13,20), product-glow + two orbit rings, 72px white
+  statement, 17px/400 white/70 sub, white pill + #2997ff quiet link, small
+  print; square top via the seam law).
+  Suite tiles unified into one white card each (inset grey media well +
+  in-card arrow), removing the detached strip/floating notch; section height
+  unchanged (838 @1440).
+- Verified: scope:audit:write (68/26/1,645) -> eslint clean -> tsc both ->
+  vite build clean (2,270 modules) -> 532/532 tests; persona /student checked
+  unchanged (trust 3 cols 724px no panel; CTA grey 657px); trust 1,069/1,048/
+  959/1,102, suite 838/746/705/1,164, CTA 642/550/517/534 at 1440/1024/834/
+  390; no overflow; docH 9,584/9,357/9,261/10,060. Evidence:
+  `artifacts/research/landing-v7-close-2026-10-19/`.
+- No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v8 (page-wide structure pass; story split)
+- Founder's repeat ask: "improve the every section and layout to match apple
+  premium design and structure ... again". Every chapter audited at 1440
+  against the pass-4 references; only the two chapters the audit failed were
+  changed (hero/intelligence/promise/explore/suite/trust/cta/footer hold).
+- Built (`Landing.jsx`): 02-problem rebuilt as Apple's story split - editorial
+  frame, 2 cols >=1069 (476/440), portrait left (480px stage; the mask now
+  fades the top edge too), pull-quote right at clamp(24px,2.3vw,34px)/22ch,
+  persona below, pager under the quote; below 1069 it stacks portrait -> quote.
+  Copy, images, personas and the 4.2s carousel untouched; a dot click swaps
+  statement/quote/persona/alt (probe-verified). 04-return gutters opened
+  (min-[1069px]:px-10 -> px-6): cells 165 -> 196-221px, most titles one line;
+  marks, four columns, hairlines, editorial links and journey line as approved
+  (v5).
+- Verified: scope:audit:write (68/26/1,645) -> eslint clean -> tsc both ->
+  vite build clean (2,270 modules) -> 532/532 tests; problem 1,033/947/936/
+  1,021 and return 990 @1440 (was 1,247/1,013); docH 9,347 @1440 (v7 9,584),
+  9,306/9,133/10,099 at 1024/834/390; no horizontal overflow; console only the
+  two pre-existing entries (/api/auth/me 500 absent dev backend; fetchPriority
+  warning at NewPersona.jsx:127). Evidence:
+  `artifacts/research/landing-v8-story-split-2026-10-19/`.
+- No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v9 (universal entry; walkthrough + hero audience rail)
+- Founder's ask: walk the universal page as each first-time persona (student,
+  teacher, parent, professional, organization), then make the page fit every one
+  of them in Apple's premium structure. Full walkthrough + audit:
+  `artifacts/research/landing-v9-universal-entry-2026-10-19/UNIVERSAL_FIT.md`.
+- Finding: the content serves all five; the entry serves students first - one
+  audience line cycles every 2.6s (organization waits 10.4s), the cast is
+  decorative, no persona door on the first screen. Measured Apple anatomy:
+  education local nav audience row (12px/400 quiet links: K-12 / Higher
+  Education / College Students / Success Stories) + education-initiative
+  universal hero sentence - "a universal page never makes an audience wait".
+- Built (landing-only): hero audience rail under the CTA pair - Students /
+  Teachers / Parents / Professionals / Organizations, order locked to the
+  cycling line; hover/focus previews + holds, leave resumes, click opens the
+  persona page; auto-advance pauses under prefers-reduced-motion (rail still
+  works); NewPersona gains an inert audienceLinks prop (persona heroes
+  unchanged, /student verified rail 0). Zero copy changes.
+- Verified: hover "Teachers" -> "for teachers."; leave -> resumes; click ->
+  /organization; keyboard focus works; reduced motion static + rail; no
+  overflow 375/390/834/1024/1440/1920 (rail clears family by 85-231px);
+  scope:audit:write (68/26/1,646) -> eslint clean -> tsc both -> vite build
+  clean -> 532/532 tests. Evidence:
+  `artifacts/research/landing-v9-universal-entry-2026-10-19/`.
+- No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v10 (section-by-section Apple pass)
+- Founder's ask: change the blue button to white; rework the next section to Apple
+  premium; then "What you get"; then the next, and so on - checking Apple's own
+  pages start to end. Full record + measurements:
+  `artifacts/research/landing-v10-apple-reread-2026-10-19/V10_REWORK.md`.
+- R&D (measured live, section maps + filmstrips): education "Our values lead the
+  way." = statement + white 28px cards (icon, title, copy, link); vision-pro
+  "Take a closer look." = statement + grey cards; "Explore Apple Vision Pro
+  accessories." = statement over the grid. Laws: a card section opens with a
+  statement, never an eyebrow; dark product bands carry a white pill.
+- Built (landing-only): (1) intelligence promo pill #4285F4 -> white (ink text,
+  dark ring offset); the mark floats bare (plain prop, border transparent) and
+  the stage grows 520 -> 560px - persona/default instances byte-identical.
+  (2) "What you get": four grey #f5f5f7 cards, 28px radius (rounded-[1.75rem]),
+  icon/title/copy/editorial door pinned at the baseline, 4-up >=1069 / 2-up >=640
+  / stacked; frame 980 editorial spine -> 1265 wide card frame. (3) Suite
+  "Explore further" eyebrow -> Apple statement tier ("Explore further.", same
+  words + period; 64/56/40px by width).
+- Audited unchanged: problem (02) story split, promise (03) black strip, explore
+  (13, shared by design), trust/CTA (11/12, v7 anatomy).
+- Verified: pill rgb(255,255,255) ink; frame border rgba(0,0,0,0); 4 cards 264px
+  radius 28px bg rgb(245,245,247) doors #0066cc aligned; suite statement 64px;
+  docH 9,496/9,014/9,000/10,271 @1440/1024/834/390, no overflow; /student no
+  promo pill/cards/statement. Gate: scope:audit:write (68/26/1,646) -> eslint
+  clean -> tsc both -> vite build clean -> 532/532 tests. Evidence:
+  `artifacts/research/landing-v10-apple-reread-2026-10-19/`.
+- No commits - founder holds version commits.
+## 2026-10-19 - Landing v11 (story chapter, values chapter, card-chapter tier)
+- Founder's ask: the "Why Visionary exists" chapter reads text-heavy - heading,
+  sub, image, text stacked as four blocks, "apple never design like this"; also
+  rework "What you get"; also check the "Who it's for" section's heading size.
+  Full record: artifacts/research/landing-v11-apple-statements-2026-10-19/V11_REWORK.md.
+- R&D (measured live at 1440/1024/834/390): education card chapters ("Real
+  stories. Real impact.", "Our values lead the way.", "How to Buy.") = 48/52,
+  40/44, 40/44, 32/36 with no sub; education-initiative story chapters ("Our work
+  in education doesn't end here.") = 64/68 + 24/600 lead + white media card on
+  the grey ground; vision-pro accessory row = 56 desktop. Current landing was
+  problem 72, explore 64, suite 64 (adapter default overrode the 44 clamp), return
+  quote 53.3, cards 264px 4-up.
+- Built (landing-only, copy preserved): (1) problem chapter rebuilt as Apple's
+  story chapter - #f5f5f7 ground, left 17px eyebrow + 64/56/56/40 statement
+  (data-type="section") + 24/600 one-line lead, then ONE white 28px card (portrait
+  left, quote/persona right) with the pager in a control row under the card; the
+  old compact-band override retired. (2) "What you get": founder quote 53.3 -> 48
+  (natural wrap), returns become four 28px feature-title cards in a 2x2 grid (545px
+  each @1440; 28/24/21 titles) instead of four 264px columns; the five-journey
+  route line moves verbatim to the CTA's tail mini-router. (3) new measured public
+  role card-chapter (48/52, 40/44, 32/36; tokens --fs/lh-card-chapter) applied to
+  the explore heading (64 -> 48) and its intro demoted 24/600 -> 21/400
+  (editorial-body); suite statement 64 -> 48. Shared explore module gains optional
+  headingRole/subRole; persona pages pass neither (verified 64/40 unchanged).
+- Verified: docH 9,668/8,855/9,481/10,365 @1440/1024/834/390 (v10 9,496), no
+  overflow 375-1920; problem 1,065px @1440, card 980x440; return cards 545 @1440
+  (2x2), quote 48/41/33.4/32; structure hero white -> intelligence dark -> problem
+  grey -> promise dark -> return white -> explore+suite grey -> trust white -> CTA
+  dark; /student /teacher /parent /professional /organization explore H2 64/40 and
+  no overflow. Gate: scope:audit:write (68/26/1,645) -> eslint clean -> tsc both ->
+  vite build clean -> 532/532 tests. Evidence:
+  artifacts/research/landing-v11-apple-statements-2026-10-19/.
+- No commits - founder holds version commits.
