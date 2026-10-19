@@ -58,6 +58,22 @@ def edge_urlmap():
                         for path in ["/login", "/api/auth/me", "/__deploy-check/", "/__deploy-check/api/auth/me", "/__deploy-check-other", "/__DEPLOY-CHECK"]]]}
 
 
+def ensure_url_map(desired):
+    describe = ["compute", "url-maps", "describe", desired["name"], "--global"]
+    found = gcloud(describe, missing=True)
+    with tempfile.TemporaryDirectory(prefix="visionary-edge-") as temporary:
+        source = Path(temporary) / "urlmap.json"
+        source.write_text(json.dumps(desired), encoding="utf-8")
+        if found is None:
+            gcloud(["compute", "url-maps", "import", desired["name"], f"--source={source}", "--global"])
+            found = gcloud(describe)
+        if any(found.get(key) != desired[key] for key in ["defaultUrlRedirect", "hostRules", "pathMatchers"]):
+            raise RuntimeError("Existing URL map differs; review it manually rather than overwriting it.")
+        # The validate API targets an existing URL map, so import it before validating on first setup.
+        gcloud(["compute", "url-maps", "validate", f"--source={source}", "--global", "--load-balancing-scheme=EXTERNAL_MANAGED"])
+    return found
+
+
 def apply_edge():
     gcloud(["services", "enable", "compute.googleapis.com"])
     address = ensure(["compute", "addresses", "describe", "visionary-product-ip", "--global"],
@@ -87,16 +103,7 @@ def apply_edge():
             if backend_obj.get("customRequestHeaders") != [forwarded_for]:
                 raise RuntimeError("Load balancer did not install the verified client-IP header policy.")
     desired = edge_urlmap()
-    found = gcloud(["compute", "url-maps", "describe", desired["name"], "--global"], missing=True)
-    if found is None:
-        with tempfile.TemporaryDirectory(prefix="visionary-edge-") as temporary:
-            source = Path(temporary) / "urlmap.json"
-            source.write_text(json.dumps(desired), encoding="utf-8")
-            gcloud(["compute", "url-maps", "validate", f"--source={source}", "--global", "--load-balancing-scheme=EXTERNAL_MANAGED"])
-            gcloud(["compute", "url-maps", "import", desired["name"], f"--source={source}", "--global"])
-        found = gcloud(["compute", "url-maps", "describe", desired["name"], "--global"])
-    if any(found.get(key) != desired[key] for key in ["defaultUrlRedirect", "hostRules", "pathMatchers"]):
-        raise RuntimeError("Existing URL map differs; review it manually rather than overwriting it.")
+    ensure_url_map(desired)
     ensure(["compute", "ssl-certificates", "describe", "visionary-product-cert", "--global"],
            ["compute", "ssl-certificates", "create", "visionary-product-cert", "--domains=" + DOMAIN, "--global"],
            lambda x: x.get("type") == "MANAGED" and x.get("managed", {}).get("domains") == [DOMAIN])
