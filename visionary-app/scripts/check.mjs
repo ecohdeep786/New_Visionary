@@ -8,7 +8,7 @@ for (const file of ['verify-layout.mjs', 'verify-imports.mjs']) {
   if (result.error) throw result.error;
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
-const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs', 'launch-coverage.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
+const scriptTests = spawnSync(process.execPath, ['--test', ...['upstream-patches.test.mjs', 'backend-runtime.test.mjs', 'cost-model.test.mjs', 'launch-coverage.test.mjs', 'release-package.test.mjs'].map(file => path.join(root, 'scripts/tests', file))], { cwd: root, stdio: 'inherit' });
 if (scriptTests.error) throw scriptTests.error;
 if (scriptTests.status !== 0) process.exit(scriptTests.status ?? 1);
 const coverageCheck = spawnSync(process.execPath, [path.join(root, 'scripts/coverage-matrix.mjs')], { cwd: root, stdio: 'inherit' });
