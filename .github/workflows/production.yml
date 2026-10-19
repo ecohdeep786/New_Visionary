@@ -37,6 +37,7 @@ jobs:
       - run: npm run check
       - run: node scripts/production-check.mjs
       - run: node --test infrastructure/gcp/tests/*.test.mjs
+      - run: python3 -m unittest discover -s infrastructure/gcp/tests -p '*_test.py'
 
   production:
     needs: checks
