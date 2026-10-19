@@ -1,0 +1,604 @@
+{
+  "title": "Google for Education - Online Resources for Teachers & Students",
+  "url": "https://edu.google.com/",
+  "docH": 9589,
+  "secs": [
+    {
+      "cls": "gfe-section gfe-page gfe-page--full-viewport home-hero",
+      "id": "hero",
+      "y": 168,
+      "h": 4513,
+      "first": "Elevating Educators. Empowering Learners."
+    },
+    {
+      "cls": "gfe-section gfe-page home-products",
+      "id": "products",
+      "y": 185,
+      "h": 1428,
+      "first": "Education for today and beyond"
+    },
+    {
+      "cls": "gfe-section gfe-page home-workspace gfe-mod-spacer-7-top",
+      "id": "workspace",
+      "y": 4801,
+      "h": 1296,
+      "first": ""
+    },
+    {
+      "cls": "gfe-section gfe-page home-audiences gfe-mod-spacer-7-top",
+      "id": "audiences",
+      "y": 6217,
+      "h": 689,
+      "first": "That meets your unique needs"
+    },
+    {
+      "cls": "gfe-section gfe-page home-get-started gfe-mod-spacer-7-top",
+      "id": "get-started",
+      "y": 7026,
+      "h": 272,
+      "first": "Start today with Google for Education"
+    },
+    {
+      "cls": "gfe-section gfe-page home-faqs gfe-mod-spacer-7-top",
+      "id": "faqs",
+      "y": 7418,
+      "h": 697,
+      "first": "Have questions? We’ve got answers"
+    }
+  ],
+  "heads": [
+    {
+      "tag": "h2",
+      "y": 89,
+      "text": "Workspace for Education",
+      "size": "18px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 166,
+      "text": "Product",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 166,
+      "text": "Editions",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 166,
+      "text": "Add-ons",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h2",
+      "y": 89,
+      "text": "Chromebooks",
+      "size": "18px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 89,
+      "text": "Get started",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 89,
+      "text": "Training",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 89,
+      "text": "Connect",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 89,
+      "text": "Institution type",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 64,
+      "text": "Sign in",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h3",
+      "y": 120,
+      "text": "Our values",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h3",
+      "y": 176,
+      "text": "Product",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h3",
+      "y": 232,
+      "text": "AI",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h3",
+      "y": 288,
+      "text": "Resources",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h1",
+      "y": 240,
+      "text": "Elevating Educators. Empowering Learners.",
+      "size": "80px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 185,
+      "text": "Education for today and beyond",
+      "size": "64px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 449,
+      "text": "Collaborate with Google Workspace for Education",
+      "size": "36px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 449,
+      "text": "Learn from anywhere with Chromebooks",
+      "size": "36px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 981,
+      "text": "Create engaging learning experiences with Classroom",
+      "size": "36px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1161,
+      "text": "Transform education with Gemini",
+      "size": "36px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 5011,
+      "text": "In a secure and flexible suite",
+      "size": "64px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 5975,
+      "text": "Transform education using Google Workspace with Gemini",
+      "size": "20px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Use Google Classroom to create interactive practice sets",
+      "size": "20px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Draft, schedule, and summarize emails securely in Gmail",
+      "size": "20px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Review detailed security reports in Google Admin",
+      "size": "20px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Explore new ways to work together with Google Docs",
+      "size": "20px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Connect and collaborate in a secure environment with Google Meet",
+      "size": "20px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 6217,
+      "text": "That meets your unique needs",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 6309,
+      "text": "K-12",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 6309,
+      "text": "Higher Education",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 6309,
+      "text": "Education Leaders",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 6309,
+      "text": "IT Admins",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 6309,
+      "text": "Educators",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "K-12",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 6566,
+      "text": "Everything you need to empower learning, now in one place",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Higher Education",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Propel research and help students reach their full potential with a suite of pro",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Education Leaders",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Bring flexible innovation to your school at scale",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "IT Admins",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Easily deploy educational tools across your institution",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Educators",
+      "size": "18px",
+      "weight": "300"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "Save time and enrich student learning with easy-to-use tools",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7086,
+      "text": "Start today with Google for Education",
+      "size": "36px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 0,
+      "text": "What’s happening at Google for Education",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 7418,
+      "text": "Have questions? We’ve got answers",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 7572,
+      "text": "What are the resources to get started with Google Workspace for education?",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7685,
+      "text": "What are the Google tools for education?",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7798,
+      "text": "Help me choose what’s best for my school?",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7897,
+      "text": "What is the difference between free of charge and paid editions of Google Worksp",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 8018,
+      "text": "How do Google Workspace and Chromebooks address data privacy and security concer",
+      "size": "28px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 8195,
+      "text": "Sign up for updates, insights, resources and more",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8400,
+      "text": "Product",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8716,
+      "text": "Editions",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 9002,
+      "text": "Add-ons",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 9150,
+      "text": "Chromebooks",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8400,
+      "text": "Get started",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8674,
+      "text": "Training",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 9032,
+      "text": "Support",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 9222,
+      "text": "Connect",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8400,
+      "text": "Institution type",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8590,
+      "text": "AI",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8822,
+      "text": "Partner program",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8400,
+      "text": "Our values",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 8674,
+      "text": "More from Google",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Product",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Editions",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Add-ons",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Chromebooks",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Get started",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Training",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Support",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Connect",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Institution type",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "AI",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Partner program",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "Our values",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h3",
+      "y": 0,
+      "text": "More from Google",
+      "size": "16px",
+      "weight": "500"
+    },
+    {
+      "tag": "h2",
+      "y": 1278,
+      "text": "You're now viewing content for a different region.",
+      "size": "20px",
+      "weight": "400"
+    }
+  ]
+}

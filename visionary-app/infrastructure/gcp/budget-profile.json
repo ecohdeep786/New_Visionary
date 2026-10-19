@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "state": "planned-not-deployed",
+  "projectId": "visionary-fd6d2",
+  "service": "visionary-product",
+  "region": "asia-south1",
+  "minimumInstances": 0,
+  "maximumInstances": 1,
+  "cpu": "1",
+  "memory": "512Mi",
+  "concurrency": 20,
+  "timeoutSeconds": 30,
+  "requestBasedBilling": true,
+  "startupCpuBoost": false,
+  "frontendAndApiSameOrigin": true,
+  "initialHost": "managed-run.app-https",
+  "ownedDomain": "visionary.org.in",
+  "customDomainState": "not-configured",
+  "alwaysOnLoadBalancer": false,
+  "cloudSql": false,
+  "managedRedis": false,
+  "newModelServing": false,
+  "notes": [
+    "Zero minimum instances avoids an idle container allocation; cold starts are expected.",
+    "The maximum instance count bounds concurrency, not total spend. Build, artifact, network and existing Firebase usage can still be billable.",
+    "Retain the current named Firestore database; do not provision a parallel database or migrate learner records.",
+    "Production URL, authenticated deployment access, secrets/IAM, reviewed image digest and hosted checks must be retained before claiming deployment."
+  ]
+}

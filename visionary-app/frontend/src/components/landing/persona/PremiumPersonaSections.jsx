@@ -930,8 +930,8 @@ export { PremiumTrustSection };
    The closer bookends the hero on Apple's product-hero anatomy: the statement
    opens the chapter (no eyebrow), one text-only primary pill with one quiet
    path beside it, and the small print beneath — the way Apple's product
-   heroes pair "Learn more" with a quiet "Buy". */
-function PremiumCTASection({ heading, sub }) {
+   heroes pair "Learn more" with a quiet "Buy". An optional routeLinks row re-offers the page's forks under the actions — Apple's tail mini-router. */
+function PremiumCTASection({ heading, sub, routeLinks }) {
   const { ref } = useRevealOnce();
   return (
     <section ref={ref} data-section="12-cta" className="relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-[32px]">
@@ -971,6 +971,22 @@ function PremiumCTASection({ heading, sub }) {
           </div>
           </RevealItem>
           <RevealItem idx={3}>
+          {routeLinks?.length ? (
+            <p className="mt-8 text-center font-normal tracking-[0] text-[15px] leading-[1.5]" style={{ color: COLORS.grey }}>
+              See how it works for{" "}
+              {routeLinks.map((route, i) => (
+                <React.Fragment key={route.to}>
+                  <Link
+                    to={route.to}
+                    className="rounded font-medium text-[#4285F4] transition-colors duration-200 hover:text-[#0b57d0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  >
+                    {route.label}
+                  </Link>
+                  {i < routeLinks.length - 1 ? <span aria-hidden="true">{"\u00A0· "}</span> : null}
+                </React.Fragment>
+              ))}
+            </p>
+          ) : null}
           <p className="mt-8 text-center font-normal tracking-[0] text-[14px] leading-[1.5]" style={{ color: COLORS.grey }}>
             Free to start. Private by design.
           </p>
