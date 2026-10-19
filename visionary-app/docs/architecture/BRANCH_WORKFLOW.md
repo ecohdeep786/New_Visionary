@@ -1,50 +1,50 @@
-# Branches and agent delivery
+# Task worktrees, QA and integration
 
-17 October 2026 · D-093 · founder-authorized branch cleanup and parallel worker setup.
+18 October 2026 · D-098 founder instruction supersedes permanent agent-lane reuse. Keep `dev` for integration and `main` for accepted production history. Task checkouts are temporary; removing a worktree does not delete a branch or its pushed commits.
 
-Visionary is a live-user product. Local implementation checks are one part of release evidence; they do not establish hosted readiness.
+## Start a task from current dev
 
-## Branch ownership
-
-| Branch | Purpose | Working checkout |
-| --- | --- | --- |
-| `main` | Production release history; changes arrive through a reviewed release from `dev`. | No worker edits here. |
-| `dev` | Shared integration branch; the current primary checkout stays here. | `C:/Users/Administrator/New_Visionary/visionary-app` |
-| `codex/codex-tasks` | Codex's current task, reviewed before integration. | `C:/Users/Administrator/New_Visionary-worktrees/codex/visionary-app` |
-| `codex/deepseek-tasks` | DeepSeek's current task, reviewed before integration. | `C:/Users/Administrator/New_Visionary-worktrees/deepseek/visionary-app` |
-| `codex/founder-tasks` | The founder's current task, reviewed before integration. | `C:/Users/Administrator/New_Visionary-worktrees/founder/visionary-app` |
-
-These are initial worker lanes, not task assignments or evidence that three tasks are ready. Use one active Jira task per lane. If more branches are needed, create a short-lived `codex/kan-<number>-<purpose>` branch from the current committed `dev`; record its worker and checkout in the issue. Do not share a checkout between active workers. Git worktrees share history but have independent files and indexes; uncommitted files in the primary checkout are not copied into worker checkouts. Ignored credentials and installed dependencies are not copied either.
-
-After checkout, run `node scripts/verify-layout.mjs` and `node scripts/verify-imports.mjs` from the product directory. Byte-hashed import snapshots and patch evidence must retain their exact reviewed bytes across Windows/Linux checkouts; product `.gitattributes` disables normalization for those paths. The manifest-listed environment examples are placeholder templates, not live configuration. A check failure is investigated before accepting the baseline; never replace provenance hashes merely to make it pass.
+1. Check live Jira and [execution receipts](tracking/task-executions.json), the preceding task's accepted integration, all prerequisites and current file/contract ownership. Dated calendars are forecasts, not execution truth.
+2. Fetch `origin` and verify the current accepted `origin/dev`. Create a fresh worktree under `<repository-root>/New_Visionary-worktrees/` named `<agent>-kan-<number>-<purpose>`, with branch `codex/<agent>-kan-<number>-<purpose>`. Each implementing or reviewing agent has its own task instance. Never start the next task by recycling a completed folder.
+3. Record the agent, Jira key, purpose, branch, base SHA, exact absolute path, owned files/contracts and acceptance scope in Jira. Resume interrupted work only in the matching task instance; do not create conflicting owners.
+4. Push the branch immediately and verify its remote ref. Install independent component dependencies from locks. Ignored local settings and credentials are not copied automatically. Run layout/import integrity checks before accepting the baseline.
 
 ```text
-codex/codex-tasks   ─┐
-codex/deepseek-tasks ├─ review + checks → dev → release acceptance → main
-codex/founder-tasks ─┘
+git fetch origin
+git worktree add -b codex/deepseek-kan-30-api-contracts <verified-worker-root>/deepseek-kan-30-api-contracts origin/dev
+git -C <task-worktree> push -u origin codex/deepseek-kan-30-api-contracts
 ```
 
-## Before starting a task
+The primary checkout remains on `dev`. Create a release checkout only when a release needs one. Do not merge over unrelated edits, reset away another worker's changes or force-push shared branches. Schema changes have one owner and reviewed compatibility with other tasks.
 
-1. Confirm its current Jira prerequisites are accepted. An older calendar position is not authorization to ignore a blocker. Independent discovery may proceed only within an explicit boundary.
-2. Record the Jira key, worker, branch, base commit, owned files/modules, shared contracts and acceptance criteria. A task can span frontend/API/database/ML when its scope requires it; worker ownership must still avoid concurrent edits to the same files.
-3. Fetch `origin`. With a clean worker checkout and no unmerged task, fast-forward the worker branch to `origin/dev`. Stop on unexpected divergence; do not reset away work or force-push it.
-4. Agree shared API, data and VATS interfaces before dependent implementations. Schema changes have one owner; review migration compatibility against other active work.
+## Checkpoints and GitHub recovery
 
-## Review and integration
+Inspect and stage intended paths, commit coherent work and push before handoff or stopping. Record the current commit, checks, findings and next step in Jira. Compare actual remote refs with HEAD; a local commit is not a successful GitHub backup.
 
-The worker pushes committed changes to its own branch and supplies the Jira key, base/head commits, changed contracts/migrations, relevant test results, remaining gaps and environment evidence. Commit messages include the Jira key. Never commit credentials, production data or local environment files.
+GitHub stores pushed source commits/refs and appropriate evidence, not local worktree folders, uncommitted edits, dependencies or ignored settings. If connectivity breaks, keep local commits, record backup pending and verify the push after reconnection. Unpushed work blocks cleanup. Do not upload passwords, keys, sessions or protected user records. Preserve necessary local-only records/configuration outside a task folder before removal.
 
-The integrator compares the branch against current `dev`, reviews changes, resolves overlapping contracts and runs the checks relevant to the affected components and integrated journey. Use a clean integration worktree or a clean primary checkout; do not merge into the primary checkout while its unrelated edits are unfinished. Merge accepted work into `dev` with a recorded task boundary, then push normally. Do not cherry-pick and merge the same task twice. A branch conflict is resolved and retested before integration.
+## The qa-review loop
 
-After integration, the worker fetches and fast-forwards its clean branch to the accepted `origin/dev` before its next task. With ordinary merge commits, the reviewed worker head remains an ancestor of `dev`. If this fast-forward is impossible, inspect the history before proceeding. A separate per-ticket branch can instead be deleted after its integration is verified.
+| State | Required action |
+| --- | --- |
+| To Do | Verify prerequisites, ownership and the latest accepted dev before creating the task instance. |
+| In Progress | Worker implements one owned scope and runs relevant developer checks. |
+| Testing | Worker submits an exact SHA and [review handoff](delivery/TASK_REVIEW_TEMPLATE.md). qa-review independently checks code, criteria, commands/results, environment, recovery and remaining gates. |
+| Changes requested | Return to In Progress; the worker fixes findings, commits a new candidate and submits it to qa-review again. Earlier approval does not cover later commits. |
+| Done | Separate reviewer approval of the exact implementation, relevant verification, accepted/published dev integration and actual Jira transition are recorded. |
 
-Mark implementation/review progress accurately in Jira. Mark the task Done only for its stated acceptance scope. A foundation enabler can complete with its defined evidence; a user-facing launch feature also needs its required hosted end-to-end evidence. Local tests, an opened pull request, a branch merge or a calendar date alone do not establish production readiness. Contract completion and actual model/educational acceptance remain distinct.
+The implementer cannot approve their own implementation. QA evidence-only commits keep the implementation SHA explicit. A raw report saying “Done” is not proof of a native Jira transition. Founder/product decisions and hosted acceptance require their specified reviewers and evidence.
 
-## Release and recovery
+The integrator compares the approved candidate with current `dev`, resolves conflicts and runs relevant integration checks before publication. Integrate only approved scope; never include a later unreviewed head because an earlier SHA passed. Record actual integration and returned Jira status. Only then may the worker take its next task; dependent work still checks every prerequisite. Independent ready tasks can proceed in separately owned instances.
 
-Only accepted scope moves from `dev` to `main` after the required hosted journeys, operational checks, migrations, rollback and production configuration are reviewed. Branch creation does not deploy the product. This setup does not configure server-enforced GitHub protection or CI; do not mistake these working rules for repository enforcement.
+A scoped metric/source enabler may complete without completing model, domain, provider, privacy, commercial or hosted release gates. Local tests, dates, an opened PR or a merge alone do not establish production readiness. No automatic Jira transition validator, scheduler, continuous-backup service or branch protection is installed by this runbook.
 
-Before removing the five old remote branches, their exact references and all reachable history are retained in a verified local bundle at `artifacts/qa/branch-workflow-2026-10-17/before-cleanup.bundle`, with the original reference inventory in `before.json`. This ignored bundle stays local. Three old branches have commits outside both retained branches; none are silently merged into the product. Recovery uses the saved branch SHA from the inventory and `git fetch <absolute-bundle-path> <saved-SHA>`, followed by an explicitly chosen recovery branch. Keep this bundle until those histories have been reviewed or backed up elsewhere.
+## Remove a completed task instance
 
-The existing delivery calendar assumed one founder and one coding agent. Two coding agents plus founder work require a dependency/ownership/capacity reforecast after tasks are assigned; creating worker branches does not shorten dates automatically.
+Verify actual Jira Done, exact-SHA QA acceptance, passed relevant checks, accepted commits in published `origin/dev`, and verified remote backup of intended source/review evidence. Inspect staged, unstaged, untracked and ignored files. Preserve needed local configuration and non-reproducible evidence outside the instance; dependencies can be recreated. An unpushed or unrelated unfinished change blocks ordinary cleanup.
+
+From the primary checkout, resolve and verify the exact registered absolute task path beneath its intended worker root; refuse the primary checkout, unexpected junctions or another task. Use `git worktree remove <verified-absolute-task-path>`, inspect the result and `git worktree list --porcelain`. Do not force-delete unknown work or follow a cache junction outside the checkout. Retain published task refs by default. The next task gets a fresh instance from the latest verified dev.
+
+D-098 additionally authorizes retiring existing extra checkouts. Two older desktop checkouts contained unsaved work: unreviewed GitHub archive snapshots plus byte-verified local ZIPs preserve it before removal. They are recovery evidence, not changes to merge into the product. The old `codex/codex-tasks` branch's unmerged commit is retained by GitHub tag `archive/codex-tasks-2026-10-18`; the obsolete branch is removed. Historical [D-093 bundle](../../artifacts/README.md) and append-only logs retain earlier checkpoints.
+
+Only accepted scope moves from `dev` to `main` after the applicable release journeys, configuration, migrations, operational checks and rollback review. Git history changes do not deploy the product.

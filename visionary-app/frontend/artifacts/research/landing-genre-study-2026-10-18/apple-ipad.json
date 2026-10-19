@@ -1,0 +1,597 @@
+{
+  "title": "iPad - Apple (IN)",
+  "url": "https://www.apple.com/in/ipad/",
+  "docH": 7846,
+  "secs": [
+    {
+      "cls": "ChapterNavSection_section__EVfDB MarcomSection_section__Hd6T8 MarcomSe",
+      "id": "",
+      "y": 96,
+      "h": 388,
+      "first": "iPad"
+    },
+    {
+      "cls": "MarcomSection_section__Hd6T8 MarcomSection_backgroundTertiary___LAi8 M",
+      "id": "",
+      "y": 484,
+      "h": 1067,
+      "first": "Explore the line-up."
+    },
+    {
+      "cls": "MarcomSection_section__Hd6T8 MarcomSection_backgroundTertiary___LAi8",
+      "id": "",
+      "y": 1447,
+      "h": 935,
+      "first": "Why Apple is the bestplace to buy iPad."
+    },
+    {
+      "cls": "MarcomSection_section__Hd6T8",
+      "id": "",
+      "y": 2382,
+      "h": 1068,
+      "first": "Get to know iPad."
+    },
+    {
+      "cls": "MarcomSection_section__Hd6T8 MarcomSection_backgroundTertiary___LAi8 M",
+      "id": "",
+      "y": 3450,
+      "h": 824,
+      "first": "iPad essentials."
+    },
+    {
+      "cls": "MarcomSection_section__Hd6T8 MarcomSection_backgroundTertiary___LAi8",
+      "id": "",
+      "y": 4274,
+      "h": 1172,
+      "first": "Significant others."
+    },
+    {
+      "cls": "MarcomSection_section__Hd6T8 MarcomSection_backgroundSecondary__LCbTB",
+      "id": "",
+      "y": 5446,
+      "h": 777,
+      "first": "iPad"
+    },
+    {
+      "cls": "ac-gf-sosumi",
+      "id": "",
+      "y": 6223,
+      "h": 1056,
+      "first": ""
+    },
+    {
+      "cls": "ac-gf-footer",
+      "id": "",
+      "y": 7720,
+      "h": 126,
+      "first": ""
+    }
+  ],
+  "heads": [
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Quick Links",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Special Stores",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Mac",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from iPad",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from iPhone",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Watch",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from AirPods",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "More from Home",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Entertainment",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Support",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Shop Accessories",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Accessories",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Explore Support",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Get Help",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 80,
+      "text": "Helpful Topics",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 148,
+      "text": "Quick Links",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h1",
+      "y": 192,
+      "text": "iPad",
+      "size": "80px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 604,
+      "text": "Explore the line-up.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1225,
+      "text": "iPad Pro",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1225,
+      "text": "iPad Air",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1225,
+      "text": "iPad",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1225,
+      "text": "iPad mini",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 1591,
+      "text": "Why Apple is the bestplace to buy iPad.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Ways to Buy",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Apple Trade In",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Education",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Personal Setup",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Delivery and Pickup",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Engraving",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Guided Shopping",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 1743,
+      "text": "Apple Store App",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 2526,
+      "text": "Get to know iPad.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "iPadOS + Apps",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "Apple Intelligence",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "Productivity",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "Creativity",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "Learning",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "Entertainment",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 2658,
+      "text": "Apple Pencil",
+      "size": "17px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 3594,
+      "text": "iPad essentials.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 3750,
+      "text": "Apple Pencil",
+      "size": "32px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4114,
+      "text": "Keyboards for iPad",
+      "size": "32px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 4418,
+      "text": "Significant others.",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4662,
+      "text": "iPad and iPhone",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 4982,
+      "text": "iPad and Mac",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 5071,
+      "text": "iPad and Apple Watch",
+      "size": "28px",
+      "weight": "600"
+    },
+    {
+      "tag": "h2",
+      "y": 5590,
+      "text": "iPad",
+      "size": "48px",
+      "weight": "600"
+    },
+    {
+      "tag": "h3",
+      "y": 5690,
+      "text": "Explore iPad",
+      "size": "17px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5690,
+      "text": "Shop iPad",
+      "size": "17px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 5690,
+      "text": "More from iPad",
+      "size": "17px",
+      "weight": "400"
+    },
+    {
+      "tag": "h2",
+      "y": 6223,
+      "text": "Apple Footer",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7357,
+      "text": "Shop and Learn Shop and Learn",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7653,
+      "text": "Apple Wallet Apple Wallet",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7357,
+      "text": "Account Account",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7474,
+      "text": "Entertainment Entertainment",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7357,
+      "text": "Apple Store Apple Store",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7357,
+      "text": "For Business For Business",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7448,
+      "text": "For Education For Education",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7565,
+      "text": "For Healthcare For Healthcare",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7631,
+      "text": "For Government For Government",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7357,
+      "text": "Apple Values Apple Values",
+      "size": "12px",
+      "weight": "400"
+    },
+    {
+      "tag": "h3",
+      "y": 7525,
+      "text": "About Apple About Apple",
+      "size": "12px",
+      "weight": "400"
+    }
+  ]
+}

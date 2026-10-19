@@ -1,0 +1,397 @@
+{
+  "390": {
+    "order": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "return": {
+      "cells": [
+        {
+          "title": "Your hours stack.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For students",
+            "href": "/student",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your place is kept.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Your continuity",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your language works.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Language support",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your progress shows.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For parents",
+            "href": "/parent",
+            "h": 20
+          }
+        }
+      ],
+      "rowLinks": [
+        {
+          "label": "Students",
+          "href": "/student"
+        },
+        {
+          "label": "Teachers",
+          "href": "/teacher"
+        },
+        {
+          "label": "Parents",
+          "href": "/parent"
+        },
+        {
+          "label": "Professionals",
+          "href": "/professional"
+        },
+        {
+          "label": "Organizations",
+          "href": "/organization"
+        }
+      ],
+      "overflow": false
+    },
+    "hover": {
+      "before": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "none"
+      },
+      "after": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "underline"
+      }
+    },
+    "errors": [],
+    "docH": 9741
+  },
+  "834": {
+    "order": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "return": {
+      "cells": [
+        {
+          "title": "Your hours stack.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For students",
+            "href": "/student",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your place is kept.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Your continuity",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your language works.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Language support",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your progress shows.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For parents",
+            "href": "/parent",
+            "h": 20
+          }
+        }
+      ],
+      "rowLinks": [
+        {
+          "label": "Students",
+          "href": "/student"
+        },
+        {
+          "label": "Teachers",
+          "href": "/teacher"
+        },
+        {
+          "label": "Parents",
+          "href": "/parent"
+        },
+        {
+          "label": "Professionals",
+          "href": "/professional"
+        },
+        {
+          "label": "Organizations",
+          "href": "/organization"
+        }
+      ],
+      "overflow": false
+    },
+    "hover": {
+      "before": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "none"
+      },
+      "after": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "underline"
+      }
+    },
+    "errors": [],
+    "docH": 9062
+  },
+  "1024": {
+    "order": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "return": {
+      "cells": [
+        {
+          "title": "Your hours stack.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For students",
+            "href": "/student",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your place is kept.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Your continuity",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your language works.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Language support",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your progress shows.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For parents",
+            "href": "/parent",
+            "h": 20
+          }
+        }
+      ],
+      "rowLinks": [
+        {
+          "label": "Students",
+          "href": "/student"
+        },
+        {
+          "label": "Teachers",
+          "href": "/teacher"
+        },
+        {
+          "label": "Parents",
+          "href": "/parent"
+        },
+        {
+          "label": "Professionals",
+          "href": "/professional"
+        },
+        {
+          "label": "Organizations",
+          "href": "/organization"
+        }
+      ],
+      "overflow": false
+    },
+    "hover": {
+      "before": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "none"
+      },
+      "after": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "underline"
+      }
+    },
+    "errors": [],
+    "docH": 8284
+  },
+  "1440": {
+    "order": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "return": {
+      "cells": [
+        {
+          "title": "Your hours stack.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For students",
+            "href": "/student",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your place is kept.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Your continuity",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your language works.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "Language support",
+            "href": "/how-it-works",
+            "h": 20
+          }
+        },
+        {
+          "title": "Your progress shows.",
+          "glyph": {
+            "w": 24
+          },
+          "door": {
+            "label": "For parents",
+            "href": "/parent",
+            "h": 20
+          }
+        }
+      ],
+      "rowLinks": [
+        {
+          "label": "Students",
+          "href": "/student"
+        },
+        {
+          "label": "Teachers",
+          "href": "/teacher"
+        },
+        {
+          "label": "Parents",
+          "href": "/parent"
+        },
+        {
+          "label": "Professionals",
+          "href": "/professional"
+        },
+        {
+          "label": "Organizations",
+          "href": "/organization"
+        }
+      ],
+      "overflow": false
+    },
+    "hover": {
+      "before": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "none"
+      },
+      "after": {
+        "color": "rgb(0, 102, 204)",
+        "deco": "underline"
+      }
+    },
+    "errors": [],
+    "docH": 8661
+  },
+  "clicks": [
+    {
+      "door": "cell-1",
+      "url": "http://localhost:5173/student"
+    },
+    {
+      "door": "row-3",
+      "url": "http://localhost:5173/parent"
+    }
+  ],
+  "clickErrors": []
+}

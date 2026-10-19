@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-10-18T10:06:26.330180+00:00",
+  "decision": "D-098",
+  "task": "KAN-137",
+  "jiraStatus": "Done",
+  "jiraCommentId": "10016",
+  "jiraTransitionId": "51",
+  "acceptedDev": "b8970914877c48a27d7bddaee6a8425ede51d252",
+  "qaWorktreeRemoved": true,
+  "extraRegisteredWorktrees": 0,
+  "primaryBranch": "dev",
+  "mainUnchanged": "78ac46aa6707a228501cfb2342625aaf49ab3091",
+  "obsoleteBranchRemovedLocalAndRemote": "codex/codex-tasks",
+  "obsoleteCommitArchiveTag": "archive/codex-tasks-2026-10-18",
+  "unreviewedRecoveryBranches": [
+    "codex/archive-0b07-20261018",
+    "codex/archive-9f8b-20261018"
+  ],
+  "recoveryBranchesMergedIntoDev": false,
+  "preparationTask": {
+    "key": "KAN-29",
+    "status": "To Do",
+    "branchRetained": "codex/kan-29-coverage-matrix"
+  },
+  "filesystemResidue": {
+    "folder": "New_Visionary-worktrees/codex-kan-29-coverage-matrix (under repository root)",
+    "empty": true,
+    "gitWorktreeRegistration": false,
+    "sourceAndDependenciesRemoved": true,
+    "remainingReason": "Windows reports folder in use; subsequent empty-folder removal attempt rejected by automatic approval review as blocked by policy."
+  },
+  "localPreservationEvidence": "artifacts/qa/kan-137-closeout-2026-10-18/",
+  "note": "Administrative post-cleanup receipt only; no additional implementation, production deployment or model acceptance."
+}

@@ -1,5 +1,7 @@
 # Jira launch tracking
 
+D-095 current execution correction: KAN-28 / SCOPE-01 is **Testing**, pending a reviewer separate from its implementing agent. Native transition41 and comment10004 confirm this focused update. The earlier D-094 Done and checks are preserved as history in [execution receipts](task-executions.json); no other issue or dated full-board/calendar snapshot is changed. Use the [review workflow](../BRANCH_WORKFLOW.md) and [handoff template](../delivery/TASK_REVIEW_TEMPLATE.md): exact candidate → separate review → passed verification/integration → Done → next eligible task. This policy is not an installed Jira transition validator.
+
 D-094 execution update: KAN-28 / SCOPE-01 is Done for its reviewed source inventory and drift-check enabler. See [current execution receipts](task-executions.json) and [the audit](../PRODUCT_SURFACE_AUDIT.md). Full-board counts, calendar and requirements below retain their dated verification snapshots; this update does not assert a fresh global board count, reschedule other workers or close the linked domain/ML/hosted gates. Consult live Jira before choosing the next task.
 
 17 October 2026 · D-091 user-authorized calendar forecast; earlier checkpoints retain their dated scope.

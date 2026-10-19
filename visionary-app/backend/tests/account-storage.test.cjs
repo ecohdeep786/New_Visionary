@@ -81,6 +81,8 @@ test('account HTTP overview and paginated records are owner-bound, strip securit
     assert.equal((await fetch(url + '/api/account/overview')).status, 401);
     assert.equal((await fetch(url + '/api/account/overview', { headers: { ...headers, 'X-Visionary-Account': 'payer' } })).status, 409);
     const overview = await (await fetch(url + '/api/account/overview', { headers })).json(); assert.equal(overview.uid, 'owner'); assert.equal(overview.profile.id, overview.billing.uid);
+    assert.equal(overview.structure.uid, overview.uid); assert.equal(overview.structure.sections.billing.paths.account, 'visionary_accounts/owner/billing/test');
+    assert.equal(overview.structure.sections.learning.availability, 'not-connected');
     const first = await (await fetch(url + '/api/account/devices?limit=1', { headers })).json(); assert.equal(first.items.length, 1); assert.equal(first.items[0].current, true); assert.equal(first.items[0].status, 'active'); assert.equal(first.nextCursor, 'device_a');
     const second = await (await fetch(url + '/api/account/devices?limit=1&after=' + first.nextCursor, { headers })).json(); assert.equal(second.items[0].id, 'device_b'); assert.equal(second.nextCursor, null);
     assert.doesNotMatch(JSON.stringify([first, second]), /cookieHash|must-not-escape/);

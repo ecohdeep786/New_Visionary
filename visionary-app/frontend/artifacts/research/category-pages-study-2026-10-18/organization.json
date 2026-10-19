@@ -1,0 +1,210 @@
+{
+  "title": "Visionary for organizations | Teach at scale",
+  "docH": 13733,
+  "secs": [
+    {
+      "id": "01-hero",
+      "cls": "relative isolate flex flex-col overflow-hidden",
+      "y": 56,
+      "h": 844,
+      "h1": "Leading.Leading, to scale, to last.",
+      "h2": "",
+      "h3s": [],
+      "p": "One intelligence across every classroom, team, and program. Understanding stays inside your institution.",
+      "links": [
+        "Talk to us -> /contact",
+        "See how it works -> /how-it-works"
+      ],
+      "buttons": [],
+      "imgs": 1
+    },
+    {
+      "id": "02-struggle",
+      "cls": "relative overflow-x-clip bg-white",
+      "y": 900,
+      "h": 1418,
+      "h1": "",
+      "h2": "Every organization wonders aboutadoption.",
+      "h3s": [],
+      "p": "Organization learning challenges",
+      "links": [],
+      "buttons": [
+        "Go to challenge 1",
+        "Go to challenge 2",
+        "Go to challenge 3",
+        "Go to challenge 4",
+        "Go to challenge 5"
+      ],
+      "imgs": 5
+    },
+    {
+      "id": "04-journey",
+      "cls": "relative isolate overflow-hidden py-24 lg:py-32 bg-white",
+      "y": 2318,
+      "h": 1225,
+      "h1": "",
+      "h2": "Every organization learns differently.Visionary adapts to each.",
+      "h3s": [],
+      "p": "One intelligence, shaped to the way your institution teaches, trains, and grows.",
+      "links": [],
+      "buttons": [
+        "Open details for Schools",
+        "Open details for Colleges and universities",
+        "Open details for Coaching",
+        "Open details for Workplace learning",
+        "Play the journey",
+        "Previous Organization contexts"
+      ],
+      "imgs": 4
+    },
+    {
+      "id": "05-intelligence",
+      "cls": "scene-dark relative [overflow-x:clip]",
+      "y": 3543,
+      "h": 2877,
+      "h1": "",
+      "h2": "One intelligence.",
+      "h3s": [
+        "See what people understand.",
+        "Find gaps before they spread.",
+        "Support every role from one system.",
+        "Improve the next decision."
+      ],
+      "p": "Every learner, teacher, and professional in one clear picture you can act on.",
+      "links": [],
+      "buttons": [
+        "Go to step 1: See what people understand.",
+        "Go to step 2: Find gaps before they spread",
+        "Go to step 3: Support every role from one ",
+        "Go to step 4: Improve the next decision."
+      ],
+      "imgs": 0
+    },
+    {
+      "id": "07-language",
+      "cls": "relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32p",
+      "y": 6420,
+      "h": 1450,
+      "h1": "",
+      "h2": "Your organization.In every language.",
+      "h3s": [],
+      "p": "Every language",
+      "links": [
+        "Learn more -> /how-it-works"
+      ],
+      "buttons": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "imgs": 0
+    },
+    {
+      "id": "09-achievement",
+      "cls": "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip]",
+      "y": 7870,
+      "h": 1310,
+      "h1": "",
+      "h2": "See what your organization can achieve.",
+      "h3s": [],
+      "p": "Move beyond completion rates and see real understanding across your organization.",
+      "links": [],
+      "buttons": [
+        "Understand what people actually know.",
+        "Support the people who need it early.",
+        "Improve every program with evidence."
+      ],
+      "imgs": 1
+    },
+    {
+      "id": "10-journey-flow",
+      "cls": "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] r",
+      "y": 9180,
+      "h": 1469,
+      "h1": "",
+      "h2": "Individual journeys.Shared intelligence.",
+      "h3s": [
+        "Schools",
+        "Colleges and universities"
+      ],
+      "p": "Your journey",
+      "links": [
+        "See how Visionary keeps it connected -> /how-it-works"
+      ],
+      "buttons": [
+        "Pause the journey",
+        "Previous stages",
+        "Next stages"
+      ],
+      "imgs": 2
+    },
+    {
+      "id": "11-trust",
+      "cls": "public-values relative isolate bg-white py-24 lg:py-32 [over",
+      "y": 10650,
+      "h": 819,
+      "h1": "",
+      "h2": "Your people's learning stays yours.",
+      "h3s": [
+        "Privacy",
+        "Safety",
+        "Responsibility"
+      ],
+      "p": "Your people's questions, conversations, and progress are personal. We keep it that way.",
+      "links": [
+        "Learn more -> /privacy",
+        "Learn more -> /security",
+        "Learn more -> /terms"
+      ],
+      "buttons": [],
+      "imgs": 0
+    },
+    {
+      "id": "12-cta",
+      "cls": "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-",
+      "y": 11469,
+      "h": 657,
+      "h1": "",
+      "h2": "Bring Visionary to your organization.",
+      "h3s": [],
+      "p": "Start with one class, one team, and build from there.",
+      "links": [
+        "Get started -> /register",
+        "Talk to our team -> /contact"
+      ],
+      "buttons": [],
+      "imgs": 0
+    },
+    {
+      "id": "13-explore",
+      "cls": "relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:cli",
+      "y": 12126,
+      "h": 1071,
+      "h1": "",
+      "h2": "Explore Visionary.",
+      "h3s": [
+        "Student",
+        "Teacher",
+        "Parent",
+        "Professional"
+      ],
+      "p": "Understand lessons, practise ideas, and keep your place.",
+      "links": [
+        "StudentUnderstand lessons, practise idea -> /student",
+        "TeacherSee who needs another explanation -> /teacher",
+        "ParentSee where your child needs support -> /parent",
+        "ProfessionalTurn what you know into usef -> /professional"
+      ],
+      "buttons": [
+        "Previous destinations",
+        "Next destinations"
+      ],
+      "imgs": 4
+    }
+  ],
+  "route": "organization",
+  "errors": []
+}

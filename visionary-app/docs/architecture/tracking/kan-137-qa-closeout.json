@@ -1,0 +1,55 @@
+{
+  "task": "KAN-137",
+  "reviewer": "qa-review (independent prior report), Codex integrator re-verification",
+  "independentReviewedSource": "ec7bab9883bfc84b86c44fc37821cdfadac14b8f",
+  "currentDev": "b6525e16b5cfbd45a1a0963cdcd62846eb992cf7",
+  "qaUpdatedBase": "dcbd91df311590783481b4651a2239bef10a1b1f",
+  "metricSourcesMatchCurrentDev": true,
+  "contract": "retrieval-binary-v2",
+  "sharedFixtures": 13,
+  "pythonTests": 3,
+  "pythonPassed": true,
+  "goAnalyticsPassed": true,
+  "historicalReportsUnqualified": 14,
+  "benchmarkRecomputed": false,
+  "hostedAcceptance": false,
+  "scope": "Deterministic metric repair and Python/Go parity only; comparison and product/model gates remain open.",
+  "scopeNotes": [
+    "Prior QA report incorrectly claimed native Done transitions. Retained raw report is historical; final native transition must be inspected.",
+    "Go uses process-local GOTOOLCHAIN=local and GOPROXY=off; tracked Go toolchain config contains CRLF auto value. No toolchain source or metric source was changed."
+  ],
+  "verifiedSourceBlobs": [
+    {
+      "path": "ml/upstream/eval/recall_eval.py",
+      "gitBlob": "dc50be1d846e6dd40803a6b070f4e9d83b879e98"
+    },
+    {
+      "path": "ml/upstream/shared/go/analytics/evaluator.go",
+      "gitBlob": "18588df6e75e7e0570d8f98833df8cb9a88e11b9"
+    },
+    {
+      "path": "ml/upstream/shared/go/analytics/retrieval_contract_test.go",
+      "gitBlob": "059e9fee0a6ba78877c280f9321d03058c322351"
+    },
+    {
+      "path": "ml/evaluation/retrieval-binary-v2.json",
+      "gitBlob": "20eaf3110fa0e07265f8a0d41660ba49e85cfdcc"
+    },
+    {
+      "path": "ml/evaluation/test_retrieval_contract.py",
+      "gitBlob": "5bd7a5db33ccd1bcccfce23e8341c7bafce342ab"
+    }
+  ],
+  "goTopLevelTests": 8,
+  "goSharedFixtures": 13,
+  "integration": {
+    "branch": "dev",
+    "commit": "7d69436c21c3020cb1c7680b225ff911283cd8ee",
+    "remotePublished": true,
+    "jiraCommentId": "10016",
+    "jiraTransitionId": "51",
+    "jiraReturnedStatus": "Done"
+  },
+  "nativeStatus": "Done",
+  "productLaunchOrModelAcceptance": false
+}

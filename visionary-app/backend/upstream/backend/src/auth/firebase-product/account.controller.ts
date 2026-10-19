@@ -6,6 +6,7 @@ import { ProductRequestAuthority } from './request-authority';
 import { FirebaseProductService } from './firebase-product.service';
 import { BillingService } from '../../billing/billing.service';
 import { accountPath } from './account-storage';
+import { accountDirectory } from './account-directory';
 
 @Controller('account')
 export class AccountController extends ProductRequestAuthority {
@@ -14,7 +15,7 @@ export class AccountController extends ProductRequestAuthority {
   async overview(@Req() req: Request) {
     const { uid } = await this.commandAccount(req, false);
     const [details, billing] = await Promise.all([this.service.accountDetails(uid), this.billing.account(uid)]);
-    return { uid, asOf: new Date().toISOString(), ...details, billing,
+    return { uid, asOf: new Date().toISOString(), ...details, billing, structure: accountDirectory(uid),
       records: { devices: '/api/account/devices', invoices: '/api/account/invoices', feedback: '/api/account/feedback' } };
   }
   private async page(collection: string, after?: string, size?: string) {

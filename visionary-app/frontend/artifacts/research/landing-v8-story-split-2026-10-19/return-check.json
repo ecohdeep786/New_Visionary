@@ -1,0 +1,56 @@
+{
+  "390": {
+    "sectionH": 1484,
+    "cells": [
+      {
+        "titleLines": 1,
+        "bodyWidth": 342,
+        "bodyLines": 3
+      },
+      {
+        "titleLines": 1,
+        "bodyWidth": 342,
+        "bodyLines": 2
+      },
+      {
+        "titleLines": 1,
+        "bodyWidth": 342,
+        "bodyLines": 3
+      },
+      {
+        "titleLines": 1,
+        "bodyWidth": 342,
+        "bodyLines": 2
+      }
+    ],
+    "scrollWidth": 390,
+    "innerWidth": 390
+  },
+  "1440": {
+    "sectionH": 990,
+    "cells": [
+      {
+        "titleLines": 1,
+        "bodyWidth": 221,
+        "bodyLines": 4
+      },
+      {
+        "titleLines": 1,
+        "bodyWidth": 196,
+        "bodyLines": 4
+      },
+      {
+        "titleLines": 2,
+        "bodyWidth": 196,
+        "bodyLines": 5
+      },
+      {
+        "titleLines": 1,
+        "bodyWidth": 220,
+        "bodyLines": 3
+      }
+    ],
+    "scrollWidth": 1440,
+    "innerWidth": 1440
+  }
+}

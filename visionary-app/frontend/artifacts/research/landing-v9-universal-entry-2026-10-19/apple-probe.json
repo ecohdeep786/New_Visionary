@@ -1,0 +1,524 @@
+{
+  "apple-education-in": {
+    "title": "Education - Apple (IN)",
+    "h1": "Apple Education",
+    "navs": [
+      {
+        "aria": "Global",
+        "links": [
+          {
+            "text": "Apple",
+            "fs": 17,
+            "color": "rgba(255, 255, 255, 0.8)",
+            "fw": "600"
+          },
+          {
+            "text": "Store",
+            "fs": 12,
+            "color": "rgba(255, 255, 255, 0.8)",
+            "fw": "400"
+          },
+          {
+            "text": "Shop the Latest",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Mac",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "iPad",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "iPhone",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Apple Watch",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "AirPods",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Home",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Accessories",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Find a Store",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Order Status",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Apple Trade In",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Ways to Buy",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Personal Setup",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Festive Offer",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          }
+        ]
+      },
+      {
+        "aria": "Local",
+        "links": [
+          {
+            "text": "Education",
+            "fs": 21,
+            "color": "rgb(255, 255, 255)",
+            "fw": "600"
+          },
+          {
+            "text": "Local Nav Menu",
+            "fs": 12,
+            "color": "rgb(0, 102, 204)",
+            "fw": "400"
+          },
+          {
+            "text": "Local Nav Menu",
+            "fs": 12,
+            "color": "rgb(0, 102, 204)",
+            "fw": "400"
+          },
+          {
+            "text": "K–12",
+            "fs": 12,
+            "color": "rgb(255, 255, 255)",
+            "fw": "400"
+          },
+          {
+            "text": "Higher Education",
+            "fs": 12,
+            "color": "rgb(255, 255, 255)",
+            "fw": "400"
+          },
+          {
+            "text": "College Students",
+            "fs": 12,
+            "color": "rgb(255, 255, 255)",
+            "fw": "400"
+          },
+          {
+            "text": "Success Stories",
+            "fs": 12,
+            "color": "rgb(255, 255, 255)",
+            "fw": "400"
+          }
+        ]
+      },
+      {
+        "aria": "Breadcrumbs",
+        "links": [
+          {
+            "text": " Apple",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          }
+        ]
+      },
+      {
+        "aria": "Apple Directory",
+        "links": [
+          {
+            "text": "Store",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Mac",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "iPad",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "iPhone",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Watch",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "AirPods",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Home",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "AirTag",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Accessories",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Gift Cards",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Wallet",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Apple Pay",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Manage Your Apple Account",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Apple Store Account",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "iCloud.com",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Apple TV",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          }
+        ]
+      }
+    ],
+    "docH": 7405
+  },
+  "apple-education-initiative": {
+    "title": "Education - Apple (IN)",
+    "h1": "Education moves learners, leaders, innovators, communities and everyone forward.",
+    "navs": [
+      {
+        "aria": "Global",
+        "links": [
+          {
+            "text": "Apple",
+            "fs": 17,
+            "color": "rgba(255, 255, 255, 0.8)",
+            "fw": "600"
+          },
+          {
+            "text": "Store",
+            "fs": 12,
+            "color": "rgba(255, 255, 255, 0.8)",
+            "fw": "400"
+          },
+          {
+            "text": "Shop the Latest",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Mac",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "iPad",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "iPhone",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Apple Watch",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "AirPods",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Home",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Accessories",
+            "fs": 24,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Find a Store",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Order Status",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Apple Trade In",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Ways to Buy",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Personal Setup",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          },
+          {
+            "text": "Festive Offer",
+            "fs": 12,
+            "color": "rgb(232, 232, 237)",
+            "fw": "600"
+          }
+        ]
+      },
+      {
+        "aria": "Local",
+        "links": [
+          {
+            "text": "Education",
+            "fs": 21,
+            "color": "rgb(255, 255, 255)",
+            "fw": "600"
+          },
+          {
+            "text": "Local Nav Open Menu",
+            "fs": 12,
+            "color": "rgb(0, 102, 204)",
+            "fw": "400"
+          },
+          {
+            "text": "Local Nav Close Menu",
+            "fs": 12,
+            "color": "rgb(0, 102, 204)",
+            "fw": "400"
+          },
+          {
+            "text": "Education Impact Report (PDF)",
+            "fs": 12,
+            "color": "rgb(255, 255, 255)",
+            "fw": "400"
+          },
+          {
+            "text": "Education Impact Report (PDF)",
+            "fs": 12,
+            "color": "rgb(0, 0, 0)",
+            "fw": "400"
+          }
+        ]
+      },
+      {
+        "aria": "Breadcrumbs",
+        "links": [
+          {
+            "text": " Apple",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          }
+        ]
+      },
+      {
+        "aria": "Apple Directory",
+        "links": [
+          {
+            "text": "Store",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Mac",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "iPad",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "iPhone",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Watch",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "AirPods",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Home",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "AirTag",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Accessories",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Gift Cards",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Wallet",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Apple Pay",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Manage Your Apple Account",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Apple Store Account",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "iCloud.com",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          },
+          {
+            "text": "Apple TV",
+            "fs": 12,
+            "color": "rgba(0, 0, 0, 0.72)",
+            "fw": "400"
+          }
+        ]
+      }
+    ],
+    "docH": 7945
+  }
+}

@@ -6,6 +6,7 @@ import { FirebaseAdminService } from '../firebase/firebase-admin.service';
 import { onboardingProfile, publicProfile } from './profile';
 import { freeBillingAccount } from '../../billing/billing-account';
 import { ACCOUNT_STORAGE_VERSION, LEGACY_BILLING_ACCOUNTS, billingDocument, deviceDocument, deviceRecord, eventDocument, identitySnapshot } from './account-storage';
+import { accountDirectory, directoryDocument, directoryNeedsUpdate } from './account-directory';
 
 const ABSOLUTE_MS = 8 * 60 * 60 * 1000;
 const IDLE_MS = 30 * 60 * 1000;
@@ -67,6 +68,10 @@ export class FirebaseProductService implements OnModuleDestroy {
       const db = this.db(), account = db.collection('visionary_accounts').doc(identity.uid), session = db.collection('visionary_auth_sessions').doc(sessionId);
       return db.runTransaction(async tx => {
         const snapshot = await tx.get(account);
+        const directoryRef = directoryDocument(db, identity.uid), directory = await tx.get(directoryRef);
+        let updateDirectory: boolean;
+        try { updateDirectory = directoryNeedsUpdate(identity.uid, directory.data()); }
+        catch { throw new ConflictException('Your account structure needs recovery. Your saved records are retained.'); }
         if (snapshot.data()?.uid && snapshot.data().uid !== identity.uid) throw new ConflictException('Your account identity needs recovery.');
         const billingRef = billingDocument(db, identity.uid), billing = await tx.get(billingRef);
         const legacy = !billing.exists ? await tx.get(db.collection(LEGACY_BILLING_ACCOUNTS).doc(identity.uid)) : null;
@@ -80,6 +85,7 @@ export class FirebaseProductService implements OnModuleDestroy {
         if (!billing.exists) tx.create(billingRef, freeBillingAccount(identity.uid, now));
         else if (!billing.data().uid || !billing.data().basePlan) tx.set(billingRef, { ...billing.data(), uid: identity.uid, basePlan: 'start', schemaVersion: 1 });
         tx.set(account, refreshed);
+        if (updateDirectory) tx.set(directoryRef, accountDirectory(identity.uid));
         if (old && old.uid === identity.uid && old.cookieHash === digest(previous.cookie || '') && !old.revokedAt) {
           const revoked = { ...old, revokedAt: Timestamp.fromMillis(now) };
           tx.update(oldRef, { revokedAt: revoked.revokedAt });

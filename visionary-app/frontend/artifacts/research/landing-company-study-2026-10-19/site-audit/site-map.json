@@ -1,0 +1,5375 @@
+{
+  "home": {
+    "title": "Visionary — Learn, ask, practice, and build",
+    "docH": 11393,
+    "h1": "One intelligencefor teachers.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "One intelligencefor teachers.One intelligence, for students, teachers, parents, professionals, and o",
+        "y": 56,
+        "h": 844,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "One intelligencefor teachers.One intelligence, for students, teachers, parents, professionals, and o",
+        "y": 217,
+        "h": 168,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-problem",
+        "text": "Stories from a teacher, a parent, a student, and a professional about the moment understanding break",
+        "y": 1170,
+        "h": 1247,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "y": 1329,
+        "h": 216,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-promise",
+        "text": "What if your intelligence never forgot where you were?",
+        "y": 2417,
+        "h": 325,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "What if your intelligence never forgot where you were?",
+        "y": 2532,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-intelligence",
+        "text": "One intelligence.From the first question to using what you know.0104Understand what you're learning.",
+        "y": 2742,
+        "h": 2849,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence.",
+        "y": 2901,
+        "h": 84,
+        "fs": "80px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand what you're learning.",
+        "y": 3375,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See it. Hear it. Ask it another way.",
+        "y": 3951,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Practice what you're learning.",
+        "y": 4527,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Build from what you know.",
+        "y": 5119,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand what you're learning.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See it. Hear it. Ask it another way.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Practice what you're learning.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Build from what you know.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "13-explore",
+        "text": "Who it's forOne intelligence, five journeys.Whether you are learning, teaching, guiding, building, o",
+        "y": 5591,
+        "h": 1251,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence, five journeys.",
+        "y": 5787,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Student",
+        "y": 6466,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teacher",
+        "y": 6466,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Parent",
+        "y": 6466,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Professional",
+        "y": 6466,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organization",
+        "y": 6466,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-language",
+        "text": "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}In your voiceEvery langu",
+        "y": 6842,
+        "h": 1422,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every language.One understanding.",
+        "y": 7037,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-journey",
+        "text": "Life changes. Visionary keeps pace.When your world changes, the way you learn can change with it — a",
+        "y": 8263,
+        "h": 1268,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Life changes. Visionary keeps pace.",
+        "y": 8288,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Built for who you are. Ready for who you become.",
+        "y": 9253,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "11-trust",
+        "text": "Your learning stays yours.Your questions, conversations, ideas, and progress are personal. Visionary",
+        "y": 9531,
+        "h": 688,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your learning stays yours.",
+        "y": 9690,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Privacy",
+        "y": 9918,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 9918,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Responsibility",
+        "y": 9918,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "12-cta",
+        "text": "Your next step starts here.Ask a question. Explore an idea. Start learning. Visionary is ready when ",
+        "y": 10219,
+        "h": 637,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your next step starts here.",
+        "y": 10379,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "student": {
+    "title": "Visionary for students | Learn at your pace",
+    "docH": 13322,
+    "h1": "Learning,Learning, to master, to build.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Learning,Learning, to master, to build.Every concept you understand becomes the foundation for the n",
+        "y": 56,
+        "h": 844,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Learning,Learning, to master, to build.",
+        "y": 681,
+        "h": 84,
+        "fs": "79.92px",
+        "fw": "500"
+      },
+      {
+        "tag": "section",
+        "sec": "02-struggle",
+        "text": "Student learning challengesWhere understanding slipsEvery student struggles withunderstanding.Studyi",
+        "y": 900,
+        "h": 1346,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every student struggles withunderstanding.",
+        "y": 1116,
+        "h": 148,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-journey",
+        "text": "Learning thatmoves with you.Wherever you begin, Visionary helps your learning move forward from ther",
+        "y": 2246,
+        "h": 1153,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Learning thatmoves with you.",
+        "y": 2406,
+        "h": 148,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-intelligence",
+        "text": "One intelligence.From the first question to using what you know.0104Understand what you're learning.",
+        "y": 3399,
+        "h": 2849,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence.",
+        "y": 3559,
+        "h": 84,
+        "fs": "80px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand what you're learning.",
+        "y": 4032,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See it. Hear it. Ask it another way.",
+        "y": 4608,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Practice what you're learning.",
+        "y": 5184,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Build from what you know.",
+        "y": 5776,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand what you're learning.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See it. Hear it. Ask it another way.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Practice what you're learning.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Build from what you know.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-language",
+        "text": "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}Every languageThe words ",
+        "y": 6248,
+        "h": 1422,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The words change.Understanding doesn't.",
+        "y": 6444,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-achievement",
+        "text": "See what you can achieve.Understand what matters.Get a clear picture of the subjects and skills that",
+        "y": 7670,
+        "h": 1242,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See what you can achieve.",
+        "y": 7830,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-journey-flow",
+        "text": "Your journeyNew stage.Same intelligence.When the stage changes, your intelligence comes with you.Pri",
+        "y": 8912,
+        "h": 1441,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "New stage.Same intelligence.",
+        "y": 9108,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Primary",
+        "y": 9411,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Secondary and higher secondary",
+        "y": 9411,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "11-trust",
+        "text": "Your intelligence stays yours.Your questions, conversations, ideas, and progress are personal. We ke",
+        "y": 10354,
+        "h": 724,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your intelligence stays yours.",
+        "y": 10513,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Privacy",
+        "y": 10776,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 10776,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Responsibility",
+        "y": 10776,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "12-cta",
+        "text": "Your learning starts with where you are.Ask your first question. Start building from what you know.G",
+        "y": 11078,
+        "h": 657,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your learning starts with where you are.",
+        "y": 11237,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "13-explore",
+        "text": "Explore Visionary.TeacherSee who needs another explanation.Learn moreParentSee where your child need",
+        "y": 11735,
+        "h": 1051,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Explore Visionary.",
+        "y": 11895,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teacher",
+        "y": 12431,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Parent",
+        "y": 12431,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Professional",
+        "y": 12432,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organization",
+        "y": 12432,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "teacher": {
+    "title": "Visionary for teachers | Prepare and teach",
+    "docH": 13442,
+    "h1": "Teaching.Teaching, to grow, to reach.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Teaching.Teaching, to grow, to reach.One class, many minds. See who is with you before the next bell",
+        "y": 56,
+        "h": 844,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Teaching.Teaching, to grow, to reach.",
+        "y": 681,
+        "h": 84,
+        "fs": "79.92px",
+        "fw": "500"
+      },
+      {
+        "tag": "section",
+        "sec": "02-struggle",
+        "text": "Teacher challengesWhat the classroom hidesEvery teacher wonders aboutunderstanding.Teaching isn't th",
+        "y": 900,
+        "h": 1418,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every teacher wonders aboutunderstanding.",
+        "y": 1116,
+        "h": 220,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-journey",
+        "text": "Teaching thatmoves with your class.Wherever your class begins, Visionary helps your teaching move fo",
+        "y": 2318,
+        "h": 1181,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Teaching thatmoves with your class.",
+        "y": 2478,
+        "h": 148,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-intelligence",
+        "text": "One intelligence.For you and your class, from first question to real understanding.0104Understand wh",
+        "y": 3499,
+        "h": 2849,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence.",
+        "y": 3659,
+        "h": 84,
+        "fs": "80px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand what your class is learning.",
+        "y": 4132,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Show it, hear it, teach it another way.",
+        "y": 4708,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Know who's with you before the exam.",
+        "y": 5284,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Learn what your teaching demands next.",
+        "y": 5860,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand what your class is learning.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Show it, hear it, teach it another way.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Know who's with you before the exam.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Learn what your teaching demands next.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-language",
+        "text": "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}Every languageTeach your",
+        "y": 6348,
+        "h": 1422,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Teach your way.Explain your way.",
+        "y": 6544,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-achievement",
+        "text": "See what your class can achieve.Understand your classroom.A clear picture of the learners and gaps t",
+        "y": 7770,
+        "h": 1242,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See what your class can achieve.",
+        "y": 7930,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-journey-flow",
+        "text": "Your journeyNew stage.Same teaching.When the stage changes, your teaching comes with you.Lesson plan",
+        "y": 9012,
+        "h": 1441,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "New stage.Same teaching.",
+        "y": 9208,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Lesson planning",
+        "y": 9511,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "In class",
+        "y": 9511,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "11-trust",
+        "text": "Your teaching stays yours.Your classes, conversations, ideas, and progress are personal. We keep it ",
+        "y": 10454,
+        "h": 724,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your teaching stays yours.",
+        "y": 10613,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Privacy",
+        "y": 10876,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 10876,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Responsibility",
+        "y": 10876,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "12-cta",
+        "text": "Your teaching starts with where your class is.See who understands. Adapt the next lesson.Get started",
+        "y": 11178,
+        "h": 657,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your teaching starts with where your class is.",
+        "y": 11337,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "13-explore",
+        "text": "Explore Visionary.StudentUnderstand lessons, practise ideas, and keep your place.Learn moreParentSee",
+        "y": 11835,
+        "h": 1071,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Explore Visionary.",
+        "y": 11994,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Student",
+        "y": 12530,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Parent",
+        "y": 12530,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Professional",
+        "y": 12530,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organization",
+        "y": 12531,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "parent": {
+    "title": "Visionary for parents | Follow their progress",
+    "docH": 13470,
+    "h1": "to help.Parenting, to see, to help.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "to help.Parenting, to see, to help.Know what your child is learning before the report card.Start fre",
+        "y": 56,
+        "h": 844,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "to help.Parenting, to see, to help.",
+        "y": 709,
+        "h": 84,
+        "fs": "79.92px",
+        "fw": "500"
+      },
+      {
+        "tag": "section",
+        "sec": "02-struggle",
+        "text": "Parent concernsWhat report cards missEvery parent wonders aboutprogress.Caring isn't the difficulty.",
+        "y": 900,
+        "h": 1346,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every parent wonders aboutprogress.",
+        "y": 1116,
+        "h": 148,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-journey",
+        "text": "Learning thatchanges with their goals.Wherever your child begins, Visionary helps their learning mov",
+        "y": 2246,
+        "h": 1181,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Learning thatchanges with their goals.",
+        "y": 2406,
+        "h": 148,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-intelligence",
+        "text": "One intelligence.From the first question to the moment they can use what they've learned.0104What yo",
+        "y": 3427,
+        "h": 2877,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence.",
+        "y": 3587,
+        "h": 84,
+        "fs": "80px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "What your child understood this week.",
+        "y": 4088,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Know where your child is stuck.",
+        "y": 4664,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See which way learning is moving.",
+        "y": 5240,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "You see more when everyone shares one view.",
+        "y": 5816,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "What your child understood this week.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Know where your child is stuck.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See which way learning is moving.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "You see more when everyone shares one view.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-language",
+        "text": "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}Every languageYour child",
+        "y": 6304,
+        "h": 1422,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your child's progress.In your language.",
+        "y": 6500,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-achievement",
+        "text": "See what your child can achieve.Understand what your child is learning.A clear picture of what shape",
+        "y": 7726,
+        "h": 1242,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See what your child can achieve.",
+        "y": 7886,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-journey-flow",
+        "text": "Your journeyNew stage.Same understanding.When the stage changes, your understanding comes with you.E",
+        "y": 8968,
+        "h": 1441,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "New stage.Same understanding.",
+        "y": 9164,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Early years",
+        "y": 9467,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Primary",
+        "y": 9467,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "11-trust",
+        "text": "Your child's learning stays theirs.Your child's questions, conversations, and progress are personal.",
+        "y": 10410,
+        "h": 796,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your child's learning stays theirs.",
+        "y": 10569,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Privacy",
+        "y": 10904,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 10904,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Responsibility",
+        "y": 10904,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "12-cta",
+        "text": "Your child's journey is already happening.See what they understand. Know where to help.Get startedTa",
+        "y": 11206,
+        "h": 657,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your child's journey is already happening.",
+        "y": 11365,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "13-explore",
+        "text": "Explore Visionary.StudentUnderstand lessons, practise ideas, and build with confidence.Learn moreTea",
+        "y": 11863,
+        "h": 1071,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Explore Visionary.",
+        "y": 12022,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Student",
+        "y": 12559,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teacher",
+        "y": 12559,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Professional",
+        "y": 12559,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organization",
+        "y": 12559,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "professional": {
+    "title": "Visionary for professionals | Grow your skills",
+    "docH": 13465,
+    "h1": "to apply.Building, to apply, to grow.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "to apply.Building, to apply, to grow.Turn what you learn into work that ships — skills, solutions, a",
+        "y": 56,
+        "h": 844,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "to apply.Building, to apply, to grow.",
+        "y": 681,
+        "h": 84,
+        "fs": "79.92px",
+        "fw": "500"
+      },
+      {
+        "tag": "section",
+        "sec": "02-struggle",
+        "text": "Career learning challengesWhat work doesn't showEvery professional wonders aboutApplication.Working ",
+        "y": 900,
+        "h": 1418,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every professional wonders aboutApplication.",
+        "y": 1116,
+        "h": 220,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-journey",
+        "text": "Work thatmeets your challenges.Wherever your career begins, Visionary helps your work move forward f",
+        "y": 2318,
+        "h": 1181,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Work thatmeets your challenges.",
+        "y": 2478,
+        "h": 148,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-intelligence",
+        "text": "One intelligence.From the first problem to using what you know.0104Understand the work before you do",
+        "y": 3499,
+        "h": 2849,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence.",
+        "y": 3659,
+        "h": 84,
+        "fs": "80px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand the work before you do it.",
+        "y": 4122,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Turn every project into a lesson.",
+        "y": 4708,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Carry your expertise across teams and tools.",
+        "y": 5274,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Know what your work is actually building.",
+        "y": 5860,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand the work before you do it.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Turn every project into a lesson.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Carry your expertise across teams and tools.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Know what your work is actually building.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-language",
+        "text": "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}Every languageYour work.",
+        "y": 6348,
+        "h": 1422,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your work.In your language.",
+        "y": 6544,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-achievement",
+        "text": "See what you can achieve.Understand the problems you're working on.See every problem through the len",
+        "y": 7770,
+        "h": 1242,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See what you can achieve.",
+        "y": 7930,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-journey-flow",
+        "text": "Your journeyNew stage.Same work.When the stage changes, your work comes with you.Early CareerTurn ev",
+        "y": 9012,
+        "h": 1441,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "New stage.Same work.",
+        "y": 9208,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Early Career",
+        "y": 9511,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Mid-Level",
+        "y": 9511,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "11-trust",
+        "text": "Your work stays yours.Your projects, ideas, and career decisions are personal. We keep it that way.P",
+        "y": 10454,
+        "h": 719,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your work stays yours.",
+        "y": 10613,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Privacy",
+        "y": 10848,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 10848,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Responsibility",
+        "y": 10848,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "12-cta",
+        "text": "Your next project is already in front of you.Understand it faster. Solve it with intelligence. Ship ",
+        "y": 11173,
+        "h": 685,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your next project is already in front of you.",
+        "y": 11332,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "13-explore",
+        "text": "Explore Visionary.StudentKnow how Visionary fits into your learning.Learn moreTeacherKnow how Vision",
+        "y": 11858,
+        "h": 1071,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Explore Visionary.",
+        "y": 12018,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Student",
+        "y": 12554,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teacher",
+        "y": 12554,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Parent",
+        "y": 12554,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organization",
+        "y": 12554,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "organization": {
+    "title": "Visionary for organizations | Teach at scale",
+    "docH": 13733,
+    "h1": "to scale.Leading, to scale, to last.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "to scale.Leading, to scale, to last.One intelligence across every classroom, team, and program. Unde",
+        "y": 56,
+        "h": 844,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "to scale.Leading, to scale, to last.",
+        "y": 681,
+        "h": 84,
+        "fs": "79.92px",
+        "fw": "500"
+      },
+      {
+        "tag": "section",
+        "sec": "02-struggle",
+        "text": "Organization learning challengesWhat you can't seeEvery organization wonders aboutadoption.Learning ",
+        "y": 900,
+        "h": 1418,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every organization wonders aboutadoption.",
+        "y": 1116,
+        "h": 220,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-journey",
+        "text": "Every organization learns differently.Schools see it firstOne intelligence, shaped to the way your i",
+        "y": 2318,
+        "h": 1225,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every organization learns differently.Schools see it first",
+        "y": 2478,
+        "h": 220,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-intelligence",
+        "text": "One intelligence.Every learner, teacher, and professional in one clear picture you can act on.0104Se",
+        "y": 3543,
+        "h": 2877,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence.",
+        "y": 3703,
+        "h": 84,
+        "fs": "80px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See what people understand.",
+        "y": 4204,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Find gaps before they spread.",
+        "y": 4780,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Support every role from one system.",
+        "y": 5356,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Improve the next decision.",
+        "y": 5948,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "See what people understand.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Find gaps before they spread.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Support every role from one system.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Improve the next decision.",
+        "y": 0,
+        "h": 0,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-language",
+        "text": "@keyframes voiceDot{0%,100%{transform:scaleY(0.35)}50%{transform:scaleY(1)}}Every languageYour organ",
+        "y": 6420,
+        "h": 1450,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your organization.In every language.",
+        "y": 6616,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-achievement",
+        "text": "See what your organization can achieve.Understand what people actually know.Move beyond completion r",
+        "y": 7870,
+        "h": 1310,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See what your organization can achieve.",
+        "y": 8030,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-journey-flow",
+        "text": "Your journeyIndividual journeys.Shared intelligence.When the context changes, the same intelligence ",
+        "y": 9180,
+        "h": 1469,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Individual journeys.Shared intelligence.",
+        "y": 9376,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Schools",
+        "y": 9707,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Colleges and universities",
+        "y": 9707,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "11-trust",
+        "text": "Your people's learning stays yours.Your people's questions, conversations, and progress are personal",
+        "y": 10650,
+        "h": 819,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your people's learning stays yours.",
+        "y": 10809,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Privacy",
+        "y": 11144,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 11144,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Responsibility",
+        "y": 11144,
+        "h": 23,
+        "fs": "19px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "12-cta",
+        "text": "Bring Visionary to your organization.Start with one class, one team, and build from there.Get starte",
+        "y": 11469,
+        "h": 657,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Bring Visionary to your organization.",
+        "y": 11628,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "13-explore",
+        "text": "Explore Visionary.StudentUnderstand lessons, practise ideas, and keep your place.Learn moreTeacherSe",
+        "y": 12126,
+        "h": 1071,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Explore Visionary.",
+        "y": 12286,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Student",
+        "y": 12822,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teacher",
+        "y": 12822,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Parent",
+        "y": 12822,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Professional",
+        "y": 12822,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "how-it-works": {
+    "title": "How Visionary works",
+    "docH": 7137,
+    "h1": "How Visionary works.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "How Visionary works.Understand, ask, practise, then build.",
+        "y": 181,
+        "h": 284,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "How Visionary works.",
+        "y": 293,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-journey",
+        "text": "Step 04 · Stay connectedStay connected.Your learning never resets. Visionary remembers your context,",
+        "y": 465,
+        "h": 3605,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h3",
+        "text": "Stay connected.",
+        "y": 960,
+        "h": 44,
+        "fs": "40px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Sign in your account.",
+        "y": 0,
+        "h": 0,
+        "fs": "40px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Start as yourself.",
+        "y": 0,
+        "h": 0,
+        "fs": "40px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Step into your space.",
+        "y": 0,
+        "h": 0,
+        "fs": "40px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Stay connected.",
+        "y": 0,
+        "h": 0,
+        "fs": "40px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-loop",
+        "text": "The learning loopOne loop, check.Every subject in Visionary moves through the same loop, from your g",
+        "y": 4070,
+        "h": 955,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One loop, check.",
+        "y": 4265,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-people",
+        "text": "Different peopleOne intelligence. Different ways to use it.The product doesn't change. What you're d",
+        "y": 5025,
+        "h": 1038,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence. Different ways to use it.",
+        "y": 5221,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-cta",
+        "text": "See it with your own question.Get startedSee pricingFree to start. Private by design.",
+        "y": 6063,
+        "h": 538,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See it with your own question.",
+        "y": 6223,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "help": {
+    "title": "Help Center | Visionary",
+    "docH": 2477,
+    "h1": "Find your answer.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Find your answer.",
+        "y": 405,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "pricing": {
+    "title": "Pricing | Visionary",
+    "docH": 5561,
+    "h1": "Plans for every journey.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Plans for every journey.Start free. Find the right fit for yourself, your family, or your organizati",
+        "y": 181,
+        "h": 1208,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Plans for every journey.",
+        "y": 293,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Start",
+        "y": 633,
+        "h": 27,
+        "fs": "24px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Personal",
+        "y": 633,
+        "h": 27,
+        "fs": "24px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Family",
+        "y": 633,
+        "h": 27,
+        "fs": "24px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Institution",
+        "y": 633,
+        "h": 27,
+        "fs": "24px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "02-persona",
+        "text": "Every journey has a plan.StudentStart or PersonalBegin free. Upgrade when you're ready.TeacherPerson",
+        "y": 1389,
+        "h": 894,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Every journey has a plan.",
+        "y": 1564,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-compare",
+        "text": "See exactly what you get.Scroll to compare all plans →FeaturesStartPersonalFamilyInstitutionAsk & ex",
+        "y": 2283,
+        "h": 1194,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See exactly what you get.",
+        "y": 2458,
+        "h": 72,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-faq",
+        "text": "FAQQuestions about pricing, answered.Can I start free?Yes. Start is free forever — 20 questions a da",
+        "y": 3641,
+        "h": 775,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Questions about pricing, answered.",
+        "y": 3836,
+        "h": 204,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-cta",
+        "text": "Your journey is already happening, so start free.Get startedTalk to salesUpgrade only when Visionary",
+        "y": 4416,
+        "h": 610,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your journey is already happening, so start free.",
+        "y": 4575,
+        "h": 144,
+        "fs": "72px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "download": {
+    "title": "Download Visionary",
+    "docH": 4762,
+    "h1": "Get Visionary on every device.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "DownloadGet Visionary on every device.On the phone, tablet or laptop you already own.Continue on web",
+        "y": 181,
+        "h": 781,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Get Visionary on every device.",
+        "y": 334,
+        "h": 81,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Continue on web",
+        "y": 654,
+        "h": 32,
+        "fs": "28px",
+        "fw": "500"
+      },
+      {
+        "tag": "h2",
+        "text": "Get the app",
+        "y": 654,
+        "h": 32,
+        "fs": "28px",
+        "fw": "500"
+      },
+      {
+        "tag": "section",
+        "sec": "02-platforms",
+        "text": "Supported platformsChoose your platform.Use Visionary on the web today. Native apps are being prepar",
+        "y": 962,
+        "h": 1089,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Choose your platform.",
+        "y": 1158,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Web",
+        "y": 1449,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Windows",
+        "y": 1449,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Mac",
+        "y": 1449,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Linux",
+        "y": 1705,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "iOS",
+        "y": 1705,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Android",
+        "y": 1705,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-sync",
+        "text": "Start on one device. continue on every other.Conversations, progress, and context sync across web, d",
+        "y": 2348,
+        "h": 392,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "04-requirements",
+        "text": "System requirementsWhat you need to run Visionary.WebAny modern browser — Chrome, Edge, Safari, or F",
+        "y": 2740,
+        "h": 787,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "What you need to run Visionary.",
+        "y": 2938,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Web",
+        "y": 3086,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Windows",
+        "y": 3086,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Mac",
+        "y": 3086,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Linux",
+        "y": 3228,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "iOS",
+        "y": 3228,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Android",
+        "y": 3228,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-cta",
+        "text": "Still deciding? The web is one click away.Continue on webSee how it worksNo install, no waiting. Pic",
+        "y": 3692,
+        "h": 534,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Still deciding? The web is one click away.",
+        "y": 3851,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "about": {
+    "title": "About Visionary",
+    "docH": 8249,
+    "h1": "Helping people turn questions into understanding.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "About VisionaryHelping people turn questions into understanding.A learning product for people who wa",
+        "y": 0,
+        "h": 1139,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Helping people turn questions into understanding.",
+        "y": 281,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-mission",
+        "text": "Why Visionary existsUnderstanding should open the next door.People move between classrooms, homes, w",
+        "y": 1139,
+        "h": 1159,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Understanding should open the next door.",
+        "y": 1338,
+        "h": 216,
+        "fs": "72px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-journey",
+        "text": "A life in motionOne journey, many beginnings.A first lesson, a new skill, a different career, and th",
+        "y": 2298,
+        "h": 1130,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One journey, many beginnings.",
+        "y": 2524,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Find a way in",
+        "y": 3023,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Grow with support",
+        "y": 3023,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Choose what comes next",
+        "y": 3023,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Keep growing",
+        "y": 3023,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-impact",
+        "text": "The difference we want to makeAI can make the next step clearer.The challenge is bigger than answeri",
+        "y": 3427,
+        "h": 1235,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "AI can make the next step clearer.",
+        "y": 3627,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A missed idea can follow someone for years.",
+        "y": 4151,
+        "h": 96,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "The people helping them see different pieces.",
+        "y": 4151,
+        "h": 96,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A new direction can feel like starting from zero.",
+        "y": 4151,
+        "h": 96,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-roles",
+        "text": "For every perspectiveDifferent people, one connected journey.Find the experience that fits your work",
+        "y": 4662,
+        "h": 1335,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Different people, one connected journey.",
+        "y": 4862,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Students",
+        "y": 5300,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teachers",
+        "y": 5300,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Parents",
+        "y": 5300,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "College & careers",
+        "y": 5662,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organizations",
+        "y": 5662,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-explore",
+        "text": "Explore furtherThe work around the product.ResearchThe questions and ideas shaping our approach.Care",
+        "y": 5997,
+        "h": 1074,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The work around the product.",
+        "y": 6197,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Research",
+        "y": 6453,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Careers",
+        "y": 6453,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety",
+        "y": 6685,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Updates",
+        "y": 6685,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-cta",
+        "text": "Start where you areThere is a place for you in Visionary.Get startedContact VisionaryExplore the vie",
+        "y": 7071,
+        "h": 642,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "There is a place for you in Visionary.",
+        "y": 7271,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "careers": {
+    "title": "Careers | Visionary",
+    "docH": 7535,
+    "h1": "Search for your place at Visionary.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Search for your place at Visionary.Interested inEngineeringProduct and strategyDesignLearning and ev",
+        "y": 0,
+        "h": 600,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Search for your place at Visionary.",
+        "y": 76,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Search for your place at Visionary.",
+        "y": 0,
+        "h": 0,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-why",
+        "text": "Why VisionaryWe are a small team solving a real learning problem: helping someone turn confusion int",
+        "y": 934,
+        "h": 814,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Why Visionary",
+        "y": 1094,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Meaningful problems",
+        "y": 1421,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Early-stage impact",
+        "y": 1421,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Learning-centered",
+        "y": 1421,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-teams",
+        "text": "TeamsTogether, we build a product that helps people keep what they learn. These are areas of work, n",
+        "y": 1748,
+        "h": 1522,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Teams",
+        "y": 1907,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Engineering",
+        "y": 2374,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Product and strategy",
+        "y": 2374,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Design",
+        "y": 2374,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Learning and evaluation",
+        "y": 2807,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teaching and curriculum",
+        "y": 2807,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Company operations",
+        "y": 2807,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-hiring",
+        "text": "How we hireHow to prepare for our hiring processWe are a small, early-stage team, so the process sta",
+        "y": 3270,
+        "h": 1723,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "How to prepare for our hiring process",
+        "y": 4146,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Choose a listed role.",
+        "y": 4430,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Share your work.",
+        "y": 4543,
+        "h": 40,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Work through the role.",
+        "y": 4632,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Decide with context.",
+        "y": 4745,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-roles",
+        "text": "Open rolesThis page is the single source for openings. When a role opens, it will be listed here fir",
+        "y": 4993,
+        "h": 902,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Open roles",
+        "y": 5152,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "No public roles listed right now.",
+        "y": 5479,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-contact",
+        "text": "A fair process starts with clarity.We want career information and conversations with our team to be ",
+        "y": 5894,
+        "h": 491,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "A fair process starts with clarity.",
+        "y": 6054,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-cta",
+        "text": "What you learn here should stay with you.Understand deeply, build from what you know, carry the lear",
+        "y": 6386,
+        "h": 613,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "What you learn here should stay with you.",
+        "y": 6545,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "research": {
+    "title": "Research | Visionary",
+    "docH": 12014,
+    "h1": "One intelligence,every learner.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "One intelligence,every learner.We are building a mentor that knows your journey. This page records w",
+        "y": 181,
+        "h": 452,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "One intelligence,every learner.",
+        "y": 277,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-mission",
+        "text": "Building the mentor intelligence.The product contract is simple to say and hard to do: one identity ",
+        "y": 633,
+        "h": 616,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Building the mentor intelligence.",
+        "y": 867,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "I am your Intelligence.",
+        "y": 893,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-quote",
+        "text": "\"A person should not have to start over every time life asks them to learn something new.\"MAMd Shahi",
+        "y": 1249,
+        "h": 650,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h3",
+        "text": "\"A person should not have to start over every time life asks them to learn something new.\"",
+        "y": 1505,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-latest",
+        "text": "Read the latestView product updates Explore how it works The daily mentor engineHome became a decisi",
+        "y": 1899,
+        "h": 880,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Read the latest",
+        "y": 2059,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "The daily mentor engine",
+        "y": 2391,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Two faces of one intelligence",
+        "y": 2391,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A teacher-moderated community",
+        "y": 2391,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-areas",
+        "text": "Our research drives real understanding.One intelligence, researched across every role the product se",
+        "y": 2779,
+        "h": 4439,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Our research drives real understanding.",
+        "y": 2938,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A mentor for every step",
+        "y": 3390,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teaching, amplified",
+        "y": 4181,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "The journey, with consent",
+        "y": 4982,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "From goal to evidence",
+        "y": 5742,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understanding at scale",
+        "y": 6513,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-projects",
+        "text": "See the work this research feeds.More about the product How it worksThe learning loop the research f",
+        "y": 7218,
+        "h": 872,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "See the work this research feeds.",
+        "y": 7377,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "How it works",
+        "y": 7807,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "The product",
+        "y": 7807,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Community",
+        "y": 7807,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-domains",
+        "text": "The mind behind the mentor.The mentor's intelligence is an adapter, not a fixed brain. Retrieval, gr",
+        "y": 8090,
+        "h": 811,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The mind behind the mentor.",
+        "y": 8329,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "08-origin",
+        "text": "One question started it all.The mentor began with a question, not a feature: why an explanation reac",
+        "y": 8901,
+        "h": 760,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One question started it all.",
+        "y": 9060,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "\"What helps an idea make sense?\"",
+        "y": 9247,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-responsible",
+        "text": "Responsible research is at the heart of what we do.Learning involves trust. The research shared here",
+        "y": 9661,
+        "h": 753,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Responsible research is at the heart of what we do.",
+        "y": 9825,
+        "h": 272,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-future",
+        "text": "Help us shape the future.Join the communityLearners, teachers, and parents use the product every day",
+        "y": 10413,
+        "h": 1064,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Help us shape the future.",
+        "y": 10573,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Join the community",
+        "y": 11017,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Work with us",
+        "y": 11017,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Have a research question?",
+        "y": 11274,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "community": {
+    "title": "Community | Visionary",
+    "docH": 6120,
+    "h1": "Communities and programs for everyone learning together.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Visionary communitiesCommunities and programs for everyone learning together.Class-scoped spaces whe",
+        "y": 181,
+        "h": 988,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Communities and programs for everyone learning together.",
+        "y": 334,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-find",
+        "text": "Find a community that's right for youCommunities for learnersClass-scoped spaces to discuss, ask, an",
+        "y": 1231,
+        "h": 1911,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Find a community that's right for you",
+        "y": 1390,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Communities for learners",
+        "y": 1658,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Guided by teachers",
+        "y": 2149,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "For families and organizations",
+        "y": 2640,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-more",
+        "text": "More ways to engage and learnKeep your journey moving with the product and the people around it.Get ",
+        "y": 3142,
+        "h": 893,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "More ways to engage and learn",
+        "y": 3301,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Get updates",
+        "y": 3745,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Explore how it works",
+        "y": 3745,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Get help",
+        "y": 3745,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-faq",
+        "text": "Have questions? We've got answers.Who can see a class community?Only the people in that class, plus ",
+        "y": 4035,
+        "h": 936,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Have questions? We've got answers.",
+        "y": 4195,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-closing",
+        "text": "Bring your class together.Communities grow around real learning. Start with the loop, and the space ",
+        "y": 4972,
+        "h": 613,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Bring your class together.",
+        "y": 5131,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "contact": {
+    "title": "Contact | Visionary",
+    "docH": 6117,
+    "h1": "Guidance to get you going on Visionary",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Guidance to get you going on VisionaryFind the answers and support you need to make the most of Visi",
+        "y": 181,
+        "h": 405,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Guidance to get you going on Visionary",
+        "y": 245,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-resources",
+        "text": "StudentsTeachersParentsProfessionalsOrganizationsGet help learning with VisionaryFrom how-to guides ",
+        "y": 586,
+        "h": 1065,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Get help learning with Visionary",
+        "y": 854,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Your guide to Visionary",
+        "y": 1271,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "The learning loop: Learn, Ask, Practice, Build",
+        "y": 1271,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Class communities and discussions",
+        "y": 1271,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety for younger learners",
+        "y": 1271,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-faq",
+        "text": "Your questions answeredFrom the basics to beyond: information and support on the topics we hear most",
+        "y": 1651,
+        "h": 1175,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Your questions answered",
+        "y": 1811,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-help",
+        "text": "Still need help?For additional guidance, visit the Help center, or write to us directly and a human ",
+        "y": 2826,
+        "h": 461,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Still need help?",
+        "y": 2986,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-routes",
+        "text": "Contact routesStart with what you need.Each option opens a message in your email app, addressed to t",
+        "y": 3287,
+        "h": 1333,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Start with what you need.",
+        "y": 3479,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A question about Visionary?",
+        "y": 3924,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Discuss an organization",
+        "y": 3924,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Share a safety concern",
+        "y": 3924,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A media enquiry",
+        "y": 4248,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Talk about research",
+        "y": 4248,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Introduce yourself",
+        "y": 4248,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-grievance",
+        "text": "Privacy grievanceA formal route for privacy concerns.For a privacy grievance under India's DPDP Act,",
+        "y": 4620,
+        "h": 558,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "A formal route for privacy concerns.",
+        "y": 4812,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Md Shahid Ali",
+        "y": 4844,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-hygiene",
+        "text": "Before you sendYour email app will open a draft. Review the recipient and message, then choose wheth",
+        "y": 5178,
+        "h": 402,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Before you send",
+        "y": 5338,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Keep sensitive details out",
+        "y": 5338,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "partners": {
+    "title": "Partners | Visionary",
+    "docH": 8787,
+    "h1": "Better learning, together.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Visionary partnershipsBetter learning, together.Education, technology, and local knowledge in one ef",
+        "y": 181,
+        "h": 548,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Better learning, together.",
+        "y": 286,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-what",
+        "text": "What is a Visionary partnership?Three things, agreed honestly: enablement, co-design, and evidence. ",
+        "y": 729,
+        "h": 941,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "What is a Visionary partnership?",
+        "y": 888,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A source to grow learning capability",
+        "y": 1241,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Local context, real languages",
+        "y": 1241,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Evidence over claims",
+        "y": 1251,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-who",
+        "text": "Who we partner withPartnerships start from different kinds of knowledge, the contexts our product mu",
+        "y": 1670,
+        "h": 865,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Who we partner with",
+        "y": 1829,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Schools & systems",
+        "y": 2074,
+        "h": 36,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Technology teams",
+        "y": 2084,
+        "h": 36,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Regional & language experts",
+        "y": 2258,
+        "h": 36,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Institutions & organizations",
+        "y": 2258,
+        "h": 36,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-includes",
+        "text": "What a partnership includesThe same foundations for every partner, scaled to the work we agree on to",
+        "y": 2535,
+        "h": 910,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "What a partnership includes",
+        "y": 2694,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Enablement & onboarding",
+        "y": 3057,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Co-design & pilot support",
+        "y": 3057,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Recognition and shared learning",
+        "y": 3057,
+        "h": 20,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-depth",
+        "text": "How deep the work can goEvery partnership begins as a conversation. Where it goes from there is agre",
+        "y": 3445,
+        "h": 764,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "How deep the work can go",
+        "y": 3672,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-journey",
+        "text": "The processHow a partnership begins.Four steps from a first note to work in progress, with writing a",
+        "y": 4209,
+        "h": 970,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "How a partnership begins.",
+        "y": 4401,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Write to us",
+        "y": 4710,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A context call",
+        "y": 4710,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A scoped pilot",
+        "y": 4710,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Review, then begin",
+        "y": 4710,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-statement",
+        "text": "If your organization works with learners, in a classroom, a system, or a region, we want to understa",
+        "y": 5179,
+        "h": 674,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "If your organization works with learners, in a classroom, a system, or a region, we want to understa",
+        "y": 5338,
+        "h": 272,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "08-support",
+        "text": "For organizations seeking supportStart with the support you need.Tell us about your organization, lo",
+        "y": 5852,
+        "h": 649,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Start with the support you need.",
+        "y": 6092,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "09-faq",
+        "text": "Frequently asked questionsStraight answers about how partnerships work, and what they do not promise",
+        "y": 6502,
+        "h": 1127,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently asked questions",
+        "y": 6661,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "10-cta",
+        "text": "Bring Visionary closer to your learners.Email the partnerships teamOr use the contact routesA five-m",
+        "y": 7629,
+        "h": 622,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Bring Visionary closer to your learners.",
+        "y": 7788,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "updates": {
+    "title": "Updates | Visionary",
+    "docH": 5035,
+    "h1": "What’s new at Visionary.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "News & updatesWhat’s new at Visionary.Product news, new languages, and launch updates as they land, ",
+        "y": 181,
+        "h": 394,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "What’s new at Visionary.",
+        "y": 286,
+        "h": 81,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-featured",
+        "text": "FeaturedLanguages & accessOne intelligence, every learner, in their language.Visionary’s language jo",
+        "y": 575,
+        "h": 705,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "One intelligence, every learner, in their language.",
+        "y": 821,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-latest",
+        "text": "The changes, by categoryLatest updates.Each entry names the month it landed. Pick a category to narr",
+        "y": 1280,
+        "h": 1349,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Latest updates.",
+        "y": 1471,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "The learning loop, end to end",
+        "y": 1755,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Three languages, one loop",
+        "y": 1755,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Consent-scoped progress summaries",
+        "y": 1755,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Insights across cohorts",
+        "y": 2007,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Class communities, moderated",
+        "y": 2007,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "What we learn, we publish",
+        "y": 2007,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teach in your language",
+        "y": 2259,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety guidance, reviewed openly",
+        "y": 2259,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-evidence",
+        "text": "Research & learningEvidence over claims.We study how people learn with Visionary and publish what we",
+        "y": 2629,
+        "h": 602,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Evidence over claims.",
+        "y": 2869,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-signup",
+        "text": "Stay in the loopGet updates by email.Choose your topics and prepare an email request to the Visionar",
+        "y": 3232,
+        "h": 1043,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Get updates by email.",
+        "y": 3423,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-contact",
+        "text": "Questions about updates?hello@visionary.org.in",
+        "y": 4274,
+        "h": 225,
+        "fs": "17px",
+        "fw": "400"
+      }
+    ],
+    "errors": []
+  },
+  "referral": {
+    "title": "Refer a friend | Visionary",
+    "docH": 6388,
+    "h1": "Share a better way to learn.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Referral programmeShare a better way to learn.Invite someone to explore Visionary. One link, the sam",
+        "y": 181,
+        "h": 745,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Share a better way to learn.",
+        "y": 286,
+        "h": 81,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-how",
+        "text": "Sending an inviteHow it works.The more personal the share, the more it can mean. Three steps, about ",
+        "y": 926,
+        "h": 819,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "How it works.",
+        "y": 1117,
+        "h": 68,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Share the link",
+        "y": 1385,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Your friend explores",
+        "y": 1385,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Learning begins",
+        "y": 1385,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-point",
+        "text": "Pointing them wellStart from what they need.A share lands better when the page matches the person. S",
+        "y": 1745,
+        "h": 987,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Start from what they need.",
+        "y": 1936,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Students and families",
+        "y": 2352,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Teachers",
+        "y": 2352,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Organizations",
+        "y": 2352,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-share",
+        "text": "Ready to share?Copy the standard sign-up link.It opens Visionary registration. It contains no person",
+        "y": 2732,
+        "h": 633,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Copy the standard sign-up link.",
+        "y": 2923,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-honesty",
+        "text": "No points. No tracking. Just a good tool worth passing on.There is no cash reward, account credit, r",
+        "y": 3365,
+        "h": 592,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "No points. No tracking. Just a good tool worth passing on.",
+        "y": 3525,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-faq",
+        "text": "Good to knowFrequently asked questions.Straight answers about sharing Visionary, including what this",
+        "y": 3958,
+        "h": 936,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently asked questions.",
+        "y": 4149,
+        "h": 204,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-privacy",
+        "text": "Share thoughtfully. Don’t include someone else’s personal details in a message or imply that Visiona",
+        "y": 4894,
+        "h": 221,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "08-closing",
+        "text": "Not sharing yet? Keep growing with us.Follow what changes, or meet the people who learn with Visiona",
+        "y": 5115,
+        "h": 737,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Not sharing yet? Keep growing with us.",
+        "y": 5339,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "safety": {
+    "title": "Safety | Visionary",
+    "docH": 6884,
+    "h1": "Safe by design,for every learner.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "section",
+        "sec": "01-hero",
+        "text": "Safe by design,for every learner.Protection is on from the start. See how it works and what you cont",
+        "y": 181,
+        "h": 514,
+        "fs": "16px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Safe by design,for every learner.",
+        "y": 329,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "section",
+        "sec": "02-statement",
+        "text": "The questions you ask every day, safer in all kinds of ways.You shouldn't have to configure safety. ",
+        "y": 695,
+        "h": 610,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The questions you ask every day, safer in all kinds of ways.",
+        "y": 854,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "03-protections",
+        "text": "Built-in protectionsAge-aware experiencesSafety that fits the learner.Safety guidance and product bo",
+        "y": 1305,
+        "h": 1404,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Built-in protections",
+        "y": 1464,
+        "h": 1,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Safety that fits the learner.",
+        "y": 1576,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "On from the first question.",
+        "y": 1970,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Your memory is yours.",
+        "y": 2364,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "04-family",
+        "text": "Set boundaries that are right for your family.We work directly with the realities of family learning",
+        "y": 2709,
+        "h": 913,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Set boundaries that are right for your family.",
+        "y": 2869,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Consent-scoped progress summaries",
+        "y": 3286,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Boundaries for younger learners",
+        "y": 3286,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Aggregate insights, never individual answers",
+        "y": 3286,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "05-reporting",
+        "text": "Seen something wrong? Flag it.Reporting is one tap away everywhere in the product, and a person read",
+        "y": 3622,
+        "h": 977,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Seen something wrong? Flag it.",
+        "y": 3781,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "One tap to flag anything",
+        "y": 4243,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "A human reads every report",
+        "y": 4243,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Reviewed in the open",
+        "y": 4243,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "06-share",
+        "text": "Three checks before you share anything.Most safety problems start with a message that felt urgent. S",
+        "y": 4599,
+        "h": 702,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Three checks before you share anything.",
+        "y": 4815,
+        "h": 64,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "section",
+        "sec": "07-closing",
+        "text": "Discover more ways we keep learning safe.Tour the product's guardrails end to end, or write to the s",
+        "y": 5339,
+        "h": 737,
+        "fs": "17px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Discover more ways we keep learning safe.",
+        "y": 5562,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "privacy": {
+    "title": "Privacy policy | Visionary",
+    "docH": 9236,
+    "h1": "Your learning is personal. Privacy should be clear.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Your learning is personal. Privacy should be clear.",
+        "y": 531,
+        "h": 242,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The essentials, at a glance",
+        "y": 1245,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "What we collect",
+        "y": 1681,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Workspace and account context",
+        "y": 1930,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Learning and content you provide",
+        "y": 1930,
+        "h": 63,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Device and technical details",
+        "y": 1930,
+        "h": 42,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Your preferences",
+        "y": 1930,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Why we use it",
+        "y": 2383,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Provide Visionary",
+        "y": 2544,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Keep saved work available",
+        "y": 2641,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Maintain and improve",
+        "y": 2757,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Protect people and the service",
+        "y": 2854,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Communicate with you",
+        "y": 2951,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Who can see it",
+        "y": 3180,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Your controls",
+        "y": 4026,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Review",
+        "y": 4275,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Adjust",
+        "y": 4275,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Export",
+        "y": 4275,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Request removal",
+        "y": 4275,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "How we protect it",
+        "y": 4702,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Access and deletion requests",
+        "y": 5040,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Access or correction",
+        "y": 5245,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Deletion",
+        "y": 5245,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Records on this device",
+        "y": 5245,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "How long we keep it",
+        "y": 5709,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Younger learners",
+        "y": 6226,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Common privacy questions",
+        "y": 6543,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Contact and grievances",
+        "y": 7147,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Key terms",
+        "y": 7604,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Read them together",
+        "y": 8134,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "security": {
+    "title": "Security | Visionary",
+    "docH": 8460,
+    "h1": "Secure by design, protected end to end.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Secure by design, protected end to end.",
+        "y": 531,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The essentials, at a glance",
+        "y": 1164,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Your information",
+        "y": 1598,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Protected as it moves",
+        "y": 2037,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Protected when stored",
+        "y": 2455,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Access is controlled",
+        "y": 2913,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Who can access",
+        "y": 3184,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "What they can access",
+        "y": 3184,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Your control matters",
+        "y": 3539,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Understand your data",
+        "y": 3810,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Protect your account",
+        "y": 3810,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Security is ongoing",
+        "y": 4060,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "When something goes wrong",
+        "y": 4519,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Our security commitments",
+        "y": 4985,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Protect information",
+        "y": 5073,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Limit access",
+        "y": 5186,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Respond to problems",
+        "y": 5299,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Be clear about what we know",
+        "y": 5413,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Sync devices",
+        "y": 5643,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Sign in with your Sync Encrypted ID",
+        "y": 5795,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Your learning follows you",
+        "y": 5929,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "You see every device",
+        "y": 6042,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Contact",
+        "y": 6412,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Key terms",
+        "y": 6829,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Read them together",
+        "y": 7359,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "accessibility": {
+    "title": "Accessibility | Visionary",
+    "docH": 6761,
+    "h1": "Help every learner learn how they learn best.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Help every learner learn how they learn best.",
+        "y": 286,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "Make information easier to read.",
+        "y": 1407,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Clear structure",
+        "y": 1578,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Readable contrast",
+        "y": 1578,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Zoom & text scaling",
+        "y": 1578,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Reduced motion",
+        "y": 1578,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Use your voice or your ears.",
+        "y": 1968,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Ask with your voice",
+        "y": 2140,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Hear information",
+        "y": 2140,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Keep the conversation going",
+        "y": 2140,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Availability, honestly",
+        "y": 2140,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Operated the way you already do.",
+        "y": 2530,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Keyboard navigation",
+        "y": 2701,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Visible focus",
+        "y": 2701,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Usable touch targets",
+        "y": 2701,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Your device's controls",
+        "y": 2701,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "The same idea, more than one way in.",
+        "y": 3091,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Three languages today",
+        "y": 3262,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Plain language",
+        "y": 3262,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Human-reviewed answers",
+        "y": 3262,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Choice of mode",
+        "y": 3262,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "One person. Every device. Anywhere.",
+        "y": 3701,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Start at your own pace.",
+        "y": 4325,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Our commitment.",
+        "y": 4892,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Built in, not bolted on",
+        "y": 5167,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Tested with people",
+        "y": 5167,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Honest about limits",
+        "y": 5167,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Accessibility is part of our design DNA.",
+        "y": 5481,
+        "h": 136,
+        "fs": "64px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "cookies": {
+    "title": "Cookie policy | Visionary",
+    "docH": 6124,
+    "h1": "How we use cookies. And how you control them.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "How we use cookies. And how you control them.",
+        "y": 531,
+        "h": 242,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The essentials, at a glance",
+        "y": 1220,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "What cookies are",
+        "y": 1654,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "What we use and why",
+        "y": 2020,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Essential cookies.",
+        "y": 2228,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "No advertising cookies.",
+        "y": 2228,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics with consent.",
+        "y": 2228,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "The types we use",
+        "y": 2559,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Your choices and controls",
+        "y": 3089,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Essential",
+        "y": 3229,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Preferences",
+        "y": 3315,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics",
+        "y": 3401,
+        "h": 21,
+        "fs": "17px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Managing cookies",
+        "y": 3748,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Questions and contact",
+        "y": 4265,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Key terms",
+        "y": 4766,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Read them together",
+        "y": 5296,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "terms": {
+    "title": "Terms of service | Visionary",
+    "docH": 8579,
+    "h1": "Clear rules, written to be understood.",
+    "mainBg": "rgba(0, 0, 0, 0)",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Clear rules, written to be understood.",
+        "y": 531,
+        "h": 161,
+        "fs": "76px",
+        "fw": "400"
+      },
+      {
+        "tag": "h2",
+        "text": "The essentials, at a glance",
+        "y": 1164,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Who can use Visionary",
+        "y": 1598,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "What you can do",
+        "y": 2057,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "What you cannot do",
+        "y": 2551,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "What we provide",
+        "y": 3135,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Your content",
+        "y": 3694,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Your account",
+        "y": 4132,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Plans, payments, and cancellation",
+        "y": 4667,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "When Visionary or your access changes",
+        "y": 5170,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "When access may be restricted",
+        "y": 5544,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Disclaimers and responsibility",
+        "y": 6059,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Governing law and disputes",
+        "y": 6473,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Contact",
+        "y": 6892,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Key terms",
+        "y": 7240,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      },
+      {
+        "tag": "h2",
+        "text": "Read them together",
+        "y": 7770,
+        "h": 32,
+        "fs": "28px",
+        "fw": "600"
+      }
+    ],
+    "errors": []
+  },
+  "login": {
+    "title": "Visionary — Learn, Ask, Build",
+    "docH": 900,
+    "h1": "Sign in",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Sign in",
+        "y": 400,
+        "h": 38,
+        "fs": "30px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Sign in",
+        "y": 0,
+        "h": 0,
+        "fs": "24px",
+        "fw": "400"
+      }
+    ],
+    "errors": []
+  },
+  "register": {
+    "title": "Visionary — Learn, Ask, Build",
+    "docH": 900,
+    "h1": "Create a Visionary account",
+    "items": [
+      {
+        "tag": "h1",
+        "text": "Create a Visionary account",
+        "y": 400,
+        "h": 38,
+        "fs": "30px",
+        "fw": "400"
+      },
+      {
+        "tag": "h1",
+        "text": "Create a Visionary account",
+        "y": 0,
+        "h": 0,
+        "fs": "24px",
+        "fw": "400"
+      }
+    ],
+    "errors": []
+  }
+}

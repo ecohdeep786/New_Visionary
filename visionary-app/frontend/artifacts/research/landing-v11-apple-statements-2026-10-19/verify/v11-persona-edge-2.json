@@ -1,0 +1,53 @@
+{
+  "/professional@1440": {
+    "docH": 13113,
+    "overflow": 0,
+    "exploreH2": 64,
+    "sections": 10
+  },
+  "/professional@390": {
+    "docH": 12979,
+    "overflow": 0,
+    "exploreH2": 40,
+    "sections": 10
+  },
+  "/@375": {
+    "docH": 10348,
+    "overflow": 0,
+    "exploreH2": 32,
+    "sections": 9
+  },
+  "landing": {
+    "order": [
+      "01-hero:844:rgb(255, 255, 255)",
+      "05-intelligence:1157:rgb(10, 13, 20)",
+      "02-problem:1065:rgb(245, 245, 247)",
+      "03-promise:702:rgb(10, 13, 20)",
+      "04-return:1238:rgb(255, 255, 255)",
+      "13-explore:1212:rgb(245, 245, 247)",
+      "14-suite:870:rgb(245, 245, 247)",
+      "11-trust:1069:rgb(255, 255, 255)",
+      "12-cta:650:rgb(10, 13, 20)"
+    ],
+    "docH": 9668,
+    "overflow": 0,
+    "returnEyebrow": {
+      "size": 17,
+      "weight": "500"
+    },
+    "promiseH2": {
+      "size": 64,
+      "text": "What if your intelligence never forgot where you w"
+    },
+    "problemEyebrow": "Why Visionary exists",
+    "problemSub": {
+      "size": 24,
+      "weight": "600",
+      "lines": 1
+    },
+    "problemH2Lines": {
+      "lines": 2,
+      "w": 980
+    }
+  }
+}

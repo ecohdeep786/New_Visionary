@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "task": "KAN-137",
+  "metricContract": "retrieval-binary-v2",
+  "fixturePath": "ml/evaluation/retrieval-binary-v2.json",
+  "fixtureSha256": "4e7d5470174c318e3db2f6d2a3f098ee537f456eec42fb9ca8c63bd4c6b017c8",
+  "implementationChangedInCloseout": false,
+  "benchmarkRecomputed": false,
+  "providerOrCloudCalled": false,
+  "historicalReports": [
+    {
+      "path": "ml/upstream/data/FINAL_TEST_RESULTS.md",
+      "sha256": "a5537236a99201ffa4ce21f729b19a3e31e239c995e67da42057794ec4c0ea21",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/OLLAMA_REAL_TEST_RESULTS.md",
+      "sha256": "a8a8a6c053fc45352870a909938c61d00f79461608f585c6286fa26334d168b8",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/REAL_llm_judge_results.json",
+      "sha256": "6edebc7ed79b95915384d8a16a869d97397f583154009ac04aafda65e371947a",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/complete_rag_evaluation.json",
+      "sha256": "c20961fe71d9cba418d6df4e9ad8335aefb12b67cd52531a44ade5cdf0d72a97",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/deep_test_results.json",
+      "sha256": "c29b05fec7259057457063d8416e54778659be48b2e6dd96f3e8b354347031d9",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/fast_master_test_results.json",
+      "sha256": "e0aa5410514a299391450f3ab0d5517df5fe43fd4031409f20784f18ac37e58e",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/optimization_results.json",
+      "sha256": "79f931235d1198532c5e4c8b052b4f15e8fd5a16af1978ac8d43a67b5288c714",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/pipeline_test_results.json",
+      "sha256": "5b27d862ca562e1e9ea12c2fab54b83b67b942666f579a023a364daa368a32dd",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/quick_improvement_results.csv",
+      "sha256": "08a07deed9f8424fafb83056f1fddcc7e7d85f681100021267e0011dc540737f",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/quick_improvement_results.json",
+      "sha256": "785718959d31f40eadf46a962f0294d15de790b151872fc732e3db54451ae6e7",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/ragas_judge_evaluation.json",
+      "sha256": "d3f0d83cd42a3b73a7ad477cffde7ad1178d54d8d9d0bb7938f1a540805df0e3",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/ragas_optimization_results.json",
+      "sha256": "0bcca3debd6a3e690aeac31854655a1b294916a603ab234a5f72c4c4ca3725da",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/test_results_final.json",
+      "sha256": "64e7f42acea143a04470e867fc1c99a6fb3a857b934267e77ff4e510a870b0e4",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    },
+    {
+      "path": "ml/upstream/data/test_results_ollama_real.json",
+      "sha256": "e629b8436f537a3178e6ab6be5fb7a9c2c9e20de6c2855c6045d302fc1ea0935",
+      "qualification": "unqualified-for-product-comparison",
+      "reason": "Historical imported artifact. Corrected metric, input/data/source and provider/version provenance has not been requalified for the product. Preserve original bytes; do not infer a historical duplicate-data defect or a valid model benchmark."
+    }
+  ],
+  "comparisonAcceptance": {
+    "state": "blocked-until-qualified-inputs-and-execution",
+    "tasks": [
+      "KAN-83",
+      "KAN-142"
+    ],
+    "required": [
+      "permitted-data-and-source-manifests",
+      "dataset-corpus-and-gold-hashes",
+      "provider-model-retrieval-configuration",
+      "evaluator-contract-and-source-hashes",
+      "actual-reproducible-execution",
+      "owning-task-reviewer-acceptance"
+    ],
+    "runtimeEnforcementAdded": false
+  }
+}
