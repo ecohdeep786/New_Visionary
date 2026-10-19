@@ -205,17 +205,18 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:958:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:964:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:973:11",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
-        "frontend/src/pages/Landing.jsx:157:9",
-        "frontend/src/pages/Landing.jsx:366:51",
-        "frontend/src/pages/Landing.jsx:487:9",
-        "frontend/src/pages/Landing.jsx:510:13",
-        "frontend/src/pages/Landing.jsx:512:11"
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
+        "frontend/src/pages/Landing.jsx:158:9",
+        "frontend/src/pages/Landing.jsx:388:51",
+        "frontend/src/pages/Landing.jsx:521:9",
+        "frontend/src/pages/Landing.jsx:544:13",
+        "frontend/src/pages/Landing.jsx:546:11"
       ],
       "operations": [
         "public-discovery"
@@ -939,12 +940,13 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:958:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:964:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:973:11",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
         "frontend/src/pages/landing/StudentPage.jsx:292:7",
         "frontend/src/pages/landing/StudentPage.jsx:293:21"
       ],
@@ -1084,12 +1086,13 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:958:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:964:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:973:11",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
         "frontend/src/pages/landing/TeacherPage.jsx:292:7",
         "frontend/src/pages/landing/TeacherPage.jsx:293:21"
       ],
@@ -1229,12 +1232,13 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:958:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:964:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:973:11",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
         "frontend/src/pages/landing/ParentPage.jsx:291:7",
         "frontend/src/pages/landing/ParentPage.jsx:292:21"
       ],
@@ -1461,12 +1465,13 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:958:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:964:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:973:11",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
         "frontend/src/pages/landing/CollegePage.jsx:291:7",
         "frontend/src/pages/landing/CollegePage.jsx:292:21"
       ],
@@ -1711,12 +1716,13 @@
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:958:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:964:13",
         "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:973:11",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
-        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
+        "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
         "frontend/src/pages/landing/OrganizationPage.jsx:260:7",
         "frontend/src/pages/landing/OrganizationPage.jsx:261:21"
       ],
@@ -42477,9 +42483,38 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:999:5",
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:979:19",
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "line": 999,
+      "line": 979,
+      "column": 19,
+      "tag": "Link",
+      "events": [],
+      "calls": [],
+      "disabled": null,
+      "declarationSha256": "aa3e18795ee77115631d70135525ba1e4fa1de161506e164dd37c8cb41238bee",
+      "routeIds": [
+        "/",
+        "/student",
+        "/teacher",
+        "/parent",
+        "/professional",
+        "/organization"
+      ],
+      "reviewProfile": "client-presentation",
+      "state": "connected",
+      "execution": "client",
+      "classificationReason": "Client presentation/navigation/input control; callbacks delegate domain work to the caller. This does not establish a server connection or educational coverage.",
+      "followUp": [
+        "SCOPE-06",
+        "PLAT-01"
+      ],
+      "endpointEvidence": [],
+      "hostedVerified": false
+    },
+    {
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1015:5",
+      "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
+      "line": 1015,
       "column": 5,
       "tag": "Link",
       "events": [],
@@ -42506,9 +42541,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1078:9",
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1094:9",
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "line": 1078,
+      "line": 1094,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -42535,9 +42570,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1101:9",
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1117:9",
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "line": 1101,
+      "line": 1117,
       "column": 9,
       "tag": "RevealItem",
       "events": [],
@@ -42564,9 +42599,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1103:13",
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1119:13",
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "line": 1103,
+      "line": 1119,
       "column": 13,
       "tag": "div",
       "events": [
@@ -42624,9 +42659,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1121:15",
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1137:15",
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "line": 1121,
+      "line": 1137,
       "column": 15,
       "tag": "button",
       "events": [
@@ -42660,9 +42695,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1131:15",
+      "id": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx:1147:15",
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "line": 1131,
+      "line": 1147,
       "column": 15,
       "tag": "button",
       "events": [
@@ -73303,9 +73338,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:157:9",
+      "id": "frontend/src/pages/Landing.jsx:158:9",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 157,
+      "line": 158,
       "column": 9,
       "tag": "button",
       "events": [
@@ -73334,9 +73369,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:366:51",
+      "id": "frontend/src/pages/Landing.jsx:388:51",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 366,
+      "line": 388,
       "column": 51,
       "tag": "CarouselDots",
       "events": [
@@ -73363,9 +73398,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:487:9",
+      "id": "frontend/src/pages/Landing.jsx:521:9",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 487,
+      "line": 521,
       "column": 9,
       "tag": "div",
       "events": [
@@ -73392,9 +73427,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:510:13",
+      "id": "frontend/src/pages/Landing.jsx:544:13",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 510,
+      "line": 544,
       "column": 13,
       "tag": "CarouselDots",
       "events": [
@@ -73421,9 +73456,9 @@
       "hostedVerified": false
     },
     {
-      "id": "frontend/src/pages/Landing.jsx:512:11",
+      "id": "frontend/src/pages/Landing.jsx:546:11",
       "file": "frontend/src/pages/Landing.jsx",
-      "line": 512,
+      "line": 546,
       "column": 11,
       "tag": "button",
       "events": [
@@ -77096,7 +77131,7 @@
     },
     {
       "file": "frontend/src/components/landing/persona/PremiumPersonaSections.jsx",
-      "sourceSha256": "08d75269f730754a1281cc03ca32637f1b5620a7c2405e8acedd768330005900"
+      "sourceSha256": "1506fe5ee77973f2ccbe5d783d9483386c156464f37dec6abffcf608bb3b586a"
     },
     {
       "file": "frontend/src/components/landing/PolicyTabs.jsx",
@@ -77996,7 +78031,7 @@
     },
     {
       "file": "frontend/src/pages/Landing.jsx",
-      "sourceSha256": "742c412075c009d37b164667ac87a99b8940eeed76f7a4becf9c1f213b3323e4"
+      "sourceSha256": "b95346be0c8b49612685e15c2f72822ce6f3845b6014cbcc558184cad8c03d15"
     },
     {
       "file": "frontend/src/pages/Login.jsx",
@@ -81425,11 +81460,11 @@
   "counts": {
     "routes": 68,
     "registeredEndpoints": 26,
-    "controlDeclarations": 1637,
-    "routeReachableDeclarations": 1479,
+    "controlDeclarations": 1638,
+    "routeReachableDeclarations": 1480,
     "controlFiles": 219,
     "states": {
-      "connected": 494,
+      "connected": 495,
       "preview": 931,
       "missing": 52,
       "intentionally-unreleased": 160

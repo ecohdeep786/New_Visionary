@@ -1,0 +1,244 @@
+{
+  "desktop": {
+    "docH": 11393,
+    "w": 1440,
+    "secs": [
+      {
+        "id": "01-hero",
+        "y": 56,
+        "h": 844,
+        "h2": "One intelligencefor students.One intelligence, for students, tea"
+      },
+      {
+        "id": "02-problem",
+        "y": 1170,
+        "h": 1247,
+        "h2": "Teaching everyone is possible. Reaching everyone isn't."
+      },
+      {
+        "id": "03-promise",
+        "y": 2417,
+        "h": 325,
+        "h2": "What if your intelligence never forgot where you were?"
+      },
+      {
+        "id": "05-intelligence",
+        "y": 2742,
+        "h": 2849,
+        "h2": "One intelligence."
+      },
+      {
+        "id": "13-explore",
+        "y": 5591,
+        "h": 1251,
+        "h2": "One intelligence, five journeys."
+      },
+      {
+        "id": "07-language",
+        "y": 6842,
+        "h": 1422,
+        "h2": "Every language.One understanding."
+      },
+      {
+        "id": "06-journey",
+        "y": 8263,
+        "h": 1268,
+        "h2": "Life changes. Visionary keeps pace."
+      },
+      {
+        "id": "11-trust",
+        "y": 9531,
+        "h": 688,
+        "h2": "Your learning stays yours."
+      },
+      {
+        "id": "12-cta",
+        "y": 10219,
+        "h": 637,
+        "h2": "Your next step starts here."
+      }
+    ],
+    "cta": "Your next step starts here. Ask a question. Explore an idea. Start learning. Visionary is ready when you are. Get started Talk to our team See how it works for Student · Teacher · Parent · Professional · Organization Free to start. Private by design.",
+    "errors": []
+  },
+  "w1024": {
+    "docH": 10074,
+    "w": 1024,
+    "secs": [
+      {
+        "id": "01-hero",
+        "y": 56,
+        "h": 764,
+        "h2": "One intelligencefor students.One intelligence, for students, tea"
+      },
+      {
+        "id": "02-problem",
+        "y": 1066,
+        "h": 998,
+        "h2": "Teaching everyone is possible. Reaching everyone isn't."
+      },
+      {
+        "id": "03-promise",
+        "y": 2064,
+        "h": 256,
+        "h2": "What if your intelligence never forgot where you were?"
+      },
+      {
+        "id": "05-intelligence",
+        "y": 2320,
+        "h": 2534,
+        "h2": "One intelligence."
+      },
+      {
+        "id": "13-explore",
+        "y": 4854,
+        "h": 1137,
+        "h2": "One intelligence, five journeys."
+      },
+      {
+        "id": "07-language",
+        "y": 5991,
+        "h": 1318,
+        "h2": "Every language.One understanding."
+      },
+      {
+        "id": "06-journey",
+        "y": 7309,
+        "h": 1063,
+        "h2": "Life changes. Visionary keeps pace."
+      },
+      {
+        "id": "11-trust",
+        "y": 8372,
+        "h": 641,
+        "h2": "Your learning stays yours."
+      },
+      {
+        "id": "12-cta",
+        "y": 9014,
+        "h": 525,
+        "h2": "Your next step starts here."
+      }
+    ]
+  },
+  "w834": {
+    "docH": 10557,
+    "w": 834,
+    "secs": [
+      {
+        "id": "01-hero",
+        "y": 56,
+        "h": 764,
+        "h2": "One intelligencefor students.One intelligence, for students, tea"
+      },
+      {
+        "id": "02-problem",
+        "y": 1066,
+        "h": 927,
+        "h2": "Teaching everyone is possible. Reaching everyone isn't."
+      },
+      {
+        "id": "03-promise",
+        "y": 1993,
+        "h": 230,
+        "h2": "What if your intelligence never forgot where you were?"
+      },
+      {
+        "id": "05-intelligence",
+        "y": 2223,
+        "h": 2681,
+        "h2": "One intelligence."
+      },
+      {
+        "id": "13-explore",
+        "y": 4903,
+        "h": 1079,
+        "h2": "One intelligence, five journeys."
+      },
+      {
+        "id": "07-language",
+        "y": 5983,
+        "h": 1285,
+        "h2": "Every language.One understanding."
+      },
+      {
+        "id": "06-journey",
+        "y": 7267,
+        "h": 1003,
+        "h2": "Life changes. Visionary keeps pace."
+      },
+      {
+        "id": "11-trust",
+        "y": 8270,
+        "h": 935,
+        "h2": "Your learning stays yours."
+      },
+      {
+        "id": "12-cta",
+        "y": 9205,
+        "h": 516,
+        "h2": "Your next step starts here."
+      }
+    ]
+  },
+  "w390": {
+    "docH": 10703,
+    "w": 390,
+    "secs": [
+      {
+        "id": "01-hero",
+        "y": 56,
+        "h": 788,
+        "h2": "One intelligencefor teachers.One intelligence, for students, tea"
+      },
+      {
+        "id": "02-problem",
+        "y": 1097,
+        "h": 981,
+        "h2": "Teaching everyone is possible. Reaching everyone isn't."
+      },
+      {
+        "id": "03-promise",
+        "y": 2078,
+        "h": 273,
+        "h2": "What if your intelligence never forgot where you were?"
+      },
+      {
+        "id": "05-intelligence",
+        "y": 2351,
+        "h": 2411,
+        "h2": "One intelligence."
+      },
+      {
+        "id": "13-explore",
+        "y": 4763,
+        "h": 1084,
+        "h2": "One intelligence, five journeys."
+      },
+      {
+        "id": "07-language",
+        "y": 5847,
+        "h": 1059,
+        "h2": "Every language.One understanding."
+      },
+      {
+        "id": "06-journey",
+        "y": 6906,
+        "h": 1014,
+        "h2": "Life changes. Visionary keeps pace."
+      },
+      {
+        "id": "11-trust",
+        "y": 7920,
+        "h": 979,
+        "h2": "Your learning stays yours."
+      },
+      {
+        "id": "12-cta",
+        "y": 8899,
+        "h": 645,
+        "h2": "Your next step starts here."
+      }
+    ]
+  }
+}
