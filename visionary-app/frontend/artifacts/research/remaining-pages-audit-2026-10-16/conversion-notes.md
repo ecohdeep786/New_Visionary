@@ -1410,3 +1410,111 @@ added mechanically on the remaining pages — only where they add information.
   build clean -> 532/532 tests (final run after the wrap polish).
 - Evidence: `artifacts/research/landing-v2-2026-10-18/` (segment + responsive
   captures, measurements.json); live tab reloaded.
+
+## 2026-10-19 - Landing v3 R&D (company front door)
+- Founder critique: the landing's design holds but its structure is wrong -
+  it retells feature chapters (mechanism, language, journey, trust) that each
+  category page and /how-it-works already own. The front door must instead
+  tell about the company, the way apple.com's home does - what, why, how,
+  who, reach, trust, start - with every module a doorway.
+- Study 1 - all 26 public pages mapped at 1440 (zero page errors):
+  `artifacts/research/landing-company-study-2026-10-19/site-audit/`
+  (`site-map.json` + full-page capture per route). Confirms the complete
+  company surface already exists (about, pricing, download, help, updates,
+  research, careers, community, contact, partners, referral, four trust
+  pages, legal); the v2 landing chapters duplicate the persona pages and
+  /how-it-works instead of opening doors to them.
+- Study 2 - apple.com home measured (US site, 1440): promo stack -> 2-up
+  product tile grid -> services gallery -> legal notes -> directory footer;
+  no narrative chapters at all, every module a doorway.
+  `artifacts/research/landing-company-study-2026-10-19/apple-home/`
+  (`apple-home-map.json` + 12 viewport segments + full page).
+- Proposal: `docs/visionary/design/LANDING_COMPANY_FRONT_DOOR_HANDOFF.md` -
+  keep hero/why/promise; convert the intelligence chapter to a compact dark
+  promo -> /how-it-works; keep the five-journey line-up as the fork; add the
+  suite band (Download / Pricing / Help / Updates); convert trust to four
+  value cells (Privacy / Safety / Security / Accessibility); drop the
+  language chapter, the journey chapter and the CTA route row. Awaiting
+  founder review.
+
+## 2026-10-19 - Landing v3 built (company front door, approved)
+- Founder approved the v3 proposal ("start build as how apple and google main
+  page is worked and launch"). Built: hero / why (four-voice carousel) /
+  promise kept; the intelligence chapter is now a compact dark promo with one
+  blue door to /how-it-works; the five-journey line-up stays as the fork; a
+  new suite band carries Download / Pricing / Help / Updates (each line the
+  destination page's own h1); trust is now four value cells (Privacy / Safety
+  / Security / Accessibility); the language chapter, the journey chapter and
+  the CTA route row are retired to where their depth already lives.
+- Shared modules are default-preserving: `promo` mode on
+  PremiumIntelligenceSection (auto-morphing stage, reduced-motion aware) and
+  an optional fourth column on PremiumTrustSection; every other page renders
+  unchanged. One landing-scoped bridge rule: 14-suite continues the line-up's
+  grey catalogue ground (no seam).
+- Suite heading built as eyebrow-only ("Explore further"); the About heading
+  pair ("The work around the product.") is a one-line add - recorded in the
+  handoff's build record section 6.
+- Verified: scope:audit:write -> eslint clean -> tsc both configs clean ->
+  vite build clean -> 532/532 tests; live 1440/1024/834/390 exact section
+  order, zero page errors, no overflow, docH 7,803 @1440 (v2 11,393); doors
+  click-tested (promo -> /how-it-works, Pricing tile -> /pricing); the promo
+  stage cycles its four beats live. Evidence:
+  `artifacts/research/landing-v3-2026-10-19/`.
+- No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v4 built (the return chapter, R&D round)
+- Founder's follow-up: v3 carried ~10% of the match; study apple.com home,
+  khanacademy.org, Gemini Notebook (notebooklm.google.com -> notebook.google)
+  and edu.google.com live, then answer the buyer's four questions (why use /
+  what return / why believe / why not another) with Apple-premium execution.
+- Study evidence: `artifacts/research/landing-final-study-2026-10-19/` (four
+  structure maps + heroes + per-heading segments + full pages). Findings:
+  Apple = four elements per module and light/dark rhythm; Khan = role fork at
+  fold and close, pillar blocks, role-labelled voices; Notebook = rotating
+  promise headline, one CTA, proof by real artefacts, trust words; Google Edu
+  = role tabs, explicit trust beat, FAQ objections.
+- Synthesis: the page told why / what-if / how / who but never "what you get
+  back". Built `04-return` between promise and promo: eyebrow "What you get" +
+  the founder's conviction, verbatim from /research, attributed (Md Shahid Ali
+  - Founder and CEO) + four returns (Your hours stack / Your place is kept /
+  Your language works / Your progress shows) - typographic columns on the
+  trust chapter's editorial spine; per-line sourcing in the blueprint doc.
+- Blueprint + build record: `docs/visionary/design/LANDING_FINAL_FRONT_DOOR.md`.
+- Verified: scope:audit:write (68/26/1,640) -> eslint -> tsc both -> vite
+  build -> 532/532 tests; live 1440/1024/834/390 exact order incl. 04-return,
+  zero page errors, no overflow, docH 8,525 @1440 (v3 7,803); statement 40px
+  @1440; joins no-seam promise->return, full breath into the dark promo.
+  Evidence: `artifacts/research/landing-v4-2026-10-19/`.
+- No commits - founder holds version commits.
+
+## 2026-10-19 - Landing v5 built (the return refit; marks, doors, journey close)
+- Founder's review of v4: the quote approved; the four columns missing their
+  icon and their relation to the site's categories; more R&D, no piecemeal
+  edits. Second R&D pass studied live interaction on the four fronts
+  (`artifacts/research/landing-final-study-2026-10-19/interaction/`); spec:
+  `docs/visionary/design/LANDING_EXPERIENCE_SPEC.md`. The founder's "continue"
+  released the one flagged refit - 04-return - and nothing else.
+- Built: `LX_RETURNS` gains Icon/l/to; each cell = mark + line + door; the
+  chapter closes on the site's route-links line: "See how it works for
+  Students - Teachers - Parents - Professionals - Organizations." (connector
+  reused verbatim from the CTA pattern; the one new line, flagged in the
+  spec). Doors in exact site labels: For students -> /student, Your
+  continuity -> /how-it-works, Language support -> /how-it-works, For
+  parents -> /parent.
+- Build-time refinements, measured: (1) the mark sits above the line - inline
+  left 124px in the 4-up middle cells while the editorial door (17px link
+  role, ~127px) wrapped; (2) four columns turn on at min-[1069px], the
+  980px-spine boundary (692px until 1068 per `rhythm.css`), not lg - at 1024
+  the 692 spine gave ~173px cells; 1024-1068 stacks on the tablet spine. The
+  trust chapter's doors wrap in that same window in the approved v4
+  (captured) - flagged, untouched; (3) doors + row links are coloured by the
+  editorial link law (#0066cc, underline on hover) - custom colour classes
+  removed.
+- Verified: scope:audit:write (68/26/1,642) -> eslint clean -> tsc both ->
+  vite build clean -> 532/532 tests; live 1440/1024/834/390 exact order,
+  4 marks, doors single-line (h 20) with correct hrefs, five row links,
+  click-throughs (/student, /parent), hover underline measured,
+  reduced-motion pass, zero page errors, no overflow; docH 8,661 @1440
+  (v4 8,525), 8,284 @1024, 9,062 @834, 9,741 @390. Evidence:
+  `artifacts/research/landing-v5-2026-10-19/`.
+- No commits - founder holds version commits.

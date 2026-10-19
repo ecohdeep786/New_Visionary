@@ -83,6 +83,24 @@ main > section[data-section="02-problem"],
   border-top-color: transparent !important;
 }
 
+/* The suite band continues the line-up's grey ground — one catalogue expanse
+   carries the five journeys and then the four doors around the product; the
+   surface change into 13-explore is the join, so the suite needs no second
+   seam. Landing-scoped. */
+.page-landing main > section[data-section="14-suite"] {
+  border-top-color: transparent !important;
+}
+
+/* The return chapter answers the promise sentence on the same white field —
+   one story, one ground; only the chapter's own breath separates question
+   from answer, so the join borrows the promise's compact rhythm. The dark
+   promo below keeps its full opening breath as the next surface change.
+   Landing-scoped: the id is the landing's alone. */
+.page-landing main > section[data-section="04-return"] {
+  border-top-color: transparent !important;
+  padding-block-start: clamp(3.5rem, min(7vw, 10svh), 6rem) !important;
+}
+
 /* The how-it-works flow — the white "different people" chapter follows the
    loop's grey ground; the surface change IS the join, so the hairline never
    reads. Page-scoped: the chapter ids belong to this page alone. */

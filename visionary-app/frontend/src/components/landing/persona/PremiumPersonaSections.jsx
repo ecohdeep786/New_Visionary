@@ -249,9 +249,21 @@ const IntelligenceDrawer = React.memo(function IntelligenceDrawer({ step, index,
   );
 });
 
-function PremiumIntelligenceSection({ steps, sub }) {
+function PremiumIntelligenceSection({ steps, sub, promo = false, ctaLabel, ctaTo }) {
   const { ref: headRef } = useRevealOnce();
   const { active, setStepRef, nodes } = useCentredStep(steps.length);
+  const reduced = usePrefersReducedMotion();
+  const [beat, setBeat] = useState(0);
+
+  /* promo mode — the front door's product band: the chapter's statement over
+     one slowly morphing stage (the mark walks its four scenes), one door
+     out to the full mechanism. No beats, no drawers, no dots. The default
+     renders the full chapter every category page carries. */
+  useEffect(() => {
+    if (!promo || reduced) return undefined;
+    const id = setInterval(() => setBeat((b) => (b + 1) % steps.length), 4200);
+    return () => clearInterval(id);
+  }, [promo, reduced, steps.length]);
 
   const scrollToBeat = useCallback((i) => {
     const node = nodes.current?.[i];
@@ -261,6 +273,50 @@ function PremiumIntelligenceSection({ steps, sub }) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     node.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
   }, [nodes]);
+
+  if (promo) {
+    return (
+      <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
+        {/* the chapter's one breath of light — kept in promo scale */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[480px]"
+          style={{ background: "radial-gradient(52% 74% at 50% 0%, rgba(66,133,244,0.13) 0%, rgba(66,133,244,0.04) 46%, rgba(10,13,20,0) 74%)" }}
+        />
+        <ScrollReveal className="relative mx-auto flex w-full max-w-[980px] flex-col items-center px-6 text-center">
+          <RevealItem idx={0}>
+            <h2
+              className="text-balance font-semibold tracking-[-0.015em] leading-[1.05] text-[clamp(40px,5.55vw,80px)]"
+              style={{ maxWidth: "22ch", marginInline: "auto" }}
+            >
+              <span className="accent-gradient-on-dark">One intelligence.</span>
+            </h2>
+          </RevealItem>
+          <RevealItem idx={1}>
+            <p className="text-frost text-balance mx-auto mt-[var(--gap-title-sub-display)] max-w-[40ch] font-normal tracking-[0] leading-[1.4] text-[18px]">
+              {sub}
+            </p>
+          </RevealItem>
+          {ctaLabel ? (
+            <RevealItem idx={2}>
+              <Link
+                to={ctaTo}
+                className="mt-9 inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#4285F4] px-7 text-[17px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#0b57d0] hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8ab4f8] focus-visible:ring-offset-2"
+              >
+                {ctaLabel}
+                <ChevronIcon className="h-4 w-4" />
+              </Link>
+            </RevealItem>
+          ) : null}
+        </ScrollReveal>
+        <div aria-hidden="true" className="relative mx-auto mt-16 w-full px-6">
+          <div className="mx-auto aspect-square w-full max-w-[520px]">
+            <IntelligenceFrame steps={steps} active={beat} autoplay={false} />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={headRef} data-section="05-intelligence" className="scene-dark relative [overflow-x:clip]" style={{ fontFamily: fontStack }}>
@@ -889,9 +945,11 @@ function PremiumTrustSection({ heading, sub, values }) {
             </p>
           </RevealItem>
 
-          {/* the values — typographic columns on the ground, hairline rules */}
+          {/* the values — typographic columns on the ground, hairline rules.
+              Four values (the landing's trust doors) open a fourth column;
+              the three-value pages keep their accepted three-up rhythm. */}
           <RevealItem idx={2} className="stagger-group">
-            <div className="mt-14 grid grid-cols-1 lg:mt-20 lg:grid-cols-3">
+            <div className={`mt-14 grid grid-cols-1 lg:mt-20 ${values.length > 3 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
               {values.map((value, i) => (
                 <article
                   key={value.title}
