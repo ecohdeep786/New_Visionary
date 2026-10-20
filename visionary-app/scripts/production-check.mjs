@@ -25,6 +25,9 @@ try {
   const hasDirectory = existsSync(join(backend, 'src/auth/firebase-product/account-directory.ts'));
   if (hasDirectory !== existsSync(join(root, 'backend/tests/account-directory.test.cjs'))) throw Error('Account directory source/test scope is incomplete.');
   if (hasDirectory) tests.push('account-directory');
+  const hasKnowledge = existsSync(join(backend, 'src/learning/knowledge-projection.service.ts'));
+  if (hasKnowledge !== existsSync(join(root, 'backend/tests/knowledge-projection.test.cjs'))) throw Error('Knowledge projection source/test scope is incomplete.');
+  if (hasKnowledge) tests.push('knowledge-projection');
   const testRoot = join(temporary, 'backend/tests');
   mkdirSync(testRoot, { recursive: true });
   cpSync(join(root, 'backend/tests/fixtures'), join(testRoot, 'fixtures'), { recursive: true });
