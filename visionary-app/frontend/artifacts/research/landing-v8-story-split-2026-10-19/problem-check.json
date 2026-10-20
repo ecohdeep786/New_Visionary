@@ -1,0 +1,65 @@
+{
+  "viewports": {
+    "390": {
+      "sectionH": 1021,
+      "cols": "342px",
+      "stageH": 354,
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "fs": 24,
+        "lines": 3
+      },
+      "persona": "A teacher",
+      "dots": 2849,
+      "h2": "Teaching everyone is possible. Reaching everyone isn't.",
+      "scrollWidth": 390,
+      "innerWidth": 390
+    },
+    "834": {
+      "sectionH": 936,
+      "cols": "692px",
+      "stageH": 340,
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "fs": 24,
+        "lines": 3
+      },
+      "persona": "A teacher",
+      "dots": 3013,
+      "h2": "Teaching everyone is possible. Reaching everyone isn't.",
+      "scrollWidth": 834,
+      "innerWidth": 834
+    },
+    "1024": {
+      "sectionH": 947,
+      "cols": "692px",
+      "stageH": 369,
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "fs": 24,
+        "lines": 3
+      },
+      "persona": "A teacher",
+      "dots": 3068,
+      "h2": "Teaching everyone is possible. Reaching everyone isn't.",
+      "scrollWidth": 1024,
+      "innerWidth": 1024
+    },
+    "1440": {
+      "sectionH": 1033,
+      "cols": "476.312px 439.672px",
+      "stageH": 480,
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "fs": 33,
+        "lines": 3
+      },
+      "persona": "A teacher",
+      "dots": 3075,
+      "h2": "Teaching everyone is possible. Reaching everyone isn't.",
+      "scrollWidth": 1440,
+      "innerWidth": 1440
+    }
+  },
+  "errors": []
+}

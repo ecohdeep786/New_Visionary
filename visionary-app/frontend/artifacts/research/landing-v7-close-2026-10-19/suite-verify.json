@@ -1,0 +1,56 @@
+{
+  "suite": {
+    "sectionH": 838,
+    "cards": [
+      {
+        "w": 547,
+        "h": 220,
+        "mediaW": 180,
+        "radius": "20px"
+      },
+      {
+        "w": 547,
+        "h": 220,
+        "mediaW": 180,
+        "radius": "20px"
+      },
+      {
+        "w": 547,
+        "h": 220,
+        "mediaW": 180,
+        "radius": "20px"
+      },
+      {
+        "w": 547,
+        "h": 220,
+        "mediaW": 180,
+        "radius": "20px"
+      }
+    ],
+    "scrollWidth": 1440,
+    "innerWidth": 1440
+  },
+  "mobile": {
+    "sectionH": 1164,
+    "cards": [
+      {
+        "w": 342,
+        "h": 220
+      },
+      {
+        "w": 342,
+        "h": 220
+      },
+      {
+        "w": 342,
+        "h": 220
+      },
+      {
+        "w": 342,
+        "h": 220
+      }
+    ],
+    "scrollWidth": 390,
+    "innerWidth": 390
+  }
+}

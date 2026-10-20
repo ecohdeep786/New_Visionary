@@ -176,7 +176,7 @@ async function assessDurableAnswer(ctx:RequestContext,unit:LearningUnit,index:nu
  unit.durableAssess={commandId,checkId,selection:index};save(ctx,unit);
  const receipt=await adapter.assess(unit.durableSessionId,{version:1,commandId,expectedRevision:unit.durableRevision||0,workspaceId:scope.workspaceId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion,checkId,selection:index});
  guard(ctx);assertCurrentLearningUnit(ctx,unit);
- if(!receipt.receipt||receipt.receipt.checkId!==checkId)throw Error('The connected assessment did not confirm this answer. Your saved work is kept; retry when connected.');
+ if(receipt.sessionId!==unit.durableSessionId||receipt.workspaceId!==scope.workspaceId||!receipt.receipt||receipt.receipt.id!==commandId||receipt.receipt.checkId!==checkId)throw Error('The connected assessment did not confirm this answer. Your saved work is kept; retry when connected.');
  delete unit.durableAssess;unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;delete unit.durableCheckId;
  return {unit:save(ctx,unit),passed:receipt.receipt.passed,receiptId:receipt.receipt.id};
 }

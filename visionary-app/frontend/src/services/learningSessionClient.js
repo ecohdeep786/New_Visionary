@@ -44,18 +44,23 @@ export function createLearningSessionClient({ getAccountId, request = createAuth
     if (typeof sessionId !== 'string' || !id.test(sessionId)) throw Object.assign(new Error('This learning session reference is not valid.'), { status: 400 });
     return `sessions/${sessionId}`;
   };
-  const command = async (path, options = {}) => {
+  const command = async (path, options = {}, expected = {}) => {
     const { uid, check } = guard();
     const value = await request(path, { ...options, accountId: uid, beforeSend: check });
     check();
-    return learningReceipt(value, uid);
+    const receipt = learningReceipt(value, uid);
+    if (expected.sessionId !== undefined && receipt.sessionId !== expected.sessionId ||
+      expected.workspaceId !== undefined && receipt.workspaceId !== expected.workspaceId ||
+      expected.assessment && (!receipt.receipt || receipt.receipt.id !== expected.assessment.commandId ||
+        receipt.receipt.checkId !== expected.assessment.checkId)) throw confirmation();
+    return receipt;
   };
   return {
-    start(input) { return command('sessions', { method: 'POST', body: input }); },
-    async get(sessionId) { return command(sessionPath(sessionId)); },
-    async present(sessionId, input) { return command(`${sessionPath(sessionId)}/checks`, { method: 'POST', body: input }); },
-    async assess(sessionId, input) { return command(`${sessionPath(sessionId)}/assessments`, { method: 'POST', body: input }); },
-    async cancel(sessionId, input) { return command(`${sessionPath(sessionId)}/cancel`, { method: 'POST', body: input }); },
+    start(input) { return command('sessions', { method: 'POST', body: input }, { workspaceId: input.workspaceId }); },
+    async get(sessionId) { return command(sessionPath(sessionId), {}, { sessionId }); },
+    async present(sessionId, input) { return command(`${sessionPath(sessionId)}/checks`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId }); },
+    async assess(sessionId, input) { return command(`${sessionPath(sessionId)}/assessments`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId, assessment: { commandId: input.commandId, checkId: input.checkId } }); },
+    async cancel(sessionId, input) { return command(`${sessionPath(sessionId)}/cancel`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId }); },
     async list({ workspaceId, after, limit } = {}) {
       const { uid, check } = guard();
       const query = new URLSearchParams();
@@ -67,7 +72,7 @@ export function createLearningSessionClient({ getAccountId, request = createAuth
       check();
       if (!value || value.version !== 1 || value.uid !== uid || !Array.isArray(value.items) || value.nextCursor !== null && typeof value.nextCursor !== 'string')
         throw confirmation();
-      return { version: 1, uid, items: value.items.map(item => learningReceipt(item, uid)), nextCursor: value.nextCursor };
+      return { version: 1, uid, items: value.items.map(item => { const receipt = learningReceipt(item, uid); if (workspaceId !== undefined && receipt.workspaceId !== workspaceId) throw confirmation(); return receipt; }), nextCursor: value.nextCursor };
     },
   };
 }

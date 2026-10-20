@@ -3197,7 +3197,7 @@
     },
     {
       "id": "hosted-release",
-      "finding": "Authenticated console inspection lists no Cloud Run services and no Cloud Build triggers in visionary-research. No product deployment pipeline exists in this repository; dev/production hosting, IAM, secrets, health and rollback acceptance remain open. Other hosting products were not inspected.",
+      "finding": "The main-only delivery workflow now targets visionary-research. Owner-run foundation and identity were applied on 20 October 2026, including the Artifact Registry repository, runtime/deployer identities, secret and bounded placeholder Cloud Run service. The product image, canonical baseline, edge/DNS/TLS cutover, hosted health and rollback acceptance remain open; a Git push alone does not deploy. The 17 October console observation predates the foundation and is retained as history; other hosting products were not inspected.",
       "followUp": [
         "PLAT-01",
         "PLAT-02",
@@ -3213,8 +3213,13 @@
     "cloudBuildTriggersListed": 0,
     "serviceUrl": "https://console.cloud.google.com/run/services?project=visionary-research",
     "triggerUrl": "https://console.cloud.google.com/cloud-build/triggers?project=visionary-research",
-    "scope": "Read-only console listings; no filters applied, no resource creation. Other hosting products were not inspected.",
-    "localGcpCliAvailable": false,
-    "hostedProductDeploymentVerified": false
+    "scope": "Read-only console listings on 2026-10-17; no filters applied, no resource creation. The 2026-10-20 owner-run foundation/identity receipt is recorded separately in STATUS/QA/DECISIONS. Other hosting products were not inspected.",
+    "localGcpCliAvailable": true,
+    "foundationAppliedAt": "2026-10-20",
+    "foundationProvisioned": true,
+    "hostedProductDeploymentVerified": false,
+    "sourceDeliveryWorkflowAddedAt": "2026-10-20",
+    "sourceDeliveryTargetProject": "visionary-research",
+    "sourceDeliveryProvisioned": true
   }
 }

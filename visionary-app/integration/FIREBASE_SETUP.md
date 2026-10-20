@@ -2,6 +2,8 @@
 
 14 October 2026, D-060–D-063. **Current integration:** see [the Firebase auth/profile contract](FIREBASE_AUTH_CONTRACT.md). The local auth server and Firebase adapter are connected; Mumbai named database `default` and locked client rules are verified. The config API reports `FIREBASE_AUTH`, superseding the earlier owner-reported Identity Platform status. Google/Apple are enabled, and localhost is added without removing existing authorized domains. The founder requests retained data, so no TTL deletion is enabled. Existing setup-stage history follows.
 
+20 October 2026, D-102: **Project switched from `visionary-fd6d2` to `visionary-research`.** The new project is on Blaze and has one Web app, Native Firestore database `default` in `asia-south1` with deny-all deployed rules, and Email/Password, Phone, Google and Apple providers enabled. A bounded read-only Admin check confirms Auth access with an empty Users list and database access; no identity, profile or document is written. D-103 commits the six public Web SDK settings at `infrastructure/gcp/firebase-web-config.json`; the private Admin credential remains outside the repository and the hosted runtime uses the attached service account/ADC instead of a key. The setup history below describes the former project. Deployment source now targets `visionary-research`; the owner-run foundation and identity were applied on 20 October 2026 (Artifact Registry repository, runtime/deployer identities, secret and bounded placeholder Cloud Run service). The first product release still requires a main publish, canonical baseline, edge/DNS/TLS cutover and hosted acceptance in `infrastructure/gcp/README.md`. No product deployment is claimed, and the former project remains a recovery reference.
+
 D-060–D-062 history: The founder reports `visionary-fd6d2` is a production Firebase project on Blaze, with Email/Password, Phone, Google, Apple and Identity Platform enabled. The public Web app config is in ignored `frontend/.env.local`; the supplied external service-account file is referenced only by ignored backend `.env`. A live read-only Admin check independently confirms Firebase Auth access and an empty Users list. Billing/provider/Identity Platform settings remain owner-reported; callbacks/domain settings have not been verified. NestJS is currently local; GCP hosting is planned for later.
 
 ## Installed versus connected
@@ -31,10 +33,10 @@ The Firebase Admin SDK is privileged server software. Prefer Application Default
 If a local server must perform reviewed real Firebase operations and a service-account file is required:
 
 1. Firebase Console → Project settings → Service accounts → Firebase Admin SDK. Use the approved account/key path; do not generate keys merely for an offline installation test.
-2. Keep the JSON on your computer in a private directory outside the repository, for example `C:\Users\Administrator\.config\visionary\firebase\visionary-fd6d2-admin.json`. Restrict its file access. Do not put it in `frontend/`, `public/`, source control, screenshots or chat. The added ignore patterns are a fallback, not permission to embed credentials.
+2. Keep the JSON on your computer in a private directory outside the repository, for example `C:\Users\Administrator\.config\visionary\firebase\visionary-research-admin.json`. Restrict its file access. Do not put it in `frontend/`, `public/`, source control, screenshots or chat. The added ignore patterns are a fallback, not permission to embed credentials.
 3. Tell the agent only the absolute local file path. Set `GOOGLE_APPLICATION_CREDENTIALS` to that path in the backend's local environment when the server integration is ready. The credential content should never be printed in diagnostic output.
 
-No local key is needed for Auth Emulator tests. Production must reject emulator configuration; emulator identity is a separate demo project, not an implicit fallback to `visionary-fd6d2`. Do not assume a plain user `gcloud auth application-default login` is sufficient for Firebase Auth: the documented user-credential setup has additional OAuth-client requirements; use an approved service identity/impersonation or the documented setup.
+No local key is needed for Auth Emulator tests. Production must reject emulator configuration; emulator identity is a separate demo project, not an implicit fallback to `visionary-research`. Do not assume a plain user `gcloud auth application-default login` is sufficient for Firebase Auth: the documented user-credential setup has additional OAuth-client requirements; use an approved service identity/impersonation or the documented setup.
 
 ## Account reuse and duplicate handling
 
@@ -46,7 +48,7 @@ Multiple methods may link to one Firebase UID through the reviewed ownership-pro
 
 ## Local configuration and next checks
 
-Frontend template: `frontend/.env.firebase.example`. The received public config already exists in ignored `.env.local`; other local settings are retained. Vite loads environment changes at startup, so an existing dev process may need a restart when the auth adapter actually consumes them.
+Frontend template: `frontend/.env.firebase.example`. The production public config is committed at `infrastructure/gcp/firebase-web-config.json`; an ignored `.env.local` copy remains only for local Firebase mode. Vite loads environment changes at startup, so an existing dev process may need a restart when the auth adapter actually consumes them.
 
 Backend template: `backend/.env.firebase.example`; merge its reviewed settings with the backend's ignored configuration later. Application `DATABASE_URL`, Prisma `DIRECT_URL`, Redis, notification delivery and server origin are separate from Firebase config. Admin installation does not create an application database.
 

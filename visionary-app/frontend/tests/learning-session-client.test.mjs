@@ -7,14 +7,14 @@ const receipt = (overrides = {}) => ({ version: 1, uid: 'owner', sessionId: sess
 
 test('the connected client sends owner-scoped commands on the durable learning routes', async () => {
   const calls = [];
-  const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async (path, options) => { calls.push({ path, options }); return receipt(); } });
+  const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async (path, options) => { calls.push({ path, options }); const target = path.match(/^sessions\/([^/]+)/)?.[1]; return receipt({ ...(target ? { sessionId: target } : {}), ...(path.endsWith('/assessments') ? { receipt: { id: options.body.commandId, checkId: options.body.checkId, passed: true } } : {}) }); } });
   await client.start({ version: 1, commandId: crypto.randomUUID() });
   assert.equal(calls[0].path, 'sessions');
   assert.equal(calls[0].options.method, 'POST');
   assert.equal(calls[0].options.accountId, 'owner');
   assert.equal(typeof calls[0].options.beforeSend, 'function');
   const id = sessionId();
-  await client.get(id); await client.present(id, {}); await client.assess(id, {}); await client.cancel(id, {});
+  await client.get(id); await client.present(id, {}); await client.assess(id, { commandId: crypto.randomUUID(), checkId: 'check-1' }); await client.cancel(id, {});
   assert.deepEqual(calls.slice(1).map(call => call.path), [`sessions/${id}`, `sessions/${id}/checks`, `sessions/${id}/assessments`, `sessions/${id}/cancel`]);
   assert.deepEqual(calls.slice(1).map(call => call.options.method || 'GET'), ['GET', 'POST', 'POST', 'POST']);
   assert.deepEqual(new Set(calls.map(call => call.options.accountId)), new Set(['owner']));
@@ -46,13 +46,14 @@ test('keyed, foreign, impossible or malformed receipts are refused without echoi
 test('assessment receipts keep the server verdict and only the bounded receipt fields', async () => {
   const value = { ...receipt({ phase: 'check_passed', revision: 2, checkPassed: true, failedChecks: 1 }), receipt: { id: sessionId(), checkId: 'check-1', passed: true } };
   const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => value });
-  const result = await client.assess(sessionId(), {});
+  const input = { commandId: value.receipt.id, checkId: value.receipt.checkId, workspaceId: value.workspaceId };
+  const result = await client.assess(value.sessionId, input);
   assert.deepEqual(result.receipt, value.receipt);
   assert.equal(result.checkPassed, true);
   assert.equal(result.phase, 'check_passed');
   assert.equal(Object.keys(result).includes('concept'), false);
   const altered = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => ({ ...value, receipt: { ...value.receipt, passed: 'yes' } }) });
-  await assert.rejects(altered.assess(sessionId(), {}), error => error.status === 503);
+  await assert.rejects(altered.assess(value.sessionId, input), error => error.status === 503);
 });
 
 test('listing builds a bounded query and validates every item and the cursor', async () => {
@@ -79,4 +80,29 @@ test('a changed account and an invalid session reference are refused before trus
   assert.equal(called, false);
   const signedOut = createLearningSessionClient({ getAccountId: () => null, request: async () => receipt() });
   await assert.rejects(signedOut.start({}), error => error.status === 409);
+});
+
+
+test('each routed response and assessment must match the exact requested session, workspace, command and check', async () => {
+  const target = sessionId(), commandId = sessionId(), checkId = 'check-original';
+  const input = { commandId, checkId, workspaceId: 'workspace-original' };
+  const valid = receipt({ sessionId: target, workspaceId: input.workspaceId, receipt: { id: commandId, checkId, passed: true } });
+  const mutations = [
+    x => ({ ...x, sessionId: sessionId() }),
+    x => ({ ...x, workspaceId: 'another-workspace' }),
+    x => ({ ...x, receipt: { ...x.receipt, id: sessionId() } }),
+    x => ({ ...x, receipt: { ...x.receipt, checkId: 'another-check' } }),
+  ];
+  for (const mutate of mutations) {
+    const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => mutate(valid) });
+    await assert.rejects(client.assess(target, input), e => e.status === 503);
+  }
+  for (const method of ['get', 'present', 'cancel']) {
+    const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => receipt({ sessionId: sessionId() }) });
+    await assert.rejects(client[method](target, input), e => e.status === 503);
+  }
+  for (const method of ['start', 'present', 'cancel']) {
+    const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => receipt({ sessionId: target, workspaceId: 'wrong' }) });
+    await assert.rejects(method === 'start' ? client.start(input) : client[method](target, input), e => e.status === 503);
+  }
 });
