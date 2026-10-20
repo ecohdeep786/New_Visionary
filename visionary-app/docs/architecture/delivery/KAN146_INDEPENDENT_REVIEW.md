@@ -1,6 +1,6 @@
 # KAN-146 independent review
 
-Current decision: **approved** exact implementation 83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec for the KAN-146 / LEARN-10 durable teaching-loop scope; all required checks passed on that candidate. Dev integration, hosted Firestore/IAM acceptance, native Jira Done and the linked open gates remain separate pending receipts. One minor non-blocking documentation note is recorded below.
+Current decision (20 October 2026): **changes requested** for exact implementation 83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec. Reverification found a command replay/receipt scope defect described in the addendum below. This supersedes the 18 October local-slice approval retained in this document. Hosted acceptance, dev integration and Jira Done remain unverified and were not performed.
 
 - Jira/source: KAN-146 / LEARN-10. Task receipt `docs/architecture/tracking/task-executions.json` (added at 8616e4f6) records status Testing, review pending, implementer DeepSeek, implementationCommit 83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec, backendTests 81, frontendTests 544. No Jira access was used or changed by this reviewer.
 - Acceptance scope: signed-in Learn journey durable teaching loop (connected feature slice in the existing runtime): start/present/assess/cancel commands with scope echoes, expectedRevision, idempotent command receipts (exact replay after a lost response), server-side scoring against the server-stored answer key, bounded three-failure stop with a different strategy and a review suggestion, truthful 503-style outage handling, drafts/attempts preserved, no teacher contact, no automatic escalation, no taught/mastery flag, and unchanged local-only behaviour for signed-out/unconfigured sessions. Open gates explicitly not part of this task: SQL owning store, authoritative content/criteria service and calibration, hosted Firestore/IAM acceptance, cross-device sync (LEARN-08/LEARN-09/SYNC-01/SYNC-02); account-directory keeps learning not-connected.
@@ -117,3 +117,51 @@ routes 68, registeredEndpoints 32, controlDeclarations 1637, routeReachableDecla
 **Approved — verification passed** for the exact implementation `83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec` at base `9fd87bcee204f8a74b296112938e4fa7577d2ba7`, covering only the KAN-146 durable teaching-loop scope above. No blocking defect was found; the single documentation note is non-blocking. This approval does not complete hosted acceptance, dev integration, native Jira Done, or any linked open gate, and no production release is certified. Dev integration and Jira receipts remain for the integrator; any later source change invalidates this exact-SHA approval.
 
 Verifier identity: independent_review_kan_146 (separate from implementer DeepSeek), 18 October 2026. Evidence as recorded above.
+
+## 20 October 2026 independent reverification addendum
+
+Reviewer/verifier: `kan146_verification`, separate from implementer DeepSeek. I accept responsibility for the checks and findings in this addendum. Scope: read-only source review and reversible local build/tests in the existing matching reviewer worktree. Implementation remains exactly `83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec`; reviewer HEAD before this evidence edit was `ea3e83298729258b3166f599028f0cac5155dadf`. `git diff --quiet 83d2964b HEAD -- frontend backend integration scripts` returned 0. The only tracked difference before the edit was this review document.
+
+Remote refs verified using `git ls-remote origin`: implementation branch `8616e4f681ae548bb4481187da14f695924e92f0` (documentation receipt only after the implementation); reviewer branch `ea3e83298729258b3166f599028f0cac5155dadf`. Current remote dev was `3a2626d6f9e9e67e1da36d14eebf76e75eed3298`, main `f3cf316edb746ef85a8bfb04f71f29165c54944e`. Neither local tracking branch contained the implementation. No integration or deployment was performed.
+
+Live Jira read on 20 October confirms KAN-146 **Testing**, with native prerequisite KAN-145 **Testing** and KAN-143 **To Do**. The prior QA comment explicitly records successful local testing with no integration/Done. This verifier made no Jira write. Current task acceptance still requires real UI/API/owning-store and applicable deployment/category/language/device evidence; fictional fixtures do not meet those gates.
+
+### P2 — Bind replay and returned receipts to the requested session
+
+`backend/upstream/backend/src/learning/learning.service.ts:32` validates replay UID, kind and body fingerprint but omits the persisted `sessionId`. The present/assess/cancel fingerprints at lines 112, 140 and 178 hash only `command`; their replay branches return before reading the requested session. Changing `/sessions/A/checks` to `/sessions/B/checks` with the same command ID and body therefore returns A's successful receipt while B is unchanged. This is a different mutation target, not an exact replay of the original request.
+
+The compiled service probe created two fictional sessions for one fixture owner, presented a check to A, and repeated the identical body against B. It returned:
+
+```json
+{"probe":"same-command-id-and-body-different-session-route","originalPhase":"check","accepted":true,"returnedOriginalSession":true,"secondSessionUntouched":true}
+```
+
+The frontend compounds the mismatch: `frontend/src/services/learningSessionClient.js:51` validates receipt shape and UID without comparing the requested session/workspace/command. An injected same-UID, otherwise well-shaped assessment receipt for another session and workspace with another receipt ID was accepted by the real client:
+
+```json
+{"probe":"client-receipt-scope-binding","accepted":true,"wrongSession":true,"wrongWorkspace":true,"wrongCommand":true}
+```
+
+`frontend/src/services/learningPipelineService.ts:179` checks only the assessment's `checkId`, then applies that verdict and revision to the current local unit. Checks can share an authored check ID across sessions, so this guard cannot identify the wrong session receipt. A misplaced retry can thus appear confirmed for an activity whose server session was not changed. The probe demonstrates a correctness defect within the same owner; it does not establish cross-account disclosure or a provider exploit.
+
+Required correction: include/compare the route session ID in all non-start replay identities and reject mismatches with 409 before returning a receipt. Bind client receipts to the requested session/workspace, pinned source/criteria where returned, assessment command ID and check ID before applying state. Add regression coverage for the same body/key against a different session, and the client/pipeline refusal of mismatched receipts; preserve valid lost-response replay.
+
+### Real Firestore SDK path parity and linked dependency
+
+Offline reference construction used the installed `firebase-admin/firestore` SDK and a fictional project ID, with no network operation, credentials, or user reads. All KAN-146 collection paths accepted:
+
+```text
+visionary_accounts/review-fixture-owner/learningSessions                 accepted
+visionary_accounts/review-fixture-owner/learningCommands                 accepted
+visionary_accounts/review-fixture-owner/learningSessions/session-fixture/assessments accepted
+```
+
+For comparison, the KAN-145 verifier's reported path `visionary_accounts/review-fixture-owner/knowledge/commands` was independently rejected by that SDK: `collectionPath` must have an odd number of components. That is a KAN-145 implementation/dependency defect, not a path defect in this exact KAN-146 tree. It reinforces why passing the permissive in-memory fixture does not establish real Firestore acceptance.
+
+### Commands and verification
+
+Windows PowerShell, Node `v24.19.0`, 20 October 2026 UTC. `npm run backend:build`: exit 0. The same nine compiled backend suites listed in the original review, with `--test-concurrency=2`: exit 0; **81 tests passed, 0 failed**, 25.81 seconds. `git diff --check 9fd87bce..83d2964b`: exit 0. The service/client probes above and offline SDK path construction each exited 0; these were direct probes, not additional automated suite counts. The initial service probe overlapped Nest compilation and failed with MODULE_NOT_FOUND while dist was being regenerated; it was rerun successfully after build completion.
+
+Root `npm run check`: exit 0, completed by 10:06 UTC. Layout/import integrity passed (3842 imported files plus 3 recorded patches), **18 script tests passed**, source audit passed (68 routes, 32 registered endpoints, `hostedVerified:false`), lint and both type configurations passed, **544 frontend tests passed, 0 failed** (110.24 seconds), Vite production build passed (34.78 seconds). Raw command logs stay in ignored `artifacts/kan146-reverification-2026-10-20-{backend,check}.log`.
+
+Reviewer decision: **changes requested** for exact candidate `83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec` because of the replay/receipt binding defect. The earlier local approval is superseded. Relevant existing tests pass but do not cover this condition. Jira should return to In Progress under the delivery policy; this reviewer was restricted to reporting and did not change Jira. No integration, Done, hosted test, production readiness, or acceptance of linked prerequisites is claimed. SQL/content authority/calibration, hosted Firestore/IAM, cross-device qualification and the other open gates remain open.
