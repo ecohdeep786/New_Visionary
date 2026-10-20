@@ -1,0 +1,94 @@
+name: Product checks and main production
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: visionary-app
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            visionary-app/frontend/package-lock.json
+            visionary-app/infrastructure/gcp/runtime/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: visionary-app/frontend
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: visionary-app/infrastructure/gcp/runtime
+      - run: npm audit --omit=dev --audit-level=high
+        working-directory: visionary-app/infrastructure/gcp/runtime
+      - run: npm run check
+      - run: node scripts/production-check.mjs
+      - run: node --test infrastructure/gcp/tests/*.test.mjs
+      - run: python3 -m unittest discover -s infrastructure/gcp/tests -p '*_test.py'
+
+  production:
+    needs: checks
+    if: >-
+      github.repository == 'ecohdeep786/New_Visionary' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      vars.PRODUCTION_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    concurrency:
+      group: visionary-main-production
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: visionary-app
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - run: node infrastructure/gcp/build-image.mjs
+      - run: node infrastructure/gcp/container-smoke.mjs
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          workload_identity_provider: projects/174851137514/locations/global/workloadIdentityPools/visionary-github/providers/github-main
+          service_account: visionary-github-deployer@visionary-research.iam.gserviceaccount.com
+      - uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3
+        with:
+          project_id: visionary-research
+      - id: publish
+        run: node infrastructure/gcp/release.mjs publish
+      - if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'
+        run: node infrastructure/gcp/release.mjs deploy
+        env:
+          PRODUCTION_DEPLOY_ENABLED: ${{ vars.PRODUCTION_DEPLOY_ENABLED }}
+          PRODUCTION_IMAGE: ${{ steps.publish.outputs.image }}
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: always()
+        with:
+          name: main-release-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            visionary-app/published-release.json
+            visionary-app/deployed-release.json
+          if-no-files-found: ignore
+          retention-days: 30

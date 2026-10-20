@@ -97,6 +97,8 @@ main p + h2.mt-4 {
   --fs-card-name: 1.0625rem;
   --fs-large-card: 2.5rem;
   --fs-story-card: 3rem;
+  --fs-card-chapter: 3rem; /* Education card chapters: "Real stories. Real impact." 48px */
+  --lh-card-chapter: 1.0834; /* Apple: 52px/48px */
   --fs-meta: 0.875rem;
   --fs-caption: 0.75rem;
   --fs-fine: 0.8125rem;
@@ -185,6 +187,8 @@ main p + h2.mt-4 {
     --fs-card-name: 1.0625rem;
     --fs-large-card: 2rem;
     --fs-story-card: 2.5rem;
+    --fs-card-chapter: 2.5rem;
+    --lh-card-chapter: 1.1;
     --lh-display: 1;
     --lh-product-section: 1.083333;
     --lh-card-name: 1.190476;
@@ -231,6 +235,8 @@ main p + h2.mt-4 {
     --fs-card-name: 1.0625rem;
     --fs-large-card: 1.75rem;
     --fs-story-card: 1.75rem;
+    --fs-card-chapter: 2rem;
+    --lh-card-chapter: 1.125;
     --fs-editorial-body: 1.1875rem;
     --lh-editorial-body: 1.210526;
     --track-editorial-body: 0.012em;

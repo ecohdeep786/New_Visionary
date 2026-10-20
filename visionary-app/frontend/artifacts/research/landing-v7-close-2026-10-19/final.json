@@ -1,0 +1,547 @@
+{
+  "url": "http://localhost:5173/",
+  "viewports": {
+    "390": {
+      "docH": 10060,
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "sections": [
+        {
+          "id": "01-hero",
+          "top": 8112,
+          "h": 788,
+          "words": 19
+        },
+        {
+          "id": "05-intelligence",
+          "top": 1097,
+          "h": 795,
+          "words": 15
+        },
+        {
+          "id": "02-problem",
+          "top": 1892,
+          "h": 981,
+          "words": 49
+        },
+        {
+          "id": "03-promise",
+          "top": 2873,
+          "h": 658,
+          "words": 9
+        },
+        {
+          "id": "04-return",
+          "top": 3532,
+          "h": 1484,
+          "words": 109
+        },
+        {
+          "id": "13-explore",
+          "top": 5016,
+          "h": 1084,
+          "words": 108
+        },
+        {
+          "id": "14-suite",
+          "top": 6100,
+          "h": 1164,
+          "words": 22
+        },
+        {
+          "id": "11-trust",
+          "top": 7264,
+          "h": 1102,
+          "words": 64
+        },
+        {
+          "id": "12-cta",
+          "top": 8366,
+          "h": 534,
+          "words": 31
+        }
+      ],
+      "trust": {
+        "rect": {
+          "top": 7264,
+          "h": 1102
+        },
+        "panel": {
+          "radius": "28px",
+          "bg": "rgb(245, 245, 247)",
+          "padding": "36px 20px"
+        },
+        "gridCols": "302px",
+        "cards": 4,
+        "icons": 8,
+        "h2": {
+          "fs": 40,
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgb(95, 99, 104)"
+        },
+        "link": {
+          "color": "rgb(0, 102, 204)",
+          "fs": 17
+        },
+        "firstArticle": {
+          "top": 7629,
+          "h": 139
+        }
+      },
+      "suite": {
+        "rect": {
+          "top": 6100,
+          "h": 1164
+        },
+        "card": {
+          "w": 342,
+          "h": 220,
+          "radius": "20px"
+        },
+        "mediaW": 118,
+        "cards": 4
+      },
+      "cta": {
+        "rect": {
+          "top": 8366,
+          "h": 534
+        },
+        "bg": "rgb(10, 13, 20)",
+        "h2": {
+          "fs": 40,
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "rings": 2
+      }
+    },
+    "834": {
+      "docH": 9261,
+      "innerWidth": 834,
+      "scrollWidth": 834,
+      "sections": [
+        {
+          "id": "01-hero",
+          "top": 7581,
+          "h": 844,
+          "words": 19
+        },
+        {
+          "id": "05-intelligence",
+          "top": 1170,
+          "h": 974,
+          "words": 15
+        },
+        {
+          "id": "02-problem",
+          "top": 2144,
+          "h": 927,
+          "words": 49
+        },
+        {
+          "id": "03-promise",
+          "top": 3071,
+          "h": 702,
+          "words": 9
+        },
+        {
+          "id": "04-return",
+          "top": 3773,
+          "h": 1392,
+          "words": 109
+        },
+        {
+          "id": "13-explore",
+          "top": 5165,
+          "h": 1079,
+          "words": 108
+        },
+        {
+          "id": "14-suite",
+          "top": 6244,
+          "h": 705,
+          "words": 22
+        },
+        {
+          "id": "11-trust",
+          "top": 6949,
+          "h": 959,
+          "words": 64
+        },
+        {
+          "id": "12-cta",
+          "top": 7908,
+          "h": 517,
+          "words": 31
+        }
+      ],
+      "trust": {
+        "rect": {
+          "top": 6949,
+          "h": 959
+        },
+        "panel": {
+          "radius": "28px",
+          "bg": "rgb(245, 245, 247)",
+          "padding": "48px 40px"
+        },
+        "gridCols": "612px",
+        "cards": 4,
+        "icons": 8,
+        "h2": {
+          "fs": 56,
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgb(95, 99, 104)"
+        },
+        "link": {
+          "color": "rgb(0, 102, 204)",
+          "fs": 17
+        },
+        "firstArticle": {
+          "top": 7341,
+          "h": 207
+        }
+      },
+      "suite": {
+        "rect": {
+          "top": 6244,
+          "h": 705
+        },
+        "card": {
+          "w": 387,
+          "h": 220,
+          "radius": "20px"
+        },
+        "mediaW": 180,
+        "cards": 4
+      },
+      "cta": {
+        "rect": {
+          "top": 7908,
+          "h": 517
+        },
+        "bg": "rgb(10, 13, 20)",
+        "h2": {
+          "fs": 56,
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "rings": 2
+      }
+    },
+    "1024": {
+      "docH": 9357,
+      "innerWidth": 1024,
+      "scrollWidth": 1024,
+      "sections": [
+        {
+          "id": "01-hero",
+          "top": 648,
+          "h": 844,
+          "words": 19
+        },
+        {
+          "id": "05-intelligence",
+          "top": 1170,
+          "h": 1007,
+          "words": 15
+        },
+        {
+          "id": "02-problem",
+          "top": 2177,
+          "h": 998,
+          "words": 49
+        },
+        {
+          "id": "03-promise",
+          "top": 3175,
+          "h": 702,
+          "words": 9
+        },
+        {
+          "id": "04-return",
+          "top": 3877,
+          "h": 1463,
+          "words": 109
+        },
+        {
+          "id": "13-explore",
+          "top": 5340,
+          "h": 1137,
+          "words": 108
+        },
+        {
+          "id": "14-suite",
+          "top": 6476,
+          "h": 746,
+          "words": 22
+        },
+        {
+          "id": "11-trust",
+          "top": 7223,
+          "h": 1048,
+          "words": 64
+        },
+        {
+          "id": "12-cta",
+          "top": 8271,
+          "h": 550,
+          "words": 31
+        }
+      ],
+      "trust": {
+        "rect": {
+          "top": 7223,
+          "h": 1048
+        },
+        "panel": {
+          "radius": "28px",
+          "bg": "rgb(245, 245, 247)",
+          "padding": "64px 64px"
+        },
+        "gridCols": "564px",
+        "cards": 4,
+        "icons": 8,
+        "h2": {
+          "fs": 56,
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgb(95, 99, 104)"
+        },
+        "link": {
+          "color": "rgb(0, 102, 204)",
+          "fs": 17
+        },
+        "firstArticle": {
+          "top": 7705,
+          "h": 207
+        }
+      },
+      "suite": {
+        "rect": {
+          "top": 6476,
+          "h": 746
+        },
+        "card": {
+          "w": 426,
+          "h": 220,
+          "radius": "20px"
+        },
+        "mediaW": 180,
+        "cards": 4
+      },
+      "cta": {
+        "rect": {
+          "top": 8271,
+          "h": 550
+        },
+        "bg": "rgb(10, 13, 20)",
+        "h2": {
+          "fs": 56,
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "rings": 2
+      }
+    },
+    "1440": {
+      "docH": 9584,
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "sections": [
+        {
+          "id": "01-hero",
+          "top": 8204,
+          "h": 844,
+          "words": 19
+        },
+        {
+          "id": "05-intelligence",
+          "top": 1170,
+          "h": 1117,
+          "words": 15
+        },
+        {
+          "id": "02-problem",
+          "top": 2287,
+          "h": 1247,
+          "words": 49
+        },
+        {
+          "id": "03-promise",
+          "top": 3534,
+          "h": 702,
+          "words": 9
+        },
+        {
+          "id": "04-return",
+          "top": 4236,
+          "h": 1013,
+          "words": 109
+        },
+        {
+          "id": "13-explore",
+          "top": 5249,
+          "h": 1251,
+          "words": 108
+        },
+        {
+          "id": "14-suite",
+          "top": 6500,
+          "h": 838,
+          "words": 22
+        },
+        {
+          "id": "11-trust",
+          "top": 7338,
+          "h": 1069,
+          "words": 64
+        },
+        {
+          "id": "12-cta",
+          "top": 8406,
+          "h": 642,
+          "words": 31
+        }
+      ],
+      "trust": {
+        "rect": {
+          "top": 7338,
+          "h": 1069
+        },
+        "panel": {
+          "radius": "28px",
+          "bg": "rgb(245, 245, 247)",
+          "padding": "64px 64px"
+        },
+        "gridCols": "557.188px 238.812px",
+        "cards": 4,
+        "icons": 8,
+        "h2": {
+          "fs": 72,
+          "color": "rgb(29, 29, 31)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgb(95, 99, 104)"
+        },
+        "link": {
+          "color": "rgb(0, 102, 204)",
+          "fs": 17
+        },
+        "firstArticle": {
+          "top": 7798,
+          "h": 184
+        }
+      },
+      "suite": {
+        "rect": {
+          "top": 6500,
+          "h": 838
+        },
+        "card": {
+          "w": 547,
+          "h": 220,
+          "radius": "20px"
+        },
+        "mediaW": 180,
+        "cards": 4
+      },
+      "cta": {
+        "rect": {
+          "top": 8406,
+          "h": 642
+        },
+        "bg": "rgb(10, 13, 20)",
+        "h2": {
+          "fs": 72,
+          "color": "rgb(245, 245, 247)"
+        },
+        "sub": {
+          "fs": 17,
+          "fw": "400",
+          "color": "rgba(255, 255, 255, 0.7)"
+        },
+        "filled": {
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(18, 19, 23)",
+          "h": 48
+        },
+        "quiet": {
+          "color": "rgb(41, 151, 255)"
+        },
+        "rings": 2
+      }
+    }
+  },
+  "errors": [
+    {
+      "vp": "1440",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it "
+    },
+    {
+      "vp": "1024",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it "
+    },
+    {
+      "vp": "834",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it "
+    },
+    {
+      "vp": "390",
+      "type": "console",
+      "text": "Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it "
+    }
+  ]
+}

@@ -25,6 +25,9 @@
 !infrastructure/gcp/
 !infrastructure/gcp/Dockerfile
 !infrastructure/gcp/Dockerfile.dockerignore
+!infrastructure/gcp/runtime/
+!infrastructure/gcp/runtime/package.json
+!infrastructure/gcp/runtime/package-lock.json
 **/.env*
 **/node_modules/**
 **/*.pem

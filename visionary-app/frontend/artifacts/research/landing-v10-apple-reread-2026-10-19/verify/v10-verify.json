@@ -1,0 +1,93 @@
+{
+  "viewports": {
+    "390": {
+      "pillBg": "rgb(255, 255, 255)",
+      "pillColor": "rgb(18, 19, 23)",
+      "frameBorder": "rgba(0, 0, 0, 0)",
+      "frameW": 342,
+      "returnCards": 4,
+      "cardBg": "rgb(245, 245, 247)",
+      "cardRadius": "28px",
+      "cardW": 342,
+      "gridCols": 1,
+      "returnLink": "rgb(0, 102, 204)",
+      "suiteH2": "Explore further.",
+      "suiteH2Fs": 40,
+      "returnH": 1632,
+      "intelH": 795,
+      "suiteH": 1188,
+      "docH": 10271,
+      "overflow": false
+    },
+    "834": {
+      "pillBg": "rgb(255, 255, 255)",
+      "pillColor": "rgb(18, 19, 23)",
+      "frameBorder": "rgba(0, 0, 0, 0)",
+      "frameW": 560,
+      "returnCards": 4,
+      "cardBg": "rgb(245, 245, 247)",
+      "cardRadius": "28px",
+      "cardW": 385,
+      "gridCols": 2,
+      "returnLink": "rgb(0, 102, 204)",
+      "suiteH2": "Explore further.",
+      "suiteH2Fs": 56,
+      "returnH": 1042,
+      "intelH": 1014,
+      "suiteH": 746,
+      "docH": 9000,
+      "overflow": false
+    },
+    "1024": {
+      "pillBg": "rgb(255, 255, 255)",
+      "pillColor": "rgb(18, 19, 23)",
+      "frameBorder": "rgba(0, 0, 0, 0)",
+      "frameW": 560,
+      "returnCards": 4,
+      "cardBg": "rgb(245, 245, 247)",
+      "cardRadius": "28px",
+      "cardW": 424,
+      "gridCols": 2,
+      "returnLink": "rgb(0, 102, 204)",
+      "suiteH2": "Explore further.",
+      "suiteH2Fs": 56,
+      "returnH": 1090,
+      "intelH": 1047,
+      "suiteH": 787,
+      "docH": 9014,
+      "overflow": false
+    },
+    "1440": {
+      "pillBg": "rgb(255, 255, 255)",
+      "pillColor": "rgb(18, 19, 23)",
+      "frameBorder": "rgba(0, 0, 0, 0)",
+      "frameW": 560,
+      "returnCards": 4,
+      "cardBg": "rgb(245, 245, 247)",
+      "cardRadius": "28px",
+      "cardW": 264,
+      "gridCols": 4,
+      "returnLink": "rgb(0, 102, 204)",
+      "suiteH2": "Explore further.",
+      "suiteH2Fs": 64,
+      "returnH": 1051,
+      "intelH": 1157,
+      "suiteH": 886,
+      "docH": 9496,
+      "overflow": false
+    }
+  },
+  "persona": {
+    "url": "/student",
+    "ctaBg": null,
+    "ctaText": null,
+    "returnCards": 0,
+    "suiteH2": false
+  },
+  "errors": [
+    {
+      "vp": "390",
+      "text": "Uncaught Error: int64"
+    }
+  ]
+}

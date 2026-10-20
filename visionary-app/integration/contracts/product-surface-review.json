@@ -3203,7 +3203,7 @@
     },
     {
       "id": "hosted-release",
-      "finding": "Authenticated console inspection lists no Cloud Run services and no Cloud Build triggers in visionary-research. No product deployment pipeline exists in this repository; dev/production hosting, IAM, secrets, health and rollback acceptance remain open. Other hosting products were not inspected.",
+      "finding": "KAN-162 production hosting and main-only CI/CD were independently accepted on 20 October 2026 in visionary-research. Canonical visionary.org.in DNS/TLS, the real main-push image deployment, bounded runtime, health, rollback/restoration and synthetic two-session account-store checks passed. This accepts hosting scope only; source, provider, guardian, content and learning-feature acceptance remain separate. Historical 17 October empty-service listings predate this deployment.",
       "followUp": [
         "PLAT-01",
         "PLAT-02",
@@ -3219,8 +3219,17 @@
     "cloudBuildTriggersListed": 0,
     "serviceUrl": "https://console.cloud.google.com/run/services?project=visionary-research",
     "triggerUrl": "https://console.cloud.google.com/cloud-build/triggers?project=visionary-research",
-    "scope": "Read-only console listings; no filters applied, no resource creation. Other hosting products were not inspected.",
-    "localGcpCliAvailable": false,
-    "hostedProductDeploymentVerified": false
+    "scope": "Read-only console listings on 2026-10-17; no filters applied, no resource creation. The 2026-10-20 owner-run foundation/identity receipt is recorded separately in STATUS/QA/DECISIONS. Other hosting products were not inspected.",
+    "localGcpCliAvailable": true,
+    "foundationAppliedAt": "2026-10-20",
+    "foundationProvisioned": true,
+    "hostedProductDeploymentVerified": true,
+    "sourceDeliveryWorkflowAddedAt": "2026-10-20",
+    "sourceDeliveryTargetProject": "visionary-research",
+    "sourceDeliveryProvisioned": true,
+    "productionAcceptanceAt": "2026-10-20",
+    "productionAcceptanceEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md",
+    "productionMainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
+    "productionCanonicalOrigin": "https://visionary.org.in"
   }
 }

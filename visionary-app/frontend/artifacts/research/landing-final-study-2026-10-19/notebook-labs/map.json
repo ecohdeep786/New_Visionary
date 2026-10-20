@@ -1,0 +1,198 @@
+{
+  "title": "Gemini Notebook | AI Research Tool & Thinking Partner",
+  "docH": 6577,
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Turn your files into Slide Decks",
+      "y": 112,
+      "fs": "76px",
+      "fw": "500"
+    },
+    {
+      "tag": "h2",
+      "text": "Mind Maps",
+      "y": 2545,
+      "fs": "32px",
+      "fw": "400"
+    },
+    {
+      "tag": "h1",
+      "text": "Explore featured public notebooks",
+      "y": 3033,
+      "fs": "40px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "Secrets of the Super Agers",
+      "y": 2979,
+      "fs": "30px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "How To Build A Life, from The Atlantic",
+      "y": 2979,
+      "fs": "30px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "William Shakespeare: The Complete Works",
+      "y": 3292,
+      "fs": "30px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "Earnings Reports For Top 50 Corporations",
+      "y": 3292,
+      "fs": "30px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "“Blew Our Minds.”",
+      "y": 3865,
+      "fs": "40px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "“It’s one of the most compelling and completely flabbergasting demonstrations of AI’s potential yet.”",
+      "y": 3817,
+      "fs": "40px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "“A beautiful way to walk through information space.”",
+      "y": 3841,
+      "fs": "40px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "“A glimpse into AI’s future in the workplace.”",
+      "y": 3865,
+      "fs": "40px",
+      "fw": "400"
+    },
+    {
+      "tag": "h2",
+      "text": "Want to learn more?",
+      "y": 5153,
+      "fs": "40px",
+      "fw": "400"
+    }
+  ],
+  "ctas": [
+    {
+      "text": "Go to Notebook Product Homepage",
+      "href": "https://notebook.google.com/",
+      "y": 31,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "Overview",
+      "href": "/",
+      "y": 29,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "Plans",
+      "href": "/plans",
+      "y": 29,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "Get the App",
+      "href": "/app",
+      "y": 21,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "83.2px"
+    },
+    {
+      "text": "Try Gemini Notebook",
+      "href": "https://notebook.google.com/?icid=home_maincta",
+      "y": 367,
+      "bg": "rgb(31, 31, 31)",
+      "radius": "94px"
+    },
+    {
+      "text": "Secrets of the Super Agers17 sources",
+      "href": "https://notebook.google.com/notebook/780a38ee-d0a6-4fb1-b255-aa03c8d67dce",
+      "y": 2839,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "24px"
+    },
+    {
+      "text": "How To Build A Life, from The Atlantic46 sources",
+      "href": "https://notebook.google.com/notebook/750a23df-fd98-4954-b9c4-71f16c3ee937",
+      "y": 2839,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "24px"
+    },
+    {
+      "text": "William Shakespeare: The Complete Works45 sources",
+      "href": "https://notebook.google.com/notebook/19bde485-a9c1-4809-8884-e872b2b67b44",
+      "y": 3152,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "24px"
+    },
+    {
+      "text": "Earnings Reports For Top 50 Corporations267 sources",
+      "href": "https://notebook.google.com/notebook/e4ddc6f8-ada2-4aaa-b9dc-c3ff7c325bf8",
+      "y": 3152,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "24px"
+    },
+    {
+      "text": "HardFork",
+      "href": "https://www.youtube.com/watch?v=IPAPv6fWITM",
+      "y": 3982,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "WSJ",
+      "href": "https://www.wsj.com/tech/ai/google-notebooklm-ai-podcast-deep-dive-audio-c30a06b3",
+      "y": 3984,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "The Verge",
+      "href": "https://podcasts.apple.com/us/podcast/the-chatbot-becomes-the-teacher/id430333725?i=1000670290037",
+      "y": 3982,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "Barron’s",
+      "href": "https://www.barrons.com/articles/google-notebooklm-deepdive-podcast-47225ecb",
+      "y": 3982,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "See more details here",
+      "href": "https://support.google.com/gemininotebook/answer/16179536?sjid=6202054122524519860-NC",
+      "y": 4670,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    },
+    {
+      "text": "Privacy & Terms",
+      "href": "https://policies.google.com/",
+      "y": 6484,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px"
+    }
+  ],
+  "url": "https://notebook.google/"
+}

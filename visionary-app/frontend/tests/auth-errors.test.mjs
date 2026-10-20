@@ -24,6 +24,6 @@ test('demo auth tests cannot silently fall back to production or remote emulator
   assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: true }, config));
   assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: false, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, config));
   assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: true, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://attacker.test:9099' }, config));
-  assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: true, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, { projectId: 'visionary-fd6d2' }));
+  assert.throws(() => firebaseEmulatorFromEnvironment({ DEV: true, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, { projectId: 'visionary-research' }));
   assert.equal(firebaseEmulatorFromEnvironment({ DEV: true, VITE_FIREBASE_AUTH_EMULATOR_URL: 'http://127.0.0.1:9099' }, config), 'http://127.0.0.1:9099');
 });

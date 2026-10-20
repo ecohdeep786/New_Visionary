@@ -1,0 +1,1307 @@
+{
+  "title": "Apple",
+  "docH": 13471,
+  "headingCount": 23,
+  "ctaCount": 144,
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Apple",
+      "y": 0,
+      "fs": "34px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h2",
+      "text": "iPhone Duo",
+      "y": 170,
+      "fs": "56px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h2",
+      "text": "iPhone 18 Pro",
+      "y": 874,
+      "fs": "56px",
+      "fw": "600",
+      "color": "rgb(245, 245, 247)"
+    },
+    {
+      "tag": "h2",
+      "text": "Apple Card",
+      "y": 1583,
+      "fs": "25.5px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple Upgrade",
+      "y": 2283,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple HomeView",
+      "y": 2283,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple Watch Series 12",
+      "y": 2875,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(245, 245, 247)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple Watch Ultra 4",
+      "y": 2875,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(245, 245, 247)"
+    },
+    {
+      "tag": "h3",
+      "text": "iPad Air",
+      "y": 3467,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h3",
+      "text": "Incredible carrier deals at Apple",
+      "y": 3463,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(29, 29, 31)"
+    },
+    {
+      "tag": "h2",
+      "text": "Endless entertainment.",
+      "y": 4055,
+      "fs": "56px",
+      "fw": "600",
+      "color": "rgb(0, 0, 0)"
+    },
+    {
+      "tag": "h2",
+      "text": "Apple Footer",
+      "y": 4959,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "Shop and Learn Shop and Learn",
+      "y": 12905,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple Wallet Apple Wallet",
+      "y": 13227,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "Account Account",
+      "y": 12905,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "Entertainment Entertainment",
+      "y": 13022,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple Store Apple Store",
+      "y": 12905,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "For Business For Business",
+      "y": 12905,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "For Education For Education",
+      "y": 12996,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "For Healthcare For Healthcare",
+      "y": 13113,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "For Government For Government",
+      "y": 13179,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "Apple Values Apple Values",
+      "y": 12905,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    },
+    {
+      "tag": "h3",
+      "text": "About Apple About Apple",
+      "y": 13124,
+      "fs": "12px",
+      "fw": "400",
+      "color": "rgba(0, 0, 0, 0.88)"
+    }
+  ],
+  "ctas": [
+    {
+      "text": "Continue",
+      "href": "https://www.apple.com/in/",
+      "y": 17,
+      "bg": "rgb(29, 29, 31)",
+      "radius": "8px",
+      "fs": "14px"
+    },
+    {
+      "text": "Close country or region selector",
+      "y": 26,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "18px"
+    },
+    {
+      "text": "Apple",
+      "href": "/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Store",
+      "href": "/us/shop/goto/store",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Store menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Mac",
+      "href": "/mac/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Mac menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "iPad",
+      "href": "/ipad/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "iPad menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "iPhone",
+      "href": "/iphone/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "iPhone menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Watch",
+      "href": "/watch/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Watch menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Vision",
+      "href": "/apple-vision-pro/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Vision menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "AirPods",
+      "href": "/airpods/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "AirPods menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Home",
+      "href": "/home/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Home menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Entertainment",
+      "href": "/entertainment/",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Entertainment menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Accessories",
+      "href": "/us/shop/goto/buy_accessories",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Accessories menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Support",
+      "href": "https://support.apple.com/?cid=gn-ols-home-hp-tab",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Support menu",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "0+",
+      "href": "/us/shop/goto/bag",
+      "y": 70,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/iphone-duo/",
+      "y": 314,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "17px"
+    },
+    {
+      "text": "Pre-order",
+      "href": "/us/shop/goto/buy_iphone/iphone_duo",
+      "y": 314,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "17px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/iphone-18-pro/",
+      "y": 989,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "17px"
+    },
+    {
+      "text": "Buy",
+      "href": "/us/shop/goto/buy_iphone/iphone_18_pro",
+      "y": 989,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "17px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/apple-card/",
+      "y": 1693,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "17px"
+    },
+    {
+      "text": "Apply now",
+      "href": "https://card.apple.com/apply/application?referrer=cid%3Dapy-200-10000036&start=false",
+      "y": 1693,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "17px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/us/shop/goto/apple_upgrade",
+      "y": 2364,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/apple-homeview/",
+      "y": 2386,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Pre-order",
+      "href": "/us/shop/goto/buy_home/apple_homeview",
+      "y": 2386,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/apple-watch-series-12/",
+      "y": 3302,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Buy",
+      "href": "/us/shop/goto/buy_watch/apple_watch_series_12",
+      "y": 3302,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/apple-watch-ultra-4/",
+      "y": 2956,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Buy",
+      "href": "/us/shop/goto/buy_watch/apple_watch_ultra_4",
+      "y": 2956,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Learn more",
+      "href": "/ipad-air/",
+      "y": 3548,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Buy",
+      "href": "/us/shop/goto/buy_ipad/ipad_air",
+      "y": 3548,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Find your deal",
+      "href": "/us/shop/goto/buy_iphone/carrier_offers",
+      "y": 3616,
+      "bg": "rgb(0, 113, 227)",
+      "radius": "980px",
+      "fs": "14px"
+    },
+    {
+      "text": "Item 1",
+      "href": "#endless-entertainment-gallery-item-1",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 2",
+      "href": "#endless-entertainment-gallery-item-2",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 3",
+      "href": "#endless-entertainment-gallery-item-3",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 4",
+      "href": "#endless-entertainment-gallery-item-4",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 5",
+      "href": "#endless-entertainment-gallery-item-5",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 6",
+      "href": "#endless-entertainment-gallery-item-6",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 7",
+      "href": "#endless-entertainment-gallery-item-7",
+      "y": 4923,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 8",
+      "href": "#endless-entertainment-gallery-item-8",
+      "y": 4907,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "Item 9",
+      "href": "#endless-entertainment-gallery-item-9",
+      "y": 4907,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/movie/tenzing/umc.cmc.6lic0hhuxkrbem0n29vzjopii?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/movie/matchbox-the-movie/umc.cmc.31qa8j1tn2cnpyk3fx43w928d?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/room/formula-1/uts.room.formula-1?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/show/brothers/umc.cmc.17g1y5mzqp92sc0ge1c0hdorg?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/channel/mls/tvs.sbd.7000?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/show/ted-lasso/umc.cmc.vtoh0mn0xn7t3c643xqonfzy?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/show/slow-horses/umc.cmc.2szz3fdt71tl1ulnbp8utgq5o?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/movie/mayday/umc.cmc.shin43vzfoz3h4ggx41z8rf?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://tv.apple.com/us/show/widows-bay/umc.cmc.1zzly0vah46bnvnwf0qkrjhh2?l=en-US?itscg=10000&itsct=atv-apl_hp-stream_now--220622",
+      "y": 4141,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://apps.apple.com/us/app/hello-kitty-island-adventure/id1553505132?itscg=10000&itsct=aa-apl_hp-play_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://music.apple.com/us/station/miley-the-zane-lowe-interview/ra.6810826773?itscg=10000&itsct=am-apl_hp-listen_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://fitness.apple.com/us/studio-collection/join-the-team-with-ted-lasso/1673607671?itscg=10000&itsct=afp-apl_hp-watch_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://apps.apple.com/us/app/powerwash-simulator/id6477445344?itscg=10000&itsct=aa-apl_hp-play_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://music.apple.com/us/playlist/new-music-daily/pl.2b0e6e332fdf4b7a91164da3162127b5?itscg=10000&itsct=am-apl_hp-listen_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://fitness.apple.com/us/workout/meditation-with-christian/6808747339?itscg=10000&itsct=afp-apl_hp-watch_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://apps.apple.com/us/app/madden-nfl-27-arcade-edition/id6755553408?itscg=10000&itsct=aa-apl_hp-play_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://music.apple.com/us/playlist/todays-hits/pl.f4d106fed2bd41149aaacabb233eb5eb?itscg=10000&itsct=am-apl_hp-listen_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "<picture> <source srcset=\"https://is1-ssl.mzstatic.com/image/thumb/Fea",
+      "href": "https://fitness.apple.com/us/studio-collection/programs/1896349052?itscg=10000&itsct=afp-apl_hp-watch_now--240326",
+      "y": 4677,
+      "bg": "rgb(0, 0, 0)",
+      "radius": "0px",
+      "fs": "17px"
+    },
+    {
+      "text": "apple.com/HRAccuracy",
+      "href": "/HRAccuracy/",
+      "y": 5099,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "support.apple.com/kb/HT209218",
+      "href": "https://support.apple.com/kb/HT209218",
+      "y": 12797,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Store",
+      "href": "/us/shop/goto/store",
+      "y": 12932,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Mac",
+      "href": "/mac/",
+      "y": 12957,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "iPad",
+      "href": "/ipad/",
+      "y": 12983,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "iPhone",
+      "href": "/iphone/",
+      "y": 13009,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Watch",
+      "href": "/watch/",
+      "y": 13034,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Vision",
+      "href": "/apple-vision-pro/",
+      "y": 13060,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "AirPods",
+      "href": "/airpods/",
+      "y": 13085,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Home",
+      "href": "/home/",
+      "y": 13111,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "AirTag",
+      "href": "/airtag/",
+      "y": 13137,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Accessories",
+      "href": "/us/shop/goto/buy_accessories",
+      "y": 13162,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Gift Cards",
+      "href": "/us/shop/goto/giftcards",
+      "y": 13188,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Wallet",
+      "href": "/wallet/",
+      "y": 13253,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Card",
+      "href": "/apple-card/",
+      "y": 13279,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Pay",
+      "href": "/apple-pay/",
+      "y": 13305,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Cash",
+      "href": "/apple-cash/",
+      "y": 13330,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Manage Your Apple Account",
+      "href": "https://account.apple.com/",
+      "y": 12932,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Store Account",
+      "href": "/us/shop/goto/account",
+      "y": 12957,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "iCloud.com",
+      "href": "https://www.icloud.com",
+      "y": 12983,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple One",
+      "href": "/apple-one/",
+      "y": 13049,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple TV",
+      "href": "/apple-tv/",
+      "y": 13074,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Music",
+      "href": "/apple-music/",
+      "y": 13100,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Arcade",
+      "href": "/apple-arcade/",
+      "y": 13125,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Fitness+",
+      "href": "/apple-fitness-plus/",
+      "y": 13151,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple News+",
+      "href": "/apple-news/",
+      "y": 13177,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Podcasts",
+      "href": "/apple-podcasts/",
+      "y": 13202,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Books",
+      "href": "/apple-books/",
+      "y": 13228,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "App Store",
+      "href": "/app-store/",
+      "y": 13253,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Find a Store",
+      "href": "/retail/",
+      "y": 12932,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Genius Bar",
+      "href": "/retail/geniusbar/",
+      "y": 12957,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Today at Apple",
+      "href": "/today/",
+      "y": 12983,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Group Reservations",
+      "href": "/today/groups/",
+      "y": 13009,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Camp",
+      "href": "/today/camp/",
+      "y": 13034,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Store App",
+      "href": "https://apps.apple.com/us/app/apple-store/id375380948",
+      "y": 13060,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Certified Refurbished",
+      "href": "/us/shop/goto/special_deals",
+      "y": 13085,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Upgrade",
+      "href": "/us/shop/goto/apple_upgrade",
+      "y": 13111,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Trade In",
+      "href": "/us/shop/goto/trade_in",
+      "y": 13137,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Financing",
+      "href": "/us/shop/goto/payment_plan",
+      "y": 13162,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Carrier Deals at Apple",
+      "href": "/us/shop/goto/buy_iphone/carrier_offers",
+      "y": 13188,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Order Status",
+      "href": "/us/shop/goto/order/list",
+      "y": 13213,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shopping Help",
+      "href": "/us/shop/goto/help",
+      "y": 13239,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple and Business",
+      "href": "/business/",
+      "y": 12932,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shop for Business",
+      "href": "/retail/business/",
+      "y": 12957,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple and Education",
+      "href": "/education/",
+      "y": 13023,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shop for K-12",
+      "href": "/education/k12/how-to-buy/",
+      "y": 13049,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shop for College",
+      "href": "/us/shop/goto/educationrouting",
+      "y": 13074,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple and Healthcare",
+      "href": "/healthcare/",
+      "y": 13140,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple and Government",
+      "href": "/government/",
+      "y": 13205,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shop for Veterans and Military",
+      "href": "/us/shop/goto/eppstore/veteransandmilitary",
+      "y": 13231,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shop for State and Local Employees",
+      "href": "/us_epp_67909/store",
+      "y": 13257,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Shop for Federal Employees",
+      "href": "/us_epp_55499/store",
+      "y": 13298,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Accessibility",
+      "href": "/accessibility/",
+      "y": 12932,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Education",
+      "href": "/education-initiative/",
+      "y": 12957,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Environment",
+      "href": "/environment/",
+      "y": 12983,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Inclusion and Diversity",
+      "href": "/diversity/",
+      "y": 13009,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Privacy",
+      "href": "/privacy/",
+      "y": 13034,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Racial Equity and Justice",
+      "href": "/racial-equity-justice-initiative/",
+      "y": 13060,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Supply Chain Innovation",
+      "href": "/supply-chain/",
+      "y": 13085,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Newsroom",
+      "href": "/newsroom/",
+      "y": 13151,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Apple Leadership",
+      "href": "/leadership/",
+      "y": 13177,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Career Opportunities",
+      "href": "/careers/us/",
+      "y": 13202,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Investors",
+      "href": "https://investor.apple.com/",
+      "y": 13228,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Ethics & Compliance",
+      "href": "/compliance/",
+      "y": 13253,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Events",
+      "href": "/apple-events/",
+      "y": 13279,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Contact Apple",
+      "href": "/contact/",
+      "y": 13305,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Find an Apple Store",
+      "href": "/retail/",
+      "y": 13383,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "other retailer",
+      "href": "https://locate.apple.com/",
+      "y": 13383,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "1-800-MY-APPLE",
+      "href": "tel:1-800-692-7753",
+      "y": 13383,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Privacy Policy",
+      "href": "/legal/privacy/",
+      "y": 13436,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    },
+    {
+      "text": "Terms of Use",
+      "href": "/legal/internet-services/terms/site.html",
+      "y": 13436,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "12px"
+    }
+  ],
+  "imgs": 53,
+  "videos": 2,
+  "bodyBg": "rgb(255, 255, 255)",
+  "url": "https://www.apple.com/",
+  "errors": []
+}
