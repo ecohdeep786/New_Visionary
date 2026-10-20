@@ -159,7 +159,7 @@ def apply_foundation():
     created = service is None
     if created:
         gcloud(["run", "deploy", SERVICE, f"--image={PLACEHOLDER_IMAGE}", f"--region={REGION}",
-                "--service-account=" + RUNTIME, "--allow-unauthenticated", "--ingress=all",
+                "--service-account=" + RUNTIME, "--no-invoker-iam-check", "--ingress=all",
                 "--min-instances=0", "--max-instances=1", "--cpu=1", "--memory=512Mi", "--concurrency=20",
                 "--timeout=30s", "--no-cpu-boost", "--cpu-throttling", "--execution-environment=gen2", "--port=8080"])
         service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])

@@ -30,6 +30,9 @@ class EnsureRetryTests(unittest.TestCase):
         def fake_gcloud(args, missing=False):
             nonlocal reads
             calls.append(args)
+            if args[:2] == ['run', 'deploy']:
+                self.assertIn('--no-invoker-iam-check', args)
+                self.assertNotIn('--allow-unauthenticated', args)
             if args == describe:
                 reads += 1
                 return None if reads <= 2 else {"ready": True}

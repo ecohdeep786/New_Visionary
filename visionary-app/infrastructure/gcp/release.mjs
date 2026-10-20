@@ -228,7 +228,7 @@ async function baseline() {
     moveTraffic: name => gcloud(['run', 'services', 'update-traffic', production.service, '--to-revisions=' + name + '=100']),
     health: (url, sha) => waitForHealth(url, '/api/health', sha),
     deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
-    '--ingress=all', '--allow-unauthenticated', '--service-account=' + production.runtime,
+    '--ingress=all', '--no-invoker-iam-check', '--service-account=' + production.runtime,
     '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s',
     '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080',
     environmentFlag(releaseEnvironment(commit)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']),
