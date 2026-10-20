@@ -1,6 +1,6 @@
 # KAN-145 storage and scope repair
 
-20 October 2026. Implementer Codex; prior implementer DeepSeek. Acceptance submitted: development backend enabler, not a connected learner release. Separate exact-SHA review pending.
+20 October 2026. Implementer Codex; prior implementer DeepSeek. Acceptance submitted: development backend enabler, not a connected learner release. Separate exact-SHA review approves repaired development enabler8b14a762; full feature/scope acceptance remains pending.
 
 Resumed matching task instance `codex/deepseek-kan-145-knowledge-projection`, previous head e017118c2fe912e2c502e0e5eff55d1542f1e4bd, integrated accepted dev e089319a24953bcadb522fcfef0e795065dd0c29. Own knowledge service, command/contract, transactional fixture/regressions, deployed-lock test inclusion and task evidence. Unrelated primary landing work is preserved.
 
@@ -14,10 +14,13 @@ Resumed matching task instance `codex/deepseek-kan-145-knowledge-projection`, pr
 
 ## Verification at candidate source
 
-`npm run backend:build`: EXIT0. Focused knowledge regression:11/11,0failed/skipped. Full backend `node --test --test-concurrency=2 backend/tests/*.test.cjs`:84/84,0failed/skipped. Root `npm run check`:EXIT0,18script and532frontend tests, lint/typechecks/layout/import/sourceaudit/build pass; frontend build84s. Isolated deployed-lock test execution is still pending at this source checkpoint; its completed receipt will follow before review approval/integration. Local logs: ignored artifacts/qa/kan145-repair.
+`npm run backend:build`: EXIT0. Focused knowledge regression:11/11,0failed/skipped. Full backend `node --test --test-concurrency=2 backend/tests/*.test.cjs`:84/84,0failed/skipped. Root `npm run check`:EXIT0,18script and532frontend tests, lint/typechecks/layout/import/sourceaudit/build pass; frontend build84s. Isolated deployed-lock product/test compilation and76/76 regressions pass,0failed/skipped,21.605s, command EXIT0. Local logs: ignored artifacts/qa/kan145-repair.
 
 ## Required acceptance and dependencies
 
 Live KAN-144 and KAN-74 remain To Do. KAN-145 still lacks SQL owning-store migration/authority, authoritative published criteria/content, held-out calibration, connected UI, current-project hosted transaction/concurrency/IAM and real two-device browser acceptance. The source catalog's reference parameters do not establish educational calibration or mastery. Existing account-directory marks learning unconnected. KAN-146 assessment-store dependency also remains separately owned and unaccepted. No production deployment, full feature Done or prerequisite completion is claimed.
 
 Source approval and local tests alone do not establish the full task acceptance. Integrator must retain these gates and obtain the required scope acceptance before dev integration/native Done/cleanup. Any conflict resolution or runtime change requires a new exact-SHA review.
+
+
+Independent reviewer /root/kan145_repair_review approves exact8b14a762c6bb102f5034de2bb107520a03442fbd for the repaired development backend enabler only. Report7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c is pushed and imported, docs/architecture/reviews/KAN145_EXACT_SHA_REPAIR_8B14A762.md. Reviewer independently builds/tests11cases and7extra corruption/replay probes; full feature and scope decision remain pending. Jira145 actually returned Testing via41. A separate live synthetic password verification in visionary-research passes seven checks and disables/revokes the newQAidentity; this does not accept email delivery or any learning feature.
