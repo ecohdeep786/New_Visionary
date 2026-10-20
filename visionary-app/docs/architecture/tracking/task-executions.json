@@ -208,7 +208,7 @@
       "jiraKey": "KAN-162",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
       "status": "Testing",
-      "scope": "Main-only production delivery in visionary-research; canonical TLS/automatic deploy/rollback acceptance pending",
+      "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
       "branch": "codex/firebase-visionary-research",
       "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/firebase-visionary-research",
@@ -217,13 +217,15 @@
         "implementer": "Codex",
         "reviewer": "/root/kan162_review",
         "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
-        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md"
+        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md",
+        "hostedScopeAccepted": true,
+        "hostedEvidence": "docs/architecture/reviews/KAN162_PRODUCTION_ACCEPTANCE_7AEE2324.md"
       },
       "integration": {
-        "devCommit": "3a2626d6f9e9e67e1da36d14eebf76e75eed3298",
-        "mainCommit": "f3cf316edb746ef85a8bfb04f71f29165c54944e",
+        "devCommit": "ab201364d4a0dd3ed2314851fd94164b0a2887f3",
+        "mainCommit": "7aee2324024cb0b9202609c72fcab21b6de7ed6b",
         "remotePublished": true,
-        "helperFollowupPendingIntegration": true
+        "helperFollowupPendingIntegration": false
       },
       "checks": {
         "frontendTests": 532,
@@ -241,14 +243,18 @@
         "region": "asia-south1",
         "service": "visionary-product",
         "baselineRevision": "visionary-product-baseline-f3cf316edb74-mvgi7evq",
-        "imageDigest": "sha256:d7c679901eaa656dd8759291ff0b1d7f736b7006b4feccd154bc29bf9d28cfe2",
+        "imageDigest": "sha256:95f26b3ca800d148577456b2b21951bb2f93f76d1534628a37304ccd1363a7aa",
         "edgeIp": "34.8.58.39",
         "baselineVerified": true,
         "syntheticUidTwoSessionStoreChecksPassed": true,
         "syntheticIdentityDisabled": true,
-        "certificateStatus": "PROVISIONING",
-        "canonicalAcceptance": false,
-        "automaticDeploymentEnabled": false
+        "certificateStatus": "ACTIVE",
+        "canonicalAcceptance": true,
+        "automaticDeploymentEnabled": true,
+        "currentRevision": "visionary-product-g7aee2324024c-39405370084-1",
+        "actualMainPushDeploymentVerified": true,
+        "rollbackRestorationVerified": true,
+        "runUrl": "https://github.com/ecohdeep786/New_Visionary/actions/runs/39405370084"
       },
       "jiraCommentId": "10050",
       "jiraReturnedStatus": "Testing",
