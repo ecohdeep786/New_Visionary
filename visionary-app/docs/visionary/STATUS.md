@@ -1394,3 +1394,8 @@ D-103 updates the delivery target to `visionary-research` and removes the old pr
 ### 2026-10-20 — KAN-162 production target reconciliation
 
 Founder reconfirms visionary-research / 174851137514 / asia-south1 as the production target; main is the only production source, visionary.org.in the canonical origin, and GoDaddy the DNS provider. KAN-162 Jira summary/description now reflect that direction. Existing task branch codex/firebase-visionary-research is resumed; primary/main and unrelated worktrees are preserved. First-baseline/LATEST/Windows/service-limit issues and prior review evidence errors are corrected for exact-SHA re-review. Source checks pass; no product image or production cutover is claimed. KAN-161/KAN-28 remain Done for scoped source acceptance; KAN-29 live status is In Progress and KAN-145/KAN-146 remain Testing. Their source/content/hosted gates remain separate.
+
+
+### 2026-10-20 — KAN-162 new-project product baseline online
+
+Reviewed source is published to dev/main through PR9/10. Mainf3cf316e successfully builds/smokes/publishes its immutable image through actual keyless GitHub Actions. Explicit first baseline serves it in visionary-research; separate reviewer confirms real Cloud Run public boundaries and revision identity. Synthetic KAN161 hierarchy/two-session/store/recovery/denial checks pass in the correct Firebase project. Edge IP34.8.58.39 is now visible in apex DNS; managed TLS is still PROVISIONING. Keep KAN162 Testing and deploy disabled until canonical/automatic/rollback acceptance. KAN29's zero accepted real learning slices and KAN145/146 Testing remain separate, unchanged gates.

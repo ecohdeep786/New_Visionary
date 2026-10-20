@@ -202,6 +202,57 @@
         "taskBackup": "93e27749a0eda8cdfc549d50d13125a928db3b75",
         "limitation": "Git removal unregistered the completed task but reported Filename too long. Automatic approval review rejected the checked extended-path recursive deletion: blocked by policy. No bypass or further deletion attempted."
       }
+    },
+    {
+      "sourceId": "MAIN-PRODUCTION-01",
+      "jiraKey": "KAN-162",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-162",
+      "status": "Testing",
+      "scope": "Main-only production delivery in visionary-research; canonical TLS/automatic deploy/rollback acceptance pending",
+      "branch": "codex/firebase-visionary-research",
+      "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
+      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/firebase-visionary-research",
+      "review": {
+        "state": "approved-for-checked-integration",
+        "implementer": "Codex",
+        "reviewer": "/root/kan162_review",
+        "approvedCommit": "4de8a33cb223a746c9738dc24554dd8ab812556e",
+        "evidence": "docs/architecture/reviews/KAN162_EXACT_SHA_REVIEW_4DE8A33C.md"
+      },
+      "integration": {
+        "devCommit": "3a2626d6f9e9e67e1da36d14eebf76e75eed3298",
+        "mainCommit": "f3cf316edb746ef85a8bfb04f71f29165c54944e",
+        "remotePublished": true,
+        "helperFollowupPendingIntegration": true
+      },
+      "checks": {
+        "frontendTests": 532,
+        "scriptTests": 18,
+        "productionTests": 65,
+        "infrastructureNodeTests": 21,
+        "bootstrapPythonTests": 11,
+        "highCriticalAuditFindings": 0,
+        "moderateAuditFindings": 4,
+        "mainBuildContainerSmokePublish": true
+      },
+      "hosted": {
+        "project": "visionary-research",
+        "projectNumber": "174851137514",
+        "region": "asia-south1",
+        "service": "visionary-product",
+        "baselineRevision": "visionary-product-baseline-f3cf316edb74-mvgi7evq",
+        "imageDigest": "sha256:d7c679901eaa656dd8759291ff0b1d7f736b7006b4feccd154bc29bf9d28cfe2",
+        "edgeIp": "34.8.58.39",
+        "baselineVerified": true,
+        "syntheticUidTwoSessionStoreChecksPassed": true,
+        "syntheticIdentityDisabled": true,
+        "certificateStatus": "PROVISIONING",
+        "canonicalAcceptance": false,
+        "automaticDeploymentEnabled": false
+      },
+      "jiraCommentId": "10050",
+      "jiraReturnedStatus": "Testing",
+      "linkedProductGatesRemainOpen": true
     }
   ]
 }
