@@ -2817,7 +2817,7 @@
       "files": [
         "frontend/src/pages/dashboard/LearningWorkspace.jsx"
       ],
-      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; the durable server session/assessment loop and the account knowledge projection are recorded as separate local-run enablers below and are not yet bound to this UI.",
+      "reason": "The signed-in Learn UI uses the locally verified durable teaching loop; account knowledge projection remains a separate server enabler without UI binding. Authoritative criteria/content, SQL ownership, hosted learning and two-device acceptance remain open.",
       "followUp": [
         "LEARN-02",
         "LEARN-09",
@@ -2827,21 +2827,34 @@
       "endpoints": []
     },
     {
-      "id": "knowledge-projection-calibration",
+      "id": "durable-teaching-loop-sessions",
       "state": "connected",
       "execution": "server",
-      "routes": [],
-      "files": [],
-      "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
+      "routes": [
+        "/dashboard/learn",
+        "/dashboard/learn/:topicId",
+        "/dashboard/practice",
+        "/dashboard/progress"
+      ],
+      "files": [
+        "frontend/src/pages/dashboard/LearningWorkspace.jsx",
+        "frontend/src/services/learningSessionClient.js"
+      ],
+      "reason": "A signed-in owner records one authored check at a time, the server scores the selection against its stored key and an identical command replays after a lost response. Locally verified only: no hosted run, SQL owning store, authoritative content/criteria service or cross-device acceptance is claimed.",
       "followUp": [
+        "LEARN-08",
+        "LEARN-09",
         "LEARN-10",
-        "DATA-01",
+        "SYNC-01",
         "SYNC-02"
       ],
       "endpoints": [
-        "POST /api/account/learning/knowledge/project",
-        "GET /api/account/learning/knowledge/projections",
-        "GET /api/account/learning/knowledge/models"
+        "GET /api/account/learning/sessions",
+        "POST /api/account/learning/sessions",
+        "GET /api/account/learning/sessions/:sessionId",
+        "POST /api/account/learning/sessions/:sessionId/checks",
+        "POST /api/account/learning/sessions/:sessionId/assessments",
+        "POST /api/account/learning/sessions/:sessionId/cancel"
       ]
     },
     {
@@ -3132,6 +3145,24 @@
         "PRIV-01"
       ],
       "endpoints": []
+    },
+    {
+      "id": "knowledge-projection-calibration",
+      "state": "connected",
+      "execution": "server",
+      "routes": [],
+      "files": [],
+      "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
+      "followUp": [
+        "LEARN-10",
+        "DATA-01",
+        "SYNC-02"
+      ],
+      "endpoints": [
+        "POST /api/account/learning/knowledge/project",
+        "GET /api/account/learning/knowledge/projections",
+        "GET /api/account/learning/knowledge/models"
+      ]
     }
   ],
   "gaps": [
