@@ -1399,3 +1399,8 @@ Founder reconfirms visionary-research / 174851137514 / asia-south1 as the produc
 ### 2026-10-20 — KAN-162 new-project product baseline online
 
 Reviewed source is published to dev/main through PR9/10. Mainf3cf316e successfully builds/smokes/publishes its immutable image through actual keyless GitHub Actions. Explicit first baseline serves it in visionary-research; separate reviewer confirms real Cloud Run public boundaries and revision identity. Synthetic KAN161 hierarchy/two-session/store/recovery/denial checks pass in the correct Firebase project. Edge IP34.8.58.39 is now visible in apex DNS; managed TLS is still PROVISIONING. Keep KAN162 Testing and deploy disabled until canonical/automatic/rollback acceptance. KAN29's zero accepted real learning slices and KAN145/146 Testing remain separate, unchanged gates.
+
+
+### 2026-10-20 — KAN-162 production main pipeline verified
+
+visionary.org.in is live on visionary-research/asia-south1 via ALB34.8.58.39 with ACTIVE managed TLS and restricted Cloud Run ingress. Actual GitHub main push7aee2324 builds, publishes and deploys automatically; canonical checks and real rollback/restoration pass. Separate reviewer accepts scoped hosting/pipeline delivery; checked closeout/nativeDone still to be recorded. KAN161 hierarchy tested against actual canonical Firebase/API/store using disabled synthetic QA identities. No former-project data migration or broad product launch claim. KAN29 real source/rights/version acceptance remains absent. Independent retests return KAN145/146 to InProgress with reproducible store/scope/replay defects; these feature modules are not deployed.
