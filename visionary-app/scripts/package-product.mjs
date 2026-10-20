@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {blockedReleasePath} from './lib/release-paths.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const revision=process.argv[2];
+if(!/^[a-f0-9]{40}$/.test(revision||'')||process.argv.length!==3)throw Error('Provide one exact reviewed Git commit SHA.');
+const repository=execFileSync('git',['rev-parse','--show-toplevel'],{cwd:root,encoding:'utf8'}).trim();
+const prefix=path.relative(repository,root).replaceAll('\\','/');
+const allowed=['frontend/src','frontend/public','frontend/package.json','frontend/package-lock.json','frontend/index.html','frontend/vite.config.js','frontend/postcss.config.js','frontend/tailwind.config.js','frontend/jsconfig.json','frontend/tsconfig.domain.json','backend/upstream/backend/src','backend/upstream/backend/package.json','backend/upstream/backend/package-lock.json','backend/upstream/backend/tsconfig.json','backend/upstream/backend/tsconfig.product.json','backend/upstream/backend/nest-cli.json','infrastructure/gcp'];
+const paths=allowed.map(file=>`${prefix}/${file}`);
+const files=execFileSync('git',['ls-tree','-r','--name-only',revision,'--',...paths],{cwd:repository,encoding:'utf8'}).trim().split('\n').filter(Boolean);
+if(!files.length||files.some(blockedReleasePath))throw Error('Refuse a release archive containing local environment, dependencies, captures or credential files.');
+const output=path.resolve(root,'artifacts/gcp',revision);
+if(!output.startsWith(path.resolve(root,'artifacts/gcp')+path.sep))throw Error('Release archive must remain under its artifact boundary.');
+fs.mkdirSync(output,{recursive:true});
+const archive=path.join(output,'product-source.zip');
+if(fs.existsSync(archive))throw Error('This exact release archive already exists; inspect/reuse it instead of overwriting.');
+// Archive with portable Git source endings regardless of the Windows checkout
+// setting. core.autocrlf=true would otherwise insert CR into Linux shell files.
+execFileSync('git',['-c','core.autocrlf=false','archive','--format=zip',`--output=${archive}`,revision,'--',...paths],{cwd:repository,stdio:'inherit'});
+const sha256=createHash('sha256').update(fs.readFileSync(archive)).digest('hex');
+const receipt={version:1,revision,files:files.length,bytes:fs.statSync(archive).size,sha256,root:prefix,source:'Exact Git blobs only; no ignored settings or user records.'};
+fs.writeFileSync(path.join(output,'source-receipt.json'),JSON.stringify(receipt,null,2)+'\n');
+console.log(JSON.stringify({...receipt,archive}));

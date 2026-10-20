@@ -25,6 +25,9 @@ try {
   const hasDirectory = existsSync(join(backend, 'src/auth/firebase-product/account-directory.ts'));
   if (hasDirectory !== existsSync(join(root, 'backend/tests/account-directory.test.cjs'))) throw Error('Account directory source/test scope is incomplete.');
   if (hasDirectory) tests.push('account-directory');
+  const hasCoverage = existsSync(join(backend, 'src/launch-coverage/coverage.repository.ts'));
+  if (hasCoverage !== existsSync(join(root, 'backend/tests/coverage.test.cjs'))) throw Error('Coverage source/test scope is incomplete.');
+  if (hasCoverage) tests.push('coverage');
   const testRoot = join(temporary, 'backend/tests');
   mkdirSync(testRoot, { recursive: true });
   cpSync(join(root, 'backend/tests/fixtures'), join(testRoot, 'fixtures'), { recursive: true });

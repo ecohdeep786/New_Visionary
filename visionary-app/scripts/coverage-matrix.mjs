@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { coverageReport, validateCoverage } from './lib/launch-coverage.mjs';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const flags = process.argv.slice(2);
+if (flags.some(flag => flag !== '--write') || flags.length > 1) throw Error('Use no flags to check, or --write to regenerate the reviewed report.');
+const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const matrix = JSON.parse(read('integration/contracts/launch-coverage.v1.json'));
+const checked = validateCoverage(matrix, read), report = coverageReport(matrix);
+const file = path.join(root, 'docs/architecture/LAUNCH_COVERAGE_MATRIX.md');
+if (flags.includes('--write')) fs.writeFileSync(file, report);
+else if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8').replaceAll('\r\n', '\n') !== report) throw Error('Launch coverage report drift; review source and regenerate explicitly.');
+console.log(JSON.stringify(checked));
