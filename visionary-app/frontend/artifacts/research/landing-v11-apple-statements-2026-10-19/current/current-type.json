@@ -1,0 +1,598 @@
+{
+  "390": {
+    "problem": {
+      "eyebrow": {
+        "text": "Stories from a teacher, a parent, a student, and a professional about the moment understan",
+        "size": 17,
+        "weight": "400",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(31, 31, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 40,
+        "weight": "600",
+        "lh": 40,
+        "ls": "normal",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "980px",
+        "align": "center"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "ls": "0.231px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 825.93px)",
+        "align": "center"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 24,
+        "weight": "500",
+        "lh": 29.8,
+        "ls": "-0.24px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "343.464px",
+        "align": "start"
+      },
+      "persona": {
+        "text": "A teacher",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(95, 99, 104)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "bg": "rgb(255, 255, 255)"
+    },
+    "explore": {
+      "eyebrow": {
+        "text": "Who it's for",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "ls": "0.16px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "524.4px",
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to yo",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "ls": "0.231px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 825.93px)",
+        "align": "start"
+      }
+    },
+    "ret": {
+      "eyebrow": {
+        "text": "What you get",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn something new.”",
+        "size": 30,
+        "weight": "500",
+        "lh": 35.4,
+        "ls": "-0.45px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "585.45px",
+        "align": "start"
+      },
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 19,
+        "weight": "600",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "428.925px",
+        "align": "start"
+      },
+      "card": {
+        "bg": "rgb(245, 245, 247)",
+        "radius": "28px",
+        "w": 342,
+        "h": 267,
+        "pad": "28px"
+      }
+    },
+    "suite": {
+      "h2": {
+        "text": "Explore further.",
+        "size": 40,
+        "weight": "600",
+        "lh": 44,
+        "ls": "0.16px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "524.4px",
+        "align": "start"
+      }
+    },
+    "docH": 10271
+  },
+  "834": {
+    "problem": {
+      "eyebrow": {
+        "text": "Stories from a teacher, a parent, a student, and a professional about the moment understan",
+        "size": 17,
+        "weight": "400",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(31, 31, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 56,
+        "weight": "600",
+        "lh": 56,
+        "ls": "-0.28px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "980px",
+        "align": "center"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "ls": "0.231px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 825.93px)",
+        "align": "center"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 24,
+        "weight": "500",
+        "lh": 29.8,
+        "ls": "-0.24px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "343.464px",
+        "align": "start"
+      },
+      "persona": {
+        "text": "A teacher",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(95, 99, 104)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "bg": "rgb(255, 255, 255)"
+    },
+    "explore": {
+      "eyebrow": {
+        "text": "Who it's for",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 56,
+        "weight": "600",
+        "lh": 60.8,
+        "ls": "normal",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "734.16px",
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to yo",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "ls": "0.231px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 825.93px)",
+        "align": "start"
+      }
+    },
+    "ret": {
+      "eyebrow": {
+        "text": "What you get",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn something new.”",
+        "size": 30.9,
+        "weight": "500",
+        "lh": 36.4,
+        "ls": "-0.46287px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "602.038px",
+        "align": "start"
+      },
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 19,
+        "weight": "600",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "428.925px",
+        "align": "start"
+      },
+      "card": {
+        "bg": "rgb(245, 245, 247)",
+        "radius": "28px",
+        "w": 385,
+        "h": 267,
+        "pad": "28px"
+      }
+    },
+    "suite": {
+      "h2": {
+        "text": "Explore further.",
+        "size": 56,
+        "weight": "600",
+        "lh": 60.8,
+        "ls": "normal",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "734.16px",
+        "align": "start"
+      }
+    },
+    "docH": 9430
+  },
+  "1024": {
+    "problem": {
+      "eyebrow": {
+        "text": "Stories from a teacher, a parent, a student, and a professional about the moment understan",
+        "size": 17,
+        "weight": "400",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(31, 31, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 56,
+        "weight": "600",
+        "lh": 56,
+        "ls": "-0.28px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "980px",
+        "align": "center"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "ls": "0.231px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 825.93px)",
+        "align": "center"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 24,
+        "weight": "500",
+        "lh": 29.8,
+        "ls": "-0.24px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "343.464px",
+        "align": "start"
+      },
+      "persona": {
+        "text": "A teacher",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(95, 99, 104)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "bg": "rgb(255, 255, 255)"
+    },
+    "explore": {
+      "eyebrow": {
+        "text": "Who it's for",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 56,
+        "weight": "600",
+        "lh": 60.8,
+        "ls": "normal",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "734.16px",
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to yo",
+        "size": 21,
+        "weight": "600",
+        "lh": 25,
+        "ls": "0.231px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 825.93px)",
+        "align": "start"
+      }
+    },
+    "ret": {
+      "eyebrow": {
+        "text": "What you get",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn something new.”",
+        "size": 37.9,
+        "weight": "500",
+        "lh": 44.7,
+        "ls": "-0.56832px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "739.228px",
+        "align": "start"
+      },
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 19,
+        "weight": "600",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "428.925px",
+        "align": "start"
+      },
+      "card": {
+        "bg": "rgb(245, 245, 247)",
+        "radius": "28px",
+        "w": 424,
+        "h": 244,
+        "pad": "28px"
+      }
+    },
+    "suite": {
+      "h2": {
+        "text": "Explore further.",
+        "size": 56,
+        "weight": "600",
+        "lh": 60.8,
+        "ls": "normal",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "734.16px",
+        "align": "start"
+      }
+    },
+    "docH": 8696
+  },
+  "1440": {
+    "problem": {
+      "eyebrow": {
+        "text": "Stories from a teacher, a parent, a student, and a professional about the moment understan",
+        "size": 17,
+        "weight": "400",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(31, 31, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "size": 72,
+        "weight": "600",
+        "lh": 72,
+        "ls": "-0.648px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "980px",
+        "align": "center"
+      },
+      "sub": {
+        "text": "Effort isn't the gap. Knowing whether understanding landed is.",
+        "size": 24,
+        "weight": "600",
+        "lh": 28,
+        "ls": "0.216px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 943.92px)",
+        "align": "center"
+      },
+      "quote": {
+        "text": "I taught the whole class. Half of them still left lost.",
+        "size": 33.1,
+        "weight": "500",
+        "lh": 41.1,
+        "ls": "-0.3312px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "473.98px",
+        "align": "start"
+      },
+      "persona": {
+        "text": "A teacher",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(95, 99, 104)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "bg": "rgb(255, 255, 255)"
+    },
+    "explore": {
+      "eyebrow": {
+        "text": "Who it's for",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "h2": {
+        "text": "One intelligence, five journeys.",
+        "size": 64,
+        "weight": "600",
+        "lh": 68,
+        "ls": "-0.576px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "839.04px",
+        "align": "start"
+      },
+      "sub": {
+        "text": "Whether you are learning, teaching, guiding, building, or leading — Visionary adapts to yo",
+        "size": 24,
+        "weight": "600",
+        "lh": 28,
+        "ls": "0.216px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "min(100%, 943.92px)",
+        "align": "start"
+      }
+    },
+    "ret": {
+      "eyebrow": {
+        "text": "What you get",
+        "size": 17,
+        "weight": "500",
+        "lh": 20.2,
+        "ls": "-0.374px",
+        "color": "rgb(60, 64, 67)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "quote": {
+        "text": "“A person should not have to start over every time life asks them to learn something new.”",
+        "size": 53.3,
+        "weight": "500",
+        "lh": 62.9,
+        "ls": "-0.7992px",
+        "color": "rgb(18, 19, 23)",
+        "maxW": "1039.76px",
+        "align": "start"
+      },
+      "h3": {
+        "text": "Your hours stack.",
+        "size": 19,
+        "weight": "600",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "none",
+        "align": "start"
+      },
+      "copy": {
+        "text": "Every lesson builds on the last. This year's work becomes next year's strength.",
+        "size": 19,
+        "weight": "400",
+        "lh": 23,
+        "ls": "0.228px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "428.925px",
+        "align": "start"
+      },
+      "card": {
+        "bg": "rgb(245, 245, 247)",
+        "radius": "28px",
+        "w": 264,
+        "h": 321,
+        "pad": "32px"
+      }
+    },
+    "suite": {
+      "h2": {
+        "text": "Explore further.",
+        "size": 64,
+        "weight": "600",
+        "lh": 68,
+        "ls": "-0.576px",
+        "color": "rgb(29, 29, 31)",
+        "maxW": "839.04px",
+        "align": "start"
+      }
+    },
+    "docH": 9496
+  }
+}

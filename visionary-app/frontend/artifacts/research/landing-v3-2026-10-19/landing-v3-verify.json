@@ -1,0 +1,520 @@
+{
+  "w1440": {
+    "docH": 7803,
+    "scrollW": 1440,
+    "viewportW": 1440,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        6423,
+        844
+      ],
+      [
+        "02-problem",
+        1170,
+        1247
+      ],
+      [
+        "03-promise",
+        2417,
+        325
+      ],
+      [
+        "05-intelligence",
+        2742,
+        1117
+      ],
+      [
+        "13-explore",
+        3859,
+        1251
+      ],
+      [
+        "14-suite",
+        5110,
+        838
+      ],
+      [
+        "11-trust",
+        5948,
+        734
+      ],
+      [
+        "12-cta",
+        6682,
+        585
+      ]
+    ],
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "suiteCards": 4,
+    "suiteIllos": 8,
+    "suiteEyebrow": "Explore further",
+    "suiteBorderTop": "rgba(0, 0, 0, 0)",
+    "suiteBg": "rgb(245, 245, 247)",
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "trustCols": 4,
+    "trustBorderTop": "rgba(18, 19, 23, 0.043)",
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "ctaRouteRow": false,
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "promoH2": "One intelligence.",
+    "promoStage": true,
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "72px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "72px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "80px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "64px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "72px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "72px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "promoClickPath": "/how-it-works",
+    "suiteClickPath": "/pricing",
+    "errors": []
+  },
+  "w1024": {
+    "docH": 6876,
+    "scrollW": 1024,
+    "viewportW": 1024,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        5628,
+        712
+      ],
+      [
+        "02-problem",
+        998,
+        993
+      ],
+      [
+        "03-promise",
+        1991,
+        256
+      ],
+      [
+        "05-intelligence",
+        2247,
+        1007
+      ],
+      [
+        "13-explore",
+        3254,
+        1137
+      ],
+      [
+        "14-suite",
+        4391,
+        746
+      ],
+      [
+        "11-trust",
+        5138,
+        731
+      ],
+      [
+        "12-cta",
+        5868,
+        472
+      ]
+    ],
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "suiteCards": 4,
+    "suiteIllos": 8,
+    "suiteEyebrow": "Explore further",
+    "suiteBorderTop": "rgba(0, 0, 0, 0)",
+    "suiteBg": "rgb(245, 245, 247)",
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "trustCols": 4,
+    "trustBorderTop": "rgba(18, 19, 23, 0.043)",
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "ctaRouteRow": false,
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "promoH2": "One intelligence.",
+    "promoStage": true,
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "56px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "56px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "64px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "56px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "56px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "56px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "errors": []
+  },
+  "w834": {
+    "docH": 7751,
+    "scrollW": 834,
+    "viewportW": 834,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        5859,
+        1056
+      ],
+      [
+        "02-problem",
+        1446,
+        927
+      ],
+      [
+        "03-promise",
+        2373,
+        230
+      ],
+      [
+        "05-intelligence",
+        2602,
+        974
+      ],
+      [
+        "13-explore",
+        3576,
+        1079
+      ],
+      [
+        "14-suite",
+        4656,
+        705
+      ],
+      [
+        "11-trust",
+        5361,
+        1090
+      ],
+      [
+        "12-cta",
+        6451,
+        464
+      ]
+    ],
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "suiteCards": 4,
+    "suiteIllos": 8,
+    "suiteEyebrow": "Explore further",
+    "suiteBorderTop": "rgba(0, 0, 0, 0)",
+    "suiteBg": "rgb(245, 245, 247)",
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "trustCols": 1,
+    "trustBorderTop": "rgba(18, 19, 23, 0.043)",
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "ctaRouteRow": false,
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "promoH2": "One intelligence.",
+    "promoStage": true,
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "56px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "56px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "64px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "56px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "56px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "56px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "errors": []
+  },
+  "w390": {
+    "docH": 8303,
+    "scrollW": 390,
+    "viewportW": 390,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        6355,
+        788
+      ],
+      [
+        "02-problem",
+        1097,
+        981
+      ],
+      [
+        "03-promise",
+        2078,
+        273
+      ],
+      [
+        "05-intelligence",
+        2351,
+        795
+      ],
+      [
+        "13-explore",
+        3146,
+        1084
+      ],
+      [
+        "14-suite",
+        4230,
+        1164
+      ],
+      [
+        "11-trust",
+        5395,
+        1180
+      ],
+      [
+        "12-cta",
+        6575,
+        568
+      ]
+    ],
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "suiteCards": 4,
+    "suiteIllos": 8,
+    "suiteEyebrow": "Explore further",
+    "suiteBorderTop": "rgba(0, 0, 0, 0)",
+    "suiteBg": "rgb(245, 245, 247)",
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "trustCols": 1,
+    "trustBorderTop": "rgba(18, 19, 23, 0.043)",
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "ctaRouteRow": false,
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "promoH2": "One intelligence.",
+    "promoStage": true,
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "40px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "40px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "40px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "40px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "40px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "40px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "errors": []
+  }
+}

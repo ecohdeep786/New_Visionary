@@ -1,0 +1,11 @@
+# The production image build context is visionary-app. Never ship local
+# environment files, keys, installs or generated output into the image.
+.git
+**/node_modules
+**/dist
+**/coverage
+**/.env
+**/.env.*
+**/*firebase-adminsdk*.json
+**/*.log
+artifacts

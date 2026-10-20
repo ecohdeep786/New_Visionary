@@ -1,0 +1,511 @@
+{
+  "apple": {
+    "docH": 13471,
+    "frames": 20,
+    "sticky": [
+      {
+        "tag": "ASIDE",
+        "cls": "",
+        "pos": "fixed",
+        "h": 70,
+        "w": 1440
+      },
+      {
+        "tag": "NAV",
+        "cls": "globalnav js",
+        "pos": "fixed",
+        "h": 44,
+        "w": 1440
+      }
+    ],
+    "media": {
+      "videos": [
+        {
+          "autoplay": false,
+          "loop": false,
+          "muted": true,
+          "poster": false
+        },
+        {
+          "autoplay": false,
+          "loop": false,
+          "muted": true,
+          "poster": false
+        }
+      ],
+      "canvases": 0,
+      "scrollTracks": 0,
+      "snapContainers": 0
+    },
+    "transitions": [
+      [
+        "0.32s",
+        232
+      ],
+      [
+        "0.25s",
+        7
+      ],
+      [
+        "0.02s, 0.02s, 0.02s",
+        5
+      ],
+      [
+        "1s, 1s, 1s, 1s, 1s",
+        2
+      ],
+      [
+        "0.32s, 0.32s, 0.32s",
+        1
+      ],
+      [
+        "0.32s, 0.32s",
+        1
+      ]
+    ],
+    "anims": [
+      {
+        "y": 0,
+        "anims": 7
+      },
+      {
+        "y": 675,
+        "anims": 7
+      },
+      {
+        "y": 1350,
+        "anims": 7
+      },
+      {
+        "y": 2025,
+        "anims": 7
+      },
+      {
+        "y": 2700,
+        "anims": 7
+      },
+      {
+        "y": 3375,
+        "anims": 7
+      },
+      {
+        "y": 4050,
+        "anims": 7
+      },
+      {
+        "y": 4725,
+        "anims": 7
+      },
+      {
+        "y": 5400,
+        "anims": 7
+      },
+      {
+        "y": 6075,
+        "anims": 7
+      },
+      {
+        "y": 6750,
+        "anims": 7
+      },
+      {
+        "y": 7425,
+        "anims": 7
+      },
+      {
+        "y": 8100,
+        "anims": 7
+      },
+      {
+        "y": 8775,
+        "anims": 7
+      },
+      {
+        "y": 9450,
+        "anims": 7
+      },
+      {
+        "y": 10125,
+        "anims": 7
+      },
+      {
+        "y": 10800,
+        "anims": 7
+      },
+      {
+        "y": 11475,
+        "anims": 7
+      },
+      {
+        "y": 12150,
+        "anims": 7
+      },
+      {
+        "y": 12571,
+        "anims": 7
+      }
+    ],
+    "hover": {
+      "before": {
+        "bg": "rgb(0, 113, 227)",
+        "color": "rgb(255, 255, 255)",
+        "transform": "none",
+        "shadow": "none",
+        "transition": "all / 0s"
+      },
+      "after": {
+        "bg": "rgb(0, 118, 223)",
+        "color": "rgb(255, 255, 255)",
+        "transform": "none",
+        "shadow": "none",
+        "transition": "all / 0s"
+      }
+    }
+  },
+  "khan-academy": {
+    "docH": 9414,
+    "frames": 14,
+    "sticky": [],
+    "media": {
+      "videos": [],
+      "canvases": 0,
+      "scrollTracks": 0,
+      "snapContainers": 0
+    },
+    "transitions": [
+      [
+        "0.1s",
+        13
+      ],
+      [
+        "0.15s, 0.15s, 0.15s, 0.15s",
+        5
+      ]
+    ],
+    "anims": [
+      {
+        "y": 0,
+        "anims": 0
+      },
+      {
+        "y": 675,
+        "anims": 0
+      },
+      {
+        "y": 1350,
+        "anims": 0
+      },
+      {
+        "y": 2025,
+        "anims": 0
+      },
+      {
+        "y": 2700,
+        "anims": 0
+      },
+      {
+        "y": 3375,
+        "anims": 0
+      },
+      {
+        "y": 4050,
+        "anims": 0
+      },
+      {
+        "y": 4725,
+        "anims": 2
+      },
+      {
+        "y": 5400,
+        "anims": 3
+      },
+      {
+        "y": 6075,
+        "anims": 3
+      },
+      {
+        "y": 6750,
+        "anims": 5
+      },
+      {
+        "y": 7425,
+        "anims": 5
+      },
+      {
+        "y": 8100,
+        "anims": 5
+      },
+      {
+        "y": 8514,
+        "anims": 5
+      }
+    ],
+    "hover": {
+      "before": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 101, 242)",
+        "transform": "none",
+        "shadow": "none",
+        "transition": "all / 0s"
+      },
+      "after": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(24, 101, 242)",
+        "transform": "none",
+        "shadow": "none",
+        "transition": "all / 0s"
+      }
+    }
+  },
+  "notebook-labs": {
+    "docH": 6577,
+    "frames": 10,
+    "sticky": [
+      {
+        "tag": "HEADER",
+        "cls": "",
+        "pos": "sticky",
+        "h": 80,
+        "w": 1440
+      }
+    ],
+    "media": {
+      "videos": [
+        {
+          "autoplay": true,
+          "loop": true,
+          "muted": true,
+          "poster": false
+        }
+      ],
+      "canvases": 0,
+      "scrollTracks": 0,
+      "snapContainers": 0
+    },
+    "transitions": [
+      [
+        "0.3s",
+        4
+      ]
+    ],
+    "anims": [
+      {
+        "y": 0,
+        "anims": 6
+      },
+      {
+        "y": 675,
+        "anims": 6
+      },
+      {
+        "y": 1350,
+        "anims": 6
+      },
+      {
+        "y": 2025,
+        "anims": 20
+      },
+      {
+        "y": 2700,
+        "anims": 4
+      },
+      {
+        "y": 3375,
+        "anims": 4
+      },
+      {
+        "y": 4050,
+        "anims": 4
+      },
+      {
+        "y": 4725,
+        "anims": 4
+      },
+      {
+        "y": 5400,
+        "anims": 4
+      },
+      {
+        "y": 5677,
+        "anims": 4
+      }
+    ],
+    "hover": null
+  },
+  "google-education": {
+    "docH": 9589,
+    "frames": 15,
+    "sticky": [
+      {
+        "tag": "DIV",
+        "cls": "gfe-header__bar",
+        "pos": "fixed",
+        "h": 65,
+        "w": 1440
+      },
+      {
+        "tag": "DIV",
+        "cls": "gfe-floating-bar__container gfe-bg-grey-50",
+        "pos": "fixed",
+        "h": 126,
+        "w": 276
+      }
+    ],
+    "media": {
+      "videos": [
+        {
+          "autoplay": false,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        },
+        {
+          "autoplay": true,
+          "loop": false,
+          "muted": true,
+          "poster": true
+        }
+      ],
+      "canvases": 0,
+      "scrollTracks": 0,
+      "snapContainers": 13
+    },
+    "transitions": [
+      [
+        "0.2s, 0.2s, 0.2s, 0.2s",
+        196
+      ],
+      [
+        "0.2s",
+        52
+      ],
+      [
+        "0.2s, 0.2s",
+        15
+      ],
+      [
+        "0.3s",
+        5
+      ],
+      [
+        "0.6s, 0.6s",
+        4
+      ],
+      [
+        "0.5s, 1.2s, 0.5s",
+        1
+      ]
+    ],
+    "anims": [
+      {
+        "y": 0,
+        "anims": 8
+      },
+      {
+        "y": 675,
+        "anims": 8
+      },
+      {
+        "y": 1350,
+        "anims": 16
+      },
+      {
+        "y": 2025,
+        "anims": 16
+      },
+      {
+        "y": 2700,
+        "anims": 21
+      },
+      {
+        "y": 3375,
+        "anims": 21
+      },
+      {
+        "y": 4050,
+        "anims": 21
+      },
+      {
+        "y": 4725,
+        "anims": 21
+      },
+      {
+        "y": 5400,
+        "anims": 21
+      },
+      {
+        "y": 6075,
+        "anims": 21
+      },
+      {
+        "y": 6750,
+        "anims": 21
+      },
+      {
+        "y": 7425,
+        "anims": 21
+      },
+      {
+        "y": 8100,
+        "anims": 21
+      },
+      {
+        "y": 8689,
+        "anims": 21
+      },
+      {
+        "y": 8689,
+        "anims": 22
+      }
+    ],
+    "hover": null
+  }
+}

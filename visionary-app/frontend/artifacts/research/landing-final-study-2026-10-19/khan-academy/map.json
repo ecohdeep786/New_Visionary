@@ -1,0 +1,1260 @@
+{
+  "title": "Khan Academy | Free Online Courses, Lessons & Practice",
+  "docH": 9414,
+  "headingCount": 17,
+  "ctaCount": 236,
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "Khan Academy boosts scores!",
+      "y": 230,
+      "fs": "40px",
+      "fw": "600",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "Start learning today by signing up!",
+      "y": 230,
+      "fs": "28px",
+      "fw": "700",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "Why Khan Academy works",
+      "y": 4314,
+      "fs": "44px",
+      "fw": "600",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h3",
+      "text": "Personalized learning",
+      "y": 4610,
+      "fs": "25px",
+      "fw": "400",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h3",
+      "text": "Trusted content",
+      "y": 4610,
+      "fs": "25px",
+      "fw": "400",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h3",
+      "text": "Tools to empower teachers",
+      "y": 4610,
+      "fs": "25px",
+      "fw": "400",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "“I’m finally able to truly differentiate my classroom. This has been priceless for my students’ engagement.”",
+      "y": 5071,
+      "fs": "44px",
+      "fw": "600",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "You can learn anything.",
+      "y": 5888,
+      "fs": "44px",
+      "fw": "600",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "Every child deserves the chance to learn.",
+      "y": 7146,
+      "fs": "44px",
+      "fw": "600",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "Join Khan Academy today",
+      "y": 7702,
+      "fs": "44px",
+      "fw": "600",
+      "color": "rgb(33, 36, 44)"
+    },
+    {
+      "tag": "h2",
+      "text": "Key supporters",
+      "y": 8493,
+      "fs": "32px",
+      "fw": "600",
+      "color": "rgb(45, 68, 78)"
+    },
+    {
+      "tag": "h2",
+      "text": "Site Navigation",
+      "y": 8885,
+      "fs": "20px",
+      "fw": "700",
+      "color": "rgb(130, 149, 186)"
+    },
+    {
+      "tag": "h3",
+      "text": "About",
+      "y": 8886,
+      "fs": "12px",
+      "fw": "700",
+      "color": "rgb(130, 149, 186)"
+    },
+    {
+      "tag": "h3",
+      "text": "Contact",
+      "y": 8886,
+      "fs": "12px",
+      "fw": "700",
+      "color": "rgb(130, 149, 186)"
+    },
+    {
+      "tag": "h3",
+      "text": "Download our apps",
+      "y": 9078,
+      "fs": "12px",
+      "fw": "700",
+      "color": "rgb(130, 149, 186)"
+    },
+    {
+      "tag": "h3",
+      "text": "Courses",
+      "y": 8886,
+      "fs": "12px",
+      "fw": "700",
+      "color": "rgb(130, 149, 186)"
+    },
+    {
+      "tag": "h2",
+      "text": "Use of cookies",
+      "y": 564,
+      "fs": "16px",
+      "fw": "600",
+      "color": "rgb(0, 0, 0)"
+    }
+  ],
+  "ctas": [
+    {
+      "text": "Skip to main content",
+      "href": "#main-content",
+      "y": 63,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "0px",
+      "fs": "14px"
+    },
+    {
+      "text": "Sign up",
+      "href": "/signup/teacher?continue=%2F",
+      "y": 29,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "14px"
+    },
+    {
+      "text": "Dismiss banner.",
+      "y": 24,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "13.3333px"
+    },
+    {
+      "text": "Explore",
+      "y": 73,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Search",
+      "y": 83,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "4px",
+      "fs": "13.3333px"
+    },
+    {
+      "text": "Khan Academy",
+      "href": "/",
+      "y": 73,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Donate",
+      "href": "https://donate.khanacademy.org/campaign/580662/donate",
+      "y": 73,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Log in",
+      "href": "/login?continue=%2F",
+      "y": 73,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Sign up",
+      "href": "/signup?continue=%2F",
+      "y": 83,
+      "bg": "rgb(24, 101, 242)",
+      "radius": "4px",
+      "fs": "14px"
+    },
+    {
+      "text": "StudentStudent learning on my own",
+      "href": "/lohp/learner",
+      "y": 326,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "8px",
+      "fs": "14px"
+    },
+    {
+      "text": "FamilySupporting my child’s learning",
+      "href": "/lohp/parent",
+      "y": 438,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "8px",
+      "fs": "14px"
+    },
+    {
+      "text": "TeacherEducator with a classroom",
+      "href": "/lohp/teacher",
+      "y": 550,
+      "bg": "rgb(255, 255, 255)",
+      "radius": "8px",
+      "fs": "14px"
+    },
+    {
+      "text": "Log in",
+      "href": "/login?continue=%2F",
+      "y": 664,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Math (Maharashtra)",
+      "y": 955,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "MH Math Class 1 (New)",
+      "href": "/math/mr-class-1-new",
+      "y": 1027,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 2",
+      "href": "/math/mr-class-2",
+      "y": 1063,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 2 (New)",
+      "href": "/math/mh-math-class-2-new",
+      "y": 1099,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 3",
+      "href": "/math/mr-class-3",
+      "y": 1135,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 3 (New)",
+      "href": "/math/mh-math-class-3-new",
+      "y": 1171,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 4",
+      "href": "/math/mr-class-4",
+      "y": 1207,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 4 (New)",
+      "href": "/math/mh-math-class-4-new",
+      "y": 1243,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 5",
+      "href": "/math/mr-class-5",
+      "y": 1279,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 6",
+      "href": "/math/mr-class-6",
+      "y": 1027,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 6 (New)",
+      "href": "/math/mh-math-class-6-new-2026",
+      "y": 1063,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 7",
+      "href": "/math/mr-class-7",
+      "y": 1099,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 8",
+      "href": "/math/mr-class-8",
+      "y": 1135,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 9",
+      "href": "/math/mr-class-9",
+      "y": 1171,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 10",
+      "href": "/math/mr-class-10",
+      "y": 1207,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Math (Maharashtra)",
+      "href": "/math/math-r-mr",
+      "y": 1243,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Science (Maharashtra)",
+      "y": 1328,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "MH Grade 6 Science (New)",
+      "href": "/science/mh-grade-6-science-2026",
+      "y": 1400,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 6 Science",
+      "href": "/science/mh-grade-6-science",
+      "y": 1456,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 7 Science",
+      "href": "/science/mh-grade-7-science",
+      "y": 1492,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 8 Science",
+      "href": "/science/mh-grade-8-science",
+      "y": 1528,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 9 Science",
+      "href": "/science/mh-grade-9-science",
+      "y": 1400,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 10 Science",
+      "href": "/science/mh-grade-10-science",
+      "y": 1436,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Science (Maharashtra)",
+      "href": "/science/science-maharashtra",
+      "y": 1472,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Math (MH) (Bridge)",
+      "y": 1577,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "MH Math Class 2 (Bridge)",
+      "href": "/math/class-2-bridge-course-mh",
+      "y": 1649,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 3 (Bridge)",
+      "href": "/math/class-3-bridge-course-mh",
+      "y": 1705,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 4 (Bridge)",
+      "href": "/math/class-4-bridge-course-mh",
+      "y": 1761,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 5 (Bridge)",
+      "href": "/math/class-5-bridge-course-mh",
+      "y": 1817,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 6 (Bridge)",
+      "href": "/math/class-6-bridge-course-mh",
+      "y": 1873,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 7 (Bridge)",
+      "href": "/math/class-7-bridge-course-mh",
+      "y": 1649,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 8 (Bridge)",
+      "href": "/math/class-8-bridge-course-mh",
+      "y": 1685,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 9 (Bridge)",
+      "href": "/math/class-9-bridge-course-mh",
+      "y": 1721,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 10 (Bridge)",
+      "href": "/math/class-10-bridge-course-mh",
+      "y": 1757,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Math (MH) (Bridge)",
+      "href": "/math/math-mh-bridge",
+      "y": 1793,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Science (MH) (Bridge)",
+      "y": 1942,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "MH Grade 7 Science (Bridge)",
+      "href": "/science/mh-bridge-course-grade-7-science-new",
+      "y": 2014,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 8 Science (Bridge)",
+      "href": "/science/mh-bridge-course-grade-8",
+      "y": 2070,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 9 Science (Bridge)",
+      "href": "/science/mh-grade-9-bridge-course-science",
+      "y": 2126,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Grade 10 Science (Bridge)",
+      "href": "/science/mh-grade-10-science-bridge-course",
+      "y": 2014,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Science (MH) (Bridge)",
+      "href": "/science/science-mh-bridge",
+      "y": 2070,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Math (MH) (Revision)",
+      "y": 2195,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "MH Math Class 1 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-1",
+      "y": 2267,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 2 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-2",
+      "y": 2323,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 3 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-3",
+      "y": 2379,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 4 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-4",
+      "y": 2435,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 5 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-5",
+      "y": 2491,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 6 (Revision Term 1)",
+      "href": "/math/mh-math-class-6-revision-term-1-2026",
+      "y": 2547,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 7 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-7",
+      "y": 2267,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 8 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-8",
+      "y": 2323,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 9 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-9",
+      "y": 2379,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 10 (Revision Term 1)",
+      "href": "/math/revision-term-1-mh-math-class-10",
+      "y": 2435,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Math Class 10 (Board Exam Revision with PYQs)",
+      "href": "/math/mh-math-class-10-board-exam-revision-with-pyqs",
+      "y": 2491,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Math (MH) (Revision)",
+      "href": "/math/math-mh-revision",
+      "y": 2547,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Science (MH) (Revision)",
+      "y": 2616,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "MH Science Class 6 (Revision Term 1)",
+      "href": "/science/mh-science-class-6-revision-term-1-2026",
+      "y": 2688,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Science Class 7 (Revision Term 1)",
+      "href": "/science/mh-grade-7-revision-packet-term-1",
+      "y": 2744,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Science Class 8 (Revision Term 1)",
+      "href": "/science/mh-grade-8-science-revision-packet-term-ii",
+      "y": 2800,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Science Class 9 (Revision Term 1)",
+      "href": "/science/revision-term-1-mh-science-class-9",
+      "y": 2856,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Science Class 10 (Revision Term 1)",
+      "href": "/science/revision-term-1-mh-science-class-10new",
+      "y": 2688,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "MH Science Class 10 (Board Exam Revision with PYQs)",
+      "href": "/science/mh-science-class-10-board-exam-revision-with-pyqs",
+      "y": 2744,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Science (MH) (Revision)",
+      "href": "/science/science-mh-revision",
+      "y": 2800,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Math (NCERT)",
+      "y": 955,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "NCERT Math Class 1",
+      "href": "/math/class-1-ncf",
+      "y": 1027,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 2",
+      "href": "/math/in-in-class-2nd-math-cbse",
+      "y": 1063,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 3",
+      "href": "/math/in-in-class-3rd-math-cbse",
+      "y": 1099,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 4",
+      "href": "/math/in-in-class-4th-math-cbse",
+      "y": 1135,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 5",
+      "href": "/math/in-in-class-5th-math-cbse",
+      "y": 1171,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 6",
+      "href": "/math/class-6-ncf",
+      "y": 1207,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 7 (New)",
+      "href": "/math/class-7-ncf",
+      "y": 1243,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 7",
+      "href": "/math/ncert-class-7",
+      "y": 1299,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 8 (New)",
+      "href": "/math/class-8-ncf",
+      "y": 1335,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 8",
+      "href": "/math/ncert-class-8",
+      "y": 1391,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 9 (New)",
+      "href": "/math/ncert-math-class-9-new",
+      "y": 1427,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 9",
+      "href": "/math/ncert-class-9",
+      "y": 1483,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 10",
+      "href": "/math/ncert-class-10",
+      "y": 1519,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 11",
+      "href": "/math/ncert-class-11",
+      "y": 1555,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 12",
+      "href": "/math/ncert-class-12",
+      "y": 1591,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 6 (Bridge)",
+      "href": "/math/in-class-6-math-foundation",
+      "y": 1627,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 7 (Bridge)",
+      "href": "/math/in-class-7-math-foundation",
+      "y": 1027,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 8 (Bridge)",
+      "href": "/math/in-class-8-math-foundation",
+      "y": 1083,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 9 (Bridge)",
+      "href": "/math/in-class-9-math-foundation",
+      "y": 1139,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 10 (Bridge)",
+      "href": "/math/in-class-10-math-foundation",
+      "y": 1195,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 11 (Bridge)",
+      "href": "/math/class-11-bridge",
+      "y": 1251,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 12 (Bridge)",
+      "href": "/math/class-12-bridge",
+      "y": 1307,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 6 (Revision Term 1)",
+      "href": "/math/revision-term-1-ncert-math-class-6",
+      "y": 1363,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 7 (Revision Term 1)",
+      "href": "/math/revision-term-1-ncert-math-class-7-new",
+      "y": 1419,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 8 (Revision Term 1)",
+      "href": "/math/revision-term-1-ncert-math-class-8-new",
+      "y": 1475,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 9 (Revision Term 1)",
+      "href": "/math/ncert-math-grade-9-revision-term-1-2026",
+      "y": 1531,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 10 (Revision Term 1)",
+      "href": "/math/revision-term-1-ncert-math-class-10",
+      "y": 1587,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 11 (Revision Term 1)",
+      "href": "/math/revision-term-1-ncert-math-class-11",
+      "y": 1643,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 12 (Revision Term 1)",
+      "href": "/math/revision-term-1-ncert-math-class-12",
+      "y": 1699,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 10 (Board Exam Revision with PYQs)",
+      "href": "/math/ncert-math-class-10-pyq-2026",
+      "y": 1755,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Math Class 12 (Board Exam Revision with PYQs)",
+      "href": "/math/ncert-math-class-12-pyq-2026",
+      "y": 1831,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "See Math (NCERT)",
+      "href": "/math/in-math-ncert",
+      "y": 1907,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Science (NCERT)",
+      "y": 1956,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "20px"
+    },
+    {
+      "text": "NCERT (Hinglish)",
+      "href": "/math/hinglish",
+      "y": 2028,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 6",
+      "href": "/science/ncert-class-6-science",
+      "y": 2064,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 7",
+      "href": "/science/ncert-class-7-science",
+      "y": 2100,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 8",
+      "href": "/science/ncert-class-8-science",
+      "y": 2136,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 9 (New)",
+      "href": "/science/ncert-grade-9-science",
+      "y": 2172,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 9",
+      "href": "/science/ncert-class-9-science",
+      "y": 2228,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 10",
+      "href": "/science/ncert-class-10-science",
+      "y": 2264,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Physics Class 11",
+      "href": "/science/in-in-class11th-physics",
+      "y": 2320,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Chemistry Class 11",
+      "href": "/science/class-11-chemistry-india",
+      "y": 2356,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Biology Class 11",
+      "href": "/science/in-in-class-11-biology-india",
+      "y": 2412,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Physics Class 12",
+      "href": "/science/in-in-class-12th-physics-india",
+      "y": 2448,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Chemistry Class 12",
+      "href": "/science/class-12-chemistry-india",
+      "y": 2484,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Biology Class 12",
+      "href": "/science/in-in-class-12-biology-india",
+      "y": 2540,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "Essentials (9-12)",
+      "href": "/science/in-science-essentials",
+      "y": 2576,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 7 (Bridge)",
+      "href": "/science/bridge-course-class-7th-science",
+      "y": 2612,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 8 (Bridge)",
+      "href": "/science/bridge-course-class-8th-science",
+      "y": 2668,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 9 (Bridge)",
+      "href": "/science/bridge-course-class-9th-science",
+      "y": 2724,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 10 (Bridge)",
+      "href": "/science/bridge-course-class-10th-science",
+      "y": 2780,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Physics Class 11 (Bridge)",
+      "href": "/science/bridge-course-class-11th-physics",
+      "y": 2836,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Chemistry Class 11 (Bridge)",
+      "href": "/science/bridge-course-class-11th-chemistry",
+      "y": 2892,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Biology Class 11 (Bridge)",
+      "href": "/science/bridge-course-class-11th-biology",
+      "y": 2028,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Physics Class 12 (Bridge)",
+      "href": "/science/bridge-course-class-12th-physics",
+      "y": 2084,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Chemistry Class 12 (Bridge)",
+      "href": "/science/bridge-course-class-12th-chemistry",
+      "y": 2140,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Biology Class 12 (Bridge)",
+      "href": "/science/bridge-course-class-12th-biology",
+      "y": 2196,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Grade 6 (Revision Term 1)",
+      "href": "/science/revision-term-1-ncert-science-grade-6",
+      "y": 2252,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Grade 7 (Revision Term 1)",
+      "href": "/science/revision-term-1-ncert-science-grade-7",
+      "y": 2308,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Grade 8 (Revision Term 1)",
+      "href": "/science/revision-term-1-ncert-science-grade-8",
+      "y": 2364,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 9 (Revision Term 1)",
+      "href": "/science/ncert-science-class-9-revision-term-1-2026",
+      "y": 2420,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Science Class 10 (Revision Term 1)",
+      "href": "/science/revision-term-1-ncert-science-grade-10",
+      "y": 2476,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Physics Class 11 (Revision Term 1)",
+      "href": "/science/revision-term-1-physics-grade-11",
+      "y": 2532,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    },
+    {
+      "text": "NCERT Chemistry Class 11 (Revision Term 1)",
+      "href": "/science/revision-term-1-ncert-chemistry-grade-11",
+      "y": 2588,
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "fs": "16px"
+    }
+  ],
+  "imgs": 39,
+  "videos": 0,
+  "bodyBg": "rgba(0, 0, 0, 0)",
+  "url": "https://www.khanacademy.org/",
+  "errors": []
+}

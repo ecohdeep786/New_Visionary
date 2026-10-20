@@ -1,0 +1,608 @@
+{
+  "w1440": {
+    "docH": 8525,
+    "scrollW": 1440,
+    "viewportW": 1440,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        7145,
+        844
+      ],
+      [
+        "02-problem",
+        1170,
+        1247
+      ],
+      [
+        "03-promise",
+        2417,
+        325
+      ],
+      [
+        "04-return",
+        2742,
+        722
+      ],
+      [
+        "05-intelligence",
+        3464,
+        1117
+      ],
+      [
+        "13-explore",
+        4581,
+        1251
+      ],
+      [
+        "14-suite",
+        5832,
+        838
+      ],
+      [
+        "11-trust",
+        6670,
+        734
+      ],
+      [
+        "12-cta",
+        7404,
+        585
+      ]
+    ],
+    "returnEyebrow": "What you get",
+    "returnQuote": "“A person should not have to start over every time life asks them to learn something new.”",
+    "returnAttribution": "Md Shahid Ali · Founder and CEO",
+    "returnCells": [
+      "Your hours stack.",
+      "Your place is kept.",
+      "Your language works.",
+      "Your progress shows."
+    ],
+    "returnCellBodies": [
+      "Every lesson builds on the last. This year's work becomes next year's strength.",
+      "Visionary remembers where you stopped, so every session continues.",
+      "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.",
+      "Teachers and parents see progress while it still matters."
+    ],
+    "returnCellFs": [
+      "19px",
+      "19px",
+      "19px",
+      "19px"
+    ],
+    "returnGridCols": 4,
+    "returnBorderTop": "rgba(0, 0, 0, 0)",
+    "returnBg": "rgb(255, 255, 255)",
+    "returnPadTop": "90px",
+    "returnQuoteFs": "40px",
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "h1": "One intelligencefor teachers.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "72px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "72px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "80px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "64px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "72px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "72px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "promoClickPath": "/how-it-works",
+    "suiteClickPath": "/pricing",
+    "errors": []
+  },
+  "w1024": {
+    "docH": 7638,
+    "scrollW": 1024,
+    "viewportW": 1024,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        6390,
+        712
+      ],
+      [
+        "02-problem",
+        998,
+        993
+      ],
+      [
+        "03-promise",
+        1991,
+        256
+      ],
+      [
+        "04-return",
+        2247,
+        762
+      ],
+      [
+        "05-intelligence",
+        3009,
+        1007
+      ],
+      [
+        "13-explore",
+        4016,
+        1137
+      ],
+      [
+        "14-suite",
+        5153,
+        746
+      ],
+      [
+        "11-trust",
+        5899,
+        731
+      ],
+      [
+        "12-cta",
+        6630,
+        472
+      ]
+    ],
+    "returnEyebrow": "What you get",
+    "returnQuote": "“A person should not have to start over every time life asks them to learn something new.”",
+    "returnAttribution": "Md Shahid Ali · Founder and CEO",
+    "returnCells": [
+      "Your hours stack.",
+      "Your place is kept.",
+      "Your language works.",
+      "Your progress shows."
+    ],
+    "returnCellBodies": [
+      "Every lesson builds on the last. This year's work becomes next year's strength.",
+      "Visionary remembers where you stopped, so every session continues.",
+      "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.",
+      "Teachers and parents see progress while it still matters."
+    ],
+    "returnCellFs": [
+      "19px",
+      "19px",
+      "19px",
+      "19px"
+    ],
+    "returnGridCols": 4,
+    "returnBorderTop": "rgba(0, 0, 0, 0)",
+    "returnBg": "rgb(255, 255, 255)",
+    "returnPadTop": "71.68px",
+    "returnQuoteFs": "28.672px",
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "56px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "56px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "64px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "56px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "56px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "56px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "errors": []
+  },
+  "w834": {
+    "docH": 8729,
+    "scrollW": 834,
+    "viewportW": 834,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        6837,
+        1056
+      ],
+      [
+        "02-problem",
+        1446,
+        927
+      ],
+      [
+        "03-promise",
+        2373,
+        230
+      ],
+      [
+        "04-return",
+        2602,
+        978
+      ],
+      [
+        "05-intelligence",
+        3581,
+        974
+      ],
+      [
+        "13-explore",
+        4555,
+        1079
+      ],
+      [
+        "14-suite",
+        5634,
+        705
+      ],
+      [
+        "11-trust",
+        6339,
+        1090
+      ],
+      [
+        "12-cta",
+        7429,
+        464
+      ]
+    ],
+    "returnEyebrow": "What you get",
+    "returnQuote": "“A person should not have to start over every time life asks them to learn something new.”",
+    "returnAttribution": "Md Shahid Ali · Founder and CEO",
+    "returnCells": [
+      "Your hours stack.",
+      "Your place is kept.",
+      "Your language works.",
+      "Your progress shows."
+    ],
+    "returnCellBodies": [
+      "Every lesson builds on the last. This year's work becomes next year's strength.",
+      "Visionary remembers where you stopped, so every session continues.",
+      "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.",
+      "Teachers and parents see progress while it still matters."
+    ],
+    "returnCellFs": [
+      "19px",
+      "19px",
+      "19px",
+      "19px"
+    ],
+    "returnGridCols": 1,
+    "returnBorderTop": "rgba(0, 0, 0, 0)",
+    "returnBg": "rgb(255, 255, 255)",
+    "returnPadTop": "58.38px",
+    "returnQuoteFs": "26px",
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "56px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "56px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "64px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "56px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "56px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "56px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "errors": []
+  },
+  "w390": {
+    "docH": 9387,
+    "scrollW": 390,
+    "viewportW": 390,
+    "sections": [
+      "01-hero",
+      "02-problem",
+      "03-promise",
+      "04-return",
+      "05-intelligence",
+      "13-explore",
+      "14-suite",
+      "11-trust",
+      "12-cta"
+    ],
+    "sectionTops": [
+      [
+        "01-hero",
+        7440,
+        788
+      ],
+      [
+        "02-problem",
+        1097,
+        981
+      ],
+      [
+        "03-promise",
+        2078,
+        273
+      ],
+      [
+        "04-return",
+        2351,
+        1084
+      ],
+      [
+        "05-intelligence",
+        3436,
+        795
+      ],
+      [
+        "13-explore",
+        4231,
+        1084
+      ],
+      [
+        "14-suite",
+        5315,
+        1164
+      ],
+      [
+        "11-trust",
+        6479,
+        1180
+      ],
+      [
+        "12-cta",
+        7660,
+        568
+      ]
+    ],
+    "returnEyebrow": "What you get",
+    "returnQuote": "“A person should not have to start over every time life asks them to learn something new.”",
+    "returnAttribution": "Md Shahid Ali · Founder and CEO",
+    "returnCells": [
+      "Your hours stack.",
+      "Your place is kept.",
+      "Your language works.",
+      "Your progress shows."
+    ],
+    "returnCellBodies": [
+      "Every lesson builds on the last. This year's work becomes next year's strength.",
+      "Visionary remembers where you stopped, so every session continues.",
+      "Ask, reason, and learn in the language you think in — English, Hindi, and Bengali today.",
+      "Teachers and parents see progress while it still matters."
+    ],
+    "returnCellFs": [
+      "19px",
+      "19px",
+      "19px",
+      "19px"
+    ],
+    "returnGridCols": 1,
+    "returnBorderTop": "rgba(0, 0, 0, 0)",
+    "returnBg": "rgb(255, 255, 255)",
+    "returnPadTop": "56px",
+    "returnQuoteFs": "26px",
+    "routerHrefs": [
+      "/student",
+      "/teacher",
+      "/parent",
+      "/professional",
+      "/organization"
+    ],
+    "suiteHrefs": [
+      "/download",
+      "/pricing",
+      "/help",
+      "/updates"
+    ],
+    "trustHrefs": [
+      "/privacy",
+      "/safety",
+      "/security",
+      "/accessibility"
+    ],
+    "ctaHrefs": [
+      "/register",
+      "/contact"
+    ],
+    "promoHrefs": [
+      "/how-it-works"
+    ],
+    "h1": "One intelligencefor students.One intelligence, for students, teachers, parents, professionals, and organizations.",
+    "headings": [
+      {
+        "text": "Teaching everyone is possible. Reaching everyone isn't.",
+        "fs": "40px",
+        "sec": "02-problem"
+      },
+      {
+        "text": "What if your intelligence never forgot where you were?",
+        "fs": "40px",
+        "sec": "03-promise"
+      },
+      {
+        "text": "One intelligence.",
+        "fs": "40px",
+        "sec": "05-intelligence"
+      },
+      {
+        "text": "One intelligence, five journeys.",
+        "fs": "40px",
+        "sec": "13-explore"
+      },
+      {
+        "text": "Your learning stays yours.",
+        "fs": "40px",
+        "sec": "11-trust"
+      },
+      {
+        "text": "Your next step starts here.",
+        "fs": "40px",
+        "sec": "12-cta"
+      }
+    ],
+    "sectionsMatch": true,
+    "overflowX": false,
+    "errors": []
+  }
+}

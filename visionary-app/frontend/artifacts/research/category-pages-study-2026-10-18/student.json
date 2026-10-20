@@ -1,0 +1,209 @@
+{
+  "title": "Visionary for students | Learn at your pace",
+  "docH": 13322,
+  "secs": [
+    {
+      "id": "01-hero",
+      "cls": "relative isolate flex flex-col overflow-hidden",
+      "y": 56,
+      "h": 844,
+      "h1": "to master.Learning, to master, to build.",
+      "h2": "",
+      "h3s": [],
+      "p": "Every concept you understand becomes the foundation for the next.",
+      "links": [
+        "Start learning free -> /register",
+        "See how it works -> /how-it-works"
+      ],
+      "buttons": [],
+      "imgs": 1
+    },
+    {
+      "id": "02-struggle",
+      "cls": "relative overflow-x-clip bg-white",
+      "y": 900,
+      "h": 1346,
+      "h1": "",
+      "h2": "Every student struggles withunderstanding.",
+      "h3s": [],
+      "p": "Student learning challenges",
+      "links": [],
+      "buttons": [
+        "Go to challenge 1",
+        "Go to challenge 2",
+        "Go to challenge 3",
+        "Go to challenge 4"
+      ],
+      "imgs": 4
+    },
+    {
+      "id": "04-journey",
+      "cls": "relative isolate overflow-hidden py-24 lg:py-32 bg-white",
+      "y": 2246,
+      "h": 1153,
+      "h1": "",
+      "h2": "Learning thatmeets your questions.",
+      "h3s": [],
+      "p": "Wherever you begin, Visionary helps your learning move forward from there.",
+      "links": [],
+      "buttons": [
+        "Open details for Primary",
+        "Open details for Secondary and higher seco",
+        "Open details for Competitive exams",
+        "Open details for Vocational and skills",
+        "Open details for Higher education",
+        "Open details for Learning on your own"
+      ],
+      "imgs": 6
+    },
+    {
+      "id": "05-intelligence",
+      "cls": "scene-dark relative [overflow-x:clip]",
+      "y": 3399,
+      "h": 2849,
+      "h1": "",
+      "h2": "One intelligence.",
+      "h3s": [
+        "Understand what you're learning.",
+        "See it. Hear it. Ask it another way.",
+        "Practice what you're learning.",
+        "Build from what you know."
+      ],
+      "p": "From the first question to using what you know.",
+      "links": [],
+      "buttons": [
+        "Go to step 1: Understand what you're learn",
+        "Go to step 2: See it. Hear it. Ask it anot",
+        "Go to step 3: Practice what you're learnin",
+        "Go to step 4: Build from what you know."
+      ],
+      "imgs": 0
+    },
+    {
+      "id": "07-language",
+      "cls": "relative isolate px-6 py-24 lg:py-32 bg-white rounded-t-[32p",
+      "y": 6248,
+      "h": 1422,
+      "h1": "",
+      "h2": "The words change.Understanding doesn't.",
+      "h3s": [],
+      "p": "Every language",
+      "links": [
+        "Learn more -> /how-it-works"
+      ],
+      "buttons": [
+        "Show Hindi",
+        "Show English",
+        "Show Bengali",
+        "Show Tamil",
+        "Show Kannada",
+        "Show Punjabi"
+      ],
+      "imgs": 0
+    },
+    {
+      "id": "09-achievement",
+      "cls": "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip]",
+      "y": 7670,
+      "h": 1242,
+      "h1": "",
+      "h2": "See what you can achieve.",
+      "h3s": [],
+      "p": "Get a clear picture of the subjects and skills that matter today.",
+      "links": [],
+      "buttons": [
+        "Understand what matters.",
+        "Achieve what you're working toward.",
+        "Build something from what you know."
+      ],
+      "imgs": 1
+    },
+    {
+      "id": "10-journey-flow",
+      "cls": "relative isolate bg-white py-24 lg:py-32 [overflow-x:clip] r",
+      "y": 8912,
+      "h": 1441,
+      "h1": "",
+      "h2": "New stage.Same intelligence.",
+      "h3s": [
+        "Primary",
+        "Secondary and higher secondary"
+      ],
+      "p": "Your journey",
+      "links": [
+        "See how Visionary keeps it connected -> /how-it-works"
+      ],
+      "buttons": [
+        "Pause the journey",
+        "Previous stages",
+        "Next stages"
+      ],
+      "imgs": 2
+    },
+    {
+      "id": "11-trust",
+      "cls": "public-values relative isolate bg-white py-24 lg:py-32 [over",
+      "y": 10354,
+      "h": 724,
+      "h1": "",
+      "h2": "Your intelligence stays yours.",
+      "h3s": [
+        "Privacy",
+        "Safety",
+        "Responsibility"
+      ],
+      "p": "Your questions, conversations, ideas, and progress are personal. We keep it that way.",
+      "links": [
+        "Learn more -> /privacy",
+        "Learn more -> /security",
+        "Learn more -> /terms"
+      ],
+      "buttons": [],
+      "imgs": 0
+    },
+    {
+      "id": "12-cta",
+      "cls": "relative isolate bg-[#f5f5f7] px-6 py-24 lg:py-32 rounded-t-",
+      "y": 11078,
+      "h": 657,
+      "h1": "",
+      "h2": "Your learning starts with where you are.",
+      "h3s": [],
+      "p": "Ask your first question. Start building from what you know.",
+      "links": [
+        "Get started -> /register",
+        "Talk to our team -> /contact"
+      ],
+      "buttons": [],
+      "imgs": 0
+    },
+    {
+      "id": "13-explore",
+      "cls": "relative isolate bg-[#f5f5f7] py-16 lg:py-24 [overflow-x:cli",
+      "y": 11735,
+      "h": 1051,
+      "h1": "",
+      "h2": "Explore Visionary.",
+      "h3s": [
+        "Teacher",
+        "Parent",
+        "Professional",
+        "Organization"
+      ],
+      "p": "See who needs another explanation.",
+      "links": [
+        "TeacherSee who needs another explanation -> /teacher",
+        "ParentSee where your child needs support -> /parent",
+        "ProfessionalTurn what you know into usef -> /professional",
+        "OrganizationHelp teams carry knowledge f -> /organization"
+      ],
+      "buttons": [
+        "Previous destinations",
+        "Next destinations"
+      ],
+      "imgs": 4
+    }
+  ],
+  "route": "student",
+  "errors": []
+}

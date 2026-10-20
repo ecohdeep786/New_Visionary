@@ -15,13 +15,13 @@ Because the evidence store is the LEARN-10 store, this slice must be integrated 
 ```text
 visionary_accounts/{verifiedFirebaseUid}
   learningSessions/{sessionId}/assessments/{receiptId}    (immutable evidence source; written by the teaching loop)
-  knowledge/commands/{commandId}        (immutable idempotency receipt: fingerprint, sessionId, receiptId, projectionKey)
-  knowledge/receipts/{receiptId}        (kernel receipt: scope, digest, sequence, correct, origin: server_assessment, assessedAt)
-  knowledge/projections/{scopeKey}      (pKnown, modelVersion, revision, lastSequence, lastReceiptId/Digest, assessedCount)
-  knowledge/outbox/{eventId}            (one knowledge_projected event per receipt)
+  knowledgeCommands/{commandId}        (immutable idempotency receipt: fingerprint, sessionId, receiptId, projectionKey)
+  knowledgeReceipts/{receiptId}        (kernel receipt: scope, digest, sequence, correct, origin: server_assessment, assessedAt)
+  knowledgeProjections/{scopeKey}      (pKnown, modelVersion, revision, lastSequence, lastReceiptId/Digest, assessedCount)
+  knowledgeOutbox/{eventId}            (one knowledge_projected event per receipt)
 ```
 
-`scopeKey` is `u` plus a SHA-256 of `workspaceId|conceptId|sourceVersion|criteriaVersion`; workspace and concept values are opaque bounded references (for example `demo-adult:student`), never a fixed vocabulary. The receipt ledger is keyed by the assessment `receiptId`, so the same evidence cannot be counted twice even under a new command id; a re-referenced receipt returns `replay: true` with the current projection and no writes. Receipt, projection and outbox event commit in one transaction; a stored projection whose recorded model version differs from the server-selected model refuses to inherit its probability and returns 409 until evidence is replayed.
+`scopeKey` is `u` plus a SHA-256 of the JSON-serialized ordered array `[workspaceId, conceptId, sourceVersion, criteriaVersion]`; workspace and concept values are opaque bounded references (for example `demo-adult:student`), never a fixed vocabulary. The receipt ledger is keyed by the assessment `receiptId`, so the same evidence cannot be counted twice even under a new command id; a re-referenced receipt returns `replay: true` with the current exact-scope projection and no receipt/projection/outbox writes; a new command ID adds its own idempotency record. Replay checks the stored session and receipt identity as well as every scope field. Receipt, projection and outbox event commit in one transaction; a stored projection whose recorded model version differs from the server-selected model refuses to inherit its probability and returns 409 until evidence is replayed.
 
 ## HTTP contract
 
@@ -42,3 +42,6 @@ Responses exclude the authored prompt, answer key and learner selection. Errors 
 `backend/tests/knowledge-projection.test.cjs` (8 tests) covers the command contract (injected verdict fields rejected), calibration selection and rebuild, a hand-computed BKT projection from the stored verdict, refusal of foreign/missing/tampered evidence with zero invented records, concurrent identical commits (one receipt/projection/outbox), re-referenced evidence replay (no double-count), cancelled-session evidence, lost-commit redaction and retry, cross-device reads, model-change rebuild refusal and the HTTP session/CSRF/account/scope denials. The fixtures are fictional, use the in-memory transactional store and touch no live credential, provider or database.
 
 Hosted Firestore transaction/IAM acceptance, the SQL owning store, the authoritative content/criteria service, held-out calibration publication, the UI binding (`account-records-ui-binding`), cross-device sync and a real two-device browser run remain open under LEARN-08/LEARN-09/LEARN-10/SYNC-01/SYNC-02 and the linked platform work; `account-directory` keeps learning unconnected until then. Knowledge probability stays an estimate: no taught/mastered flag, teacher contact, automatic escalation or verified-success claim is introduced.
+
+
+20 October storage correction: the four knowledge collections are direct subcollections of the verified UID document, so their collection paths have three components and document paths four. Earlier four-component collection strings were invalid in the actual Firestore SDK and are not used as a fallback. Delimiter-based old keys are never read or silently inherited. This unreleased candidate has no accepted hosted learner records; if an alternative earlier deployment persisted data, require an explicit owner audit/rebuild from immutable assessments before rollout, without deleting originals. The HTTP response version remains1.
