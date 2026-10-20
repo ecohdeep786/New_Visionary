@@ -1,5 +1,9 @@
 # KAN-145 independent review
 
+Latest decision, **20 October 2026: changes requested** for exact implementation `98ce3e5916e61b3c76a01b732f29d9b49b692af6`. The independent re-verification appended below supersedes the historical approval: the real Firestore SDK rejects all four knowledge collection paths, and distinct accepted scopes can alias to one projection key. Keep the candidate out of accepted integration/release until corrected and reviewed again.
+
+## Historical 18 October 2026 review
+
 Current decision: **approved** exact implementation 98ce3e5916e61b3c76a01b732f29d9b49b692af6 for the KAN-145 / LEARN-09 durable knowledge-projection scope; all required checks passed on that candidate. Dev integration, hosted Firestore/IAM acceptance, native Jira Done and the linked open gates remain separate pending receipts. Two minor non-blocking notes and the cross-branch integration coupling are recorded below.
 
 - Jira/source: KAN-145 / LEARN-09. Task receipt `docs/architecture/tracking/task-executions.json` (added at e017118c) records status Testing, review pending, implementer DeepSeek, implementationCommit 98ce3e5916e61b3c76a01b732f29d9b49b692af6, backendTests 79, backendFailed 0, frontendTests 532, frontendFailed 0, rootCheck true. No Jira access was used or changed by this reviewer.
@@ -113,3 +117,80 @@ The failed-verdict probe re-derives the kernel posterior independently (`guess .
 **Approved — verification passed** for the exact implementation `98ce3e5916e61b3c76a01b732f29d9b49b692af6` at base `9fd87bcee204f8a74b296112938e4fa7577d2ba7`, covering only the KAN-145 / LEARN-09 durable knowledge-projection scope above. The corrected reference-only evidence design is verified from source and by running the compiled candidate; no blocking defect was found. The two minor notes are non-blocking documentation/observation items. This approval does not complete hosted acceptance, dev integration, native Jira Done, or any linked open gate, and no production release is certified. Dev integration and Jira receipts remain for the integrator; any later source change invalidates this exact-SHA approval.
 
 Verifier identity: independent_review_kan_145 (separate from implementer DeepSeek), 18 October 2026. Evidence as recorded above.
+
+## 20 October 2026 independent re-verification — changes requested
+
+**This dated decision supersedes the 18 October approval above for implementation `98ce3e5916e61b3c76a01b732f29d9b49b692af6`. The earlier report remains historical evidence; its passing fixture tests did not establish compatibility with the real Firestore SDK. Do not integrate or release this candidate as accepted KAN-145 scope.**
+
+Jira key / source ID: KAN-145 / LEARN-09. Reviewer/verifier: `kan145_verification`, a separate agent from implementer DeepSeek; I accept responsibility for the source inspection, SDK validation and probes in this dated section. Scope: independent verification of the existing candidate only; no implementation, cloud deployment, merge, Jira edit or transition was performed.
+
+The matching resumed reviewer checkout is `C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/qa-review-kan-145-knowledge-projection/visionary-app`, branch `codex/qa-review-kan-145-knowledge-projection`. Starting reviewer HEAD and verified remote ref were `de7ce2d142eb507ce79bfea4cac0687c27235941`. The implementation branch and verified remote ref remain `e017118c2fe912e2c502e0e5eff55d1542f1e4bd`; the exact implementation remains `98ce3e5916e61b3c76a01b732f29d9b49b692af6`, based on `9fd87bcee204f8a74b296112938e4fa7577d2ba7`. `git diff --quiet 98ce3e5916e61b3c76a01b732f29d9b49b692af6 HEAD -- backend frontend scripts integration` returned 0 before verification: the resumed checkout has exactly the candidate's product source. Only historical review/documentation/receipt commits follow the candidate.
+
+### P1 — every knowledge collection uses an invalid Firestore path
+
+`backend/upstream/backend/src/learning/knowledge-projection.service.ts:35` through line 38 construct collection paths `visionary_accounts/{uid}/knowledge/commands`, `/receipts`, `/projections` and `/outbox`. Each has four components; the installed Firebase Admin SDK requires an odd number of components for a collection. The SDK rejects these references synchronously, before any database request or transaction. Therefore valid `POST /project` and `GET /projections` calls return a redacted 503 and cannot persist/read knowledge state. This blocks the entire durable integration, independently of GCP configuration, IAM, indexes or credentials.
+
+Offline SDK probe, run from `backend/upstream/backend` using its installed locked dependencies:
+
+```js
+const { initializeApp, deleteApp } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
+const app = initializeApp({ projectId: 'offline-kan145-review' }, 'offline-kan145-review');
+for (const path of [
+  'visionary_accounts/fictional-owner/learningSessions',
+  'visionary_accounts/fictional-owner/knowledge/commands',
+  'visionary_accounts/fictional-owner/knowledge/receipts',
+  'visionary_accounts/fictional-owner/knowledge/projections',
+  'visionary_accounts/fictional-owner/knowledge/outbox',
+]) {
+  try { getFirestore(app).collection(path); console.log('ACCEPTED ' + path); }
+  catch (error) { console.log('REJECTED ' + path + ' | ' + error.message); }
+}
+deleteApp(app);
+```
+
+Result: `learningSessions` accepted; all four knowledge paths rejected with `Value for argument "collectionPath" must point to a collection ... Your path does not contain an odd number of components.` No credential was loaded and no database/network call was made.
+
+A second probe instantiated the freshly compiled `KnowledgeProjectionService` with `collection: path => realSdk.collection(path)` and a guarded `runTransaction` stub that increments a counter and throws if called. Valid UUIDv4 command references and fictional UID/scope values produced:
+
+```text
+project status=503 message=Knowledge projection could not be confirmed from saved evidence. Retry with the same receipt.
+projection status=503 message=Knowledge projection could not be confirmed from saved evidence. Retry with the same receipt.
+transactions=0 network_calls=0
+```
+
+The current `backend/tests/fixtures/billing-memory.cjs` accepts arbitrary collection/document strings and therefore masks the SDK path error. Required correction: choose a valid, explicitly documented account-owned hierarchy and update every affected path/contract together. Recommended regression: validate the actual service's constructed collection/document references through the installed SDK without credentials/network and make the transactional fixture enforce collection/document path parity. Then rerun the scoped positive, retry, denial and read-back tests and hosted acceptance separately; green fixture tests alone cannot clear this finding.
+
+### P2 — distinct accepted scopes alias to one projection key
+
+`knowledge-projection.service.ts:11`–12 joins opaque scope references with `|` before hashing, but `boundedReference` permits that character. The two accepted tuples below serialize to the same string and therefore the same key:
+
+```text
+A: workspaceId="workspace|concept", conceptId="one", sourceVersion="a2", criteriaVersion="rubric-a2"
+B: workspaceId="workspace", conceptId="concept|one", sourceVersion="a2", criteriaVersion="rubric-a2"
+```
+
+Independent compiled-service probe seeded one fictional projection for A in `billingMemory`, then called `projection('fictional-owner', B)`. Every reference passed `boundedReference`; the two computed keys were equal. The response contained `workspaceId="workspace|concept"`, `conceptId="one"`, `pKnown=0.6`: A's state was returned for B's exact-scope query instead of 404. This is within one UID, with no cross-account disclosure; it nevertheless violates the endpoint's exact workspace/concept/source/criteria contract. Attempting to maintain both colliding scopes also conflicts with the policy kernel's scope check.
+
+Required correction: use an unambiguous tuple encoding (for example JSON stringification of the ordered string array) and validate the stored scope against the requested scope on reads/replay. Preserve/rebuild any existing keyed evidence through an explicit migration/version plan if anything was actually persisted under an earlier layout. Recommended regression: exercise distinct accepted references containing delimiters and assert separate projection keys, exact returned scope and independent updates; do not silently narrow the documented opaque-reference contract to hide the collision.
+
+### Verification commands and limits
+
+Environment: Windows PowerShell, Node `v24.19.0`, UTC 20 October 2026. The reviewer rebuilt the candidate before the service probes and backend test suite. Commands and actual results:
+
+```text
+npm run backend:build
+exit 0 — nest build
+
+$files = Get-ChildItem backend/tests/*.test.cjs | ForEach-Object { $_.FullName }
+node --test --test-concurrency=2 $files
+exit 0 — tests 79, pass 79, fail 0, cancelled/skipped/todo 0; 56677.3399 ms
+```
+
+The fresh root `npm run check` exited 0: layout/import integrity (3842 imported files; three recorded patches covering 10 changed files), all 18 script regressions, the source audit, lint, both frontend TypeScript projects and the Vite production build passed (2270 modules transformed; build 40.41 s). Its frontend suite passed 532/532, failed 0, cancelled/skipped/todo 0, in 106522.9147 ms. The source audit still reports 68 routes, 29 registered endpoints, 1637 control declarations and `hostedVerified:false`; these are source inventory figures, not deployed outcome evidence.
+
+The passing knowledge-projection tests (eight within the 79-test backend suite) use the fictional transactional fixture. HTTP tests use loopback and a stubbed authenticator. They do not validate real SDK collection-path constraints, Firestore transactions/retries, IAM, indexes, hosted authentication, SQL ownership, authoritative content/criteria, held-out calibration, UI binding or a real two-device journey. The additional probes above cover actual installed SDK reference validation and compiled service behavior without claiming hosted integration. Local backend output is retained in ignored `artifacts/research/kan145-review-2026-10-20/backend-tests.txt`.
+
+Live Jira was read on 20 October: KAN-145 is **Testing**; native inward blockers **KAN-144 / CONTENT-08** and **KAN-74 / LEARN-08** are both **To Do**. Its acceptance explicitly requires durable integration and meaningful authority/failure/two-device evidence, allowing only explicitly accepted enabler scope with linked integration gates left open. This candidate also consumes the unintegrated LEARN-10 assessment store described above. None of these prerequisites is accepted by this review.
+
+**Reviewer decision: changes requested. Verification result: failed for real SDK storage compatibility and exact-scope isolation at implementation `98ce3e5916e61b3c76a01b732f29d9b49b692af6`.** Return unresolved review findings to In Progress through the integrator; this reviewer has made no Jira changes. A fixed candidate requires a new exact-SHA independent review. No KAN-145 hosted outcome in `visionary-research`, production readiness, dev integration or Jira Done is established by these local tests, and this report does not authorize adding unaccepted learner code to the KAN-162 production release.
