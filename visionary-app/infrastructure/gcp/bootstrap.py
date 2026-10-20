@@ -7,10 +7,12 @@ identity. Existing objects are checked instead of silently adopting or replacing
 unrelated ones.
 """
 import json
+import os
 import secrets
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 PROJECT = "visionary-research"
@@ -32,10 +34,24 @@ CONDITION = ("assertion.repository_id == '1357462978' && "
 BACKEND = f"https://www.googleapis.com/compute/v1/projects/{PROJECT}/global/backendServices/"
 
 
+def run_gcloud(args, **kwargs):
+    command = ["gcloud", *args]
+    if os.name == "nt":
+        # The Windows SDK ships gcloud as a .cmd shim. CreateProcess cannot
+        # execute it directly, so use the shell only on Windows.
+        return subprocess.run(subprocess.list2cmdline(command), shell=True, **kwargs)
+    return subprocess.run(command, **kwargs)
+
+
+def missing_resource(stderr):
+    message = (stderr or "").lower()
+    return any(marker in message for marker in ("not_found", "not found", "cannot find", "could not find"))
+
+
 def gcloud(args, missing=False):
-    result = subprocess.run(["gcloud", *args, f"--project={PROJECT}", "--quiet", "--format=json"], text=True, capture_output=True, timeout=300)
+    result = run_gcloud([*args, f"--project={PROJECT}", "--quiet", "--format=json"], text=True, capture_output=True, timeout=300)
     if result.returncode:
-        if missing and ("NOT_FOUND" in result.stderr or "was not found" in result.stderr):
+        if missing and missing_resource(result.stderr):
             return None
         raise RuntimeError(f"GCP command failed: {' '.join(args[:4])}\n{result.stderr}")
     return json.loads(result.stdout) if result.stdout.strip() else {}
@@ -45,7 +61,14 @@ def ensure(describe, create, matches):
     found = gcloud(describe, missing=True)
     if found is None:
         gcloud(create)
-        found = gcloud(describe)
+        # New IAM resources can take a moment to become readable.
+        for _ in range(5):
+            found = gcloud(describe, missing=True)
+            if found is not None:
+                break
+            time.sleep(2)
+        if found is None:
+            raise RuntimeError(f"Created resource did not become readable: {' '.join(describe[:4])}")
     if not matches(found):
         raise RuntimeError(f"Existing resource differs from this plan: {' '.join(describe[:4])}")
     print("Verified:", " ".join(describe[:4]))
@@ -83,8 +106,8 @@ def ensure_secret():
     found = gcloud(["secrets", "describe", SECRET], missing=True)
     if found is None:
         value = secrets.token_urlsafe(48)
-        result = subprocess.run(["gcloud", "secrets", "create", SECRET, "--data-file=-", f"--project={PROJECT}", "--quiet"],
-                                input=value, text=True, capture_output=True, timeout=300)
+        result = run_gcloud(["secrets", "create", SECRET, "--data-file=-", f"--project={PROJECT}", "--quiet"],
+                            input=value, text=True, capture_output=True, timeout=300)
         if result.returncode:
             raise RuntimeError("GCP secret creation failed; no value was displayed.")
         print("Created secret:", SECRET, "(value not displayed)")
