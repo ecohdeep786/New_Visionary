@@ -32,6 +32,7 @@ CONDITION = ("assertion.repository_id == '1357462978' && "
              f"assertion.workflow_ref == '{WORKFLOW}' && "
              "(assertion.event_name == 'push' || assertion.event_name == 'workflow_dispatch')")
 BACKEND = f"https://www.googleapis.com/compute/v1/projects/{PROJECT}/global/backendServices/"
+PLACEHOLDER_IMAGE = "us-docker.pkg.dev/cloudrun/container/hello"
 
 
 def run_gcloud(args, **kwargs):
@@ -75,6 +76,21 @@ def ensure(describe, create, matches):
     return found
 
 
+def placeholder_service(service):
+    spec = service.get("spec", {}).get("template", {}).get("spec", {})
+    containers = spec.get("containers") or []
+    annotations = service.get("metadata", {}).get("annotations", {})
+    if len(containers) != 1:
+        return False
+    limits = (containers[0].get("resources") or {}).get("limits") or {}
+    return (containers[0].get("image") == PLACEHOLDER_IMAGE and
+            spec.get("serviceAccountName") == RUNTIME and
+            spec.get("containerConcurrency") == 20 and spec.get("timeoutSeconds") == 30 and
+            limits == {"cpu": "1", "memory": "512Mi"} and
+            annotations.get("run.googleapis.com/maxScale") == "1" and
+            annotations.get("run.googleapis.com/ingress") in ("all", "internal-and-cloud-load-balancing"))
+
+
 def edge_urlmap():
     return {"name": "visionary-product-web", "defaultUrlRedirect": {"hostRedirect": DOMAIN, "httpsRedirect": True, "stripQuery": False},
             "hostRules": [{"hosts": [DOMAIN], "pathMatcher": "product"}],
@@ -113,7 +129,13 @@ def ensure_secret():
         print("Created secret:", SECRET, "(value not displayed)")
     else:
         print("Verified:", SECRET)
-    version = gcloud(["secrets", "versions", "describe", "1", "--secret=" + SECRET], missing=True)
+    version = None
+    for attempt in range(5):
+        version = gcloud(["secrets", "versions", "describe", "1", "--secret=" + SECRET], missing=True)
+        if version is not None and version.get("state") == "ENABLED":
+            break
+        if attempt < 4:
+            time.sleep(2)
     if version is None or version.get("state") != "ENABLED":
         raise RuntimeError("Secret version 1 must exist and be enabled for the release contract.")
     return found
@@ -134,26 +156,20 @@ def apply_foundation():
     gcloud(["secrets", "add-iam-policy-binding", SECRET, "--member=serviceAccount:" + RUNTIME,
             "--role=roles/secretmanager.secretAccessor"])
     service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"], missing=True)
-    if service is None:
-        gcloud(["run", "deploy", SERVICE, "--image=us-docker.pkg.dev/cloudrun/container/hello", f"--region={REGION}",
-                "--service-account=" + RUNTIME, "--allow-unauthenticated", "--ingress=all",
+    created = service is None
+    if created:
+        gcloud(["run", "deploy", SERVICE, f"--image={PLACEHOLDER_IMAGE}", f"--region={REGION}",
+                "--service-account=" + RUNTIME, "--no-invoker-iam-check", "--ingress=all",
                 "--min-instances=0", "--max-instances=1", "--cpu=1", "--memory=512Mi", "--concurrency=20",
                 "--timeout=30s", "--no-cpu-boost", "--cpu-throttling", "--execution-environment=gen2", "--port=8080"])
         service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
-        print("Created bounded placeholder service:", SERVICE)
-    else:
-        print("Verified:", SERVICE)
-    annotations = service.get("metadata", {}).get("annotations", {})
-    if annotations.get("run.googleapis.com/maxScale") != "1":
-        gcloud(["run", "services", "update", SERVICE, f"--region={REGION}", "--update-annotations=run.googleapis.com/maxScale=1"])
+        # --max-instances limits each revision; --max separately caps the service.
+        gcloud(["run", "services", "update", SERVICE, f"--region={REGION}", "--max=1"])
         service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
-        annotations = service.get("metadata", {}).get("annotations", {})
-    if annotations.get("run.googleapis.com/ingress") not in ("all", "internal-and-cloud-load-balancing"):
-        gcloud(["run", "services", "update", SERVICE, f"--region={REGION}", "--ingress=all"])
-        service = gcloud(["run", "services", "describe", SERVICE, f"--region={REGION}"])
-        annotations = service.get("metadata", {}).get("annotations", {})
-    if annotations.get("run.googleapis.com/maxScale") != "1" or annotations.get("run.googleapis.com/ingress") not in ("all", "internal-and-cloud-load-balancing"):
+    if not placeholder_service(service):
         raise RuntimeError("Existing service is not the bounded foundation placeholder; review it manually.")
+    print(("Created" if created else "Verified") + " bounded placeholder service:", SERVICE)
+    annotations = service.get("metadata", {}).get("annotations", {})
     if annotations.get("run.googleapis.com/ingress") == "all":
         gcloud(["run", "services", "update-traffic", SERVICE, f"--region={REGION}", "--set-tags=ci-candidate=LATEST"])
     print(json.dumps({"project": PROJECT, "projectNumber": NUMBER, "region": REGION, "repository": REPOSITORY,

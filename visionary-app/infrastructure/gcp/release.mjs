@@ -1,4 +1,4 @@
-import { execFileSync } from 'node:child_process';
+import { execFileSync, execSync } from 'node:child_process';
 import { appendFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
@@ -92,21 +92,33 @@ export async function deployRelease({ commit, revision, image, readService, read
   const previous = currentRevision(initialService), previousRevision = await readRevision(previous);
   const previousCommit = verifyRevision(previousRevision);
   if (!(await ancestor(previousCommit))) throw Error('Previous release must belong to main history.');
-  await deploy();
-  verifyRevision(await readRevision(revision), commit, image);
-  let lastError;
-  for (let attempt = 0; attempt < 12; attempt++) {
-    try { await candidateProbe(); lastError = undefined; break; } catch (error) { lastError = error; if (attempt < 11) await wait(5000); }
-  }
-  if (lastError) throw lastError;
-  await assertCurrentMain();
-  const afterCandidate = currentRevision(await readService());
-  if (afterCandidate !== previous) {
-    if (afterCandidate === revision) {
-      await moveTraffic(previous);
-      if (currentRevision(await readService()) !== previous) throw Error('Candidate deploy moved traffic and rollback could not be verified; operator attention required.');
+  try {
+    await deploy();
+    verifyRevision(await readRevision(revision), commit, image);
+    let lastError;
+    for (let attempt = 0; attempt < 12; attempt++) {
+      try { await candidateProbe(); lastError = undefined; break; } catch (error) { lastError = error; if (attempt < 11) await wait(5000); }
     }
-    throw Error('Production traffic changed during candidate checks; refusing to overwrite it.');
+    if (lastError) throw lastError;
+    await assertCurrentMain();
+    const afterCandidate = currentRevision(await readService());
+    if (afterCandidate !== previous) throw Error('Production traffic changed during candidate checks; refusing to overwrite it.');
+  } catch (error) {
+    let current;
+    try {
+      current = currentRevision(await readService());
+    } catch (readError) {
+      throw Error(`${error.message}; candidate traffic state could not be read: ${readError.message}`);
+    }
+    if (current === revision) {
+      try {
+        await moveTraffic(previous);
+        if (currentRevision(await readService()) !== previous) throw Error('rollback verification failed');
+      } catch (rollbackError) {
+        throw Error(`${error.message}; candidate cleanup failed: ${rollbackError.message}; operator attention required.`);
+      }
+    }
+    throw error;
   }
   try {
     await moveTraffic(revision);
@@ -123,8 +135,15 @@ export async function deployRelease({ commit, revision, image, readService, read
   return { commit, image, revision, previous, previousCommit, verified: true };
 }
 
-function command(file, args, capture = false) {
-  return execFileSync(file, args, { encoding: 'utf8', stdio: capture ? ['ignore', 'pipe', 'pipe'] : 'inherit', timeout: 900000 });
+export function command(file, args, capture = false, platform = process.platform, execute = execFileSync, shell = execSync) {
+  const options = { encoding: 'utf8', stdio: capture ? ['ignore', 'pipe', 'pipe'] : 'inherit', timeout: 900000, windowsHide: true };
+  if (platform === 'win32' && file === 'gcloud') {
+    // The SDK is a .cmd shim on Windows. Only fixed release arguments are
+    // accepted; refuse cmd expansion/operators before using its shell.
+    if (args.some(arg => typeof arg !== 'string' || /["&|<>^%!\r\n]/.test(arg) || arg.endsWith('\\'))) throw Error('Unsafe Windows gcloud argument.');
+    return shell('gcloud.cmd ' + args.map(arg => '"' + arg + '"').join(' '), options);
+  }
+  return execute(file, args, options);
 }
 async function currentMain() {
   const token = process.env.GITHUB_TOKEN;
@@ -145,6 +164,55 @@ async function waitForHealth(origin, path, commit) {
   }
   throw lastError;
 }
+export async function baselineRelease({ commit, image, revision, readService, readRevision, assertCurrentMain, deploy, moveTraffic, health }) {
+  if (!shaPattern.test(commit || '') || !new RegExp('^' + production.image.replaceAll('.', '\\.') + '@sha256:[a-f0-9]{64}$').test(image || '') ||
+      !revision.startsWith(production.service + '-baseline-' + commit.slice(0, 12) + '-')) throw Error('Invalid baseline identity.');
+  await assertCurrentMain();
+  const service = await readService();
+  if (service.metadata?.annotations?.['run.googleapis.com/maxScale'] !== '1' || service.metadata?.annotations?.['run.googleapis.com/ingress'] !== 'all') throw Error('The bounded foundation and public ingress are required before the first baseline.');
+  const traffic = (service.status?.traffic || []).filter(row => row.percent > 0);
+  if (traffic.length !== 1 || traffic[0].percent !== 100 || !traffic[0].revisionName) throw Error('Baseline requires one resolved serving revision.');
+  const previous = traffic[0].revisionName, prior = await readRevision(previous);
+  let priorCommit;
+  try { priorCommit = verifyRevision(prior); } catch {}
+  if (priorCommit) {
+    if (priorCommit !== commit || prior.spec.containers[0].image !== image) throw Error('A different canonical production baseline already exists; use the main workflow release path.');
+    await moveTraffic(previous);
+    if (currentRevision(await readService()) !== previous) throw Error('Baseline traffic pin failed.');
+    await health(service.status.url, commit);
+    return { commit, image, revision: previous, serviceUrl: service.status.url, verified: true, resumed: true };
+  }
+  const spec = prior.spec || {}, container = spec.containers?.[0], annotations = prior.metadata?.annotations || {};
+  if (spec.containers?.length !== 1 || !/^us-docker\.pkg\.dev\/cloudrun\/container\/hello@sha256:[a-f0-9]{64}$/.test(container?.image || '') ||
+      spec.serviceAccountName !== production.runtime || spec.containerConcurrency !== 20 || spec.timeoutSeconds !== 30 ||
+      container.resources?.limits?.cpu !== '1' || container.resources?.limits?.memory !== '512Mi' ||
+      annotations['autoscaling.knative.dev/maxScale'] !== '1' || annotations['run.googleapis.com/cpu-throttling'] !== 'true' ||
+      annotations['run.googleapis.com/startup-cpu-boost'] !== 'false' || annotations['run.googleapis.com/execution-environment'] !== 'gen2') throw Error('Existing release is not the bounded foundation placeholder.');
+  // Resolve LATEST before deploying: a no-traffic deploy must not inherit it.
+  await moveTraffic(previous);
+  if (currentRevision(await readService()) !== previous) throw Error('Placeholder traffic pin failed.');
+  try {
+    await assertCurrentMain();
+    await deploy();
+    verifyRevision(await readRevision(revision), commit, image);
+    const candidate = (await readService()).status?.traffic?.find(row => row.revisionName === revision && row.tag === production.tag)?.url;
+    if (!candidate || !candidate.startsWith('https://') || !new URL(candidate).hostname.endsWith('.run.app')) throw Error('Baseline candidate URL is missing.');
+    await health(candidate, commit);
+    await assertCurrentMain();
+    if (currentRevision(await readService()) !== previous) throw Error('Production traffic changed during baseline preparation.');
+    await moveTraffic(revision);
+    const deployed = await readService();
+    if (currentRevision(deployed) !== revision) throw Error('Baseline promotion did not pin the candidate.');
+    await health(deployed.status.url, commit);
+    return { commit, image, revision, serviceUrl: deployed.status.url, verified: true };
+  } catch (error) {
+    if (currentRevision(await readService()) === revision) {
+      await moveTraffic(previous);
+      if (currentRevision(await readService()) !== previous) throw Error('Baseline rollback failed; operator attention required.');
+    }
+    throw error;
+  }
+}
 async function baseline() {
   if (process.env.PRODUCTION_BASELINE_CONFIRM !== production.project) throw Error('Set PRODUCTION_BASELINE_CONFIRM to the production project before creating the first baseline.');
   const commit = process.env.PRODUCTION_BASELINE_COMMIT, image = process.env.PRODUCTION_BASELINE_IMAGE;
@@ -152,35 +220,19 @@ async function baseline() {
   if (await currentMain() !== commit) throw Error('Baseline must use the current remote main commit.');
   const flags = ['--project=' + production.project, '--region=' + production.region, '--quiet'];
   const gcloud = args => JSON.parse(command('gcloud', [...args, ...flags, '--format=json'], true));
-  const service = gcloud(['run', 'services', 'describe', production.service]);
-  if (service.metadata?.annotations?.['run.googleapis.com/maxScale'] !== '1') throw Error('Foundation must create the bounded service before the baseline.');
-  if (service.metadata?.annotations?.['run.googleapis.com/ingress'] !== 'all') throw Error('The first baseline must be created before the load-balancer ingress cutover.');
-  const previous = currentRevision(service), previousRevision = gcloud(['run', 'revisions', 'describe', previous]);
-  let previousCommit;
-  try { previousCommit = verifyRevision(previousRevision); } catch {}
-  const serviceUrl = service.status?.url;
-  if (previousCommit) {
-    if (previousCommit !== commit || previousRevision.spec?.containers?.[0]?.image !== image) throw Error('A different canonical production baseline already exists; use the main workflow release path.');
-    if (!serviceUrl) throw Error('Cloud Run did not report a service URL for the baseline check.');
-    await waitForHealth(serviceUrl, '/api/health', commit);
-    const receipt = { commit, image, revision: previous, serviceUrl, verified: true, resumed: true };
-    writeFileSync('baseline-release.json', JSON.stringify(receipt, null, 2) + '\n');
-    console.log(JSON.stringify(receipt));
-    return;
-  }
   const suffix = 'baseline-' + commit.slice(0, 12) + '-' + Date.now().toString(36);
-  gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix,
-    '--ingress=all', '--allow-unauthenticated', '--service-account=' + production.runtime,
+  const receipt = await baselineRelease({ commit, image, revision: production.service + '-' + suffix,
+    readService: () => gcloud(['run', 'services', 'describe', production.service]),
+    readRevision: name => gcloud(['run', 'revisions', 'describe', name]),
+    assertCurrentMain: async () => { if (await currentMain() !== commit) throw Error('Baseline must use the current remote main commit.'); },
+    moveTraffic: name => gcloud(['run', 'services', 'update-traffic', production.service, '--to-revisions=' + name + '=100']),
+    health: (url, sha) => waitForHealth(url, '/api/health', sha),
+    deploy: () => gcloud(['run', 'deploy', production.service, '--image=' + image, '--revision-suffix=' + suffix, '--no-traffic', '--tag=' + production.tag,
+    '--ingress=all', '--no-invoker-iam-check', '--service-account=' + production.runtime,
     '--min-instances=0', '--max-instances=1', '--cpu=1', '--memory=512Mi', '--concurrency=20', '--timeout=30s',
     '--no-cpu-boost', '--cpu-throttling', '--execution-environment=gen2', '--port=8080',
-    environmentFlag(releaseEnvironment(commit)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']);
-  const deployed = gcloud(['run', 'services', 'describe', production.service]);
-  const revision = currentRevision(deployed);
-  verifyRevision(gcloud(['run', 'revisions', 'describe', revision]), commit, image);
-  const deployedUrl = deployed.status?.url;
-  if (!deployedUrl) throw Error('Cloud Run did not report a service URL for the baseline check.');
-  await waitForHealth(deployedUrl, '/api/health', commit);
-  const receipt = { commit, image, revision, serviceUrl: deployedUrl, verified: true };
+    environmentFlag(releaseEnvironment(commit)), '--set-secrets=AUTH_RATE_LIMIT_KEY=' + production.secret + ':1']),
+  });
   writeFileSync('baseline-release.json', JSON.stringify(receipt, null, 2) + '\n');
   console.log(JSON.stringify(receipt));
 }

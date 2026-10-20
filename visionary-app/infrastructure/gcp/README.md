@@ -4,6 +4,8 @@
 
 The service remains scale-to-zero with maximum one instance, one CPU, 512 MiB, request CPU, no startup boost, concurrency 20 and a 30-second timeout. The global external Application Load Balancer has an estimated base of US$18.25 per 730-hour month, plus metered usage. The former `visionary-fd6d2` service remains available as a recovery reference until the new project is cut over and verified; it is no longer the deployment target. No users or data were migrated between projects.
 
+The public product uses the service-specific `--no-invoker-iam-check` setting because organization policy rejects an `allUsers` IAM binding. This does not change organization policy or application session/UID authorization. After cutover, Cloud Run ingress permits only internal traffic and the Google load balancer. The first baseline resolves placeholder `LATEST` traffic, verifies the exact immutable candidate and its tagged health without traffic, then pins promotion; failures restore the placeholder. Both service `--max=1` and revision `--max-instances=1` bounds are required. The owner baseline command supports Windows and Cloud Shell.
+
 ## Source of truth
 
 - `infrastructure/gcp/firebase-web-config.json` contains the six public Firebase Web SDK settings for `visionary-research`. It is client configuration, not a server secret; the build reads it directly, so production no longer depends on a local `.env.local` or a GitHub `FIREBASE_WEB_CONFIG` variable.
