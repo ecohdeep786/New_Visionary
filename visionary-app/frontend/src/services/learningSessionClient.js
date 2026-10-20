@@ -10,7 +10,9 @@ const confirmation = () => Object.assign(new Error('Learning progress could not 
 
 function learningReceipt(value, uid) {
   if (!value || value.version !== 1 || value.uid !== uid || typeof value.sessionId !== 'string' || !id.test(value.sessionId) ||
-    typeof value.workspaceId !== 'string' || !value.workspaceId || !['active', 'cancelled'].includes(value.status) ||
+    typeof value.workspaceId !== 'string' || !value.workspaceId ||
+    !value.concept || typeof value.concept.sourceVersion !== 'string' || !value.concept.sourceVersion ||
+    typeof value.concept.criteriaVersion !== 'string' || !value.concept.criteriaVersion || !['active', 'cancelled'].includes(value.status) ||
     !phases.includes(value.phase) || !Number.isSafeInteger(value.revision) || value.revision < 0 ||
     !Number.isSafeInteger(value.failedChecks) || !Number.isSafeInteger(value.maxFailedChecks) ||
     value.maxFailedChecks < 1 || value.maxFailedChecks > 3 || value.failedChecks > value.maxFailedChecks ||
@@ -25,6 +27,7 @@ function learningReceipt(value, uid) {
     ? { id: value.receipt.id, checkId: value.receipt.checkId, passed: value.receipt.passed } : undefined;
   if (receipt === undefined) throw confirmation();
   return { version: 1, uid, sessionId: value.sessionId, workspaceId: value.workspaceId, status: value.status, phase: value.phase,
+    concept: { sourceVersion: value.concept.sourceVersion, criteriaVersion: value.concept.criteriaVersion },
     revision: value.revision, failedChecks: value.failedChecks, maxFailedChecks: value.maxFailedChecks,
     previousStrategy: value.previousStrategy || null, checkPassed: value.checkPassed, reviewSuggested: value.reviewSuggested,
     check: value.check ? { checkId: value.check.checkId, strategy: value.check.strategy, optionCount: value.check.optionCount } : null,
@@ -51,16 +54,18 @@ export function createLearningSessionClient({ getAccountId, request = createAuth
     const receipt = learningReceipt(value, uid);
     if (expected.sessionId !== undefined && receipt.sessionId !== expected.sessionId ||
       expected.workspaceId !== undefined && receipt.workspaceId !== expected.workspaceId ||
+      expected.sourceVersion !== undefined && receipt.concept.sourceVersion !== expected.sourceVersion ||
+      expected.criteriaVersion !== undefined && receipt.concept.criteriaVersion !== expected.criteriaVersion ||
       expected.assessment && (!receipt.receipt || receipt.receipt.id !== expected.assessment.commandId ||
         receipt.receipt.checkId !== expected.assessment.checkId)) throw confirmation();
     return receipt;
   };
   return {
-    start(input) { return command('sessions', { method: 'POST', body: input }, { workspaceId: input.workspaceId }); },
+    start(input) { return command('sessions', { method: 'POST', body: input }, { workspaceId: input.workspaceId, sourceVersion: input.sourceVersion, criteriaVersion: input.criteriaVersion }); },
     async get(sessionId) { return command(sessionPath(sessionId), {}, { sessionId }); },
-    async present(sessionId, input) { return command(`${sessionPath(sessionId)}/checks`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId }); },
-    async assess(sessionId, input) { return command(`${sessionPath(sessionId)}/assessments`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId, assessment: { commandId: input.commandId, checkId: input.checkId } }); },
-    async cancel(sessionId, input) { return command(`${sessionPath(sessionId)}/cancel`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId }); },
+    async present(sessionId, input) { return command(`${sessionPath(sessionId)}/checks`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId, sourceVersion: input.sourceVersion, criteriaVersion: input.criteriaVersion }); },
+    async assess(sessionId, input) { return command(`${sessionPath(sessionId)}/assessments`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId, sourceVersion: input.sourceVersion, criteriaVersion: input.criteriaVersion, assessment: { commandId: input.commandId, checkId: input.checkId } }); },
+    async cancel(sessionId, input) { return command(`${sessionPath(sessionId)}/cancel`, { method: 'POST', body: input }, { sessionId, workspaceId: input.workspaceId, sourceVersion: input.sourceVersion, criteriaVersion: input.criteriaVersion }); },
     async list({ workspaceId, after, limit } = {}) {
       const { uid, check } = guard();
       const query = new URLSearchParams();

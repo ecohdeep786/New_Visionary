@@ -24,7 +24,7 @@ const KEY='visionary_learning_pipeline_v1';
 const now=()=>workspaceNow().toISOString();
 /** Server-held receipt for one durable session revision. The authored answer key stays server-side. */
 export interface DurableLearningReceipt {
- version:1; uid:string; sessionId:string; workspaceId:string; status:'active'|'cancelled';
+ version:1; uid:string; sessionId:string; workspaceId:string; concept:{sourceVersion:string;criteriaVersion:string}; status:'active'|'cancelled';
  phase:'explain'|'check'|'check_passed'|'review_suggested';
  revision:number; failedChecks:number; maxFailedChecks:number; previousStrategy:string|null;
  checkPassed:boolean; reviewSuggested:boolean; check:{checkId:string;strategy:string;optionCount:number}|null;
@@ -176,7 +176,7 @@ async function assessDurableAnswer(ctx:RequestContext,unit:LearningUnit,index:nu
  unit.durableAssess={commandId,checkId,selection:index};save(ctx,unit);
  const receipt=await adapter.assess(unit.durableSessionId,{version:1,commandId,expectedRevision:unit.durableRevision||0,workspaceId:scope.workspaceId,sourceVersion:scope.sourceVersion,criteriaVersion:scope.criteriaVersion,checkId,selection:index});
  guard(ctx);assertCurrentLearningUnit(ctx,unit);
- if(receipt.sessionId!==unit.durableSessionId||receipt.workspaceId!==scope.workspaceId||!receipt.receipt||receipt.receipt.id!==commandId||receipt.receipt.checkId!==checkId)throw Error('The connected assessment did not confirm this answer. Your saved work is kept; retry when connected.');
+ if(receipt.sessionId!==unit.durableSessionId||receipt.workspaceId!==scope.workspaceId||receipt.concept?.sourceVersion!==scope.sourceVersion||receipt.concept?.criteriaVersion!==scope.criteriaVersion||!receipt.receipt||receipt.receipt.id!==commandId||receipt.receipt.checkId!==checkId)throw Error('The connected assessment did not confirm this answer. Your saved work is kept; retry when connected.');
  delete unit.durableAssess;unit.durableRevision=receipt.revision;unit.durableFailedChecks=receipt.failedChecks;unit.durableReviewSuggested=receipt.reviewSuggested;delete unit.durableCheckId;
  return {unit:save(ctx,unit),passed:receipt.receipt.passed,receiptId:receipt.receipt.id};
 }
