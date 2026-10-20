@@ -282,17 +282,79 @@
       }
     },
     {
+      "sourceId": "LEARN-09",
+      "jiraKey": "KAN-145",
+      "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-145",
+      "status": "Done",
+      "scope": "Repaired development knowledge-projection enabler; whole connected feature prerequisites/acceptance remain open",
+      "branch": "codex/deepseek-kan-145-knowledge-projection",
+      "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
+      "worktree": null,
+      "review": {
+        "state": "approved-repaired-development-enabler",
+        "candidateCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+        "approvedCommit": "8b14a762c6bb102f5034de2bb107520a03442fbd",
+        "reviewer": "/root/kan145_repair_review",
+        "reviewerReportCommit": "7f1fa144a5b0155fcf8c5c4ea62726ab994fd70c",
+        "evidence": "docs/architecture/reviews/KAN145_EXACT_SHA_REPAIR_8B14A762.md",
+        "wholeTaskAccepted": false
+      },
+      "hostedAcceptance": false,
+      "implementationCommit": "98ce3e5916e61b3c76a01b732f29d9b49b692af6",
+      "checks": {
+        "backendBuild": true,
+        "focusedTests": 11,
+        "backendTests": 84,
+        "rootCheck": true,
+        "frontendTests": 532,
+        "scriptTests": 18,
+        "failed": 0,
+        "productionTests": 76
+      },
+      "jiraCommentId": "10061",
+      "liveEvidence": "integration/KNOWLEDGE_PROJECTION_CONTRACT.md",
+      "currentDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
+      "repairHandoff": "docs/architecture/delivery/KAN145_STORAGE_REPAIR.md",
+      "remainingPrerequisites": [
+        "KAN-144",
+        "KAN-74"
+      ],
+      "scopeDecision": "pending founder choice on development-enabler completion vs full connected feature",
+      "acceptedScope": "development enabler only — explicit founder decision20October2026",
+      "fullFeatureGate": "KAN-163",
+      "fullFeatureAccepted": false,
+      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+      "integration": {
+        "branch": "dev",
+        "commit": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
+        "pullRequest": 15,
+        "remotePublished": true,
+        "ciRun": "39457245132",
+        "ciConclusion": "success",
+        "productionJob": "skipped"
+      },
+      "jiraReturnedStatus": "Done",
+      "jiraTransitionId": "51",
+      "cleanup": {
+        "state": "evidence-preservation-running",
+        "worktrees": [
+          "deepseek-kan-145-knowledge-projection",
+          "qa-review-kan-145-knowledge-projection"
+        ],
+        "evidenceRoot": "artifacts/qa/kan145-closeout-20261020"
+      }
+    },
+    {
       "sourceId": "LEARN-10",
       "jiraKey": "KAN-146",
       "jiraUrl": "https://visionary-team.atlassian.net/browse/KAN-146",
-      "status": "In Progress",
+      "status": "Testing",
       "scope": "Repaired development teaching replay and client confirmation enabler; full learner acceptance open",
       "branch": "codex/deepseek-kan-146-teaching-loop",
       "baseCommit": "9fd87bcee204f8a74b296112938e4fa7577d2ba7",
       "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/deepseek-kan-146-teaching-loop",
       "review": {
-        "state": "changes-requested-under-repair",
-        "previousCandidate": "83d2964bf9ed3470c999d2023eeb4b9d5ec9b4ec",
+        "state": "replacement-under-review",
         "wholeTaskAccepted": false
       },
       "hostedAcceptance": false,
@@ -305,13 +367,21 @@
       },
       "jiraCommentId": "10058",
       "liveEvidence": "integration/LEARNING_LOOP_CONTRACT.md",
-      "currentDevBase": "e089319a24953bcadb522fcfef0e795065dd0c29",
+      "currentDevBase": "9c3f194a6f2d844dde83bc448e43023f08e654cb",
       "repairHandoff": "docs/architecture/delivery/KAN146_REPLAY_REPAIR.md",
       "remainingPrerequisites": [
         "KAN-145",
         "KAN-143"
       ],
-      "scopeDecision": "pending founder enabler completion vs full feature choice"
+      "scopeDecision": "pending founder enabler completion vs full feature choice",
+      "acceptedScope": "development enabler only — explicit founder decision20October2026",
+      "fullFeatureGate": "KAN-164",
+      "fullFeatureAccepted": false,
+      "scopeAcceptance": "Founder explicitly accepts development enabler only; full feature gate remains open",
+      "integration": {
+        "state": "candidate-merged-accepted-dev-for-review",
+        "devBase": "9c3f194a6f2d844dde83bc448e43023f08e654cb"
+      }
     }
   ]
 }

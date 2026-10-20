@@ -17507,6 +17507,33 @@
     },
     {
       "method": "GET",
+      "path": "/api/account/learning/knowledge/models",
+      "controller": "KnowledgeProjectionController",
+      "handler": "models",
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 28,
+      "column": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/account/learning/knowledge/project",
+      "controller": "KnowledgeProjectionController",
+      "handler": "project",
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 14,
+      "column": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/account/learning/knowledge/projections",
+      "controller": "KnowledgeProjectionController",
+      "handler": "projections",
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "line": 21,
+      "column": 3
+    },
+    {
+      "method": "GET",
       "path": "/api/account/learning/sessions",
       "controller": "LearningController",
       "handler": "list",
@@ -78460,7 +78487,7 @@
     },
     {
       "file": "frontend/src/services/learningPipelineService.ts",
-      "sourceSha256": "91165536291a32b566e606e2eb8cbc1bce71633fcf97e5471cda978aee46707e"
+      "sourceSha256": "3daaaa074b409c699e72918f83649e8b19c95164312c784532bd3887ecba5c2a"
     },
     {
       "file": "frontend/src/services/learningProgressService.ts",
@@ -78468,7 +78495,7 @@
     },
     {
       "file": "frontend/src/services/learningSessionClient.js",
-      "sourceSha256": "d1f3c23684e0641350778898d4ebe340af84c55e6fe217492d7af74aa3f45096"
+      "sourceSha256": "bd7b319645887c4a45d13125d81646f66edb97e6b1f40e5b0dbe6ed765fcff9c"
     },
     {
       "file": "frontend/src/services/legacyConnections.ts",
@@ -78582,7 +78609,7 @@
     },
     {
       "file": "backend/upstream/backend/src/auth/firebase-product/firebase-product.module.ts",
-      "sourceSha256": "0746a70a3135928e937e35ad1e3b9900309ae0e526cfb2d5cfff3be00de1c318"
+      "sourceSha256": "83762ac31d426eda4ce6041de30c4c5598bdb93005b3d3805f2cd842e5335638"
     },
     {
       "file": "backend/upstream/backend/src/billing/billing.controller.ts",
@@ -78591,6 +78618,10 @@
     {
       "file": "backend/upstream/backend/src/feedback/feedback.controller.ts",
       "sourceSha256": "65f077538052d5d15bf79fda17dc3a38941f06db97f147137920a3fa99774dff"
+    },
+    {
+      "file": "backend/upstream/backend/src/learning/knowledge-projection.controller.ts",
+      "sourceSha256": "84520838bc7477cdb606a67457f73630172f0d8ceecd2d6d3b05e240d65c9ff8"
     },
     {
       "file": "backend/upstream/backend/src/learning/learning.controller.ts",
@@ -81420,7 +81451,7 @@
         "files": [
           "frontend/src/pages/dashboard/LearningWorkspace.jsx"
         ],
-        "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; the owner-scoped durable loop is recorded separately below, and hosted learning projections remain required.",
+        "reason": "The signed-in Learn UI uses the locally verified durable teaching loop; account knowledge projection remains a separate server enabler without UI binding. Authoritative criteria/content, SQL ownership, hosted learning and two-device acceptance remain open.",
         "followUp": [
           "LEARN-02",
           "LEARN-09",
@@ -81748,6 +81779,24 @@
           "PRIV-01"
         ],
         "endpoints": []
+      },
+      {
+        "id": "knowledge-projection-calibration",
+        "state": "connected",
+        "execution": "server",
+        "routes": [],
+        "files": [],
+        "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
+        "followUp": [
+          "LEARN-10",
+          "DATA-01",
+          "SYNC-02"
+        ],
+        "endpoints": [
+          "POST /api/account/learning/knowledge/project",
+          "GET /api/account/learning/knowledge/projections",
+          "GET /api/account/learning/knowledge/models"
+        ]
       }
     ],
     "gaps": [
@@ -81828,7 +81877,7 @@
   },
   "counts": {
     "routes": 68,
-    "registeredEndpoints": 32,
+    "registeredEndpoints": 35,
     "controlDeclarations": 1645,
     "routeReachableDeclarations": 1487,
     "controlFiles": 219,
