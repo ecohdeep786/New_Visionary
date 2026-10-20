@@ -211,7 +211,7 @@
       "scope": "Verified main-only production hosting and CI/CD in visionary-research; full product/content/provider gates remain separate",
       "branch": "codex/firebase-visionary-research",
       "baseCommit": "1d2e02aa3548afa6aeb227eb7a0a5670e426ef2a",
-      "worktree": "C:/Users/Administrator/New_Visionary/New_Visionary-worktrees/firebase-visionary-research",
+      "worktree": null,
       "review": {
         "state": "approved",
         "implementer": "Codex",
@@ -262,11 +262,23 @@
       "jiraReturnedStatus": "Done",
       "linkedProductGatesRemainOpen": true,
       "jiraTransitionId": "51",
-      "verifiedAt": "2026-10-20T10:18:00Z",
+      "verifiedAt": "2026-10-20T10:12:09Z",
       "cleanup": {
-        "state": "preservation-and-retirement-in-progress",
+        "state": "completed",
+        "removedWorktrees": [
+          "codex-kan-162-main-deployment",
+          "qa-review-kan-162-main-deployment",
+          "qa-review-kan-162-visionary-research",
+          "firebase-visionary-research"
+        ],
+        "preservedFiles": 77,
+        "preservedBytes": 776009,
         "localEvidenceRoot": "C:/Users/Administrator/New_Visionary/visionary-app/artifacts/qa/kan162-closeout-20261020",
-        "pushedSourceAndReviewRefsRetained": true
+        "manifest": "preserved-files.json",
+        "pushedSourceAndReviewRefsRetained": true,
+        "dependencyJunctionsRemovedWithoutFollowingTargets": 4,
+        "primaryDependenciesRetained": true,
+        "primaryBranch": "dev"
       }
     }
   ]
