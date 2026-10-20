@@ -50,7 +50,7 @@ const HeroCtas = React.memo(function HeroCtas({ ctaTo, ctaLabel, secondaryTo, se
     <div className={alignment}>
       <Link
         to={ctaTo}
-        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[16px] font-medium tracking-[0.24px] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
+        className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#121317] px-5 text-[17px] font-normal tracking-[-0.011em] text-white transition-all duration-200 hover:bg-[#2c2d31] hover:scale-[1.01] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-7"
       >
         {ctaLabel}
         <svg
@@ -168,10 +168,6 @@ export default function NewPersona({
      persona (label + route), in the cycling line's order. Absent on every
      persona page, so those heroes render exactly as before. */
   audienceLinks,
-  /* The canonical display minimum is 48px; the universal lead fragment is
-     longer than any persona lead ("One Intelligence."), so the landing drops
-     the floor to keep 390px screens on one line. */
-  minDisplay = 48,
 }) {
   /* Persona pages can still use a cycling lead. The universal landing uses a
      fixed product statement so the family lineup carries the variation. */
@@ -184,10 +180,13 @@ export default function NewPersona({
   const cycleIndex = useCycle(cast ? 0 : animatedHeadlineWords?.length || 0, cast ? 0 : hasAnimatedHeadline ? wordMs : 0);
   const audienceStep = useCycleStep(cast && hasAnimatedHeadline ? animatedHeadlineWords.length : 0, cast ? wordMs : 0);
   const animatedIndex = cast ? audienceStep.index : cycleIndex;
-  /* Canonical display scale — Apple product-first rhythm, with
-     the measured apple.com hero tracking (80px tier: -0.015em / lh 1.05) */
-  const displaySize = `clamp(${minDisplay}px, 5.55vw, 80px)`;
-  const display = `block font-medium tracking-[-0.015em] leading-[1.05]`;
+  /* Apple's live-measured hero ladder (FAP-34, education-initiative):
+     rotating fragment 140/96/64 → var(--fs-hero-headline); the statement
+     line 56/40/40 → var(--fs-hero-eyebrow); 600 weight, 1.0 leading,
+     -0.0021em tracking. Stepped values live in rhythm.css, so persona and
+     cast heroes share one token source. Long fragments may wrap on phones
+     (Apple's own hero words wrap; text-balance keeps it composed). */
+  const displayClass = "font-semibold tracking-[-0.0021em] leading-[1]";
 
   if (cast) {
     return (
@@ -213,15 +212,15 @@ export default function NewPersona({
             <h1 className="m-0">
               <span
                 aria-hidden="true"
-                className={`${display} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
-                style={{ color: "#121317", fontSize: displaySize }}
+                className={`${displayClass} ${hasAnimatedHeadline || staticHeadline ? "text-balance" : "whitespace-nowrap"}`}
+                style={{ color: "#121317", fontSize: "var(--fs-hero-headline)" }}
               >
                 {hasAnimatedHeadline ? (
                   /* Apple's stacked hero lines: the statement reads as its own
                      line, the audience line below it — the same masked-line
                      rhythm as an education-init headline. */
                   <>
-                    <span className="block text-balance">{animatedHeadlinePrefix}</span>
+                    <span className="block text-balance tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)" }}>{animatedHeadlinePrefix}</span>
                     <span key={animatedIndex} className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
                       {animatedHeadlineWords[animatedIndex]}.
                     </span>
@@ -231,7 +230,7 @@ export default function NewPersona({
                      line, the audience on the next — both in the accent
                      gradient, balanced as one composed headline. */
                   <>
-                    <span className="block text-balance accent-gradient">{words[0]}</span>
+                    <span className="block text-balance accent-gradient tracking-[-0.00028em]" style={{ fontSize: "var(--fs-hero-eyebrow)" }}>{words[0]}</span>
                     <span className="apple-anim accent-gradient block text-balance" style={{ animation: "heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both" }}>
                       {staticHeadline}
                     </span>
@@ -274,7 +273,7 @@ export default function NewPersona({
                     audienceStep.setIndex(i);
                   }}
                   onBlur={() => audienceStep.setPaused(false)}
-                  className={`inline-flex h-9 items-center whitespace-nowrap rounded-full px-3 text-[14px] tracking-[0.24px] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
+                  className={`inline-flex h-9 items-center whitespace-nowrap rounded-full px-3 text-[12px] tracking-[-0.010em] transition-colors duration-200 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 ${
                     i === audienceStep.index ? "font-medium text-[#121317]" : "font-normal text-[#6e6e73] hover:text-[#121317]"
                   }`}
                 >
@@ -393,7 +392,11 @@ export default function NewPersona({
               stage with the CTA pair on the baseline right. */}
       <div className="relative z-10 order-first flex w-full flex-col items-center gap-8 px-6 pt-[clamp(12px,2.5svh,40px)] pb-[clamp(28px,5svh,64px)] text-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-auto lg:flex-row lg:items-end lg:justify-between lg:gap-16 lg:px-[max(1.5rem,var(--frame-x))] lg:pb-[clamp(40px,7svh,88px)] lg:pt-0 lg:text-left">
         <div className="max-w-[860px]">
-            <h1 className="m-0 font-medium tracking-[0] leading-[1.05]" style={{ fontSize: displaySize }}>
+            {/* FAP-34: category heroes wear the Vision Pro type — the
+                foundation statement 28/40/48 and the tagline 17/24/28, both
+                600; steps live in rhythm.css. The landing's cast hero keeps
+                the education ladder (var(--fs-hero-headline)). */}
+            <h1 className="category-hero-statement m-0">
               <span
                 key={index}
                 className="apple-anim accent-gradient inline-block"
@@ -403,7 +406,7 @@ export default function NewPersona({
               </span>
               <span className="sr-only">{srSentence}</span>
             </h1>
-            <p className="text-balance mt-4 max-w-[560px] font-medium tracking-[0] leading-[1.4] text-[clamp(18px,1.4vw,24px)] lg:mx-0" style={{ color: "#121317" }}>
+            <p className="category-hero-tagline text-balance mt-4 max-w-[560px] lg:mx-0" style={{ color: "#121317" }}>
               {sub}
             </p>
           </div>

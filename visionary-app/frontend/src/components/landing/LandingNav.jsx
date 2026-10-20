@@ -93,7 +93,7 @@ const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visibl
 /* Apple-state nav item — ink at 75% at rest (Apple's global-nav gray),
    resolving to full ink on hover; the selected page's item sits at Medium */
 const navLink = (active) =>
-  `flex h-10 items-center whitespace-nowrap rounded-full px-3 text-[14px] transition-colors duration-200 ${FOCUS_RING} ${
+  `flex h-10 items-center whitespace-nowrap rounded-full px-3 text-[12px] tracking-[-0.010em] transition-colors duration-200 ${FOCUS_RING} ${
     active
       ? "font-medium text-[#121317]"
       : "font-normal text-[#121317]/75 hover:text-[#121317]"

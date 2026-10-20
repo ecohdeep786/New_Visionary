@@ -257,7 +257,6 @@ const LandingHeroSection = React.memo(function LandingHeroSection() {
       audienceLinks={LANDING_AUDIENCE_LINKS}
       ctaLabel="Start learning"
       secondaryLabel="See how it works"
-      minDisplay={42}
       wordMs={2600}
     />
   );
