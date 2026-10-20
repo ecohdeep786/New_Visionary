@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createLearningSessionClient } from '../src/services/learningSessionClient.js';
 
 const sessionId = () => crypto.randomUUID();
-const receipt = (overrides = {}) => ({ version: 1, uid: 'owner', sessionId: sessionId(), workspaceId: 'demo-adult:student', status: 'active', phase: 'explain', revision: 0, failedChecks: 0, maxFailedChecks: 3, previousStrategy: null, checkPassed: false, reviewSuggested: false, check: null, createdAt: '2026-10-18T00:00:00.000Z', updatedAt: '2026-10-18T00:00:00.000Z', ...overrides });
+const receipt = (overrides = {}) => ({ version: 1, uid: 'owner', sessionId: sessionId(), workspaceId: 'demo-adult:student', concept: { sourceVersion: 'source-v1', criteriaVersion: 'criteria-v1' }, status: 'active', phase: 'explain', revision: 0, failedChecks: 0, maxFailedChecks: 3, previousStrategy: null, checkPassed: false, reviewSuggested: false, check: null, createdAt: '2026-10-18T00:00:00.000Z', updatedAt: '2026-10-18T00:00:00.000Z', ...overrides });
 
 test('the connected client sends owner-scoped commands on the durable learning routes', async () => {
   const calls = [];
@@ -46,12 +46,12 @@ test('keyed, foreign, impossible or malformed receipts are refused without echoi
 test('assessment receipts keep the server verdict and only the bounded receipt fields', async () => {
   const value = { ...receipt({ phase: 'check_passed', revision: 2, checkPassed: true, failedChecks: 1 }), receipt: { id: sessionId(), checkId: 'check-1', passed: true } };
   const client = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => value });
-  const input = { commandId: value.receipt.id, checkId: value.receipt.checkId, workspaceId: value.workspaceId };
+  const input = { commandId: value.receipt.id, checkId: value.receipt.checkId, workspaceId: value.workspaceId, sourceVersion: value.concept.sourceVersion, criteriaVersion: value.concept.criteriaVersion };
   const result = await client.assess(value.sessionId, input);
   assert.deepEqual(result.receipt, value.receipt);
   assert.equal(result.checkPassed, true);
   assert.equal(result.phase, 'check_passed');
-  assert.equal(Object.keys(result).includes('concept'), false);
+  assert.deepEqual(result.concept, { sourceVersion: 'source-v1', criteriaVersion: 'criteria-v1' });
   const altered = createLearningSessionClient({ getAccountId: () => 'owner', request: async () => ({ ...value, receipt: { ...value.receipt, passed: 'yes' } }) });
   await assert.rejects(altered.assess(value.sessionId, input), error => error.status === 503);
 });
@@ -85,11 +85,13 @@ test('a changed account and an invalid session reference are refused before trus
 
 test('each routed response and assessment must match the exact requested session, workspace, command and check', async () => {
   const target = sessionId(), commandId = sessionId(), checkId = 'check-original';
-  const input = { commandId, checkId, workspaceId: 'workspace-original' };
+  const input = { commandId, checkId, workspaceId: 'workspace-original', sourceVersion: 'source-v1', criteriaVersion: 'criteria-v1' };
   const valid = receipt({ sessionId: target, workspaceId: input.workspaceId, receipt: { id: commandId, checkId, passed: true } });
   const mutations = [
     x => ({ ...x, sessionId: sessionId() }),
     x => ({ ...x, workspaceId: 'another-workspace' }),
+    x => ({ ...x, concept: { ...x.concept, sourceVersion: 'different-source' } }),
+    x => ({ ...x, concept: { ...x.concept, criteriaVersion: 'different-criteria' } }),
     x => ({ ...x, receipt: { ...x.receipt, id: sessionId() } }),
     x => ({ ...x, receipt: { ...x.receipt, checkId: 'another-check' } }),
   ];

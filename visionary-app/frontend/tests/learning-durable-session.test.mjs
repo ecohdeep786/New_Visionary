@@ -35,7 +35,7 @@ const fakeServer = ({ grader } = {}) => {
   const sessions = new Map(), issued = new Map();
   const calls = { start: [], get: [], present: [], assess: [], cancel: [] };
   let lostAssess = false, rejectedAssess = null;
-  const state = session => ({ version: 1, uid: 'demo-adult', sessionId: session.id, workspaceId: session.workspaceId, status: session.status,
+  const state = session => ({ version: 1, uid: 'demo-adult', sessionId: session.id, workspaceId: session.workspaceId, concept: { sourceVersion: session.sourceVersion, criteriaVersion: session.criteriaVersion }, status: session.status,
     phase: session.phase, revision: session.revision, failedChecks: session.failedChecks, maxFailedChecks: session.maxFailedChecks,
     previousStrategy: session.previousStrategy, checkPassed: session.phase === 'check_passed', reviewSuggested: session.phase === 'review_suggested',
     check: session.check ? { checkId: session.check.checkId, strategy: session.check.strategy, optionCount: session.check.options.length } : null,
@@ -224,6 +224,8 @@ test('an unconfigured adapter keeps the verified local flow and sends no server 
 for (const [field, mutate] of [
   ['session', x => ({ ...x, sessionId: crypto.randomUUID() })],
   ['workspace', x => ({ ...x, workspaceId: 'other-workspace' })],
+  ['source', x => ({ ...x, concept: { ...x.concept, sourceVersion: 'other-source' } })],
+  ['criteria', x => ({ ...x, concept: { ...x.concept, criteriaVersion: 'other-criteria' } })],
   ['command', x => ({ ...x, receipt: { ...x.receipt, id: crypto.randomUUID() } })],
 ]) test(`a mismatched ${field} assessment keeps the draft and cannot advance local learning evidence`, async () => {
   const server = fakeServer(), assess = server.assess.bind(server);

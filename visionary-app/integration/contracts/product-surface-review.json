@@ -2817,7 +2817,7 @@
       "files": [
         "frontend/src/pages/dashboard/LearningWorkspace.jsx"
       ],
-      "reason": "Step-by-step authored rehearsal, checks and evidence guards exist locally; the owner-scoped durable loop is recorded separately below, and hosted learning projections remain required.",
+      "reason": "The signed-in Learn UI uses the locally verified durable teaching loop; account knowledge projection remains a separate server enabler without UI binding. Authoritative criteria/content, SQL ownership, hosted learning and two-device acceptance remain open.",
       "followUp": [
         "LEARN-02",
         "LEARN-09",
@@ -3145,6 +3145,24 @@
         "PRIV-01"
       ],
       "endpoints": []
+    },
+    {
+      "id": "knowledge-projection-calibration",
+      "state": "connected",
+      "execution": "server",
+      "routes": [],
+      "files": [],
+      "reason": "An authenticated owner projects immutable server-assessed learning receipts into one account-scoped knowledge estimate with server-selected calibrated parameters, a single receipt/projection/outbox transaction and rebuild-on-model-change. No mastery claim, UI binding, hosted run or two-device browser acceptance is claimed.",
+      "followUp": [
+        "LEARN-10",
+        "DATA-01",
+        "SYNC-02"
+      ],
+      "endpoints": [
+        "POST /api/account/learning/knowledge/project",
+        "GET /api/account/learning/knowledge/projections",
+        "GET /api/account/learning/knowledge/models"
+      ]
     }
   ],
   "gaps": [

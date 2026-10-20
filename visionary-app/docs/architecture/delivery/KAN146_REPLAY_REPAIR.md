@@ -21,3 +21,10 @@ Backend build EXIT0 and84/84 tests pass; focused frontend16/16 pass, including t
 KAN145 is Testing and KAN143 is To Do. Full source/criteria/SQL/provider/workflow/hosted/IAM/two-device acceptance is open. The existing local presentation contract accepts bounded authored answer material; KAN74 must supply protected server-owned criteria before production assessment authority or learning release. Scoring a stored browser-supplied key is not educational verification. Preserve source/privacy/admission/entitlement gates and account-directory learning availability. No teacher contact, automatic escalation or mastery claim.
 
 Exact-SHA review and founder scope acceptance precede integration/Done/cleanup. Tests do not prove the full original feature or prerequisite completion. No main promotion or deployment is requested.
+
+
+## Accepted enabler scope and integration candidate
+
+Founder explicitly chose “Complete development enablers; keep linked feature gates open.” KAN163 carries full knowledge acceptance and KAN164 carries full teaching acceptance, with native prerequisite/downstream blocking links. KAN145 is now nativeDone after independent8b14a762 review, published dev9c3f194a and actual successfuldevCI39457245132. Main remains7aee2324, unchanged; no cloud rollout.
+
+The replacement candidate merges accepteddev9c3f194a, preserving both controller/provider registrations, strict SDK-parity fixture, both deployed-lock suites and both distinct source-audit operation rows. The generic reviewed-learning-operation audit assertion covers both enablers. Append-only HEAD logs are retained byte-for-byte with accepted dev integration history appended verbatim; repeated shared historical entries are explicitly labelled rather than deleting either task's history. Source/criteria receipt repair supersedes the bf65 changes-requested finding: client retains only the returned concept versions and validates requested pinned versions, and the pipeline independently checks them before applying an assessment. Client/pipeline focused18 tests and types pass; combined backend95 pass. Combined root/deployed-lock results follow before final approval.
