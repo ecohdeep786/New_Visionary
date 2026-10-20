@@ -92,21 +92,33 @@ export async function deployRelease({ commit, revision, image, readService, read
   const previous = currentRevision(initialService), previousRevision = await readRevision(previous);
   const previousCommit = verifyRevision(previousRevision);
   if (!(await ancestor(previousCommit))) throw Error('Previous release must belong to main history.');
-  await deploy();
-  verifyRevision(await readRevision(revision), commit, image);
-  let lastError;
-  for (let attempt = 0; attempt < 12; attempt++) {
-    try { await candidateProbe(); lastError = undefined; break; } catch (error) { lastError = error; if (attempt < 11) await wait(5000); }
-  }
-  if (lastError) throw lastError;
-  await assertCurrentMain();
-  const afterCandidate = currentRevision(await readService());
-  if (afterCandidate !== previous) {
-    if (afterCandidate === revision) {
-      await moveTraffic(previous);
-      if (currentRevision(await readService()) !== previous) throw Error('Candidate deploy moved traffic and rollback could not be verified; operator attention required.');
+  try {
+    await deploy();
+    verifyRevision(await readRevision(revision), commit, image);
+    let lastError;
+    for (let attempt = 0; attempt < 12; attempt++) {
+      try { await candidateProbe(); lastError = undefined; break; } catch (error) { lastError = error; if (attempt < 11) await wait(5000); }
     }
-    throw Error('Production traffic changed during candidate checks; refusing to overwrite it.');
+    if (lastError) throw lastError;
+    await assertCurrentMain();
+    const afterCandidate = currentRevision(await readService());
+    if (afterCandidate !== previous) throw Error('Production traffic changed during candidate checks; refusing to overwrite it.');
+  } catch (error) {
+    let current;
+    try {
+      current = currentRevision(await readService());
+    } catch (readError) {
+      throw Error(`${error.message}; candidate traffic state could not be read: ${readError.message}`);
+    }
+    if (current === revision) {
+      try {
+        await moveTraffic(previous);
+        if (currentRevision(await readService()) !== previous) throw Error('rollback verification failed');
+      } catch (rollbackError) {
+        throw Error(`${error.message}; candidate cleanup failed: ${rollbackError.message}; operator attention required.`);
+      }
+    }
+    throw error;
   }
   try {
     await moveTraffic(revision);

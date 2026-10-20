@@ -53,6 +53,25 @@ test('candidate deploy that unexpectedly moves traffic is rolled back before pro
   assert.equal(f.getCurrent(), previous);
   assert.deepEqual(f.calls.filter(x => x.startsWith('traffic:')), ['traffic:' + previous]);
 });
+test('failed candidate probe restores unexpected candidate traffic before rethrowing', async () => {
+  const f = fixture();
+  f.options.deploy = async () => { f.calls.push('deploy'); f.setCurrent(revision); };
+  f.options.candidateProbe = async () => { f.calls.push('candidate'); throw Error('unhealthy candidate'); };
+  await assert.rejects(deployRelease(f.options), /unhealthy candidate/);
+  assert.equal(f.getCurrent(), previous);
+  assert.deepEqual(f.calls.filter(x => x.startsWith('traffic:')), ['traffic:' + previous]);
+});
+test('failed revision verification restores unexpected candidate traffic before rethrowing', async () => {
+  const f = fixture();
+  f.options.deploy = async () => { f.calls.push('deploy'); f.setCurrent(revision); };
+  f.options.readRevision = async name => {
+    if (name === revision) throw Error('bad candidate revision');
+    return compatible(previousCommit);
+  };
+  await assert.rejects(deployRelease(f.options), /bad candidate revision/);
+  assert.equal(f.getCurrent(), previous);
+  assert.deepEqual(f.calls.filter(x => x.startsWith('traffic:')), ['traffic:' + previous]);
+});
 test('post-promotion failure restores and verifies only the compatible previous release', async () => {
   const f = fixture({ canonicalChecks: async sha => { if (!sha) throw Error('canonical failure'); assert.equal(sha, previousCommit); } });
   await assert.rejects(deployRelease(f.options), /canonical failure/);
