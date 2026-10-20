@@ -1,6 +1,6 @@
 # Connected account onboarding
 
-D-065/D-066, 14 October 2026. Scope: five existing roles, concise product setup, saved completion and the illustrated welcome dialog. Uses Firebase project `visionary-fd6d2`, named Native Firestore database `default` in Mumbai. Read the [auth contract](FIREBASE_AUTH_CONTRACT.md) for session/deployment boundaries and the [question/screen design](../docs/architecture/discussions/product-onboarding-journey.md) for minimum role details.
+D-065/D-066, 14 October 2026. Scope: five existing roles, concise product setup, saved completion and the illustrated welcome dialog. Uses Firebase project `visionary-research` (switched from `visionary-fd6d2` on 20 October 2026, D-102), named Native Firestore database `default` in Mumbai. Read the [auth contract](FIREBASE_AUTH_CONTRACT.md) for session/deployment boundaries and the [question/screen design](../docs/architecture/discussions/product-onboarding-journey.md) for minimum role details.
 
 ## Account ownership
 
